@@ -81,17 +81,24 @@ The `associations` parameter allows you to load additional data to the minimal d
 
 ```json
 {
-    "associations": {
-        "products": {
-            "limit": 5,
-            "filter": [
-                { "type": "equals", "field": "active", "value": true }
-            ],
-            "sort": [
-                { "field": "name", "order": "ASC" }    
-            ]
+  "associations": {
+    "products": {
+      "limit": 5,
+      "filter": [
+        {
+          "type": "equals",
+          "field": "active",
+          "value": true
         }
+      ],
+      "sort": [
+        {
+          "field": "name",
+          "order": "ASC"
+        }
+      ]
     }
+  }
 }
 ```
 
@@ -105,25 +112,28 @@ The `includes` parameter allows you to restrict the returned fields.
 
 ```json
 {
-    "includes": {
-        "product": ["id", "name"]
-    }
+  "includes": {
+    "product": [
+      "id",
+      "name"
+    ]
+  }
 }
 
 // Response
 {
-    "total": 120,
-    "data": [
-        {
-            "name": "Synergistic Rubber Fish Soda",
-            "id": "012cd563cf8e4f0384eed93b5201cc98",
-            "apiAlias": "product"
-        },
-        {
-            "name": "Mediocre Plastic Ticket Lift",
-            "id": "075fb241b769444bb72431f797fd5776",
-            "apiAlias": "product"
-        }
+  "total": 120,
+  "data": [
+    {
+      "name": "Synergistic Rubber Fish Soda",
+      "id": "012cd563cf8e4f0384eed93b5201cc98",
+      "apiAlias": "product"
+    },
+    {
+      "name": "Mediocre Plastic Ticket Lift",
+      "id": "075fb241b769444bb72431f797fd5776",
+      "apiAlias": "product"
+    }
   ]
 }
 ```
@@ -138,11 +148,11 @@ If you want to perform a simple lookup using just the ids of records, you can pa
 
 ```json
 {
-    "ids": [
-        "012cd563cf8e4f0384eed93b5201cc98", 
-        "075fb241b769444bb72431f797fd5776",
-        "090fcc2099794771935acf814e3fdb24"
-    ]
+  "ids": [
+    "012cd563cf8e4f0384eed93b5201cc98",
+    "075fb241b769444bb72431f797fd5776",
+    "090fcc2099794771935acf814e3fdb24"
+  ]
 }
 ```
 
@@ -162,7 +172,7 @@ The `total-count-mode` parameter can be used to define whether the total for the
 
 ```json
 {
-    "total-count-mode": 1
+  "total-count-mode": 1
 }
 ```
 
@@ -172,8 +182,8 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 ```json
 {
-    "page": 1,
-    "limit": 5
+  "page": 1,
+  "limit": 5
 }
 ```
 
@@ -238,24 +248,32 @@ Use this parameter to create a weighted search query that returns a `_score` for
 
 ```json
 {
-    "query": [
-        {
-            "score": 500,
-            "query": { "type": "contains", "field": "name", "value": "Bronze"}
-        },
-        { 
-            "score": 500,
-            "query": { "type": "equals", "field": "active", "value": true }
-        },
-        {
-            "score": 100,
-            "query": {
-                "type": "equals",
-                "field": "manufacturerId",
-                "value": "db3c17b1e572432eb4a4c881b6f9d68f"
-            }
-        }
-    ]
+  "query": [
+    {
+      "score": 500,
+      "query": {
+        "type": "contains",
+        "field": "name",
+        "value": "Bronze"
+      }
+    },
+    {
+      "score": 500,
+      "query": {
+        "type": "equals",
+        "field": "active",
+        "value": true
+      }
+    },
+    {
+      "score": 100,
+      "query": {
+        "type": "equals",
+        "field": "manufacturerId",
+        "value": "db3c17b1e572432eb4a4c881b6f9d68f"
+      }
+    }
+  ]
 }
 ```
 
@@ -263,42 +281,42 @@ The resulting score is appended to every resulting record in the `extensions.sea
 
 ```json
 {
-    "total": 5,
-    "data": [
-        {
-            "manufacturerId": "db3c17b1e572432eb4a4c881b6f9d68f",
-            "name": "Awesome Bronze Krill Kream",
-            "extensions": {
-                "search": {
-                    "_score": "1100"
-                }
-            },
-            "id": "0acc3aa5c45a492c9a2adb8844cb7adc",
-            "apiAlias": "product"
-        },
-        {
-            "manufacturerId": "d0c0daa910d94b3c8b03c2bef6acb9b8",
-            "name": "Synergistic Bronze New Tab",
-            "extensions": {
-                "search": {
-                    "_score": "1000"
-                }
-            },
-            "id": "72858576ac634f209b7ad61db15b7cc3",
-            "apiAlias": "product"
-        },
-        {
-            "manufacturerId": "3b5f9d51803849c68bb72360debd3da0",
-            "name": "Fantastic Paper Zamox",
-            "extensions": {
-                "search": {
-                    "_score": "500"
-                }
-            },
-            "id": "18d2b4225ea34b17a6099108da159e7f",
-            "apiAlias": "product"
+  "total": 5,
+  "data": [
+    {
+      "manufacturerId": "db3c17b1e572432eb4a4c881b6f9d68f",
+      "name": "Awesome Bronze Krill Kream",
+      "extensions": {
+        "search": {
+          "_score": "1100"
         }
-    ]
+      },
+      "id": "0acc3aa5c45a492c9a2adb8844cb7adc",
+      "apiAlias": "product"
+    },
+    {
+      "manufacturerId": "d0c0daa910d94b3c8b03c2bef6acb9b8",
+      "name": "Synergistic Bronze New Tab",
+      "extensions": {
+        "search": {
+          "_score": "1000"
+        }
+      },
+      "id": "72858576ac634f209b7ad61db15b7cc3",
+      "apiAlias": "product"
+    },
+    {
+      "manufacturerId": "3b5f9d51803849c68bb72360debd3da0",
+      "name": "Fantastic Paper Zamox",
+      "extensions": {
+        "search": {
+          "_score": "500"
+        }
+      },
+      "id": "18d2b4225ea34b17a6099108da159e7f",
+      "apiAlias": "product"
+    }
+  ]
 }
 ```
 
@@ -312,7 +330,7 @@ Don't use `term` parameters together with `query` parameters.
 
 ```json
 {
-    "term": "Awesome Bronze"
+  "term": "Awesome Bronze"
 }
 ```
 
@@ -330,11 +348,22 @@ The `sort` parameter allows controlling the sorting of the result. Several sorts
 
 ```json
 {
-    "limit": 5,
-    "sort": [
-        { "field": "name", "order": "ASC", "naturalSorting": true },
-        { "field": "active", "order": "DESC" },
-        { "field": "products.id", "order": "DESC", "type": "count" }
+  "limit": 5,
+  "sort": [
+    {
+      "field": "name",
+      "order": "ASC",
+      "naturalSorting": true
+    },
+    {
+      "field": "active",
+      "order": "DESC"
+    },
+    {
+      "field": "products.id",
+      "order": "DESC",
+      "type": "count"
+    }
   ]
 }
 ```
@@ -351,23 +380,32 @@ This `count` type was introduced with Shopware 6.4.12.0 and is not available in 
 {
   "limit": 3,
   "includes": {
-    "product": ["id"]
+    "product": [
+      "id"
+    ]
   },
   "sort": [
-    { "field": "categories.id", "order": "DESC", "type": "count" }
+    {
+      "field": "categories.id",
+      "order": "DESC",
+      "type": "count"
+    }
   ],
   "aggregations": [
-    {  
-        "name": "product-id",
-        "type": "terms",
-        "field": "id",
-        "limit": 3,
-        "sort": { "field": "_count", "order": "DESC" },
-        "aggregation": {  
-            "name": "category-count",
-            "type": "count",
-            "field": "product.categories.id"
-        }
+    {
+      "name": "product-id",
+      "type": "terms",
+      "field": "id",
+      "limit": 3,
+      "sort": {
+        "field": "_count",
+        "order": "DESC"
+      },
+      "aggregation": {
+        "name": "category-count",
+        "type": "count",
+        "field": "product.categories.id"
+      }
     }
   ]
 }
@@ -377,30 +415,36 @@ In response, the order of the `product` elements is now equal to the order of th
 
 ```json
 {
-    "total": 3,
-    "aggregations": {
-        "product-id": {
-            "buckets": [
-                {
-                    "key": "f977f6a845a54b0381cbaf322f53b63e",
-                    "count": 5
-                },
-                {
-                    "key": "8d0ee52433df44b78a6f7827180049d9",
-                    "count": 4
-                },
-                {
-                    "key": "003a9df163474b28bc8a000243549547",
-                    "count": 3
-                }
-            ]
+  "total": 3,
+  "aggregations": {
+    "product-id": {
+      "buckets": [
+        {
+          "key": "f977f6a845a54b0381cbaf322f53b63e",
+          "count": 5
+        },
+        {
+          "key": "8d0ee52433df44b78a6f7827180049d9",
+          "count": 4
+        },
+        {
+          "key": "003a9df163474b28bc8a000243549547",
+          "count": 3
         }
+      ]
+    }
+  },
+  "elements": [
+    {
+      "id": "f977f6a845a54b0381cbaf322f53b63e"
     },
-    "elements": [
-        { "id": "f977f6a845a54b0381cbaf322f53b63e" },
-        { "id": "8d0ee52433df44b78a6f7827180049d9" },
-        { "id": "003a9df163474b28bc8a000243549547" }
-    ]
+    {
+      "id": "8d0ee52433df44b78a6f7827180049d9"
+    },
+    {
+      "id": "003a9df163474b28bc8a000243549547"
+    }
+  ]
 }
 ```
 
@@ -417,17 +461,20 @@ The aggregation types are equivalent to the aggregations available in the DAL:
 
 ```json
 {
-    "limit": 1,
-    "includes": {
-        "product": ["id", "name"]
-    },
-    "aggregations": [
-        {
-            "name": "average-price",
-            "type": "avg",
-            "field": "price"
-        }    
+  "limit": 1,
+  "includes": {
+    "product": [
+      "id",
+      "name"
     ]
+  },
+  "aggregations": [
+    {
+      "name": "average-price",
+      "type": "avg",
+      "field": "price"
+    }
+  ]
 }
 ```
 
@@ -440,8 +487,8 @@ The `grouping` parameter allows you to group the result over fields. It can be u
 
 ```json
 {
-    "limit": 5,
-    "grouping": ["active"]
+  "limit": 5,
+  "grouping": ["active"]
 }
 ```
 

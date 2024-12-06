@@ -141,13 +141,13 @@ First, adjust your root `composer.json`. Add the following lines to your `compos
 
 ```json
 "extra": {
-    "symfony": {
-        "allow-contrib": true,
-        "endpoint": [
-            "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
-            "flex://defaults"
-        ]
-    }
+  "symfony": {
+    "allow-contrib": true,
+    "endpoint": [
+      "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
+      "flex://defaults"
+    ]
+  }
 }
 ```
 
@@ -155,13 +155,13 @@ Next, replace all the existing scripts with the following:
 
 ```json
 "scripts": {
-    "auto-scripts": [],
-    "post-install-cmd": [
-        "@auto-scripts"
-    ],
-    "post-update-cmd": [
-        "@auto-scripts"
-    ]
+  "auto-scripts": [],
+  "post-install-cmd": [
+    "@auto-scripts"
+  ],
+  "post-update-cmd": [
+    "@auto-scripts"
+  ]
 }
 ```
 

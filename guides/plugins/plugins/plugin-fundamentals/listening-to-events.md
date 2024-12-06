@@ -43,19 +43,19 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class MySubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        // Return the events to listen to as array like this:  <event to listen to> => <method to execute>
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    // Return the events to listen to as array like this:  <event to listen to> => <method to execute>
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
+    ];
+  }
 
-    public function onProductsLoaded(EntityLoadedEvent $event)
-    {
-        // Do something
-        // E.g. work with the loaded entities: $event->getEntities()
-    }
+  public function onProductsLoaded(EntityLoadedEvent $event)
+  {
+    // Do something
+    // E.g. work with the loaded entities: $event->getEntities()
+  }
 }
 ```
 
@@ -67,19 +67,19 @@ The subscriber is now listening for the `product.loaded` event to trigger. Unfor
 
 Registering your subscriber to Shopware 6 is also as simple as it is in Symfony. You're simply registering your \(subscriber\) service by mentioning it in the `services.xml`. The only difference to a normal service is, that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
 
-```php
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MySubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\MySubscriber">
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 

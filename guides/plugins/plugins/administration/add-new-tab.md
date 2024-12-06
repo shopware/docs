@@ -43,30 +43,30 @@ For this guide, we'll think about the following example: The product detail page
 Let's imagine your first goal is to create a new tab on the product detail page. Having a look at the template, you might find the block `sw_product_detail_content_tabs`, which seems to contain all available tabs. It starts by creating a new `<sw-tabs>` element to contain all the tabs available. Here you can see excerpt of this block:
 
 ```twig
-// platform/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig
+{# platform/src/Administration/Resources/app/administration/src/module/sw-product/page/sw-product-detail/sw-product-detail.html.twig #}
 {% block sw_product_detail_content_tabs %}
-    <sw-tabs class="sw-product-detail-page__tabs" v-if="productId">
-        {% block sw_product_detail_content_tabs_general %}
-            <sw-tabs-item
-                class="sw-product-detail__tab-general"
-                :route="{ name: 'sw.product.detail.base', params: { id: $route.params.id } }"
-                :hasError="swProductDetailBaseError"
-                :title="$tc('sw-product.detail.tabGeneral')">
-                {{ $tc('sw-product.detail.tabGeneral') }}
-            </sw-tabs-item>
-        {% endblock %}
+  <sw-tabs class="sw-product-detail-page__tabs" v-if="productId">
+    {% block sw_product_detail_content_tabs_general %}
+      <sw-tabs-item
+        class="sw-product-detail__tab-general"
+        :route="{ name: 'sw.product.detail.base', params: { id: $route.params.id } }"
+        :hasError="swProductDetailBaseError"
+        :title="$tc('sw-product.detail.tabGeneral')">
+        {{ $tc('sw-product.detail.tabGeneral') }}
+      </sw-tabs-item>
+    {% endblock %}
 
-        ...
+    {# ... #}
 
-        {% block sw_product_detail_content_tabs_reviews %}
-            <sw-tabs-item
-                class="sw-product-detail__tab-reviews"
-                :route="{ name: 'sw.product.detail.reviews', params: { id: $route.params.id } }"
-                :title="$tc('sw-product.detail.tabReviews')">
-                {{ $tc('sw-product.detail.tabReviews') }}
-            </sw-tabs-item>
-        {% endblock %}
-    </sw-tabs>
+    {% block sw_product_detail_content_tabs_reviews %}
+      <sw-tabs-item
+        class="sw-product-detail__tab-reviews"
+        :route="{ name: 'sw.product.detail.reviews', params: { id: $route.params.id } }"
+        :title="$tc('sw-product.detail.tabReviews')">
+          {{ $tc('sw-product.detail.tabReviews') }}
+      </sw-tabs-item>
+    {% endblock %}
+  </sw-tabs>
 {% endblock %}
 ```
 
@@ -90,18 +90,18 @@ import template from './sw-product-detail.html.twig';
 
 // Override your template here, using the actual template from the core
 Shopware.Component.override('sw-product-detail', {
-    template
+  template
 });
 ```
 
 All this file is doing is to basically override the `sw-product-detail` component with a new template. The new template does not exist yet though, so create a new file `sw-product-detail.html.twig` in the same directory as your `index.js` file. It then has to use the block we figured out earlier and override it by adding a new tab element:
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig
+{# <plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig #}
 {% block sw_product_detail_content_tabs_reviews %}
 
-    {# This parent is very important as you don't want to override the review tab completely #}
-    {% parent %}
+  {# This parent is very important as you don't want to override the review tab completely #}
+  {% parent %}
 
 {% endblock %}
 ```
@@ -113,15 +113,15 @@ The block gets overridden and immediately the parent block is called, since you 
 After that, we'll create the actual `sw-tabs-item` element, which, as the name suggests, represents a new tab item. We want this tab to have a custom route, so we're also adding this route directly. Don't worry, we'll explain this custom route in a bit. The product detail page's route contain the product's ID, which you also want to have in your custom tab: So make sure to also pass the ID in, like shown in the example above.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig
+{# <plugin root>/src/Resources/app/administration/src/page/sw-product-detail/sw-product-detail.html.twig #}
 {% block sw_product_detail_content_tabs_reviews %}
 
-    {% parent %}
+  {% parent %}
 
-    <!-- We'll define a custom route here, an explanation will follow later -->
-    <sw-tabs-item :route="{ name: 'sw.product.detail.custom', params: { id: $route.params.id } }" title="Custom">
-        Custom
-    </sw-tabs-item>
+  {# We'll define a custom route here, an explanation will follow later #}
+  <sw-tabs-item :route="{ name: 'sw.product.detail.custom', params: { id: $route.params.id } }" title="Custom">
+    Custom
+  </sw-tabs-item>
 {% endblock %}
 ```
 
@@ -173,24 +173,24 @@ import './view/sw-product-detail-custom';
 
 // Here you create your new route, refer to the mentioned guide for more information
 Shopware.Module.register('sw-new-tab-custom', {
-    routeMiddleware(next, currentRoute) {
-        const customRouteName = 'sw.product.detail.custom';
-    
-        if (
-            currentRoute.name === 'sw.product.detail' 
-            && currentRoute.children.every((currentRoute) => currentRoute.name !== customRouteName)
-        ) {
-            currentRoute.children.push({
-                name: customRouteName,
-                path: '/sw/product/detail/:id/custom',
-                component: 'sw-product-detail-custom',
-                meta: {
-                    parentPath: 'sw.product.index'
-                }
-            });
+  routeMiddleware(next, currentRoute) {
+    const customRouteName = 'sw.product.detail.custom';
+
+    if (
+      currentRoute.name === 'sw.product.detail'
+      && currentRoute.children.every((currentRoute) => currentRoute.name !== customRouteName)
+    ) {
+      currentRoute.children.push({
+        name: customRouteName,
+        path: '/sw/product/detail/:id/custom',
+        component: 'sw-product-detail-custom',
+        meta: {
+          parentPath: 'sw.product.index'
         }
-        next(currentRoute);
+      });
     }
+    next(currentRoute);
+  }
 });
 ```
 
@@ -228,13 +228,13 @@ Since a component always gets initiated by a file called `index.js`, create such
 import template from './sw-product-detail-custom.html.twig';
 
 Shopware.Component.register('sw-product-detail-custom', {
-    template,
+  template,
 
-    metaInfo() {
-        return {
-            title: 'Custom'
-        };
-    },
+  metaInfo() {
+    return {
+      title: 'Custom'
+    };
+  },
 });
 ```
 
@@ -242,10 +242,10 @@ This file mainly registers a new component with a custom title and a custom temp
 
 Here's what this new template could look like:
 
-```html
-// <plugin root>/src/Resources/app/administration/src/view/sw-product-detail-custom/sw-product-detail-custom.html.twig
+```twig
+{# <plugin root>/src/Resources/app/administration/src/view/sw-product-detail-custom/sw-product-detail-custom.html.twig #}
 <sw-card title="Custom">
-    Hello world!
+  Hello world!
 </sw-card>
 ```
 

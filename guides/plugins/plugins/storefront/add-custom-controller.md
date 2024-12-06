@@ -65,13 +65,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    public function showExample(): Response
-    {
-        return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
-            'example' => 'Hello world'
-        ]);
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+  public function showExample(): Response
+  {
+    return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
+      'example' => 'Hello world'
+    ]);
+  }
 }
 ```
 
@@ -96,11 +96,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_routeScope' => ['storefront']])]
-    public function showExample(): Response
-    {
-        ...
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_routeScope' => ['storefront']])]
+  public function showExample(): Response
+  {
+    // ...
+  }
 }
 ```
 
@@ -109,23 +109,23 @@ class ExampleController extends StorefrontController
 Next, we need to register our controller in the DI-container and make it public.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <call method="setTwig">
-                <argument type="service" id="twig"/>
-            </call>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
+      <call method="setContainer">
+        <argument type="service" id="service_container" />
+      </call>
+      <call method="setTwig">
+        <argument type="service" id="twig" />
+      </call>
+    </service>
+  </services>
 </container>
 ```
 
@@ -136,14 +136,13 @@ Please also note the `call` tag, which is necessary in order to set the DI conta
 Once we‘ve registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <plugin root>/src/Resources/config/routes.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
+  <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
 </routes>
 ```
 
@@ -154,11 +153,11 @@ Now we registered our controller and Shopware indexes the route, but the templat
 As previously mentioned, the code will try to render an `index.html.twig` file. Thus we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller. Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`. In our [Customize templates](customize-templates) guide, you can learn more about customizing templates.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/example.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/example.html.twig #}
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_content %}
-    <h1>Our example controller!</h1>
+  <h1>Our example controller!</h1>
 {% endblock %}
 ```
 
@@ -183,11 +182,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {    
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
-    public function showExample(Request $request, SalesChannelContext $context): Response
-    {
-        ...
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+  public function showExample(Request $request, SalesChannelContext $context): Response
+  {
+    // ...
+  }
 }
 ```
 

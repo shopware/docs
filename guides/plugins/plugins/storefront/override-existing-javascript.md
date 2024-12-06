@@ -64,10 +64,10 @@ import CookiePermissionPlugin from 'src/plugin/cookie/cookie-permission.plugin';
 import CookieStorage from 'src/helper/storage/cookie-storage.helper';
 
 export default class MyCookiePermission extends CookiePermissionPlugin {
-    init() {
-        CookieStorage.setItem(this.options.cookieName, '');
-        super.init();
-    }
+  init() {
+    CookieStorage.setItem(this.options.cookieName, '');
+    super.init();
+  }
 }
 ```
 
@@ -82,16 +82,16 @@ import CookiePermissionPlugin from 'src/plugin/cookie/cookie-permission.plugin';
 import CookieStorage from 'src/helper/storage/cookie-storage.helper';
 
 export default class MyCookiePermission extends CookiePermissionPlugin {
-    init() {
-        CookieStorage.setItem(this.options.cookieName, '');
-        super.init();
-    }
+  init() {
+    CookieStorage.setItem(this.options.cookieName, '');
+    super.init();
+  }
 
-    _hideCookieBar() {
-        if (confirm('Do you want to hide the cookie bar?')) {
-            super._hideCookieBar();
-        }
+  _hideCookieBar() {
+    if (confirm('Do you want to hide the cookie bar?')) {
+      super._hideCookieBar();
     }
+  }
 }
 ```
 

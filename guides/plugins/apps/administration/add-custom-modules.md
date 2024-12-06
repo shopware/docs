@@ -36,22 +36,23 @@ To configure your module, you can set it up with with some additional attributes
 Additionally you can define `label` elements inside of your `module` element, to set up how your module will be displayed in the admin menu.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <admin>
-        <module name="exampleModule"
-                source="https://example.com/promotion/view/promotion-module"
-                parent="sw-marketing"
-                position="50"
-        >
-            <label>Example module</label>
-            <label lang="de-DE">Beispiel Modul</label>
-        </module>
-    </admin>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <module name="exampleModule"
+      source="https://example.com/promotion/view/promotion-module"
+      parent="sw-marketing"
+      position="50"
+    >
+      <label>Example module</label>
+      <label lang="de-DE">Beispiel Modul</label>
+    </module>
+  </admin>
 </manifest>
 ```
 
@@ -94,20 +95,23 @@ $module = $contextResolver->assembleModule($serverRequest, $shop);
 <Tab title="Symfony Bundle">
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\App\SDK\Context\Module\ModuleAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
-class ModuleController {
-    #[Route('/module')]
-    public function show(ModuleAction $module): Response
-    {
-        // handle payment
-        
-        return $this->render('....');
-    }
+class ModuleController
+{
+  #[Route('/module')]
+  public function show(ModuleAction $module): Response
+  {
+    // handle payment
+
+    return $this->render('....');
+  }
 }
 ```
 
@@ -121,7 +125,7 @@ Because your module is displayed as an iframe in the Administration, Shopware ca
 
 ```javascript
 function sendReadyState() {
-    window.parent.postMessage('sw-app-loaded', '*');
+  window.parent.postMessage('sw-app-loaded', '*');
 }
 ```
 
@@ -136,32 +140,34 @@ When you define a module, it gets automatically loaded by the Administration. Ad
 The navigation id of your modules always uses the pattern `app-<appName>-<moduleName>`. So, within your manifest you can add a reference to modules that you just created:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>myApp</app>
-        ...
-    </meta>
-    <admin>
-        <module name="myModules"
-                source="https://example.com/promotion/view/promotion-module"
-                parent="sw-catalogue"
-                position="50"
-        >
-            <label>My apps modules</label>
-            <label lang="de-DE">Module meiner app</label>
-        </module>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>myApp
+    </app>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <module name="myModules"
+      source="https://example.com/promotion/view/promotion-module"
+      parent="sw-catalogue"
+      position="50"
+    >
+      <label>My apps modules</label>
+      <label lang="de-DE">Module meiner app</label>
+    </module>
 
-        <module name="someModule"
-                source="https://example.com/promotion/view/promotion-module"
-                parent="app-myApp-myModules"
-                position="1"
-        >
-            <label>Module underneath "My apps modules"</label>
-            <label lang="de-DE">Modul unterhalb von "Module meiner app"</label>
-        </module>
-    </admin>
+    <module name="someModule"
+      source="https://example.com/promotion/view/promotion-module"
+      parent="app-myApp-myModules"
+      position="1"
+    >
+      <label>Module underneath "My apps modules"</label>
+      <label lang="de-DE">Modul unterhalb von "Module meiner app"</label>
+    </module>
+  </admin>
 </manifest>
 ```
 
@@ -176,26 +182,27 @@ Your main module can be defined by adding a `main-module` element within your `a
 To avoid mixing other modules with your main module, we decided to separate the main module from modules with navigation entries. You can still use the same URL on both, a module that is available through the menu and your main module.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>myApp</app>
-        ...
-    </meta>
-    <admin>
-        <module name="normalModule"
-                source="https://example.com/main"
-                parent="sw-catalogue"
-                position="50"
-        >
-            <label>Module in admin menu</label>
-            <label lang="de-DE">Modul im Adminmenü</label>
-        </module>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>myApp</name>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <module name="normalModule"
+      source="https://example.com/main"
+      parent="sw-catalogue"
+      position="50"
+    >
+      <label>Module in admin menu</label>
+      <label lang="de-DE">Modul im Adminmenü</label>
+    </module>
 
-        <!-- You can use the same url to open your module from the app store -->
-        <main-module source="https://example.com/main"/>
-    </admin>
+    <!-- You can use the same url to open your module from the app store -->
+    <main-module source="https://example.com/main" />
+  </admin>
 </manifest>
 ```
 

@@ -36,20 +36,22 @@ To create a custom flow action, firstly you have to make a plugin and install it
 ```php
 // <plugin root>/src/Core/Framework/Event/TagAware.php
 <?php declare(strict_types=1);
+
 namespace Swag\ExamplePlugin\Core\Framework\Event;
+
 use Shopware\Core\Framework\Event\FlowEventAware;
 
 interface TagAware extends FlowEventAware
 {
-    ...
+  // ...
 
-    public const TAG = 'tag';
+  public const TAG = 'tag';
 
-    public const TAG_ID = 'tagId';
+  public const TAG_ID = 'tagId';
 
-    public function getTag();
+  public function getTag();
 
-    ...
+  // ...
 }
 ```
 
@@ -71,59 +73,59 @@ use Swag\CreateTagAction\Core\Framework\Event\TagAware;
 
 class CreateTagAction extends FlowAction
 {
-    private EntityRepository $tagRepository;
+  private EntityRepository $tagRepository;
 
-    public function __construct(EntityRepository $tagRepository)
-    {
-        // you would need this repository to create a tag
-        $this->tagRepository = $tagRepository;
+  public function __construct(EntityRepository $tagRepository)
+  {
+    // you would need this repository to create a tag
+    $this->tagRepository = $tagRepository;
+  }
+
+  public static function getName(): string
+  {
+    // your own action name
+    return 'action.create.tag';
+  }
+
+  public function requirements(): array
+  {
+    return [TagAware::class];
+  }
+
+  public function handleFlow(StorableFlow $flow): void
+  {
+    // config is the config data when created a flow sequence
+    $config = $flow->getConfig();
+
+    // make sure your tags data exists
+    if (!\array_key_exists('tags', $config)) {
+      return;
     }
 
-    public static function getName(): string
-    {
-        // your own action name
-        return 'action.create.tag';
+    $tags = $config['tags'];
+
+    // just a step to make sure you're dispatching correct action
+    if (!$flow->hasStore(TagAware::TAG_ID) || empty($tags)) {
+      return;
     }
 
-    public function requirements(): array
-    {
-        return [TagAware::class];
+    // get tag id
+    $tagId = $flow->getStore(TagAware::TAG_ID);
+
+    // get tag
+    $tag = $flow->getData(TagAware::TAG);
+
+    $tagData = [];
+    foreach ($tags as $tag) {
+      $tagData[] = [
+        'id' => Uuid::randomHex(),
+        'name' => $tag,
+      ];
     }
 
-    public function handleFlow(StorableFlow $flow): void
-    {
-        // config is the config data when created a flow sequence
-        $config = $flow->getConfig();
-
-        // make sure your tags data exists
-        if (!\array_key_exists('tags', $config)) {
-            return;
-        }
-
-        $tags = $config['tags'];
-
-        // just a step to make sure you're dispatching correct action
-        if (!$flow->hasStore(TagAware::TAG_ID) || empty($tags)) {
-            return;
-        }
-
-        // get tag id
-        $tagId = $flow->getStore(TagAware::TAG_ID);
-
-        // get tag
-        $tag = $flow->getData(TagAware::TAG);
-
-        $tagData = [];
-        foreach ($tags as $tag) {
-            $tagData[] = [
-                'id' => Uuid::randomHex(),
-                'name' => $tag,
-            ];
-        }
-
-        // simply create tags
-        $this->tagRepository->create($tagData, $flow->getContext());
-    }
+    // simply create tags
+    $this->tagRepository->create($tagData, $flow->getContext());
+  }
 }
 ```
 
@@ -138,11 +140,11 @@ As you can see, several methods are already implemented:
 
 You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
 
-```XML
-// <plugin root>/src/Resources/config/services.xml
+```xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 <service id="Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction">
-    <argument type="service" id="tag.repository" />
-    <tag name="flow.action" priority="600" key="action.create.tag"/>
+  <argument type="service" id="tag.repository" />
+  <tag name="flow.action" priority="600" key="action.create.tag" />
 </service>
 ```
 
@@ -161,16 +163,16 @@ There are three scopes for the `CreateTagAction`:
 
 - Just define the empty array in `CreateTagAction::requirements`
 
-```PHP
-    // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-    ...
+```php
+// plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+// ...
 
-    public function requirements(): array
-    {
-        return [];
-    }
+public function requirements(): array
+{
+  return [];
+}
 
-    ...
+// ...
 ```
 
 That means when you define the requirements like the code above, all triggers in the flow builder can define the action `CreateTagAction` for the next progress.
@@ -183,16 +185,16 @@ Here, the action name is empty as the action name snippet is not yet defined.
 
 Make the `CreateTagAction` available for all events related to Order and Customer.
 
-```PHP
-    // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-    ...
+```php
+// <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+// ...
 
-    public function requirements(): array
-    {
-        return [OrderAware::class, CustomerAware::class];
-    }
+public function requirements(): array
+{
+  return [OrderAware::class, CustomerAware::class];
+}
 
-    ...
+// ...
 ```
 
 #### `CreateTagAction` available for new event
@@ -201,7 +203,7 @@ Make the `CreateTagAction` available for all events related to Order and Custome
 
 - Event must implement the `TagAware`
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
@@ -217,53 +219,53 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class BasicExampleEvent extends Event implements TagAware
 {
-    public const EVENT_NAME = 'example.event';
+  public const EVENT_NAME = 'example.event';
 
-    private TagEntity $tag;
+  private TagEntity $tag;
 
-    private Context $context;
+  private Context $context;
 
-    public function __construct(Context $context, TagEntity $tag)
-    {
-        $this->tag = $tag;
-        $this->context = $context;
-    }
+  public function __construct(Context $context, TagEntity $tag)
+  {
+    $this->tag = $tag;
+    $this->context = $context;
+  }
 
-    public function getName(): string
-    {
-        return self::EVENT_NAME;
-    }
+  public function getName(): string
+  {
+    return self::EVENT_NAME;
+  }
 
-    public static function getAvailableData(): EventDataCollection
-    {
-        return (new EventDataCollection())
-            ->add('tag', new EntityType(TagDefinition::class));
-    }
+  public static function getAvailableData(): EventDataCollection
+  {
+    return (new EventDataCollection())
+      ->add('tag', new EntityType(TagDefinition::class));
+  }
 
-    public function getContext(): Context
-    {
-        return $this->context;
-    }
+  public function getContext(): Context
+  {
+    return $this->context;
+  }
 
-    public function getTag(): TagEntity
-    {
-        return $this->tag;
-    }
+  public function getTag(): TagEntity
+  {
+    return $this->tag;
+  }
 }
 ```
 
 - Define the `TagAware` in `CreateTagAction::requirements`
 
-```PHP
-    // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
-    ...
+```php
+// <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
+// ...
 
-    public function requirements(): array
-    {
-        return [TagAware::class];
-    }
+public function requirements(): array
+{
+  return [TagAware::class];
+}
 
-    ...
+// ...
 ```
 
 - To show the new event in Flow Builder Triggers list
@@ -271,6 +273,7 @@ class BasicExampleEvent extends Event implements TagAware
 ```php
 // <plugin root>/src/Core/Content/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
+
 namespace Swag\CreateTagAction\Core\Content\Subscriber;
 
 use Shopware\Core\Framework\Event\BusinessEventCollector;
@@ -280,32 +283,32 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 {
-    private BusinessEventCollector $businessEventCollector;
+  private BusinessEventCollector $businessEventCollector;
 
-    public function __construct(BusinessEventCollector $businessEventCollector)
-    {
-        $this->businessEventCollector = $businessEventCollector;
+  public function __construct(BusinessEventCollector $businessEventCollector)
+  {
+    $this->businessEventCollector = $businessEventCollector;
+  }
+
+  public static function getSubscribedEvents()
+  {
+    return [
+      BusinessEventCollectorEvent::NAME => 'onAddExampleEvent',
+    ];
+  }
+
+  public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
+  {
+    $collection = $event->getCollection();
+
+    $definition = $this->businessEventCollector->define(BasicExampleEvent::class);
+
+    if (!$definition) {
+      return;
     }
 
-    public static function getSubscribedEvents()
-    {
-        return [
-            BusinessEventCollectorEvent::NAME => 'onAddExampleEvent',
-        ];
-    }
-
-    public function onAddExampleEvent(BusinessEventCollectorEvent $event): void
-    {
-        $collection = $event->getCollection();
-
-        $definition = $this->businessEventCollector->define(BasicExampleEvent::class);
-
-        if (!$definition) {
-            return;
-        }
-
-        $collection->set($definition->getName(), $definition);
-    }
+    $collection->set($definition->getName(), $definition);
+  }
 }
 ```
 
@@ -313,8 +316,8 @@ And don't forget to register your subscriber to the container at `<plugin root>/
 
 ```xml
 <service id="Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
+  <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector" />
+  <tag name="kernel.event_subscriber" />
 </service>
 ```
 
@@ -354,32 +357,32 @@ First, we need to define information like `constants`, `snippets` to show on the
 
 ![Flow Builder action services list](../../../../../assets/flow-builder-action-sevices-list.png)
 
-```JS
+```javascript
 // <plugin root>src/Resources/app/administration/src/constant/create-tag-action.constant.js
 export const ACTION = Object.freeze({
-    CREATE_TAG: 'action.create.tag',
+  CREATE_TAG: 'action.create.tag',
 });
 
 export const GROUP = 'customer'
 
 export default {
-    ACTION, GROUP
+  ACTION, GROUP
 };
 ```
 
 And then add snippets for labels:
 
-```JS
+```json
 // src/Resources/app/administration/src/snippet/en-GB.json
 {
-    "create-tag-action": {
-        "titleCreateTag": "Create tag",
-        "labelTags": "Tags",
-        "placeholderTags": "Enter tags",
-        "buttonSaveAction": "Save action",
-        "buttonAddAction": "Add action",
-        "descriptionTags": "Tags: {tags}"
-    }
+  "create-tag-action": {
+    "titleCreateTag": "Create tag",
+    "labelTags": "Tags",
+    "placeholderTags": "Enter tags",
+    "buttonSaveAction": "Save action",
+    "buttonAddAction": "Add action",
+    "descriptionTags": "Tags: {tags}"
+  }
 }
 ```
 
@@ -387,67 +390,66 @@ Do it as the same with `de-DE.json` file for translation of DE language.
 
 After that, we also need to override the `sw-flow-sequence-action` component in the core:
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
 import { ACTION, GROUP } from '../../constant/create-tag-action.constant';
 
 const { Component } = Shopware;
 
 Component.override('sw-flow-sequence-action', {
-    computed: {
-        // Not necessary if you use an existing group
-        // Push the `groups` method in computed if you are defining a new group
-        groups() {
-            this.actionGroups.unshift(GROUP);
+  computed: {
+    // Not necessary if you use an existing group
+    // Push the `groups` method in computed if you are defining a new group
+    groups() {
+      this.actionGroups.unshift(GROUP);
 
-            return this.$super('groups');
-        },
-
-        modalName() {
-            if (this.selectedAction === ACTION.CREATE_TAG) {
-                return 'sw-flow-create-tag-modal';
-            }
-
-            return this.$super('modalName');
-        },
+      return this.$super('groups');
     },
 
-    methods: {
-        getActionDescriptions(sequence) {
-            if(sequence.actionName === ACTION.CREATE_TAG){
-                return this.getCreateTagDescription(sequence.config)
-            }
-            return this.$super('getActionDescriptions', sequence)
-        },
-        
-        getCreateTagDescription(config) {
-            const tags = config.tags.join(', ');
+    modalName() {
+      if (this.selectedAction === ACTION.CREATE_TAG) {
+        return 'sw-flow-create-tag-modal';
+      }
 
-            return this.$tc('create-tag-action.descriptionTags', 0, {
-                tags
-            });
-        },
-
-        getActionTitle(actionName) {
-            if (actionName === ACTION.CREATE_TAG) {
-                return {
-                    value: actionName,
-                    icon: 'regular-tag',
-                    label: this.$tc('create-tag-action.titleCreateTag'),
-                    group: GROUP,
-                }
-            }
-
-            return this.$super('getActionTitle', actionName);
-        },
+      return this.$super('modalName');
     },
+  },
+
+  methods: {
+    getActionDescriptions(sequence) {
+      if (sequence.actionName === ACTION.CREATE_TAG) {
+        return this.getCreateTagDescription(sequence.config)
+      }
+      return this.$super('getActionDescriptions', sequence)
+    },
+
+    getCreateTagDescription(config) {
+      const tags = config.tags.join(', ');
+
+      return this.$tc('create-tag-action.descriptionTags', 0, {
+        tags
+      });
+    },
+
+    getActionTitle(actionName) {
+      if (actionName === ACTION.CREATE_TAG) {
+        return {
+          value: actionName,
+          icon: 'regular-tag',
+          label: this.$tc('create-tag-action.titleCreateTag'),
+          group: GROUP,
+        }
+      }
+
+      return this.$super('getActionTitle', actionName);
+    },
+  },
 });
-
 ```
 
 Do not forget to import the file to the entry file `main.js`:
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
 import './extension/sw-flow-sequence-action';
 ```
@@ -456,7 +458,7 @@ import './extension/sw-flow-sequence-action';
 
 As you can see, we already defined the constant for the group in `create-tag-action.constant.js`
 
-```JS
+```javascript
 export const GROUP = 'customer'
 ```
 
@@ -483,13 +485,13 @@ If you click the Create tag action, the below error will be shown on the console
 
 Because in `sw-flow-sequence-action`, we expect that the new modal has the name `sw-flow-create-tag-modal`.
 
-```JS
+```javascript
 modalName() {
-    if (this.selectedAction === ACTION.CREATE_TAG) {
-        return 'sw-flow-create-tag-modal';
-    }
+  if (this.selectedAction === ACTION.CREATE_TAG) {
+    return 'sw-flow-create-tag-modal';
+  }
 
-    return this.$super('modalName');
+  return this.$super('modalName');
 },
 ```
 
@@ -497,7 +499,7 @@ To define the modal, just create a new folder `sw-flow-create-tag-modal` in `src
 
 #### JavaScript file
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/index.js
 import template from './sw-flow-create-tag-modal.html.twig';
 
@@ -505,165 +507,165 @@ const { Data: { Criteria, EntityCollection } } = Shopware;
 const { Component, Context } = Shopware;
 
 Component.register('sw-flow-create-tag-modal', {
-    template,
+  template,
 
-    inject: [
-        'repositoryFactory',
-    ],
+  inject: [
+    'repositoryFactory',
+  ],
 
-    props: {
-        sequence: {
-            type: Object,
-            required: true,
-        },
+  props: {
+    sequence: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      tagCollection: [],
+    };
+  },
+
+  computed: {
+    tagRepository() {
+      return this.repositoryFactory.create('tag');
     },
 
-    data() {
-        return {
-            tagCollection: [],
-        };
+    tagCriteria() {
+      const criteria = new Criteria(1, 25);
+      const { config } = this.sequence;
+      const tagIds = Object.keys(config.tagIds);
+      if (tagIds.length) {
+        criteria.addFilter(Criteria.equalsAny('id', tagIds));
+      }
+
+      return criteria;
+    },
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    createdComponent() {
+      this.tagCollection = this.createTagCollection();
+
+      const { config } = this.sequence;
+      if (this.sequence.id && config?.tagIds) {
+        this.getTagCollection();
+      }
     },
 
-    computed: {
-        tagRepository() {
-            return this.repositoryFactory.create('tag');
-        },
-
-        tagCriteria() {
-            const criteria = new Criteria(1, 25);
-            const { config } = this.sequence;
-            const tagIds = Object.keys(config.tagIds);
-            if (tagIds.length) {
-                criteria.addFilter(Criteria.equalsAny('id', tagIds));
-            }
-
-            return criteria;
-        },
+    getTagCollection() {
+      return this.tagRepository.search(this.tagCriteria)
+        .then(tags => {
+          this.tagCollection = tags;
+        })
+        .catch(() => {
+          this.tagCollection = [];
+        });
     },
 
-    created() {
-        this.createdComponent();
+    createTagCollection() {
+      return new EntityCollection(
+        this.tagRepository.route,
+        this.tagRepository.entityName,
+        Context.api,
+      );
     },
 
-    methods: {
-        createdComponent() {
-            this.tagCollection = this.createTagCollection();
-
-            const { config } = this.sequence;
-            if (this.sequence.id && config?.tagIds) {
-                this.getTagCollection();
-            }
-        },
-
-        getTagCollection() {
-            return this.tagRepository.search(this.tagCriteria)
-                .then(tags => {
-                    this.tagCollection = tags;
-                })
-                .catch(() => {
-                    this.tagCollection = [];
-                });
-        },
-
-        createTagCollection() {
-            return new EntityCollection(
-                this.tagRepository.route,
-                this.tagRepository.entityName,
-                Context.api,
-            );
-        },
-
-        onClose() {
-            this.$emit('modal-close');
-        },
-
-        onAddTag(data) {
-            this.tagCollection.add(data);
-        },
-
-        onRemoveTag(data) {
-            this.tagCollection.remove(data);
-        },
-
-        getConfig() {
-            const tagIds = {};
-            this.tagCollection.forEach(tag => {
-                Object.assign(tagIds, {
-                    [tag.id]: tag.name,
-                });
-            });
-
-            return {
-                tagIds,
-            };
-        },
-
-        onAddAction() {
-            const config = this.getConfig();
-            const data = {
-                ...this.sequence,
-                config,
-            };
-
-            this.$emit('process-finish', data);
-        },
+    onClose() {
+      this.$emit('modal-close');
     },
+
+    onAddTag(data) {
+      this.tagCollection.add(data);
+    },
+
+    onRemoveTag(data) {
+      this.tagCollection.remove(data);
+    },
+
+    getConfig() {
+      const tagIds = {};
+      this.tagCollection.forEach(tag => {
+        Object.assign(tagIds, {
+          [tag.id]: tag.name,
+        });
+      });
+
+      return {
+        tagIds,
+      };
+    },
+
+    onAddAction() {
+      const config = this.getConfig();
+      const data = {
+        ...this.sequence,
+        config,
+      };
+
+      this.$emit('process-finish', data);
+    },
+  },
 });
 ```
 
 #### Twig template file
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig
+{# <plugin root>/src/Resources/app/administration/src/component/sw-flow-create-tag-modal/sw-flow-create-tag-modal.html.twig #}
 {% block create_tag_action_modal %}
 <sw-modal
-    class="create-tag-action-modal"
-    :title="$tc('create-tag-action.titleCreateTag')"
-    @modal-close="onClose"
+  class="create-tag-action-modal"
+  :title="$tc('create-tag-action.titleCreateTag')"
+  @modal-close="onClose"
 >
-    {% block create_tag_action_modal_content %}
-        <sw-entity-tag-select
-            v-model="tagCollection"
-            class="sw-flow-create-tag-modal__tags-field"
-            required
-            :label="$tc('create-tag-action.labelTags')"
-            :placeholder="$tc('create-tag-action.placeholderTags')"
-            @item-add="onAddTag"
-            @item-remove="onRemoveTag"
-        />
-    {% endblock %}
+  {% block create_tag_action_modal_content %}
+    <sw-entity-tag-select
+      v-model="tagCollection"
+      class="sw-flow-create-tag-modal__tags-field"
+      required
+      :label="$tc('create-tag-action.labelTags')"
+      :placeholder="$tc('create-tag-action.placeholderTags')"
+      @item-add="onAddTag"
+      @item-remove="onRemoveTag"
+    />
+  {% endblock %}
 
-    {% block create_tag_action_modall_footer %}
-        <template #modal-footer>
-            {% block create_tag_action_modal_footer_cancel_button %}
-                <sw-button
-                    class="create-tag-action-modal__cancel-button"
-                    size="small"
-                    @click="onClose"
-                >
-                    {{ $tc('global.default.cancel') }}
-                </sw-button>
-            {% endblock %}
+  {% block create_tag_action_modall_footer %}
+    <template #modal-footer>
+      {% block create_tag_action_modal_footer_cancel_button %}
+        <sw-button
+          class="create-tag-action-modal__cancel-button"
+          size="small"
+          @click="onClose"
+        >
+          {{ $tc('global.default.cancel') }}
+        </sw-button>
+      {% endblock %}
 
-            {% block create_tag_action_modal_footer_save_button %}
-                <sw-button
-                    class="create-tag-action-modal__save-button"
-                    variant="primary"
-                    size="small"
-                    @click="onAddAction"
-                >
-                    {{ $tc('create-tag-action.buttonSaveAction') }}
-                </sw-button>
-            {% endblock %}
-        </template>
-    {% endblock %}
+      {% block create_tag_action_modal_footer_save_button %}
+        <sw-button
+          class="create-tag-action-modal__save-button"
+          variant="primary"
+          size="small"
+          @click="onAddAction"
+        >
+          {{ $tc('create-tag-action.buttonSaveAction') }}
+        </sw-button>
+      {% endblock %}
+    </template>
+  {% endblock %}
 </sw-modal>
 {% endblock %}
 ```
 
 Please update the file `main.js` like this:
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
 import './extension/sw-flow-sequence-action';
 import './component/sw-flow-create-tag-modal';
@@ -689,36 +691,36 @@ First, override the `openDynamicModal` method in the plugin to check if the valu
 
 #### JavaScript
 
-```JS
+```javascript
 // <plugin root>/src/Resources/app/administration/src/extension/sw-flow-sequence-action/index.js
 const { Component } = Shopware;
 
 Component.register('sw-flow-sequence-action', {
-    methods: {
-        openDynamicModal(value) {
-            if (!value) {
-                return;
-            }
+  methods: {
+    openDynamicModal(value) {
+      if (!value) {
+        return;
+      }
 
-            const actionName = this.flowBuilderService.getActionName('CREATE_TAG');
+      const actionName = this.flowBuilderService.getActionName('CREATE_TAG');
 
-            if (value === actionName) {
-                this.selectedAction = actionName;
-                const config = {
-                    tagIds: {
-                        'tag_id_1': 'Vip',
-                        'tag_id_2': 'New Customer',
-                    },
-                };
+      if (value === actionName) {
+        this.selectedAction = actionName;
+        const config = {
+          tagIds: {
+            'tag_id_1': 'Vip',
+            'tag_id_2': 'New Customer',
+          },
+        };
 
-                // Config can be a result from an API.
-                this.onSaveActionSuccess({ config });
-                return;
-            }
+        // Config can be a result from an API.
+        this.onSaveActionSuccess({ config });
+        return;
+      }
 
-            // handle for the rest of actions.
-        },
+      // handle for the rest of actions.
     },
+  },
 });
 ```
 

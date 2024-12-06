@@ -22,32 +22,32 @@ use Throwable;
 
 class NotAllowedRecordException extends DomainException implements B2BTranslatableException
 {
-    private string $translationMessage;
+  private string $translationMessage;
 
-    private array $translationParams;
+  private array $translationParams;
 
-    public function __construct(
-        $message = '',
-        string $translationMessage = '',
-        array $translationParams = [],
-        $code = 0,
-        Throwable $previous = null
-    ) {
-        parent::__construct($message, $code, $previous);
+  public function __construct(
+    $message = '',
+    string $translationMessage = '',
+    array $translationParams = [],
+    $code = 0,
+    Throwable $previous = null
+  ) {
+    parent::__construct($message, $code, $previous);
 
-        $this->translationMessage = $translationMessage;
-        $this->translationParams = $translationParams;
-    }
+    $this->translationMessage = $translationMessage;
+    $this->translationParams = $translationParams;
+  }
 
-    public function getTranslationMessage(): string
-    {
-        return $this->translationMessage;
-    }
+  public function getTranslationMessage(): string
+  {
+    return $this->translationMessage;
+  }
 
-    public function getTranslationParams(): array
-    {
-        return $this->translationParams;
-    }
+  public function getTranslationParams(): array
+  {
+    return $this->translationParams;
+  }
 }
 ```
 

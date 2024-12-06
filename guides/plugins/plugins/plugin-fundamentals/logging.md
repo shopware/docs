@@ -30,24 +30,24 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class SwagBasicExample extends Plugin
 {
-    public function build(ContainerBuilder $container): void
-    {
-        parent::build($container);
+  public function build(ContainerBuilder $container): void
+  {
+    parent::build($container);
 
-        $locator = new FileLocator('Resources/config');
+    $locator = new FileLocator('Resources/config');
 
-        $resolver = new LoaderResolver([
-            new YamlFileLoader($container, $locator),
-            new GlobFileLoader($container, $locator),
-            new DirectoryLoader($container, $locator),
-        ]);
+    $resolver = new LoaderResolver([
+      new YamlFileLoader($container, $locator),
+      new GlobFileLoader($container, $locator),
+      new DirectoryLoader($container, $locator),
+    ]);
 
-        $configLoader = new DelegatingLoader($resolver);
+    $configLoader = new DelegatingLoader($resolver);
 
-        $confDir = \rtrim($this->getPath(), '/') . '/Resources/config';
+    $confDir = \rtrim($this->getPath(), '/') . '/Resources/config';
 
-        $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
-    }
+    $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
+  }
 }
 ```
 
@@ -60,7 +60,6 @@ We will now use monolog configuration to create a channel for your log messages;
 ::: code-group
 
 ```yaml [[plugin root]/src/Resources/config/packages/monolog.yaml]
-
 monolog:
   channels: ['my_plugin_channel']
 ```
@@ -79,10 +78,10 @@ monolog:
 
   handlers:
     myPluginLogHandler:
-        type: rotating_file
-        path: "%kernel.logs_dir%/my_plugin_%kernel.environment%.log"
-        level: error
-        channels: [ "my_plugin_channel"]
+      type: rotating_file
+      path: '%kernel.logs_dir%/my_plugin_%kernel.environment%.log'
+      level: error
+      channels: ['my_plugin_channel']
 ```
 
 :::

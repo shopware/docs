@@ -26,20 +26,20 @@ A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a 
 Here's an example `services.xml` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTask">
-            <tag name="shopware.scheduled.task" />
-        </service>
-        <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTaskHandler">
-            <argument type="service" id="scheduled_task.repository" />
-            <tag name="messenger.message_handler" />
-        </service>
-    </services>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  <services>
+    <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTask">
+      <tag name="shopware.scheduled.task" />
+    </service>
+    <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTaskHandler">
+      <argument type="service" id="scheduled_task.repository" />
+      <tag name="messenger.message_handler" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -61,15 +61,15 @@ use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 
 class ExampleTask extends ScheduledTask
 {
-    public static function getTaskName(): string
-    {
-        return 'swag.example_task';
-    }
+  public static function getTaskName(): string
+  {
+    return 'swag.example_task';
+  }
 
-    public static function getDefaultInterval(): int
-    {
-        return 300; // 5 minutes
-    }
+  public static function getDefaultInterval(): int
+  {
+    return 300; // 5 minutes
+  }
 }
 ```
 
@@ -94,10 +94,10 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler(handles: ExampleTask::class)]
 class ExampleTaskHandler extends ScheduledTaskHandler
 {
-    public function run(): void
-    {
-        // ...
-    }
+  public function run(): void
+  {
+    // ...
+  }
 }
 ```
 

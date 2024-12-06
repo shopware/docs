@@ -26,12 +26,12 @@ Therefore you'll have to make sure your modifications are done **before** the ch
 const { Component } = Shopware;
 
 Component.override('sw-product-stream-field-select', {
-    computed: {
-        options() {
-            this.conditionDataProviderService.addToGeneralBlacklist(['deliveryTimeId']);
-            return this.$super('options');
-        }
+  computed: {
+    options() {
+      this.conditionDataProviderService.addToGeneralBlacklist(['deliveryTimeId']);
+      return this.$super('options');
     }
+  }
 });
 ```
 
@@ -44,12 +44,12 @@ Those entity properties can also be added to the blacklist by using the method `
 const { Component } = Shopware;
 
 Component.override('sw-product-stream-field-select', {
-    computed: {
-        options() {
-            this.conditionDataProviderService.addToEntityBlacklist('category', ['breadcrumb']);
-            return this.$super('options');
-        }
+  computed: {
+    options() {
+      this.conditionDataProviderService.addToEntityBlacklist('category', ['breadcrumb']);
+      return this.$super('options');
     }
+  }
 });
 ```
 
@@ -68,13 +68,13 @@ This can be done exactly like adding properties to the blacklist:
 const { Component } = Shopware;
 
 Component.override('sw-product-stream-field-select', {
-    computed: {
-        options() {
-            this.conditionDataProviderService.removeFromGeneralBlacklist(['createdAt']);
-            this.conditionDataProviderService.removeFromEntityBlacklist('category', ['path']);
-            return this.$super('options');
-        }
+  computed: {
+    options() {
+      this.conditionDataProviderService.removeFromGeneralBlacklist(['createdAt']);
+      this.conditionDataProviderService.removeFromEntityBlacklist('category', ['path']);
+      return this.$super('options');
     }
+  }
 });
 ```
 

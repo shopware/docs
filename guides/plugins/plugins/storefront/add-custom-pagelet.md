@@ -55,26 +55,26 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageletLoader
 {
-    private EventDispatcherInterface $eventDispatcher;
+  private EventDispatcherInterface $eventDispatcher;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
-    }
+  public function __construct(EventDispatcherInterface $eventDispatcher)
+  {
+    $this->eventDispatcher = $eventDispatcher;
+  }
 
-    public function load(Request $request, SalesChannelContext $context): ExamplePagelet
-    {
-        $pagelet = new ExamplePagelet();
+  public function load(Request $request, SalesChannelContext $context): ExamplePagelet
+  {
+    $pagelet = new ExamplePagelet();
 
-        // Do additional stuff, e.g. load more data from store-api and add it to page
-        $pagelet->setExampleData(...);
+    // Do additional stuff, e.g. load more data from store-api and add it to page
+    $pagelet->setExampleData(...);
 
-        $this->eventDispatcher->dispatch(
-            new ExamplePageletLoadedEvent($pagelet, $context, $request)
-        );
+    $this->eventDispatcher->dispatch(
+      new ExamplePageletLoadedEvent($pagelet, $context, $request)
+    );
 
-        return $pagelet;
-    }
+    return $pagelet;
+  }
 }
 ```
 
@@ -93,17 +93,17 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExamplePagelet extends Pagelet
 {
-    protected ExampleEntity $exampleData;
+  protected ExampleEntity $exampleData;
 
-    public function getExampleData(): ExampleEntity
-    {
-        return $this->exampleData;
-    }
+  public function getExampleData(): ExampleEntity
+  {
+    return $this->exampleData;
+  }
 
-    public function setExampleData(ExampleEntity $exampleData): void
-    {
-        $this->exampleData = $exampleData;
-    }
+  public function setExampleData(ExampleEntity $exampleData): void
+  {
+    $this->exampleData = $exampleData;
+  }
 }
 ```
 
@@ -123,18 +123,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageletLoadedEvent extends PageletLoadedEvent
 {
-    protected ExamplePagelet $pagelet;
+  protected ExamplePagelet $pagelet;
 
-    public function __construct(ExamplePagelet $pagelet, SalesChannelContext $salesChannelContext, Request $request)
-    {
-        $this->pagelet = $pagelet;
-        parent::__construct($salesChannelContext, $request);
-    }
+  public function __construct(ExamplePagelet $pagelet, SalesChannelContext $salesChannelContext, Request $request)
+  {
+    $this->pagelet = $pagelet;
+    parent::__construct($salesChannelContext, $request);
+  }
 
-    public function getPagelet(): ExamplePagelet
-    {
-        return $this->pagelet;
-    }
+  public function getPagelet(): ExamplePagelet
+  {
+    return $this->pagelet;
+  }
 }
 ```
 
@@ -152,19 +152,19 @@ Using the example from our [adding a custom page](add-custom-page) guide, this i
 // <plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php
 public function load(Request $request, SalesChannelContext $context): ExamplePage
 {
-    $page = $this->genericPageLoader->load($request, $context);
-    $page = ExamplePage::createFrom($page);
+  $page = $this->genericPageLoader->load($request, $context);
+  $page = ExamplePage::createFrom($page);
 
-    $page->setExamplePagelet($this->examplePageletLoader->load($request, $context));
+  $page->setExamplePagelet($this->examplePageletLoader->load($request, $context));
 
-    // Do additional stuff, e.g. load more data from store-api and add it to page
-     $page->setExampleData(...);
+  // Do additional stuff, e.g. load more data from store-api and add it to page
+    $page->setExampleData(...);
 
-    $this->eventDispatcher->dispatch(
-        new ExamplePageletLoadedEvent($page, $context, $request)
-    );
+  $this->eventDispatcher->dispatch(
+    new ExamplePageletLoadedEvent($page, $context, $request)
+  );
 
-    return $page;
+  return $page;
 }
 ```
 
@@ -178,11 +178,11 @@ As already mentioned, a pagelet can be loaded via a route if you want it to. For
 #[Route(path: '/example-pagelet', name: 'frontend.example.pagelet', methods: ['POST'], defaults: ['XmlHttpRequest' => 'true'])]
 public function examplePagelet(Request $request, SalesChannelContext $context): Response
 {
-    $pagelet = $this->examplePageletLoader->load($request, $context);
+  $pagelet = $this->examplePageletLoader->load($request, $context);
 
-    return $this->renderStorefront('@Storefront/storefront/pagelet/example/index.html.twig', [
-        'pagelet' => $pagelet
-    ]);
+  return $this->renderStorefront('@Storefront/storefront/pagelet/example/index.html.twig', [
+    'pagelet' => $pagelet
+  ]);
 }
 ```
 

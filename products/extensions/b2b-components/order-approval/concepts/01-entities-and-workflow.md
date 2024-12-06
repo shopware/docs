@@ -24,12 +24,12 @@ The following diagram shows the workflow of the order approval component:
 
 ```mermaid
 flowchart TD
-    A(Employee places an order) -->B{Approval rule applies}
-    B-->|No| C[Event: Order Placed]
-    B-->|Yes| D[Event: Order needs approval]
-    D-->E{Order approved?}
-    E-->|No| F[Event: Order declined]
-    E-->|Yes| G[Event: Order Approved & Event: Order placed]
+  A(Employee places an order) -->B{Approval rule applies}
+  B-->|No| C[Event: Order Placed]
+  B-->|Yes| D[Event: Order needs approval]
+  D-->E{Order approved?}
+  E-->|No| F[Event: Order declined]
+  E-->|Yes| G[Event: Order Approved & Event: Order placed]
 ```
 
 ## Who can request approval?

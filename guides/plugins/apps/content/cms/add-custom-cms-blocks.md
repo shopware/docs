@@ -63,51 +63,58 @@ As already mentioned above and similar to an app's `manifest.xml`, CMS blocks al
 In this example we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
 ```xml
-// <app root>/Resources/cms.xml
-<?xml version="1.0" encoding="utf-8" ?>
-<cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
-    <blocks>
-        <block>
-            <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your company, e.g. "Swag" for shopware AG. -->
-            <name>swag-image-text-reversed</name>
+<!-- <app root>/Resources/cms.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
+  <blocks>
+    <block>
+      <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your
+      company, e.g. "Swag" for shopware AG. -->
+      <name>swag-image-text-reversed</name>
 
-            <!-- The category your block is associated with. See the XSD for available categories. -->
-            <category>text-image</category>
+      <!-- The category your block is associated with. See the XSD for available categories. -->
+      <category>text-image</category>
 
-            <!-- Your block's label which will be shown in the CMS module in the Administration. -->
-            <label>Two columns, text &amp; boxed image</label>
-            <label lang="de-DE">Zwei Spalten, Text &amp; gerahmtes Bild</label>
+      <!-- Your block's label which will be shown in the CMS module in the Administration. -->
+      <label>Two columns, text &amp; boxed image</label>
+      <label lang="de-DE">Zwei Spalten, Text &amp; gerahmtes Bild</label>
 
-            <!-- The slots that your block holds which again hold CMS elements. -->
-            <slots>
-                <!-- A slot requires a unique name and a type which refers to the CMS element it shows. Right now you can only use the CMS elements provided by Shopware but at a later point you will be able to add custom elements too. -->
-                <slot name="left" type="text">
-                    <!-- The slot requires some basic configuration. The following config-value elements highly depend on which element the slot holds. -->
-                    <config>
-                        <!-- The following config-value will be interpreted as 'verticalAlign: { source: "static", value: "top"}' in the JavaScript. -->
-                        <config-value name="vertical-align" source="static" value="top"/>
-                    </config>
-                </slot>
+      <!-- The slots that your block holds which again hold CMS elements. -->
+      <slots>
+        <!-- A slot requires a unique name and a type which refers to the CMS element it shows.
+        Right now you can only use the CMS elements provided by Shopware but at a later point you
+        will be able to add custom elements too. -->
+        <slot name="left" type="text">
+          <!-- The slot requires some basic configuration. The following config-value elements
+          highly depend on which element the slot holds. -->
+          <config>
+            <!-- The following config-value will be interpreted as 'verticalAlign: { source:
+            "static", value: "top"}' in the JavaScript. -->
+            <config-value name="vertical-align" source="static" value="top" />
+          </config>
+        </slot>
 
-                <slot name="right" type="image">
-                    <config>
-                        <config-value name="display-mode" source="static" value="auto"/>
-                        <config-value name="vertical-align" source="static" value="top"/>
-                    </config>
-                </slot>
-            </slots>
+        <slot name="right" type="image">
+          <config>
+            <config-value name="display-mode" source="static" value="auto" />
+            <config-value name="vertical-align" source="static" value="top" />
+          </config>
+        </slot>
+      </slots>
 
-            <!-- Each block comes with a default configuration which is pre-filled and customizable when adding a block to a section in the CMS module in the Administration. -->
-            <default-config>
-                <margin-top>20px</margin-top>
-                <margin-right>20px</margin-right>
-                <margin-bottom>20px</margin-bottom>
-                <margin-left>20px</margin-left>
-                <!-- The sizing mode of your block. Allowed values are "boxed" or "full_width". -->
-                <sizing-mode>boxed</sizing-mode>
-            </default-config>
-        </block>
-    </blocks>
+      <!-- Each block comes with a default configuration which is pre-filled and customizable when
+      adding a block to a section in the CMS module in the Administration. -->
+      <default-config>
+        <margin-top>20px</margin-top>
+        <margin-right>20px</margin-right>
+        <margin-bottom>20px</margin-bottom>
+        <margin-left>20px</margin-left>
+        <!-- The sizing mode of your block. Allowed values are "boxed" or "full_width". -->
+        <sizing-mode>boxed</sizing-mode>
+      </default-config>
+    </block>
+  </blocks>
 </cms>
 ```
 
@@ -132,15 +139,15 @@ The full CMS reference is available here:
 The preview template for `swag-image-text-reversed` looks like this:
 
 ```html
-// <app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html
+<!-- <app root>/Resources/cms/blocks/swag-image-text-reversed/preview.html -->
 <div class="sw-cms-preview-swag-image-text-reversed">
-    <div>
-        <h2>Lorem ipsum dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-    </div>
+  <div>
+    <h2>Lorem ipsum dolor</h2>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+  </div>
 
-    <!-- Alternatively you might e.g. also use a base64 encoded preview image instead of an external resource. -->
-    <img src="https://example.com/preview.jpg" alt="Preview image">
+  <!-- Alternatively you might e.g. also use a base64 encoded preview image instead of an external resource. -->
+  <img src="https://example.com/preview.jpg" alt="Preview image">
 </div>
 ```
 
@@ -194,8 +201,8 @@ The DOM structure of the block in the CMS editor will look like this:
 
 ```html
 <div class="sw-cms-block-swag-image-text-reversed-component">
-    <div class="sw-cms-slot sw-cms-slot-left"></div>
-    <div class="sw-cms-slot sw-cms-slot-right"></div>
+  <div class="sw-cms-slot sw-cms-slot-left"></div>
+  <div class="sw-cms-slot sw-cms-slot-right"></div>
 </div>
 ```
 
@@ -220,7 +227,7 @@ In `Resources/views/storefront/block/` a Twig template matching the pattern `cms
 So in this example, it's sufficient to simply extend the existing `image-text` element:
 
 ```twig
-// <app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig
+{# <app root>/Resources/views/storefront/block/cms-block-swag-image-text-reversed-component.html.twig #}
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
 

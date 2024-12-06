@@ -37,83 +37,83 @@ use function property_exists;
 
 class RoleEntity implements CrudEntity
 {
-    public IdValue $id;
+  public IdValue $id;
 
-    public string $name;
+  public string $name;
 
-    public IdValue $contextOwnerId;
+  public IdValue $contextOwnerId;
 
-    public int $left;
+  public int $left;
 
-    public int $right;
+  public int $right;
 
-    public int $level;
+  public int $level;
 
-    public bool $hasChildren;
+  public bool $hasChildren;
 
-    public array $children = [];
+  public array $children = [];
 
-    public function __construct()
-    {
-        $this->id = IdValue::null();
-        $this->contextOwnerId = IdValue::null();
+  public function __construct()
+  {
+    $this->id = IdValue::null();
+    $this->contextOwnerId = IdValue::null();
+  }
+
+  public function isNew(): bool
+  {
+    return $this->id instanceof NullIdValue;
+  }
+
+  public function toDatabaseArray(): array
+  {
+    return [
+      'id' => $this->id,
+      'name' => $this->name,
+      'context_owner_id' => $this->contextOwnerId->getStorageValue(),
+    ];
+  }
+
+  public function fromDatabaseArray(array $roleData): CrudEntity
+  {
+    $this->id = IdValue::create($roleData['id']);
+    $this->name = (string) $roleData['name'];
+    $this->contextOwnerId = IdValue::create($roleData['context_owner_id']);
+    $this->left = (int) $roleData['left'];
+    $this->right = (int) $roleData['right'];
+    $this->level = (int) $roleData['level'];
+    $this->hasChildren = (bool) $roleData['hasChildren'];
+
+    return $this;
+  }
+
+  public function setData(array $data)
+  {
+    foreach ($data as $key => $value) {
+      if (!property_exists($this, $key)) {
+        continue;
+      }
+
+      $this->{$key} = $value;
+    }
+  }
+
+  public function toArray(): array
+  {
+    $vars = get_object_vars($this);
+
+    foreach ($vars as $key => $var) {
+      if ($var instanceof IdValue) {
+        $vars[$key] = $var->getValue();
+      }
     }
 
-    public function isNew(): bool
-    {
-        return $this->id instanceof NullIdValue;
-    }
+    return $vars;
+  }
 
-    public function toDatabaseArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'context_owner_id' => $this->contextOwnerId->getStorageValue(),
-        ];
-    }
-
-    public function fromDatabaseArray(array $roleData): CrudEntity
-    {
-        $this->id = IdValue::create($roleData['id']);
-        $this->name = (string) $roleData['name'];
-        $this->contextOwnerId = IdValue::create($roleData['context_owner_id']);
-        $this->left = (int) $roleData['left'];
-        $this->right = (int) $roleData['right'];
-        $this->level = (int) $roleData['level'];
-        $this->hasChildren = (bool) $roleData['hasChildren'];
-
-        return $this;
-    }
-
-    public function setData(array $data)
-    {
-        foreach ($data as $key => $value) {
-            if (!property_exists($this, $key)) {
-                continue;
-            }
-
-            $this->{$key} = $value;
-        }
-    }
-
-    public function toArray(): array
-    {
-        $vars = get_object_vars($this);
-        
-        foreach ($vars as $key => $var) {
-            if ($var instanceof IdValue) {
-                $vars[$key] = $var->getValue();
-            }
-        }
-
-        return $vars;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
-    }
+  public function jsonSerialize(): array
+  {
+    return $this->toArray();
+  }
 }
 ```
 
@@ -141,44 +141,44 @@ use Shopware\B2B\Common\Repository\CanNotUpdateExistingRecordException;
 
 class RoleRepository
 {
-    private Connection $connection;
+  private Connection $connection;
 
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
+  public function __construct(Connection $connection)
+  {
+    $this->connection = $connection;
+  }
 
-    /**
-     * @throws NotFoundException
-     */
-    public function fetchOneById(int $id): CrudEntity
-    {
-        [...]
-    }
+  /**
+   * @throws NotFoundException
+   */
+  public function fetchOneById(int $id): CrudEntity
+  {
+    // [...]
+  }
 
-    /**
-     * @throws CanNotInsertExistingRecordException
-     */
-    public function addRole(RoleEntity $role): RoleEntity
-    {
-        [...]
-    }
+  /**
+   * @throws CanNotInsertExistingRecordException
+   */
+  public function addRole(RoleEntity $role): RoleEntity
+  {
+    // [...]
+  }
 
-    /**
-     * @throws CanNotUpdateExistingRecordException
-     */
-    public function updateRole(RoleEntity $role): RoleEntity
-    {
-        [...]
-    }
+  /**
+   * @throws CanNotUpdateExistingRecordException
+   */
+  public function updateRole(RoleEntity $role): RoleEntity
+  {
+    // [...]
+  }
 
-    /**
-     * @throws CanNotRemoveExistingRecordException
-     */
-    public function removeRole(RoleEntity $roleEntity): RoleEntity
-    {
-        [...]
-    }
+  /**
+   * @throws CanNotRemoveExistingRecordException
+   */
+  public function removeRole(RoleEntity $roleEntity): RoleEntity
+  {
+    // [...]
+  }
 }
 ```
 
@@ -200,31 +200,32 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RoleValidationService
 {
-    private ValidationBuilder $validationBuilder;
+  private ValidationBuilder $validationBuilder;
 
-    private ValidatorInterface $validator;
+  private ValidatorInterface $validator;
 
-    public function __construct(
-        ValidationBuilder $validationBuilder,
-        ValidatorInterface $validator
-    ) {
-        $this->validationBuilder = $validationBuilder;
-        $this->validator = $validator;
-    }
+  public function __construct(
+    ValidationBuilder $validationBuilder,
+    ValidatorInterface $validator
+  ) {
+    $this->validationBuilder = $validationBuilder;
+    $this->validator = $validator;
+  }
 
-    public function createInsertValidation(RoleEntity $role): Validator
-    {
+  public function createInsertValidation(RoleEntity $role): Validator
+  {
 
-        [...]
+    // [...]
 
-    }
+  }
 
-    public function createUpdateValidation(RoleEntity $role): Validator
-    {
+  public function createUpdateValidation(RoleEntity $role): Validator
+  {
 
-        [...]
+    // [...]
 
-    }
+  }
+}
 ```
 
 It provides assertions that can be evaluated by a controller and printed to the user.
@@ -249,33 +250,33 @@ use Shopware\B2B\Common\Service\CrudServiceRequest;
 
 class RoleCrudService extends AbstractCrudService
 {
-    [...]
+  // [...]
 
-    public function createNewRecordRequest(array $data): CrudServiceRequest
-    {
-        return new CrudServiceRequest(
-            $data,
-            [
-                'name',
-                'contextOwnerId',
-                'parentId',
-            ]
-        );
-    }
+  public function createNewRecordRequest(array $data): CrudServiceRequest
+  {
+    return new CrudServiceRequest(
+      $data,
+      [
+        'name',
+        'contextOwnerId',
+        'parentId',
+      ]
+    );
+  }
 
-    public function createExistingRecordRequest(array $data): CrudServiceRequest
-    {
-        return new CrudServiceRequest(
-            $data,
-            [
-                'id',
-                'name',
-                'contextOwnerId',
-            ]
-        );
-    }
+  public function createExistingRecordRequest(array $data): CrudServiceRequest
+  {
+    return new CrudServiceRequest(
+      $data,
+      [
+        'id',
+        'name',
+        'contextOwnerId',
+      ]
+    );
+  }
 
-    [...]
+  // [...]
 }
 ```
 
@@ -293,32 +294,32 @@ use Shopware\B2B\Common\Validator\ValidationException
 
 class RoleCrudService extends AbstractCrudService
 {
-    [...]
+  // [...]
 
-    /**
-     * @throws ValidationException
-     */
-    public function create(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
-    {
-        [...]
-    }
+  /**
+   * @throws ValidationException
+   */
+  public function create(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
+  {
+    // [...]
+  }
 
-    /**
-     * @throws ValidationException
-     */
-    public function update(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
-    {
-        [...]
-    }
+  /**
+   * @throws ValidationException
+   */
+  public function update(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
+  {
+    // [...]
+  }
 
-    public function remove(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
-    {
-        [...]
-    }
-    
-    public function move(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
-    {
-        [...]
-    }
+  public function remove(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
+  {
+    // [...]
+  }
+  
+  public function move(CrudServiceRequest $request, OwnershipContext $ownershipContext): RoleEntity
+  {
+    // [...]
+  }
 }
 ```

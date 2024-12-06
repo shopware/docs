@@ -37,34 +37,34 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+    ];
+  }
 
-    public function onProductLoaded(EntityLoadedEvent $event): void
-    {
-    }
+  public function onProductLoaded(EntityLoadedEvent $event): void
+  {
+  }
 }
 ```
 
 For this subscriber to work we need to register it in the service container via the `services.xml` file:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -82,33 +82,33 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+    ];
+  }
 
-    public function onProductLoaded(EntityLoadedEvent $event): void
-    {
+  public function onProductLoaded(EntityLoadedEvent $event): void
+  {
 
-        // loop through all loaded product      
-        /** @var ProductEntity $productEntity */
-        foreach ($event->getEntities() as $productEntity) {
-            $customFields = $productEntity->getCustomFields();
+    // loop through all loaded product      
+    /** @var ProductEntity $productEntity */
+    foreach ($event->getEntities() as $productEntity) {
+      $customFields = $productEntity->getCustomFields();
 
-            // loop through each product's custom fields
-            foreach($customFields as $name => $value) {
-                if ($name !== 'custom_linked_product' || empty($value)) {
-                    continue;
-                }
-
-               // resolve the $value here
-            }
-
-            $productEntity->setCustomFields($customFields);
+      // loop through each product's custom fields
+      foreach ($customFields as $name => $value) {
+        if ($name !== 'custom_linked_product' || empty($value)) {
+          continue;
         }
+
+        // resolve the $value here
+      }
+
+      $productEntity->setCustomFields($customFields);
     }
+  }
 }
 ```
 
@@ -119,19 +119,19 @@ But, how we can load the linked product by its `id` if the custom field was set?
 First we update the `services.xml` and inject the product repository.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <argument type="service" id="product.repository"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
+      <argument type="service" id="product.repository" />
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -152,14 +152,14 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository) 
-    {
-        $this->productRepository = $productRepository;
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
 
-   //...
+  //...
 }
 ```
 
@@ -182,43 +182,43 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class ProductSubscriber implements EventSubscriberInterface
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository) 
-    {
-        $this->productRepository = $productRepository;
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
+
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+    ];
+  }
+
+  public function onProductLoaded(EntityLoadedEvent $event): void
+  {
+    // extract all ids of our custom field
+    $ids = array_map(function (ProductEntity $entity) {
+      return $entity->getCustomFields()['custom_demo_test'] ?? null;
+    }, $event->getEntities());
+
+    // filter empty ids
+    $ids = array_filter($ids);
+
+    // load all products in one request instead of one request per product (big performance boost)
+    $products = $this->productRepository->search(new Criteria($ids), $event->getContext());
+
+    /** @var ProductEntity $entity */
+    foreach ($event->getEntities() as $entity) {
+      // check if the custom field is set
+      if (!$id = $entity->getCustomFields()['custom_demo_test'] ?? null) {
+        continue;
+      }
+
+      // add the product to the entity as entity extension
+      $entity->addExtension('my_custom_demo_product', $products->get($id));
     }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
-        ];
-    }
-
-    public function onProductLoaded(EntityLoadedEvent $event): void
-    {
-        // extract all ids of our custom field
-        $ids = array_map(function (ProductEntity $entity) {
-            return $entity->getCustomFields()['custom_demo_test'] ?? null;
-        }, $event->getEntities());
-
-        // filter empty ids
-        $ids = array_filter($ids);
-
-        // load all products in one request instead of one request per product (big performance boost)
-        $products = $this->productRepository->search(new Criteria($ids), $event->getContext());
-
-        /** @var ProductEntity $entity */
-        foreach ($event->getEntities() as $entity) {
-            // check if the custom field is set
-            if (!$id = $entity->getCustomFields()['custom_demo_test'] ?? null) {
-                continue;
-            }
-
-            // add the product to the entity as entity extension
-            $entity->addExtension('my_custom_demo_product', $products->get($id));
-        }
-    }
+  }
 }
 ```

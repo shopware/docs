@@ -102,8 +102,8 @@ To disable the installation of extensions in the Administration, you can set the
 
 ```yaml
 shopware:
-    deployment:
-        runtime_extension_management: false
+  deployment:
+    runtime_extension_management: false
 ```
 
 Next clear the cache once. After doing this, the Extension Manager in the Administration will become read-only, allowing access only to the extension configuration. Additionally, the First Run Wizard will no longer download extensions such as PayPal or the Shopware Store.

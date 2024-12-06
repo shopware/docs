@@ -21,20 +21,20 @@ public function searchMedia(array $ids, Context $context): MediaCollection { ...
 This function resolves out the corresponding media objects for the given IDs in order to continue working with them afterwards. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
-    {# simplify ID access #}
-    {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
+  {# simplify ID access #}
+  {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
 
-    {# fetch media as batch - optimized for performance #}
-    {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
+  {# fetch media as batch - optimized for performance #}
+  {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
 
-    {# extract single media object #}
-    {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+  {# extract single media object #}
+  {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
 
-    {{ dump (sportsMedia) }}
+  {{ dump (sportsMedia) }}
 {% endblock %}
 ```
 
@@ -101,33 +101,33 @@ This function performs a query against the database on every invocation and shou
 To read the media objects within the product listing we recommend the following procedure:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/component/product/listing.html.twig
+{# <plugin root>/src/Resources/views/storefront/component/product/listing.html.twig #}
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}
-    {# initial ID array #}
-    {% set sportsMediaIds = [] %}
+  {# initial ID array #}
+  {% set sportsMediaIds = [] %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+  {% for product in searchResult %}
+    {# simplify ID access #}
+    {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {# merge IDs to a single array #}
-        {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
-    {% endfor %}
+    {# merge IDs to a single array #}
+    {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
+  {% endfor %}
 
-    {# do a single fetch from database #}
-    {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
+  {# do a single fetch from database #}
+  {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+  {% for product in searchResult %}
+    {# simplify ID access #}
+    {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {# get access to media of product #}
-        {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+    {# get access to media of product #}
+    {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
 
-        {{ dump(sportsMedia) }}
-    {% endfor %}
+    {{ dump(sportsMedia) }}
+  {% endfor %}
 {% endblock %}
 ```
 
@@ -143,6 +143,6 @@ You can also use the `sw_thumbnails` twig function to load viewport specific ima
 
 ```twig
 {% sw_thumbnails 'my-sportsMedia-thumbnails' with {
-media: sportsMedia
+  media: sportsMedia
 } %}
 ```

@@ -29,7 +29,7 @@ The install method of a plugin is executed when the plugin is installed. You can
 // <plugin root>/src/SwagBasicExample
 public function install(InstallContext $installContext): void
 {
-    // Do stuff such as creating a new payment method
+  // Do stuff such as creating a new payment method
 }
 ```
 
@@ -57,7 +57,7 @@ You can't simply remove everything that your plugin created previously. Think ab
 // <plugin root>/src/SwagBasicExample
 public function uninstall(UninstallContext $uninstallContext): void
 {
-    // Remove or deactivate the data created by the plugin
+  // Remove or deactivate the data created by the plugin
 }
 ```
 
@@ -71,13 +71,13 @@ When uninstalling a plugin, the user is asked if he really wants to delete all t
 // <plugin root>/src/SwagBasicExample
 public function uninstall(UninstallContext $uninstallContext): void
 {
-    parent::uninstall($uninstallContext);
+  parent::uninstall($uninstallContext);
 
-    if ($uninstallContext->keepUserData()) {
-        return;
-    }
+  if ($uninstallContext->keepUserData()) {
+    return;
+  }
 
-    // Remove or deactivate the data created by the plugin
+  // Remove or deactivate the data created by the plugin
 }
 ```
 
@@ -96,8 +96,8 @@ The `activate` method is executed once the plugin gets actually activated. You m
 // <plugin root>/src/SwagBasicExample
 public function activate(ActivateContext $activateContext): void
 {
-    // Activate entities, such as a new payment method
-    // Or create new entities here, because now your plugin is installed and active for sure
+  // Activate entities, such as a new payment method
+  // Or create new entities here, because now your plugin is installed and active for sure
 }
 ```
 
@@ -114,8 +114,8 @@ The opposite of the `activate` method. It is triggered once the plugin deactivat
 // <plugin root>/src/SwagBasicExample
 public function deactivate(DeactivateContext $deactivateContext): void
 {
-    // Deactivate entities, such as a new payment method
-    // Or remove previously created entities
+  // Deactivate entities, such as a new payment method
+  // Or remove previously created entities
 }
 ```
 
@@ -131,7 +131,7 @@ However, of course you can still do that if necessary. Also, non-database update
 // <plugin root>/src/SwagBasicExample
 public function update(UpdateContext $updateContext$context): void
 {
-    // Update necessary stuff, mostly non-database related
+  // Update necessary stuff, mostly non-database related
 }
 ```
 

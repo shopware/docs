@@ -51,20 +51,20 @@ When our extension is finished, you will get the following file structure:
 
 Everything starts in the `main.ts` file:
 
-```js
+```javascript
 import 'regenerator-runtime/runtime';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
 // Only execute extensionSDK commands when
 // it is inside a iFrame (only needed for plugins)
 if (location.isIframe()) {
-    if (location.is(location.MAIN_HIDDEN)) {
-        // Execute the base commands
-        import('./base/mainCommands');
-    } else {
-        // Render different views
-        import('./viewRenderer');
-    }
+  if (location.is(location.MAIN_HIDDEN)) {
+    // Execute the base commands
+    import('./base/mainCommands');
+  } else {
+    // Render different views
+    import('./viewRenderer');
+  }
 }
 ```
 
@@ -88,7 +88,7 @@ Observe that every file is named according to the component and prefixed with `s
 
 Let us see how the component loading via `viewRenderer.ts` looks like:
 
-```js
+```javascript
 import Vue from 'vue';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
@@ -97,28 +97,28 @@ location.startAutoResizer();
 
 // start app views
 const app = new Vue({
-    el: '#app',
-    data() {
-        return { location };
-    },
-    components: {
-        'SwagDailymotionElement':
-            () => import('./views/swag-dailymotion/swag-dailymotion-element'),
-        'SwagDailymotionConfig':
-            () => import('./views/swag-dailymotion/swag-dailymotion-config'),
-        'SwagDailymotionPreview':
-            () => import('./views/swag-dailymotion/swag-dailymotion-preview'),
-    },
-    template: `
-        <SwagDailymotionElement
-            v-if="location.is('swag-dailymotion-element')"
-        ></SwagDailymotionElement>
-        <SwagDailymotionConfig
-            v-else-if="location.is('swag-dailymotion-config')"
-        ></SwagDailymotionConfig>
-        <SwagDailymotionPreview
-            v-else-if="location.is('swag-dailymotion-preview')"
-        ></SwagDailymotionPreview>
+  el: '#app',
+  data() {
+    return { location };
+  },
+  components: {
+    'SwagDailymotionElement':
+      () => import('./views/swag-dailymotion/swag-dailymotion-element'),
+    'SwagDailymotionConfig':
+      () => import('./views/swag-dailymotion/swag-dailymotion-config'),
+    'SwagDailymotionPreview':
+      () => import('./views/swag-dailymotion/swag-dailymotion-preview'),
+  },
+  template: `
+    <SwagDailymotionElement
+        v-if="location.is('swag-dailymotion-element')"
+    ></SwagDailymotionElement>
+    <SwagDailymotionConfig
+        v-else-if="location.is('swag-dailymotion-config')"
+    ></SwagDailymotionConfig>
+    <SwagDailymotionPreview
+        v-else-if="location.is('swag-dailymotion-preview')"
+    ></SwagDailymotionPreview>
     `,
 });
 ```
@@ -135,24 +135,24 @@ Those will be available after **registering the component**, which we will do in
 
 For this topic we head to `mainCommands.ts`, since the registration of CMS elements is something to be done in a global scope.
 
-```js
+```javascript
 import { cms } from '@shopware-ag/meteor-admin-sdk';
 
 const CMS_ELEMENT_NAME = 'swag-dailymotion';
 const CONSTANTS = {
-    CMS_ELEMENT_NAME,
-    PUBLISHING_KEY: `${CMS_ELEMENT_NAME}__config-element`,
+  CMS_ELEMENT_NAME,
+  PUBLISHING_KEY: `${CMS_ELEMENT_NAME}__config-element`,
 };
 
 void cms.registerCmsElement({
-    name: CONSTANTS.CMS_ELEMENT_NAME,
-    label: 'Dailymotion video',
-    defaultConfig: {
-        dailyUrl: {
-            source: 'static',
-            value: '',
-        },
+  name: CONSTANTS.CMS_ELEMENT_NAME,
+  label: 'Dailymotion video',
+  defaultConfig: {
+    dailyUrl: {
+      source: 'static',
+      value: '',
     },
+  },
 });
 
 export default CONSTANTS;
@@ -181,53 +181,53 @@ You can vary the structure of `swag-dailymotion`'s contents and create folders f
 
 Let's go through each of the files to talk about it's contents, starting with `swag-dailymotion-config.ts`:
 
-```js
+```javascript
 import Vue from 'vue'
 import { data } from "@shopware-ag/meteor-admin-sdk";
 import CONSTANTS from "../../base/mainCommands";
 
 export default Vue.extend({
-    template: `
-        <div>
-          <h2>
-            Config!
-          </h2>
-          Video-Code: <input v-model="dailyUrl" type="text"/><br/>
-        </div>
+  template: `
+    <div>
+      <h2>
+        Config!
+      </h2>
+      Video-Code: <input v-model="dailyUrl" type="text"/><br/>
+    </div>
     `,
 
-    data(): Object {
-        return {
-            element: null
-        }
-    },
-
-    computed: {
-        dailyUrl: {
-            get(): string {
-                return this.element?.config?.dailyUrl?.value || '';
-            },
-
-            set(value: string): void {
-                this.element.config.dailyUrl.value = value;
-
-                data.update({
-                    id: CONSTANTS.PUBLISHING_KEY,
-                    data: this.element,
-                });
-            }
-        }
-    },
-
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        async createdComponent() {
-            this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-        }
+  data(): Object {
+    return {
+      element: null
     }
+  },
+
+  computed: {
+    dailyUrl: {
+      get(): string {
+        return this.element?.config?.dailyUrl?.value || '';
+      },
+
+      set(value: string): void {
+        this.element.config.dailyUrl.value = value;
+
+        data.update({
+          id: CONSTANTS.PUBLISHING_KEY,
+          data: this.element,
+        });
+      }
+    }
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    async createdComponent() {
+      this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+    }
+  }
 });
 ```
 
@@ -247,57 +247,57 @@ With these small additions to typical CMS element behavior, you have already don
 
 Now let's have a look at the result of `swag-dailymotion-element.ts`:
 
-```js
+```javascript
 import Vue from 'vue'
 import { data } from "@shopware-ag/meteor-admin-sdk";
 import CONSTANTS from "../../base/mainCommands";
 
 export default Vue.extend({
-    template: `
-        <div>
-            <h2>
-              Element!
-            </h2>
-            <div class="sw-cms-el-dailymotion">
-                <div class="sw-cms-el-dailymotion-iframe-wrapper">
-                    <iframe
-                        frameborder="0"
-                        type="text/html"
-                        width="100%"
-                        height="100%"
-                        :src="dailyUrl">
-                    </iframe>
-                </div>
+  template: `
+    <div>
+        <h2>
+          Element!
+        </h2>
+        <div class="sw-cms-el-dailymotion">
+            <div class="sw-cms-el-dailymotion-iframe-wrapper">
+                <iframe
+                    frameborder="0"
+                    type="text/html"
+                    width="100%"
+                    height="100%"
+                    :src="dailyUrl">
+                </iframe>
             </div>
         </div>
+    </div>
     `,
 
-    data(): { element: object|null } {
-        return {
-            element: null
-        }
-    },
-
-    computed: {
-        dailyUrl(): string {
-            return `https://www.dailymotion.com/embed/video/${this.element?.config?.dailyUrl?.value || ''}`;
-        }
-    },
-
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        async createdComponent() {
-            this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-            data.subscribe(CONSTANTS.PUBLISHING_KEY, this.elementSubscriber);
-        },
-
-        elementSubscriber(response: { data: unknown, id: string }): void {
-            this.element = response.data;
-        }
+  data(): { element: object | null } {
+    return {
+      element: null
     }
+  },
+
+  computed: {
+    dailyUrl(): string {
+      return `https://www.dailymotion.com/embed/video/${this.element?.config?.dailyUrl?.value || ''}`;
+    }
+  },
+
+  created() {
+    this.createdComponent();
+  },
+
+  methods: {
+    async createdComponent() {
+      this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
+      data.subscribe(CONSTANTS.PUBLISHING_KEY, this.elementSubscriber);
+    },
+
+    elementSubscriber(response: { data: unknown, id: string }): void {
+      this.element = response.data;
+    }
+  }
 });
 ```
 
@@ -311,14 +311,14 @@ It initially fetches the `element` data, as you've already seen it in the config
 
 Lastly, have a look at `swag-dailymotion-preview.ts`. In most cases, not much logic is to be found here, since this is the preview loaded when choosing a CMS element for your block. It makes sense to show an example preview, a miniature skeleton of the result, or just the Dailymotion logo. Therefore, the following code will suffice for your example extension:
 
-```js
+```javascript
 import Vue from 'vue'
 
 export default Vue.extend({
-    template: `
-        <h2>
-          Preview!
-        </h2>
+  template: `
+    <h2>
+      Preview!
+    </h2>
     `,
 });
 ```
@@ -334,19 +334,19 @@ Since everything is already described in guide [CMS element development for plug
 ```twig
 {% block element_swag_dailymotion %}
 <div class="cms-element-swag-dailymotion" style="height: 100%; width: 100%">
-    {% block element_dailymotion_image_inner %}
-    <div class="cms-el-swag-dailymotion">
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-            <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
-                    src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
-                    frameborder="0"
-                    type="text/html"
-                    width="100%"
-                    height="100%">
-            </iframe>
-        </div>
+  {% block element_dailymotion_image_inner %}
+  <div class="cms-el-swag-dailymotion">
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+      <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
+        src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
+        frameborder="0"
+        type="text/html"
+        width="100%"
+        height="100%">
+      </iframe>
     </div>
-    {% endblock %}
+  </div>
+  {% endblock %}
 </div>
 {% endblock %}
 ```

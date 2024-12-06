@@ -33,12 +33,12 @@ The manufacturerId is **not** required and thus the association can be removed.
 ```php
 public function removeAssocData(Context $context): void
 {
-    $this->productRepository->update([
-        [
-            'id' => 'myProductId',
-            'manufacturerId' => null
-        ]
-    ], $context);
+  $this->productRepository->update([
+    [
+      'id' => 'myProductId',
+      'manufacturerId' => null
+    ]
+  ], $context);
 }
 ```
 
@@ -57,12 +57,12 @@ Assuming you want to un-assign a category from a product, this is how it's done.
 ```php
 public function removeAssocData(Context $context): void
 {
-    $this->productCategoryRepository->delete([
-        [
-            'productId' => 'myProductId',
-            'categoryId' => 'myCategoryId'
-        ]
-    ], $context);
+  $this->productCategoryRepository->delete([
+    [
+      'productId' => 'myProductId',
+      'categoryId' => 'myCategoryId'
+    ]
+  ], $context);
 }
 ```
 
@@ -88,12 +88,12 @@ Instead of working with the repository of the `ProductManufacturerDefinition`, y
 ```php
 public function removeAssocData(Context $context): void
 {
-    $this->productRepository->update([
-        [
-            'id' => 'myProductId',
-            'manufacturerId' => null
-        ]
-    ], $context);
+  $this->productRepository->update([
+    [
+      'id' => 'myProductId',
+      'manufacturerId' => null
+    ]
+  ], $context);
 }
 ```
 
@@ -117,17 +117,17 @@ So figure out its ID by using the known `productId` and `mediaId` and figure out
 ```php
 public function removeAssocData(Context $context): void
 {
-    $criteria = new Criteria();
-    $criteria->addFilter(new EqualsFilter('productId', 'myProductId'));
-    $criteria->addFilter(new EqualsFilter('mediaId', 'myMediaId'));
+  $criteria = new Criteria();
+  $criteria->addFilter(new EqualsFilter('productId', 'myProductId'));
+  $criteria->addFilter(new EqualsFilter('mediaId', 'myMediaId'));
 
-    $productMediaId = $this->productMediaRepository->searchIds($criteria, $context)->firstId();
+  $productMediaId = $this->productMediaRepository->searchIds($criteria, $context)->firstId();
 
-    $this->productMediaRepository->delete([
-        [
-            'id' => $productMediaId
-        ]
-    ], $context);
+  $this->productMediaRepository->delete([
+    [
+      'id' => $productMediaId
+    ]
+  ], $context);
 }
 ```
 

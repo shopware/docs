@@ -30,12 +30,12 @@ import { COOKIE_CONFIGURATION_UPDATE } from 'src/plugin/cookie/cookie-configurat
 document.$emitter.subscribe(COOKIE_CONFIGURATION_UPDATE, eventCallback);
 
 function eventCallback(updatedCookies) {
-    if (typeof updatedCookies.detail['cookie-key-1'] !== 'undefined') {
-        // The cookie with the cookie attribute "cookie-key-1" either is set active or from active to inactive
-        let cookieActive = updatedCookies.detail['cookie-key-1'];
-    } else {
-        // The cookie with the cookie attribute "cookie-key-1" was not updated
-    }
+  if (typeof updatedCookies.detail['cookie-key-1'] !== 'undefined') {
+    // The cookie with the cookie attribute "cookie-key-1" either is set active or from active to inactive
+    let cookieActive = updatedCookies.detail['cookie-key-1'];
+  } else {
+    // The cookie with the cookie attribute "cookie-key-1" was not updated
+  }
 }
 ```
 
@@ -49,5 +49,5 @@ Just like with every custom JavaScript file, you have to load this one as well i
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/main.js
-import './reacting-cookie/reacting-cookie'
+import './reacting-cookie/reacting-cookie';
 ```

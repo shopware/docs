@@ -17,11 +17,11 @@ To remove a URL from the sitemap, use the configuration setting `shopware.sitema
 
 ```yaml
 shopware:
-    sitemap:
-        excluded_urls:
-            -   salesChannelId: '98432def39fc4624b33213a56b8c944d'
-                resource: 'Shopware\Core\Content\Product\ProductEntity'
-                identifier: 'd20e4d60e35e4afdb795c767eee08fec'
+  sitemap:
+    excluded_urls:
+      - salesChannelId: '98432def39fc4624b33213a56b8c944d'
+        resource: 'Shopware\Core\Content\Product\ProductEntity'
+        identifier: 'd20e4d60e35e4afdb795c767eee08fec'
 ```
 
 The `salesChannelId` is the ID of the sales channel from which you want to exclude the URL.

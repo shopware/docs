@@ -38,21 +38,22 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>MyExampleApp</name>
-        <label>Label</label>
-        <label lang="de-DE">Name</label>
-        <description>A description</description>
-        <description lang="de-DE">Eine Beschreibung</description>
-        <author>Your Company Ltd.</author>
-        <copyright>(c) by Your Company Ltd.</copyright>
-        <version>1.0.0</version>
-        <icon>Resources/config/plugin.png</icon>
-        <license>MIT</license>
-    </meta>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>MyExampleApp</name>
+    <label>Label</label>
+    <label lang="de-DE">Name</label>
+    <description>A description</description>
+    <description lang="de-DE">Eine Beschreibung</description>
+    <author>Your Company Ltd.</author>
+    <copyright>(c) by Your Company Ltd.</copyright>
+    <version>1.0.0</version>
+    <icon>Resources/config/plugin.png</icon>
+    <license>MIT</license>
+  </meta>
 </manifest>
 ```
 
@@ -202,9 +203,9 @@ use Psr\Http\Message\RequestInterface;
 $queryString = $request->getUri()->getQuery();
 parse_str($queryString, $queryValues);
 $proof = \hash_hmac(
-    'sha256',
-    $queryValues['shop-id'] . $queryValues['shop-url'] . $appname,
-    $appSecret
+  'sha256',
+  $queryValues['shop-id'] . $queryValues['shop-url'] . $appname,
+  $appSecret
 );
 ```
 
@@ -299,22 +300,23 @@ Since version 6.4.12.0, your app can also request additional non-CRUD privileges
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration look like this:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <permissions>
-        <read>product</read>
-        <create>product</create>
-        <update>product</update>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <permissions>
+    <read>product</read>
+    <create>product</create>
+    <update>product</update>
 
-        <delete>order</delete>
+    <delete>order</delete>
 
-        <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
-        <permission>system:cache:info</permission>
-    </permissions>
+    <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
+    <permission>system:cache:info</permission>
+  </permissions>
 </manifest>
 ```
 
@@ -399,14 +401,14 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function webhookController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $webhook = $contextResolver->assembleWebhook($serverRequest, $shop);
-    
-    // do something with the parsed webhook
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $webhook = $contextResolver->assembleWebhook($serverRequest, $shop);
+  
+  // do something with the parsed webhook
 }
 ```
 

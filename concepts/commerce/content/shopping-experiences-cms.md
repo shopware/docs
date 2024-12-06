@@ -23,16 +23,22 @@ Every CMS page or layout \(they are really technically the same\) is a hierarchi
 
 ```json
 {
-  cmsPage: {
-      sections: [{
-          blocks: [{
-              slots: [{
-                  slot: "content",
-                  type: "product-listing",
-                  /* ... */
-              }]
-          }, /* ... */]
-      }, /* ... */]
+  "cmsPage": {
+    "sections": [
+      {
+        "blocks": [
+          {
+            "slots": [
+              {
+                "slot": "content",
+                "type": "product-listing",
+                /* ... */
+              }
+            ]
+          }, /* ... */
+        ]
+      }, /* ... */
+    ]
   }
 }
 ```
@@ -71,18 +77,18 @@ A block represents a unit usually spanning an entire row which can provide custo
 Each block can contain none up to multiple slots. A slot has a name and is just a container for one element. To be more precise, take the following block as an example:
 
 ```javascript
-block: {
-    type: "text-hero",
-    slots: [{
-        type: "text",
-        slot: "content",
-        config: {
-            content: {
-                source: "static",
-                value: "Hello World"
-            }
-        },
-    }]
+const block = {
+  type: "text-hero",
+  slots: [{
+    type: "text",
+    slot: "content",
+    config: {
+      content: {
+        source: "static",
+        value: "Hello World"
+      }
+    },
+  }]
 }
 ```
 
@@ -91,23 +97,23 @@ It is pretty clear what this will look like. There is a block called `text-hero`
 Let's take a look at another example:
 
 ```javascript
-block: {
-    type: "text-hero",
-    slots: [{
-        type: "image",
-        slot: "content",
-        config: {
-            media: {
-                source: "static",
-                value: "ebc314b11cb74c2080f6f27f005e9c1d"
-            }
-        },
-        data: {
-            media: {
-                url: "https://my-shop-host.com/media/ab/cd/ef/image.jpg"
-            }
-        }
-    }]
+const block = {
+  type: "text-hero",
+  slots: [{
+    type: "image",
+    slot: "content",
+    config: {
+      media: {
+        source: "static",
+        value: "ebc314b11cb74c2080f6f27f005e9c1d"
+      }
+    },
+    data: {
+      media: {
+        url: "https://my-shop-host.com/media/ab/cd/ef/image.jpg"
+      }
+    }
+  }]
 }
 ```
 

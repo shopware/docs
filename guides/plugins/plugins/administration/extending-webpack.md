@@ -20,13 +20,13 @@ The Webpack configuration can be extended by creating the file `<plugin root>/sr
 const path = require('path');
 
 module.exports = () => {
-    return {
-        resolve: {
-            alias: {
-                SwagBasicExample: path.join(__dirname, '..', 'src')
-            }
-        }
-    };
+  return {
+    resolve: {
+      alias: {
+        SwagBasicExample: path.join(__dirname, '..', 'src')
+      }
+    }
+  };
 };
 ```
 

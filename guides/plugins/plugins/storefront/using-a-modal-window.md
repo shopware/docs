@@ -27,36 +27,36 @@ The simples solution to create a modal is by using Bootstrap. More info: [Modal 
 Here is a basic implementation as an example. We override the `base_main_inner` from the `@Storefront/storefront/page/content/index.html.twig` template to insert the modal specific DOM elements.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
+  {# Button trigger modal #}
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- insert your content here -->
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+  {# Modal #}
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          {# insert your content here #}
+          {# ... #}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    {{ parent() }}
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -65,17 +65,17 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
 When setting `data-ajax-modal="true"` together with `data-url` shopware automatically uses the `PseudoModalUtil` and the pseudo modal template from the `base.html.twig` to render a modal:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    <!-- This uses `AjaxModalPlugin` -->
-    <button class="btn btn-primary"
-            data-ajax-modal="true"
-            data-url="https://example.org/ajax-url">
-        Launch ajax modal
-    </button>
-    {{ parent() }}
+  <!-- This uses `AjaxModalPlugin` -->
+  <button class="btn btn-primary"
+    data-ajax-modal="true"
+    data-url="https://example.org/ajax-url">
+      Launch ajax modal
+  </button>
+  {{ parent() }}
 {% endblock %}
 ```
 
@@ -91,13 +91,13 @@ As explained in the guide on [adding custom javascript](./add-custom-javascript)
 Inside this template, extend from the `@Storefront/storefront/page/content/index.html.twig` and overwrite the `base_main_inner` block. After the parent content of the blog, add a template tag with the `data-example-plugin` attribute.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-    {{ parent() }}
+  {{ parent() }}
 
-    <template data-example-plugin></template>
+  <template data-example-plugin></template>
 {% endblock %}
 ```
 
@@ -121,9 +121,9 @@ const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        // ...
-    }
+  init() {
+    // ...
+  }
 }
 ```
 
@@ -136,17 +136,17 @@ const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        this.openModal();
-    }
-    
-    openModal() {
-        // create a new modal instance
-        this.modal = new PseudoModalUtil();
-        
-        // open the modal window and make it visible
-        this.modal.open();
-    }
+  init() {
+    this.openModal();
+  }
+
+  openModal() {
+    // create a new modal instance
+    this.modal = new PseudoModalUtil();
+
+    // open the modal window and make it visible
+    this.modal.open();
+  }
 }
 ```
 
@@ -180,25 +180,25 @@ const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        // declaring some basic content
-        const content = `
-            <div class="js-pseudo-modal-template">
-                <div class="js-pseudo-modal-template-title-element">Modal title</div>
-                <div class="js-pseudo-modal-template-content-element">Modal content</div>
-            </div>
-        `;
-        
-        this.openModal(content);
-    }
-    
-    openModal(content) {
-        // create a new modal instance
-        this.modal = new PseudoModalUtil(content);
-        
-        // open the modal window and make it visible
-        this.modal.open();
-    }
+  init() {
+    // declaring some basic content
+    const content = `
+      <div class="js-pseudo-modal-template">
+          <div class="js-pseudo-modal-template-title-element">Modal title</div>
+          <div class="js-pseudo-modal-template-content-element">Modal content</div>
+      </div>
+      `;
+
+    this.openModal(content);
+  }
+
+  openModal(content) {
+    // create a new modal instance
+    this.modal = new PseudoModalUtil(content);
+
+    // open the modal window and make it visible
+    this.modal.open();
+  }
 }
 ```
 
@@ -216,29 +216,29 @@ const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        // declaring some basic content
-        const content = `
-            <div class="js-pseudo-modal-template">
-                <div class="js-pseudo-modal-template-title-element">Modal title</div>
-                <div class="js-pseudo-modal-template-content-element">Modal content</div>
-            </div>
-        `;
-        
-        this.openModal(content);
-    }
-    
-    openModal(content) {
-        // create a new modal instance
-        this.modal = new PseudoModalUtil(content);
-        
-        // open the modal window and fire a callback function
-        this.modal.open(this.onOpenModal.bind(this));
-    }
-    
-    onOpenModal() {
-        console.log('the modal is opened');
-    }
+  init() {
+    // declaring some basic content
+    const content = `
+      <div class="js-pseudo-modal-template">
+          <div class="js-pseudo-modal-template-title-element">Modal title</div>
+          <div class="js-pseudo-modal-template-content-element">Modal content</div>
+      </div>
+      `;
+
+    this.openModal(content);
+  }
+
+  openModal(content) {
+    // create a new modal instance
+    this.modal = new PseudoModalUtil(content);
+
+    // open the modal window and fire a callback function
+    this.modal.open(this.onOpenModal.bind(this));
+  }
+
+  onOpenModal() {
+    console.log('the modal is opened');
+  }
 }
 ```
 
@@ -253,45 +253,44 @@ const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        // declaring some basic content
-        const content = `
-            <div class="js-pseudo-modal-template">
-                <div class="js-pseudo-modal-template-title-element">Modal title</div>
-                <div class="js-pseudo-modal-template-content-element">Modal content</div>
-            </div>
-        `;
-        
-        this.openModal(content);
-        
-        // ... do some stuff
+  init() {
+    // declaring some basic content
+    const content = `
+      <div class="js-pseudo-modal-template">
+          <div class="js-pseudo-modal-template-title-element">Modal title</div>
+          <div class="js-pseudo-modal-template-content-element">Modal content</div>
+      </div>
+      `;
 
-        const updatedContent = `
-            <div class="js-pseudo-modal-template">
-                <div class="js-pseudo-modal-template-title-element">Modal title</div>
-                <div class="js-pseudo-modal-template-content-element">Updated content</div>
-            </div>
-        `;
-        
-        this.modal.updateModal(updatedContent, this.onUpdateModal.bind(this));
-    }
-    
-    openModal(content) {
-        // create a new modal instance
-        this.modal = new PseudoModalUtil(content);
-        
-        // open the modal window and fire a callback function
-        this.modal.open(this.onOpenModal.bind(this));
-    }
-    
-    onOpenModal() {
-        console.log('the modal is opened');
-    }
+    this.openModal(content);
 
-    onUpdateModal() {
-        console.log('the modal was updated');
-    }
-    
+    // ... do some stuff
+
+    const updatedContent = `
+      <div class="js-pseudo-modal-template">
+          <div class="js-pseudo-modal-template-title-element">Modal title</div>
+          <div class="js-pseudo-modal-template-content-element">Updated content</div>
+      </div>
+      `;
+
+    this.modal.updateModal(updatedContent, this.onUpdateModal.bind(this));
+  }
+
+  openModal(content) {
+    // create a new modal instance
+    this.modal = new PseudoModalUtil(content);
+
+    // open the modal window and fire a callback function
+    this.modal.open(this.onOpenModal.bind(this));
+  }
+
+  onOpenModal() {
+    console.log('the modal is opened');
+  }
+
+  onUpdateModal() {
+    console.log('the modal was updated');
+  }
 }
 ```
 
@@ -305,28 +304,28 @@ const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        // declaring some basic content
-        const content = `
-            <div class="js-pseudo-modal-template">
-                <div class="js-pseudo-modal-template-title-element">Modal title</div>
-                <div class="js-pseudo-modal-template-content-element">Modal content</div>
-            </div>
-        `;
-        
-        this.openModal(content);
-    }
-    
-    openModal(content) {
-        // disable backdrop
-        const useBackrop = false;
-        
-        // create a new modal instance
-        this.modal = new PseudoModalUtil(content, useBackrop);
-        
-        // open the modal window and make it visible
-        this.modal.open();
-    }
+  init() {
+    // declaring some basic content
+    const content = `
+      <div class="js-pseudo-modal-template">
+          <div class="js-pseudo-modal-template-title-element">Modal title</div>
+          <div class="js-pseudo-modal-template-content-element">Modal content</div>
+      </div>
+      `;
+
+    this.openModal(content);
+  }
+
+  openModal(content) {
+    // disable backdrop
+    const useBackrop = false;
+
+    // create a new modal instance
+    this.modal = new PseudoModalUtil(content, useBackrop);
+
+    // open the modal window and make it visible
+    this.modal.open();
+  }
 }
 ```
 
@@ -342,25 +341,25 @@ Here is an example which shows how to override the CSS class names.
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 // ...
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        // ...
-    }
+  init() {
+    // ...
+  }
 
-    openModal(content) {
-        // enable backdrop
-        const useBackrop = true;
+  openModal(content) {
+    // enable backdrop
+    const useBackrop = true;
 
-        // create a new modal instance
-        this.modal = new PseudoModalUtil(
-            content,
-            useBackrop,
-            '.custom-js-pseudo-modal-template',
-            '.custom-js-pseudo-modal-template-content-element',
-            '.custom-js-pseudo-modal-template-title-element'
-        );
+    // create a new modal instance
+    this.modal = new PseudoModalUtil(
+      content,
+      useBackrop,
+      '.custom-js-pseudo-modal-template',
+      '.custom-js-pseudo-modal-template-content-element',
+      '.custom-js-pseudo-modal-template-title-element'
+    );
 
-        // open the modal window and make it visible
-        this.modal.open();
-    }
+    // open the modal window and make it visible
+    this.modal.open();
+  }
 }
 ```

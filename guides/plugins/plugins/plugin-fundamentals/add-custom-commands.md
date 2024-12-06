@@ -29,13 +29,13 @@ Refer to this video on custom **[Creating a CLI command](https://www.youtube.com
 
 From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
 
-```html
+```xml
 <services>
-   <!-- ... -->
+  <!-- ... -->
 
-   <service id="Swag\BasicExample\Command\ExampleCommand">
-       <tag name="console.command"/>
-   </service>
+  <service id="Swag\BasicExample\Command\ExampleCommand">
+    <tag name="console.command" />
+  </service>
 </services>
 <!-- ... -->
 ```
@@ -43,18 +43,18 @@ From here on, everything works exactly like in Symfony itself. Commands are reco
 Here's a full example `services.xml` which registers your custom command:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Command\ExampleCommand">
-            <tag name="console.command"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Command\ExampleCommand">
+      <tag name="console.command" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -74,19 +74,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'swag-commands:example')]
 class ExampleCommand extends Command
 {
-    // Provides a description, printed out in bin/console
-    protected function configure(): void
-    {
-        $this->setDescription('Does something very special.');
-    }
+  // Provides a description, printed out in bin/console
+  protected function configure(): void
+  {
+    $this->setDescription('Does something very special.');
+  }
 
-    // Actual code executed in the command
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        $output->writeln('It works!');
+  // Actual code executed in the command
+  protected function execute(InputInterface $input, OutputInterface $output): int
+  {
+    $output->writeln('It works!');
 
-        return Command::SUCCESS;
-    }
+    return Command::SUCCESS;
+  }
 }
 ```
 

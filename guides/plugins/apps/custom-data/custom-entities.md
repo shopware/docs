@@ -12,16 +12,17 @@ Unlike [Custom fields](custom-fields), you can generate completely custom data s
 To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
 
 ```xml
-// <app root>/Resources/entities.xml
-<?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
-    <entity name="custom_entity_bundle">
-        <fields>
-            <string name="name" required="true" translatable="true" store-api-aware="true" />
-            <price name="discount" required="true" store-api-aware="true"/>
-            <many-to-many name="products" reference="product" store-api-aware="true" />
-        </fields>
-    </entity>
+<!-- <app root>/Resources/entities.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+  <entity name="custom_entity_bundle">
+    <fields>
+      <string name="name" required="true" translatable="true" store-api-aware="true" />
+      <price name="discount" required="true" store-api-aware="true" />
+      <many-to-many name="products" reference="product" store-api-aware="true" />
+    </fields>
+  </entity>
 </entities>
 ```
 
@@ -50,16 +51,17 @@ The ability to use custom entities with custom fields is available since Shopwar
 By default, it is not possible to create a custom field of type "Entity Select", which references a custom entity. However, you can opt in to this behavior. You will need to add the `custom-fields-aware` & `label-property` attributes to your entity definition:
 
 ```xml
-// Resources/entities.xml
-<?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
-    <entity name="custom_entity_bundle" custom-fields-aware="true" label-property="name">
-        <fields>
-            <string name="name" required="true" translatable="true" store-api-aware="true" />
-            <price name="discount" required="true" store-api-aware="true"/>
-            <many-to-many name="products" reference="product" store-api-aware="true" />
-        </fields>
-    </entity>
+<!-- Resources/entities.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+  <entity name="custom_entity_bundle" custom-fields-aware="true" label-property="name">
+    <fields>
+      <string name="name" required="true" translatable="true" store-api-aware="true" />
+      <price name="discount" required="true" store-api-aware="true" />
+      <many-to-many name="products" reference="product" store-api-aware="true" />
+    </fields>
+  </entity>
 </entities>
 ```
 
@@ -67,7 +69,7 @@ To enable the usage of custom fields, the `custom-fields-aware` setting should b
 
 Now you will find your entity in the "Entity Type" select when creating a custom field of type "Entity Select". Without a snippet label for the entity, it will display as `custom_entity_bundle.label`. You can create a snippet to add a label like so:
 
-```js
+```json
 // Resources/app/administration/snippet/en-GB.json
 {
   "custom_entity_bundle": {
@@ -84,14 +86,14 @@ you need the appropriate [permissions](../../../../resources/references/app-refe
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <!-- ... -->
-    </meta>
-    <permissions>
-        <read>product</read>
-<!--    <read>custom_entity_blog</read>   < permissions for own entities are automatically set  -->
-    </permissions>
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <permissions>
+    <read>product</read>
+    <!-- <read>custom_entity_blog</read>   < permissions for own entities are automatically set -->
+  </permissions>
 </manifest>
 ```
 
@@ -100,13 +102,14 @@ you need the appropriate [permissions](../../../../resources/references/app-refe
 Since v6.4.15.0 it is possible to also use the `ce_` shorthand prefix for your custom entities to prevent problems with length restrictions of names inside the DB.
 
 ```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
-    <entity name="ce_bundle">
-        <fields>
-            ...
-        </fields>
-    </entity>
+<?xml version="1.0" encoding="utf-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomEntity/Xml/entity-1.0.xsd">
+  <entity name="ce_bundle">
+    <fields>
+      <!-- ... -->
+    </fields>
+  </entity>
 </entities>
 ```
 

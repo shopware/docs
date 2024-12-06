@@ -30,14 +30,14 @@ const { Mixin } = Shopware;
 
 // give the mixin a name and feed it into the register function as the second argument
 Mixin.register('swag-basic-mixin', {
-    created: function () {
-        this.hello()
-    },
-    methods: {
-        hello: function () {
-            console.log('hello from mixin!')
-        }
+  created: function () {
+    this.hello()
+  },
+  methods: {
+    hello: function () {
+      console.log('hello from mixin!')
     }
+  }
 });
 ```
 
@@ -62,9 +62,9 @@ const { Component, Mixin } = Shopware;
 
 Component.register('swag-basic-example', {
 
-    mixins: [
-        Mixin.getByName('swag-basic-mixin')
-    ],
+  mixins: [
+    Mixin.getByName('swag-basic-mixin')
+  ],
 });
 ```
 

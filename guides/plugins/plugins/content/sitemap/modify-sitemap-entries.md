@@ -47,27 +47,27 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class DecoratedProductUrlProvider extends AbstractUrlProvider
 {
-    private AbstractUrlProvider $decoratedUrlProvider;
+  private AbstractUrlProvider $decoratedUrlProvider;
 
-    public function __construct(AbstractUrlProvider $abstractUrlProvider)
-    {
-        $this->decoratedUrlProvider = $abstractUrlProvider;
-    }
+  public function __construct(AbstractUrlProvider $abstractUrlProvider)
+  {
+    $this->decoratedUrlProvider = $abstractUrlProvider;
+  }
 
-    public function getDecorated(): AbstractUrlProvider
-    {
-        return $this->decoratedUrlProvider;
-    }
+  public function getDecorated(): AbstractUrlProvider
+  {
+    return $this->decoratedUrlProvider;
+  }
 
-    public function getName(): string
-    {
-        return $this->getDecorated()->getName();
-    }
+  public function getName(): string
+  {
+    return $this->getDecorated()->getName();
+  }
 
-    public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
-    {
-        return $this->getDecorated()->getUrls($context, $limit, $offset);
-    }
+  public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
+  {
+    return $this->getDecorated()->getUrls($context, $limit, $offset);
+  }
 }
 ```
 
@@ -76,17 +76,19 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider" decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider.inner" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider"
+      decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
+      <argument type="service"
+        id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider.inner" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -105,12 +107,12 @@ On this instance, you can use the method `getUrls` to actually get the `Url` ins
 // <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
 {
-    $urlResult = $this->getDecorated()->getUrls($context, $limit, $offset);
-    $urls = $urlResult->getUrls();
+  $urlResult = $this->getDecorated()->getUrls($context, $limit, $offset);
+  $urls = $urlResult->getUrls();
 
-    /* Change $urls, e.g. removing entries or updating them by iterating over them. */
+  /* Change $urls, e.g. removing entries or updating them by iterating over them. */
 
-    return new UrlResult($urls, $urlResult->getNextOffset());
+  return new UrlResult($urls, $urlResult->getNextOffset());
 }
 ```
 
@@ -136,27 +138,27 @@ You can then add new lines to the SQL statement in order to do the necessary fil
 // <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 protected function getSeoUrls(array $ids, string $routeName, SalesChannelContext $context, Connection $connection): array
 {
-    /* Make adjustments to this SQL */
-    $sql = 'SELECT LOWER(HEX(foreign_key)) as foreign_key, seo_path_info
-                FROM seo_url WHERE foreign_key IN (:ids)
-                 AND `seo_url`.`route_name` =:routeName
-                 AND `seo_url`.`is_canonical` = 1
-                 AND `seo_url`.`is_deleted` = 0
-                 AND `seo_url`.`language_id` =:languageId
-                 AND (`seo_url`.`sales_channel_id` =:salesChannelId OR seo_url.sales_channel_id IS NULL)';
+  /* Make adjustments to this SQL */
+  $sql = 'SELECT LOWER(HEX(foreign_key)) as foreign_key, seo_path_info
+          FROM seo_url WHERE foreign_key IN (:ids)
+            AND `seo_url`.`route_name` =:routeName
+            AND `seo_url`.`is_canonical` = 1
+            AND `seo_url`.`is_deleted` = 0
+            AND `seo_url`.`language_id` =:languageId
+            AND (`seo_url`.`sales_channel_id` =:salesChannelId OR seo_url.sales_channel_id IS NULL)';
 
-    return $connection->fetchAll(
-        $sql,
-        [
-            'routeName' => $routeName,
-            'languageId' => Uuid::fromHexToBytes($context->getSalesChannel()->getLanguageId()),
-            'salesChannelId' => Uuid::fromHexToBytes($context->getSalesChannelId()),
-            'ids' => Uuid::fromHexToBytesList(array_values($ids)),
-        ],
-        [
-            'ids' => Connection::PARAM_STR_ARRAY,
-        ]
-    );
+  return $connection->fetchAll(
+    $sql,
+    [
+      'routeName' => $routeName,
+      'languageId' => Uuid::fromHexToBytes($context->getSalesChannel()->getLanguageId()),
+      'salesChannelId' => Uuid::fromHexToBytes($context->getSalesChannelId()),
+      'ids' => Uuid::fromHexToBytesList(array_values($ids)),
+    ],
+    [
+      'ids' => Connection::PARAM_STR_ARRAY,
+    ]
+  );
 }
 ```
 

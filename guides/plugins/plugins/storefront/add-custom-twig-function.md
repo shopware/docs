@@ -42,31 +42,29 @@ use Twig\TwigFunction;
 
 class SwagCreateMd5Hash extends AbstractExtension
 {
-    public function getFunctions()
-    {
-        return [
-            new TwigFunction('createMd5Hash', [$this, 'createMd5Hash']),
-        ];
-    }
+  public function getFunctions()
+  {
+    return [
+      new TwigFunction('createMd5Hash', [$this, 'createMd5Hash']),
+    ];
+  }
 
-    public function createMd5Hash(string $str)
-    {
-        return md5($str);
-    }
+  public function createMd5Hash(string $str)
+  {
+    return md5($str);
+  }
 }
 ```
 
 Of course, you can do everything in the `createMd5Hash` function that PHP can do, but the `service.xml` handles registration of the service in the DI container.
 
-```html
-// <plugin root>/src/Resources/config/services.xml
-...
-    <services>
-        <service id="SwagBasicExample\Twig\SwagCreateMd5Hash" public="true">
-            <tag name="twig.extension"/> <!--Required-->
-        </service>
-    </services>
-...
+```xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<services>
+  <service id="SwagBasicExample\Twig\SwagCreateMd5Hash" public="true">
+    <tag name="twig.extension" /> <!--Required-->
+  </service>
+</services>
 ```
 
 Once done, you can access this `TwigFunction` within your plugin.
@@ -81,8 +79,8 @@ The created function is now available in all your templates. You can call it lik
 {% set md5Hash = createMd5Hash('Shopware is awesome') %}
 
 {% block layout_header_logo %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {{ md5Hash }}
+  {{ md5Hash }}
 {% endblock %}
 ```

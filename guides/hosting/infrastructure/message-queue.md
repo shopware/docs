@@ -58,8 +58,8 @@ If you have configured the cli-worker, you should turn off the admin worker in t
 ```yaml
 # config/packages/shopware.yaml
 shopware:
-    admin_worker:
-        enable_admin_worker: false
+  admin_worker:
+    enable_admin_worker: false
 ```
 
 ::: warning
@@ -119,10 +119,10 @@ The admin worker, if used, can be configured in the general `shopware.yml` confi
 ```yaml
 # config/packages/shopware.yaml
 shopware:
-    admin_worker:
-        enable_admin_worker: true
-        poll_interval: 30
-        transports: ["async", "low_priority"]
+  admin_worker:
+    enable_admin_worker: true
+    poll_interval: 30
+    transports: ['async', 'low_priority']
 ```
 
 ## Sending mails over the message queue
@@ -132,8 +132,8 @@ By default, Shopware sends the mails synchronously. Since this can affect the pa
 ```yaml
 # config/packages/framework.yaml
 framework:
-    mailer:
-        message_bus: 'messenger.default_bus'
+  mailer:
+    message_bus: 'messenger.default_bus'
 ```
 
 ## Failed messages
@@ -168,12 +168,12 @@ The message bus is used to dispatch your messages to your registered handlers. W
 You can configure an array of buses and define one default bus in your `framework.yaml`.
 
 ```yaml
-// <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
+# <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
 framework:
-    messenger:
-        default_bus: messenger.bus.shopware
-        buses:
-            messenger.bus.shopware:
+  messenger:
+    default_bus: messenger.bus.shopware
+    buses:
+      messenger.bus.shopware:
 ```
 
 For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
@@ -187,12 +187,12 @@ You can configure an amqp transport directly in your `framework.yaml` and simply
 In a simple setup you only need to set the transport to a valid DSN like:
 
 ```yaml
-// <platform root>/src/Core/Framework/Resources/config/packages/queue.yaml
+# <platform root>/src/Core/Framework/Resources/config/packages/queue.yaml
 framework:
   messenger:
     transports:
       my_transport:
-        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
 ```
 
 For more information on this check the [symfony docs](https://symfony.com/doc/current/messenger.html#transport-configuration).
@@ -202,16 +202,17 @@ For more information on this check the [symfony docs](https://symfony.com/doc/cu
 You can route messages to different transports. For that, just configure your routing in the `framework.yaml`.
 
 ```yaml
-// <plugin root>/src/
+# <plugin root>/src/
 framework:
-    messenger:
-      transports:
-        async: "%env(MESSENGER_TRANSPORT_DSN)%"
-        another_transport: "%env(MESSENGER_TRANSPORT_ANOTHER_DSN)%"
-      routing: 
-        'Swag\BasicExample\MessageQueue\Message\SmsNotification': another_transport
-        'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification': [async, another_transport]
-        '*': async
+  messenger:
+    transports:
+      async: '%env(MESSENGER_TRANSPORT_DSN)%'
+      another_transport: '%env(MESSENGER_TRANSPORT_ANOTHER_DSN)%'
+    routing:
+      'Swag\BasicExample\MessageQueue\Message\SmsNotification': another_transport
+      'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification':
+        [async, another_transport]
+      '*': async
 ```
 
 You can route messages by their classname and use the asterisk as a fallback for all other messages. If you specify a list of transports the messages will be routed to all of them. For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport).

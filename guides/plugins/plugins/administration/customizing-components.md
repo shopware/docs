@@ -55,7 +55,7 @@ This could be done in any `.js` file, which then has to be later imported, but w
 import template from './sw-dashboard-index.html.twig';
 
 Shopware.Component.override('sw-dashboard-index', {
-    template
+  template
 });
 ```
 

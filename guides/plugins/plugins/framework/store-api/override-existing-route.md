@@ -35,32 +35,32 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
-    protected EntityRepository $exampleRepository;
+  protected EntityRepository $exampleRepository;
 
-    private AbstractExampleRoute $decorated;
+  private AbstractExampleRoute $decorated;
 
-    public function __construct(EntityRepository $exampleRepository, AbstractExampleRoute $exampleRoute)
-    {
-        $this->exampleRepository = $exampleRepository;
-        $this->decorated = $exampleRoute;
-    }
+  public function __construct(EntityRepository $exampleRepository, AbstractExampleRoute $exampleRoute)
+  {
+    $this->exampleRepository = $exampleRepository;
+    $this->decorated = $exampleRoute;
+  }
 
-    public function getDecorated(): AbstractExampleRoute
-    {
-        return $this->decorated;
-    }
-    
-    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'category'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
-    {
-        // We must call this function when using the decorator approach
-        $exampleResponse = $this->decorated->load();
-        
-        // do some custom stuff
-        $exampleResponse->headers->add([ 'cache-control' => "max-age=10000" ])
+  public function getDecorated(): AbstractExampleRoute
+  {
+    return $this->decorated;
+  }
 
-        return $exampleResponse;›
-    }
+  #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'category'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
+  {
+    // We must call this function when using the decorator approach
+    $exampleResponse = $this->decorated->load();
+
+    // do some custom stuff
+    $exampleResponse->headers->add(['cache-control' => "max-age=10000"]);
+
+    return $exampleResponse;
+  }
 }
 ```
 
@@ -71,20 +71,20 @@ As you can see, our decorated route has to extend from the `AbstractExampleRoute
 Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        ...
-
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator" decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" public="true">
-            <argument type="service" id="swag_example.repository"/>
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator.inner"/>
-        </service>
-    </services>
+  <services> ... <service
+      id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator"
+      decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" public="true">
+      <argument type="service" id="swag_example.repository" />
+      <argument type="service"
+        id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator.inner" />
+    </service>
+  </services>
 </container>
 ```

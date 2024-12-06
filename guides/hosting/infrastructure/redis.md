@@ -56,13 +56,13 @@ Starting with v6.6.8.0 Shopware supports configuring different reusable Redis co
 
 ```yaml
 shopware:
-    # ...
-    redis:
-        connections:
-            ephemeral:
-                dsn: 'redis://host1:port/dbindex'
-            persistent:
-                dsn: 'redis://host2:port/dbindex'
+  # ...
+  redis:
+    connections:
+      ephemeral:
+        dsn: 'redis://host1:port/dbindex'
+      persistent:
+        dsn: 'redis://host2:port/dbindex'
 ```
 
 Connection names should reflect the actual connection purpose/type and be unique. Also, the names are used as part of the service names in the container, so they should follow the service naming conventions. After defining connections, you can reference them by name in the configuration of different subsystems.
@@ -71,13 +71,13 @@ It's possible to use environment variables in the DSN string, e.g. if `REDIS_EPH
 
 ```yaml
 shopware:
-    # ...
-    redis:
-        connections:
-            ephemeral_1:
-                dsn: '%env(REDIS_EPHEMERAL)%/1' # using database 1
-            ephemeral_2:
-                dsn: '%env(REDIS_EPHEMERAL)%/2' # using database 2
+  # ...
+  redis:
+    connections:
+      ephemeral_1:
+        dsn: '%env(REDIS_EPHEMERAL)%/1' # using database 1
+      ephemeral_2:
+        dsn: '%env(REDIS_EPHEMERAL)%/2' # using database 2
 ```
 
 ### Connection pooling
@@ -86,10 +86,10 @@ In high-load scenarios, it is recommended to use persistent connections to avoid
 
 ```yaml
 shopware:
-    redis:
-        connections:
-            ephemeral:
-                dsn: 'redis://host:port/dbindex?persistent=1'
+  redis:
+    connections:
+      ephemeral:
+        dsn: 'redis://host:port/dbindex?persistent=1'
 ```
 
 Please note that the persistent flag influences connection pooling, not persistent storage of data.

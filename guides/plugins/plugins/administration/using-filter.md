@@ -26,7 +26,7 @@ In this section we will show you, how to use our `example` filter in JavaScript 
 If we want to use the filter in our components JavaScript files, we can access it by using `this.$options.filters` and the name of our filter.
 
 ```javascript
-this.$options.filters.example('firstArgument')
+this.$options.filters.example('firstArgument');
 ```
 
 ### Filter in Twig templates
@@ -37,13 +37,13 @@ Below you can see two example implementations, how it could be done with single 
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.general.myCustomText')|example }}
-    </p>
+  <p>
+    {{ $tc('swag-example.general.myCustomText')|example }}
+  </p>
 {% endblock %}
 ```
 
-```html
+```twig
 <example-component :name="$tc('swag-example.general.myCustomText')|example"></example-component>
 ```
 
@@ -51,12 +51,12 @@ When using multiple arguments, we can pass them as shown below.
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
-    </p>
+  <p>
+    {{ $tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument') }}
+  </p>
 {% endblock %}
 ```
 
-```html
+```twig
 <example-component :title="$tc('swag-example.general.myCustomText')|example('secondArgument', 'thirdArgument')"></example-component>
 ```

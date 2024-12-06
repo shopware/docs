@@ -27,7 +27,7 @@ In your component's directory, create a new `index.js` file and register your cu
 
 ```javascript
 Shopware.Component.register('sw-hello-world', {
-    template
+  template
 });
 ```
 
@@ -35,11 +35,11 @@ Just like most components, it has a custom template. First we create the templat
 
 This template now has to define the basic structure of your component. In this simple case, you only need a parent container and two sub-elements, whatever those are.
 
-```html
+```twig
 {% block example_block %}
-    <div class="sw-hello-world">
-        <p>Hello world!</p>
-    </div>
+  <div class="sw-hello-world">
+    <p>Hello world!</p>
+  </div>
 {% endblock %}
 ```
 
@@ -50,7 +50,7 @@ You've got a parent `div` containing the content of your template, an abstract w
 import template from './sw-hello-world.html.twig';
 
 Shopware.Component.register('sw-sw-hello-world', {
-    template
+  template
 });
 ```
 
@@ -65,7 +65,7 @@ import template from './sw-hello-world.html.twig';
 import './sw-hello-world.scss';
 
 Shopware.Component.register('sw-sw-hello-world', {
-    template
+  template
 });
 ```
 

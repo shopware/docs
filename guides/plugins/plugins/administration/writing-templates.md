@@ -21,13 +21,13 @@ Templates in Shopware are usually defined in a separate `.twig` file, named afte
 
 Let's look at all of this in practice, with the example of a component statically printing `'Hello World'`:
 
-```html
+```twig
 {% block swag_basic_example_page %}
-    <sw-page class="swag-example-list">
-        <template #content>
-            <h2>Hello world!</h2>
-        </template>
-    </sw-page>
+  <sw-page class="swag-example-list">
+    <template #content>
+      <h2>Hello world!</h2>
+    </template>
+  </sw-page>
 {% endblock %}
 ```
 
@@ -39,13 +39,13 @@ Each component has a template property, which is used to set the template. To us
 import template from './swag-basic-example.html.twig';
 
 Shopware.Component.register('swag-basic-example', {
-    template, // ES6 shorthand for: 'template: template'  
+  template, // ES6 shorthand for: 'template: template'  
 
-    metaInfo() {
-        return {
-            title: this.$createTitle()
-        };
-    },
+  metaInfo() {
+    return {
+      title: this.$createTitle()
+    };
+  },
 });
 ```
 

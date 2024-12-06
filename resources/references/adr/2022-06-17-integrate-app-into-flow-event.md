@@ -272,3 +272,4 @@ We support defining translation for custom trigger events to show in the trigger
   * `aware` JSON NOT NULL,
   * `created_at` DATETIME(3) NOT NULL,
   * `updated_at` DATETIME(3) NULL,
+  

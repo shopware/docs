@@ -31,15 +31,15 @@ shopware:
 
 ```yaml
 shopware:
-    redis:
-        connections:
-            persistent:
-                dsn: 'redis://host:port/dbindex?persistent=1'
-    cart:
-        storage:
-            type: 'redis'
-            config:
-                 connection: 'persistent'
+  redis:
+    connections:
+      persistent:
+        dsn: 'redis://host:port/dbindex?persistent=1'
+  cart:
+    storage:
+      type: 'redis'
+      config:
+        connection: 'persistent'
 ```
 
 </Tab>

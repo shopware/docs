@@ -89,19 +89,20 @@ It contains all the required information about your app.
 Let's start by filling in all the meta-information:
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>product-translator</name>
-        <label>Product translator</label>
-        <description>App to translate product descriptions</description>
-        <author>shopware AG</author>
-        <copyright>(c) by shopware AG</copyright>
-        <version>0.1.0</version>
-        <license>MIT</license>
-    </meta>
-   </manifest>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>product-translator</name>
+    <label>Product translator</label>
+    <description>App to translate product descriptions</description>
+    <author>shopware AG</author>
+    <copyright>(c) by shopware AG</copyright>
+    <version>0.1.0</version>
+    <license>MIT</license>
+  </meta>
+</manifest>
 ```
 
 ::: warning
@@ -113,16 +114,17 @@ Take care to use the same `<name>` as in the `.env` file. Otherwise, stores can'
 Next, we will define the `<setup>` part of the manifest. This part describes how the store will connect itself with the app server.
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
     <!-- ... -->
-    </meta>
-    <setup>
-        <registrationUrl>http://localhost:8000/app/lifecycle/register</registrationUrl>
-        <secret>TestSecret</secret>
-    </setup>
+  </meta>
+  <setup>
+    <registrationUrl>http://localhost:8000/app/lifecycle/register</registrationUrl>
+    <secret>TestSecret</secret>
+  </setup>
 </manifest>
 ```
 
@@ -134,24 +136,25 @@ The `<secret>` element is only present in development versions of the app. In pr
 The manifest needs permissions as this app will read product descriptions and translate them:
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
     <!-- ... -->
-    </meta>
-    <setup>
+  </meta>
+  <setup>
     <!-- ... -->
-    </setup>
-    <permissions>
-        <read>product</read>
-        <read>product_translation</read>
-        <read>language</read>
-        <read>locale</read>
-        <update>product</update>
-        <update>product_translation</update>
-        <create>product_translation</create>
-    </permissions>
+  </setup>
+  <permissions>
+    <read>product</read>
+    <read>product_translation</read>
+    <read>language</read>
+    <read>locale</read>
+    <update>product</update>
+    <update>product_translation</update>
+    <create>product_translation</create>
+  </permissions>
 </manifest>
 ```
 
@@ -162,24 +165,27 @@ The app system provides webhooks to subscribe your app server to any changes in 
 in its shops:
 
 ```xml
-// release/manifest.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
+<!-- release/manifest.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
     <!-- ... -->
-    </meta>
-    <setup>
+  </meta>
+  <setup>
     <!-- ... -->
-    </setup>
-    <permissions>
+  </setup>
+  <permissions>
     <!-- ... -->
-    </permissions>
-    <webhooks>
-        <webhook name="appActivated" url="http://localhost:8000/app/lifecycle/activate" event="app.activated"/>
-        <webhook name="appDeactivated" url="http://localhost:8000/app/lifecycle/deactivate" event="app.deactivated"/>
-        <webhook name="appDeleted" url="http://localhost:8000/app/lifecycle/delete" event="app.deleted"/>
-        <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written"/>
-    </webhooks>
+  </permissions>
+  <webhooks>
+    <webhook name="appActivated" url="http://localhost:8000/app/lifecycle/activate"
+      event="app.activated" />
+    <webhook name="appDeactivated" url="http://localhost:8000/app/lifecycle/deactivate"
+      event="app.deactivated" />
+    <webhook name="appDeleted" url="http://localhost:8000/app/lifecycle/delete" event="app.deleted" />
+    <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written" />
+  </webhooks>
 </manifest>
 ```
 
@@ -198,13 +204,13 @@ To get started, let's write a simple [Symfony event listener](https://symfony.co
 #[AsEventListener(event: 'webhook.product.written')]
 class ProductWrittenWebhookListener
 {
-    public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger)
-    {
-    }
+  public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger)
+  {
+  }
 
-    public function __invoke(WebhookAction $action): void
-    {
-    }
+  public function __invoke(WebhookAction $action): void
+  {
+  }
 }
 ```
 
@@ -216,27 +222,27 @@ In this example, we will use the SimpleHttpClient which simples the usage of the
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        $client = $this->clientFactory->createSimpleClient($action->shop);
-    }
+  public function __invoke(WebhookAction $action): void
+  {
+    $client = $this->clientFactory->createSimpleClient($action->shop);
+  }
 ```
 
 Now we can inspect the event payload:
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
+public function __invoke(WebhookAction $action): void
+{
+  //...
 
-        $updatedFields = $action->payload[0]['updatedFields'];
-        $id = $action->payload[0]['primaryKey'];
+  $updatedFields = $action->payload[0]['updatedFields'];
+  $id = $action->payload[0]['primaryKey'];
 
-        if (!in_array('description', $updatedFields)) {
-            return;
-        }
-    }
+  if (!in_array('description', $updatedFields)) {
+    return;
+  }
+}
 ```
 
 ### Fetching data from the shop
@@ -249,51 +255,51 @@ Now that it is certain that someone changed the description of the product, we f
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $response = $client->post(
-            sprintf('%s/api/search/product', $action->shop->getShopUrl()),
-            [
-                'ids' => [$id],
-                'associations' => [
-                    'translations' => [
-                        'associations' => [
-                            'language' => [
-                                'associations' => [
-                                    'locale' => []
-                                ]
-                            ],
-                        ]
-                    ],
-                ]
-            ]
-        );
-        
-        if (!$response->ok()) {
-            $this->logger->error('Could not fetch product', ['response' => $response->json()]);
-            return;
-        }
-    }
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $response = $client->post(
+    sprintf('%s/api/search/product', $action->shop->getShopUrl()),
+    [
+      'ids' => [$id],
+      'associations' => [
+        'translations' => [
+          'associations' => [
+            'language' => [
+              'associations' => [
+                'locale' => []
+              ]
+            ],
+          ]
+        ],
+      ]
+    ]
+  );
+  
+  if (!$response->ok()) {
+    $this->logger->error('Could not fetch product', ['response' => $response->json()]);
+    return;
+  }
+}
 ```
 
 The request contains a criteria that fetches the product for which we received the event `'ids' => [$id]` and all translations and their associated languages `'associations' => 'language'`. Now we can retrieve the English description from the API response:
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $product = $response->json()['data'][0];
-        $description = '';
-        $name = '';
-        foreach ($product['translations'] as $translation) {
-            if ($translation['language']['locale']['code'] === 'en-GB') {
-                $description = $translation['description'];
-                $name = $translation['name'];
-            }
-        }
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $product = $response->json()['data'][0];
+  $description = '';
+  $name = '';
+  foreach ($product['translations'] as $translation) {
+    if ($translation['language']['locale']['code'] === 'en-GB') {
+      $description = $translation['description'];
+      $name = $translation['name'];
     }
+  }
+}
 ```
 
 ::: info
@@ -306,14 +312,14 @@ We will get to the generation of the hash later, but we need to check it first:
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
-        if (md5($description) === $lastHash) {
-            return;
-        }
-    }
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
+  if (md5($description) === $lastHash) {
+    return;
+  }
+}
 ```
 
 ### Writing a translated description
@@ -322,25 +328,25 @@ Now that the app can be sure, the description has not been translated before it 
 
 ```php
 // src/EventListener/ProductWrittenWebhookListener.php
-    public function __invoke(WebhookAction $action): void
-    {
-        //...
-        $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
-            'translations' => [
-                'en-GB' => [
-                    'name' => $name,
-                    'description' => $this->translate($description)
-                ],
-            ],
-            'customFields' => [
-                'translator-last-translation-hash' => md5($description)
-            ]
-        ]);
+public function __invoke(WebhookAction $action): void
+{
+  //...
+  $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
+    'translations' => [
+      'en-GB' => [
+        'name' => $name,
+        'description' => $this->translate($description)
+      ],
+    ],
+    'customFields' => [
+      'translator-last-translation-hash' => md5($description)
+    ]
+  ]);
 
-        if (!$response->ok()) {
-            $this->logger->error('Could not update product', ['response' => $response->json()]);
-        }
-    }
+  if (!$response->ok()) {
+    $this->logger->error('Could not update product', ['response' => $response->json()]);
+  }
+}
 ```
 
 Note that the hash of the original description gets saved as a value in the custom fields of the product entity.
@@ -363,75 +369,73 @@ use Psr\Log\LoggerInterface;
 #[AsEventListener(event: 'webhook.product.written')]
 class ProductUpdatedListener
 {
-    public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger)
-    {
+  public function __construct(private readonly ClientFactory $clientFactory, private readonly LoggerInterface $logger) {}
+
+  public function __invoke(WebhookAction $action): void
+  {
+    $client = $this->clientFactory->createSimpleClient($action->shop);
+
+    $updatedFields = $action->payload[0]['updatedFields'];
+    $id = $action->payload[0]['primaryKey'];
+
+    if (!in_array('description', $updatedFields)) {
+      return;
     }
 
-    public function __invoke(WebhookAction $action): void
-    {
-        $client = $this->clientFactory->createSimpleClient($action->shop);
-
-        $updatedFields = $action->payload[0]['updatedFields'];
-        $id = $action->payload[0]['primaryKey'];
-
-        if (!in_array('description', $updatedFields)) {
-            return;
-        }
-
-        $response = $client->post(
-            sprintf('%s/api/search/product', $action->shop->getShopUrl()),
-            [
-                'ids' => [$id],
+    $response = $client->post(
+      sprintf('%s/api/search/product', $action->shop->getShopUrl()),
+      [
+        'ids' => [$id],
+        'associations' => [
+          'translations' => [
+            'associations' => [
+              'language' => [
                 'associations' => [
-                    'translations' => [
-                        'associations' => [
-                            'language' => [
-                                'associations' => [
-                                    'locale' => []
-                                ]
-                            ],
-                        ]
-                    ],
+                  'locale' => []
                 ]
+              ],
             ]
-        );
-        if (!$response->ok()) {
-            $this->logger->error('Could not fetch product', ['response' => $response->json()]);
-            return;
-        }
-
-        $product = $response->json()['data'][0];
-        $description = '';
-        $name = '';
-        foreach ($product['translations'] as $translation) {
-            if ($translation['language']['locale']['code'] === 'en-GB') {
-                $description = $translation['description'];
-                $name = $translation['name'];
-            }
-        }
-
-        $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
-        if (md5($description) === $lastHash) {
-            return;
-        }
-
-        $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
-            'translations' => [
-                'en-GB' => [
-                    'name' => $name,
-                    'description' => 'Test English'
-                    //'description' => $this->translate($description)
-                ],
-            ],
-            'customFields' => [
-                'translator-last-translation-hash' => md5($description)
-            ]
-        ]);
-
-        if (!$response->ok()) {
-            $this->logger->error('Could not update product', ['response' => $response->json()]);
-        }
+          ],
+        ]
+      ]
+    );
+    if (!$response->ok()) {
+      $this->logger->error('Could not fetch product', ['response' => $response->json()]);
+      return;
     }
+
+    $product = $response->json()['data'][0];
+    $description = '';
+    $name = '';
+    foreach ($product['translations'] as $translation) {
+      if ($translation['language']['locale']['code'] === 'en-GB') {
+        $description = $translation['description'];
+        $name = $translation['name'];
+      }
+    }
+
+    $lastHash = $product['customFields']['translator-last-translation-hash'] ?? '';
+    if (md5($description) === $lastHash) {
+      return;
+    }
+
+    $response = $client->patch(sprintf('%s/api/product/%s', $action->shop->getShopUrl(), $id), [
+      'translations' => [
+        'en-GB' => [
+          'name' => $name,
+          'description' => 'Test English'
+          //'description' => $this->translate($description)
+        ],
+      ],
+      'customFields' => [
+        'translator-last-translation-hash' => md5($description)
+      ]
+    ]);
+
+    if (!$response->ok()) {
+      $this->logger->error('Could not update product', ['response' => $response->json()]);
+    }
+  }
 }
 ```
 

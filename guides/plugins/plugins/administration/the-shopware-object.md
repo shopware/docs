@@ -32,7 +32,7 @@ The `Component` property of the global `Shopware` contains the component registr
 const { Component } = Shopware;
 
 Component.register('sw-dashboard-index', {
-    template,
+  template,
 });
 ```
 

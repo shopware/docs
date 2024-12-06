@@ -18,92 +18,92 @@ To add a file to the table, you can do something like this in your `Converter` c
 
 abstract class MediaConverter extends ShopwareConverter
 {
-    /* ... */
+  /* ... */
 
-    public function convert(
-        array $data,
-        Context $context,
-        MigrationContextInterface $migrationContext
-    ): ConvertStruct {
-        $this->generateChecksum($data);
-        $this->context = $context;
-        $this->locale = $data['_locale'];
-        unset($data['_locale']);
+  public function convert(
+    array $data,
+    Context $context,
+    MigrationContextInterface $migrationContext
+  ): ConvertStruct {
+    $this->generateChecksum($data);
+    $this->context = $context;
+    $this->locale = $data['_locale'];
+    unset($data['_locale']);
 
-        $connection = $migrationContext->getConnection();
-        $this->connectionId = '';
-        if ($connection !== null) {
-            $this->connectionId = $connection->getId();
-        }
-
-        $converted = [];
-        $this->mainMapping = $this->mappingService->getOrCreateMapping(
-            $this->connectionId,
-            DefaultEntities::MEDIA,
-            $data['id'],
-            $context,
-            $this->checksum
-        );
-        $converted['id'] = $this->mainMapping['entityUuid'];
-
-        if (!isset($data['name'])) {
-            $data['name'] = $converted['id'];
-        }
-
-        $this->mediaFileService->saveMediaFile(
-            [
-                'runId' => $migrationContext->getRunUuid(),
-                'entity' => MediaDataSet::getEntity(), // important to distinguish between private and public files
-                'uri' => $data['uri'] ?? $data['path'],
-                'fileName' => $data['name'], // uri or path to the file (because of the different implementations of the gateways)
-                'fileSize' => (int) $data['file_size'],
-                'mediaId' => $converted['id'], // uuid of the media object in Shopware 6
-            ]
-        );
-        unset($data['uri'], $data['file_size']);
-
-        $this->getMediaTranslation($converted, $data);
-        $this->convertValue($converted, 'title', $data, 'name');
-        $this->convertValue($converted, 'alt', $data, 'description');
-
-        $albumMapping = $this->mappingService->getMapping(
-            $this->connectionId,
-            DefaultEntities::MEDIA_FOLDER,
-            $data['albumID'],
-            $this->context
-        );
-
-        if ($albumMapping !== null) {
-            $converted['mediaFolderId'] = $albumMapping['entityUuid'];
-            $this->mappingIds[] = $albumMapping['id'];
-        }
-
-        unset(
-            $data['id'],
-            $data['albumID'],
-
-            // Legacy data that don't need mapping or there is no equivalent field
-            $data['path'],
-            $data['type'],
-            $data['extension'],
-            $data['file_size'],
-            $data['width'],
-            $data['height'],
-            $data['userID'],
-            $data['created']
-        );
-
-        $returnData = $data;
-        if (empty($returnData)) {
-            $returnData = null;
-        }
-        $this->updateMainMapping($migrationContext, $context);
-
-        // The MediaWriter will write this Shopware 6 media object
-        return new ConvertStruct($converted, $returnData, $this->mainMapping['id']);
+    $connection = $migrationContext->getConnection();
+    $this->connectionId = '';
+    if ($connection !== null) {
+      $this->connectionId = $connection->getId();
     }
 
-    /* ... */
+    $converted = [];
+    $this->mainMapping = $this->mappingService->getOrCreateMapping(
+      $this->connectionId,
+      DefaultEntities::MEDIA,
+      $data['id'],
+      $context,
+      $this->checksum
+    );
+    $converted['id'] = $this->mainMapping['entityUuid'];
+
+    if (!isset($data['name'])) {
+      $data['name'] = $converted['id'];
+    }
+
+    $this->mediaFileService->saveMediaFile(
+      [
+        'runId' => $migrationContext->getRunUuid(),
+        'entity' => MediaDataSet::getEntity(), // important to distinguish between private and public files
+        'uri' => $data['uri'] ?? $data['path'],
+        'fileName' => $data['name'], // uri or path to the file (because of the different implementations of the gateways)
+        'fileSize' => (int) $data['file_size'],
+        'mediaId' => $converted['id'], // uuid of the media object in Shopware 6
+      ]
+    );
+    unset($data['uri'], $data['file_size']);
+
+    $this->getMediaTranslation($converted, $data);
+    $this->convertValue($converted, 'title', $data, 'name');
+    $this->convertValue($converted, 'alt', $data, 'description');
+
+    $albumMapping = $this->mappingService->getMapping(
+      $this->connectionId,
+      DefaultEntities::MEDIA_FOLDER,
+      $data['albumID'],
+      $this->context
+    );
+
+    if ($albumMapping !== null) {
+      $converted['mediaFolderId'] = $albumMapping['entityUuid'];
+      $this->mappingIds[] = $albumMapping['id'];
+    }
+
+    unset(
+      $data['id'],
+      $data['albumID'],
+
+      // Legacy data that don't need mapping or there is no equivalent field
+      $data['path'],
+      $data['type'],
+      $data['extension'],
+      $data['file_size'],
+      $data['width'],
+      $data['height'],
+      $data['userID'],
+      $data['created']
+    );
+
+    $returnData = $data;
+    if (empty($returnData)) {
+      $returnData = null;
+    }
+    $this->updateMainMapping($migrationContext, $context);
+
+    // The MediaWriter will write this Shopware 6 media object
+    return new ConvertStruct($converted, $returnData, $this->mainMapping['id']);
+  }
+
+  /* ... */
 }
 ```
 
@@ -118,40 +118,40 @@ namespace SwagMigrationAssistant\Profile\Shopware55\Media;
 
 class HttpMediaDownloadService implements MediaFileProcessorInterface
 {
+  /* ... */
+
+  public function supports(MigrationContextInterface $migrationContext): bool
+  {
+    return $migrationContext->getProfile() instanceof ShopwareProfileInterface
+      && $migrationContext->getGateway()->getName() === ShopwareApiGateway::GATEWAY_NAME
+      && $migrationContext->getDataSet()::getEntity() === MediaDataSet::getEntity();
+  }
+
+  public function process(MigrationContextInterface $migrationContext, Context $context, array $workload, int $fileChunkByteSize): array
+  {
     /* ... */
 
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface
-            && $migrationContext->getGateway()->getName() === ShopwareApiGateway::GATEWAY_NAME
-            && $migrationContext->getDataSet()::getEntity() === MediaDataSet::getEntity();
-    }
+    //Fetch media from the database
+    $media = $this->getMediaFiles($mediaIds, $runId, $context);
 
-    public function process(MigrationContextInterface $migrationContext, Context $context, array $workload, int $fileChunkByteSize): array
-    {
-        /* ... */
+    $client = new Client([
+      'verify' => false,
+    ]);
 
-        //Fetch media from the database
-        $media = $this->getMediaFiles($mediaIds, $runId, $context);
+    //Do download requests and store the promises
+    $promises = $this->doMediaDownloadRequests($media, $mappedWorkload, $client);
 
-        $client = new Client([
-            'verify' => false,
-        ]);
+    // Wait for the requests to complete, even if some of them fail
+    /** @var array $results */
+    $results = Promise\settle($promises)->wait();
 
-        //Do download requests and store the promises
-        $promises = $this->doMediaDownloadRequests($media, $mappedWorkload, $client);
+    /* ... handle responses ... */
 
-        // Wait for the requests to complete, even if some of them fail
-        /** @var array $results */
-        $results = Promise\settle($promises)->wait();
+    $this->setProcessedFlag($runId, $context, $finishedUuids, $failureUuids);
+    $this->loggingService->saveLogging($context);
 
-        /* ... handle responses ... */
-
-        $this->setProcessedFlag($runId, $context, $finishedUuids, $failureUuids);
-        $this->loggingService->saveLogging($context);
-
-        return array_values($mappedWorkload);
-    }
+    return array_values($mappedWorkload);
+  }
 }
 ```
 

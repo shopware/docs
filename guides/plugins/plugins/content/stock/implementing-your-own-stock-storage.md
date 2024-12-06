@@ -42,36 +42,34 @@ use Shopware\Core\Content\Product\Stock\StockAlteration;
 
 class StockStorageDecorator extends AbstractStockStorage
 {
-    public function __construct(private AbstractStockStorage $decorated, private MyStockApi $stockApi)
-    {
+  public function __construct(private AbstractStockStorage $decorated, private MyStockApi $stockApi) {}
+
+  public function getDecorated(): AbstractStockStorage
+  {
+    return $this->decorated;
+  }
+
+  public function load(StockLoadRequest $stockRequest, SalesChannelContext $context): StockDataCollection
+  {
+    return $this->decorated->load($stockRequest, $context);
+  }
+
+  /**
+   * @param list<StockAlteration> $changes  
+   */
+  public function alter(array $changes, Context $context): void
+  {
+    foreach ($changes as $alteration) {
+      $this->stockApi->updateStock($alteration->productId, $alteration->newQuantity);
     }
 
-    public function getDecorated(): AbstractStockStorage
-    {
-        return $this->decorated;
-    }
+    $this->decorated->alter($changes, $context);
+  }
 
-    public function load(StockLoadRequest $stockRequest, SalesChannelContext $context): StockDataCollection
-    {
-        return $this->decorated->load($stockRequest, $context);
-    }
-
-    /**
-     * @param list<StockAlteration> $changes  
-     */
-    public function alter(array $changes, Context $context): void
-    {
-        foreach ($changes as $alteration) {
-            $this->stockApi->updateStock($alteration->productId, $alteration->newQuantity);
-        }
-        
-        $this->decorated->alter($changes, $context);
-    }
-
-    public function index(array $productIds, Context $context): void
-    {
-        $this->decorated->index($productIds, $context);
-    }
+  public function index(array $productIds, Context $context): void
+  {
+    $this->decorated->index($productIds, $context);
+  }
 }
 ```
 
@@ -80,17 +78,18 @@ class StockStorageDecorator extends AbstractStockStorage
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\Example\Service\StockStorageDecorator" decorates="Shopware\Core\Content\Product\Stock\StockStorage">
-            <argument type="service" id="Swag\Example\Service\StockStorageDecorator.inner" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\Example\Service\StockStorageDecorator"
+      decorates="Shopware\Core\Content\Product\Stock\StockStorage">
+      <argument type="service" id="Swag\Example\Service\StockStorageDecorator.inner" />
+    </service>
+  </services>
 </container>
 ```
 

@@ -33,43 +33,45 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleDebitPayment extends DebitPayment
 {
-    private DebitPayment $decorated;
+  private DebitPayment $decorated;
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
-    {
-        parent::__construct($transactionStateHandler);
-        $this->decorated = $decorated;
-    }
+  public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
+  {
+    parent::__construct($transactionStateHandler);
+    $this->decorated = $decorated;
+  }
 
-    public function getDecorated(): DebitPayment
-    {
-        return $this->decorated;
-    }
+  public function getDecorated(): DebitPayment
+  {
+    return $this->decorated;
+  }
 
-    public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
-    {
-        // do some custom stuff here
+  public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
+  {
+    // do some custom stuff here
 
-        $this->transactionStateHandler->process($transaction->getOrderTransaction()->getId(), $salesChannelContext->getContext());
-    }
+    $this->transactionStateHandler->process($transaction->getOrderTransaction()->getId(), $salesChannelContext->getContext());
+  }
 }
 ```
 
 After we've created our customized payment provider class, we have to register it to the DI-container.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleDebitPayment" decorates="Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment">
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <argument type="service" id="Swag\BasicExample\Service\ExampleDebitPayment.inner"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ExampleDebitPayment"
+      decorates="Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment">
+      <argument type="service"
+        id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler" />
+      <argument type="service" id="Swag\BasicExample\Service\ExampleDebitPayment.inner" />
+    </service>
+  </services>
 </container>
 ```

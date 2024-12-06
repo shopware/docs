@@ -1,3 +1,6 @@
 .idea
-.vscode
 /dictionary.dic
+
+# VSCode-Project
+/.vscode/
+!/.vscode/settings.json

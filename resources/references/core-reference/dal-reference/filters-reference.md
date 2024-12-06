@@ -34,15 +34,15 @@ $criteria->addFilter(new EqualsFilter('stock', 10));
 
 <Tab title="API Criteria">
 
-```javascript
- {
-    "filter": [
-        { 
-            "type": "equals", 
-            "field": "stock", 
-            "value": 10
-        }    
-    ]
+```json
+{
+  "filter": [
+    {
+      "type": "equals",
+      "field": "stock",
+      "value": 10
+    }
+  ]
 }
 ```
 
@@ -59,7 +59,7 @@ The `EqualsAny` filter allows you to filter a field where at least one of the de
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
-    new EqualsAnyFilter('productNumber', ['3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b'])
+  new EqualsAnyFilter('productNumber', ['3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b'])
 );
 ```
 
@@ -69,16 +69,16 @@ $criteria->addFilter(
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "equalsAny", 
-            "field": "productNumber", 
-            "value": [
-                "3fed029475fa4d4585f3a119886e0eb1", 
-                "77d26d011d914c3aa2c197c81241a45b"
-            ] 
-        }    
-    ]
+  "filter": [
+    {
+      "type": "equalsAny",
+      "field": "productNumber",
+      "value": [
+        "3fed029475fa4d4585f3a119886e0eb1",
+        "77d26d011d914c3aa2c197c81241a45b"
+      ]
+    }
+  ]
 }
 ```
 
@@ -103,13 +103,13 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "contains", 
-            "field": "name", 
-            "value": "Lightweight"
-        }    
-    ]
+  "filter": [
+    {
+      "type": "contains",
+      "field": "name",
+      "value": "Lightweight"
+    }
+  ]
 }
 ```
 
@@ -133,10 +133,10 @@ The following SQL statement is executed in the background: `WHERE stock >= 20 AN
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
-    new RangeFilter('stock', [
-        RangeFilter::GTE => 20,
-        RangeFilter::LTE => 30
-    ])
+  new RangeFilter('stock', [
+    RangeFilter::GTE => 20,
+    RangeFilter::LTE => 30
+  ])
 );
 ```
 
@@ -146,16 +146,16 @@ $criteria->addFilter(
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "range", 
-            "field": "stock", 
-            "parameters": {
-                "gte": 20,      
-                "lte": 30
-            }
-        }    
-    ]
+  "filter": [
+    {
+      "type": "range",
+      "field": "stock",
+      "parameters": {
+        "gte": 20,
+        "lte": 30
+      }
+    }
+  ]
 }
 ```
 
@@ -174,13 +174,13 @@ $criteria = new Criteria();
 $criteria->addFilter(new EqualsFilter('active', true));
 
 $criteria->addFilter(
-    new NotFilter(
-        NotFilter::CONNECTION_OR,
-        [
-            new EqualsFilter('stock', 1),
-            new EqualsFilter('availableStock', 10)
-        ]
-    )
+  new NotFilter(
+    NotFilter::CONNECTION_OR,
+    [
+      new EqualsFilter('stock', 1),
+      new EqualsFilter('availableStock', 10)
+    ]
+  )
 );
 ```
 
@@ -190,29 +190,29 @@ $criteria->addFilter(
 
 ```json
 {
-    "filter": [
-        { 
-            "type": "not", 
-            "operator": "or",
-            "queries": [
-                {
-                    "type": "equals",
-                    "field": "stock",
-                    "value": 1
-                },
-                {
-                    "type": "equals",
-                    "field": "availableStock",
-                    "value": 1
-                }    
-            ]
+  "filter": [
+    {
+      "type": "not",
+      "operator": "or",
+      "queries": [
+        {
+          "type": "equals",
+          "field": "stock",
+          "value": 1
         },
         {
-            "type": "equals",
-            "field": "active",
-            "value": true
+          "type": "equals",
+          "field": "availableStock",
+          "value": 1
         }
-    ]
+      ]
+    },
+    {
+      "type": "equals",
+      "field": "active",
+      "value": true
+    }
+  ]
 }
 ```
 
@@ -229,16 +229,16 @@ The `Multi` Filter is a container, which allows to set logical links between fil
 ```php
 $criteria = new Criteria();
 $criteria->addFilter(
-    new MultiFilter(
-        MultiFilter::CONNECTION_OR,
-        [
-            new EqualsFilter('stock', 1),
-            new EqualsFilter('availableStock', 10)
-        ]
-    )
+  new MultiFilter(
+    MultiFilter::CONNECTION_OR,
+    [
+      new EqualsFilter('stock', 1),
+      new EqualsFilter('availableStock', 10)
+    ]
+  )
 );
 $criteria->addFilter(
-    new EqualsFilter('active', true)
+  new EqualsFilter('active', true)
 );
 ```
 
@@ -246,31 +246,31 @@ $criteria->addFilter(
 
 <Tab title="API Criteria">
 
-```javascript
- {
-    "filter": [
-        { 
-            "type": "multi",   
-            "operator": "or",
-            "queries": [
-                {
-                    "type": "equals",
-                    "field": "stock",
-                    "value": 1
-                },
-                {
-                    "type": "equals",
-                    "field": "availableStock",
-                    "value": 1
-                } 
-            ]
+```json
+{
+  "filter": [
+    {
+      "type": "multi",
+      "operator": "or",
+      "queries": [
+        {
+          "type": "equals",
+          "field": "stock",
+          "value": 1
         },
         {
-            "type": "equals",
-            "field": "active",
-            "value": true
+          "type": "equals",
+          "field": "availableStock",
+          "value": 1
         }
-    ]
+      ]
+    },
+    {
+      "type": "equals",
+      "field": "active",
+      "value": true
+    }
+  ]
 }
 ```
 
@@ -295,13 +295,13 @@ $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
 
 ```json
 {
-    "filter": [
-        {
-            "type": "prefix",
-            "field": "name",
-            "value": "Lightweight"
-        }
-    ]
+  "filter": [
+    {
+      "type": "prefix",
+      "field": "name",
+      "value": "Lightweight"
+    }
+  ]
 }
 ```
 
@@ -326,13 +326,13 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 
 ```json
 {
-    "filter": [
-        {
-            "type": "suffix",
-            "field": "name",
-            "value": "Lightweight"
-        }
-    ]
+  "filter": [
+    {
+      "type": "suffix",
+      "field": "name",
+      "value": "Lightweight"
+    }
+  ]
 }
 ```
 

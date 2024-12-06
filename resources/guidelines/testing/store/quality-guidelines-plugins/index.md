@@ -106,13 +106,13 @@ The short description is also published as a meta-description.
 * **Tips:**
 
     * When it comes to increasing your app sales, it is important that potential customers feel completely informed about your products and services.
-	To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
-	Explain step-by-step how your app works and how to use it to achieve the desired result.
-	Of course, your app description should be accompanied by clean HTML source code.
+ To this end, you should provide description, highlights, and features that are meaningful, detailed, and easy to understand, even for people with very minimal technical knowledge.
+ Explain step-by-step how your app works and how to use it to achieve the desired result.
+ Of course, your app description should be accompanied by clean HTML source code.
 
     * Video content increases awareness and trust and has proven to convert potential customers better than other content types.
-	You can help your customers better understand your app or service with explainer videos, product demos, tutorials, etc.
-	You can embed a maximum of 2 YouTube videos in your app description.
+ You can help your customers better understand your app or service with explainer videos, product demos, tutorials, etc.
+ You can embed a maximum of 2 YouTube videos in your app description.
 
 ::: info
 You can no longer advertise your Shopware certificates within the app description, in your app images, or in your manufacturer profile.
@@ -381,20 +381,20 @@ Below is an example of implementing the tracking logic in their extensions:
 // POST /shopwarepartners/reports/technology - Allows partners to send us the info based on the STP contract
 
 ```json
+{
+  "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
+  "reportDate": "2005-08-15T15:52:01",
+  "instanceId": "alur24esfaw3ghk",
+  "shopwareVersion": "6.3.1",
+  "reportDataKeys": [
     {
-      "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
-      "reportDate": "2005-08-15T15:52:01",
-      "instanceId": "alur24esfaw3ghk",
-      "shopwareVersion": "6.3.1",
-      "reportDataKeys": [
-        {
-          "customer": 3
-        },
-        {
-          "turnover": 440
-        }
-      ]
+      "customer": 3
+    },
+    {
+      "turnover": 440
     }
+  ]
+}
 ```
 
 ### Automatic code reviews with PhpStan and SonarQube
@@ -475,9 +475,9 @@ Therefore, the code review failed. The reason for the problem is the following s
 
 <pre>"require": {
 
-    "shopware/core": "*",
+  "shopware/core": "*",
 
-    "shopware/storefront": "*"
+  "shopware/storefront": "*"
 
 },</pre>
 ```
@@ -489,9 +489,9 @@ The solution is to amend the requirement as follows:
 ```xml
 <pre>"require": {
 
-    "shopware/core": "~6.1.0",
+  "shopware/core": "~6.1.0",
 
-    "shopware/storefront": "~6.1.0"
+  "shopware/storefront": "~6.1.0"
 
 },
 

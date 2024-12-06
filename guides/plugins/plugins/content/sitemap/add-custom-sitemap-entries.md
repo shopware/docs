@@ -18,18 +18,18 @@ To add a custom URL to the sitemap, use the configuration setting `shopware.site
 
 ```yaml
 shopware:
-    sitemap:
-        custom_urls:
-            -   url: 'custom-url'
-                salesChannelId: '98432def39fc4624b33213a56b8c944d'
-                changeFreq: 'weekly'
-                priority: 0.5
-                lastMod: '2024-09-19 12:19:00'
-            -   url: 'custom-url-2'
-                salesChannelId: '98432def39fc4624b33213a56b8c944d'
-                changeFreq: 'weekly'
-                priority: 0.5
-                lastMod: '2024-09-18 12:18:00'
+  sitemap:
+    custom_urls:
+      - url: 'custom-url'
+        salesChannelId: '98432def39fc4624b33213a56b8c944d'
+        changeFreq: 'weekly'
+        priority: 0.5
+        lastMod: '2024-09-19 12:19:00'
+      - url: 'custom-url-2'
+        salesChannelId: '98432def39fc4624b33213a56b8c944d'
+        changeFreq: 'weekly'
+        priority: 0.5
+        lastMod: '2024-09-18 12:18:00'
 ```
 
 The `salesChannelId` is the ID of the sales channel you want to add the URL to.
@@ -82,81 +82,81 @@ use Symfony\Component\Routing\RouterInterface;
 
 class CustomUrlProvider extends AbstractUrlProvider
 {
-    public const CHANGE_FREQ = 'daily';
-    public const PRIORITY = 1.0;
+  public const CHANGE_FREQ = 'daily';
+  public const PRIORITY = 1.0;
 
-    private EntityRepository $exampleRepository;
+  private EntityRepository $exampleRepository;
 
-    private Connection $connection;
+  private Connection $connection;
 
-    private RouterInterface $router;
+  private RouterInterface $router;
 
-    public function __construct(
-        EntityRepository $exampleRepository,
-        Connection $connection,
-        RouterInterface $router
-    ) {
-        $this->exampleRepository = $exampleRepository;
-        $this->connection = $connection;
-        $this->router = $router;
+  public function __construct(
+    EntityRepository $exampleRepository,
+    Connection $connection,
+    RouterInterface $router
+  ) {
+    $this->exampleRepository = $exampleRepository;
+    $this->connection = $connection;
+    $this->router = $router;
+  }
+
+  public function getDecorated(): AbstractUrlProvider
+  {
+    throw new DecorationPatternException(self::class);
+  }
+
+  public function getName(): string
+  {
+    return 'custom';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
+  {
+    $criteria = new Criteria();
+    $criteria->setLimit($limit);
+    $criteria->setOffset($offset);
+
+    $exampleEntities = $this->exampleRepository->search($criteria, $context->getContext());
+
+    if ($exampleEntities->count() === 0) {
+      return new UrlResult([], null);
     }
 
-    public function getDecorated(): AbstractUrlProvider
-    {
-        throw new DecorationPatternException(self::class);
+    $seoUrls = $this->getSeoUrls($exampleEntities->getIds(), 'frontend.example.example', $context, $this->connection);
+    $seoUrls = FetchModeHelper::groupUnique($seoUrls);
+
+    $urls = [];
+
+    /** @var ExampleEntity $exampleEntity */
+    foreach ($exampleEntities as $exampleEntity) {
+      $exampleUrl = new Url();
+      $exampleUrl->setLastmod($exampleEntity->getUpdatedAt() ?? new \DateTime());
+      $exampleUrl->setChangefreq(self::CHANGE_FREQ);
+      $exampleUrl->setPriority(self::PRIORITY);
+      $exampleUrl->setResource(ExampleEntity::class);
+      $exampleUrl->setIdentifier($exampleEntity->getId());
+
+      if (isset($seoUrls[$exampleEntity->getId()])) {
+        $exampleUrl->setLoc($seoUrls[$exampleEntity->getId()]['seo_path_info']);
+      } else {
+        $exampleUrl->setLoc(
+          $this->router->generate(
+            'frontend.example.example',
+            ['exampleId' => $exampleEntity->getId()],
+            UrlGeneratorInterface::ABSOLUTE_PATH
+          )
+        );
+      }
+
+      $urls[] = $exampleUrl;
     }
 
-    public function getName(): string
-    {
-        return 'custom';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
-    {
-        $criteria = new Criteria();
-        $criteria->setLimit($limit);
-        $criteria->setOffset($offset);
-
-        $exampleEntities = $this->exampleRepository->search($criteria, $context->getContext());
-
-        if ($exampleEntities->count() === 0) {
-            return new UrlResult([], null);
-        }
-
-        $seoUrls = $this->getSeoUrls($exampleEntities->getIds(), 'frontend.example.example', $context, $this->connection);
-        $seoUrls = FetchModeHelper::groupUnique($seoUrls);
-
-        $urls = [];
-
-        /** @var ExampleEntity $exampleEntity */
-        foreach ($exampleEntities as $exampleEntity) {
-            $exampleUrl = new Url();
-            $exampleUrl->setLastmod($exampleEntity->getUpdatedAt() ?? new \DateTime());
-            $exampleUrl->setChangefreq(self::CHANGE_FREQ);
-            $exampleUrl->setPriority(self::PRIORITY);
-            $exampleUrl->setResource(ExampleEntity::class);
-            $exampleUrl->setIdentifier($exampleEntity->getId());
-
-            if (isset($seoUrls[$exampleEntity->getId()])) {
-                $exampleUrl->setLoc($seoUrls[$exampleEntity->getId()]['seo_path_info']);
-            } else {
-                $exampleUrl->setLoc(
-                    $this->router->generate(
-                        'frontend.example.example',
-                        ['exampleId' => $exampleEntity->getId()],
-                        UrlGeneratorInterface::ABSOLUTE_PATH
-                    )
-                );
-            }
-
-            $urls[] = $exampleUrl;
-        }
-
-        return new UrlResult($urls, null);
-    }
+    return new UrlResult($urls, null);
+  }
 }
 ```
 
@@ -165,21 +165,21 @@ class CustomUrlProvider extends AbstractUrlProvider
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider" >
-            <argument type="service" id="swag_example.repository" />
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <argument type="service" id="router"/>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider">
+      <argument type="service" id="swag_example.repository" />
+      <argument type="service" id="Doctrine\DBAL\Connection" />
+      <argument type="service" id="router" />
 
-            <tag name="shopware.sitemap_url_provider" />
-        </service>
-    </services>
+      <tag name="shopware.sitemap_url_provider" />
+    </service>
+  </services>
 </container>
 ```
 

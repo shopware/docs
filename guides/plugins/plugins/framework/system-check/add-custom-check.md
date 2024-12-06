@@ -20,21 +20,21 @@ Each check contains a set of categorization methods that help to classify the ch
 ```php
 class LocalDiskSpaceCheck extends BaseCheck
 {
-    public function category(): Category
-    {
-        // crucial for the system to function at all. 
-        return Category::SYSTEM;
-    }
+  public function category(): Category
+  {
+    // crucial for the system to function at all. 
+    return Category::SYSTEM;
+  }
 
-    public function name(): string
-    {
-        return 'LocalDiskSpaceCheck';
-    }
+  public function name(): string
+  {
+    return 'LocalDiskSpaceCheck';
+  }
 
-    protected function allowedSystemCheckExecutionContexts(): array
-    {   // a potentially long-running check, because it has an IO operation.
-        return SystemCheckExecutionContext::longRunning();
-    }
+  protected function allowedSystemCheckExecutionContexts(): array
+  {   // a potentially long-running check, because it has an IO operation.
+    return SystemCheckExecutionContext::longRunning();
+  }
 }
 ```
 
@@ -45,38 +45,38 @@ The next step is to implement the actual check logic. We will check if the disk 
 ```php
 class LocalDiskSpaceCheck extends BaseCheck
 {
-    public function __construct(
-        private readonly string $adapterType,
-        private readonly string $installationPath,
-        private readonly int $warningThresholdInMb
-    )
-    {
+  public function __construct(
+    private readonly string $adapterType,
+    private readonly string $installationPath,
+    private readonly int $warningThresholdInMb
+  )
+  {
+  }
+
+  public function run(): Result
+  {
+    if ($this->adapterType !== 'local') {
+      return new Result(name: $this->name(), status: Status::SKIPPED, message: 'Disk space check is only available for local file systems.', healthy: true)
+    }
+    
+    $availableSpaceInMb = $this->getFreeDiskSpaceInMegaBytes();
+    if ($availableSpaceInMb < $this->warningThresholdInMb) {
+      return new Result(name: $this->name(), status: Status::WARNING, message: sprintf('Available disk space is below the warning threshold of %s.', $this->warningThresholdInMb), healthy: true);
     }
 
-    public function run(): Result
-    {
-        if ($this->adapterType !== 'local') {
-           return new Result(name: $this->name(), status: Status::SKIPPED, message: 'Disk space check is only available for local file systems.', healthy: true)
-        }
-        
-        $availableSpaceInMb = $this->getFreeDiskSpaceInMegaBytes();
-        if ($availableSpaceInMb < $this->warningThresholdInMb) {
-            return new Result(name: $this->name(), status: Status::WARNING, message: sprintf('Available disk space is below the warning threshold of %s.', $this->warningThresholdInMb), healthy: true);
-        }
+    return new Result(name: $this->name(), status: Status::OK, message: 'Disk space is sufficient.', healthy: true);
+  }
 
-        return new Result(name: $this->name(), status: Status::OK, message: 'Disk space is sufficient.', healthy: true);
+    private function getFreeDiskSpaceInMegaBytes()
+    {
+    $freeSpace = disk_free_space($this->installationPath);
+    $totalSpace = disk_total_space($this->installationPath);
+    $availableSpace = $totalSpace - $freeSpace;
+
+    return $availableSpace / 1024 / 1024;
     }
 
-     private function getFreeDiskSpaceInMegaBytes()
-     {
-        $freeSpace = disk_free_space($this->installationPath);
-        $totalSpace = disk_total_space($this->installationPath);
-        $availableSpace = $totalSpace - $freeSpace;
-
-        return $availableSpace / 1024 / 1024;
-     }
-    ...
-    ...
+    // ...
 }
 ```
 
@@ -87,12 +87,12 @@ class LocalDiskSpaceCheck extends BaseCheck
 Finally, you need to register the custom check as a service resource.
 
 ```xml
-        <service id="%YourNameSpace%\LocalDiskSpaceCheck" >
-            <argument>%shopware.filesystem.public.type%</argument>
-            <argument>%shopware.filesystem.public.config.root%</argument>
-            <argument>%warning_threshold_in_mb%</argument>
-            <tag name="shopware.system_check"/>
-        </service>
+<service id="%YourNameSpace%\LocalDiskSpaceCheck">
+  <argument>%shopware.filesystem.public.type%</argument>
+  <argument>%shopware.filesystem.public.config.root%</argument>
+  <argument>%warning_threshold_in_mb%</argument>
+  <tag name="shopware.system_check" />
+</service>
 ```
 
 ### Trigger the check

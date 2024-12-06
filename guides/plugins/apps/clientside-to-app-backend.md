@@ -18,12 +18,12 @@ The JWT can be only generated when in the browser the user is logged-in.
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant Shopware Backend
-    participant App Server
-    Client->>Shopware Backend: POST /store-api/app-system/MyApp/generate-token
-    Shopware Backend->>Client: Responds with signed JWT
-    Client->>App Server: Post /product-review/submit containing JWT in header
+  participant Client
+  participant Shopware Backend
+  participant App Server
+  Client->>Shopware Backend: POST /store-api/app-system/MyApp/generate-token
+  Shopware Backend->>Client: Responds with signed JWT
+  Client->>App Server: Post /product-review/submit containing JWT in header
 ```
 
 ## The JSON Web Token
@@ -57,7 +57,7 @@ const client = new AppClient('MyAppName');
 
 // the second parameter is 
 client.get('https://my-app-backend.com/foo', {
-    headers: {}, // the parameters are same as https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+  headers: {}, // the parameters are same as https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 })
 client.put('https://my-app-backend.com/foo')
 client.post('https://my-app-backend.com/foo')
@@ -73,7 +73,7 @@ If you want to generate the JWT yourself, you can use the following code snippet
 
 ```javascript
 const response = await fetch('/store-api/app-system/{name}/generate-token', {
-    method: 'POST'
+  method: 'POST'
 });
 
 // send token as 'shopware-app-token' header and shopId as 'shopware-app-shop-id' header to your app server.
@@ -122,13 +122,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 class StorefrontController {
-    #[Route('/storefront/action')]
-    public function handle(StorefrontAction $webhook): Response
-    {
-        // handle action
-        
-        return new Response(null, 204);
-    }
+  #[Route('/storefront/action')]
+  public function handle(StorefrontAction $webhook): Response
+  {
+    // handle action
+    
+    return new Response(null, 204);
+  }
 }
 ```
 

@@ -102,18 +102,18 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function myController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentPay($serverRequest, $shop);
-    
-    // implement your logic here based on the information provided in $payment
-    
-    // check PaymentResponse class for all available payment states
-    return $signer->signResponse(PaymentResponse::paid(), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentPay($serverRequest, $shop);
+  
+  // implement your logic here based on the information provided in $payment
+  
+  // check PaymentResponse class for all available payment states
+  return $signer->signResponse(PaymentResponse::paid(), $shop);
 }
 ```
 
@@ -131,13 +131,13 @@ use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
 class PaymentController {
-    #[Route('/payment/pay')]
-    public function handle(PaymentPayAction $payment): ResponseInterface
-    {
-        // handle payment
-        
-        return PaymentResponse::paid();
-    }
+  #[Route('/payment/pay')]
+  public function handle(PaymentPayAction $payment): ResponseInterface
+  {
+    // handle payment
+    
+    return PaymentResponse::paid();
+  }
 }
 ```
 
@@ -207,18 +207,18 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function pay(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentPay($serverRequest, $shop);
-    
-    // Implement your logic here based on the information provided in $payment. 
-    // Payment providers should redirect the customer to $payment->returnUrl once the payment process has been finished.
-    
-    return $signer->signResponse(PaymentResponse::redirect($paymentProviderRediectUrl), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentPay($serverRequest, $shop);
+  
+  // Implement your logic here based on the information provided in $payment. 
+  // Payment providers should redirect the customer to $payment->returnUrl once the payment process has been finished.
+  
+  return $signer->signResponse(PaymentResponse::redirect($paymentProviderRediectUrl), $shop);
 }
 ```
 
@@ -236,13 +236,13 @@ use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
 class PaymentController {
-    #[Route('/payment/pay')]
-    public function handle(PaymentPayAction $payment): ResponseInterface
-    {
-        // handle payment
-        
-        return PaymentResponse::redirect($myPaymentUrl);
-    }
+  #[Route('/payment/pay')]
+  public function handle(PaymentPayAction $payment): ResponseInterface
+  {
+    // handle payment
+    
+    return PaymentResponse::redirect($myPaymentUrl);
+  }
 }
 ```
 
@@ -314,18 +314,18 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function finalize(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentFinalize($serverRequest, $shop);
-    
-    // implement your logic here based on the information provided in $payment
-    
-    // check PaymentResponse class for all available payment states
-    return $signer->signResponse(PaymentResponse::paid(), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentFinalize($serverRequest, $shop);
+  
+  // implement your logic here based on the information provided in $payment
+  
+  // check PaymentResponse class for all available payment states
+  return $signer->signResponse(PaymentResponse::paid(), $shop);
 }
 ```
 
@@ -343,13 +343,13 @@ use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
 class PaymentController {
-    #[Route('/payment/finalize')]
-    public function handle(PaymentFinalizeAction $payment): ResponseInterface
-    {
-        // handle payment
-        
-        return PaymentResponse::paid();
-    }
+  #[Route('/payment/finalize')]
+  public function handle(PaymentFinalizeAction $payment): ResponseInterface
+  {
+    // handle payment
+    
+    return PaymentResponse::paid();
+  }
 }
 ```
 
@@ -425,18 +425,18 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function validate(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentValidate($serverRequest, $shop);
-    
-    // implement your logic here based on the information provided in $payment
-    
-    // check PaymentResponse class for all available payment states
-    return $signer->signResponse(PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentValidate($serverRequest, $shop);
+  
+  // implement your logic here based on the information provided in $payment
+  
+  // check PaymentResponse class for all available payment states
+  return $signer->signResponse(PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']), $shop);
 }
 ```
 
@@ -454,13 +454,13 @@ use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
 class PaymentController {
-    #[Route('/payment/pay')]
-    public function handle(PaymentValidateAction $payment): ResponseInterface
-    {
-        // handle payment
-        
-        return PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']);
-    }
+  #[Route('/payment/pay')]
+  public function handle(PaymentValidateAction $payment): ResponseInterface
+  {
+    // handle payment
+    
+    return PaymentResponse::validateSuccess(['myCustomReference' => '1234567890']);
+  }
 }
 ```
 
@@ -527,21 +527,21 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function capture(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentCapture($serverRequest, $shop);
-    
-    // contains your passed data from the validate call (preOrderPayment)
-    $payment->requestData
-    
-    // implement your logic here based on the information provided in $payment
-    
-    // check PaymentResponse class for all available payment states
-    return $signer->signResponse(PaymentResponse::paid(), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentCapture($serverRequest, $shop);
+  
+  // contains your passed data from the validate call (preOrderPayment)
+  $payment->requestData
+  
+  // implement your logic here based on the information provided in $payment
+  
+  // check PaymentResponse class for all available payment states
+  return $signer->signResponse(PaymentResponse::paid(), $shop);
 }
 ```
 
@@ -559,13 +559,13 @@ use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
 class PaymentController {
-    #[Route('/payment/pay')]
-    public function handle(PaymentCaptureAction $payment): ResponseInterface
-    {
-        // handle payment
-        
-        return PaymentResponse::paid();
-    }
+  #[Route('/payment/pay')]
+  public function handle(PaymentCaptureAction $payment): ResponseInterface
+  {
+    // handle payment
+    
+    return PaymentResponse::paid();
+  }
 }
 ```
 
@@ -632,18 +632,18 @@ use Shopware\App\SDK\Response\RefundResponse;
 
 function refund(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentRefund($serverRequest, $shop);
-    
-    // implement your logic here based on the information provided in $payment
-    
-    // check RefundResponse class for all available refund states
-    return $signer->signResponse(RefundResponse::completed(), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentRefund($serverRequest, $shop);
+  
+  // implement your logic here based on the information provided in $payment
+  
+  // check RefundResponse class for all available refund states
+  return $signer->signResponse(RefundResponse::completed(), $shop);
 }
 ```
 
@@ -705,18 +705,18 @@ use Shopware\App\SDK\Response\PaymentResponse;
 
 function validate(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
-    $shopResolver = new ShopResolver($repository);
-    $contextResolver = new ContextResolver();
-    $signer = new ResponseSigner();
-    
-    $shop = $shopResolver->resolveShop($serverRequest);
-    $payment = $contextResolver->assemblePaymentRecurringCapture($serverRequest, $shop);
-    
-    // implement your logic here based on the information provided in $payment
-    
-    // check PaymentResponse class for all available payment states
-    return $signer->signResponse(PaymentResponse::paid(), $shop);
+  // injected or build by yourself
+  $shopResolver = new ShopResolver($repository);
+  $contextResolver = new ContextResolver();
+  $signer = new ResponseSigner();
+  
+  $shop = $shopResolver->resolveShop($serverRequest);
+  $payment = $contextResolver->assemblePaymentRecurringCapture($serverRequest, $shop);
+  
+  // implement your logic here based on the information provided in $payment
+  
+  // check PaymentResponse class for all available payment states
+  return $signer->signResponse(PaymentResponse::paid(), $shop);
 }
 ```
 
@@ -734,13 +734,13 @@ use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
 class PaymentController {
-    #[Route('/payment/pay')]
-    public function handle(PaymentPayAction $payment): ResponseInterface
-    {
-        // handle recurring payment capture
-        
-        return PaymentResponse::paid();
-    }
+  #[Route('/payment/pay')]
+  public function handle(PaymentPayAction $payment): ResponseInterface
+  {
+    // handle recurring payment capture
+    
+    return PaymentResponse::paid();
+  }
 }
 ```
 

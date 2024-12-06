@@ -87,27 +87,27 @@ For transferring the files to the target server, please configure at least one h
 
 ```php
 host('SSH-HOSTNAME')
-    ->setLabels([
-        'type' => 'web',
-        'env'  => 'prod',
-    ])
-    ->setRemoteUser('www-data')
-    ->set('deploy_path', '/var/www/shopware') // This is the path, where deployer will create its directory structure
-    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with 
-    ->set('writable_mode', 'chmod');
+  ->setLabels([
+    'type' => 'web',
+    'env'  => 'prod',
+  ])
+  ->setRemoteUser('www-data')
+  ->set('deploy_path', '/var/www/shopware') // This is the path, where deployer will create its directory structure
+  ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with 
+  ->set('writable_mode', 'chmod');
 ```
 
 This step is defined in the `deploy:update_code` job in the [`deploy.php`](deployment-with-deployer#deploy-php):
 
 ```php
 task('deploy:update_code')->setCallback(static function () {
-    upload('.', '{{release_path}}', [
-        'options' => [
-            '--exclude=.git',
-            '--exclude=deploy.php',
-            '--exclude=node_modules',
-        ],
-    ]);
+  upload('.', '{{release_path}}', [
+    'options' => [
+      '--exclude=.git',
+      '--exclude=deploy.php',
+      '--exclude=node_modules',
+    ],
+  ]);
 });
 ```
 
@@ -123,7 +123,7 @@ This step is defined in the `sw:deployment:helper` job in the [`deploy.php`](dep
 
 ```php
 task('sw:deployment:helper', static function() {
-    run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
+  run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
 });
 ```
 
@@ -135,7 +135,7 @@ This task is defined in the `sw:touch_install_lock` job in the [`deploy.php`](de
 
 ```php
 task('sw:touch_install_lock', static function () {
-    run('cd {{release_path}} && touch install.lock');
+  run('cd {{release_path}} && touch install.lock');
 });
 ```
 
@@ -145,7 +145,7 @@ Before putting the new version live, it is recommended to run the system checks 
 
 ```php
 task('sw:health_checks', static function () {
-    run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
+  run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
 });
 ```
 
@@ -222,32 +222,32 @@ Have a look at the following files. All steps are provided with helpful comments
 # This file defines the GitLab CI/CD pipeline.
 # For more information, please visit the GitLab CI/CD docs: https://docs.gitlab.com/ee/ci/README.html
 variables:
-    GIT_STRATEGY: clone
+  GIT_STRATEGY: clone
 
 # This variable holds all commands that are needed to be able to connect to the target server via SSH.
 # For this you need to define two variables in the GitLab CI/CD variables:
 #   - SSH_PRIVATE_KEY: The contents of the SSH private key file. The public key must be authorized on the target server.
 #   - DEPLOYMENT_SERVER: Just the hostname of the target server (e.g. shopware.com, don't include schema or paths)
 .configureSSHAgent: &configureSSHAgent |-
-    eval $(ssh-agent -s)
-    echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    mkdir -p ~/.ssh
-    ssh-keyscan $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
-    chmod 700 ~/.ssh
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  mkdir -p ~/.ssh
+  ssh-keyscan $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
+  chmod 700 ~/.ssh
 
 Deploy:
-    stage: deploy
-    # Tags are useful to only use runners that are safe or meet specific requirements
-    image: shopware/shopware-cli:latest-php-8.3
-    before_script:
-        # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
-        - *configureSSHAgent
-    script:
-        # This command installs all dependencies and builds the project.
-        - shopware-cli project ci .
-        # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
-        # `production` is the stage that was defined in the `host` in the `deploy.php`
-        - vendor/bin/dep deploy
+  stage: deploy
+  # Tags are useful to only use runners that are safe or meet specific requirements
+  image: shopware/shopware-cli:latest-php-8.3
+  before_script:
+    # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
+    - *configureSSHAgent
+  script:
+    # This command installs all dependencies and builds the project.
+    - shopware-cli project ci .
+    # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
+    # `production` is the stage that was defined in the `host` in the `deploy.php`
+    - vendor/bin/dep deploy
 ```
 
 ### .github/workflows/deploy.yml
@@ -286,7 +286,7 @@ jobs:
 ### deploy.php
 
 ```php
-<?php
+<?php declare(strict_types=1);
 
 namespace Deployer;
 
@@ -303,81 +303,81 @@ set('default_timeout', 3600); // Increase when tasks take longer than that.
 // Hosts
 
 host('SSH-HOSTNAME')
-    ->setLabels([
-        'type' => 'web',
-        'env'  => 'production',
-    ])
-    ->setRemoteUser('www-data')
-    ->set('deploy_path', '/var/www/shopware')
-    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
-    ->set('writable_mode', 'chmod')
-    ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
+  ->setLabels([
+    'type' => 'web',
+    'env'  => 'production',
+  ])
+  ->setRemoteUser('www-data')
+  ->set('deploy_path', '/var/www/shopware')
+  ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
+  ->set('writable_mode', 'chmod')
+  ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
 
 // These files are shared among all releases.
 set('shared_files', [
-    '.env.local',
-    'install.lock',
-    'public/.htaccess',
-    'public/.user.ini',
+  '.env.local',
+  'install.lock',
+  'public/.htaccess',
+  'public/.user.ini',
 ]);
 
 // These directories are shared among all releases.
 set('shared_dirs', [
-    'config/jwt',
-    'files',
-    'var/log',
-    'public/media',
-    'public/thumbnail',
-    'public/sitemap',
+  'config/jwt',
+  'files',
+  'var/log',
+  'public/media',
+  'public/thumbnail',
+  'public/sitemap',
 ]);
 
 // These directories are made writable (the definition of "writable" requires attention).
 // Please note that the files in `config/jwt/*` receive special attention in the `sw:writable:jwt` task.
 set('writable_dirs', [
-    'config/jwt',
-    'custom/plugins',
-    'files',
-    'public/bundles',
-    'public/css',
-    'public/fonts',
-    'public/js',
-    'public/media',
-    'public/sitemap',
-    'public/theme',
-    'public/thumbnail',
-    'var',
+  'config/jwt',
+  'custom/plugins',
+  'files',
+  'public/bundles',
+  'public/css',
+  'public/fonts',
+  'public/js',
+  'public/media',
+  'public/sitemap',
+  'public/theme',
+  'public/thumbnail',
+  'var',
 ]);
 
 task('sw:deployment:helper', static function() {
-   run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
+  run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
 });
 
 task('sw:touch_install_lock', static function () {
-    run('cd {{release_path}} && touch install.lock');
+  run('cd {{release_path}} && touch install.lock');
 });
 
 task('sw:health_checks', static function () {
-    run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
+  run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
 });
 
 desc('Deploys your project');
 task('deploy', [
-    'deploy:prepare',
-    'deploy:clear_paths',
-    'sw:deployment:helper',
-    "sw:touch_install_lock",
-    'sw:health_checks',
-    'deploy:publish',
+  'deploy:prepare',
+  'deploy:clear_paths',
+  'sw:deployment:helper',
+  "sw:touch_install_lock",
+  'sw:health_checks',
+  'deploy:publish',
 ]);
 
 task('deploy:update_code')->setCallback(static function () {
-    upload('.', '{{release_path}}', [
-        'options' => [
-            '--exclude=.git',
-            '--exclude=deploy.php',
-            '--exclude=node_modules',
-        ],
-    ]);
+  upload('.', '{{release_path}}', [
+    'options' => [
+      '--exclude=.git',
+      '--exclude=deploy.php',
+      '--exclude=node_modules',
+    ],
+  ]);
 });
 
 // Hooks

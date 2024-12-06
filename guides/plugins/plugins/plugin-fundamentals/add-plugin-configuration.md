@@ -52,13 +52,13 @@ See the minimum `config.xml` below:
 <!--<plugin root>/src/Resources/config/config.xml-->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
-    <card>
-        <title>Minimal configuration</title>
-        <input-field>
-            <name>example</name>
-        </input-field>
-    </card>
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  <card>
+    <title>Minimal configuration</title>
+    <input-field>
+      <name>example</name>
+    </input-field>
+  </card>
 </config>
 ```
 
@@ -71,12 +71,12 @@ A `<card>` `<title>` is translatable, this is managed via the `lang` attribute.
 By default, the `lang` attribute is set to `en-GB`, to change the locale of a `<title>` just add the attribute as follows:
 
 ```html
-    ...
-    <card>
-        <title>English Title</title>
-        <title lang="de-DE">German Titel</title>
-    </card>
-    ...
+<!-- ... -->
+<card>
+  <title>English Title</title>
+  <title lang="de-DE">German Titel</title>
+</card>
+<!-- ... -->
 ```
 
 ### Input fields
@@ -138,9 +138,9 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="text">
-    <name>textField</name>
-    <label>Test field with default value</label>
-    <defaultValue>test</defaultValue>
+  <name>textField</name>
+  <label>Test field with default value</label>
+  <defaultValue>test</defaultValue>
 </input-field>
 ```
 
@@ -152,8 +152,8 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
-    <name>email</name>
-    <disabled>true</disabled>
+  <name>email</name>
+  <disabled>true</disabled>
 </input-field>
 ```
 
@@ -167,8 +167,8 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
-    <name>email</name>
-    <required>true</required>
+  <name>email</name>
+  <required>true</required>
 </input-field>
 ```
 
@@ -183,8 +183,8 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field>
-    <name>email</name>
-    <copyable>true</copyable>
+  <name>email</name>
+  <copyable>true</copyable>
 </input-field>
 ```
 
@@ -199,9 +199,9 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="password">
-    <name>token</name>
-    <minLength>5</minLength>
-    <maxLength>20</maxLength>
+  <name>token</name>
+  <minLength>5</minLength>
+  <maxLength>20</maxLength>
 </input-field>
 ```
 
@@ -214,9 +214,9 @@ Below, you'll find an example of how to use this setting.
 
 ```html
 <input-field type="int">
-    <name>token</name>
-    <min>5</min>
-    <max>20</max>
+  <name>token</name>
+  <min>5</min>
+  <max>20</max>
 </input-field>
 ```
 
@@ -229,19 +229,19 @@ Below you'll find an example.
 
 ```html
 <input-field type="single-select">
-    <name>mailMethod</name>
-    <options>
-        <option>
-            <id>smtp</id>
-            <name>English label</name>
-            <name lang="de-DE">German label</name>
-        </option>
-        <option>
-            <id>pop3</id>
-            <name>English label</name>
-            <name lang="de-DE">German label</name>
-        </option>
-    </options>
+  <name>mailMethod</name>
+  <options>
+    <option>
+      <id>smtp</id>
+      <name>English label</name>
+      <name lang="de-DE">German label</name>
+    </option>
+    <option>
+      <id>pop3</id>
+      <name>English label</name>
+      <name lang="de-DE">German label</name>
+    </option>
+  </options>
 </input-field>
 ```
 
@@ -265,9 +265,9 @@ Here are some examples:
 
 ```html
 <component name="sw-entity-single-select">
-    <name>exampleProduct</name>
-    <entity>product</entity>
-    <label>Choose a product for the plugin configuration</label>
+  <name>exampleProduct</name>
+  <entity>product</entity>
+  <label>Choose a product for the plugin configuration</label>
 </component>
 ```
 
@@ -277,9 +277,9 @@ Stores the ID of the selected product into the system config.
 
 ```html
 <component name="sw-entity-multi-id-select">
-    <name>exampleMultiProductIds</name>
-    <entity>product</entity>
-    <label>Choose multiple products IDs for the plugin configuration</label>
+  <name>exampleMultiProductIds</name>
+  <entity>product</entity>
+  <label>Choose multiple products IDs for the plugin configuration</label>
 </component>
 ```
 
@@ -289,8 +289,8 @@ Stores an array with IDs of the selected products into the system config.
 
 ```html
 <component name="sw-media-field">
-    <name>pluginMedia</name>
-    <label>Upload media or choose one from the media manager</label>
+  <name>pluginMedia</name>
+  <label>Upload media or choose one from the media manager</label>
 </component>
 ```
 
@@ -298,8 +298,8 @@ Stores an array with IDs of the selected products into the system config.
 
 ```html
 <component name="sw-text-editor">
-    <name>textEditor</name>
-    <label>Write some nice text with WYSIWYG editor</label>
+  <name>textEditor</name>
+  <label>Write some nice text with WYSIWYG editor</label>
 </component>
 ```
 
@@ -307,9 +307,9 @@ Stores an array with IDs of the selected products into the system config.
 
 ```html
 <component name="sw-snippet-field">
-    <name>snippetField</name>
-    <label>Description</label>
-    <snippet>myPlugin.test.snippet</snippet>
+  <name>snippetField</name>
+  <label>Description</label>
+  <snippet>myPlugin.test.snippet</snippet>
 </component>
 ```
 
@@ -337,55 +337,55 @@ Now all that's left to do is to present you a working example `config.xml` and s
 <!--<plugin root>/src/Resources/config/config.xml-->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Basic Configuration</title>
-        <title lang="de-DE">Grundeinstellungen</title>
+  <card>
+    <title>Basic Configuration</title>
+    <title lang="de-DE">Grundeinstellungen</title>
 
-        <input-field>
-            <name>email</name>
-            <copyable>true</copyable>
-            <label>eMail address</label>
-            <label lang="de-DE">E-Mailadresse</label>
-            <placeholder>you@example.com</placeholder>
-            <placeholder lang="de-DE">du@beispiel.de</placeholder>
-            <helpText>Please fill in your personal eMail address</helpText>
-            <helpText lang="de-DE">Bitte trage deine persönliche E-Mailadresse ein</helpText>
-        </input-field>
+    <input-field>
+      <name>email</name>
+      <copyable>true</copyable>
+      <label>eMail address</label>
+      <label lang="de-DE">E-Mailadresse</label>
+      <placeholder>you@example.com</placeholder>
+      <placeholder lang="de-DE">du@beispiel.de</placeholder>
+      <helpText>Please fill in your personal eMail address</helpText>
+      <helpText lang="de-DE">Bitte trage deine persönliche E-Mailadresse ein</helpText>
+    </input-field>
 
-        <input-field type="single-select">
-            <name>mailMethod</name>
-            <options>
-                <option>
-                    <id>smtp</id>
-                    <name>English smtp</name>
-                    <name lang="de-DE">German smtp</name>
-                </option>
-                <option>
-                    <id>pop3</id>
-                    <name>English pop3</name>
-                    <name lang="de-DE">German pop3</name>
-                </option>
-            </options>
-            <defaultValue>smtp</defaultValue>
-            <label>Mail method</label>
-            <label lang="de-DE">Versand-Protokoll</label>
-        </input-field>
-    </card>
+    <input-field type="single-select">
+      <name>mailMethod</name>
+      <options>
+        <option>
+          <id>smtp</id>
+          <name>English smtp</name>
+          <name lang="de-DE">German smtp</name>
+        </option>
+        <option>
+          <id>pop3</id>
+          <name>English pop3</name>
+          <name lang="de-DE">German pop3</name>
+        </option>
+      </options>
+      <defaultValue>smtp</defaultValue>
+      <label>Mail method</label>
+      <label lang="de-DE">Versand-Protokoll</label>
+    </input-field>
+  </card>
 
-    <card>
-        <title>Advanced Configuration</title>
-        <title lang="de-DE">Erweiterte Einstellungen</title>
+  <card>
+    <title>Advanced Configuration</title>
+    <title lang="de-DE">Erweiterte Einstellungen</title>
 
-        <input-field type="password">
-            <name>secret</name>
-            <label>Secret token</label>
-            <label lang="de-DE">Geheimschlüssel</label>
-            <helpText>Your secret token for xyz...</helpText>
-            <helpText lang="de-DE">Dein geheimer Schlüssel für xyz...</helpText>
-        </input-field>
-    </card>
+    <input-field type="password">
+      <name>secret</name>
+      <label>Secret token</label>
+      <label lang="de-DE">Geheimschlüssel</label>
+      <helpText>Your secret token for xyz...</helpText>
+      <helpText lang="de-DE">Dein geheimer Schlüssel für xyz...</helpText>
+    </input-field>
+  </card>
 </config>
 ```
 

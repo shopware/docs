@@ -19,11 +19,11 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 Let's create the simplest template we need in order to use the [`sw-data-grid`](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/data-grid/sw-data-grid/index.js).
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/swag-example.html.twig #}
 <div>
-    <sw-data-grid :data-source="dataSource" :columns="columns">
-    </sw-data-grid>
+  <sw-data-grid :data-source="dataSource" :columns="columns">
+  </sw-data-grid>
 </div>
 ```
 
@@ -38,23 +38,23 @@ Since this is a very basic example the following code will just statically assig
 import template from 'swag-example.html.twig';
 
 Shopware.Component.register('swag-basic-example', {
-    template,
+  template,
 
-    data: function () {
-        return {
-            dataSource: [
-                { id: 'uuid1', company: 'Wordify', name: 'Portia Jobson' },
-                { id: 'uuid2', company: 'Twitternation', name: 'Baxy Eardley' },
-                { id: 'uuid3', company: 'Skidoo', name: 'Arturo Staker' },
-                { id: 'uuid4', company: 'Meetz', name: 'Dalston Top' },
-                { id: 'uuid5', company: 'Photojam', name: 'Neddy Jensen' }
-            ],
-            columns: [
-                { property: 'name', label: 'Name' },
-                { property: 'company', label: 'Company' }
-            ],
-        };
-    }
+  data: function () {
+    return {
+      dataSource: [
+        { id: 'uuid1', company: 'Wordify', name: 'Portia Jobson' },
+        { id: 'uuid2', company: 'Twitternation', name: 'Baxy Eardley' },
+        { id: 'uuid3', company: 'Skidoo', name: 'Arturo Staker' },
+        { id: 'uuid4', company: 'Meetz', name: 'Dalston Top' },
+        { id: 'uuid5', company: 'Photojam', name: 'Neddy Jensen' }
+      ],
+      columns: [
+        { property: 'name', label: 'Name' },
+        { property: 'company', label: 'Company' }
+      ],
+    };
+  }
 });
 ```
 

@@ -28,16 +28,16 @@ The following example will show you how **not** to do it. It's assuming that you
 ```php
 public function replaceData(Context $context): void
 {
-    $this->productRepository->update([
+  $this->productRepository->update([
+    [
+      'id' => 'myProductId',
+      'categories' => [
         [
-            'id' => 'myProductId',
-            'categories' => [
-                [
-                    'id' => 'newCategoryId'
-                ]
-            ]
+          'id' => 'newCategoryId'
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 
@@ -56,18 +56,18 @@ In order to delete it, we once again need its repository. The name for the entit
 So let's inject this repository into our class called `ReplacingData`:
 
 ```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- SwagBasicExample/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ReplacingData" >
-            <argument type="service" id="product.repository"/>
-            <argument type="service" id="product_category.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ReplacingData">
+      <argument type="service" id="product.repository" />
+      <argument type="service" id="product_category.repository" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -76,12 +76,12 @@ Afterwards, you can just use the `delete` method on the repository, just like yo
 ```php
 public function replaceData(Context $context): void
 {
-    $this->productCategoryRepository->delete([
-        [
-            'productId' => 'myProductId',
-            'categoryId' => 'oldId'
-        ]
-    ], $context);
+  $this->productCategoryRepository->delete([
+    [
+      'productId' => 'myProductId',
+      'categoryId' => 'oldId'
+    ]
+  ], $context);
 }
 ```
 
@@ -90,25 +90,25 @@ Now the association to the old category was removed and you can now use the code
 ```php
 public function replaceData(Context $context): void
 {
-    $productId = 'myProductId';
+  $productId = 'myProductId';
 
-    $this->productCategoryRepository->delete([
-        [
-            'productId' => $productId,
-            'categoryId' => 'oldCategoryId'
-        ]
-    ], $context);
+  $this->productCategoryRepository->delete([
+    [
+      'productId' => $productId,
+      'categoryId' => 'oldCategoryId'
+    ]
+  ], $context);
 
-    $this->productRepository->update([
+  $this->productRepository->update([
+    [
+      'id' => $productId,
+      'categories' => [
         [
-            'id' => $productId,
-            'categories' => [
-                [
-                    'id' => 'newCategoryId'
-                ]
-            ]
+          'id' => 'newCategoryId'
         ]
-    ], $context);
+      ]
+    ]
+  ], $context);
 }
 ```
 
@@ -121,12 +121,12 @@ Replacing `OneToOne` or `ManyToOne` associations works just like expected via an
 ```php
 public function replaceData(Context $context): void
 {
-    $this->productRepository->update([
-        [
-            'id' => 'myProductId',
-            'taxId' => 'newTaxId'
-        ]
-    ], $context);
+  $this->productRepository->update([
+    [
+      'id' => 'myProductId',
+      'taxId' => 'newTaxId'
+    ]
+  ], $context);
 }
 ```
 

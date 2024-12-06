@@ -43,53 +43,51 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 class Migration1615470599ExampleSorting extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1615470599;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1615470599;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $myCustomSorting = [
-            'id' => Uuid::randomBytes(),
-            'url_key' => 'my-custom-sort',  // shown in url - must be unique system wide
-            'priority' => 5,                // the higher the priority, the further upwards it will be shown in the sortings dropdown in Storefront
-            'active' => 1,                  // activate / deactivate the sorting
-            'locked' => 0,                  // you can lock the sorting here to prevent it from being edited in the Administration
-            'fields' => json_encode([
-                [
-                    'field' => 'product.name',  // field to sort by
-                    'order' => 'desc',          // asc or desc
-                    'priority' => 1,            // in which order the sorting is to applied (higher priority comes first)
-                    'naturalSorting' => 0       // apply natural sorting logic to this field
-                ],
-                // ... more fields
-            ]),
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-        ];
+  public function update(Connection $connection): void
+  {
+    $myCustomSorting = [
+      'id' => Uuid::randomBytes(),
+      'url_key' => 'my-custom-sort',  // shown in url - must be unique system wide
+      'priority' => 5,                // the higher the priority, the further upwards it will be shown in the sortings dropdown in Storefront
+      'active' => 1,                  // activate / deactivate the sorting
+      'locked' => 0,                  // you can lock the sorting here to prevent it from being edited in the Administration
+      'fields' => json_encode([
+        [
+          'field' => 'product.name',  // field to sort by
+          'order' => 'desc',          // asc or desc
+          'priority' => 1,            // in which order the sorting is to applied (higher priority comes first)
+          'naturalSorting' => 0       // apply natural sorting logic to this field
+        ],
+        // ... more fields
+      ]),
+      'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+    ];
 
-        // insert the product sorting
-        $connection->insert(ProductSortingDefinition::ENTITY_NAME, $myCustomSorting);
+    // insert the product sorting
+    $connection->insert(ProductSortingDefinition::ENTITY_NAME, $myCustomSorting);
 
-        // insert the translation for the translatable label
-        // if you use multiple languages, you will need to update all of them
-        $connection->executeStatement(
-            'REPLACE INTO product_sorting_translation
-             (`language_id`, `product_sorting_id`, `label`, `created_at`)
-             VALUES
-             (:language_id, :product_sorting_id, :label, :created_at)',
-            [
-                'language_id' => Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM),
-                'product_sorting_id' => $myCustomSorting['id'],
-                'label' => 'My Custom Sorting',
-                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
-            ]
-        );
-    }
+    // insert the translation for the translatable label
+    // if you use multiple languages, you will need to update all of them
+    $connection->executeStatement(
+      'REPLACE INTO product_sorting_translation
+            (`language_id`, `product_sorting_id`, `label`, `created_at`)
+            VALUES
+            (:language_id, :product_sorting_id, :label, :created_at)',
+      [
+        'language_id' => Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM),
+        'product_sorting_id' => $myCustomSorting['id'],
+        'label' => 'My Custom Sorting',
+        'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+      ]
+    );
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -118,39 +116,39 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class ExampleListingSubscriber implements EventSubscriberInterface
 {
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            // be sure to subscribe with high priority to add you sorting before the default shopware logic applies
-            // otherwise storefront will throw a ProductSortingNotFoundException
-            ProductListingCriteriaEvent::class => ['addMyCustomSortingToStorefront', 500],
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      // be sure to subscribe with high priority to add you sorting before the default shopware logic applies
+      // otherwise storefront will throw a ProductSortingNotFoundException
+      ProductListingCriteriaEvent::class => ['addMyCustomSortingToStorefront', 500],
+    ];
+  }
 
-    public function addMyCustomSortingToStorefront(ProductListingCriteriaEvent $event): void
-    {
-        /** @var ProductSortingCollection $availableSortings */
-        $availableSortings = $event->getCriteria()->getExtension('sortings') ?? new ProductSortingCollection();
+  public function addMyCustomSortingToStorefront(ProductListingCriteriaEvent $event): void
+  {
+    /** @var ProductSortingCollection $availableSortings */
+    $availableSortings = $event->getCriteria()->getExtension('sortings') ?? new ProductSortingCollection();
 
-        $myCustomSorting = new ProductSortingEntity();
-        $myCustomSorting->setId(Uuid::randomHex());
-        $myCustomSorting->setActive(true);
-        $myCustomSorting->setTranslated(['label' => 'My Custom Sorting at runtime']);
-        $myCustomSorting->setKey('my-custom-runtime-sort');
-        $myCustomSorting->setPriority(5);
-        $myCustomSorting->setFields([
-            [
-                'field' => 'product.name',
-                'order' => 'desc',
-                'priority' => 1,
-                'naturalSorting' => 0,
-            ],
-        ]);
+    $myCustomSorting = new ProductSortingEntity();
+    $myCustomSorting->setId(Uuid::randomHex());
+    $myCustomSorting->setActive(true);
+    $myCustomSorting->setTranslated(['label' => 'My Custom Sorting at runtime']);
+    $myCustomSorting->setKey('my-custom-runtime-sort');
+    $myCustomSorting->setPriority(5);
+    $myCustomSorting->setFields([
+      [
+        'field' => 'product.name',
+        'order' => 'desc',
+        'priority' => 1,
+        'naturalSorting' => 0,
+      ],
+    ]);
 
-        $availableSortings->add($myCustomSorting);
+    $availableSortings->add($myCustomSorting);
 
-        $event->getCriteria()->addExtension('sortings', $availableSortings);
-    }
+    $event->getCriteria()->addExtension('sortings', $availableSortings);
+  }
 }
 ```
 

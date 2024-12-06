@@ -15,15 +15,15 @@ By default, only the Stopwatch profiler (Symfony Profiler Bar) is enabled. To en
 
 ```yaml
 shopware:
-    profiler:
-        integrations:
-            - Symfony
-            # Requires the dd-trace PHP extension
-            - Datadog
-            # Requires the tideways PHP extension
-            - Tideways
-            # Requires the opentelemetry PHP extension
-            - OpenTelemetry
+  profiler:
+    integrations:
+      - Symfony
+      # Requires the dd-trace PHP extension
+      - Datadog
+      # Requires the tideways PHP extension
+      - Tideways
+      # Requires the opentelemetry PHP extension
+      - OpenTelemetry
 ```
 
 ::: info
@@ -34,11 +34,11 @@ The OpenTelemetry profiler is not installed by default. Checkout the [OpenTeleme
 
 To add custom spans to the profiler, you can use the `Shopware\Core\Profiling\Profiler::trace` method:
 
-```PHP
+```php
 use Shopware\Core\Profiling\Profiler;
 
 $value = Profiler::trace('my-example-trace', function () {
-    return $myFunction();
+  return $myFunction();
 });
 ```
 
@@ -50,7 +50,7 @@ To add a custom profiler backend, you need to implement the `Shopware\Core\Profi
 
 The following example shows a custom profiler backend that logs the traces to the console:
 
-```PHP
+```php declare(strict_types=1);
 
 namespace App\Profiler;
 
@@ -58,21 +58,21 @@ use Shopware\Core\Profiling\Integration\ProfilerInterface;
 
 class ConsoleProfiler implements ProfilerInterface
 {
-    public function start(string $title, string $category, array $tags): void
-    {
-        echo "Start $name\n";
-    }
+  public function start(string $title, string $category, array $tags): void
+  {
+    echo "Start $name\n";
+  }
 
-    public function stop(string $title): void
-    {
-        echo "Stop $name\n";
-    }
+  public function stop(string $title): void
+  {
+    echo "Stop $name\n";
+  }
 }
 ```
 
-```XML
+```xml
 <service id="App\Profiler">
-    <tag name="shopware.profiler" integration="Console"/>
+  <tag name="shopware.profiler" integration="Console"/>
 </service>
 ```
 

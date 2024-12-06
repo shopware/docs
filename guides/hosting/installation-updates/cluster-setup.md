@@ -21,8 +21,8 @@ To configure Shopware for a cluster setup, you have to set the following configu
 
 ```yaml
 shopware:
-    deployment:
-        cluster_setup: true
+  deployment:
+    cluster_setup: true
 ```
 
 This option prevents shopware from running operations locally (meaning only on one node in a cluster), that potentially can corrupt the state of the cluster by having the state of the nodes diverge from each other, e.g. clearing symfony cache files at runtime.
@@ -99,8 +99,8 @@ Shopware's integrated auto-update functionality should be disabled to prevent un
 
 ```yaml
 shopware:
-    auto_update:
-        enabled: false
+  auto_update:
+    enabled: false
 ```
 
 ## Message queue
