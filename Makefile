@@ -14,8 +14,8 @@ help: ## Show this help
 
 lint: ## Runs the linting tool
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -w /docs -e INPUT_IGNORE=${ignored} ${image} \
-	    --config /docs/markdown-style-config.yml /docs
+	    --config /docs/.markdownlint.yml /docs
 
 fix: ## Runs the linting tool and fixes simple mistakes
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -e INPUT_FIX=true -e INPUT_IGNORE=${ignored} avtodev/markdown-lint:v1.5 \
-	    --config /docs/markdown-style-config.yml /docs
+	    --config /docs/.markdownlint.yml /docs

@@ -31,10 +31,10 @@ use Shopware\B2B\Common\MvcExtension\Request;
 
 class MyApiController
 {
-    public function helloAction(Request $request): array
-    {
-        return ['message' => 'hello']; // will automatically be converted to JSON
-    }
+  public function helloAction(Request $request): array
+  {
+    return ['message' => 'hello']; // will automatically be converted to JSON
+  }
 }
 ```
 
@@ -54,27 +54,27 @@ use Shopware\B2B\Common\Routing\RouteProvider;
 
 class MyApiRouteProvider implements RouteProvider
 {
-    public function getRoutes(): array
-    {
-        return [
-            [
-                'GET', // the HTTP method
-                '/my/hello', // the sub-route will be concatenated to http://my-shop.de/api/b2b/my/hello
-                'my.api_controller', // DIC controller id
-                'hello' // action method name
-            ],
-        ];
-    }
+  public function getRoutes(): array
+  {
+    return [
+      [
+        'GET', // the HTTP method
+        '/my/hello', // the sub-route will be concatenated to http://my-shop.de/api/b2b/my/hello
+        'my.api_controller', // DIC controller id
+        'hello' // action method name
+      ],
+    ];
+  }
 }
 ```
 
 Now the route provider and the controller are registered to the DIC.
 
 ```xml
-<service id="my.controller" class="My\Namespace\MyApiController"/>
+<service id="my.controller" class="My\Namespace\MyApiController" />
 
 <service id="my.api_route_provider" class="My\Namespace\DependencyInjection\MyApiRouteProvider">
-    <tag name="b2b_common.rest_route_provider"/>
+  <tag name="b2b_common.rest_route_provider" />
 </service>
 ```
 
@@ -88,11 +88,11 @@ If you want to use parameters, you have to define an order in which the paramete
 
 ```php
 [
-    'GET', // the HTTP method
-    '/my/hello/{name}', // the sub-route will be concatenated to http://my-shop.de/api/b2b/my/hello/world
-    'my.api_controller', // DIC controller id
-    'hello' // action method name,
-    ['name'] // define name as the first argument
+  'GET', // the HTTP method
+  '/my/hello/{name}', // the sub-route will be concatenated to http://my-shop.de/api/b2b/my/hello/world
+  'my.api_controller', // DIC controller id
+  'hello' // action method name,
+  ['name'] // define name as the first argument
 ]
 ```
 
@@ -103,6 +103,6 @@ And now, you can use the placeholders value as a parameter:
 
 public function helloAction(string $name, Request $request)
 {
-    return ['message' => 'hello ' . $name]; // will automatically be converted to JSON
+  return ['message' => 'hello ' . $name]; // will automatically be converted to JSON
 }
 ```

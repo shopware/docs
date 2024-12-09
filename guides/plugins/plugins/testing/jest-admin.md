@@ -45,27 +45,27 @@ Let's have a look at an example:
 import Sanitizer from 'src/core/helper/sanitizer.helper';
 
 describe('core/helper/sanitizer.helper.js', () => {
-    it('should sanitize the html', () => {
-        expect(Sanitizer.sanitize('<A/hREf="j%0aavas%09cript%0a:%09con%0afirm%0d``">z'))
-            .toBe('<a href="j%0aavas%09cript%0a:%09con%0afirm%0d``">z</a>');
-    });
+  it('should sanitize the html', () => {
+    expect(Sanitizer.sanitize('<A/hREf="j%0aavas%09cript%0a:%09con%0afirm%0d``">z'))
+      .toBe('<a href="j%0aavas%09cript%0a:%09con%0afirm%0d``">z</a>');
+  });
 
-    it('should remove script functions from dom elements', () => {
-        expect(Sanitizer.sanitize('<details open ontoggle=confirm()>'))
-            .toBe('<details open=""></details>');
-    });
+  it('should remove script functions from dom elements', () => {
+    expect(Sanitizer.sanitize('<details open ontoggle=confirm()>'))
+      .toBe('<details open=""></details>');
+  });
 
-    it('should remove script functions completely', () => {
-        expect(Sanitizer.sanitize(`<script y="><">/*<script* */prompt()</script`))
-            .toBe('');
-    });
+  it('should remove script functions completely', () => {
+    expect(Sanitizer.sanitize(`<script y="><">/*<script* */prompt()</script`))
+      .toBe('');
+  });
 
-    it('should sanitize js in links', () => {
-        expect(Sanitizer.sanitize('<a href=javas&#99;ript:alert(1)>click'))
-            .toBe('<a>click</a>');
-    });
+  it('should sanitize js in links', () => {
+    expect(Sanitizer.sanitize('<a href=javas&#99;ript:alert(1)>click'))
+      .toBe('<a>click</a>');
+  });
 
-    // ...more tests 
+  // ...more tests 
 });
 ```
 
@@ -115,65 +115,65 @@ This command executes only unit tests of changed files. It automatically restart
 ### Example test structure
 
 ```typescript
-import {shallowMount, createLocalVue, Wrapper} from '@vue/test-utils';
+import { shallowMount, createLocalVue, Wrapper } from '@vue/test-utils';
 import flushPromises from 'flush-promises';
 
 // add additional parameters to change options for the test
 async function createWrapper(/* options = {} */): Wrapper {
-    // add localVue only if needed
-    const localVue = createLocalVue();
+  // add localVue only if needed
+  const localVue = createLocalVue();
 
-    // prefer shallowMount over normal mount
-    return shallowMount(await Shopware.Component.build('sw-your-component-for-test'), {
-        // localVue only if needed
-        localVue,
-        // add stubs for missing component
-        stubs: {
-            'sw-missing-component-one': Shopware.Component.build('sw-missing-component-one'),
-            'sw-missing-component-two': Shopware.Component.build('sw-missing-component-two'),
-        },
-        mocks: {
-            // add mocks if needed
-        },
-        // needed if you interact with elements
-        attachTo: document.body,
+  // prefer shallowMount over normal mount
+  return shallowMount(await Shopware.Component.build('sw-your-component-for-test'), {
+    // localVue only if needed
+    localVue,
+    // add stubs for missing component
+    stubs: {
+      'sw-missing-component-one': Shopware.Component.build('sw-missing-component-one'),
+      'sw-missing-component-two': Shopware.Component.build('sw-missing-component-two'),
+    },
+    mocks: {
+      // add mocks if needed
+    },
+    // needed if you interact with elements
+    attachTo: document.body,
 
-        // ...options,
-    });
+    // ...options,
+  });
 }
 
 describe('the/path/to/the/component', () => {
-    let wrapper: Wrapper;
+  let wrapper: Wrapper;
 
-    beforeAll(async () => {
-        // generate all needed mocks, etc.
-    })
+  beforeAll(async () => {
+    // generate all needed mocks, etc.
+  })
 
-    beforeEach(async () => {
-        // reset all mocks and state changes to default
-        wrapper = await createWrapper();
-        
-        // wait for created hook etc.
-        await flushPromises();
-    })
+  beforeEach(async () => {
+    // reset all mocks and state changes to default
+    wrapper = await createWrapper();
 
-    afterEach(async () => {
-        // cleanup everything
+    // wait for created hook etc.
+    await flushPromises();
+  })
 
-        // destroy the existing wrapper
-        if (wrapper) {
-            await wrapper.destroy();
-        }
+  afterEach(async () => {
+    // cleanup everything
 
-        // wait until all promises are finished
-        await flushPromises();
-    })
+    // destroy the existing wrapper
+    if (wrapper) {
+      await wrapper.destroy();
+    }
 
-    it('should be a Vue.js component', () => {
-        expect(wrapper.vm).toBeTruthy();
-    });
+    // wait until all promises are finished
+    await flushPromises();
+  })
 
-    // Add more component tests
+  it('should be a Vue.js component', () => {
+    expect(wrapper.vm).toBeTruthy();
+  });
+
+  // Add more component tests
 })
 ```
 
@@ -193,7 +193,7 @@ You see that we import the `sw-multi-select` without saving the return value. Th
 ```javascript
 // src/app/component/form/select/base/sw-multi-select/index.js
 Shopware.Component.register('sw-multi-select', {
-    // The vue component
+  // The vue component
 });
 ```
 
@@ -227,19 +227,19 @@ import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/form/select/base/sw-multi-select';
 
 describe('components/sw-multi-select', () => {
-    let wrapper;
+  let wrapper;
 
-    beforeEach(() => {
-        wrapper = shallowMount(Shopware.Component.build('sw-multi-select'));
-    });
+  beforeEach(() => {
+    wrapper = shallowMount(Shopware.Component.build('sw-multi-select'));
+  });
 
-    afterEach(() => {
-        wrapper.destroy();
-    });
+  afterEach(() => {
+    wrapper.destroy();
+  });
 
-    it('should be a Vue.js component', () => {
-        expect(wrapper.vm).toBeTruthy();
-    });
+  it('should be a Vue.js component', () => {
+    expect(wrapper.vm).toBeTruthy();
+  });
 });
 ```
 
@@ -257,10 +257,10 @@ The first two warnings are solved easily by providing the required props to our 
 
 ```javascript
 wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
-    props: {
-        options: [],
-        value: ''
-    }
+  props: {
+    options: [],
+    value: ''
+  }
 });
 ```
 
@@ -271,13 +271,13 @@ Now you should only see the last warning with an unknown custom element. The rea
 import 'src/app/component/form/select/base/sw-select-base';
 
 wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
-    props: {
-        options: [],
-        value: ''
-    },
-    stubs: {
-        'sw-select-base': Shopware.Component.build('sw-select-base'),
-    }
+  props: {
+    options: [],
+    value: ''
+  },
+  stubs: {
+    'sw-select-base': Shopware.Component.build('sw-select-base'),
+  }
 });
 ```
 
@@ -300,38 +300,38 @@ import 'src/app/component/base/sw-label';
 import 'src/app/component/base/sw-button';
 
 describe('components/sw-multi-select', () => {
-    let wrapper;
+  let wrapper;
 
-    beforeEach(() => {
-        wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
-            props: {
-                options: [],
-                value: ''
-            },
-            stubs: {
-                'sw-select-base': Shopware.Component.build('sw-select-base'),
-                'sw-block-field': Shopware.Component.build('sw-block-field'),
-                'sw-base-field': Shopware.Component.build('sw-base-field'),
-                'sw-icon': '<div></div>',
-                'sw-field-error': Shopware.Component.build('sw-field-error'),
-                'sw-select-selection-list': Shopware.Component.build('sw-select-selection-list'),
-                'sw-select-result-list': Shopware.Component.build('sw-select-result-list'),
-                'sw-popover': Shopware.Component.build('sw-popover'),
-                'sw-select-result': Shopware.Component.build('sw-select-result'),
-                'sw-highlight-text': Shopware.Component.build('sw-highlight-text'),
-                'sw-label': Shopware.Component.build('sw-label'),
-                'sw-button': Shopware.Component.build('sw-button')
-            }
-        });
+  beforeEach(() => {
+    wrapper = shallowMount(Shopware.Component.build('sw-multi-select'), {
+      props: {
+        options: [],
+        value: ''
+      },
+      stubs: {
+        'sw-select-base': Shopware.Component.build('sw-select-base'),
+        'sw-block-field': Shopware.Component.build('sw-block-field'),
+        'sw-base-field': Shopware.Component.build('sw-base-field'),
+        'sw-icon': '<div></div>',
+        'sw-field-error': Shopware.Component.build('sw-field-error'),
+        'sw-select-selection-list': Shopware.Component.build('sw-select-selection-list'),
+        'sw-select-result-list': Shopware.Component.build('sw-select-result-list'),
+        'sw-popover': Shopware.Component.build('sw-popover'),
+        'sw-select-result': Shopware.Component.build('sw-select-result'),
+        'sw-highlight-text': Shopware.Component.build('sw-highlight-text'),
+        'sw-label': Shopware.Component.build('sw-label'),
+        'sw-button': Shopware.Component.build('sw-button')
+      }
     });
+  });
 
-    afterEach(() => {
-        wrapper.destroy();
-    });
+  afterEach(() => {
+    wrapper.destroy();
+  });
 
-    it('should be a Vue.js component', () => {
-        expect(wrapper.vm).toBeTruthy();
-    });
+  it('should be a Vue.js component', () => {
+    expect(wrapper.vm).toBeTruthy();
+  });
 });
 ```
 
@@ -346,14 +346,14 @@ import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/base/sw-alert';
 
 describe('components/base/sw-alert', () => {
-    it('should be a Vue.js component', () => {
-        const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
-            stubs: ['sw-icon']
-        });
-
-        // Assert if our component is a vue instance = mountes correctly
-        expect(wrapper.vm).toBeTruthy();
+  it('should be a Vue.js component', () => {
+    const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
+      stubs: ['sw-icon']
     });
+
+    // Assert if our component is a vue instance = mountes correctly
+    expect(wrapper.vm).toBeTruthy();
+  });
 });
 ```
 
@@ -364,13 +364,13 @@ import { shallowMount } from '@vue/test-utils';
 import 'src/app/component/base/sw-alert';
 
 describe('components/base/sw-alert', () => {
-    it('should be a Vue.js component', () => {
-        // see above
-    });
+  it('should be a Vue.js component', () => {
+    // see above
+  });
 
-    it('should render the message inside the default slot', () => {
-        // New
-    });
+  it('should render the message inside the default slot', () => {
+    // New
+  });
 });
 ```
 
@@ -379,26 +379,26 @@ describe('components/base/sw-alert', () => {
 You can set the content of a slot during component mount. See the paragraph "Mounting components" in the first example for details.
 
 ```javascript
-    it('should render the message inside the default slot', () => {
-        const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
-            slots: {
-                default: 'My custom message'
-            }
-        });
-    });
+it('should render the message inside the default slot', () => {
+  const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
+    slots: {
+      default: 'My custom message'
+    }
+  });
+});
 ```
 
 Afterwards you can make an assertion that the text passed to the slot will be rendered inside the desired element. In this case we search in the wrapper for the element with the selector `.sw-alert__message` and check if the text is there:
 
 ```javascript
-    it('should render the message inside the default slot', () => {
-        const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
-            slots: {
-                default: 'My custom message'
-            }
-        });
-        expect(wrapper.find('.sw-alert__message').text()).toBe('My custom message');
-    });
+it('should render the message inside the default slot', () => {
+  const wrapper = shallowMount(Shopware.Component.build('sw-alert'), {
+    slots: {
+      default: 'My custom message'
+    }
+  });
+  expect(wrapper.find('.sw-alert__message').text()).toBe('My custom message');
+});
 ```
 
 ## Stubbing your component
@@ -423,11 +423,11 @@ Example:
 
 ```javascript
 it('should render with ACL rights', async () => {
-    // set ACL privileges
-    global.activeAclRoles = ['product.editor'];
+  // set ACL privileges
+  global.activeAclRoles = ['product.editor'];
 
-    const wrapper = await createWrapper();
-    expect(wrapper.vm).toBeTruthy();
+  const wrapper = await createWrapper();
+  expect(wrapper.vm).toBeTruthy();
 });
 ```
 
@@ -439,11 +439,11 @@ Example:
 
 ```javascript
 it('should render with active feature flag', async () => {
-    // set feature flag
-    global.activeFeatureFlags = ['FEATURE_NEXT_12345'];
+  // set feature flag
+  global.activeFeatureFlags = ['FEATURE_NEXT_12345'];
 
-    const wrapper = await createWrapper();
-    expect(wrapper.vm).toBeTruthy();
+  const wrapper = await createWrapper();
+  expect(wrapper.vm).toBeTruthy();
 });
 ```
 
@@ -463,19 +463,19 @@ Every time the repository factory requests something from a URL, you get a notif
 const responses = global.repositoryFactoryMock.responses;
 
 responses.addResponse({
-    method: 'Post',
-    url: '/search/product',
-    status: 200,
-    response: {
-        data: [
-            {
-                id: YourId,
-                attributes: {
-                    id: YourId
-                }
-            }
-        ]
-    }
+  method: 'Post',
+  url: '/search/product',
+  status: 200,
+  response: {
+    data: [
+      {
+        id: YourId,
+        attributes: {
+          id: YourId
+        }
+      }
+    ]
+  }
 });
 
 /*
@@ -515,9 +515,9 @@ If you want to override one mock then you can do it in the `mount` method:
 
 ```javascript
 mount('dummy-component', {
-    mocks: {
-        $tc: (...args) => JSON.stringify([...args])
-    }
+  mocks: {
+    $tc: (...args) => JSON.stringify([...args])
+  }
 })
 ```
 
@@ -531,9 +531,9 @@ The solution is using mocks while mounting your component. In this case, your mo
 
 ```javascript
 shallowMount(Shopware.Component.build('your-component'), {
-    mocks: {
-        hasError: () => false // your mock (here a simple function returning the value "true")
-    }
+  mocks: {
+    hasError: () => false // your mock (here a simple function returning the value "true")
+  }
 });
 ```
 
@@ -552,7 +552,7 @@ const localVue = createLocalVue();
 localVue.directive('clipboard', {}); // add directive mock to localVue
 
 shallowMount(Shopware.Component.build('your-component'), {
-    localVue
+  localVue
 });
 ```
 
@@ -574,7 +574,7 @@ Please note that the mediaService has a `renameMedia` method. So in order to stu
 
 ```javascript
 mediaService: {
-    renameMedia: () => Promise.resolve()
+  renameMedia: () => Promise.resolve()
 }
 ```
 

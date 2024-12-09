@@ -50,7 +50,7 @@ This method expects a name, and a configuration for the component you want to ov
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js
 Component.override('sw-settings-rule-detail-assignments', {
-    // override configuration here
+  // override configuration here
 });
 ```
 
@@ -63,13 +63,13 @@ Because of this, you have to override this computed property, get the computed p
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-settings-rule/extension/sw-settings-rule-detail-assignments/index.js
 Component.override('sw-settings-rule-detail-assignments', {
-    computed: {
-        associationEntitiesConfig() {
-            const associationEntitiesConfig = this.$super('associationEntitiesConfig');
-            associationEntitiesConfig.push(/* insert your configuration here */);
-            return associationEntitiesConfig;
-        },
-    }
+  computed: {
+    associationEntitiesConfig() {
+      const associationEntitiesConfig = this.$super('associationEntitiesConfig');
+      associationEntitiesConfig.push(/* insert your configuration here */);
+      return associationEntitiesConfig;
+    },
+  }
 });
 ```
 
@@ -82,70 +82,70 @@ Just have a look onto one example configuration item of the `Dynamic Access` plu
 // Example of a configuration item
 getRuleAssignmentConfig()
 {
-    return [
+  return [
+    {
+      id: 'swagDynamicAccessProducts',
+      notAssignedDataTotal: 0,
+      entityName: 'product',
+      label: 'swag-dynamic-access.sw-settings-rule.detail.associations.productVisibility',
+      criteria: () => {
+        const criteria = new Criteria();
+        criteria.setLimit(this.associationLimit);
+        criteria.addFilter(Criteria.equals('swagDynamicAccessRules.id', this.rule.id));
+        criteria.addAssociation('options.group');
+        criteria.addAssociation('swagDynamicAccessRules');
+
+        return criteria;
+      },
+      api: () => {
+        const api = Object.assign({}, Context.api);
+        api.inheritance = true;
+
+        return api;
+      },
+      detailRoute: 'sw.product.detail.base',
+      gridColumns: [
         {
-            id: 'swagDynamicAccessProducts',
-            notAssignedDataTotal: 0,
-            entityName: 'product',
-            label: 'swag-dynamic-access.sw-settings-rule.detail.associations.productVisibility',
-            criteria: () => {
-                const criteria = new Criteria();
-                criteria.setLimit(this.associationLimit);
-                criteria.addFilter(Criteria.equals('swagDynamicAccessRules.id', this.rule.id));
-                criteria.addAssociation('options.group');
-                criteria.addAssociation('swagDynamicAccessRules');
-
-                return criteria;
-            },
-            api: () => {
-                const api = Object.assign({}, Context.api);
-                api.inheritance = true;
-
-                return api;
-            },
-            detailRoute: 'sw.product.detail.base',
-            gridColumns: [
-                {
-                    property: 'name',
-                    label: 'Name',
-                    rawData: true,
-                    sortable: true,
-                    routerLink: 'sw.product.detail.prices',
-                    allowEdit: false,
-                },
-            ],
-            deleteContext: {
-                type: 'many-to-many',
-                entity: 'product',
-                column: 'extensions.swagDynamicAccessRules',
-            },
-            addContext: {
-                type: 'many-to-many',
-                entity: 'swag_dynamic_access_product_rule',
-                column: 'productId',
-                searchColumn: 'name',
-                criteria: () => {
-                    const criteria = new Criteria();
-                    criteria.addFilter(
-                            Criteria.not('AND', [Criteria.equals('swagDynamicAccessRules.id', this.rule.id)]),
-                    );
-                    criteria.addAssociation('options.group');
-
-                    return criteria;
-                },
-                gridColumns: [
-                    {
-                        property: 'name',
-                        label: 'Name',
-                        rawData: true,
-                        sortable: true,
-                        allowEdit: false,
-                    },
-                    // ...
-                ],
-            },
+          property: 'name',
+          label: 'Name',
+          rawData: true,
+          sortable: true,
+          routerLink: 'sw.product.detail.prices',
+          allowEdit: false,
         },
-    ];
+      ],
+      deleteContext: {
+        type: 'many-to-many',
+        entity: 'product',
+        column: 'extensions.swagDynamicAccessRules',
+      },
+      addContext: {
+        type: 'many-to-many',
+        entity: 'swag_dynamic_access_product_rule',
+        column: 'productId',
+        searchColumn: 'name',
+        criteria: () => {
+          const criteria = new Criteria();
+          criteria.addFilter(
+            Criteria.not('AND', [Criteria.equals('swagDynamicAccessRules.id', this.rule.id)]),
+          );
+          criteria.addAssociation('options.group');
+
+          return criteria;
+        },
+        gridColumns: [
+          {
+            property: 'name',
+            label: 'Name',
+            rawData: true,
+            sortable: true,
+            allowEdit: false,
+          },
+          // ...
+        ],
+      },
+    },
+  ];
 }
 ```
 
@@ -162,23 +162,23 @@ Let's go through the most important entries, how to configure your rule assignme
 If you want to provide to delete an assignment, you have to define the `deleteContext`. There are two types of the `deleteContext`.
 The first one is the `one-to-many` type, which link to a column of the assignment entity like this:
 
-```js
+```javascript
 // Example of a one-to-many deleteContext
 deleteContext: {
-    type: 'one-to-many',
-    entity: 'cms_block',
-    column: 'extensions.swagCmsExtensionsBlockRule.visibilityRuleId',
+  type: 'one-to-many',
+  entity: 'cms_block',
+  column: 'extensions.swagCmsExtensionsBlockRule.visibilityRuleId',
 },
 ```
 
 The other type is `many-to-many`, which has to link to the `ManyToManyAssociationField` of the extension like this:
 
-```js
+```javascript
 // Example of a many-to-many deleteContext
 deleteContext: {
-    type: 'many-to-many',
-    entity: 'category',
-    column: 'extensions.swagDynamicAccessRules',
+  type: 'many-to-many',
+  entity: 'category',
+  column: 'extensions.swagDynamicAccessRules',
 },
 ```
 
@@ -187,52 +187,52 @@ deleteContext: {
 If you want to provide to add an assignment, you have to define the `addContext`. This context has the same two types as the `deleteContext` (see above),
 but the `addContext` has more options to fill out, because an add assignment modal has to be configured:
 
-```js
+```javascript
 // Example of a one-to-many addContext
 addContext: {
-    type: 'one-to-many',
-    entity: 'shipping_method',
-    column: 'availabilityRuleId',
-    searchColumn: 'name',
-    criteria: () => {
-        const criteria = new Criteria();
-        criteria.addFilter(Criteria.not(
-            'AND',
-            [Criteria.equals('availabilityRuleId', ruleId)],
-        ));
+  type: 'one-to-many',
+  entity: 'shipping_method',
+  column: 'availabilityRuleId',
+  searchColumn: 'name',
+  criteria: () => {
+    const criteria = new Criteria();
+    criteria.addFilter(Criteria.not(
+      'AND',
+      [Criteria.equals('availabilityRuleId', ruleId)],
+    ));
 
-        return criteria;
+    return criteria;
+  },
+  gridColumns: [
+    {
+      property: 'name',
+      label: 'Name',
+      rawData: true,
+      sortable: true,
+      allowEdit: false,
     },
-    gridColumns: [
-        {
-            property: 'name',
-            label: 'Name',
-            rawData: true,
-            sortable: true,
-            allowEdit: false,
-        },
-        {
-            property: 'description',
-            label: 'Description',
-            rawData: true,
-            sortable: true,
-            allowEdit: false,
-        },
-        {
-            property: 'taxType',
-            label: 'Tax calculation',
-            rawData: true,
-            sortable: true,
-            allowEdit: false,
-        },
-        {
-            property: 'active',
-            label: 'Active',
-            rawData: true,
-            sortable: true,
-            allowEdit: false,
-        },
-    ],
+    {
+      property: 'description',
+      label: 'Description',
+      rawData: true,
+      sortable: true,
+      allowEdit: false,
+    },
+    {
+      property: 'taxType',
+      label: 'Tax calculation',
+      rawData: true,
+      sortable: true,
+      allowEdit: false,
+    },
+    {
+      property: 'active',
+      label: 'Active',
+      rawData: true,
+      sortable: true,
+      allowEdit: false,
+    },
+  ],
 },
 ```
 
@@ -241,23 +241,23 @@ Also, the context needs the `column` of the assignment and the `searchColumn` of
 
 A context of the `many-to-many` type would look like this:
 
-```js
+```javascript
 // Example of a many-to-many addContext
 addContext: {
-    type: 'many-to-many',
-    entity: 'swag_dynamic_access_category_rule',
-    column: 'categoryId',
-    searchColumn: 'name',
-    association: 'swagDynamicAccessRules',
-    criteria: () => {
-        const criteria = new Criteria();
-        criteria.addFilter(Criteria.equals('parentId', null));
+  type: 'many-to-many',
+  entity: 'swag_dynamic_access_category_rule',
+  column: 'categoryId',
+  searchColumn: 'name',
+  association: 'swagDynamicAccessRules',
+  criteria: () => {
+    const criteria = new Criteria();
+    criteria.addFilter(Criteria.equals('parentId', null));
 
-        return criteria;
-    },
-    gridColumns: [
-        // Definition of columns
-    ],
+    return criteria;
+  },
+  gridColumns: [
+    // Definition of columns
+  ],
 },
 ```
 

@@ -11,7 +11,7 @@ The ContextResolver helps you to validate the Request, resolve the Shop and prov
 
 ## Usage
 
-```js
+```javascript
 import { AppServer } from '@shopware-ag/app-server-sdk'
 
 const app = new AppServer(/** ... */);

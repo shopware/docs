@@ -73,7 +73,7 @@ Translation without placeholders:
 
 ```twig
 <div class="product-detail-headline">
-    {{ 'header.example' | trans }}
+  {{ 'header.example' | trans }}
 </div>
 ```
 
@@ -81,7 +81,7 @@ Translation with placeholders:
 
 ```twig
 <div class="product-detail-headline">
-    {{ 'soldProducts' | trans({'%count%': 3, '%country%': 'Germany'}) }}
+  {{ 'soldProducts' | trans({'%count%': 3, '%country%': 'Germany'}) }}
 </div>
 ```
 
@@ -111,7 +111,7 @@ which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
 ```xml
 <service id="Swag\Example\Service\SwagService" public="true" >
-    <argument type="service" id="translator" />
+  <argument type="service" id="translator" />
 </service>
 ```
 
@@ -120,7 +120,7 @@ private TranslatorInterface $translator;
 
 public function __construct(TranslatorInterface $translator)
 {
-    $this->translator = $translator;
+  $this->translator = $translator;
 }
 ```
 

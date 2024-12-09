@@ -39,27 +39,27 @@ use Symfony\Component\Mime\Email;
 
 class AddDataToMails extends AbstractMailService
 {
-    /**
-     * @var AbstractMailService
-     */
-    private AbstractMailService $mailService;
+  /**
+   * @var AbstractMailService
+   */
+  private AbstractMailService $mailService;
 
-    public function __construct(AbstractMailService $mailService)
-    {
-        $this->mailService = $mailService;
-    }
+  public function __construct(AbstractMailService $mailService)
+  {
+    $this->mailService = $mailService;
+  }
 
-    public function getDecorated(): AbstractMailService
-    {
-        return $this->mailService;
-    }
+  public function getDecorated(): AbstractMailService
+  {
+    return $this->mailService;
+  }
 
-    public function send(array $data, Context $context, array $templateData = []): ?Email
-    {
-        $templateData['myCustomData'] = 'Example data';
+  public function send(array $data, Context $context, array $templateData = []): ?Email
+  {
+    $templateData['myCustomData'] = 'Example data';
 
-        return $this->mailService->send($data, $context, $templateData);
-    }
+    return $this->mailService->send($data, $context, $templateData);
+  }
 }
 ```
 
@@ -78,16 +78,17 @@ Of course you still have to register the decoration to the service container. Be
 Here's the respective example `services.xml`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\AddDataToMails" decorates="Shopware\Core\Content\Mail\Service\MailService">
-            <argument type="service" id="Swag\BasicExample\Service\AddDataToMails.inner" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\AddDataToMails"
+      decorates="Shopware\Core\Content\Mail\Service\MailService">
+      <argument type="service" id="Swag\BasicExample\Service\AddDataToMails.inner" />
+    </service>
+  </services>
 </container>
 ```

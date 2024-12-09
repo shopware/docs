@@ -28,18 +28,18 @@ Let's get started with an example how to inject a service. This example will be 
 Here's our example `services.xml`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ExampleService">
+      <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -58,16 +58,16 @@ use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class ExampleService
 {
-    private SystemConfigService $systemConfigService;
+  private SystemConfigService $systemConfigService;
 
-    public function __construct(SystemConfigService $systemConfigService)
-    {
-        $this->systemConfigService = $systemConfigService;
-    }
+  public function __construct(SystemConfigService $systemConfigService)
+  {
+    $this->systemConfigService = $systemConfigService;
+  }
 
-    public function getShopname(SalesChannelContext $context): string
-    {
-        return $this->systemConfigService->getString('core.basicInformation.shopName', $context->getSalesChannel()->getId());
-    }
+  public function getShopname(SalesChannelContext $context): string
+  {
+    return $this->systemConfigService->getString('core.basicInformation.shopName', $context->getSalesChannel()->getId());
+  }
 }
 ```

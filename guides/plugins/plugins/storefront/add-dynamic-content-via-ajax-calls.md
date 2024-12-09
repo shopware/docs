@@ -34,11 +34,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['XmlHttpRequest' => 'true'])]
-    public function showExample(): JsonResponse
-    {
-        return new JsonResponse(['timestamp' => (new \DateTime())->format(\DateTimeInterface::W3C)]);
-    }
+  #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['XmlHttpRequest' => 'true'])]
+  public function showExample(): JsonResponse
+  {
+    return new JsonResponse(['timestamp' => (new \DateTime())->format(\DateTimeInterface::W3C)]);
+  }
 }
 ```
 
@@ -47,35 +47,34 @@ As you might have seen this controller isn't too different from the controller u
 The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyways:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="SwagBasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <call method="setTwig">
-              <argument type="service" id="twig"/>
-            </call>
-        </service>
-    </services>
+  <services>
+    <service id="SwagBasicExample\Storefront\Controller\ExampleController" public="true">
+      <call method="setContainer">
+        <argument type="service" id="service_container" />
+      </call>
+      <call method="setTwig">
+        <argument type="service" id="twig" />
+      </call>
+    </service>
+  </services>
 </container>
 ```
 
 ```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <plugin root>/src/Resources/config/routes.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
+  <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
 </routes>
 ```
 
@@ -90,23 +89,23 @@ Again this is built upon the [adding custom Javascript](add-custom-javascript) a
 const { PluginBaseClass } = window;
 
 export default class AjaxLoadPlugin extends PluginBaseClass {
-    init() {
-        this.button = this.el.children['ajax-button'];
-        this.textdiv = this.el.children['ajax-display'];
+  init() {
+    this.button = this.el.children['ajax-button'];
+    this.textdiv = this.el.children['ajax-display'];
 
-        this._registerEvents();
-    }
+    this._registerEvents();
+  }
 
-    _registerEvents() {
-        // fetch the timestamp, when the button is clicked
-        this.button.onclick = this._fetch.bind(this);
-    }
+  _registerEvents() {
+    // fetch the timestamp, when the button is clicked
+    this.button.onclick = this._fetch.bind(this);
+  }
 
-    async _fetch() {
-        const response = await fetch('/example');
-        const data = await response.json();
-        this.textdiv.innerHTML = data.timestamp;
-    }
+  async _fetch() {
+    const response = await fetch('/example');
+    const data = await response.json();
+    this.textdiv.innerHTML = data.timestamp;
+  }
 }
 ```
 
@@ -123,18 +122,18 @@ window.PluginManager.register('AjaxLoadPlugin', AjaxLoadPlugin, '[data-ajax-help
 The only thing that is now left, is to provide a template for the Storefront plugin to hook into:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/index.html.twig #}
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block cms_content %}
-    <div>
-        <h1>Swag AJAX Example</h1>
+  <div>
+    <h1>Swag AJAX Example</h1>
 
-        <div data-ajax-helper>
-            <div id="ajax-display"></div>
-            <button id="ajax-button">Button</button>
-        </div>
+    <div data-ajax-helper>
+      <div id="ajax-display"></div>
+      <button id="ajax-button">Button</button>
     </div>
+  </div>
 {% endblock %}
 ```
 

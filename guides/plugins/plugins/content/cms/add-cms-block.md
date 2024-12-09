@@ -86,22 +86,22 @@ Go ahead and create this configuration object yourself. Here's what it should lo
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'my-image-text-reversed',
-    category: 'text-image',
-    label: 'My Image Text Block!',
-    component: 'sw-cms-block-my-image-text-reversed',
-    previewComponent: 'sw-cms-preview-my-image-text-reversed',
-    defaultConfig: {
-        marginBottom: '20px',
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        sizingMode: 'boxed'
-    },
-    slots: {
-        left: 'text',
-        right: 'image'
-    }
+  name: 'my-image-text-reversed',
+  category: 'text-image',
+  label: 'My Image Text Block!',
+  component: 'sw-cms-block-my-image-text-reversed',
+  previewComponent: 'sw-cms-preview-my-image-text-reversed',
+  defaultConfig: {
+    marginBottom: '20px',
+    marginTop: '20px',
+    marginLeft: '20px',
+    marginRight: '20px',
+    sizingMode: 'boxed'
+  },
+  slots: {
+    left: 'text',
+    right: 'image'
+  }
 });
 ```
 
@@ -121,7 +121,7 @@ import template from './sw-cms-block-my-image-text-reversed.html.twig';
 import './sw-cms-block-my-image-text-reversed.scss';
 
 Shopware.Component.register('sw-cms-block-my-image-text-reversed', {
-    template
+  template
 });
 ```
 
@@ -130,12 +130,12 @@ Just like most components, it has a custom template and also some styles. Focus 
 This template now has to define the basic structure of your custom block. In this simple case, you only need a parent container and two sub-elements, whatever those are. That's also were the slots come into play: You've used two slots in your block's configuration, `left` and `right`. Make sure to create those slots in the template as well now.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.html.twig
+{# <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.html.twig #}
 {% block sw_cms_block_my_image_text_reversed %}
-    <div class="sw-cms-block-my-image-text-reversed">
-        <slot name="left">{% block sw_cms_block_my_image_text_reversed_slot_left %}{% endblock %}</slot>
-        <slot name="right">{% block sw_cms_block_my_image_text_reversed_slot_right %}{% endblock %}</slot>
-    </div>
+  <div class="sw-cms-block-my-image-text-reversed">
+    <slot name="left">{% block sw_cms_block_my_image_text_reversed_slot_left %}{% endblock %}</slot>
+    <slot name="right">{% block sw_cms_block_my_image_text_reversed_slot_right %}{% endblock %}</slot>
+  </div>
 {% endblock %}
 ```
 
@@ -161,7 +161,7 @@ That's it for this component! Make sure to import your `component` directory in 
 import './component'; // <- Right here!
 
 Shopware.Service('cmsService').registerCmsBlock({
-    ...
+  // ...
 });
 ```
 
@@ -177,33 +177,33 @@ import template from './sw-cms-preview-my-image-text-reversed.html.twig';
 import './sw-cms-preview-my-image-text-reversed.scss';
 
 Shopware.Component.register('sw-cms-preview-my-image-text-reversed', {
-    template
+  template
 });
 ```
 
 The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-my-image-text-reversed.html.twig` file in your `preview` directory with the following content.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.html.twig
+{# <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.html.twig #}
 {% block sw_cms_block_my_image_text_reversed_preview %}
-    <div class="sw-cms-preview-my-image-text-reversed">
-        <div>
-            <h2>Lorem ipsum dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-        </div>
-        <img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')">
+  <div class="sw-cms-preview-my-image-text-reversed">
+    <div>
+      <h2>Lorem ipsum dolor</h2>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
     </div>
+    <img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')">
+  </div>
 {% endblock %}
 ```
 
 Also, you need to create a computed component to access the asset filter in your template.
 
-```js
+```javascript
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/index.js
 computed: {
-    assetFilter() {
-        return Shopware.Filter.getByName('asset');
-    },
+  assetFilter() {
+    return Shopware.Filter.getByName('asset');
+  },
 }
 ```
 
@@ -231,22 +231,22 @@ import './component';
 import './preview';
 
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'my-image-text-reversed',
-    category: 'text-image',
-    label: 'My Image Text Block!',
-    component: 'sw-cms-block-my-image-text-reversed',
-    previewComponent: 'sw-cms-preview-my-image-text-reversed',
-    defaultConfig: {
-        marginBottom: '20px',
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        sizingMode: 'boxed'
-    },
-    slots: {
-        left: 'text',
-        right: 'image'
-    }
+  name: 'my-image-text-reversed',
+  category: 'text-image',
+  label: 'My Image Text Block!',
+  component: 'sw-cms-block-my-image-text-reversed',
+  previewComponent: 'sw-cms-preview-my-image-text-reversed',
+  defaultConfig: {
+    marginBottom: '20px',
+    marginTop: '20px',
+    marginLeft: '20px',
+    marginRight: '20px',
+    sizingMode: 'boxed'
+  },
+  slots: {
+    left: 'text',
+    right: 'image'
+  }
 });
 ```
 
@@ -290,7 +290,7 @@ Example : `cms-block-my-image-text-reversed.html.twig`.
 Since the [original 'image\_text' file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig
+{# <plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig #}
 {% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
 ```
 

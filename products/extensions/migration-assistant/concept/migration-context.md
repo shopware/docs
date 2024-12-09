@@ -28,51 +28,51 @@ use SwagMigrationAssistant\Migration\Profile\ProfileInterface;
 
 class MigrationContext extends Struct implements MigrationContextInterface
 {
-    /* ... */
+  /* ... */
 
-    public function getProfile(): ProfileInterface
-    {
-        return $this->profile;
-    }
+  public function getProfile(): ProfileInterface
+  {
+    return $this->profile;
+  }
 
-    public function getConnection(): ?SwagMigrationConnectionEntity
-    {
-        return $this->connection;
-    }
+  public function getConnection(): ?SwagMigrationConnectionEntity
+  {
+    return $this->connection;
+  }
 
-    public function getRunUuid(): string
-    {
-        return $this->runUuid;
-    }
+  public function getRunUuid(): string
+  {
+    return $this->runUuid;
+  }
 
-    public function getDataSet(): ?DataSet
-    {
-        return $this->dataSet;
-    }
+  public function getDataSet(): ?DataSet
+  {
+    return $this->dataSet;
+  }
 
-    public function setDataSet(DataSet $dataSet): void
-    {
-        $this->dataSet = $dataSet;
-    }
+  public function setDataSet(DataSet $dataSet): void
+  {
+    $this->dataSet = $dataSet;
+  }
 
-    public function getOffset(): int
-    {
-        return $this->offset;
-    }
+  public function getOffset(): int
+  {
+    return $this->offset;
+  }
 
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
+  public function getLimit(): int
+  {
+    return $this->limit;
+  }
 
-    public function getGateway(): GatewayInterface
-    {
-        return $this->gateway;
-    }
+  public function getGateway(): GatewayInterface
+  {
+    return $this->gateway;
+  }
 
-    public function setGateway(GatewayInterface $gateway): void
-    {
-        $this->gateway = $gateway;
-    }
+  public function setGateway(GatewayInterface $gateway): void
+  {
+    $this->gateway = $gateway;
+  }
 }
 ```

@@ -15,15 +15,15 @@ All routes that need access rights need to be stored in the database. The B2B Su
 
 ```php
 $myAclConfig =  [
-    'contingentgroup' => //resource name
+  'contingentgroup' => //resource name
+  [
+    'B2bContingentGroup' => // controller name
     [
-        'B2bContingentGroup' => // controller name
-        [
-            'index' => 'list', // action name => privilege name
-            [...]
-            'detail' => 'detail',
-        ],
+      'index' => 'list', // action name => privilege name
+      // [...]
+      'detail' => 'detail',
     ],
+  ],
 ];
 ```
 
@@ -31,7 +31,7 @@ This configuration array can then be synced to the database by using this servic
 
 ```php
 Shopware\B2B\AclRoute\Framework\AclRoutingUpdateService::create()
-    ->addConfig($myAclConfig);
+  ->addConfig($myAclConfig);
 ```
 
 This way, you can easily create and store the resources. Of course, to show a nice frontend, you must also provide snippets for translation. The snippets get automatically created from resource and privilege names and are prefixed with `_acl_`. So the resource `contingentgroup` needs a translation named `_acl_contingentgroup`.
@@ -71,14 +71,14 @@ The generated file looks like this:
 
 ```php
 'NOT_MAPPED' => //resource name
-      array(
-          'B2bContingentGroup' => // controller name
-              array(
-                  'index' => 'NOT_MAPPED', // action name => privilege name
-                  [...]
-                  'detail' => 'NOT_MAPPED',
-              ),
-      ),
+  array(
+  'B2bContingentGroup' => // controller name
+    array(
+      'index' => 'NOT_MAPPED', // action name => privilege name
+      // [...]
+      'detail' => 'NOT_MAPPED',
+    ),
+  ),
 ```
 
 If you spot a privilege or resource that is called `NOT_MAPPED`,

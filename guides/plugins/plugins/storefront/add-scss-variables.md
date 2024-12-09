@@ -44,11 +44,11 @@ The new tag is `<css>` and takes the name of the scss variable as its value.
 
 ```xml
 <input-field>
-    <name>sassPluginHeaderBgColor</name>
-    <label>Header backgroundcolor</label>
-    <label lang="de-DE">Kopfzeile Hintergrundfarbe</label>
-    <css>sass-plugin-header-bg-color</css>
-    <defaultValue>#eee</defaultValue>
+  <name>sassPluginHeaderBgColor</name>
+  <label>Header backgroundcolor</label>
+  <label lang="de-DE">Kopfzeile Hintergrundfarbe</label>
+  <css>sass-plugin-header-bg-color</css>
+  <defaultValue>#eee</defaultValue>
 </input-field>
 ```
 

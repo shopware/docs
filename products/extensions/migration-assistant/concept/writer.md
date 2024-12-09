@@ -11,12 +11,12 @@ The `Writer` objects will get the converted data from the `swag_migration_data` 
 
 When creating a writer, register it in a manner resembling the following:
 
-```html
+```xml
 <service id="SwagMigrationAssistant\Migration\Writer\ProductWriter"
-         parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
-    <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>
-    <argument type="service" id="Shopware\Core\Content\Product\ProductDefinition"/>
-    <tag name="shopware.migration.writer"/>
+  parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
+  <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter" />
+  <argument type="service" id="Shopware\Core\Content\Product\ProductDefinition" />
+  <tag name="shopware.migration.writer" />
 </service>
 ```
 
@@ -31,10 +31,10 @@ use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 
 class ProductWriter extends AbstractWriter
 {
-    public function supports(): string
-    {
-        return DefaultEntities::PRODUCT;
-    }
+  public function supports(): string
+  {
+    return DefaultEntities::PRODUCT;
+  }
 }
 ```
 

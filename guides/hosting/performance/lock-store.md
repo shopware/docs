@@ -17,7 +17,7 @@ To use Redis, create a `config/packages/lock.yaml` file with the following conte
 
 ```yaml
 framework:
-    lock: 'redis://host:port'
+  lock: 'redis://host:port'
 ```
 
 ## Other lock stores

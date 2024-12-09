@@ -15,7 +15,7 @@ To add a custom rule, following this document [Add custom rule](../../../../../g
 
 Example:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;
@@ -28,58 +28,58 @@ use Shopware\Core\Framework\Rule\RuleScope;
 
 class CartAmountRule extends Rule
 {
-    final public const RULE_NAME = 'totalCartAmount';
+  final public const RULE_NAME = 'totalCartAmount';
 
-    public const AMOUNT = 1000;
+  public const AMOUNT = 1000;
 
-    protected float $amount;
+  protected float $amount;
 
-    /**
-     * @internal
-     */
-    public function __construct(
-        protected string $operator = self::OPERATOR_GTE,
-        ?float $amount = self::AMOUNT
-    ) {
-        parent::__construct();
-        $this->amount = (float) $amount;
+  /**
+   * @internal
+   */
+  public function __construct(
+    protected string $operator = self::OPERATOR_GTE,
+    ?float $amount = self::AMOUNT
+  ) {
+    parent::__construct();
+    $this->amount = (float) $amount;
+  }
+
+  /**
+   * @throws UnsupportedOperatorException
+   */
+  public function match(RuleScope $scope): bool
+  {
+    if (!$scope instanceof CartRuleScope) {
+      return false;
     }
 
-    /**
-     * @throws UnsupportedOperatorException
-     */
-    public function match(RuleScope $scope): bool
-    {
-        if (!$scope instanceof CartRuleScope) {
-            return false;
-        }
+    return RuleComparison::numeric($scope->getCart()->getPrice()->getTotalPrice(), $this->amount, $this->operator);
+  }
 
-        return RuleComparison::numeric($scope->getCart()->getPrice()->getTotalPrice(), $this->amount, $this->operator);
-    }
+  public function getConstraints(): array
+  {
+    return [
+      'amount' => RuleConstraints::float(),
+      'operator' => RuleConstraints::numericOperators(false),
+    ];
+  }
 
-    public function getConstraints(): array
-    {
-        return [
-            'amount' => RuleConstraints::float(),
-            'operator' => RuleConstraints::numericOperators(false),
-        ];
-    }
-
-    public function getConfig(): RuleConfig
-    {
-        return (new RuleConfig())
-            ->operatorSet(RuleConfig::OPERATOR_SET_NUMBER)
-            ->numberField('amount');
-    }
+  public function getConfig(): RuleConfig
+  {
+    return (new RuleConfig())
+      ->operatorSet(RuleConfig::OPERATOR_SET_NUMBER)
+      ->numberField('amount');
+  }
 }
 ```
 
 Then, we have to register it in our `services.xml` and tag it as `shopware.approval_rule.definition`
 
 ```xml
- <service id="YourPluginNameSpace\CartAmountRule" public="true">
-    <tag name="shopware.approval_rule.definition"/>
- </service>
+<service id="YourPluginNameSpace\CartAmountRule" public="true">
+  <tag name="shopware.approval_rule.definition" />
+</service>
 ```
 
 ## App
@@ -135,9 +135,9 @@ This is how the custom condition appears on the Approval Rule detail page, the `
 Script logic is similar to [Add custom rule conditions](../../../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md). Let's continue with our example by creating a script file that compares the current shopping cart's total price with the pre-established value in the approval rule.
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.cart is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.cart.price.totalPrice, amount) %}
@@ -154,36 +154,36 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ![App Approval Rule Condition Text](../../../../../assets/approval-rule-condition-text-field-example.png)
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>cart_tax_status_rule_script</identifier>
-    <name>Customer's first name</name>
-    <group>customer</group>
-    <script>/approval-rule-conditions/custom-condition.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <options>
-                <option value="=">
-                    <name>Is equal to</name>
-                </option>
-                <option value="!=">
-                    <name>Is not equal to</name>
-                </option>
-            </options>
-        </single-select>
-        <text name="firstName">
-            <placeholder>Enter customer's first name</placeholder>
-        </text>
-    </constraints>
+  <identifier>cart_tax_status_rule_script</identifier>
+  <name>Customer's first name</name>
+  <group>customer</group>
+  <script>/approval-rule-conditions/custom-condition.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <options>
+        <option value="=">
+          <name>Is equal to</name>
+        </option>
+        <option value="!=">
+          <name>Is not equal to</name>
+        </option>
+      </options>
+    </single-select>
+    <text name="firstName">
+      <placeholder>Enter customer's first name</placeholder>
+    </text>
+  </constraints>
 </rule-condition>
 <!-- ... -->
 ```
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.salesChannelContext.customer is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.salesChannelContext.customer.firstName, firstName) %}
@@ -194,43 +194,43 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ![App Approval Rule Condition Single Select](../../../../../assets/approval-rule-condition-single-select-example.png)
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>cart_tax_status_rule_script</identifier>
-    <name>Cart tax status</name>
-    <group>cart</group>
-    <script>/approval-rule-conditions/custom-condition.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <options>
-                <option value="=">
-                    <name>Is equal to</name>
-                </option>
-                <option value="!=">
-                    <name>Is not equal to</name>
-                </option>
-            </options>
-        </single-select>
-        <single-select name="taxStatus">
-            <options>
-                <option value="net">
-                    <name>Net</name>
-                </option>
-                <option value="gross">
-                    <name>Gross</name>
-                </option>
-            </options>
-        </single-select>
-    </constraints>
+  <identifier>cart_tax_status_rule_script</identifier>
+  <name>Cart tax status</name>
+  <group>cart</group>
+  <script>/approval-rule-conditions/custom-condition.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <options>
+        <option value="=">
+          <name>Is equal to</name>
+        </option>
+        <option value="!=">
+          <name>Is not equal to</name>
+        </option>
+      </options>
+    </single-select>
+    <single-select name="taxStatus">
+      <options>
+        <option value="net">
+          <name>Net</name>
+        </option>
+        <option value="gross">
+          <name>Gross</name>
+        </option>
+      </options>
+    </single-select>
+  </constraints>
 </rule-condition>
 <!-- ... -->
 ```
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.cart is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.cart.price.taxStatus, taxStatus) %}
@@ -241,48 +241,48 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ![App Approval Rule Condition Multi Select](../../../../../assets/approval-rule-condition-multi-select-example.png)
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>cart_currency_rule_script</identifier>
-    <name>Cart currency</name>
-    <group>cart</group>
-    <script>/approval-rule-conditions/cart-currency.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <options>
-                <option value="=">
-                    <name>Is one of</name>
-                </option>
-                <option value="!=">
-                    <name>Is none of</name>
-                </option>
-            </options>
-             <required>true</required>
-        </single-select>
-        <multi-select name="isoCode">
-            <options>
-                <option value="EUR">
-                    <name>Euro</name>
-                </option>
-                <option value="USD">
-                    <name>US-Dollar</name>
-                </option>
-                <option value="GBP">
-                    <name>Pound</name>
-                </option>
-            </options>
-            <required>true</required>
-        </multi-select>
-    </constraints>
- </rule-condition>
+  <identifier>cart_currency_rule_script</identifier>
+  <name>Cart currency</name>
+  <group>cart</group>
+  <script>/approval-rule-conditions/cart-currency.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <options>
+        <option value="=">
+          <name>Is one of</name>
+        </option>
+        <option value="!=">
+          <name>Is none of</name>
+        </option>
+      </options>
+      <required>true</required>
+    </single-select>
+    <multi-select name="isoCode">
+      <options>
+        <option value="EUR">
+          <name>Euro</name>
+        </option>
+        <option value="USD">
+          <name>US-Dollar</name>
+        </option>
+        <option value="GBP">
+          <name>Pound</name>
+        </option>
+      </options>
+      <required>true</required>
+    </multi-select>
+  </constraints>
+</rule-condition>
 <!-- ... -->
 ```
 
 ```twig
-// Resources/scripts/approval-rule-conditions/custom-condition.twig
+{# Resources/scripts/approval-rule-conditions/custom-condition.twig #}
 {% if scope.salesChannelContext.currency is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 {% return compare(operator, scope.salesChannelContext.currency.isoCode, isoCode) %}
 ```

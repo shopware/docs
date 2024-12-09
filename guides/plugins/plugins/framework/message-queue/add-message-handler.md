@@ -37,10 +37,10 @@ use Swag\BasicExample\MessageQueue\Message\SmsNotification;
 #[AsMessageHandler]
 class SmsHandler
 {
-    public function __invoke(SmsNotification $message)
-    {
-        // ... do some work - like sending an SMS message!
-    }
+  public function __invoke(SmsNotification $message)
+  {
+    // ... do some work - like sending an SMS message!
+  }
 }
 ```
 

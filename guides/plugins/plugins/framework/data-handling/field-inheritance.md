@@ -50,28 +50,26 @@ use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1615363012AddInheritanceColumnToExample extends MigrationStep
 {
-    use InheritanceUpdaterTrait;
+  use InheritanceUpdaterTrait;
 
-    public function getCreationTimestamp(): int
-    {
-        return 1615363012;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1615363012;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $query = <<<SQL
-            ALTER TABLE `swag_example` 
-                ADD `parent_id` BINARY(16) NULL,
-                MODIFY `description` VARCHAR(255) NULL;
-        SQL;
-        
-        $connection->executeStatement($query);
-        $this->updateInheritance($connection, 'swag_example', 'example_field');
-    }
+  public function update(Connection $connection): void
+  {
+    $query = <<<SQL
+ALTER TABLE `swag_example` 
+ADD `parent_id` BINARY(16) NULL,
+MODIFY `description` VARCHAR(255) NULL;
+SQL;
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+    $connection->executeStatement($query);
+    $this->updateInheritance($connection, 'swag_example', 'example_field');
+  }
+
+  public function updateDestructive(Connection $connection): void {}
 }
 ```
 
@@ -89,15 +87,15 @@ In default, ParentFkField points to a `parent_id` column in the database. All th
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        ...
+  return new FieldCollection([
+    // ...
 
-        new ParentFkField(self::class),
-        new ParentAssociationField(self::class, 'id'),
-        new ChildrenAssociationField(self::class),
+    new ParentFkField(self::class),
+    new ParentAssociationField(self::class, 'id'),
+    new ChildrenAssociationField(self::class),
 
-        ...
-    ]);
+    // ...
+  ]);
 }
 ```
 
@@ -109,7 +107,7 @@ Now we need to enable inheritance by overriding the `isInheritanceAware` method 
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 public function isInheritanceAware(): bool
 {
-    return true;
+  return true;
 }
 ```
 
@@ -121,17 +119,17 @@ After we've enabled inheritance for our definition, we need to add the`Shopware\
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 protected function defineFields(): FieldCollection
 {
-    return new FieldCollection([
-        (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+  return new FieldCollection([
+    (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
 
-        new ParentFkField(self::class),
-        new ParentAssociationField(self::class, 'id'),
-        new ChildrenAssociationField(self::class),
+    new ParentFkField(self::class),
+    new ParentAssociationField(self::class, 'id'),
+    new ChildrenAssociationField(self::class),
 
-        (new StringField('name', 'name'))->addFlags(new Inherited()),
-        (new StringField('description', 'description'))->addFlags(new Inherited()),
-        (new BoolField('active', 'active'))->addFlags(new Inherited()),
-    ]);
+    (new StringField('name', 'name'))->addFlags(new Inherited()),
+    (new StringField('description', 'description'))->addFlags(new Inherited()),
+    (new BoolField('active', 'active'))->addFlags(new Inherited()),
+  ]);
 }
 ```
 
@@ -150,45 +148,45 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
 
 class ExampleEntity extends Entity
 {
-    ...
+  // ...
 
-    protected ?self $parent = null;
+  protected ?self $parent = null;
 
-    protected ?string $parentId;
+  protected ?string $parentId;
 
-    protected ?ExampleCollection $children = null;
+  protected ?ExampleCollection $children = null;
 
-    ...
+  // ...
 
-    public function getParent(): ?ExampleEntity
-    {
-        return $this->parent;
-    }
+  public function getParent(): ?ExampleEntity
+  {
+    return $this->parent;
+  }
 
-    public function setParent(ExampleEntity $parent): void
-    {
-        $this->parent = $parent;
-    }
+  public function setParent(ExampleEntity $parent): void
+  {
+    $this->parent = $parent;
+  }
 
-    public function getParentId(): ?string
-    {
-        return $this->parentId;
-    }
+  public function getParentId(): ?string
+  {
+    return $this->parentId;
+  }
 
-    public function setParentId(?string $parentId): void
-    {
-        $this->parentId = $parentId;
-    }
+  public function setParentId(?string $parentId): void
+  {
+    $this->parentId = $parentId;
+  }
 
-    public function getChildren(): ?ExampleCollection
-    {
-        return $this->children;
-    }
+  public function getChildren(): ?ExampleCollection
+  {
+    return $this->children;
+  }
 
-    public function setChildren(ExampleCollection $children): void
-    {
-        $this->children = $children;
-    }
+  public function setChildren(ExampleCollection $children): void
+  {
+    $this->children = $children;
+  }
 }
 ```
 

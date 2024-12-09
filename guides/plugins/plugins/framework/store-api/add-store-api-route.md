@@ -40,9 +40,9 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 abstract class AbstractExampleRoute
 {
-    abstract public function getDecorated(): AbstractExampleRoute;
+  abstract public function getDecorated(): AbstractExampleRoute;
 
-    abstract public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse;
+  abstract public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse;
 }
 ```
 
@@ -65,23 +65,23 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ExampleRoute extends AbstractExampleRoute
 {
-    protected EntityRepository $exampleRepository;
+  protected EntityRepository $exampleRepository;
 
-    public function __construct(EntityRepository $exampleRepository)
-    {
-        $this->exampleRepository = $exampleRepository;
-    }
+  public function __construct(EntityRepository $exampleRepository)
+  {
+    $this->exampleRepository = $exampleRepository;
+  }
 
-    public function getDecorated(): AbstractExampleRoute
-    {
-        throw new DecorationPatternException(self::class);
-    }
+  public function getDecorated(): AbstractExampleRoute
+  {
+    throw new DecorationPatternException(self::class);
+  }
 
-    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
-    {
-        return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
-    }
+  #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'], defaults: ['_entity' => 'swag_example'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
+  {
+    return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
+  }
 }
 ```
 
@@ -94,16 +94,16 @@ The `_entity` in the defaults of the `Route` attribute just marks the entity tha
 ### Register route class
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
-            <argument type="service" id="swag_example.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute">
+      <argument type="service" id="swag_example.repository" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -127,10 +127,10 @@ use Swag\BasicExample\Core\Content\Example\ExampleCollection;
  */
 class ExampleRouteResponse extends StoreApiResponse
 {
-    public function getExamples(): ExampleCollection
-    {
-        return $this->object->getEntities();
-    }
+  public function getExamples(): ExampleCollection
+  {
+    return $this->object->getEntities();
+  }
 }
 ```
 
@@ -139,14 +139,13 @@ class ExampleRouteResponse extends StoreApiResponse
 The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <plugin root>/src/Resources/config/routes.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
+  <import resource="../../Core/**/*Route.php" type="attribute" />
 </routes>
 ```
 
@@ -163,7 +162,7 @@ $ ./bin/console debug:router store-api.example.search
 
 To add the route to the Swagger page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminApi`).
 
-```js
+```json
 // <plugin root>/src/Resources/Schema/StoreApi/example.json
 {
   "openapi": "3.0.0",
@@ -312,18 +311,18 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    private AbstractExampleRoute $route;
+  private AbstractExampleRoute $route;
 
-    public function __construct(AbstractExampleRoute $route)
-    {
-        $this->route = $route;
-    }
+  public function __construct(AbstractExampleRoute $route)
+  {
+    $this->route = $route;
+  }
 
-    #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true', '_entity' => 'swag_example'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): Response
-    {
-        return $this->route->load($criteria, $context);
-    }
+  #[Route(path: '/example', name: 'frontend.example.search', methods: ['GET', 'POST'], defaults: ['XmlHttpRequest' => 'true', '_entity' => 'swag_example'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): Response
+  {
+    return $this->route->load($criteria, $context);
+  }
 }
 ```
 
@@ -333,23 +332,23 @@ Additionally, we also use the `'XmlHttpRequest' => true` config option on the ro
 ### Register the Controller
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
-            <argument type="service" id="swag_example.repository"/>
-        </service>
-    
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute">
+      <argument type="service" id="swag_example.repository" />
+    </service>
+
+    <service id="Swag\BasicExample\Storefront\Controller\ExampleController">
+      <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" />
+      <call method="setContainer">
+        <argument type="service" id="service_container" />
+      </call>
+    </service>
+  </services>
 </container>
 ```
 
@@ -358,15 +357,14 @@ Additionally, we also use the `'XmlHttpRequest' => true` config option on the ro
 We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.xml` to also include all Storefront controllers.
 
 ```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <plugin root>/src/Resources/config/routes.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
-    <import resource="../../Storefront/**/*Controller.php" type="attribute" />
+  <import resource="../../Core/**/*Route.php" type="attribute" />
+  <import resource="../../Storefront/**/*Controller.php" type="attribute" />
 </routes>
 ```
 
@@ -382,25 +380,25 @@ When you want to request your custom route you can use the existing `http-client
 const { PluginBaseClass } = window;
 
 export default class ExamplePlugin extends PluginBaseClass {
-    async requestCustomRoute() {
-        const response = await fetch('/example', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                limit: 10,
-                offset: 0,
-            }),
-        });
-        
-        if (!response.ok) {
-            throw new Error('Request failed');
-        }
+  async requestCustomRoute() {
+    const response = await fetch('/example', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        limit: 10,
+        offset: 0,
+      }),
+    });
 
-        const data = await response.json();
-
-        console.log(data);
+    if (!response.ok) {
+      throw new Error('Request failed');
     }
+
+    const data = await response.json();
+
+    console.log(data);
+  }
 }
 ```

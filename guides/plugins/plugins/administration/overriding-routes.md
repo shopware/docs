@@ -26,23 +26,23 @@ This is done by creating a new module and implementing a `routeMiddleware`. You 
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
 Module.register('my-new-custom-route', {
-    routeMiddleware(next, currentRoute) {
-        if (currentRoute.name === 'sw.product.detail') {
+  routeMiddleware(next, currentRoute) {
+    if (currentRoute.name === 'sw.product.detail') {
 
-            const childIndex = currentRoute.children.findIndex(child => child.name === 'sw.product.detail.base');
+      const childIndex = currentRoute.children.findIndex(child => child.name === 'sw.product.detail.base');
 
-            currentRoute.children[childIndex] = {
-                name: 'sw.product.detail.base',
-                component: 'sw-product-detail-base',
-                path: 'base',
-                meta: {
-                    parentPath: 'sw.product.index',
-                    privilege: 'product.editor'
-                }
-            }
+      currentRoute.children[childIndex] = {
+        name: 'sw.product.detail.base',
+        component: 'sw-product-detail-base',
+        path: 'base',
+        meta: {
+          parentPath: 'sw.product.index',
+          privilege: 'product.editor'
         }
-        next(currentRoute);
+      }
     }
+    next(currentRoute);
+  }
 });
 ```
 

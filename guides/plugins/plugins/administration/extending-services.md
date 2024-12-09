@@ -23,7 +23,7 @@ The [`resetProviders`](https://github.com/young-steveo/bottlejs#resetprovidersna
 You need to do this to add decorators or middleware to Shopware provided services, after they are initially instantiated in the Shopware boot-process.
 
 ```javascript
-Shopware.Application.$container.resetProviders()
+Shopware.Application.$container.resetProviders();
 ```
 
 If the `names` param is passed, it will only reset the named providers.
@@ -60,7 +60,7 @@ Let's look at an Example:
 Shopware.Application.$container.resetProviders(['acl']);
 
 Shopware.Application.addServiceProviderMiddleware('acl', (service, next) => {
-    console.log('ACL service gets called');
-    next();
+  console.log('ACL service gets called');
+  next();
 });
 ```

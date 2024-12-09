@@ -49,16 +49,16 @@ use Swag\BasicExample\Core\Checkout\Cart\Custom\Error\CustomCartBlockedError;
 
 class CustomCartValidator implements CartValidatorInterface
 {
-    public function validate(Cart $cart, ErrorCollection $errorCollection, SalesChannelContext $salesChannelContext): void
-    {
-        foreach ($cart->getLineItems()->getFlat() as $lineItem) {
-            if (!array_key_exists('customPayload', $lineItem->getPayload()) || $lineItem->getPayload()['customPayload'] !== 'example') {
-                $errorCollection->add(new CustomCartBlockedError($lineItem->getId()));
+  public function validate(Cart $cart, ErrorCollection $errorCollection, SalesChannelContext $salesChannelContext): void
+  {
+    foreach ($cart->getLineItems()->getFlat() as $lineItem) {
+      if (!array_key_exists('customPayload', $lineItem->getPayload()) || $lineItem->getPayload()['customPayload'] !== 'example') {
+        $errorCollection->add(new CustomCartBlockedError($lineItem->getId()));
 
-                return;
-            }
-        }
+        return;
+      }
     }
+  }
 }
 ```
 
@@ -77,17 +77,17 @@ One more thing to do is to register your new validator to the [dependency inject
 Your validator has to be registered using the tag `shopware.cart.validator`:
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator">
-            <tag name="shopware.cart.validator"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator">
+      <tag name="shopware.cart.validator" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -131,42 +131,42 @@ use Shopware\Core\Checkout\Cart\Error\Error;
 
 class CustomCartBlockedError extends Error
 {
-    private const KEY = 'custom-line-item-blocked';
+  private const KEY = 'custom-line-item-blocked';
 
-    private string $lineItemId;
+  private string $lineItemId;
 
-    public function __construct(string $lineItemId)
-    {
-        $this->lineItemId = $lineItemId;
-        parent::__construct();
-    }
+  public function __construct(string $lineItemId)
+  {
+    $this->lineItemId = $lineItemId;
+    parent::__construct();
+  }
 
-    public function getId(): string
-    {
-        return $this->lineItemId;
-    }
+  public function getId(): string
+  {
+    return $this->lineItemId;
+  }
 
-    public function getMessageKey(): string
-    {
-        return self::KEY;
-    }
+  public function getMessageKey(): string
+  {
+    return self::KEY;
+  }
 
-    public function getLevel(): int
-    {
-//        return self::LEVEL_NOTICE;
-//        return self::LEVEL_WARNING;
-        return self::LEVEL_ERROR;
-    }
+  public function getLevel(): int
+  {
+    // return self::LEVEL_NOTICE;
+    // return self::LEVEL_WARNING;
+    return self::LEVEL_ERROR;
+  }
 
-    public function blockOrder(): bool
-    {
-        return true;
-    }
+  public function blockOrder(): bool
+  {
+    return true;
+  }
 
-    public function getParameters(): array
-    {
-        return [ 'lineItemId' => $this->lineItemId ];
-    }
+  public function getParameters(): array
+  {
+    return ['lineItemId' => $this->lineItemId];
+  }
 }
 ```
 
@@ -182,15 +182,15 @@ You've defined the error key to be `custom-line-item-blocked` in your custom err
 
 Now let's have a look at an example snippet file:
 
-```js
+```json
 // <plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json
 {
-    "checkout": {
-        "custom-line-item-blocked": "Example error message for the cart"
-    },
-    "error": {
-        "custom-line-item-blocked": "Example error message for the checkout"
-    }
+  "checkout": {
+    "custom-line-item-blocked": "Example error message for the cart"
+  },
+  "error": {
+    "custom-line-item-blocked": "Example error message for the checkout"
+  }
 }
 ```
 

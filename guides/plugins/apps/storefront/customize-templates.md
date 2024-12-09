@@ -66,7 +66,7 @@ To override it now, just add the very same block into your custom file and repla
 {% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
 
 {% block layout_header_logo_link %}
-    <h2>Hello world!</h2>
+  <h2>Hello world!</h2>
 {% endblock %}
 ```
 

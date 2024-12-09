@@ -32,20 +32,21 @@ use Shopware\B2B\Common\Repository\DbalHelper;
 
 class RoleContactRepository
 {
-    public function removeRoleContactAssignment(int $roleId, int $contactId)
-    {
-        [...]
-    }
+  public function removeRoleContactAssignment(int $roleId, int $contactId)
+  {
+    // [...]
+  }
 
-    public function assignRoleContact(int $roleId, int $contactId)
-    {
-        [...]
-    }
+  public function assignRoleContact(int $roleId, int $contactId)
+  {
+    // [...]
+  }
 
-    public function isMatchingDebtorForBothEntities(int $roleId, int $contactId): bool
-    {
-        [...]
-    }
+  public function isMatchingDebtorForBothEntities(int $roleId, int $contactId): bool
+  {
+    // [...]
+  }
+}
 ```
 
 ## Service
@@ -63,14 +64,14 @@ namespace Shopware\B2B\RoleContact\Framework;
  */
 class RoleContactAssignmentService
 {
-    public function assign(int $roleId, int $contactId)
-    {
-        [...]
-    }
+  public function assign(int $roleId, int $contactId)
+  {
+    // [...]
+  }
 
-    public function removeAssignment(int $roleId, int $contactId)
-    {
-        [...]
-    }
+  public function removeAssignment(int $roleId, int $contactId)
+  {
+    // [...]
+  }
 }
 ```

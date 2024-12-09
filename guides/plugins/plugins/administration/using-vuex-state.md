@@ -23,21 +23,21 @@ Beware of the property `namespaced`, though.
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js
 export default {
-    namespaced: true,
+  namespaced: true,
 
-    state() {
-        return {
-            // the state we want to keep track of
-            content: ''
-        };
+  state() {
+    return {
+      // the state we want to keep track of
+      content: ''
+    };
+  },
+
+  mutations: {
+    // a mutation to change the state
+    setContent(state, content) {
+      state.content = content;
     },
-
-    mutations: {
-        // a mutation to change the state
-        setContent(state, content) {
-            state.content = content;
-        },
-    }
+  }
 };
 ```
 
@@ -64,16 +64,16 @@ All of this can be seen in the following code sample:
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js
-    beforeCreate() {
-        // registering the store to vuex through the Shopware objects helper function
-        // the first argument is the name the second the imported namespaced store
-        Shopware.State.registerModule('swagBasicState', swagBasicState);
-    },
+beforeCreate() {
+  // registering the store to vuex through the Shopware objects helper function
+  // the first argument is the name the second the imported namespaced store
+  Shopware.State.registerModule('swagBasicState', swagBasicState);
+},
 
-    beforeDestroy() {
-        // unregister the store before the component is destroyed
-        Shopware.State.unregisterModule('swagBasicState');
-    },
+beforeDestroy() {
+  // unregister the store before the component is destroyed
+  Shopware.State.unregisterModule('swagBasicState');
+},
 ```
 
 Both methods make the store on the given name everywhere available, regardless of where it has been registered.
@@ -91,27 +91,27 @@ import template from './store-example.html.twig';
 const { Component } = Shopware;
 
 // Access the normal Vuex helper functions through the Shopware Object
-const { 
-    mapState,
-    mapMutations,
+const {
+  mapState,
+  mapMutations,
 } = Shopware.Component.getComponentHelper();
 
 Component.register('swag-basic-state', {
-    template,
+  template,
 
-    computed: {
-        // the native mapState vuex helper function 
-        ...mapState('swagBasicState', [
-            'content',
-        ])
-    },
+  computed: {
+    // the native mapState vuex helper function 
+    ...mapState('swagBasicState', [
+      'content',
+    ])
+  },
 
-    methods: {
-        // the native mapMutations vuex helper function
-        ...mapMutations('swagBasicState', [
-            'setContent',
-        ]),
-    }
+  methods: {
+    // the native mapMutations vuex helper function
+    ...mapMutations('swagBasicState', [
+      'setContent',
+    ]),
+  }
 });
 ```
 
@@ -120,17 +120,17 @@ Component.register('swag-basic-state', {
 After we have registered our `namespaced` store, mapped state and mutations, we can now use them in our components or templates.
 The component below displays the previously mapped state `content` in a `div` and a `sw-text-field`, mutating the state on the `changed` event of the `sw-text-field`.
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig #}
 <div>
-    <h1>SW-6 State</h1>
-    <sw-text-field
-            :value="content"
-            @update:value="value => setContent(value)">
-    </sw-text-field>
-    <div>
-        {{ content }}
-    </div>
+  <h1>SW-6 State</h1>
+  <sw-text-field
+    :value="content"
+    @update:value="value => setContent(value)">
+  </sw-text-field>
+  <div>
+    {{ content }}
+  </div>
 </div>
 ```
 

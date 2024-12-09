@@ -35,14 +35,14 @@ Whenever you create a Shopware plugin, you have to extend the `Shopware\Core\Fra
 // 
 class YourNamespace\PluginName extends
 
-    // plugin lifecycles
-    abstract class Shopware\Core\Framework\Plugin extends
+  // plugin lifecycles
+  abstract class Shopware\Core\Framework\Plugin extends
 
-        // adds support for migrations, filesystem, events, themes
-        abstract class Shopware\Core\Framework\Bundle extends
+    // adds support for migrations, filesystem, events, themes
+    abstract class Shopware\Core\Framework\Bundle extends
 
-            // Symfony base bundle
-            abstract class Symfony\Component\HttpKernel\Bundle
+      // Symfony base bundle
+      abstract class Symfony\Component\HttpKernel\Bundle
 ```
 
 As you can see, any Shopware plugin is also a Symfony bundle internally as well, and will be handled as such by Symfony. A plugin adds support for some cases, specific to the Shopware environment. These include, for example, handling plugin migrations and registering Shopware business events.

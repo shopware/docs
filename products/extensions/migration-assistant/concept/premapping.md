@@ -9,11 +9,11 @@ nav:
 
 The premapping will use the normal [Mapping](convert-and-mapping#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
 
-```html
+```xml
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">
-    <argument type="service" id="salutation.repository" />
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\GatewayRegistry"/>
-    <tag name="shopware.migration.pre_mapping_reader"/>
+  <argument type="service" id="salutation.repository" />
+  <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\GatewayRegistry" />
+  <tag name="shopware.migration.pre_mapping_reader" />
 </service>
 ```
 
@@ -27,48 +27,38 @@ Here is an example of how the final `PremappingStruct` looks like in the `genera
 
 ```json
 {
-   "entity":"salutation",
-   "choices":[
-      {
-         "uuid":"d4883ea9db2b4a5ca033873903358062",
-         "description":"mr",
-         "extensions":[
-
-         ]
-      },
-      {
-         "uuid":"7a7ef1e4a9064c46b5f85e28b4d942a9",
-         "description":"mrs",
-         "extensions":[
-
-         ]
-      },
-      {
-         "uuid":"a6fa00aef9a648d9bd012dbe16c112bf",
-         "description":"not_specified",
-         "extensions":[
-
-         ]
-      }
-   ],
-   "mapping":[
-      {
-         "sourceId":"mr",
-         "description":"mr",
-         "destinationUuid":"d4883ea9db2b4a5ca033873903358062",
-         "extensions":[
-
-         ]
-      },
-      {
-         "sourceId":"ms",
-         "description":"ms",
-         "destinationUuid":"",
-         "extensions":[
-
-         ]
-      }
-   ]
+  "entity": "salutation",
+  "choices": [
+    {
+      "uuid": "d4883ea9db2b4a5ca033873903358062",
+      "description": "mr",
+      "extensions": []
+    },
+    {
+      "uuid": "7a7ef1e4a9064c46b5f85e28b4d942a9",
+      "description": "mrs",
+      "extensions": []
+    },
+    {
+      "uuid": "a6fa00aef9a648d9bd012dbe16c112bf",
+      "description": "not_specified",
+      "extensions": []
+    }
+  ],
+  "mapping": [
+    {
+      "sourceId": "mr",
+      "description": "mr",
+      "destinationUuid": "d4883ea9db2b4a5ca033873903358062",
+      "extensions": []
+    },
+    {
+      "sourceId": "ms",
+      "description": "ms",
+      "destinationUuid": "",
+      "extensions": []
+    }
+  ]
 }
 ```
 
@@ -83,27 +73,28 @@ To get the associated new identifier, you can make use of the `MappingService` s
 
 protected function getSalutation(string $salutation): ?string
 {
-    $mapping = $this->mappingService->getMapping(
-        $this->connectionId,
-        SalutationReader::getMappingName(),
-        $salutation,
-        $this->context
-    );
+  $mapping = $this->mappingService->getMapping(
+    $this->connectionId,
+    SalutationReader::getMappingName(),
+    $salutation,
+    $this->context
+  );
 
-    if ($mapping === null) {
-        $this->loggingService->addLogEntry(new UnknownEntityLog(
-            $this->runId,
-            DefaultEntities::SALUTATION,
-            $salutation,
-            DefaultEntities::CUSTOMER,
-            $this->oldCustomerId
-        ));
+  if ($mapping === null) {
+    $this->loggingService->addLogEntry(new UnknownEntityLog(
+      $this->runId,
+      DefaultEntities::SALUTATION,
+      $salutation,
+      DefaultEntities::CUSTOMER,
+      $this->oldCustomerId
+    ));
 
-        return null;
-    }
-    $this->mappingIds[] = $mapping['id'];
+    return null;
+  }
 
-    return $mapping['entityUuid'];
+  $this->mappingIds[] = $mapping['id'];
+
+  return $mapping['entityUuid'];
 }
 
 /* ... */

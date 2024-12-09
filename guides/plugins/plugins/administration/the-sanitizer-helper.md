@@ -41,10 +41,10 @@ The config can be set with the `setConfig` and cleared with the `clearConfig` fu
 
 ```javascript
 Shopware.Helper.SanitizerHelper.setConfig({
-    USE_PROFILES: { html: true }
+  USE_PROFILES: { html: true }
 });
 
-Shopware.Helper.SanitizerHelper.clearConfig()
+Shopware.Helper.SanitizerHelper.clearConfig();
 ```
 
 See all of the configuration options [here](https://github.com/cure53/DOMPurify#can-i-configure-dompurify)
@@ -55,15 +55,15 @@ The aforementioned Wrapper also provides functions to add and remove hooks to DO
 Learn what DOMPurify hooks are in their [documentation](https://github.com/cure53/DOMPurify#hooks).
 
 ```javascript
-Shopware.Helper.SanitizerHelper.addMiddleware('beforeSanitizeElements',  function (
-        currentNode,
-        hookEvent,
-        config
-    ) {
-        // Do something with the current node and return it
-        // You can also mutate hookEvent (i.e. set hookEvent.forceKeepAttr = true)
-        return currentNode;
-    }
+Shopware.Helper.SanitizerHelper.addMiddleware('beforeSanitizeElements', function (
+  currentNode,
+  hookEvent,
+  config
+) {
+  // Do something with the current node and return it
+  // You can also mutate hookEvent (i.e. set hookEvent.forceKeepAttr = true)
+  return currentNode;
+}
 );
 
 Shopware.Helper.SanitizerHelper.removeMiddleware('beforeSanitizeElements');

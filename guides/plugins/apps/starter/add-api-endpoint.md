@@ -44,23 +44,24 @@ When using a self-hosted Shopware version, you can also create the project direc
 Next, we will put our basic configuration into the file we just created.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>MyApiExtension</name>
-        <label>Topsellers API</label>
-        <description>This app adds a Topseller API endpoint</description>
-        <author>shopware AG</author>
-        <copyright>(c) shopware AG</copyright>
-        <version>1.0.0</version>
-        <license>MIT</license>
-    </meta>
-    <permissions>
-        <read>order</read>
-        <read>order_line_item</read>
-        <read>product</read>
-    </permissions>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>MyApiExtension</name>
+    <label>Topsellers API</label>
+    <description>This app adds a Topseller API endpoint</description>
+    <author>shopware AG</author>
+    <copyright>(c) shopware AG</copyright>
+    <version>1.0.0</version>
+    <license>MIT</license>
+  </meta>
+  <permissions>
+    <read>order</read>
+    <read>order_line_item</read>
+    <read>product</read>
+  </permissions>
 </manifest>
 ```
 
@@ -116,10 +117,10 @@ This directory naming causes Shopware to expose the script on two routes:
 Let's start with a simple script to see it in action:
 
 ```twig
-// Resources/scripts/store-api-swag-topseller/topseller-script.twig
+{# Resources/scripts/store-api-swag-topseller/topseller-script.twig #}
 {% block response %}
-    {% set response = services.response.json({ test: 'This is my API endpoint' }) %}
-    {% do hook.setResponse(response) %}
+  {% set response = services.response.json({ test: 'This is my API endpoint' }) %}
+  {% do hook.setResponse(response) %}
 {% endblock %}
 ```
 
@@ -154,7 +155,10 @@ curl --request GET \
 which should return something like:
 
 ```json
-{"apiAlias":"store_api_swag_topseller_response","test":"This is my API endpoint"}
+{
+  "apiAlias": "store_api_swag_topseller_response",
+  "test": "This is my API endpoint"
+}
 ```
 
 However, instead of using curl, we recommend using visual clients to test the API - such as [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download).
@@ -164,40 +168,40 @@ However, instead of using curl, we recommend using visual clients to test the AP
 For now, our script is not really doing anything. Let's change that.
 
 ```twig
-// Resources/scripts/store-api-swag-topseller/topseller-script.twig
+{# Resources/scripts/store-api-swag-topseller/topseller-script.twig #}
 {% block response %}
 
-    {% set categoryId = hook.request.categoryId %}
+  {% set categoryId = hook.request.categoryId %}
 
-    {% set criteria = {
-        aggregations: [
-            {
-                name: "categoryFilter",
-                type: "filter",
-                filter: [{
-                    type: "equals",
-                    field: "order.lineItems.product.categoryIds",
-                    value: categoryId
-                }],
-                aggregation: {
-                    name: "orderedProducts",
-                    type: "terms",
-                    field: "order.lineItems.productId",
-                    aggregation: {
-                        name: "quantityItemsOrdered",
-                        type : "sum",
-                        field: "order.lineItems.quantity"
-                    }
-                }
-            }
-        ]
-    } %}
+  {% set criteria = {
+    aggregations: [
+      {
+        name: "categoryFilter",
+        type: "filter",
+        filter: [{
+          type: "equals",
+          field: "order.lineItems.product.categoryIds",
+          value: categoryId
+        }],
+        aggregation: {
+          name: "orderedProducts",
+          type: "terms",
+          field: "order.lineItems.productId",
+          aggregation: {
+            name: "quantityItemsOrdered",
+            type : "sum",
+            field: "order.lineItems.quantity"
+          }
+        }
+      }
+    ]
+  } %}
 
-    {% set orderAggregations = services.repository.aggregate('order', criteria) %}
+  {% set orderAggregations = services.repository.aggregate('order', criteria) %}
 
-    {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
+  {% set response = services.response.json(orderAggregations.first.jsonSerialize) %}
 
-    {% do hook.setResponse(response) %}
+  {% do hook.setResponse(response) %}
 
 {% endblock %}
 ```

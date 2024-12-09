@@ -42,20 +42,20 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Subscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            MediaFileExtensionWhitelistEvent::class => 'addEntryToFileExtensionWhitelist'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      MediaFileExtensionWhitelistEvent::class => 'addEntryToFileExtensionWhitelist'
+    ];
+  }
 
-    public function addEntryToFileExtensionWhitelist(MediaFileExtensionWhitelistEvent $event): void
-    {
-        $whiteList = $event->getWhitelist();
-        $whiteList[] = 'img';
+  public function addEntryToFileExtensionWhitelist(MediaFileExtensionWhitelistEvent $event): void
+  {
+    $whiteList = $event->getWhitelist();
+    $whiteList[] = 'img';
 
-        $event->setWhitelist($whiteList);
-    }
+    $event->setWhitelist($whiteList);
+  }
 }
 ```
 
@@ -96,25 +96,25 @@ use Shopware\Core\Content\Media\TypeDetector\TypeDetectorInterface;
 
 class CustomImageTypeDetector implements TypeDetectorInterface
 {
-    protected const SUPPORTED_FILE_EXTENSIONS = [
-        'img' => [ImageType::TRANSPARENT],
-    ];
+  protected const SUPPORTED_FILE_EXTENSIONS = [
+    'img' => [ImageType::TRANSPARENT],
+  ];
 
-    public function detect(MediaFile $mediaFile, ?MediaType $previouslyDetectedType): ?MediaType
-    {
-        $fileExtension = mb_strtolower($mediaFile->getFileExtension());
-        if (!\array_key_exists($fileExtension, self::SUPPORTED_FILE_EXTENSIONS)) {
-            return $previouslyDetectedType;
-        }
-
-        if ($previouslyDetectedType === null) {
-            $previouslyDetectedType = new ImageType();
-        }
-
-        $previouslyDetectedType->addFlags(self::SUPPORTED_FILE_EXTENSIONS[$fileExtension]);
-
-        return $previouslyDetectedType;
+  public function detect(MediaFile $mediaFile, ?MediaType $previouslyDetectedType): ?MediaType
+  {
+    $fileExtension = mb_strtolower($mediaFile->getFileExtension());
+    if (!\array_key_exists($fileExtension, self::SUPPORTED_FILE_EXTENSIONS)) {
+      return $previouslyDetectedType;
     }
+
+    if ($previouslyDetectedType === null) {
+      $previouslyDetectedType = new ImageType();
+    }
+
+    $previouslyDetectedType->addFlags(self::SUPPORTED_FILE_EXTENSIONS[$fileExtension]);
+
+    return $previouslyDetectedType;
+  }
 }
 ```
 
@@ -123,17 +123,17 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 <Tab title="services.xml">
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Media\TypeDetector\CustomImageTypeDetector">
-            <tag name="shopware.media_type.detector" priority="10"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Media\TypeDetector\CustomImageTypeDetector">
+      <tag name="shopware.media_type.detector" priority="10" />
+    </service>
+  </services>
 </container>
 ```
 

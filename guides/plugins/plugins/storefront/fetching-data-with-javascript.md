@@ -26,18 +26,18 @@ We will use the standard [fetch](https://developer.mozilla.org/en-US/docs/Web/AP
 const { PluginBaseClass } = window;
 
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        this.fetchData();
-    }
+  init() {
+    this.fetchData();
+  }
 
-    // ...
+  // ...
 
-    async fetchData() {
-        const response = await fetch('/widgets/checkout/info');
-        const data = await response.text();
+  async fetchData() {
+    const response = await fetch('/widgets/checkout/info');
+    const data = await response.text();
 
-        console.log(data);
-    }
+    console.log(data);
+  }
 }
 ```
 

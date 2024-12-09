@@ -45,31 +45,31 @@ use Shopware\Core\Checkout\Cart\Cart;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    private LineItemFactoryRegistry $factory;
+  private LineItemFactoryRegistry $factory;
 
-    private CartService $cartService;
+  private CartService $cartService;
 
-    public function __construct(LineItemFactoryRegistry $factory, CartService $cartService)
-    {
-        $this->factory = $factory;
-        $this->cartService = $cartService;
-    }
+  public function __construct(LineItemFactoryRegistry $factory, CartService $cartService)
+  {
+    $this->factory = $factory;
+    $this->cartService = $cartService;
+  }
 
-    #[Route(path: '/cartAdd', name: 'frontend.example', methods: ['GET'])]
-    public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
-    {
-        // Create product line item
-        $lineItem = $this->factory->create([
-            'type' => LineItem::PRODUCT_LINE_ITEM_TYPE, // Results in 'product'
-            'referencedId' => 'myExampleId', // this is not a valid UUID, change this to your actual ID!
-            'quantity' => 5,
-            'payload' => ['key' => 'value']
-        ], $context);
+  #[Route(path: '/cartAdd', name: 'frontend.example', methods: ['GET'])]
+  public function add(Cart $cart, SalesChannelContext $context): StorefrontResponse
+  {
+    // Create product line item
+    $lineItem = $this->factory->create([
+      'type' => LineItem::PRODUCT_LINE_ITEM_TYPE, // Results in 'product'
+      'referencedId' => 'myExampleId', // this is not a valid UUID, change this to your actual ID!
+      'quantity' => 5,
+      'payload' => ['key' => 'value']
+    ], $context);
 
-        $this->cartService->add($cart, $lineItem, $context);
+    $this->cartService->add($cart, $lineItem, $context);
 
-        return $this->renderStorefront('@Storefront/storefront/base.html.twig');
-    }
+    return $this->renderStorefront('@Storefront/storefront/base.html.twig');
+  }
 }
 ```
 
@@ -99,17 +99,17 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleHandler">
-            <tag name="shopware.cart.line_item.factory" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\ExampleHandler">
+      <tag name="shopware.cart.line_item.factory" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -127,24 +127,24 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class ExampleHandler implements LineItemFactoryInterface
 {
-    public const TYPE = 'example';
+  public const TYPE = 'example';
 
-    public function supports(string $type): bool
-    {
-        return $type === self::TYPE;
-    }
+  public function supports(string $type): bool
+  {
+    return $type === self::TYPE;
+  }
 
-    public function create(array $data, SalesChannelContext $context): LineItem
-    {
-        return new LineItem($data['id'], self::TYPE, $data['referencedId'] ?? null, 1);
-    }
+  public function create(array $data, SalesChannelContext $context): LineItem
+  {
+    return new LineItem($data['id'], self::TYPE, $data['referencedId'] ?? null, 1);
+  }
 
-    public function update(LineItem $lineItem, array $data, SalesChannelContext $context): void
-    {
-        if (isset($data['referencedId'])) {
-            $lineItem->setReferencedId($data['referencedId']);
-        }
+  public function update(LineItem $lineItem, array $data, SalesChannelContext $context): void
+  {
+    if (isset($data['referencedId'])) {
+      $lineItem->setReferencedId($data['referencedId']);
     }
+  }
 }
 ```
 
@@ -182,14 +182,14 @@ use Shopware\Core\Checkout\Cart\LineItem\CartDataCollection;
 class ExampleProcessor implements CartProcessorInterface
 {
 
-    public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        $lineItems = $original->getLineItems()->filterFlatByType(ExampleHandler::TYPE);
+  public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
+  {
+    $lineItems = $original->getLineItems()->filterFlatByType(ExampleHandler::TYPE);
 
-        foreach ($lineItems as $lineItem){
-            $toCalculate->add($lineItem);
-        }
+    foreach ($lineItems as $lineItem) {
+      $toCalculate->add($lineItem);
     }
+  }
 }
 ```
 
@@ -199,14 +199,12 @@ Of course you can use processors to do much more than this. Have a look at [addi
 
 Now register this processor in your `services.xml` like this:
 
-```html
-// <plugin root>/Resources/config/services.xml
-...
+```xml
+<!-- <plugin root>/Resources/config/services.xml -->
 <services>
-    ...
-    <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
-        <tag name="shopware.cart.processor" priority="4800"/>
-    </service>
+  <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
+    <tag name="shopware.cart.processor" priority="4800" />
+  </service>
 </services>
 ```
 

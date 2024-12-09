@@ -21,10 +21,10 @@ If the nested line item should be removable in the cart, the `removable` propert
 
 ```twig
 {% block page_checkout_item_remove_icon %}
-    {% do nestedLineItem.setRemovable(true) %}
-    <form action="{{ path('/mycontroller/nested/remove', { 'id': nestedLineItem.id }) }}" method="post">
-        {{ parent() }}
-    </form>
+  {% do nestedLineItem.setRemovable(true) %}
+  <form action="{{ path('/mycontroller/nested/remove', { 'id': nestedLineItem.id }) }}" method="post">
+    {{ parent() }}
+  </form>
 {% endblock %}
 ```
 
@@ -35,16 +35,15 @@ In the block of the change button, the variable `isChangeable` has to be set, an
 
 ```twig
 {% block component_offcanvas_item_children_header_content_change_button %}
-    {% set isChangeable = true %}
-    {% set seo = seoUrl('frontend.detail.page', {
-            'productId': lineItem.children.first.referencedId,
-            'swagCustomizedProductsConfigurationEdit': lineItem.extensions.customizedProductConfiguration.id
-        })
-    %}
-    
-    <a href="{{ seo }}" class="order-item-product-name" title="{{ label }}">
-        {{ parent() }}
-    </a>
+  {% set isChangeable = true %}
+  {% set seo = seoUrl('frontend.detail.page', {
+    'productId': lineItem.children.first.referencedId,
+    'swagCustomizedProductsConfigurationEdit': lineItem.extensions.customizedProductConfiguration.id
+  }) %}
+  
+  <a href="{{ seo }}" class="order-item-product-name" title="{{ label }}">
+    {{ parent() }}
+  </a>
 {% endblock %}
 ```
 

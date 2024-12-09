@@ -36,10 +36,10 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['storefront']])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
-    public function examplePage(): Response
-    {
-    }
+  #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
+  public function examplePage(): Response
+  {
+  }
 }
 ```
 
@@ -73,30 +73,30 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageLoader
 {
-    private GenericPageLoaderInterface $genericPageLoader;
+  private GenericPageLoaderInterface $genericPageLoader;
 
-    private EventDispatcherInterface $eventDispatcher;
+  private EventDispatcherInterface $eventDispatcher;
 
-    public function __construct(GenericPageLoaderInterface $genericPageLoader, EventDispatcherInterface $eventDispatcher)
-    {
-        $this->genericPageLoader = $genericPageLoader;
-        $this->eventDispatcher = $eventDispatcher;
-    }
+  public function __construct(GenericPageLoaderInterface $genericPageLoader, EventDispatcherInterface $eventDispatcher)
+  {
+    $this->genericPageLoader = $genericPageLoader;
+    $this->eventDispatcher = $eventDispatcher;
+  }
 
-    public function load(Request $request, SalesChannelContext $context): ExamplePage
-    {
-        $page = $this->genericPageLoader->load($request, $context);
-        $page = ExamplePage::createFrom($page);
+  public function load(Request $request, SalesChannelContext $context): ExamplePage
+  {
+    $page = $this->genericPageLoader->load($request, $context);
+    $page = ExamplePage::createFrom($page);
 
-        // Do additional stuff, e.g. load more data from store api and add it to page
-         $page->setExampleData(...);
+    // Do additional stuff, e.g. load more data from store api and add it to page
+      $page->setExampleData(...);
 
-        $this->eventDispatcher->dispatch(
-            new ExamplePageLoadedEvent($page, $context, $request)
-        );
+    $this->eventDispatcher->dispatch(
+      new ExamplePageLoadedEvent($page, $context, $request)
+    );
 
-        return $page;
-    }
+    return $page;
+  }
 }
 ```
 
@@ -118,11 +118,11 @@ The last thing to do in this method is to return your new page instance.
 
 Remember to register your new page loader in the DI container:
 
-```html
-// <plugin root>/src/Resources/config/services.xml
+```xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 <service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
-    <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
-    <argument type="service" id="event_dispatcher"/>
+  <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
+  <argument type="service" id="event_dispatcher" />
 </service>
 ```
 
@@ -136,27 +136,27 @@ Theoretically, this is all your page loader does - but it's not being used yet. 
 
 namespace Swag\BasicExample\Storefront\Controller;
 
-...
+// use ...
 
 class ExampleController extends StorefrontController
 {
-    private ExamplePageLoader $examplePageLoader;
+  private ExamplePageLoader $examplePageLoader;
 
-    public function __construct(ExamplePageLoader $examplePageLoader)
-    {
-        $this->examplePageLoader = $examplePageLoader;
-    }
+  public function __construct(ExamplePageLoader $examplePageLoader)
+  {
+    $this->examplePageLoader = $examplePageLoader;
+  }
 
-    #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
-    public function examplePage(Request $request, SalesChannelContext $context): Response
-    {
-        $page = $this->examplePageLoader->load($request, $context);
+  #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
+  public function examplePage(Request $request, SalesChannelContext $context): Response
+  {
+    $page = $this->examplePageLoader->load($request, $context);
 
-        return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
-            'example' => 'Hello world',
-            'page' => $page
-        ]);
-    }
+    return $this->renderStorefront('@SwagBasicExample/storefront/page/example/index.html.twig', [
+      'example' => 'Hello world',
+      'page' => $page
+    ]);
+  }
 }
 ```
 
@@ -166,16 +166,16 @@ Note, that we've added the page to the template variables.
 
 In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
 
-```html
-// <plugin root>/src/Resources/config/services.xml
+```xml
+<!-- <plugin root>/src/Resources/config/services.xml -->
 <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-    <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
-    <call method="setContainer">
-        <argument type="service" id="service_container"/>
-    </call>
-    <call method="setTwig">
-        <argument type="service" id="twig"/>
-    </call>
+  <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
+  <call method="setContainer">
+    <argument type="service" id="service_container" />
+  </call>
+  <call method="setTwig">
+    <argument type="service" id="twig" />
+  </call>
 </service>
 ```
 
@@ -198,17 +198,17 @@ use Swag\BasicExample\Core\Content\Example\ExampleEntity;
 
 class ExamplePage extends Page
 {
-    protected ExampleEntity $exampleData;
+  protected ExampleEntity $exampleData;
 
-    public function getExampleData(): ExampleEntity
-    {
-        return $this->exampleData;
-    }
+  public function getExampleData(): ExampleEntity
+  {
+    return $this->exampleData;
+  }
 
-    public function setExampleData(ExampleEntity $exampleData): void
-    {
-        $this->exampleData = $exampleData;
-    }
+  public function setExampleData(ExampleEntity $exampleData): void
+  {
+    $this->exampleData = $exampleData;
+  }
 }
 ```
 
@@ -236,18 +236,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ExamplePageLoadedEvent extends PageLoadedEvent
 {
-    protected ExamplePage $page;
+  protected ExamplePage $page;
 
-    public function __construct(ExamplePage $page, SalesChannelContext $salesChannelContext, Request $request)
-    {
-        $this->page = $page;
-        parent::__construct($salesChannelContext, $request);
-    }
+  public function __construct(ExamplePage $page, SalesChannelContext $salesChannelContext, Request $request)
+  {
+    $this->page = $page;
+    parent::__construct($salesChannelContext, $request);
+  }
 
-    public function getPage(): ExamplePage
-    {
-        return $this->page;
-    }
+  public function getPage(): ExamplePage
+  {
+    return $this->page;
+  }
 }
 ```
 

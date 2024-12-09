@@ -41,61 +41,61 @@ use Symfony\Component\Validator\Constraints\Type;
 
 class FirstMondayOfTheMonthRule extends Rule
 {
-    protected bool $isFirstMondayOfTheMonth;
+  protected bool $isFirstMondayOfTheMonth;
 
-    public function __construct()
-    {
-        parent::__construct();
+  public function __construct()
+  {
+    parent::__construct();
 
-        // Will be overwritten at runtime. Reflects the expected value.
-        $this->isFirstMondayOfTheMonth = false;
+    // Will be overwritten at runtime. Reflects the expected value.
+    $this->isFirstMondayOfTheMonth = false;
+  }
+
+  public function getName(): string
+  {
+    return 'first_monday';
+  }
+
+  public function match(RuleScope $scope): bool
+  {
+    $isFirstMondayOfTheMonth = $this->isCurrentlyFirstMondayOfTheMonth(date("Y-m-d"));
+
+    // Checks if the shop owner set the rule to "First monday => Yes"
+    if ($this->isFirstMondayOfTheMonth) {
+      // Shop administrator wants the rule to match if there's currently the first monday of the month.
+      return $isFirstMondayOfTheMonth;
     }
 
-    public function getName(): string
-    {
-        return 'first_monday';
+    // Shop administrator wants the rule to match if there's currently NOT the first monday of the month.
+    return !$isFirstMondayOfTheMonth;
+  }
+
+  public function getConstraints(): array
+  {
+    return [
+      'isFirstMondayOfTheMonth' => [new Type('bool')]
+    ];
+  }
+
+  private function isCurrentlyFirstMondayOfTheMonth($dateString)
+  {
+    $date = new \DateTime($dateString);
+    $dayOfWeek = (int) $date->format('w');
+
+    // Check if it's Monday (1 is Monday)
+    if ($dayOfWeek !== 1) {
+      return false;
     }
 
-    public function match(RuleScope $scope): bool
-    {
-        $isFirstMondayOfTheMonth = $this->isCurrentlyFirstMondayOfTheMonth(date("Y-m-d") );
-
-        // Checks if the shop owner set the rule to "First monday => Yes"
-        if ($this->isFirstMondayOfTheMonth) {
-            // Shop administrator wants the rule to match if there's currently the first monday of the month.
-            return $isFirstMondayOfTheMonth;
-        }
-
-        // Shop administrator wants the rule to match if there's currently NOT the first monday of the month.
-        return !$isFirstMondayOfTheMonth;
+    // Check if the date is within the first seven days of the month
+    $dayOfMonth = (int) $date->format('j');
+    if ($dayOfMonth > 7) {
+      return false;
     }
 
-    public function getConstraints(): array
-    {
-        return [
-            'isFirstMondayOfTheMonth' => [new Type('bool')]
-        ];
-    }
-
-    private function isCurrentlyFirstMondayOfTheMonth($dateString)
-    {
-        $date = new \DateTime($dateString);
-        $dayOfWeek = (int) $date->format('w');
-        
-        // Check if it's Monday (1 is Monday)
-        if ($dayOfWeek !== 1) {
-            return false;
-        }
-
-        // Check if the date is within the first seven days of the month
-        $dayOfMonth = (int) $date->format('j');
-        if ($dayOfMonth > 7) {
-            return false;
-        }
-
-        // If it passed both checks, it's the first Thursday of the month
-        return true;
-    }
+    // If it passed both checks, it's the first Thursday of the month
+    return true;
+  }
 }
 ```
 
@@ -122,10 +122,10 @@ $loggedIn = $customer !== null;
 It is possible to add config to our rule. This makes it possible to skip the [Custom rule component](#custom-rule-component) and the [Custom rule Administration template](#custom-rule-administration-template) parts.
 
 ```php
-    public function getConfig(): RuleConfig
-    {
-        return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
-    }
+public function getConfig(): RuleConfig
+{
+  return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
+}
 ```
 
 when [Showing rule in the Administration](#showing-rule-in-the-administration) we would not use a custom component but we would render the `sw-condition-generic` component.
@@ -149,13 +149,13 @@ Create a new directory called `<plugin root>/src/Resources/app/administration/sr
 import '../../core/component/swag-first-monday';
 
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    ruleConditionService.addCondition('first_monday', {
-        component: 'swag-first-monday',
-        label: 'Is first monday of the month',
-        scopes: ['global']
-    });
+  ruleConditionService.addCondition('first_monday', {
+    component: 'swag-first-monday',
+    label: 'Is first monday of the month',
+    scopes: ['global']
+  });
 
-    return ruleConditionService;
+  return ruleConditionService;
 });
 ```
 
@@ -177,15 +177,15 @@ It may be possible that rules, with your newly created condition, aren't selecta
 The rule will now be added to the list of rules in the admin. It might be useful to create a new group for your rules. We can create a new group by using the `upsertGroup` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts).
 
 ```javascript
-  // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
-  Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-      ruleConditionService.upsertGroup('days_of_the_month', {
-        id: 'days_of_the_month',
-        name: 'Days of the month',
-      });
-  
-      return ruleConditionService;
+// <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
+Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
+  ruleConditionService.upsertGroup('days_of_the_month', {
+    id: 'days_of_the_month',
+    name: 'Days of the month',
   });
+
+  return ruleConditionService;
+});
 ```
 
 Now that we have our group, we have to link this group to our condition. This is easily done by adding the `group` property to our condition.
@@ -195,14 +195,14 @@ Now that we have our group, we have to link this group to our condition. This is
 import '../../core/component/swag-first-monday';
 
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    ruleConditionService.addCondition('first_monday', {
-        component: 'swag-first-monday',
-        label: 'Is first monday of the month',
-        scopes: ['global'],
-        group: 'days_of_the_month', // [!code focus]
-    });
+  ruleConditionService.addCondition('first_monday', {
+    component: 'swag-first-monday',
+    label: 'Is first monday of the month',
+    scopes: ['global'],
+    group: 'days_of_the_month', // [!code focus]
+  });
 
-    return ruleConditionService;
+  return ruleConditionService;
 });
 ```
 
@@ -217,38 +217,38 @@ Here's an example of what this component could look like:
 import template from './swag-first-monday.html.twig';
 
 Shopware.Component.extend('swag-first-monday', 'sw-condition-base', {
-    template,
+  template,
 
-    computed: {
-        selectValues() {
-            return [
-                {
-                    label: this.$tc('global.sw-condition.condition.yes'),
-                    value: true
-                },
-                {
-                    label: this.$tc('global.sw-condition.condition.no'),
-                    value: false
-                }
-            ];
+  computed: {
+    selectValues() {
+      return [
+        {
+          label: this.$tc('global.sw-condition.condition.yes'),
+          value: true
         },
-
-        isFirstMondayOfTheMonth: {
-            get() {
-                this.ensureValueExist();
-
-                if (this.condition.value.isFirstMondayOfTheMonth == null) {
-                    this.condition.value.isFirstMondayOfTheMonth = false;
-                }
-
-                return this.condition.value.isFirstMondayOfTheMonth;
-            },
-            set(isFirstMondayOfTheMonth) {
-                this.ensureValueExist();
-                this.condition.value = { ...this.condition.value, isFirstMondayOfTheMonth };
-            }
+        {
+          label: this.$tc('global.sw-condition.condition.no'),
+          value: false
         }
+      ];
+    },
+
+    isFirstMondayOfTheMonth: {
+      get() {
+        this.ensureValueExist();
+
+        if (this.condition.value.isFirstMondayOfTheMonth == null) {
+          this.condition.value.isFirstMondayOfTheMonth = false;
+        }
+
+        return this.condition.value.isFirstMondayOfTheMonth;
+      },
+      set(isFirstMondayOfTheMonth) {
+        this.ensureValueExist();
+        this.condition.value = { ...this.condition.value, isFirstMondayOfTheMonth };
+      }
     }
+  }
 });
 ```
 
@@ -265,15 +265,15 @@ The second and last computed property is `isFirstMondayOfTheMonth`, which uses a
 The last step is, creating a template for our condition. We will create a new file called `swag-first-monday.html.twig` in the same directory as the component. In our template, we have to overwrite the block `sw_condition_value_content`. In this example we define a `sw-single-select` in this block.
 
 ```twig
-// <plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday/swag-first-monday.html.twig
+{# <plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday/swag-first-monday.html.twig #}
 {% block sw_condition_value_content %}
-    <sw-single-select name="first-monday"
-                      id="first-monday"
-                      size="medium"
-                      :options="selectValues"
-                      v-model="isFirstMondayOfTheMonth"
-                      class="field--main">
-    </sw-single-select>
+  <sw-single-select name="first-monday"
+    id="first-monday"
+    size="medium"
+    :options="selectValues"
+    v-model="isFirstMondayOfTheMonth"
+    class="field--main">
+  </sw-single-select>
 {% endblock %}
 ```
 
@@ -309,29 +309,29 @@ You can find all possible relations in `Shopware\Core\Content\Rule\RuleDefinitio
 
 Now, add your `awarenessConfiguration` and call the `addAwarenessConfiguration` method.
 
-```javascript
+```typescript
 type awarenessConfiguration = {
-notEquals?: Array<string>,
-equalsAny?: Array<string>,
-snippet?: string,
+  notEquals?: Array<string>,
+  equalsAny?: Array<string>,
+  snippet?: string,
 }
 ```
 
 ```javascript
 // <plugin root>src/Resources/app/administration/src/decorator/rule-condition-service-decoration.js
 Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderService', (ruleConditionService) => {
-    // Your newly added conditions is here
+  // Your newly added conditions is here
 
-    const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
+  const restrictions = ruleConditionService.getAwarenessConfigurationByAssignmentName('productPrices');
 
-    ruleConditionService
-        .addAwarenessConfiguration('productPrices', {
-            notEquals: [
-                'first_monday'
-            ],
-            equalsAny: [ ], // ignore if not needed
-            snippet: 'sw-restricted-rules.restrictedAssignment.productPrices',
-        });
+  ruleConditionService
+    .addAwarenessConfiguration('productPrices', {
+      notEquals: [
+        'first_monday'
+      ],
+      equalsAny: [], // ignore if not needed
+      snippet: 'sw-restricted-rules.restrictedAssignment.productPrices',
+    });
 });
 ```
 
@@ -351,9 +351,9 @@ Refer to [customize administration components](../../administration/customizing-
 
 ```twig
 {% block example_twig_blog %}
-    <sw-select-rule-create
-        rule-aware-group-key="productPrices"
-        @save-rule="[YOUR SAVE METHOD]">
+  <sw-select-rule-create
+    rule-aware-group-key="productPrices"
+    @save-rule="[YOUR SAVE METHOD]">
 {% endblock %}
 ```
 

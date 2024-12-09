@@ -22,9 +22,10 @@ The lifecycle registration in the `manifest.xml` would look like this:
 
 ```xml
 <webhooks>
-    <webhook name="appActivate" url="https://app-server.com/app/activate" event="app.activated"/>
-    <webhook name="appDeactivated" url="https://app-server.com/app/deactivated" event="app.deactivated"/>
-    <webhook name="appDelete" url="https://app-server.com/app/delete" event="app.deleted"/>
+  <webhook name="appActivate" url="https://app-server.com/app/activate" event="app.activated" />
+  <webhook name="appDeactivated" url="https://app-server.com/app/deactivated"
+    event="app.deactivated" />
+  <webhook name="appDelete" url="https://app-server.com/app/delete" event="app.deleted" />
 </webhooks>
 ```
 
@@ -46,12 +47,12 @@ $shopResolver = new \Shopware\App\SDK\Shop\ShopResolver($repository);
 $lifecycle = new \Shopware\App\SDK\AppLifecycle($registrationService, $shopResolver, $repository);
 
 $response = match ($_SERVER['REQUEST_URI']) {
-    '/app/register' => $lifecycle->register($psrRequest),
-    '/app/register/confirm' => $lifecycle->registerConfirm($psrRequest),
-    '/app/activate' => $lifecycle->activate($psrRequest),
-    '/app/deactivate' => $lifecycle->deactivate($psrRequest),
-    '/app/delete' => $lifecycle->delete($psrRequest),
-    default => throw new \RuntimeException('Unknown route')
+  '/app/register' => $lifecycle->register($psrRequest),
+  '/app/register/confirm' => $lifecycle->registerConfirm($psrRequest),
+  '/app/activate' => $lifecycle->activate($psrRequest),
+  '/app/deactivate' => $lifecycle->deactivate($psrRequest),
+  '/app/delete' => $lifecycle->delete($psrRequest),
+  default => throw new \RuntimeException('Unknown route')
 };
 
 // return the response

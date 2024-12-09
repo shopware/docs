@@ -32,20 +32,21 @@ use Shopware\B2B\Currency\Framework\CurrencyService;
 
 class TestController
 {
-    private CurrencyService $currencyService;
+  private CurrencyService $currencyService;
 
-    public function __construct(
-        CurrencyService $currencyService
-    ) {
-        $this->currencyService = $currencyService;
-    }
+  public function __construct(
+    CurrencyService $currencyService
+  ) {
+    $this->currencyService = $currencyService;
+  }
 
-    public function testAction(): array
-    {
-        return [
-            'currencyContext' => $this->currencyService->createCurrencyContext(),
-        ];
-    }
+  public function testAction(): array
+  {
+    return [
+      'currencyContext' => $this->currencyService->createCurrencyContext(),
+    ];
+  }
+}
 ```
 
 This way, you can either store the currency factor with a newly provided amount or retrieve recalculated data from your repository.
@@ -55,36 +56,38 @@ This way, you can either store the currency factor with a newly provided amount 
 All recalculable entities must implement the interface `Shopware\B2B\Currency\Framework\CurrencyAware`, which provides the means to access the currency data.
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\B2B\Currency\Framework\CurrencyAware;
 
 class MyEntity implements CurrencyAware
 {
-    public float $amount1;
+  public float $amount1;
 
-    public float $amount2;
+  public float $amount2;
 
-    private float $factor;
+  private float $factor;
 
-    public function getCurrencyFactor(): float
-    {
-        return $this->factor;
-    }
+  public function getCurrencyFactor(): float
+  {
+    return $this->factor;
+  }
 
-    public function setCurrencyFactor(float $factor)
-    {
-        $this->factor = $factor;
-    }
+  public function setCurrencyFactor(float $factor)
+  {
+    $this->factor = $factor;
+  }
 
-    /**
-     * @return string[]
-     */
-    public function getAmountPropertyNames(): array
-    {
-        return [
-            'amount1',
-            'amount2',
-        ];
-    }
+  /**
+   * @return string[]
+   */
+  public function getAmountPropertyNames(): array
+  {
+    return [
+      'amount1',
+      'amount2',
+    ];
+  }
 }
 ```
 
@@ -101,13 +104,13 @@ use Shopware\B2B\Currency\Framework\CurrencyCalculator;
 
 class Repository
 {
-    private CurrencyCalculator $currencyCalculator;
+  private CurrencyCalculator $currencyCalculator;
 
-    public function __construct(
-        CurrencyCalculator $currencyCalculator
-    ) {
-        $this->currencyCalculator = $currencyCalculator;
-    }
+  public function __construct(
+    CurrencyCalculator $currencyCalculator
+  ) {
+    $this->currencyCalculator = $currencyCalculator;
+  }
 }
 ```
 
@@ -118,28 +121,28 @@ To recalculate an entity amount, the calculator provides two convenient function
 * `recalculateAmount` for a single entity:
 
 ```php
-    public function fetchOneById(int $id, CurrencyContext $currencyContext): CurrencyAware
-    {
-        [...] // load entity from Database
+public function fetchOneById(int $id, CurrencyContext $currencyContext): CurrencyAware
+{
+  [...] // load entity from Database
 
-        $this->currencyCalculator->recalculateAmount($entity, $currencyContext);
+  $this->currencyCalculator->recalculateAmount($entity, $currencyContext);
 
-        return $entity;
-    }
+  return $entity;
+}
 ```
 
 * `recalculateAmounts` to recalculate an array of entities:
 
 ```php
-    public function fetchList([...], CurrencyContext $currencyContext): array
-    {
-        [...] // load entities from Database
+public function fetchList([...], CurrencyContext $currencyContext): array
+{
+  [...] // load entities from Database
 
-        //recalculate with the current amount
-        $this->>currencyCalculator->recalculateAmounts($entities, $currencyContext);
+  //recalculate with the current amount
+  $this->>currencyCalculator->recalculateAmounts($entities, $currencyContext);
 
-        return $entities;
-    }
+  return $entities;
+}
 ```
 
 ### Calculating in SQL
@@ -151,26 +154,26 @@ For this case, the Currency component creates a SQL calculation snippet.
 So if your original snippet looked like this:
 
 ```php
-    public function fetchAmount(int $budgetId): float
-    {
-        return (float) $this-connection->fetchColumn(
-            'SELECT SUM(amount) AS sum_amount FROM b2b_budget_transaction WHERE budget_id=:budgetId',
-            ['budgetId' => $budgetId]
-        )
-    }
+public function fetchAmount(int $budgetId): float
+{
+  return (float) $this-connection->fetchColumn(
+    'SELECT SUM(amount) AS sum_amount FROM b2b_budget_transaction WHERE budget_id=:budgetId',
+    ['budgetId' => $budgetId]
+  )
+}
 ```
 
 But it should actually look like this:
 
 ```php
-    public function fetchAmount(int $budgetId, CurrencyContext $currencyContext): float
-    {
-        $transactionSnippet = $this->currencyCalculator
-            ->getSqlCalculationPart('amount', 'currency_factor', $currencyContext);
+public function fetchAmount(int $budgetId, CurrencyContext $currencyContext): float
+{
+  $transactionSnippet = $this->currencyCalculator
+    ->getSqlCalculationPart('amount', 'currency_factor', $currencyContext);
 
-        return (float) $this-connection->fetchColumn(
-            'SELECT SUM(' . $transactionSnippet . ') AS sum_amount FROM b2b_budget_transaction WHERE budget_id=:budgetId',
-            ['budgetId' => $budgetId]
-        )
-    }
+  return (float) $this-connection->fetchColumn(
+    'SELECT SUM(' . $transactionSnippet . ') AS sum_amount FROM b2b_budget_transaction WHERE budget_id=:budgetId',
+    ['budgetId' => $budgetId]
+  )
+}
 ```

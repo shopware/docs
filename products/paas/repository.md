@@ -60,10 +60,10 @@ Now your repository is configured - you should have two remotes
 ```sh
 $ git remote -v
 
-origin	git@github.com:<project-repository>.git (fetch)
-origin	git@github.com:<project-repository>.git (push)
-shopware	<paas-url>.git (fetch)
-shopware	<paas-url>.git (push)
+origin git@github.com:<project-repository>.git (fetch)
+origin git@github.com:<project-repository>.git (push)
+shopware <paas-url>.git (fetch)
+shopware <paas-url>.git (push)
 ```
 
 | Remote     | Function          | Description                                                             |

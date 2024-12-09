@@ -90,9 +90,9 @@ If either one or both of `value` and `comparable` are an array, then only `=` an
 ### Example
 
 ```twig
-// Resources/scripts/rule-conditions/custom-condition.twig
+{# Resources/scripts/rule-conditions/custom-condition.twig #}
 {% if scope.salesChannelContext.customer is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% return compare(operator, scope.salesChannelContext.customer.firstName, firstName) %}
@@ -104,51 +104,51 @@ We then use the variables `operator` and `firstName`, provided by the constraint
 
 ### Line item condition example
 
-```html
-// manifest.xml
+```xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>line_item_condition</identifier>
-    <name>Custom product multi select</name>
-    <group>item</group>
-    <script>line-item-condition.twig</script>
-    <constraints>
-        <single-select name="operator">
-            <placeholder>Choose an operator...</placeholder>
-            <options>
-                <option value="=">
-                    <name>Is equal to</name>
-                </option>
-                <option value="!=">
-                    <name>Is not equal to</name>
-                </option>
-            </options>
-            <required>true</required>
-        </single-select>
-        <multi-entity-select name="productIds">
-            <placeholder>Choose products...</placeholder>
-            <entity>product</entity>
-            <required>true</required>
-        </multi-entity-select>
-    </constraints>
+  <identifier>line_item_condition</identifier>
+  <name>Custom product multi select</name>
+  <group>item</group>
+  <script>line-item-condition.twig</script>
+  <constraints>
+    <single-select name="operator">
+      <placeholder>Choose an operator...</placeholder>
+      <options>
+        <option value="=">
+          <name>Is equal to</name>
+        </option>
+        <option value="!=">
+          <name>Is not equal to</name>
+        </option>
+      </options>
+      <required>true</required>
+    </single-select>
+    <multi-entity-select name="productIds">
+      <placeholder>Choose products...</placeholder>
+      <entity>product</entity>
+      <required>true</required>
+    </multi-entity-select>
+  </constraints>
 </rule-condition>
 <!-- ... -->
 ```
 
 ```twig
-// Resources/scripts/rule-conditions/line-item-condition.twig
+{# Resources/scripts/rule-conditions/line-item-condition.twig #}
 {% if scope.lineItem is defined %}
-    {% return compare(operator, lineItem.referenceId, productIds) %}
+  {% return compare(operator, lineItem.referenceId, productIds) %}
 {% endif %}
 
 {% if scope.cart is not defined %}
-    {% return false %}
+  {% return false %}
 {% endif %}
 
 {% for lineItem in scope.cart.lineItems.getFlat() %}
-    {% if compare(operator, lineItem.referenceId, productIds) %}
-        {% return true %}
-    {% endif %}
+  {% if compare(operator, lineItem.referenceId, productIds) %}
+    {% return true %}
+  {% endif %}
 {% endfor %}
 
 {% return false %}
@@ -158,20 +158,20 @@ In this example we first check if the current scope is `LineItemScope` and refer
 
 ### Date condition example
 
-```html
-// manifest.xml
+```xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
-    <identifier>date_condition</identifier>
-    <name>Custom date condition</name>
-    <group>misc</group>
-    <script>date-condition.twig</script>
+  <identifier>date_condition</identifier>
+  <name>Custom date condition</name>
+  <group>misc</group>
+  <script>date-condition.twig</script>
 </rule-condition>
 <!-- ... -->
 ```
 
 ```twig
-// Resources/scripts/rule-conditions/date-condition.twig
+{# Resources/scripts/rule-conditions/date-condition.twig #}
 {% return compare('=', scope.getCurrentTime()|date_modify('first day of this month')|date_modify('second wednesday of this month')|date('Y-m-d'), scope.getCurrentTime()|date('Y-m-d')) %}
 ```
 

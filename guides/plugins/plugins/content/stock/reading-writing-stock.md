@@ -27,21 +27,21 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 
 class ReadingStock
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
-    
-    public function read(Context $context): void
-    {
-        $product = $this->productRepository
-            ->search(new Criteria([$productId]), $context)
-            ->first();
-            
-        $stock = $product->getStock();
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
+
+  public function read(Context $context): void
+  {
+    $product = $this->productRepository
+      ->search(new Criteria([$productId]), $context)
+      ->first();
+
+    $stock = $product->getStock();
+  }
 }
 ```
 
@@ -61,24 +61,24 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 
 class WritingStock
 {
-    private EntityRepository $productRepository;
+  private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
-    
-    public function write(string $productId, int $stock, Context $context): void
-    {
-        $this->productRepository->update(
-            [
-                [
-                    'id' => $productId,
-                    'stock' => $stock
-                ]
-            ],
-            $context
-        );
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
+
+  public function write(string $productId, int $stock, Context $context): void
+  {
+    $this->productRepository->update(
+      [
+        [
+          'id' => $productId,
+          'stock' => $stock
+        ]
+      ],
+      $context
+    );
+  }
 }
 ```

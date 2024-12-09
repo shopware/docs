@@ -54,18 +54,18 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
+    ];
+  }
 
-    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
-    {
-        // Will render: $sass-plugin-header-bg-color: "#59ccff";
-        $event->addVariable('sass-plugin-header-bg-color', '#59ccff');
-    }
+  public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
+  {
+    // Will render: $sass-plugin-header-bg-color: "#59ccff";
+    $event->addVariable('sass-plugin-header-bg-color', '#59ccff');
+  }
 }
 ```
 
@@ -74,17 +74,17 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 <Tab title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -108,37 +108,37 @@ Inside your `ThemeVariableSubscriber` you can also read values from the plugin c
 First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration):
 
 ```xml
-// <plugin root>/src/Resources/config/config.xml
+<!-- <plugin root>/src/Resources/config/config.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Example configuration</title>
-        <input-field type="colorpicker">
-            <name>sassPluginHeaderBgColor</name>
-            <label>Header background color</label>
-        </input-field>
-    </card>
+  <card>
+    <title>Example configuration</title>
+    <input-field type="colorpicker">
+      <name>sassPluginHeaderBgColor</name>
+      <label>Header background color</label>
+    </input-field>
+  </card>
 </config>
 ```
 
 As you can see in the example, we add an input field of the type colorpicker for our plugin. In the Administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
 ```xml
-// <plugin root>/src/Resources/config/config.xml
+<!-- <plugin root>/src/Resources/config/config.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Example configuration</title>
-        <input-field type="colorpicker">
-            <name>sassPluginHeaderBgColor</name>
-            <label>Header background color</label>
-            <defaultValue>#fff</defaultValue>
-        </input-field>
-    </card>
+  <card>
+    <title>Example configuration</title>
+    <input-field type="colorpicker">
+      <name>sassPluginHeaderBgColor</name>
+      <label>Header background color</label>
+      <defaultValue>#fff</defaultValue>
+    </input-field>
+  </card>
 </config>
 ```
 
@@ -158,31 +158,31 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    protected SystemConfigService $systemConfig;
+  protected SystemConfigService $systemConfig;
 
-    // add the `SystemConfigService` to your constructor
-    public function __construct(SystemConfigService $systemConfig)
-    {
-        $this->systemConfig = $systemConfig;
+  // add the `SystemConfigService` to your constructor
+  public function __construct(SystemConfigService $systemConfig)
+  {
+    $this->systemConfig = $systemConfig;
+  }
+
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
+    ];
+  }
+
+  public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
+  {
+    /** @var string $configExampleField */
+    $configPluginHeaderBgColor = $this->systemConfig->get('SwagBasicExample.config.sassPluginHeaderBgColor', $event->getSalesChannelId());
+
+    if ($configPluginHeaderBgColor) {
+      // pass the value from `configPluginHeaderBgColor` to `addVariable`
+      $event->addVariable('sass-plugin-header-bg-color', $configPluginHeaderBgColor);
     }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
-        ];
-    }
-
-    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
-    {
-        /** @var string $configExampleField */
-        $configPluginHeaderBgColor = $this->systemConfig->get('SwagBasicExample.config.sassPluginHeaderBgColor', $event->getSalesChannelId());
-
-        if ($configPluginHeaderBgColor) {
-            // pass the value from `configPluginHeaderBgColor` to `addVariable`
-            $event->addVariable('sass-plugin-header-bg-color', $configPluginHeaderBgColor);
-        }
-    }
+  }
 }
 ```
 
@@ -191,19 +191,19 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 <Tab title="<plugin root>/src/Resources/config/services.xml">
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
-            <!-- add argument `SystemConfigService` -->
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
+      <!-- add argument `SystemConfigService` -->
+      <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -229,19 +229,19 @@ use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter
 
 class ThemeVariableSubscriber implements EventSubscriberInterface
 {
-    // ...
+  // ...
 
-    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
-    {
-        $configFields = $this->systemConfig->get('SwagBasicExample.config', $event->getSalesChannelId());
+  public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void
+  {
+    $configFields = $this->systemConfig->get('SwagBasicExample.config', $event->getSalesChannelId());
 
-        foreach($configFields as $key => $value) {
-            // convert `customVariableName` to `custom-variable-name`
-            $kebabCased = str_replace('_', '-', (new CamelCaseToSnakeCaseNameConverter())->normalize($key));
+    foreach($configFields as $key => $value) {
+      // convert `customVariableName` to `custom-variable-name`
+      $kebabCased = str_replace('_', '-', (new CamelCaseToSnakeCaseNameConverter())->normalize($key));
 
-            $event->addVariable($kebabCased, $value);
-        }
+      $event->addVariable($kebabCased, $value);
     }
+  }
 }
 ```
 

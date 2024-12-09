@@ -24,20 +24,20 @@ Adding custom cookies basically requires you to decorate a service, the `CookieP
 Start with creating the `services.xml` entry and with decorating the `CookieProviderInterface`. The `CookieProvider` service was already built before we decided to use abstract classes for decorations, so don't be confused here.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-       <service id="PluginName\Framework\Cookie\CustomCookieProvider"
-                decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
-             <argument type="service" 
-                       id="PluginName\Framework\Cookie\CustomCookieProvider.inner" />
-         </service>
-    </services>
+  <services>
+    <service id="PluginName\Framework\Cookie\CustomCookieProvider"
+      decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
+      <argument type="service"
+        id="PluginName\Framework\Cookie\CustomCookieProvider.inner" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -59,53 +59,54 @@ namespace Swag\BasicExample\Service;
 
 use Shopware\Storefront\Framework\Cookie\CookieProviderInterface;
 
-class CustomCookieProvider implements CookieProviderInterface {
+class CustomCookieProvider implements CookieProviderInterface
+{
 
-    private CookieProviderInterface $originalService;
+  private CookieProviderInterface $originalService;
 
-    public function __construct(CookieProviderInterface $service)
-    {
-        $this->originalService = $service;
-    }
+  public function __construct(CookieProviderInterface $service)
+  {
+    $this->originalService = $service;
+  }
 
-    private const singleCookie = [
-        'snippet_name' => 'cookie.name',
-        'snippet_description' => 'cookie.description ',
-        'cookie' => 'cookie-key',
+  private const singleCookie = [
+    'snippet_name' => 'cookie.name',
+    'snippet_description' => 'cookie.description ',
+    'cookie' => 'cookie-key',
+    'value' => 'cookie value',
+    'expiration' => '30'
+  ];
+
+  // cookies can also be provided as a group
+  private const cookieGroup = [
+    'snippet_name' => 'cookie.group_name',
+    'snippet_description' => 'cookie.group_description ',
+    'entries' => [
+      [
+        'snippet_name' => 'cookie.first_child_name',
+        'cookie' => 'cookie-key-1',
         'value' => 'cookie value',
         'expiration' => '30'
-    ];
+      ],
+      [
+        'snippet_name' => 'cookie.second_child_name',
+        'cookie' => 'cookie-key-2',
+        'value' => 'cookie value',
+        'expiration' => '60'
+      ]
+    ],
+  ];
 
-    // cookies can also be provided as a group
-    private const cookieGroup = [
-        'snippet_name' => 'cookie.group_name',
-        'snippet_description' => 'cookie.group_description ',
-        'entries' => [
-            [
-                'snippet_name' => 'cookie.first_child_name',
-                'cookie' => 'cookie-key-1',
-                'value'=> 'cookie value',
-                'expiration' => '30'
-            ],
-            [
-                'snippet_name' => 'cookie.second_child_name',
-                'cookie' => 'cookie-key-2',
-                'value'=> 'cookie value',
-                'expiration' => '60'
-            ]
-        ],
-    ];
-
-    public function getCookieGroups(): array
-    {
-        return array_merge(
-            $this->originalService->getCookieGroups(),
-            [
-                self::cookieGroup,
-                self::singleCookie
-            ]
-        );
-    }
+  public function getCookieGroups(): array
+  {
+    return array_merge(
+      $this->originalService->getCookieGroups(),
+      [
+        self::cookieGroup,
+        self::singleCookie
+      ]
+    );
+  }
 }
 ```
 

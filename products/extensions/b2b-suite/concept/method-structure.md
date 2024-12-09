@@ -25,22 +25,22 @@ Example:
 
 namespace Shopware\B2B\Common\Controller;
 
-[...]
+// [...]
 
 class GridHelper
-{    
-    [...]
-    
-    /**
-     * @internal
-     */
-    protected function extractLimitAndOffset(Request $request, SearchStruct $struct): void
-    {
-        $struct->offset = $request->getParam('offset', null);
-        $struct->limit = $request->getParam('limit', null);
-    }
+{
+  // [...]
 
-    [...]
+  /**
+   * @internal
+   */
+  protected function extractLimitAndOffset(Request $request, SearchStruct $struct): void
+  {
+    $struct->offset = $request->getParam('offset', null);
+    $struct->limit = $request->getParam('limit', null);
+  }
+
+  // [...]
 }
 ```
 
@@ -57,8 +57,8 @@ Example:
 
 ```typescript
 export default class {
-    public addClass(element: HTMLElement, name: string): void {
-        element.classList.add(name);
-    }
+  public addClass(element: HTMLElement, name: string): void {
+    element.classList.add(name);
+  }
 }
 ```

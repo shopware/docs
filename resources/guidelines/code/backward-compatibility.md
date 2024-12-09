@@ -281,45 +281,45 @@ abstract class AbstractProductRoute
 
 **Storefront**: Use the `deprecated` tag from TWIG, including a comment with the normal annotation.
 
-```html
+```twig
 {% block the_block_name %}
-    {% deprecated '@deprecated tag:v6.5.0 - Block will be removed completely including the content' %}
-    <div>Content</div>
+  {% deprecated '@deprecated tag:v6.5.0 - Block will be removed completely including the content' %}
+  <div>Content</div>
 {% endblock %}
 ```
 
 **Administration**: Use normal TWIG comments for the annotation, as the other syntax is not supported.
 
-```html
+```twig
 {% block the_block_name %}
-    {# @deprecated tag:v6.5.0 - Block will be removed completely including the content #}
-    <div>Content</div>
+  {# @deprecated tag:v6.5.0 - Block will be removed completely including the content #}
+  <div>Content</div>
 {% endblock %}
 ```
 
 #### Rename TWIG block
 
-```html
+```twig
 {% block new_block_name %}
-    {% block old_block_name %}
-    {% deprecated '@deprecated tag:v6.5.0 - Use `new_block_name` instead' %}
-        <div>Content</div>
-    {% endblock %}
+  {% block old_block_name %}
+  {% deprecated '@deprecated tag:v6.5.0 - Use `new_block_name` instead' %}
+    <div>Content</div>
+  {% endblock %}
 {% endblock %}
 ```
 
 #### Deprecate CSS selectors
 
-```html
+```twig
 {# @deprecated tag:v6.5.0 - CSS class "card-primary" is deprecated, use "card-major" instead #}
 <div class="card card-major card-primary">
-    ...
+  {# ... #}
 </div>
 ```
 
 #### Deprecate Vue Slot
 
-```html
+```twig
 {# @deprecated tag:v6.5.0 - Use slot "main-content" instead #}
 <slot name="content"></slot>
 <slot name="main-content"></slot>
@@ -332,21 +332,21 @@ abstract class AbstractProductRoute
 ```javascript
 // route.service.js
 export default class RouteService {
-    /**
-     * @deprecated tag:v6.5.0 - Use getRouteConfig() instead
-     */
-    getRoute(symfonyRoute) {
-        // Returns string 'foo/bar'
-        return this._someMagic(symfonyRoute);
+  /**
+   * @deprecated tag:v6.5.0 - Use getRouteConfig() instead
+   */
+  getRoute(symfonyRoute) {
+    // Returns string 'foo/bar'
+    return this._someMagic(symfonyRoute);
+  }
+
+  getRouteConfig() {
+    // Returns object { name: 'foo/bar', params: [] }
+    return {
+      url: this._someMagic(symfonyRoute).url,
+      params: this._someMagic(symfonyRoute).params
     }
- 
-    getRouteConfig() {
-        // Returns object { name: 'foo/bar', params: [] }
-        return {
-            url: this._someMagic(symfonyRoute).url,
-            params: this._someMagic(symfonyRoute).params
-        }
-    }
+  }
 }
 ```
 
@@ -357,11 +357,11 @@ export default class RouteService {
  * @deprecated tag:v6.5.0 - Use onItemClick() instead
  */
 onClick(event) {
-    return onItemClick(event);
+  return onItemClick(event);
 },
  
 onItemClick(event) {
-    // ...
+  // ...
 }
 ```
 
@@ -373,7 +373,7 @@ onItemClick(event) {
  * @status deprecated
  */
 Shopware.Component.register('sw-old', {
-    deprecated: '6.5.0'
+  deprecated: '6.5.0'
 });
 ```
 
@@ -421,12 +421,12 @@ Shopware.Component.register('sw-old', {
 * @deprecated tag:v6.5.0 - Use NewHttpClient instead (new-http-client.service.js)
 */
 export default class HttpClient {
-    // ...
+  // ...
 }
  
 // new-http-client.service.js
 export default class NewHttpClient {
-    // ...
+  // ...
 }
 ```
 
@@ -438,11 +438,11 @@ export default class NewHttpClient {
 * @deprecated tag:v6.5.0 - Use NewBuyButtonPlugin instead (new-buy-button.plugin.js)
 */
 export default class BuyButtonPlugin extends Plugin {
-    // ...
+  // ...
 }
  
 // new-buy-button.plugin.js
 export default class NewBuyButtonPlugin extends Plugin {
-    // ...
+  // ...
 }
 ```

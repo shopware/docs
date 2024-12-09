@@ -29,34 +29,34 @@ use Shopware\Core\Content\Product\ProductEvents;
 
 class MySubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      ProductEvents::PRODUCT_LOADED_EVENT => 'onProductsLoaded'
+    ];
+  }
 
-    public function onProductsLoaded(EntityLoadedEvent $event): void
-    {
-        // Do stuff with the product
-    }
+  public function onProductsLoaded(EntityLoadedEvent $event): void
+  {
+    // Do stuff with the product
+  }
 }
 ```
 
 For this guide, a very small plugin configuration file is available as well:
 
 ```xml
-// <plugin root>/src/Resources/config/config.xml
+<!-- <plugin root>/src/Resources/config/config.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
-    <card>
-        <title>Minimal configuration</title>
-        <input-field>
-            <name>example</name>
-        </input-field>
-    </card>
+  <card>
+    <title>Minimal configuration</title>
+    <input-field>
+      <name>example</name>
+    </input-field>
+  </card>
 </config>
 ```
 
@@ -69,19 +69,19 @@ Let's get to the important part. Reading the plugin configuration is based on th
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MySubscriber">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Subscriber\MySubscriber">
+      <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -93,23 +93,25 @@ Note the new `argument` being provided to your subscriber. Now create a new fiel
 
 namespace Swag\BasicExample\Subscriber;
 
-...
+// use ...
+
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class MySubscriber implements EventSubscriberInterface
 {
-    private SystemConfigService $systemConfigService;
+  private SystemConfigService $systemConfigService;
 
-    public function __construct(SystemConfigService $systemConfigService)
-    {
-        $this->systemConfigService = $systemConfigService;
-    }
+  public function __construct(SystemConfigService $systemConfigService)
+  {
+    $this->systemConfigService = $systemConfigService;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        ...
-    }
-    ...
+  public static function getSubscribedEvents(): array
+  {
+    // ...
+  }
+
+  // ...
 }
 ```
 
@@ -127,15 +129,16 @@ That's why the plugin configurations are always prefixed. By default, the patter
 
 namespace Swag\BasicExample\Subscriber;
 
-...
+// use ...
 
 class MySubscriber implements EventSubscriberInterface
 {
-    ...
-    public function onProductsLoaded(EntityLoadedEvent $event): void
-    {
-        $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example', $salesChannelId);
-    }
+  // ...
+
+  public function onProductsLoaded(EntityLoadedEvent $event): void
+  {
+    $exampleConfig = $this->systemConfigService->get('SwagBasicExample.config.example', $salesChannelId);
+  }
 }
 ```
 

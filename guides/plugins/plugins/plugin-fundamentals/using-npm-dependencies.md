@@ -37,13 +37,13 @@ To do this, we create a new folder called "build" under either `Resources/app/st
 
 ```javascript
 module.exports = (params) => {
-    return { 
-        resolve: { 
-            modules: [
-                `${params.basePath}/Resources/app/storefront/node_modules`,
-            ],
-       } 
-   }; 
+  return {
+    resolve: {
+      modules: [
+        `${params.basePath}/Resources/app/storefront/node_modules`,
+      ],
+    }
+  };
 }
 ```
 
@@ -64,17 +64,17 @@ import { log } from 'missionlog';
 
 // Initializing the logger
 log.init({ initializer: 'INFO' }, (level, tag, msg, params) => {
-    console.log(`${level}: [${tag}] `, msg, ...params);
+  console.log(`${level}: [${tag}] `, msg, ...params);
 });
 
 // The plugin skeleton
 export default class ExamplePlugin extends PluginBaseClass {
-    init() {
-        console.log('init');
+  init() {
+    console.log('init');
 
-        // Use logger
-        log.info('initializer', 'example plugin got started', this);
-    }
+    // Use logger
+    log.info('initializer', 'example plugin got started', this);
+  }
 }
 ```
 
@@ -85,8 +85,8 @@ We import the function log as well as the constants tag via `destructuring` in t
 import ExamplePlugin from './example.plugin';
 
 PluginManager.register(
-    'ExamplePlugin',
-    ExamplePlugin
+  'ExamplePlugin',
+  ExamplePlugin
 );
 ```
 

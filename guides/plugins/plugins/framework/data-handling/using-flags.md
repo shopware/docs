@@ -56,21 +56,21 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class ExampleDefinition extends EntityDefinition
 {
-    public const ENTITY_NAME = 'swag_example';
+  public const ENTITY_NAME = 'swag_example';
 
-    public function getEntityName(): string
-    {
-        return self::ENTITY_NAME;
-    }
+  public function getEntityName(): string
+  {
+    return self::ENTITY_NAME;
+  }
 
-    protected function defineFields(): FieldCollection
-    {
-        return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            (new StringField('name', 'name')),
-            (new StringField('description', 'description')),
-            (new BoolField('active', 'active'))
-        ]);
-    }
+  protected function defineFields(): FieldCollection
+  {
+    return new FieldCollection([
+      (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+      (new StringField('name', 'name')),
+      (new StringField('description', 'description')),
+      (new BoolField('active', 'active'))
+    ]);
+  }
 }
 ```

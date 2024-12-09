@@ -12,39 +12,40 @@ Logging is essential for anyone using the Shopware Migration Assistant. In case 
 We use `LogEntry` objects for our logging, so it's easier to group logs/errors of the same type and get the corresponding amount. Here is an example of how the logging works in the `CustomerConverter`:
 
 ```php
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 abstract class CustomerConverter extends ShopwareConverter
 {
-    /* ... */
+  /* ... */
 
-    public function convert(
-            array $data,
-            Context $context,
-            MigrationContextInterface $migrationContext
-        ): ConvertStruct
-    {
-        $this->generateChecksum($data);
-        $oldData = $data;
-        $this->runId = $migrationContext->getRunUuid();
+  public function convert(
+    array $data,
+    Context $context,
+    MigrationContextInterface $migrationContext
+  ): ConvertStruct {
+    $this->generateChecksum($data);
+    $oldData = $data;
+    $this->runId = $migrationContext->getRunUuid();
 
-        $fields = $this->checkForEmptyRequiredDataFields($data, $this->requiredDataFieldKeys);
+    $fields = $this->checkForEmptyRequiredDataFields($data, $this->requiredDataFieldKeys);
 
-        if (!empty($fields)) {
-            $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
-                $this->runId,
-                DefaultEntities::CUSTOMER,
-                $data['id'],
-                implode(',', $fields)
-            ));
+    if (!empty($fields)) {
+      $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
+        $this->runId,
+        DefaultEntities::CUSTOMER,
+        $data['id'],
+        implode(',', $fields)
+      ));
 
-            return new ConvertStruct(null, $oldData);
-        }
-
-        /* ... */
+      return new ConvertStruct(null, $oldData);
     }
 
     /* ... */
+  }
+
+  /* ... */
 }
 ```
 
@@ -55,9 +56,9 @@ You can get the `LoggingService` from the service container. Use the `addLogEntr
 
 interface LoggingServiceInterface
 {
-    public function addLogEntry(LogEntryInterface $logEntry): void;
+  public function addLogEntry(LogEntryInterface $logEntry): void;
 
-    public function saveLogging(Context $context): void;
+  public function saveLogging(Context $context): void;
 }
 ```
 
@@ -72,69 +73,69 @@ namespace SwagMigrationAssistant\Migration\Logging\Log;
 
 class EmptyNecessaryFieldRunLog extends BaseRunLogEntry
 {
-    private string $emptyField;
+  private string $emptyField;
 
-    public function __construct(string $runId, string $entity, string $sourceId, string $emptyField)
-    {
-        parent::__construct($runId, $entity, $sourceId);
-        $this->emptyField = $emptyField;
+  public function __construct(string $runId, string $entity, string $sourceId, string $emptyField)
+  {
+    parent::__construct($runId, $entity, $sourceId);
+    $this->emptyField = $emptyField;
+  }
+
+  public function getCode(): string
+  {
+    $entity = $this->getEntity();
+    if ($entity === null) {
+      return 'SWAG_MIGRATION_EMPTY_NECESSARY_FIELD';
     }
 
-    public function getCode(): string
-    {
-        $entity = $this->getEntity();
-        if ($entity === null) {
-            return 'SWAG_MIGRATION_EMPTY_NECESSARY_FIELD';
-        }
+    return sprintf('SWAG_MIGRATION_EMPTY_NECESSARY_FIELD_%s', mb_strtoupper($entity));
+  }
 
-        return sprintf('SWAG_MIGRATION_EMPTY_NECESSARY_FIELD_%s', mb_strtoupper($entity));
+  public function getLevel(): string
+  {
+    return self::LOG_LEVEL_WARNING;
+  }
+
+  public function getTitle(): string
+  {
+    $entity = $this->getEntity();
+    if ($entity === null) {
+      return 'The entity has one or more empty necessary fields';
     }
 
-    public function getLevel(): string
-    {
-        return self::LOG_LEVEL_WARNING;
-    }
+    return sprintf('The %s entity has one or more empty necessary fields', $entity);
+  }
 
-    public function getTitle(): string
-    {
-        $entity = $this->getEntity();
-        if ($entity === null) {
-            return 'The entity has one or more empty necessary fields';
-        }
+  public function getParameters(): array
+  {
+    return [
+      'entity' => $this->getEntity(),
+      'sourceId' => $this->getSourceId(),
+      'emptyField' => $this->emptyField,
+    ];
+  }
 
-        return sprintf('The %s entity has one or more empty necessary fields', $entity);
-    }
+  public function getDescription(): string
+  {
+    $args = $this->getParameters();
 
-    public function getParameters(): array
-    {
-        return [
-            'entity' => $this->getEntity(),
-            'sourceId' => $this->getSourceId(),
-            'emptyField' => $this->emptyField,
-        ];
-    }
+    return sprintf(
+      'The %s entity with the source id %s does not have the necessary data for the field(s): %s',
+      $args['entity'],
+      $args['sourceId'],
+      $args['emptyField']
+    );
+  }
 
-    public function getDescription(): string
-    {
-        $args = $this->getParameters();
+  public function getTitleSnippet(): string
+  {
+    return sprintf('%s.%s.title', $this->getSnippetRoot(), 'SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS');
+  }
 
-        return sprintf(
-            'The %s entity with the source id %s does not have the necessary data for the field(s): %s',
-            $args['entity'],
-            $args['sourceId'],
-            $args['emptyField']
-        );
-    }
-
-    public function getTitleSnippet(): string
-    {
-        return sprintf('%s.%s.title', $this->getSnippetRoot(), 'SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS');
-    }
-
-    public function getDescriptionSnippet(): string
-    {
-        return sprintf('%s.%s.description', $this->getSnippetRoot(), 'SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS');
-    }
+  public function getDescriptionSnippet(): string
+  {
+    return sprintf('%s.%s.description', $this->getSnippetRoot(), 'SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS');
+  }
 }
 ```
 

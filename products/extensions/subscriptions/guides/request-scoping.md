@@ -12,19 +12,23 @@ When you are in a subscription checkout, you are using a separate cart and conte
 Below is an example of the context set on a subscription cart in the Storefront:
 
 ```xml
-    <route id="frontend.subscription.checkout.cart.page"
-           path="/subscription/checkout/cart/{subscriptionToken}"
-           methods="GET"
-           controller="subscription.storefront.controller.checkout::cartPage">
-        <default key="_noStore">true</default>
-        <default key="_routeScope"><list><string>storefront</string></list></default>
-        <default key="_subscriptionCart">true</default>
-        <default key="_subscriptionContext">true</default>
-        <default key="_controllerName">checkout</default>
-        <default key="_controllerAction">cartpage</default>
-        <default key="_templateScopes">subscription</default>
-        <option key="seo">false</option>
-    </route>
+<route id="frontend.subscription.checkout.cart.page"
+  path="/subscription/checkout/cart/{subscriptionToken}"
+  methods="GET"
+  controller="subscription.storefront.controller.checkout::cartPage">
+  <default key="_noStore">true</default>
+  <default key="_routeScope">
+    <list>
+      <string>storefront</string>
+    </list>
+  </default>
+  <default key="_subscriptionCart">true</default>
+  <default key="_subscriptionContext">true</default>
+  <default key="_controllerName">checkout</default>
+  <default key="_controllerAction">cartpage</default>
+  <default key="_templateScopes">subscription</default>
+  <option key="seo">false</option>
+</route>
 ```
 
 And, here is an example of the headers set on a subscription cart using headless:

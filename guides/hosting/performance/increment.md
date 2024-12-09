@@ -25,16 +25,16 @@ To use Redis, create a `config/packages/shopware.yml` file with the following co
 
 ```yaml
 shopware:
-    increment:
-        user_activity:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
+  increment:
+    user_activity:
+      type: 'redis'
+      config:
+        url: 'redis://host:port/dbindex'
 
-        message_queue:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
+    message_queue:
+      type: 'redis'
+      config:
+        url: 'redis://host:port/dbindex'
 ```
 
 </Tab>
@@ -43,21 +43,21 @@ shopware:
 
 ```yaml
 shopware:
-    redis:
-        connections:
-            persistent:
-                dsn: 'redis://host:port/dbindex'
+  redis:
+    connections:
+      persistent:
+        dsn: 'redis://host:port/dbindex'
 
-    increment:
-        user_activity:
-            type: 'redis'
-            config:
-                connection: 'persistent'
+  increment:
+    user_activity:
+      type: 'redis'
+      config:
+        connection: 'persistent'
 
-        message_queue:
-            type: 'redis'
-            config:
-                connection: 'persistent'
+    message_queue:
+      type: 'redis'
+      config:
+        connection: 'persistent'
 ```
 
 </Tab>
@@ -77,10 +77,10 @@ To disable it, create a `config/packages/shopware.yml` file with the following c
 
 ```yaml
 shopware:
-    increment:
-        user_activity:
-            type: 'array'
+  increment:
+    user_activity:
+      type: 'array'
 
-        message_queue:
-            type: 'array'
+    message_queue:
+      type: 'array'
 ```

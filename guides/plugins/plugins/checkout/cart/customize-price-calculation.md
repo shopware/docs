@@ -39,35 +39,35 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class CustomProductPriceCalculator extends AbstractProductPriceCalculator
 {
-    /**
-     * @var AbstractProductPriceCalculator
-     */
-    private AbstractProductPriceCalculator $productPriceCalculator;
+  /**
+   * @var AbstractProductPriceCalculator
+   */
+  private AbstractProductPriceCalculator $productPriceCalculator;
 
-    public function __construct(AbstractProductPriceCalculator $productPriceCalculator)
-    {
-        $this->productPriceCalculator = $productPriceCalculator;
+  public function __construct(AbstractProductPriceCalculator $productPriceCalculator)
+  {
+    $this->productPriceCalculator = $productPriceCalculator;
+  }
+
+  public function getDecorated(): AbstractProductPriceCalculator
+  {
+    return $this->productPriceCalculator;
+  }
+
+  public function calculate(iterable $products, SalesChannelContext $context): void
+  {
+    /** @var SalesChannelProductEntity $product */
+    foreach ($products as $product) {
+      $price = $product->getPrice();
+      // Just an example!
+      // A product can have more than one price, which you also have to consider.
+      // Also you might have to change the value of "getCheapestPrice"!
+      $price->first()->setGross(100);
+      $price->first()->setNet(50);
     }
 
-    public function getDecorated(): AbstractProductPriceCalculator
-    {
-        return $this->productPriceCalculator;
-    }
-
-    public function calculate(iterable $products, SalesChannelContext $context): void
-    {
-        /** @var SalesChannelProductEntity $product */
-        foreach ($products as $product) {
-            $price = $product->getPrice();
-            // Just an example!
-            // A product can have more than one price, which you also have to consider.
-            // Also you might have to change the value of "getCheapestPrice"!
-            $price->first()->setGross(100);
-            $price->first()->setNet(50);
-        }
-
-        $this->getDecorated()->calculate($products, $context);
-    }
+    $this->getDecorated()->calculate($products, $context);
+  }
 }
 ```
 
@@ -82,17 +82,18 @@ Most likely you also want to narrow down which product's prices you want to edit
 Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
 
 ```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+<!-- <plugin root>/src/Resources/config/services.xml -->
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Service\CustomProductPriceCalculator" decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator">
-            <argument type="service" id="Swag\BasicExample\Service\CustomProductPriceCalculator.inner" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Service\CustomProductPriceCalculator"
+      decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator">
+      <argument type="service" id="Swag\BasicExample\Service\CustomProductPriceCalculator.inner" />
+    </service>
+  </services>
 </container>
 ```
 

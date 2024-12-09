@@ -35,10 +35,10 @@ use Shopware\Core\Content\Flow\Dispatching\TransactionalAction;
 
 class CreateTagAction extends FlowAction implements TransactionalAction
 {
-    public function handleFlow(StorableFlow $flow): void
-    {        
-        //do stuff - will be wrapped in a transaction
-    }  
+  public function handleFlow(StorableFlow $flow): void
+  {        
+    //do stuff - will be wrapped in a transaction
+  }  
 }
 ```
 
@@ -60,15 +60,15 @@ use Shopware\Core\Content\Flow\Dispatching\TransactionalAction;
 
 class CreateTagAction extends FlowAction implements TransactionalAction
 {
-    public function handleFlow(StorableFlow $flow): void
-    {        
-        try {
-            //search for some record
-            $entity = $this->repo->find(...);
-        } catch (NotFoundException $e) {
-            throw TransactionFailedException::because($e);
-        }
-    }  
+  public function handleFlow(StorableFlow $flow): void
+  {        
+    try {
+      //search for some record
+      $entity = $this->repo->find(...);
+    } catch (NotFoundException $e) {
+      throw TransactionFailedException::because($e);
+    }
+  }
 }
 ```
 

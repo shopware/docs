@@ -19,10 +19,10 @@ So, those are example lines of the `SwagBasicExample` plugin's `composer.json`:
 
 ```json
 {
-    "name": "swag/swag-basic-example",
-    "description": "Plugin quick start plugin",
-    "version": "v1.0.0",
-    ...
+  "name": "swag/swag-basic-example",
+  "description": "Plugin quick start plugin",
+  "version": "v1.0.0",
+  // ...
 }
 ```
 
@@ -30,40 +30,40 @@ Important to note is the `name` as well as the `version` mentioned here, the res
 
 In order to require the `SwagBasicExample` plugin now, you simply have to add these two information to your own `composer.json` as a key value pair:
 
-```js
+```json
 // <plugin root>/composer.json
 {
-    "name": "swag/plugin-dependency",
-    "description": "Plugin requiring other plugins",
-    "version": "v1.0.0",
-    "type": "shopware-platform-plugin",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "shopware AG",
-            "role": "Manufacturer"
-        }
-    ],
-    "require": {
-        "shopware/core": "6.1.*",
-        "swag/SwagBasicExample": "v1.0.0"
-    },
-    "extra": {
-        "shopware-plugin-class": "Swag\\PluginDependency\\PluginDependency",
-        "label": {
-            "de-DE": "Plugin mit Plugin-Abhängigkeiten",
-            "en-GB": "Plugin with plugin dependencies"
-        },
-        "description": {
-            "de-DE": "Plugin mit Plugin-Abhängigkeiten",
-            "en-GB": "Plugin with plugin dependencies"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Swag\\PluginDependency\\": "src/"
-        }
+  "name": "swag/plugin-dependency",
+  "description": "Plugin requiring other plugins",
+  "version": "v1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shopware AG",
+      "role": "Manufacturer"
     }
+  ],
+  "require": {
+    "shopware/core": "6.1.*",
+    "swag/SwagBasicExample": "v1.0.0"
+  },
+  "extra": {
+    "shopware-plugin-class": "Swag\\PluginDependency\\PluginDependency",
+    "label": {
+      "de-DE": "Plugin mit Plugin-Abhängigkeiten",
+      "en-GB": "Plugin with plugin dependencies"
+    },
+    "description": {
+      "de-DE": "Plugin mit Plugin-Abhängigkeiten",
+      "en-GB": "Plugin with plugin dependencies"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Swag\\PluginDependency\\": "src/"
+    }
+  }
 }
 ```
 

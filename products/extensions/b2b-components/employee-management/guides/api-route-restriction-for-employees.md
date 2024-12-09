@@ -19,14 +19,15 @@ The denylist can be found in the employee management config at: `Resources\confi
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../Schema/Xml/employee-route-access-1.0.xsd">
-    <denied>store-api.account.change-profile</denied>
-    <denied>store-api.account.change-email</denied>
-    <denied>...</denied>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../Schema/Xml/employee-route-access-1.0.xsd">
+  <denied>store-api.account.change-profile</denied>
+  <denied>store-api.account.change-email</denied>
+  <denied>...</denied>
 
-    <allowed>store-api.account.login</allowed>
-    <allowed>store-api.account.logout</allowed>
-    <allowed>...</allowed>
+  <allowed>store-api.account.login</allowed>
+  <allowed>store-api.account.logout</allowed>
+  <allowed>...</allowed>
 </routes>
 ```
 
@@ -51,27 +52,26 @@ namespace Shopware\Commercial\B2B\Domain\RouteAccess;
 
 class DecoratedEmployeeRouteAccessLoader extends AbstractEmployeeRouteAccessLoader
 {
-    private const CONFIG = __DIR__ . '/../../Resources/config/new-custom-employee_route_access.xml';
+  private const CONFIG = __DIR__ . '/../../Resources/config/new-custom-employee_route_access.xml';
 
-    public function __construct(
-        private readonly AbstractEmployeeRouteAccessLoader $decorated
-    ) {
-    }
+  public function __construct(
+    private readonly AbstractEmployeeRouteAccessLoader $decorated
+  ) {}
 
-    public function getDecorated(): AbstractEmployeeRouteAccessLoader
-    {
-        return $this->decorated;
-    }
+  public function getDecorated(): AbstractEmployeeRouteAccessLoader
+  {
+    return $this->decorated;
+  }
 
-    public function load(): array
-    {
-        $oldConfig = $this->decorated->load();
-        $customConfig = (array) @simplexml_load_file(self::CONFIG);
+  public function load(): array
+  {
+    $oldConfig = $this->decorated->load();
+    $customConfig = (array) @simplexml_load_file(self::CONFIG);
 
-        // This example merges the old config with the new created custom config.
-        // Return the $customConfig variable to override the old completely
+    // This example merges the old config with the new created custom config.
+    // Return the $customConfig variable to override the old completely
 
-        return array_merge_recursive($oldConfig, $customConfig);
-    }
+    return array_merge_recursive($oldConfig, $customConfig);
+  }
 }
 ```

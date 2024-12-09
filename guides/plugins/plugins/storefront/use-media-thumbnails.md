@@ -27,7 +27,7 @@ You should be able to store media in your shop and to maintain them in your Admi
 
 ```php
 public function searchMedia (array $ids, Context $context): MediaCollection { 
-... 
+  // ... 
 }
 ```
 
@@ -37,16 +37,16 @@ This `searchMedia` function reads out the corresponding media objects for the gi
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
-    {# simplify ID access #}
-    {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
+  {# simplify ID access #}
+  {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
 
-    {# fetch media as batch - optimized for performance #}
-    {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
+  {# fetch media as batch - optimized for performance #}
+  {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
 
-    {# extract single media object #}
-    {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+  {# extract single media object #}
+  {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
 
-    {{ dump (sportsMedia) }}
+  {{ dump (sportsMedia) }}
 {% endblock %}
 ```
 
@@ -60,29 +60,29 @@ The function is already structured in a way that several IDs can be passed. To r
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}
-    {# initial ID array #}
-    {% set sportsMediaIds = [] %}
+  {# initial ID array #}
+  {% set sportsMediaIds = [] %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+  {% for product in searchResult %}
+    {# simplify ID access #}
+    {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {# merge IDs to a single array #}
-        {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
-    {% endfor %}
+    {# merge IDs to a single array #}
+    {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
+  {% endfor %}
 
-    {# do a single fetch from database #}
-    {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
+  {# do a single fetch from database #}
+  {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+  {% for product in searchResult %}
+    {# simplify ID access #}
+    {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {# get access to media of product #}
-        {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+    {# get access to media of product #}
+    {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
 
-        {{ dump(sportsMedia) }}
-    {% endfor %}
+    {{ dump(sportsMedia) }}
+  {% endfor %}
 {% endblock %}
 ```
 
@@ -94,7 +94,7 @@ Fortunately, you do not need to define these attributes on your own - For that, 
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover
+  media: cover
 } %}
 ```
 
@@ -114,14 +114,14 @@ Let's think about the snippet below:
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    sizes: {
-        'xs': '501px',
-        'sm': '315px',
-        'md': '427px',
-        'lg': '333px',
-        'xl': '284px',
-    }
+  media: cover,
+  sizes: {
+    'xs': '501px',
+    'sm': '315px',
+    'md': '427px',
+    'lg': '333px',
+    'xl': '284px',
+  }
 } %}
 ```
 
@@ -129,31 +129,31 @@ This example will print out the following output:
 
 ```html
 <img 
-    src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
-    srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
-    sizes="(max-width: 1920px) and (min-width: 1200px) 284px,
-           (max-width: 1199px) and (min-width: 992px) 333px, 
-           (max-width: 991px) and (min-width: 768px) 427px, 
-           (max-width: 767px) and (min-width: 576px) 315px, 
-           (max-width: 575px) and (min-width: 0px) 501px, 100vw">
+  src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
+  srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
+  sizes="(max-width: 1920px) and (min-width: 1200px) 284px,
+          (max-width: 1199px) and (min-width: 992px) 333px, 
+          (max-width: 991px) and (min-width: 768px) 427px, 
+          (max-width: 767px) and (min-width: 576px) 315px, 
+          (max-width: 575px) and (min-width: 0px) 501px, 100vw">
 ```
 
 By giving the `default` size you can override the media queries and always refer to a single image source for all viewports. To give an example, think about always using a small thumbnail closest to 100px regardless of the current viewport:
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    sizes: {
-        'xs': '501px', {# Will be ignored #}
-        'sm': '315px', {# Will be ignored #}
-        'md': '427px', {# Will be ignored #}
-        'lg': '333px', {# Will be ignored #}
-        'xl': '284px', {# Will be ignored #}
-        'default': '100px'
-    }
+  media: cover,
+  sizes: {
+    'xs': '501px', {# Will be ignored #}
+    'sm': '315px', {# Will be ignored #}
+    'md': '427px', {# Will be ignored #}
+    'lg': '333px', {# Will be ignored #}
+    'xl': '284px', {# Will be ignored #}
+    'default': '100px'
+  }
 } %}
 ```
 
@@ -161,12 +161,12 @@ This example will create the output below:
 
 ```html
 <img 
-    src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
-    srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
-            http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
-    sizes="100px">
+  src="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg" 
+  srcset="http://shopware.local/media/06/f0/5c/1614258798/example-image.jpg 1921w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_1920x1920.jpg 1920w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_800x800.jpg 800w, 
+          http://shopware.local/thumbnail/06/f0/5c/1614258798/example-image_400x400.jpg 400w" 
+  sizes="100px">
 ```
 
 ::: danger
@@ -179,12 +179,12 @@ With the `attributes` param, additional attributes can be applied. Imagine the f
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    attributes: {
-        'class': 'my-custom-class',
-        'alt': 'alt tag of image',
-        'title': 'title of image'
-    }
+  media: cover,
+  attributes: {
+    'class': 'my-custom-class',
+    'alt': 'alt tag of image',
+    'title': 'title of image'
+  }
 } %}
 ```
 
@@ -192,11 +192,11 @@ This will generate the output below:
 
 ```html
 <img 
-    src="..." 
-    sizes="..." 
-    class="my-custom-class" 
-    alt="Image name" 
-    title="My beautiful image">
+  src="..." 
+  sizes="..." 
+  class="my-custom-class" 
+  alt="Image name" 
+  title="My beautiful image">
 ```
 
 ### Native lazy loading
@@ -205,10 +205,10 @@ With the `attributes` param, it is also possible to enable native lazy loading o
 
 ```twig
 {% sw_thumbnails 'my-thumbnails' with {
-    media: cover,
-    attributes: {
-        'loading': 'lazy'
-    }
+  media: cover,
+  attributes: {
+    'loading': 'lazy'
+  }
 } %}
 ```
 
@@ -216,9 +216,9 @@ This will generate the below output:
 
 ```html
 <img 
-    src="..." 
-    sizes="..." 
-    loading="lazy">
+  src="..." 
+  sizes="..." 
+  loading="lazy">
 ```
 
 By default, lazy loading is disabled for newly added `sw_thumbnail` elements. You should consider activating it in the following scenarios:

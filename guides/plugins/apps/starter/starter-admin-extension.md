@@ -41,18 +41,19 @@ When you are using a self-hosted Shopware version, you can also create the proje
 Next, we will put our basic configuration into the file we just created.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <name>SimpleNotification</name>
-        <label>Hi Developer App</label>
-        <description>This app shows a notification in the admin panel</description>
-        <author>shopware AG</author>
-        <copyright>(c) shopware AG</copyright>
-        <version>1.0.0</version>
-        <license>MIT</license>
-    </meta>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <name>SimpleNotification</name>
+    <label>Hi Developer App</label>
+    <description>This app shows a notification in the admin panel</description>
+    <author>shopware AG</author>
+    <copyright>(c) shopware AG</copyright>
+    <version>1.0.0</version>
+    <license>MIT</license>
+  </meta>
 </manifest>
 ```
 
@@ -74,18 +75,20 @@ SimpleNotification/
 ```
 
 ```html
-// src/index.html
+<!-- src/index.html -->
 <!doctype html>
 <html>
-    <head>
-        <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
-    </head>
-    <script>
-        sw.notification.dispatch({
-            title: 'Hi there',
-            message: 'Looks like someone sent you a message'
-        });
-    </script>
+
+<head>
+  <script src="https://unpkg.com/@shopware-ag/meteor-admin-sdk/cdn"></script>
+</head>
+<script>
+  sw.notification.dispatch({
+    title: 'Hi there',
+    message: 'Looks like someone sent you a message'
+  });
+</script>
+
 </html>
 ```
 
@@ -113,19 +116,20 @@ The final step of the setup is to configure your app to use that file as an entr
 To do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        <!-- ... -->
-    </meta>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
   <setup>
     <registrationUrl>http://127.0.0.1:8000/app/lifecycle/register</registrationUrl>
     <secret>TestSecret</secret>
   </setup>
-    <admin>
-        <base-app-url>http://127.0.0.1:8080</base-app-url>
-    </admin>
+  <admin>
+    <base-app-url>http://127.0.0.1:8080</base-app-url>
+  </admin>
 </manifest>
 ```
 

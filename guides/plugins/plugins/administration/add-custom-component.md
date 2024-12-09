@@ -91,7 +91,7 @@ To get full type support for your component, you should use the `wrapComponentCo
 
 ```javascript
 export default Shopware.Component.wrapComponentConfig({
-    // Configuration here
+  // Configuration here
 });
 ```
 
@@ -103,7 +103,7 @@ First you have to register your component using the `ComponentFactory`, which is
 ```javascript
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
 Shopware.Component.register('hello-world', {
-    // Configuration here
+  // Configuration here
 });
 ```
 
@@ -115,7 +115,7 @@ A component's template is being defined by using the `template` property. For th
 ```javascript
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
 export default Shopware.Component.wrapComponentConfig('hello-world', {
-    template: '<h2>Hello world!</h2>'
+  template: '<h2>Hello world!</h2>'
 });
 ```
 
@@ -132,7 +132,7 @@ Now simply import this file in your component's JS file and use the variable for
 import template from 'hello-world.html.twig';
 
 export default Shopware.Component.wrapComponentConfig('hello-world', {
-    template: template
+  template: template
 });
 ```
 
@@ -143,7 +143,7 @@ In the core code, you will find another syntax for the same result though:
 import template from 'hello-world.html.twig';
 
 export default Shopware.Component.wrapComponentConfig('hello-world', {
-    template
+  template
 });
 ```
 

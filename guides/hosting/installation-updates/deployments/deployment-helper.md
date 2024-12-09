@@ -152,7 +152,6 @@ deployment:
         state: remove
         # should the extension data of an uninstalled extension be kept
         keepUserData: true
-
 ```
 
 and deploy the changes. The extension will be uninstalled and is inactive.

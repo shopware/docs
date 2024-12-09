@@ -23,13 +23,13 @@ Each language then receives a nested object of translations, so let's have a loo
 
 ```json
 {
-    "swag-example": {
-        "nested": {
-            "value": "example",
-            "examplePluralization": "1 Product | {n} Products"
-        },
-        "foo": "bar"
-    }
+  "swag-example": {
+    "nested": {
+      "value": "example",
+      "examplePluralization": "1 Product | {n} Products"
+    },
+    "foo": "bar"
+  }
 }
 ```
 
@@ -47,17 +47,17 @@ Since snippets are automatically registered in the scope of your module, you can
 
 ```javascript
 Component.register('my-custom-page', {
-    ...
+  // ...
 
-    methods: {
-        createdComponent() {
-            // call the $tc helper function provided by Vue I18n 
-            const myCustomText = this.$tc('swag-example.general.myCustomText');
+  methods: {
+    createdComponent() {
+      // call the $tc helper function provided by Vue I18n 
+      const myCustomText = this.$tc('swag-example.general.myCustomText');
 
-            console.log(myCustomText);
-        }
+      console.log(myCustomText);
     }
-    ...
+  }
+  // ...
 });
 ```
 
@@ -69,9 +69,9 @@ The same `$tc` helper function can be used in the templates to access translatio
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.general.myCustomText') }}
-    </p>
+  <p>
+    {{ $tc('swag-example.general.myCustomText') }}
+  </p>
 {% endblock %}
 ```
 
@@ -80,9 +80,9 @@ Let's have a look at this example of `"examplePluralization": "One Product | {n}
 
 ```twig
 {% block my_custom_block %}
-    <p>
-       {{ $tc('swag-example.nested.examplePluralization', products.length) }}
-    </p>
+  <p>
+    {{ $tc('swag-example.nested.examplePluralization', products.length) }}
+  </p>
 {% endblock %}
 ```
 

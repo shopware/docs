@@ -41,15 +41,15 @@ First, we need to activate the reverse proxy support in Shopware. To enable it, 
 ```yaml
 # Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
-    http_cache:
-        reverse_proxy:
-            enabled: true
-            ban_method: "BAN"
-            # This needs to point to your varnish hosts
-            hosts: [ "http://varnish" ]
-            # Max parallel invalidations at the same time for a single worker
-            max_parallel_invalidations: 3
-            use_varnish_xkey: true
+  http_cache:
+    reverse_proxy:
+      enabled: true
+      ban_method: 'BAN'
+      # This needs to point to your varnish hosts
+      hosts: ['http://varnish']
+      # Max parallel invalidations at the same time for a single worker
+      max_parallel_invalidations: 3
+      use_varnish_xkey: true
 ```
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
@@ -88,11 +88,11 @@ And also needs to be enabled in the `config/packages/shopware.yml` file:
 # Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
   http_cache:
-      reverse_proxy:
-        enabled: true
-        use_varnish_xkey: true
-        hosts:
-          - 'varnish-host'
+    reverse_proxy:
+      enabled: true
+      use_varnish_xkey: true
+      hosts:
+        - 'varnish-host'
 ```
 
 <PageRef page="https://github.com/shopware/varnish-shopware/blob/main/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
@@ -143,11 +143,11 @@ Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configur
 shopware:
   http_cache:
     reverse_proxy:
+      enabled: true
+      fastly:
         enabled: true
-        fastly:
-          enabled: true
-          api_key: '<personal-token-from-fastly>'
-          service_id: '<service-id>'
+        api_key: '<personal-token-from-fastly>'
+        service_id: '<service-id>'
 ```
 
 ### Fastly soft-purge
@@ -167,12 +167,12 @@ shopware:
     # Allow to serve the out-dated cache for an hour if the origin server is offline
     stale_if_error: 3600
     reverse_proxy:
+      enabled: true
+      fastly:
         enabled: true
-        fastly:
-          enabled: true
-          api_key: '<personal-token-from-fastly>'
-          service_id: '<service-id>'
-          soft_purge: '1'
+        api_key: '<personal-token-from-fastly>'
+        service_id: '<service-id>'
+        soft_purge: '1'
 ```
 
 ### Fastly VCL Snippets

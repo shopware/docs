@@ -28,11 +28,11 @@ Directives can be registered globally via the [Shopware Objects](the-shopware-ob
 const { Directive } = Shopware;
 
 Directive.register('focus', {
-    // when the bound element is inserted into the DOM...
-    inserted: function (el) {
-        // Focus the element
-        el.focus();
-    }
+  // when the bound element is inserted into the DOM...
+  inserted: function (el) {
+    // Focus the element
+    el.focus();
+  }
 });
 ```
 
@@ -46,23 +46,22 @@ Registering directives locally is exactly the same as you're familiar with in Vu
 // <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/index.js
 Shopware.Component.register('swag-basic-example', {
 
-    directives: {
-        focus: {
-            // When the bound element is inserted into the DOM...
-            inserted: function (el) {
-                // Focus the element
-                el.focus();
-            }
-        }
+  directives: {
+    focus: {
+      // When the bound element is inserted into the DOM...
+      inserted: function (el) {
+        // Focus the element
+        el.focus();
+      }
     }
-
+  }
 });
 ```
 
 As mentioned before, directives can be used as in any other Vue application, after they are registered:
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig
+```twig
+{# <plugin-root>/src/Resources/app/administration/app/src/component/swag-basic-example/swag-basic-example.html.twig #}
 <input type="text" v-focus="">
 ```
 

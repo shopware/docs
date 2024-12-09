@@ -64,10 +64,10 @@ At first, you need to create your test file, e.g. `feature.helper.test.js`. With
 // describe is meant for grouping and structure
 describe('feature.helper.js', () => {
 
-    // This is your actual test
-    test('checks the flags', () => {
-        // Assertions come here
-    });
+  // This is your actual test
+  test('checks the flags', () => {
+    // Assertions come here
+  });
 });
 ```
 
@@ -79,9 +79,9 @@ Now, let's fill this empty test with life. Our first step is importing the helpe
 import Feature from 'src/helper/feature.helper';
 
 describe('feature.helper.js', () => {
-    test('checks the flags', () => {
-        // Assertions come here
-    });
+  test('checks the flags', () => {
+    // Assertions come here
+  });
 });
 ```
 
@@ -95,21 +95,21 @@ import Feature from 'src/helper/feature.helper';
 
 // One flag should be active, the other shouldn't.
 const default_flags = {
-    test1: true,
-    test2: false
+  test1: true,
+  test2: false
 };
 
 describe('feature.helper.js', () => {
 
-    // This hook is executed before every test
-    beforeEach(() => {
-        // Applying the flag fixture
-        Feature.init(default_flags);
-    });
+  // This hook is executed before every test
+  beforeEach(() => {
+    // Applying the flag fixture
+    Feature.init(default_flags);
+  });
 
-    test('checks the flags', () => {
-        // Assertions come here
-    });
+  test('checks the flags', () => {
+    // Assertions come here
+  });
 });
 ```
 
@@ -120,20 +120,20 @@ Alright, let's get to the point now, writing the actual test. Remember we want t
 import Feature from 'src/helper/feature.helper';
 
 const default_flags = {
-    test1: true,
-    test2: false
+  test1: true,
+  test2: false
 };
 
 describe('feature.helper.js', () => {
-    beforeEach(() => {
-        Feature.init(default_flags);
-    });
+  beforeEach(() => {
+    Feature.init(default_flags);
+  });
 
-    test('checks the flags', () => {
-        expect(Feature.isActive('test1')).toBeTruthy();
-        expect(Feature.isActive('test2')).toBeFalsy();
-        expect(Feature.isActive('test3')).toBeFalsy();
-    });
+  test('checks the flags', () => {
+    expect(Feature.isActive('test1')).toBeTruthy();
+    expect(Feature.isActive('test2')).toBeFalsy();
+    expect(Feature.isActive('test3')).toBeFalsy();
+  });
 });
 ```
 
@@ -172,15 +172,15 @@ Let's start with the plugin we want to test later. For the sake of simplicity, w
 import Plugin from 'src/plugin-system/plugin.class'
 
 export default class HelloWorldPlugin extends Plugin {
-    static options = {};
+  static options = {};
 
-    init() {
-        console.log('Hello World!', this.el);
-    }
+  init() {
+    console.log('Hello World!', this.el);
+  }
 
-    sayHello() {
-        return "Hello World!"
-    }
+  sayHello() {
+    return "Hello World!"
+  }
 }
 ```
 
@@ -199,17 +199,17 @@ import HelloWorldPlugin from 'src/plugin/hello-world/hello-world.plugin';
 
 describe('HelloWorldPlugin tests', () => {
 
-    beforeEach(() => {
-        // Here we need to do all the mocking
-    });
+  beforeEach(() => {
+    // Here we need to do all the mocking
+  });
 
-    afterEach(() => {
-        // Teardown
-    });
+  afterEach(() => {
+    // Teardown
+  });
 
-    test('custom plugin exists', () => {
-        // your actual test
-    });
+  test('custom plugin exists', () => {
+    // your actual test
+  });
 });
 ```
 
@@ -227,24 +227,24 @@ import HelloWorldPlugin from 'src/plugin/hello-world/hello-world.plugin';
 
 describe('HelloWorldPlugin tests', () => {
 
-    // Definition of plugin
-    let plugin;
+  // Definition of plugin
+  let plugin;
 
-    beforeEach(() => {
-        // you need to get an element for the plugin
-        const mockedElement = document.createElement('div');
-        plugin = new HelloWorldPlugin(mockedElement);
+  beforeEach(() => {
+    // you need to get an element for the plugin
+    const mockedElement = document.createElement('div');
+    plugin = new HelloWorldPlugin(mockedElement);
 
-    });
+  });
 
-    afterEach(() => {
-        // Teardown
-    });
+  afterEach(() => {
+    // Teardown
+  });
 
-    test('custom plugin exists', () => {
-        // your actual test, temporary filled with a placeholder
-        console.log(plugin);
-    });
+  test('custom plugin exists', () => {
+    // your actual test, temporary filled with a placeholder
+    console.log(plugin);
+  });
 });
 ```
 
@@ -278,35 +278,35 @@ This was to be expected because you need to mock some more things required for t
 import HelloWorldPlugin from 'src/plugin/hello-world/hello-world.plugin';
 
 describe('HelloWorldPlugin tests', () => {
-    let plugin;
+  let plugin;
 
-    beforeEach(() => {
+  beforeEach(() => {
 
-        // Mocking PluginManager to get the plugin working
-        window.PluginManager = {
-            getPluginInstancesFromElement: () => {
-                return new Map();
-            },
-            getPlugin: () => {
-                return {
-                    get: () => []
-                };
-            }
+    // Mocking PluginManager to get the plugin working
+    window.PluginManager = {
+      getPluginInstancesFromElement: () => {
+        return new Map();
+      },
+      getPlugin: () => {
+        return {
+          get: () => []
         };
+      }
+    };
 
-        const mockedElement = document.createElement('div');
-        plugin = new HelloWorldPlugin(mockedElement);
-    });
+    const mockedElement = document.createElement('div');
+    plugin = new HelloWorldPlugin(mockedElement);
+  });
 
-    afterEach(() => {
-        // Set your plugin to null to clean up afterwards
-        plugin = null;
-    });
+  afterEach(() => {
+    // Set your plugin to null to clean up afterwards
+    plugin = null;
+  });
 
-    test('custom plugin exists', () => {
-        // your actual test, temporary filled with a placeholder
-        console.log(plugin);
-    });
+  test('custom plugin exists', () => {
+    // your actual test, temporary filled with a placeholder
+    console.log(plugin);
+  });
 });
 ```
 
@@ -325,33 +325,33 @@ Finally, we're ready to write our actual test. Write your assertions as you're u
 import HelloWorldPlugin from 'src/plugin/hello-world/hello-world.plugin';
 
 describe('HelloWorldPlugin tests', () => {
-    let plugin;
+  let plugin;
 
-    beforeEach(() => {
-        window.PluginManager = {
-            getPluginInstancesFromElement: () => {
-                return new Map();
-            },
-            getPlugin: () => {
-                return {
-                    get: () => []
-                };
-            }
+  beforeEach(() => {
+    window.PluginManager = {
+      getPluginInstancesFromElement: () => {
+        return new Map();
+      },
+      getPlugin: () => {
+        return {
+          get: () => []
         };
+      }
+    };
 
-        const mockedElement = document.createElement('div');
-        plugin = new HelloWorldPlugin(mockedElement);
-    });
+    const mockedElement = document.createElement('div');
+    plugin = new HelloWorldPlugin(mockedElement);
+  });
 
-    afterEach(() => {
-        plugin = null;
-    });
+  afterEach(() => {
+    plugin = null;
+  });
 
-    test('The HelloWorld plugin can be instantiated', () => {
+  test('The HelloWorld plugin can be instantiated', () => {
 
-        // Our assertions will be done here
-        expect(plugin).toBeInstanceOf(HelloWorldPlugin);
-    });
+    // Our assertions will be done here
+    expect(plugin).toBeInstanceOf(HelloWorldPlugin);
+  });
 });
 ```
 
@@ -359,9 +359,9 @@ Afterwards, we can add more tests as we want to. To give an example, it's useful
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js
-    test('Shows text', () => {
-        expect(plugin.sayHello()).toBe('Hello World!')
-    });
+test('Shows text', () => {
+  expect(plugin.sayHello()).toBe('Hello World!')
+});
 ```
 
 Now you're ready to go! Below the full example of our test, for reference:
@@ -376,37 +376,37 @@ import HelloWorldPlugin from 'src/plugin/hello-world/hello-world.plugin';
 
 describe('HelloWorldPlugin tests', () => {
 
-    let plugin;
+  let plugin;
 
-    beforeEach(() => {
-        window.PluginManager = {
-            getPluginInstancesFromElement: () => {
-                return new Map();
-            },
-            getPlugin: () => {
-                return {
-                    get: () => []
-                };
-            }
+  beforeEach(() => {
+    window.PluginManager = {
+      getPluginInstancesFromElement: () => {
+        return new Map();
+      },
+      getPlugin: () => {
+        return {
+          get: () => []
         };
+      }
+    };
 
-        const mockedElement = document.createElement('div');
-        plugin = new HelloWorldPlugin(mockedElement);
-    });
+    const mockedElement = document.createElement('div');
+    plugin = new HelloWorldPlugin(mockedElement);
+  });
 
-    afterEach(() => {
-        // Teardown
-        plugin = null;
-    });
+  afterEach(() => {
+    // Teardown
+    plugin = null;
+  });
 
-    test('The cookie configuration plugin can be instantiated', () => {
-        // your actual test
-        expect(plugin).toBeInstanceOf(HelloWorldPlugin);
-    });
+  test('The cookie configuration plugin can be instantiated', () => {
+    // your actual test
+    expect(plugin).toBeInstanceOf(HelloWorldPlugin);
+  });
 
-    test('Shows text', () => {
-        expect(plugin.sayHello()).toBe('Hello World!')
-    });
+  test('Shows text', () => {
+    expect(plugin.sayHello()).toBe('Hello World!')
+  });
 });
 ```
 

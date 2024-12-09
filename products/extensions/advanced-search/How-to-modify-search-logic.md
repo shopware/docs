@@ -20,9 +20,11 @@ This class is the central place to build the Elasticsearch query:
 To modify the search logic, you can decorate the search logic class and add your own logic into it:
 
 ```xml
-<service id="YourPluginNameSpace\Domain\Search\SearchLogicDecorator" decorates="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic">
-    <argument type="service" id=".inner"/>
-    <argument type="service" id="Shopware\Commercial\AdvancedSearch\Domain\Configuration\ConfigurationLoader"/>
+<service id="YourPluginNameSpace\Domain\Search\SearchLogicDecorator"
+  decorates="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic">
+  <argument type="service" id=".inner" />
+  <argument type="service"
+    id="Shopware\Commercial\AdvancedSearch\Domain\Configuration\ConfigurationLoader" />
 </service>
 ```
 
@@ -41,32 +43,31 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 
 class SearchLogicDecorator extends AbstractSearchLogic
 {
-    public function __construct(
-        private readonly AbstractSearchLogic $decorated,
-        private readonly ConfigurationLoader $configurationLoader
-    ) {
+  public function __construct(
+    private readonly AbstractSearchLogic $decorated,
+    private readonly ConfigurationLoader $configurationLoader
+  ) {}
+
+  public function build(EntityDefinition $definition, Criteria $criteria, Context $context): BoolQuery
+  {
+    if (!$context->getSource() instanceof SalesChannelApiSource) {
+      return new BoolQuery();
     }
 
-    public function build(EntityDefinition $definition, Criteria $criteria, Context $context): BoolQuery
-    {
-        if (!$context->getSource() instanceof SalesChannelApiSource) {
-            return new BoolQuery();
-        }
+    $salesChannelId = $context->getSource()->getSalesChannelId();
+    // you probably want get the search configs of the context's sales channel but it's optional
+    $searchConfig = $this->configurationLoader->load($salesChannelId);
 
-        $salesChannelId = $context->getSource()->getSalesChannelId();
-        // you probably want get the search configs of the context's sales channel but it's optional
-        $searchConfig = $this->configurationLoader->load($salesChannelId);
+    // you probably want to add extra logic into existing logic but it's optional
+    $bool = $this->getDecorated()->build($definition, $criteria, $context);
 
-        // you probably want to add extra logic into existing logic but it's optional
-        $bool = $this->getDecorated()->build($definition, $criteria, $context);
+    // Add your own logic
+    return $bool;
+  }
 
-        // Add your own logic
-        return $bool;
-    }
-
-    public function getDecorated(): AbstractSearchLogic
-    {
-        return $this->decorated;
-    }
+  public function getDecorated(): AbstractSearchLogic
+  {
+    return $this->decorated;
+  }
 }
 ```

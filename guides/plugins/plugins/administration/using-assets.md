@@ -65,15 +65,15 @@ Note that [Vue filters](https://vuejs.org/v2/guide/filters.html) are no longer s
 
 Create a computed component to make them easy to use in your template.
 
-```js
+```javascript
 computed: {
-    assetFilter() {
-        return Shopware.Filter.getByName('asset');
-    },
+  assetFilter() {
+    return Shopware.Filter.getByName('asset');
+  },
 }
 ```
 
-```html
+```twig
 <img :src="assetFilter('/<plugin root>/static/your-image.png')">
 ```
 

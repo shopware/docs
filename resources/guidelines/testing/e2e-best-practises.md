@@ -144,10 +144,10 @@ cy.get('.btn-buy').click();
 
 ```html
 <button
-    data-toggle="modal"
-    data-target="#exampleModal"
-    class="btn btn-primary btn-open-settings">
-    Open settings modal
+  data-toggle="modal"
+  data-target="#exampleModal"
+  class="btn btn-primary btn-open-settings">
+  Open settings modal
 </button>
 ```
 
@@ -162,9 +162,9 @@ cy.get('.btn-open-settings').click();
 ```html
 <div class="custom-control custom-checkbox">
   <label 
-      for="tos" 
-      class="checkout-confirm-tos-label custom-control-label">
-      I have read and accepted the general terms and conditions.
+    for="tos" 
+    class="checkout-confirm-tos-label custom-control-label">
+    I have read and accepted the general terms and conditions.
   </label>
 </div>
 ```
@@ -202,13 +202,13 @@ cy.server();
 
 // Route POST requests with matching URL and assign an alias to it
 cy.route({
-    url: '/api/search/category',
-    method: 'post'
+  url: '/api/search/category',
+  method: 'post'
 }).as('getData');
 
 // Later, you can use the alias to wait for the API response
 cy.wait('@getData').then((xhr) => {
-    expect(xhr).to.have.property('status', 200);
+  expect(xhr).to.have.property('status', 200);
 });
 ```
 

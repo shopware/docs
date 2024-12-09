@@ -20,23 +20,27 @@ One extension possibility in the Administration is the ability to add custom act
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <admin>
-        <action-button action="setPromotion" entity="promotion" view="detail" url="https://example.com/promotion/set-promotion">
-            <label>set Promotion</label>
-        </action-button>
-        <action-button action="deletePromotion" entity="promotion" view="detail" url="https://example.com/promotion/delete-promotion">
-            <label>delete Promotion</label>
-        </action-button>
-        <action-button action="restockProduct" entity="product" view="list" url="https://example.com/restock">
-            <label>restock</label>
-        </action-button>
-    </admin>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <action-button action="setPromotion" entity="promotion" view="detail"
+      url="https://example.com/promotion/set-promotion">
+      <label>set Promotion</label>
+    </action-button>
+    <action-button action="deletePromotion" entity="promotion" view="detail"
+      url="https://example.com/promotion/delete-promotion">
+      <label>delete Promotion</label>
+    </action-button>
+    <action-button action="restockProduct" entity="product" view="list"
+      url="https://example.com/restock">
+      <label>restock</label>
+    </action-button>
+  </admin>
 </manifest>
 ```
 
@@ -97,6 +101,8 @@ $actionButton = $contextResolver->assembleActionButton($serverRequest, $shop);
 <Tab title="Symfony Bundle">
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\App\SDK\Context\ActionButton\ActionButtonAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -104,14 +110,15 @@ use Symfony\Component\Routing\Attribute\Route;
 use Psr\Http\Message\ResponseInterface;
 
 #[AsController]
-class ActionButtonController {
-    #[Route('/action/product/detail')]
-    public function handle(ActionButtonAction $button): ResponseInterface
-    {
-        // handle button
-        
-        return ActionButtonResponse::notification('success', 'Success message');
-    }
+class ActionButtonController
+{
+  #[Route('/action/product/detail')]
+  public function handle(ActionButtonAction $button): ResponseInterface
+  {
+    // handle button
+
+    return ActionButtonResponse::notification('success', 'Success message');
+  }
 }
 ```
 
@@ -297,32 +304,33 @@ This feature was added in Shopware 6.4.10.0, previous versions don't support rel
 To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
-    <meta>
-        ...
-    </meta>
-    <admin>
-      <action-button action="test-button" entity="product" view="list" url="/api/script/action-button">
-        <label>test-api-endpoint</label>
-      </action-button>
-    </admin>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    <!-- ... -->
+  </meta>
+  <admin>
+    <action-button action="test-button" entity="product" view="list" url="/api/script/action-button">
+      <label>test-api-endpoint</label>
+    </action-button>
+  </admin>
 </manifest>
 ```
 
 And then add the corresponding app script that should be executed when the user clicks the action button.
 
 ```twig
-// Resources/scripts/api-action-button/action-button-script.twig
+{# Resources/scripts/api-action-button/action-button-script.twig #}
 {% set ids = hook.request.ids %}
 
 {% set response = services.response.json({
-    "actionType": "notification",
-    "payload": {
-        "status": "success",
-        "message": "You selected " ~ ids|length ~ " products."
-    }
+  "actionType": "notification",
+  "payload": {
+    "status": "success",
+    "message": "You selected " ~ ids|length ~ " products."
+  }
 }) %}
 
 {% do hook.setResponse(response) %}

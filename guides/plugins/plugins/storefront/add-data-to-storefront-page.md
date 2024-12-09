@@ -45,7 +45,9 @@ In our case we want to add data to the `FooterPagelet` so we need to subscribe t
 
 ```php
 // SwagBasicExample/src/Service/AddDataToPage.php
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
@@ -54,27 +56,24 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AddDataToPage implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            FooterPageletLoadedEvent::class => 'addActiveProductCount'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      FooterPageletLoadedEvent::class => 'addActiveProductCount'
+    ];
+  }
 
-    public function addActiveProductCount(FooterPageletLoadedEvent $event): void
-    {
-
-    }
+  public function addActiveProductCount(FooterPageletLoadedEvent $event): void {}
 }
 ```
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
 ```xml
-// Resources/config/services.xml
-<?xml version="1.0" ?>
-<service id="Swag\BasicExample\Service\AddDataToPage" >
-    <tag name="kernel.event_subscriber" />
+<!-- Resources/config/services.xml -->
+<?xml version="1.0"?>
+<service id="Swag\BasicExample\Service\AddDataToPage">
+  <tag name="kernel.event_subscriber" />
 </service>
 ```
 
@@ -102,9 +101,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 abstract class AbstractProductCountRoute
 {
-    abstract public function getDecorated(): AbstractProductCountRoute;
+  abstract public function getDecorated(): AbstractProductCountRoute;
 
-    abstract public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse;
+  abstract public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse;
 }
 ```
 
@@ -125,61 +124,60 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(defaults: ['_routeScope' => ['store-api']])]
 class ProductCountRoute extends AbstractProductCountRoute
 {
-    protected EntityRepository $productRepository;
+  protected EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
+  public function __construct(EntityRepository $productRepository)
+  {
+    $this->productRepository = $productRepository;
+  }
 
-    public function getDecorated(): AbstractProductCountRoute
-    {
-        throw new DecorationPatternException(self::class);
-    }
+  public function getDecorated(): AbstractProductCountRoute
+  {
+    throw new DecorationPatternException(self::class);
+  }
 
-     #[Route(path: '/store-api/get-active-product-count', name: 'store-api.product-count.get', methods: ['GET', 'POST'], defaults: ['_entity' => 'product'])]
-    public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
-    {
-        $criteria = new Criteria();
-        $criteria->addFilter(new EqualsFilter('product.active', true));
-        $criteria->addAggregation(new CountAggregation('productCount', 'product.id'));
+  #[Route(path: '/store-api/get-active-product-count', name: 'store-api.product-count.get', methods: ['GET', 'POST'], defaults: ['_entity' => 'product'])]
+  public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
+  {
+    $criteria = new Criteria();
+    $criteria->addFilter(new EqualsFilter('product.active', true));
+    $criteria->addAggregation(new CountAggregation('productCount', 'product.id'));
 
-        /** @var CountResult $productCountResult */
-        $productCountResult = $this->productRepository
-            ->aggregate($criteria, $context->getContext())
-            ->get('productCount');
-            
-        return new ProductCountRouteResponse($productCountResult);
-    }
+    /** @var CountResult $productCountResult */
+    $productCountResult = $this->productRepository
+      ->aggregate($criteria, $context->getContext())
+      ->get('productCount');
+
+    return new ProductCountRouteResponse($productCountResult);
+  }
 }
 ```
 
 ### Register route class
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute">
+      <argument type="service" id="product.repository" />
+    </service>
+  </services>
 </container>
 ```
 
 The routes.xml according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
 
 ```xml
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
+  <import resource="../../Core/**/*Route.php" type="attribute" />
 </routes>
 ```
 
@@ -201,15 +199,15 @@ use Shopware\Core\System\SalesChannel\StoreApiResponse;
  */
 class ProductCountRouteResponse extends StoreApiResponse
 {
-    public function __construct(CountResult $countResult)
-    {
-        parent::__construct($countResult);
-    }
+  public function __construct(CountResult $countResult)
+  {
+    parent::__construct($countResult);
+  }
 
-    public function getProductCount(): CountResult
-    {
-        return $this->object;
-    }
+  public function getProductCount(): CountResult
+  {
+    return $this->object;
+  }
 }
 ```
 
@@ -230,26 +228,26 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AddDataToPage implements EventSubscriberInterface
 {
-    private ProductCountRoute $productCountRoute;
+  private ProductCountRoute $productCountRoute;
 
-    public function __construct(ProductCountRoute $productCountRoute)
-    {
-        $this->productCountRoute = $productCountRoute;
-    }
+  public function __construct(ProductCountRoute $productCountRoute)
+  {
+    $this->productCountRoute = $productCountRoute;
+  }
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            FooterPageletLoadedEvent::class => 'addActiveProductCount'
-        ];
-    }
+  public static function getSubscribedEvents(): array
+  {
+    return [
+      FooterPageletLoadedEvent::class => 'addActiveProductCount'
+    ];
+  }
 
-    public function addActiveProductCount(FooterPageletLoadedEvent $event): void
-    {
-        $productCountResponse = $this->productCountRoute->load(new Criteria(), $event->getSalesChannelContext());
+  public function addActiveProductCount(FooterPageletLoadedEvent $event): void
+  {
+    $productCountResponse = $this->productCountRoute->load(new Criteria(), $event->getSalesChannelContext());
 
-        $event->getPagelet()->addExtension('product_count', $productCountResponse->getProductCount());
-    }
+    $event->getPagelet()->addExtension('product_count', $productCountResponse->getProductCount());
+  }
 }
 ```
 
@@ -262,21 +260,23 @@ This data will then be available via the name `product_count`, but we'll get to 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
 ```xml
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" public="true">
-            <argument type="service" id="product.repository"/>
-        </service>
-        
-        <service id="Swag\BasicExample\Service\AddDataToPage" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"/>
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
+  <services>
+    <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"
+      public="true">
+      <argument type="service" id="product.repository" />
+    </service>
+
+    <service id="Swag\BasicExample\Service\AddDataToPage">
+      <argument type="service"
+        id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" />
+      <tag name="kernel.event_subscriber" />
+    </service>
+  </services>
 </container>
 ```
 
@@ -288,17 +288,17 @@ Refer to the respective section of this guide for detailed information on how to
 For our case we extend the footer template and add a new column to the navigation block:
 
 ```twig
-// Resources/views/storefront/layout/footer/footer.html.twig
+{# Resources/views/storefront/layout/footer/footer.html.twig #}
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_navigation_columns %}
-    {{ parent() }}
+  {{ parent() }}
 
-    {% if page.footer.extensions.product_count %}
-        <div class="col-md-4 footer-column">
-            <p>This shop offers you {{ page.footer.extensions.product_count.count }} products</p>
-        </div>
-    {% endif %}
+  {% if page.footer.extensions.product_count %}
+    <div class="col-md-4 footer-column">
+      <p>This shop offers you {{ page.footer.extensions.product_count.count }} products</p>
+    </div>
+  {% endif %}
 {% endblock %}
 ```
 

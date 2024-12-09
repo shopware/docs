@@ -47,7 +47,7 @@ You are also able to change the migration directory. This is done by choosing an
 ```php
 public function getMigrationNamespace(): string
 {
-    return 'Swag\BasicExample\MyMigrationNamespace';
+  return 'Swag\BasicExample\MyMigrationNamespace';
 }
 ```
 
@@ -85,20 +85,20 @@ use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1611740369ExampleDescription extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1611740369;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1611740369;
+  }
 
-    public function update(Connection $connection): void
-    {
-        // implement update
-    }
+  public function update(Connection $connection): void
+  {
+    // implement update
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-        // implement update destructive
-    }
+  public function updateDestructive(Connection $connection): void
+  {
+    // implement update destructive
+  }
 }
 ```
 
@@ -127,30 +127,30 @@ use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1611740369ExampleDescription extends MigrationStep
 {
-    public function getCreationTimestamp(): int
-    {
-        return 1611740369;
-    }
+  public function getCreationTimestamp(): int
+  {
+    return 1611740369;
+  }
 
-    public function update(Connection $connection): void
-    {
-        $query = <<<SQL
+  public function update(Connection $connection): void
+  {
+    $query = <<<SQL
 CREATE TABLE IF NOT EXISTS `swag_basic_example_general_settings` (
-    `id`                INT             NOT NULL,
-    `example_setting`   VARCHAR(255)    NOT NULL,
-    PRIMARY KEY (id)
+  `id`                INT             NOT NULL,
+  `example_setting`   VARCHAR(255)    NOT NULL,
+  PRIMARY KEY (id)
 )
-    ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_unicode_ci;
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 SQL;
 
-        $connection->executeStatement($query);
-    }
+    $connection->executeStatement($query);
+  }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
+  public function updateDestructive(Connection $connection): void
+  {
+  }
 }
 ```
 
@@ -190,18 +190,18 @@ Once you have become familiar with the migration process and the development flo
 Therefore a typical update method might look more like this:
 
 ```php
-    public function update(UpdateContext $updateContext): void
-    {
-        $updateContext->setAutoMigrate(false); // disable auto migration execution
+public function update(UpdateContext $updateContext): void
+{
+  $updateContext->setAutoMigrate(false); // disable auto migration execution
 
-        $migrationCollection = $updateContext->getMigrationCollection();
+  $migrationCollection = $updateContext->getMigrationCollection();
 
-        // execute all DESTRUCTIVE migrations until and including 2019-11-01T00:00:00+00:00
-        $migrationCollection->migrateDestructiveInPlace(1572566400);
+  // execute all DESTRUCTIVE migrations until and including 2019-11-01T00:00:00+00:00
+  $migrationCollection->migrateDestructiveInPlace(1572566400);
 
-        // execute all UPDATE migrations until and including 2019-12-12T09:30:51+00:00
-        $migrationCollection->migrateInPlace(1576143014);
-    }
+  // execute all UPDATE migrations until and including 2019-12-12T09:30:51+00:00
+  $migrationCollection->migrateInPlace(1576143014);
+}
 ```
 
 If you don't use the Shopware migration system, an empty collection \(NullObject\) will be in the context.

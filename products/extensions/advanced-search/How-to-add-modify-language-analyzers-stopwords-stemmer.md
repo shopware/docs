@@ -17,20 +17,20 @@ For example:
 
 ```yaml
 advanced_search:
-    analysis:
-        analyzer:
-            sw_your_custom_language_analyzer:
-                type: custom
-                tokenizer: standard
-                filter: ['lowercase', 'my_stopwords_filter', 'my_stemmer_filter']
-    filter:
-        my_stopwords_filter:
-            type: 'stop'
-            stopwords: ['foo', 'bar']
-        my_stemmer_filter:
-            type: 'stemmer'
-            language: 'english'
-    # It's important to map your analyzer with the language iso code
-    language_analyzer_mapping:
-        custom_iso: sw_your_custom_language_analyzer
+  analysis:
+    analyzer:
+      sw_your_custom_language_analyzer:
+        type: custom
+        tokenizer: standard
+        filter: ['lowercase', 'my_stopwords_filter', 'my_stemmer_filter']
+  filter:
+    my_stopwords_filter:
+      type: 'stop'
+      stopwords: ['foo', 'bar']
+    my_stemmer_filter:
+      type: 'stemmer'
+      language: 'english'
+  # It's important to map your analyzer with the language iso code
+  language_analyzer_mapping:
+    custom_iso: sw_your_custom_language_analyzer
 ```

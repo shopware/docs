@@ -38,13 +38,13 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class CustomCartCollector implements CartDataCollectorInterface
 {
-    public function collect(CartDataCollection $data, Cart $original, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        // Do your stuff in order to collect data, this is just an example method call
-        $newData = $this->collectData();
+  public function collect(CartDataCollection $data, Cart $original, SalesChannelContext $context, CartBehavior $behavior): void
+  {
+    // Do your stuff in order to collect data, this is just an example method call
+    $newData = $this->collectData();
 
-        $data->set('uniqueKey', $newData);
-    }
+    $data->set('uniqueKey', $newData);
+  }
 }
 ```
 
@@ -85,15 +85,15 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class CustomCartProcessor implements CartProcessorInterface
 {
-    public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
-    {
-        $newData = $data->get('uniqueKey');
+  public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
+  {
+    $newData = $data->get('uniqueKey');
 
-        // Do stuff to the `$toCalculate` cart with your new data
-        foreach ($toCalculate->getLineItems()->getFlat() as $lineItem) {
-            $lineItem->setPayload($newData['stuff']);
-        }
+    // Do stuff to the `$toCalculate` cart with your new data
+    foreach ($toCalculate->getLineItems()->getFlat() as $lineItem) {
+      $lineItem->setPayload($newData['stuff']);
     }
+  }
 }
 ```
 

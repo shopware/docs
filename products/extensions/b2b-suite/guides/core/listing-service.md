@@ -32,20 +32,20 @@ use Shopware\B2B\Common\Filter\Filter;
 
 class SearchStruct
 {
-    /**
-     * @var Filter[]
-     */
-    public array $filters = [];
+  /**
+   * @var Filter[]
+   */
+  public array $filters = [];
 
-    public int $limit;
+  public int $limit;
 
-    public int $offset;
+  public int $offset;
 
-    public string $orderBy;
+  public string $orderBy;
 
-    public string $orderDirection = 'ASC';
+  public string $orderDirection = 'ASC';
 
-    public string $searchTerm;
+  public string $searchTerm;
 }
 ```
 
@@ -64,14 +64,14 @@ use Shopware\B2B\Common\Controller\GridRepository;
 
 class Repository implements GridRepository
 {
-    public function getMainTableAlias(): string;
+  public function getMainTableAlias(): string;
 
-    /**
-     * @return string[]
-     */
-    public function getFullTextSearchFields(): array;
+  /**
+   * @return string[]
+   */
+  public function getFullTextSearchFields(): array;
 
-    public function getAdditionalSearchResourceAndFields(): array;
+  public function getAdditionalSearchResourceAndFields(): array;
 }
 ```
 
@@ -87,15 +87,15 @@ use Shopware\B2B\StoreFrontAuthentication\Framework\OwnershipContext;
 
 class Repository
 {
-    public function fetchList(OwnershipContext $context, ContactSearchStruct $searchStruct): array
-    {
-        [...]
-    }
+  public function fetchList(OwnershipContext $context, ContactSearchStruct $searchStruct): array
+  {
+    // [...]
+  }
 
-    public function fetchTotalCount(OwnershipContext $context, ContactSearchStruct $contactSearchStruct): int
-    {
-        [...]
-    }
+  public function fetchTotalCount(OwnershipContext $context, ContactSearchStruct $contactSearchStruct): int
+  {
+    // [...]
+  }
 }
 ```
 
@@ -115,21 +115,21 @@ use Shopware\B2B\Common\Repository\SearchStruct;
 
 class GridHelper
 {
-    public function extractSearchDataInStoreFront(
-        Request $request, 
-        SearchStruct $struct
-    ): void {
-        [...]
-    }
+  public function extractSearchDataInStoreFront(
+    Request $request, 
+    SearchStruct $struct
+  ): void {
+    // [...]
+  }
 
-    public function getGridState(
-        Request $request,
-        SearchStruct $struct,
-        array $data,
-        int $maxPage,
-        int $currentPage
-    ): array {
-        [...]
-    }
+  public function getGridState(
+    Request $request,
+    SearchStruct $struct,
+    array $data,
+    int $maxPage,
+    int $currentPage
+  ): array {
+    // [...]
+  }
 }
 ```
