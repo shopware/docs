@@ -105,7 +105,7 @@ Try to avoid `this.$parent` communication wherever possible as this is an anti p
 ### Vue dev tools performance
 
 Vue dev tools causes massive performance issues with huge Vue 3 applications.
-There is an open [issue on Github](https://github.com/vuejs/devtools/issues/1875) with next to no activity from the maintainers.
+There is an open [issue on Github](https://github.com/vuejs/devtools-v6/issues/1875) with next to no activity from the maintainers.
 
 ### v-model changes
 
