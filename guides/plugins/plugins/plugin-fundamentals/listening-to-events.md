@@ -70,7 +70,7 @@ In this example, the subscriber would be located in the `<plugin root>/src/Subsc
 The subscriber is now listening for the `product.loaded` event to trigger.
 
 Some entities, like orders or products, are versioned.
-This means, that some events are dispatched multiple times for different versions, but they belong to the same entity.
+This means that some events are dispatched multiple times for different versions, but they belong to the same entity.
 Therefore, you can check the version of the context to make sure you're only reacting to the live version.
 
 ```php
@@ -109,7 +109,7 @@ Unfortunately, your subscriber is not even loaded yet - this will be done in the
 
 Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
 You're simply registering your \(subscriber\) service by mentioning it in the `services.xml`.
-The only difference to a normal service is, that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
+The only difference to a normal service is that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
 
 ```php
 // <plugin root>/src/Resources/config/services.xml
