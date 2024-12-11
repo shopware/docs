@@ -286,3 +286,22 @@ Disabling the Product Stream Indexer has the following disadvantages:
 - When you change a product in a stream, the category page is not updated until the HTTP cache expires
     - You could also explicitly update the category page containing the stream to workaround if that is a problem
 - Also, the Line Item in the Stream Rule will always be evaluated to `false`
+
+To disable the Product Stream Indexer, you can set the following configuration:
+
+<<< @/docs/snippets/config/product_stream.yaml
+
+## Enable the Speculation Rules API
+
+::: info
+This is available starting with Shopware 6.6.10.0
+:::
+
+You can enable that **experimental feature** via `Admin > Settings > System > Storefront`. The JavaScript Plugin will then
+check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so, 
+it will add a script tag to the head of the document. For the [eagerness option](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness) 
+we are using `moderate` everywhere. That means a user must interact with a link to execute the pre-rendering.
+
+::: info
+Keep in mind that pre-rendering is putting extra load on your server and also can affect your [analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
+:::
