@@ -303,5 +303,5 @@ it will add a script tag to the head of the document. For the [eagerness option]
 we are using `moderate` everywhere. That means a user must interact with a link to execute the pre-rendering.
 
 ::: info
-Keep in mind that pre-rendering is putting extra load on your server and also can affect your [analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
+Keep in mind that pre-rendering is putting extra load on your server and also can affect your [Analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
 :::
