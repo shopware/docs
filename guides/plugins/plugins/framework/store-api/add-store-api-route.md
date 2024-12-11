@@ -379,18 +379,28 @@ When you want to request your custom route you can use the existing `http-client
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
-import HttpClient from 'src/service/http-client.service';
+const { PluginBaseClass } = window;
 
-export default class ExamplePlugin extends Plugin {
-    init() {
-        this._client = new HttpClient();
-    }
-    
-    requestCustomRoute() {
-        this._client.post('/example', { limit: 10, offset: 0}, (response) => {
-            alert(response);
+export default class ExamplePlugin extends PluginBaseClass {
+    async requestCustomRoute() {
+        const response = await fetch('/example', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                limit: 10,
+                offset: 0,
+            }),
         });
+        
+        if (!response.ok) {
+            throw new Error('Request failed');
+        }
+
+        const data = await response.json();
+
+        console.log(data);
     }
 }
 ```

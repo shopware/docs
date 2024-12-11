@@ -36,7 +36,8 @@ shopware:
 ### Delayed invalidation
 
 A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
-By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`. 
+By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
+
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
@@ -227,7 +228,6 @@ Shopware uses `gzip` for compressing the cache elements and the cart when enable
 
 Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm. `zstd` is faster than `gzip` and has a better compression ratio. Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
 
-
 ```yaml
 # Enabling cart compression with zstd
 shopware:
@@ -247,3 +247,38 @@ shopware:
     cache_compression: true
     cache_compression_method: 'zstd'
 ```
+
+## Disable Symfony Secrets
+
+Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation. That allows the encryption of environment variables and their decryption on the fly. If you don't use Symfony Secrets, you can disable this complete behavior, saving some CPU cycles while booting the Application.
+
+```yaml
+framework:
+  secrets:
+    enabled: false
+```
+
+## Disable auto_setup
+
+By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#transport-configuration) checks if the queue exists and creates it when not. This can be an overhead when the system is under load.
+Therefore, make sure that you disable the `auto_setup` in the connection URL like so: `redis://localhost?auto_setup=false`.
+That query parameter can be passed to all transports. After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
+
+## Disable Product Stream Indexer
+
+::: info
+This is available starting with Shopware 6.6.10.0
+:::
+
+The **Product Stream Indexer** is a background process that creates a mapping table of products to their streams.
+It is used to find which category pages are affected by product changes. On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
+
+Disadvantages are:
+
+- When you change a product in a stream, the category page is not updated until the HTTP cache expires
+    - You could also explicitly update the category page containing the stream to workaround if that is a problem
+- Also, the Line Item in the Stream Rule will always be evaluated to `false`
+
+To disable the Product Stream Indexer, you can set the following configuration:
+
+<<< @/docs/snippets/config/product_stream.yaml

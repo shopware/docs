@@ -21,9 +21,12 @@ You can create interactive live video events for your customers straight from yo
 *Digital Sales Rooms* application does not belong to *the default Storefront*. It's a standalone Frontend app running with Nuxt instance. This template will be hosted in a separate instance with a new domain, which will be different from the Storefront domain.
 :::
 
+To use the Digital Sales Rooms plugin, you must perform **installation** & **3rd parties setup** & **plugin configuration**.
+
 ## Prerequisites
 
 Review the below minimum operating requirements before you install the *Digital Sales Rooms* feature:
+
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
 * [Shopware Frontends framework](https://frontends.shopware.com/) based on Nuxt 3.

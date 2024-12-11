@@ -23,7 +23,7 @@ While this is not mandatory, having read the guide about adding custom JavaScrip
 
 ## Create a modal manually from the DOM using Bootstrap
 
-The simples solution to create a modal is by using Bootstrap. More info: [Modal Bootstrap](https://getbootstrap.com/docs/4.0/components/modal/#live-demo)
+The simples solution to create a modal is by using Bootstrap. More info: [Modal Bootstrap](https://getbootstrap.com/docs/5.3/components/modal/#live-demo)
 Here is a basic implementation as an example. We override the `base_main_inner` from the `@Storefront/storefront/page/content/index.html.twig` template to insert the modal specific DOM elements.
 
 ```twig
@@ -37,14 +37,12 @@ Here is a basic implementation as an example. We override the `base_main_inner` 
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- insert your content here -->
@@ -72,10 +70,11 @@ When setting `data-ajax-modal="true"` together with `data-url` shopware automati
 
 {% block base_main_inner %}
     <!-- This uses `AjaxModalPlugin` -->
-    <button class="btn"
+    <button class="btn btn-primary"
             data-ajax-modal="true"
             data-url="https://example.org/ajax-url">
-
+        Launch ajax modal
+    </button>
     {{ parent() }}
 {% endblock %}
 ```
@@ -118,10 +117,10 @@ Now let's get started with the modal window. First we have to import the `Pseudo
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // ...
     }
@@ -133,10 +132,10 @@ We also call the method `open()` to make it visible.
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         this.openModal();
     }
@@ -177,10 +176,10 @@ Of course, the content can also be generated via an API and inserted via AJAX re
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -213,10 +212,10 @@ The `open()` method of the `PseudoModalUtil` class supports a callback function 
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -250,10 +249,10 @@ Here is an example how to use it:
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -302,10 +301,10 @@ The constructor method of `PseudoModalUtil` provides optional configuration. If 
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 import PseudoModalUtil from 'src/utility/modal-extension/pseudo-modal.util';
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // declaring some basic content
         const content = `
@@ -342,7 +341,7 @@ Here is an example which shows how to override the CSS class names.
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 // ...
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // ...
     }

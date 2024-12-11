@@ -21,9 +21,9 @@ As already mentioned, this guide will not explain how to create a JavaScript plu
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 
-export default class EventsPlugin extends Plugin {
+export default class EventsPlugin extends PluginBaseClass {
     init() {
     }
 }
@@ -43,9 +43,9 @@ Now that you possibly found your event, it's time to register to it and execute 
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/events-plugin/events-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 
-export default class EventsPlugin extends Plugin {
+export default class EventsPlugin extends PluginBaseClass {
     init() {
         const plugin = window.PluginManager.getPluginInstanceFromElement(document.querySelector('[data-cookie-permission]'), 'CookiePermission');
         plugin.$emitter.subscribe('hideCookieBar', this.onHideCookieBar);

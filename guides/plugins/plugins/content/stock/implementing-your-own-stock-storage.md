@@ -19,8 +19,8 @@ Here you will be decorating a service; therefore, it will be helpful to familiar
 
 First, to communicate stock alterations to a third-party service, you will have to decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `alter` method. This method is triggered with an array of `StockAlteration`'s, which contains:
 
-* the Product and Line Item IDs, 
-* the old quantity and 
+* the Product and Line Item IDs,
+* the old quantity and
 * the new quantity.
 
 <Tabs>
@@ -126,4 +126,4 @@ All of these scenarios are handled by the event subscriber `Shopware\Core\Conten
 ## Further extension points for advanced customization
 
 1. If you need to listen to more events to trigger stock alterations, you can create an event subscriber for the required events and call the `\Shopware\Core\Content\Product\Stock\AbstractStockStorage::alter` method with a `StockAlteration` instance representative of the alteration.
-1. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/hosting/configurations/shopware/stock).
+2. If you don't want to use Shopware's default events and stock storage, you can implement your own system and recommend that the project owner disables the Shopware stock management system. Refer them to [Configuration guide](../../../../../guides/hosting/configurations/shopware/stock).

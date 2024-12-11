@@ -36,6 +36,7 @@ shopware:
           config:
             url: 'redis://host:port/dbindex'
 ```
+
 </Tab>
 
 <Tab title="Since v6.6.8.0">
@@ -45,7 +46,7 @@ shopware:
     redis:
         connections:
             persistent:
-                dsn: 'redis://host:port/dbindex?persistent=1'
+                dsn: 'redis://host:port/dbindex'
 
     increment:
         user_activity:
@@ -58,6 +59,7 @@ shopware:
             config:
                 connection: 'persistent'
 ```
+
 </Tab>
 </Tabs>
 

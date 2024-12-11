@@ -73,7 +73,7 @@ MD028: false
 
 # Ordered list item prefix <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md029>
 MD029:
-  style: 'one'
+  style: 'ordered'
 
 # Spaces after list markers <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md030>
 MD030: true

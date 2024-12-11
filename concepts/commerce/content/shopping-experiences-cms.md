@@ -148,11 +148,11 @@ The following diagram illustrates how that works using the example of a category
 Let's go through the steps one by one.
 
 1. **Load category**: This can be initiated through an API call or a page request \(e.g., through the Storefront\).
-1. **Load CMS layout**: Shopware will load the CMS layout associated with the category.
-1. **Build resolver context**: This object will be passed on and contains information about the request and the sales channel context.
-1. **Assemble criteria for every element**: Every CMS element within the layout has a `type` configuration which determines the correct page resolver to resolve its content. Together with the **resolver context**, the resolver is able to resolve the correct criteria for the element. All criteria are collected in a criteria collection. Shopware will optimize those criteria \(e.g. by splitting searches from direct lookups or merging duplicate requests\) and execute the resulting queries.
-1. **Override slot configuration**: The resulting configuration determine the ultimate configuration of the slots that will be displayed, so Shopware will use it to override the existing configuration.
-1. **Respond with CMS page**: Since the page data is finally assembled, it can be passed on to the view layer where it will be interpreted and displayed.
+2. **Load CMS layout**: Shopware will load the CMS layout associated with the category.
+3. **Build resolver context**: This object will be passed on and contains information about the request and the sales channel context.
+4. **Assemble criteria for every element**: Every CMS element within the layout has a `type` configuration which determines the correct page resolver to resolve its content. Together with the **resolver context**, the resolver is able to resolve the correct criteria for the element. All criteria are collected in a criteria collection. Shopware will optimize those criteria \(e.g. by splitting searches from direct lookups or merging duplicate requests\) and execute the resulting queries.
+5. **Override slot configuration**: The resulting configuration determine the ultimate configuration of the slots that will be displayed, so Shopware will use it to override the existing configuration.
+6. **Respond with CMS page**: Since the page data is finally assembled, it can be passed on to the view layer where it will be interpreted and displayed.
 
 ### Extensibility
 

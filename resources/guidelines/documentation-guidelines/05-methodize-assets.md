@@ -45,13 +45,13 @@ Our documentation categorizes visuals into different types, including screenshot
 storefront-pages.svg
 ```
 
-  * If sub-topic exists, *`<topicName>-<subtopicName>-<meaningfulImageName>.svg`*. For example,
+* If sub-topic exists, *`<topicName>-<subtopicName>-<meaningfulImageName>.svg`*. For example,
 
 ```markdown
 storefront-dataHandling-pages.svg 
 ```
 
-  * The image names can be serialized if multiple images are under the same topic. For example,
+* The image names can be serialized if multiple images are under the same topic. For example,
 
 ```markdown
 storefront-dataHandling-pages_01.svg

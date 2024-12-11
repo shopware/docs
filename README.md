@@ -18,11 +18,9 @@ The developer documentation is organized into sections covering :
 - [Products](./products/)
 - [Resources](./resources/)
 
-Refer to its [structure](./index.md) to understand better. Contributions to improve the content are welcome, following the outlined [contribution guidelines](./resources/guidelines/documentation-guidelines/06-doc-process.md). The markdown content undergoes workflow checks for easier maintenance. Further details are outlined below. 
-
+Refer to its [structure](./index.md) to understand better. Contributions to improve the content are welcome, following the outlined [contribution guidelines](./resources/guidelines/documentation-guidelines/06-doc-process.md). The markdown content undergoes workflow checks for easier maintenance. Further details are outlined below.
 
 ![Developer docs](./assets/developer-docs.png)
-
 
 ## Workflows
 
@@ -51,7 +49,6 @@ The `/docs/assets` folder stores images, videos, and other files linked in markd
 ### External link check
 
 [Lychee](https://github.com/lycheeverse/lychee) is used to check if external links are working properly or broken. The configuration for lychee can be found in [`validate-external-links.yml`](./.github/workflows/validate-external-links.yml).
-
 
 ### Synced files
 

@@ -1,0 +1,3 @@
+shopware:
+  product_stream:
+    indexing: false

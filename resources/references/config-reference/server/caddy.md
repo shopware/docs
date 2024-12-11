@@ -1,6 +1,6 @@
 # Caddy
 
-```
+```text
 mydomain.com {
   header {
     X-Frame-Options DENY

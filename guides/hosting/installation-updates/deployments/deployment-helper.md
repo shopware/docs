@@ -8,7 +8,7 @@ nav:
 # Deployment Helper
 
 The Deployment Helper is a tool that unifies the steps executed after the Code has been uploaded to the server.
-On a traditional deployment, you would run it after the files have been uploaded. 
+On a traditional deployment, you would run it after the files have been uploaded.
 When using a Containerized environment you would run Deployment Helper with the new source code and then switch over the traffic.
 
 ## Installing the Deployment Helper
@@ -66,6 +66,22 @@ deployment:
     exclude:
       - Name
 
+    overrides:
+      # the key is the extension name (app or plugin)
+      MyPlugin:
+        # Same as exclude
+        state: ignored
+
+      AnotherPlugin:
+        # This plugin can be installed, but should be inactive
+        state: inactive
+
+      RemoveThisPlugin:
+        # This plugin will be uninstalled if it is installed
+        state: remove
+        # should the extension data of an uninstalled extension be kept
+        keepUserData: true
+
   one-time-tasks:
     - id: foo
       script: |
@@ -119,6 +135,32 @@ The license domain can be set also by env variable `SHOPWARE_STORE_LICENSE_DOMAI
 
 When you open the extension manager, you will see that you are not logged in. This is normal as the Deployment Helper does log you in only for system tasks like extension installation or updates. For the extension manager, every Administration user needs to log in manually.
 
+## Removal of extensions
+
+If you want to remove an extension you need to do it in two steps:
+
+1.) Set the extension to `remove` in the `.shopware-project.yml` file
+
+```yaml
+deployment:
+  extension-management:
+    enabled: true
+
+    overrides:
+      TheExtensionWeWantToGetRidOf:
+        # This plugin will be uninstalled if it is installed
+        state: remove
+        # should the extension data of an uninstalled extension be kept
+        keepUserData: true
+
+```
+
+and deploy the changes. The extension will be uninstalled and is inactive.
+
+2.) Remove the extension from source code
+
+After the deployment, you can remove the extension from the source code, remove the entry from the `.shopware-project.yml` file and deploy the changes again.
+
 ## Usage examples
 
 ### Container
@@ -128,7 +170,6 @@ From that image you make a new image with your Shopware source code.
 To prepare the Shopware source code, you can run [shopware-cli project ci](https://sw-cli.fos.gg) to install the dependencies and build the assets.
 On deployment you spawn a second container or init a container, which runs the Deployment Helper.
 The Deployment Helper sets up Shopware when it is not installed, installs the extensions and runs the one-time tasks.
-
 
 ### SFTP / Deployer
 

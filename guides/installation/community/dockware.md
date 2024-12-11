@@ -14,7 +14,6 @@ Dockware is maintained by *dasistweb GmbH*. They provide detailed [documentation
 For support please refer to [Dockware GitHub](https://github.com/dockware/dockware).
 :::  
 
-
 ## Dockware versions
 
 Dockware images come in several versions, so you can choose the one which fits your needs best. You can find a brief overview below, but as always, please refer to [their website](https://dockware.io/) for a detailed comparison.

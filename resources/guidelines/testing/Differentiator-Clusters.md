@@ -8,12 +8,11 @@ This section will show you the new differentiator groups which needs to be fulfi
 
 * Cluster 2: Your plugin or app offers meaningful use case that cannot be replicated with other comparable plugins or apps. Moreover, it works sensibly with Shopware standards, instead of using its own technical approaches.
 
-* Cluster 3: Your app is based on the app system and offers a meaningful integration that is not implemented in the comparison app.
+* Cluster 3: Your app is based on the app system and offers a meaningful integration that is not implemented in the comparison plugins.
 
-* Cluster 4: Your app is based on the app system and offers meaningful use cases that cannot be replicated with other comparable apps.
+* Cluster 4: Your app is based on the app system and offers meaningful use case that cannot be replicated with other comparable plugins.
 
-
-## Examples of meaningful use of the Shopware standard 
+## Examples of meaningful use of the Shopware standard
 
 * Uses custom fields instead of own tables. This facilitates data management and querying and avoids inconsistencies or conflicts with the Shopware data model.
 
@@ -25,7 +24,6 @@ This section will show you the new differentiator groups which needs to be fulfi
 
 * Precisely adapts to Shopware externally. This means that the plugin or app complements or extends the appearance of the Shopware admin interface without disturbing or altering it, by using the same styles and elements.
 
-
 ## Examples of meaningful use cases that cannot be represented with other plugins or apps
 
 * Offers the possibility to send automatic emails to customers or partners to inform them about important information or offers.
@@ -36,8 +34,7 @@ This section will show you the new differentiator groups which needs to be fulfi
 
 * Offers different configurations for different sales channels.
 
-
-## Examples of Shopware integrations:
+## Examples of Shopware integrations
 
 * The plugin or app has meaningfully integrated the Rule Builder into the plugin or app.
 

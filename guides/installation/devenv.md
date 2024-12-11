@@ -76,6 +76,7 @@ If this is the first time using cachix, you need to add your account to the trus
 ```shell
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
+
 :::
 
 Before installing devenv, instruct Cachix to use the devenv cache:
@@ -197,13 +198,13 @@ In the devenv shell, run the following command to initialize Shopware:
 bin/console system:install --basic-setup --create-database --force
 ```
 
-Open http://localhost:8000/admin in your browser after the installation has finished.
+Open <http://localhost:8000/admin> in your browser after the installation has finished.
 You should see the Shopware admin interface.
 
 The default credentials are:
 
-- User: admin 
-- Password: shopware
+* User: admin
+* Password: shopware
 
 ::: info
 
@@ -301,20 +302,22 @@ Here is an overview of services Shopware provides by default and how you can acc
 | Redis (TCP)    | `tcp://127.0.0.1:6379`                          |
 
 ### Caddy
+
 Caddy is a powerful, enterprise-ready, open-source web server with automatic HTTPS written in Go.
 
 [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ### Adminer
+
 Adminer is a full-featured database management tool written in PHP.
 
 [http://localhost:8010](http://localhost:8010)
 
 ### Mailhog
+
 MailHog is an email testing tool for developers.
 
 [http://localhost:8025](http://localhost:8025)
-
 
 ## Customize your setup
 
@@ -456,7 +459,6 @@ Refer to the official devenv documentation to get a complete list of all availab
 
 </Tab>
 </Tabs>
-
 
 ### Use customized Adminer port
 
@@ -640,9 +642,9 @@ In case you can't find and stop running devenv processes, you can use the follow
 kill $(ps -ax | grep /nix/store | grep -v "grep" | awk '{print $1}')
 ```
 
-### Are you unable to access http://127.0.0.1:8000 in your Browser?
+### Are you unable to access <http://127.0.0.1:8000> in your Browser?
 
-Try using http://localhost:8000 instead. This mostly applies to when using WSL2.
+Try using <http://localhost:8000> instead. This mostly applies to when using WSL2.
 
 ### Are you looking for a full test setup with demo data?
 

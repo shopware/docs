@@ -230,8 +230,8 @@ CREATE TABLE IF NOT EXISTS `swag_example_extension` (
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NULL,
     PRIMARY KEY (`id`),
-    KEY `fk.swag_example_extension.product_id` (`product_id`),
-    CONSTRAINT `fk.swag_example_extension.product_id` FOREIGN KEY (`product_id`, `product_version_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `unique.swag_example_extension.product` UNIQUE (`product_id`, `product_version_id`),
+    CONSTRAINT `fk.swag_example_extension.product_id` FOREIGN KEY (`product_id`, `product_version_id`) REFERENCES `product` (`id`, `version_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 SQL;
         $connection->executeStatement($sql);
@@ -326,3 +326,45 @@ After we've created our subscriber, we have to adjust our `services.xml` to regi
 ## Entity extension vs. Custom fields
 
 [Custom fields](../custom-field/add-custom-field) are by default configurable by the admin user in the Administration, and they mostly support scalar types, e.g. a text-field, a number field, or the likes. If you'd like to create associations between entities, you'll need to use an entity extension, just like we did here. Of course, you can also add scalar values without an association to an entity via an extension.
+
+## Bulk entity extensions
+
+::: info
+This feature is available since Shopware 6.6.10.0
+:::
+
+In case your project or plugin requires many entity extensions, you can register a `BulkEntityExtension` which allows extending multiple entities at once:
+
+```php
+<?php
+
+namespace Examples;
+
+use Shopware\Core\Content\Product\ProductDefinition;
+use Shopware\Core\Content\Category\CategoryDefinition;
+
+class MyBulkExtension extends BulkEntityExtension
+{
+    public function collect(): \Generator
+    {
+        yield ProductDefinition::ENTITY_NAME => [
+            new FkField('main_category_id', 'mainCategoryId', CategoryDefinition::class),
+        ];
+
+        yield CategoryDefinition::ENTITY_NAME => [
+            new FkField('product_id', 'productId', ProductDefinition::class),
+            new ManyToOneAssociationField('product', 'product_id', ProductDefinition::class),
+        ];
+    }
+}
+```
+
+Each yield defines the entity name which should be extended and the array value defines the fields which should be added. In this example, the `product` and `category` entities are extended.
+
+You must also register the extension in your `services.xml` file and tag it with `shopware.bulk.entity.extension`.
+
+```xml
+<service id="Examples\MyBulkExtension">
+   <tag name="shopware.bulk.entity.extension"/>
+</service>
+```

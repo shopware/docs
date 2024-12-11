@@ -1,7 +1,7 @@
 ---
 nav:
   title: Frontend App Deployment
-  position: 40
+  position: 10
 
 ---
 
@@ -11,4 +11,4 @@ According to [Shopware Frontends deployment document](https://frontends.shopware
 
 You may find the different approaches are described in [Nuxt instruction](https://nuxt.com/deploy).
 
-Alternatively, we will show some best practices of *Digital Sales Room* frontend app deployment. 
+Alternatively, we will show some best practices of *Digital Sales Room* frontend app deployment.

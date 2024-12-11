@@ -35,5 +35,4 @@ If you want to deactivate the sanitizer despite security risks, you can also do 
 Disabling the HTML sanitizer will allow potentially unsafe or malicious HTML code to be inserted.
 :::
 
-
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"html_sanitizer"} -->

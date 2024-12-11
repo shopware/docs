@@ -20,7 +20,7 @@ The manufacturers and categories or your custom search result could be realized 
 {% set customEntities = searchResult.getResult('custom_entity') %}
 ```
 
-# How to extend the suggest template
+## How to extend the suggest template
 
 To show the results in the suggest dropdown, you have to extend `Storefront/storefront/layout/header/search-suggest.html.twig` like the Advanced Search does in `custom/plugins/SwagCommercial/src/AdvancedSearch/Resources/views/storefront/layout/header/search-suggest.html.twig`.
 
