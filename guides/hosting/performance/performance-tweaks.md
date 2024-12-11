@@ -298,8 +298,8 @@ This is available starting with Shopware 6.6.10.0
 :::
 
 You can enable that **experimental feature** via `Admin > Settings > System > Storefront`. The JavaScript Plugin will then
-check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so, 
-it will add a script tag to the head of the document. For the [eagerness option](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness) 
+check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so,
+it will add a script tag to the head of the document. For the [eagerness option](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness)
 we are using `moderate` everywhere. That means a user must interact with a link to execute the pre-rendering.
 
 ::: info
