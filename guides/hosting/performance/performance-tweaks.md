@@ -297,6 +297,9 @@ To disable the Product Stream Indexer, you can set the following configuration:
 This is available starting with Shopware 6.6.10.0
 :::
 
+The Speculation Rules API allows browsers to pre-render pages based on user interactions.
+This can improve the perceived performance of a website by loading pages in the background before the user navigates to them.
+
 You can enable that **experimental feature** via `Admin > Settings > System > Storefront`. The JavaScript Plugin will then
 check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so,
 it will add a script tag to the head of the document. For the [eagerness option](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness)
