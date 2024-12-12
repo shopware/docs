@@ -14,7 +14,7 @@ Symfony provides a straightforward component, built on top of the [Mercure](http
 
 ## Setup hub
 
-There are different ways to set up Mercure, we introduce some fastest ways as listed below:
+There are different ways to set up Mercure; we choose the quickest and easiest for you below:
 
 ### Setup via Stackhero (Recommended)
 
