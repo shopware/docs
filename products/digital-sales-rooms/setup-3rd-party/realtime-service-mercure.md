@@ -38,7 +38,7 @@ There are different ways to set up Mercure, we introduce some fastest ways as li
 Use different publisher and subscriber keys in production mode for security reasons.
 :::
 
-We have written a [local-mercure-sample](https://github.com/shopware/local-mercure-sample) using docker-compose.
+You can clone our [local-mercure-sample](https://github.com/shopware/local-mercure-sample) and run it by docker-compose.
 
 
 ## Config Mercure hub
