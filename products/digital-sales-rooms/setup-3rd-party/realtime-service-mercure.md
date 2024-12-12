@@ -14,7 +14,7 @@ Symfony provides a straightforward component, built on top of the [Mercure](http
 
 ## Setup hub
 
-There are different ways to set up Mercure as listed below:
+There are different ways to set up Mercure, we introduce some fastest ways as listed below:
 
 ### Setup via Stackhero (Recommended)
 
@@ -34,69 +34,12 @@ There are different ways to set up Mercure as listed below:
 
 ### Setup via Docker
 
-The docker image can be found at [dunglas/mercure](https://hub.docker.com/r/dunglas/mercure). It allows you to use the following *env* variables to configure Mercure.
-
 ::: warning
-Use different publisher and subscriber keys for security reasons.
+Use different publisher and subscriber keys in production mode for security reasons.
 :::
 
-```txt
-- MERCURE_PUBLISHER_JWT_KEY: your-256-bit-publisher-key
-- MERCURE_SUBSCRIBER_JWT_KEY: your-256-bit-subscriber-key
-- MERCURE_EXTRA_DIRECTIVES: |-  
-   cors_origins "https://my-pwa-shop.com https://en.my-pwa-shop.com"  
-   anonymous 0  
-   ui 1
-```
+We have written a [local-mercure-sample](https://github.com/shopware/local-mercure-sample) using docker-compose.
 
-You can also configure it like the self-installed version via the Caddyfile.
-
-```txt
-// Sample Caddyfile
-{
-    # Debug mode (disable it in production!)
-    debug
-    # HTTP/3 support
-}
-:80
-log
-route {
-    redir / /.well-known/mercure/ui/
-    encode gzip
-    mercure {
-        # Enable the demo endpoint (disable it in production!)
-        demo
-        # Publisher JWT key
-        publisher_jwt MySecret
-        # Subscriber JWT key
-        subscriber_jwt MySecret
-        # CORS
-        cors_origins http://localhost:3000 http://localhost:8080 http://shopware.test http://7779-91-90-160-158.ngrok.io
-        publish_origins localhost:3000 localhost:8080 shopware.test 7779-91-90-160-158.ngrok.io
-        # Allow anonymous subscribers (double-check that it's what you want)
-        anonymous
-        # Enable the subscription API (double-check that it's what you want)
-        subscriptions
-    }
-    respond "Not Found" 404
-}
-```
-
-### Self-host setup
-
-The [installation guide](https://mercure.rocks/docs/hub/install) explains all the steps that are required for installing the Mercure.
-
-```txt
-mercure {
-...  
-publisher_jwt my-publisher-key HS256  
-subscriber_jwt my-subscriber-key HS256  
-cors_origins "https://my-pwa-shop.com https://en.my-pwa-shop.com"  
-demo 0  
-ui 0  
-...
-}
-```
 
 ## Config Mercure hub
 
