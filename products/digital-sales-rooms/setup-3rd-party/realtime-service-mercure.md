@@ -40,7 +40,6 @@ Use different publisher and subscriber keys in production mode for security reas
 
 You can clone our [local-mercure-sample](https://github.com/shopware/local-mercure-sample) and run it by docker-compose.
 
-
 ## Config Mercure hub
 
 After init mercure hub, let's make it more secure with your information:
