@@ -217,7 +217,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
         }
 
         // handle the payment state
-        $this->>transactionStateHandler->paid($transaction->getOrderTransactionId(), $context);
+        $this->transactionStateHandler->paid($transaction->getOrderTransactionId(), $context);
     }
 
     private function sendReturnUrlToExternalGateway(string $getReturnUrl): string
