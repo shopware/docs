@@ -157,6 +157,18 @@ After all the steps are done, Deployer will switch the symlinks destination to t
 
 This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer#deploy-php).
 
+### 8. Stop workers (optional)
+
+In a production environment, you often run workers in the background. Before deploying a new version, you should stop the workers to prevent them from processing outdated data.
+
+```php
+task('messenger:stop', function () {
+    if (has('previous_release')) {
+        run('{{bin/php}} {{previous_release}}/bin/console messenger:stop-workers');
+    }
+})->desc('Stop workers');
+```
+
 ## Deployer output
 
 This is the output of `dep deploy env=prod`:
@@ -360,6 +372,12 @@ task('sw:health_checks', static function () {
     run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
 });
 
+task('messenger:stop-workers', function () {
+    if (has('previous_release')) {
+        run('{{bin/php}} {{previous_release}}/bin/console messenger:stop-workers');
+    }
+})->desc('Stop workers');
+
 desc('Deploys your project');
 task('deploy', [
     'deploy:prepare',
@@ -384,4 +402,5 @@ task('deploy:update_code')->setCallback(static function () {
 
 after('deploy:failed', 'deploy:unlock');
 after('deploy:symlink', 'cachetool:clear:opcache');
+after('deploy:symlink', 'messenger:stop-workers');
 ```
