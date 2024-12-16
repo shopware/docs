@@ -38,7 +38,9 @@ To create a custom flow action, firstly you have to make a plugin and install it
 <?php declare(strict_types=1);
 namespace Swag\ExamplePlugin\Core\Framework\Event;
 use Shopware\Core\Framework\Event\FlowEventAware;
+use Shopware\Core\Framework\Event\IsFlowEventAware;
 
+#[IsFlowEventAware]
 interface TagAware extends FlowEventAware
 {
     ...
