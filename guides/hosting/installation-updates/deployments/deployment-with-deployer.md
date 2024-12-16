@@ -162,7 +162,7 @@ This task is defined in the `deploy:symlink` default job in the [`deploy.php`](d
 In a production environment, you often run workers in the background. Before deploying a new version, you should stop the workers to prevent them from processing outdated data.
 
 ```php
-task('messenger:stop', function () {
+task('messenger:stop-workers', function () {
     if (has('previous_release')) {
         run('{{bin/php}} {{previous_release}}/bin/console messenger:stop-workers');
     }
