@@ -110,7 +110,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
     public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
     {
         // In here you should probably call your payment provider to precess the payment
-        // $this->>myPaymentProvider->processPayment($transaction);
+        // $this->myPaymentProvider->processPayment($transaction);
 
         // afterward you should update the transaction with the new state
         $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
@@ -217,7 +217,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
         }
 
         // handle the payment state
-        $this->>transactionStateHandler->paid($transaction->getOrderTransactionId(), $context);
+        $this->transactionStateHandler->paid($transaction->getOrderTransactionId(), $context);
     }
 
     private function sendReturnUrlToExternalGateway(string $getReturnUrl): string
@@ -353,7 +353,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
         }
 
         // In here you should probably call your payment provider to precess the payment
-        // $this->>myPaymentProvider->processPayment($transaction);
+        // $this->myPaymentProvider->processPayment($transaction);
         
         // afterward you should update the transaction with the new state
         $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
@@ -437,7 +437,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
     public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
     {
         // In here you should probably call your payment provider to precess the payment
-        // $this->>myPaymentProvider->processPayment($transaction);
+        // $this->myPaymentProvider->processPayment($transaction);
 
         // afterward you should update the transaction with the new state
         $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
