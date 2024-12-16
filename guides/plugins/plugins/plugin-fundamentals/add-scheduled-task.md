@@ -117,6 +117,12 @@ In order to properly test your scheduled task, you first have to run the command
 
 Now you still need to run the command `bin/console messenger:consume` to actually execute the dispatched messages. Make sure, that the `status` of your scheduled task is set to `scheduled` in the `scheduled_task` table, otherwise it won't be executed. This is not necessary, when you're using the admin worker.
 
+## Executing the scheduled task for testing
+
+Due to the nature of how the scheduled tasks are executed (using the message queue) it can be rather cubersome to test them, especially if your scheduled task does not run very often. Using the `bin/console scheduled-task:run-single` command, you can instantly execute your scheduled task, using its name.
+
+For example: `bin/console scheduled-task:run-single webhook_event_log.cleanup`
+
 ## More interesting topics
 
 * [Adding a custom command](add-custom-commands)
