@@ -277,7 +277,7 @@ To disable the Product Stream Indexer, you can set the following configuration:
 
 <<< @/docs/snippets/config/product_stream.yaml
 
-Disabling the Product Stream Indexer has following disadvantages:
+Disabling the Product Stream Indexer has the following disadvantages:
 
 - When you change a product in a stream, the category page is not updated until the HTTP cache expires
     - You could also explicitly update the category page containing the stream to workaround if that is a problem
