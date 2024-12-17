@@ -39,7 +39,7 @@ A delay for cache invalidation can be activated for systems with a high update f
 By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
 
 ::: warning
-If you enable delayed cache invalidation, it's mandatory to set up a worker to run (Scheduled Tasks)[../infrastructure/scheduled-task], e.g. using the (Message Queue)[../infrastructure/message-queue].
+If you enable delayed cache invalidation, you must set up a worker to run [Scheduled Tasks](../infrastructure/scheduled-task), e.g., using the [Message Queue](../infrastructure/message-queue).
 :::
 
 ```yaml
