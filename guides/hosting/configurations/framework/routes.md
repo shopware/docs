@@ -33,7 +33,7 @@ public function index(Request $request, SalesChannelContext $context): Response
 
 It defines that your wishlist page is available at `/wishlist`. This is fine for an English-only shop, but for a multilingual shop, you might want to have a different route for each language.
 
-For example, you could have `/wishlist` for english and `/merkliste` for german.
+For example, you could have `/wishlist` for English and `/merkliste` for German.
 
 ## Configuration
 
