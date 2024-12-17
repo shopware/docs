@@ -31,13 +31,13 @@ public function index(Request $request, SalesChannelContext $context): Response
 }
 ```
 
-It defines that your wishlist page is available at `/wishlist`. This is fine for an english only shop, but for a multilanguage shop, you might want to have a different route for each language.
+It defines that your wishlist page is available at `/wishlist`. This is fine for an English-only shop, but for a multilingual shop, you might want to have a different route for each language.
 
 For example, you could have `/wishlist` for english and `/merkliste` for german.
 
 ## Configuration
 
-To easily configure those routes, you can use the `routes.yaml` file in ROOT/config/routes/routes.yaml. This file is loaded by Symfony and allows you to define your custom routes.
+To easily configure those routes, you can use the `routes.yaml` file in ROOT/config/routes/routes.yaml. Symfony loads this file, which allows you to define your custom `paths`, in our case, for the wishlist index page.
 
 ```yaml
 frontend.wishlist.page:
@@ -52,5 +52,7 @@ frontend.wishlist.page:
   options:
     seo: false
 ```
+
+You can configure the `path` with the **locales** (for example, `de-DE`) your shop uses.
 
 If you want to learn more about routes in Symfony, check out the [Symfony documentation](https://symfony.com/doc/current/routing.html#creating-routes-as-attributes).
