@@ -1,0 +1,55 @@
+name: Check docs milestone and shopware version
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-milestone-and-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get all open pull requests
+        id: get_open_prs
+        run: |
+          open_prs=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open" | jq -r '.[].number' | tr '\n' ' ')
+          echo "open_prs=$open_prs" >> $GITHUB_ENV
+
+      - name: Process each pull request
+        run: |
+          for pr_number in $open_prs; do
+            milestone=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number" | jq -r .milestone.title)
+            latest_version=$(curl -s https://api.github.com/repos/shopware/shopware/releases/latest | jq -r .tag_name)
+            if [ "$milestone" == "$latest_version" ]; then
+              existing_comments=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments" | jq -r '.[].body')
+              if ! echo "$existing_comments" | grep -q "The feature is ready to be merged @Isengo1989 @sushmangupta @bojanrajh"; then
+                curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -X POST \
+                  -d "{\"body\": \"The feature is ready to be merged @Isengo1989 @sushmangupta @bojanrajh\"}" \
+                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments"
+              fi
+              # Remove blocked label if it exists
+              curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name' | grep -q "blocked" && \
+                curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -X DELETE \
+                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels/blocked"
+            else
+              if [ "$milestone" != "null" ]; then
+                # Add blocked label if it does not exist
+                curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name' | grep -q "blocked" || \
+                  curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                    -X POST \
+                    -d "{\"labels\": [\"blocked\"]}" \
+                    "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels"
+              fi
+            fi
+          done
