@@ -1500,6 +1500,7 @@ readAsArrayBuffer
 readAsDataURL
 readAsText
 realtime
+rebasing
 rebranded
 recalculable
 redis
