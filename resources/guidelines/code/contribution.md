@@ -39,11 +39,12 @@ Pull requests which do not fulfill these requirements will never be accepted by 
 
 When you create a new pull request on GitHub, please ensure:
 
-1. Your PR title follows Conventional Commits format as it will become the squashed commit message
+1. Your PR title follows the **Conventional Commits** format as it will become the squashed commit message
 2. You've provided all necessary information in the PR description
 3. Your changes are complete and tested
 
 You are responsible for maintaining and updating your pull request. This includes:
+
 * Responding to review comments in a timely manner
 * Updating the code according to review feedback
 * Keeping the PR up to date with the target branch if conflicts arise
