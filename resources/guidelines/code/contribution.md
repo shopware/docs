@@ -56,7 +56,7 @@ Once your PR is public, avoid rebasing or force-pushing to the branch. Adding ne
 Pull requests that become stale (no activity from the author for 2 weeks after a review or request for changes) will be closed. You can always reopen the pull request when you're ready to continue working on it.
 :::
 
-Your PR will normally get the first review within a week. We do regular meetings to screen all new pull requests on GitHub. In this meeting, there is a team of Shopware developers of different specializations who will discuss your changes. Together we decide what will happen next to your pull request. We will set one of the following labels, which indicates the status of the pull request. Here is a list of all possible states:
+Your PR will normally get the first review within a week. We do regular meetings to screen all new pull requests on GitHub. In this meeting, a team of Shopware developers with different specializations will discuss your changes. Together, we decide what will happen next to your pull request. We will set one of the following labels, which indicates the pull request's status. Here is a list of all possible states:
 
 |                                  GitHub Label / Tag                                  | What does it mean? |
 |:------------------------------------------------------------------------------------:| :--- |
