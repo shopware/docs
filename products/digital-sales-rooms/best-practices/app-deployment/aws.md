@@ -21,7 +21,7 @@ In this chapter, you will learn how to deploy the frontend source code to [AWS A
 * Login to the AWS Amplify Hosting Console.
 * Create a new app in AWS Amplify.
 * Select and authorize access to your Git repository provider and select the main branch (it will auto deploy when there are some changes in the main branch).
-* Choose a name for your app, make sure build settings are auto-detected.
+* Choose a name for your app and make sure build settings are auto-detected.
 * Set Environment variables under the Advanced Settings section.
   * Add `SHOPWARE_STORE_API`, `SHOPWARE_ADMIN_API`, `SHOPWARE_STORE_API_ACCESS_TOKEN`, `SHOPWARE_STOREFRONT_URL`, `ORIGIN` variables with appropriate values.
 * Confirm configuration and click on "Save and Deploy".
