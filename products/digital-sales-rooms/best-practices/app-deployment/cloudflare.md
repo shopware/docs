@@ -1,7 +1,7 @@
 ---
 nav:
    title: Cloudflare
-   position: 10
+   position: 20
 
 ---
 
@@ -49,7 +49,7 @@ wrangler pages deploy dist/
 
 * In GitHub Secrets, add `CLOUDFLARE_API_TOKEN` with API token value.
   * [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) in the Cloudflare dashboard with the "Cloudflare Pages — Edit" permission.
-* In GitHub environment variables, create new environment named `production`. Add `SHOPWARE_ENDPOINT` and `SHOPWARE_ACCESS_TOKEN` variables with appropriate values.
+* In GitHub environment variables, create new environment named `production`. Add `SHOPWARE_STORE_API`, `SHOPWARE_ADMIN_API`, `SHOPWARE_STORE_API_ACCESS_TOKEN`, `SHOPWARE_STOREFRONT_URL`, `ORIGIN` variables with appropriate values.
   * Besides `production`, we can add new values for the same variable names in multiple environments such as `development`, `staging`.
 
 ### Setup pipeline
@@ -95,8 +95,12 @@ jobs:
       - name: Build env file
         run: |
           touch .env
-          echo SHOPWARE_ENDPOINT=${{ vars.SHOPWARE_ENDPOINT }} >> .env
-          echo SHOPWARE_ACCESS_TOKEN=${{ vars.SHOPWARE_ACCESS_TOKEN }} >> .env
+          # echo ALLOW_ANONYMOUS_MERCURE=${{ vars.ALLOW_ANONYMOUS_MERCURE }} >> .env
+          echo SHOPWARE_STORE_API=${{ vars.SHOPWARE_STORE_API }} >> .env
+          echo SHOPWARE_ADMIN_API=${{ vars.SHOPWARE_ADMIN_API }} >> .env
+          echo SHOPWARE_STORE_API_ACCESS_TOKEN=${{ vars.SHOPWARE_STORE_API_ACCESS_TOKEN }} >> .env
+          echo SHOPWARE_STOREFRONT_URL=${{ vars.SHOPWARE_STOREFRONT_URL }} >> .env
+          echo ORIGIN=${{ vars.ORIGIN }} >> .env
           cat .env
 
       - name: Build code
