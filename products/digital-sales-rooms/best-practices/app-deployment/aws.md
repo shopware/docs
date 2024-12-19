@@ -7,7 +7,7 @@ nav:
 
 # Deploy with AWS Amplify
 
-In this chapter you will learn how to deploy the frontend source code to [AWS Amplify](https://aws.amazon.com/amplify/).
+In this chapter, you will learn how to deploy the frontend source code to [AWS Amplify](https://aws.amazon.com/amplify/).
 
 ## Prerequisites
 
