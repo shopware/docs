@@ -32,4 +32,4 @@ After deploying your code to AWS Amplify, you may wish to point custom domains (
 
 ## Configure sales channel domain
 
-Your website is ready, you should have a frontend app domain. Please use the current domain to configure [sales channel domain](../../configuration/domain-config.md).
+Your website is ready, and you should have a frontend app domain. Please use the current domain to configure [sales channel domain](../../configuration/domain-config.md).
