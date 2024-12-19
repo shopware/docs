@@ -299,6 +299,7 @@ However, you may employ `<span class="h2">`, for instance.
 ### Do not use inline-css in the storefront templates
 
 Use your own classes and let your CSS be compiled by the app.
+Please prevent the usage of !important statements in your storefront templates.
 
 [Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
 
