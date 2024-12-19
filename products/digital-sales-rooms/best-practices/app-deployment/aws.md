@@ -13,7 +13,7 @@ In this chapter, you will learn how to deploy the frontend source code to [AWS A
 
 * Register an AWS account.
 * Clone the frontend source code and push it to your GitHub repository.
-  * Download the plugin zip. After extracting, you can find it inside `/templates/dsr-frontends`.
+  * Download the plugin zip. After extracting it, you will find it inside `/templates/dsr-frontends`.
 * Push source code to your Git repository.
 
 ## Deploy
