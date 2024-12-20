@@ -311,7 +311,12 @@ Keep in mind that pre-rendering puts extra load on your server and also can affe
 
 ## Optimize class loading
 
-PHP loads many classes on each request which can be a performance bottleneck. To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
+### opcache.max_accelerated_files
+
+PHP loads many classes on each request, which can be a performance bottleneck. To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
+
+### classmap-authoritative
+
 Additionally, when all plugins are installed directly through Composer and managed by Composer, you can generate a static autoloader which does no class mapping at runtime.
 
 To enable this, set the following configuration in your `composer.json`:
@@ -324,10 +329,13 @@ To enable this, set the following configuration in your `composer.json`:
         },
         "optimize-autoloader": true,
 +        "classmap-authoritative": true,
-+        "apcu-autoloader": true,
         "sort-packages": true
 },
 ```
+
+For more information, check out the [Composer documentation](https://getcomposer.org/doc/articles/autoloader-optimization.md#optimization-level-2-a-authoritative-class-maps).
+
+### opcache.preload
 
 To completely reduce the class loading at runtime, you can enable `opcache.preload` by setting it to `<project-root>/var/cache/opcache-preload.php` and `opcache.preload_user` to the user running the PHP process. This will preload all classes into the opcache on PHP-FPM startup and reduce the class loading at runtime.
 
