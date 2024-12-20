@@ -308,3 +308,37 @@ we are using `moderate` everywhere. That means **a user must interact** with a l
 ::: info
 Keep in mind that pre-rendering puts extra load on your server and also can affect your [Analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
 :::
+
+## Optimize class loading
+
+### opcache.max_accelerated_files
+
+PHP loads many classes on each request, which can be a performance bottleneck. To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
+
+### classmap-authoritative
+
+Additionally, when all plugins are installed directly through Composer and managed by Composer, you can generate a static autoloader which does no class mapping at runtime.
+
+To enable this, set the following configuration in your `composer.json`:
+
+```diff
+"config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
++        "classmap-authoritative": true,
+        "sort-packages": true
+},
+```
+
+For more information, check out the [Composer documentation](https://getcomposer.org/doc/articles/autoloader-optimization.md#optimization-level-2-a-authoritative-class-maps).
+
+### opcache.preload
+
+To completely reduce the class loading at runtime, you can enable `opcache.preload` by setting it to `<project-root>/var/cache/opcache-preload.php` and `opcache.preload_user` to the user running the PHP process. This will preload all classes into the opcache on PHP-FPM startup and reduce the class loading at runtime.
+
+::: warning
+When using `opcache.preload`, you need to **restart** the PHP-FPM after each modification to reload the preloaded classes.
+:::
