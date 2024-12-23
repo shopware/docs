@@ -1,63 +1,82 @@
 ---
 nav:
-   title: Front-end app installation
+   title: Frontend app installation
    position: 30
 
 ---
 
-# Front-end App Installation
+# Frontend App Installation
 
 ::: warning
-*Digital Sales Rooms* application does not belong to *the default Storefront*. It's a standalone Frontend app running with Nuxt instance. This template will be hosted in a separate instance with a new domain (eg: `https://dsr-frontends.com`), which will be different from the Storefront domain.
-This template is built based on the Shopware Frontends framework, so it inherits from Shopware Frontends concepts.
+This template is built based on the Shopware Frontends framework, so it inherits from Shopware Frontends & Nuxt 3 concepts.
 :::
-
-## Setup sales channel for Digital Sales Rooms
-- Based on the business use case, the merchant can decide to add *Digital Sales Rooms* to their existing sales channel or new sales channel.
-- After specifying the sales channel, head to the *Domains section* and add the proper *Digital Sales Rooms* domains with the proper languages. *Digital Sales Rooms* can switch languages by the path, so please add the domains with the format below.
-```
-dsr-frontends.com - English
-dsr-frontends.com/de-DE - Deutsch
-```
-![ ](../../../assets/setup-domain-for-sales-channel-DSR.png)
-
-The *Digital Sales Rooms* domain (eg: `https://dsr-frontends.com`) should be selected as *Default appointment domain* in [Configuration Page - Appointments](../configuration.md#appointments)
 
 ## Init environment
 
-- Install pnpm with global scope
-```
+* Install pnpm with global scope
+
+```shell
 npm install -g pnpm
 ```
 
-- From the Shopware root folder `<shopware-root-dir>`, go to the folder of *Digital Sales Rooms* templates.
-```
+* From the Shopware root folder `<shopware-root-dir>`, go to the folder of *Digital Sales Rooms* templates.
+
+```shell
 cd ./custom/plugins/SwagDigitalSalesRooms/templates/dsr-frontends
 ```
 
-- Generate env file
-```
+## Generate env file
+
+* Assume Shopware platform is running at `http://localhost:8000` & frontend app will run in `http://localhost:3000`.
+
+```shell
 cp .env.template .env
 ```
-**SHOPWARE_ENDPOINT**: This is the Shopware API Domain server.
 
-**SHOPWARE_ACCESS_TOKEN**: This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign the *Digital Sales Rooms* domain, find the `API access` section, and copy the `API access key`.
+**ORIGIN**: This is current frontend app domain. E.g: `http://localhost:3000`
+
+**SHOPWARE_STOREFRONT_URL**: This is default Shopware storefront domain. E.g: `http://localhost:8000`
+
+**SHOPWARE_ADMIN_API**: This is Shopware admin-api domain server. E.g: `http://localhost:8000/admin-api`
+
+**SHOPWARE_STORE_API**: This is the Shopware store-api domain server. E.g: `http://localhost:8000/store-api`
+
+**SHOPWARE_STORE_API_ACCESS_TOKEN**: This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign the *Digital Sales Rooms* domain, find the `API access` section, and copy the `API access key`.
 
 **ALLOW_ANONYMOUS_MERCURE**: This is the flag for development only. When the value = 1, it means your app is running with unsecured Mercure.
 
-- Install dependencies
-```
+## Run frontend App
+
+For development, you can run the dev server by the following commands:
+
+* Install dependencies
+
+```shell
 pnpm install
 ```
 
-## CLI:
-- For development:
-```
+* Run dev server
+
+```shell
 pnpm dev
 ```
+
 Usually, port `3000` is the default port so that you can access the domain of the Frontend App `http://localhost:3000/`
 
-- For build:
+## Build frontend App
+
+For production, you can build code by the following commands:
+
+* Install dependencies
+
+```shell
+pnpm install
 ```
+
+* Build
+
+```shell
 pnpm build
 ```
+
+The Following section guides you on 3rd parties setup procedure.

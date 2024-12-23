@@ -7,7 +7,7 @@ nav:
 
 # Add more Fields to Product Search
 
-You can add more searchable fields into your product or any Elasticsearch definition. 
+You can add more searchable fields into your product or any Elasticsearch definition.
 
 In this example, we create a field called `productNumberPrefix` to make it searchable. This requires 3 steps:
 

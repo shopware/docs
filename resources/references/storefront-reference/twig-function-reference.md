@@ -10,7 +10,8 @@ nav:
 In Shopware, we extend Twig's functionality by custom ones. See our own actions below.
 
 ::: warning
-#### No official support for the twig \{\% use \%\} tag
+
+## No official support for the twig \{\% use \%\} tag
 
 Try to avoid importing blocks from the core templates with the \{\% use \%\} tag for horizontal reuse in twig. [Twig documentation - use tag](https://twig.symfony.com/doc/3.x/tags/use.html).
 
@@ -19,7 +20,7 @@ The \{\% use \%\} tag does not consider the template inheritance similar to \{\%
 Furthermore, templates which are imported via \{\% use \%\} are not allowed to have additional twig statements outside of twig blocks. Therefore, changes in core templates which are imported via \{\% use \%\} might break your app or plugin.
 :::
 
-## Functions
+### Functions
 
 | Function | Description | Notes |
 | :--- | :--- | :--- |
@@ -30,7 +31,7 @@ Furthermore, templates which are imported via \{\% use \%\} are not allowed to h
 | `config` | Gets a value from the system config (used by plugins and global settings) for the given sales channel |  See [Reading the configuration values](../../../guides/plugins/apps/configuration) |
 | `theme_config` | Gets a value from the current theme |  See [Theme configuration](../../../guides/plugins/themes/theme-configuration) |
 
-## Filter
+### Filter
 
 | Filter | Description | Notes |
 | :--- | :--- | :--- |
@@ -38,7 +39,7 @@ Furthermore, templates which are imported via \{\% use \%\} are not allowed to h
 | `currency` | Adopts currency formatting: The currency symbol and the comma setting. | --- |
 | `sw_sanitize` | Filters tags and attributes from a given string. By default, twig's auto escaping is on, so this filter explicitly allows basic HTML tags like &lt;i%gt;, &lt;b&gt;,... | --- |
 
-## Extensions
+### Extensions
 
 | Extension | Description | Notes |
 | :--- | :--- | :--- |

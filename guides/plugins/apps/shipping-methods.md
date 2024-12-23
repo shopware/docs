@@ -20,11 +20,13 @@ Your app server must be also accessible for the Shopware server.
 ## Manifest configuration
 
 ### Basic configuration
+
 The following example represents the most minimal configuration for a shipping method.
 
 **Important!**
 
 Ensure that the `<identifier>` of your shipping method remains unchanged, as Shopware will deactivate or delete shipping methods that do no longer appear in the manifest during app updates.
+
 ```xml
 // manifest.xml
 
@@ -59,27 +61,34 @@ Ensure that the `<identifier>` of your shipping method remains unchanged, as Sho
 ```
 
 ### Delivery Time
+
 The app manufacturer should initially display the standard delivery time to the shop manager, who can subsequently adjust it as needed. The delivery time requires some configurations.
 
 #### Id
+
 The ID should only be generated initially and should remain unchanged thereafter. Changing it will result in the creation of a new one.
 
 ::: info
 Please note that you should not modify the ID of the shipping time.
 :::
+
 #### Name
+
 The name should describe the delivery time simply, briefly and comprehensibly.
 
 #### Min / Max
+
 The min and max values depend on the unit. Assuming the unit is days, in our example, the delivery time has a range from 2 to 4 days.
 
 #### Unit
+
 The following values are possible units
-- hour
-- day
-- week
-- month
-- year
+
+* hour
+* day
+* week
+* month
+* year
 
 ```xml
 // manifest.xml
@@ -111,6 +120,7 @@ The following values are possible units
 ```
 
 ### Extended configuration
+
 The functionality offers more than one identifier name. The following examples represent all possible configurations.
 
 * Translation of fields that are visible to the customer and requires a translation
@@ -154,12 +164,15 @@ The functionality offers more than one identifier name. The following examples r
     </shipping-methods>
 </manifest>
 ```
+
 ### Description
+
 You can initially add a description for the customer.
 
 ::: info
 Please note that the manifest cannot modify the description once you install the app, as the merchant can change it.
 :::
+
 ```xml
 // manifest.xml
 
@@ -186,19 +199,23 @@ Please note that the manifest cannot modify the description once you install the
 ```
 
 ### Icon
+
 You can initially add a shipping method icon. You must specify the path to this icon as relative to the manifest.xml file. For example, you have the following directory structure:
+
+```text
+YourAppDirectory/
+├── assets/
+│   └── icons/
+│       └── yourIcon.png
+└── manifest.xml
 ```
-- YourPluginDirectory
-    - assets
-        - icons
-            - yourIcon.png
-    - manifest.xml
-```
+
 The path should be: `assets/icons/yourIcon.png`
 
 ::: info
 Please note that the manifest cannot modify the icon once you install the app, as the merchant can change it.
 :::
+
 ```xml
 // manifest.xml
 
@@ -221,11 +238,13 @@ Please note that the manifest cannot modify the icon once you install the app, a
     </shipping-methods>
 </manifest>
 ```
-### Active 
+
+### Active
+
 You can activate the shipping method by default. Possible values for active are `true` or `false`
 
-- true: Activates the shipping method
-- false: Deactivates the shipping method. Alternatively, you can leave out active
+* true: Activates the shipping method
+* false: Deactivates the shipping method. Alternatively, you can leave out active
 
 ```xml
 // manifest.xml
@@ -251,6 +270,7 @@ You can activate the shipping method by default. Possible values for active are 
 ```
 
 ### Tracking url
+
 It is possible to add a tracking URL for customers to monitor the delivery status.
 
 ```xml
@@ -277,6 +297,7 @@ It is possible to add a tracking URL for customers to monitor the delivery statu
 ```
 
 ### Position
+
 Here, you can set the display order of the shipping methods in the checkout. If you omit the tag, the position of the shipping method is 1 by default.
 
 ```xml

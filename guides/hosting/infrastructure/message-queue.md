@@ -9,10 +9,6 @@ nav:
 
 ## Overview
 
-::: warning
-Parts of this guide refer to the `low_priority` queue, which is only available in version 6.5.7.0 and above. Configuring the messenger to consume this queue will fail if it does not exist.
-:::
-
 Shopware uses the Symfony Messenger component and Enqueue to handle asynchronous messages. This allows tasks to be processed in the background. Thus, tasks can be processed independently of timeouts or system crashes. By default, tasks in Shopware are stored in the database and processed via the browser as long as you are logged into the Administration. This is a simple and fast method for the development process, but not recommended for production systems. With multiple users logged into the Administration, this can lead to a high CPU load and interfere with the smooth execution of PHP FPM.
 
 ## Message queue on production systems
@@ -118,10 +114,6 @@ Please refer to the [Symfony documentation](https://symfony.com/doc/current/mess
 
 ### Admin worker
 
-::: warning
-The `transports` option can only be configured with the `low_priority` transport if you are on version 6.5.7.0 or above. You can't add the `low_priority` transport in lower versions as the admin worker will fail when it tries to consume a non-existent transport.
-:::
-
 The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.
 
 ```yaml
@@ -166,3 +158,78 @@ The number of workers depends on the number of messages queued and the type of m
 Sometimes, it also makes sense to route messages to a different transport to limit the number of workers for a specific type of message to avoid database locks or prioritize messages like sending emails.
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"enable_admin_worker"} -->
+
+## Configuration
+
+### Message bus
+
+The message bus is used to dispatch your messages to your registered handlers. While dispatching your message, it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.shopware`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
+
+You can configure an array of buses and define one default bus in your `framework.yaml`.
+
+```yaml
+// <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
+framework:
+    messenger:
+        default_bus: messenger.bus.shopware
+        buses:
+            messenger.bus.shopware:
+```
+
+For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
+
+### Transport
+
+A [transport](https://symfony.com/doc/current/messenger.html#transports-async-queued-messages) is responsible for communicating with your 3rd party message broker. You can configure multiple transports and route messages to multiple or different transports. Supported are all transports that are either supported by [Symfony](https://symfony.com/doc/current/messenger.html#transport-configuration) itself. If you don't configure a transport, messages will be processed synchronously like in the Symfony event system.
+
+You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your  transports.
+
+In a simple setup you only need to set the transport to a valid DSN like:
+
+```yaml
+// <platform root>/src/Core/Framework/Resources/config/packages/queue.yaml
+framework:
+  messenger:
+    transports:
+      my_transport:
+        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+```
+
+For more information on this check the [symfony docs](https://symfony.com/doc/current/messenger.html#transport-configuration).
+
+### Routing
+
+You can route messages to different transports. For that, just configure your routing in the `framework.yaml`.
+
+```yaml
+// <plugin root>/src/
+framework:
+    messenger:
+      transports:
+        async: "%env(MESSENGER_TRANSPORT_DSN)%"
+        another_transport: "%env(MESSENGER_TRANSPORT_ANOTHER_DSN)%"
+      routing: 
+        'Swag\BasicExample\MessageQueue\Message\SmsNotification': another_transport
+        'Swag\BasicExample\MessageQueue\Message\AnotherExampleNotification': [async, another_transport]
+        '*': async
+```
+
+You can route messages by their classname and use the asterisk as a fallback for all other messages. If you specify a list of transports the messages will be routed to all of them. For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport).
+
+#### Routing overwrites
+
+By default, all messages that implement the `AsyncMessageInterface` will be routed to the `async` transport. The default symfony config detailed above will only let you add additional routing to those messages, however if you need to overwrite the additional routing you can do so by adding the following to your `shopware.yaml`:
+
+```yaml
+shopware:
+  messenger:
+    routing_overwrite:
+      'Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage': entity_indexing
+```
+
+The `shopware.messenger.routing_overwrite` config option accepts the same format as the `framework.messenger.routing` option, but it will overwrite the routing for the given message class instead of adding to it.
+This is especially useful if there is a default routing already configured based on a message interface, but you need to change the routing for a specific message.
+
+::: info
+This configuration option was added in Shopware 6.6.4.0 and 6.5.12.0.
+:::

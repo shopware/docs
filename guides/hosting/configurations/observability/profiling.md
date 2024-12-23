@@ -27,7 +27,7 @@ shopware:
 ```
 
 ::: info
-The OpenTelemetry profiler is not installed by default. Checkout the [OpenTelemetry Integration](./opentelemetry.md) to learn how to install it. 
+The OpenTelemetry profiler is not installed by default. Checkout the [OpenTelemetry Integration](./opentelemetry.md) to learn how to install it.
 :::
 
 ## Adding custom spans

@@ -5,6 +5,7 @@ import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 const formattingPromises = [];
 for await (const entry of walk("./resources/references/adr")) {
 	if (entry.isDirectory) continue;
+	if (!entry.path.endsWith('.md')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'index.md') continue;
 	if (path.basename(entry.path) === 'README.md') continue;

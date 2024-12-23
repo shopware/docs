@@ -30,7 +30,6 @@ Examples:
 
 * `set()` adds a new element to the array using the given key.
 
-    
 * **Arguments:**
     * *`string|int`* **key**: The array key.
     * *`mixed`* **value**: The value that should be added.
@@ -47,33 +46,31 @@ Examples:
 
 * `push()` adds a new value to the end of the array.
 
-    
 * **Arguments:**
     * *`mixed`* **value**: The value that should be added.
+
 ### removeBy()
 
 * `removeBy()` removes the value at the given index from the array.
 
-    
 * **Arguments:**
     * *`string|int`* **index**: The index that should be removed.
+
 ### remove()
 
 * `remove()` removes the given value from the array. It does nothing if the provided value does not exist in the array.
 
-    
 * **Arguments:**
     * *`mixed`* **value**: The value that should be removed.
+
 ### reset()
 
 * `reset()` removes all entries from the array.
 
-    
 ### merge()
 
 * `merge()` recursively merges the array with the given array.
 
-    
 * **Arguments:**
     * *`array&lt;string|int,mixed&gt;|\ArrayFacade`* **array**: The array that should be merged with this array. Either a plain `array` or another `ArrayFacade`.
 * **Examples:**
@@ -89,7 +86,6 @@ Examples:
 
 * `replace()` recursively replaces elements from the given array into this array.
 
-    
 * **Arguments:**
     * *`array&lt;string|int,mixed&gt;|\ArrayFacade`* **array**: The array from which the elements should be replaced into this array. Either a plain `array` or another `ArrayFacade`.
 * **Examples:**
@@ -105,19 +101,20 @@ Examples:
 
 * `count()` returns the count of elements inside this array.
 
-    
 * **Returns** `int`
 
     Returns the count of elements.
+
 ### all()
 
 * `all()` function returns all elements of this array.
 
-    
 * **Returns** `array`
 
     Returns all elements of this array.
+
 _________
+
 ## [services.config (`Shopware\Core\System\SystemConfig\Facade\SystemConfigFacade`)](https://github.com/shopware/shopware/blob/trunk/src/Core/System/SystemConfig/Facade/SystemConfigFacade.php) {#systemconfigfacade}
 
 The `config` service allows you to access the shop's and your app's configuration values.
@@ -129,7 +126,6 @@ The `config` service allows you to access the shop's and your app's configuratio
     Notice that your app needs the `system_config:read` privilege to use this method.
 * **Returns** `array|bool|float|int|string|null`
 
-    
 * **Arguments:**
     * *`string`* **key**: The key of the configuration value e.g. `core.listing.defaultSorting`.
     * *`string` | `null`* **salesChannelId**: The SalesChannelId if you need the config value for a specific SalesChannel, if you don&#039;t provide a SalesChannelId, the one of the current Context is used as default.
@@ -149,7 +145,6 @@ The `config` service allows you to access the shop's and your app's configuratio
     Notice that your app does not need any additional privileges to use this method, as you can only access your own app's configuration.
 * **Returns** `array|bool|float|int|string|null`
 
-    
 * **Arguments:**
     * *`string`* **key**: The name of the configuration value specified in the config.xml e.g. `exampleTextField`.
     * *`string` | `null`* **salesChannelId**: The SalesChannelId if you need the config value for a specific SalesChannel, if you don&#039;t provide a SalesChannelId, the one of the current Context is used as default.

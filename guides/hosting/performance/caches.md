@@ -22,10 +22,6 @@ The HTTP cache configuration takes place completely in the `.env file.` The foll
 | `SHOPWARE_HTTP_CACHE_ENABLED` | Enables the HTTP cache         |
 | `SHOPWARE_HTTP_DEFAULT_TTL`   | Defines the default cache time |
 
-### How to trigger the HTTP cache warmer
-
-To warm up the HTTP cache, you can simply use the console command `http:cache:warm:up`. This command sends a message to the message queue for each sales channel domain to warm it up as fast as possible. It is important that queue workers are started according to our [message queue](../infrastructure/message-queue).
-
 ### How to change the cache storage
 
 The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. The configuration can be found in the `shopware/src/Core/Framework/Resources/config/packages/framework.yaml` file.
@@ -94,3 +90,8 @@ framework:
         default_redis_provider: 'redis://host:port'
 ```
 
+### Redis configuration
+
+As the cached information is ephemeral and can be recreated, it is not necessary to configure Redis to store the data on disk. For maximum performance you can configure Redis to use no persistence, refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
+
+As key eviction policy you should use `volatile-lru`, which only automatically deletes data that is expired, as the application explicitly manages the TTL for each cache item. For a detailed overview of Redis key eviction policies see the [Redis docs](https://redis.io/docs/latest/develop/reference/eviction/).

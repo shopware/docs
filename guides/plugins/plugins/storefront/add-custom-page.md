@@ -45,7 +45,7 @@ class ExampleController extends StorefrontController
 
 It has a method `examplePage`, which is accessible via the route `example-page`. This method will be responsible for loading your page later on, but we'll leave it like that for now.
 
-Don't forget to [register your controller via the DI](add-custom-controller#Services.xml%20example).
+Don't forget to [register your controller via the DI](add-custom-controller#services-xml-example).
 
 ### Creating the pageloader
 
@@ -162,6 +162,23 @@ class ExampleController extends StorefrontController
 
 Note, that we've added the page to the template variables.
 
+#### Adjusting the services.xml
+
+In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
+
+```html
+// <plugin root>/src/Resources/config/services.xml
+<service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
+    <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
+    <call method="setContainer">
+        <argument type="service" id="service_container"/>
+    </call>
+    <call method="setTwig">
+        <argument type="service" id="twig"/>
+    </call>
+</service>
+```
+
 ### Creating the example page
 
 So now we're going to create the example page class, that was already used in our page loader, `ExamplePage`.
@@ -195,7 +212,7 @@ class ExamplePage extends Page
 }
 ```
 
-As explained in the page loader section, your page can contain all kinds of custom data. It has to provide a getter and a setter for the custom data, so it can be applied and read. In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data#Entity%20class) is being used.
+As explained in the page loader section, your page can contain all kinds of custom data. It has to provide a getter and a setter for the custom data, so it can be applied and read. In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data#entity-class) is being used.
 
 And that's it already. Your page is ready to go.
 

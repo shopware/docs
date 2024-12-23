@@ -54,8 +54,10 @@ anonymization
 anonymize
 anonymized
 antipattern
+AOF
 api
 ApiAware
+ApiContext
 ApiController
 apiKey
 ApiKey
@@ -65,6 +67,7 @@ ApiService
 Aplaceholder
 AppRefundHandler
 AppScripts
+AppServer
 AppSystem
 appVersion
 args
@@ -120,6 +123,7 @@ BeforeShopDeletionEvent
 BillingCountryRule
 BillingStreetRule
 BillingZipCodeRule
+binlog
 Bitbucket
 BITV
 blackbox
@@ -235,6 +239,7 @@ ChildrenAssociation
 ChildrenAssociationField
 ci
 CKEditor
+classmap
 classname
 cleanUpPreviousState
 clearTypeAndCheck
@@ -376,7 +381,6 @@ DataAbstractionLayer
 DataAware
 datadog
 Datadog
-Datadog
 DataResolver
 dataSelection
 DataSelection
@@ -413,11 +417,16 @@ DelegatingLoader
 deletable
 Deleter
 demodemo
+demoshop
+deno
+Deno
 Denormalization
 denylist
 Denylist
+Dependabot
 dependencyInjection
 DependencyInjection
+deployer
 Deployer
 deprecations
 Deprecations
@@ -442,6 +451,8 @@ di
 DIC
 DIC EntityRepository
 DifferentAddressesRule
+differentiator
+Differentiator
 dir
 DirectoryLoader
 direnv
@@ -451,6 +462,7 @@ discountfacade
 DiscountFacade
 discoverability
 docblock
+Dockerfile
 dockware
 Dockware
 dom
@@ -464,6 +476,7 @@ dont's
 dr
 dragTo
 dropdown
+DS
 DSGVO
 DSN
 dsr
@@ -474,8 +487,11 @@ DTOs
 dunglas
 duplications
 DX
+DynamoDB
+ean
 EcmaScript
 ecommerce
+editorconfig
 eg
 elasticsearch
 ElasticSearch
@@ -585,6 +601,7 @@ flyout
 Flysystem
 focussed
 focussing
+Fontawesome
 fontFamily
 FooterPagelet
 formatters
@@ -637,10 +654,13 @@ getTotal
 getType
 getUnit
 getUrls
+ghcr
 gif
 GIFs
 github
 Github
+gitignore
+gitkeep
 gitlab
 GitLab
 globals
@@ -663,6 +683,7 @@ gRPC
 GuestWishlistPage
 GuestWishlistPagelet
 guid
+gz
 gzip
 handleFlow
 hardcoded
@@ -674,6 +695,8 @@ hideCookieBar
 hmac
 HMAC
 Homebrew
+hono
+Hono
 HookClasses
 HookExecutor
 hosters
@@ -773,6 +796,7 @@ kebabCase
 KeyDB
 keyframes
 Kibana
+KV
 LandingPage
 lang
 LastNameRule
@@ -845,6 +869,7 @@ LUA
 lychee
 Lychee
 macOS
+MACOSX
 mailAware
 MailAware
 Mailcatcher
@@ -919,11 +944,13 @@ Monorepos
 MoveShopPermanently
 moz
 mozilla
+mpn
 mr
 MRs
 MultiWarehouse
 MVC
 MyExampleApp
+MyExtension
 myNewMethod
 MyPlugin
 myPluginLogHandler
@@ -1100,6 +1127,7 @@ PhpUnit
 PHPunit
 PHPUnit
 phpunit's
+phpunitx
 PII
 pluginlogger
 PluginManager
@@ -1136,6 +1164,8 @@ preprocessors
 preselect
 Preselect
 preselection
+prettierrc
+previewable
 previewable
 previewComponent
 PreWriteValidationEvent
@@ -1202,6 +1232,8 @@ pwa
 PWA
 px
 py
+qa
+qa@shopware.com
 qty's
 quantityBefore
 quantityDelta
@@ -1210,12 +1242,14 @@ QuillJS
 RabbitMq
 RabbitMQ
 randomHex
+RDB
 readAsArrayBuffer
 readAsDataURL
 readAsText
 README
 Readonly
 realtime
+rebasing
 rebranded
 recalculable
 reCAPTCHA
@@ -1234,6 +1268,7 @@ refundId
 RefundPaymentHandlerInterface
 refundPositions
 refundPrice
+RegEx
 regexes
 RegistrationCompletedEvent
 RegistrationService
@@ -1281,6 +1316,7 @@ runtime
 RuntimeException
 runtimes
 SaaS
+SalesAgent
 saleschannel
 salesChannel
 SalesChannel
@@ -1370,6 +1406,7 @@ ShopNameStorer
 shopUrl
 shopware
 Shopware
+shopwarelabs
 shopwarepartners
 shopware's
 Shopware's
@@ -1401,6 +1438,7 @@ SQS
 src
 srcset
 SSHes
+SSL
 stableVersion
 stackable
 Stackhero
@@ -1417,6 +1455,7 @@ statesfacade
 StatesFacade
 StaticEntityRepository
 statusCode
+stdout
 stemmer
 stemmers
 StockUpdate
@@ -1511,6 +1550,7 @@ tipps
 TipTap
 TipTap's
 tl
+TLS
 todo
 tokenized
 ToMany
@@ -1541,6 +1581,7 @@ triggerDeprecated
 TriggerReload
 truthy
 tsx
+TTL
 TwigJS
 typeAndCheck
 typeAndCheckSearchField
@@ -1569,11 +1610,14 @@ uniqBy
 UnitCollection
 UnitEntity
 UnitTests
+unminified
+UnoCSS
 unprefixed
 unregister
 Unregistering
 unsecure
 unserialize
+unstorage
 unstyled
 untrusted
 Untrusted
@@ -1611,6 +1655,7 @@ UX
 validator
 Validator
 validators
+Valkey
 varchar
 VARCHAR
 VCL
@@ -1629,6 +1674,7 @@ viewports
 vimeo
 VirtualHosts
 Vitepress
+Vitest
 VM
 vscode
 VSCode
@@ -1681,6 +1727,7 @@ xl
 XLIFF
 xml
 XmlHttpRequest
+XMLHttpRequest
 XmlUtils
 XorRule
 xpath
@@ -1695,6 +1742,7 @@ YamlFileLoader
 yml
 youtube
 YYYY
+zipignore
 zlib
 zsh
 ZSH

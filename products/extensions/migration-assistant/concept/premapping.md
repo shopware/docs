@@ -20,8 +20,8 @@ The premapping will use the normal [Mapping](convert-and-mapping#mapping) to sto
 The service will return a `PremappingStruct`, which consists of:
 
 1. Entity of the premapping
-1. Choices, representing Shopware 6 equivalents
-1. Mapping, representing the source system's structure, including a destination/choice
+2. Choices, representing Shopware 6 equivalents
+3. Mapping, representing the source system's structure, including a destination/choice
 
 Here is an example of how the final `PremappingStruct` looks like in the `generate-premapping` json response:
 

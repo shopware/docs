@@ -10,14 +10,12 @@ prices by resetting or changing the price collection.
 
 * The `reset()` functions allows to reset the complete price collection.
 
-    
 ### change()
 
 * The `change()` function allows a complete overwrite of the product quantity prices
 
-    
 * **Arguments:**
-    * *`array`* **changes**: 
+    * *`array`* **changes**:
 * **Examples:**
     * Overwrite the product prices with a new quantity price graduation
 
@@ -33,11 +31,12 @@ prices by resetting or changing the price collection.
 
 * The `count()` function returns the number of prices which are stored inside this collection.
 
-    
 * **Returns** `int`
 
     Returns the number of prices which are stored inside this collection
+
 _________
+
 ## [`Shopware\Core\Content\Product\Hook\Pricing\ProductProxy`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/Hook/Pricing/ProductProxy.php) {#productproxy}
 
 The `ProductProxy` is a wrapper for the `SalesChannelProductEntity`. It provides access to all properties of the product,
@@ -47,7 +46,6 @@ but also wraps some data into helper facade classes like `PriceFacade` or `Price
 
 * The `__get()` function allows access to all properties of the [SalesChannelProductEntity](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/SalesChannel/SalesChannelProductEntity.php)
 
-    
 * **Returns** `mixed` | `null`
 
     Returns the value of the property. The value is `mixed` due to the fact that all properties are accessed via `__get()`
@@ -67,26 +65,26 @@ but also wraps some data into helper facade classes like `PriceFacade` or `Price
 * The `calculatedCheapestPrice` property returns the cheapest price of the product. The price object will
 be wrapped into a `PriceFacade` object which allows to manipulate the price.
 
-    
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns a `PriceFacade` if the product has a calculated cheapest price, otherwise `null`
+
 ### calculatedPrice()
 
 * The `calculatedPrice` property returns the price of the product. The price object will
 be wrapped into a `PriceFacade` object which allows to manipulate the price.
 
-    
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\PriceFacade`](./cart-manipulation-script-services-reference#pricefacade) | `null`
 
     Returns a `PriceFacade` if the product has a price, otherwise `null`
+
 ### calculatedPrices()
 
 * The `calculatedPrices` property returns the price of the product. The price object will
 be wrapped into a `PriceCollectionFacade` object which allows to manipulate the collection.
 
-    
 * **Returns** [`Shopware\Core\Content\Product\Hook\Pricing\PriceCollectionFacade`](./product-script-services-reference#pricecollectionfacade) | `null`
 
     Returns a `PriceCollectionFacade` if the product has graduated prices, otherwise `null`
+
 _________

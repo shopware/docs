@@ -70,7 +70,7 @@ As you can see, a single rule can either contain user defined values or other us
 
 The last building block is the **Rule Scope**. The Scope contains the current runtime state of the application and is necessary to match the data. The whole picture is visualized in the next diagram:
 
-![](../../assets/framework-rules-rulesScope.svg)
+![Rule scope](../../assets/framework-rules-rulesScope.svg)
 
 ## Connection to the System
 

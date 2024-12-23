@@ -108,7 +108,7 @@ Shopware.Module.register('swag-example', {
     title: 'swag-example.general.mainMenuItemGeneral',
     description: 'sw-property.general.descriptionTextModule',
     color: '#ff3d58',
-    icon: 'default-shopping-paper-bag-product',
+    icon: 'regular-shopping-bag',
 ...
 ```
 
@@ -145,25 +145,8 @@ In this example you would have access to two translations by the following paths
 You can nest those objects as much as you want. Please note that each path is prefixed by the extension name.
 
 Since those translation objects become rather large, you should store them into separate files.
-For this purpose, create a new directory `snippet` in your module's directory and in there two new files: `de-DE.json` and `en-GB.json`
-
-Then, when each file contains your translations as an object, you only have to import them into your module again.
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/swag-example/index.js
-[...]
-
-import deDE from './snippet/de-DE';
-import enGB from './snippet/en-GB';
-
-Shopware.Module.register('swag-example', {
-    ...
-    snippets: {
-        'de-DE': deDE,
-        'en-GB': enGB
-    },
-});
-```
+For this purpose, create a new directory `snippet` in your module's directory and in there two new files: `de-DE.json` and `en-GB.json`.
+The snippet files will be loaded automatically based on the folder structure.
 
 Let's also create the first translation, which is for your menu's label.
 It's key should be something like this: `swag-example.general.mainMenuItemGeneral`
@@ -235,33 +218,22 @@ import './page/swag-plugin-detail';
 Shopware.Module.register('swag-plugin', {
     ...
     settingsItem: [{
-        group: 'plugin',
+        group: 'plugins',
+        icon: 'regular-rocket',
         to: 'swag.plugin.list',
-        icon: 'default-object-rocket',
-        name: 'swag-example.general.mainMenuItemGeneral'
+        name: 'SwagExampleMenuItemGeneral', // optional, fallback is taken from module
+        id: '', // optional, fallback is taken from module
+        label: '', // optional, fallback is taken from module
+        iconComponent: YourCustomIconRenderingComponent, // optional, this overrides the component used to render the icon
     }]
 });
 ```
 
-The `group` property targets to the group section, the item will be displayed in 'shop', 'system' and 'plugins' sections.
-The `to` gets the link path of the route. The `icon` contains the icon name which will be display.
+The `group` property determines the tab, the item will be displayed in. Valid options are 'shop', 'system' and 'plugins'.
 
-### Add custom settings card
+The `icon` property contains the icon name which will be displayed. Refer to the [Meteor Icon Kit documentation](https://developer.shopware.com/resources/meteor-icon-kit/) for icon names.
 
-You can even provide custom setting cards that are either placed in shop, system or plugin tab.
-This can be achieved by adding the key settingsItem to your module object:
-
-```javascript
-settingsItem: [{ // this can be a single object if no collection is needed
-    to: 'custom.module.overview', // route to anything
-    group: 'system', // either system, shop or plugins
-    icon: 'default-object-lab-flask',
-    iconComponent: YourCustomIconRenderingComponent, // optional, this overrides icon attribute
-    id: '', // optional, fallback is taken from module
-    name: '', // optional, fallback is taken from module
-    label: '', // optional, fallback is taken from module
-}]
-```
+The `to` property must contain the name of the route. The route has to be defined in a separate routes section as described [here](add-custom-route.md). Have a look at the `Configuring the route` section in particular to find out about the name of your route.
 
 ## Example for the final module
 
@@ -281,7 +253,7 @@ Shopware.Module.register('swag-example', {
     title: 'swag-example.general.mainMenuItemGeneral',
     description: 'sw-property.general.descriptionTextModule',
     color: '#ff3d58',
-    icon: 'default-shopping-paper-bag-product',
+    icon: 'regular-shopping-bag',
 
     snippets: {
         'de-DE': deDE,
@@ -313,7 +285,7 @@ Shopware.Module.register('swag-example', {
         label: 'swag-example.general.mainMenuItemGeneral',
         color: '#ff3d58',
         path: 'swag.example.list',
-        icon: 'default-shopping-paper-bag-product',
+        icon: 'regular-shopping-bag',
         position: 100
     }]
 });

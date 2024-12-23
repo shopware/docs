@@ -130,7 +130,6 @@ It is possible to add config to our rule. This makes it possible to skip the [Cu
 
 when [Showing rule in the Administration](#showing-rule-in-the-administration) we would not use a custom component but we would render the `sw-condition-generic` component.
 
-
 ### Active rules
 
 You can access all active rules by using the `getRuleIds` method of the context.
@@ -174,6 +173,7 @@ It may be possible that rules, with your newly created condition, aren't selecta
 :::
 
 #### Creating a new group in the administration
+
 The rule will now be added to the list of rules in the admin. It might be useful to create a new group for your rules. We can create a new group by using the `upsertGroup` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts).
 
 ```javascript

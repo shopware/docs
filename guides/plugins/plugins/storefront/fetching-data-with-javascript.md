@@ -19,46 +19,26 @@ While this is not mandatory, having read the guide about [adding custom javascri
 
 ## Fetching data
 
-At first, we need to import the `HttpClient` to use it in our JavaScript plugin. We also create a new instance of the `HttpClient` and assigned it to a variable in our `ExamplePlugin`.
+We will use the standard [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to gather additional data. The fetch API is a modern replacement for the old `XMLHttpRequest` object. It is a promise-based API that allows you to make network requests similar to XMLHttpRequest (XHR).
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
-import HttpClient from 'src/service/http-client.service';
+const { PluginBaseClass } = window;
 
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
-        this._client = new HttpClient();
-    }
-}
-```
-
-To fetch data from the API, we now can use the `get` method of the `HttpClient` to invoke a get request.
-
-```javascript
-// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
-import HttpClient from 'src/service/http-client.service';
-
-export default class ExamplePlugin extends Plugin {
-    init() {
-        this._client = new HttpClient();
-
         this.fetchData();
     }
 
     // ...
 
-    fetchData() {
-        this._client.get('/widgets/checkout/info', this.handleData);
-    }
+    async fetchData() {
+        const response = await fetch('/widgets/checkout/info');
+        const data = await response.text();
 
-    handleData(response) {
-        console.log(response);
+        console.log(data);
     }
 }
 ```
 
-The `get` method takes three arguments. The first one is the `url` which we want to call. In the example we are going to fetch a widget which contains some HTML. The second parameter is a `callback` function. It will be invoked when the API call was done. In the example below we pass in the `handleData` method of our plugin. The callback function then receives the `response` of the API call. We can now use this in our plugin to display the widget in the DOM, for example.
-
-The third parameter of the `get` method is the `contentType` which will be sent in the request header of the API call. It is optional and by default set to be `application/json`.
+In this example, we fetch the data from the `/widgets/checkout/info` endpoint. The `fetch` method returns a promise that resolves to the `Response` object representing the response to the request. We then use the `text` method of the `Response` object to get the response body as text.

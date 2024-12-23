@@ -36,14 +36,21 @@ shopware:
 ### Delayed invalidation
 
 A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
+
+::: warning
+If you enable delayed cache invalidation, you must set up a worker to run [Scheduled Tasks](../infrastructure/scheduled-task), e.g., using the [Message Queue](../infrastructure/message-queue).
+:::
 
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
     cache:
         invalidation:
-            delay: 0
-            count: 150
+            delay: 1 # 0 = disabled, 1 = enabled
+            delay_options:
+                storage: redis
+                connection: 'ephemeral' # connection name from redis configuration
 ```
 
 ## MySQL configuration
@@ -90,23 +97,7 @@ If you ever wonder why it is in `prod`, take a look into the [Symfony configurat
 ## Increment storage
 
 The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
-This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis:
-
-```yaml
-# config/packages/prod/shopware.yaml
-shopware:
-    increment:
-        user_activity:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
-
-        message_queue:
-          type: 'redis'
-          config:
-            url: 'redis://host:port/dbindex'
-```
-
+This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis, as described in [Increment storage Redis configuration](./increment#redis-configuration).  
 If you don't need such functionality, it is highly recommended that you disable this behavior by using `array` as a type.
 
 ## Lock storage
@@ -127,15 +118,7 @@ The generation of the number ranges is an **atomic** operation, which guarantees
 
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
-Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios.
-
-```yaml
-# config/packages/prod/shopware.yaml
-shopware:
-  number_range:
-    increment_storage: "Redis"
-    redis_url: 'redis://host:port/dbindex'
-```
+Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios, see [Number Ranges - using Redis as a storage](./number-ranges#using-redis-as-storage).
 
 ## Sending mails with the Queue
 
@@ -249,7 +232,6 @@ Shopware uses `gzip` for compressing the cache elements and the cart when enable
 
 Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm. `zstd` is faster than `gzip` and has a better compression ratio. Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
 
-
 ```yaml
 # Enabling cart compression with zstd
 shopware:
@@ -266,5 +248,97 @@ If you are changing the **cache** compression method, you need to clear the cach
 # Enabling cache compression with zstd
 shopware:
   cache:
+    cache_compression: true
     cache_compression_method: 'zstd'
 ```
+
+## Disable Symfony Secrets
+
+Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation. That allows the encryption of environment variables and their decryption on the fly. If you don't use Symfony Secrets, you can disable this complete behavior, saving some CPU cycles while booting the Application.
+
+```yaml
+framework:
+  secrets:
+    enabled: false
+```
+
+## Disable auto_setup
+
+By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#transport-configuration) checks if the queue exists and creates it when not. This can be an overhead when the system is under load.
+Therefore, make sure that you disable the `auto_setup` in the connection URL like so: `redis://localhost?auto_setup=false`.
+That query parameter can be passed to all transports. After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
+
+## Disable Product Stream Indexer
+
+::: info
+This is available starting with Shopware 6.6.10.0
+:::
+
+The **Product Stream Indexer** is a background process that creates a mapping table of products to their streams.
+It is used to find which category pages are affected by product changes. On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
+
+To disable the Product Stream Indexer, you can set the following configuration:
+
+<<< @/docs/snippets/config/product_stream.yaml
+
+Disabling the Product Stream Indexer has the following disadvantages:
+
+- When you change a product in a stream, the category page is not updated until the HTTP cache expires
+    - You could also explicitly update the category page containing the stream to workaround if that is a problem
+- Also, the Line Item in the Stream Rule will always be evaluated to `false`
+
+To disable the Product Stream Indexer, you can set the following configuration:
+
+<<< @/docs/snippets/config/product_stream.yaml
+
+## Enable the Speculation Rules API
+
+::: info
+This feature is available starting with Shopware 6.6.10.0
+:::
+
+The Speculation Rules API allows browsers to pre-render pages based on user interactions or immediately, depending on the eagerness setting.
+This can improve the perceived performance of a website by loading pages in the background before the user navigates to them.
+
+You can enable that **experimental feature** via `Admin > Settings > System > Storefront`. The JavaScript Plugin will then
+check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so,
+it will add a script tag to the head of the document. For the [eagerness setting](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness)
+we are using `moderate` everywhere. That means **a user must interact** with a link to execute the pre-rendering.
+
+::: info
+Keep in mind that pre-rendering puts extra load on your server and also can affect your [Analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
+:::
+
+## Optimize class loading
+
+### opcache.max_accelerated_files
+
+PHP loads many classes on each request, which can be a performance bottleneck. To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
+
+### classmap-authoritative
+
+Additionally, when all plugins are installed directly through Composer and managed by Composer, you can generate a static autoloader which does no class mapping at runtime.
+
+To enable this, set the following configuration in your `composer.json`:
+
+```diff
+"config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
++        "classmap-authoritative": true,
+        "sort-packages": true
+},
+```
+
+For more information, check out the [Composer documentation](https://getcomposer.org/doc/articles/autoloader-optimization.md#optimization-level-2-a-authoritative-class-maps).
+
+### opcache.preload
+
+To completely reduce the class loading at runtime, you can enable `opcache.preload` by setting it to `<project-root>/var/cache/opcache-preload.php` and `opcache.preload_user` to the user running the PHP process. This will preload all classes into the opcache on PHP-FPM startup and reduce the class loading at runtime.
+
+::: warning
+When using `opcache.preload`, you need to **restart** the PHP-FPM after each modification to reload the preloaded classes.
+:::

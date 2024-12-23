@@ -9,7 +9,7 @@ nav:
 
 The Advanced Search does not use the default Elasticsearch completion because it only supports a fixed order and the storage size is high. As an alternative, Advanced Search uses aggregations to find the most important word combinations for your search input.
 
-## Adding completion to your definition mapping:
+## Adding completion to your definition mapping
 
 To index our own completion keywords, we need to inject `Shopware\Commercial\AdvancedSearch\Domain\Completion\CompletionDefinitionEnrichment` into your ES definition and call enrich methods in `getMapping` and `fetch` as following example:
 
@@ -54,7 +54,7 @@ class YourCustomElasticsearchDefinition extends AbstractElasticsearchDefinition
 
 ## Add/modify completion keywords
 
-By default, each of Shopware's ES definitions has a set of `string` fields to be considered as completion keywords. This configuration is realized via the parameter `%advanced_search.completion%`, if the configured fields for your definition are not set, all StringFields of the definition will be used as completion keywords. 
+By default, each of Shopware's ES definitions has a set of `string` fields to be considered as completion keywords. This configuration is realized via the parameter `%advanced_search.completion%`, if the configured fields for your definition are not set, all StringFields of the definition will be used as completion keywords.
 
 For example, you can add or modify this configuration in `config/packages/advanced_search.yaml`:
 

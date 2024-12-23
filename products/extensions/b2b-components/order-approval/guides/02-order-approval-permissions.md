@@ -7,9 +7,9 @@ nav:
 
 # Order approval permissions
 
-Below you can find a list of all the order approval rules that are available in the order approval component. You can utilize these rules for assigning roles to your employees.
+Below, you can find a list of all the order approval rules that are available in the order approval component. You can utilize these rules for assigning roles to your employees.
 
-### Approval rule permissions
+## Approval rule permissions
 
 | Permission                  | Description                                   |
 |-----------------------------|-----------------------------------------------|
@@ -18,7 +18,7 @@ Below you can find a list of all the order approval rules that are available in 
 | `Can delete approval rules` | Allows the employee to delete approval rules |
 | `Can read approval rules`   | Allows the employee to view approval rules  |
 
-### Pending order Permissions
+## Pending order Permissions
 
 | Permission                               | Description                                                         |
 |------------------------------------------|---------------------------------------------------------------------|

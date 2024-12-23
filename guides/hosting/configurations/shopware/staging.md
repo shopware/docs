@@ -22,11 +22,12 @@ The recommended way to create a second Shopware instance would be to deploy from
 An alternative way would be to copy the files from the live environment to the staging environment.
 
 ### Copying the database
+
 ::: info
 Ensure that the `mysqldump` and `mysql` binary are from the same major version and vendor. If you use `mysqldump` from MariaDB, you should also use `mysql` from MariaDB. The same applies to MySQL.
 :::
 
-To have the staging environment similar to the live environment, it's recommended that the database be duplicated. You can use the `mysqldump` command to export the database and import it into the staging environment. 
+To have the staging environment similar to the live environment, it's recommended that the database be duplicated. You can use the `mysqldump` command to export the database and import it into the staging environment.
 
 ::: info
 `shopware-cli` is a separate Go command line application that contains a lot of useful commands for Shopware. [Checkout the docs](https://sw-cli.fos.gg/install/) to learn how to install it.
@@ -45,6 +46,7 @@ shopware-cli project dump --clean --anonymize --host localhost --username db_use
 You can configure the dump command with a `.shopware-project.yml`. This file allows you to specify tables that should be skipped, define additional fields for anonymization, and more. Check out the [CLI](https://sw-cli.fos.gg/commands/project/#shopware-cli-project-dump-database) for more information.
 
 ### Configuration
+
 ::: info
 It is not recommended to share resources like MySQL, Redis, ElasticSearch/OpenSearch between the live and staging environments. This could lead to data corruption when the configuration is not done correctly. Also, the performance of the live environment could be affected by the staging environment.
 :::
@@ -58,7 +60,7 @@ After the database is imported and the configuration is done, you can activate t
 ```bash
 ./bin/console system:setup:staging
 ```
- 
+
 This command will modify the database to be used in a staging environment. You can pass `--no-interaction` to the command to avoid the interactive questions.
 
 ### Protecting the staging environment
@@ -84,7 +86,6 @@ An alternative way could be to use an Application Proxy before the staging envir
 - [Cloudflare Access](https://www.cloudflare.com/teams/access/)
 - [Azure Application Gateway](https://azure.microsoft.com/en-us/services/application-gateway/)
 - [Generic oauth2 proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
-
 
 ## Staging mode
 
@@ -133,7 +134,6 @@ shopware:
 One of the most important options is the `domain_rewrite`. This option allows you to rewrite the URLs to the staging domain. This allows multiple ways to rewrite the URLs:
 
 - Using direct match (`equal`)
-
 
 ```yaml
 # <shopware-root>/config/packages/staging.yaml
@@ -213,4 +213,3 @@ class StagingSubscriber implements EventSubscriberInterface
     }
 }
 ```
-

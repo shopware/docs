@@ -29,6 +29,7 @@ The `Equals` filter allows you to check fields for an exact value. The following
 $criteria = new Criteria();
 $criteria->addFilter(new EqualsFilter('stock', 10));
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -44,6 +45,7 @@ $criteria->addFilter(new EqualsFilter('stock', 10));
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -60,6 +62,7 @@ $criteria->addFilter(
     new EqualsAnyFilter('productNumber', ['3fed029475fa4d4585f3a119886e0eb1', '77d26d011d914c3aa2c197c81241a45b'])
 );
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -78,6 +81,7 @@ $criteria->addFilter(
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -92,6 +96,7 @@ The `Contains` Filter allows you to filter a field to an approximate value, wher
 $criteria = new Criteria();
 $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -107,6 +112,7 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -133,6 +139,7 @@ $criteria->addFilter(
     ])
 );
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -151,6 +158,7 @@ $criteria->addFilter(
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -175,6 +183,7 @@ $criteria->addFilter(
     )
 );
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -206,6 +215,7 @@ $criteria->addFilter(
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -231,6 +241,7 @@ $criteria->addFilter(
     new EqualsFilter('active', true)
 );
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -262,6 +273,7 @@ $criteria->addFilter(
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -276,6 +288,7 @@ The `Prefix` Filter allows you to filter a field to an approximate value, where 
 $criteria = new Criteria();
 $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -291,6 +304,7 @@ $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -305,6 +319,7 @@ The `Suffix` Filter allows you to filter a field to an approximate value, where 
 $criteria = new Criteria();
 $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 ```
+
 </Tab>
 
 <Tab title="API Criteria">
@@ -320,6 +335,7 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
     ]
 }
 ```
+
 </Tab>
 </Tabs>
 

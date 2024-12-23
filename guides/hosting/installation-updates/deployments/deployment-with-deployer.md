@@ -11,7 +11,7 @@ nav:
 
 Automated deployments shouldn't be a pain and have several advantages, like lower failure rates and reproducible builds. Also, they increase overall productivity because actual testing can get more attention.
 
-This article explains the fundamental steps to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) and [Deployer](https://deployer.org/) (a deployment tool written in PHP).
+This article explains the fundamental steps to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) or [GitHub Actions](https://github.com/features/actions) and [Deployer](https://deployer.org/) (a deployment tool written in PHP).
 
 ## Video
 
@@ -48,6 +48,14 @@ Ensure to set the document root of the domain to `/var/www/shopware/current/publ
 
 Because `current` is a symlink, please also make sure your web server is configured to resolve/follow symlinks correctly.
 
+### Require Deployer and deployment-helper
+
+Your project needs to have the following dependencies installed:
+
+```bash
+composer require deployer/deployer shopware/deployment-helper
+```
+
 ## GitLab runner requirements
 
 [GitLab pipelines](https://docs.gitlab.com/ee/ci/pipelines/) are processed by [runners](https://docs.gitlab.com/runner/). Once a pipeline job is created, GitLab notifies a registered runner, and the job will then be processed by that runner.
@@ -58,9 +66,8 @@ The [GitLab runner](https://docs.gitlab.com/runner/) must have the following pac
 * [NodeJS](https://nodejs.org/en/)
 * [Node Package Manager \(npm\)](https://www.npmjs.com/)
 * OpenSSH
-* Docker
 
-This example uses the docker image `shopware/development:8.1-composer-2`. This image meets all requirements.
+This example uses the docker image `shopware/shopware-cli:latest-php-8.3`. This image meets all requirements.
 
 ## Deployment steps
 
@@ -68,68 +75,13 @@ This example uses the docker image `shopware/development:8.1-composer-2`. This i
 
 The very first step in the pipeline is cloning the repository into the runner's workspace. GitLab does that automatically for every started job.
 
-### 2. Installing dependencies
+### 2. Building the project
 
 All the dependencies of your project must be installed. Shopware 6 uses [Composer](https://getcomposer.org/) for managing PHP dependencies and [Node Package Manager \(NPM\)](https://www.npmjs.com/) for frontend related dependencies.
 
-Initially, only the Composer dependencies need to be installed by running the following commands:
+We use here Shopware-CLI which simplifies the installation of the dependencies and building the project assets to build a production-ready version of Shopware.
 
-* `$ composer install --no-interaction --optimize-autoloader --no-suggest`
-* `$ composer install -d vendor/shopware/recovery --no-interaction --optimize-autoloader --no-suggest`
-
-This step is defined in the `Install dependencies` job in the [`.gitlab-ci.yml`](deployment-with-deployer#gitlab-ci-yml):
-
-```text
-Install dependencies:
-    stage: build
-    image: shopware/development:8.1-composer-2
-    script:
-        - composer install --no-interaction --optimize-autoloader --no-suggest
-        - composer install -d vendor/shopware/recovery --no-interaction --optimize-autoloader --no-suggest
-    cache:
-        key: ${CI_COMMIT_REF_SLUG}
-        paths:
-            - vendor/
-        policy: push
-```
-
-### 3. Applying migrations
-
-The migrations need to be applied on the target server.
-
-::: danger
-If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
-:::
-
-This step is defined in the `sw:database:migrate` job in the [`deploy.php`](deployment-with-deployer#deploy-php), which is part of the `sw:deploy` task group:
-
-```php
-task('sw:database:migrate', static function () {
-    run('cd {{release_path}} && bin/console database:migrate --all');
-});
-```
-
-### 4. Building assets
-
-::: info
-From this step on, all other steps are handled by Deployer defined in the [`deploy.php`](deployment-with-deployer#deploy-php).
-:::
-
-To compile and copy assets, the Shopware production template provides a script, which is located under [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh). This script installs the [NPM](https://www.npmjs.com/) dependencies and builds assets needed for the Administration, Storefront, and plugins.
-
-It is important to know that you need a database connection to execute this script because before compiling the assets, the console command `bin/console bundle:dump` is executed. This command creates the file `var/plugins.json`, which contains information about the asset paths of all activated plugins.
-
-If you don't want to build the assets on the target server \(for performance reasons\), you could execute the `bundle:command` on the target server and download the generated `plugins.json` into your runner's workspace before executing [`bin/build-js.sh`](https://github.com/shopware/production/blob/6.3/bin/build-js.sh).
-
-This step is defined to be executed on the target server in the `sw:build` job in the [`deploy.php`](deployment-with-deployer#deploy-php) and will be executed before transferring the files to the target server:
-
-```php
-task('sw:build', static function () {
-    run('cd {{release_path}} && bash bin/build-js.sh');
-});
-```
-
-### 5. Transferring the workspace
+### 3. Transferring the workspace
 
 For transferring the files to the target server, please configure at least one host in the [`deploy.php`](deployment-with-deployer#deploy-php):
 
@@ -148,25 +100,34 @@ host('SSH-HOSTNAME')
 This step is defined in the `deploy:update_code` job in the [`deploy.php`](deployment-with-deployer#deploy-php):
 
 ```php
-task('deploy:update_code', static function () {
-    upload('.', '{{release_path}}');
+task('deploy:update_code')->setCallback(static function () {
+    upload('.', '{{release_path}}', [
+        'options' => [
+            '--exclude=.git',
+            '--exclude=deploy.php',
+            '--exclude=node_modules',
+        ],
+    ]);
 });
 ```
 
-### 6. Warming up caches
+### 4. Applying migrations / install or update plugins
 
-If you have the HTTP cache enabled in your `.env` file, it is recommended to warm up the caches so that the first user, who visits the recently deployed version, doesn't have to wait until the page is rendered for the first time.
+The migrations need to be applied on the target server.
 
-This step is defined in the `sw:cache:warmup` job in the [`deploy.php`](deployment-with-deployer#deploy-php):
+::: danger
+If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
+:::
+
+This step is defined in the `sw:deployment:helper` job in the [`deploy.php`](deployment-with-deployer#deploy-php), which is part of the `sw:deploy` task group:
 
 ```php
-task('sw:cache:warmup', static function () {
-    run('cd {{release_path}} && bin/console cache:warmup');
-    run('cd {{release_path}} && bin/console http:cache:warm:up');
+task('sw:deployment:helper', static function() {
+    run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
 });
 ```
 
-### 7. Creating the `install.lock` file
+### 5. Creating the `install.lock` file
 
 Before putting the new version live, ensure to create an empty file `install.lock` in the root of the build workspace. Otherwise, Shopware will redirect every request to the Shopware installer because it assumes that Shopware isn't installed yet.
 
@@ -178,7 +139,19 @@ task('sw:touch_install_lock', static function () {
 });
 ```
 
-### 8. Switching the document root
+### 6. Running System Checks (Optional)
+
+Before putting the new version live, it is recommended to run the system checks to ensure that the new version is working correctly.
+
+```php
+task('sw:health_checks', static function () {
+    run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
+});
+```
+
+> Before incorporating this step into your deployment process, make sure that you are well familiar with the [System Checks Concepts](../../../../concepts/framework/system-check.md) and how to use and interpret the results [Custom usage](../../../../guides/plugins/plugins/framework/system-check/index.md), and the command [error codes](../../../../guides/plugins/plugins/framework/system-check/index.md#triggering-system-checks).
+
+### 7. Switching the document root
 
 After all the steps are done, Deployer will switch the symlinks destination to the new release.
 
@@ -197,12 +170,9 @@ $ dep deploy env=prod
 ✔ Executing task deploy:update_code
 ✔ Executing task deploy:shared
 ✔ Executing task sw:touch_install_lock
-✔ Executing task sw:database:migrate
-✔ Executing task sw:build
-✔ Executing task sw:cache:clear
+✔ Executing task sw:deployment:helper
 ✔ Executing task deploy:writable
 ✔ Executing task deploy:clear_paths
-✔ Executing task sw:cache:warmup
 ✔ Executing task deploy:symlink
 ✔ Executing task deploy:unlock
 ✔ Executing task cleanup
@@ -216,12 +186,12 @@ After the very first deployment with Deployer, you have to copy some files and d
 Let's agree on the following two paths for the examples:
 
 1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.
-1. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer#deploy-php) to `/var/www/shopware`.
+2. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer#deploy-php) to `/var/www/shopware`.
 
 Now, look at the `shared_files` and `shared_dirs` configurations in the [`deploy.php`](deployment-with-deployer#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the `deploy.php` the commands would be the following:
 
 ```bash
-cp /var/www/shopware_backup/.env /var/www/shopware/shared/
+cp /var/www/shopware_backup/.env.local /var/www/shopware/shared/.env.local
 cp -R /var/www/shopware_backup/custom/plugins /var/www/shopware/shared/custom
 cp -R /var/www/shopware_backup/config/jwt /var/www/shopware/shared/config
 cp -R /var/www/shopware_backup/config/packages /var/www/shopware/shared/config
@@ -231,6 +201,16 @@ cp -R /var/www/shopware_backup/public/media /var/www/shopware/shared/public
 cp -R /var/www/shopware_backup/public/thumbnail /var/www/shopware/shared/public
 cp -R /var/www/shopware_backup/public/sitemap /var/www/shopware/shared/public
 ```
+
+## Generating a new SSH key
+
+To deploy your code to a server, you need to have an SSH key. If you don't have one yet, you can generate one with the following command:
+
+```bash
+ssh-keygen -t ed25519
+```
+
+It will be used in the above-mentioned GitLab CI/CD pipeline or GitHub Actions.
 
 ## Sources
 
@@ -244,13 +224,6 @@ Have a look at the following files. All steps are provided with helpful comments
 variables:
     GIT_STRATEGY: clone
 
-# Stages define _when_ to run the jobs. For example, stages that run tests after stages that compile the code.
-# If _all_ jobs in a stage succeed, the pipeline moves on to the next stage.
-# If _any_ job in a stage fails, the next stage is not (usually) executed and the pipeline ends early.
-stages:
-    - build
-    - deploy
-
 # This variable holds all commands that are needed to be able to connect to the target server via SSH.
 # For this you need to define two variables in the GitLab CI/CD variables:
 #   - SSH_PRIVATE_KEY: The contents of the SSH private key file. The public key must be authorized on the target server.
@@ -262,49 +235,52 @@ stages:
     ssh-keyscan $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
     chmod 700 ~/.ssh
 
-Install dependencies:
-    stage: build
-    # Tags are useful to only use runners that are safe or meet specific requirements
-    tags: [ deployer ]
-    image: shopware/development:8.1-composer-2
-    script:
-      - composer install --no-dev --no-interaction --optimize-autoloader --no-suggest --ignore-platform-req=ext-amqp
-
-    # This tells the GitLab Runner to upload (`policy: push`) the `vendor` directory, which contains all Composer
-    # dependencies to GitLab after the job has finished so that it can be re-used in other jobs.
-    cache:
-        key: ${CI_COMMIT_REF_SLUG}
-        paths:
-            - vendor/
-        policy: push
-
 Deploy:
     stage: deploy
     # Tags are useful to only use runners that are safe or meet specific requirements
-    tags: [ deployer ]
-    image: shopware/development:8.1-composer-2
-    only:
-        - main
+    image: shopware/shopware-cli:latest-php-8.3
     before_script:
         # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
         - *configureSSHAgent
-        # To use Deployer for our deployment, it needs to be installed globally via Composer.
-        - curl -LO https://github.com/deployphp/deployer/releases/download/v7.0.2/deployer.phar
-        - mv deployer.phar /usr/local/bin/dep
-        - chmod +x /usr/local/bin/dep
     script:
+        # This command installs all dependencies and builds the project.
+        - shopware-cli project ci .
         # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
         # `production` is the stage that was defined in the `host` in the `deploy.php`
-        - dep deploy env=prod
+        - vendor/bin/dep deploy
+```
 
-    # This tells the GitLab Runner to download (`policy: pull`) the `vendor` directory, which contains all Composer
-    # dependencies into the runner's workspace before the job starts.
-    # The cache entry was created by the `Install dependencies` job.
-    cache:
-        key: ${CI_COMMIT_REF_SLUG}
-        paths:
-            - vendor/
-        policy: pull
+### .github/workflows/deploy.yml
+
+```yaml
+name: Deployment
+on:
+  push:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Install Shopware CLI
+        uses: shopware/shopware-cli-action@v1
+
+      - name: Build
+        run: shopware-cli project ci .
+
+      - name: Deploy
+        uses: deployphp/action@v1
+        with:
+          dep: deploy
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 ```
 
 ### deploy.php
@@ -317,13 +293,15 @@ namespace Deployer;
 require_once 'recipe/common.php';
 require_once 'contrib/cachetool.php';
 
+set('bin/console', '{{bin/php}} {{release_or_current_path}}/bin/console');
+
 set('cachetool', '/run/php/php-fpm.sock');
 set('application', 'Shopware 6');
 set('allow_anonymous_stats', false);
-set('default_timeout', 3600); // Increase the `default_timeout`, if needed when tasks take longer than the limit.
+set('default_timeout', 3600); // Increase when tasks take longer than that.
 
-// For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html
-// SSH-HOSTNAME should be replaced with an IP address 
+// Hosts
+
 host('SSH-HOSTNAME')
     ->setLabels([
         'type' => 'web',
@@ -335,16 +313,16 @@ host('SSH-HOSTNAME')
     ->set('writable_mode', 'chmod')
     ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
 
-// For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#shared_files
+// These files are shared among all releases.
 set('shared_files', [
-    '.env',
-    '.env.prod.local',
+    '.env.local',
     'install.lock',
+    'public/.htaccess',
+    'public/.user.ini',
 ]);
 
-// For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#shared_dirs
+// These directories are shared among all releases.
 set('shared_dirs', [
-    'custom/plugins',
     'config/jwt',
     'files',
     'var/log',
@@ -353,10 +331,11 @@ set('shared_dirs', [
     'public/sitemap',
 ]);
 
-// For more information, please visit the Deployer docs: https://deployer.org/docs/configuration.html#writable_dirs
+// These directories are made writable (the definition of "writable" requires attention).
+// Please note that the files in `config/jwt/*` receive special attention in the `sw:writable:jwt` task.
 set('writable_dirs', [
-    'custom/plugins',
     'config/jwt',
+    'custom/plugins',
     'files',
     'public/bundles',
     'public/css',
@@ -369,64 +348,39 @@ set('writable_dirs', [
     'var',
 ]);
 
-// This task uploads the whole workspace to the target server
-task('deploy:update_code', static function () {
-    upload('.', '{{release_path}}');
+task('sw:deployment:helper', static function() {
+   run('cd {{release_path}} && vendor/bin/shopware-deployment-helper run');
 });
 
-// This task remotely creates the `install.lock` file on the target server.
 task('sw:touch_install_lock', static function () {
     run('cd {{release_path}} && touch install.lock');
 });
 
-// This task remotely executes the `bin/build-js.sh` script on the target server.
-// SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS and DISABLE_ADMIN_COMPILATION_TYPECHECK make the build faster
-// If you run into trouble with NPM it is recommended to add the .bashrc or .bash_aliases with source (for example when exporting NVM directory)
-task('sw:build', static function () {
-    run('cd {{release_path}} && source /var/www/.bashrc && export SHOPWARE_ADMIN_BUILD_ONLY_EXTENSIONS=1 && export DISABLE_ADMIN_COMPILATION_TYPECHECK=1 && bash bin/build-js.sh');
+task('sw:health_checks', static function () {
+    run('cd {{release_path}} && bin/console system:check --context=pre_rollout');
 });
 
-// This task remotely executes the `theme:compile` console command on the target server.
-task('sw:theme:compile', static function () {
-    run('cd {{release_path}} && bin/console theme:compile');
-});
-
-// This task remotely executes the `cache:clear` console command on the target server.
-task('sw:cache:clear', static function () {
-    run('cd {{release_path}} && bin/console cache:clear');
-});
-
-// This task remotely executes the cache warmup console commands on the target server so that the first user, who
-// visits the website doesn't have to wait for the cache to be built up.
-task('sw:cache:warmup', static function () {
-    run('cd {{release_path}} && bin/console cache:warmup');
-    run('cd {{release_path}} && bin/console http:cache:warm:up');
-});
-
-// This task remotely executes the `database:migrate` console command on the target server.
-task('sw:database:migrate', static function () {
-    run('cd {{release_path}} && bin/console database:migrate --all');
-});
-
-/**
- * Grouped SW deploy tasks
- */
-task('sw:deploy', [
-    'sw:touch_install_lock',
-    'sw:database:migrate',
-    'sw:build',
-    'sw:cache:clear',
-]);
-
-/**
- * Main task
- */
+desc('Deploys your project');
 task('deploy', [
     'deploy:prepare',
-    'sw:deploy',
     'deploy:clear_paths',
+    'sw:deployment:helper',
+    "sw:touch_install_lock",
+    'sw:health_checks',
     'deploy:publish',
-])->desc('Deploy your project');
+]);
+
+task('deploy:update_code')->setCallback(static function () {
+    upload('.', '{{release_path}}', [
+        'options' => [
+            '--exclude=.git',
+            '--exclude=deploy.php',
+            '--exclude=node_modules',
+        ],
+    ]);
+});
+
+// Hooks
 
 after('deploy:failed', 'deploy:unlock');
 after('deploy:symlink', 'cachetool:clear:opcache');
