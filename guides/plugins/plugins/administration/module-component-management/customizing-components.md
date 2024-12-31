@@ -480,6 +480,6 @@ Shopware.Component.overrideComponentSetup()('sw-customer-list', (previousState, 
 
 ## More interesting topics
 
-* [Customizing templates](writing-templates)
-* [Customizing via custom styles](add-custom-styles)
-* [Using base components](using-base-components)
+- [Customizing templates](writing-templates)
+- [Customizing via custom styles](add-custom-styles)
+- [Using base components](using-base-components)
