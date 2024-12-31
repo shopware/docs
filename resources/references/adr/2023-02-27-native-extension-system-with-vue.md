@@ -29,7 +29,7 @@ Our main idea for the template part was to use native Vue components named sw-bl
 
 For the script and logic part, we aimed to use the Composition API. Before returning all the component data and methods, we would provide a hook point for plugins so they could modify or inject everything they want.
 
-```javascript
+```js
 // The original component
 <script setup lang="ts">
 // Hook for providing extensibility
