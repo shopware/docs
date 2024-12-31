@@ -16,7 +16,7 @@ jobs:
     - name: Lint all files
       uses: docker://avtodev/markdown-lint:v1.5
       with:
-        config: '.markdownlint.yml'
+        config: 'markdown-style-config.yml'
         args: './'
         ignore: './resources/references/adr/* ./assets/adr/* ./resources/guidelines/code/core/* ./snippets/guide/*'
       continue-on-error: false
