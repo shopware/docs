@@ -96,7 +96,7 @@ and the `require` field must include at least `shopware/core`, to check for comp
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
-```js
+```javascript
 // <plugin root>/composer.json
 {
     "name": "swag/basic-example",

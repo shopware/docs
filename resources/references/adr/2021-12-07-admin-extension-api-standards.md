@@ -29,7 +29,7 @@ An app wants to render a custom iFrame in a card on the dashboard. The "location
 
 The app want to render different views depending on the "location" of the iFrame. So the app developer can render the correct view depending on the "locationID":
 
-```js
+```javascript
 if (sw.location.is('sw-dashboard-example-app-dashboard-card')) {
     renderDashboardCard();
 }
@@ -46,7 +46,7 @@ Developers can extend existing areas or create new areas in the administration w
 
 An app wants to add a new tab item to a tab-bar. In the administration are many tab-bars available. So the developer needs to choose the correct "positionID" to determine which tab-bar should be extended. In this example the developer adds a new tab item to the tab-bar in the product detail page.
 
-```js
+```javascript
 sw.ui.tabs('sw-product-detail').addTabItem({ ... })
 ```
 
@@ -59,7 +59,7 @@ In most cases developers will directly use the extension capabilities of the UI 
 
 To give them more flexibility we introduce a feature named "Component Sections". These are sections where any extension developer can inject components. These components are prebuilt and they can also contain custom render views with iFrames. The developer needs to use the feature and choose the matching positionID for the component position. 
 
-```js
+```javascript
 // Adding a card before the manufacturer card with custom fields entries.
 sw.ui.componentSection('sw-manufacturer-card-custom-fields__before').add({
     // The Extension-API provides different components out of the box

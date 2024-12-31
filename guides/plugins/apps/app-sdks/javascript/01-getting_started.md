@@ -21,7 +21,7 @@ After the installation, you can use the SDK in your project. Here is an example:
 
 ## Registration process
 
-```js
+```javascript
 import { AppServer, InMemoryShopRepository } from '@shopware-ag/app-server-sdk'
 
 const app = new AppServer({
