@@ -215,6 +215,7 @@ Therefore, we have added fine-grained route events that are thrown for every rou
 | `{route}.encode` | Store-API | `Symfony\Component\HttpKernel\Event\ResponseEvent` | Thrown before encoding the API response to JSON, allowing easy manipulation of the returned data. **Note:** This was only introduced in 6.6.11.0 |
 
 To subscribe to a specific event, replace the `{route}` placeholder with the [actual symfony route name](https://symfony.com/doc/current/routing.html), e.g. `store-api.product.listing`.
+
 ```php
 public static function getSubscribedEvents(): array
 {
