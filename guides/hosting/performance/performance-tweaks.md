@@ -42,7 +42,7 @@ By default, the scheduled task will run every 20 seconds, but the interval can b
 If you enable delayed cache invalidation, you must set up a worker to run [Scheduled Tasks](../infrastructure/scheduled-task), e.g., using the [Message Queue](../infrastructure/message-queue).
 :::
 
-There are two possible storages/adapters to use for delayed cache invalidation: Redis & MySQL. Redis is preferred since it handles retrieving and deleting keys in an atomic manner. MySQL also supports it, but its more complicated and at a certain load its inevitable that deadlocks will occur. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
+There are two possible storages/adapters for delayed cache invalidation: Redis and MySQL. Redis is preferred since it handles retrieving and deleting keys in an atomic manner. MySQL also supports it, but it's more complicated, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
 
 Redis:
 
