@@ -21,4 +21,5 @@ SHOPWARE_ES_ENABLED=1
 SHOPWARE_ES_INDEXING_ENABLED=1
 SHOPWARE_ES_INDEX_PREFIX=sw
 ```
+
 * Commercial plugin version 5.5.0 onward is installed and activated.

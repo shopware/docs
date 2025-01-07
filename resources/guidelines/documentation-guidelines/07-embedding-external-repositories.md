@@ -53,7 +53,7 @@ By default, contents are grouped under `General` section in the Algolia search u
 
 Update `sections: SwagSectionsConfig[]` with all the regex matches for your sections and define the title of new section displayed in the Algolia search modal.
 
-```js
+```javascript
 const sections: SwagSectionsConfig[] = [
     // ...
     {
@@ -71,7 +71,7 @@ Every article has a `Edit this page on GitHub` link in the bottom left corner. B
 
 You can do that by updating `const embeds: SwagEmbedsConfig[]`.
 
-```js
+```javascript
 const embeds: SwagEmbedsConfig[] = [
     // ...
     {
@@ -86,7 +86,7 @@ const embeds: SwagEmbedsConfig[] = [
 
 ### Optional
 
-#### Copilot AI 
+#### Copilot AI
 
 Update `themeConfig.swag.similarArticles.filter` with your settings for recommended articles in Copilot AI. This is only needed for repositories that are embedding multiple branches (versions) so that Copilot only uses articles from one version at the time.
 
@@ -102,7 +102,7 @@ Update `themeConfig.swag.colorCoding` with your settings for color coding in the
 
 When you also want to share static assets from your repository such as `.pdf` or `.zip` files (excluding statically linked images in articles), make sure to copy them in the `buildEnd` hook.
 
-```js
+```javascript
 export default {
     // ...
     async buildEnd() {
@@ -122,7 +122,7 @@ export default {
 
 While we already added the repository to the Docs CLI, it is not included in the production build by default.
 
-The new repository must to be activated in `.github/scripts/mount.sh`. This script is needed to apply correct build config in production build and during PR workflows where custom `branch` or even `org` is used and switched to by overwriting environment variables.
+The new repository must be activated in `.github/scripts/mount.sh`. This script is needed to apply correct build config in production build and during PR workflows where custom `branch` or even `org` is used and switched to by overwriting environment variables.
 
 ```sh
 # ...
@@ -142,7 +142,7 @@ ORG_METEOR_ICON_KIT=shopware
 
 ## Configure your repository
 
-Last step includes configuring your repository for better developer experience and integration with the Developer Portal. Let's switch to your repository.
+The Last step includes configuring your repository for better developer experience and integration with the Developer Portal. Let's switch to your repository.
 
 ```bash
 cd ../docs
@@ -153,11 +153,12 @@ cd /www/shopware/docs
 ### Shortcuts
 
 You will want to create at least 3 scripts in `package.json` of your repository
- - `docs:env` - Run this in the context of your repository and the script will either clone the `developer-portal` inside `../developer-portal` or pull changes from the remote, and install latest dependencies.
- - `docs:link` - Mount documentation from your repository into your local `developer-portal` instance.
- - `docs:preview` - Run Vitepress dev server from your local `developer-portal` instance.
 
-Examples are available in [meteor](https://github.com/shopware/meteor/src/blob/package.json) (monorepo setup), [meteor](https://github.com/shopware/frontends/src/blob/package.json), [meteor](https://github.com/shopware/release-notes/src/blob/package.json) and [meteor](https://github.com/shopware/docs/src/blob/package.json) repositories (all standard repos).
+* `docs:env` - Run this in the context of your repository and the script will either clone the `developer-portal` inside `../developer-portal` or pull changes from the remote, and install latest dependencies.
+* `docs:link` - Mount documentation from your repository into your local `developer-portal` instance.
+* `docs:preview` - Run Vitepress dev server from your local `developer-portal` instance.
+
+Examples are available in [meteor](https://github.com/shopware/meteor/blob/main/package.json) (monorepo setup), [frontends](https://github.com/shopware/frontends/blob/main/package.json), [release](https://github.com/shopware/release-notes/blob/main/package.json) and [docs](https://github.com/shopware/docs/blob/main/package.json) repositories (all standard repos).
 
 ```json
 {
@@ -189,7 +190,7 @@ For example, follow the instructions in the article above, and use the feature b
 BRANCH_METEOR_ICON_KIT=feature/embed-meteor-repo-to-developer-portal
 ```
 
-```
+```shell
 cd /www/shopware/developer-portal/
 git checkout -b feature/embeds-meteor-icon-kit
 # apply changes
@@ -198,7 +199,7 @@ git commit -m "feat: embedded meteor repo"
 
 Make changes in your feature branch of your repository.
 
-```
+```shell
 cd /www/shopware/meteor/
 git checkout -b feature/embed-meteor-repo-to-developer-portal
 # apply changes
@@ -207,7 +208,7 @@ git commit -m "chore: updated shortcuts, set up pipeline for developer portal"
 
 Then create a PR and once the Vercel preview inside `developer-portal` is ready and correct, merge feature branch in your repository.
 
-```
+```shell
 cd /www/shopware/meteor/
 git checkout main
 git merge feature/embed-meteor-repo-to-developer-portal
@@ -215,7 +216,7 @@ git merge feature/embed-meteor-repo-to-developer-portal
 
 Now switch back production branch for your repository to `main` in the `developer-portal`.
 
-```
+```shell
 cd /www/shopware/developer-portal/
 git checkout feature/embeds-meteor-icon-kit
 # change BRANCH_METEOR_ICON_KIT=main inside .github/scripts/mount.sh

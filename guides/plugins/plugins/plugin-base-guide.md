@@ -17,7 +17,7 @@ This section guides you through the basics of creating a plugin from scratch, wh
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line.  
-Of course you'll have to understand PHP, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+Of course, you'll have to understand PHP, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## Create your first plugin
 
@@ -96,7 +96,7 @@ and the `require` field must include at least `shopware/core`, to check for comp
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
-```js
+```javascript
 // <plugin root>/composer.json
 {
     "name": "swag/basic-example",
@@ -110,7 +110,7 @@ Here's an example `composer.json` for this guide, which will do the trick:
         }
     ],
     "require": {
-        "shopware/core": "6.5.*"
+        "shopware/core": "~6.6.0"
     },
     "extra": {
         "shopware-plugin-class": "Swag\\BasicExample\\SwagBasicExample",
@@ -134,7 +134,7 @@ Here's an example `composer.json` for this guide, which will do the trick:
 There's another two things that you need to know:
 
 1. The `shopware-plugin-class` information. This has to point to the plugin's base PHP class. The one, that you've previously created.
-1. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
+2. The whole `autoload` part. This has to mention your [PSR-4](https://www.php-fig.org/psr/psr-4/) namespace. So if you'd like to have another namespace for your plugin, this is the place to go.
 
 ::: warning
 The path you've configured in the configuration `autoload.psr-4`, `src/` in this case, will be referred to as `<plugin root>/src` in almost all code examples. If you're using a custom path here, e.g. just a slash `/`, then the examples would be `<plugin root>/` here instead.

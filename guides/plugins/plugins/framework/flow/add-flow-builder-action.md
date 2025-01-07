@@ -38,7 +38,9 @@ To create a custom flow action, firstly you have to make a plugin and install it
 <?php declare(strict_types=1);
 namespace Swag\ExamplePlugin\Core\Framework\Event;
 use Shopware\Core\Framework\Event\FlowEventAware;
+use Shopware\Core\Framework\Event\IsFlowEventAware;
 
+#[IsFlowEventAware]
 interface TagAware extends FlowEventAware
 {
     ...
@@ -138,7 +140,6 @@ As you can see, several methods are already implemented:
 
 You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
 
-
 ```XML
 // <plugin root>/src/Resources/config/services.xml
 <service id="Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction">
@@ -162,8 +163,7 @@ There are three scopes for the `CreateTagAction`:
 
 - Just define the empty array in `CreateTagAction::requirements`
 
-
-```PHP
+```php
     // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -185,7 +185,7 @@ Here, the action name is empty as the action name snippet is not yet defined.
 
 Make the `CreateTagAction` available for all events related to Order and Customer.
 
-```PHP
+```php
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -203,7 +203,7 @@ Make the `CreateTagAction` available for all events related to Order and Custome
 
 - Event must implement the `TagAware`
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
@@ -256,7 +256,7 @@ class BasicExampleEvent extends Event implements TagAware
 
 - Define the `TagAware` in `CreateTagAction::requirements`
 
-```PHP
+```php
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -351,6 +351,7 @@ To see the action list, we select a Trigger, for example [example\event], from t
 ![Flow Builder trigger](../../../../../assets/flow-builder-action-no-label.png)
 
 ### Step 1: Show action label in action list
+
 First, we need to define information like `constants`, `snippets` to show on the action list. To be consistent with the custom action defined in our PHP code, create an action name called `CREATE_TAG` to represent `action.create.tag`, which gets from the response of `/api/_info/flow-actions.json`.
 
 ![Flow Builder action services list](../../../../../assets/flow-builder-action-sevices-list.png)
@@ -475,7 +476,6 @@ Here is a list of group names you should take a look at:
 | tag | Tag |
 | customer | Customer |
 | order | Order |
-
 
 ### Step 2: Add configuration for action
 

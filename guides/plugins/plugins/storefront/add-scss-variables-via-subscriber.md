@@ -49,7 +49,7 @@ You can add a new subscriber according to the [Listening to events](../plugin-fu
 
 namespace Swag\BasicExample\Subscriber;
 
-use Shopware\Storefront\Event\ThemeCompilerEnrichScssVariablesEvent;
+use Shopware\Storefront\Theme\Event\ThemeCompilerEnrichScssVariablesEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ThemeVariableSubscriber implements EventSubscriberInterface

@@ -31,10 +31,10 @@ Also the following knowledge is necessary, even though some of them are covered 
 The workflow you need here was already described in the overview:
 
 1. Figure out which page you want to change
-1. Register to the event that this page is firing
-1. Add a store-api route for your needed data
-1. Add data to the page via the event
-1. Display this data in the Storefront
+2. Register to the event that this page is firing
+3. Add a store-api route for your needed data
+4. Add data to the page via the event
+5. Display this data in the Storefront
 
 ### Subscribe to an event
 

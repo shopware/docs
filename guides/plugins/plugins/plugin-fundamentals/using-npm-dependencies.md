@@ -57,7 +57,7 @@ Once we have installed all the dependencies and registered the package in the bu
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example.plugin.js
-import Plugin from 'src/plugin-system/plugin.class';
+const { PluginBaseClass } = window;
 
 // Import logger
 import { log } from 'missionlog';
@@ -68,7 +68,7 @@ log.init({ initializer: 'INFO' }, (level, tag, msg, params) => {
 });
 
 // The plugin skeleton
-export default class ExamplePlugin extends Plugin {
+export default class ExamplePlugin extends PluginBaseClass {
     init() {
         console.log('init');
 
@@ -99,7 +99,6 @@ The final step in this process is to build your Storefront or Administration so 
 # Build the Administration
 ./bin/build-administration.sh
 ```
-
 
 ## Next steps
 

@@ -21,11 +21,15 @@ To avoid your pull request getting rejected, you should always check that you pr
 * A pull request to the Shopware core always has to be made to the [main shopware](https://github.com/shopware/shopware) repository.
 * Fill out the [pull request info template](https://github.com/shopware/shopware/blob/trunk/.github/PULL_REQUEST_TEMPLATE.md) as detailed as possible.
 * Create a changelog file with documentation of your changes. Refer to [Changelog](https://github.com/shopware/shopware/blob/master/adr/2020-08-03-implement-new-changelog.md) section for more detailed information about writing changelog.
-* Check if your pull request addresses the correct Shopware version. Breaks and features can't be merged in a patch release.
-* Check if your implementation is missing some important parts - For example, translations, downward compatibility, compatibility with important plugins, etc.
+* Check if your pull request addresses the correct Shopware branch: 6.5.x for upcoming 6.5 version and trunk for next upcoming 6.6 version.
+* Check if your implementation is missing some important parts - For example, translations, backwards compatibility etc.
 * Provide the necessary tests for your implementation.
 * Check if there is already an existing pull request tackling the same issue.
-* Write your commit messages in English, have them short and descriptive, and squash your commits meaningfully.
+* Write your commit messages in English. The individual commit messages in the PR are not critical since the PR will be squashed on merge. However, ensure your **Pull Request title** follows the [Conventional Commits](https://www.conventionalcommits.org/) format, as this will become the final commit message.
+  * Example PR titles:
+    * `feat: Add new product import API`
+    * `fix: Resolve cart calculation issue`
+    * `docs: Update installation instructions`
 
 ::: danger
 Pull requests which do not fulfill these requirements will never be accepted by our team. To avoid your changes going through unnecessary workflow cycles, make sure to check this list with every pull request.
@@ -33,7 +37,28 @@ Pull requests which do not fulfill these requirements will never be accepted by 
 
 ## The developing workflow on GitHub
 
-When you create a new pull request on GitHub, it will normally get the first sight within a week. We do regular meetings to screen all new pull requests on GitHub. In this meeting, there is a team of Shopware developers of different specializations who will discuss your changes. Together we decide what will happen next to your pull request. We will set one of the following labels, which indicates the status of the pull request. Here is a list of all possible states:
+When you create a new pull request on GitHub, please ensure:
+
+1. Your PR title follows the **Conventional Commits** format as it will become the squashed commit message
+2. You've provided all necessary information in the PR description
+3. Your changes are complete and tested
+
+You are responsible for maintaining and updating your pull request. This includes:
+
+* Responding to review comments in a timely manner
+* Updating the code according to review feedback
+* Keeping the PR up to date with the target branch if conflicts arise
+* Making sure that all pipeline checks succeed on your PR
+
+::: tip
+Once your PR is public, avoid rebasing or force-pushing to the branch. Adding new commits makes it easier for reviewers to track changes and see what was updated in response to feedback. The PR will be automatically squashed when merged.
+:::
+
+::: warning
+Pull requests that become stale (no activity from the author for 2 weeks after a review or request for changes) will be closed. You can always reopen the pull request when you're ready to continue working on it.
+:::
+
+Your PR will normally get the first review within a week. We do regular meetings to screen all new pull requests on GitHub. In this meeting, a team of Shopware developers with different specializations will discuss your changes. Together, we decide what will happen next to your pull request. We will set one of the following labels, which indicates the pull request's status. Here is a list of all possible states:
 
 |                                  GitHub Label / Tag                                  | What does it mean? |
 |:------------------------------------------------------------------------------------:| :--- |
@@ -42,9 +67,12 @@ When you create a new pull request on GitHub, it will normally get the first sig
 |        ![GitHub label scheduled](../../../assets/github-label-scheduled.png)         | Your changes have been reviewed by our developers, and they decided that you provided a benefit for our product. Your pull request will be imported into our ticket system and will go through our internal workflow. You will find a comment containing the ticket number to follow the status. |
 |        ![GitHub label quickpick](../../../assets/github-label-quickpick.png)         | The changes you provide seem to be easy to test and implement. Our developers decided to integrate this quickly into our software. There will probably be no ticket for this change to follow, but you will be informed by the accepted label on this pull request that your change was finally merged into the product. |
 |         ![GitHub label accepted](../../../assets/github-label-accepted.png)          | Your changes are finally accepted. The pull request passed our internal workflow. Your changes will be released with one of the next releases. |
-|      ![GitHub label feature request](../../../assets/github-label-feature.png)       | Your pull request includes a new feature that needs an internal discussion by our developers. We have to decide if the new feature provides a benefit for the product and at which point it should be scheduled on the roadmap. |
-|      ![GitHub label refactoring](../../../assets/github-label-refactoring.png)       | Your pull request includes a larger refactoring which needs an internal discussion by our developers. This label will mainly be set when larger chunks of code have been re-written, renamed, or moved to different directories. |
 |    ![GitHub label missing tests](../../../assets/github-label-missing-tests.png)     | Your pull request lacks the necessary tests for your changes. E.g. [Jest](../../../guides/plugins/plugins/testing/jest-admin) or [Cypress](../../../guides/plugins/plugins/testing/end-to-end-testing) tests for frontend changes or [PHPUnit](../../../guides/plugins/plugins/testing/php-unit) tests for backend changes. |
+
+## What happens after a pull request has been created
+
+Everyday weekdays, we assign the pull request to a Domain (team) which is responsible for the specific part of the Shopware software. The Area will then review your pull request and decide what to do next.
+The team can either accept your pull request, decline it, or ask you to update it with more information or changes.
 
 ## Why a pull request gets declined
 

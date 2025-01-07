@@ -76,6 +76,7 @@ Then the script will only be rendered when the Twig condition is met.
 
 Should your `<script>` tag come before or after the Storefront core JavaScript?
 It depends on whether you need to have access to the code added by your `<script>` within the Storefront JavaScript (added by `<plugin root>/src/Resources/app/storefront/src/main.js`).
+
 * If you **don't** need access within the Storefronts JavaScript, you should add the `<script>` **after** the Storefront JavaScript.
 * If you **do need** access, your `<script>` should come **before** the Storefront JavaScript.
 

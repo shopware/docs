@@ -9,40 +9,53 @@ nav:
 
 ## Overview
 
-In this guide you'll learn how to add translations to the Storefront and how to use them in your twig templates. To organize your snippets you can add them to `.json` files, so structuring and finding snippets you want to change is very easy.
+In this guide, you'll learn how to add translations to the Storefront and how to use them in your twig templates.
+To organize your snippets you can add them to `.json` files, so structuring and finding snippets you want to change is very easy.
 
 ## Prerequisites
 
-To add your own custom translations for your plugin or app, you first need a base. Refer to either the [Plugin Base Guide](../plugin-base-guide) or the [App Base Guide](../../apps/app-base-guide) to create one.
+To add your own custom translations for your plugin or app, you first need a base.
+Refer to either the [Plugin Base Guide](../plugin-base-guide) or the [App Base Guide](../../apps/app-base-guide) to create one.
 
 ## Snippet file structure
 
-Shopware 6 automatically loads your snippet files when a standard file structure and a naming convention are followed. To do so, store your snippet files in the `<extension root>/src/Resources/snippet/<locale>/` directory of your extension. Also, you can further use subdirectories if you want to. Use `<name>.<locale>` as the naming pattern. The name can be freely defined, while the locale must map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
+Shopware 6 automatically loads your snippet files when a standard file structure and a naming convention are followed.
+To do so, store your snippet files in the `<extension root>/src/Resources/snippet/` directory of your plugin or `<extension root>/Resources/snippet/` for your app or theme.
+Also, you can use further subdirectories if you want to.
+Use `<name>.<locale>` as the naming pattern for the file.
+The name can be freely defined, while the locale **must** map to the ISO string of the supported locale in this snippet file - for example `example.de-DE.json`.
+More precisely, the ISO string is a combination of "ISO 639-1" language codes and "ISO 3166-1 alpha-2" country codes.
+Later, this will be converted to the ICU format (`de_DE`), which is also used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html).
 
-In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name. Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
+In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name.
+Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
 
 So your structure could then look like this:
 
 ```text
 └── SwagBasicExample
-    └── src
+    └── src // Without `src` in apps / themes
         ├─ Resources
         │  └─ snippet
-        │     ├─ de_DE
-        │     │  └─ example.de-DE.json
-        │     └─ en_GB
+        │     ├─ example.de-DE.json
+        │     └─ some-directory // optional
         │        └─ example.en-GB.json
         └─ SwagBasicExample.php
 ```
 
-## Creating the translation
+## Creating translations
 
-Now that we know how the structure of snippets should be, we can create a new snippet file. In this example we are creating a snippet file for British English called `example.en-GB.json`. If you are using nested objects, you can access the values with `exampleOne.exampleTwo.exampleThree`. We can also use template variables, which we can assign values later in the template. There is no explicit syntax for variables in the Storefront. However, it is recommended to enclose them with `%` symbols to make their purpose clear.
+Now that we know how the structure of snippets should be, we can create a new snippet file.
+In this example we are creating a snippet file for British English called `example.en-GB.json`.
+If you are using nested objects, you can access the values with `exampleOne.exampleTwo.exampleThree`.
+We can also use template variables, which we can assign values later in the template.
+There is no explicit syntax for variables in the Storefront.
+However, it is recommended to enclose them with `%` symbols to make their purpose clear.
 
 Here's an example of an English translation file:
 
 ```json
-// <extension root>/src/Resources/snippet/en\_GB/example.en-GB.json
+// <extension root>/src/Resources/snippet/en_GB/example.en-GB.json
 {
   "header": {
     "example": "Our example header"
@@ -51,9 +64,10 @@ Here's an example of an English translation file:
 }
 ```
 
-## Using the translation in templates
+## Using translations in templates
 
-Now we want to use our previously created snippet in our twig template, we can do this with the `trans` filter. Below you can find two examples where we use our translation with placeholders and without.
+Now we want to use our previously created snippet in our twig template, we can do this with the `trans` filter.
+Below, you can find two examples where we use our translation with placeholders and without.
 
 Translation without placeholders:
 
@@ -71,9 +85,11 @@ Translation with placeholders:
 </div>
 ```
 
-## Using the translation in controllers
+## Using translations in controllers
 
-If we want to use our snippet in a controller, we have to use the `trans` function. Note that we have to extend our class from `Shopware\Storefront\Controller\StorefrontController`.
+If we want to use our snippet in a controller, we can use the `trans` method,
+which is available if our class is extending from `Shopware\Storefront\Controller\StorefrontController`.
+Or use injection via [DI container](#using-translation-generally-in-php).
 
 Translation without placeholders:
 
@@ -87,9 +103,11 @@ Translation with placeholders:
 $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
 
-## Using translation generally in PHP
+## General usage of translations in PHP
 
-If we need to use a snippet elsewhere in PHP, we can use [Dependency Injection](../plugin-fundamentals/dependency-injection) to inject the `translator`, which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
+If we need to use a snippet elsewhere in PHP,
+we can use [Dependency Injection](../plugin-fundamentals/dependency-injection) to inject the `translator` service,
+which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
 ```xml
 <service id="Swag\Example\Service\SwagService" public="true" >
@@ -106,7 +124,7 @@ public function __construct(TranslatorInterface $translator)
 }
 ```
 
-Your class can then use translation similarly to controllers:
+Then, call the `trans` method, which has the same parameters as the method from controllers.
 
 ```php
 $this->translator->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);

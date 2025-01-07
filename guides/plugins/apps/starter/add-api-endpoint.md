@@ -44,7 +44,7 @@ When using a self-hosted Shopware version, you can also create the project direc
 Next, we will put our basic configuration into the file we just created.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -213,9 +213,9 @@ We start by reading the requested category id using `hook.request.categoryId`. I
 In the following lines, we define a search criteria. The criteria contain a description of the data we want to fetch:
 
  1. First, we filter out all products not inside the category that was requested, using a filter aggregation.
- 1. The following lines contain two further nested aggregations:
+ 2. The following lines contain two further nested aggregations:
     1. The first one groups all products from all orders using their id.
-    1. The second one sums up the number of ordered items in each order.
+    2. The second one sums up the number of ordered items in each order.
 
 Ultimately, it gives a result of all products that have been ordered and the total ordered.
 

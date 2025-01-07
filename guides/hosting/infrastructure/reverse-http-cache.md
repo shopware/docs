@@ -24,17 +24,17 @@ In this guide, we will use Varnish as an example for HTTP cache.
 This setup is compatible with Shopware version 6.4 and higher
 :::
 
-![](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
+![Http cache](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
 
 ### Shopware Varnish Docker image
 
-Feel free to check out the [Shopware Varnish Docker image](https://github.com/shopware/varnish-shopware) for a quick start. It contains the Shopware default VCL. The containing VCL is for the usage with xkeys. 
+Feel free to check out the [Shopware Varnish Docker image](https://github.com/shopware/varnish-shopware) for a quick start. It contains the Shopware default VCL. The containing VCL is for the usage with xkeys.
 
 ### Configure Shopware
 
 :::warning
-From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#using-varnish-xkey-module-without-redis) integration instead.
-::: 
+From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0. Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request. This can cause problems depending on the setup or network. Furthermore, Redis clusters are not supported. Therefore, it is advisable to opt for the [Varnish with XKey](#configure-varnish) integration instead.
+:::
 
 First, we need to activate the reverse proxy support in Shopware. To enable it, we need to create a new file in `config/packages/storefront.yaml`:
 
@@ -47,10 +47,9 @@ shopware:
             ban_method: "BAN"
             # This needs to point to your varnish hosts
             hosts: [ "http://varnish" ]
-            # Max parallel invalidations at same time for a single worker
+            # Max parallel invalidations at the same time for a single worker
             max_parallel_invalidations: 3
-            # Redis Storage for the HTTP cache tags
-            redis_url: "redis://redis"
+            use_varnish_xkey: true
 ```
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
@@ -73,411 +72,15 @@ If you don't configure Symfony to look for these headers, you will get incorrect
 
 Go through [Proxies](https://symfony.com/doc/current/deployment/proxies.html) section for more information.
 
+### Varnish Docker Image
+
+Shopware offers a Varnish Docker image that is pre-configured to work with Shopware. You can find the image [here](https://github.com/shopware/varnish-shopware). The image is based on the official Varnish image and contains the Shopware default VCL with few configurations as environment variables.
+
 ### Configure Varnish
 
-As Shopware is now prepared to work with a reverse proxy, we need to configure Varnish to use a Shopware specific configuration (VCL). Below you can find an example Shopware 6 Varnish configuration.
+Varnish XKey is a cache key module that allows you to use Varnish with surrogate keys. It is a module not included in the default Varnish installation. It is available for Varnish 6.0 or higher.
 
-On hard purge, the cache will be immediately purged and the next requesting user will get a slow response, as the cache has been deleted. On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed. This makes sure that the client gets the fastest response possible.
-
-#### Hard purge
-
-```text
-vcl 4.0;
-
-import std;
-
-# You should specify here all your app nodes and use round robin to select a backend
-backend default {
-    .host = "<app-host>";
-    .port = "80";
-}
-
-# ACL for purgers IP. (This needs to contain app server ips)
-acl purgers {
-    "127.0.0.1";
-    "localhost";
-    "::1";
-}
-
-sub vcl_recv {
-    # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
-    unset req.http.Proxy;
-
-    # Strip query strings only needed by browser javascript. Customize to used tags.
-    if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
-        # see rfc3986#section-2.3 "Unreserved Characters" for regex
-        set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
-    }
-    set req.url = regsub(req.url, "(\?|\?&|&)$", "");
-
-    # Normalize query arguments
-    set req.url = std.querysort(req.url);
-
-    # Make sure that the client ip is forward to the client.
-    if (req.http.x-forwarded-for) {
-        set req.http.X-Forwarded-For = req.http.X-Forwarded-For + ", " + client.ip;
-    } else {
-        set req.http.X-Forwarded-For = client.ip;
-    }
-
-    # Handle BAN
-    if (req.method == "BAN") {
-        if (!client.ip ~ purgers) {
-            return (synth(405, "Method not allowed"));
-        }
-
-        ban("req.url ~ "+req.url);
-        return (synth(200, "BAN URLs containing (" + req.url + ") done."));
-    }
-
-    # Normalize Accept-Encoding header
-    # straight from the manual: https://www.varnish-cache.org/docs/3.0/tutorial/vary.html
-    if (req.http.Accept-Encoding) {
-        if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
-            # No point in compressing these
-            unset req.http.Accept-Encoding;
-        } elsif (req.http.Accept-Encoding ~ "gzip") {
-            set req.http.Accept-Encoding = "gzip";
-        } elsif (req.http.Accept-Encoding ~ "deflate") {
-            set req.http.Accept-Encoding = "deflate";
-        } else {
-            # unknown algorithm
-            unset req.http.Accept-Encoding;
-        }
-    }
-
-    if (req.method != "GET" &&
-        req.method != "HEAD" &&
-        req.method != "PUT" &&
-        req.method != "POST" &&
-        req.method != "TRACE" &&
-        req.method != "OPTIONS" &&
-        req.method != "PATCH" &&
-        req.method != "DELETE") {
-        /* Non-RFC2616 or CONNECT which is weird. */
-        return (pipe);
-    }
-
-    # We only deal with GET and HEAD by default
-    if (req.method != "GET" && req.method != "HEAD") {
-        return (pass);
-    }
-
-    # Don't cache Authenticate & Authorization
-    if (req.http.Authenticate || req.http.Authorization) {
-        return (pass);
-    }
-
-    # Always pass these paths directly to php without caching
-    # Note: virtual URLs might bypass this rule (e.g. /en/checkout)
-    if (req.url ~ "^/(checkout|account|admin|api)(/.*)?$") {
-        return (pass);
-    }
-
-    return (hash);
-}
-
-sub vcl_hash {
-    # Consider Shopware HTTP cache cookies
-    if (req.http.cookie ~ "sw-cache-hash=") {
-        hash_data("+context=" + regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1"));
-    } elseif (req.http.cookie ~ "sw-currency=") {
-        hash_data("+currency=" + regsub(req.http.cookie, "^.*?sw-currency=([^;]*);*.*$", "\1"));
-    }
-}
-
-sub vcl_hit {
-  # Consider client states for response headers
-  if (req.http.cookie ~ "sw-states=") {
-     set req.http.states = regsub(req.http.cookie, "^.*?sw-states=([^;]*);*.*$", "\1");
-
-     if (req.http.states ~ "logged-in" && obj.http.sw-invalidation-states ~ "logged-in" ) {
-        return (pass);
-     }
-
-     if (req.http.states ~ "cart-filled" && obj.http.sw-invalidation-states ~ "cart-filled" ) {
-        return (pass);
-     }
-  }
-}
-
-sub vcl_backend_response {
-    # Fix Vary Header in some cases
-    # https://www.varnish-cache.org/trac/wiki/VCLExampleFixupVary
-    if (beresp.http.Vary ~ "User-Agent") {
-        set beresp.http.Vary = regsub(beresp.http.Vary, ",? *User-Agent *", "");
-        set beresp.http.Vary = regsub(beresp.http.Vary, "^, *", "");
-        if (beresp.http.Vary == "") {
-            unset beresp.http.Vary;
-        }
-    }
-
-    # Respect the Cache-Control=private header from the backend
-    if (
-        beresp.http.Pragma        ~ "no-cache" ||
-        beresp.http.Cache-Control ~ "no-cache" ||
-        beresp.http.Cache-Control ~ "private"
-    ) {
-        set beresp.ttl = 0s;
-        set beresp.uncacheable = true;
-        return (deliver);
-    }
-
-    # strip the cookie before the image is inserted into cache.
-    if (bereq.url ~ "\.(png|gif|jpg|swf|css|js|webp)$") {
-        unset beresp.http.set-cookie;
-    }
-
-    # Allow items to be stale if needed.
-    set beresp.grace = 6h;
-
-    # Save the bereq.url so bans work efficiently
-    set beresp.http.x-url = bereq.url;
-
-    # Remove the exact PHP Version from the response for more security
-    unset beresp.http.x-powered-by;
-
-    return (deliver);
-}
-
-sub vcl_deliver {
-    ## we don't want the client to cache
-    set resp.http.Cache-Control = "max-age=0, private";
-
-    # remove link header if session is already started to save client resources
-    if (req.http.cookie ~ "session-") {
-        unset resp.http.Link;
-    }
-
-    # Set a cache header to allow us to inspect the response headers during testing
-    if (obj.hits > 0) {
-        unset resp.http.set-cookie;
-        set resp.http.X-Cache = "HIT";
-    }  else {
-        set resp.http.X-Cache = "MISS";
-    }
-    
-    # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
-    unset resp.http.x-powered-by;
-
-    # invalidation headers are only for internal use
-    unset resp.http.sw-invalidation-states;
-
-    set resp.http.X-Cache-Hits = obj.hits;
-}
-```
-
-To verify if it works, you can look for a new response header `X-Cache` in the HTTP response. It shows you if it was a cache hit or miss.
-
-#### Soft purge
-
-```text
-vcl 4.0;
-
-import std;
-import purge;
-
-# You should specify here all your app nodes and use round robin to select a backend
-backend default {
-    .host = "<app-host>";
-    .port = "80";
-}
-
-# ACL for purgers IP. (This needs to contain app server ips)
-acl purgers {
-    "127.0.0.1";
-    "localhost";
-    "::1";
-}
-
-sub vcl_recv {
-    # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
-    unset req.http.Proxy;
-
-    # Strip query strings only needed by browser javascript. Customize to used tags.
-    if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
-        # see rfc3986#section-2.3 "Unreserved Characters" for regex
-        set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
-    }
-    set req.url = regsub(req.url, "(\?|\?&|&)$", "");
-
-    # Normalize query arguments
-    set req.url = std.querysort(req.url);
-
-    # Make sure that the client ip is forward to the client.
-    if (req.http.x-forwarded-for) {
-        set req.http.X-Forwarded-For = req.http.X-Forwarded-For + ", " + client.ip;
-    } else {
-        set req.http.X-Forwarded-For = client.ip;
-    }
-
-    # Handle BAN
-    if (req.method == "BAN") {
-        if (!client.ip ~ purgers) {
-            return (synth(405, "Method not allowed"));
-        }
-
-        return (hash);
-    }
-
-    # Normalize Accept-Encoding header
-    # straight from the manual: https://www.varnish-cache.org/docs/3.0/tutorial/vary.html
-    if (req.http.Accept-Encoding) {
-        if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
-            # No point in compressing these
-            unset req.http.Accept-Encoding;
-        } elsif (req.http.Accept-Encoding ~ "gzip") {
-            set req.http.Accept-Encoding = "gzip";
-        } elsif (req.http.Accept-Encoding ~ "deflate") {
-            set req.http.Accept-Encoding = "deflate";
-        } else {
-            # unknown algorithm
-            unset req.http.Accept-Encoding;
-        }
-    }
-
-    if (req.method != "GET" &&
-        req.method != "HEAD" &&
-        req.method != "PUT" &&
-        req.method != "POST" &&
-        req.method != "TRACE" &&
-        req.method != "OPTIONS" &&
-        req.method != "PATCH" &&
-        req.method != "DELETE") {
-        /* Non-RFC2616 or CONNECT which is weird. */
-        return (pipe);
-    }
-
-    # We only deal with GET and HEAD by default
-    if (req.method != "GET" && req.method != "HEAD") {
-        return (pass);
-    }
-
-    # Don't cache Authenticate & Authorization
-    if (req.http.Authenticate || req.http.Authorization) {
-        return (pass);
-    }
-
-    # Always pass these paths directly to php without caching
-    # Note: virtual URLs might bypass this rule (e.g. /en/checkout)
-    if (req.url ~ "^/(checkout|account|admin|api)(/.*)?$") {
-        return (pass);
-    }
-
-    return (hash);
-}
-
-sub vcl_hash {
-    # Consider Shopware HTTP cache cookies
-    if (req.http.cookie ~ "sw-cache-hash=") {
-        hash_data("+context=" + regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1"));
-    } elseif (req.http.cookie ~ "sw-currency=") {
-        hash_data("+currency=" + regsub(req.http.cookie, "^.*?sw-currency=([^;]*);*.*$", "\1"));
-    }
-}
-
-sub vcl_hit {
-    if (req.method == "BAN") {
-        call soft_purge_page;
-    }
-
-    # Consider client states for response headers
-    if (req.http.cookie ~ "sw-states=") {
-        set req.http.states = regsub(req.http.cookie, "^.*?sw-states=([^;]*);*.*$", "\1");
-
-        if (req.http.states ~ "logged-in" && obj.http.sw-invalidation-states ~ "logged-in" ) {
-            return (pass);
-        }
-
-        if (req.http.states ~ "cart-filled" && obj.http.sw-invalidation-states ~ "cart-filled" ) {
-            return (pass);
-        }
-    }
-}
-
-sub vcl_miss {
-    if (req.method == "BAN") {
-        call soft_purge_page;
-    }
-}
-
-sub vcl_backend_response {
-    # Fix Vary Header in some cases
-    # https://www.varnish-cache.org/trac/wiki/VCLExampleFixupVary
-    if (beresp.http.Vary ~ "User-Agent") {
-        set beresp.http.Vary = regsub(beresp.http.Vary, ",? *User-Agent *", "");
-        set beresp.http.Vary = regsub(beresp.http.Vary, "^, *", "");
-        if (beresp.http.Vary == "") {
-            unset beresp.http.Vary;
-        }
-    }
-
-    # Respect the Cache-Control=private header from the backend
-    if (
-        beresp.http.Pragma        ~ "no-cache" ||
-        beresp.http.Cache-Control ~ "no-cache" ||
-        beresp.http.Cache-Control ~ "private"
-    ) {
-        set beresp.ttl = 0s;
-        set beresp.uncacheable = true;
-        return (deliver);
-    }
-
-    # strip the cookie before the image is inserted into cache.
-    if (bereq.url ~ "\.(png|gif|jpg|swf|css|js|webp)$") {
-        unset beresp.http.set-cookie;
-    }
-
-    # Allow items to be stale if needed.
-    set beresp.grace = 6h;
-
-    # Save the bereq.url so bans work efficiently
-    set beresp.http.x-url = bereq.url;
-
-    # Remove the exact PHP Version from the response for more security
-    unset beresp.http.x-powered-by;
-
-    return (deliver);
-}
-
-sub vcl_deliver {
-    ## we don't want the client to cache
-    set resp.http.Cache-Control = "max-age=0, private";
-
-    # remove link header, if session is already started to save client resources
-    if (req.http.cookie ~ "session-") {
-        unset resp.http.Link;
-    }
-
-    # Set a cache header to allow us to inspect the response headers during testing
-    if (obj.hits > 0) {
-        unset resp.http.set-cookie;
-        set resp.http.X-Cache = "HIT";
-    }  else {
-        set resp.http.X-Cache = "MISS";
-    }
-    
-    # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
-    unset resp.http.x-powered-by;
-
-    # invalidation headers are only for internal use
-    unset resp.http.sw-invalidation-states;
-
-    set resp.http.X-Cache-Hits = obj.hits;
-}
-
-sub soft_purge_page {
-    # See https://docs.varnish-software.com/varnish-cache-plus/vmods/purge/ for all possible options
-    set req.http.purged = purge.soft(ttl = 0s, grace = 300s, keep = 3600s);
-    return (synth(200));
-}
-```
-
-### Using Varnish XKey module without Redis
-
-Varnish XKey is a cache key module that allows you to use Varnish with surrogate keys. It is a module that is not included in the default Varnish installation. It is available for Varnish 4.1 and 6.0.
-
-The module is available for download on [GitHub](https://github.com/varnish/varnish-modules/blob/master/src/vmod_xkey.vcc)
+Checkout the official Varnish installation guide [here](https://github.com/varnish/varnish-modules#installation).
 
 And also needs to be enabled in the `config/packages/shopware.yml` file:
 
@@ -492,243 +95,42 @@ shopware:
           - 'varnish-host'
 ```
 
-Varnish Config:
+<PageRef page="https://github.com/shopware/varnish-shopware/blob/main/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
 
-```txt
-vcl 4.0;
+Make sure to replace the `__XXX__` placeholders with your actual values.
 
-import std;
-import xkey;
+### Soft Purge vs Hard Purge
 
-# Specify your app nodes here. Use round-robin balancing to add more than one.
-backend default {
-    .host = "<app-host>";
-    .port = "80";
-}
+The default configuration Varnish uses Hard purges, so when you update a product, the page will be removed from the cache and the next request takes longer because the cache is empty. To avoid this, you can use Soft purges.
+Soft purge keeps the old page in case and serves it still to the clients and refreshes the cache in the background. This way the client gets **always** a cached page and the cache is updated in the background.
 
-# ACL for purgers IP. (This needs to contain app server ips)
-acl purgers {
-    "127.0.0.1";
-    "localhost";
-    "::1";
-}
+To enable soft purge, you need to change the varnish configuration.
 
-sub vcl_recv {
-    # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
-    unset req.http.Proxy;
-
-    #  Ignore query strings that are only necessary for the js on the client. Customize as needed.
-    if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
-        # see rfc3986#section-2.3 "Unreserved Characters" for regex
-        set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
-    }
-    set req.url = regsub(req.url, "(\?|\?&|&)$", "");
-
-    # Normalize query arguments
-    set req.url = std.querysort(req.url);
-
-    # Make sure that the client ip is forward to the client.
-    if (req.http.x-forwarded-for) {
-        set req.http.X-Forwarded-For = req.http.X-Forwarded-For + ", " + client.ip;
-    } else {
-        set req.http.X-Forwarded-For = client.ip;
-    }
-
-    # Handle PURGE
-    if (req.method == "PURGE") {
-        if (client.ip !~ purgers) {
-            return (synth(403, "Forbidden"));
-        }
-        if (req.http.xkey) {
-            set req.http.n-gone = xkey.purge(req.http.xkey);
-
-            # To enable soft-purge replace this line with the line above
-            #set req.http.n-gone = xkey.softpurge(req.http.xkey);
-
-            return (synth(200, "Invalidated "+req.http.n-gone+" objects"));
-        } else {
-            return (purge);
-        }
-    }
-
-    if (req.method == "BAN") {
-        if (!client.ip ~ purgers) {
-            return (synth(405, "Method not allowed"));
-        }
-
-        ban("req.url ~ "+req.url);
-        return (synth(200, "BAN URLs containing (" + req.url + ") done."));
-    }
-
-    # Normalize Accept-Encoding header
-    # straight from the manual: https://www.varnish-cache.org/docs/3.0/tutorial/vary.html
-    if (req.http.Accept-Encoding) {
-        if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
-            # No point in compressing these
-            unset req.http.Accept-Encoding;
-        } elsif (req.http.Accept-Encoding ~ "gzip") {
-            set req.http.Accept-Encoding = "gzip";
-        } elsif (req.http.Accept-Encoding ~ "deflate") {
-            set req.http.Accept-Encoding = "deflate";
-        } else {
-            # unknown algorithm
-            unset req.http.Accept-Encoding;
-        }
-    }
-
-    if (req.method != "GET" &&
-        req.method != "HEAD" &&
-        req.method != "PUT" &&
-        req.method != "POST" &&
-        req.method != "TRACE" &&
-        req.method != "OPTIONS" &&
-        req.method != "PATCH" &&
-        req.method != "DELETE") {
-        /* Non-RFC2616 or CONNECT which is weird. */
-        return (pipe);
-    }
-
-    # We only deal with GET and HEAD by default
-    if (req.method != "GET" && req.method != "HEAD") {
-        return (pass);
-    }
-
-    # Don't cache Authenticate & Authorization
-    if (req.http.Authenticate || req.http.Authorization) {
-        return (pass);
-    }
-
-    # Always pass these paths directly to php without caching
-    # Note: virtual URLs might bypass this rule (e.g. /en/checkout)
-    if (req.url ~ "^/(checkout|account|admin|api)(/.*)?$") {
-        return (pass);
-    }
-
-    return (hash);
-}
-
-sub vcl_hash {
-    # Consider Shopware HTTP cache cookies
-    if (req.http.cookie ~ "sw-cache-hash=") {
-        hash_data("+context=" + regsub(req.http.cookie, "^.*?sw-cache-hash=([^;]*);*.*$", "\1"));
-    } elseif (req.http.cookie ~ "sw-currency=") {
-        hash_data("+currency=" + regsub(req.http.cookie, "^.*?sw-currency=([^;]*);*.*$", "\1"));
-    }
-}
-
-sub vcl_hit {
-  # Consider client states for response headers
-  if (req.http.cookie ~ "sw-states=") {
-     set req.http.states = regsub(req.http.cookie, "^.*?sw-states=([^;]*);*.*$", "\1");
-
-     if (req.http.states ~ "logged-in" && obj.http.sw-invalidation-states ~ "logged-in" ) {
-        return (pass);
-     }
-
-     if (req.http.states ~ "cart-filled" && obj.http.sw-invalidation-states ~ "cart-filled" ) {
-        return (pass);
-     }
-  }
-}
-
-sub vcl_backend_response {
-    # Fix Vary Header in some cases
-    # https://www.varnish-cache.org/trac/wiki/VCLExampleFixupVary
-    if (beresp.http.Vary ~ "User-Agent") {
-        set beresp.http.Vary = regsub(beresp.http.Vary, ",? *User-Agent *", "");
-        set beresp.http.Vary = regsub(beresp.http.Vary, "^, *", "");
-        if (beresp.http.Vary == "") {
-            unset beresp.http.Vary;
-        }
-    }
-
-    # Respect the Cache-Control=private header from the backend
-    if (
-        beresp.http.Pragma        ~ "no-cache" ||
-        beresp.http.Cache-Control ~ "no-cache" ||
-        beresp.http.Cache-Control ~ "private"
-    ) {
-        set beresp.ttl = 0s;
-        set beresp.uncacheable = true;
-        return (deliver);
-    }
-
-    # strip the cookie before the image is inserted into cache.
-    if (bereq.url ~ "\.(png|gif|jpg|swf|css|js|webp)$") {
-        unset beresp.http.set-cookie;
-    }
-
-    # Allow items to be stale if needed.
-    set beresp.grace = 6h;
-
-    # Save the bereq.url so bans work efficiently
-    set beresp.http.x-url = bereq.url;
-
-    # Remove the exact PHP Version from the response for more security
-    unset beresp.http.x-powered-by;
-
-    return (deliver);
-}
-
-sub vcl_deliver {
-    ## we don't want the client to cache
-    set resp.http.Cache-Control = "max-age=0, private";
-
-    # remove link header, if session is already started to save client resources
-    if (req.http.cookie ~ "session-") {
-        unset resp.http.Link;
-    }
-
-    # Set a cache header to allow us to inspect the response headers during testing
-    if (obj.hits > 0) {
-        unset resp.http.set-cookie;
-        set resp.http.X-Cache = "HIT";
-    }  else {
-        set resp.http.X-Cache = "MISS";
-    }
-
-    # Remove the exact PHP Version from the response for more security (e.g. 404 pages)
-    unset resp.http.x-powered-by;
-
-    # invalidation headers are only for internal use
-    unset resp.http.sw-invalidation-states;
-    unset resp.http.xkey;
-
-    set resp.http.X-Cache-Hits = obj.hits;
-}
+```diff
+-set req.http.n-gone = xkey.purge(req.http.xkey);
++set req.http.n-gone = xkey.softpurge(req.http.xkey);
 ```
 
-### Disable the verification headers
+### Debugging
 
-The `X-Cache` and `X-Cache-Hits` headers are only meant to verify that Varnish is doing its job. You typically don't want to have those headers enabled in a production environment.
+The default configuration removes all headers except the `Age` header, which is used to determine the cache age. If you see only `0` as the `Age` header, it means that the cache is not working.
 
-To disable these headers, comment out the lines by prefixing them with the `#` character. The lines in question are:
+This problem is mostly caused as the application didn't set `Cache-Control: public` header. To check this you can use `curl` against the upstream server:
 
-```txt
-# Set a cache header to allow us to inspect the response headers during testing
-if (obj.hits > 0) {
-    unset resp.http.set-cookie;
-    set resp.http.X-Cache = "HIT";
-}  else {
-    set resp.http.X-Cache = "MISS";
-}
-
-set resp.http.X-Cache-Hits = obj.hits;
+```bash
+curl -vvv -H 'Host: <sales-channel-domain>' <app-server-ip> 1> /dev/null
 ```
 
-Make it so that the lines look like the following:
+and you should get a response like:
 
-```txt
-# Set a cache header to allow us to inspect the response headers during testing
-if (obj.hits > 0) {
-    unset resp.http.set-cookie;
-    #set resp.http.X-Cache = "HIT";
-}  else {
-    #set resp.http.X-Cache = "MISS";
-}
-
-#set resp.http.X-Cache-Hits = obj.hits;
+```text
+< HTTP/1.1 200 OK
+< Cache-Control: public, s-maxage=7200
+< Content-Type: text/html; charset=UTF-8
+< Xkey: theme.sw-logo-desktop, ...
 ```
+
+If you don't see the `Cache-Control: public` header or the `Xkey` header, you need to check the application configuration that you really have enabled the reverse proxy mode.
 
 For more details, please refer to the [Varnish documentation](https://www.varnish-software.com/developers/tutorials/logging-cache-hits-misses-varnish/) on logging cache hits and misses.
 
@@ -775,16 +177,26 @@ shopware:
 
 ### Fastly VCL Snippets
 
-Additionally, we need to set up some VCL Snippets in the Fastly interface:
+You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets and keep them up to date](../installation-updates//deployments/deployment-helper.md).
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
+For manual deployment, you can find the VCL Snippets here:
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.4/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
 
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"caead56ad257ecec0e10a62dd3121bb6"} -->
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.6/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
+
+### Cache Invalidations
+
+The Reverse Proxy Cache shares the same invalidation mechanism as the Object Cache and has the same tags. So, when a product is invalidated, the object cache and the HTTP cache will also be invalidated.
+
+::: warning
+`bin/console cache:clear` will also clear the HTTP cache. If this is not intended, you should manually delete the `var/cache` folder. The object cache can be cleared with `bin/console cache:pool:clear --all` explicitly.
+:::
+
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"3ae5bc3363521c72d05f4ecbb89b3505"} -->

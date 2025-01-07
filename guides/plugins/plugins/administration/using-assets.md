@@ -65,7 +65,7 @@ Note that [Vue filters](https://vuejs.org/v2/guide/filters.html) are no longer s
 
 Create a computed component to make them easy to use in your template.
 
-```js
+```javascript
 computed: {
     assetFilter() {
         return Shopware.Filter.getByName('asset');

@@ -17,7 +17,7 @@ The [Message bus](https://symfony.com/doc/current/components/messenger.html#bus)
 
 ### Middleware
 
-A [Middleware](https://symfony.com/doc/current/messenger.html#middleware) is called when the message bus dispatches messages. It defines what happens when you dispatch a message. For example, the `send\_message` middleware is responsible for sending your message to the configured [Transport](messaging#transport), and the `handle_message` middleware will actually call your handlers for the given message. You can add your own middleware by implementing the `MiddlewareInterface` and adding that middleware to the message bus through configuration.
+A [Middleware](https://symfony.com/doc/current/messenger.html#middleware) is called when the message bus dispatches messages. It defines what happens when you dispatch a message. For example, the `send_message` middleware is responsible for sending your message to the configured [Transport](messaging#transport), and the `handle_message` middleware will actually call your handlers for the given message. You can add your own middleware by implementing the `MiddlewareInterface` and adding that middleware to the message bus through configuration.
 
 ### Handler
 

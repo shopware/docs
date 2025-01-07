@@ -5,6 +5,7 @@ import * as path from "https://deno.land/std@0.145.0/path/mod.ts";
 const formattingPromises = [];
 for await (const entry of walk("./resources/guidelines/code/core")) {
 	if (entry.isDirectory) continue;
+	if (!entry.path.endsWith('.md')) continue;
 	if (path.basename(entry.path).startsWith('_')) continue;
 	if (path.basename(entry.path) === 'index.md') continue;
 	if (path.basename(entry.path) === 'README.md') continue;
@@ -14,6 +15,10 @@ for await (const entry of walk("./resources/guidelines/code/core")) {
 await Promise.allSettled(formattingPromises);
 
 function addHint(buffer, filePath) {
+	if (filePath.includes('/adr/assets/')) {
+		return buffer;
+	}
+
 	buffer += '\n';
 	buffer += '::: info\n';
 	buffer += 'This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.\n';

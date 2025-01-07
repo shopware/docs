@@ -38,7 +38,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -80,6 +80,10 @@ For a complete reference of the structure of the manifest file, take a look at t
 Only if your app backend server and Shopware need to communicate, it is necessary that registration is performed during the installation of your app. This process is called setup.
 :::
 
+::: warning
+Suppose your app makes use of the Admin Module, Payment Method, Tax providers or Webhook app system features. In that case, you need to implement the registration, in order to exchange a secret key, that is later used to authenticate the shops.
+:::
+
 During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
 During the setup process, your app backend will obtain credentials that can be used to authenticate against the Shopware API.
 Additionally, your app will provide a secret that Shopware will use to sign all further requests it makes to your app backend, allowing you to verify that the incoming requests originate from authenticated Shopware installations.
@@ -92,7 +96,7 @@ The setup workflow is shown in the following schema. Each step will be explained
 The timeout for the requests against the app server is 5 seconds.
 :::
 
-## SDK Integration
+### SDK Integration
 
 Integrating apps into your application can be a daunting task, but with our PHP SDK, the process becomes much easier. Our SDK simplifies the registration flow and other typical tasks.
 
@@ -295,7 +299,7 @@ Since version 6.4.12.0, your app can also request additional non-CRUD privileges
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration look like this:
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>

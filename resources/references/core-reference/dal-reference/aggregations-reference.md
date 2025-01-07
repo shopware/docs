@@ -808,6 +808,7 @@ Response
 Allows to aggregate data on a predefined range of values for more flexibility in the DAL - for example, it provides faceted filters on a predefined range.
 
 Bound are computed in SQL as in the Elasticsearch native range aggregation:
+
 * `from` will be compared with greater than or equal to
 * `to` will be compared with lower than
 

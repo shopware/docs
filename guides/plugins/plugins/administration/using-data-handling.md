@@ -702,6 +702,7 @@ Shopware.Component.register('swag-basic-example', {
 ```
 
 #### Working with entity extensions
+
 The following example shows how to pass on and save data of entity extensions.
 
 ```javascript{134,164}
