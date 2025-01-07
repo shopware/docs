@@ -31,7 +31,7 @@ You can use these commands to check your actual environment:
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
-  * `ext-amqp`
+  * `ext-amqp` (only required if you plan to use a message queue, which is the default on PaaS)
   * `ext-curl`
   * `ext-dom`
   * `ext-fileinfo`
