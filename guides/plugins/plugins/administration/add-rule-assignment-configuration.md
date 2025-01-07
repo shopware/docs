@@ -162,7 +162,7 @@ Let's go through the most important entries, how to configure your rule assignme
 If you want to provide to delete an assignment, you have to define the `deleteContext`. There are two types of the `deleteContext`.
 The first one is the `one-to-many` type, which link to a column of the assignment entity like this:
 
-```js
+```javascript
 // Example of a one-to-many deleteContext
 deleteContext: {
     type: 'one-to-many',
@@ -173,7 +173,7 @@ deleteContext: {
 
 The other type is `many-to-many`, which has to link to the `ManyToManyAssociationField` of the extension like this:
 
-```js
+```javascript
 // Example of a many-to-many deleteContext
 deleteContext: {
     type: 'many-to-many',
@@ -187,7 +187,7 @@ deleteContext: {
 If you want to provide to add an assignment, you have to define the `addContext`. This context has the same two types as the `deleteContext` (see above),
 but the `addContext` has more options to fill out, because an add assignment modal has to be configured:
 
-```js
+```javascript
 // Example of a one-to-many addContext
 addContext: {
     type: 'one-to-many',
@@ -241,7 +241,7 @@ Also, the context needs the `column` of the assignment and the `searchColumn` of
 
 A context of the `many-to-many` type would look like this:
 
-```js
+```javascript
 // Example of a many-to-many addContext
 addContext: {
     type: 'many-to-many',
