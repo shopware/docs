@@ -34,7 +34,6 @@ AdminWorker
 adr
 ADR
 ADRs
-add's
 Afile
 AfterLineItemAddedEvent
 AfterLineItemQuantityChangedEvent

@@ -15,7 +15,7 @@ The rule assignment configuration is available from Shopware Version 6.4.8.0
 
 You want to create a custom card in the rule assignment, where you can add or delete assignments? This guide gets you covered on this topic. Based on an example of the configuration of the `Dynamic Access` plugin, you will see how to write your configuration.
 
-![Rule config](../../../../assets/add-rule-assignment-configuration-0.png)
+![Rule config](../../../../../assets/add-rule-assignment-configuration-0.png)
 
 ## Prerequisites
 

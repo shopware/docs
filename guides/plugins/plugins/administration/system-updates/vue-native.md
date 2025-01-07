@@ -180,7 +180,7 @@ Shopware.Component.override('sw-text-field', {
 
 #### Extension new component
 
-The extension add's an additional component via `Shopware.Component.register`.
+The extension adds additional component via `Shopware.Component.register`.
 
 ```javascript
 Shopware.Component.register('your-crazy-ai-field', {
@@ -196,7 +196,7 @@ Shopware.Component.register('your-crazy-ai-field', {
 
 ### Shopware 6.8
 
-With Shopware 6.8 the core uses single file components with the composition api.
+With Shopware 6.8 the core uses single file components with the composition API.
 
 #### Core component
 
