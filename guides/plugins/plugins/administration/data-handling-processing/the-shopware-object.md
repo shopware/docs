@@ -80,7 +80,7 @@ TypeScript declarations are available from Shopware Version 6.4.4.0
 
 The Shopware Administration is written in pure JavaScript. To provide you with the benefits of TypeScript and the best possible developer experience while working in JavaScript files we're providing TypeScript declaration files within the Administration. These files are helping you to understand how the Shopware object works and what arguments you have to provide for example when you're creating a new module or registering a new component.
 
-![TypeScript declarations example](../../../../assets/typescript-declaration-shopware-module.gif)
+![TypeScript declarations example](../../../../../assets/typescript-declaration-shopware-module.gif)
 
 In the example above you can see how the TypeScript declarations are helping you to register a module. It automatically marks your code and points out what is missing.
 

@@ -435,6 +435,7 @@ dereferenced
 DESC
 describeFeatures
 destructuring
+destructure
 Deutsch
 dev
 devenv
@@ -694,6 +695,7 @@ herokuapp
 hideCookieBar
 hmac
 HMAC
+HMR
 Homebrew
 hono
 Hono
@@ -1065,6 +1067,7 @@ OTEL
 otlp
 OTLP
 oversales
+overrideComponentSetup
 paas
 Paas
 PaaS
@@ -1129,6 +1132,7 @@ PHPUnit
 phpunit's
 phpunitx
 PII
+Pinia
 pluginlogger
 PluginManager
 png
@@ -1159,6 +1163,7 @@ prem
 premapping
 Premapping
 PreparedPaymentHandlerInterface
+prepend
 preprocessor
 preprocessors
 preselect
@@ -1383,6 +1388,7 @@ setProductFixtureVisibility
 setSalesChannelDomain
 settingsItem
 setToInitialState
+SFC
 SFTP
 sha
 SHA
@@ -1583,6 +1589,7 @@ truthy
 tsx
 TTL
 TwigJS
+twigjs
 typeAndCheck
 typeAndCheckSearchField
 TypeError
@@ -1673,6 +1680,7 @@ viewportHeight
 viewports
 vimeo
 VirtualHosts
+Vite
 Vitepress
 Vitest
 VM
