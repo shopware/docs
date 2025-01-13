@@ -15,7 +15,7 @@ When working with an own plugin, the usage of own custom images or other assets 
 
 In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the Plugin base guide:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 Needless to say, you should have your image or another asset at hand to work with.
 

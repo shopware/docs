@@ -15,7 +15,7 @@ You want to create a new tab in the Administration? This guide gets you covered 
 
 This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our plugin base guide:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 In the course of this guide, you need to create a custom route. If you want to learn on how to create a custom component, please refer to the guide on it:
 
@@ -23,7 +23,7 @@ In the course of this guide, you need to create a custom route. If you want to l
 
 Also, we will use a small, custom component to fill our custom tab. In order to get used to that, it might come in handy to read the corresponding guide first:
 
-<PageRef page="add-custom-component" />
+<PageRef page="../module-component-management/add-custom-component" />
 
 ::: info
 
