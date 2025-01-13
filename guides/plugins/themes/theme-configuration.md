@@ -25,7 +25,7 @@ This guide is built upon the guide on creating a first theme:
 
 The theme configuration for a theme is located in the `theme.json` file `<plugin root>/src/Resources` folder. Open up the `<plugin root>/src/Resources/theme.json` file with your favorite code-editor. The configuration looks like this.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",
@@ -66,7 +66,7 @@ If you make changes or additions to the `theme.json` file, you must then execute
 
 Let's have a closer look at each section.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",
@@ -83,7 +83,7 @@ Here change the `name` of your theme and the `author`. The `description` section
 
 The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance) guide.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -98,7 +98,7 @@ The `views` section controls the template inheritance. This will be covered in t
 
 The `previewMedia` field provides a path `app/storefront/dist/assets/defaultThemePreview.jpg` to an image file that is relative to the root directory of the theme. It serves as a visual preview of the theme. This preview image is typically displayed within the Shopware administration interface or theme marketplace as a thumbnail or preview of the theme's appearance to give users an idea of how the theme will appear on their storefront before they activate it.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -109,7 +109,7 @@ The `previewMedia` field provides a path `app/storefront/dist/assets/defaultThem
 
 The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need. The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Bootstrap, you can implement your changes here. Checkout the [Override bootstrap variables in a theme](override-bootstrap-variables-in-a-theme) guide for further information.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -126,7 +126,7 @@ The `style` section determines the order of the CSS compilation. In the `<plugin
 
 The `asset` option you can configure your paths to your assets like images, fonts, etc. The standard location to put your assets to is the `<plugin root>/app/storefront/src/assets` folder. Checkout the [Add assets to theme](add-assets-to-theme) guide for further information.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -139,7 +139,7 @@ The `asset` option you can configure your paths to your assets like images, font
 
 If you need the assets from the default storefront theme for your custom theme, just add `@Storefront` as asset path
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -155,7 +155,7 @@ If you need the assets from the default storefront theme for your custom theme, 
 
 One of the benefits of creating a theme is that you can overwrite the theme configuration of the default theme or add your own configurations.
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ... 
@@ -202,7 +202,7 @@ You can use different field types in your theme manager:
 
 A text field example:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -224,7 +224,7 @@ A text field example:
 
 A number field example:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -251,7 +251,7 @@ A number field example:
 
 Two boolean field examples:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -273,7 +273,7 @@ Two boolean field examples:
 
 or
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
@@ -297,7 +297,7 @@ or
 
 A custom single-select field example
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "Just another theme",
@@ -388,7 +388,7 @@ A custom single-select field example
 
 A custom multi-select field example
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "Just another theme",
@@ -495,7 +495,7 @@ You can use tabs, blocks and sections to structure and group the config options.
 
 In the picture above are four tabs. In the "Colours" tab there is one block "Theme colours" which contains two sections named "Important colors" and "Other". You can define the block and section individually for each item. Example:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "Just another theme",
@@ -524,7 +524,7 @@ The tab and section property is not required.
 
 You can extend the config to add translated labels for the tabs, blocks and sections:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "Just another theme",
@@ -577,7 +577,7 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 
 The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration and snippets. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...

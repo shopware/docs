@@ -182,7 +182,7 @@ You've defined the error key to be `custom-line-item-blocked` in your custom err
 
 Now let's have a look at an example snippet file:
 
-```js
+```javascript
 // <plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json
 {
     "checkout": {

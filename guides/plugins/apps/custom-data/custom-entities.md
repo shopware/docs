@@ -67,7 +67,7 @@ To enable the usage of custom fields, the `custom-fields-aware` setting should b
 
 Now you will find your entity in the "Entity Type" select when creating a custom field of type "Entity Select". Without a snippet label for the entity, it will display as `custom_entity_bundle.label`. You can create a snippet to add a label like so:
 
-```js
+```javascript
 // Resources/app/administration/snippet/en-GB.json
 {
   "custom_entity_bundle": {

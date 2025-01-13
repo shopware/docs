@@ -24,6 +24,7 @@ Prerequisites:
 * Having a Shopware PaaS account (Select Register now on the authentication form when accessing <https://console.shopware.com>)
 * Having the project_id of an empty project created on Shopware PaaS
 * Having the Shopware PaaS CLI installed, see <https://developer.shopware.com/docs/products/paas/cli-setup.html>
+* Having PHP ext-amqp installed (PaaS uses RabbitMQ instead of the regular DB to manage messages)
 :::
 
 Steps:

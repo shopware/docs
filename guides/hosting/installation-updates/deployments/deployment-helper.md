@@ -70,7 +70,7 @@ deployment:
       # the key is the extension name (app or plugin)
       MyPlugin:
         # Same as exclude
-        state: ignored
+        state: ignore
 
       AnotherPlugin:
         # This plugin can be installed, but should be inactive
