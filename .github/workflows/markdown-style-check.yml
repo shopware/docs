@@ -13,6 +13,13 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v4
 
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: "~1.32"
+    
+    - name: Check broken PageRef links
+      run: deno run --allow-read .github/scripts/broken-pageref.js
+
     - name: Lint all files
       uses: docker://avtodev/markdown-lint:v1.5
       with:
