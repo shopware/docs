@@ -57,7 +57,7 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-Link: [Differentiator cluster for Shopware extensions](https://developer.shopware.com/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+Link: [Differentiator cluster for Shopware extensions](../../../../../resources/guidelines/testing/Differentiator-Clusters.md)
 
 Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
@@ -257,9 +257,9 @@ This allows other developers to review and understand the code in its original, 
 
 Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation.
 
-Link: [Loading the JS files](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
+[Loading the JS files](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files)
 
-Link: [Injecting into the Administration](https://developer.shopware.com/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
+[Injecting into the Administration](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration)
 
 Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.
 For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
@@ -304,7 +304,7 @@ Use your own classes and let your CSS be compiled by the plugin.
 
 Please avoid using the `!important` rule whenever possible.
 
-[Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
+[Add SCSS variables](../../../../../guides/plugins/plugins/storefront/add-scss-variables.md#add-scss-variables)
 
 ### New controller URLs / XHR requests
 
@@ -341,7 +341,7 @@ This info could be placed as a tooltip near the font settings of the app configu
 ### Register your cookie to the Cookie Consent Manager
 
 We expect every cookie set from the store URL to be optional and not technically required for running shopware.
-Therefore, the cookies had to be [registered in our Cookie Consent Manager](/docs/guides/plugins/plugins/storefront/add-cookie-to-manager).
+Therefore, the cookies had to be [registered in our Cookie Consent Manager](../../../../../guides/plugins/plugins/storefront/add-cookie-to-manager).
 
 We differentiate between "Technically required", "Marketing" and "Comfort features".
 All cookies must appear (unchecked) in the cookie configuration box in the frontend.
@@ -370,12 +370,12 @@ If the API data is incorrect, an entry must appear in the event log file in the 
 
 ### Shopping experiences
 
-[Shopping worlds elements](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html#elements) must include an element icon.
+[Shopping worlds elements](../../../../../concepts/commerce/content/shopping-experiences-cms.md#elements) must include an element icon.
 If the app is deleted, *Shopping Worlds* should work flawlessly in the frontend.
 
 ### Themes
 
-[Themes](https://developer.shopware.com/docs/guides/plugins/themes/) must include its own preview image.
+[Themes](../../../../../guides/plugins/themes/) must include its own preview image.
 
 ### External technology/ Shopware Technology Partner (STP) apps
 
@@ -419,7 +419,7 @@ The following statements will be blocked as of 1st Oct. 2022:
 There are Cypress tests for Shopware 6 on GitHub.
 The project is driven by the *Friends of Shopware* group. You can contribute at any time:
 
-* Link: [Developer Documentation Cypress Tests for Shopware 6](/docs/guides/plugins/plugins/testing/end-to-end-testing)
+* Link: [Developer Documentation Cypress Tests for Shopware 6](../../../../../guides/plugins/plugins/testing/end-to-end-testing)
 * Link: [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources)
 
 ### Helpful tools for app developers
