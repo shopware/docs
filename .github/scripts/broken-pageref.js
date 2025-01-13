@@ -1,7 +1,7 @@
 // deno run --allow-read .github/scripts/broken-pageref.js
 
-import { resolve, dirname, fromFileUrl } from "https://deno.land/std@0.123.0/path/mod.ts";
-import { walk } from "https://deno.land/std@0.123.0/fs/mod.ts";
+import { resolve, dirname, fromFileUrl } from "https://deno.land/std/path/mod.ts";
+import { walk } from "https://deno.land/std/fs/mod.ts";
 
 const rootDir = resolve(Deno.cwd());
 
@@ -37,7 +37,7 @@ async function findBrokenLinks() {
         const resolvedPath = resolve(dirname(entry.path), relativePath);
 
         try {
-          await Deno.stat(resolvedPath); // Check if the file exists
+          await Deno.stat(resolvedPath);
         } catch {
           brokenLinks.push({ file: entry.path, relativePath, resolvedPath });
         }
