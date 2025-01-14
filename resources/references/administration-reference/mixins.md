@@ -17,7 +17,7 @@ Also take a look at [how to use them in your plugin](../../../guides/plugins/plu
 | :--- | :--- | :--- |
 | `discard-detail-page-changes` | Mixin which resets entity changes on page leave or if the id of the entity changes. This also affects changes in associations of the entity | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/discard-detail-page-changes.mixin.ts) |
 | `form-field` | This mixin is used to provide common functionality between form fields | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/form-field.mixin.ts) |
-| `generic-condition` | placeholder | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/generic-condition.mixin.ts) |
+| `generic-condition` |  | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/generic-condition.mixin.ts) |
 | `listing` | Mixin which is used in almost all listing pages to for example keep track of the current page of the administration | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/listing.mixin.ts) |
 | `notification` | This mixin is used to create notifications in the administrations more easily | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/notification.mixin.ts) |
 | `placeholder` | Provides a function to localize placeholders | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/placeholder.mixin.ts) |
@@ -26,5 +26,5 @@ Also take a look at [how to use them in your plugin](../../../guides/plugins/plu
 | `rule-container` | Provides common functions between the `sw-condition-or-container` and the `sw-condition-and-container` | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/rule-container.mixin.ts) |
 | `salutation` | A common adapter for the `salutation` filter | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/salutation.mixin.ts) |
 | `sw-inline-snippet` | Makes it possible to use snippets inline | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/sw-inline-snippet.mixin.ts) |
-| `user-settings` | placeholder | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/form-field.mixin.ts) |
+| `user-settings` |  | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/form-field.mixin.ts) |
 | `validation` | Is used to validate inputs in various form fields | [link](https://github.com/shopware/shopware/blob/v6.6.9.0/src/Administration/Resources/app/administration/src/app/mixin/validation.mixin.ts) |
