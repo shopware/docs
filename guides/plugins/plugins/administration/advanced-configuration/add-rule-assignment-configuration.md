@@ -22,7 +22,7 @@ You want to create a custom card in the rule assignment, where you can add or de
 This guide **does not** explain how to create a new plugin for Shopware 6.
 Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 ## Creating the index.js file
 
