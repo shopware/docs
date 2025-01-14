@@ -114,7 +114,7 @@ A component's template is being defined by using the `template` property. For th
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
-export default Shopware.Component.wrapComponentConfig('hello-world', {
+export default Shopware.Component.wrapComponentConfig({
     template: '<h2>Hello world!</h2>'
 });
 ```
