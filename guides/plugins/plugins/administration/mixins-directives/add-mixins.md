@@ -69,3 +69,9 @@ Component.register('swag-basic-example', {
 ```
 
 This can also be done with Shopware provided mixins, learn more about them here: [Using Mixins](using-mixins)
+
+## More interesting topics
+
+* [Adding filters](../services-utilities/add-filter.md)
+* [Using utility functions](../services-utilities/using-utils.md)
+
