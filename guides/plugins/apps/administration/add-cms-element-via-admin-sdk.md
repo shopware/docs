@@ -51,7 +51,7 @@ When our extension is finished, you will get the following file structure:
 
 Everything starts in the `main.ts` file:
 
-```js
+```javascript
 import 'regenerator-runtime/runtime';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
@@ -88,7 +88,7 @@ Observe that every file is named according to the component and prefixed with `s
 
 Let us see how the component loading via `viewRenderer.ts` looks like:
 
-```js
+```javascript
 import Vue from 'vue';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
@@ -135,7 +135,7 @@ Those will be available after **registering the component**, which we will do in
 
 For this topic we head to `mainCommands.ts`, since the registration of CMS elements is something to be done in a global scope.
 
-```js
+```javascript
 import { cms } from '@shopware-ag/meteor-admin-sdk';
 
 const CMS_ELEMENT_NAME = 'swag-dailymotion';
@@ -181,7 +181,7 @@ You can vary the structure of `swag-dailymotion`'s contents and create folders f
 
 Let's go through each of the files to talk about it's contents, starting with `swag-dailymotion-config.ts`:
 
-```js
+```javascript
 import Vue from 'vue'
 import { data } from "@shopware-ag/meteor-admin-sdk";
 import CONSTANTS from "../../base/mainCommands";
@@ -247,7 +247,7 @@ With these small additions to typical CMS element behavior, you have already don
 
 Now let's have a look at the result of `swag-dailymotion-element.ts`:
 
-```js
+```javascript
 import Vue from 'vue'
 import { data } from "@shopware-ag/meteor-admin-sdk";
 import CONSTANTS from "../../base/mainCommands";
@@ -311,7 +311,7 @@ It initially fetches the `element` data, as you've already seen it in the config
 
 Lastly, have a look at `swag-dailymotion-preview.ts`. In most cases, not much logic is to be found here, since this is the preview loaded when choosing a CMS element for your block. It makes sense to show an example preview, a miniature skeleton of the result, or just the Dailymotion logo. Therefore, the following code will suffice for your example extension:
 
-```js
+```javascript
 import Vue from 'vue'
 
 export default Vue.extend({

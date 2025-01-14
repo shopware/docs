@@ -259,6 +259,12 @@ Dependabot
 DependencyInjection
 Deployer
 Deprecations
+dereference
+dereferenced
+DESC
+describeFeatures
+destructuring
+destructure
 Deutsch
 DevOps
 Devenv
@@ -1254,6 +1260,9 @@ helpText
 herokuapp
 hideCookieBar
 hmac
+HMAC
+HMR
+Homebrew
 hono
 hosters
 hostname
@@ -1424,6 +1433,7 @@ org's
 otel
 otlp
 oversales
+overrideComponentSetup
 paas
 packagist
 pageLoaders
@@ -1451,6 +1461,8 @@ phpstan
 phpunit
 phpunit's
 phpunitx
+PII
+Pinia
 pluginlogger
 png
 pnpm
@@ -1468,6 +1480,9 @@ preload
 preloaded
 prem
 premapping
+Premapping
+PreparedPaymentHandlerInterface
+prepend
 preprocessor
 preprocessors
 preselect
@@ -1574,7 +1589,8 @@ setLocaleToEnGb
 setProductFixtureVisibility
 setSalesChannelDomain
 setToInitialState
-settingsItem
+SFC
+SFTP
 sha
 shakable
 shallowMount
@@ -1671,6 +1687,9 @@ transpiling
 triggerDeprecated
 truthy
 tsx
+TTL
+TwigJS
+twigjs
 typeAndCheck
 typeAndCheckSearchField
 typeLegacySelectAndCheck
@@ -1718,6 +1737,11 @@ viewport
 viewportHeight
 viewports
 vimeo
+VirtualHosts
+Vite
+Vitepress
+Vitest
+VM
 vscode
 vue
 vuex

@@ -35,12 +35,16 @@ shopware:
 
 ### Delayed invalidation
 
-A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
 
 ::: warning
 If you enable delayed cache invalidation, you must set up a worker to run [Scheduled Tasks](../infrastructure/scheduled-task), e.g., using the [Message Queue](../infrastructure/message-queue).
 :::
+
+There are two possible storages/adapters for delayed cache invalidation: Redis and MySQL. Redis is preferred since it handles retrieving and deleting keys in an atomic manner. MySQL also supports it, but it's more complicated, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
+
+Redis:
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -53,12 +57,25 @@ shopware:
                 connection: 'ephemeral' # connection name from redis configuration
 ```
 
+MySQL:
+
+```yaml
+# config/packages/prod/shopware.yaml
+shopware:
+    cache:
+        invalidation:
+            delay: 1 # 0 = disabled, 1 = enabled
+            delay_options:
+                storage: mysql
+```
+
 ## MySQL configuration
 
 Shopware sets some MySQL configuration variables on each request to ensure it works in any environment. You can disable this behavior if you have correctly configured your MySQL server.
 
 - Make sure that `group_concat_max_len` is by default higher or equal to `320000`
 - Make sure that `sql_mode` doesn't contain `ONLY_FULL_GROUP_BY`
+- Make sure that `time_zone` is set to UTC (`default-time-zone='+00:00'` in `my.cnf`)
 and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 ## SQL is faster than DAL

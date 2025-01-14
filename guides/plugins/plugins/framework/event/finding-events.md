@@ -111,6 +111,7 @@ Use one of the following search terms:
 
 - `extends NestedEvent`: This way you will find the events themselves.
 - `extends Event`: This way you will find the events themselves.
+- `implements ShopwareEvent`: This way you will find the events themselves.
 - `->dispatch`: Here you will find all the occurrences where the events are actually being fired.
 
 ### Looking at the service definition
@@ -200,6 +201,39 @@ Finding those events can be done by searching for the term `CriteriaEvent`.
 ::: info
 Those "criteria events" are not generated automatically and therefore it is not guaranteed to exist for a given entity.
 :::
+
+#### Route Events
+
+Symfony provides some general [kernel level routing events](https://symfony.com/doc/current/reference/events.html#kernel-events), e.g `kernel.request` or `kernel.response`.
+However, those events are thrown on every route, so it's too generic when you only want to react on a specific route.
+Therefore, we have added fine-grained route events that are thrown for every route:
+| Event name | Scope | Event Type | Description |
+|------------|-------|------------|-------------|
+| `{route}.request` | Global | `Symfony\Component\HttpKernel\Event\RequestEvent` | Route specific alias for symfony's `kernel.request` event. |
+| `{route}.response` | Global | `Symfony\Component\HttpKernel\Event\ResponseEvent` | Route specific alias for symfony's `kernel.response` event. For storefront routes this contains the already rendered template, for store-api routes this contains the already encoded JSON |
+| `{route}.render` | Storefront | `Shopware\Storefront\Event\StorefrontRenderEvent` | Thrown before twig rendering in the storefront. |
+| `{route}.encode` | Store-API | `Symfony\Component\HttpKernel\Event\ResponseEvent` | Thrown before encoding the API response to JSON, allowing easy manipulation of the returned data. **Note:** This was only introduced in 6.6.11.0 |
+| `{route}.controller` | Global | `\Symfony\Component\HttpKernel\Event\ControllerEvent` | Route specific alias for symfony's `kernel.controller` event. **Note:** This was only introduced in 6.6.11.0 |
+
+To subscribe to a specific event, replace the `{route}` placeholder with the [actual symfony route name](https://symfony.com/doc/current/routing.html), e.g. `store-api.product.listing`.
+
+```php
+public static function getSubscribedEvents(): array
+{
+    return [
+        'store-api.product.listing.request' => 'onListingRequest',
+        'store-api.product.listing.encode' => 'onListingEncode'
+    ];
+}
+
+public function onListingRequest(RequestEvent $event): void
+{
+}
+
+public function onListingEncode(ResponseEvent $event): void
+{
+}
+```
 
 #### Business events
 
