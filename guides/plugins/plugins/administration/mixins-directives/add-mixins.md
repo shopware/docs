@@ -74,4 +74,3 @@ This can also be done with Shopware provided mixins, learn more about them here:
 
 * [Adding filters](../services-utilities/add-filter.md)
 * [Using utility functions](../services-utilities/using-utils.md)
-
