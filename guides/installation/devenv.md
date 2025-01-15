@@ -579,6 +579,26 @@ Here is an example to use a specific mysql version.
 }
 ```
 
+And another example to use a specific version of rabbitmq-server
+
+```nix
+{
+  services.rabbitmq = let
+    rabbitmq3137 = pkgs.rabbitmq-server.overrideAttrs (oldAttrs: {
+      version = "3.13.7";
+      src = pkgs.fetchurl {
+        url = "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.7/rabbitmq-server-3.13.7.tar.xz";
+        sha256 = "sha256-GDUyYudwhQSLrFXO21W3fwmH2tl2STF9gSuZsb3GZh0=";
+      };
+    });
+  in
+  {
+    enable = true;
+    package = rabbitmq3137; # use the overridden package
+  };
+}
+```
+
 ## Known issues
 
 ### Manually reloading devenv
