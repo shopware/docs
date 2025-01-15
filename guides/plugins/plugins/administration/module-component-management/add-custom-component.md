@@ -153,8 +153,8 @@ This is a [shorthand](https://eslint.org/docs/latest/rules/object-shorthand), wh
 
 You've now added a custom component, including a little template. However, there's more to discover here.
 
-* [More about templates](writing-templates)
-* [Add some styling to your component](add-custom-styles)
-* [Use shortcuts for your component](add-shortcuts)
+* [More about templates](../templates-styling/writing-templates.md)
+* [Add some styling to your component](../templates-styling/add-custom-styles.md)
+* [Use shortcuts for your component](../advanced-configuration/add-shortcuts.md)
 
-Furthermore, what about [customizing other components](customizing-components), instead of creating new ones?
+Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones?

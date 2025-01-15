@@ -21,7 +21,7 @@ In addition, you need to have a basic knowledge of CSS and SCSS in order to use 
 
 ### Example: Custom cms block
 
-We will base our guide on an example: Let's use a custom component printing out "Hello world!". So first of all, create a new directory for your`sw-hello-world`. As said before, more information about that topic, such as where to create this directory, can be found in [Add a custom component](../module-component-management/add-custom-component).
+We will base our guide on an example: Let's use a custom component printing out "Hello world!". So first of all, create a new directory for your`sw-hello-world`. As said before, more information about that topic, such as where to create this directory, can be found in [Add a custom component](../module-component-management/add-custom-component.md).
 
 In your component's directory, create a new `index.js` file and register your custom component `sw-hello-world`:
 
@@ -95,5 +95,5 @@ Because of [Sass](https://sass-lang.com/) usage, you are able to import external
 
 ## More interesting topics
 
-* [Writing templates](writing-templates)
+* [Writing templates](../templates-styling/writing-templates.md)
 * [Add shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)
