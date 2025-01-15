@@ -162,7 +162,7 @@ E.g.: Fetch all products, whose name is `Example product`, but also return the t
 In that case, you can just use the `addPostFilter` instead of `addFilter`:
 
 ```php
-public function readData(): void
+public function readData(Context $context): void
 {
     $criteria = new Criteria();
     $criteria->addPostFilter(new EqualsFilter('name', 'Example name'));
