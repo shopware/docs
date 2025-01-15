@@ -57,7 +57,7 @@ Hence, we check for a functional comparison with other apps already in the Shopw
 If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
 If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
 
-[Differentiator cluster for Shopware extensions](/docs/resources/guidelines/testing/Differentiator-Clusters.html)
+[Differentiator cluster for Shopware extensions](../../../../../resources/guidelines/testing/Differentiator-Clusters.md)
 
 [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
@@ -236,9 +236,9 @@ This allows other developers to review and understand the code in its original, 
 
 Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation.
 
-[Loading the JS files](/docs/guides/plugins/plugins/administration/add-custom-field.html#loading-the-js-files)
+[Loading the JS files](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files)
 
-[Injecting into the Administration](/docs/guides/plugins/plugins/administration/add-custom-field.html#injecting-into-the-administration)
+[Injecting into the Administration](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration)
 
 Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.
 For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
@@ -283,7 +283,7 @@ Use your own classes and let your CSS be compiled by the app.
 
 Please avoid using the `!important` rule whenever possible.
 
-[Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables)
+[Add SCSS variables](../../../../../guides/plugins/plugins/storefront/add-scss-variables.md#add-scss-variables)
 
 ### New controller URLs / XHR requests
 
@@ -320,7 +320,7 @@ This info could be placed as a tooltip near the font settings of the app configu
 ### Register your cookie to the Cookie Consent Manager
 
 We expect every cookie set from the store URL to be optional and not technically required for running shopware.
-Therefore, the cookies had to be [registered in our Cookie Consent Manager](/docs/guides/plugins/apps/storefront/cookies-with-apps.html).
+Therefore, the cookies had to be [registered in our Cookie Consent Manager](../../../../../guides/plugins/apps/storefront/cookies-with-apps.md).
 
 We differentiate between "Technically required", ,"Marketing" and "Comfort features".
 All cookies must appear (unchecked) in the cookie configuration box in the frontend.
@@ -339,12 +339,12 @@ If you use your own media folder, keep in mind that the folder and the included 
 
 ### Shopping experiences
 
-[Shopping worlds elements](/docs/concepts/commerce/content/shopping-experiences-cms.html#elements) must include an element icon.
+[Shopping worlds elements](../../../../../concepts/commerce/content/shopping-experiences-cms.md#elements) must include an element icon.
 If the app is deleted, *Shopping Worlds* should work flawlessly in the frontend.
 
 ### Themes
 
-[Themes](/docs/guides/plugins/themes/) must include its own preview image.
+[Themes](../../../../../guides/plugins/themes/) must include its own preview image.
 
 ### External technology/ Shopware Technology Partner (STP) apps
 
@@ -399,7 +399,7 @@ The technical app name must be stored in the first part of manifest.xml.
 Most of the errors are caused by the wrong technical name.
 For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
-[Example of a valid manifest.xml](https://developer.shopware.com/docs/resources/references/app-reference/manifest-reference.html#manifest-reference)
+[Example of a valid manifest.xml](../../../../../resources/references/app-reference/manifest-reference.md#manifest-reference)
 
 ### Ensure cross-domain messages are sent to the intended domain
 
