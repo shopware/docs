@@ -136,4 +136,4 @@ The component below displays the previously mapped state `content` in a `div` an
 
 ## More interesting topics
 
-* [The Shopware object](./the-shopware-object.md).
+* [The Shopware object](./the-shopware-object.md)

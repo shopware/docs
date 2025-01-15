@@ -52,5 +52,5 @@ You can find a detailed example in the [Add tab to existing module](../routing-n
 
 ## More interesting topics
 
-* [Customizing components](../module-component-management/customizing-components.md) .
+* [Customizing components](../module-component-management/customizing-components.md)
 * [Adding a route](../routing-navigation/add-custom-route.md)
