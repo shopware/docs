@@ -61,5 +61,5 @@ Vue is used to link the data and the DOM in order to make them reactive. Learn a
 
 ## More interesting topics
 
-* [Add custom styling](add-custom-styles)
+* [Add custom styling](../templates-styling/add-custom-styles.md)
 * [Adding shortcuts](./add-shortcuts.md)

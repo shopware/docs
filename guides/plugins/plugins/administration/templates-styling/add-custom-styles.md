@@ -95,5 +95,5 @@ Because of [Sass](https://sass-lang.com/) usage, you are able to import external
 
 ## More interesting topics
 
-* [Writing templates](writing-templates)
+* [Writing templates](../templates-styling/writing-templates.md)
 * [Add shortcuts](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/add-shortcuts.md)

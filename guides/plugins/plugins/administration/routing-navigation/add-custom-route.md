@@ -36,7 +36,7 @@ routes: {
 
 Routes can be matched by name and path. This configuration results in this route's full name being `custom.module.overview` and the URL being `/custom/module/overview` relative to the Administration's default URL. The routes full name is a combination of the module's id and the name of the item inside the `routes` object. In this case the module's id is `custom-module` (Notice that all dashes are automatically replaced by dots in the final route name).
 
-Usually you want to render your custom component here, which is explained [here](add-custom-component). But that is not all! Routes can have parameters, to then be handed to the components being rendered and much more. Learn more about what the Vue Router can do in its official [Documentation](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes).
+Usually you want to render your custom component here, which is explained [here](../module-component-management/add-custom-component.md). But that is not all! Routes can have parameters, to then be handed to the components being rendered and much more. Learn more about what the Vue Router can do in its official [Documentation](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes).
 
 ## Meta data and dynamic parameters
 
@@ -90,6 +90,6 @@ The `bundle-name` is separated by dots instead of dashes here though. The second
 
 ## More interesting topics
 
-* [Adding a custom service](add-custom-service)
-* [Customizing a module](customizing-modules)
-* [Adding permissions](add-acl-rules)
+* [Adding a custom service](../services-utilities/add-custom-service.md)
+* [Customizing a module](../module-component-management/customizing-modules.md)
+* [Adding permissions](../permissions-error-handling/add-acl-rules.md)
