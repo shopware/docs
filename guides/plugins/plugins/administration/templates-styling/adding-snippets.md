@@ -61,7 +61,7 @@ Component.register('my-custom-page', {
 });
 ```
 
-Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../resources/references/upgrades/administration/vue3))
+Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../../resources/references/upgrades/administration/vue3.md))
 
 ## Using the snippets in templates
 
