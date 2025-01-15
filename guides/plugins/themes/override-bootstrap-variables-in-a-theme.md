@@ -29,7 +29,7 @@ To be able to override Bootstrap variables there is an additional SCSS entry poi
 
 This entry point is called `overrides.scss`:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",

@@ -27,7 +27,7 @@ To set up the inheritance we need to edit the theme configuration file called `t
 
 The content of the `theme.json` file looks like this:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",
@@ -59,7 +59,7 @@ Now it is easy to see how we can inherit from our base theme `SwagBasicExampleTh
 
 Here is an example:
 
-```js
+```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",

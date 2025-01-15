@@ -17,7 +17,7 @@ Whenever additional logic is added to Shopware, the method of the corresponding 
 
 Using plugins, you can add custom routes to the Store API \(as well as any other routes\) and also register custom services. We don't force developers to provide API coverage for their functionalities. However, if you want to support headless applications, ensure that your plugin provides its functionalities through dedicated routes.
 
-<PageRef page="../../guides/plugins/plugins/framework/store-api" />
+<PageRef page="../../guides/plugins/plugins/framework/store-api/" />
 
 ## What next?
 

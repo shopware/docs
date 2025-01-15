@@ -28,7 +28,7 @@ The following example represents the most minimal configuration for a shipping m
 Ensure that the `<identifier>` of your shipping method remains unchanged, as Shopware will deactivate or delete shipping methods that do no longer appear in the manifest during app updates.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -91,7 +91,7 @@ The following values are possible units
 * year
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -129,7 +129,7 @@ The functionality offers more than one identifier name. The following examples r
 * Shipping method active (expects true or false). Default value is `false`
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -174,7 +174,7 @@ Please note that the manifest cannot modify the description once you install the
 :::
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -217,7 +217,7 @@ Please note that the manifest cannot modify the icon once you install the app, a
 :::
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -247,7 +247,7 @@ You can activate the shipping method by default. Possible values for active are 
 * false: Deactivates the shipping method. Alternatively, you can leave out active
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -274,7 +274,7 @@ You can activate the shipping method by default. Possible values for active are 
 It is possible to add a tracking URL for customers to monitor the delivery status.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -301,7 +301,7 @@ It is possible to add a tracking URL for customers to monitor the delivery statu
 Here, you can set the display order of the shipping methods in the checkout. If you omit the tag, the position of the shipping method is 1 by default.
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

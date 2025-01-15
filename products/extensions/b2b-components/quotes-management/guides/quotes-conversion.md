@@ -13,7 +13,7 @@ Customers can convert their shopping carts into quotes to facilitate seamless pr
 
 When a customer wants to request a quote for their shopping cart, the process involves converting a cart to an order and then proceeding to enrich the data for the quote. The method `convertToQuote` of class `Shopware\Commercial\B2B\QuoteManagement\Domain\CartToQuote\CartToQuoteConverter` is responsible for this process.
 
-```PHP
+```php
 use Shopware\Core\Checkout\Cart\Order\OrderConversionContext;
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\Order\OrderConverter;
@@ -36,7 +36,7 @@ public function convertToQuote(Cart $cart, SalesChannelContext $context, OrderCo
 
 When a customer wants to place an order based on a quote, a new cart is created based on the quote data. The method `convertToCart` of class `Shopware\Commercial\B2B\QuoteManagement\Domain\QuoteToCart\QuoteToCartConverter` is responsible for this process.
 
-```PHP
+```php
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;

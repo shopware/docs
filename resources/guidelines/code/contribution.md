@@ -25,7 +25,11 @@ To avoid your pull request getting rejected, you should always check that you pr
 * Check if your implementation is missing some important parts - For example, translations, backwards compatibility etc.
 * Provide the necessary tests for your implementation.
 * Check if there is already an existing pull request tackling the same issue.
-* Write your commit messages in English, have them short and descriptive, and squash your commits meaningfully.
+* Write your commit messages in English. The individual commit messages in the PR are not critical since the PR will be squashed on merge. However, ensure your **Pull Request title** follows the [Conventional Commits](https://www.conventionalcommits.org/) format, as this will become the final commit message.
+  * Example PR titles:
+    * `feat: Add new product import API`
+    * `fix: Resolve cart calculation issue`
+    * `docs: Update installation instructions`
 
 ::: danger
 Pull requests which do not fulfill these requirements will never be accepted by our team. To avoid your changes going through unnecessary workflow cycles, make sure to check this list with every pull request.
@@ -33,7 +37,29 @@ Pull requests which do not fulfill these requirements will never be accepted by 
 
 ## The developing workflow on GitHub
 
-When you create a new pull request on GitHub, it will normally get the first sight within a week. We do regular meetings to screen all new pull requests on GitHub. In this meeting, there is a team of Shopware developers of different specializations who will discuss your changes. Together we decide what will happen next to your pull request. We will set one of the following labels, which indicates the status of the pull request. Here is a list of all possible states:
+When you create a new pull request on GitHub, please ensure:
+
+1. Your PR title follows the **Conventional Commits** format as it will become the squashed commit message
+2. You've provided all necessary information in the PR description
+3. Your changes are complete and tested
+
+You are responsible for maintaining and updating your pull request. This includes:
+
+* Responding to review comments in a timely manner
+* Updating the code according to review feedback
+* Keeping the PR up to date with the target branch if conflicts arise
+* Making sure that all pipeline checks succeed on your PR
+  * We only have one required job called `check`. The job just makes sure that all integration tests are passing. It uses the action [`re-actors/alls-green`](https://github.com/re-actors/alls-green)
+
+::: tip
+Once your PR is public, avoid rebasing or force-pushing to the branch. Adding new commits makes it easier for reviewers to track changes and see what was updated in response to feedback. The PR will be automatically squashed when merged.
+:::
+
+::: warning
+Pull requests that become stale (no activity from the author for 2 weeks after a review or request for changes) will be closed. You can always reopen the pull request when you're ready to continue working on it.
+:::
+
+Your PR will normally get the first review within a week. We do regular meetings to screen all new pull requests on GitHub. In this meeting, a team of Shopware developers with different specializations will discuss your changes. Together, we decide what will happen next to your pull request. We will set one of the following labels, which indicates the pull request's status. Here is a list of all possible states:
 
 |                                  GitHub Label / Tag                                  | What does it mean? |
 |:------------------------------------------------------------------------------------:| :--- |
@@ -46,12 +72,8 @@ When you create a new pull request on GitHub, it will normally get the first sig
 
 ## What happens after a pull request has been created
 
-Everyday weekdays, we assign the pull request to an Area (team) which is responsible for the specific part of the Shopware software. The Area will then review your pull request and decide what to do next.
-The Area can either accept your pull request, decline it, or ask you to update it with more information or changes.
-
-The next step is that the pull request gets a "Scheduled" label.
-This means that your pull request is now imported into our internal ticket system and will go through our internal workflow.
-You will find a comment containing the GitHub Issue to follow the process.
+Everyday weekdays, we assign the pull request to a Domain (team) which is responsible for the specific part of the Shopware software. The Area will then review your pull request and decide what to do next.
+The team can either accept your pull request, decline it, or ask you to update it with more information or changes.
 
 ## Why a pull request gets declined
 

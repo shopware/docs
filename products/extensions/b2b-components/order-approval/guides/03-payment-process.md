@@ -19,7 +19,7 @@ The payment process of the order approval component can be customized by extendi
 
 Normally, after reviewer approves the order, the payment process will be executed automatically. However, if you just want to approve the order without executing the payment process, you can subscribe to the `PendingOrderApprovedEvent` event and set the `PendingOrderApprovedEvent::shouldProceedPlaceOrder` to `false`. This event is dispatched in the `Shopware\Commercial\B2B\OrderApproval\Storefront\Controller\ApprovalPendingOrderController::order` method.
 
-```PHP
+```php
 
 use Shopware\Commercial\B2B\OrderApproval\Event\PendingOrderApprovedEvent;
 

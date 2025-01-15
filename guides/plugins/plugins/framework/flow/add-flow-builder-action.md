@@ -38,7 +38,9 @@ To create a custom flow action, firstly you have to make a plugin and install it
 <?php declare(strict_types=1);
 namespace Swag\ExamplePlugin\Core\Framework\Event;
 use Shopware\Core\Framework\Event\FlowEventAware;
+use Shopware\Core\Framework\Event\IsFlowEventAware;
 
+#[IsFlowEventAware]
 interface TagAware extends FlowEventAware
 {
     ...
@@ -161,7 +163,7 @@ There are three scopes for the `CreateTagAction`:
 
 - Just define the empty array in `CreateTagAction::requirements`
 
-```PHP
+```php
     // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -183,7 +185,7 @@ Here, the action name is empty as the action name snippet is not yet defined.
 
 Make the `CreateTagAction` available for all events related to Order and Customer.
 
-```PHP
+```php
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -201,7 +203,7 @@ Make the `CreateTagAction` available for all events related to Order and Custome
 
 - Event must implement the `TagAware`
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
@@ -254,7 +256,7 @@ class BasicExampleEvent extends Event implements TagAware
 
 - Define the `TagAware` in `CreateTagAction::requirements`
 
-```PHP
+```php
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 

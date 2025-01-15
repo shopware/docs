@@ -238,7 +238,9 @@ variables:
 Deploy:
     stage: deploy
     # Tags are useful to only use runners that are safe or meet specific requirements
-    image: shopware/shopware-cli:latest-php-8.3
+    image:
+        name: shopware/shopware-cli:latest
+        entrypoint: [ "/bin/sh", "-c" ]
     before_script:
         # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
         - *configureSSHAgent

@@ -193,6 +193,7 @@ The entity class itself is a simple key-value object, like a struct, which conta
 
 ::: warning
 The properties of your entity class have to be at least `protected`, otherwise the data abstraction layer won't be able to set the values.
+For the same reason `readonly` properties are not allowed. This holds true not just for `Entity` classes, but for all classes that extend the generic `Struct` class.
 :::
 
 ```php

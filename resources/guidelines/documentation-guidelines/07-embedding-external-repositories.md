@@ -53,7 +53,7 @@ By default, contents are grouped under `General` section in the Algolia search u
 
 Update `sections: SwagSectionsConfig[]` with all the regex matches for your sections and define the title of new section displayed in the Algolia search modal.
 
-```js
+```javascript
 const sections: SwagSectionsConfig[] = [
     // ...
     {
@@ -71,7 +71,7 @@ Every article has a `Edit this page on GitHub` link in the bottom left corner. B
 
 You can do that by updating `const embeds: SwagEmbedsConfig[]`.
 
-```js
+```javascript
 const embeds: SwagEmbedsConfig[] = [
     // ...
     {
@@ -102,7 +102,7 @@ Update `themeConfig.swag.colorCoding` with your settings for color coding in the
 
 When you also want to share static assets from your repository such as `.pdf` or `.zip` files (excluding statically linked images in articles), make sure to copy them in the `buildEnd` hook.
 
-```js
+```javascript
 export default {
     // ...
     async buildEnd() {

@@ -30,7 +30,7 @@ Important to note is the `name` as well as the `version` mentioned here, the res
 
 In order to require the `SwagBasicExample` plugin now, you simply have to add these two information to your own `composer.json` as a key value pair:
 
-```js
+```javascript
 // <plugin root>/composer.json
 {
     "name": "swag/plugin-dependency",

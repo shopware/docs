@@ -15,7 +15,7 @@ To add a custom rule, following this document [Add custom rule](../../../../../g
 
 Example:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;
@@ -154,7 +154,7 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ![App Approval Rule Condition Text](../../../../../assets/approval-rule-condition-text-field-example.png)
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
     <identifier>cart_tax_status_rule_script</identifier>
@@ -194,7 +194,7 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ![App Approval Rule Condition Single Select](../../../../../assets/approval-rule-condition-single-select-example.png)
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
     <identifier>cart_tax_status_rule_script</identifier>
@@ -241,7 +241,7 @@ We then use the variables `operator` and `totalPrice`, provided by the constrain
 ![App Approval Rule Condition Multi Select](../../../../../assets/approval-rule-condition-multi-select-example.png)
 
 ```xml
-// manifest.xml
+<!-- manifest.xml -->
 <!-- ... -->
 <rule-condition>
     <identifier>cart_currency_rule_script</identifier>

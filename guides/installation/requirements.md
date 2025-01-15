@@ -31,18 +31,19 @@ You can use these commands to check your actual environment:
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
+  * `ext-amqp` (only required if you plan to use a message queue, which is the default on PaaS)
   * `ext-curl`
   * `ext-dom`
   * `ext-fileinfo`
   * `ext-gd`
-  * `ext-iconv`  
+  * `ext-iconv`
   * `ext-intl`
   * `ext-json`
   * `ext-libxml`
-  * `ext-mbstring`  
+  * `ext-mbstring`
   * `ext-openssl` (there is an [issue](https://github.com/shopware/shopware/issues/3543) with OpenSSL 3.0.7)
-  * `ext-pcre`  
-  * `ext-pdo`  
+  * `ext-pcre`
+  * `ext-pdo`
   * `ext-pdo_mysql`
   * `ext-phar`
   * `ext-simplexml`

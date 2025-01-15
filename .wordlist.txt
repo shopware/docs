@@ -258,7 +258,6 @@ Denylist
 Dependabot
 DependencyInjection
 Deployer
-deployer
 Deprecations
 Deutsch
 DevOps
@@ -372,6 +371,7 @@ GridHelper
 GuestWishlistPage
 GuestWishlistPagelet
 HMAC
+HMR
 Homebrew
 Hono
 HookClasses
@@ -617,6 +617,7 @@ Persistable
 PhpRedis
 PhpStan
 PhpUnit
+Pinia
 PluginManager
 PositionID
 PositionIDs
@@ -687,6 +688,7 @@ RedirectResponse
 ReferenceVersion
 ReferenceVersionField
 RefundPaymentHandlerInterface
+RegEx
 RegistrationCompletedEvent
 RegistrationService
 Reindexes
@@ -713,6 +715,7 @@ SDK's
 SDKs
 SEO
 SEOs
+SFC
 SFTP
 SHA
 SKEs
@@ -889,6 +892,7 @@ VersionDataPayload
 VersionDataPayloadField
 VersionField
 VirtualHosts
+Vite
 Vitepress
 Vitest
 Vue
@@ -919,6 +923,7 @@ XDebug
 XHR
 XKey
 XLIFF
+XMLHttpRequest
 XPath
 XQuartz
 XSS
@@ -1023,6 +1028,7 @@ changesets
 chargeback
 checkboxes
 ci
+classmap
 classname
 cleanUpPreviousState
 clearTypeAndCheck
@@ -1111,10 +1117,12 @@ demoshop
 deno
 denylist
 dependencyInjection
+deployer
 deprecations
 dereference
 dereferenced
 describeFeatures
+destructure
 destructuring
 dev
 devenv
@@ -1420,6 +1428,7 @@ orderTransactionCaptureRefund
 org's
 otel
 otlp
+overrideComponentSetup
 oversales
 paas
 packagist
@@ -1465,13 +1474,14 @@ preload
 preloaded
 prem
 premapping
+prepend
 preprocessor
 preprocessors
 preselect
 preselection
 prettierrc
-previewable
 previewComponent
+previewable
 previewable
 pricecollectionfacade
 pricefacade
@@ -1494,12 +1504,14 @@ qa@shopware.com
 qty's
 quantityBefore
 quantityDelta
+rabbitmq
 randomHex
 reCAPTCHA
 readAsArrayBuffer
 readAsDataURL
 readAsText
 realtime
+rebasing
 rebranded
 recalculable
 redis
@@ -1509,7 +1521,6 @@ refundAmount
 refundId
 refundPositions
 refundPrice
-RegEx
 regexes
 reindex
 reinitializing
@@ -1667,6 +1678,7 @@ transpiling
 triggerDeprecated
 truthy
 tsx
+twigjs
 typeAndCheck
 typeAndCheckSearchField
 typeLegacySelectAndCheck
@@ -1740,8 +1752,7 @@ xsd
 yaml
 yml
 youtube
+zipignore
 zlib
 zsh
 zstd
-zipignore
-XMLHttpRequest

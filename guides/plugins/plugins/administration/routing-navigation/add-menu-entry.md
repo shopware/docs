@@ -15,11 +15,11 @@ When it comes to the module configuration, the menu entry is one of the most imp
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 Especially if you want to add a new page for an own module, you should consider to look at the process on how to add a custom module first.
 
-<PageRef page="add-custom-module" />
+<PageRef page="../module-component-management/add-custom-module" />
 
 ## Creating a simple menu entry
 

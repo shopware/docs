@@ -9,7 +9,7 @@ nav:
 
 The Deployment Helper is a tool that unifies the steps executed after the Code has been uploaded to the server.
 On a traditional deployment, you would run it after the files have been uploaded.
-When using a Containerized environment you would run Deployment Helper with the new source code and then switch over the traffic.
+When using a Containerized environment, you would run Deployment Helper with the new source code and then switch over the traffic.
 
 ## Installing the Deployment Helper
 
@@ -70,7 +70,7 @@ deployment:
       # the key is the extension name (app or plugin)
       MyPlugin:
         # Same as exclude
-        state: ignored
+        state: ignore
 
       AnotherPlugin:
         # This plugin can be installed, but should be inactive
@@ -137,7 +137,22 @@ When you open the extension manager, you will see that you are not logged in. Th
 
 ## Removal of extensions
 
-If you want to remove an extension you need to do it in two steps:
+To find the name (for example `SwagPlatformDemoData`) of the extension you want to remove, use the `./bin/console plugin:list` command.
+
+```shell
+./bin/console plugin:list
+
+Shopware Plugin Service
+=======================
+
+ ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ---------------------- 
+  Plugin                        Label                                      Composer name                                  Version   Upgrade version   Author              Installed   Active   Upgradeable   Required by composer  
+ ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
+  SwagPlatformDemoData          Shopware 6 Demo data                       swag/demo-data                                 2.0.1                       shopware AG         Yes         No       No            No 
+ ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
+```
+
+If you want to remove an extension, you need to do it in two steps:
 
 1.) Set the extension to `remove` in the `.shopware-project.yml` file
 
@@ -168,7 +183,7 @@ After the deployment, you can remove the extension from the source code, remove 
 In a Docker environment, you have a base image with a running PHP Webserver.
 From that image you make a new image with your Shopware source code.
 To prepare the Shopware source code, you can run [shopware-cli project ci](https://sw-cli.fos.gg) to install the dependencies and build the assets.
-On deployment you spawn a second container or init a container, which runs the Deployment Helper.
+On deployment, you spawn a second container or init a container, which runs the Deployment Helper.
 The Deployment Helper sets up Shopware when it is not installed, installs the extensions and runs the one-time tasks.
 
 ### SFTP / Deployer

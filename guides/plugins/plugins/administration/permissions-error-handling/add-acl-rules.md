@@ -36,7 +36,7 @@ A distinction is made here between normal `permissions` and `additional_permissi
 
 ### Normal permissions
 
-![Permissions GUI](../../../../assets/permissions-gui.png)
+![Permissions GUI](../../../../../assets/permissions-gui.png)
 
 `permissions`:
 
@@ -61,7 +61,7 @@ For each admin privilege, the needed entity privileges need to be assigned. Depe
 
 In addition to the normal `permissions`, which represent CRUD functionality, there are also `additional_permissions`. These are intended for all functions that cannot be represented by CRUD.
 
-![Additional permissions GUI](../../../../assets/additionalPermissions-gui.png)
+![Additional permissions GUI](../../../../../assets/additionalPermissions-gui.png)
 
 The `additional_permissions` have their own card below the normal permissions grid. An example for `additional_permissions` would be: "clearing the cache". This is an individual action without CRUD functionalities. The key is still used for grouping. Therefore the role can be individual and does not have to follow the scheme.
 

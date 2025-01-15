@@ -281,6 +281,7 @@ class ExampleEvent extends Event implements CustomExampleDataAware
 Aware:
 
 ```php
+#[IsFlowEventAware]
 interface CustomExampleDataAware extends FlowEventAware
 {
     public const CUSTOM_EXAMPLE_DATA = 'customExampleData';

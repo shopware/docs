@@ -17,11 +17,11 @@ In this example, you will create a component that will print a 'Hello world!' ev
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create a custom entity guide first:
 
-<PageRef page="../framework/data-handling/add-custom-complex-data" />
+<PageRef page="../../framework/data-handling/add-custom-complex-data" />
 
 Especially if you want to add a new page for an own module, you should consider looking at the process on how to add a custom module first.
 
@@ -114,7 +114,7 @@ A component's template is being defined by using the `template` property. For th
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
-export default Shopware.Component.wrapComponentConfig('hello-world', {
+export default Shopware.Component.wrapComponentConfig({
     template: '<h2>Hello world!</h2>'
 });
 ```

@@ -35,18 +35,38 @@ shopware:
 
 ### Delayed invalidation
 
-A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed by a background task later. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
+
+::: warning
+If you enable delayed cache invalidation, you must set up a worker to run [Scheduled Tasks](../infrastructure/scheduled-task), e.g., using the [Message Queue](../infrastructure/message-queue).
+:::
+
+There are two possible storages/adapters for delayed cache invalidation: Redis and MySQL. Redis is preferred since it handles retrieving and deleting keys in an atomic manner. MySQL also supports it, but it's more complicated, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
+
+Redis:
 
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
     cache:
         invalidation:
-            delay: 1
+            delay: 1 # 0 = disabled, 1 = enabled
             delay_options:
                 storage: redis
                 connection: 'ephemeral' # connection name from redis configuration
+```
+
+MySQL:
+
+```yaml
+# config/packages/prod/shopware.yaml
+shopware:
+    cache:
+        invalidation:
+            delay: 1 # 0 = disabled, 1 = enabled
+            delay_options:
+                storage: mysql
 ```
 
 ## MySQL configuration
@@ -55,6 +75,7 @@ Shopware sets some MySQL configuration variables on each request to ensure it wo
 
 - Make sure that `group_concat_max_len` is by default higher or equal to `320000`
 - Make sure that `sql_mode` doesn't contain `ONLY_FULL_GROUP_BY`
+- Make sure that `time_zone` is set to UTC (`default-time-zone='+00:00'` in `my.cnf`)
 and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 ## SQL is faster than DAL
@@ -273,7 +294,11 @@ This is available starting with Shopware 6.6.10.0
 The **Product Stream Indexer** is a background process that creates a mapping table of products to their streams.
 It is used to find which category pages are affected by product changes. On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
 
-Disadvantages are:
+To disable the Product Stream Indexer, you can set the following configuration:
+
+<<< @/docs/snippets/config/product_stream.yaml
+
+Disabling the Product Stream Indexer has the following disadvantages:
 
 - When you change a product in a stream, the category page is not updated until the HTTP cache expires
     - You could also explicitly update the category page containing the stream to workaround if that is a problem
@@ -282,3 +307,55 @@ Disadvantages are:
 To disable the Product Stream Indexer, you can set the following configuration:
 
 <<< @/docs/snippets/config/product_stream.yaml
+
+## Enable the Speculation Rules API
+
+::: info
+This feature is available starting with Shopware 6.6.10.0
+:::
+
+The Speculation Rules API allows browsers to pre-render pages based on user interactions or immediately, depending on the eagerness setting.
+This can improve the perceived performance of a website by loading pages in the background before the user navigates to them.
+
+You can enable that **experimental feature** via `Admin > Settings > System > Storefront`. The JavaScript Plugin will then
+check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so,
+it will add a script tag to the head of the document. For the [eagerness setting](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness)
+we are using `moderate` everywhere. That means **a user must interact** with a link to execute the pre-rendering.
+
+::: info
+Keep in mind that pre-rendering puts extra load on your server and also can affect your [Analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
+:::
+
+## Optimize class loading
+
+### opcache.max_accelerated_files
+
+PHP loads many classes on each request, which can be a performance bottleneck. To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
+
+### classmap-authoritative
+
+Additionally, when all plugins are installed directly through Composer and managed by Composer, you can generate a static autoloader which does no class mapping at runtime.
+
+To enable this, set the following configuration in your `composer.json`:
+
+```diff
+"config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "optimize-autoloader": true,
++        "classmap-authoritative": true,
+        "sort-packages": true
+},
+```
+
+For more information, check out the [Composer documentation](https://getcomposer.org/doc/articles/autoloader-optimization.md#optimization-level-2-a-authoritative-class-maps).
+
+### opcache.preload
+
+To completely reduce the class loading at runtime, you can enable `opcache.preload` by setting it to `<project-root>/var/cache/opcache-preload.php` and `opcache.preload_user` to the user running the PHP process. This will preload all classes into the opcache on PHP-FPM startup and reduce the class loading at runtime.
+
+::: warning
+When using `opcache.preload`, you need to **restart** the PHP-FPM after each modification to reload the preloaded classes.
+:::
