@@ -26,17 +26,17 @@ Think twice about adding this shortcut because if every plugin adds their own se
 
 For this guide, it's necessary to have a running Shopware 6 instance and full access to both the files and a running plugin. See our plugin page guide to learn how to create your own plugins.
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 In addition, you need a custom entity to add to the search to begin with. Head over to the following guide to learn how to achieve that:
 
-<PageRef page="../framework/data-handling/add-custom-complex-data" />
+<PageRef page="../../framework/data-handling/add-custom-complex-data" />
 
 ## Support custom entity via search API
 
 To support an entity in the untyped global search, the entity has to be defined in one of the Administration Modules.
 
-<PageRef page="./add-custom-module.md" />
+<PageRef page="../module-component-management/add-custom-module.md" />
 
 Add the `entity` and `defaultSearchConfiguration` values to your module to make it available to the search bar component.
 

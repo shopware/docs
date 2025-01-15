@@ -283,7 +283,7 @@ To update or delete a `custom_field_set`, you can use the standard repository me
 
 While theoretically your custom field is now properly defined for the Administration, you'll still have to do some work in your custom entities' Administration module. Head over to this guide to learn how to add your field to the Administration:
 
-<PageRef page="../../administration/using-custom-fields" />
+<PageRef page="../../administration/data-handling-processing/using-custom-fields" />
 
 ## Next steps
 
