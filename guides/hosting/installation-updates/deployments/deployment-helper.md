@@ -137,6 +137,9 @@ When you open the extension manager, you will see that you are not logged in. Th
 
 ## Removal of extensions
 
+To find the name of the extension you want to remove, you can use the `./bin/console plugin:list` command.
+The composer or label name will not work.
+
 If you want to remove an extension you need to do it in two steps:
 
 1.) Set the extension to `remove` in the `.shopware-project.yml` file
