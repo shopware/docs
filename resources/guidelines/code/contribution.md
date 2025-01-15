@@ -49,6 +49,7 @@ You are responsible for maintaining and updating your pull request. This include
 * Updating the code according to review feedback
 * Keeping the PR up to date with the target branch if conflicts arise
 * Making sure that all pipeline checks succeed on your PR
+  * We only have one required job called `check`. The job just makes sure that all integration tests are passing. It uses the action [`re-actors/alls-green`](https://github.com/re-actors/alls-green)
 
 ::: tip
 Once your PR is public, avoid rebasing or force-pushing to the branch. Adding new commits makes it easier for reviewers to track changes and see what was updated in response to feedback. The PR will be automatically squashed when merged.
