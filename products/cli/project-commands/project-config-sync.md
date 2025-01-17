@@ -47,7 +47,7 @@ sync:
 
 This example synchronizes a new tax entity with the name `Tax` and the tax rate `19`.
 
-The further synchronizations will create the same entity again, you may want to fixed the entity ID to avoid duplicates.
+The further synchronizations will create the same entity again, you may want to fix the entity ID to avoid duplicates.
 
 You can also add an existence check, so it will be only created if an entity has been found:
 
