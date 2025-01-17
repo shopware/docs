@@ -7,7 +7,7 @@ nav:
 
 # Building extensions and creating archives
 
-Extensions consists of PHP Changes, JavaScript and CSS. To release an extension to the Shopware Store or upload it to an Shopware 6 instance without having to rebuild Storefront and Administration your extension needs to provide the compiled assets.
+Extensions consists of PHP Changes, JavaScript and CSS. To release an extension to the Shopware Store or upload it to a Shopware 6 instance without having to rebuild Storefront and Administration your extension needs to provide the compiled assets.
 
 ## Building an extension
 
@@ -48,7 +48,7 @@ build:
 Building with ESBuild works completely standalone without the Shopware Codebase. This means if you import files from Shopware, you have to copy it to your extension.
 :::
 
-It's possible to use ESBuild for JavaScript bundling. This is way faster than the usual Shopware bundling as Shopware itself is not nessessary to build the assets.
+It's possible to use ESBuild for JavaScript bundling. This is way faster than the usual Shopware bundling as Shopware itself is not necessary to build the assets.
 
 ```yaml
 # .shopware-extension.yml
@@ -119,7 +119,7 @@ This skips unnecessary `npm install` and `npm ci` commands and only installs the
 
 ### Release mode
 
-If you are building an archive for distrubution, you can enable the release mode with the flag `--release`. This will remove the App secret from the `manifest.xml` and generate changelog files if enabled.
+If you are building an archive for distribution, you can enable the release mode with the flag `--release`. This will remove the App secret from the `manifest.xml` and generate changelog files if enabled.
 
 The changelog generation can be enabled with the configuration:
 

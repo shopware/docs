@@ -32,4 +32,4 @@ The listing port of the Admin Watcher can be changed with `--listen :<port>`.
 
 ## Usage behind a proxy
 
-If you want to use the Standalone Admin Watcher behind a proxy to have example SSL, you should set `--external-url` to the URL where the Admin Watcher will be reachable in the Browser.
+If you want to use the Standalone Admin Watcher behind a proxy to have, for example, SSL, you should set `--external-url` to the URL where the Admin Watcher will be reachable in the Browser.

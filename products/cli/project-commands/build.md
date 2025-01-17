@@ -10,7 +10,7 @@ nav:
 Usually when you want to deploy your Project you want to run `composer install` and want to compile the assets of the project. Shopware-CLI provides a single command which does all of this for you.
 
 ::: warning
-This command modifies the given directory and deletes files. Make sure you have commited all your changes before running this command.
+This command modifies the given directory and deletes files. Make sure you have committed all your changes before running this command.
 :::
 
 ```bash

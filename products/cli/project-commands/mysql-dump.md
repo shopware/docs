@@ -30,13 +30,13 @@ It's possible to customize the anonymization process by using the `dump.rewrite`
 dump:
   rewrite:
     <table-name>:
-      # Rewrite column content new value
+      # Rewrite column content to new value
       <column-name>: "'new-value'"
       # Use go-faker to generate data
       <column-name>: "faker.Internet().Email()" # See https://github.com/jaswdr/faker for all available functions
 ```
 
-## Ignoreing table content
+## Ignoring table content
 
 Some tables are not relevant for dumps, like log tables. To ignore some default tables, use the `--clean` flag. This will ignore the content of the following tables:
 
