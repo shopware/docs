@@ -164,26 +164,26 @@ docker run \
 
 If you just want to build from source for whatever reason, follow these steps:
 
-### clone:
+### clone
 
 ```bash
 git clone https://github.com/FriendsOfShopware/shopware-cli
 cd shopware-cli
 ```
 
-### get the dependencies:
+### get the dependencies
 
 ```bash
 go mod tidy
 ```
 
-### build:
+### build
 
 ```bash
 go build -o shopware-cli .
 ```
 
-### verify it works:
+### verify it works
 
 ```bash
 ./shopware-cli --version
