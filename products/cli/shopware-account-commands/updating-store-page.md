@@ -66,7 +66,7 @@ store:
 
 The images will be sorted by the file name. If you want to seperate the images by language, you can create subdirectories with the language code like so:
 
-```
+```text
 src/Resources/store/images/
 ├── de
 │   ├── 0.png
@@ -77,4 +77,3 @@ src/Resources/store/images/
     ├── 1.png
     └── 2.png (preview image)
 ```
-

@@ -15,7 +15,6 @@ This functionality was designed for Shopware SaaS and should not be used for sel
 
 To use the extension manager, you need a `.shopware-project.yml`, this can be created with the command `shopware-cli project config init`.
 
-
 ## Commands
 
 ### List all extensions

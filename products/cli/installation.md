@@ -11,7 +11,6 @@ You can install the pre-compiled binary (in several different ways), use Docker 
 
 Below you can find the steps for each of them.
 
-
 ## Install the pre-compiled binary
 
 ### Homebrew
@@ -77,7 +76,6 @@ inputs:
 
 and then you can use the new input in the `devenv.nix` file. Don't forget to add the `inputs` argument, to the first line.
 
-
 ```nix
 { pkgs, inputs, ... }: {
   packages = [
@@ -129,7 +127,7 @@ COPY --from=shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 
 ### Docker Image
 
-Add the following line to your docker image to copy the binary into your image. 
+Add the following line to your docker image to copy the binary into your image.
 
 ```Dockerfile
 # Dockerfile
@@ -152,7 +150,7 @@ Example usage:
 
 Builds assets of an extension
 
-```
+```bash
 docker run \
     --rm \
     -v $(pwd):$(pwd) \
@@ -168,25 +166,25 @@ If you just want to build from source for whatever reason, follow these steps:
 
 ### clone:
 
-```
+```bash
 git clone https://github.com/FriendsOfShopware/shopware-cli
 cd shopware-cli
 ```
 
 ### get the dependencies:
 
-```
+```bash
 go mod tidy
 ```
 
 ### build:
 
-```
+```bash
 go build -o shopware-cli .
 ```
 
 ### verify it works:
 
-```
+```bash
 ./shopware-cli --version
 ```

@@ -87,4 +87,3 @@ dump:
   where:
     <table-name>: 'id > 5'
 ```
-

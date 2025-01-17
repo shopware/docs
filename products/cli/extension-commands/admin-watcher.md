@@ -7,7 +7,6 @@ nav:
 
 # Standalone Admin Watcher
 
-
 ::: info
 `shopware-cli extension admin-watch` can be different to the regular Admin Watcher. You can start the regular Admin Watcher with `shopware-cli project admin-watch`
 :::

@@ -7,7 +7,7 @@ nav:
 
 # Shopware-CLI
 
-Shopware-CLI is an open-source external command-line interface for Shopware 6. It provides a set of commands to interact with your Shopware instance, build extensions, dump databases and more. The CLI **is a external tool** and needs to be set up separately from your Shopware instance. 
+Shopware-CLI is an open-source external command-line interface for Shopware 6. It provides a set of commands to interact with your Shopware instance, build extensions, dump databases and more. The CLI **is a external tool** and needs to be set up separately from your Shopware instance.
 
 The CLI consists of three main components:
 

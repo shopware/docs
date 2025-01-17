@@ -25,7 +25,7 @@ shopware-cli project create <folder-name> <version>
 
 ## Replacements to included Shell Scripts
 
-Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`. 
+Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
 | Shell Script                | Shopware Command                        |
 |-----------------------------|-----------------------------------------|
@@ -99,4 +99,3 @@ shopware-cli project admin-api GET /_info/version
 ```
 
 you can pass also more options like `-d` for data or `-H` for headers as you would do with curl.
-
