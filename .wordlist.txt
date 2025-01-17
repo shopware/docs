@@ -68,6 +68,7 @@ B2B Suite
 BBundle
 BDD
 BITV
+BackedEnum
 Backend
 BaseContext
 BasicExample
@@ -305,6 +306,7 @@ EntitySearchResult
 EntityWrittenContainerEvent
 EntityWrittenEvent
 Enum
+EnumField
 Enums
 EqualsAny
 ErrorsFacade
@@ -676,6 +678,7 @@ Punctuations
 Quickstart
 QuillJS
 RDB
+RDBMS
 README
 RabbitMQ
 RabbitMq
