@@ -1,11 +1,11 @@
 ---
 nav:
-  title: EnumField usage
+  title: EnumField reference
   position: 100
 
 ---
 
-# EnumField usage
+# EnumField reference
 
 ## Usage
 
