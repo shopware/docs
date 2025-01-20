@@ -52,7 +52,7 @@ composer run build:js:storefront
 
 This building process is always time-consuming. Alternatively, to speed up the process.
 Shopware's [Production template](https://github.com/shopware/production) and [Source code](https://github.com/shopware/shopware) offers
-commands to enable Hot Module Replacement (HRM) to automatically reload and preview your changes.
+commands to enable Hot Module Replacement (HMR) to automatically reload and preview your changes.
 
 ::: info
 This procedure doesn't replace the final build process when you finish developing your feature.
