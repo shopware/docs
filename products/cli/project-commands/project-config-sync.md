@@ -22,6 +22,18 @@ To synchronize the project, you need to create a `.shopware-project.yml` file in
 
 You can also use the command `shopware-cli project config init` to create a new `shopware-project.yml` file. Make sure that you configure the API access too as this is required for the synchronization.
 
+## Credentials with Environment variables
+
+If you don't want to store the credentials in the `shopware-project.yml` file, you can use environment variables.
+
+- `SHOPWARE_CLI_API_URL` - The URL to the Shopware instance
+- `SHOPWARE_CLI_API_CLIENT_ID` - The client ID for the API access
+- `SHOPWARE_CLI_API_CLIENT_SECRET` - The client secret for the API access
+- `SHOPWARE_CLI_API_USERNAME` - The username for the API access
+- `SHOPWARE_CLI_API_PASSWORD` - The password for the API access
+
+Either you can fill `SHOPWARE_CLI_API_CLIENT_ID` and `SHOPWARE_CLI_API_CLIENT_SECRET` or `SHOPWARE_CLI_API_USERNAME` and `SHOPWARE_CLI_API_PASSWORD`.
+
 ## Initial pulling
 
 To pull the configuration from the Shopware instance, you can use the command `shopware-cli project config pull`. This command pulls the configuration from the Shopware instance and stores it in the local `.shopware-project.yml` file.
