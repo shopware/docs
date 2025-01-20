@@ -72,7 +72,7 @@ build:
 
 ## Supporting bundles
 
-Plugins and Apps are automatically detected by Shopware-CLI. Custom Bundles (classes that extend Bundle class from Shopware) cannot be automatically detected as Shopware-CLI does not execute any PHP code. 
+Plugins and Apps are automatically detected by Shopware-CLI. Custom Bundles (classes that extend Bundle class from Shopware) cannot be automatically detected as Shopware-CLI does not execute any PHP code.
 Therefore you need to add the path of the custom bundle to your project `composer.json`:
 
 ```json
