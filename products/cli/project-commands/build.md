@@ -70,6 +70,52 @@ build:
   remove_extension_assets: false 
 ```
 
+## Supporting bundles
+
+Plugins and Apps are automatically detected by Shopware-CLI. Custom Bundles (classes that extend Bundle class from Shopware) cannot be automatically detected as Shopware-CLI does not execute any PHP code. 
+Therefore you need to add the path of the custom bundle to your project `composer.json`:
+
+```json
+{
+    "extra": {
+        "shopware-bundles": {
+            // The key is the relative path from project root to the bundle
+            "src/MyBundle": {}
+        }
+    }
+}
+```
+
+If your bundle folder names does not match your Bundle name, you can use the `name` key to map the folder to the bundle name.
+
+```json
+{
+    "extra": {
+        "shopware-bundles": {
+            "src/MyBundle": {
+                "name": "MyFancyBundle"
+            }
+        }
+    }
+}
+```
+
+### Bundle packaged in own composer package
+
+If your bundle is a own composer package, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the extra part of the config like this:
+
+```json
+{
+    "name": "my-vendor/my-bundle",
+    "type": "shopware-bundle",
+    "extra": {
+        "shopware-bundle-name": "MyBundle"
+    }
+}
+```
+
+With this Composer type, `shopware-cli extension build` also works for your bundle, if you want to distribute compiled assets.
+
 ## Example Docker Image
 
 This is an example Dockerfile which builds a Shopware Project and copies the source code to the `/var/www/html` folder.
