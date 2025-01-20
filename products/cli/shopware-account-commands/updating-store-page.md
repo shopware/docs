@@ -11,11 +11,11 @@ You can use Shopware-CLI to versioning your Store Page representation of your ex
 
 ## Prerequisites
 
-- You are logged into the Shopware Store. Checkout the [Authentification](./authentification.md) guide for more information.
+- You are logged into the Shopware Store. Checkout the [Authentication](./authentication.md) guide for more information.
 
 ## Fetching the current Store Page
 
-It's recommanded to start with the current Store Page and update only the parts you want to change. You can fetch the current Store Page with the following command:
+It's recommended to start with the current Store Page and update only the parts you want to change. You can fetch the current Store Page with the following command:
 
 ```bash
 shopware-cli account producer extension info pull <path-to-extension-folder>
@@ -39,7 +39,7 @@ This will upload all images and metadata to the Store Page.
 
 Images can be uploaded in two ways:
 
-Explictly defined in the configuration like this:
+Explicitly defined in the configuration like this:
 
 ```yaml
 store:

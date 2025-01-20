@@ -6,6 +6,7 @@ ADRs
 AOF
 API's
 APIs
+AUR
 AbstractCaptcha
 AbstractStockUpdateFilter
 AccountEditOrderPage
@@ -45,6 +46,7 @@ AllowHtml
 AlwaysValidRule
 Analytics
 AndRule
+Anonymizing
 ApiAware
 ApiContext
 ApiController
@@ -55,6 +57,7 @@ AppRefundHandler
 AppScripts
 AppServer
 AppSystem
+Archlinux
 ArrayFacade
 AsyncPaymentTransactionStruct
 AsynchronousPaymentHandlerInterface
@@ -91,6 +94,7 @@ Blockquote
 Blockquotes
 BoolField
 BottleJS
+Browserlist
 BusinessEvent
 BusinessEventCollector
 CDN
@@ -158,6 +162,7 @@ ClientInterface
 Cloudflare
 Cmd
 CmsPage
+Codespaces
 Codestyle
 CommercialB
 CommercialBundle
@@ -351,6 +356,7 @@ Flysystem
 Fontawesome
 FooterPagelet
 FrameworkBundle
+FriendsOfShopware
 FroshDevelopmentHelper
 FroshPluginUploader
 Fullstack
@@ -683,6 +689,7 @@ Readonly
 RecipientsAware
 RecipientsStorer
 RecurringPaymentHandlerInterface
+RedHat
 Redict
 RedirectResponse
 ReferenceVersion
@@ -906,6 +913,7 @@ WCAG
 WSL
 WarehouseGroup
 WarehouseGroups
+WebAssembly
 WebKit
 WebSocket
 Webhook
@@ -949,6 +957,7 @@ anonymized
 antipattern
 api
 apiKey
+apk
 appVersion
 args
 arrayfacade
@@ -1102,6 +1111,7 @@ dataset
 datasets
 datepicker
 datetime
+ddev
 de
 debounce
 decoratable
@@ -1168,6 +1178,7 @@ equalsAny
 errored
 errorsfacade
 erros
+esbuild
 eslint
 et
 everytime
@@ -1440,6 +1451,7 @@ pageloader
 parallelize
 param
 params
+parsable
 parsers
 paypal
 pcre
@@ -1460,6 +1472,7 @@ phpunitx
 pluginlogger
 png
 pnpm
+polyfill
 pos
 positionID
 positionIDs
@@ -1481,7 +1494,6 @@ preselect
 preselection
 prettierrc
 previewComponent
-previewable
 previewable
 pricecollectionfacade
 pricefacade

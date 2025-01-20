@@ -17,15 +17,15 @@ To validate an extension, you can use the following command:
 shopware-cli extension validate <path>
 ```
 
-The path can be absolute or relative to the directory containg the extension or the zip file. The command exists with a non-zero exit code if the validation fails with a error level message.
+The path can be absolute or relative to the directory containing the extension or the zip file. The command exists with a non-zero exit code if the validation fails with a error level message.
 
 ## What is validated?
 
-- The composer.json has an `shopware/core` requirement and constraint is parseable
+- The composer.json has an `shopware/core` requirement and constraint is parsable
 - The extension metadata is filled:
   - `name`
-  - `label` (german and english)
-  - `description` (german and english) and longer than 150 characters and shorter than 185 characters
+  - `label` (German and English)
+  - `description` (German and English) and longer than 150 characters and shorter than 185 characters
 - Translations have equality translated in the given languages
 - PHP can be correctly linted with the minimum PHP version
 - The theme.json can be parsed and included assets can be found

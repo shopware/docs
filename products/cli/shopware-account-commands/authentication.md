@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Authentification
+  title: Authentication
   position: 1
 
 ---
 
-# Authentification
+# Authentication
 
 To interact with the Shopware Account API, you need to authenticate yourself.
 

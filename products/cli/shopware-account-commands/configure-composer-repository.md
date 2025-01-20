@@ -15,7 +15,7 @@ First, make sure you have access to the given Shop in Shopware Account. You can 
 shopware-cli account merchant shop list
 ```
 
-If you don't see the shop you want to use, you need to switch to the correct company with the following command. Check the [Authentification](./authentification.md) guide for more information.
+If you don't see the shop you want to use, you need to switch to the correct company with the following command. Check the [Authentication](./authentication.md) guide for more information.
 
 To create a `auth.json` file with the Composer repository configuration, you can use the following command:
 

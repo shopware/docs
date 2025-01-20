@@ -29,4 +29,4 @@ shopware-cli extension get-changelog <path>
 
 The path can be absolute or relative to the current working directory. The command will output the changelog of the extension.
 
-It will output always the english changelog.
+It will output always the English changelog.

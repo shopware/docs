@@ -42,22 +42,22 @@ build:
       name: Foo
 ```
 
-## Using ESBuild for JavaScript Bundling
+## Using esbuild for JavaScript Bundling
 
 ::: warning
-Building with ESBuild works completely standalone without the Shopware Codebase. This means if you import files from Shopware, you have to copy it to your extension.
+Building with esbuild works completely standalone without the Shopware Codebase. This means if you import files from Shopware, you have to copy it to your extension.
 :::
 
-It's possible to use ESBuild for JavaScript bundling. This is way faster than the usual Shopware bundling as Shopware itself is not necessary to build the assets.
+It's possible to use esbuild for JavaScript bundling. This is way faster than the usual Shopware bundling as Shopware itself is not necessary to build the assets.
 
 ```yaml
 # .shopware-extension.yml
 build:
   zip:
     assets:
-      # Use ESBuild for Administration
+      # Use esbuild for Administration
       enable_es_build_for_admin: true
-      # Use ESBuild for Storefront
+      # Use esbuild for Storefront
       enable_es_build_for_storefront: true
 ```
 

@@ -21,7 +21,7 @@ shopware-cli project ci <path>
 
 - It runs `composer install` (by default only installs the production dependencies, use `--with-dev-dependencies` to install also the dev dependencies)
 - Looks for missing assets of extensions and only compiles the missing assets to speed up the build process
-- Deletes unnessessary files like `node_modules` and many more to save disk space
+- Deletes unnecessary files like `node_modules` and many more to save disk space
 - Deletes source code of compiled assets to save disk space
 - Merges snippets of extensions to speed up Administration
 
@@ -35,7 +35,7 @@ For more information, see the [Composer documentation](https://getcomposer.org/d
 
 ## Reducing JavaScript in Storefront
 
-Shopware's default Browserlist still supports older Browsers like Internet Explorer 11. If you want to reduce JavaScript polyfills and CSS prefixes, you can adjust the Browserlist configuration in the `.shopware-project.yml` file.
+Shopware's default Browserlist still supports older Browsers like Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the Browserlist configuration in the `.shopware-project.yml` file.
 
 ```yaml
 build:
