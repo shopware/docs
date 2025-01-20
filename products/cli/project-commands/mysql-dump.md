@@ -12,10 +12,24 @@ Shopware-CLI has built-in support for generating MySQL dumps. The dump command i
 Creating a MySQL dump is as simple as running the following command:
 
 ```bash
-shopware-cli project dump sw6 --host 127.0.0.1 --username root --password root
+shopware-cli project dump
+```
+
+and will create a `dump.sql` in the current directory. The dump command will use the database credentials from the `.env` file. If you want to use different credentials, you can use the following flags:
+
+```bash
+shopware-cli project dump --host 127.0.0.1 --username root --password root --database sw6
 ```
 
 It's possible to use `--skip-lock-tables` to skip the lock tables command. This is useful for large databases or when the MySQL user has no rights to lock the table.
+
+## Compressing the dump
+
+Database dumps can be pretty large, it's possible to compress the dump using `gzip` or `zstd`. Use flag `--compression=gzip` for gzip compression or `--compression=zstd` for zstd compression.
+
+## Table Locking
+
+By default Shopware-CLI will try to lock the table before dumping the data. This can fail if the MySQL user has no rights to lock the table. To skip the lock tables command, use the `--skip-lock-tables` flag.
 
 ## Anonymizing data
 
