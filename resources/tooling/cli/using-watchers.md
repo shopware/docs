@@ -12,8 +12,6 @@ nav:
 When developing with Shopware, you will probably notice that changes in JavaScript require commands to build the Administration or
 Storefront, depending on your change using the following commands:
 
-
-
 <Tabs>
 <Tab title="Build administration (Source code)">
 
@@ -90,7 +88,6 @@ To enable Hot Module Reloading, use the following shell scripts in the Shopware 
 ```
 
 </Tab>
-
 
 <Tab title="Storefront watcher">
 
