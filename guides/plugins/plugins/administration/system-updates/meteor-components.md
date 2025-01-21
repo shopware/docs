@@ -15,7 +15,7 @@ With the release of Shopware 6.7, we will replace several current administration
 
 ## Why Meteor Components?
 
-The Meteor Component Library is Shopware's official collection of reusable components that are used across multiple Shopware projects and are built on the Shopware Design System.
+The Meteor Component Library is Shopware's official collection of reusable components used across multiple Shopware projects and built on the Shopware Design System.
 
 Using a shared component library offers several advantages:
 
@@ -42,7 +42,7 @@ To simplify the plugin migration process, we provide codemods that automatically
 1. Execute the following composer command:
 
    ```bash
-   # Main command which outputs also the help text
+   # Main command which also outputs the help text
    composer run admin:code-mods
 
    ## Example with arguments
