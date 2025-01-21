@@ -7,54 +7,61 @@ nav:
 
 # Fields Reference
 
-| Name                         | Description                              |
-|:-----------------------------|:-----------------------------------------|
-| BlacklistRuleField           | Stores a "BlacklistRule" value           |
-| BlobField                    | Stores a "Blob" value                    |
-| BoolField                    | Stores a "Bool" value                    |
-| CalculatedPriceField         | Stores a "CalculatedPrice" value         |
-| CartPriceField               | Stores a "CartPrice" value               |
-| ChildCountField              | Stores a "ChildCount" value              |
-| ChildrenAssociationField     | Stores a "ChildrenAssociation" value     |
-| ConfigJsonField              | Stores a "ConfigJson" value              |
-| CreatedAtField               | Stores a "CreatedAt" value               |
-| CreatedByField               | Stores a "CreatedBy" value               |
-| CustomField                  | Stores a "Custom" value                  |
-| DateField                    | Stores a "Date" value                    |
-| DateTimeField                | Stores a "DateTime" value                |
-| EmailField                   | Stores a "Email" value                   |
-| [EnumField](enum-field)      | Stores a "BackedEnum" value              |
-| FkField                      | Stores a "Fk" value                      |
-| FloatField                   | Stores a "Float" value                   |
-| IdField                      | Stores a "Id" value                      |
-| IntField                     | Stores a "Int" value                     |
-| JsonField                    | Stores a "Json" value                    |
-| ListField                    | Stores a "List" value                    |
-| ListingPriceField            | Stores a "ListingPrice" value            |
-| LockedField                  | Stores a "Locked" value                  |
-| LongTextField                | Stores a "LongText" value                |
-| ManyToManyAssociationField   | Stores a "ManyToManyAssociation" value   |
-| ManyToManyIdField            | Stores a "ManyToManyId" value            |
-| ManyToOneAssociationField    | Stores a "ManyToOneAssociation" value    |
-| ObjectField                  | Stores a "Object" value                  |
-| OneToManyAssociationField    | Stores a "OneToManyAssociation" value    |
-| OneToOneAssociationField     | Stores a "OneToOneAssociation" value     |
-| ParentAssociationField       | Stores a "ParentAssociation" value       |
-| ParentFkField                | Stores a "ParentFk" value                |
-| PasswordField                | Stores a "Password" value                |
-| PriceDefinitionField         | Stores a "PriceDefinition" value         |
-| PriceField                   | Stores a "Price" value                   |
-| ReferenceVersionField        | Stores a "ReferenceVersion" value        |
-| RemoteAddressField           | Stores a "RemoteAddress" value           |
-| StateMachineStateField       | Stores a "StateMachineState" value       |
-| StringField                  | Stores a "String" value                  |
-| TranslatedField              | Stores a "Translated" value              |
-| TranslationsAssociationField | Stores a "TranslationsAssociation" value |
-| TreeBreadcrumbField          | Stores a "TreeBreadcrumb" value          |
-| TreeLevelField               | Stores a "TreeLevel" value               |
-| TreePathField                | Stores a "TreePath" value                |
-| UpdatedAtField               | Stores a "UpdatedAt" value               |
-| UpdatedByField               | Stores a "UpdatedBy" value               |
-| VersionDataPayloadField      | Stores a "VersionDataPayload" value      |
-| VersionField                 | Stores a "Version" value                 |
-| WhitelistRuleField           | Stores a "WhitelistRule" value           |
+| Name                         | Description                  | Extends                   | StorageAware |
+|:-----------------------------|:-----------------------------|:--------------------------|:-------------|
+| AssociationField             | Stores a association value   | Field                     |              |
+| AutoIncrementField           | Stores an integer value      | IntField                  |              |
+| BlobField                    | Stores a blob value          | Field                     | x            |
+| BoolField                    | Stores a bool value          | Field                     | x            |
+| BreadcrumbField              | Stores a JSON value          | JsonField                 |              |
+| CalculatedPriceField         | Stores a JSON value          | JsonField                 |              |
+| CartPriceField               | Stores a JSON value          | JsonField                 |              |
+| CashRoundingConfigField      | Stores a JSON value          | JsonField                 |              |
+| ChildCountField              | Stores an integer value      | IntField                  |              |
+| ChildrenAssociationField     | Stores a association value   | OneToManyAssociationField |              |
+| ConfigJsonField              | Stores a JSON value          | JsonField                 |              |
+| CreatedAtField               | Stores a DateTime value      | DateTimeField             |              |
+| CreatedByField               | Stores a foreign key value   | FkField                   |              |
+| CronIntervalField            | Stores a croninterval value  | Field                     | x            |
+| DateField                    | Stores a date value          | Field                     | x            |
+| DateIntervalField            | Stores a dateinterval value  | Field                     | x            |
+| DateTimeField                | Stores a datetime value      | Field                     | x            |
+| EmailField                   | Stores a string value        | StringField               |              |
+| [EnumField](enum-field)      | Stores a enum value          | Field                     | x            |
+| Field                        | Stores a  value              | Struct                    |              |
+| FkField                      | Stores a fk value            | Field                     | x            |
+| FloatField                   | Stores a float value         | Field                     | x            |
+| IdField                      | Stores a id value            | Field                     | x            |
+| IntField                     | Stores a int value           | Field                     | x            |
+| JsonField                    | Stores a json value          | Field                     | x            |
+| ListField                    | Stores a JSON value          | JsonField                 |              |
+| LockedField                  | Stores a boolean value       | BoolField                 |              |
+| LongTextField                | Stores a longtext value      | Field                     | x            |
+| ManyToManyAssociationField   | Stores a association value   | AssociationField          |              |
+| ManyToManyIdField            | Stores a manytomanyid value  | ListField                 |              |
+| ManyToOneAssociationField    | Stores a association value   | AssociationField          |              |
+| ObjectField                  | Stores a JSON value          | JsonField                 |              |
+| OneToManyAssociationField    | Stores a association value   | AssociationField          |              |
+| OneToOneAssociationField     | Stores a association value   | AssociationField          |              |
+| ParentAssociationField       | Stores a association value   | ManyToOneAssociationField |              |
+| ParentFkField                | Stores a foreign key value   | FkField                   |              |
+| PasswordField                | Stores a password value      | Field                     | x            |
+| PriceDefinitionField         | Stores a JSON value          | JsonField                 |              |
+| PriceField                   | Stores a JSON value          | JsonField                 |              |
+| ReferenceVersionField        | Stores a foreign key value   | FkField                   |              |
+| RemoteAddressField           | Stores a remoteaddress value | Field                     | x            |
+| SerializedField              | Stores a serialized value    | Field                     | x            |
+| StateMachineStateField       | Stores a foreign key value   | FkField                   |              |
+| StringField                  | Stores a string value        | Field                     | x            |
+| TaxFreeConfigField           | Stores a JSON value          | JsonField                 |              |
+| TimeZoneField                | Stores a string value        | StringField               |              |
+| TranslatedField              | Stores a translated value    | Field                     |              |
+| TranslationsAssociationField | Stores a association value   | OneToManyAssociationField |              |
+| TreeBreadcrumbField          | Stores a JSON value          | JsonField                 |              |
+| TreeLevelField               | Stores an integer value      | IntField                  |              |
+| TreePathField                | Stores a treepath value      | LongTextField             |              |
+| UpdatedAtField               | Stores a DateTime value      | DateTimeField             |              |
+| UpdatedByField               | Stores a foreign key value   | FkField                   |              |
+| VariantListingConfigField    | Stores a JSON value          | JsonField                 |              |
+| VersionDataPayloadField      | Stores a JSON value          | JsonField                 |              |
+| VersionField                 | Stores a foreign key value   | FkField                   |              |
