@@ -28,13 +28,13 @@ Using a shared component library offers several advantages:
 
 For each component being replaced, we provide a detailed upgrade guide that explains the migration process from the old component to the new Meteor Component. You can find these guides in the technical upgrade documentation for the release.
 
-## Using Code mods for migration
+## Using Codemods for migration
 
 To simplify the plugin migration process, we provide codemods that automatically replace old components with new Meteor Components.
 
 ### Prerequisites
 
-- A development version of Shopware must be installed
+- A [development installation of Shopware](https://github.com/shopware/shopware) must be installed
 - Your plugin must be located in the `custom/plugins` folder
 
 ### Running the Migration Tool
@@ -53,5 +53,5 @@ To simplify the plugin migration process, we provide codemods that automatically
 3. The tool will:
    - Automatically replace compatible components with Meteor Components
    - Add guidance comments for components that require manual migration
-   - Check for and update other deprecated code where possible
+   - Fixes some other deprecated code where possible
   
