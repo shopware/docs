@@ -23,6 +23,8 @@ and it will ask you for the Shopware version. You can pass also the version as s
 shopware-cli project create <folder-name> <version>
 ```
 
+The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
+
 ## Replacements to included Shell Scripts
 
 Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
