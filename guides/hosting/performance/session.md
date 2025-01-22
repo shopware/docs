@@ -17,7 +17,7 @@ By default, Shopware uses the settings configured in PHP. You can reconfigure th
 
 ```ini
 session.save_handler = redis
-session.save_path = "tcp://host:6379"
+session.save_path = "tcp://host:6379?database=0"
 ```
 
 Please refer to the official [PhpRedis documentation](https://github.com/phpredis/phpredis#php-session-handler) for all possible options.
@@ -30,7 +30,7 @@ If you don't have access to the php.ini configuration, you can configure it dire
 # config/packages/redis.yml
 framework:
     session:
-        handler_id: "redis://host:port"
+        handler_id: "redis://host:port/0"
 ```
 
 ### Redis configuration
