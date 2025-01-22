@@ -264,6 +264,8 @@ cmsService
 codebase
 codeblock
 codeblocks
+codemods
+Codemods
 codereview
 Codestyle
 colorpicker
@@ -1321,6 +1323,7 @@ RestrictDelete
 resubmittable
 rethrown
 returnUrl
+Reusability
 revalidation
 ReverseInherited
 Reviewdog
