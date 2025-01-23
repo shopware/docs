@@ -5,7 +5,7 @@ area: accessibility
 tags: [a11y, pdf, html]
 ---
 
-# [A11y] Offer HTML alternative to our pdf standard documents
+# "[A11y] Offer HTML alternative to our pdf standard documents"
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
