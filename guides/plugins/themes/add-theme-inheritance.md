@@ -72,7 +72,6 @@ Here is an example:
   ],
   "style": [
     "app/storefront/src/scss/overrides.scss",
-    "@Storefront",
     "@SwagBasicExampleTheme",
     "app/storefront/src/scss/base.scss"
   ],
