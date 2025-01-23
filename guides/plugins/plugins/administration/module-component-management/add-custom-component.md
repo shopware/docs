@@ -17,11 +17,11 @@ In this example, you will create a component that will print a 'Hello world!' ev
 
 This guide **does not** explain how to create a new plugin for Shopware 6. Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 If you want to work with entities in your custom component or page, it might be useful to take a look at how to create a custom entity guide first:
 
-<PageRef page="../framework/data-handling/add-custom-complex-data" />
+<PageRef page="../../framework/data-handling/add-custom-complex-data" />
 
 Especially if you want to add a new page for an own module, you should consider looking at the process on how to add a custom module first.
 
@@ -114,7 +114,7 @@ A component's template is being defined by using the `template` property. For th
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/src/component/custom-component/hello-world
-export default Shopware.Component.wrapComponentConfig('hello-world', {
+export default Shopware.Component.wrapComponentConfig({
     template: '<h2>Hello world!</h2>'
 });
 ```
@@ -153,8 +153,8 @@ This is a [shorthand](https://eslint.org/docs/latest/rules/object-shorthand), wh
 
 You've now added a custom component, including a little template. However, there's more to discover here.
 
-* [More about templates](writing-templates)
-* [Add some styling to your component](add-custom-styles)
-* [Use shortcuts for your component](add-shortcuts)
+* [More about templates](../templates-styling/writing-templates.md)
+* [Add some styling to your component](../templates-styling/add-custom-styles.md)
+* [Use shortcuts for your component](../advanced-configuration/add-shortcuts.md)
 
-Furthermore, what about [customizing other components](customizing-components), instead of creating new ones?
+Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones?

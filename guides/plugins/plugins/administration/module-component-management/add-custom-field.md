@@ -15,7 +15,7 @@ If you were wondering how to add a new input field to an existing module in the 
 
 This guide **does not** explain how you can create a new plugin for Shopware 6. Head over to our plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 ## Injecting into the Administration
 

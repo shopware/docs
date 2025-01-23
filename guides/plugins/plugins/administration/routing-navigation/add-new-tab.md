@@ -15,7 +15,7 @@ You want to create a new tab in the Administration? This guide gets you covered 
 
 This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our plugin base guide:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 In the course of this guide, you need to create a custom route. If you want to learn on how to create a custom component, please refer to the guide on it:
 
@@ -23,13 +23,13 @@ In the course of this guide, you need to create a custom route. If you want to l
 
 Also, we will use a small, custom component to fill our custom tab. In order to get used to that, it might come in handy to read the corresponding guide first:
 
-<PageRef page="add-custom-component" />
+<PageRef page="../module-component-management/add-custom-component" />
 
 ::: info
 
 ### Please remember
 
-The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../plugin-base-guide) for more details.
+The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be found by Shopware 6. So please use the file accordingly and refer to the [plugin base guide](../../plugin-base-guide.md) for more details.
 :::
 
 ## Creating a custom tab
@@ -125,7 +125,7 @@ After that, we'll create the actual `sw-tabs-item` element, which, as the name s
 {% endblock %}
 ```
 
-The [route](add-custom-route) being used here has the name `sw.product.detail.custom`, this will become important again later on.
+The [route](../routing-navigation/add-custom-route.md) being used here has the name `sw.product.detail.custom`, this will become important again later on.
 
 ### Loading the new tab
 
@@ -202,7 +202,7 @@ Your child route defines the routes name, so make sure to use the name you're al
 
 The path should be identical to the default ones, which look like this: `/sw/product/detail/:id/base` Just replace the `base` here with `custom` or anything you like.
 
-It then points to a component, which represents the routes actual content - so you'll have to create [a new component](add-custom-component) in the next step. Note the new import that's already part of this example: `view/sw-product-detail-custom`
+It then points to a component, which represents the routes actual content - so you'll have to create [a new component](../module-component-management/add-custom-component.md) in the next step. Note the new import that's already part of this example: `view/sw-product-detail-custom`
 
 ## Creating your new component
 

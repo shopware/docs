@@ -22,7 +22,7 @@ You want to create a custom card in the rule assignment, where you can add or de
 This guide **does not** explain how to create a new plugin for Shopware 6.
 Head over to our Plugin base guide to learn how to create a plugin at first:
 
-<PageRef page="../plugin-base-guide" />
+<PageRef page="../../plugin-base-guide" />
 
 ## Creating the index.js file
 
@@ -151,11 +151,11 @@ getRuleAssignmentConfig()
 
 Let's go through the most important entries, how to configure your rule assignment:
 
-| Option | Description |
-| :--- | :--- |
-| id | Required identifier for the assignment, which is arbitrary but unique |
-| entityName, criteria, api | Required for data loading of the assignment |
-| gridColumns | To define the columns, which are shown in your assignment card. Have a look into the [data grid component](using-the-data-grid-component) for more information. |
+| Option                    | Description                                                                                                                                                                                    |
+|:--------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                        | Required identifier for the assignment, which is arbitrary but unique                                                                                                                          |
+| entityName, criteria, api | Required for data loading of the assignment                                                                                                                                                    |
+| gridColumns               | To define the columns, which are shown in your assignment card. Have a look into the [data grid component](../data-handling-processing/using-the-data-grid-component.md) for more information. |
 
 ### Provide to delete an assignment
 
@@ -265,4 +265,4 @@ Beside the properties of a `one-to-many` type you have to define the `associatio
 
 ## Further reading
 
-For more other information, refer to [Add custom rules](../framework/rule/add-custom-rules).
+For more other information, refer to [Add custom rules](../../framework/rule/add-custom-rules.md).

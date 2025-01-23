@@ -14,7 +14,7 @@ Shortcuts in Shopware 6 are defined on a Component basis. This guide will show y
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files and preferably a registered module and custom component.
-Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+Of course, you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## Configuring the Shortcuts
 
@@ -53,9 +53,9 @@ The second keyboard shortcut defines that, upon the `ESCAPE` key being pressed, 
 
 The before mentioned `SYSTEMKEY` is `CTRL` on macOS and `ALT` on Windows, other system-keys like `CTRL` on Windows or `⌥` on macOS are not supported.
 
-Since ACL is used in the first keyboard shortcut you might want to learn more about ACL and how to add your own ACL rules [here](./add-acl-rules).
+Since ACL is used in the first keyboard shortcut, you might want to learn more about ACL and how to add your own ACL rules [here](../permissions-error-handling/add-acl-rules.md).
 
 ## More interesting topics
 
-* [Writing templates](./writing-templates)
-* [Adding styles](./add-custom-styles)
+* [Writing templates](../templates-styling/writing-templates.md)
+* [Adding styles](../templates-styling/add-custom-styles.md)

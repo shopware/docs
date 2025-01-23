@@ -10,7 +10,7 @@ nav:
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
 
-You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system, however these will not be available in Shopware cloud stores.
+Alternatively, you can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system, however these will not be available in Shopware cloud stores.
 :::
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:

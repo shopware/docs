@@ -61,7 +61,7 @@ Component.register('my-custom-page', {
 });
 ```
 
-Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../resources/references/upgrades/administration/vue3))
+Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../../resources/references/upgrades/administration/vue3.md))
 
 ## Using the snippets in templates
 
@@ -90,5 +90,5 @@ If you provide `1` as the second parameter to `$tc()`, the text `One Product` wo
 
 ## More interesting topics
 
-* [Learning about the global Shopware object](the-shopware-object)
+* [Learning about the global Shopware object](../data-handling-processing/the-shopware-object.md)
 * [Learning about the VueX state](https://github.com/shopware/docs/tree/575c2fa12ef272dc25744975e2f1e4d44721f0f1/guides/plugins/plugins/administration/using-vuex-state.md)

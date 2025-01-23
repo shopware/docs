@@ -18,7 +18,7 @@ You won't learn how to create a plugin in this guide, head over to our Plugin ba
 
 This guide will also not explain how a custom component can be created in general, so head over to the official guide about creating a custom component to learn this first.
 
-<PageRef page="../../administration/add-custom-component" />
+<PageRef page="../../administration/module-component-management/add-custom-component" />
 
 ## Creating your custom element
 

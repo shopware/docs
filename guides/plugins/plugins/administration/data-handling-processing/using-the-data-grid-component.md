@@ -27,11 +27,11 @@ Let's create the simplest template we need in order to use the [`sw-data-grid`](
 </div>
 ```
 
-This template will be used in a new component. Learn how to override existing components [here](customizing-components) .
+This template will be used in a new component. Learn how to override existing components [here](../module-component-management/customizing-components.md) .
 
 ## Declaring the data
 
-Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the guide [How to use the data handling](using-data-handling)
+Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the guide [How to use the data handling](using-data-handling.md)
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/index.js
@@ -60,4 +60,4 @@ Shopware.Component.register('swag-basic-example', {
 
 ## More interesting topics
 
-* [Using base components](using-base-components)
+* [Using base components](../module-component-management/using-base-components.md)

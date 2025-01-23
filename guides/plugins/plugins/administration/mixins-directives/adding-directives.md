@@ -17,11 +17,11 @@ Learn more about Vue Directives in their documentation:
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files and preferably a registered module. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+All you need for this guide is a running Shopware 6 instance and full access to both the files and preferably a registered module. Of course, you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## Registering a directives globally
 
-Directives can be registered globally via the [Shopware Objects](the-shopware-object) `register` helper function as seen below:
+Directives can be registered globally via the [Shopware Objects](../data-handling-processing/the-shopware-object.md) `register` helper function as seen below:
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/directive/focus.js

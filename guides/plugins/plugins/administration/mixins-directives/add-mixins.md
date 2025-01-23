@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-This documentation chapter will cover how to add a new Administration mixin for your plugin. In general, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component. If you want an overview over the shopware provided mixins look at them here: [Using Mixins](using-mixins).
+This documentation chapter will cover how to add a new Administration mixin for your plugin. In general, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component. If you want an overview over the shopware provided mixins look at them here: [Using Mixins](using-mixins.md).
 
 ## Prerequisites
 
@@ -68,9 +68,9 @@ Component.register('swag-basic-example', {
 });
 ```
 
-This can also be done with Shopware provided mixins, learn more about them here: [Using Mixins](using-mixins)
+This can also be done with Shopware provided mixins, learn more about them here: [Using Mixins](using-mixins.md)
 
 ## More interesting topics
 
-* [Adding filters](add-filter)
-* [Using utils](using-utils)
+* [Adding filters](../services-utilities/add-filter.md)
+* [Using utility functions](../services-utilities/using-utils.md)

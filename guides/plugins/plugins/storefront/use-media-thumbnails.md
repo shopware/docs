@@ -19,7 +19,7 @@ In order to use your own media files or thumbnails of your plugin in the Storefr
 
 Displaying custom images is often done by using custom fields. To take full advantage of this guide, you might want to read the corresponding guide on using custom fields:
 
-<PageRef page="../administration/add-custom-field" />
+<PageRef page="../administration/module-component-management/add-custom-field" />
 
 ## Using searchMedia function
 

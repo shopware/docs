@@ -644,4 +644,4 @@ All available hooks that can be used to execute scripts during your app's lifecy
 | **Available Services** | [repository](./data-loading-script-services-reference#RepositoryFacade)<br>[price](./cart-manipulation-script-services-reference#PriceFactory)<br>[config](./miscellaneous-script-services-reference#SystemConfigFacade)<br>[store](./data-loading-script-services-reference#SalesChannelRepositoryFacade)<br> |
 | **Stoppable**          | `false`                  |
 
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Webhook/Hookable/HookableEventCollector.php","WATCHER_HASH":"c8d1e5be8efb3ab8e06e434be1330489"} -->
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Webhook/Hookable/HookableEventCollector.php","WATCHER_HASH":"9b7fb7f51c64d3cbac7f4d64ff7e308f"} -->
