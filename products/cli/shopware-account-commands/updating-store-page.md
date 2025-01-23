@@ -5,37 +5,37 @@ nav:
 
 ---
 
-# Updating Store Page of Extension
+# Updating store page of extension
 
-You can use Shopware-CLI to versioning your Store Page representation of your extension. This includes the description, images, and all other assets.
+You can use Shopware-CLI to version your Store page representation of your extension. This includes the description, images, and all other assets.
 
 ## Prerequisites
 
 - You are logged into the Shopware Store. Checkout the [Authentication](./authentication.md) guide for more information.
 
-## Fetching the current Store Page
+## Fetching the current Store page
 
-It's recommended to start with the current Store Page and update only the parts you want to change. You can fetch the current Store Page with the following command:
+It is recommended to start with the current Store page and update only the parts you want to change. You can fetch the current Store page with the following command:
 
 ```bash
 shopware-cli account producer extension info pull <path-to-extension-folder>
 ```
 
-This will download all uploaded Store Images and create a `.shopware-extension.yml` with all metadata of the extension.
+This will download all uploaded Store images and create a `.shopware-extension.yml` with all metadata of the extension.
 
-This files can be checked-in into the Version Control and will be automatically removed when you create a zip file using Shopware-CLI.
+This file can be checked-in into the version control and will be automatically removed when you create a zip file using Shopware-CLI.
 
-## Updating the Store Page
+## Updating the Store page
 
-To push the changes to the Store Page, you can use the following command:
+To push the changes to the Store page, you can use the following command:
 
 ```bash
 shopware-cli account producer extension info push <path-to-extension-folder>
 ```
 
-This will upload all images and metadata to the Store Page.
+This will upload all images and metadata to the Store page.
 
-## Image Configuration
+## Image configuration
 
 Images can be uploaded in two ways:
 

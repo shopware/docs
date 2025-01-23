@@ -7,7 +7,7 @@ nav:
 
 # Build a complete Project
 
-Usually when you want to deploy your Project you want to run `composer install` and want to compile the assets of the project. Shopware-CLI provides a single command which does all of this for you.
+Usually, when you want to deploy your project, you have to run `composer install` and compile the assets of the project. Shopware-CLI provides a single command which does all of this for you.
 
 ::: warning
 This command modifies the given directory and deletes files. Make sure you have committed all your changes before running this command.
@@ -19,7 +19,7 @@ shopware-cli project ci <path>
 
 ## What it does?
 
-- It runs `composer install` (by default only installs the production dependencies, use `--with-dev-dependencies` to install also the dev dependencies)
+- It runs `composer install` (by default only installs the production dependencies, use `--with-dev-dependencies` to install the dev dependencies as well)
 - Looks for missing assets of extensions and only compiles the missing assets to speed up the build process
 - Deletes unnecessary files like `node_modules` and many more to save disk space
 - Deletes source code of compiled assets to save disk space
@@ -27,7 +27,7 @@ shopware-cli project ci <path>
 
 ## Using private Composer repositories
 
-If you want to use packages.shopware.com as a private Composer repository, make sure you have set `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. This can be found in your Shopware Account.
+If you want to use `packages.shopware.com` as a private Composer repository, make sure you have set `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. This can be found in your Shopware Account.
 
 For other private Composer repositories, you can use the `auth.json` file in the root of your project or set `COMPOSER_AUTH` environment variable with the content of the `auth.json` file.
 
@@ -35,7 +35,7 @@ For more information, see the [Composer documentation](https://getcomposer.org/d
 
 ## Reducing JavaScript in Storefront
 
-Shopware's default Browserlist still supports older Browsers like Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the Browserlist configuration in the `.shopware-project.yml` file.
+Shopware's default `browserlist` still supports older browsers like Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the `browserlist` configuration in the `.shopware-project.yml` file.
 
 ```yaml
 build:
@@ -43,7 +43,7 @@ build:
   browserslist: 'defaults'
 ```
 
-You can check [here which Browsers would be affected](https://browsersl.ist/#q=defaults).
+You can check [here which browsers would be affected](https://browsersl.ist/#q=defaults).
 
 ## Configuration options
 
@@ -72,7 +72,7 @@ build:
 
 ## Supporting bundles
 
-Plugins and Apps are automatically detected by Shopware-CLI. Custom Bundles (classes that extend Bundle class from Shopware) cannot be automatically detected as Shopware-CLI does not execute any PHP code.
+Plugins and Apps are automatically detected by Shopware-CLI. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware-CLI does not execute any PHP code.
 Therefore you need to add the path of the custom bundle to your project `composer.json`:
 
 ```json
@@ -86,7 +86,7 @@ Therefore you need to add the path of the custom bundle to your project `compose
 }
 ```
 
-If your bundle folder names does not match your Bundle name, you can use the `name` key to map the folder to the bundle name.
+If your bundle folder names does not match your bundle name, you can use the `name` key to map the folder to the bundle name.
 
 ```json
 {
@@ -118,7 +118,7 @@ With this Composer type, `shopware-cli extension build` also works for your bund
 
 ## Example Docker Image
 
-This is an example Dockerfile which builds a Shopware Project and copies the source code to the `/var/www/html` folder.
+This is an example Dockerfile which builds a Shopware project and copies the source code to the `/var/www/html` folder.
 
 ```dockerfile
 #syntax=docker/dockerfile:1.4
@@ -146,4 +146,4 @@ FROM base-image
 COPY --from=build --chown=82 --link /src /var/www/html
 ```
 
-Besides Docker, it's also an perfect fit for any deployment variant.
+Besides Docker, it is also a perfect fit for any deployment variant.

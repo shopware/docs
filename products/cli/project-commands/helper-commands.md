@@ -9,7 +9,7 @@ nav:
 
 This is a curated list of helper commands that are useful for your daily work with Shopware-CLI in your Shopware project.
 
-## Create a new Project
+## Create a new project
 
 To create a new project, you can use the following command:
 
@@ -17,7 +17,7 @@ To create a new project, you can use the following command:
 shopware-cli project create <folder-name>
 ```
 
-and it will ask you for the Shopware version. You can pass also the version as second parameter:
+It will ask you for the Shopware version. You can pass also the version as second parameter:
 
 ```bash
 shopware-cli project create <folder-name> <version>
@@ -25,7 +25,7 @@ shopware-cli project create <folder-name> <version>
 
 The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
 
-## Replacements to included Shell Scripts
+## Replacements to include in shell scripts
 
 Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
@@ -60,9 +60,9 @@ shopware-cli project worker <amount>
 
 For production, you should let this handle supervisord or systemd. But for development, this is a quick way to start multiple workers.
 
-## Clear Cache
+## Clear cache
 
-It's just a short cut for `bin/console cache:clear` without having to be in the project root directory.
+It is just a short cut for `bin/console cache:clear` without having to be in the project root directory.
 
 ```bash
 shopware-cli project clear-cache
@@ -72,7 +72,7 @@ If in the `.shopware-project.yml` a API connection is configured, it will clear 
 
 ## Console
 
-Similar to Clear Cache, there is also a general shortcut for `bin/console`:
+Similar to `clear-cache`, there is also a general shortcut for `bin/console`:
 
 ```bash
 shopware-cli project console <command>
@@ -86,11 +86,11 @@ To generate a new JWT secret, you can use the following command:
 shopware-cli project generate-jwt
 ```
 
-It's similar to `bin/console system:generate-jwt-secret`, but requires no Shopware project to be present or PHP to be installed.
+It is similar to `bin/console system:generate-jwt-secret`, but requires no Shopware project to be present or PHP to be installed.
 
 ## Admin API
 
-If you want to make requests against the Shopware-API using curl, you need to obtain a JWT token and add it as header. Shopware-CLI has a helper command for that:
+If you want to make requests against the Shopware-API using curl, you need to obtain a JWT token and add it as a header. Shopware-CLI has a helper command for that:
 
 ```bash
 shopware-cli project admin-api --output-token
@@ -102,4 +102,4 @@ This will output the JWT token to the console. You can also make directly API re
 shopware-cli project admin-api GET /_info/version
 ```
 
-you can pass also more options like `-d` for data or `-H` for headers as you would do with curl.
+You can also pass more options like `-d` for data or `-H` for headers as you would do with curl.

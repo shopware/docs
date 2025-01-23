@@ -15,4 +15,4 @@ The CLI consists of three main components:
 - Extension commands: Commands to build Shopware extensions
 - Store commands: Commands to publish extensions to the Shopware Store or update
 
-If you want to use the CLI, you need to [install it first](installation.md) or take a look at the each area of the CLI.
+If you want to use the CLI, you need to [install it first](installation.md) or take a look at each area of the CLI.

@@ -17,7 +17,7 @@ Shopware-CLI allows you to easily build the assets of an extension. To build an 
 shopware-cli extension build <path>
 ```
 
-Shopware-CLI reads the `shopware/core` requirement in `composer.json` or `manifest.xml` and uses the lowest possible Shopware Version to build the assets. This allows that the extension can be used in multiple Shopware versions. If this version is not correct, you can override it in a `.shopware-extension.yml`
+Shopware-CLI reads the `shopware/core` requirement from `composer.json` or `manifest.xml` and builds the assets using the lowest compatible Shopware version. This ensures the extension remains usable across multiple Shopware versions. If the selected version is incorrect, you can override it using a `.shopware-extension.yml` file.
 
 ```yaml
 # .shopware-extension.yml
@@ -25,7 +25,7 @@ build:
   shopwareVersionConstraint: '6.6.9.0'
 ```
 
-This has only affect on the build process and not on the installation of the extension, for full control you can specify also the environment variable `SHOPWARE_PROJECT_ROOT` pointing to a Shopware 6 project and it will use that Shopware to build the extension assets.
+This only affects the build process and not on the installation of the extension. For full control you can also specify the environment variable `SHOPWARE_PROJECT_ROOT` pointing to a Shopware 6 project, and it will use that Shopware to build the extension assets.
 
 ## Additional bundles
 
@@ -45,10 +45,10 @@ build:
 ## Using esbuild for JavaScript Bundling
 
 ::: warning
-Building with esbuild works completely standalone without the Shopware Codebase. This means if you import files from Shopware, you have to copy it to your extension.
+Building with esbuild works completely standalone without the Shopware codebase. This means if you import files from Shopware, you have to copy it to your extension.
 :::
 
-It's possible to use esbuild for JavaScript bundling. This is way faster than the usual Shopware bundling as Shopware itself is not necessary to build the assets.
+Esbuild can be utilized for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
 
 ```yaml
 # .shopware-extension.yml
@@ -75,7 +75,7 @@ The command copies the extension to a temporary directory, builds the assets, de
 
 ### Bundling composer dependencies
 
-Prior to Shopware 6.5, it's required to bundle the composer dependencies into the zip file. So Shopware-CLI runs automatically `composer install` for you and strips duplicate composer dependencies to avoid conflicts.
+Before Shopware 6.5, bundling the composer dependencies into the zip file is required. Shopware-CLI automatically runs `composer install` and removes duplicate composer dependencies to avoid conflicts.
 
 To disable this behavior, you can adjust the configuration:
 
@@ -129,7 +129,7 @@ changelog:
   enabled: true
 ```
 
-and uses the commits between the last tag and the current commit to generate the changelog. It can be further configured to filter commits and build the changelog differently.
+It utilizes the commits between the last tag and the current commit to generate the changelog. Additionally, it can be configured to filter commits and build the changelog differently.
 
 ```yaml
 changelog:
@@ -150,22 +150,22 @@ With the combination of `pattern`, `variables` and `template` we link the commit
 
 ### Overwrites
 
-It's possible to overwrite extension configuration while zipping like to change the version and app related things
+Extension configuration can be overwritten during the zipping process, allowing changes to aspects such as the version and app-related settings.
 
 ```yaml
 shopware-cli extension zip --overwrite-version=1.0.0 <path>
 ```
 
-replaces the version in `composer.json` or `manifest.xml` with the given version.
+Replaces the version in `composer.json` or `manifest.xml` with the given version.
 
 ```yaml
 shopware-cli extension zip --overwrite-app-backend-url=https://example.com <path>
 ```
 
-replaces all external URLs in `manifest.xml` to that given URL.
+Replaces all external URLs in `manifest.xml` to that given URL.
 
 ```yaml
 shopware-cli extension zip --overwrite-app-backend-secret=MySecret <path>
 ```
 
-replaces the App secret in `manifest.xml` with the given secret.
+Replaces the App secret in `manifest.xml` with the given secret.

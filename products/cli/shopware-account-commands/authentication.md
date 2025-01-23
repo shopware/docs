@@ -33,7 +33,7 @@ You can use the following commands to list all companies you have access to:
 shopware-cli account company list
 ```
 
-and select the active company with:
+Next, select the active company with:
 
 ```bash
 shopware-cli account company use <id>

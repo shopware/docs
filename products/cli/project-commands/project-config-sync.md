@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Project Config synchronization
+# Project config synchronization
 
 Shopware-CLI can synchronize the project configurations between different environments. This is useful for example to keep the configuration in the development and production environment in sync.
 
@@ -22,7 +22,7 @@ To synchronize the project, you need to create a `.shopware-project.yml` file in
 
 You can also use the command `shopware-cli project config init` to create a new `shopware-project.yml` file. Make sure that you configure the API access too as this is required for the synchronization.
 
-## Credentials with Environment variables
+## Credentials with environment variables
 
 If you don't want to store the credentials in the `shopware-project.yml` file, you can use environment variables.
 
@@ -36,17 +36,21 @@ Either you can fill `SHOPWARE_CLI_API_CLIENT_ID` and `SHOPWARE_CLI_API_CLIENT_SE
 
 ## Initial pulling
 
-To pull the configuration from the Shopware instance, you can use the command `shopware-cli project config pull`. This command pulls the configuration from the Shopware instance and stores it in the local `.shopware-project.yml` file.
+To pull the configuration from the Shopware instance, you can use the command `shopware-cli project config pull`. This command pulls the configuration from the Shopware instance and stores it in the local `shopware-project.yml` file.
 
 ## Pushing the configuration
 
-After you made the changes in the local `shopware-project.yml` file, you can push the changes to the Shopware instance with the command `shopware-cli project config push`.
+After you made the changes in the local `shopware-project.yml` file, you can push the changes to the Shopware instance with the command:
+
+```bash
+shopware-cli project config push
+```
 
 This shows the difference between your local and the remote configuration and asks you if you want to push the changes.
 
 ## Entity synchronization
 
-With Entity synchronization, you can synchronize any kind of entity using directly the Shopware API.
+With entity synchronization, you can synchronize any kind of entity using directly the Shopware API.
 
 ```yaml
 sync:

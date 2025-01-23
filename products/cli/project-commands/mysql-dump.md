@@ -15,19 +15,19 @@ Creating a MySQL dump is as simple as running the following command:
 shopware-cli project dump
 ```
 
-and will create a `dump.sql` in the current directory. The dump command will use the database credentials from the `.env` file. If you want to use different credentials, you can use the following flags:
+This will create a `dump.sql` in the current directory. The dump command will use the database credentials from the `.env` file. If you want to use different credentials, you can use the following flags:
 
 ```bash
 shopware-cli project dump --host 127.0.0.1 --username root --password root --database sw6
 ```
 
-It's possible to use `--skip-lock-tables` to skip the lock tables command. This is useful for large databases or when the MySQL user has no rights to lock the table.
+It is possible to use `--skip-lock-tables` to skip the lock tables command. This is useful for large databases or when the MySQL user has no rights to lock the table.
 
 ## Compressing the dump
 
-Database dumps can be pretty large, it's possible to compress the dump using `gzip` or `zstd`. Use flag `--compression=gzip` for gzip compression or `--compression=zstd` for zstd compression.
+Database dumps can be pretty large, it is possible to compress the dump using `gzip` or `zstd`. Use flag `--compression=gzip` for gzip compression or `--compression=zstd` for zstd compression.
 
-## Table Locking
+## Table locking
 
 By default Shopware-CLI will try to lock the table before dumping the data. This can fail if the MySQL user has no rights to lock the table. To skip the lock tables command, use the `--skip-lock-tables` flag.
 
@@ -37,7 +37,7 @@ The `--anonymize` flag will anonymize known user data tables. The following tabl
 
 [See here for the complete list](https://github.com/FriendsOfShopware/shopware-cli/blob/main/cmd/project/project_dump.go#L74)
 
-It's possible to customize the anonymization process by using the `dump.rewrite` configuration in the `shopware-cli.yml` file.
+It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `shopware-cli.yml` file.
 
 ```yaml
 # .shopware-project.yml
@@ -82,7 +82,7 @@ dump:
 
 ## Ignoring entire tables
 
-It's also possible to completely ignore a table **not only the content**.
+It is also possible to completely ignore a table **not only the content**.
 
 ```yaml
 # .shopware-project.yml
@@ -93,7 +93,7 @@ dump:
 
 ## Adding a where clause
 
-It's possible to add a where clause to the export of a table. So only rows matching the where clause will be exported.
+It is possible to add a where clause to the export of a table. So only rows matching the where clause will be exported.
 
 ```yaml
 # .shopware-project.yml

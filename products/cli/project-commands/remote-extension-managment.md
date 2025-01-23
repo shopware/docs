@@ -5,12 +5,12 @@ nav:
 
 ---
 
-# Remote Extension Management
+# Remote extension management
 
-Shopware-CLI has an extension manager to install and manage extensions in your Shopware project through the Shopware API. Kinda like the Extension Manager in the Shopware 6 Administration Panel, but for the CLI.
+Shopware-CLI has an extension manager to install and manage extensions in your Shopware project through the Shopware API like the Extension Manager in the Shopware 6 Administration panel, but for the CLI.
 
 ::: info
-This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer.](../../../guides/hosting/installation-updates/deployments/deployment-helper.md)
+This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer](../../../guides/hosting/installation-updates/deployments/deployment-helper.md)
 :::
 
 To use the extension manager, you need a `.shopware-project.yml`, this can be created with the command `shopware-cli project config init`.

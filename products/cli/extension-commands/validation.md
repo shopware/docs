@@ -7,7 +7,7 @@ nav:
 
 # Extension Validation
 
-Shopware-CLI has an builtin validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
+Shopware-CLI has a built-in validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
 
 ## Validating an extension
 
@@ -21,14 +21,14 @@ The path can be absolute or relative to the directory containing the extension o
 
 ## What is validated?
 
-- The composer.json has an `shopware/core` requirement and constraint is parsable
-- The extension metadata is filled:
+- The `composer.json` has an `shopware/core` requirement and constraint is parsable
+- The extension metadata is filled with:
   - `name`
   - `label` (German and English)
   - `description` (German and English) and longer than 150 characters and shorter than 185 characters
 - Translations have equality translated in the given languages
 - PHP can be correctly linted with the minimum PHP version
-- The theme.json can be parsed and included assets can be found
+- The `theme.json` can be parsed and included assets can be found
 
 ## Supported PHP versions for linting
 

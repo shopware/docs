@@ -7,7 +7,7 @@ nav:
 
 # Installation
 
-You can install the pre-compiled binary (in several different ways), use Docker or compile from source.
+You can install the pre-compiled binary (in several different ways), use Docker or compile from the source.
 
 Below you can find the steps for each of them.
 
@@ -45,15 +45,17 @@ yay -S shopware-cli-bin
 
 ### Manually: deb,rpm apt packages
 
-Download the .deb, .rpm or .apk packages from the [releases](https://github.com/FriendsOfShopware/shopware-cli/releases/) page and install them with the appropriate tools.
+Download the `.deb`, `.rpm` or `.apk` packages from the [releases](https://github.com/FriendsOfShopware/shopware-cli/releases/) page and install them with the appropriate tools.
 
 ### Nix
+
+Install **Nix** package from here:
 
 ```shell
 nix profile install nixpkgs#shopware-cli
 ```
 
-or directly from the FriendsOfShopware repository (more up to date)
+or directly from the **FriendsOfShopware** repository (more up to date)
 
 ```shell
 nix profile install github:FriendsOfShopware/nur-packages#shopware-cli
@@ -74,7 +76,7 @@ inputs:
         follows: "nixpkgs"
 ```
 
-and then you can use the new input in the `devenv.nix` file. Don't forget to add the `inputs` argument, to the first line.
+Then you can use the new input in the `devenv.nix` file. Don't forget to add the `inputs` argument, to the first line.
 
 ```nix
 { pkgs, inputs, ... }: {
@@ -97,7 +99,7 @@ and then you can use the new input in the `devenv.nix` file. Don't forget to add
 
 ### GitHub Action
 
-using Shopware CLI Action
+Using Shopware CLI Action :
 
 ```yaml
 - name: Install shopware-cli
@@ -134,13 +136,13 @@ Add the following line to your docker image to copy the binary into your image.
 COPY --from=shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
 
-## manually
+## Manually
 
 Download the pre-compiled binaries from the [releases](https://github.com/FriendsOfShopware/shopware-cli/releases/) page and copy them to the desired location.
 
 ## Running with Docker
 
-You can also use it within a Docker container. To do that, you'll need to execute something more-or-less like the examples below.
+You can also use it within a Docker container. To do that, you will need to execute something more or less like the examples below.
 
 Registries:
 
@@ -164,26 +166,26 @@ docker run \
 
 If you just want to build from source for whatever reason, follow these steps:
 
-### clone
+### Clone
 
 ```bash
 git clone https://github.com/FriendsOfShopware/shopware-cli
 cd shopware-cli
 ```
 
-### get the dependencies
+### Get the dependencies
 
 ```bash
 go mod tidy
 ```
 
-### build
+### Build
 
 ```bash
 go build -o shopware-cli .
 ```
 
-### verify it works
+### Verify
 
 ```bash
 ./shopware-cli --version

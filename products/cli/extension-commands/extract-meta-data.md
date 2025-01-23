@@ -7,7 +7,7 @@ nav:
 
 # Extracting Meta Data
 
-There are helpers in Shopware-CLI to extract data of a extension. This is useful in your CI/CD pipeline to get the extension version or the changelog for the automated release.
+There are helpers in Shopware-CLI to extract data of an extension. This is useful in your CI/CD pipeline to get the extension version or the changelog for the automated release.
 
 ## Extracting the version
 
