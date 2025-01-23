@@ -58,7 +58,7 @@ Usually you have to start the worker with `bin/console messenger:consume` in the
 shopware-cli project worker <amount>
 ```
 
-For production, you should let this handle supervisord or systemd. But for development, this is a quick way to start multiple workers.
+For production, you should let this handle **supervisord** or **systemd**. But for development, this is a quick way to start multiple workers.
 
 ## Clear cache
 

@@ -13,6 +13,8 @@ Below you can find the steps for each of them.
 
 ## Install the pre-compiled binary
 
+Shopware-CLI is published in various package managers. You can install it using the following commands.
+
 ### Homebrew
 
 ```bash
@@ -166,27 +168,13 @@ docker run \
 
 If you just want to build from source for whatever reason, follow these steps:
 
-### Clone
-
 ```bash
-git clone https://github.com/FriendsOfShopware/shopware-cli
+git clone https://github.com/shopware/shopware-cli
 cd shopware-cli
-```
 
-### Get the dependencies
-
-```bash
 go mod tidy
-```
 
-### Build
-
-```bash
 go build -o shopware-cli .
-```
 
-### Verify
-
-```bash
 ./shopware-cli --version
 ```
