@@ -70,7 +70,9 @@ if (location.isIframe()) {
 
 This is the main file, which is executed first and functions as the entry point.
 
-[Only necessary when using Shopware version below 6.7]  
+::: info
+The steps below are only necessary for Shopware versions below 6.7.
+:::
 Start with `if(location.isIframe())` to make sure only content used inside iFrames is loaded. While the SDK is used in apps and plugins, this check ensures the code is executed in the right place.
 
 Next you need `if(location.is(location.MAIN_HIDDEN))` to **load the main commands**, which are defined in the `mainCommands.ts` file. This will only be used to load logic, but not templates into the Administration.
