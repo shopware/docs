@@ -56,7 +56,7 @@ import 'regenerator-runtime/runtime';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
 // Only execute extensionSDK commands when
-// it is inside a iFrame (only needed for plugins)
+// it is inside a iFrame (only necessary for plugins when using Shopware version below 6.7)
 if (location.isIframe()) {
     if (location.is(location.MAIN_HIDDEN)) {
         // Execute the base commands
@@ -70,6 +70,7 @@ if (location.isIframe()) {
 
 This is the main file, which is executed first and functions as the entry point.
 
+[Only necessary when using Shopware version below 6.7]  
 Start with `if(location.isIframe())` to make sure only content used inside iFrames is loaded. While the SDK is used in apps and plugins, this check ensures the code is executed in the right place.
 
 Next you need `if(location.is(location.MAIN_HIDDEN))` to **load the main commands**, which are defined in the `mainCommands.ts` file. This will only be used to load logic, but not templates into the Administration.
