@@ -23,7 +23,7 @@ shopware-cli account producer extension info pull <path-to-extension-folder>
 
 This will download all uploaded Store images and create a `.shopware-extension.yml` with all metadata of the extension.
 
-This file can be checked-in into the version control and will be automatically removed when you create a zip file using Shopware-CLI.
+This file can be checked in into the version control and will be automatically removed when you create a zip file using Shopware-CLI.
 
 ## Updating the Store page
 
@@ -51,7 +51,7 @@ store:
       activate:
         de: false
         en: false
-      # Is the image an preview image, only one image can be a preview
+      # Is the image a preview image, only one image can be a preview
       preview:
         de: false
         en: false
@@ -64,7 +64,7 @@ store:
   image_directory: <path-to-directory>
 ```
 
-The images will be sorted by the file name. If you want to seperate the images by language, you can create subdirectories with the language code like so:
+The images will be sorted by the file name. If you want to separate the images by language, you can create subdirectories with the language code like so:
 
 ```text
 src/Resources/store/images/

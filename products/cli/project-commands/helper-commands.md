@@ -17,7 +17,7 @@ To create a new project, you can use the following command:
 shopware-cli project create <folder-name>
 ```
 
-It will ask you for the Shopware version. You can pass also the version as second parameter:
+It will ask you for the Shopware version. You can pass the version as second parameter:
 
 ```bash
 shopware-cli project create <folder-name> <version>
@@ -36,7 +36,7 @@ Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-Additionally to the replacement, Shopware-CLI allows to only watch a specific set of extensions or exclude few.
+Additionally to the replacement, Shopware-CLI allows only watching a specific set of extensions or exclude few.
 
 To only watch specific:
 
@@ -62,7 +62,7 @@ For production, you should let this handle **supervisord** or **systemd**. But f
 
 ## Clear cache
 
-It is just a short cut for `bin/console cache:clear` without having to be in the project root directory.
+It is just a shortcut for `bin/console cache:clear` without having to be in the project root directory.
 
 ```bash
 shopware-cli project clear-cache
@@ -90,7 +90,7 @@ It is similar to `bin/console system:generate-jwt-secret`, but requires no Shopw
 
 ## Admin API
 
-If you want to make requests against the Shopware-API using curl, you need to obtain a JWT token and add it as a header. Shopware-CLI has a helper command for that:
+If you want to make requests against the Shopware-API using curl, you need to get a JWT token and add it as a header. Shopware-CLI has a helper command for that:
 
 ```bash
 shopware-cli project admin-api --output-token

@@ -9,7 +9,7 @@ nav:
 
 To interact with the Shopware Account API, you need to authenticate yourself.
 
-For this you need to login using:
+For this, you need to log in using:
 
 ```bash
 shopware-cli account login
