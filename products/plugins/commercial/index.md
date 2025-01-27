@@ -25,7 +25,7 @@ In accordance with a Shopware merchant's active account configuration, features 
 
 ## Licensing
 
-On installation the commercial plugin tries to fetch the license key using the logged-in Shopware Account. If this can't be fetched, the plugin can be still installed but all features are deactivated. If you login into your Shopware Account, you can fetch again the license key using `bin/console commercial:license:update`.
+On installation, the commercial plugin tries to fetch the license key using the logged-in Shopware Account. If this can't be fetched, the plugin can be installed, but all features are deactivated. If you log into your Shopware Account, you can fetch the license key again using `bin/console commercial:license:update`.
 
 For further debugging you can run the command:
 
@@ -33,7 +33,7 @@ For further debugging you can run the command:
 bin/console commercial:license:info
 ```
 
-which will show the current license key if set and when it expires.
+which will show the current license key, whether it is set, and when it expires.
 
 ## Disable Features
 
@@ -41,7 +41,7 @@ which will show the current license key if set and when it expires.
 This Feature is available since 6.6.10.0
 :::
 
-The commercial plugin consists of multiple features. You may not need all Features included with the plugin, so you can specify with `SHOPWARE_COMMERCIAL_ENABLED_BUNDLES` environment variable all commercial bundles you want to be enabled.
+The commercial plugin consists of multiple features. Since you may not need all the Features included with the plugin, you can specify with the `SHOPWARE_COMMERCIAL_ENABLED_BUNDLES` environment variable all commercial bundles you want to be enabled.
 
 Example environment variable:
 
