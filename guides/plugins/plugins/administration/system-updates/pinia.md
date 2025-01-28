@@ -101,62 +101,57 @@ import './state/products.state';
 
 ### Key Changes
 
-- **State:**
+#### State
 
-  - In Pinia, `state` must be a function returning the initial state instead of a static object.
+In Pinia, `state` must be a function returning the initial state instead of a static object.
 
-  - Example:
+ ```javascript
+ state: () => ({
+     productName: '',
+ })
+ ```
 
-   ```javascript
-   state: () => ({
-       productName: '',
-   })
-   ```
+#### Mutations
 
-- **Mutations:**
+Vuex `mutations` are no longer needed in Pinia, since you can modify state directly in actions or compute it dynamically.
 
-  - Vuex `mutations` are no longer needed in Pinia, since you can modify state directly in actions or compute it dynamically.
-
-  - Example:
-
-    ```javascript
-    actions: {
-        updateProductName(newName) {
-            this.productName = newName; // Directly update state
-        },
+```javascript
+actions: {
+    updateProductName(newName) {
+        this.productName = newName; // Directly update state
     },
-    ```
+},
+```
 
-- **Getters:**
+#### Getters
 
-  - There cannot be getters with the same name as a property in the state, as both are exposed at the same level in the store.
-  - Getters should be used to compute and return information based on state, without modifying it.
+- There cannot be getters with the same name as a property in the state, as both are exposed at the same level in the store.
+- Getters should be used to compute and return information based on state, without modifying it.
 
-- **TypeScript:**
+#### TypeScript
 
-  - We recommend migrating JavaScript stores to TypeScript for stricter typing, better autocompletion, and fewer errors during development.
-  - Example:
+We recommend migrating JavaScript stores to TypeScript for stricter typing, better autocompletion, and fewer errors during development.
 
-    ```typescript
-    const store = Shopware.Store.register({
-      id: 'myStore',
-      ...
-    });
+```typescript
+const store = Shopware.Store.register({
+  id: 'myStore',
+  ...
+});
 
-    export type StoreType = ReturnType<typeof store>;
-    ```
+export type StoreType = ReturnType<typeof store>;
+```
 
-    Then, you can use this type to extend `PiniaRootState`:
+Then, you can use this type to extend `PiniaRootState`:
 
-    ```typescript
-    import type { StoreType } from './store/myStore';
+```typescript
+import type { StoreType } from './store/myStore';
 
-    declare global {
-        interface PiniaRootState {
-            myStore: StoreType;
-        }
+declare global {
+    interface PiniaRootState {
+        myStore: StoreType;
     }
-    ```
+}
+```
 
 ### Composables as a Store
 
