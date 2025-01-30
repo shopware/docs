@@ -7,7 +7,7 @@ nav:
 
 # Building extensions and creating archives
 
-Extensions consists of PHP Changes, JavaScript and CSS. To release an extension to the Shopware Store or upload it to a Shopware 6 instance without having to rebuild Storefront and Administration your extension needs to provide the compiled assets.
+Extensions consist of PHP Changes, JavaScript and CSS. To release an extension to the Shopware Store or upload it to a Shopware 6 instance without having to rebuild Storefront and Administration, your extension needs to provide the compiled assets.
 
 ## Building an extension
 
@@ -37,7 +37,7 @@ build:
   extraBundles:
     # Assumes the bundle name is the same as the directory name
     - path: src/Foo
-    # Explictly specify the bundle name
+    # Explicitly specify the bundle name
     - path: src/Foo
       name: Foo
 ```
@@ -48,7 +48,7 @@ build:
 Building with esbuild works completely standalone without the Shopware codebase. This means if you import files from Shopware, you have to copy it to your extension.
 :::
 
-Esbuild can be utilized for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
+Esbuild can be used for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
 
 ```yaml
 # .shopware-extension.yml
@@ -71,7 +71,7 @@ shopware-cli extension zip <path>
 
 The command copies the extension to a temporary directory, builds the assets, deletes unnecessary files and creates a zip archive of the extension. The archive is placed in the current working directory.
 
-**By default the command picks the latest released git tag**, use `--disable-git` as flag to disable this behavior and use the current source code. Besides disabling it completely, you can also specify a specific tag or commit using `--git-commit`.
+**By default, the command picks the latest released git tag**, use the `--disable-git` flag to disable this behavior and use the current source code. Besides disabling it completely, you can also specify a specific tag or commit using `--git-commit`.
 
 ### Bundling composer dependencies
 
@@ -129,14 +129,14 @@ changelog:
   enabled: true
 ```
 
-It utilizes the commits between the last tag and the current commit to generate the changelog. Additionally, it can be configured to filter commits and build the changelog differently.
+It generates the changelog by utilizing the commits between the last tag and the current commit. Additionally, it can be configured to filter commits and build the changelog differently.
 
 ```yaml
 changelog:
   enabled: true
   # only the commits matching to this regex will be used
   pattern: '^NEXT-\d+'
-  # variables allows to extract metadata out of the commit message
+  # variables allow extracting metadata out of the commit message
   variables:
     ticket: '^(NEXT-\d+)\s'
   # go template for the changelog, it loops over all commits
@@ -145,7 +145,7 @@ changelog:
     {{end}}
 ```
 
-This example checks that all commits in the changelog needs to start with `NEXT-` in the beginning. The `variables` section allows to extract metadata out of the commit message. The `template` is a go template which loops over all commits and generates the changelog.
+This example checks that all commits in the changelog needs to start with `NEXT-` in the beginning. The `variables` section allows extracting metadata out of the commit message. The `template` is a go template which loops over all commits and generates the changelog.
 With the combination of `pattern`, `variables` and `template` we link the commit message to the Shopware ticket system.
 
 ### Overwrites

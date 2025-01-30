@@ -17,9 +17,9 @@ This command modifies the given directory and deletes files. Make sure you have 
 shopware-cli project ci <path>
 ```
 
-## What it does?
+## What does it do?
 
-- It runs `composer install` (by default only installs the production dependencies, use `--with-dev-dependencies` to install the dev dependencies as well)
+- It runs `composer install` (by default, only installs the production dependencies, use `--with-dev-dependencies` to install the dev dependencies as well)
 - Looks for missing assets of extensions and only compiles the missing assets to speed up the build process
 - Deletes unnecessary files like `node_modules` and many more to save disk space
 - Deletes source code of compiled assets to save disk space
@@ -53,12 +53,12 @@ You can configure the build process with a `.shopware-project.yml` file. The fol
 build:
   # Browserlist configuration for Storefront
   browserslist: 'defaults'
-  # Which paths should be deleted
+  # Paths that should be deleted
   cleanup_paths:
     - 'node_modules'
   # At the end of the process, bin/console asset:install is executed, this can be disabled here
   disable_asset_copy: false
-  # Exclude following extensions from the build process
+  # Exclude the following extensions from the build process
   exclude_extensions:
     - 'SwagExample'
   # Keep the extension Administration and Storefront source code

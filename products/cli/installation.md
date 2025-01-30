@@ -7,7 +7,7 @@ nav:
 
 # Installation
 
-You can install the pre-compiled binary (in several different ways), use Docker or compile from the source.
+You can install the pre-compiled binary (in several different ways), use Docker or compile it from the source.
 
 Below you can find the steps for each of them.
 
@@ -47,7 +47,13 @@ yay -S shopware-cli-bin
 
 ### Manually: deb,rpm apt packages
 
-Download the `.deb`, `.rpm` or `.apk` packages from the [releases](https://github.com/FriendsOfShopware/shopware-cli/releases/) page and install them with the appropriate tools.
+Download the `.deb`, `.rpm` or `.apk` packages from the [releases](https://github.com/shopware/shopware-cli/releases/) page and install them with the appropriate tools.
+
+```shell
+sudo dpkg -i shopware-cli_0.5.2_linux_amd64.deb # for .deb
+sudo rpm -i shopware-cli_0.5.2_linux_arm64.rpm # for .rpm
+sudo apk add shopware-cli-0.5.2.apk # for .apk
+```
 
 ### Nix
 
@@ -138,9 +144,9 @@ Add the following line to your docker image to copy the binary into your image.
 COPY --from=shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
 
-## Manually
+## Add binary manually
 
-Download the pre-compiled binaries from the [releases](https://github.com/FriendsOfShopware/shopware-cli/releases/) page and copy them to the desired location.
+Download the pre-compiled binaries from the [releases](https://github.com/shopware/shopware-cli/releases) page and copy them to the desired location.
 
 ## Running with Docker
 

@@ -11,9 +11,9 @@ nav:
 `shopware-cli extension admin-watch` can be different to the regular Admin Watcher. You can start the regular Admin Watcher with `shopware-cli project admin-watch`
 :::
 
-Shopware-CLI has an integrated Standalone Admin Watcher. This is useful if the regular Admin Watcher struggles with the amount of installed extensions and you only want to watch one single extension. The Standalone Watcher works by using the regular build Administration and injects only the changed files of the extension.
+Shopware-CLI has an integrated Standalone Admin Watcher. This is useful if the regular Admin Watcher struggles with the number of installed extensions, and you only want to watch one single extension. The Standalone Watcher works by using the regular build Administration and injects only the changed files of the extension.
 
-Therefore the Watcher starts in few milliseconds and is very fast. Additionally, it can be targeted to an external Shopware 6 Instance to debug JavaScript or CSS changes with the external data.
+Therefore, the Watcher starts in few milliseconds and is very fast. Additionally, it can be targeted to an external Shopware 6 Instance to debug JavaScript or CSS changes with the external data.
 
 ## Starting the Standalone Admin Watcher
 

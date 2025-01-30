@@ -7,9 +7,9 @@ nav:
 
 # Project config synchronization
 
-Shopware-CLI can synchronize the project configurations between different environments. This is useful for example to keep the configuration in the development and production environment in sync.
+Shopware-CLI can synchronize the project configurations between different environments. This is useful, for example, to keep the configuration in the development and production environment in sync.
 
-Following things are possible to synchronize:
+The Following things are possible to synchronize:
 
 - Theme Configuration
 - System Configuration (including extension configuration)
@@ -64,8 +64,6 @@ sync:
 This example synchronizes a new tax entity with the name `Tax` and the tax rate `19`.
 
 The further synchronizations will create the same entity again, you may want to fix the entity ID to avoid duplicates.
-
-The further synchronizations will create the same entity again, you may want to fixed the entity ID to avoid duplicates.
 
 ```yaml
 sync:

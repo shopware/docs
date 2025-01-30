@@ -20,7 +20,7 @@ If you don't see the shop you want to use, you need to switch to the correct com
 To create a `auth.json` file with the Composer repository configuration, you can use the following command:
 
 ::: info
-You can also use the tab completion in terminal to get the domains of the shops you have access to.
+You can also use the tab completion in the terminal to get the domains of the shops you have access to.
 :::
 
 ```bash

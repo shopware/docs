@@ -17,7 +17,7 @@ To validate an extension, you can use the following command:
 shopware-cli extension validate <path>
 ```
 
-The path can be absolute or relative to the directory containing the extension or the zip file. The command exists with a non-zero exit code if the validation fails with a error level message.
+The path can be absolute or relative to the directory containing the extension or the zip file. The command exists with a non-zero exit code if the validation fails with an error level message.
 
 ## What is validated?
 
@@ -32,7 +32,7 @@ The path can be absolute or relative to the directory containing the extension o
 
 ## Supported PHP versions for linting
 
-Following PHP versions are supported for linting:
+The following PHP versions are supported for linting:
 
 - 7.3
 - 7.4
