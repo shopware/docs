@@ -22,6 +22,45 @@ The Vue.js ecosystem has built its own bundler: Vite. Vite is fast, easier to co
 
 For apps there are no consequences as your build process is already decoupled from Shopware. For plugins you only need to get active if you currently extend the webpack config by providing your own `webpack.config.js` file.
 
+### Migrate the custom webpack config to Vite
+
+If you have a custom webpack config, you need to migrate it to Vite. You need to do the following steps:
+
+  1. Create a new config file `vite.config.mts` to your plugin in the `YourApp/src/Resources/app/administration/src` directory. Previously you had a `webpack.config.js` in the following directory: `YourApp/src/Resources/app/administration/build/`
+  2. Remove the old `webpack.config.js` file
+  3. Make sure to remove all webpack related dependencies from your `package.json` file
+  4. Make sure to add the Vite dependencies to your `package.json` file
+
+A basic config migration could look like this:
+
+```javascript
+// Old Webpack config
+module.exports = () => {
+    return {
+        resolve: {
+            alias: {
+                '@example': 'src/example',
+            }
+        }
+    };
+};
+```
+
+```typescript
+// New Vite config
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+    resolve: {
+        alias: {
+            '@example': 'src/example',
+        },
+    },
+});
+```
+
+Of course, this is a very basic example. The Vite config can be much more complex and powerful. You can find more information about the Vite config in the [Vite documentation](https://vitejs.dev/config/). Depending on your webpack config, the migration can be very individual.
+
 ## Implementation details
 
 In this section we'll document the implementation details of the new Vite setup.
