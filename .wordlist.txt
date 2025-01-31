@@ -493,6 +493,7 @@ ManyToManyIdField
 ManyToOne
 ManyToOneAssociation
 ManyToOneAssociationField
+MapState
 MediaDataSelection
 MediaDataSet
 MediaFolderDataSet
@@ -1386,6 +1387,7 @@ mandatorily
 manufacturerId
 manytomanyid
 mapErrors
+mapGetters
 martinfowler
 masternode
 matchers
