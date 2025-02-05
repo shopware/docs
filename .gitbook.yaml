@@ -20,3 +20,4 @@ redirects:
     guides/plugins/plugins/storefront/use-csrf-protection.html: guides/hosting/configurations/framework/samesite-protection.html
     products/extensions/b2b-suite/*: products/extensions/b2b/b2b-suite/*
     products/extensions/b2b-components/*: products/extensions/b2b/b2b-components/*
+    guides/plugins/plugins/administration/add-shortcuts.html: guides/plugins/plugins/administration/advanced-configuration/add-shortcuts.html
