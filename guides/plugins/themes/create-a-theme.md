@@ -122,7 +122,8 @@ Now your theme is fully installed, and you can start your customization.
     │   │       ├── dist
     │   │       │   └── storefront
     │   │       │       └── js
-    │   │       │           └── swag-basic-example-theme.js
+    |   |       |           └── swag-basic-example-theme  
+    │   │       │               └── swag-basic-example-theme.js
     │   │       └── src
     │   │           ├── assets
     │   │           ├── main.js

@@ -47,7 +47,7 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
   ],
   "script": [
     "@Storefront",
-    "app/storefront/dist/storefront/js/swag-basic-example-theme.js"
+    "app/storefront/dist/storefront/js/swag-basic-example-theme/swag-basic-example-theme.js"
   ],
   "asset": [
     "@Storefront",
@@ -318,7 +318,7 @@ A custom single-select field example
   ],
   "script": [
     "@Storefront",
-    "app/storefront/dist/storefront/js/select-example.js"
+    "app/storefront/dist/storefront/js/select-example/select-example.js"
   ],
   "asset": [
     "@Storefront",
@@ -409,7 +409,7 @@ A custom multi-select field example
   ],
   "script": [
     "@Storefront",
-    "app/storefront/dist/storefront/js/select-example.js"
+    "app/storefront/dist/storefront/js/select-example/select-example.js"
   ],
   "asset": [
     "@Storefront",

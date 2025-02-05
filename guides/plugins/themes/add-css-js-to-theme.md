@@ -91,7 +91,7 @@ Add some test code in order to see if it works out:
 console.log('SwagBasicExampleTheme JS loaded');
 ```
 
-In the end, by running the command `bin/build-storefront.sh` your custom JS plugin is loaded. By default, the compiled JavaScript file is saved as `<plugin root>/src/resources/app/storefront/dist/storefront/js/swag-basic-example-theme.js`. It is detected by Shopware automatically and included in the Storefront. So you do not need to embed the JavaScript file yourself.
+In the end, by running the command `bin/build-storefront.sh` your custom JS plugin is loaded. By default, the compiled JavaScript file is saved as `<plugin root>/src/resources/app/storefront/dist/storefront/js/swag-basic-example-theme/swag-basic-example-theme.js`. It is detected by Shopware automatically and included in the Storefront. So you do not need to embed the JavaScript file yourself.
 
 ## Using the hot-proxy \(live reload\)
 
