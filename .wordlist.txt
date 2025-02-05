@@ -367,7 +367,6 @@ FooterPagelet
 FrameworkBundle
 FriendsOfShopware
 FroshDevelopmentHelper
-FroshPluginUploader
 Fullstack
 GDPR
 GIFs
