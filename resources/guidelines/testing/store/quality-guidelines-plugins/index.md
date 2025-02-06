@@ -526,7 +526,6 @@ Here are some examples of not allowed folders and files:
 * phpstan.neon
 * phpstan.neon.dist
 * .prettierrc
-* .shopware-extension.yml
 * .tar
 * .tar.gz
 * .zip

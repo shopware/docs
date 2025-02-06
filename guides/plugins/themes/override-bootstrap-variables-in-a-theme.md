@@ -45,7 +45,7 @@ This entry point is called `overrides.scss`:
   ],
   "script": [
     "@Storefront",
-    "app/storefront/dist/storefront/js/just-another-theme.js"
+    "app/storefront/dist/storefront/js/just-another-theme/just-another-theme.js"
   ],
   "asset": [
     "@Storefront",
