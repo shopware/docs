@@ -50,14 +50,14 @@ The app server will receive the current `SalesChannelContext`, `Cart`, and avail
 **Connection timeouts**
 
 The Shopware shop will wait for a response for 5 seconds.
-Be sure, that your checkout gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
+Be sure that your checkout gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
 :::
 
 Your app server can then respond with a list of commands to manipulate the cart, payment methods, shipping methods, or add cart errors.
 
 You can find a reference of all currently available commands [here](./command-reference.md).
 
-Let's assume for this example, that your payment method is not available for carts with a total price above 1000€.
+Let's assume that your payment method is not available for carts with a total price above 1000€.
 
 <Tabs>
 

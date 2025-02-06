@@ -9,8 +9,8 @@ The gateway enables app servers to restrict specific In-App Purchases based on a
 ::: info
 **Current Limitations:**  
 At present, the In-App Purchase Gateway supports only restricting the checkout process for new In-App Purchases.  
-**Future Plans:**  
-We aim to expand its functionality to - for example - include filtering entire lists of In-App Purchases before they are displayed to users.
+**Plans:**  
+We aim to expand its functionality to include filtering entire lists of In-App Purchases before they are displayed to users.
 :::
 
 ## Prerequisites
@@ -50,7 +50,7 @@ The app server will receive a list containing the single only In-App Purchase th
 **Connection timeouts**
 
 The Shopware shop will wait for a response for 5 seconds.
-Be sure, that your In-App Purchases gateway implementation on your app server responds in time,
+Be sure that your In-App Purchases gateway implementation on your app server responds in time,
 otherwise Shopware will time out and drop the connection.
 :::
 
