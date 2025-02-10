@@ -43,7 +43,7 @@ These versions don't need to be installed locally, they are downloaded on demand
 
 ## Ignoring errors
 
-Each error has a unique identifier, and they can be individually ignored using the `.shopware-project.yml`:
+Each error has a unique identifier, and they can be individually ignored using the `.shopware-extension.yml`:
 
 ```yaml
 validation:
