@@ -40,3 +40,14 @@ The following PHP versions are supported for linting:
 - 8.2
 
 These versions don't need to be installed locally, they are downloaded on demand and executed using WebAssembly without any dependencies.
+
+## Ignoring errors
+
+Each error has a unique identifier, and they can be individually ignored using the `.shopware-extension.yml`:
+
+```yaml
+validation:
+  ignore:
+    # This is an example key
+    - "metadata.setup"
+```
