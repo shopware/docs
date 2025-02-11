@@ -47,7 +47,7 @@ After (Vue 3):
 </template>
 ```
 
-More detailed guide: https://v3-migration.vuejs.org/breaking-changes/listeners-removed.html
+More detailed guide about [`$listeners` breaking changes](https://v3-migration.vuejs.org/breaking-changes/listeners-removed.html).
 
 #### `$scopedSlots` removed
 
@@ -65,11 +65,11 @@ After (Vue 3):
 this.$slots.header()
 ```
 
-More detailed guide: https://v3-migration.vuejs.org/breaking-changes/slots-unification.html
+More detailed guide about [`$slots` unification breaking changes](https://v3-migration.vuejs.org/breaking-changes/slots-unification.html).
 
 #### `$children` removed
 
-Vue 2 allowed access to child components using $children. In Vue 3, this is no longer supported, and you should use template refs instead.
+Vue 2 allowed access to child components using `$children`. In Vue 3, this is no longer supported, and you should use template refs instead.
 
 Before (Vue 2):
 
@@ -85,7 +85,7 @@ After (Vue 3):
 this.$refs.childrenRef.childrenMethod();
 ```
 
-More detailed guide: https://v3-migration.vuejs.org/breaking-changes/children
+More detailed guide about [`$children` breaking changes](https://v3-migration.vuejs.org/breaking-changes/children).
 
 #### Some Events API removed
 
@@ -122,7 +122,7 @@ beforeDestroy() {
 }
 ```
 
-More detailed guide: https://v3-migration.vuejs.org/breaking-changes/events-api.html
+More detailed guide about [Events API breaking changes](https://v3-migration.vuejs.org/breaking-changes/events-api.html).
 
 #### `$set`, `$delete` removed
 
