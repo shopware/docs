@@ -101,9 +101,8 @@ class ExampleTaskHandler extends ScheduledTaskHandler
 }
 ```
 
-The respective task handler, `ExampleTaskHandler` as defined previously in your `services.xml`, has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with two methods, that you need to implement first:
+The task handler, `ExampleTaskHandler` as defined previously in your `services.xml`, will be annotated with `AsMessageHandler` handling the `ExampleTask` class. In addition, the `ScheduledTaskHandler` has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with one method that you need to implement first:
 
-* `getHandledMessages`: An iterable, or an array, of the scheduled tasks, that this handler will take care of. In this case this is only the `ExampleTask` class.
 * `run`: This method is executed once your scheduled task is executed. Do everything, that your task is supposed to do here. In this example, it will just create a new file.
 
 Now every five minutes, your task will be executed and it will print an output every time now.
