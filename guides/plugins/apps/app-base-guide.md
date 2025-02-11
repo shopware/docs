@@ -221,6 +221,10 @@ $signer->getRegistrationSignature(new AppConfiguration('AppName', 'AppSecret', '
 
 </Tabs>
 
+For detailed instructions on signing requests and responses, refer to the app signing guide.
+
+<PageRef page="app-signature-verification" />
+
 Besides the proof, your app needs to provide a randomly generated secret that should be used to sign every further request from this shop. Make sure to save the `shopId`, `shopUrl`, and generated secret so that you can associate and use this information later.
 
 ::: info
