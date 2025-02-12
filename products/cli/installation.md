@@ -13,7 +13,7 @@ Below you can find the steps for each of them.
 
 ## Install the pre-compiled binary
 
-Shopware-CLI is published in various package managers. You can install it using the following commands.
+Shopware CLI is published in various package managers. You can install it using the following commands.
 
 ### Homebrew
 

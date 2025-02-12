@@ -7,7 +7,7 @@ nav:
 
 # Extension Validation
 
-Shopware-CLI has a built-in validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
+Shopware CLI has a built-in validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
 
 ## Validating an extension
 

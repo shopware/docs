@@ -7,7 +7,7 @@ nav:
 
 # Build a complete Project
 
-Usually, when you want to deploy your project, you have to run `composer install` and compile the assets of the project. Shopware-CLI provides a single command which does all of this for you.
+Usually, when you want to deploy your project, you have to run `composer install` and compile the assets of the project. Shopware CLI provides a single command which does all of this for you.
 
 ::: warning
 This command modifies the given directory and deletes files. Make sure you have committed all your changes before running this command.
@@ -72,7 +72,7 @@ build:
 
 ## Supporting bundles
 
-Plugins and Apps are automatically detected by Shopware-CLI. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware-CLI does not execute any PHP code.
+Plugins and Apps are automatically detected by Shopware CLI. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
 Therefore you need to add the path of the custom bundle to your project `composer.json`:
 
 ```json
