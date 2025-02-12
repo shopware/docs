@@ -10,7 +10,7 @@ nav:
 In Shopware, we extend Twig's functionality by custom ones. See our own actions below.
 
 ::: info
-Official support for complete Twig multi inheritance using sw_* equivalents available since 6.6.7.0
+Official support for complete Twig multi inheritance using sw_* equivalents available since 6.7
 :::
 
 ::: warning
