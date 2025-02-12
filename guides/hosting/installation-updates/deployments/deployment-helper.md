@@ -182,12 +182,12 @@ After the deployment, you can remove the extension from the source code, remove 
 
 In a Docker environment, you have a base image with a running PHP Webserver.
 From that image you make a new image with your Shopware source code.
-To prepare the Shopware source code, you can run [shopware-cli project ci](https://sw-cli.fos.gg) to install the dependencies and build the assets.
+To prepare the Shopware source code, you can run [shopware-cli project ci](../../../../products/cli) to install the dependencies and build the assets.
 On deployment, you spawn a second container or init a container, which runs the Deployment Helper.
 The Deployment Helper sets up Shopware when it is not installed, installs the extensions and runs the one-time tasks.
 
 ### SFTP / Deployer
 
-When using SFTP or Deployer, you clone the repository to the CI/CD server, run the [shopware-cli project ci](https://sw-cli.fos.gg) command to install the dependencies and build the assets.
+When using SFTP or Deployer, you clone the repository to the CI/CD server, run the [shopware-cli project ci](../../../../products/cli) command to install the dependencies and build the assets.
 Then you upload the source code to the server and run the Deployment Helper on the server.
 The Deployment Helper sets up Shopware when it is not installed, installs the extensions and runs the one-time tasks.
