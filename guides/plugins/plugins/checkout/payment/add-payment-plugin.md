@@ -17,7 +17,7 @@ Check out the new documentation here: [Add Payment Plugin (>6.7)](/docs/v6.7/gui
 
 ## Overview
 
-Payments are an essential part of the checkout process. 
+Payments are an essential part of the checkout process.
 That's why Shopware 6 offers an easy platform on which you can build payment plugins.
 
 ## Prerequisites
@@ -66,11 +66,11 @@ Now, let's start with the actual examples.
 
 <Tab title="Synchronous">
 
-The following will be a synchronous example, so that no redirect will happen, and the payment can be handled in the shop. 
+The following will be a synchronous example, so that no redirect will happen, and the payment can be handled in the shop.
 Therefore, you don't have to return a `RedirectResponse` in the `pay` method; no `finalize` method is necessary either.
 
-Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method. 
-If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `PaymentException`. 
+Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method.
+If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `PaymentException`.
 Shopware 6 will handle this exception and set the transaction to the `failed` state.
 
 ::: code-group
@@ -144,11 +144,11 @@ This payment handler does not do a lot in the current state but is a good starti
 
 <Tab title="Asynchronous">
 
-In the asynchronous example, the customer gets redirected to an external payment provider, 
-which then, in return, has to redirect your customer back to your shop. 
+In the asynchronous example, the customer gets redirected to an external payment provider,
+which then, in return, has to redirect your customer back to your shop.
 Therefore, you must first redirect your customer to the payment provider by returning a `RedirectResponse`.
 
-Also, you need a `finalize` method to properly handle your customer when he was returned to your shop. 
+Also, you need a `finalize` method to properly handle your customer when he was returned to your shop.
 This is where you check the payment state and set the order transaction state accordingly.
 
 Let's have a look at an example implementation of your custom asynchronous payment handler:
@@ -249,31 +249,31 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 
 :::
 
-Let's start with the `pay` method. You'll have to start by letting your external payment provider know where he should redirect your customer in return when the payment is done. 
-This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `PaymentTransactionStruct` using the method `getReturnUrl`. 
-Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty. 
+Let's start with the `pay` method. You'll have to start by letting your external payment provider know where he should redirect your customer in return when the payment is done.
+This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `PaymentTransactionStruct` using the method `getReturnUrl`.
+Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty.
 Fill in your logic in there in order to actually send the return URL to the external payment provider.
 The last thing you need to do, is to redirect your customer to the external payment provider by returning a `RedirectResponse`.
 Shopware handles the redirect for you automatically.
 
-Once your customer is done at the external payment provider, he will be redirected back to your shop. 
-This is where the `finalize` method will be executed. 
-In here, you have to check whether the payment process was successful. 
+Once your customer is done at the external payment provider, he will be redirected back to your shop.
+This is where the `finalize` method will be executed.
+In here, you have to check whether the payment process was successful.
 If e.g., the customer canceled the payment process, you'll have to throw a `PaymentException::customerCanceled` exception.
 
-Otherwise, you can proceed to check if the payment status was successful. 
-If so, set the order's transaction state to `paid`. 
+Otherwise, you can proceed to check if the payment status was successful.
+If so, set the order's transaction state to `paid`.
 If not, you could, e.g. reopen the order's transaction.
 
 </Tab>
 
 <Tab title="Prepared">
 
-To improve the payment workflow on headless systems or reduce orders without payment, payment handlers can implement an additional method to support pre-created payments. 
+To improve the payment workflow on headless systems or reduce orders without payment, payment handlers can implement an additional method to support pre-created payments.
 The client (e.g. a single-page application) can prepare the payment directly with the payment service (not through Shopware) and pass a transaction reference (token) to Shopware to complete the payment.
 
-Two steps are necessary: 
-The handler has to validate the payment beforehand, or throw an exception, if the validation fails. 
+Two steps are necessary:
+The handler has to validate the payment beforehand, or throw an exception, if the validation fails.
 If the validation is successful, the payment handler has to capture the payment in the `pay` method.
 
 Let's have a look at a simple example:
@@ -630,8 +630,8 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 
 ## Setting up the new payment method
 
-The handler itself is not used yet, since there is no payment method actually using the handler created above. 
-In short: Your handler is not handling any payment method so far. 
+The handler itself is not used yet, since there is no payment method actually using the handler created above.
+In short: Your handler is not handling any payment method so far.
 The payment method can be added to the system while installing your plugin.
 
 An example for your plugin could look like this:
@@ -747,8 +747,8 @@ In the `install` method, you start by creating a new payment method, if it doesn
 If you need to know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
 
 ::: danger
-**Do not** do the opposite in the `uninstall` method and remove the payment method. 
-This might lead to data inconsistency if the payment method was used in some orders. 
+**Do not** do the opposite in the `uninstall` method and remove the payment method.
+This might lead to data inconsistency if the payment method was used in some orders.
 Instead, only deactivate the method!
 :::
 
@@ -756,15 +756,15 @@ The `activate` method and `deactivate` method just do that, activating and deact
 
 ### Identify your payment
 
-You can identify your payment by the entity property `formattedHandlerIdentifier`. 
-It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment`. 
+You can identify your payment by the entity property `formattedHandlerIdentifier`.
+It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment`.
 The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).
 
 Otherwise, you can use your given technical name to uniquely identify your payment method.
 
 ## Migrating payment handlers from 6.6
 
-If you are migrating a payment handler from a version before 6.7, 
+If you are migrating a payment handler from a version before 6.7,
 you need to move from the existing interfaces to the new abstract class and add your own order data loading..
 
 ### Payment handler interfaces removed
@@ -810,6 +810,7 @@ Remove any other occurrences of the following tags:
     </services>
 </container>
 ```
+
 :::
 
 ### Prepared payments
