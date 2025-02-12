@@ -1135,6 +1135,7 @@ de
 debounce
 decoratable
 decrementing
+declaratively
 deepCopyObject
 deepMergeObject
 defaultConfig
