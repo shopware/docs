@@ -7,7 +7,7 @@ nav:
 
 # Generating MySQL dumps
 
-Shopware-CLI has built-in support for generating MySQL dumps. The dump command is native implementation and does not use existing tools like `mysqldump`.
+Shopware CLI has built-in support for generating MySQL dumps. The dump command is native implementation and does not use existing tools like `mysqldump`.
 
 Creating a MySQL dump is as simple as running the following command:
 
@@ -29,7 +29,7 @@ Database dumps can be pretty large, it is possible to compress the dump using `g
 
 ## Table locking
 
-By default Shopware-CLI will try to lock the table before dumping the data. This can fail if the MySQL user has no rights to lock the table. To skip the lock tables command, use the `--skip-lock-tables` flag.
+By default, Shopware CLI will try to lock the table before dumping the data. This can fail if the MySQL user has no rights to lock the table. To skip the lock tables command, use the `--skip-lock-tables` flag.
 
 ## Anonymizing data
 

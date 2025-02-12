@@ -79,7 +79,7 @@ The very first step in the pipeline is cloning the repository into the runner's 
 
 All the dependencies of your project must be installed. Shopware 6 uses [Composer](https://getcomposer.org/) for managing PHP dependencies and [Node Package Manager \(NPM\)](https://www.npmjs.com/) for frontend related dependencies.
 
-We use here Shopware-CLI which simplifies the installation of the dependencies and building the project assets to build a production-ready version of Shopware.
+We use Shopware CLI, which simplifies the installation of the dependencies and building the project assets to build a production-ready version of Shopware.
 
 ### 3. Transferring the workspace
 

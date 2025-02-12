@@ -7,7 +7,7 @@ nav:
 
 # Helper Commands
 
-This is a curated list of helper commands that are useful for your daily work with Shopware-CLI in your Shopware project.
+This is a curated list of helper commands that are useful for your daily work with Shopware CLI in your Shopware project.
 
 ## Create a new project
 
@@ -27,7 +27,7 @@ The version parameter can be also `latest` for the latest stable version or `dev
 
 ## Replacements to include in shell scripts
 
-Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
+Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
 | Shell Script                | Shopware Command                        |
 |-----------------------------|-----------------------------------------|
@@ -36,7 +36,7 @@ Shopware-CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-Additionally to the replacement, Shopware-CLI allows only watching a specific set of extensions or exclude few.
+Additionally to the replacement, Shopware CLI allows only watching a specific set of extensions or exclude few.
 
 To only watch specific:
 
@@ -52,7 +52,7 @@ shopware-cli project admin-watch --skip-extensions <name>,<second>....
 
 ## Worker
 
-Usually you have to start the worker with `bin/console messenger:consume` in the project root directory. But if you want to have more than one worker at once, it gets a bit tricky. Shopware-CLI has a helper command for that:
+Usually you have to start the worker with `bin/console messenger:consume` in the project root directory. But if you want to have more than one worker at once, it gets a bit tricky. Shopware CLI has a helper command for that:
 
 ```bash
 shopware-cli project worker <amount>
@@ -90,7 +90,7 @@ It is similar to `bin/console system:generate-jwt-secret`, but requires no Shopw
 
 ## Admin API
 
-If you want to make requests against the Shopware-API using curl, you need to get a JWT token and add it as a header. Shopware-CLI has a helper command for that:
+If you want to make requests against the Shopware-API using curl, you need to get a JWT token and add it as a header. Shopware CLI has a helper command for that:
 
 ```bash
 shopware-cli project admin-api --output-token
