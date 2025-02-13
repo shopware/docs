@@ -42,6 +42,23 @@ build:
       name: Foo
 ```
 
+## Extension as bundle
+
+If your extension is not a plugin but itself a bundle, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the `extra` part of the composer definition like this:
+
+```json
+{
+    "name": "my-vendor/my-bundle",
+    "type": "shopware-bundle",
+    "extra": {
+        "shopware-bundle-name": "MyBundle"
+    }
+}
+```
+
+Now you can use `shopware-cli extension build <path>` to build the assets and distribute them together with your bundle.
+Also `shopware-cli project ci` detects know automatically this bundle and builds the assets for it.
+
 ## Using esbuild for JavaScript Bundling
 
 ::: warning
