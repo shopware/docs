@@ -8,7 +8,7 @@ nav:
 
 At Shopware, we are committed to creating inclusive and barrier-free shopping experiences for our merchants and their customers.
 
-## What shopware does to ensure accessibility
+## What shopware does to ensure accessibility?
 
 * Shopware is committed to fulfill the [WCAG 2.1 AA](https://www.w3.org/TR/WCAG21/) accessibility guidelines and Barrier-Free Information Technology Regulation (BITV 2.0) in the Storefront.
     * You can find more information on [shopware.design](https://shopware.design/foundations/accessibility.html) and [in our blog post](https://www.shopware.com/en/news/accessible-online-store-by-2025/).
@@ -16,12 +16,12 @@ At Shopware, we are committed to creating inclusive and barrier-free shopping ex
 * Much of the HTML structure and CSS styling already fulfill accessibility guidelines. However, there are still [open accessibility issues](#Overview-of-known-accessibility-issues) that will be addressed.
 * Automated [E2E testing with playwright](https://github.com/shopware/shopware/tree/trunk/tests/acceptance) and axe reporter are used to ensure future accessibility.
 
-## How core accessibility improvements are released
+## How core accessibility improvements are released?
 
 Accessibility improvements are rolled out in regular minor releases, similar to other improvements or bug-fixes. We implement all accessibility improvements in the current major version `6.6.x` and its minor versions.
 There is no large "accessibility release" planned that ships all accessibility improvements at once.
 
-## How to deal with breaking accessibility changes
+## How to deal with breaking accessibility changes?
 
 Ensuring an accessible shop page can require changes in the HTML/Twig structure or the CSS. This can cause unintended behavior for an extension that is modifying an area that is being changed to improve accessibility.
 
@@ -150,3 +150,88 @@ We are using the [WCAG 2.1 Level AA](https://www.w3.org/TR/WCAG21/) standard and
 ### Overview of known accessibility issues
 
 [GitHub Issues](https://github.com/shopware/shopware/labels/accessibility)
+
+## Best practices for accessibility (a11y) in Shopware extensions
+
+Ensuring accessibility in your Shopware extension improves **usability, inclusivity, and compliance** with standards like **WCAG 2.1** and the **EU Web Accessibility Directive**. Below are best practices to help you build accessible extensions and themes.
+
+### 1. Setting up for accessibility testing
+
+#### Activate the accessibility feature flag
+
+Starting from **Shopware 6.6+,** accessibility improvements have been introduced, and **6.7+** includes further enhancements. Enable the **feature flag** to test changes before release by activating the feature flag in your local environment, modify your `config/packages/shopware.yaml`.
+
+```yaml
+shopware:
+  feature:
+    enable_accessibility: true
+``` 
+
+Once enabled, you can:
+
+- Preview upcoming a11y improvements before they become mandatory. 
+- Identify potential breaking changes in your theme or extension.  
+- Ensure your UI remains functional with new accessibility enhancements.
+
+### 2. Testing for accessibility compliance
+
+#### Automated testing tools
+
+Use automated tools to **detect common accessibility issues** in your extension:  
+
+- **[Google Lighthouse](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps/#lighthouse-a-b-testing)** – Run audits in Chrome DevTools.
+- **AXE DevTools** – More detailed accessibility testing.
+- **WAVE (WebAIM Tool)** – Identifies HTML structure and ARIA misuses.  
+
+#### Manual Testing
+
+While automation helps, **manual checks** ensure real-world usability:  
+
+✔ **Keyboard Navigation** – Ensure users can navigate your store using `Tab`, `Enter`, and `Esc`.  
+✔ **Screen Readers** – Test with **NVDA (Windows)** or **VoiceOver (Mac/iOS)**.  
+✔ **Color Contrast Checks** – Use [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to verify readability.  
+
+### 3. Implementing accessibility in extensions and themes
+
+#### Use semantic HTML & ARIA attributes
+
+-?
+
+#### Ensure keyboard accessibility
+
+-?
+#### Check color contrast and readability
+
+-?
+
+### 4. Validating accessibility in extensions
+
+#### Common a11y issues to fix before release
+
+- Misuse of **HTML & ARIA roles** (Ensure correct semantic structure).  
+- Missing **form labels & alt text** for images/icons.  
+- Improper **focus management** in modals, dropdowns, and popups.  
+- **Dynamic content updates** not announced to screen readers.  
+
+#### Shopware QA and self-certification
+
+- Developers can **self-certify** an extension as a11y-compliant.  
+- Shopware **QA verification** may be required for listing in the store.  
+
+### 5. Accessibility support in Shopware versions
+
+| **Shopware version** | **Accessibility support** |  
+|---------------------|------------------------|  
+| **6.7+** | Full A11y improvements available for testing |  
+| **6.6+** | Accessibility features introduced |  
+| **Shopware 5** | 🚫 **No accessibility support** |  
+
+### 6. Getting help with accessibility
+
+- Work with **Shopware-certified agencies** for A11y audits.  
+- Stay updated with Shopware's **developer guidelines**.  
+- Discuss A11y best practices with other developers in the **Shopware community**.
+
+## Final Thoughts
+
+By following these best practices, you ensure that your extension is **inclusive, user-friendly, and compliant** with Shopware’s accessibility standards. Accessibility is not just about compliance—it’s about making the web usable for everyone.
