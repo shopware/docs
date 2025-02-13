@@ -7,7 +7,7 @@ nav:
 
 # Updating store page of extension
 
-You can use Shopware-CLI to version your Store page representation of your extension. This includes the description, images, and all other assets.
+You can use Shopware CLI to version your Store page representation of your extension. This includes the description, images, and all other assets.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ shopware-cli account producer extension info pull <path-to-extension-folder>
 
 This will download all uploaded Store images and create a `.shopware-extension.yml` with all metadata of the extension.
 
-This file can be checked in into the version control and will be automatically removed when you create a zip file using Shopware-CLI.
+This file can be checked in into the version control and will be automatically removed when you create a zip file using Shopware CLI.
 
 ## Updating the Store page
 

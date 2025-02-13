@@ -367,7 +367,6 @@ FooterPagelet
 FrameworkBundle
 FriendsOfShopware
 FroshDevelopmentHelper
-FroshPluginUploader
 Fullstack
 GDPR
 GIFs
@@ -1136,6 +1135,7 @@ de
 debounce
 decoratable
 decrementing
+declaratively
 deepCopyObject
 deepMergeObject
 defaultConfig

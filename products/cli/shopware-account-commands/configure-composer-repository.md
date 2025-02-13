@@ -7,7 +7,7 @@ nav:
 
 # Configure composer repository
 
-To install extensions from the Shopware Store, you need to configure the Composer repository in your `composer.json` file. Shopware-CLI can configure this for you automatically.
+To install extensions from the Shopware Store, you need to configure the Composer repository in your `composer.json` file. Shopware CLI can configure this for you automatically.
 
 First, make sure you have access to the given Shop in Shopware Account. You can check this with the following command:
 

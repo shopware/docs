@@ -11,13 +11,13 @@ Extensions consist of PHP Changes, JavaScript and CSS. To release an extension t
 
 ## Building an extension
 
-Shopware-CLI allows you to easily build the assets of an extension. To build an extension, you can use the following command:
+Shopware CLI allows you to easily build the assets of an extension. To build an extension, you can use the following command:
 
 ```bash
 shopware-cli extension build <path>
 ```
 
-Shopware-CLI reads the `shopware/core` requirement from `composer.json` or `manifest.xml` and builds the assets using the lowest compatible Shopware version. This ensures the extension remains usable across multiple Shopware versions. If the selected version is incorrect, you can override it using a `.shopware-extension.yml` file.
+Shopware CLI reads the `shopware/core` requirement from `composer.json` or `manifest.xml` and builds the assets using the lowest compatible Shopware version. This ensures the extension remains usable across multiple Shopware versions. If the selected version is incorrect, you can override it using a `.shopware-extension.yml` file.
 
 ```yaml
 # .shopware-extension.yml
@@ -41,6 +41,23 @@ build:
     - path: src/Foo
       name: Foo
 ```
+
+## Extension as bundle
+
+If your extension is not a plugin but itself a bundle, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the `extra` part of the composer definition like this:
+
+```json
+{
+    "name": "my-vendor/my-bundle",
+    "type": "shopware-bundle",
+    "extra": {
+        "shopware-bundle-name": "MyBundle"
+    }
+}
+```
+
+Now you can use `shopware-cli extension build <path>` to build the assets and distribute them together with your bundle.
+Also `shopware-cli project ci` detects know automatically this bundle and builds the assets for it.
 
 ## Using esbuild for JavaScript Bundling
 
@@ -75,7 +92,7 @@ The command copies the extension to a temporary directory, builds the assets, de
 
 ### Bundling composer dependencies
 
-Before Shopware 6.5, bundling the composer dependencies into the zip file is required. Shopware-CLI automatically runs `composer install` and removes duplicate composer dependencies to avoid conflicts.
+Before Shopware 6.5, bundling the composer dependencies into the zip file is required. Shopware CLI automatically runs `composer install` and removes duplicate composer dependencies to avoid conflicts.
 
 To disable this behavior, you can adjust the configuration:
 
@@ -91,7 +108,7 @@ This is automatically disabled for plugins targeting Shopware 6.5 and above and 
 
 ### Delete files before zipping
 
-Shopware-CLI deletes a lot of known files before zipping the extension. If you want to delete more files, you can adjust the configuration:
+Shopware CLI deletes a lot of known files before zipping the extension. If you want to delete more files, you can adjust the configuration:
 
 ```yaml
 # .shopware-extension.yml
