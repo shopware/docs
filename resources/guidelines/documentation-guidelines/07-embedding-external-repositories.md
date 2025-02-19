@@ -1,6 +1,6 @@
 # Embedding external repositories
 
-This guide will explain how to embed project documentation from your repository into the [Developer documentation](https://developer.shopware.com/frontends/).
+This guide will explain how to embed project documentation from your repository into the [Developer documentation](https://developer.shopware.com/).
 
 [Developer Portal](https://github.com/shopware/developer-portal) is built using the [`shopware/developer-documentation-vitepress`](https://github.com/shopware/developer-documentation-vitepress) repository (`vitepress-shopware-docs` package). This setup heavily utilizes [Vitepress](https://vitepress.dev/) and incorporates custom Shopware features such as unique design, breadcrumbs, Algolia search, Copilot AI chat and recommendations, auto-built sidebar and more.
 
@@ -172,11 +172,11 @@ Examples are available in [meteor](https://github.com/shopware/meteor/blob/main/
 
 ### CI pipelines
 
-It is recommended for external repositories to also set up the same workflows as in the `docs` and other repos - this includes the same checks and deployment triggers. This way, the repositories are in sync and the developer portal is consistent.
-
-This usually means copy-pasting `deploy-developer-portal.yml`, `update-healthcheck.yml` and `developer-portal-healthcheck.yml` workflows from any of the repositories mentioned above.
-
-Make sure to also add `DEV_HUB_PERSONAL_ACCESS_TOKEN` secret to your repository.
+Custom GitHub workflows are not needed anymore, but new repos need to be added to the `Shopware DevHub Connector` app in `shopware` organization on GitHub, so the app can listen for GitHub events. Shopware DevHub Connector GitHub app takes care of:
+ - Creating a commit status check in PRs.
+ - Triggering full integration check in `developer-portal`.
+ - Updating the status check based on the integration check outcome, with a dedicated preview URL.
+ - Triggering production deployment when `main` branch is updated.
 
 ## Commit changes and create a PR
 
