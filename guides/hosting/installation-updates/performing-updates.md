@@ -41,7 +41,7 @@ There are tools like [Rector](https://github.com/FriendsOfShopware/shopware-rect
 
 There are two different Shopware update types:
 - **Minor/Patch updates**: These are updates that only contain new features, bug fixes and security patches. They are released every month for the active supported versions.
-- **Major updates**: These updates are intended to cleanup the codebase and introduce breaking changes. They are released every 12 months.
+- **Major updates**: These updates are intended to cleanup the codebase and introduce breaking changes. They are released once a year.
 
 ### Minor/Patch updates
 
