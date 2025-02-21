@@ -43,6 +43,7 @@ navigation: [{
     color: '#ff3d58',
     path: 'swag.custommodule.list',
     icon: 'default-shopping-paper-bag-product',
+    parent: 'sw-catalogue',
     position: 100
 }]
 ```
