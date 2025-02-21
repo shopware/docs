@@ -55,4 +55,4 @@ First of all you should check that all extensions obtained from Shopware Store a
 
 For the Hosting environment, it makes sense to update the PHP version to the minimum required version for the new Shopware version before updating Shopware itself. Shopware versions always support a overlapping PHP version, so you can update the PHP version before updating Shopware itself. You can find the minimum required PHP version in the [System Requirements](../../installation/requirements.md).
 
-For custom customizations, you should check the [UPGRADE.md](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md), it contains all breaking changes and migration instructions. Mostly it's easier to update to the latest version in a local environment and take a look what is not working anymore.
+For customizations, you should check the [UPGRADE.md](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md), it contains all breaking changes and migration instructions. Most of the time it's easier to update to the latest version in a local environment and take a look what is not working anymore.
