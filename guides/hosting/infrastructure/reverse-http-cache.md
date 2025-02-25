@@ -204,4 +204,4 @@ There are a few different cache clearing commands:
 
 If you only want to clear the http cache, use `bin/console cache:clear:http`
 
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"3ae5bc3363521c72d05f4ecbb89b3505"} -->
+<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"7cbcd99d05391bc2f411ff33c315f089"} -->
