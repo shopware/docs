@@ -53,12 +53,11 @@ For each defined bus in our `framework.yaml`, we can define the middleware that 
 // <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
 framework:
     messenger:
-        default_bus: messenger.bus.shopware
         buses:
-            messenger.bus.default:
-              middleware:
-                - 'Swag\BasicExample\MessageQueue\Middleware\ExampleMiddleware'
-                - 'Swag\BasicExample\MessageQueue\Middleware\AnotherExampleMiddleware'
+          messenger.bus.default:
+            middleware:
+              - 'Swag\BasicExample\MessageQueue\Middleware\ExampleMiddleware'
+              - 'Swag\BasicExample\MessageQueue\Middleware\AnotherExampleMiddleware'
 ```
 
 ## More interesting topics
