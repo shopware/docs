@@ -35,10 +35,8 @@ shopware:
 
 ### Redis for delayed cache invalidation
 
-
 The HTTP cache will be invalidated in regular intervals, benefitting systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
-
 
 Out of the box the information which tags need to be invalidated is stored in the DB, however especially in systems which a high amount of concurrent write request this can become a bottleneck, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
 To offload this to a Redis instance, you can configure the following:
