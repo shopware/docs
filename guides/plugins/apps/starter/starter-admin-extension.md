@@ -16,7 +16,7 @@ In this guide, you will learn how to set up an extension for the Administration 
 In order to follow this guide, make sure you are familiar with and meet the following requirements:
 
 * Basic CLI usage (creating files, directories, running commands)
-* Installed [shopware-cli](https://sw-cli.fos.gg/) tools
+* Installed [shopware-cli](../../../../products/cli/) tools
 * We will use the following libraries/software
     * npm
     * live-server (small local development live-reloading server)
@@ -138,7 +138,7 @@ For production usage, you should host the entry point file on a public CDN or a 
 In this last step, we will install the app using the Shopware CLI tools.
 
 ::: info
-If this is your first time using the Shopware CLI, you have to [install](https://sw-cli.fos.gg/install/) it first. Next, configure it using the `shopware-cli project config init` command.
+If this is your first time using the Shopware CLI, you have to [install](../../../../products/cli/installation) it first. Next, configure it using the `shopware-cli project config init` command.
 :::
 
 ```bash

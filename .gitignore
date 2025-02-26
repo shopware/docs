@@ -1,6 +1,13 @@
 .idea
 /dictionary.dic
+.DS_Store
+/node_modules/
 
 # VSCode-Project
 /.vscode/
 !/.vscode/settings.json
+.vscode
+
+/.devenv/
+/.direnv/
+.devenv.flake.nix

@@ -30,7 +30,7 @@ Ensure that the `mysqldump` and `mysql` binary are from the same major version a
 To have the staging environment similar to the live environment, it's recommended that the database be duplicated. You can use the `mysqldump` command to export the database and import it into the staging environment.
 
 ::: info
-`shopware-cli` is a separate Go command line application that contains a lot of useful commands for Shopware. [Checkout the docs](https://sw-cli.fos.gg/install/) to learn how to install it.
+`shopware-cli` is a separate Go command line application that contains a lot of useful commands for Shopware. [Checkout the docs](../../../../products/cli/installation) to learn how to install it.
 :::
 
 We recommend using `shopware-cli project dump` to create a dump of the database and import it with the regular mysql command. Shopware cli also has a flag to anonymize the data, so you can be sure that no personal data is in the staging environment.
@@ -43,7 +43,7 @@ shopware-cli project dump --clean --host localhost --username db_user --password
 shopware-cli project dump --clean --anonymize --host localhost --username db_user --password db_pass --output shop.sql shopware
 ```
 
-You can configure the dump command with a `.shopware-project.yml`. This file allows you to specify tables that should be skipped, define additional fields for anonymization, and more. Check out the [CLI](https://sw-cli.fos.gg/commands/project/#shopware-cli-project-dump-database) for more information.
+You can configure the dump command with a `.shopware-project.yml`. This file allows you to specify tables that should be skipped, define additional fields for anonymization, and more. Check out the [CLI](../../../../products/cli/project-commands/mysql-dump) for more information.
 
 ### Configuration
 

@@ -44,7 +44,7 @@ The content of the `theme.json` file looks like this:
   ],
   "script": [
     "@Storefront",
-    "app/storefront/dist/storefront/js/swag-example-plugin-theme-extended.js"
+    "app/storefront/dist/storefront/js/swag-example-plugin-theme-extended/swag-example-plugin-theme-extended.js"
   ],
   "asset": [
     "@Storefront",
@@ -72,14 +72,13 @@ Here is an example:
   ],
   "style": [
     "app/storefront/src/scss/overrides.scss",
-    "@Storefront",
     "@SwagBasicExampleTheme",
     "app/storefront/src/scss/base.scss"
   ],
   "script": [
     "@Storefront",
     "@SwagBasicExampleTheme",
-    "app/storefront/dist/storefront/js/swag-example-plugin-theme-extended.js"
+    "app/storefront/dist/storefront/js/swag-example-plugin-theme-extended/swag-example-plugin-theme-extended.js"
   ],
   "asset": [
     "@Storefront",

@@ -148,4 +148,4 @@ You should see the cookie notice at the bottom of the page. If you click the "Ac
 
 ## Next steps
 
-Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../plugin-fundamentals/listening-to-events).
+Sometimes you don't have to actually override a javascript plugin, since sometimes you can simply use an event instead. Learn how this is done in our guide about [listening to events](../reacting-to-javascript-events).
