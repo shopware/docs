@@ -1,0 +1,35 @@
+---
+nav:
+  title: Blackfire
+  position: 90
+
+---
+
+# Blackfire APM
+
+Blackfire is bundled with every Enterprise Shopware PaaS project without any additional fees.  
+All the person invited on the project can access Blackfire and all environments can be monitored.
+
+The APM will shows you when, where and why performance issues happen.
+
+Here're the main Blackfire features:
+* Monitoring (Live metrics from your app): identify slow transactions, background jobs, services or third party calls
+* Profiling (Deep, runtime code analysis): get function-call level metrics and spot root causes of bottlenecks
+* Testing (Performance budget control): verify code behavior and performance
+* Alerting (Warnings upon abnormal behaviors)
+* Recommendations (Actionable insights and expert advice): benefit from unique, cutting-edge issue detection with documented resolution recommendations
+* CI/CD integration (Automated testing and regressions prevention): add Blackfire to any testing pipeline and existing tests, or start from scratch with our Open-Source crawler, tester and scraper
+
+
+## Access
+
+You'll find the link to access Blackfire on the Shopware PaaS Console at the environment level.
+Once you'll click on the link, you'll be redirected to the Platform.sh authentication portal.
+
+If this is your first authentication, please use your usual Shopware PaaS email and follow the "reset password" workflow so you can set your Platform.sh password.
+
+## Profiling
+
+We recommend you to install the [Firefox Blackfire extension](https://addons.mozilla.org/en-US/firefox/addon/blackfire/) so you can trigger profiles of targeted transactions or group of transactions.
+
+![Blackfire profile](../../assets/blackfire-profile.png)
