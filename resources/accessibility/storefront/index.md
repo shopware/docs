@@ -16,7 +16,7 @@ At Shopware, we are committed to creating inclusive and barrier-free shopping ex
 * Much of the HTML structure and CSS styling already fulfill accessibility guidelines. However, there are still [open accessibility issues](#Overview-of-known-accessibility-issues) that will be addressed.
 * Automated [E2E testing with playwright](https://github.com/shopware/shopware/tree/trunk/tests/acceptance) and axe reporter are used to ensure future accessibility.
 
-## How core accessibility improvements are released?
+## How are core accessibility improvements released?
 
 Accessibility improvements are rolled out in regular minor releases, similar to other improvements or bug-fixes. We implement all accessibility improvements in the current major version `6.6.x` and its minor versions.
 There is no large "accessibility release" planned that ships all accessibility improvements at once.
@@ -165,13 +165,13 @@ Starting from **Shopware 6.6+,** accessibility improvements have been introduced
 shopware:
   feature:
     enable_accessibility: true
-``` 
+```
 
 Once enabled, you can:
 
-- Preview upcoming a11y improvements before they become mandatory. 
-- Identify potential breaking changes in your theme or extension.  
-- Ensure your UI remains functional with new accessibility enhancements.
+* Preview upcoming a11y improvements before they become mandatory.
+* Identify potential breaking changes in your theme or extension.  
+* Ensure your UI remains functional with new accessibility enhancements.
 
 ### 2. Testing for accessibility compliance
 
@@ -179,9 +179,9 @@ Once enabled, you can:
 
 Use automated tools to **detect common accessibility issues** in your extension:  
 
-- **[Google Lighthouse](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps/#lighthouse-a-b-testing)** – Run audits in Chrome DevTools.
-- **AXE DevTools** – More detailed accessibility testing.
-- **WAVE (WebAIM Tool)** – Identifies HTML structure and ARIA misuses.  
+* **[Google Lighthouse](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps/#lighthouse-a-b-testing)** – Run audits in Chrome DevTools.
+* **AXE DevTools** – More detailed accessibility testing.
+* **WAVE (WebAIM Tool)** – Identifies HTML structure and ARIA misuses.  
 
 #### Manual Testing
 
@@ -200,6 +200,7 @@ While automation helps, **manual checks** ensure real-world usability:
 #### Ensure keyboard accessibility
 
 -?
+
 #### Check color contrast and readability
 
 -?
@@ -208,15 +209,15 @@ While automation helps, **manual checks** ensure real-world usability:
 
 #### Common a11y issues to fix before release
 
-- Misuse of **HTML & ARIA roles** (Ensure correct semantic structure).  
-- Missing **form labels & alt text** for images/icons.  
-- Improper **focus management** in modals, dropdowns, and popups.  
-- **Dynamic content updates** not announced to screen readers.  
+* Misuse of **HTML & ARIA roles** (Ensure correct semantic structure).  
+* Missing **form labels & alt text** for images/icons.  
+* Improper **focus management** in modals, dropdowns, and popups.  
+* **Dynamic content updates** not announced to screen readers.  
 
 #### Shopware QA and self-certification
 
-- Developers can **self-certify** an extension as a11y-compliant.  
-- Shopware **QA verification** may be required for listing in the store.  
+* Developers can **self-certify** an extension as a11y-compliant.  
+* Shopware **QA verification** may be required for listing in the store.  
 
 ### 5. Accessibility support in Shopware versions
 
@@ -228,9 +229,9 @@ While automation helps, **manual checks** ensure real-world usability:
 
 ### 6. Getting help with accessibility
 
-- Work with **Shopware-certified agencies** for A11y audits.  
-- Stay updated with Shopware's **developer guidelines**.  
-- Discuss A11y best practices with other developers in the **Shopware community**.
+* Work with **Shopware-certified agencies** for A11y audits.  
+* Stay updated with Shopware's **developer guidelines**.  
+* Discuss A11y best practices with other developers in the **Shopware community**.
 
 ## Final Thoughts
 
