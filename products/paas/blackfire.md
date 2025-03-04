@@ -15,6 +15,7 @@ The APM will shows you when, where and why performance issues happen.
 Here're the main Blackfire features:
 * Monitoring (Live metrics from your app): identify slow transactions, background jobs, services or third party calls
 * Deterministic Profiling (Deep, runtime code analysis): get function-call level metrics and spot root causes of bottlenecks
+* Continuous Profiling (Combines profiling and monitoring with minimal overhead): easily identify hotspots, optimize resource usage, and compare timeframes to visually identify the flaky parts of your application
 * Testing (Performance budget control): verify code behavior and performance
 * Alerting (Warnings upon abnormal behaviors)
 * Recommendations (Actionable insights and expert advice): benefit from unique, cutting-edge issue detection with documented resolution recommendations
