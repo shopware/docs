@@ -35,6 +35,6 @@ We encourage you to look at our [self-onboarding guide](https://docs.blackfire.i
 
 ## Deterministic Profiling
 
-We recommend you to install the [Firefox Blackfire extension](https://addons.mozilla.org/en-US/firefox/addon/blackfire/) or the [Chrome Blackfire extension](https://chromewebstore.google.com/detail/blackfire-profiler/miefikpgahefdbcgoiicnmpbeeomffld?hl=en) so you can trigger profiles of targeted transactions or group of transactions.
+We recommend you install the [Firefox Blackfire extension](https://addons.mozilla.org/en-US/firefox/addon/blackfire/) or the [Chrome Blackfire extension](https://chromewebstore.google.com/detail/blackfire-profiler/miefikpgahefdbcgoiicnmpbeeomffld?hl=en) so you can trigger profiles of targeted transactions or group of transactions.
 
 ![Blackfire profile](../../assets/blackfire-profile.png)
