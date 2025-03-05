@@ -65,7 +65,7 @@ git add .
 git commit -am "initial commit"
 ```
 
-7.) Configure the CLI with your project_id
+7.) Configure the PaaS CLI with your project_id
 
 ```sh
 shopware project:set-remote PROJECT_ID
@@ -83,8 +83,8 @@ git push shopware
 
 The sub-pages describe a more detailed step-by-step guide that you can follow to set up your PaaS project.
 
-First, make sure your [CLI is set up correctly](cli-setup).
-Once your CLI is up and running, it is time to [set up your project repository](repository).
+First, make sure your [PaaS CLI is set up correctly](cli-setup).
+Once your PaaS CLI is up and running, it is time to [set up your project repository](repository).
 
 When your repository is set up correctly, you are ready to [push and deploy your project](build-deploy) to the PaaS environment.
 

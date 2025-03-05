@@ -16,7 +16,7 @@ Add (or uncomment) the Elasticsearch service configuration.
 ```yaml
 // .platform/services.yaml
 elasticsearch:
-   type: opensearch:1.2
+   type: opensearch:2
    disk: 256
 ```
 
