@@ -19,7 +19,7 @@ Here are the main Blackfire features:
 * Testing (Performance budget control): verify code behavior and performance
 * Alerting (Warnings upon abnormal behaviors)
 * Recommendations (Actionable insights and expert advice): benefit from unique, cutting-edge issue detection with documented resolution recommendations
-* CI/CD integration (Automated testing and regressions prevention): add Blackfire to any testing pipeline and existing tests, or start from scratch with our Open-Source crawler, tester and scraper
+* CI/CD integration (Automated testing and regressions prevention): add Blackfire to any testing pipeline and existing tests, or start from scratch with our Open-Source crawler, tester, and scraper
 
 
 ## Access
