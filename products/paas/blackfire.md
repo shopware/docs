@@ -10,7 +10,7 @@ nav:
 Blackfire is bundled with every Enterprise Shopware PaaS project without any additional fees.  
 All the people invited to the project can access Blackfire, and all environments can be monitored.
 
-The APM will shows you when, where and why performance issues happen.
+The APM will show you when, where, and why performance issues happen.
 
 Here're the main Blackfire features:
 * Monitoring (Live metrics from your app): identify slow transactions, background jobs, services or third party calls
