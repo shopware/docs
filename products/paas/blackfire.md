@@ -8,7 +8,7 @@ nav:
 # Blackfire Continuous Observability Solution
 
 Blackfire is bundled with every Enterprise Shopware PaaS project without any additional fees.  
-All the person invited on the project can access Blackfire and all environments can be monitored.
+All the people invited to the project can access Blackfire, and all environments can be monitored.
 
 The APM will shows you when, where and why performance issues happen.
 
