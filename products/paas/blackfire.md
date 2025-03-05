@@ -31,7 +31,7 @@ If this is your first authentication, please use your usual Shopware PaaS email 
 
 ## Onboarding Guide
 
-We encourage you to have a look at our [self-onboarding guide](https://docs.blackfire.io/onboarding/index). It includes extensive documentation and videos to help use and understand Blackfire.
+We encourage you to look at our [self-onboarding guide](https://docs.blackfire.io/onboarding/index). It includes extensive documentation and videos to help use and understand Blackfire.
 
 ## Deterministic Profiling
 
