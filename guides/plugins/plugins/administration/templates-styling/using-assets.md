@@ -59,7 +59,6 @@ This way, your plugin assets are copied to the `public/bundles` folder:
 
 After adding your assets to the `public/bundles` folder, you can start using them in the Administration. Simply utilize the `asset` filter.
 
-
 Create a computed component to make them easy to use in your template.
 
 ```javascript
