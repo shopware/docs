@@ -27,7 +27,7 @@ Before doing the actual update, you should create a backup of your database and 
 If blue-green deployment is enabled, you can rollback to the previous version without restoring the database backup. This is only recommended when you **only updated** Shopware and not any extensions together with it.
 :::
 
-Before you start the update process, you should also make sure that you have set the Sales Channels into maintenance mode. This can be done using the Administration or with `bin/console system:update:prepare` in the terminal.
+Before you start the update process, you should also make sure that you have set the Sales Channels into maintenance mode. This can be done using the Administration or with `bin/console sales-channel:maintenance:enable --all` in the terminal.
 
 ### Use Composer to manage all extensions
 
@@ -60,4 +60,17 @@ First, you should check that all extensions obtained from Shopware Store are com
 
 For the Hosting environment, it makes sense to update the PHP version to the minimum required version for the new Shopware version before updating Shopware itself. Shopware versions always support an overlapping PHP version, so you can update the PHP version before updating Shopware itself. You can find the minimum required PHP version in the [System Requirements](../../installation/requirements.md).
 
-For customizations, you should check the [UPGRADE.md](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md), it contains all breaking changes and migration instructions. Most of the time, it's easier to update to the latest version in a local environment and take a look at what is not working anymore.
+For customizations, you should check the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown), it contains all breaking changes and migration instructions. Most of the time, it's easier to update to the latest version in a local environment and take a look at what is not working anymore.
+
+
+## Final Steps
+
+Before you remove the maintenance mode, it is recommended to check the following:
+
+- **Check the Administration**: Make sure the administration is working correctly.
+- **Check the Storefront / Sales Channels**: Make sure your main processes are working correctly (e.g., adding products to the cart, checkout, etc.).
+- **Check the Extensions**: Make sure that all extensions are working correctly.
+- **Check the Performance**: Make sure that there is no major performance degradation.
+- **Check the Logs**: Check your error logs for any issues.
+
+After you have checked everything, you can disable the maintenance mode with `bin/console sales-channel:maintenance:disable --all`.
