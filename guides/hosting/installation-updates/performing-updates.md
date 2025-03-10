@@ -62,7 +62,6 @@ For the Hosting environment, it makes sense to update the PHP version to the min
 
 For customizations, you should check the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown), it contains all breaking changes and migration instructions. Most of the time, it's easier to update to the latest version in a local environment and take a look at what is not working anymore.
 
-
 ## Final Steps
 
 Before you remove the maintenance mode, it is recommended to check the following:
