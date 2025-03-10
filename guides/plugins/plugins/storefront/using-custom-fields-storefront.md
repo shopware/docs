@@ -76,7 +76,7 @@ Let's say you have a custom field for the customer entity through the administra
 	{# custom field #}
 	<div class="form-group col-sm-6">
 		<label class="form-label" for="customFields[custom_field_name]">
-			{{ "customFields.custom_field_name"|trans|sanitize}}*
+			{{ "customFields.custom_field_name"|trans|sw_sanitize}}*
 		</label>
 		<input type="text" class="form-control" name="customFields[custom_field_name]" value="{{context.customer.customFields['custom_field_name'] }}" id="customFields[custom_field_name]" required="required">
 	</div>
