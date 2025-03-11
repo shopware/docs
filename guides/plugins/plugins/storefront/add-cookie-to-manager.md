@@ -52,10 +52,10 @@ The interface mentioned above requires you to implement a method called `getCook
 Let's have a look at an example:
 
 ```php
-// <plugin root>/src/Service/CustomCookieProvider.php
+// <plugin root>/src/Framework/Cookie/CustomCookieProvider.php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Service;
+namespace PluginName\Framework\Cookie;
 
 use Shopware\Storefront\Framework\Cookie\CookieProviderInterface;
 
