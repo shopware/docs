@@ -5,13 +5,6 @@ area: core
 tags: [annotations, controller, route, defaults]
 ---
 
-# Move controller level annotation into Symfony route annotation
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-02-09-controller-configuration-route-defaults.md)
-:::
-
 ## Context
 
 Annotations are used to configure controllers in the core currently. 

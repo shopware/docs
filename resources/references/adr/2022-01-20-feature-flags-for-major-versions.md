@@ -5,13 +5,6 @@ area: core
 tags: [core, feature-flag, workflow, major-version]
 ---
 
-# Feature flags for major versions
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-01-20-feature-flags-for-major-versions.md)
-:::
-
 ## Context
 Feature flags enable the developer to create new code which is hidden behind the flag and merge it into the trunk branch, even when the code is not finalized.
 We use this functionality to merge breaks into the trunk early, without them already being switched active.

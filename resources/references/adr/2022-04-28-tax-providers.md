@@ -5,13 +5,6 @@ area: checkout
 tags: [tax, tax-provider, checkout]
 --- 
 
-# Introducing tax providers
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-04-28-tax-providers.md)
-:::
-
 ## Context
 In other countries like the USA, there are different tax rates for different states and counties you are shipping to, leading to thousands of different tax rates in the USA alone.
 For this purpose, *tax providers* exist like `TaxJar`, `Vertex` or `AvaTax` that output the tax rate depending on the customer and cart details.

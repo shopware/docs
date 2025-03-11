@@ -5,13 +5,6 @@ area: Core,Elasticsearch
 tags: [Elasticsearch,Opensearch,Multilingual search]
 ---
 
-# New language inheritance mechanism for opensearch
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch.md)
-:::
-
 ## Context
 
 Currently, when using Elasticsearch for searching on storefront, we are creating multiple indexes of each language. This would be fine till now however there are a few problems with it:

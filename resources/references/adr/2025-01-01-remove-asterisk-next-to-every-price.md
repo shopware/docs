@@ -5,13 +5,6 @@ area: framework
 tags: [storefront, prices, accessibility]
 ---
 
-# Remove the asterisk next to every price and replace it with actual text
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-01-01-remove-asterisk-next-to-every-price.md)
-:::
-
 ## Context
 
 Currently, all product prices that are displayed in the default Storefront have an asterisk `*` next to them, for example: `€ 50,00 *`

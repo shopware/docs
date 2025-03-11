@@ -5,13 +5,6 @@ area: core
 tags: [ core, plugin, test, unit, major ]
 ---
 
-# Add more unit tests namespaces to FeatureFlag extension
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-07-31-add-more-unit-tests-namespaces-to-featureflag-extension.md)
-:::
-
 ## Context
 
 The `Shopware\Core\Test\PHPUnit\Extension\FeatureFlag\Subscriber\TestPreparationStartedSubscriber` only allows

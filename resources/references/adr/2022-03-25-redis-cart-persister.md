@@ -4,13 +4,6 @@ date: 2022-03-25
 area: checkout
 tags: [checkout, cart, redis, performance]
 ---
-
-# Redis cart persister
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-03-25-redis-cart-persister.md)
-:::
 With the last benchmarks it became clear how cost intensive the loading and saving of the shopping cart to and from the database is. A detailed analysis revealed two problems:
 
 1) Every time the shopping cart is loaded, it is written back to the database after validation. However, this leads to a write on the connection which causes us to lose support for master-slave database setups.
