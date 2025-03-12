@@ -67,6 +67,7 @@ APIs
 ApiService
 apk
 Aplaceholder
+APM
 AppRefundHandler
 AppScripts
 AppServer
@@ -726,6 +727,7 @@ HookClasses
 HookExecutor
 hosters
 hostname
+hotspots
 HowTos
 html
 http
@@ -1037,6 +1039,8 @@ OffcanvasCartPageLoadedEvent
 og
 ok
 OldFeature
+onboarding
+Onboarding
 OneToMany
 OneToManyAssociation
 OneToManyAssociationField
@@ -1585,6 +1589,7 @@ th
 theming
 themself
 timeframe
+timeframes
 TimeRangeRule
 TimeZoneField
 tinyint

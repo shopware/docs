@@ -88,4 +88,6 @@ Once your PaaS CLI is up and running, it is time to [set up your project reposit
 
 When your repository is set up correctly, you are ready to [push and deploy your project](build-deploy) to the PaaS environment.
 
-Finally, you can look into setting up [Elasticsearch](elasticsearch), [RabbitMQ](rabbitmq) and/or [Fastly](fastly) to further enhance the performance of your PaaS project.
+You can look into setting up [Elasticsearch](elasticsearch), [RabbitMQ](rabbitmq) and/or [Fastly](fastly) to further enhance the performance of your PaaS project.
+
+Finally, do not forget each PaaS project comes with [Blackfire](blackfire) which will help you to monitor the response time and investigate performance issues of your project.
