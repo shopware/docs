@@ -82,12 +82,11 @@ The next thing we need to do is register our subscriber in the DI-Container and 
 
 Now that we have registered our Subscriber to the right event, we first need to fetch the additional data we need and then add it as an extension to the pagelet.
 
-Because we are in an event of a Pagelet we should not directly call the DAL to fetch the data.
-Instead, we should check if there is a proper store-api route to fetch our data.
-If we just wanted to add specific products data we could use the ProductListRoute.
-But we want to fetch data that is currently not returned in a performant way with the store-api.
-The ProductListRoute could return the data, but it would return way too much data for our purpose.
-Because of that we will add a new store-api route for our data.
+Since we are in a `Pagelet`-event, the DAL should not be called directly to fetch data. Instead, we should check whether a suitable `store-api` route exists.
+
+If we only needed specific product data, we could use the `ProductListRoute`. However, this does not satisfy our use case. While the `ProductListRoute` could provide this data, it would return far more information than necessary.
+
+Therefore, we will create a new `store-api` route tailored to our needs.
 
 First you should read our guide for [adding store-api routes](../framework/store-api/add-store-api-route).
 
