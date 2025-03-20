@@ -254,10 +254,6 @@ This is available starting with Shopware 6.6.10.0
 The **Product Stream Indexer** is a background process that creates a mapping table of products to their streams.
 It is used to find which category pages are affected by product changes. On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
 
-To disable the Product Stream Indexer, you can set the following configuration:
-
-<<< @/docs/snippets/config/product_stream.yaml
-
 Disabling the Product Stream Indexer has the following disadvantages:
 
 - When you change a product in a stream, the category page is not updated until the HTTP cache expires
