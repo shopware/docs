@@ -29,7 +29,7 @@ The typical Dockerfile in your project would look like this:
 
 ARG PHP_VERSION=8.3
 FROM ghcr.io/shopware/docker-base:$PHP_VERSION-caddy AS base-image
-FROM ghcr.io/friendsofshopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
+FROM shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 
 FROM shopware-cli AS build
 

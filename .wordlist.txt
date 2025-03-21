@@ -11,6 +11,7 @@ AccountPaymentMethodPage
 AccountProfilePage
 AccountRecoverPasswordPage
 acl
+Autofixer
 Acl
 ACL
 AclContextProvider
@@ -138,6 +139,7 @@ blackbox
 blackfire
 Blackfire
 BlacklistRule
+balancer
 BlacklistRuleField
 BlobField
 blockquote

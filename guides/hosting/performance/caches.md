@@ -48,7 +48,7 @@ framework:
 
 Make sure that you have installed the PHP Redis extension before applying this configuration.
 
-The Redis URL can have variosu formats. The following are all valid:
+The Redis URL can have various formats. The following are all valid:
 
 ```
 # With explicit port
