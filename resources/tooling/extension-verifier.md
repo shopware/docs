@@ -7,7 +7,7 @@ nav:
 
 # Extension Verifier
 
-Extension Verifier is an own self-contained tool to check, format and refactor extensions (Plugins / Apps) or an complete project. The Verifier uses various tools to perform the checks and combine the result into one unified output.
+Extension Verifier is an own self-contained tool to check, format and refactor extensions (Plugins / Apps) or a complete project. The Verifier uses various tools to perform the checks and combine the result into one unified output.
 
 Following tools are included with the Verifier:
 
@@ -17,7 +17,7 @@ Following tools are included with the Verifier:
 - Stylelint
 - PHP-CS-Fixer
 
-all of these tools are pre-configured if no config was provided.
+All of these tools are pre-configured if no config was provided.
 
 ## Installation
 
