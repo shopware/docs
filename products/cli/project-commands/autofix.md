@@ -30,5 +30,3 @@ It's best practise to manage store and your custom plugins via Composer. [If you
 ```bash
 shopware-cli project autofix composer-plugins
 ```
-
-

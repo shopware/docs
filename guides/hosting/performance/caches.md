@@ -50,7 +50,7 @@ Make sure that you have installed the PHP Redis extension before applying this c
 
 The Redis URL can have various formats. The following are all valid:
 
-```
+```text
 # With explicit port
 redis://localhost:6379
 
