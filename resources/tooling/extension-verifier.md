@@ -76,7 +76,7 @@ To run the checks, you can use following command:
 docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest check /ext
 ```
 
-It will check by default to the latest allowed Shopware version by your constraints in `composer.json`. It's recommanded to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. You can do this by using the `--check-against` option:
+It will check by default to the latest allowed Shopware version by your constraints in `composer.json`. It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. You can do this by using the `--check-against` option:
 
 ```shell
 docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest check /ext --check-against lowest
