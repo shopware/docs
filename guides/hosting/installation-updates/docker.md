@@ -24,6 +24,10 @@ composer require shopware/docker
 
 The typical Dockerfile in your project would look like this:
 
+::: info
+You may want to pin the Docker image to a specific sha256 digest to ensure you always use the same image. See [Best Practices](https://docs.docker.com/build/building/best-practices/#pin-base-image-versions) for more information.
+:::
+
 ```dockerfile
 #syntax=docker/dockerfile:1.4
 
