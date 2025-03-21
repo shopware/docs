@@ -28,10 +28,10 @@ docker run --rm ghcr.io/shopwarelabs/extension-verifier:latest
 ```
 
 ::: info
-The tag latest points always to the most recent version, you may want to pin the Docker Image to an specific version and update it from time to time.
+The tag latest points always to the most recent version, you may want to pin the Docker Image to a specific version and update it from time to time.
 :::
 
-Additionally we provide a ready to use GitHub Action:
+Additionally, we provide a ready to use GitHub Action:
 
 ```yaml
 jobs:
@@ -66,7 +66,7 @@ You can run it also in dry mode, just show the changes instead of editing the fi
 docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest format /ext --dry-run
 ```
 
-By default the formatting is done by Shopware Coding Standard. You can configure the formatting by creating a `.php-cs-fixer.dist.php` in your extension root.
+By default, the formatting is done by Shopware Coding Standard. You can configure the formatting by creating a `.php-cs-fixer.dist.php` in your extension root.
 
 ## Check
 
@@ -136,4 +136,4 @@ Ignoring errors works similar to extensions, in that case you can create a `.sho
 
 ### Missing classes in Storefront/Elasticsearch bundle
 
-Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or Elasticsearch Bundle and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development and PHPStan can recognize the files.
+Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or Elasticsearch Bundle and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development, and PHPStan can recognize the files.
