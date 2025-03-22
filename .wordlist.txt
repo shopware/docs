@@ -128,6 +128,7 @@ BeforeRegistrationCompletedEvent
 BeforeShopActivateEvent
 BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
+benefitting
 BillingCountryRule
 BillingStreetRule
 BillingZipCodeRule
