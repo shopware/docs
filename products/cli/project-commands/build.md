@@ -67,7 +67,10 @@ build:
   keep_source_maps: false
   # Delete after bin/console asset:install all assets in the extensions, so only live in public folder.
   # This only works when the assets are served directly from the public folder.
-  remove_extension_assets: false 
+  remove_extension_assets: false
+  # Allows to force building an extension even when the assets existing. A use-case could be if you used composer patches for a specific extension.
+  force_extension_build:
+    - name: 'SomePlugin'
 ```
 
 ## Supporting bundles
