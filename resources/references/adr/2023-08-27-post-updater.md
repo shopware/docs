@@ -5,13 +5,6 @@ area: core
 tags: [indexer, update, installer]
 ---
 
-# Post updater
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-08-27-post-updater.md)
-:::
-
 ## Context
 We often need a way between the different Shopware versions to provide a one-time update for data. This is currently done on the way to extend an indexer to this logic and then trigger this via a migration. 
 This is of course a possible way to enable certain migrations of data, but this migration is also executed again and again when the indexer is executed. 

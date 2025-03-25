@@ -5,13 +5,6 @@ area: core, administration, storefront
 tags: [core, feature, experimental]
 ---
 
-# Make feature flags toggleable on demand
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-11-29-toggle-feature-flag-on-demand.md)
-:::
-
 ## Context
 
 Feature flags are a great way to enable/disable features in the application. However currently, they are not toggleable on demand. This means that if you want to enable a feature flag, you need to change the environment variables and restart the application. This is not ideal for a production environment.

@@ -5,13 +5,6 @@ area: core
 tags: [core, devops, observability]
 ---
 
-# Error-code log Level configuration in platform or cloud
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-06-17-error-code-log-level-configuration-in-cloud-and-platform.md)
-:::
-
 ## Context
 In the configuration files for platform and cloud, specific error codes can be set to the notice level.
 Some time ago, we decided to configure this in platform ([Exception Log Level configuration](2023-05-25-exception-log-levels)).

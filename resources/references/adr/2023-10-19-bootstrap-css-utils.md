@@ -5,13 +5,6 @@ area: storefront
 tags: [storefront, bootstrap, css]
 ---
 
-# Make more use of Bootstrap tooling and remove !important from Bootstrap CSS utils
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-10-19-bootstrap-css-utils.md)
-:::
-
 ## Context
 
 At the moment the Storefront is implementing a lot of custom SCSS inside `app/storefront/src/scss`.

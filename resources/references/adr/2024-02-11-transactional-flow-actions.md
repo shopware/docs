@@ -5,13 +5,6 @@ area: Core
 tags: [flow, flow-action]
 ---
 
-# Introduce transactional flow actions
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-02-11-transactional-flow-actions.md)
-:::
-
 ## Context
 1. If flow actions want to interact with the database in a transactional manner, they need to handle it themselves by starting and committing transactions.
 

@@ -5,13 +5,6 @@ area: Business Ops
 tags: [services-settings, flow]
 ---
 
-# Flow Builder Preview
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-07-13-flow-builder-preview.md)
-:::
-
 ## Context
 In the past merchants had to deal with issues where their custom-built flow did not
 behave how they intended it to do. An concrete example: We've had a merchant that contacted

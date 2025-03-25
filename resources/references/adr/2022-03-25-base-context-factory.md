@@ -4,13 +4,6 @@ date: 2022-03-25
 area: core
 tags: [core, sales-channel, performance, cache]
 ---
-
-# Base context factory
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-03-25-base-context-factory.md)
-:::
 Within each store api request (and storefront), the sales channel context must be built. Building the sales channel context is a very resource consuming task for the database, since many DAL objects are now included in the sales channel context. Therefore, a cache for the corresponding service (`Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory`) has already been implemented in the past: `Shopware\Core\System\SalesChannel\Context\CachedSalesChannelContextFactory`. However, since the context also contains the customer and the selected shipping address as well as billing address, the context cannot be cached once a customer is logged in:
 
 ```php
