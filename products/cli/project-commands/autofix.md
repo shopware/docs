@@ -21,7 +21,7 @@ Ensure that you have a backup of your project before running this command.
 shopware-cli project autofix flex
 ```
 
-The command will delete all configuration files that are not needed anymore. It will update the `composer.json` file to use the new configuration files and will also update the `bin/console` file to use the new configuration files.
+The command will delete all unnecessary configuration files. It will also update the `composer.json` file and the `bin/console` file to use the new configuration files.
 
 ## Migrate custom/plugins extensions to Composer
 
