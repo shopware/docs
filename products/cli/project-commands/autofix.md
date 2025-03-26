@@ -25,7 +25,7 @@ The command will delete all configuration files that are not needed anymore. It 
 
 ## Migrate custom/plugins extensions to Composer
 
-It's best practise to manage store and your custom plugins via Composer. [If you want to learn more about this checkout this guide](../../../guides/hosting/installation-updates/extension-managment.md). Shopware-CLI has an helper for migrating locally installed plugins to Composer through Shopware Packagist for the Shopware Store. Make sure you have an Shopware Packages Token, which can be gathered in the Shopware Account. You can find the token in the Shopware Account under "Shops" > "Licenses" > "..." of one extension and "Install via Composer.
+It's best practice to manage the store and your custom plugins via Composer. [If you want to learn more about this check out this guide](../../../guides/hosting/installation-updates/extension-managment.md). Shopware-CLI has a helper for migrating locally installed plugins to Composer through Shopware Packagist for the Shopware Store. Make sure you have a Shopware Packages Token, which can be gathered in the Shopware Account. You can find the token in the Shopware Account under "Shops" > "Licenses" > "..." of one extension and "Install via Composer.
 
 ```bash
 shopware-cli project autofix composer-plugins
