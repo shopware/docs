@@ -305,8 +305,9 @@ Since version 6.4.12.0, your app can also request additional non-CRUD privileges
 
 Sample permissions to read, create and update products, delete orders, as well as reading the cache configuration look like this:
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -324,6 +325,8 @@ Sample permissions to read, create and update products, delete orders, as well a
     </permissions>
 </manifest>
 ```
+
+:::
 
 The permissions you request need to be accepted by the user during the installation of your app. After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-base-guide#confirmation-request) of the [setup workflow](app-base-guide#setup) are limited to those permissions.
 
