@@ -11,7 +11,7 @@ Shopware-CLI comes with some builtin auto fixers for project migrations.
 
 ## Migrate a Project to Symfony Flex
 
-Prior to Shopware 6.5, Shopware didn't use Symfony Flex. This means that the project structure was different and some configuration files were located in different places. The `shopware-cli project autofix flex` command will migrate your project to Symfony Flex and move all configuration files to the correct locations.
+Prior to Shopware 6.5, Shopware didn't use Symfony Flex. This means that the project structure was different, and some configuration files were located in different places. The `shopware-cli project autofix flex` command will migrate your project to Symfony Flex and move all configuration files to the correct locations.
 
 ::: warning
 Ensure that you have a backup of your project before running this command.
