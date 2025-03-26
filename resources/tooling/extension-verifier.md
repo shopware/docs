@@ -11,7 +11,7 @@ Extension Verifier is an own self-contained tool to check, format and refactor e
 
 The following tools are included with the Verifier:
 
-- ESlint
+- ESLint
 - PHPStan
 - Rector
 - Stylelint
