@@ -26,7 +26,7 @@ The storage used for HTTP Cache is always the [App Cache](#app-cache), see below
 
 ## How to change the cache storage
 
-The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. This is a file-based cache that stores the cache in the `var/cache` directory. This allows Shopware to work out of the box on a single server without any additional configuration. However, this is maybe not the best solution for a production system, especially if you are using a load balancer or multiple servers. In this case, you should use a shared cache like [Redis](https://redis.io/).
+The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. This is a file-based cache that stores the cache in the `var/cache` directory. This allows Shopware to work out of the box on a single server without any additional configuration. However, this may not be the best solution for a production system, especially if you are using a load balancer or multiple servers. In this case, you should use a shared cache like [Redis](https://redis.io/).
 
 This is a Symfony cache pool configuration and therefore supports all adapters from the [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle).
 
