@@ -88,8 +88,9 @@ The name of your app that you provide in the manifest file needs to match the fo
 
 To create a flow trigger, you need to define a `<flow-event>` block within a file called `flow.xml`. Each `<flow-event>` represents one trigger, and you can define an arbitrary number of events.
 
-```xml
-// Resources/flow.xml
+::: code-group
+
+```xml [Resources/flow.xml]
 <flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
@@ -102,6 +103,8 @@ To create a flow trigger, you need to define a `<flow-event>` block within a fil
     ...
 </flow-extensions>
 ```
+
+:::
 
 A single flow trigger would look like this:
 
