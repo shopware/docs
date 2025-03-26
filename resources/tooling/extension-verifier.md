@@ -9,7 +9,7 @@ nav:
 
 Extension Verifier is an own self-contained tool to check, format and refactor extensions (Plugins / Apps) or a complete project. The Verifier uses various tools to perform the checks and combine the result into one unified output.
 
-Following tools are included with the Verifier:
+The following tools are included with the Verifier:
 
 - ESlint
 - PHPStan
@@ -54,7 +54,7 @@ jobs:
 
 ## Formatting
 
-To run the formatter, you can use following command:
+To run the formatter, you can use the following command:
 
 ```shell
 docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest format /ext
@@ -70,7 +70,7 @@ By default, the formatting is done by Shopware Coding Standard. You can configur
 
 ## Check
 
-To run the checks, you can use following command:
+To run the checks, you can use the following command:
 
 ```shell
 docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest check /ext
@@ -93,7 +93,7 @@ The check command has multiple reporting options, you can use `--reporter` to sp
 
 ## Refactoring
 
-To run the refactoring, you can use following command:
+To run the refactoring, you can use the following command:
 
 ::: warning
 Make sure you have a copy of your extension before running the command, as it will change your files!
@@ -126,7 +126,7 @@ validation:
 
 ## Scanning a project
 
-It's possible to scan an entire project instead just a single extension. This is useful if you want to check all extensions in your project at once. You can do this by passing a path to the project root instead of the extension path.
+It's possible to scan an entire project instead of just a single extension. This is useful if you want to check all extensions in your project at once. You can do this by passing a path to the project root instead of the extension path.
 
 All config files like `phpstan.neon`, and `.php-cs-fixer.dist.php` should be placed in the project root for proper configuration for overriding the default settings. The Verifier will automatically detect the config files and use them for the checks.
 
@@ -136,4 +136,4 @@ Ignoring errors works similar to extensions, in that case you can create a `.sho
 
 ### Missing classes in Storefront/Elasticsearch bundle
 
-Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or Elasticsearch Bundle and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development, and PHPStan can recognize the files.
+Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or Elasticsearch Bundle, and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development, and PHPStan can recognize the files.
