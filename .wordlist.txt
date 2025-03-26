@@ -115,6 +115,7 @@ backoff
 backported
 bAcl
 bAjaxPanel
+balancer
 BaseContext
 BasicExample
 bAuditLog
