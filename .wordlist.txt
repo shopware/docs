@@ -1,5 +1,6 @@
 AbstractCaptcha
 AbstractStockUpdateFilter
+Abzug
 accel
 AccountEditOrderPage
 AccountGuestLoginPage
@@ -43,6 +44,7 @@ ag
 AggregationResultCollection
 ajax
 AjaxModalPlugin
+Aktions
 Algolia
 AllowEmptyString
 AllowHtml
@@ -130,6 +132,8 @@ BeforeRegistrationCompletedEvent
 BeforeShopActivateEvent
 BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
+Beispielbeschreibung
+Beschreibung
 BillingCountryRule
 BillingStreetRule
 BillingZipCodeRule
@@ -516,6 +520,7 @@ EcmaScript
 ecommerce
 editorconfig
 eg
+Eine
 elasticsearch
 ElasticSearch
 ElasticsearchDefinition
@@ -644,6 +649,7 @@ frontmatter
 FroshDevelopmentHelper
 Fullstack
 func
+für
 gd
 GDPR
 GenericPage
@@ -793,6 +799,7 @@ isPlainObject
 isPropagationStopped
 isRegExp
 isString
+ist
 isUndefined
 isUrl
 isValid
@@ -984,6 +991,7 @@ mr
 MRs
 MultiWarehouse
 MVC
+MyApiExtension
 MyExampleApp
 MyExtension
 myNewMethod
@@ -1460,6 +1468,7 @@ shopware's
 Shopware's
 shorthands
 SimpleHttpClient
+SimpleNotification
 simples
 simplexml
 Sinon
@@ -1586,6 +1595,7 @@ testability
 TestCase
 testenv
 testFoo
+TestSecret
 TestStockUpdateFilter
 testsuite
 testsuites
@@ -1611,6 +1621,8 @@ tooltip
 tooltips
 Tooltips
 ToOne
+Topseller
+Topsellers
 to's
 totalAmount
 tradeoff
