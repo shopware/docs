@@ -32,7 +32,7 @@ This is a Symfony cache pool configuration and therefore supports all adapters f
 
 ### Using Redis
 
-Redis is a very fast in-memory key-value store. It is a good choice for caching data that is frequently accessed and does not need to be persisted. Redis can be used as a cache adapter in Shopware. As the cached information is ephemeral and can be recreated, it is not necessary to configure Redis to store the data on disk. For maximum performance you can configure Redis to use no persistence, refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
+Redis is a very fast in-memory key-value store. It is a good choice for caching data that is frequently accessed and does not need to be persisted. Redis can be used as a cache adapter in Shopware. As the cached information is ephemeral and can be recreated, it is not necessary to configure Redis to store the data on disk. For maximum performance, you can configure Redis to use no persistence. Refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
 As key eviction policy you should use `volatile-lru`, which only automatically deletes data that is expired, as the application explicitly manages the TTL for each cache item. For a detailed overview of Redis key eviction policies see the [Redis docs](https://redis.io/docs/latest/develop/reference/eviction/).
 
 For `cache.adapter.redis_tag_aware` minimum Shopware 6.5.8.3 is required. Otherwise use `cache.adapter.redis`.
