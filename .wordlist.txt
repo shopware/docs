@@ -132,6 +132,7 @@ BeforeRegistrationCompletedEvent
 BeforeShopActivateEvent
 BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
+Beispiel
 Beispielbeschreibung
 Beschreibung
 BillingCountryRule
@@ -578,6 +579,7 @@ EventSubscriberInterface
 everytime
 Everytime
 evolvability
+ExampleAppWithCookies
 ExampleController
 ExampleDefinition
 ExampleDescription
@@ -946,6 +948,7 @@ MediaDataSet
 MediaFolderDataSet
 mediaId
 mediaService
+meiner
 MemcachedSessionHandler
 memoization
 memoized
@@ -972,6 +975,7 @@ mixins
 Mixins
 mocksArentStubs
 modifiability
+Modul
 modularity
 Modularity
 ModuleFactory
@@ -992,6 +996,7 @@ MRs
 MultiWarehouse
 MVC
 MyApiExtension
+myApp
 MyExampleApp
 MyExtension
 myNewMethod
@@ -1002,6 +1007,7 @@ mysqldump
 MyTestClass
 MyTestInterface
 NameAware
+NameOfYourShippingMethodApp
 namespace
 namespaces
 NameStorer
