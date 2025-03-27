@@ -123,6 +123,7 @@ class ExampleController extends StorefrontController
 Next, we need to register our controller in the DI-container and make it public.
 
 ::: code-group
+
 ```xml [<plugin root>/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
@@ -139,6 +140,7 @@ Next, we need to register our controller in the DI-container and make it public.
     </services>
 </container>
 ```
+
 :::
 
 Please also note the `call` tag, which is necessary in order to set the DI container to the controller.
@@ -150,6 +152,7 @@ This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` l
 Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ::: code-group
+
 ```xml [<plugin root>/src/Resources/config/routes.xml]
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
@@ -160,6 +163,7 @@ Have a look at the official [Symfony documentation](https://symfony.com/doc/curr
     <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
 </routes>
 ```
+
 :::
 
 ### Adding template

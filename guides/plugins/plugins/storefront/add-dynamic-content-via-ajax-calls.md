@@ -52,6 +52,7 @@ Using a `JsonResponse` instead of a normal `Response` causes the data structures
 The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyway:
 
 ::: code-group
+
 ```xml [<plugin root>/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
@@ -79,6 +80,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
     <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
 </routes>
 ```
+
 :::
 
 ## Preparing the Plugin

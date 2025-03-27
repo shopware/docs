@@ -139,12 +139,14 @@ The last thing to do in this method is to return your new page instance.
 Remember to register your new page loader in the DI container:
 
 ::: code-group
+
 ```xml [<plugin root>/src/Resources/config/services.xml]
 <service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
     <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
     <argument type="service" id="event_dispatcher"/>
 </service>
 ```
+
 :::
 
 #### Adjusting the controller
@@ -189,6 +191,7 @@ Note, that we've added the page to the template variables.
 In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
 
 ::: code-group
+
 ```xml [<plugin root>/src/Resources/config/services.xml]
 <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
     <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
@@ -197,6 +200,7 @@ In addition, it is necessary to pass the argument with the ID of the `ExamplePag
     </call>
 </service>
 ```
+
 :::
 
 ### Creating the example page
