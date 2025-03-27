@@ -40,8 +40,9 @@ When you are using a self-hosted Shopware version, you can also create the proje
 
 Next, we will put our basic configuration into the file we just created.
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -55,6 +56,8 @@ Next, we will put our basic configuration into the file we just created.
     </meta>
 </manifest>
 ```
+
+:::
 
 ## Set up communication between Shopware and the app
 
@@ -112,8 +115,9 @@ The final step of the setup is to configure your app to use that file as an entr
 
 To do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -128,6 +132,8 @@ To do that, we have to add an `admin` section to our `manifest.xml` file and pas
     </admin>
 </manifest>
 ```
+
+:::
 
 Since the URL to your entry point is only available locally, you will only be able to see changes on your own machine. If you want to share it, for development purposes, you need to host the entry point file somewhere or use services to expose local files as public URLs, such as [ngrok](https://ngrok.com/).
 
