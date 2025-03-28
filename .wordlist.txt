@@ -1369,8 +1369,10 @@ rfc
 roadmap
 Roadmap
 rollbacking
+routeName
 RouteResponse
 routeScope
+routeScopes
 RuleConditionService
 runtime
 RuntimeException
