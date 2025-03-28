@@ -37,8 +37,9 @@ This way of defining the route scope is deprecated for the 6.5 major version.
 
 Go ahead and create a new file `ExampleController.php` in the directory `<plugin root>/src/Storefront/Controller/`.
 
-```php
-// <plugin root>/src/Storefront/Controller/ExampleController.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -52,13 +53,16 @@ class ExampleController extends StorefrontController
 }
 ```
 
+:::
+
 Now we can create a new example method with a `Route` attribute which has to contain our route, in this case it will be `/example`.
 The route defines how our new method will be accessible.
 
 Below you can find an example implementation of a controller method including a route, where we render an `example.html.twig` template file with a template variable `example`.
 
-```php
-// <plugin root>/src/Storefront/Controller/ExampleController.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -82,6 +86,8 @@ class ExampleController extends StorefrontController
 }
 ```
 
+:::
+
 The name of the method does not really matter, but it should somehow fit its purpose.
 More important is the `Route` attribute, that points to the route `/example`.
 Also note its name, which is also quite important.
@@ -97,8 +103,9 @@ Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annot
 This way of defining the route-scope is deprecated for the 6.5 major version.
 :::
 
-```php
-// <plugin root>/src/Storefront/Controller/ExampleController.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -118,13 +125,15 @@ class ExampleController extends StorefrontController
 }
 ```
 
+:::
+
 ### Services.xml example
 
 Next, we need to register our controller in the DI-container and make it public.
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" 
@@ -153,7 +162,7 @@ Have a look at the official [Symfony documentation](https://symfony.com/doc/curr
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/routes.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/routes.xml]
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -176,8 +185,9 @@ Thus, we have to create an `index.html.twig` in the `<plugin root>/src/Resources
 Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`.
 In our [Customize templates](customize-templates) guide, you can learn more about customizing templates.
 
-```twig
-// <plugin root>/src/Resources/views/storefront/page/example.html.twig
+::: code-group
+
+```twig [PLUGIN_ROOT/src/Resources/views/storefront/page/example.html.twig]
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
 {% block base_content %}
@@ -185,14 +195,17 @@ In our [Customize templates](customize-templates) guide, you can learn more abou
 {% endblock %}
 ```
 
+:::
+
 ### Request and Context
 
 If necessary, we can access the `Request` and `SalesChannelContext` instances in our controller method.
 
 Here's an example:
 
-```php
-// <plugin root>/src/Storefront/Controller/ExampleController.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -213,6 +226,8 @@ class ExampleController extends StorefrontController
     }
 }
 ```
+
+:::
 
 ## Next steps
 
