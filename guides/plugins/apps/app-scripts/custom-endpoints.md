@@ -19,12 +19,14 @@ There is a specific `response` script hook, that allows you to manipulate the HT
 This is especially useful to adjust the security headers to your needs.
 
 To add a custom header to every response, you can do the following:
+
 ```twig
 // Resources/scripts/response/response.twig
 {% do hook.setHeader('X-Frame-Options', 'SAMEORIGIN') %}
 ```
 
 Additionally, you can check the current value of a given header and adjust it accordingly:
+
 ```twig
 // Resources/scripts/response/response.twig
 {% if hook.getHeader('X-Frame-Options') == 'DENY' %}
@@ -32,13 +34,15 @@ Additionally, you can check the current value of a given header and adjust it ac
 {% endif %}
 ```
 
-You also have access to the route name of the current request and to the route scopes to fine-grainly control the headers for specific routes:
+You also have access to the route name of the current request and to the route scopes to control the headers for specific routes:
+
 ```twig
 // Resources/scripts/response/response.twig
 {% if hook.routeName == 'frontend.detail.page' and hook.isInRouteScope('store-api') %}
     {% do hook.setHeader('X-Frame-Options', 'SAMEORIGIN') %}
 {% endif %}
 ```
+
 The possible route scopes are `storefront`, `store-api`, `api` and `administration`.
 
 ## Custom Endpoints
