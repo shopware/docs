@@ -24,8 +24,9 @@ Available also on our free online training ["Shopware 6 Backend Development"](ht
 As mentioned before this guide builds up upon the [adding a custom controller](add-custom-controller) guide.
 This means that this article will only cover the differences between returning a template and a `JSON` response and making it accessible to `XmlHttpRequests`.
 
-```php
-// <plugin base>/Storefront/Controller/ExampleController.php
+::: code-group
+
+```php [PLUGIN_ROOT/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace SwagBasicExample\Storefront\Controller;
@@ -45,7 +46,9 @@ class ExampleController extends StorefrontController
 }
 ```
 
-As you might have seen this controller isn't too different from the controller used in the article mentioned before.
+:::
+
+As you might have seen, this controller isn't too different from the controller used in the article mentioned before.
 The route attribute has an added `defaults: ['XmlHttpRequest' => true]` to allow XmlHttpRequest, and it returns a `JsonResponse` instead of a normal `Response`.
 Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
 
@@ -53,7 +56,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" 
@@ -70,7 +73,7 @@ The following `services.xml` and `routes.xml` are identical as in the before men
 </container>
 ```
 
-```xml [<plugin root>/src/Resources/config/routes.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/routes.xml]
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes xmlns="http://symfony.com/schema/routing"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -89,8 +92,9 @@ Now we have to add a `Storefront Javascript plugin` to display the timestamp we 
 
 Again this is built upon the [adding custom Javascript](add-custom-javascript) article, so if you don't already know what Storefront `plugins` are, hold on and read it first.
 
-```javascript
-// <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js]
 const { PluginBaseClass } = window;
 
 export default class AjaxLoadPlugin extends PluginBaseClass {
@@ -114,20 +118,27 @@ export default class AjaxLoadPlugin extends PluginBaseClass {
 }
 ```
 
+:::
+
 and register it in the `main.js`
 
-```javascript
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/storefront/src/main.js]
 import AjaxLoadPlugin from './example-plugin/example-plugin.plugin';
 
 window.PluginManager.register('AjaxLoadPlugin', AjaxLoadPlugin, '[data-ajax-helper]');
 ```
 
+:::
+
 ## Adding the Template
 
-The only thing that is now left, is to provide a template for the Storefront plugin to hook into:
+The only thing that is now left is to provide a template for the Storefront plugin to hook into:
 
-```twig
-// <plugin root>/src/Resources/views/storefront/page/content/index.html.twig
+::: code-group
+
+```twig [PLUGIN_ROOT/src/Resources/views/storefront/page/content/index.html.twig]
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block cms_content %}
@@ -142,7 +153,9 @@ The only thing that is now left, is to provide a template for the Storefront plu
 {% endblock %}
 ```
 
+:::
+
 ## Next steps
 
 The controller we used in this example doesn't do a lot, but this pattern of providing and using data is generally the same.
-Even if you use it to fetch data form the database, but in that case you probably want to learn more about the [DAL](../../../../concepts/framework/data-abstraction-layer).
+Even if you use it to fetch data from the database, but in that case, you probably want to learn more about the [DAL](../../../../concepts/framework/data-abstraction-layer).

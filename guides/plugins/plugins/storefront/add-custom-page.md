@@ -9,27 +9,28 @@ nav:
 
 ## Overview
 
-In this guide you will learn how to create custom page for your Storefront.
-A page in general consists of a controller, a page loader, a "page loaded" event and a page class, which is like a struct and contains most necessary data for the page.
+In this guide, you will learn how to create a custom page for your Storefront.
+A page in general consists of a controller, a page loader, a "page loaded" event and a page class, which is like a struct and contains the most necessary data for the page.
 
 ## Prerequisites
 
-In order to add your own custom page for your plugin, you first need a plugin as base.
+To add your own custom page for your plugin, you first need a plugin as base.
 Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide). Since you need to load your page with a controller, you might want to have a look at our guide about [creating a controller](add-custom-controller) first.
 The controller created in the previously mentioned controller guide will also be used in this guide.
 
 ## Adding custom page
 
 In the following sections, we'll create each of the necessary classes one by one.
-The first one will be controller, whose creation is not going to be explained here again.
+The first one will be a controller, whose creation is not going to be explained here again.
 Have a look at the guide about [creating a controller](add-custom-controller) to see why it works.
 
 ### Creating ExampleController
 
 Let's have a look at an example controller.
 
-```php
-// <plugin root>/src/Storefront/Controller/ExampleController.php
+::: code-group
+
+```xml [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -48,6 +49,8 @@ class ExampleController extends StorefrontController
 }
 ```
 
+:::
+
 It has a method `examplePage`, which is accessible via the route `example-page`.
 This method will be responsible for loading your page later on, but we'll leave it like that for now.
 
@@ -55,22 +58,23 @@ Don't forget to [register your controller via the DI](add-custom-controller#serv
 
 ### Creating the pageloader
 
-In order to stick to Shopware's default location for the page loader, we'll have to create a new directory: `<plugin root>/src/Storefront/Page/Example`.
+To stick to Shopware's default location for the page loader, we'll have to create a new directory: `<plugin root>/src/Storefront/Page/Example`.
 
 In there, we will proceed to create all page related classes, such as the page loader.
 
 Go ahead and create a new file called `ExamplePageLoader.php`.
 It's a new service, which doesn't have to extend from any other class.
 You might want to implement a `ExamplePageLoaderInterface` interface, which is not explained in this guide.
-You can do that in order to have a decoratable page loader class.
+You can do that to have a decoratable page loader class.
 
 The page loader is responsible for creating your page class instance \(`ExamplePage`, will be created in the next section\), filling it with data, e.g. from store api, and firing a `PageLoaded` event, so others can react to your page being loaded.
 Do not use a repository directly in a page loader. Always get the data for your pages from a store api route instead.
 
 Let's have a look at a full example `ExamplePageLoader`:
 
-```php
-// <plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Page/Example/ExamplePageLoader.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Page\Example;
@@ -109,18 +113,20 @@ class ExamplePageLoader
 }
 ```
 
+:::
+
 So first of all, as already mentioned: This is a new class or service, which doesn't have to extend from any other class.
 The constructor is passed two arguments: The `GenericPageLoaderInterface` and the `EventDispatcherInterface`.
 
-The first one is not necessary, but useful, since it loads all kind of default page stuff like some additional helpful data.
+The first one is not necessary, but useful, since it loads all kinds of default page data.
 
-The `EventDispatcherInterface` is of course necessary in order to fire an event later on.
+The `EventDispatcherInterface` is of course necessary to fire an event later on.
 
 Every page loader should implement a `load` method, which is not mandatory, but convention.
 You want your page loader to work like all the other page loaders, right?
 It should return an instance of your example page, in this case `ExamplePage`.
 Don't worry, we haven't created that one yet, it will be created in the next sections.
-So, the first thing it does is basically creating a `Page` instance, containing basic data, like the meta information.
+So, the first thing it does is basically creating a `Page` instance, containing basic data, like the meta-information.
 
 Afterwards, you're creating your own page instance by using the method `createFrom`.
 This method is available, since your `ExamplePage` has to extend from the `Page` struct, which in return extends from the `Struct` class.
@@ -140,7 +146,7 @@ Remember to register your new page loader in the DI container:
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
     <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
     <argument type="service" id="event_dispatcher"/>
@@ -154,8 +160,9 @@ Remember to register your new page loader in the DI container:
 Theoretically, this is all your page loader does - but it's not being used yet.
 Therefore, you have to inject your page loader to your custom controller and execute the `load` method.
 
-```php
-// <plugin root>/src/Storefront/Controller/ExampleController.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
@@ -184,6 +191,8 @@ class ExampleController extends StorefrontController
 }
 ```
 
+:::
+
 Note, that we've added the page to the template variables.
 
 #### Adjusting the services.xml
@@ -192,7 +201,7 @@ In addition, it is necessary to pass the argument with the ID of the `ExamplePag
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
     <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
     <call method="setContainer">
@@ -207,12 +216,13 @@ In addition, it is necessary to pass the argument with the ID of the `ExamplePag
 
 So now we're going to create the example page class, that was already used in our page loader, `ExamplePage`.
 
-It has to extend from the `Shopware\Storefront\Page\Page` class in order to contain the meta information, as well as some helper methods.
+It has to extend from the `Shopware\Storefront\Page\Page` class to contain the meta information, as well as some helper methods.
 
 Let's have a look at an example:
 
-```php
-// <plugin root>/src/Storefront/Page/Example/ExamplePage.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Page/Example/ExamplePage.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Page\Example;
@@ -236,6 +246,8 @@ class ExamplePage extends Page
 }
 ```
 
+:::
+
 As explained in the page loader section, your page can contain all kinds of custom data.
 It has to provide a getter and a setter for the custom data, so it can be applied and read.
 In this example, the entity from our guide about [creating custom complex data](../framework/data-handling/add-custom-complex-data#entity-class) is being used.
@@ -248,13 +260,14 @@ Your page is ready to go.
 One more class is missing, the custom event class.
 It has to extend from the `Shopware\Storefront\Page\PageLoadedEvent` class.
 
-Its constructor parameter will be the `ExamplePage`, which it has to save into a property and there needs to be a getter in order to get the example page instance.
+Its constructor parameter will be the `ExamplePage`, which it has to save into a property and there needs to be a getter to get the example page instance.
 Additional constructor parameters are the `Request` and the `SalesChannelContext`, which you have to pass to the parent's constructor.
 
 Here's the example:
 
-```php
-// <plugin root>/src/Storefront/Page/Example/ExamplePageLoadedEvent.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Page/Example/ExamplePageLoadedEvent.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Page\Example;
@@ -280,6 +293,8 @@ class ExamplePageLoadedEvent extends PageLoadedEvent
 }
 ```
 
+:::
+
 And that's it for your `ExamplePageLoadedEvent` class.
 
 Your example page should now be fully functioning.
@@ -289,5 +304,5 @@ Your example page should now be fully functioning.
 You've now successfully created a whole new page, including a custom controller, a custom template,
 and the necessary classes to create a new page, a loader, the page struct and the page loaded event.
 
-In your `load` method, you've used the `GenericPageLoader`, which takes care of the meta information of the page.
+In your `load` method, you've used the `GenericPageLoader`, which takes care of the meta-information of the page.
 There are also "pagelets", basically reusable fractions of a page. Learn how to [create a custom pagelet](add-custom-pagelet).
