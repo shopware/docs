@@ -54,7 +54,4 @@ redirects:
     guides/plugins/plugins/administration/using-assets.html: guides/plugins/plugins/administration/templates-styling/using-assets.html
     guides/plugins/plugins/administration/writing-templates.html: guides/plugins/plugins/administration/templates-styling/writing-templates.html
     guides/plugins/plugins/administration/adding-responsive-behavior.html: guides/plugins/plugins/administration/ui-ux/adding-responsive-behavior.html
-
-
-
-
+    products/plugins/commercial/: products/extensions/commercial/

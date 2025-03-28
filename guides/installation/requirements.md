@@ -27,7 +27,7 @@ You can use these commands to check your actual environment:
 
 ### PHP
 
-* Compatible version: 8.2 and 8.3
+* Compatible version: 8.2, 8.3 and 8.4
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
@@ -38,7 +38,6 @@ You can use these commands to check your actual environment:
   * `ext-gd`
   * `ext-iconv`
   * `ext-intl`
-  * `ext-json`
   * `ext-libxml`
   * `ext-mbstring`
   * `ext-openssl` (there is an [issue](https://github.com/shopware/shopware/issues/3543) with OpenSSL 3.0.7)

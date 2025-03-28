@@ -45,8 +45,9 @@ Note that this feature was introduced in Shopware 6.4.12.0, and is not supported
 
 You may want your templates loaded before or after other extensions. To do so, you can define a `template-load-priority` inside your `manifest.xml`. The default value to this is 0, with positive numbers your template will be loaded earlier, and with negative numbers later.
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
     <meta>
@@ -57,3 +58,5 @@ You may want your templates loaded before or after other extensions. To do so, y
     </storefront>    
 </manifest>
 ```
+
+:::

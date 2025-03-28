@@ -65,7 +65,7 @@ To name a few, it's the color of the main icon of the module, the tag in the glo
 
 In this example `#ff3d58` is used as a color, which is a soft red.
 Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/icons/) which icons are available in Shopware 6 by default.
-In our case here, let's say we use the icon `default-shopping-paper-bag-product`, which will also be used for the module.
+In our case here, let's say we use the icon `regular-shopping-bag`, which will also be used for the module.
 
 ::: danger
 This is not the icon being used for a menu entry! The icon for that needs to be configured separately.

@@ -5,6 +5,8 @@ nav:
 
 ---
 
+# Docker Image
+
 Shopware provides a Docker image to run Shopware 6 in a containerized environment for production intent. The Docker image is based on the official PHP image and includes the required PHP extensions and configurations to run Shopware 6. But it does not contain Shopware itself.
 It's intended to be used together with your existing Shopware project, copy the project into the image, build it, and run it.
 
@@ -22,14 +24,18 @@ composer require shopware/docker
 
 The typical Dockerfile in your project would look like this:
 
+::: info
+You may want to pin the Docker image to a specific sha256 digest to ensure you always use the same image. See [Best Practices](https://docs.docker.com/build/building/best-practices/#pin-base-image-versions) for more information.
+:::
+
 ```dockerfile
 #syntax=docker/dockerfile:1.4
 
 ARG PHP_VERSION=8.3
-FROM ghcr.io/shopware/docker-base:$PHP_VERSION-caddy as base-image
-FROM ghcr.io/friendsofshopware/shopware-cli:latest-php-$PHP_VERSION as shopware-cli
+FROM ghcr.io/shopware/docker-base:$PHP_VERSION-caddy AS base-image
+FROM shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 
-FROM shopware-cli as build
+FROM shopware-cli AS build
 
 ADD . /src
 WORKDIR /src
@@ -40,7 +46,7 @@ RUN --mount=type=secret,id=packages_token,env=SHOPWARE_PACKAGES_TOKEN \
     --mount=type=cache,target=/root/.npm \
     /usr/local/bin/entrypoint.sh shopware-cli project ci /src
 
-FROM base-image
+FROM base-image AS final
 
 COPY --from=build --chown=82 --link /src /var/www/html
 ```
@@ -221,7 +227,9 @@ To install a PHP extension you need to add the following to your Dockerfile:
 ```dockerfile
 # ...
 
+USER root
 RUN install-php-extensions tideways
+USER www-data
 ```
 
 ## Adding custom PHP configuration
