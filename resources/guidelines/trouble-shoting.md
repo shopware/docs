@@ -14,8 +14,8 @@ nav:
 When you use a `contains` filter in dynamic product groups (especially when you use that on a custom field), the loading of that dynamic product group might get slow.
 The reason is that the underlying SQL query is not and cannot be optimized for this kind of filter. When you use OpenSearch instead of relying on the DB for searching, this issue should be resolved.
 Alternatively, for using `contains` on custom fields, it should be preferred to create individual bool custom fields for the different values and check those instead.
-When contains on usual fields is used and slow, it should help to add a custom field and manually manage that.
-Alternatively, tags can be used for this purpose.
+When contains on usual fields is used and slow, it should help to add a [custom field](../../guides/plugins/plugins/framework/custom-field/) and manually manage that.
+Alternatively, [tags](https://docs.shopware.com/en/shopware-6-en/settings/tags) can be used for this purpose.
 
 ### Cache is invalided too often
 
