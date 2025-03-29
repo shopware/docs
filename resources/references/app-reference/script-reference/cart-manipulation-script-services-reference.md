@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Cart manipulation services reference
+  title: Cart Manipulation script services reference
   position: 10
 
 ---
@@ -23,8 +23,9 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
 ### products()
 
-* The `product()` method returns all products of the current cart for further manipulation. Similar to the `items()` method, but the line-items are filtered, to only contain product line items.
+* The `product()` method returns all products of the current cart for further manipulation.
 
+    Similar to the `items()` method, but the line-items are filtered, to only contain product line items.
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ProductsFacade`](./cart-manipulation-script-services-reference#productsfacade)
 
     A `ProductsFacade` containing all product line-items in the current cart as a collection.
@@ -33,14 +34,18 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
 * The `calculate()` method recalculates the whole cart.
 
-    Use this to get the correct prices after you made changes to the cart. Note that after calling the `calculate()` all collections (e.g. items(), products()) get new references,	so if you still hold references to things inside the cart, these are outdated after calling `calculate()`. This method will be called automatically after your cart script executed.
+    Use this to get the correct prices after you made changes to the cart.
+	Note that after calling the `calculate()` all collections (e.g. items(), products()) get new references,
+	so if you still hold references to things inside the cart, these are outdated after calling `calculate()`.
+
+	The `calculate()` method will be called automatically after your cart script executed.
 
 ### price()
 
 * The `price()` method returns the current price of the cart.
 
-    Note that this price may be outdated, if you changed something inside the cart in your script.Use the `calculate()` method to recalculate the cart and update the price.
-
+    Note that this price may be outdated, if you changed something inside the cart in your script.
+	Use the `calculate()` method to recalculate the cart and update the price.
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\CartPriceFacade`](./cart-manipulation-script-services-reference#cartpricefacade)
 
     The calculated price of the cart.
@@ -66,18 +71,16 @@ You can use the cart service to add line-items, change prices, add discounts, et
 
 * The `discount()` methods creates a new discount line-item with the given type and value.
 
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade).
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade)
 
     Returns the newly created discount line-item.
-
 * **Arguments:**
-  * *`string`* **key**: The id for the new discount.
-  * *`string`* **type**: The type of the discount, e.g. `percentage`, `absolute`
-  * *`float|\PriceCollection`* **value**: The value of the discount, a float for percentage discounts or a `PriceCollection` for absolute discounts.
-  * *`string`* **label**: The label of the discount line-item.
-
+    * *`string`* **key**: The id for the new discount.
+    * *`string`* **type**: The type of the discount, e.g. `percentage`, `absolute`
+    * *`float|\PriceCollection`* **value**: The value of the discount, a float for percentage discounts or a `PriceCollection` for absolute discounts.
+    * *`string`* **label**: The label of the discount line-item.
 * **Examples:**
-  * Add an absolute discount to the cart.
+    * Add an absolute discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -98,7 +101,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
 
-  * Add a relative discount to the cart.
+    * Add a relative discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -112,23 +115,64 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
         ```
 
+### count()
+
+* `count()` returns the count of line-items in this collection.
+
+    Note that it does only count the line-items directly in this collection and not child line-items of those.
+* **Returns** `int`
+
+    The number of line-items in this collection.
+
+### get()
+
+* `get()` returns the line-item with the given id from this collection.
+
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
+
+    The line-item with the given id, or null if it does not exist.
+* **Arguments:**
+    * *`string`* **id**: The id of the line-item that should be returned.
+
+### has()
+
+* `has()` checks if a line-item with the given id exists in this collection.
+
+* **Returns** `bool`
+
+    Returns true if the given line-item or a line-item with the given id already exists in the collection, false otherwise.
+* **Arguments:**
+    * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
+
+### remove()
+
+* `remove()` removes the given line-item or the line-item with the given id from this collection.
+
+* **Arguments:**
+    * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
+* **Examples:**
+    * Add and then remove a product line-item from the cart.
+
+        ```twig
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+		
+		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+        ```
+
 ### surcharge()
 
 * The `surcharge()` methods creates a new surcharge line-item with the given type and value.
 
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade).
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade)
 
     Returns the newly created surcharge line-item.
-
 * **Arguments:**
-  * *`string`* **key**: The id for the new surcharge.
-  * *`string`* **type**: The type of the surcharge, e.g. `percentage`, `absolute`
-  * *`float|\PriceCollection`* **value**: The value of the surcharge, a float for percentage surcharges or a `PriceCollection` for absolute surcharges.
-  * *`string`* **label**: The label of the surcharge line-item.
-
+    * *`string`* **key**: The id for the new surcharge.
+    * *`string`* **type**: The type of the surcharge, e.g. `percentage`, `absolute`
+    * *`float|\PriceCollection`* **value**: The value of the surcharge, a float for percentage surcharges or a `PriceCollection` for absolute surcharges.
+    * *`string`* **label**: The label of the surcharge line-item.
 * **Examples:**
-
-  * Add an absolute surcharge to the cart.#
+    * Add an absolute surcharge to the cart.#
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -141,7 +185,7 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
         ```
 
-  * Add a relative surcharge to the cart.
+    * Add a relative surcharge to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -154,57 +198,6 @@ You can use the cart service to add line-items, change prices, add discounts, et
 		
 		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
         ```
-
-### get()
-
-* `get()` returns the line-item with the given id from this collection.
-
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
-
-    The line-item with the given id, or null if it does not exist.
-
-* **Arguments:**
-  * *`string`* **id**: The id of the line-item that should be returned.
-
-### remove()
-
-* `remove()` removes the given line-item or the line-item with the given id from this collection.
-
-* **Arguments:**
-
-  * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
-
-* **Examples:**
-
-  * Add and then remove a product line-item from the cart.
-
-        ```twig
-        {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
-        ```
-
-### has()
-
-* `has()` checks if a line-item with the given id exists in this collection.
-
-* **Returns** `bool`
-
-    Returns true if the given line-item or a line-item with the given id already exists in the collection, false otherwise.
-
-* **Arguments:**
-
-  * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
-
-### count()
-
-* `count()` returns the count of line-items in this collection.
-
-    Note that it does only count the line-items directly in this collection and not child line-items of those.
-
-* **Returns** `int`
-
-    The number of line-items in this collection.
 
 _________
 
@@ -224,8 +217,8 @@ The CartPriceFacade is a wrapper around the calculated price of a cart.
 
 * `getTotal()` returns the total price of the cart that has to be paid by the customer.
 
-    Depending on the tax settings this may be the gross or net price. Note that this price is already rounded, to get the raw price before rounding use `getRaw()`.
-
+    Depending on the tax settings this may be the gross or net price.
+	Note that this price is already rounded, to get the raw price before rounding use `getRaw()`.
 * **Returns** `float`
 
     The rounded total price of the cart as float.
@@ -234,8 +227,8 @@ The CartPriceFacade is a wrapper around the calculated price of a cart.
 
 * `getPosition()` returns the sum price of all line-items in the cart.
 
-    In the position price the shipping costs are excluded. Depending on the tax settings this may be the gross or net price og the line-items.
-
+    In the position price the shipping costs are excluded.
+	Depending on the tax settings this may be the gross or net price og the line-items.
 * **Returns** `float`
 
     The position price as float.
@@ -264,12 +257,9 @@ The CartPriceFacade is a wrapper around the calculated price of a cart.
 
     Returns the newly created `PriceCollection`.
 * **Arguments:**
-
-  * *`array`* **price**: The prices for the new collection, indexed by the currency-id or iso-code of the currency.
-
+    * *`array`* **price**: The prices for the new collection, indexed by the currency-id or iso-code of the currency.
 * **Examples:**
-
-  * Create a new Price in the default currency.
+    * Create a new Price in the default currency.
 
         ```twig
         {% set price = services.cart.price.create({
@@ -288,7 +278,6 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 * The `product()` method returns all products inside the current container for further manipulation.
 
     Similar to the `children()` method, but the line-items are filtered, to only contain product line items.
-
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ProductsFacade`](./cart-manipulation-script-services-reference#productsfacade)
 
     A `ProductsFacade` containing all product line-items inside the current container as a collection.
@@ -300,14 +289,10 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     The item that was added to the container.
-
 * **Arguments:**
-
-  * *[`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)* **item**: The item that should be added.
-
+    * *[`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)* **item**: The item that should be added.
 * **Examples:**
-
-  * Add a product to the container and reduce the quantity of the original line-item.
+    * Add a product to the container and reduce the quantity of the original line-item.
 
         ```twig
         
@@ -329,17 +314,13 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     Returns the new line-item as an `ItemFacade` or null if taking is not possible because the line-item has no sufficient quantity.
-
 * **Arguments:**
+    * *`int`* **quantity**: The quantity that should be taken.
+    * *`string` | `null`* **key**: Optional: The id of the new line-item. A random UUID will be used if none is provided.
 
-  * *`int`* **quantity**: The quantity that should be taken.
-  * *`string` | `null`* **key**: Optional: The id of the new line-item. A random UUID will be used if none is provided.
-
-        Default: `null`.
-
+        Default: `null`
 * **Examples:**
-
-  * Take a quantity of 2 from an existing product line-item and add it to the cart again.
+    * Take a quantity of 2 from an existing product line-item and add it to the cart again.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -418,17 +399,13 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade)
 
     Returns the newly created discount line-item.
-
 * **Arguments:**
-
-  * *`string`* **key**: The id for the new discount.
-  * *`string`* **type**: The type of the discount, e.g. `percentage`, `absolute`
-  * *`float|\PriceCollection`* **value**: The value of the discount, a float for percentage discounts or a `PriceCollection` for absolute discounts.
-  * *`string`* **label**: The label of the discount line-item.
-
+    * *`string`* **key**: The id for the new discount.
+    * *`string`* **type**: The type of the discount, e.g. `percentage`, `absolute`
+    * *`float|\PriceCollection`* **value**: The value of the discount, a float for percentage discounts or a `PriceCollection` for absolute discounts.
+    * *`string`* **label**: The label of the discount line-item.
 * **Examples:**
-
-  * Add an absolute discount to the cart.
+    * Add an absolute discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -449,7 +426,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		{% do services.cart.discount('my-discount', 'absolute', price, 'Fancy discount') %}
         ```
 
-  * Add a relative discount to the cart.
+    * Add a relative discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -463,6 +440,50 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		{% do services.cart.discount('my-discount', 'percentage', -10, 'Fancy discount') %}
         ```
 
+### count()
+
+* `count()` returns the count of line-items in this collection.
+
+    Note that it does only count the line-items directly in this collection and not child line-items of those.
+* **Returns** `int`
+
+    The number of line-items in this collection.
+
+### get()
+
+* `get()` returns the line-item with the given id from this collection.
+
+* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
+
+    The line-item with the given id, or null if it does not exist.
+* **Arguments:**
+    * *`string`* **id**: The id of the line-item that should be returned.
+
+### has()
+
+* `has()` checks if a line-item with the given id exists in this collection.
+
+* **Returns** `bool`
+
+    Returns true if the given line-item or a line-item with the given id already exists in the collection, false otherwise.
+* **Arguments:**
+    * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
+
+### remove()
+
+* `remove()` removes the given line-item or the line-item with the given id from this collection.
+
+* **Arguments:**
+    * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
+* **Examples:**
+    * Add and then remove a product line-item from the cart.
+
+        ```twig
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+		
+		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+        ```
+
 ### surcharge()
 
 * The `surcharge()` methods creates a new surcharge line-item with the given type and value.
@@ -470,16 +491,13 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\DiscountFacade`](./cart-manipulation-script-services-reference#discountfacade)
 
     Returns the newly created surcharge line-item.
-
 * **Arguments:**
-  * *`string`* **key**: The id for the new surcharge.
-  * *`string`* **type**: The type of the surcharge, e.g. `percentage`, `absolute`
-  * *`float|\PriceCollection`* **value**: The value of the surcharge, a float for percentage surcharges or a `PriceCollection` for absolute surcharges.
-  * *`string`* **label**: The label of the surcharge line-item.
-
+    * *`string`* **key**: The id for the new surcharge.
+    * *`string`* **type**: The type of the surcharge, e.g. `percentage`, `absolute`
+    * *`float|\PriceCollection`* **value**: The value of the surcharge, a float for percentage surcharges or a `PriceCollection` for absolute surcharges.
+    * *`string`* **label**: The label of the surcharge line-item.
 * **Examples:**
-
-  * Add an absolute surcharge to the cart.#
+    * Add an absolute surcharge to the cart.#
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -492,7 +510,7 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		{% do services.cart.surcharge('my-surcharge', 'absolute', price, 'Fancy surcharge') %}
         ```
 
-  * Add a relative surcharge to the cart.
+    * Add a relative surcharge to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -505,58 +523,6 @@ The ContainerFacade allows you to wrap multiple line-items inside a container li
 		
 		{% do services.cart.surcharge('my-surcharge', 'percentage', -10, 'Fancy discount') %}
         ```
-
-### get()
-
-* `get()` returns the line-item with the given id from this collection.
-
-* **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
-
-    The line-item with the given id, or null if it does not exist.
-
-* **Arguments:**
-
-  * *`string`* **id**: The id of the line-item that should be returned.
-
-### remove()
-
-* `remove()` removes the given line-item or the line-item with the given id from this collection.
-
-* **Arguments:**
-
-  * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
-
-* **Examples:**
-
-  * Add and then remove a product line-item from the cart.
-
-        ```twig
-        {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
-        ```
-
-### has()
-
-* `has()` checks if a line-item with the given id exists in this collection.
-
-* **Returns** `bool`
-
-    Returns true if the given line-item or a line-item with the given id already exists in the collection, false otherwise.
-
-* **Arguments:**
-
-  * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
-
-### count()
-
-* `count()` returns the count of line-items in this collection.
-
-    Note that it does only count the line-items directly in this collection and not child line-items of those.
-
-* **Returns** `int`
-
-    The number of line-items in this collection.
 
 _________
 
@@ -593,20 +559,17 @@ You can use it to add new errors to the cart or remove existing ones.
 * The `error()` method adds a new error of type `error` to the cart.
 
     The error will be displayed to the user and the checkout will be blocked if at least one error was added.
-
 * **Arguments:**
-
-  * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
-  * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
+    * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
+    * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
 
         Default: `null`
-  * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
+    * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
 
-        Default: `array ()`
-
+        Default: `array (
+)`
 * **Examples:**
-
-  * Add a error to the cart.
+    * Add a error to the cart.
 
         ```twig
         {% do services.cart.errors.error('NO_PRODUCTS_IN_CART') %}
@@ -617,20 +580,17 @@ You can use it to add new errors to the cart or remove existing ones.
 * The `warning()` method adds a new error of type `warning` to the cart.
 
     The warning will be displayed to the user, but the checkout won't be blocked.
-
 * **Arguments:**
-
-  * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
-  * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
+    * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
+    * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
 
         Default: `null`
-  * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
+    * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
 
-        Default: `array ()`
-
+        Default: `array (
+)`
 * **Examples:**
-
-  * Add a warning to the cart.
+    * Add a warning to the cart.
 
         ```twig
         {% do services.cart.errors.notice('YOU_SHOULD_REALLY_ADD_PRODUCTS') %}
@@ -641,32 +601,29 @@ You can use it to add new errors to the cart or remove existing ones.
 * The `notice()` method adds a new error of type `notice` to the cart.
 
     The notice will be displayed to the user, but the checkout won't be blocked.
-
 * **Arguments:**
-
-  * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
-  * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
+    * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
+    * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
 
         Default: `null`
-  * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
+    * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
 
-        Default: `array ()`
-
+        Default: `array (
+)`
 * **Examples:**
-
-  * Add a notice to the cart.
+    * Add a notice to the cart.
 
         ```twig
         {% do services.cart.errors.warning('ADD_PRODUCTS_OR_GO_AWAY') %}
         ```
 
-  * Add a notice to the cart with a custom id.
+    * Add a notice to the cart with a custom id.
 
         ```twig
         {% do services.cart.errors.notice('YOU_SHOULD_REALLY_ADD_PRODUCTS', 'add-same-message') %}
         ```
 
-  * Add a notice to the cart with parameters.
+    * Add a notice to the cart with parameters.
 
         ```twig
         {% do services.cart.errors.notice('MESSAGE_WITH_PARAMETERS', null, {'foo': 'bar'}) %}
@@ -677,17 +634,15 @@ You can use it to add new errors to the cart or remove existing ones.
 * The `resubmittable()` method adds a new error of type `error` to the cart.
 
     The notice will be displayed to the user, the order will be blocked, but the user can submit the order again.
-
 * **Arguments:**
-
-  * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
-
-  * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
+    * *`string`* **key**: The snippet-key of the message that should be displayed to the user.
+    * *`string` | `null`* **id**: An optional id that can be used to reference the error, if none is provided the $key will be used as id.
 
         Default: `null`
-  * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
+    * *`array`* **parameters**: Optional: Any parameters that the snippet for the error message may need.
 
-        Default: `array ()`
+        Default: `array (
+)`
 
 ### has()
 
@@ -696,18 +651,15 @@ You can use it to add new errors to the cart or remove existing ones.
 * **Returns** `bool`
 
     Returns true if an error with that key exists, false otherwise.
-
 * **Arguments:**
-
-  * *`string`* **id**: The id of the error that should be checked.
+    * *`string`* **id**: The id of the error that should be checked.
 
 ### remove()
 
 * The `remove()` method removes the error with the given id.
 
 * **Arguments:**
-
-  * *`string`* **id**: The id of the error that should be removed.
+    * *`string`* **id**: The id of the error that should be removed.
 
 ### get()
 
@@ -716,10 +668,8 @@ You can use it to add new errors to the cart or remove existing ones.
 * **Returns** [`Shopware\Core\Checkout\Cart\Error\Error`](https://github.com/shopware/shopware/blob/trunk/src/Core/Checkout/Cart/Error/Error.php) | `null`
 
     The Error with the given id, null if an error with that id does not exist.
-
 * **Arguments:**
-
-  * *`string`* **id**: The id of the error that should be returned.
+    * *`string`* **id**: The id of the error that should be returned.
 
 _________
 
@@ -740,22 +690,16 @@ The ItemFacade is a wrapper around one line-item.
 * `take()` splits an existing line-item by a given quantity.
 
     It removes the given quantity from the existing line-item and returns a new line-item with exactly that quantity.
-
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     Returns the new line-item as an `ItemFacade` or null if taking is not possible because the line-item has no sufficient quantity.
-
 * **Arguments:**
-
-  * *`int`* **quantity**: The quantity that should be taken.
-
-  * *`string` | `null`* **key**: Optional: The id of the new line-item. A random UUID will be used if none is provided.
+    * *`int`* **quantity**: The quantity that should be taken.
+    * *`string` | `null`* **key**: Optional: The id of the new line-item. A random UUID will be used if none is provided.
 
         Default: `null`
-
 * **Examples:**
-
-  * Take a quantity of 2 from an existing product line-item and add it to the cart again.
+    * Take a quantity of 2 from an existing product line-item and add it to the cart again.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -782,7 +726,6 @@ The ItemFacade is a wrapper around one line-item.
 * `getReferenceId()` returns the id of the referenced entity of the line-item.
 
     E.g. for product line-items this will return the id of the referenced product.
-
 * **Returns** `string` | `null`
 
     Returns the id of the referenced entity, or null if no entity is referenced.
@@ -824,7 +767,6 @@ The ItemFacade is a wrapper around one line-item.
 * `getType()` returns the type of this line-item.
 
     Possible types include `product`, `discount`, `container`, etc.
-
 * **Returns** `string`
 
     The type of the line-item.
@@ -842,14 +784,10 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     Returns the added line-item.
-
 * **Arguments:**
-
-  * *[`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)* **item**: The line-item that should be added.
-
+    * *[`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)* **item**: The line-item that should be added.
 * **Examples:**
-
-  * Add an absolute discount to the cart.
+    * Add an absolute discount to the cart.
 
         ```twig
         {# @var services \Shopware\Core\Framework\Script\ServiceStubs #}
@@ -877,10 +815,17 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     The line-item with the given id, or null if it does not exist.
-
 * **Arguments:**
+    * *`string`* **id**: The id of the line-item that should be returned.
 
-  * *`string`* **id**: The id of the line-item that should be returned.
+### count()
+
+* `count()` returns the count of line-items in this collection.
+
+    Note that it does only count the line-items directly in this collection and not child line-items of those.
+* **Returns** `int`
+
+    The number of line-items in this collection.
 
 ### has()
 
@@ -889,38 +834,23 @@ The ItemsFacade is a wrapper around a collection of line-items.
 * **Returns** `bool`
 
     Returns true if the given line-item or a line-item with the given id already exists in the collection, false otherwise.
-
 * **Arguments:**
-
-  * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
+    * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
 
 ### remove()
 
 * `remove()` removes the given line-item or the line-item with the given id from this collection.
 
 * **Arguments:**
-
-  * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
-
+    * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
 * **Examples:**
-
-  * Add and then remove a product line-item from the cart.
+    * Add and then remove a product line-item from the cart.
 
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
 		
 		{% do services.cart.products.remove(hook.ids.get('p1')) %}
         ```
-
-### count()
-
-* `count()` returns the count of line-items in this collection.
-
-    Note that it does only count the line-items directly in this collection and not child line-items of those.
-
-* **Returns** `int`
-
-    The number of line-items in this collection.
 
 _________
 
@@ -941,7 +871,6 @@ The PriceFacade is a wrapper around a price.
 * `getUnit()` returns the unit price for the line-item.
 
     This is equivalent to the total price of the line-item with the quantity 1.
-
 * **Returns** `float`
 
     The price per unit as float.
@@ -976,12 +905,9 @@ The PriceFacade is a wrapper around a price.
 over the quantity price calculator to consider quantity, tax rule and cash rounding configurations.
 
 * **Arguments:**
-
-  * *[`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)* **price**: The provided price can be a fetched price from the database or generated over the `PriceFactory` statically.
-
+    * *[`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)* **price**: The provided price can be a fetched price from the database or generated over the `PriceFactory` statically
 * **Examples:**
-
-  * Overwrite prices with a static defined collection
+    * Overwrite prices with a static defined collection
 
         ```twig
         {% do product.calculatedPrices.change([
@@ -995,15 +921,12 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
 * `plus()` allows a price addition of the current price scope. The provided price will be recalculated via the quantity price calculator.
 
-    The provided price is interpreted as a unit price and will be added to the current unit price. The total price is calculated afterwards considering quantity, tax rule and cash rounding configurations.
-
+    The provided price is interpreted as a unit price and will be added to the current unit price.
+	The total price is calculated afterwards considering quantity, tax rule and cash rounding configurations.
 * **Arguments:**
-
-  * *[`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)* **price**: The provided price can be a fetched price from the database or generated over the `PriceFactory` statically.
-
+    * *[`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)* **price**: The provided price can be a fetched price from the database or generated over the `PriceFactory` statically
 * **Examples:**
-
-  * Plus a static defined price to the existing calculated price
+    * Plus a static defined price to the existing calculated price
 
         ```twig
         {% set price = services.price.create({
@@ -1017,15 +940,12 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 
 * `minus()` allows a price subtraction of the current price scope. The provided price will be recalculated via the quantity price calculator.
 
-    The provided price is interpreted as a unit price and will reduce to the current unit price. The total price is calculated afterwards considering quantity, tax rule and cash rounding configurations.
-
+    The provided price is interpreted as a unit price and will reduce to the current unit price.
+	The total price is calculated afterwards considering quantity, tax rule and cash rounding configurations.
 * **Arguments:**
-
-  * *[`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)* **price**: The provided price can be a fetched price from the database or generated over the `PriceFactory` statically.
-
+    * *[`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)* **price**: The provided price can be a fetched price from the database or generated over the `PriceFactory` statically
 * **Examples:**
-
-  * Minus a static defined price to the existing calculated price
+    * Minus a static defined price to the existing calculated price
 
         ```twig
         {% set price = services.price.create({
@@ -1040,14 +960,10 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 * `discount()` allows a percentage discount calculation of the current price scope. The provided value will be ensured to be negative via `abs(value) * -1`.
 
     The provided discount is interpreted as a percentage value and will be applied to the unit price and the total price as well.
-
 * **Arguments:**
-
-  * *`float`* **value**: The percentage value of the discount. The value will be ensured to be negative via `abs(value) * -1`.
-
+    * *`float`* **value**: The percentage value of the discount. The value will be ensured to be negative via `abs(value) * -1`.
 * **Examples:**
-
-  * Adds a 10% discount to the existing calculated price
+    * Adds a 10% discount to the existing calculated price
 
         ```twig
         {% do product.calculatedPrice.discount(10) %}
@@ -1058,14 +974,10 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 * `surcharge()` allows a percentage surcharge calculation of the current price scope. The provided value will be ensured to be negative via `abs(value)`.
 
     The provided surcharge is interpreted as a percentage value and will be applied to the unit price and the total price as well.
-
 * **Arguments:**
-
-  * *`float`* **value**: The percentage value of the surcharge. The value will be ensured to be negative via `abs(value)`.
-
+    * *`float`* **value**: The percentage value of the surcharge. The value will be ensured to be negative via `abs(value)`.
 * **Examples:**
-
-  * Adds a 10% surcharge to the existing calculated price
+    * Adds a 10% surcharge to the existing calculated price
 
         ```twig
         {% do product.calculatedPrice.surcharge(10) %}
@@ -1078,14 +990,10 @@ over the quantity price calculator to consider quantity, tax rule and cash round
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)
 
     Returns the newly created `PriceCollection`.
-
 * **Arguments:**
-
-  * *`array`* **price**: The prices for the new collection, indexed by the currency-id or iso-code of the currency.
-
+    * *`array`* **price**: The prices for the new collection, indexed by the currency-id or iso-code of the currency.
 * **Examples:**
-
-  * Create a new Price in the default currency.
+    * Create a new Price in the default currency.
 
         ```twig
         {% set price = services.cart.price.create({
@@ -1106,14 +1014,10 @@ The PriceFacade is a wrapper around a price.
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Pricing\PriceCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Pricing/PriceCollection.php)
 
     Returns the newly created `PriceCollection`.
-
 * **Arguments:**
-
-  * *`array`* **prices**: The prices for the new collection, indexed by the currency-id or iso-code of the currency.
-
+    * *`array`* **prices**: The prices for the new collection, indexed by the currency-id or iso-code of the currency.
 * **Examples:**
-
-  * Create a new Price in the default currency.
+    * Create a new Price in the default currency.
 
         ```twig
         {% set price = services.cart.price.create({
@@ -1134,14 +1038,10 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade) | `null`
 
     The line-item associated with the given product id, or null if it does not exist.
-
 * **Arguments:**
-
-  * *`string`* **productId**: The id of the product, of which the line-item should be returned.
-
+    * *`string`* **productId**: The id of the product, of which the line-item should be returned.
 * **Examples:**
-
-  * Get a product line-item by id.
+    * Get a product line-item by id.
 
         ```twig
         {% set product = services.cart.products.get(hook.ids.get('p1')) %}
@@ -1152,22 +1052,16 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * `add()` adds a new product  line-item to this collection.
 
     In the case only a product id is provided it will create a new line-item from type product for the given product id.
-
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     The newly added product line-item.
-
 * **Arguments:**
-
-  * *`string|\LineItem|\ItemFacade`* **product**: The product that should be added. Either an existing `ItemFacade` or `LineItem` or alternatively the id of a product.
-
-  * *`int`* **quantity**: Optionally provide the quantity with which the product line-item should be created, defaults to 1.
+    * *`string|\LineItem|\ItemFacade`* **product**: The product that should be added. Either an existing `ItemFacade` or `LineItem` or alternatively the id of a product.
+    * *`int`* **quantity**: Optionally provide the quantity with which the product line-item should be created, defaults to 1.
 
         Default: `1`
-
 * **Examples:**
-
-  * Add a product to the cart by id.
+    * Add a product to the cart by id.
 
         ```twig
         {% do services.cart.products.add(hook.ids.get('p1')) %}
@@ -1178,35 +1072,23 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * `create()` creates a new product line-item for the product with the given id in the given quantity.
 
     Note that the created line-item will not be added automatically to this collection, use `add()` for that.
-
 * **Returns** [`Shopware\Core\Checkout\Cart\Facade\ItemFacade`](./cart-manipulation-script-services-reference#itemfacade)
 
     The newly created product line-item.
-
 * **Arguments:**
-
-  * *`string`* **productId**: The product id for which a line-item should be created.
-  * *`int`* **quantity**: Optionally provide the quantity with which the product line-item should be created, defaults to 1.
+    * *`string`* **productId**: The product id for which a line-item should be created.
+    * *`int`* **quantity**: Optionally provide the quantity with which the product line-item should be created, defaults to 1.
 
         Default: `1`
 
-### remove()
+### count()
 
-* `remove()` removes the given line-item or the line-item with the given id from this collection.
+* `count()` returns the count of line-items in this collection.
 
-* **Arguments:**
+    Note that it does only count the line-items directly in this collection and not child line-items of those.
+* **Returns** `int`
 
-  * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
-
-* **Examples:**
-
-  * Add and then remove a product line-item from the cart.
-
-        ```twig
-        {% do services.cart.products.add(hook.ids.get('p1')) %}
-		
-		{% do services.cart.products.remove(hook.ids.get('p1')) %}
-        ```
+    The number of line-items in this collection.
 
 ### has()
 
@@ -1215,20 +1097,23 @@ The ProductsFacade is a wrapper around a collection of product line-items.
 * **Returns** `bool`
 
     Returns true if the given line-item or a line-item with the given id already exists in the collection, false otherwise.
+* **Arguments:**
+    * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
+
+### remove()
+
+* `remove()` removes the given line-item or the line-item with the given id from this collection.
 
 * **Arguments:**
+    * *`string|\ItemFacade`* **id**: The id of the line-item or the line-item that should be removed.
+* **Examples:**
+    * Add and then remove a product line-item from the cart.
 
-  * *`string|\ItemFacade`* **id**: The id or a line-item that should be checked if it already exists in the collection.
-
-### count()
-
-* `count()` returns the count of line-items in this collection.
-
-    Note that it does only count the line-items directly in this collection and not child line-items of those.
-
-* **Returns** `int`
-
-    The number of line-items in this collection.
+        ```twig
+        {% do services.cart.products.add(hook.ids.get('p1')) %}
+		
+		{% do services.cart.products.remove(hook.ids.get('p1')) %}
+        ```
 
 _________
 
@@ -1241,18 +1126,15 @@ The StatesFacade allows access to the current cart states and functions.
 * `add()` allows you to add one or multiple states as string values to the cart.
 
     This can be useful to check if your script did already run and did some manipulations to the cart.
-
 * **Arguments:**
-
-  * *`string`* **states**: One or more strings that will be stored on the cart.
+    * *`string`* **states**: One or more strings that will be stored on the cart.
 
 ### remove()
 
 * `remove()` removes the given state from the cart, if it existed.
 
 * **Arguments:**
-
-  * *`string`* **state**: The state that should be removed.
+    * *`string`* **state**: The state that should be removed.
 
 ### has()
 
@@ -1261,10 +1143,8 @@ The StatesFacade allows access to the current cart states and functions.
 * **Returns** `bool`
 
     Returns true if at least one of the passed states is present on the cart, false otherwise.
-
 * **Arguments:**
-
-  * *`string`* **states**: One or more strings that should be checked.
+    * *`string`* **states**: One or more strings that should be checked.
 
 ### get()
 
