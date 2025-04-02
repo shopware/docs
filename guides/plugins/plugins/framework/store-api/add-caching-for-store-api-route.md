@@ -96,7 +96,7 @@ class CachedExampleRoute extends AbstractExampleRoute
 
         // Fetch item from the cache pool
         $item = $this->cache->getItem(
-            $this->generateKey($criteria, $context)
+            $this->generateKey($context, $criteria)
         );
 
         try {
