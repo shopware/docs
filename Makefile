@@ -2,7 +2,7 @@
 
 user := "$(shell id -u):$(shell id -g)"
 ignored = '/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/*'
-image = jonasbn/github-action-spellcheck:0.43.0
+image = ghcr.io/rojopolis/spellcheck-github-actions:0.48.0
 
 .PHONY : help lint fix
 .DEFAULT_GOAL : help
