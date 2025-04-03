@@ -149,7 +149,7 @@ Extension Verifier supports right now multiple providers:
 - `openrouter` - OpenRouter API (requires `OPENROUTER_API_KEY` environment variable)
 - `ollama` - Local Ollama (uses localhost by default, `OLLAMA_HOST` environment variable can be used to specify a different host)
 
-Our recommandation is to use Google Gemini 2.5 Pro, as it provides the best results for the upgrade.
+Our recommendation is to use Google Gemini 2.5 Pro, as it provides the best results for the upgrade.
 
 ## Validation ignores
 
