@@ -116,6 +116,7 @@ docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest ch
 ```
 
 This is particularly useful when:
+
 - You want to focus on specific aspects of your code
 - You want to run only the relevant tools for the files you've changed
 - You want to fix issues one tool at a time
