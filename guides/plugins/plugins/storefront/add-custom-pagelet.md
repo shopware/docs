@@ -42,8 +42,9 @@ Let's now have a look at the example classes. The pagelet is going to be called 
 
 ### The ExamplePageletLoader
 
-```php
-// <plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoader.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Pagelet/Example/ExamplePageletLoader.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Pagelet\Example;
@@ -78,12 +79,16 @@ class ExamplePageletLoader
 }
 ```
 
-Note the instance creation without the `::createFrom()` call. The rest is quite equal, you can load your data, set it to the pagelet struct, you fire an event and you return the pagelet.
+:::
+
+Note the instance creation without the `::createFrom()` call.
+The rest is quite equal, you can load your data, set it to the pagelet struct, you fire an event, and you return the pagelet.
 
 ### The ExamplePagelet struct
 
-```php
-// <plugin root>/src/Storefront/Pagelet/Example/ExamplePagelet.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Pagelet/Example/ExamplePagelet.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Pagelet\Example;
@@ -107,12 +112,16 @@ class ExamplePagelet extends Pagelet
 }
 ```
 
-Just like the page struct, this is basically just a class holding data. Note the different `extend` though, you're not extending from `Shopware\Storefront\Page\Page` here. It only contained helper method for the header & footer pagelets.
+:::
+
+Just like the page struct, this is basically just a class holding data.
+Note the different `extend` though, you're not extending from `Shopware\Storefront\Page\Page` here.
 
 ### The ExamplePageletLoadedEvent
 
-```php
-// <plugin root>/src/Storefront/Pagelet/Example/ExamplePageletLoadedEvent.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Pagelet/Example/ExamplePageletLoadedEvent.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Pagelet\Example;
@@ -138,18 +147,23 @@ class ExamplePageletLoadedEvent extends PageletLoadedEvent
 }
 ```
 
-Note the different `extends`, which uses the `PageletLoadedEvent` class instead. Also, the getter method is no longer `getPage`, but `getPagelet` instead.
+:::
+
+Note the different `extends`, which uses the `PageletLoadedEvent` class instead.
+Also, the getter method is no longer `getPage`, but `getPagelet` instead.
 
 ## Loading the pagelet
 
 ### Loading the pagelet via another page
 
-Most times you want to load your pagelet as part of another page. This is simply done by calling the `load` method of your pagelet in another page's `load` method.
+Most times you want to load your pagelet as part of another page.
+This is simply done by calling the `load` method of your pagelet in another page's `load` method.
 
 Using the example from our [adding a custom page](add-custom-page) guide, this is what the `load` method could look like:
 
-```php
-// <plugin root>/src/Storefront/Page/Example/ExamplePageLoader.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Page/Example/ExamplePageLoader.php]
 public function load(Request $request, SalesChannelContext $context): ExamplePage
 {
     $page = $this->genericPageLoader->load($request, $context);
@@ -158,7 +172,7 @@ public function load(Request $request, SalesChannelContext $context): ExamplePag
     $page->setExamplePagelet($this->examplePageletLoader->load($request, $context));
 
     // Do additional stuff, e.g. load more data from store-api and add it to page
-     $page->setExampleData(...);
+    $page->setExampleData(...);
 
     $this->eventDispatcher->dispatch(
         new ExamplePageletLoadedEvent($page, $context, $request)
@@ -168,11 +182,15 @@ public function load(Request $request, SalesChannelContext $context): ExamplePag
 }
 ```
 
-Of course, in this example your `ExamplePage` struct needs a method `setExamplePagelet`, as well as the respective getter method `getExamplePagelet`. And then that's it, you've loaded your pagelet as part of another page.
+:::
+
+Of course, in this example your `ExamplePage` struct needs a method `setExamplePagelet`, as well as the respective getter method `getExamplePagelet`.
+And then that's it, you've loaded your pagelet as part of another page.
 
 ### Loading the pagelet via route
 
-As already mentioned, a pagelet can be loaded via a route if you want it to. For that case, you can simply add a new route to your controller and load the pagelet via the `ExamplePageletLoader`:
+As already mentioned, a pagelet can be loaded via a route if you want it to.
+For that case, you can simply add a new route to your controller and load the pagelet via the `ExamplePageletLoader`:
 
 ```php
 #[Route(path: '/example-pagelet', name: 'frontend.example.pagelet', methods: ['POST'], defaults: ['XmlHttpRequest' => 'true'])]
