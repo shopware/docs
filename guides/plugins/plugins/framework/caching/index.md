@@ -236,6 +236,7 @@ public function invalidateSystemConfigCache(): void
 ```
 
 If you sent an API request with critical information, where the cache should be invalidated immediately, you can set the sw-force-cache-invalidate header on your request.
+
 ```
 POST /api/product
 sw-force-cache-invalidate: 1
@@ -245,5 +246,5 @@ sw-force-cache-invalidate: 1
 
 Of course, you can also manually clear the caches when you performed some actions that made a cache invalidation necessary, but where it was not triggered automatically.
 To clear all caches you can execute the `cache:clear:all` command, which clears the HTTP-Cache, the object caches as well as any other caches that are registered in the system.
-The `cache:clear` command on the other will only clear the object caches, but won't invalidate the HTTP-Cache. 
+The `cache:clear` command on the other will only clear the object caches, but won't invalidate the HTTP-Cache.
 On the other hand the `cache:clear:http` command will clear the complete HTTP-Cache, but won't invalidate the object caches.
