@@ -59,12 +59,12 @@ Anonymizing
 antipattern
 AOF
 api
-API's
 ApiAware
 ApiContext
 ApiController
 apiKey
 ApiKey
+API's
 APIs
 ApiService
 apk
@@ -498,8 +498,8 @@ DOM
 DomainException
 DomainExceptions
 DOMPurify
-don'ts
 dont
+don'ts
 dont's
 dr
 dragTo
@@ -822,12 +822,12 @@ Jit
 Jonge
 jQuery
 js
-js's
 json
 JSON
 jsonEncode
 JsonField
 JsonResponse
+js's
 junit
 JVM
 jwt
@@ -1138,9 +1138,9 @@ PageLoadedEvent
 PageLoadedEvents
 pageloader
 PageLoader
-PageLoader structs
 pageLoaders
 Pageloaders
+PageLoader structs
 PageType
 parallelize
 param
@@ -1380,7 +1380,6 @@ runtime
 RuntimeException
 runtimes
 SaaS
-Sales Rooms
 SalesAgent
 saleschannel
 salesChannel
@@ -1399,6 +1398,7 @@ salesChannelLoaded
 SalesChannelProductEntity
 saleschannelrepositoryfacade
 SalesChannelRule
+Sales Rooms
 SameSite
 sandboxed
 sarven
@@ -1472,10 +1472,10 @@ ShopNameStorer
 shopUrl
 shopware
 Shopware
-shopware's
-Shopware's
 shopwarelabs
 shopwarepartners
+shopware's
+Shopware's
 shorthands
 SimpleHttpClient
 SimpleNotification
@@ -1624,7 +1624,6 @@ TipTap
 TipTap's
 tl
 TLS
-to's
 todo
 tokenized
 ToMany
@@ -1634,6 +1633,7 @@ Tooltips
 ToOne
 Topseller
 Topsellers
+to's
 totalAmount
 tradeoff
 transactional
@@ -1759,10 +1759,10 @@ vscode
 VSCode
 vue
 Vue
-Vue's
 Vuei
 VueJs
 VueJS
+Vue's
 vuex
 Vuex
 VueX
