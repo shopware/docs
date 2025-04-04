@@ -237,7 +237,7 @@ public function invalidateSystemConfigCache(): void
 
 If you sent an API request with critical information, where the cache should be invalidated immediately, you can set the sw-force-cache-invalidate header on your request.
 
-```
+```http
 POST /api/product
 sw-force-cache-invalidate: 1
 ```
