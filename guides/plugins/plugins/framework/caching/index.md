@@ -45,8 +45,7 @@ class CacheKeySubscriber implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         // perform checks to determine the key
-        $key = $this->detrmineKey($request);
-        
+        $key = $this->determineKey($request);
         $event->add('myCustomKey', $key);
     }
 }
