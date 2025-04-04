@@ -182,15 +182,14 @@ use Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig;
 use Shopware\Core\Checkout\Document\Renderer\RenderedDocument;
 use Shopware\Core\Checkout\Document\Renderer\RendererResult;
 use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;
+use Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry;
 use Shopware\Core\Checkout\Document\Struct\DocumentGenerateOperation;
-use Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Shopware\Core\System\Locale\LocaleEntity;
 use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface;
 
 class ExampleDocumentRenderer extends AbstractDocumentRenderer
@@ -205,9 +204,8 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
     public function __construct(
         private readonly EntityRepository $orderRepository,
         private readonly DocumentConfigLoader $documentConfigLoader,
-        private readonly DocumentTemplateRenderer $documentTemplateRenderer,
         private readonly NumberRangeValueGeneratorInterface $numberRangeValueGenerator,
-        private readonly string $rootDir,
+        private readonly DocumentFileRendererRegistry $fileRendererRegistry,
     ) {
     }
 
@@ -228,8 +226,6 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
         }
 
         $result = new RendererResult();
-
-        $template = self::DEFAULT_TEMPLATE;
 
         $criteria = new Criteria($ids);
         $criteria->addAssociation('language');
@@ -263,36 +259,31 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 
                 // The document that uploaded by manual
                 if ($operation->isStatic()) {
-                    $doc = new RenderedDocument('', $number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
+                    $doc = new RenderedDocument($number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
                     $result->addSuccess($orderId, $doc);
 
                     continue;
                 }
 
-                /** @var LocaleEntity $locale */
-                $locale = $order->getLanguage()->getLocale();
-
-                $html = $this->documentTemplateRenderer->render(
-                    $template,
-                    [
-                        'order' => $order,
-                        'config' => $config,
-                        'rootDir' => $this->rootDir,
-                        'context' => $context,
-                    ],
-                    $context,
-                    $order->getSalesChannelId(),
-                    $order->getLanguageId(),
-                    $locale->getCode()
-                );
-
                 $doc = new RenderedDocument(
-                    $html,
                     $number,
                     $config->buildName(),
                     $operation->getFileType(),
                     $config->jsonSerialize(),
                 );
+
+                // This block is for PDF or HTML files
+                $doc->setTemplate(self::DEFAULT_TEMPLATE);
+                $doc->setOrder($order);
+                $doc->setContext($context);
+
+                $content = $this->fileRendererRegistry->render($doc);
+
+                // E.g. XML or CSV filetype
+                $content = '<?xml ...>...';
+                $content = 'Id;Name;...';
+
+                $doc->setContent($content);
 
                 $result->addSuccess($orderId, $doc);
             } catch (\Throwable $exception) {
@@ -320,7 +311,7 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 }
 ```
 
-First, we are injecting the `rootDir` of the Shopware installation into our renderer since we will need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering. We also inject `orderRepository` to get all order entities by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
+We inject `orderRepository` to get all order entities by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
 
 The `supports` method just returns the string "example", which is the technical name of our new document type.
 
@@ -339,9 +330,9 @@ Here's what the function does:
 * For each order found, the function attempts to generate a document.
 * If successful, a new `RenderedDocument` object is created. This object is then added to the `RendererResult` object as a success.
 * If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
-* `The RendererResult` object is returned.
+* The `RendererResult` object is returned.
 
-In this example, we are rendering a specific template, which we will have a look at in the next section.
+Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
 
 ### Adding a document type template
 
