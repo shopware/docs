@@ -187,7 +187,7 @@ Ignoring errors works similar to extensions, in that case you can create a `.sho
 
 ### Fixer does nothing for Shopware 6.7
 
-The fixers are enabled by the supported Shopware Version by the constraint in the `composer.json` in the plugin. For 6.7, you should change the composer constraint to this:
+The fixers are enabled by the supported Shopware Version in the plugins `composer.json` file. For 6.7, you should change the composer constraint to this:
 
 ```json
 {
