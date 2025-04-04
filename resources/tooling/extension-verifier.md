@@ -84,24 +84,28 @@ docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest ch
 
 The check command has multiple reporting options, you can use `--reporter` to specify the output format. The following formats are supported:
 
-- `summary` - default list of all errors and warnings
-- `json` - json output
-- `junit` - junit output
-- `github` - GitHub Actions output
-- `markdown` - markdown output
+| Format     | Description                             |
+|------------|-----------------------------------------|
+| `summary`  | default list of all errors and warnings |
+| `json`     | json output                             |
+| `junit`    | junit output                            |
+| `github`   | GitHub Actions output                   |
+| `markdown` | markdown output                         |
 
 ## Running Specific Tools
 
 Instead of running all tools, you can choose to run specific tools using the `--only` flag. The following tools are available:
 
-- `phpstan` - PHP static analysis
-- `sw-cli` - Shopware CLI validation checks
-- `stylelint` - CSS/SCSS linting
-- `admin-twig` - Admin Twig template checks
-- `php-cs-fixer` - PHP code style fixing
-- `prettier` - Code formatting
-- `eslint` - JavaScript/TypeScript linting
-- `rector` - PHP code refactoring
+| Tool           | Description                    |
+|----------------|--------------------------------|
+| `phpstan`      | PHP static analysis            |
+| `sw-cli`       | Shopware CLI validation checks |
+| `stylelint`    | CSS/SCSS linting               |
+| `admin-twig`   | Admin Twig template checks     |
+| `php-cs-fixer` | PHP code style fixing          |
+| `prettier`     | Code formatting                |
+| `eslint`       | JavaScript/TypeScript linting  |
+| `rector`       | PHP code refactoring           |
 
 You can run a single tool:
 
