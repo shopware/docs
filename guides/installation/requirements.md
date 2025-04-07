@@ -27,7 +27,7 @@ You can use these commands to check your actual environment:
 
 ### PHP
 
-* Compatible version: 8.2 and 8.3
+* Compatible version: 8.2, 8.3 and 8.4
 * `memory_limit` : 512M minimum
 * `max_execution_time` : 30 seconds minimum
 * Extensions:
