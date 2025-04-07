@@ -333,6 +333,15 @@ Here's what the function does:
 * The `RendererResult` object is returned.
 
 Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
+`DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., pdf, html). It delegates the rendering of documents to the appropriate renderer implementation.
+Therefore for any registered renderer extending `AbstractDocumentTypeRenderer` the document's content can be generated.
+```xml
+<service id="Shopware\Core\Checkout\Document\Service\PdfRenderer">
+    ...
+    <tag name="document_type.renderer" key="pdf"/>
+</service>
+```
+New types of DocumentTypeRenderer services can be added with `document_type.renderer` as the tag name and the file extension as key
 
 ### Adding a document type template
 
