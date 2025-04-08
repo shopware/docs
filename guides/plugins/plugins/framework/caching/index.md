@@ -204,7 +204,7 @@ public function invalidateSystemConfigCache(): void
 }
 ```
 
-### Delayed Invalidation
+## Delayed Invalidation
 
 By default, the cache invalidation happens delayed (for both http and object caches). This means that the invalidation is not instant, but rather all the tags that should be invalidated are invalidated in a regular interval.
 This really benefits the performance of the system, as the invalidation is not done immediately, but rather in a batch process. Additionally, it prevents cases where sometimes the caches are written and deleted more often they are read, which only leads to overhead, more resource needs on the caching side and a bad cache-hit rate.
@@ -215,7 +215,7 @@ If your caches don't seem to be invalidated at all, please ensure that the sched
 You can also manually invalidate the cache entries that are marked for delayed invalidation by running the `cache:clear:delayed` command or calling the `CacheInvalidator::invalidateExpired()` method from your plugin or send an API request to the `DELETE /api/_action/cache-delayed` endpoint.
 For debug purposes you can also watch the tags that are marked for delayed invalidation by running the `cache:watch:delayed` command.
 
-#### Force immediate invalidation
+### Force immediate invalidation
 
 Some changes require that the caches should be invalidated immediately and returning stale content is not acceptable.
 In that case you can pass the `force=true` flag to the CacheInvalidator service, which will invalidate the cache immediately.
@@ -236,7 +236,7 @@ POST /api/product
 sw-force-cache-invalidate: 1
 ```
 
-### Manual cache clear
+## Manual cache clear
 
 You can also manually clear the caches when you performed some actions that made a cache invalidation necessary, but where it was not triggered automatically.
 To clear all caches, you can execute the `cache:clear:all` command, which clears the HTTP-Cache, the object caches as well as any other caches that are registered in the system.
