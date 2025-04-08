@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-Using the Shopware Administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
+This guide will show you how to add a custom document type to your plugin. This includes adding a new document type to the database, creating a renderer for it, and adding a number range.
 
 ## Prerequisites
 
