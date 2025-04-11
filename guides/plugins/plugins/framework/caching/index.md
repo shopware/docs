@@ -51,8 +51,10 @@ class CacheKeySubscriber implements EventSubscriberInterface
 }
 ```
 
-::: info
-The event is called on any Request, make sure that you don't use expensive operations here like Database Queries and with an external reverse proxy, this needs to be done on the side of the reverse proxy as well.
+:::info
+The event is called on any Request; make sure that you don't use expensive operations like Database Queries.
+
+Also, with an external reverse proxy, the cache key might be generated on the proxy and not in your application. In that case, you need to add the key part to the reverse proxy configuration.
 :::
 
 #### Adding cache tags
