@@ -7,16 +7,15 @@ nav:
 
 # Setups
 
-### Set up your own environment
+## Set up your own environment
 
 Head over to the [Requirements](../requirements) section to install and configure the necessary services like a database and a webserver to a Unix system like Linux, macOS, WSL etc.
 
-### Development setup
+## Development setup
 
 ::: info
 Technically there is no real difference between a Development Setup and a Production Setup, they only differ on performance and security optimizations.
 :::
-
 
 * [Docker*](docker) - This is a Docker setup for Shopware 6. It is a lightweight and easy way to get started with Shopware. It uses Docker Compose to manage the services and is suitable for local development.
 
@@ -30,15 +29,15 @@ Technically there is no real difference between a Development Setup and a Produc
 
 > \* These setups are provided and officially supported by shopware AG.
 
-### Production setup
+## Production setup
 
-#### Managed hosting
+### Managed hosting
 
 Many hosting providers especially Shopware certified ones, offer a fully pre-configured Hosting environment for Shopware. This is the easiest way to get started with Shopware. You can find a list of certified hosting partners on the [Shopware website](https://www.shopware.com/en/partner/hosting/). You will just need to upload your [Shopware project template](./template.md) to the server and run the installation commands.
 
 If you want to automate the installation process, consider using [Deployer](https://deployer.org/) to deploy the code changes. You can find here the [Deployer documentation](../hosting/installation-updates/deployments/deployment-with-deployer.md).
 
-#### Container based hosting
+### Container based hosting
 
 If you are using containers for your setup, check out the dedicated [Docker guide for production](../hosting/installation-updates/docker.md). This guide will help you to set up a production ready Docker environment for Shopware 6.
 

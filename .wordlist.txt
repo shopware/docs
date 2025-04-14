@@ -837,6 +837,7 @@ KeyDB
 keyframes
 Kibana
 KV
+Kubernetes
 LandingPage
 lang
 LastNameRule
