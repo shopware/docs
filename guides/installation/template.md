@@ -76,8 +76,10 @@ sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml
 Add a new software repository to your system to have the latest PHP version:
 
 ```bash
-curl https://packages.sury.org/php/README.txt | bash
+sudo apt-get install extrepo
+sudo extrepo enable sury
 
+sudo apt-get update
 sudo apt-get install -y php8.2-fpm php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-zip php8.2-opcache php8.2-mbstring php8.2-intl php8.2-cli
 ```
 
