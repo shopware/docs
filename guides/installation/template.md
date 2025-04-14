@@ -28,7 +28,7 @@ This creates a new project in the `<project-name>` directory.
 
 The template contains all Shopware bundles like `shopware/administration`, `shopware/storefront` and `shopware/elasticsearch`. If you don't need any, then you can uninstall them with:
 
-```shell
+```bash
 composer remove shopware/<bundle-name>
 ```
 
@@ -48,7 +48,7 @@ After you have adjusted the `.env` file, you can run the following command to in
 bin/console system:install --basic-setup
 ```
 
-The flag `--basic-setup` will automatically create an admin user and a default sales channel for the given `APP_URL`. If you don't created a MySQL Database yet, you can pass the `--create-database` flag to create a new database.
+The flag `--basic-setup` will automatically create an admin user and a default sales channel for the given `APP_URL`. If you haven't created a MySQL Database yet, you can pass the `--create-database` flag to create a new database.
 
 The Shopware's default Administration credentials are:
 

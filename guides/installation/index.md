@@ -13,7 +13,7 @@ There are a couple of ways to get Shopware running on your system, together with
 
 ## Template
 
-Regardless of your choice of setup, all setups methods are based on the [Project template](./template.md). This template is a new Composer project, which requires Shopware itself. Therefore, you can further customize your installation with additional extensions, themes, or configurations.
+Regardless of your choice of setup, all setup methods are based on the [Project template](./template.md). This template is a new Composer project, which requires Shopware itself. Therefore, you can further customize your installation with additional extensions, themes, or configurations.
 
 ## Setups
 

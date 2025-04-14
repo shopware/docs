@@ -17,17 +17,17 @@ Head over to the [Requirements](../requirements) section to install and configur
 Technically there is no real difference between a Development Setup and a Production Setup, they only differ on performance and security optimizations.
 :::
 
+> \* These setups are provided and officially supported by shopware AG.
+
 * [Docker*](docker) - This is a Docker setup for Shopware 6. It is a lightweight and easy way to get started with Shopware. It uses Docker Compose to manage the services and is suitable for local development.
 
-* [Symfony CLI*](docker+symfony-cli) - This setup uses the Symfony CLI to run the Shopware. It is the default way to run Symfony applications and is suitable also for Shopware.
+* [Symfony CLI*](symfony-cli) - This setup uses the Symfony CLI to run Shopware. It is the default way to run Symfony applications and is also suitable for Shopware.
 
-* [Devenv*](devenv) installation manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux, WSL and macOS.
+* [Devenv*](devenv) - This is a setup that manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux, WSL and macOS.
 
 * [Dockware](https://dockware.io/getstarted) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
 
 * [DDEV](https://notebook.vanwittlaer.de/ddev-for-shopware/less-than-5-minutes-install-with-ddev-and-symfony-flex) - Docker-based PHP development environments, works on all platforms and is generic enough to be used for any PHP project. [Project Page](https://ddev.com/)
-
-> \* These setups are provided and officially supported by shopware AG.
 
 ## Production setup
 

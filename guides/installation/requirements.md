@@ -42,7 +42,7 @@ On many shared hosting environments, you have multiple PHP versions installed. M
   * `ext-iconv`
   * `ext-intl`
   * `ext-mbstring`
-  * `ext-openssl` (there is an [issue](https://github.com/shopware/shopware/issues/3543) with OpenSSL 3.0.7)
+  * `ext-openssl`
   * `ext-pcre`
   * `ext-pdo`
   * `ext-pdo_mysql`
