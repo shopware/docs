@@ -1006,6 +1006,7 @@ mysql
 mysqldump
 MyTestClass
 MyTestInterface
+Mailpit
 NameAware
 NameOfYourShippingMethodApp
 namespace
@@ -1117,6 +1118,7 @@ otlp
 OTLP
 overrideComponentSetup
 oversales
+OrbStack
 paas
 Paas
 PaaS

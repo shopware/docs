@@ -1,7 +1,7 @@
 ---
 nav:
   title: Requirements
-  position: 10
+  position: 1
 
 ---
 
@@ -11,12 +11,15 @@ Before installing Shopware 6, take a quick look at the requirements below to che
 
 ## Operating System
 
-Shopware 6 is currently only supported on linux and macOS setups.
-Windows is only supported inside WSL 2.
+Shopware 6 is currently only supported on any Unix operating system. Windows is only supported inside WSL 2 or Docker.
 
 ## Versions
 
 You can use these commands to check your actual environment:
+
+::: info
+On many shared hosting environments, you have multiple PHP versions installed. Make sure that you use the correct PHP binary and often CLI and FPM have different `php.ini` files.
+:::
 
 * `php -v`: Shows CLI PHP version
 * `php -m`: Shows CLI PHP modules
@@ -38,7 +41,6 @@ You can use these commands to check your actual environment:
   * `ext-gd`
   * `ext-iconv`
   * `ext-intl`
-  * `ext-libxml`
   * `ext-mbstring`
   * `ext-openssl` (there is an [issue](https://github.com/shopware/shopware/issues/3543) with OpenSSL 3.0.7)
   * `ext-pcre`
@@ -49,35 +51,122 @@ You can use these commands to check your actual environment:
   * `ext-xml`
   * `ext-zip`
   * `ext-zlib`
-* Composer recommended version: 2.0 or higher
+* Composer recommended version: 2.2 or higher
+
+<Tabs>
+
+<Tab title="Ubuntu">
+
+Add a new software repository to your system to have the latest PHP version.
+
+```bash
+sudo add-apt-repository ppa:ondrej/php
+
+sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
+
+sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+```
+
+</Tab>
+
+<Tab title="Debian">
+
+Add a new software repository to your system to have the latest PHP version:
+
+```bash
+curl https://packages.sury.org/php/README.txt | bash
+
+sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
+
+sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+```
+
+</Tab>
+
+<Tab title="macOS">
+
+The easiest way is to use [Homebrew](https://brew.sh/):
+
+```bash
+brew install php@8.3
+```
+
+</Tab>
+
+</Tabs>
 
 ### SQL
 
 * MySQL
 
-  * Recommended version: 8.0
-  * Minimum version: 8.0.17
-  * Problematic versions: 8.0.20, 8.0.21
+  * Recommended version: 8.4
+  * Minimum version: 8.0.22
 
 * MariaDB
 
-  * Compatible version : at least 10.11
-
-  * Problematic versions: [10.11.5, 11.0.3](https://jira.mariadb.org/browse/MDEV-31931)
+  * Recommended version: 11.4
+  * Minimum version : 10.11.6 or 11.0.4
 
 For optimal MySQL performance, it is advisable to set `max_allowed_packet` to a minimum of 32 MB.
 
+<Tabs>
+
+<Tab title="Ubuntu / Debian">
+
+```bash
+sudo apt install -y mariadb-server
+```
+
+</Tab>
+
+<Tab title="macOS">
+
+The easiest way is to use [Homebrew](https://brew.sh/):
+
+```bash
+brew install mariadb
+```
+
+</Tab>
+
+</Tabs>
+
 ### JavaScript
 
-* Node.js 20.0.0 or higher
-* NPM 8.0.0 or higher
+* Node.js 22.0.0 or higher
+<Tabs>
+
+<Tab title="Ubuntu / Debian">
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+sudo -E bash nodesource_setup.sh
+
+sudo apt-get install -y nodejs
+```
+
+</Tab>
+
+<Tab title="macOS">
+
+The easiest way is to use [Homebrew](https://brew.sh/):
+
+```bash
+brew install node@22
+```
+
+</Tab>
+
+</Tabs>
 
 ## Redis or key/value stores
 
 Shopware uses the Redis Protocol and, therefore, supports the following key/value stores:
 
+* [Valkey (recommended)](https://valkey.io/)
 * [Redis v7 or higher](https://redis.io)
-* [Valkey](https://valkey.io/)
 * [Redict](https://redict.io)
 * [KeyDB](https://docs.keydb.dev)
 * [Dragonfly](https://www.dragonflydb.io)
@@ -96,10 +185,10 @@ To run Shopware in a development context, the [Symfony CLI](https://symfony.com/
 
 We recommend the following stack:
 
-* Webserver: Nginx
-* PHP: 8.3
-* SQL: MySQL 8.4 or Percona MySQL 8.4
-* Node: 20
+* Webserver: Caddy
+* PHP: 8.4
+* SQL: MariaDB 11.4
+* Node: 22
 * Search: OpenSearch 2.17.1
 * Queue: RabbitMQ
 * Cache: Valkey 8.0

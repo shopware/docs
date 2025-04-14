@@ -23,23 +23,9 @@ The main difference to other tools like Docker or a VM is that it neither uses c
 
 As devenv is built on top of Nix, first install Nix with the following command based on your OS:
 
-<Tabs>
-<Tab title="macOS / Linux / WSL2 (Windows)">
-
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
-
-</Tab>
-
-<Tab title="Docker">
-
-```shell
-docker run -it nixos/nix
-```
-
-</Tab>
-</Tabs>
 
 #### Using Oh My ZSH?
 

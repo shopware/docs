@@ -11,20 +11,12 @@ This section discusses ways to set up Shopware on local machines so you can use 
 
 There are a couple of ways to get Shopware running on your system, together with the most useful services for data storage and the web server.
 
-## Installation setups
+## Template
 
-### Development setup
+Regardless of your choice of setup, all setups methods are based on the [Project template](./template.md). This template is a new Composer project, which requires Shopware itself. Therefore, you can further customize your installation with additional extensions, themes, or configurations.
 
-* [Devenv](devenv) installation manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux, WSL and macOS.
+## Setups
 
-* [Dockware](community/dockware) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
+The following setups are available for Shopware 6:
 
-### Production setup
-
-* [Symfony Flex](../../guides/installation/template)
-
-## Set up your own environment
-
-Refer to the [Requirements](requirements) section to install and configure the necessary services like a database and a webserver to a nix system like Linux, macOS, WSL etc.
-
-Next, you can [Setup Shopware as a Symfony flex project](template#set-up-a-new-project).
+<PageRef page="./setups/" />
