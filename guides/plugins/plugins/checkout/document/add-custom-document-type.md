@@ -276,18 +276,19 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
                     $config->jsonSerialize(),
                 );
 
-                // This block is for PDF or HTML files
+                // Utilize the DocumentFileRendererRegistry to generate the content, e.g. PDF or HTML
+                // This is the recommended approach
                 $doc->setTemplate(self::DEFAULT_TEMPLATE);
                 $doc->setOrder($order);
                 $doc->setContext($context);
-
                 $content = $this->fileRendererRegistry->render($doc);
-
-                // E.g. XML or CSV filetype
-                $content = '<?xml ...>...';
-                $content = 'Id;Name;...';
-
                 $doc->setContent($content);
+
+                // Alternatively you can manually set the content here, e.g. to some XML or CSV content
+                // $content = '<?xml ...>...';
+                // or
+                // $content = 'Id;Name;...';
+                // $doc->setContent($content);
 
                 $result->addSuccess($orderId, $doc);
             } catch (\Throwable $exception) {
