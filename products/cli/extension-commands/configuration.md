@@ -7,9 +7,9 @@ nav:
 
 # Configuration
 
-Many configuration can be changed using a `.shopware-extension.yml` file in the root of your extension.
+Many configurations can be changed using a `.shopware-extension.yml` file in the root of your extension.
 
-Here is a example of a `.shopware-extension.yml` file:
+Here is an example of a `.shopware-extension.yml` file:
 
 ```yaml
 build:
@@ -40,7 +40,7 @@ validation:
     - 'xx'
 ```
 
-When you edit that file in a Editor, you will get autocompletion and hints for the available options.
+When you edit that file in an editor, you will get autocompletion and hints for the available options.
 
 ## Environment variables
 
