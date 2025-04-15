@@ -55,4 +55,3 @@ Additionally, you can set environment variables to change the behavior of the CL
 | APP_ENV                       | Application environment                                                                      |
 | SHOPWARE_PROJECT_ROOT         | Use this Shopware project to build the extension instead of setting up a new project         |
 | SHOPWARE_CLI_DISABLE_WASM_CACHE | Disable the WASM cache for PHP linting                                                                        |
-
