@@ -836,8 +836,8 @@ kebabCase
 KeyDB
 keyframes
 Kibana
-KV
 Kubernetes
+KV
 LandingPage
 lang
 LastNameRule
@@ -917,6 +917,7 @@ MailAware
 Mailcatcher
 Mailhog
 MailHog
+Mailpit
 MailService
 MailStorer
 mailTemplates
@@ -1007,7 +1008,6 @@ mysql
 mysqldump
 MyTestClass
 MyTestInterface
-Mailpit
 NameAware
 NameOfYourShippingMethodApp
 namespace
@@ -1086,6 +1086,7 @@ openssl
 OpenSSL
 OpenTelemetry
 openUserActionMenu
+OrbStack
 orderAware
 OrderAware
 OrderCountRule
@@ -1119,7 +1120,6 @@ otlp
 OTLP
 overrideComponentSetup
 oversales
-OrbStack
 paas
 Paas
 PaaS
