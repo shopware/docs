@@ -45,6 +45,6 @@ Extend the `base.html.twig` in your plugin and overwrite the blocks.
 
 :::
 
-It is also possible to load your custom header or footer templates. 
+It is also possible to load your custom header or footer templates.
 This is also done in the core itself within the checkout process.
 See e.g. [checkout confirm page](https://github.com/shopware/shopware/blob/v6.7.0.0-rc2/src/Storefront/Resources/views/storefront/page/checkout/confirm/index.html.twig#L3-L5).

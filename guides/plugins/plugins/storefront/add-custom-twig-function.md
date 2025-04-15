@@ -26,6 +26,7 @@ Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 In the following sections, we will create and expand all necessary files for the twig function to work.
 There are two such files:
+
 * PHP file with the twig functions itself and
 * Services.xml
 
