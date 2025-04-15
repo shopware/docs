@@ -1,0 +1,31 @@
+name: Detect Moved Markdown Files
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  detect-moved-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect moved markdown files
+        id: detect_moved_files
+        run: |
+          # Find moved markdown files in the PR
+          git diff --name-status origin/${{ github.base_ref }}...${{ github.head_ref }} | grep '^R' | grep '\.md$' > moved_files.txt || true
+          if [ -s moved_files.txt ]; then
+            echo "moved=true" >> $GITHUB_ENV
+          else
+            echo "moved=false" >> $GITHUB_ENV
+          fi
+
+      - name: Add "check-redirect" label
+        if: env.moved == 'true'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: check-redirect
