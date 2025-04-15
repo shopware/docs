@@ -53,6 +53,8 @@ On many shared hosting environments, you have multiple PHP versions installed. M
   * `ext-zlib`
 * Composer recommended version: 2.2 or higher
 
+This is how you install PHP and Composer:
+
 <Tabs>
 
 <Tab title="Ubuntu">
@@ -111,6 +113,8 @@ brew install php@8.3 composer
 
 For optimal MySQL performance, it is advisable to set `max_allowed_packet` to a minimum of 32 MB.
 
+This is how you install MariaDB:
+
 <Tabs>
 
 <Tab title="Ubuntu / Debian">
@@ -136,6 +140,9 @@ brew install mariadb
 ### JavaScript
 
 * Node.js 22.0.0 or higher
+
+This is how you install Node.js:
+
 <Tabs>
 
 <Tab title="Ubuntu / Debian">
