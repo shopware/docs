@@ -14,7 +14,7 @@ Symfony CLI is a popular tool in the Symfony ecosystem that helps to spawn a loc
 - Symfony CLI installed on your machine. You can follow the official [Symfony CLI installation guide](https://symfony.com/download) to install Symfony CLI.
 - PHP, Composer and Node installed locally, see [here](../requirements.md) to install them.
 
-Shopware requires also a Database server, you can install MySQL or MariaDB locally using your system package manager or if Docker is installed, Symfony CLI can run the database server in a container.
+Shopware requires a Database server, you can install MySQL or MariaDB locally using your system package manager or if Docker is installed, Symfony CLI can run the database server in a container.
 
 ## Create a new project
 
@@ -62,13 +62,13 @@ This will remove all containers and keep the data.
 It's important that you prefix all your commands with `symfony` to ensure that the correct PHP version is used. If you don't do this, you might run into issues with the wrong PHP version being used or the Docker MySQL database is not used.
 :::
 
-After that you can run the following command to install Shopware:
+After that, you can run the following command to install Shopware:
 
 ```bash
 symfony console system:install --basic-setup
 ```
 
-The flag `--basic-setup` will automatically create an admin user and a default sales channel for the given `APP_URL`. If you don't created a MySQL Database yet, you can pass the `--create-database` flag to create a new database.
+The flag `--basic-setup` will automatically create an admin user and a default sales channel for the given `APP_URL`. If you didn't create a MySQL Database yet, you can pass the `--create-database` flag to create a new database.
 
 ### Default Administration Credentials
 

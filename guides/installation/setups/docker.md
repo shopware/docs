@@ -49,7 +49,7 @@ This will create a new Shopware project in the current directory additionally wi
 
 After the project is created, you can run the initial setup commands to install Shopware itself.
 
-First we need to start the containers
+First, we need to start the containers
 
 ```bash
 make up
@@ -167,7 +167,7 @@ You can also open `https://orb.local` in your browser and see all running contai
 
 ## Proxy Production Images
 
-Typically you import for local development a copy of the production database to your local environment. This allows you to test changes with production similar data. However, this can lead to issues that all images are missing in the local environment. To avoid this, you can download all images from the production environment and import them into your local environment. Or setup a proxy server that serves the images from the production environment.
+Typically, you import for local development a copy of the production database to your local environment. This allows you to test changes with production similar data. However, this can lead to issues that all images are missing in the local environment. To avoid this, you can download all images from the production environment and import them into your local environment. Or set up a proxy server that serves the images from the production environment.
 
 To do this, you can add a `imageproxy` service to your `compose.override.yaml`:
 
@@ -184,7 +184,7 @@ services:
 
 This will start a proxy server that serves all images from the production environment. In this case if we request `http://localhost:8050/assets/images.png`, it will load `https://[REMOTE_SERVER_HOST]/assets/images.png` and serve it to the local environment, it will also cache the images locally.
 
-Next we need to configure Shopware to use the proxy server. To do this, create a new yaml file `config/packages/media-proxy.yaml`
+Next, we need to configure Shopware to use the proxy server. To do this, create a new YAML file `config/packages/media-proxy.yaml`
 
 ```yaml
 shopware:
@@ -197,7 +197,7 @@ This will tell Shopware to use the proxy server URL for all images.
 
 ## Known issues
 
-### On Linux your host user-id must be 1000
+### Linux host user-id must be 1000
 
 If you are using Docker on Linux, your host user-id must be 1000. This is a known issue with Docker on Linux. You can check your user-id with the following command:
 
