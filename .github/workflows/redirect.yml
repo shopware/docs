@@ -32,3 +32,17 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: check-redirect
+
+      - name: Add warning comment to PR
+        if: env.moved == 'true'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: "⚠️ Moved markdown files detected. Please ensure redirects are updated in .gitbook.yaml file."
+            })
+
