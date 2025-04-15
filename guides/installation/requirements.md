@@ -18,7 +18,7 @@ Shopware 6 is currently only supported on any Unix operating system. Windows is 
 You can use these commands to check your actual environment:
 
 ::: info
-On many shared hosting environments, you have multiple PHP versions installed. Make sure that you use the correct PHP binary and often CLI and FPM have different `php.ini` files.
+On many shared hosting environments, you have multiple PHP versions installed. Make sure that you use the correct PHP binary and often CLI and FPM have different `php.ini` files. Ask your hosting provider for the correct PHP binary to use and how to change the `php.ini` file.
 :::
 
 * `php -v`: Shows CLI PHP version
