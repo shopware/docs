@@ -12,47 +12,7 @@ Symfony CLI is a popular tool in the Symfony ecosystem that helps to spawn a loc
 ## Prerequisites
 
 - Symfony CLI installed on your machine. You can follow the official [Symfony CLI installation guide](https://symfony.com/download) to install Symfony CLI.
-- PHP Installed locally
-
-Here are various ways to install PHP on your machine. You can choose the one that suits you best.
-
-<Tabs>
-
-<Tab title="Ubuntu">
-
-Add a new software repository to your system to have the latest PHP version.
-
-```bash
-sudo add-apt-repository ppa:ondrej/php
-
-sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
-```
-
-</Tab>
-
-<Tab title="Debian">
-
-Add a new software repository to your system to have the latest PHP version:
-
-```bash
-curl https://packages.sury.org/php/README.txt | bash
-
-sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
-```
-
-</Tab>
-
-<Tab title="macOS">
-
-The easiest way is to use [Homebrew](https://brew.sh/):
-
-```bash
-brew install php@8.3
-```
-
-</Tab>
-
-</Tabs>
+- PHP, Composer and Node installed locally, see [here](../requirements.md) to install them.
 
 Shopware requires also a Database server, you can install MySQL or MariaDB locally using your system package manager or if Docker is installed, Symfony CLI can run the database server in a container.
 

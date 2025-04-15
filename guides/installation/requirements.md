@@ -75,8 +75,10 @@ sudo chmod +x /usr/local/bin/composer
 Add a new software repository to your system to have the latest PHP version:
 
 ```bash
-curl https://packages.sury.org/php/README.txt | bash
+sudo apt-get install extrepo
+sudo extrepo enable sury
 
+sudo apt-get update
 sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
 
 sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
@@ -87,10 +89,8 @@ sudo chmod +x /usr/local/bin/composer
 
 <Tab title="macOS">
 
-The easiest way is to use [Homebrew](https://brew.sh/):
-
 ```bash
-brew install php@8.3
+brew install php@8.3 composer
 ```
 
 </Tab>
@@ -150,8 +150,6 @@ sudo apt-get install -y nodejs
 </Tab>
 
 <Tab title="macOS">
-
-The easiest way is to use [Homebrew](https://brew.sh/):
 
 ```bash
 brew install node@22
