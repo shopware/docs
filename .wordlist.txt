@@ -1825,3 +1825,4 @@ zipignore
 zlib
 zsh
 zstd
+WASM
