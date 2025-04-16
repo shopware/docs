@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Stellt sicher, dass der vollständige Git-Verlauf verfügbar ist
 
       - name: Sort .wordlist.txt
         run: |
@@ -22,8 +24,10 @@ jobs:
             git add .wordlist.txt
             git commit -m "chore: sort .wordlist.txt"
           fi
+
       - name: Push changes
         if: github.event_name == 'push'
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}  # Pusht die Änderungen auf den PR-Branch
