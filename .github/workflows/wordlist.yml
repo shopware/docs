@@ -1,0 +1,34 @@
+name: Sort Wordlist
+
+on:
+  pull_request:
+    paths:
+      - '.wordlist.txt'
+
+jobs:
+  sort-wordlist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sort .wordlist.txt
+        run: |
+          sort --version
+          sort .wordlist.txt -o .wordlist.txt
+          if ! git diff --quiet .wordlist.txt; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .wordlist.txt
+            git commit -m "chore: sort .wordlist.txt"
+          fi
+
+      - name: Push changes
+        if: github.event_name == 'pull_request'
+        run: |
+          git push origin "HEAD:${{ github.head_ref }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
