@@ -15,83 +15,60 @@ The HTTP Cache is a *must-have* for every production system. With an enabled cac
 
 ### How to configure the HTTP cache
 
-The HTTP cache configuration takes place completely in the `.env file.` The following configurations are available here:
+The HTTP cache configuration takes place completely in the `.env.local` file. The following configurations are available here:
 
 | Name                          | Description                    |
 |:------------------------------|:-------------------------------|
 | `SHOPWARE_HTTP_CACHE_ENABLED` | Enables the HTTP cache         |
 | `SHOPWARE_HTTP_DEFAULT_TTL`   | Defines the default cache time |
 
-### How to change the cache storage
+The storage used for HTTP Cache is always the [App Cache](#app-cache), see below how to configure it. If you want to move this out of the application cache, you should use an external reverse proxy cache like [Varnish](https://varnish-cache.org/) or [Fastly](https://www.fastly.com/). For more [see here](../infrastructure//reverse-http-cache.md).
 
-The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. The configuration can be found in the `shopware/src/Core/Framework/Resources/config/packages/framework.yaml` file.
+## How to change the cache storage
 
-```yaml
-framework:
-    cache:
-        pools:
-            cache.http:
-                adapter: cache.adapter.filesystem
-```
+The standard Shopware HTTP cache can be exchanged or reconfigured in several ways. The standard cache comes with an `adapter.filesystem`. This is a file-based cache that stores the cache in the `var/cache` directory. This allows Shopware to work out of the box on a single server without any additional configuration. However, this may not be the best solution for a production system, especially if you are using a load balancer or multiple servers. In this case, you should use a shared cache like [Redis](https://redis.io/).
 
 This is a Symfony cache pool configuration and therefore supports all adapters from the [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle).
 
-## App cache
+### Using Redis
 
-The app cache defines the default cache adapter for Shopware. As you can see in this default configuration, every cache-pool in Shopware uses the adapter defined in the `app` cache as default:
-
-```yaml
-framework:
-    cache:
-        prefix_seed: "%kernel.cache.hash%"
-        app: cache.adapter.filesystem
-        pools:
-            cache.object:
-                default_lifetime: 3600
-                adapter: cache.app
-                tags: cache.tags
-            cache.http:
-                default_lifetime: 3600
-                adapter: cache.app
-                tags: cache.tags
-            cache.tags:
-                adapter: cache.app
-```
-
-This is also a Symfony cache configuration and supports all adapters from the [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle).
-
-## Object Cache
-
-The object cache pool is used for caching the data abstraction layer in Shopware and can be configured like any other pool.
-
-## Example: replace some cache with Redis
-
-"[Redis](https://redis.io/) is an open source \(BSD licensed\), in-memory data structure store, used as a database, cache, and message broker." In this example, we change the default HTTP cache adapter to Redis. It is possible to change every adapter as in this example. A running Redis instance is required for this to work. The configuration can be overridden by creating or editing the file `framework.yaml`
+Redis is a very fast in-memory key-value store. It is a good choice for caching data that is frequently accessed and does not need to be persisted. Redis can be used as a cache adapter in Shopware. As the cached information is ephemeral and can be recreated, it is not necessary to configure Redis to store the data on disk. For maximum performance, you can configure Redis to use no persistence. Refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
+As key eviction policy, you should use `volatile-lru`. This policy only automatically deletes expired data, as the application explicitly manages the TTL for each cache item. For a detailed overview of Redis key eviction policies, see the [Redis docs](https://redis.io/docs/latest/develop/reference/eviction/).
 
 For `cache.adapter.redis_tag_aware` minimum Shopware 6.5.8.3 is required. Otherwise use `cache.adapter.redis`.
 
 ```yaml
-# config/packages/framework.yaml
+# config/packages/cache.yaml
 framework:
-    cache:
-        default_redis_provider: 'redis://host:port'
-        pools:
-            cache.http:
-                adapter: cache.adapter.redis_tag_aware
-                tags: cache.tags
+  cache:
+    app: cache.adapter.redis_tag_aware
+    system: cache.adapter.redis_tag_aware
+    default_redis_provider: redis://localhost
 ```
 
-Replace the `host` and `port` with your Redis instance. It is also possible to change the cache adapter for `app`, which would affect every pool since they inherit from `app` by default.
+Make sure that you have installed the PHP Redis extension before applying this configuration.
 
-```yaml
-framework:
-    cache:
-        app: cache.adapter.redis_tag_aware
-        default_redis_provider: 'redis://host:port'
+The Redis URL can have various formats. The following are all valid:
+
+```text
+# With explicit port
+redis://localhost:6379
+
+# With authentication
+redis://auth@localhost:6379
+
+# With database
+redis://localhost:6379/1
+
+# With options
+redis://localhost:6379?timeout=1
+
+# With unix socket
+
+redis:///var/run/redis.sock
+
+# With unix socket and authentication
+redis://auth@/var/run/redis.sock
 ```
 
-### Redis configuration
-
-As the cached information is ephemeral and can be recreated, it is not necessary to configure Redis to store the data on disk. For maximum performance you can configure Redis to use no persistence, refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
-
-As key eviction policy you should use `volatile-lru`, which only automatically deletes data that is expired, as the application explicitly manages the TTL for each cache item. For a detailed overview of Redis key eviction policies see the [Redis docs](https://redis.io/docs/latest/develop/reference/eviction/).
+For more information or other adapters checkout [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle) documentation.
