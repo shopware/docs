@@ -213,7 +213,8 @@ public function invalidateSystemConfigCache(): void
 ## Delayed Invalidation
 
 By default, the cache invalidation happens delayed (for both http and object caches). This means that the invalidation is not instant, but rather all the tags that should be invalidated are invalidated in a regular interval. For special cases where you need to immediately clear the cache take a look at the [force immediate invalidation](#force-immediate-invalidation) section.
-This really benefits the performance of the system, as the invalidation is not done immediately, but rather in a batch process. Additionally, it prevents cases where sometimes the caches are written and deleted more often they are read, which only leads to overhead, more resource needs on the caching side and a bad cache-hit rate.
+This really benefits the performance of the system, as the invalidation is not done immediately, but rather in a batch process.
+Additionally, it prevents cases where sometimes the caches are written and deleted more often than they are read, which only leads to overhead, more resource needs on the caching side and a bad cache-hit rate.
 
 The invalidation of the delayed cache is done via the `shopware.invalidate_cache` task, that runs every 5 minutes (default setting). However, that run interval can be adjusted in the database.
 If your caches don't seem to be invalidated at all, please ensure that the scheduled tasks are running correctly.
