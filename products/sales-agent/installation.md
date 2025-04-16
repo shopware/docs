@@ -58,20 +58,20 @@ docker compose up
 
 | Property                         | Description                                                                                                                                                 |
 |----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AUTH_ORIGIN                      | The base URL for the authentication server. This is the host for redirects during user authentication.                                                      |
-| SHOPWARE_STORE_API               | The base URL for the Shopware store API. Replace `hostname` with your actual Shopware Store-API URL. This can be found in your sales channel configuration. |
-| SHOPWARE_STORE_API_ACCESS_TOKEN  | The access token for the Shopware store API. Obtain this from your Shopware instance.                                                                       |
-| SHOPWARE_ADMIN_API               | The base URL for the Shopware Administration API. Replace `hostname` with your actual Shopware Administration API URL.                                      |
-| SHOPWARE_ADMIN_API_CLIENT_ID     | The client ID for the Shopware Administration API. Create an integration in Shopware Administration to get this.                                            |
-| SHOPWARE_ADMIN_API_CLIENT_SECRET | The client secret for the Shopware Administration API. Create an integration in Shopware Administration to get this.                                        |
-| SHOPWARE_STOREFRONT_URL          | The base URL for the Shopware storefront. Replace `hostname` with your actual Shopware storefront URL.                                                      |
-| SHOPWARE_CDN_URL                 | The base URL for the Shopware CDN. Replace `hostname` with your actual Shopware CDN URL.                                                                    |
-| API_AUTH_SECRET_KEY              | Provide your own arbitrary key here. This is used for authenticating requests against server-side endpoints (e.g. creating users).                          |
-| STORAGE_DRIVER                   | The storage driver to use in production. Please refer to the [Deployment](#Deployment) section.                                                             |
-| STORAGE_HOST                     | The storage host to use in production. Please refer to the [Deployment](#Deployment) section.                                                               |
-| STORAGE_PORT                     | The storage port to use in production. Please refer to the [Deployment](#Deployment) section.                                                               |
-| STORAGE_PASSWORD                 | The storage password to use in production. Please refer to the [Deployment](#Deployment) section.                                                           |
-| STORAGE_TLS                      | Use TLS for storage communication in production. Please refer to the [Deployment](#Deployment) section.                                                     |
+| AUTH_ORIGIN *                     | The base URL for the authentication server. This is the host for redirects during user authentication.                                                      |
+| SHOPWARE_STORE_API *                | The base URL for the Shopware store API. Replace `hostname` with your actual Shopware Store-API URL. This can be found in your sales channel configuration. |
+| SHOPWARE_STORE_API_ACCESS_TOKEN *  | The access token for the Shopware store API. Obtain this from your Shopware instance.                                                                       |
+| SHOPWARE_ADMIN_API *               | The base URL for the Shopware Administration API. Replace `hostname` with your actual Shopware Administration API URL.                                      |
+| SHOPWARE_ADMIN_API_CLIENT_ID *     | The client ID for the Shopware Administration API. Create an integration in Shopware Administration to get this.                                            |
+| SHOPWARE_ADMIN_API_CLIENT_SECRET * | The client secret for the Shopware Administration API. Create an integration in Shopware Administration to get this.                                        |
+| SHOPWARE_STOREFRONT_URL *          | The base URL for the Shopware storefront. Replace `hostname` with your actual Shopware storefront URL.                                                      |
+| SHOPWARE_CDN_URL                 | The base URL for the Shopware CDN. Normally, if you don't setup a different CDN with storefront URL, then just leave it blank. Otherwise, replace `hostname` with your actual Shopware CDN URL.                                                                 |
+| API_AUTH_SECRET_KEY *              | Provide your own arbitrary key here. This is used for authenticating requests against server-side endpoints (e.g. creating users).                          |
+| STORAGE_DRIVER                   | The storage driver to use in production. Please refer to the [Deployment](./deployment#deployment) section.                                                             |
+| STORAGE_HOST                     | The storage host to use in production. Please refer to the [Deployment](./deployment#deployment) section.                                                               |
+| STORAGE_PORT                     | The storage port to use in production. Please refer to the [Deployment](./deployment#deployment) section.                                                               |
+| STORAGE_PASSWORD                 | The storage password to use in production. Please refer to the [Deployment](./deployment#deployment) section.                                                           |
+| STORAGE_TLS                      | Use TLS for storage communication in production. Please refer to the [Deployment](./deployment#deployment) section.                                                     |
 
 ### Local SSL setup
 
