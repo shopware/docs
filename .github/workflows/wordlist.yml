@@ -17,6 +17,7 @@ jobs:
 
       - name: Sort .wordlist.txt
         run: |
+          sort --version
           sort .wordlist.txt -o .wordlist.txt
           if ! git diff --quiet .wordlist.txt; then
             git config user.name "github-actions[bot]"
