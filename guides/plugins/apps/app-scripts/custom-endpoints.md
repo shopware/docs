@@ -12,7 +12,7 @@ If you want to execute some logic in Shopware and trigger the execution over an 
 ## Manipulate HTTP-headers to API responses
 
 ::: info
-Note that the `response` hook was added in v6.6.10.3 and is not available in earlier versions.
+Note that the `response` hook was added in v6.6.10.4 and is not available in earlier versions.
 :::
 
 There is a specific `response` script hook, that allows you to manipulate the HTTP-headers of the response via app scripts.

@@ -526,15 +526,15 @@ All available hooks within the Store-API and API
 
 #### response
 
-| <!-- -->               | <!-- -->                                |
-|:-----------------------|:----------------------------------------|
-| **Name**               | response                         |
-| **Since**              | 6.6.10.0                        |
-| **Class**              | `Shopware\Core\Framework\Script\Api\ResponseHook`                      |
-| **Description**        | Triggered on every response<br>                  |
-| **Available Data**     | routeName: `string`<br>routeScopes: `array`<br>context: [`Shopware\Core\Framework\Context`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Context.php)<br>        |
-| **Available Services** |  |
-| **Stoppable**          | `false`                  |
+| <!-- -->               | <!-- -->                                                                                                                                                                        |
+|:-----------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**               | response                                                                                                                                                                        |
+| **Since**              | 6.6.10.4                                                                                                                                                                        |
+| **Class**              | `Shopware\Core\Framework\Script\Api\ResponseHook`                                                                                                                               |
+| **Description**        | Triggered on every response<br>                                                                                                                                                 |
+| **Available Data**     | routeName: `string`<br>routeScopes: `array`<br>context: [`Shopware\Core\Framework\Context`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Context.php)<br> |
+| **Available Services** |                                                                                                                                                                                 |
+| **Stoppable**          | `false`                                                                                                                                                                         |
 
 ### store-api-{hook}
 
