@@ -22,6 +22,7 @@ jobs:
           git diff --name-status origin/${{ github.base_ref }}...${{ github.head_ref }} | grep '^R' | grep '\.md$' > moved_files.txt || true
           if [ -s moved_files.txt ]; then
             echo "moved=true" >> $GITHUB_ENV
+            cat moved_files.txt
           else
             echo "moved=false" >> $GITHUB_ENV
           fi
