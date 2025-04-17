@@ -9,9 +9,41 @@ nav:
 
 If you want to execute some logic in Shopware and trigger the execution over an HTTP request or need some special data from Shopware over the API, you can create custom API endpoints in your app that allow you to execute a script when a request to that endpoint is made.
 
+## Manipulate HTTP-headers to API responses
+
 ::: info
-Note that custom endpoints with app scripts were introduced in Shopware 6.4.9.0 and are not supported in previous versions.
+Note that the `response` hook was added in v6.6.10.4 and is not available in earlier versions.
 :::
+
+There is a specific `response` script hook, that allows you to manipulate the HTTP-headers of the response via app scripts.
+This is especially useful to adjust the security headers to your needs.
+
+To add a custom header to every response, you can do the following:
+
+```twig
+// Resources/scripts/response/response.twig
+{% do hook.setHeader('X-Frame-Options', 'SAMEORIGIN') %}
+```
+
+Additionally, you can check the current value of a given header and adjust it accordingly:
+
+```twig
+// Resources/scripts/response/response.twig
+{% if hook.getHeader('X-Frame-Options') == 'DENY' %}
+    {% do hook.setHeader('X-Frame-Options', 'SAMEORIGIN') %}
+{% endif %}
+```
+
+You also have access to the route name of the current request and to the route scopes to control the headers for specific routes:
+
+```twig
+// Resources/scripts/response/response.twig
+{% if hook.routeName == 'frontend.detail.page' and hook.isInRouteScope('store-api') %}
+    {% do hook.setHeader('X-Frame-Options', 'SAMEORIGIN') %}
+{% endif %}
+```
+
+The possible route scopes are `storefront`, `store-api`, `api` and `administration`.
 
 ## Custom Endpoints
 
