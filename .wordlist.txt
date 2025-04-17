@@ -944,6 +944,7 @@ VueJs
 VueX
 Vuei
 Vuex
+WASM
 WCAG
 WSL
 WarehouseGroup
