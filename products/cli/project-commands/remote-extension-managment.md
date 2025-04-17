@@ -13,7 +13,7 @@ Shopware CLI has an extension manager to install and manage extensions in your S
 This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer](../../../guides/hosting/installation-updates/deployments/deployment-helper.md)
 :::
 
-To use the extension manager, you need a `.shopware-project.yml`, this can be created with the command `shopware-cli project config init`.
+To use the extension manager, you need a `.shopware-project.yml` or set environment variables. See here for more information about the [Project Configuration](./project-config-sync.md#setup).
 
 ::: warning
 Make sure you log in using your username and password to the CLI. The extension API can be used **only by users**.
