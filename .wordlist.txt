@@ -438,6 +438,8 @@ KV
 KeyDB
 Kibana
 Kubernetes
+LLM
+LLMs
 LONGTEXT
 LUA
 LandingPage
@@ -572,6 +574,7 @@ ObjectType
 OffCanvas
 OffcanvasCartPageLoadedEvent
 OldFeature
+Ollama
 Onboarding
 OneToMany
 OneToManyAssociation
@@ -581,6 +584,7 @@ OneToOneAssociation
 OneToOneAssociationField
 OpenAPI
 OpenApi
+OpenRouter
 OpenSSH
 OpenSSL
 OpenSearch

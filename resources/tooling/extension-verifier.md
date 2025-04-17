@@ -84,11 +84,46 @@ docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest ch
 
 The check command has multiple reporting options, you can use `--reporter` to specify the output format. The following formats are supported:
 
-- `summary` - default list of all errors and warnings
-- `json` - json output
-- `junit` - junit output
-- `github` - GitHub Actions output
-- `markdown` - markdown output
+| Format     | Description                             |
+|------------|-----------------------------------------|
+| `summary`  | default list of all errors and warnings |
+| `json`     | json output                             |
+| `junit`    | junit output                            |
+| `github`   | GitHub Actions output                   |
+| `markdown` | markdown output                         |
+
+## Running Specific Tools
+
+Instead of running all tools, you can choose to run specific tools using the `--only` flag. The following tools are available:
+
+| Tool           | Description                    |
+|----------------|--------------------------------|
+| `phpstan`      | PHP static analysis            |
+| `sw-cli`       | Shopware CLI validation checks |
+| `stylelint`    | CSS/SCSS linting               |
+| `admin-twig`   | Admin Twig template checks     |
+| `php-cs-fixer` | PHP code style fixing          |
+| `prettier`     | Code formatting                |
+| `eslint`       | JavaScript/TypeScript linting  |
+| `rector`       | PHP code refactoring           |
+
+You can run a single tool:
+
+```shell
+docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest check /ext --only phpstan
+```
+
+Or run multiple tools by separating them with commas:
+
+```shell
+docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest check /ext --only "phpstan,eslint,stylelint"
+```
+
+This is particularly useful when:
+
+- You want to focus on specific aspects of your code
+- You want to run only the relevant tools for the files you've changed
+- You want to fix issues one tool at a time
 
 ## Refactoring
 
@@ -103,6 +138,23 @@ docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest fi
 ```
 
 This will execute Rector and ESLint to refactor your code. You should review the changes made and decide if you want to keep them or not.
+
+## Experimental Twig upgrade using Large Language Models
+
+The Extension Verifier also includes an experimental feature to upgrade your Twig templates using Large Language Models (LLMs). This feature is experimental and should be only executed on code which is versioned in Git or similar.
+To use this feature, you can run the following command:
+
+```shell
+docker run --rm -v $(pwd):/ext ghcr.io/shopwarelabs/extension-verifier:latest twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro-exp-03-25
+```
+
+Extension Verifier supports right now multiple providers:
+
+- `gemini` - Google Gemini LLM (requires `GEMINI_API_KEY` environment variable)
+- `openrouter` - OpenRouter API (requires `OPENROUTER_API_KEY` environment variable)
+- `ollama` - Local Ollama (uses localhost by default, `OLLAMA_HOST` environment variable can be used to specify a different host)
+
+Our recommendation is to use Google Gemini 2.5 Pro, as it provides the best results for the upgrade.
 
 ## Validation ignores
 
@@ -132,6 +184,19 @@ All config files like `phpstan.neon`, and `.php-cs-fixer.dist.php` should be pla
 Ignoring errors works similar to extensions, in that case you can create a `.shopware-project.yaml` file in your project root with the same syntax.
 
 ## Common issues
+
+### Fixer does nothing for Shopware 6.7
+
+The fixers are enabled by the supported Shopware Version in the plugins `composer.json` file. For 6.7, you should change the composer constraint to this:
+
+```json
+{
+    "minimum-stability": "dev",
+    "require": {
+        "shopware/core": "~6.7.0"
+    }
+}
+```
 
 ### Missing classes in Storefront/Elasticsearch bundle
 
