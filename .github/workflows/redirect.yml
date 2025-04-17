@@ -1,0 +1,64 @@
+name: Detect Moved Markdown Files
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  detect-moved-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Detect moved markdown files
+        id: detect_moved_files
+        run: |
+          # Find moved markdown files in the PR
+          git diff --name-status origin/${{ github.base_ref }}...${{ github.head_ref }} | grep '^R' | grep '\.md$' > moved_files.txt || true
+          if [ -s moved_files.txt ]; then
+            echo "moved=true" >> $GITHUB_ENV
+            cat moved_files.txt
+          else
+            echo "moved=false" >> $GITHUB_ENV
+          fi
+
+      - name: Add "check-redirect" label
+        if: env.moved == 'true'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: check-redirect
+
+      - name: Add warning comment to PR
+        if: env.moved == 'true'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const commentBody = "⚠️ Moved markdown files detected. Please ensure redirects are updated in .gitbook.yaml file.";
+
+            // Get existing comments
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            // Check for existing comment with exact body
+            const alreadyExists = comments.some(comment => comment.body === commentBody);
+
+            if (!alreadyExists) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+            }
+

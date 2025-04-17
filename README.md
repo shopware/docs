@@ -39,7 +39,7 @@ The markdown files are checked with [markdown-lint](https://github.com/avto-dev/
 The markdown files are checked with [py-spelling](https://facelessuser.github.io/pyspelling/) to rectify spelling errors. The configuration for py-spelling can be found in [`.spellcheck.yml`](./.github/workflows/spellcheck.yml). To exclude a word from being spellchecked, add it to the [`.wordlist.txt`](./.wordlist.txt) file. Make sure to add the word at the right position, as the file doesn't automatically sort alphabetically. You can use the following command to sort the file:
 
 ```bash
-sort .wordlist.txt -o .wordlist.txt
+LC_ALL=C sort .wordlist.txt -o .wordlist.txt
 ```
 
 ### Media file format check

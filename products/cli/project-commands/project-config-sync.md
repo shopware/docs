@@ -31,6 +31,7 @@ If you don't want to store the credentials in the `shopware-project.yml` file, y
 - `SHOPWARE_CLI_API_CLIENT_SECRET` - The client secret for the API access
 - `SHOPWARE_CLI_API_USERNAME` - The username for the API access
 - `SHOPWARE_CLI_API_PASSWORD` - The password for the API access
+- `SHOPWARE_CLI_API_DISABLE_SSL_CHECK` - Disable SSL check for the API access
 
 Either you can fill `SHOPWARE_CLI_API_CLIENT_ID` and `SHOPWARE_CLI_API_CLIENT_SECRET` or `SHOPWARE_CLI_API_USERNAME` and `SHOPWARE_CLI_API_PASSWORD`.
 
