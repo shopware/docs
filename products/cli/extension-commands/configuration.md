@@ -46,12 +46,12 @@ When you edit that file in an editor, you will get autocompletion and hints for 
 
 Additionally, you can set environment variables to change the behavior of the CLI. The following environment variables are available:
 
-| Environment Variable           | Description                                                                                   |
-|-------------------------------|-----------------------------------------------------------------------------------------------|
-| CI                            | Detect CI environment                                                                         |
-| SHOPWARE_CLI_PREVIOUS_TAG     | Override previous Git tag detection with a previous tag used for Changelog generation         |
-| CI_PROJECT_URL                | GitLab CI project URL used for Changelog generation                                           |
-| SHOPWARE_CLI_NO_SYMFONY_CLI   | Disable Symfony CLI usage                                                                    |
-| APP_ENV                       | Application environment                                                                      |
-| SHOPWARE_PROJECT_ROOT         | Use this Shopware project to build the extension instead of setting up a new project         |
-| SHOPWARE_CLI_DISABLE_WASM_CACHE | Disable the WASM cache for PHP linting                                                                        |
+| Environment Variable            | Description                                                                           |
+|---------------------------------|---------------------------------------------------------------------------------------|
+| CI                              | Detect CI environment                                                                 |
+| SHOPWARE_CLI_PREVIOUS_TAG       | Override previous Git tag detection with a previous tag used for Changelog generation |
+| CI_PROJECT_URL                  | GitLab CI project URL used for Changelog generation                                   |
+| SHOPWARE_CLI_NO_SYMFONY_CLI     | Disable Symfony CLI usage                                                             |
+| APP_ENV                         | Application environment                                                               |
+| SHOPWARE_PROJECT_ROOT           | Use this Shopware project to build the extension instead of setting up a new project  |
+| SHOPWARE_CLI_DISABLE_WASM_CACHE | Disable the WASM cache for PHP linting                                                |
