@@ -434,6 +434,7 @@ JsonResponse
 KV
 KeyDB
 Kibana
+Kubernetes
 LONGTEXT
 LUA
 LandingPage
@@ -492,6 +493,7 @@ MailService
 MailStorer
 Mailcatcher
 Mailhog
+Mailpit
 MaintenancePage
 ManufacturerAttributeDataSet
 ManyToMany
@@ -583,6 +585,7 @@ Openapi
 Opensearch
 Opensearch's
 OrRule
+OrbStack
 OrderAware
 OrderCountRule
 OrderEntity
