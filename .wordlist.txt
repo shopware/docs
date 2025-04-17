@@ -9,6 +9,7 @@ APIs
 APM
 AUR
 AbstractCaptcha
+AbstractDocumentRenderer
 AbstractStockUpdateFilter
 Abzug
 AccountEditOrderPage
@@ -28,6 +29,7 @@ ActionButtons
 ActivateContext
 AdapterFactory
 AddCustomerTagActionTest
+AddDocumentType
 AddressBookWidget
 AddressDetailPage
 AddressListingPage
@@ -408,6 +410,7 @@ IdField
 IdSearchResult
 Ideate
 Iframe
+ImportTranslationsTrait
 Inclusivity
 IndexerService
 Init
@@ -518,6 +521,7 @@ MeteorAdminSDK
 Methodize
 Middleware
 MigrationCollection
+MigrationStep
 Minio
 Mixin
 Mixins
@@ -1333,6 +1337,7 @@ iconv
 ified
 iframe
 iframes
+importTranslation
 inclusivity
 incrementer
 incrementing
