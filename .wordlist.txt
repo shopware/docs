@@ -944,6 +944,7 @@ VueJs
 VueX
 Vuei
 Vuex
+WASM
 WCAG
 WSL
 WarehouseGroup
@@ -1825,4 +1826,3 @@ zipignore
 zlib
 zsh
 zstd
-WASM
