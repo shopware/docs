@@ -23,23 +23,9 @@ The main difference to other tools like Docker or a VM is that it neither uses c
 
 As devenv is built on top of Nix, first install Nix with the following command based on your OS:
 
-<Tabs>
-<Tab title="macOS / Linux / WSL2 (Windows)">
-
-```shell
+```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
-
-</Tab>
-
-<Tab title="Docker">
-
-```shell
-docker run -it nixos/nix
-```
-
-</Tab>
-</Tabs>
 
 #### Using Oh My ZSH?
 
@@ -66,14 +52,14 @@ You probably won't be able to use the commands below. Use the following steps to
 
 Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
 
-```shell
+```bash
 nix-env -iA cachix -f https://cachix.org/api/v1/install
 ```
 
 ::: info
 If this is the first time using cachix, you need to add your account to the trusted users:
 
-```shell
+```bash
 echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
 ```
 
@@ -81,7 +67,7 @@ echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkil
 
 Before installing devenv, instruct Cachix to use the devenv cache:
 
-```shell
+```bash
 cachix use devenv
 ```
 
@@ -89,13 +75,13 @@ cachix use devenv
 
 Finally, install devenv:
 
-```shell
+```bash
 nix-env -iA devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
 ```
 
 Before booting up your development environment, configure Cachix to use Shopware's cache:
 
-```shell
+```bash
 cachix use shopware
 ```
 
@@ -112,25 +98,25 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 
 First, change to a temporary nix shell providing all necessary packages for composer:
 
-```shell
+```bash
 nix-shell -p php82 php82Packages.composer
 ```
 
 In that shell, create a new project:
 
-```shell
+```bash
 composer create-project shopware/production <project-name>
 ```
 
 Change into the project folder you've just created:
 
-```shell
+```bash
 cd <project-name>
 ```
 
 Require devenv:
 
-```shell
+```bash
 composer require devenv
 ```
 
@@ -141,7 +127,7 @@ This will create a basic `devenv.nix` file to enable devenv support for Shopware
 <Tab title="shopware/shopware (Contribute)">
 Clone [shopware/shopware](https://github.com/shopware/shopware) and change into the project directory:
 
-```shell
+```bash
 git clone git@github.com:shopware/shopware.git
 ```
 
@@ -150,7 +136,7 @@ git clone git@github.com:shopware/shopware.git
 
 Since the environment is described via a `devenv.nix` file committed to version control, you can now boot up the environment:
 
-```shell
+```bash
 devenv up
 ```
 
@@ -180,21 +166,21 @@ ss -tulpn | grep ':80\|:3306\|:6379'
 
 Change your `.env` file to the correct database settings:
 
-```shell
+```bash
 # <PROJECT_ROOT>/.env
 DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
 ```
 
 Start a *new terminal*, navigate to the project directory and run the following command to launch a devenv shell.
-This shell includes all needed programs (php, composer, npm, node, etc.) to initialize Shopware:
+This shell includes all necessary programs (php, composer, npm, node, etc.) to initialize Shopware:
 
-```shell
+```bash
 devenv shell
 ```
 
 In the devenv shell, run the following command to initialize Shopware:
 
-```shell
+```bash
 bin/console system:install --basic-setup --create-database --force
 ```
 
@@ -605,7 +591,7 @@ And another example to use a specific version of rabbitmq-server
 
 If you decided against using direnv, keep in mind that on every change to the `*.nix` files you need to manually reload the environment. Run `exit` to quit the current devenv shell and enter the shell again to reload:
 
-```shell
+```bash
 devenv shell
 ```
 
@@ -618,13 +604,13 @@ This is a known issue, and the devenv developers are working on a solution.
 
 ### Fail to start Redis with locale other than en_US
 
-```shell
+```bash
 14:04:52 redis.1           | 364812:M 07 Nov 2023 14:04:52.999 # Failed to configure LOCALE for invalid locale name.
 ```
 
 You can export a different locale to your shell with the following command:
 
-```shell
+```bash
 export LANG=en_US.UTF8;
 ```
 
@@ -658,7 +644,7 @@ This comes in handy if you want to configure interpreters in your IDE.
 
 In case you can't find and stop running devenv processes, you can use the following command to kill them:
 
-```shell
+```bash
 kill $(ps -ax | grep /nix/store | grep -v "grep" | awk '{print $1}')
 ```
 
@@ -670,6 +656,6 @@ Try using <http://localhost:8000> instead. This mostly applies to when using WSL
 
 Run the below command:
 
-```shell
+```bash
 composer setup && APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
 ```

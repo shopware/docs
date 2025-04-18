@@ -12,6 +12,8 @@ For general information about running a Nuxt application in production, refer to
 In addition, the Sales Agent is using a configurable storage adapter for persisting data (`server/infrastructure/StorageAdapter.ts`). During local development, there is a file-based fallback storage adapter. However, in production, you need to configure a proper storage adapter.
 The corresponding configuration can be found in `nuxt.config.ts` in the `nitro.storage` object.
 
+For the usage, please read the [nitro unstorage documentation](https://nitro.build/guide/storage).
+
 For a list of supported storage drivers and more detailed information, please refer to the [unstorage documentation](https://unstorage.unjs.io/).
 
 ## Production build
