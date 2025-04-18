@@ -4,13 +4,6 @@ date: 2024-07-30
 area: core
 tags: [core, profile, performance, datadog, metrics, monitoring]
 ---
-
-# Telemetry abstraction layer
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-07-30-add-telemetry-abstraction-layer.md)
-:::
 ## Context
 
 Observability is a key aspect of modern software development. It is essential to have the right tools in place to monitor and analyze runtime statistics of the application.

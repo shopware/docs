@@ -5,13 +5,6 @@ area: core
 tags: [decoration, plugin, interface, abstraction]
 ---
 
-# Decoration pattern
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2020-11-25-decoration-pattern.md)
-:::
-
 ## Context
 
 There are currently two different patterns that are applied in the platform to allow the decoration of services. 

@@ -5,13 +5,6 @@ area: data-services
 tags: ['entity', 'usage-data', 'ai', 'machine-learning']
 ---
 
-# Collecting and dispatching entity data
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-08-03-collecting-entity-data.md)
-:::
-
 ## Context
 *shopware AG* aims to provide data-driven features to its merchants.
 The foundation for these features are data that our merchants provide to us with their consent.

@@ -5,13 +5,6 @@ area: core
 tags: [core, rules]
 ---
 
-# Make Rule classes final
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-01-29-make-rule-classes-final.md)
-:::
-
 ## Context
 The existing rule system is flexible but complex, making it difficult to evolve and maintain. Allowing unrestricted extensions of rule classes slows down improvements and increases the complexity of the system.
 

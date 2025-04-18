@@ -5,13 +5,6 @@ area: Frontend Development
 tags: [vue, migration, codemod, eslint, composition-api]
 ---
 
-# Vue 2 Options API to Vue 3 Composition API Conversion Codemod
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-10-02-vue-2-options-api-to-vue-3-composition-api-conversion-codemod.md)
-:::
-
 ## Context
 
 Our Vue.js application currently uses the Options API, which is the traditional way of writing Vue components in Vue 2. With the release of Vue 3, the Composition API was introduced, offering improved code organization, better TypeScript support, and enhanced reusability of component logic. For more detailed information about the reasons for migrating to the Composition API, see the [documentation entry](/docs/guides/plugins/plugins/administration/system-updates/vue-native.html).

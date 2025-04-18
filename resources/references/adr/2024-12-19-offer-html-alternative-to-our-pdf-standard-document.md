@@ -5,13 +5,6 @@ area: accessibility
 tags: [a11y, pdf, html]
 ---
 
-# "[A11y] Offer HTML alternative to our pdf standard documents"
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-12-19-offer-html-alternative-to-our-pdf-standard-document.md)
-:::
-
 ## Context
 
 To comply with Web Content Accessibility Guidelines (WCAG), we aim to make Shopware 6's document solution accessible (A11y-compliant). This ensures that our solution remains usable while meeting legal requirements and making documents accessible to customers with disabilities. 
