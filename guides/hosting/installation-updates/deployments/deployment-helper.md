@@ -101,6 +101,7 @@ Additionally, you can configure the Shopware installation using the following en
 - `INSTALL_ADMIN_USERNAME` - The username of the admin user (default: `admin`)
 - `INSTALL_ADMIN_PASSWORD` - The password of the admin user (default: `shopware`)
 - `SALES_CHANNEL_URL` - The URL of the Storefront sales channel (default: `http://localhost`)
+- `SHOPWARE_DEPLOYMENT_TIMEOUT` - The timeout allowed for setup commands, that are executed (default: `300`)
 - `SHOPWARE_STORE_ACCOUNT_EMAIL` - The email address of the Shopware account
 - `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
 - `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
