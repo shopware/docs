@@ -118,7 +118,7 @@ The Docker image contains the following PHP extensions: `bcmath`, `gd`, `intl`, 
 
 This table contains only the environment variables that are specific to the Shopware Docker image. You can see all Shopware specific environment variables [here](../configurations/shopware/environment-variables.md)
 
-Additionally, you can use also the [Deployment Helper environment variables](./deployments//deployment-helper.md#environment-variables) to specify default administration credentials, locale, currency, and sales channel URL.
+Additionally, you can use also the [Deployment Helper environment variables](./deployments/deployment-helper.md#environment-variables) to specify default administration credentials, locale, currency, and sales channel URL.
 
 ## Possible Mounts
 
