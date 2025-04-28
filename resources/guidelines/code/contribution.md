@@ -30,7 +30,7 @@ Here is a checklist of requirements you should always consider when committing n
   It should always target the `trunk` branch.
   If you would like to have your changes in the previous major version, we have the possibility to do a backport quite easily.
   Let us know about this in the pull request description.
-* Check if your implementation is missing some important parts - For example, translations, backwards compatibility, deprecations etc.
+* Check if your implementation is missing some important parts - For example, translations, backwards compatibility, deprecations, etc.
 * Provide tests for your implementation.
 * Check if there is already an existing pull request tackling the same issue.
 * Write your commit messages in English. The individual commit messages in the PR are not critical since the PR will be squashed on merge.
@@ -68,7 +68,7 @@ The PR will be automatically squashed when merged.
 
 ::: tip
 Allow us to make changes to your PR.
-This will help getting the PR merged faster, as we can fix small issues ourselves.
+This will help merge the PR faster, as we can fix minor issues ourselves.
 Refer to the [GitHub Docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork) on how to do it.
 :::
 
