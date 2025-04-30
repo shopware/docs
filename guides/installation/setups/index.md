@@ -17,7 +17,7 @@ Head over to the [Requirements](../requirements) section to install and configur
 Technically there is no real difference between a Development Setup and a Production Setup, they only differ on performance and security optimizations.
 :::
 
-* [Docker](docker) - This is a Docker setup for Shopware 6. It is a lightweight and easy way to get started with Shopware. It uses Docker Compose to manage the services and is suitable for local development.
+* [Docker](docker) (beginner-friendly) - This is a Docker setup for Shopware 6. It is a lightweight and easy way to get started with Shopware. It uses Docker Compose to manage the services and is suitable for local development.
 
 * [Symfony CLI](symfony-cli) - This setup uses the Symfony CLI to run Shopware. It is the default way to run Symfony applications and is also suitable for Shopware.
 
