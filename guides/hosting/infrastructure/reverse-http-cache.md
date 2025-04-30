@@ -198,5 +198,3 @@ The Reverse Proxy Cache shares the same invalidation mechanism as the Object Cac
 ::: warning
 `bin/console cache:clear` will also clear the HTTP cache. If this is not intended, you should manually delete the `var/cache` folder. The object cache can be cleared with `bin/console cache:pool:clear --all` explicitly.
 :::
-
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"7cbcd99d05391bc2f411ff33c315f089"} -->
