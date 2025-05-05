@@ -1,7 +1,7 @@
 ---
 nav:
    title: AWS
-   position: 10
+   position: 20
 
 ---
 
