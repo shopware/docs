@@ -54,4 +54,30 @@ To simplify the plugin migration process, we provide codemods that automatically
    - Automatically replace compatible components with Meteor Components
    - Add guidance comments for components that require manual migration
    - Fixes some other deprecated code where possible
-  
+
+## Supporting Extension Developers
+
+To support extension developers and ensure compatibility between Shopware 6.6 and Shopware 6.7, a new prop called `deprecated` has been added to Shopware components.
+
+- **Prop Name**: `deprecated`
+- **Default Value**: `false` (uses the new Meteor Components by default)
+- **Purpose**:
+  - When `deprecated` is set to `true`, the component will render the old (deprecated) version instead of the new Meteor Component.
+  - This allows extension developers to maintain a single codebase compatible with both Shopware 6.6 and 6.7 without being forced to immediately migrate to Meteor Components.
+
+Example:
+
+```html
+<!-- Uses mt-button in 6.7 and sw-button-deprecated in 6.6 -->
+<template>
+  <sw-button />
+</template>
+
+
+<!-- Uses sw-button-deprecated in 6.6 and 6.7 -->
+<template>
+  <sw-button deprecated />
+</template>
+```
+
+> **Important:** Although the old components can still be used with the `deprecated` prop, we highly recommend migrating to Meteor Components whenever possible to align with future Shopware development.
