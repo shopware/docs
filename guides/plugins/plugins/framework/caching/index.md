@@ -43,7 +43,7 @@ class CacheKeySubscriber implements EventSubscriberInterface
     
     public function addKeyPart(HttpCacheKeyEvent $event): void
     {
-        $request = $event->getRequest();
+        $request = $event->request;
         // Perform checks to determine the key
         $key = $this->determineKey($request);
         $event->add('myCustomKey', $key);
