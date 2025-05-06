@@ -19,4 +19,4 @@ The service is responsible for streaming a video between the attendees.
 - Visit the “developers” section on the left
 - Copy the *API KEY* and paste it [here](../configuration/plugin-config.md#video-and-audio)
 
-![ ](../../../assets/products-digitalSalesRooms-videoConfig.png)
+![DailyAPIConfig](../../../assets/products-digitalSalesRooms-videoConfig.png)

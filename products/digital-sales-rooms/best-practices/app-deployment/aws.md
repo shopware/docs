@@ -24,7 +24,7 @@ In this chapter, you will learn how to deploy the frontend source code to [AWS A
 * Choose a name for your app and make sure build settings are auto-detected.
 * Set Environment variables under the Advanced Settings section.
   * Add `SHOPWARE_STORE_API`, `SHOPWARE_ADMIN_API`, `SHOPWARE_STORE_API_ACCESS_TOKEN`, `SHOPWARE_STOREFRONT_URL`, `ORIGIN` variables with appropriate values.
-* Confirm configuration and click on "Save and Deploy".
+* Confirm the configuration and click on "Save and Deploy".
 
 ## Custom domain
 

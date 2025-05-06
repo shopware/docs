@@ -8,13 +8,13 @@ nav:
 # Frontend App Installation
 
 ::: warning
-After finish install the plugin into Shopware platform, we will run & connect the frontend template with Shopware platform.
+After finishing the installation of the plugin in Shopware, we will run and connect the frontend template with Shopware.
 The frontend template is built based on the Shopware Frontends framework, so it inherits from Shopware Frontends & Nuxt 3 concepts.
 :::
 
 ## Get the frontend template
 
-* From the *Digital Sales Rooms* plugin, you can find the dsr-frontends folder by:
+* From the **Digital Sales Rooms** plugin, you can find the dsr-frontends folder by:
 
 ```shell
 cd ./templates/dsr-frontends
@@ -93,4 +93,4 @@ pnpm build
 
 After build code, please read [here](../best-practices/app-deployment/index.md) for how to make the deployment.
 
-The Following section guides you on 3rd parties setup procedure.
+The Following section guides you to 3rd party setup procedures.

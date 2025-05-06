@@ -12,11 +12,11 @@ Digital Sales Rooms plugin is a licensed plugin. If you already know how to inst
 :::
 
 ::: warning
-As part of the Shopware Beyond plan, the Digital Sales Rooms is available to you as an extension.
+As part of the Shopware Beyond plan, the **Digital Sales Rooms** is available to you as an extension.
 Same with other plugins, you have multiple ways to install the plugin via composer, direct download or through your Shopware Account.
 :::
 
-In this part, we will learn how to get and install the *Digital Sales Rooms* plugin into local Shopware instance.
+In this part, we will learn how to get and install the **Digital Sales Rooms** plugin into local Shopware instance.
 
 ## Get the plugin
 
@@ -44,7 +44,7 @@ To install a plugin via composer, follow these steps:
 
 ## Install & activate the plugin
 
-Once you fetched the plugin, you can run the below Symfony commands for activate plugin:
+Once you fetch the plugin, you can run the Symfony commands below for activating the plugin:
 
 ```bash
 # refresh the list of available plugins

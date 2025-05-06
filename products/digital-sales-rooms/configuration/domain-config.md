@@ -12,15 +12,15 @@ When you run the frontend app server, you will always have a specific domain (eg
 
 # Domain Configuration for frontend app
 
-This section will show you how to add these domains to sales channel.
+This section will show you how to add these domains to a sales channel.
 
 ## Setup domains for Digital Sales Rooms
 
 ::: warning
-Please redeploy or rerun your frontend app to apply the domains changes into it.
+Please redeploy or rerun your frontend app to apply the domain changes into it.
 :::
 
-- After specifying the sales channel, head to the *Domains section* and add appropriate *Digital Sales Rooms* domains with  appropriate languages. *Digital Sales Rooms* can switch languages by the path, you can choose your domain path represents for a language. Here is our recommendation:
+- After specifying the sales channel, head to the *Domains section* and add appropriate *Digital Sales Rooms* domains with appropriate languages. *Digital Sales Rooms* can switch languages by the path, you can choose your domain path represents for a language. Here is our recommendation:
 
 ```text
 https://dsr.shopware.io - English

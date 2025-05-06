@@ -7,7 +7,7 @@ nav:
 
 # Plugin Configuration
 
-There are a lot of settings on the configuration page, but most of them are already filled by default. However, there are some settings that need to be setup.
+There are a lot of settings on the configuration page, but most of them are already filled by default. However, there are some settings that need to be set up.
 
 ## Navigate to the configuration page
 
@@ -19,7 +19,7 @@ Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configurat
 
 ### Appointments
 
-- *Available domains* - This select box shows the list of domains of all sales channel. You should choose the *Digital Sales Rooms* domains from [this section](./domain-config.md)
+- *Available domains* - This select box shows the list of domains of all sales channels. You should choose the *Digital Sales Rooms* domains from [this section](./domain-config.md)
 
 ### Video and Audio
 
