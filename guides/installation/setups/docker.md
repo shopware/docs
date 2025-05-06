@@ -85,7 +85,7 @@ To build the Administration or Storefront, you can run the following commands:
 
 ```bash
 # Build the administration
-make build-admin
+make build-administration
 
 # Build the storefront
 make build-storefront
