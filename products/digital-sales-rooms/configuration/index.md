@@ -7,4 +7,4 @@ nav:
 
 # Digital Sales Rooms Configuration
 
-This section will show how to configure *Digital Sales Rooms* plugin. Following sections gives you a detailed procedure of configuration.
+This section will show how to configure *Digital Sales Rooms* plugin. The Following sections will give you a detailed procedure of configuration.
