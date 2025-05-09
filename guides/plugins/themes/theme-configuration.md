@@ -79,7 +79,7 @@ Let's have a closer look at each section.
 }
 ```
 
-Here change the `name` of your theme and the `author`. The `description` section is optional and as you notice it is also translatable.
+Here change the `name` of your theme and the `author`. It is recommended to choose a name in camel case. The `description` section is optional and as you notice it is also translatable.
 
 The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance) guide.
 
@@ -186,7 +186,8 @@ The following parameters can be defined for a config field item:
 
 | Name | Meaning |
 | :--- | :--- |
-| `label` | Array of translations with locale code as key |
+| `label` | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
+| `helpText` | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
 | `type` | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url |
 | `editable` | If set to false, the config option will not be displayed \(e.g. in the Administration\) |
 | `tab` | Name of a tab to organize the config options |
@@ -196,11 +197,101 @@ The following parameters can be defined for a config field item:
 | `scss` | If set to false, the config option will not be injected as a SCSS variable |
 | `fullWidth` | If set to true, the Administration component width will be displayed in full width |
 
+### Translations in Theme Manager
+
+Since the translations in `theme.config` are only used by the Theme Manager in the administration, we decided to use snippet keys for translating the configuration in order to ensure inheritance.
+
+Each snippet key begins with `sw-theme`, followed by the theme’s technical name in kebab case. It then includes the names of the relevant `tab`, `block`, `section`, and `field`. If you're translating field options, a numeric index is added to the snippet path. If any of these elements are unnamed, `default` will be used as the replacement in the key.
+
+At the end of the key, you append `label`. For fields, you may alternatively use `helpText` instead of `label`.
+
+This results in the following key structure:
+
+- **Tab**: `sw-theme.<technicalName>.<tabName>.label`
+- **Block**: `sw-theme.<technicalName>.<tabName>.<blockName>.label`
+- **Section**: `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.label`
+- **Field**:  
+  - `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.label`  
+  - `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.helpText`
+- **Option**: `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.<index>.label`
+
+#### Example
+
+Assuming your `theme.json` is structured as follows:
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "Just another theme",
+  // ...
+  "config": {
+    "fields": {
+      "my-single-select-field": {
+        "type": "text",
+        "value": "24",
+        "custom": {
+          "componentName": "sw-single-select",
+          "options": [
+            {
+              "value": "16"
+            },
+            {
+              "value": "20"
+            },
+            {
+              "value": "24"
+            }
+          ]
+        },
+        "editable": true,
+        "block": "exampleBlock",
+        "section": "exampleSection"
+      }
+    }
+  }
+}
+```
+
+This would generate the following snippet keys:
+
+- **Tab**: `sw-theme.just-another-theme.default.label`
+- **Block**: `sw-theme.just-another-theme.default.exampleBlock.label`
+- **Section**: `sw-theme.just-another-theme.default.exampleBlock.exampleSection.label`
+- **Field**:  
+  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.label`  
+  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.helpText`
+- **Option**:  
+  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.0.label`  
+  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.1.label`  
+  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.2.label`
+
 ## Field types
 
 You can use different field types in your theme manager:
 
 A text field example:
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  ...
+  "config": {
+    "fields": {
+      "modal-padding": {
+        "type": "text",
+        "value": "(0, 0, 0, 0)",
+        "editable": true
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -222,7 +313,38 @@ A text field example:
 }
 ```
 
+</Tab>
+</Tabs>
+
 A number field example:
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  ...
+  "config": {
+    "fields": {
+      "visible-slides": {
+        "type": "number",
+        "custom": {
+          "numberType": "int",
+          "min": 1,
+          "max": 6
+        },
+        "value": 3,
+        "editable": true
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -249,7 +371,51 @@ A number field example:
 }
 ```
 
+</Tab>
+</Tabs>
+
 Two boolean field examples:
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  ...
+  "config": {
+    "fields": {
+      "navigation-fixed": {
+        "type": "switch",
+        "value": true,
+        "editable": true
+      }
+    }
+  }
+}
+```
+
+or
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  ...
+  "config": {
+    "fields": {
+      "navigation-fixed": {
+        "type": "checkbox",
+        "value": true,
+        "editable": true
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -293,9 +459,74 @@ or
 }
 ```
 
+</Tab>
+</Tabs>
+
 ## Examples for custom config fields
 
 A custom single-select field example
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "Just another theme",
+  "author": "Just another author",
+  "description": {
+    "en-GB": "Just another description",
+    "de-DE": "Nur eine weitere Beschreibung"
+  },
+  "views": [
+    "@Storefront",
+    "@Plugins",
+    "@SelectExample"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/select-example/select-example.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ],
+  "config": {
+    "fields": {
+      "my-single-select-field": {
+        "type": "text",
+        "value": "24",
+        "custom": {
+          "componentName": "sw-single-select",
+          "options": [
+            {
+              "value": "16"
+            },
+            {
+              "value": "20"
+            },
+            {
+              "value": "24"
+            }
+          ]
+        },
+        "editable": true,
+        "block": "exampleBlock",
+        "section": "exampleSection"
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -384,9 +615,80 @@ A custom single-select field example
 }
 ```
 
+</Tab>
+</Tabs>
+
 ![Example of a custom single-select field](../../../assets/example-single-select-config.png)
 
 A custom multi-select field example
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "Just another theme",
+  "author": "Just another author",
+  "description": {
+    "en-GB": "Just another description",
+    "de-DE": "Nur eine weitere Beschreibung"
+  },
+  "views": [
+    "@Storefront",
+    "@Plugins",
+    "@SelectExample"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/select-example/select-example.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ],
+  "config": {
+    "fields": {
+      "my-multi-select-field": {
+        "type": "text",
+        "editable": true,
+        "value": [
+          "green",
+          "blue"
+        ],
+        "custom": {
+          "componentName": "sw-multi-select",
+          "options": [
+            {
+              "value": "green"
+            },
+            {
+              "value": "red"
+            },
+            {
+              "value": "blue"
+            },
+            {
+              "value": "yellow"
+            }
+          ]
+        },
+        "block": "exampleBlock",
+        "section": "exampleSection"
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -485,6 +787,9 @@ A custom multi-select field example
 }
 ```
 
+</Tab>
+</Tabs>
+
 ![Example of a custom multi-select field](../../../assets/example-multi-select-config.png)
 
 ## Tabs, blocks and sections
@@ -494,6 +799,34 @@ You can use tabs, blocks and sections to structure and group the config options.
 ![Example of tabs, blocks and sections](../../../assets/theme-config.png)
 
 In the picture above are four tabs. In the "Colours" tab there is one block "Theme colours" which contains two sections named "Important colors" and "Other". You can define the block and section individually for each item. Example:
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "Just another theme",
+  "author": "Just another author",
+
+  "config": {
+    "fields": {
+      "sw-color-brand-primary": {
+        "type": "color",
+        "value": "#399",
+        "editable": true,
+        "tab": "colors",
+        "block": "themeColors",
+        "section": "importantColors"
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -520,9 +853,40 @@ In the picture above are four tabs. In the "Colours" tab there is one block "The
 }
 ```
 
+</Tab>
+</Tabs>
+
 The tab and section property is not required.
 
 You can extend the config to add translated labels for the tabs, blocks and sections:
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "Just another theme",
+  "author": "Just another author",
+
+  "config": {
+    "fields": {
+      "sw-color-brand-primary": {
+        "type": "color",
+        "value": "#399",
+        "editable": true,
+        "tab": "colors",
+        "block": "themeColors",
+        "section": "importantColors"
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -573,6 +937,9 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 }
 ```
 
+</Tab>
+</Tabs>
+
 ## Config inheritance
 
 The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration and snippets. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
@@ -597,5 +964,5 @@ All configuration fields and their values from the mentioned themes in `configIn
 
 Now that you know how to configure your theme, here is a list of things you can do.
 
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
-* [Customize Templates](../plugins/storefront/customize-templates)
+- [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
+- [Customize Templates](../plugins/storefront/customize-templates)
