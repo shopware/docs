@@ -35,5 +35,3 @@ Review the below minimum operating requirements before you install the *Digital 
 * Third party services:
   * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
   * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](./setup-3rd-party/realtime-service-mercure.md)
-  
-Following section guides you on the installation procedure.

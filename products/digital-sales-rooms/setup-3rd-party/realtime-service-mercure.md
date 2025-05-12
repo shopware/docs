@@ -44,8 +44,8 @@ You can clone our [local-mercure-sample](https://github.com/shopware/local-mercu
 
 After init mercure hub, let's make it more secure with your information:
 
-- *Set up CORS allowed origins* - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: `http://localhost:3000` (frontend domain).
-- *Set up publish allowed origins* - The domains that request the Mercure service must be added to publish allowed origins or else it gets rejected. For instance (HTTP protocol must not be included): `http://localhost:3000`  (frontend domain) and `http://localhost:8000` (backend API domain).
+- *Set up CORS allowed origins* - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: `https://dsr.shopware.io` (frontend domain).
+- *Set up publish allowed origins* - The domains that request the Mercure service must be added to publish allowed origins or else it gets rejected. For instance (HTTP protocol must not be included): `https://dsr.shopware.io` (frontend domain) and `https://shopware.store` (backend API domain).
 - *Set up the publisher (JWT) key* - Set whatever you want.
 - *Set up the subscriber (JWT) key* - Set whatever you want.
 
