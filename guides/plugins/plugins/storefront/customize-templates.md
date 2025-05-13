@@ -79,7 +79,7 @@ To override it now, just add the very same block into your custom file and repla
 {% endblock %}
 ```
 
-If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: `{{ parent() }}`
+If you wanted to append your text to the logo instead of replacing it, you could add a line like this to your override: <code v-pre>{{ parent() }}</code>
 
 And that's it already, you're done.
 You might have to clear the cache and refresh your storefront to see your changes in action.
