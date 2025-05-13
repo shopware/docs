@@ -9,13 +9,13 @@ nav:
 
 ## Overview
 
-In this guide you will learn how to create custom pagelets for your Storefront pages.
+In this guide, you will learn how to create custom pagelets for your Storefront pages.
 
 In short: Pages are exactly that, a fully functioning page of your store with a template loaded by a route. A pagelet is an important and reusable fraction of several pages, such as a footer or the navigation.
 
 ## Prerequisites
 
-In order to add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page).
+To add your own custom pagelet for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide). Since a pagelet is just part of another page, we are going to use the page created in our guide about [adding a custom page](add-custom-page).
 
 ## Adding custom pagelet
 
@@ -190,7 +190,7 @@ And then that's it, you've loaded your pagelet as part of another page.
 ### Loading the pagelet via route
 
 As already mentioned, a pagelet can be loaded via a route if you want it to.
-For that case, you can simply add a new route to your controller and load the pagelet via the `ExamplePageletLoader`:
+For that case, you can add a new route to your controller and load the pagelet via the `ExamplePageletLoader`:
 
 ```php
 #[Route(path: '/example-pagelet', name: 'frontend.example.pagelet', methods: ['POST'], defaults: ['XmlHttpRequest' => 'true'])]
@@ -204,4 +204,4 @@ public function examplePagelet(Request $request, SalesChannelContext $context): 
 }
 ```
 
-Using the part `defaults: ['XmlHttpRequest' => true]` in the attribute ensures, that this pagelet can be loaded using an XML HTTP Request.
+Using the part `defaults: ['XmlHttpRequest' => true]` in the attribute ensures that this pagelet can be loaded using an XML HTTP Request.
