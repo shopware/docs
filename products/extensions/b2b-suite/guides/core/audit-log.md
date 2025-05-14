@@ -7,7 +7,7 @@ nav:
 
 # Audit Log
 
-[Download](../../../../../../products/extensions/b2b/b2b-suite/guides/example-plugins/B2bAcl.zip) a plugin showcasing the topic.
+[Download](../example-plugins/B2bAcl.zip) a plugin showcasing the topic.
 
 ## Description
 

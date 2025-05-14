@@ -115,4 +115,4 @@ But there are certain specials to this:
 
 ## Download
 
-Refer here for [simple example plugin](../../../../../../products/extensions/b2b/b2b-suite/guides/example-plugins/B2bAcl.zip).
+Refer here for [simple example plugin](../example-plugins/B2bAcl.zip).
