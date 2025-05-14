@@ -50,6 +50,20 @@ To exclude specific:
 shopware-cli project admin-watch --skip-extensions <name>,<second>....
 ```
 
+### Building only custom extensions
+
+When working with a lot of 3rd party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
+This is unnecessary, because store extensions are shipped together withtheir assets.
+
+Use
+
+```bash
+shopware-cli project storefront-build --only-custom-static-extensions
+shopware-cli project admin-build --only-custom-static-extensions
+```
+
+to build only extensions in the `custom/static-plugins` folder of your project, which are usually not shipping the assets.
+
 ## Worker
 
 Usually you have to start the worker with `bin/console messenger:consume` in the project root directory. But if you want to have more than one worker at once, it gets a bit tricky. Shopware CLI has a helper command for that:
