@@ -53,7 +53,7 @@ shopware-cli project admin-watch --skip-extensions <name>,<second>....
 ### Building only custom extensions
 
 When working with a lot of 3rd party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
-This is unnecessary, because store extensions are shipped together withtheir assets.
+This is unnecessary, because store extensions are shipped together with their assets.
 
 Use
 
