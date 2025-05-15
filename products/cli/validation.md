@@ -7,7 +7,7 @@ nav:
 
 ## Validation
 
-Shopware CLI has a built-in validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
+Shopware CLI has built-in validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
 
 ## Validating an extension
 
@@ -33,16 +33,16 @@ docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate /ext
 
 </Tabs>
 
-The path can be absolute or relative to the directory containing the extension or the zip file. The command exists with a non-zero exit code if the validation fails with an error level message.
+The path can be absolute or relative to the directory containing the extension or the zip file. The command exits with a non-zero exit code if the validation fails with an error-level message.
 
 ## What is validated in basic mode?
 
-- The `composer.json` has an `shopware/core` requirement and constraint is parsable
+- The `composer.json` has a `shopware/core` requirement and the constraint is parsable
 - The extension metadata is filled with:
   - `name`
   - `label` (German and English)
   - `description` (German and English) and longer than 150 characters and shorter than 185 characters
-- Translations have equality translated in the given languages
+- Translations have equal content in the given languages
 - PHP can be correctly linted with the minimum PHP version
 - The `theme.json` can be parsed and included assets can be found
 - All translations are translated in all given languages
@@ -56,11 +56,11 @@ The following PHP versions are supported for linting:
 - 8.1
 - 8.2
 
-These versions don't need to be installed locally, they are downloaded on demand and executed using WebAssembly without any dependencies.
+These versions don't need to be installed locally; they are downloaded on demand and executed using WebAssembly without any dependencies.
 
 ## Running all validation tools
 
-By default, only few tools are run, but you can run all tools by using the `--full` option. This will run all available tools and check your extension against the latest Shopware version.
+By default, only a few tools are run, but you can run all tools by using the `--full` option. This will run all available tools and check your extension against the latest Shopware version.
 
 <Tabs>
 <Tab title="Without Docker">
@@ -81,7 +81,7 @@ docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate --full /
 
 </Tabs>
 
-It will check by default to the latest allowed Shopware version by your constraints in `composer.json`. It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. You can do this by using the `--check-against` option:
+By default, it will check against the latest allowed Shopware version according to your constraints in `composer.json`. It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. You can do this by using the `--check-against` option:
 
 <Tabs>
 
@@ -172,7 +172,7 @@ This is particularly useful when:
 
 ## Validation ignores
 
-In case you want to ignore errors or warnings, you can create a `.shopware-extension.yaml` file in your extension root with the following content:
+If you want to ignore errors or warnings, you can create a `.shopware-extension.yaml` file in your extension root with the following content:
 
 ```yaml
 validation:
@@ -191,11 +191,11 @@ validation:
 
 ## Scanning a project
 
-It's possible to scan an entire project instead of just a single extension. This is useful if you want to check all extensions in your project at once. You can do this by passing a path to the project root instead of the extension path.
+It's possible to scan an entire project instead of just a single extension. This is useful if you want to check all extensions in your project at once. You can do this by passing the path to the project root instead of the extension path.
 
-All config files like `phpstan.neon`, and `.php-cs-fixer.dist.php` should be placed in the project root for proper configuration for overriding the default settings. The Verifier will automatically detect the config files and use them for the checks.
+All config files like `phpstan.neon` and `.php-cs-fixer.dist.php` should be placed in the project root for proper configuration or to override the default settings. The Verifier will automatically detect the config files and use them for the checks.
 
-Ignoring errors works similar to extensions, in that case you can create a `.shopware-project.yaml` file in your project root with the same syntax.
+Ignoring errors works similarly to extensions; in that case, you can create a `.shopware-project.yaml` file in your project root with the same syntax.
 
 ## Common issues
 
@@ -214,4 +214,4 @@ The fixers are enabled by the supported Shopware Version in the plugins `compose
 
 ### Missing classes in Storefront/Elasticsearch bundle
 
-Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or Elasticsearch Bundle, and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development, and PHPStan can recognize the files.
+Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development and PHPStan can recognize the files.

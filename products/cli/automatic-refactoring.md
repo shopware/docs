@@ -7,7 +7,7 @@ nav:
 
 # Automatic refactoring
 
-Shopware-CLI comes with an built-in automatic refactoring tool for PHP, JavaScript and Admin Twig files.
+Shopware-CLI comes with a built-in automatic refactoring tool for PHP, JavaScript, and Admin Twig files.
 
 It uses the tools:
 
@@ -15,7 +15,7 @@ It uses the tools:
 - [ESLint](https://eslint.org/) for JavaScript
 - Custom rules for Admin Twig files
 
-## Refactoring a extension
+## Refactoring an extension
 
 ::: warning
 Make sure you have a copy of your extension before running the command, as it will change your files!
@@ -63,13 +63,13 @@ docker run --rm -v $(pwd):/ext shopware/shopware-cli project fix /project
 
 </Tabs>
 
-This will execute Rector and ESLint to refactor your code. You should review the changes made and decide if you want to keep them or not.
+This will execute Rector and ESLint to refactor your code. You should review the changes made and decide whether you want to keep them or not.
 
-Make sure that you have adjusted the `shopware/core` requirement in the `composer.json` file of your extension to the version you want to upgrade to. It will use the lowest supported version you're Composer constraint is compatible with.
+Make sure that you have adjusted the `shopware/core` requirement in the `composer.json` file of your extension to the version you want to upgrade to. It will use the lowest supported version your Composer constraint is compatible with.
 
 ## Experimental Twig upgrade using Large Language Models
 
-The Extension Verifier also includes an experimental feature to upgrade your Twig templates using Large Language Models (LLMs). This feature is experimental and should be only executed on code which is versioned in Git or similar.
+The Extension Verifier also includes an experimental feature to upgrade your Twig templates using Large Language Models (LLMs). This feature is experimental and should only be executed on code that is versioned in Git or similar.
 To use this feature, you can run the following command:
 
 <Tabs>
@@ -92,7 +92,7 @@ docker run --rm -v $(pwd):/ext shopware/shopware-cli extension ai twig-upgrade /
 
 </Tabs>
 
-Extension Verifier supports right now multiple providers:
+Extension Verifier currently supports multiple providers:
 
 - `gemini` - Google Gemini LLM (requires `GEMINI_API_KEY` environment variable)
 - `openrouter` - OpenRouter API (requires `OPENROUTER_API_KEY` environment variable)

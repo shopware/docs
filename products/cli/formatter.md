@@ -7,11 +7,11 @@ nav:
 
 # Formatter
 
-Shopware-CLI comes with an built-in formatter for PHP, JavaScript, CSS, SCSS and Admin Twig files.
+Shopware-CLI comes with a built-in formatter for PHP, JavaScript, CSS, SCSS, and Admin Twig files.
 
 To run the formatter, you can use the following command:
 
-## Formatting a extension
+## Formatting an extension
 
 <Tabs>
 
@@ -21,7 +21,7 @@ To run the formatter, you can use the following command:
 shopware-cli extension format /path/to/your/extension
 ```
 
-You can run it also in dry mode, just show the changes instead of editing the files
+You can also run it in dry mode to just show the changes instead of editing the files.
 
 ```shell
 shopware-cli extension format /path/to/your/extension --dry-run
@@ -35,7 +35,7 @@ shopware-cli extension format /path/to/your/extension --dry-run
 docker run --rm -v $(pwd):/ext shopware/shopware-cli extension format /ext
 ```
 
-You can run it also in dry mode, just show the changes instead of editing the files
+You can also run it in dry mode to just show the changes instead of editing the files.
 
 ```shell
 docker run --rm -v $(pwd):/ext shopware/shopware-cli extension format /ext --dry-run
@@ -55,7 +55,7 @@ docker run --rm -v $(pwd):/ext shopware/shopware-cli extension format /ext --dry
 shopware-cli project format /path/to/your/project
 ```
 
-You can run it also in dry mode, just show the changes instead of editing the files
+You can also run it in dry mode to just show the changes instead of editing the files.
 
 ```shell
 shopware-cli project format /path/to/your/project --dry-run
@@ -69,7 +69,7 @@ shopware-cli project format /path/to/your/project --dry-run
 docker run --rm -v $(pwd):/ext shopware/shopware-cli project format /ext
 ```
 
-You can run it also in dry mode, just show the changes instead of editing the files
+You can also run it in dry mode to just show the changes instead of editing the files.
 
 ```shell
 docker run --rm -v $(pwd):/ext shopware/shopware-cli project format /ext --dry-run
@@ -79,4 +79,4 @@ docker run --rm -v $(pwd):/ext shopware/shopware-cli project format /ext --dry-r
 
 </Tabs>
 
-By default, the formatting is done by Shopware Coding Standard. You can configure the formatting by creating a `.php-cs-fixer.dist.php` in your extension root or a `.prettierrc` file for JavaScript, CSS and SCSS files.
+By default, the formatting is done by Shopware Coding Standard. You can configure the formatting by creating a `.php-cs-fixer.dist.php` in your extension root or a `.prettierrc` file for JavaScript, CSS, and SCSS files.
