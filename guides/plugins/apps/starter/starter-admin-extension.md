@@ -13,7 +13,7 @@ In this guide, you will learn how to set up an extension for the Administration 
 
 ## Prerequisites
 
-In order to follow this guide, make sure you are familiar with and meet the following requirements:
+To follow this guide, make sure you are familiar with and meet the following requirements:
 
 * Basic CLI usage (creating files, directories, running commands)
 * Installed [shopware-cli](../../../../products/cli/) tools
@@ -21,13 +21,14 @@ In order to follow this guide, make sure you are familiar with and meet the foll
     * npm
     * live-server (small local development live-reloading server)
 
-## Create the app wrapper
 
-First of all, we need to create the app "wrapper", the so-called app manifest. It is just a single XML file with some basic configuration.
+## Create the app
 
-### Create manifest file
+First, we need to create the app "wrapper", the so-called app manifest. It is just a single XML file with some basic configuration.
 
-First of all, we create the manifest file in a new directory. We'll call that our "project directory".
+### Create a manifest file
+
+We create the manifest file in a new directory. We'll call that our "project directory".
 
 ```text
 SimpleNotification/
@@ -109,9 +110,68 @@ live-server src
 
 Now the file should be available on [http://127.0.0.1:8080](http://127.0.0.1:8080).
 
+::: info
+When you call this URL the page will be empty because the iFrame is hidden.
+:::
+
+### Register the app
+
+Next, we need to register the app server with the Shopware shop. This is done by sending a `POST` request to the `/app/lifecycle/register` endpoint.
+
+This server can be hosted anywhere, but for this example, we will use the [Shopware App Server SDK](https://github.com/shopware/app-sdk-js)
+
+::: code-group
+
+```xml [manifest.xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+  <meta>
+    ...
+  </meta>
+  <setup>
+    <registrationUrl>http://localhost:3000/app/register</registrationUrl>
+    <secret>Test</secret>
+  </setup>
+  <webhooks>
+    <webhook name="appActivate" url="http://localhost:3000/app/activate" event="app.activated"/>
+    <webhook name="appDeactivated" url="http://localhost:3000/app/deactivate" event="app.deactivated"/>
+    <webhook name="appDelete" url="http://localhost:3000/app/delete" event="app.deleted"/>
+  </webhooks>
+</manifest>
+```
+
+:::
+
+We can install this SDK wherever on our local machine. We can choose between cloudflare, deno, bun or node. To keep it simple, we will use node.
+
+```bash
+npx tiged shopware/app-sdk-js/examples/node-hono demo-app
+cd demo-app
+npm install
+npm start
+```
+
+This will create a new directory called `demo-app` with the app server SDK and start a local server on port 3000.
+
+The `registrationUrl` is the URL where the app server will be registered. The `secret` is a random string that is used to verify the requests from the app server.
+
+If you adjust the `name` of the app or the `secret` in the `manifest.xml` file, make sure to also adjust them in the app server SDKs index.ts file.
+
+```typescript
+configureAppServer(app, {
+  appName: "SimpleNotification",
+  appSecret: "Test",
+  shopRepository: new BetterSqlite3Repository('shop.db')
+});
+```
+
+Otherwise, the app server will not be able to verify the requests from the app.
+
+The webhooks are used to notify the app server when the app is activated, deactivated or deleted. The `url` is the URL where the app server will receive the webhook requests.
+
 ### Add the entry point link to your manifest
 
-The final step of the setup is to configure your app to use that file as an entry point.
+The final step of the setup is to configure your app to use the index.html file as an entry point.
 
 To do that, we have to add an `admin` section to our `manifest.xml` file and pass it into the `base-app-url` tag:
 
@@ -124,12 +184,17 @@ To do that, we have to add an `admin` section to our `manifest.xml` file and pas
         <!-- ... -->
     </meta>
   <setup>
-    <registrationUrl>http://127.0.0.1:8000/app/lifecycle/register</registrationUrl>
-    <secret>TestSecret</secret>
+    <registrationUrl>http://localhost:3000/app/register</registrationUrl>
+    <secret>Test</secret>
   </setup>
-    <admin>
-        <base-app-url>http://127.0.0.1:8080</base-app-url>
-    </admin>
+  <webhooks>
+    <webhook name="appActivate" url="http://localhost:3000/app/activate" event="app.activated"/>
+    <webhook name="appDeactivated" url="http://localhost:3000/app/deactivate" event="app.deactivated"/>
+    <webhook name="appDelete" url="http://localhost:3000/app/delete" event="app.deleted"/>
+  </webhooks>
+  <admin>
+      <base-app-url>http://127.0.0.1:8080</base-app-url>
+  </admin>
 </manifest>
 ```
 
