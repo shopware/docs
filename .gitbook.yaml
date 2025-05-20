@@ -1,5 +1,5 @@
 redirects:
-    developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
+  developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
     guides/plugins/apps/platform-sh-template.html: guides/plugins/apps/app-base-guide.html
     guides/integrations-api/store-api-guide.html: guides/integrations-api/
     guides/integrations-api/store-api-guide/register-a-customer.html: guides/integrations-api/
@@ -56,3 +56,4 @@ redirects:
     guides/plugins/plugins/administration/adding-responsive-behavior.html: guides/plugins/plugins/administration/ui-ux/adding-responsive-behavior.html
     products/plugins/commercial/: products/extensions/commercial/
     guides/installation/devenv.html: guides/installation/setups/devenv.html
+    products/cli/extension-commands/validation.html: products/cli/validation.html
