@@ -42,10 +42,9 @@ The path can be absolute or relative to the directory containing the extension o
   - `name`
   - `label` (German and English)
   - `description` (German and English) and longer than 150 characters and shorter than 185 characters
-- Translations have equal content in the given languages
 - PHP can be correctly linted with the minimum PHP version
 - The `theme.json` can be parsed and included assets can be found
-- All translations are translated in all given languages
+- All snippet files contain the same set of translation keys
 
 ## Supported PHP versions for linting
 
