@@ -99,7 +99,7 @@ Without the `--activate` flag the Apps get installed as inactive.
 By executing the `app:activate` command after installation this can be activated, too.
 :::
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference).
+For a complete reference of the manifest file structure, take a look at the [Manifest reference](../../../resources/references/app-reference/manifest-reference).
 
 ## Setup (optional)
 
@@ -110,11 +110,11 @@ This process is called setup.
 
 ::: warning
 Suppose your app makes use of the Admin Module, Payment Method, Tax providers or Webhook app system features.
-In that case, you need to implement the registration, in order to exchange a secret key, that is later used to authenticate the shops.
+In that case, you need to implement the registration, to exchange a secret key; that is later used to authenticate the shops.
 :::
 
 During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
-During the setup process, your app backend will obtain credentials that can be used to authenticate against the Shopware API.
+During the setup process, your app backend will get credentials that can be used to authenticate against the Shopware API.
 Additionally, your app will provide a secret that Shopware will use to sign all further requests it makes to your app backend, allowing you to verify that the incoming requests originate from authenticated Shopware installations.
 
 The setup workflow is shown in the following schema.
