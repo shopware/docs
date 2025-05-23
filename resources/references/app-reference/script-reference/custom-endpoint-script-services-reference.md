@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Custom endpoint script services reference
+  title: Custom Endpoint script services reference
   position: 30
 
 ---
@@ -250,9 +250,10 @@ The `response` service allows you to create HTTP-Responses.
 		
 		{% do hook.page.addExtension('myProduct', product) %}
 		
-		{% do hook.setResponse(
-		    services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page })
-		) %}
+		{% set response = services.response.render('@MyApp/storefront/page/custom-page/index.html.twig', { 'page': hook.page }) %}
+		{% do response.setHeader("Content-Type", "text/plain") %}
+		
+		{% do hook.setResponse(response) %}
         ```
 
 _________
