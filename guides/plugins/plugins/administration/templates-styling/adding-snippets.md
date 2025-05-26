@@ -38,7 +38,7 @@ In this example you would have access the two translations by the following path
 By default, Shopware 6 will collect those files automatically when your plugin is activated.
 
 ::: info
-When you do not build a module and therefore do not fit into the suggested directory structure, you can still place the translation files anywhere in `<plugin root>/src/Resources/app/administration/`.
+When you do not build a module and therefore do not fit into the suggested directory structure, you can still place the translation files anywhere in `<plugin root>/src/Resources/app/administration/src/`.
 :::
 
 ## Using the snippets in JavaScript

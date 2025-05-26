@@ -283,13 +283,7 @@ namespace Swag\BasicExample\Core\Content\Example;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 
 /**
- * @method void               add(ExampleEntity $entity)
- * @method void               set(string $key, ExampleEntity $entity)
- * @method ExampleEntity[]    getIterator()
- * @method ExampleEntity[]    getElements()
- * @method ExampleEntity|null get(string $key)
- * @method ExampleEntity|null first()
- * @method ExampleEntity|null last()
+ * @extends EntityCollection<ExampleEntity>
  */
 class ExampleCollection extends EntityCollection
 {

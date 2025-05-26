@@ -2,7 +2,11 @@
 
 ## Context
 
-Starting with Shopware version **6.6.9.0**, the In-App Purchase Gateway was introduced to enhance flexibility in managing In-App Purchases.
+::: info
+In-App Purchase is available since Shopware version 6.6.9.0
+:::
+
+In-App Purchase Gateway was introduced to enhance flexibility in managing In-App Purchases.
 
 The gateway enables app servers to restrict specific In-App Purchases based on advanced decision-making processes handled on the app server side.
 
