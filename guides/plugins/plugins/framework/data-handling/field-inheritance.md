@@ -269,7 +269,9 @@ Note the use of the `updateInheritance` method in the migration.
 This method is used to create "inheritance columns" in the database.
 These columns are used internally by the DAL to store the inherited references.
 Those columns need to be present in the database for the inheritance system to work correctly.
-In those columns the concrete reference values to perform the join on are stored. In the case of `ToMany` associations, the id stored in the column is the id of the base entity (parent id if the association is inherited, child id if not). For `ToOne` associations like this example, the id stored in the column is the id of the entity that is referenced by the association.
+In those columns the concrete reference values to perform the join on are stored.
+In the case of `ToMany` associations, the ID stored in the column is the ID of the base entity (parent ID if the association is inherited, child ID if not).
+For `ToOne` associations like this example, the ID stored in the column is the ID of the entity that is referenced by the association.
 
 This additional column is needed because of two reasons:
 
