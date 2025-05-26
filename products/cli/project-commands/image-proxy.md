@@ -127,7 +127,7 @@ shopware-cli project image-proxy --url https://production.example.com
 
 ### Reverse Proxy Setup
 
-When running behind a reverse proxy (nginx, Apache, etc.):
+When running behind a reverse proxy (Nginx, Apache, etc.):
 
 ```bash
 # Configure external URL for Shopware
