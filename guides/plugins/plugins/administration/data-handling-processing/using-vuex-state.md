@@ -52,12 +52,15 @@ Both ways use the same functions from the [Shopware object](./the-shopware-objec
 
 Registering in a module scope is done by simply calling the function `Shopware.State.registerModule` in the `main.js` file.
 
-```javascript
-// <administration root>/src/main.js
+::: code-group
+
+```javascript [ADMINISTRATION_ROOT/src/main.js]
 import swagBasicState from './store';
 
 Shopware.State.registerModule('swagBasicState', swagBasicState);
 ```
+
+:::
 
 In the component scope `Namespaced` store modules can be registered in the `beforeCreate` [Vue lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram),
 with the previously mentioned `Shopware.State.registerModule` function.
@@ -66,8 +69,9 @@ in order to not leave unused stores behind after a component has been destroyed.
 
 All of this can be seen in the following code sample:
 
-```javascript
-// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/administration/app/src/component/store-example/index.js]
     beforeCreate() {
         // registering the store to vuex through the Shopware objects helper function
         // the first argument is the name the second the imported namespaced store
@@ -80,6 +84,8 @@ All of this can be seen in the following code sample:
     },
 ```
 
+:::
+
 Both methods make the store on the given name everywhere available, regardless of where it has been registered.
 
 ## Using the store in a component
@@ -87,8 +93,9 @@ Both methods make the store on the given name everywhere available, regardless o
 The Shopware object also makes the native Vuex helper functions available, like [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components) and [`mapActions`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components).
 The `namespaced` store itself can be accessed through the `Shopware.State.get()` function.
 
-```javascript
-// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/index.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/administration/app/src/component/store-example/index.js]
 // import the template
 import template from './store-example.html.twig';
 
@@ -119,13 +126,16 @@ Component.register('swag-basic-state', {
 });
 ```
 
+:::
+
 ## Adding a template
 
 After we have registered our `namespaced` store, mapped state and mutations, we can now use them in our components or templates.
 The component below displays the previously mapped state `content` in a `div` and a `sw-text-field`, mutating the state on the `changed` event of the `sw-text-field`.
 
-```html
-// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig
+::: code-group
+
+```html [PLUGIN_ROOT/src/Resources/app/administration/app/src/component/store-example/store-example.html.twig]
 <div>
     <h1>SW-6 State</h1>
     <sw-text-field
@@ -137,6 +147,8 @@ The component below displays the previously mapped state `content` in a `div` an
     </div>
 </div>
 ```
+
+:::
 
 ## More interesting topics
 
