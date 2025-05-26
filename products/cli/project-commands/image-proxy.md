@@ -58,6 +58,7 @@ The image proxy follows this request flow:
 By default, the command creates a Shopware configuration file at `config/packages/zzz-sw-cli-image-proxy.yml` that automatically configures Shopware to use the proxy server for all public filesystem operations. This file is automatically removed when the server stops.
 
 The configuration looks like:
+
 ```yaml
 shopware:
   filesystem:
@@ -75,7 +76,6 @@ shopware:
 - Cache files are named by replacing `/` with `_` in the request path
 - There is no automatic cache expiration - files remain cached until manually cleared
 - Cached responses include an `X-Cache: HIT` header when served
-
 
 ## Command Options
 
