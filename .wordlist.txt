@@ -375,8 +375,8 @@ FlowStore
 FlowStorer
 Flysystem
 Fontawesome
-FormData
 FooterPagelet
+FormData
 FrameworkBundle
 FriendsOfShopware
 FroshDevelopmentHelper
