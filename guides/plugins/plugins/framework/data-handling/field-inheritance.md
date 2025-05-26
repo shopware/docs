@@ -260,9 +260,6 @@ class Migration1615363013AddInheritedAssociation extends MigrationStep
         $this->updateInheritance($connection, 'swag_example', 'tax');
     }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
 }
 ```
 
