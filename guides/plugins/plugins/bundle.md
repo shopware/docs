@@ -15,7 +15,7 @@ In this case, you can use a Symfony bundle instead of a plugin.
 
 Here's how a typical Shopware 6 project structure looks like when using bundles:
 
-```
+```text
 project-root/
 ├── bin/
 │   └── console
