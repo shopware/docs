@@ -11,7 +11,46 @@ Plugins are based on the Symfony bundle concept, but offer additional features l
 This is maybe unwanted in some cases, like project critical customizations which should not be managed via the Shopware administration.
 In this case, you can use a Symfony bundle instead of a plugin.
 
-The Bundle can be put into the `src/` folder of your project and needs to be registered in the `config/bundles.php` file of your project.
+## Project Structure
+
+Here's how a typical Shopware 6 project structure looks like when using bundles:
+
+```
+project-root/
+├── bin/
+│   └── console
+├── config/
+│   ├── bundles.php
+│   ├── packages/
+│   └── services.yaml
+├── public/
+│   ├── index.php
+│   └── bundles/
+├── src/
+│   └── YourBundleName/
+│       ├── YourBundleName.php
+│       ├── Migration/
+│       │   └── Migration1234567890YourMigration.php
+│       └── Resources/
+│           ├── config/
+│           │   ├── services.xml
+│           │   └── routes.xml
+│           ├── views/
+│           │   └── storefront/
+│           │       └── page/
+│           └── app/
+│               ├── storefront/
+│               │   └── src/
+│               └── administration/
+│                   └── src/
+├── var/
+├── vendor/
+├── composer.json
+├── composer.lock
+└── .shopware-project.yaml
+```
+
+The Bundle is typically placed in the `src/` folder of your project, which is the standard location for custom code in a Shopware project. You still will need to register the bundle in the `config/bundles.php` file of your project.
 
 ## Choosing the right Bundle class
 
@@ -26,7 +65,7 @@ If you don't need these features, you can use the Symfony bundle class instead.
 
 ## Creating a Bundle
 
-In the Shopware project template it is intended to put the bundle into the `src/` folder of your project and use the namespace `App\`.
+By default, The namespace `App\` is registered to the `src` folder in any Shopware project to be used for customizations. We recommend using this namespace, if you like to change the project structure, you can change the `App\` namespace in the `composer.json` file of your project.
 
 ```php
 // <project root>/src/YourBundleName.php
