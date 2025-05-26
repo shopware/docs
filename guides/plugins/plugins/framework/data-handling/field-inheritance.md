@@ -43,7 +43,6 @@ ALTER TABLE `swag_example` MODIFY `description` VARCHAR(255) NULL;
 namespace Swag\BasicExample\Migration;
 
 use Doctrine\DBAL\Connection;
-use Shopware\Core\Framework\Migration\InheritanceUpdaterTrait;
 use Shopware\Core\Framework\Migration\MigrationStep;
 
 class Migration1615363012MakeInheritedColumnsNullable extends MigrationStep
