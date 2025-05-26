@@ -13,7 +13,8 @@ Shopware plugins are extensions that enhance the functionality and features of t
 
 ::: tip
 
-For projects customizations, it is recommended to use Bundles instead of plugins. As bundles are not managed via Administration and don't have lifecycle they offer full control over the project.
+For customizing projects, it is recommended to use bundles instead of plugins.
+As bundles are not managed via Administration and don't have a lifecycle they offer full control over the project.
 
 :::
 
@@ -49,6 +50,8 @@ composer req <vendor>/<plugin-name>
 
 ### Symfony Bundle / Shopware Bundle
 
-It's also possible to use Shopware/Symfony bundles instead of plugins. This is useful if you don't want to have the lifecycle of plugins and don't want it manageable via the Shopware administration. The bundles are typically installed via composer and are not managed by the Shopware administration.
+It's also possible to use Shopware/Symfony bundles instead of plugins.
+This is useful if you don't want to have the lifecycle of plugins and don't want it manageable via the Shopware administration.
+The bundles are typically installed via composer and are not managed by the Shopware administration.
 
 <PageRef page="./bundle.html" title="Bundle" />
