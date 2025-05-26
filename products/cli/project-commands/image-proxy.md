@@ -79,13 +79,13 @@ shopware:
 
 ## Command Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--url` | Upstream server URL (overrides config) | From config |
-| `--port` | Port to listen on | `8080` |
-| `--clear` | Clear cache before starting | `false` |
+| Option           | Description                                                       | Default                   |
+|------------------|-------------------------------------------------------------------|---------------------------|
+| `--url`          | Upstream server URL (overrides config)                            | From config               |
+| `--port`         | Port to listen on                                                 | `8080`                    |
+| `--clear`        | Clear cache before starting                                       | `false`                   |
 | `--external-url` | External URL for Shopware config (e.g., for reverse proxy setups) | `http://localhost:{port}` |
-| `--skip-config` | Skip creating Shopware config file | `false` |
+| `--skip-config`  | Skip creating Shopware config file                                | `false`                   |
 
 ## Example Scenarios
 
