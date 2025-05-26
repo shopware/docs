@@ -209,7 +209,7 @@ Assuming our definition is already aware of inheritance, we have to update our d
 
 ## Association inheritance
 
-Association inheritance allows you to inherit associations from a parent entity. 
+Association inheritance allows you to inherit associations from a parent entity.
 To make an association inheritable, you need to add the `Inherited` flag to the association field in your definition.
 
 ```php
@@ -226,6 +226,7 @@ protected function defineFields(): FieldCollection
 ```
 
 We then need to add the foreign key column to our migration:
+
 ```php
 // <plugin root>/src/Migration/Migration1615363013AddInheritedAssociation.php
 <?php declare(strict_types=1);
@@ -267,11 +268,12 @@ class Migration1615363013AddInheritedAssociation extends MigrationStep
 
 ### "Inheritance columns"
 
-Note the use of the `updateInheritance` method in the migration. This method is used to create "inheritance columns" in the database. 
+Note the use of the `updateInheritance` method in the migration. This method is used to create "inheritance columns" in the database.
 These columns are used internally by the DAL to store the inherited references. Those columns need to be present in the database for the inheritance system to work correctly.
 In those columns the concrete reference values to perform the join on are stored. In the case of `ToMany` associations, the id stored in the column is the id of the base entity (parent id if the association is inherited, child id if not). For `ToOne` associations like this example, the id stored in the column is the id of the entity that is referenced by the association.
 
 This additional column is needed because of two reasons:
+
 1. To allow overriding the association in the child entity with null values, which would otherwise not be possible.
 2. To improve performance by avoiding additional queries to load the parent entity when the association is inherited.
 
