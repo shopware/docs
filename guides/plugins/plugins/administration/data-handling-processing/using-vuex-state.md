@@ -20,8 +20,10 @@ The following code snippet is the `namespaced` store we will register later thro
 It is admittedly rather short and has only one variable called `content` and a setter for it, but again this all the same as in Vuex.
 Beware of the property `namespaced`, though.
 
-```javascript
-// <plugin-root>/src/Resources/app/administration/app/src/component/store-example/store.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/administration/app/src/component/store-example/store.js]
+
 export default {
     namespaced: true,
 
@@ -40,6 +42,8 @@ export default {
     }
 };
 ```
+
+:::
 
 ## Registering the store
 
