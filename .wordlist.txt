@@ -93,6 +93,7 @@ BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
 Beispiel
 Beispielbeschreibung
+benefitting
 Beschreibung
 BillingCountryRule
 BillingStreetRule
