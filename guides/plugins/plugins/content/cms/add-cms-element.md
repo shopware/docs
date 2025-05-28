@@ -162,7 +162,7 @@ The icon would now be displayed beneath the image, so let's add some styles for 
 
 The container needs to have a `position: relative;` style.
 This is necessary, so the child can be positioned absolutely and will do so relative to the container's position.
-Thus, the icon receives a `position: absolute; style`, plus some top and left values to center it.
+Thus, the icon receives a `position: absolute;` style, plus some top and left values to center it.
 
 ```css
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss
