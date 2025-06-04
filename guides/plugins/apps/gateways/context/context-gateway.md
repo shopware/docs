@@ -6,18 +6,18 @@
 With the context gateway, Shopware allows your app to manipulate the customer context, which includes sensitive information like customer addresses, payment methods, and more.
 It is your responsibility to ensure that the commands are valid and do not compromise the security or privacy of customers.
 
-As this is a powerful feature, you should only use it if you are sure that your app server is secure and the commands you send are safe.
+Due to the powerful nature of this feature, it should only be used if your app server is properly secured and the commands it sends are fully trusted and validated.
 
 :::
 
 ## Context
 
-As of Shopware version 6.7.1.0, the Context Gateway was introduced.
+As of Shopware version 6.7.1.0, the Context Gateway has been introduced.
 
-The Context Gateway is a powerful feature that allows apps to securely interact with the customer context, based on the current cart and sales channel and make informed decisions on the app server.
-The app system benefits from this solution, enabling app developers to manipulate customer contexts and provide a more tailored shopping experience.
+The Context Gateway is a powerful feature that enables apps to securely access and interact with the customer context — based on the current cart and sales channel — allowing for more informed decision-making on the app server. 
+This enhancement empowers app developers to dynamically tailor the shopping experience by manipulating the customer context.
 
-It is designed as to being the connection point between your apps Javascript and your app server.
+It serves as the bridge between your app’s JavaScript and your app server.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ You should be familiar with the concept of Apps, their registration flow as well
 
 <PageRef page="../../app-base-guide.md" title="App base guide" />
 
-Your app server must be also accessible for the Shopware server.
+Your app server must also be accessible to the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
@@ -52,28 +52,44 @@ Below, you can see an example definition of a working checkout gateway configura
 
 After successful installation of your app, the context gateway is ready to be called by Shopware.
 
-## Context gateway endpoint
+## Context Gateway Endpoint
 
-Your JavaScript integration is responsible for calling the context gateway endpoint.
-The app server will receive the current `SalesChannelContext`, `Cart`, and any custom data you provide as part of the payload.
+To trigger the context gateway, your integration can call the additional Store API route: <nobr>`store-api.context.gateway`</nobr>.  
+This endpoint will forward the request to your app server’s context gateway endpoint, which must be [configured in your app's manifest](#manifest-configuration).
 
-::: warning
-**Connection timeouts**
+To allow the shop to identify your app, the request must include the `appName`, which is defined in your [app’s `manifest.xml`](../../app-base-guide.md#manifest-file).
 
-The Shopware shop will wait for a response for 5 seconds.
-Be sure that your context gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
+Your app server will receive the following payload:
+
+- The request source, including:
+  - The URL of the Shopware shop
+  - The Shop ID
+  - The app version
+  - Any active [in-app purchase](../../in-app-purchase/index.md).
+- The current `SalesChannelContext`
+- The current `Cart`
+- Any custom data you include in the request body
+
+::: info
+
+Communication between Shopware and your app server is secured via the [app signature verification mechanism](../../app-signature-verification), ensuring that only your app server can respond to context gateway requests.
+
 :::
 
-### JavaScript `ContextGatewayClient`
+### Storefront Integration
 
-Your implementation must call the `frontend.gateway.context` storefront endpoint, which is automatically registered by Shopware beforehand.
-You can send any data in the requests body, which will be forwarded to your app server.
+To trigger the context gateway from the Storefront, use the <nobr>`frontend.gateway.context`</nobr> endpoint. This route is automatically registered by Shopware.
 
-Luckily, Shopware provides you with a `ContextGatewayClient` service, which you can use to ease the communication with the context gateway.
-This client is designed to be used in your app's JavaScript code and handles the communication with the context gateway endpoint.
-You can use this client to call the context gateway and receive a response containing the (new) context token and an optional redirect URL.
+You can include any custom data in the request body - Shopware will forward this data to your app server.
 
-See an example JavaScript plugin implementation here, which is triggered, when clicking a button in the storefront:
+To simplify this integration, Shopware provides the `ContextGatewayClient` service. 
+This JavaScript client is intended for use within your app and handles communication with the context gateway endpoint. 
+It returns a response containing:
+
+- A (new) context token
+- An optional redirect URL
+
+Here is an example JavaScript plugin that triggers the context gateway when a button is clicked in the Storefront:
 
 ::: code-group
 
@@ -111,27 +127,45 @@ export default class MyPlugin extends Plugin {
 :::
 
 ::: info
-**Navigation `customTarget` behavior**
+**Navigation `customTarget` Behavior**
 
-You can provide an optional custom target path to the `navigate` method.
+The `customTarget` parameter allows you to optionally control the redirect path used by the `navigate` method.
 
-The customTarget parameter overrides the default redirect path.
+- If `customTarget` is an **absolute path** (starts with `/`), it completely replaces the path portion of the `redirectUrl`.  
+  This can be used to override sales channel subpaths in the `redirectUrl`.  
+  _Example:_ `https://example.com/en` → `https://example.com/custom/target/path`
 
-- If absolute (starts with /), it replaces the entire path after the domain. This can override sales channel switches inside the tokenResponses redirectUrl parameter from subpath sales channels. (e.g. `https://example.com/en` becomes `https://example.com/custom/target/path`)
-- If relative, it is appended to the tokenResponses redirectUrl's path.
-- If null, the redirectUrl from the tokenResponse is used as is, when given. Otherwise, the page is simply reloaded to apply context changes to the storefront.
+- If `customTarget` is a **relative path**, it is appended to the existing path of the `redirectUrl`.
 
-All trailing slashes are removed to ensure a clean, consistent URL.
+- If `customTarget` is `null`, the behavior depends on whether a `redirectUrl` is present:
+  - If present: the `redirectUrl` is used as-is.
+  - If not: the current page is reloaded to apply context changes.
 
+Trailing slashes are automatically removed to ensure clean and consistent URLs.
 :::
 
 ### App server response
 
-Your app server can then respond with a list of commands to manipulate the current sales channel context, like changing language or currency, registering a new customer, or logging existing customers in.
+::: warning
+**Connection timeouts**
 
-You can find a reference of all currently available commands [here](./command-reference.md).
+The Shopware shop will wait for a response for 5 seconds.
+Be sure that your context gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
+:::
 
-Let's assume that you want to change the current sales channel context to a different currency and language, if the current context's currency is not GBP.
+Your app server can respond with a list of commands to modify the current sales channel context.  
+These commands can be used to perform actions such as:
+
+- Changing aspects of the customer context, like:
+  - Changing the active currency
+  - Changing the active language
+  - ... and more
+- Registering a new customer
+- Logging in an existing customer
+
+You can find a complete reference of all available commands in the [command reference](./command-reference.md).
+
+For example, you might want to update the context to a different currency and language if the current currency is not GBP.
 
 <Tabs>
 
@@ -277,29 +311,30 @@ class GatewayController extends AbstractController
 
 </Tabs>
 
-### Command validation
+### Command Validation
 
-Shopware will validate the commands you respond from your app server in terms of general reasonableness.
+Shopware performs basic validation on the commands returned by your app server to ensure they are reasonable to execute.
 
-The following checks are performed:
+The following checks are enforced:
 
-- The command must be a valid command, e.g. `context_change-currency`.
-- The payload must be valid for all commands.
-- Only a maximum of *one* command of each type is allowed, e.g. you cannot send two `context_change-currency` commands in one response.
-- Only a maximum of *one* `context_register-customer` or `context_login-customer` command is allowed in one response.
+- The command must be recognized as valid, e.g. <nobr>`context_change-currency`</nobr>.
+  See the [full list of available commands](./command-reference.md#available-commands).
+- The payload must be valid for the respective command type.
+- Only **one command per type** is allowed. For example, you cannot include two <nobr>`context_change-currency`</nobr> commands in a single response.
+- A maximum of **one <nobr>`context_register-customer`</nobr> or <nobr>`context_login-customer`</nobr>** command is allowed per response.
 
 ## Event
 
 Plugins can listen to the `Shopware\Core\Framework\Gateway\Context\Command\Event\ContextGatewayCommandsCollectedEvent`.
-This event is dispatched after the Context Gateway has collected all commands from an app server.
-It allows plugins to manipulate the commands before they are executed, based on the same payload the app servers retrieved.
+This event is dispatched after all commands have been collected from the app server and allows plugins to modify or add commands based on the same payload the app received.
 
-## Special considerations
+## Special Considerations
 
-The `context_login-customer` allows your app to log in customers **without their password**.
-This is a powerful feature and should be used with caution in respect to the shops security and privacy.
+- The `context_login-customer` command allows your app to log in a customer **without requiring their password**.
+  Use this feature with caution to uphold the shop’s security and privacy standards.
 
-The `context_register-customer` command will create a new customer account and **log them in automatically**. Be sure to validate the data beforehand.
-See the [RegisterCustomerCommand reference](./command-reference.md#available-data-for-registercustomercommand) for the available data fields.
+- The `context_register-customer` command will create a new customer account and **automatically log them in**.
+  Make sure to validate the provided data before issuing this command.
+  See the [RegisterCustomerCommand reference](./command-reference.md#available-data-for-registercustomercommand) for the list of accepted fields.
 
-When using these commands, you must ensure that the customer has given their consent to be registered or logged in to the shop.
+In both cases, your app must ensure that the customer has **explicitly consented** to be registered or logged in.
