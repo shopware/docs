@@ -25,7 +25,7 @@ The default should only be used when the corresponding entity is marked to use a
 In order to implement this functionality, we needed a way to mark a product or category, which should use the default. This affects following entities:
 * category
   * `category.cmsPageId` will be set to null if the defined default is given,
-  * this only applies to cms pages of type `procut_list`
+  * this only applies to cms pages of type `product_list`
 * product
   * `product.cmsPageId` will be set to null if the defined default `\Shopware\Core\Defaults::CMS_PRODUCT_DETAIL_PAGE` is given.
 
