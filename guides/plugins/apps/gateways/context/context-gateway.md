@@ -14,7 +14,7 @@ Due to the powerful nature of this feature, it should only be used if your app s
 
 As of Shopware version 6.7.1.0, the Context Gateway has been introduced.
 
-The Context Gateway is a powerful feature that enables apps to securely access and interact with the customer context — based on the current cart and sales channel — allowing for more informed decision-making on the app server. 
+The Context Gateway is a powerful feature that enables apps to securely access and interact with the customer context — based on the current cart and sales channel — allowing for more informed decision-making on the app server.
 This enhancement empowers app developers to dynamically tailor the shopping experience by manipulating the customer context.
 
 It serves as the bridge between your app’s JavaScript and your app server.
@@ -82,8 +82,8 @@ To trigger the context gateway from the Storefront, use the <nobr>`frontend.gate
 
 You can include any custom data in the request body - Shopware will forward this data to your app server.
 
-To simplify this integration, Shopware provides the `ContextGatewayClient` service. 
-This JavaScript client is intended for use within your app and handles communication with the context gateway endpoint. 
+To simplify this integration, Shopware provides the `ContextGatewayClient` service.
+This JavaScript client is intended for use within your app and handles communication with the context gateway endpoint.
 It returns a response containing:
 
 - A (new) context token
