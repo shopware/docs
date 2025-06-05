@@ -444,6 +444,7 @@ Kibana
 Kubernetes
 LLM
 LLMs
+LOCALAPPDATA
 LONGTEXT
 LUA
 LandingPage
@@ -1839,6 +1840,7 @@ webserver
 wednesday
 whitespace
 whitespaces
+whoami
 wil
 wishlist
 www
