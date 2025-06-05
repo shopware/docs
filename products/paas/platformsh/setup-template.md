@@ -123,4 +123,4 @@ In our template there are 4 different services enabled by default:
 
 ## [files / theme-config](https://github.com/shopware/recipes/tree/main/shopware/paas-meta/6.4/files/theme-config)
 
-We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../guides/hosting/installation-updates/deployments/build-w-o-db) as described in [Theme Build](./theme-build).
+We suggest checking in your theme configuration to version control in this directory. Read more on the concept of [builds without database](../../../guides/hosting/installation-updates/deployments/build-w-o-db) as described in [Theme Build](./theme-build).
