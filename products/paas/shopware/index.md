@@ -26,18 +26,18 @@ The architecture of Shopware PaaS includes two primary layers:
 
 ## Comparison with Self-Hosted and SaaS Models
 
-| **Model**              | **Self-Hosted**                                      | **Shopware PaaS**                                              | **SaaS**                                        |
-|--------------------|------------------------------------------------------|-----------------------------------------------------------------|-------------------------------------------------|
-| **Infrastructure Responsibility** | Fully managed by the customer                     | Managed by Shopware (customer manages application) | Fully managed by Shopware                       |
-| **Control Over Customization**    | Complete control                                   | High control with opinionated best practices        | Limited; customization possible only through apps |
-| **Setup and Maintenance Effort**  | High                                              | Moderate, with most infrastructure tasks automated | Low                                             |
-| **Ideal Use Case**                | Full control, advanced custom setups               | Balance of control and managed scalability         | Ease of use with minimal setup                   |
+| **Model**                         | **Self-Hosted**                      | **Shopware PaaS**                                  | **SaaS**                                          |
+|-----------------------------------|--------------------------------------|----------------------------------------------------|---------------------------------------------------|
+| **Infrastructure Responsibility** | Fully managed by the customer        | Managed by Shopware (customer manages application) | Fully managed by Shopware                         |
+| **Control Over Customization**    | Complete control                     | High control with opinionated best practices       | Limited; customization possible only through apps |
+| **Setup and Maintenance Effort**  | High                                 | Moderate, with most infrastructure tasks automated | Low                                               |
+| **Ideal Use Case**                | Full control, advanced custom setups | Balance of control and managed scalability         | Ease of use with minimal setup                    |
 
 ## Comparison: Shopware PaaS vs. Platform.sh
 
-While both Shopware PaaS and [Platform.sh](https://developer.shopware.com/docs/products/paas/) offer cloud-based environments for development, they differ in specialization and flexibility:
+While both Shopware PaaS and [Platform.sh](./../platformsh) offer cloud-based environments for development, they differ in specialization and flexibility:
 
-- **Platform.sh**: A generic PaaS provider, [Platform.sh](https://developer.shopware.com/docs/products/paas/) supports various applications and multiple cloud providers, giving developers the flexibility to define their infrastructure as code. However, this requires customers to manage more aspects of infrastructure and setup.
+- **Platform.sh**: A generic PaaS provider, [Platform.sh](./../platformsh) supports various applications and multiple cloud providers, giving developers the flexibility to define their infrastructure as code. However, this requires customers to manage more aspects of infrastructure and setup.
 
 - **Shopware PaaS**: Optimized solely for Shopware, this platform provides a tightly integrated and controlled environment on AWS. This focus ensures higher stability, with Shopware managing all underlying configurations, enabling developers to concentrate on application development.
 
