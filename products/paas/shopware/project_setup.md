@@ -16,13 +16,13 @@ It's not possible to manage extensions in the Shopware Administration panel. In 
 
 ### Recommendation
 
-Mac and Linux are recommended. When working with Windows, you can set up a local environment with Docker or wsl2, as in this [tutorial](https://www.youtube.com/watch?v=5XYFRDlT9WI).
+Mac and Linux are recommended. When working with Windows, you can set up a local environment with Docker or WSL 2, as in this [tutorial](https://www.youtube.com/watch?v=5XYFRDlT9WI).
 
 ## Project creation
 
 To create a new Shopware PaaS project, execute the following command:
 
-```
+```sh
 composer create-project shopware/production <folder-name>
 ```
 
@@ -30,7 +30,7 @@ Including Docker configuration at this stage is optional; it will be added in th
 
 Next, navigate to your project directory and install the necessary Shopware packages to ensure appropriate environment variables are configured:
 
-```
+```sh
 cd <folder-name>
 composer require shopware/k8s-meta --ignore-platform-reqs
 ```
@@ -38,7 +38,6 @@ composer require shopware/k8s-meta --ignore-platform-reqs
 This will install the required configurations (recipes) for the Shopware operator. Please ensure they are added correctly. Verify successful installation by checking the package file `config/packages/operator.yaml`.<br>
 
 `--ignore-platform-reqs` option makes sure all recipes are pulled down by ignoring the local PHP setup.
-
 
 Last step is this is to create a file named `application.yaml` at the root level of you project. This file is required; it allows some basics configuration regarding the deployment of your shop (like php version, mysql version, passing specific variables ...).
 Here is a basic example:
@@ -89,7 +88,7 @@ Note that this will add the ssh key as an organization level key. If you use mul
     ```bash
     ssh-keygen -t rsa -b 4096 -m PEM -f ./sw-paas
     ```
-    
+
     We support different algorithms for SSH keys.
     The above command generates an **RSA** key.
     You can also use **ED25519** or **ECDSA** keys.

@@ -113,10 +113,10 @@ Once you receive their `sub` (subject ID), you can proceed to add them to your o
 
 **Available Roles:**
 
-- `read-only`: Gets access to projects and applications. Only action allowed are `get` and `list`.
+- `read-only`: Gets access to projects and applications. Only actions allowed are `get` and `list`.
 - `developer`: Gets access to projects and applications. All actions are allowed.
 - `account-admin`: Gets access to projects and applications. All actions are allowed.
-- `project-admin`: Gets access to account management. Actions for manageing Users are allowed.
+- `project-admin`: Gets access to account management. Actions for managing Users are allowed.
 
 **Examples:**
 

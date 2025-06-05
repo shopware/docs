@@ -42,7 +42,7 @@ Visit [the account command](./account) walkthrough for more information on how t
 
 ## Authorization
 
-To access resources in our paas system you need to have specific roles inside the organization. To add somebody to a role in your organization you need to have **Account Admin** role in your organization.
+To access resources in our paas system, you need to have specific roles inside the organization. To add somebody to a role in your organization you need to have **Account Admin** role in your organization.
 
 Check for the role:
 
