@@ -1,7 +1,7 @@
 ---
 nav:
   title: Managing commands
-  position: 40
+  position: 50
 ---
 
 # Managing Commands
@@ -14,9 +14,10 @@ The `command` command allows you to create and manage commands that are executed
 sw-paas command [command]
 ```
 
-> [!NOTE]
-> The default execution directory is `/var/www/html`
-> The container has a time-to-live (TTL) of 1 hour, so your command must complete within that timeframe.
+:::info
+The default execution directory is `/var/www/html`
+The container has a time-to-live (TTL) of 1 hour, so your command must complete within that timeframe.
+:::
 
 ## Description
 
@@ -63,8 +64,9 @@ Get the output of a specific command.
 sw-paas command output [flags]
 ```
 
-> [!TIP]
-> See this [FAQ section](/faq.md) for the main difference between `exec` and `command`
+:::info
+See this [FAQ section](/faq.md) for the main difference between `exec` and `command`
+:::
 
 ## Examples
 

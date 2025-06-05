@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Manage your Account
+  title: Managing your Account and Users
   position: 30
 ---
 
@@ -16,9 +16,14 @@ sw-paas account [command]
 
 ## Commands
 
-### **context** – Manage Account Context
+### Account Context
 
-The `context` command lets you define and manipulate a _context file_, allowing the CLI to skip repetitive prompts for `organization-id` and `project-id`. The default context file is saved as `context.yaml` and stored alongside the main config file.
+The `context` command lets you define and manipulate a _context file_, allowing the CLI to skip repetitive prompts for `organization-id` and `project-id`. The default context file is saved as `context-production.yaml` and stored alongside the main config file. Below is the location of where these files are stored.
+
+|                 | Unix                   | MacOS                                      | Windows        |
+| --------------- | ---------------------- | ------------------------------------------ | -------------- |
+| XDG_CONFIG_HOME | ~/.config/sw-paas      | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
+| XDG_STATE_HOME  | ~/.local/state/sw-paas | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 
 **Usage:**
 
@@ -48,7 +53,7 @@ sw-paas account context show
 sw-paas account context delete
 ```
 
-### **token** – Manage Authentication Tokens
+### Authentication Tokens
 
 The `token` command manages personal access tokens for secure API and CLI usage. Tokens can be created, listed, and revoked.
 
@@ -77,7 +82,7 @@ sw-paas account token list
 sw-paas account token revoke --token-id abcd-1234
 ```
 
-### **user** – Manage Users and Roles
+### Users and Roles
 
 Use the `user` command to map users to specific roles within the organization. Only users with sufficient privileges (e.g., admin) can modify roles.
 
@@ -92,9 +97,23 @@ sw-paas account user [command]
 - `add`: Add a user to the organization with a specific role.
 - `remove`: Remove a user from a role.
 
+If you already have the `project-admin` role and wish to add additional users to your organization, they can share their **user ID (sub-id)** with you. You can instruct them to retrieve it using the following command:
+
+```sh
+sw-paas account whoami --output json
+```
+
+Or, if they have `jq` installed for easier parsing:
+
+```sh
+sw-paas account whoami --output json | jq ".sub"
+```
+
+Once you receive their `sub` (subject ID), you can proceed to add them to your organization with the appropriate role.
+
 **Available Roles:**
 
-- `read-only`: Gets access to projects and applications. Only action allowed are get and list.
+- `read-only`: Gets access to projects and applications. Only action allowed are `get` and `list`.
 - `developer`: Gets access to projects and applications. All actions are allowed.
 - `account-admin`: Gets access to projects and applications. All actions are allowed.
 - `project-admin`: Gets access to account management. Actions for manageing Users are allowed.

@@ -4,7 +4,7 @@ nav:
     position: 10
 ---
 
-# Shopware PaaS
+# Introduction to Shopware PaaS
 
 **Shopware PaaS (Platform-as-a-Service)** is a fully managed, cloud-native environment dedicated to hosting and developing Shopware applications. Built with an opinionated infrastructure, Shopware PaaS enables developers to focus on custom development without the overhead of managing scalability or infrastructure. This platform is optimized for efficiency, scalability, and rapid iteration, helping developers streamline Shopware project workflows.
 

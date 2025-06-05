@@ -1,7 +1,7 @@
 ---
 nav:
   title: Known issues
-  position: 100
+  position: 60
 ---
 
 # Known Issues
@@ -10,7 +10,7 @@ This document outlines acknowledged issues with Shopware PaaS, including workaro
 
 ## Size of messages for the message queue
 
-Currently, Shopware does not prevent bigger messages, but will do so with the next major version 6.7. Ensure the messages you are sending do not exceed this limit. Check your local log files for this critical log message: https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/MessageQueue/Subscriber/MessageQueueSizeRestrictListener.php#L48
+Currently, Shopware does not prevent bigger messages, but will do so with the next major version 6.7. Ensure the messages you are sending do not exceed this limit. Check your local log files for this [critical log message](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/MessageQueue/Subscriber/MessageQueueSizeRestrictListener.php#L48)
 
 ## Plugins should support s3 compatible storage
 

@@ -1,7 +1,7 @@
 ---
 nav:
   title: Monitor events
-  position: 20
+  position: 90
 ---
 
 # Watch

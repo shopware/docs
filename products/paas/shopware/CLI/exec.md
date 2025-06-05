@@ -1,7 +1,7 @@
 ---
 nav:
   title: Executing commands
-  position: 30
+  position: 60
 ---
 
 # Executing Commands
@@ -23,8 +23,9 @@ The `exec` command provides two main functionalities:
 
 By default, the command will show existing sessions if there are any or start a new session if no existing sessions are found.
 
-> [!TIP]
-> See this [FAQ section](/faq.md) for the main difference between `exec` and `command`
+:::info
+See this [FAQ section](./../faq) for the main difference between `exec` and `command`
+:::
 
 ## Flags
 
