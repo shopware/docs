@@ -18,9 +18,6 @@ Download the archive and retrieve it to your home directory. (See [configuration
 
 ## Access the PaaS system
 
-<!--TODO clariefy how user should be getting invited to cognito. Maybe csv for us to read the users in?
-TODO Reference for cognito-->
-
 We use Cognito as our OAuth provider, you need an Invitation in our System to access the resources.
 The first User with a Shopware Account has the ability to add more Users to an Organization.
 
@@ -45,7 +42,7 @@ sw-paas account whoami
 
 #### Machine token
 
-To use the CLI in a CI/CD pipeline you can use a machine token. The machine token is a `JWT` token which is used to authenticate the user. The token is connected to the user who created it and has the same permissions as the user. The token can be created in the account management of the paas system.
+To use the CLI in a CI/CD pipeline, you can use a machine token. The machine token is a `JWT` token which is used to authenticate the user. The token is connected to the user who created it and has the same permissions as the user. The token can be created in the account management of the paas system.
 
 Create a machine token in the account management and use it with the following command:
 
@@ -67,7 +64,7 @@ sw-paas account token revoke --token-id <token-id>
 
 ### Authorization
 
-To access resources in our paas system you need to have specific roles inside the organization. To add somebody to a [role](#role-overview) in your organization you need have **Account Admin** role in your organization.
+To access resources in our paas system, you need to have specific roles inside the organization. To add somebody to a [role](#role-overview) in your organization, you need to have **Account Admin** role in your organization.
 
 Check for the role:
 
@@ -77,7 +74,7 @@ sw-paas account whoami
 
 If you are already `Account Admin`, then add the user-id of the user you want to add.
 
-On the user cli use this command to get the user-id:
+On the `user cli` use this command to get the user-id:
 
 ```sh
 sw-paas account whoami --output json
@@ -96,7 +93,7 @@ sw-paas account user add --sub "<user-id of the new user>"
 #### Role overview
 
 | Role          | Description                                                                          |
-| ------------- | ------------------------------------------------------------------------------------ |
+|---------------|--------------------------------------------------------------------------------------|
 | ReadOnly      | Gets access to projects and applications. Only actions allowed are `get` and `list`. |
 | Developer     | Gets access to projects and applications. All actions are allowed.                   |
 | Project Admin | Gets access to projects and applications. All actions are allowed.                   |
@@ -113,13 +110,13 @@ You can customize the config file and also generate a default one <!--with (TODO
 ### File overview
 
 |                 | Unix                   | MacOS                                      | Windows        |
-| --------------- | ---------------------- | ------------------------------------------ | -------------- |
+|-----------------|------------------------|--------------------------------------------|----------------|
 | XDG_CONFIG_HOME | ~/.config/sw-paas      | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 | XDG_STATE_HOME  | ~/.local/state/sw-paas | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 
 #### Context configuration
 
-If you have multiple projects or organizations we provide a way to select one, so you don't have to pass the `organizationId` and `projectId` every time. You can set the context with the following command:
+If you have multiple projects or organizations, we provide a way to select one, so you don't have to pass the `organizationId` and `projectId` every time. You can set the context with the following command:
 
 ```sh
 sw-paas account context set
@@ -144,7 +141,7 @@ If you now list the applications, you don't need to pass the required parameters
 sw-paas application list
 ```
 
-To delete the context you can use the following command:
+To delete the context, you can use the following command:
 
 ```sh
 sw-paas account context delete
@@ -154,7 +151,7 @@ sw-paas account context delete
 
 ### Organization
 
-An Organization has multiples users and represents the contract in the Shopware Account. The name is provided by the Shopware Account and is equal to the company name.
+An Organization has multiple users and represents the contract in the Shopware Account. The name is provided by the Shopware Account and is equal to the company name.
 
 View all organizations where the user has access to:
 
@@ -206,7 +203,7 @@ sw-paas application list
 
 #### Create your first application
 
-To create an application you can run the following command:
+To create an application, you can run the following command:
 
 ```sh
 sw-paas application create --name test --type shopware
@@ -220,7 +217,7 @@ sw-paas application create
 
 #### Updating an application
 
-To update an application you can run the following command:
+To update an application, you can run the following command:
 
 ```sh
 sw-paas application update --application-id 0b92ce92-f402-4b1c-acef-d931c194a4ee --commit-sha 2b79de876fdd6cb6d5262691b06212b55e16f995
@@ -250,7 +247,7 @@ sw-paas application build list
 
 #### Show docker logs of a build
 
-To show the docker logs of a build you can run the following command:
+To show the docker logs of a build, you can run the following command:
 
 ```sh
 sw-paas application build logs --organization-id <org-id> --project-id <project-id> --application-id <application-id> --build-id <build-id>
@@ -264,25 +261,15 @@ sw-paas application build logs
 
 ### Vault / Secrets
 
-To add secrets to your application you can use the following command:
+To add secrets to your application, you can use the following command:
 
 ```sh
 echo "my secret value" | sw-paas vault create --key "ENV_KEY_LATER_IN_THE_CONTAINER" --type "env" --password-stdin
 ```
 
 Please don't use echo in the shell and use a proper way of getting secrets like a password manager. You can also use the interactive
-one if you want to copy paste it from somewhere.
+one if you want to copy and paste it from somewhere.
 
 ### Report an issue
 
 Should you spot a bug, please report it in our [issue tracker](https://github.com/shopware/paas-cli/issues).
-
-<!--TODO limits for application and project business requirement
-TODO Operator support commands
-
-TODO Admin command for grepping shopware versions for each application
-
-TODO PaaS cli access database in some form POC
-TODO Grafana documentation and alerting
-TODO Fastly custom snippets later on
-TODO Fastly waf-->
