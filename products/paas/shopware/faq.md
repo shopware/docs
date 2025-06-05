@@ -1,0 +1,49 @@
+---
+nav:
+  title: Frequently Asked Questions
+  position: 40
+---
+
+## Frequently Asked Questions
+
+### Can I rollback my deployment if I lose my git history?
+
+For now, no roll back is possible when you do a force push and lose your git history
+
+### Is it possible to write to the local filesystem
+
+No, all containers are stateless, and local file writes are discouraged. Persistent storage must use S3 buckets or other external storage solutions.
+
+### How can I connect my already deployed application to a new branch
+
+The application that you create is linked to a commit SHA and not to a branch. You can change the existing application commit SHA by running `sw-paas application update`. What matters is the commit configured for a given application.
+
+### Why can't I manage extensions in the Shopware Administration
+
+Plugin management via the Administration interface is not supported in PaaS because the platform runs in a high-availability (HA) and clustered environment. In such setups, local changes aren't feasible, as all instances must remain identical and stateless. To ensure consistency across all deployments, plugins must be installed or updated via Composer, as part of the project’s codebase. You need to install or update extensions [via Composer](https://developer.shopware.com/docs/guides/hosting/installation-updates/extension-managment.html#installing-extensions-with-composer).
+
+### Can I run different applications like Node.js
+
+No, currently PaaS is limited to Shopware projects.
+
+### How are secrets managed in PaaS
+
+Secrets are stored in the PaaS secret store and can be applied at the organization, project, or application level. They are encrypted in the database and decrypted only when accessed via the CLI.
+
+### Can I access the database directly?
+
+<!-- TODO: Link the docs when deployed -->
+
+Yes. Follow the guide on [open command](/CLI/commands/open.md).
+
+### Can I customize the infrastructure (e.g., change web server configurations)
+
+No, the infrastructure is opinionated and pre-configured. Customizations at the server level are not allowed.
+
+### Are CDN or database configurations customizable?
+
+No, PaaS uses Fastly as the CDN and provides a fixed database configuration at the moment. Customizations to these resources are currently under development.
+
+### Can I host my custom applications
+
+Custom applications and decoupled storefront hosting will be evaluated based on customer needs but are not currently supported.
