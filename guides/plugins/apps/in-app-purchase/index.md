@@ -7,11 +7,14 @@ In-App Purchase is available since Shopware version 6.6.9.0
 In-App Purchases are a way to lock certain features behind a paywall within the same extension.
 This is useful for developers who want to offer a free version of their extension with limited features and a paid version with more features.
 
+<PageRef page="../../../concepts/framework/in-app-purchases.md" title="In-App purchases concept" />
+
 ## Retrieve In-App Purchases on your app server
 
 Whenever Shopware sends you a request, you'll receive a JWT as a query parameter or in the request body,
 depending on whether the request is a GET or POST.
-This JWT is signed by our internal systems, ensuring that you, as the app developer, can verify its authenticity and confirm it hasn't been tampered with.
+
+### 
 
 You can use the `shopware/app-php-sdk` for plain PHP or the `shopware/app-bundle` for Symfony to validate and decode the JWT.
 An example for plain PHP is available [here](https://github.com/shopware/app-php-sdk/blob/main/examples/index.php).
@@ -41,7 +44,7 @@ public function admin(ModuleAction $action): Response {
             try {
                 window.inAppPurchases = JSON.parse('{{ inAppPurchases | json_encode | raw }}');
             } catch (e) {
-                window.inAppPurchases = [];
+                window.inAppPurchases = {};
                 console.error('Unable to decode In-App Purchases', e);
             }
         </script>
@@ -53,8 +56,7 @@ public function admin(ModuleAction $action): Response {
 </html>
 ```
 
-Alternatively you can extract the query parameter from `document.location` on the initial `sw-main-hidden` request,
-store it and ask your app-server do properly decode it for you.
+Alternatively you can extract the query parameter from `document.location` and ask your app-server do properly decode it for you.
 
 ## Trigger a purchase of an In-App Purchases
 
@@ -84,3 +86,8 @@ function onClick() {
 
 Alternatively, you can trigger a checkout manually by sending a properly formatted
 [post message](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) with an In-App purchase identifier to the Admin.
+
+## Event
+
+Apps are also able to manipulate the available In-App Purchases as described in
+<PageRef page="../../apps/gateways/in-app-purchase/in-app-purchase-gateway.md" title="In App purchase gateway" />
