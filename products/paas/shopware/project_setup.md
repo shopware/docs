@@ -11,7 +11,7 @@ nav:
 Customizations that change the file system must be developed locally. This includes Shopware updates, installing and updating plugins ([documentation](https://developers.shopware.com/developers-guide/shopware-composer/#requiring-plugins)), making the initial configurations for the installation such as the system language, making code changes if necessary, etc.
 
 > [!NOTE]
-> It's not possible to manage extensions in the Shopware Administration panel. In a distributed and high available setups, you can't dynamically install or update extensions because those changes need to be done on every host server. Therefore, such operations should be performed during a deployment/rollout and not dynamically.
+> It's not possible to manage extensions in the Shopware Administration panel. In distributed and high available setups, you can't dynamically install or update extensions because those changes need to be done on every host server. Therefore, such operations should be performed during a deployment/rollout and not dynamically.
 
 ### Recommendation
 
@@ -35,12 +35,12 @@ composer require shopware/k8s-meta --ignore-platform-reqs
 ```
 
 This will install the required configurations (recipes) for the Shopware operator. Please ensure they are added correctly. Verify successful installation by checking the package file `config/packages/operator.yaml`.<br>
-<br>
-`--ignore-platform-reqs` option make sure all recepies are pulled down by ignoring the local PHP setup.
-<br>
 
-Last step is this is to create a file named `application.yaml` at the root level of you project. This file is required, it allows some basics configuration regarding the deployment of your shop (like php version, mysql version, passing specific variables ...).
-Here a basic example:
+`--ignore-platform-reqs` option makes sure all recipes are pulled down by ignoring the local PHP setup.
+
+
+Last step is this is to create a file named `application.yaml` at the root level of you project. This file is required; it allows some basics configuration regarding the deployment of your shop (like php version, mysql version, passing specific variables ...).
+Here is a basic example:
 
 ```yaml
 app:
@@ -53,7 +53,7 @@ services:
     version: "8.0"
 ```
 
-Below an advance exemple including passing a Shopware environmnent variable:
+Below, an advanced example including passing a Shopware environment variable:
 
 ```yaml
 app:
@@ -75,35 +75,35 @@ services:
 To connect your private git repository with our backend, you need to add a deploy key to your repository.
 This key is used to clone your repository and deploy your code to the cluster.
 
-If you don't care to much the PaaS CLI can also handle this for you. Just execute the following command:
+The PaaS CLI can also handle this for you. Execute the following command:
 
 ```bash
 sw-paas vault create --type ssh
 ```
 
-Note that this will add the ssh key as a organization level key. If you use multiple Projects you need to specify the project with the `--project` flag.
+Note that this will add the ssh key as an organization level key. If you use multiple Projects you need to specify the project with the `--project` flag.
 
 1. Generate a new SSH key pair on your local machine with an empty passphrase:
 
-```bash
-ssh-keygen -t rsa -b 4096 -m PEM -f ./sw-paas
-```
-
-We support different algorithms for SSH keys.
-The above command generates an RSA key.
-You can also use ED25519 or ECDSA keys.
-The only requirement is that the key must be passwordless and the private key must be stored in PEM format.
+    ```bash
+    ssh-keygen -t rsa -b 4096 -m PEM -f ./sw-paas
+    ```
+    
+    We support different algorithms for SSH keys.
+    The above command generates an **RSA** key.
+    You can also use **ED25519** or **ECDSA** keys.
+    The only requirement is that the key must be passwordless and the private key must be stored in PEM format.
 
 2. Add the public key to your repository settings. Copy the content of the public key file `sw-paas.pub` and add it to your repository settings.
 
-In GitHub you can find this under `Settings` -> `Deploy keys`.
-You can also add the key to your repository settings in GitLab or Bitbucket.
-The token should have read access to the repository.
+    In GitHub, you can find this under `Settings` -> `Deploy keys`.
+    You can also add the key to your repository settings in GitLab or Bitbucket.
+    The token should have read access to the repository.
 
 3. Store the private key in the vault
 
-The private key must be store in the vault.
-After that the key will be used to clone the repository and deploy the code to the cluster.
+    The private key must be stored in the vault.
+    After that, the key will be used to clone the repository and deploy the code to the cluster.
 
 ```bash
 cat sw-pass | sw-paas vault create --type ssh --password-stdin

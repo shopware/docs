@@ -20,7 +20,7 @@ The application that you create is linked to a commit SHA and not to a branch. Y
 
 ### Why can't I manage extensions in the Shopware Administration?
 
-Plugin management via the Administration interface is not supported in PaaS because the platform runs in a high-availability (HA) and clustered environment. In such setups, local changes aren't feasible, as all instances must remain identical and stateless. To ensure consistency across all deployments, plugins must be installed or updated via Composer, as part of the project’s codebase. You need to install or update extensions [via Composer](https://developer.shopware.com/docs/guides/hosting/installation-updates/extension-managment.html#installing-extensions-with-composer).
+Plugin management via the Administration interface is not supported in PaaS because the platform runs in a high-availability (HA) and clustered environment. In such setups, local changes aren't feasible, as all instances must remain identical and stateless. To ensure consistency across all deployments, plugins must be installed or updated via Composer, as part of the project’s codebase. You need to install or update extensions [via Composer](../../../guides/hosting/installation-updates/extension-managment#installing-extensions-with-composer).
 
 ### Can I run different applications like Node.js?
 
@@ -34,7 +34,7 @@ Secrets are stored in the PaaS secret store and can be applied at the organizati
 
 <!-- TODO: Link the docs when deployed -->
 
-Yes. Follow the guide on [open command](/CLI/commands/open.md).
+Yes. Follow the guide on [open command](./CLI/commands/open).
 
 ### Can I customize the infrastructure (e.g., change web server configurations)?
 
