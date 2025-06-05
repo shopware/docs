@@ -28,10 +28,10 @@ sw-paas application create [flags]
 
 **Flags:**
 
-- `--project-id`    ID of the target project. If not provided, the CLI will try to fetch it from the repository.
-- `--name`        Name of the application. If not provided, the CLI will prompt for it.
-- `--commit-sha`   Commit SHA to deploy. If not provided, the CLI will prompt for it.
-- `--help`        Display help for the command.
+- `--project-id`: ID of the target project. If not provided, the CLI will try to fetch it from the repository.
+- `--name`: Name of the application. If not provided, the CLI will prompt for it.
+- `--commit-sha`: Commit SHA to deploy. If not provided, the CLI will prompt for it.
+- `--help`: Display help for the command.
 
 **Example:**
 
@@ -51,10 +51,10 @@ sw-paas application update [flags]
 
 **Flags:**
 
-- `--project-id`    ID of the project.
-- `--application-id` ID of the application.
-- `--commit-sha`   Commit SHA to deploy.
-- `--help`        Display help for the command.
+- `--project-id`: ID of the project.
+- `--application-id`: ID of the application.
+- `--commit-sha`: Commit SHA to deploy.
+- `--help`: Display help for the command.
 
 **Example:**
 
@@ -74,8 +74,8 @@ sw-paas application list [flags]
 
 **Flags:**
 
-- `--project-id`  ID of the project.
-- `--help`     Display help for the command.
+- `--project-id`: ID of the project.
+- `--help`: Display help for the command.
 
 **Example:**
 
@@ -95,9 +95,9 @@ sw-paas application check [flags]
 
 **Flags:**
 
-- `--project-id`  ID of the project.
-- `--application-id` ID of the application.
-- `--help`     Display help for the command.
+- `--project-id`: ID of the project.
+- `--application-id`: ID of the application.
+- `--help`: Display help for the command.
 
 ## Build Commands
 
@@ -113,10 +113,10 @@ sw-paas application build list [flags]
 
 **Flags:**
 
-- `--application-id`  ID of the application.
-- `--organization-id` ID of the organization.
-- `--project-id`    ID of the project.
-- `--help`        Display help for the command.
+- `--application-id`: ID of the application.
+- `--organization-id`: ID of the organization.
+- `--project-id`: ID of the project.
+- `--help`: Display help for the command.
 
 **Example:**
 
@@ -136,11 +136,11 @@ sw-paas application build logs [flags]
 
 **Flags:**
 
-- `--application-id`    ID of the application.
-- `--application-build-id` ID of the build.
-- `--organization-id`   ID of the organization.
-- `--project-id`       ID of the project.
-- `--help`            Display help for the command.
+- `--application-id`: ID of the application.
+- `--application-build-id`: ID of the build.
+- `--organization-id`: ID of the organization.
+- `--project-id`: ID of the project.
+- `--help`: Display help for the command.
 
 **Example:**
 
@@ -160,10 +160,10 @@ sw-paas application build start [flags]
 
 **Flags:**
 
-- `--application-id`  ID of the application.
-- `--organization-id` ID of the organization.
-- `--project-id`    ID of the project.
-- `--help`        Display help for the command.
+- `--application-id`: ID of the application.
+- `--organization-id`: ID of the organization.
+- `--project-id`: ID of the project.
+- `--help`: Display help for the command.
 
 **Example:**
 
@@ -183,9 +183,9 @@ sw-paas application delete [flags]
 
 **Flags:**
 
-- `--application-id`  ID of the application to be deleted (required).
-- `--project-id`     ID of the project (optional, fetched if omitted).
-- `--help`         Display help for the command.
+- `--application-id`: ID of the application to be deleted (required).
+- `--project-id`: ID of the project (optional, fetched if omitted).
+- `--help`: Display help for the command.
 
 **Example:**
 

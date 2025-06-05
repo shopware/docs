@@ -26,7 +26,7 @@ To avoid repeatedly specifying `organization-id`, either use the `context` comma
 
 ### Creating a New Project
 
-Initializes a new project in your organization by specifying its name, repository, and type. To enable secure code fetching from private repositories during deployments, Shopware PaaS uses SSH deploy keys. [Here is a guide](./repository.md) on how you can configure deploy keys.
+Initialize a new project in your organization by specifying its name, repository, and type. To enable secure code fetching from private repositories during deployments, Shopware PaaS uses SSH deploy keys. [Here is a guide](./repository.md) on how you can configure deploy keys.
 
 **Usage:**
 

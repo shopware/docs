@@ -63,4 +63,6 @@ You can store the key at either:
 - **Organization level**: Shared across all projects.
 - **Project level**: Dedicated to a single project (takes precedence over the org-level key).
 
-> ⚠️ Only one SSH key can be stored per level (organization or project). You may name the key freely, but keep in mind that a project-level key **overrides** an organization-level one during deployments.
+:::warning
+Only one SSH key can be stored per level (organization or project). You may name the key freely, but keep in mind that a project-level key **overrides** an organization-level one during deployments.
+:::

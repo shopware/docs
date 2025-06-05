@@ -21,7 +21,7 @@ sw-paas account [command]
 The `context` command lets you define and manipulate a _context file_, allowing the CLI to skip repetitive prompts for `organization-id` and `project-id`. The default context file is saved as `context-production.yaml` and stored alongside the main config file. Below is the location of where these files are stored.
 
 |                 | Unix                   | MacOS                                      | Windows        |
-| --------------- | ---------------------- | ------------------------------------------ | -------------- |
+|-----------------|------------------------|--------------------------------------------|----------------|
 | XDG_CONFIG_HOME | ~/.config/sw-paas      | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 | XDG_STATE_HOME  | ~/.local/state/sw-paas | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 

@@ -65,7 +65,7 @@ sw-paas command output [flags]
 ```
 
 :::info
-See this [FAQ section](/faq.md) for the main difference between `exec` and `command`
+See this [FAQ section](./../faq) for the main difference between `exec` and `command`
 :::
 
 ## Examples

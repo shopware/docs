@@ -32,7 +32,7 @@ Secrets are stored in the PaaS secret store and can be applied at the organizati
 
 ### Can I access the database directly?
 
-Yes. Follow the guide on [open command](./CLI/commands/open).
+Yes. Follow the guide on [open command](./CLI/open).
 
 ### Can I customize the infrastructure (e.g., change web server configurations)?
 
