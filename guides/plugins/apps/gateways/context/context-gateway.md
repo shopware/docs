@@ -50,7 +50,7 @@ Below, you can see an example definition of a working checkout gateway configura
 
 :::
 
-After successful installation of your app, the context gateway is ready to be called by Shopware.
+After the successful installation of your app, the context gateway is ready to be called by Shopware.
 
 ## Context Gateway Endpoint
 
