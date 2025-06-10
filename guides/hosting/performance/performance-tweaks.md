@@ -330,6 +330,7 @@ After disabling the scheduled task, you should set up a dedicated cronjob to gen
 ```
 
 This approach offers several advantages:
+
 - The message queue remains available for other tasks
 - You can schedule sitemap generation during off-peak hours
 - You have better control over when this resource-intensive task runs
