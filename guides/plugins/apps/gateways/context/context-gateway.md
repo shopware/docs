@@ -316,8 +316,7 @@ Shopware performs basic validation on the commands returned by your app server t
 
 The following checks are enforced:
 
-- The command must be recognized as valid, e.g. <nobr>`context_change-currency`</nobr>.
-  See the [full list of available commands](./command-reference.md#available-commands).
+- The command must be recognized as valid, e.g. <nobr>`context_change-currency`</nobr>. See the full list of available [commands](./command-reference.md#available-commands).
 - The payload must be valid for the respective command type.
 - Only **one command per type** is allowed. For example, you cannot include two <nobr>`context_change-currency`</nobr> commands in a single response.
 - A maximum of **one <nobr>`context_register-customer`</nobr> or <nobr>`context_login-customer`</nobr>** command is allowed per response.
