@@ -304,6 +304,37 @@ To disable the Product Stream Indexer, you can set the following configuration:
 
 <<< @/docs/snippets/config/product_stream.yaml
 
+## Disable Scheduled Sitemap Generation
+
+::: info
+This is available starting with Shopware 6.7.1
+:::
+
+The sitemap generation can be a resource-intensive and time-consuming task, especially for shops with large product catalogs. When running as a scheduled task through the message queue, it can block the queue for an extended period, preventing other important tasks from being processed.
+
+To disable the scheduled sitemap generation and set up your own cronjob instead, you can use the following configuration:
+
+```yaml
+# config/packages/prod/shopware.yaml
+shopware:
+    sitemap:
+        scheduled_task:
+            enabled: false
+```
+
+After disabling the scheduled task, you should set up a dedicated cronjob to generate the sitemap at a time that suits your needs:
+
+```bash
+# Example crontab entry to run sitemap generation daily at 2 AM
+0 2 * * * cd /path/to/shopware && php bin/console sitemap:generate
+```
+
+This approach offers several advantages:
+- The message queue remains available for other tasks
+- You can schedule sitemap generation during off-peak hours
+- You have better control over when this resource-intensive task runs
+- You can run it on a dedicated worker server if needed
+
 ## Enable the Speculation Rules API
 
 ::: info
