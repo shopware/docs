@@ -35,7 +35,7 @@ These properties are available to set in the custom `data` object of the `contex
 | `birthdayDay`            | int    |                           | The day of the customer's birthday                                                                                            |
 | `birthdayMonth`          | int    |                           | The month of the customer's birthday                                                                                          |
 | `birthdayYear`           | int    |                           | The year of the customer's birthday                                                                                           |
-| `password`               | string | (for non-guest customers) | The password for the customer (plain text, will be hashed by shop before stored)                                              |
+| `password`               | string | (for non-guest customers) | The password for the customer (plain text, will be hashed by the shop before stored)                                              |
 | `billingAddress`         | object | Yes                       | The billing address of the customer, s. `AddressResponseStruct` for available fields                                          |
 | `shippingAddress`        | object |                           | The shipping address of the customer, s. `AddressResponseStruct` for available fields                                         |
 | `vatIds`                 | array  |                           | An array of VAT IDs for the customer                                                                                          |
