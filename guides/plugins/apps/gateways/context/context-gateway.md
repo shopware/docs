@@ -158,8 +158,7 @@ These commands can be used to perform actions such as:
 
 - Changing aspects of the customer context, like:
   - Changing the active currency
-  - Changing the active language
-  - ... and more
+  - Changing the active language and more
 - Registering a new customer
 - Logging in an existing customer
 
