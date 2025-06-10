@@ -3,7 +3,7 @@
 ::: danger
 **Security and privacy**
 
-With the context gateway, Shopware allows your app to manipulate the customer context, which includes sensitive information like customer addresses, payment methods, and more.
+With the Context Gateway, Shopware allows your app to manipulate the customer context, which includes sensitive information like customer addresses, payment methods, and more.
 It is your responsibility to ensure that the commands are valid and do not compromise the security or privacy of customers.
 
 Due to the powerful nature of this feature, it should only be used if your app server is properly secured and the commands it sends are fully trusted and validated.
