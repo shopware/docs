@@ -1,11 +1,11 @@
 ---
 nav:
-  title: platform.sh PaaS
+  title: Shopware PaaS
   position: 20
 
 ---
 
-# platform.sh PaaS
+# Shopware PaaS
 
 ::: info
 Shopware PaaS is available at request for Shopware merchants. Please approach the [Shopware Sales](https://www.shopware.com/en/#contact-sales) to get more information on Shopware PaaS
@@ -16,7 +16,7 @@ It comes with full flexibility and code ownership of a self-hosted Shopware proj
 
 Get started by installing the PaaS CLI on your local development machine.
 
-## Getting started with PaaS - How to deploy your first project
+## Getting started with Shopware PaaS - How to deploy your first project
 
 ::: info
 Prerequisites:

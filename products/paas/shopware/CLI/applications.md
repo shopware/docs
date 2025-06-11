@@ -6,7 +6,7 @@ nav:
 
 # Applications
 
-The `application` command manages deployments in Shopware PaaS. Each application represents a deployment of your codebase within a project. Projects can contain multiple applications (e.g., for staging, production).
+The `application` command manages deployments in Shopware PaaS Native. Each application represents a deployment of your codebase within a project. Projects can contain multiple applications (e.g., for staging, production).
 
 ## Usage
 
