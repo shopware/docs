@@ -43,3 +43,9 @@ Plugins are inherently less secure, as their open nature makes them more vulnera
 
 <PageRef page="../../guides/plugins/apps/in-app-purchase" title="In-App purchases for Apps" />
 <PageRef page="../../guides/plugins/plugins/in-app-purchase" title="In-App purchases for Plugins" />
+
+## Checkout Process
+
+When integrating In-App Purchases, shopware takes care of the whole checkout process, including payment handling and subscription management.
+
+To trigger the checkout process, you need to provide the identifier of the In-App Purchase you want to offer. This will trigger a modal that allows the user to complete the purchase.
