@@ -20,7 +20,7 @@ Additionally, before installation, verify that each plugin supports **S3-based s
 
 ## Prepare Your Shopware Application
 
-Whether you're starting from scratch or working with an existing Shopware project, the following steps will ensure your setup is ready for deployment on Shopware PaaS.
+Whether you're starting from scratch or working with an existing Shopware project, the following steps will ensure your setup is ready for deployment on Shopware PaaS native.
 
 ### For New Projects
 

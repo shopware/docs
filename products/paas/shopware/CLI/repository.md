@@ -6,7 +6,7 @@ nav:
 
 ## Setting Up Repository Access via Deploy Keys
 
-To enable Shopware PaaS to access your private Git repository, you must configure an **SSH deploy key**. This key allows the platform to securely clone your code during deployments.
+To enable Shopware PaaS native to access your private Git repository, you must configure an **SSH deploy key**. This key allows the platform to securely clone your code during deployments.
 
 Regardless of whether you use the CLI or set things up manually, you must **add the public SSH key to your repository**.
 
@@ -52,7 +52,7 @@ Open the file `sw-paas.pub`, copy its contents, and add it as a **read-only depl
 
 #### 3. Store the Private Key in the Vault
 
-Once the public key is added to your repo, store the corresponding private key in the Shopware PaaS Vault:
+Once the public key is added to your repo, store the corresponding private key in the Shopware PaaS native Vault:
 
 ```bash
 cat sw-paas | sw-paas vault create --type ssh --password-stdin

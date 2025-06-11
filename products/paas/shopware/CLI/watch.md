@@ -6,7 +6,7 @@ nav:
 
 # Watch
 
-The `watch` command allows you to monitor events related to a specific project in Shopware PaaS. It listens for real-time events associated with the project and its applications. You can specify the project ID, application IDs, and event types to filter the events you want to observe.
+The `watch` command allows you to monitor events related to a specific project in Shopware PaaS native. It listens for real-time events associated with the project and its applications. You can specify the project ID, application IDs, and event types to filter the events you want to observe.
 
 ## Usage
 
@@ -40,7 +40,7 @@ Watch specific event types:
   sw-paas watch --project-id abc123 --event-types "EVENT_TYPE_DEPLOYMENT_STARTED,EVENT_TYPE_DEPLOYMENT_FINISHED"
 ```
 
-The `--event-types` flag allows you to filter the event types to watch for. The available event types are fetched from Shopware PaaS and are sorted for easy selection.
+The `--event-types` flag allows you to filter the event types to watch for. The available event types are fetched from Shopware PaaS native and are sorted for easy selection.
 
 ### Project ID and application IDs
 
@@ -49,4 +49,4 @@ The `--event-types` flag allows you to filter the event types to watch for. The 
 
 ### Event subscription
 
-Once the `watch` command is triggered, it establishes a connection to the Shopware PaaS event stream and listens for the specified events. The events are printed out in real time to the terminal.
+Once the `watch` command is triggered, it establishes a connection to the Shopware PaaS native event stream and listens for the specified events. The events are printed out in real time to the terminal.
