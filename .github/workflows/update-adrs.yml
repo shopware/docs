@@ -30,7 +30,7 @@ jobs:
 
       - run: rm semicolon_delimited_script || echo "semicolon_delimited_script does not exist anymore"
 
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v7
         with:
           add-paths: |
             resources/references/adr/*.md
@@ -69,7 +69,7 @@ jobs:
           options: -v ${{ github.workspace }}:/www --name docs-php
           run: cd /www && find ./resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v7
         with:
           add-paths: |
             resources/guidelines/code/core/*.md

@@ -151,6 +151,7 @@ CashRounding
 CashRoundingConfigField
 CategoryRoute
 CentOS
+Centric
 Cerebro
 Chai
 ChangeCustomerSpecificFeaturesAction
@@ -173,6 +174,7 @@ ChildCount
 ChildCountField
 ChildrenAssociation
 ChildrenAssociationField
+CircleCI
 ClientInterface
 Cloudflare
 Cmd
@@ -180,6 +182,7 @@ CmsPage
 Codemods
 Codespaces
 Codestyle
+Cognito
 CommercialB
 CommercialBundle
 ComponentFactory
@@ -298,6 +301,7 @@ Dockware
 DomainException
 DomainExceptions
 DynamoDB
+ECDSA
 ENUM
 ENUMS
 EOL
@@ -441,6 +445,7 @@ Kibana
 Kubernetes
 LLM
 LLMs
+LOCALAPPDATA
 LONGTEXT
 LUA
 LandingPage
@@ -614,6 +619,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+PEM
 PHPStan
 PHPStorm
 PHPUnit
@@ -719,6 +725,7 @@ QuillJS
 RDB
 RDBMS
 README
+RSA
 RabbitMQ
 RabbitMq
 Readonly
@@ -753,6 +760,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBP
 SCSS
 SDK
 SDK's
@@ -846,6 +854,7 @@ StringField
 StringFields
 Struct
 Stylelint
+Subcommands
 SubjectAware
 SubjectStorer
 Subprocessor
@@ -960,6 +969,7 @@ Vuex
 WASM
 WCAG
 WSL
+WSL
 WarehouseGroup
 WarehouseGroups
 WebAssembly
@@ -976,6 +986,7 @@ WishlistPage
 WishlistWidget
 WriteEvents
 WriteProtected
+XDG
 XDebug
 XHR
 XKey
@@ -1171,6 +1182,7 @@ debounce
 declaratively
 decoratable
 decrementing
+decrypted
 deepCopyObject
 deepMergeObject
 defaultConfig
@@ -1490,6 +1502,7 @@ offCanvasCart
 offcanvas
 og
 ok
+onboarded
 onboarding
 onlyAvailable
 onlyOnFeature
@@ -1521,6 +1534,7 @@ param
 params
 parsable
 parsers
+passwordless
 paypal
 pcre
 pdf
@@ -1610,6 +1624,7 @@ removeBy
 renameMedia
 renderer
 renderers
+repo
 repos
 repositoryFactory
 repositoryfacade
@@ -1625,6 +1640,7 @@ revalidation
 rfc
 roadmap
 rollbacking
+rollout
 routeName
 routeScope
 routeScopes
@@ -1698,6 +1714,7 @@ stateId
 stateMachineState
 statesfacade
 statusCode
+stdin
 stdout
 stemmer
 stemmers
@@ -1814,6 +1831,7 @@ vimeo
 vscode
 vue
 vuex
+walkthrough
 webhook
 webhooks
 webkit
@@ -1823,6 +1841,7 @@ webserver
 wednesday
 whitespace
 whitespaces
+whoami
 wil
 wishlist
 www
