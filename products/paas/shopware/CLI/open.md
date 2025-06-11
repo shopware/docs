@@ -6,7 +6,7 @@ nav:
 
 # Open
 
-The `open` command lets you access critical service interfaces and internal tools within Shopware PaaS native. This command is essential for quickly navigating to application endpoints such as the Admin, Storefront, Grafana dashboard, or opening service tunnels for debugging and direct access.
+The `open` command lets you access critical service interfaces and internal tools within Shopware PaaS Native. This command is essential for quickly navigating to application endpoints such as the Admin, Storefront, Grafana dashboard, or opening service tunnels for debugging and direct access.
 
 ## Usage
 

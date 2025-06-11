@@ -6,7 +6,7 @@ nav:
 
 # Vault
 
-The `vault` command manages secrets in Shopware PaaS native. Secrets are encrypted pieces of sensitive data such as API keys, credentials, or SSH private keys. These secrets are securely stored and only accessible to users with the required permissions.
+The `vault` command manages secrets in Shopware PaaS Native. Secrets are encrypted pieces of sensitive data such as API keys, credentials, or SSH private keys. These secrets are securely stored and only accessible to users with the required permissions.
 
 ## Usage
 
