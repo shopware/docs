@@ -1368,6 +1368,7 @@ http
 httpCache
 https
 hydrator
+iap
 iFrame
 iFrames
 iOs
@@ -1376,6 +1377,7 @@ ified
 iframe
 iframes
 importTranslation
+inappfeatures
 inclusivity
 incrementer
 incrementing
@@ -1426,6 +1428,7 @@ js's
 json
 jsonEncode
 junit
+jwks
 jwt
 kebabCase
 keyframes
