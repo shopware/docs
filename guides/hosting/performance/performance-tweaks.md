@@ -307,7 +307,7 @@ To disable the Product Stream Indexer, you can set the following configuration:
 ## Disable Scheduled Sitemap Generation
 
 ::: info
-This is available starting with Shopware 6.7.1
+This is available starting with Shopware 6.7.1.0
 :::
 
 The sitemap generation can be a resource-intensive and time-consuming task, especially for shops with large product catalogs. When running as a scheduled task through the message queue, it can block the queue for an extended period, preventing other important tasks from being processed.
