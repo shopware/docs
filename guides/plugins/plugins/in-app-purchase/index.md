@@ -10,7 +10,33 @@ and then offer a paid version with more features.
 
 <PageRef page="../../../concepts/framework/in-app-purchases.md" title="In-App purchases concept" />
 
-## Active In-App Purchases
+## Allow users to buy an In-App Purchase
+
+In order to enable others to purchase your In-App Purchase, you must request a checkout for it via the `inAppPurchaseCheckout` store in the administration.
+The checkout process itself is provided by Shopware.
+As this is purely functional, it is your responsibility to provide a button and hide it if the IAP cannot be purchased more than once.
+
+```ts
+{
+    computed: {
+        inAppPurchaseCheckout() {
+            return Shopware.Store.get('inAppPurchaseCheckout');
+        },
+
+        hideButton(): boolean {
+            return Shopware.InAppPurchase.isActive('MyExtensionName', 'my-iap-identifier');
+        }
+    },
+
+    methods: {
+        onClick() {
+            this.inAppPurchaseCheckout.request({ identifier: 'my-iap-identifier' }, 'MyExtensionName');
+        }
+    }
+}
+```
+
+## Check active In-App Purchases
 
 The `InAppPurchase` class contains a list of all In-App Purchases.
 Inject this service into your class and you can check against it:
@@ -36,24 +62,6 @@ If you want to check an in-app purchase in the administration:
 
 ```js
 if (Shopware.InAppPurchase.isActive('MyExtensionName', 'my-iap-identifier')) {};
-```
-
-## Allow users to buy an In-App Purchase
-
-```js
-{
-    computed: {
-        inAppPurchaseCheckout() {
-            return Shopware.Store.get('inAppPurchaseCheckout');
-        }
-    },
-
-    methods: {
-        onClick() {
-            this.inAppPurchaseCheckout.request({ identifier: 'my-iap-identifier' }, 'MyExtensionName');
-        }
-    }
-}
 ```
 
 ## Event

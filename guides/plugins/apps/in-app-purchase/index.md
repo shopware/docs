@@ -9,18 +9,48 @@ This is useful for developers who want to offer a free version of their extensio
 
 <PageRef page="../../../concepts/framework/in-app-purchases.md" title="In-App purchases concept" />
 
-## Retrieve In-App Purchases on your app server
+## Allow users to buy an In-App Purchase
 
-Whenever Shopware sends you a request, you'll receive a JWT as a query parameter or in the request body,
-depending on whether the request is a GET or POST.
+In order to enable others to purchase your In-App Purchase, you must request a checkout for it via the `sw.iap.purchase()` function of the [Meteor Admin SDK](https://github.com/shopware/meteor/tree/main/packages/admin-sdk).
+The checkout process itself is provided by Shopware.
+As this is purely functional, it is your responsibility to provide a button and hide it if the IAP cannot be purchased more than once.
 
-### 
+```vue
+<template>
+    <!-- ... -->
+    <p>
+        If you buy this you'll get an incredible useful feature: ...
+    </p>
+    <mt-button @click="onClick">
+        Buy
+    </mt-button>
+    <!-- ... -->
+</template>
+
+<script setup>
+import * as sw from '@shopware/meteor-admin-sdk';
+
+function onClick() {
+    sw.iap.purchase({ identifier: 'my-iap-identifier' });
+}
+</script>
+```
+
+Alternatively, you can trigger a checkout manually by sending a properly formatted
+[post message](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) with an In-App purchase identifier to the Admin.
+
+
+## Check active In-App Purchases
+
+Whenever Shopware sends you a request, you'll receive a JWT as a query parameter `in-app-purchases` or in the request body as `inAppPurchases` as part of the `source`, depending on whether the request is a GET or POST. The claims of the JWT will contain all bought In-App Purchases.
+
+### Symfony or PHP app servers
 
 You can use the `shopware/app-php-sdk` for plain PHP or the `shopware/app-bundle` for Symfony to validate and decode the JWT.
 An example for plain PHP is available [here](https://github.com/shopware/app-php-sdk/blob/main/examples/index.php).
 For Symfony applications, use the appropriate action argument for your route.
 
-### Admin
+#### Admin
 
 You will also receive In-App Purchases with the initial `sw-main-hidden` admin request.
 To make them accessible, inject them into your JavaScript application.
@@ -56,36 +86,9 @@ public function admin(ModuleAction $action): Response {
 </html>
 ```
 
-Alternatively you can extract the query parameter from `document.location` and ask your app-server do properly decode it for you.
+### Non-PHP app servers
 
-## Trigger a purchase of an In-App Purchases
-
-The checkout process itself is provided by Shopware, you only have to trigger it with an identifier of the In-App Purchase.
-To do so, create a button and make use of the [Meteor Admin SDK](https://github.com/shopware/meteor/tree/main/packages/admin-sdk):
-
-```vue
-<template>
-    <!-- ... -->
-    <p>
-        If you buy this you'll get an incredible useful feature: ...
-    </p>
-    <mt-button @click="onClick">
-        Buy
-    </mt-button>
-    <!-- ... -->
-</template>
-
-<script setup>
-import * as sw from '@shopware/meteor-admin-sdk';
-
-function onClick() {
-    sw.iap.purchase({ identifier: 'my-iap-identifier' });
-}
-</script>
-```
-
-Alternatively, you can trigger a checkout manually by sending a properly formatted
-[post message](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) with an In-App purchase identifier to the Admin.
+To decode the IAP JWT, you must use an appropriate JWT/JOSE library for your language. We also recommend verifying the authenticity of the token by checking the signature against the JWKS provided under `https://api.shopware.com/inappfeatures/jwks`.
 
 ## Event
 
