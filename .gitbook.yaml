@@ -57,6 +57,7 @@ redirects:
     products/plugins/commercial/: products/extensions/commercial/
     guides/installation/devenv.html: guides/installation/setups/devenv.html
     products/cli/extension-commands/validation.html: products/cli/validation.html
+    products/paas/: products/paas/index.html
     products/paas/cli-setup.html: products/paas/platformsh/cli-setup.html
     products/paas/repository.html: products/paas/platformsh/repository.html
     products/paas/build-deploy.html: products/paas/platformsh/build-deploy.html
