@@ -46,6 +46,6 @@ Plugins are inherently less secure, as their open nature makes them more vulnera
 
 ## Checkout Process
 
-When integrating In-App Purchases, shopware takes care of the whole checkout process, including payment handling and subscription management.
+When integrating In-App Purchases, Shopware handles the entire checkout process for you—including payment processing and subscription management.
 
-To trigger the checkout process, you need to provide the identifier of the In-App Purchase you want to offer. This will trigger a modal that allows the user to complete the purchase.
+To initiate a purchase, simply provide the identifier of the desired In-App Purchase. This will trigger a modal window where the user can complete the transaction.
