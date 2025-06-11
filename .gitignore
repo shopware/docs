@@ -8,6 +8,11 @@
 !/.vscode/settings.json
 .vscode
 
+# devenv
 /.devenv/
 /.direnv/
 .devenv.flake.nix
+
+# AI
+CLAUDE.md
+.cursor/
