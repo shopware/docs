@@ -12,4 +12,4 @@ While both [Shopware PaaS Native](./shopware) and [Shopware PaaS](./shopware-paa
 
 - **Shopware PaaS Native**: Optimized solely for Shopware, this platform provides a tightly integrated and controlled environment on AWS. This focus ensures higher stability, with Shopware managing all underlying configurations, enabling developers to concentrate on application development.
 
-By using [Shopware PaaS native](./shopware), teams benefit from a unified, robust platform that simplifies the development lifecycle, enhances performance, and enables faster innovation.
+By using [Shopware PaaS Native](./shopware), teams benefit from a unified, robust platform that simplifies the development lifecycle, enhances performance, and enables faster innovation.
