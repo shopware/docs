@@ -1,11 +1,11 @@
 ---
 nav:
-  title: PaaS
+  title: platform.sh PaaS
   position: 20
 
 ---
 
-# PaaS
+# platform.sh PaaS
 
 ::: info
 Shopware PaaS is available at request for Shopware merchants. Please approach the [Shopware Sales](https://www.shopware.com/en/#contact-sales) to get more information on Shopware PaaS
