@@ -35,9 +35,9 @@ The architecture of Shopware PaaS Native includes two primary layers:
 
 ## Comparison: Shopware PaaS Native native vs. Shopware PaaS Native
 
-While both Shopware PaaS Native and [Shopware PaaS Native](./../platformsh) offer cloud-based environments for development, they differ in specialization and flexibility:
+While both Shopware PaaS Native and [Shopware PaaS Native](./../shopware-paas) offer cloud-based environments for development, they differ in specialization and flexibility:
 
-- **Shopware PaaS Native**: A generic PaaS provider, [Shopware PaaS Native](./../platformsh) supports various applications and multiple cloud providers, giving developers the flexibility to define their infrastructure as code. However, this requires customers to manage more aspects of infrastructure and setup.
+- **Shopware PaaS Native**: A generic PaaS provider, [Shopware PaaS Native](./../shopware-paas) supports various applications and multiple cloud providers, giving developers the flexibility to define their infrastructure as code. However, this requires customers to manage more aspects of infrastructure and setup.
 
 - **Shopware PaaS Native native**: Optimized solely for Shopware, this platform provides a tightly integrated and controlled environment on AWS. This focus ensures higher stability, with Shopware managing all underlying configurations, enabling developers to concentrate on application development.
 
