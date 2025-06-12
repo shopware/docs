@@ -7,7 +7,7 @@ In-App Purchase is available since Shopware version 6.6.9.0
 In-App Purchases are a way to lock certain features behind a paywall within the same extension.
 This is useful for developers who want to offer a free version of their extension with limited features and a paid version with more features.
 
-<PageRef page="../../../concepts/framework/in-app-purchases.md" title="In-App purchases concept" />
+<PageRef page="../../../../concepts/framework/in-app-purchases.md" title="In-App purchases concept" />
 
 ## Allow users to buy an In-App Purchase
 

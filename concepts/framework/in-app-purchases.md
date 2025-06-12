@@ -41,8 +41,8 @@ The app server can use this token to validate active purchases and unlock relate
 
 Plugins are inherently less secure, as their open nature makes them more vulnerable to spoofing or tampering.
 
-<PageRef page="../../guides/plugins/apps/in-app-purchase" title="In-App purchases for Apps" />
-<PageRef page="../../guides/plugins/plugins/in-app-purchase" title="In-App purchases for Plugins" />
+<PageRef page="../../guides/plugins/apps/in-app-purchase/index.md" title="In-App purchases for Apps" />
+<PageRef page="../../guides/plugins/plugins/in-app-purchase/index.md" title="In-App purchases for Plugins" />
 
 ## Checkout Process
 
