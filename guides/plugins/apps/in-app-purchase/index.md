@@ -88,7 +88,9 @@ public function admin(ModuleAction $action): Response {
 
 ### Non-PHP app servers
 
-To validate In-App Purchase (IAP) tokens on non-PHP app servers, use a JWT/JOSE library appropriate for your language. These tokens are signed JSON Web Tokens (JWTs) and include the list of purchased features in their claims. To ensure the token’s authenticity, you must verify its signature using Shopware’s public keys, available as a JWKS (JSON Web Key Set) at `https://api.shopware.com/inappfeatures/jwks`.
+To validate In-App Purchase tokens on non-PHP app servers, use a JWT/JOSE library appropriate for your language.
+These tokens are signed JSON Web Tokens (JWTs) and include the list of purchased features in their claims. To ensure the token’s authenticity,
+you must verify its signature using Shopware’s public keys, available as a JWKS (JSON Web Key Set) at `https://api.shopware.com/inappfeatures/jwks`.
 
 Most modern JWT libraries support loading JWKS endpoints directly. After successful verification, you can extract and use the claims to enable or restrict features based on the user’s purchases.
 
