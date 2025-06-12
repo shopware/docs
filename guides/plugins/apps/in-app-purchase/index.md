@@ -88,7 +88,20 @@ public function admin(ModuleAction $action): Response {
 
 ### Non-PHP app servers
 
-To decode the IAP JWT, you must use an appropriate JWT/JOSE library for your language. We also recommend verifying the authenticity of the token by checking the signature against the JWKS provided under `https://api.shopware.com/inappfeatures/jwks`.
+To validate In-App Purchase (IAP) tokens on non-PHP app servers, use a JWT/JOSE library appropriate for your language. These tokens are signed JSON Web Tokens (JWTs) and include the list of purchased features in their claims. To ensure the token’s authenticity, you must verify its signature using Shopware’s public keys, available as a JWKS (JSON Web Key Set) at `https://api.shopware.com/inappfeatures/jwks`.
+
+Most modern JWT libraries support loading JWKS endpoints directly. After successful verification, you can extract and use the claims to enable or restrict features based on the user’s purchases.
+
+Example (Node.js with `jose`):
+
+```js
+import { jwtVerify, createRemoteJWKSet } from 'jose';
+
+const JWKS = createRemoteJWKSet(new URL('https://api.shopware.com/inappfeatures/jwks'));
+
+const { payload } = await jwtVerify(token, JWKS);
+console.log(payload); // Contains list of purchased IAP identifiers
+```
 
 ## Event
 
