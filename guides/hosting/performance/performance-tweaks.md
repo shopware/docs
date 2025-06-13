@@ -33,40 +33,22 @@ shopware:
             http_cache: []
 ```
 
-### Delayed invalidation
+### Redis for delayed cache invalidation
 
-A delay for cache invalidation can be activated for systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+The HTTP cache will be invalidated in regular intervals, benefitting systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
 
-::: warning
-If you enable delayed cache invalidation, you must set up a worker to run [Scheduled Tasks](../infrastructure/scheduled-task), e.g., using the [Message Queue](../infrastructure/message-queue).
-:::
-
-There are two possible storages/adapters for delayed cache invalidation: Redis and MySQL. Redis is preferred since it handles retrieving and deleting keys in an atomic manner. MySQL also supports it, but it's more complicated, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
-
-Redis:
+Out of the box the information which tags need to be invalidated is stored in the DB, however especially in systems which a high amount of concurrent write request this can become a bottleneck, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
+To offload this to a Redis instance, you can configure the following:
 
 ```yaml
 # config/packages/prod/shopware.yaml
 shopware:
     cache:
         invalidation:
-            delay: 1 # 0 = disabled, 1 = enabled
             delay_options:
                 storage: redis
                 connection: 'ephemeral' # connection name from redis configuration
-```
-
-MySQL:
-
-```yaml
-# config/packages/prod/shopware.yaml
-shopware:
-    cache:
-        invalidation:
-            delay: 1 # 0 = disabled, 1 = enabled
-            delay_options:
-                storage: mysql
 ```
 
 ## MySQL configuration
@@ -93,10 +75,6 @@ When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTIO
 Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Prevent mail data updates
-
-::: info
-[Prevent mail updates](../../../resources/references/adr/2022-03-25-prevent-mail-updates.md) feature is available starting with Shopware 6.4.11.0.
-:::
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
 
@@ -191,10 +169,6 @@ opcache.preload=/var/www/html/var/cache/opcache-preload.php
 opcache.preload_user=nginx
 ```
 
-## Cache ID
-
-The Shopware cache has a global cache ID to clear the cache faster and work in a cluster setup. This cache ID is saved in the database and will only be changed when the cache is cleared. This ensures that the new cache is used and the message queue can clean the old folder. If this functionality is not used, this cache ID can also be hardcoded `SHOPWARE_CACHE_ID=foo` in the `.env` to save one SQL query on each request.
-
 ## .env.local.php
 
 [Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in Production instead of a `.env` file to skip parsing of the  .env file on every request.
@@ -228,20 +202,6 @@ The `business_event_handler_buffer` handler logs flow. Setting it to `error` wil
 
 On any Administration load, Shopware tries to request itself to test that the configured `APP_URL` inside `.env` is correct.
 If your `APP_URL` is correct, you can disable this behavior with an environment variable `APP_URL_CHECK_DISABLED=1`.
-
-## Disable fine-grained caching
-
-Shopware has a fine-grained caching system for system config, translation and theme config. This allows to clear only the relevant pages when a translation or theme config is changed. This is done by adding per config element a cache tag to the response. This behavior generates a lot of Redis keys or entries in Varnish. To save this overhead on config changes, it is possible to disable this behavior and clear the whole cache instead using the following config:
-
-```yaml
-# config/packages/shopware.yaml
-shopware:
-    cache:
-        tagging:
-            each_config: false
-            each_snippet: false
-            each_theme_config: false
-```
 
 ## Using zstd instead of gzip for compression
 
@@ -303,6 +263,38 @@ Disabling the Product Stream Indexer has the following disadvantages:
 To disable the Product Stream Indexer, you can set the following configuration:
 
 <<< @/docs/snippets/config/product_stream.yaml
+
+## Disable Scheduled Sitemap Generation
+
+::: info
+This is available starting with Shopware 6.7.1.0
+:::
+
+The sitemap generation can be a resource-intensive and time-consuming task, especially for shops with large product catalogs. When running as a scheduled task through the message queue, it can block the queue for an extended period, preventing other important tasks from being processed.
+
+To disable the scheduled sitemap generation and set up your own cronjob instead, you can use the following configuration:
+
+```yaml
+# config/packages/prod/shopware.yaml
+shopware:
+    sitemap:
+        scheduled_task:
+            enabled: false
+```
+
+After disabling the scheduled task, you should set up a dedicated cronjob to generate the sitemap at a time that suits your needs:
+
+```bash
+# Example crontab entry to run sitemap generation daily at 2 AM
+0 2 * * * cd /path/to/shopware && php bin/console sitemap:generate
+```
+
+This approach offers several advantages:
+
+- The message queue remains available for other tasks
+- You can schedule sitemap generation during off-peak hours
+- You have better control over when this resource-intensive task runs
+- You can run it on a dedicated worker server if needed
 
 ## Enable the Speculation Rules API
 
