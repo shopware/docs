@@ -92,6 +92,8 @@ The name of the method does not really matter, but it should somehow fit its pur
 More important is the `Route` attribute, that points to the route `/example`.
 Also note its name, which is also quite important.
 Make sure to use prefixes `frontend`, `widgets`, `payment`, `api` or `store-api` here, depending on what your route does.
+Since Shopware 6.7.1.0 it is no longer necessary to use one of the first three, if you introduce a new Storefront route.
+Just make sure, you are setting the `_routeScope` to `storefront` in the `Route` attribute.
 Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`.
 This template variable will be usable in the rendered template file.
 The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
