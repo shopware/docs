@@ -324,7 +324,7 @@ The following checks are enforced:
 ## Event
 
 Plugins can listen to the `Shopware\Core\Framework\Gateway\Context\Command\Event\ContextGatewayCommandsCollectedEvent`.
-This event is dispatched after all commands have been collected from the app server and allow plugins to modify or add commands based on the same payload the app received. 
+This event is dispatched after all commands have been collected from the app server and allow plugins to modify or add commands based on the same payload the app received.
 
 ## Special Considerations
 
