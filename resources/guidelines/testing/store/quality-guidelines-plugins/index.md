@@ -513,7 +513,7 @@ Remove out-commented code, unused files and folders, and all dev-files from your
 Here are some examples of not allowed folders and files:
 
 * /__MACOSX
-* /tests
+* ./tests
 * .gitignore
 * .gitkeep
 * .gitlab-ci.yml
@@ -522,16 +522,18 @@ Here are some examples of not allowed folders and files:
 * .git
 * .gitignore
 * .phar
-* phpstan.neon
-* phpstan.neon.dist
 * .prettierrc
 * .tar
 * .tar.gz
 * .zip
 * .zipignore
 * composer.lock
-* phpdoc.dist.xml
+* package.json
+* package-lock.json
 * phpunit.sh
+* phpdoc.dist.xml
+* phpstan.neon
+* phpstan.neon.dist
 * phpunitx.xml
 * shell.nix
 * Thumbs.db
