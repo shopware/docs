@@ -512,29 +512,29 @@ Remove out-commented code, unused files and folders, and all dev-files from your
 
 Here are some examples of not allowed folders and files:
 
-* /__MACOSX
 * ./tests
-* .gitignore
-* .gitkeep
-* .gitlab-ci.yml
 * .DS_Store
 * .editorconfig
 * .git
 * .gitignore
+* .gitignore
+* .gitkeep
+* .gitlab-ci.yml
 * .phar
 * .prettierrc
 * .tar
 * .tar.gz
 * .zip
 * .zipignore
+* /__MACOSX
+* Thumbs.db
 * composer.lock
-* package.json
 * package-lock.json
-* phpunit.sh
+* package.json
 * phpdoc.dist.xml
 * phpstan.neon
 * phpstan.neon.dist
+* phpunit.sh
 * phpunitx.xml
 * shell.nix
-* Thumbs.db
 * webpack.config.js
