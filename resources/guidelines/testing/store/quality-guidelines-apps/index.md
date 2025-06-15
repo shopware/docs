@@ -440,7 +440,6 @@ Here are some examples of not allowed folders and files:
 * .gitignore
 * .phar
 * .prettierrc
-* .shopware-extension.yml
 * .tar
 * .tar.gz
 * .zip
