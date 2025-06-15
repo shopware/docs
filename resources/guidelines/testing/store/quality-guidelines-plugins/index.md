@@ -517,7 +517,6 @@ Here are some examples of not allowed folders and files:
 * .editorconfig
 * .git
 * .gitignore
-* .gitignore
 * .gitkeep
 * .gitlab-ci.yml
 * .phar
