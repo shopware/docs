@@ -61,3 +61,11 @@ Custom applications and decoupled storefront hosting will be evaluated based on 
 3. **Use Cases**:
    - `exec`: Best for debugging, maintenance, and interactive work
    - `command`: Best for automation, CI/CD, and scheduled tasks
+
+### Can I connect to my PaaS instance via SSH
+
+Yes, you can connect to your PaaS instance — but not via traditional SSH. Instead, we provide a remote terminal session through the `sw-paas exec` command. This command allows you to execute shell commands inside your PaaS environment remotely, effectively giving you SSH-like access for troubleshooting, deployments, or interactive sessions. You can find the detailed guide on how to use `sw-paas exec` in the [documentation here](https://developer.shopware.com/docs/products/paas/shopware/CLI/exec.html).
+
+### Where can I see the status of my PaaS application update?
+
+You can see the status of your PaaS application by running `sw-paas application list`. This command shows the current status of your application, including whether the update was successful or if it's still in progress. To monitor all real-time events associated with the project and its applications run `sw-paas watch` this provides a live stream of events and is especially useful for tracking the progress of an ongoing update.
