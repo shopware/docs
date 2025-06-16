@@ -59,6 +59,10 @@ Instead of copying the Dockerfile to your project, rather run `composer req shop
 
 ## Available Tags / Versioning
 
+::: info
+We recommand to use FrankenPHP over Caddy or Nginx, as it does automatic resource allocation and requires just one process to run PHP, which is better suited for containerized environments.
+:::
+
 The Docker image is versioned by the PHP Version and the PHP Patch version. The Docker Image is updated daily and contains the latest security patches.
 
 The following tags are available with Caddy:
@@ -67,6 +71,12 @@ The following tags are available with Caddy:
 - `shopware/docker-base:8.3-caddy` - PHP 8.3 with Caddy (same as above, but more explicit)
 - `shopware/docker-base:8.3.12-caddy` - PHP 8.3.12 with Caddy (same as above, but much more explicit)
 - `shopware/docker-base:8.3-caddy-otel` - PHP 8.3 with Caddy and OpenTelemetry
+
+The following tags are available with FrankenPHP:
+- `shopware/docker-base:8.3-frankenphp` - PHP 8.3 with FrankenPHP
+- `shopware/docker-base:8.3.12-frankenphp` - PHP 8.3.12 with FrankenPHP (same as above, but much more explicit)
+- `shopware/docker-base:8.3-frankenphp-otel` - PHP 8.3 with FrankenPHP and OpenTelemetry
+- `shopware/docker-base:8.3.12-frankenphp-otel` - PHP 8.3.12 with FrankenPHP and OpenTelemetry (same as above, but much more explicit)
 
 We also have Nginx images available:
 
