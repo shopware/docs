@@ -30,6 +30,7 @@ ActivateContext
 AdapterFactory
 AddCustomerTagActionTest
 AddDocumentType
+FrankenPHP
 AddressBookWidget
 AddressDetailPage
 AddressListingPage
