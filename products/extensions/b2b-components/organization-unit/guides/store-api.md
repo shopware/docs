@@ -7,7 +7,7 @@ nav:
 
 ## Store API
 
-Here are some the actions you can perform on *Organization Unit* with Store API.
+Here are some of the actions you can perform on *Organization Unit* using the Store API.
 
 ### Create new organization unit
 
