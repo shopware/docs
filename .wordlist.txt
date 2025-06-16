@@ -30,7 +30,6 @@ ActivateContext
 AdapterFactory
 AddCustomerTagActionTest
 AddDocumentType
-FrankenPHP
 AddressBookWidget
 AddressDetailPage
 AddressListingPage
@@ -383,6 +382,7 @@ Fontawesome
 FooterPagelet
 FormData
 FrameworkBundle
+FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
 Fullstack
