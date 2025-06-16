@@ -382,6 +382,7 @@ Fontawesome
 FooterPagelet
 FormData
 FrameworkBundle
+FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
 Fullstack
