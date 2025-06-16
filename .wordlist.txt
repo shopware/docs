@@ -380,6 +380,7 @@ FlowStorer
 Flysystem
 Fontawesome
 FooterPagelet
+FormData
 FrameworkBundle
 FriendsOfShopware
 FroshDevelopmentHelper
