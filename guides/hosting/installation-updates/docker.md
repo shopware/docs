@@ -73,6 +73,7 @@ The following tags are available with Caddy:
 - `shopware/docker-base:8.3-caddy-otel` - PHP 8.3 with Caddy and OpenTelemetry
 
 The following tags are available with FrankenPHP:
+
 - `shopware/docker-base:8.3-frankenphp` - PHP 8.3 with FrankenPHP
 - `shopware/docker-base:8.3.12-frankenphp` - PHP 8.3.12 with FrankenPHP (same as above, but much more explicit)
 - `shopware/docker-base:8.3-frankenphp-otel` - PHP 8.3 with FrankenPHP and OpenTelemetry
