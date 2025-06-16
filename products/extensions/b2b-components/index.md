@@ -19,6 +19,8 @@ In the world of digital B2B commerce, where businesses engage with other compani
 
 * **Quick Order and Shopping List** takes care of distinctive B2B buying behaviors.
 
+* **Organization Unit** allows for the configuration of more differentiated and specific access rights to meet the needs of businesses with complex structures.
+
 * **Digital Sales Composables** aims to provide a set of composable frontends to cover more complex Sales Representative jobs.
 
 ## Configuring custom toggles for B2B components
