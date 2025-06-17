@@ -381,7 +381,9 @@ FlowStorer
 Flysystem
 Fontawesome
 FooterPagelet
+FormData
 FrameworkBundle
+FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
 Fullstack
@@ -1054,6 +1056,7 @@ backport
 backported
 balancer
 binlog
+bitbucket
 blackbox
 blackfire
 blockquote
@@ -1248,6 +1251,7 @@ errorsfacade
 erros
 esbuild
 eslint
+eslintrc
 et
 everytime
 evolvability
@@ -1322,6 +1326,7 @@ github
 gitignore
 gitkeep
 gitlab
+gitpod
 globals
 goto
 grantable
@@ -1330,6 +1335,7 @@ graphviz
 gridActions
 gridColumns
 grpc
+grumphp
 guid
 gz
 gzip
@@ -1726,6 +1732,8 @@ storer
 strlen
 struct
 structs
+stylelint
+stylelintrc
 stylesheet
 stylesheets
 stylings
@@ -1777,6 +1785,7 @@ transactionCapture
 transactionId
 transactional
 transpiling
+travis
 treepath
 triggerDeprecated
 truthy

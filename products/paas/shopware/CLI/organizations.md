@@ -6,7 +6,7 @@ nav:
 
 # Organization
 
-The `organization` command allows you to manage organizations, which serve as the top-level container representing a company or entity in Shopware PaaS. Each organization can contain multiple projects. Admin users within an organization can manage user access through the `account` commands.
+The `organization` command allows you to manage organizations, which serve as the top-level container representing a company or entity in Shopware PaaS Native. Each organization can contain multiple projects. Admin users within an organization can manage user access through the `account` commands.
 
 ## Usage
 

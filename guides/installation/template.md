@@ -17,7 +17,7 @@ To create a new Shopware project, run the following command:
 composer create-project shopware/production <project-name>
 
 # or install a specific version
-composer create-project shopware/production:6.6.10.0 <project-name>
+composer create-project shopware/production:6.6.10.5 <project-name>
 ```
 
 ::: info

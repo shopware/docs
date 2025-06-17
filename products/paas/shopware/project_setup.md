@@ -20,7 +20,7 @@ Mac and Linux are recommended. When working with Windows, you can set up a local
 
 ## Project creation
 
-To create a new Shopware PaaS project, execute the following command:
+To create a new Shopware PaaS Native project, execute the following command:
 
 ```sh
 composer create-project shopware/production <folder-name>
