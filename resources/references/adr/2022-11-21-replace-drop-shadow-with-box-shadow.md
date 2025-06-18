@@ -1,6 +1,6 @@
 ---
 title: Replace drop-shadow with box-shadow
-date: 2022-21-11
+date: 2022-11-21
 area: storefront
 tags: [safari, performance, storefront]
 ---
@@ -9,7 +9,7 @@ tags: [safari, performance, storefront]
 
 ::: info
 This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-21-11-replace-drop-shadow-with-box-shadow.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-11-21-replace-drop-shadow-with-box-shadow.md)
 :::
 
 ## Context
