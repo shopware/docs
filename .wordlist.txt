@@ -93,6 +93,7 @@ BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
 Beispiel
 Beispielbeschreibung
+benefitting
 Beschreibung
 BillingCountryRule
 BillingStreetRule
@@ -1151,6 +1152,7 @@ createSnippetFixture
 createValidatorDefinition
 cron
 croninterval
+cronjob
 cryptographic
 csrf
 css

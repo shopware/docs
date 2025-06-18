@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-git clone --depth 1 -b 6.6.x https://github.com/shopware/shopware.git
+git clone --depth 1 https://github.com/shopware/shopware.git
 
 # delete dirs
 rm -r ./resources/guidelines/code/core
