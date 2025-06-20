@@ -150,6 +150,8 @@ services:
       environment:
           APP_URL: https://web.sw.orb.local
           SYMFONY_TRUSTED_PROXIES: REMOTE_ADDR
+          HTTPS: on
+          SERVER_PORT: 443
 
 ###> symfony/mailer ###
   mailer:
