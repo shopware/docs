@@ -91,6 +91,6 @@ pnpm install
 pnpm build
 ```
 
-After build code, please read [here](../best-practices/app-deployment/index.md) for how to make the deployment.
+After the build, make the [deployment](../best-practices/app-deployment/index.md).
 
-The Following section guides you to 3rd party setup procedures.
+The following section guides you to 3rd party setup procedures.

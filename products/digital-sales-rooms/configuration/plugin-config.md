@@ -28,7 +28,9 @@ Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configurat
 
 ### Realtime service
 
-- *Hub url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
-- *Hub public url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
-- *Hub subscriber secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
-- *Hub publisher secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
+- *Hub url*
+- *Hub public url*
+- *Hub subscriber secret*
+- *Hub publisher secret*
+
+Get the value of all these from [this section](../setup-3rd-party/realtime-service-mercure.md#setup-via-stackhero-recommended)
