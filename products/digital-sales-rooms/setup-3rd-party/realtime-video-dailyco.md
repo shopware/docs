@@ -12,7 +12,7 @@ The service is responsible for streaming a video between the attendees.
 ## Login Daily.co dashboard
 
 - Go to the dashboard at: <https://dashboard.daily.co/>
-- Login or register with the Daily.co account.
+- Login or register with the *Daily.co* account.
 
 ## Get the API key
 

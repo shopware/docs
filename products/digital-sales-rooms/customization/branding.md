@@ -34,7 +34,7 @@ app: {
 
 - Create `uno.config.ts` inside your layer (if missing).
 
-- E.g. to change the primary color to `#000000`, add the following code:
+- For example, to change the primary color to `#000000`, add the following code:
 
 ```js
 theme: {

@@ -33,6 +33,7 @@ AddDocumentType
 AddressBookWidget
 AddressDetailPage
 AddressListingPage
+AddressResponseStruct
 AdminQueueWorker
 AdminWorker
 Adminer
@@ -77,6 +78,7 @@ B2B Component
 B2B Components
 B2B Suite
 BBundle
+BCP
 BDD
 BITV
 BackedEnum
@@ -93,7 +95,6 @@ BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
 Beispiel
 Beispielbeschreibung
-benefitting
 Beschreibung
 BillingCountryRule
 BillingStreetRule
@@ -123,6 +124,7 @@ CSP
 CSPs
 CSRF
 CSV
+CacheInvalidatorS
 CachedProductListingRouteTest
 Cachix
 Caddy
@@ -306,6 +308,7 @@ ENUM
 ENUMS
 EOL
 ERP
+ESI
 ESLint
 ESlint
 EcmaScript
@@ -368,6 +371,7 @@ FileReader
 Filesystem
 Fk
 FkField
+FlashBag
 FloatField
 FlowAction
 FlowBuilder
@@ -387,6 +391,7 @@ FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
 Fullstack
+GBP
 GDPR
 GIFs
 GenericPage
@@ -405,6 +410,7 @@ GuestWishlistPage
 GuestWishlistPagelet
 HMAC
 HMR
+HeaderPagelet
 Homebrew
 Hono
 HookClasses
@@ -655,6 +661,7 @@ ParentFkField
 PasswordField
 PaymentGatewayApp
 PaymentHandlerIdentifierSubscriber
+PaymentHandlerType
 PaymentMethod
 PaymentMethodRoute
 PaymentMethodRule
@@ -741,6 +748,7 @@ ReferenceVersion
 ReferenceVersionField
 RefundPaymentHandlerInterface
 RegEx
+RegisterCustomerCommand
 RegistrationCompletedEvent
 RegistrationService
 Reindexes
@@ -1055,6 +1063,7 @@ backoff
 backport
 backported
 balancer
+benefitting
 binlog
 bitbucket
 blackbox
@@ -1100,6 +1109,7 @@ changelogs
 changeset
 changesets
 chargeback
+cheapestpricefacade
 checkboxes
 ci
 classmap
@@ -1380,6 +1390,7 @@ integrations
 intl
 invalidations
 io
+ip
 isActive
 isArray
 isBoolean
@@ -1542,6 +1553,7 @@ params
 parsable
 parsers
 passwordless
+pathInfo
 paypal
 pcre
 pdf
@@ -1618,6 +1630,7 @@ recalculable
 redis
 refactorings
 referenceField
+referer
 refundAmount
 refundId
 refundPositions
@@ -1638,6 +1651,7 @@ repositoryfacade
 repositorywriterfacade
 reproducibility
 requestAdminApi
+requestfacade
 resetUrl
 resolvers
 resubmittable
@@ -1744,6 +1758,7 @@ subdirectories
 subdirectory
 subfolder
 suboptimal
+subpaths
 subprocessor
 subprocessors
 supervisord
@@ -1820,6 +1835,7 @@ untyped
 updateDestructive
 updateViaAdminApi
 upsert
+uri
 url
 urls
 userAware

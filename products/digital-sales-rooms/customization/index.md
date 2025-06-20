@@ -7,7 +7,7 @@ nav:
 
 # Digital Sales Rooms Customization
 
-This section explains how to customize the **Digital Sales Rooms** frontend template. The DSR frontend is built with Nuxt 3 and leverages the [Nuxt Layer concept](https://nuxt.com/docs/getting-started/layers), allowing you to override file content with your own Nuxt layer for easy customization.
+This section explains how to customize the *Digital Sales Rooms* frontend template. The DSR frontend is built with Nuxt 3 and leverages the [Nuxt Layer concept](https://nuxt.com/docs/getting-started/layers), allowing you to override file content with your own Nuxt layer for easy customization.
 
 ## Create a new Nuxt layer
 
