@@ -12,7 +12,7 @@ This section will show how to install **Digital Sales Rooms** plugin into the ex
 :::
 
 ::: info
-Before we start, let assume Shopware platform is running at `https://shopware.store` & frontend app will run in `https://dsr.shopware.io`.
+Before we start, lets assume Shopware platform is running at `https://shopware.store` & frontend app will run in `https://dsr.shopware.io`.
 :::
 
 This includes installation at admin and at template.
