@@ -93,7 +93,6 @@ BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
 Beispiel
 Beispielbeschreibung
-benefitting
 Beschreibung
 BillingCountryRule
 BillingStreetRule
@@ -1055,6 +1054,7 @@ backoff
 backport
 backported
 balancer
+benefitting
 binlog
 bitbucket
 blackbox
