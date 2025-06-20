@@ -16,9 +16,7 @@ This is useful for developers who want to offer a free version of their extensio
 
 ## Creation
 
-In-App Purchases can be created in the Shopware Account.
-
-<!-- Link to Account docs -->
+In-App Purchases can be created in the Shopware Account. You can find out how to do this in the [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/in-app-purchases).
 
 ## Token
 
@@ -26,7 +24,7 @@ Each in-app purchase is represented by a signed JSON Web Token (JWT), issued per
 This JWT ensures that purchase data cannot be tampered with or spoofed and allows verification of its authenticity.
 All bought In-App Purchases are part of the JWT claims.
 
-To verify the JWT signature, you can use the JSON Web Key Set (JWKS) available at: [https://api.shopware.com/inappfeatures/jwks](https://api.shopware.com/inappfeatures/jwks)
+To verify the JWT signature, you can use the JSON Web Key Set (JWKS) available at [`https://api.shopware.com/inappfeatures/jwks`](https://api.shopware.com/inappfeatures/jwks)
 Shopware automatically verifies the signature for the use within the Core and Admin.
 
 Tokens are retrieved when a new purchase is made and during periodic updates.
@@ -41,8 +39,8 @@ The app server can use this token to validate active purchases and unlock relate
 
 Plugins are inherently less secure, as their open nature makes them more vulnerable to spoofing or tampering.
 
-<PageRef page="../../guides/plugins/apps/in-app-purchase/index.md" title="In-App purchases for Apps" />
-<PageRef page="../../guides/plugins/plugins/in-app-purchase/index.md" title="In-App purchases for Plugins" />
+<PageRef page="../../guides/plugins/apps/in-app-purchases" title="In-App purchases for Apps" />
+<PageRef page="../../guides/plugins/plugins/in-app-purchases" title="In-App purchases for Plugins" />
 
 ## Checkout Process
 
