@@ -42,6 +42,10 @@ The JWT is signed with `SHA256-HMAC` and the secret is the `appSecret` from the 
 
 ## Generate JSON Web Token
 
+::: info
+This feature has been introduced with Shopware version 6.5.5.0
+:::
+
 The JWT is generated with a POST request against `/store-api/app-system/{name}/generate-token` or `/app-system/{name}/generate-token`.
 
 <Tabs>
