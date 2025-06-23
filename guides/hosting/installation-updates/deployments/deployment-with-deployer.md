@@ -311,7 +311,7 @@ host('SSH-HOSTNAME')
     ])
     ->setRemoteUser('www-data')
     ->set('deploy_path', '/var/www/shopware')
-    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
+    ->set('http_user', 'www-data') // Not needed, if the `user` is the same, the webserver is running with
     ->set('writable_mode', 'chmod')
     ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
 
@@ -329,7 +329,6 @@ set('shared_dirs', [
     'files',
     'var/log',
     'public/media',
-    'public/theme',
     'public/thumbnail',
     'public/sitemap',
 ]);
@@ -384,7 +383,6 @@ task('deploy:update_code')->setCallback(static function () {
 });
 
 // Hooks
-
 after('deploy:failed', 'deploy:unlock');
 after('deploy:symlink', 'cachetool:clear:opcache');
 ```
