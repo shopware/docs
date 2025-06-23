@@ -8,11 +8,7 @@ nav:
 # Add Payment Plugin
 
 ::: warning
-With Shopware 6.6.5.0, the payment handling was refactored.
-Most of this documentation is deprecated and obsolete with 6.7.0.0.
-
-The new payment handling is done via a single `AbstractPaymentHandler`.
-Check out the new documentation here: [Add Payment Plugin (>6.7)](/docs/v6.7/guides/plugins/plugins/checkout/payment/add-payment-plugin.html).
+From Shopware 6.7.0.0, the payment handling is refactored and is done via a single `AbstractPaymentHandler`.
 :::
 
 ## Overview
