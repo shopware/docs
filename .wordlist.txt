@@ -127,6 +127,7 @@ CSV
 CacheInvalidatorS
 CachedProductListingRouteTest
 Cachix
+CacheInvalidator
 Caddy
 Caddyfile
 CalculatedPrice
@@ -172,6 +173,7 @@ CheckoutOrderPlacedCriteriaEvent
 CheckoutOrderPlacedEvent
 CheckoutRegisterPage
 CheckoutRegisterPageLoadedEvent
+CheapestPriceFacade
 ChildCount
 ChildCountField
 ChildrenAssociation
