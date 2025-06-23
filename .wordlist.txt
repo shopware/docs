@@ -124,6 +124,7 @@ CSP
 CSPs
 CSRF
 CSV
+CacheInvalidator
 CacheInvalidatorS
 CachedProductListingRouteTest
 Cachix
@@ -161,6 +162,7 @@ ChangeEmployeeStatusAction
 Changelog
 Changelogs
 Chargeback
+CheapestPriceFacade
 CheckoutCartPage
 CheckoutCartPageLoadedEvent
 CheckoutConfirmPage
