@@ -67,9 +67,9 @@ class CategoryFixture implements FixtureInterface
 
 The `#[Fixture]` attribute configures the behavior of your fixture and accepts the following parameters:
 
-*   **`priority`** (`int`, default: `0`): A higher integer means the fixture will be executed earlier.
-*   **`dependsOn`** (`array`, default: `[]`): An array of fixture class names that must be executed before this fixture.
-*   **`groups`** (`array`, default: `['default']`): An array of group names this fixture belongs to. This allows for selective loading of fixtures.
+* **`priority`** (`int`, default: `0`): A higher integer means the fixture will be executed earlier.
+* **`dependsOn`** (`array`, default: `[]`): An array of fixture class names that must be executed before this fixture.
+* **`groups`** (`array`, default: `['default']`): An array of group names this fixture belongs to. This allows for selective loading of fixtures.
 
 ## Commands
 
@@ -79,12 +79,15 @@ The Fixture Bundle comes with two `bin/console` commands to help you manage your
 
 To execute your fixtures and load data into the database, use the `fixture:load` command.
 
-*   **Load all fixtures:**
+* **Load all fixtures:**
+
     ```bash
     bin/console fixture:load
     ```
-*   **Load fixtures from a specific group:**
+
+* **Load fixtures from a specific group:**
     You can also load a subset of fixtures by specifying a group. This is useful for separating test data from demo data, for example.
+
     ```bash
     bin/console fixture:load --group=test-data
     ```
@@ -100,7 +103,8 @@ bin/console fixture:list
 This command provides a clear overview of how your fixtures are prioritized and what their dependencies are.
 
 **Example output:**
-```
+
+```text
  Available Fixtures
  ==================
 
@@ -122,9 +126,9 @@ This command provides a clear overview of how your fixtures are prioritized and 
 
 The execution order of fixtures is determined by the following rules:
 
-1.  **Dependencies**: If a fixture declares dependencies using `dependsOn`, it will always run after its dependencies have been executed.
-2.  **Priority**: Among fixtures without dependency relationships, those with a higher `priority` value are executed first.
-3.  **Circular dependency detection**: The system will throw an exception if circular dependencies are detected, preventing infinite loops.
+1. **Dependencies**: If a fixture declares dependencies using `dependsOn`, it will always run after its dependencies have been executed.
+2. **Priority**: Among fixtures without dependency relationships, those with a higher `priority` value are executed first.
+3. **Circular dependency detection**: The system will throw an exception if circular dependencies are detected, preventing infinite loops.
 
 ## Specialized fixtures
 
@@ -258,11 +262,11 @@ class CustomerFixture implements FixtureInterface
 
 ## Best practices
 
-*   **Meaningful Names**: Give your fixture classes clear, descriptive names.
-*   **Organize with Groups**: Use groups like `test-data`, `demo-data`, or `performance-test` to categorize fixtures.
-*   **Declare Dependencies**: Explicitly declare dependencies to ensure a predictable and correct execution order.
-*   **Focused Fixtures**: Each fixture should have a single, clear responsibility.
-*   **Idempotent Design**: Fixtures should be runnable multiple times without causing errors or creating duplicate data.
-*   **Use Dependency Injection**: Inject services into your fixture's constructor instead of fetching them from the container.
+* **Meaningful Names**: Give your fixture classes clear, descriptive names.
+* **Organize with Groups**: Use groups like `test-data`, `demo-data`, or `performance-test` to categorize fixtures.
+* **Declare Dependencies**: Explicitly declare dependencies to ensure a predictable and correct execution order.
+* **Focused Fixtures**: Each fixture should have a single, clear responsibility.
+* **Idempotent Design**: Fixtures should be possible to run multiple times without causing errors or creating duplicate data.
+* **Use Dependency Injection**: Inject services into your fixture's constructor instead of fetching them from the container.
 
 By following these guidelines, you can build a robust and maintainable set of data fixtures for your Shopware project.
