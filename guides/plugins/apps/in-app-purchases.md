@@ -1,3 +1,10 @@
+---
+nav:
+  title: In-App Purchases (IAP)
+  position: 50
+
+---
+
 # In-App Purchases
 
 ::: info
@@ -7,7 +14,7 @@ In-App Purchase is available since Shopware version 6.6.9.0
 In-App Purchases are a way to lock certain features behind a paywall within the same extension.
 This is useful for developers who want to offer a free version of their extension with limited features and a paid version with more features.
 
-<PageRef page="../../../../concepts/framework/in-app-purchases" title="In-App purchases concept" />
+<PageRef page="../../../concepts/framework/in-app-purchases" title="In-App purchases concept" />
 <PageRef page="https://docs.shopware.com/en/account-en/extension-partner/in-app-purchases" title="Documentation for Extension Partner" />
 
 ## Allow users to buy an In-App Purchase
@@ -108,4 +115,4 @@ console.log(payload); // Contains list of purchased IAP identifiers
 ## Event
 
 Apps are also able to manipulate the available In-App Purchases as described in
-<PageRef page="../../apps/gateways/in-app-purchase/in-app-purchase-gateway.md" title="In App purchase gateway" />
+<PageRef page="./gateways/in-app-purchase/in-app-purchase-gateway" title="In App purchase gateway" />
