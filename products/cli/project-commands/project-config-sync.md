@@ -7,6 +7,10 @@ nav:
 
 # Project config synchronization
 
+::: warning
+This feature has been deprecated, use [Fixtures](../../../resources/tooling/fixture-bundle/index.md) in your project instead.
+:::
+
 Shopware CLI can synchronize the project configurations between different environments. This is useful, for example, to keep the configuration in the development and production environment in sync.
 
 The Following things are possible to synchronize:
