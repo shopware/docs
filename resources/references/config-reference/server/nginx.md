@@ -34,19 +34,6 @@ server {
         deny all;
     }
     
-    location /recovery/install {
-        index index.php;
-        try_files $uri /recovery/install/index.php$is_args$args;
-    }
-
-    location /recovery/update/ {
-        location /recovery/update/assets {
-        }
-        if (!-e $request_filename){
-            rewrite . /recovery/update/index.php last;
-        }
-    }
-    
     location ~ ^/(theme|media|thumbnail|bundles|css|fonts|js|recovery|sitemap)/ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
