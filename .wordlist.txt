@@ -1371,11 +1371,13 @@ hydrator
 iFrame
 iFrames
 iOs
+iap
 iconv
 ified
 iframe
 iframes
 importTranslation
+inappfeatures
 inclusivity
 incrementer
 incrementing
@@ -1426,6 +1428,7 @@ js's
 json
 jsonEncode
 junit
+jwks
 jwt
 kebabCase
 keyframes

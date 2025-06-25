@@ -66,3 +66,5 @@ redirects:
     products/paas/rabbitmq.html: products/paas/shopware-paas/rabbitmq.html
     products/paas/fastly.html: products/paas/shopware-paas/fastly.html
     products/paas/blackfire.html: products/paas/shopware-paas/blackfire.html
+    guides/plugins/apps/in-app-purchase/: guides/plugins/apps/in-app-purchases.html
+    guides/plugins/plugins/in-app-purchase/: guides/plugins/plugins/in-app-purchases.html
