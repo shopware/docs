@@ -162,13 +162,17 @@ Ensuring accessibility in your Shopware extension improves **usability, inclusiv
 
 Starting from **Shopware 6.6+,** accessibility improvements have been introduced, and **6.7+** includes further enhancements. Enable the **feature flag** to test changes before release by activating the feature flag in your local environment, modify your `project-root/.env`.
 
-```yaml
-shopware:
-  feature:
-    enable_accessibility: true
+```env
+ACCESSIBILITY_TWEAKS
 ```
 
-Once enabled, you can:
+Once enabled, the `ACCESSIBILITY_TWEAKS` feature flag, a re-compilation of the theme is needed to enable all styling improvements like adjusted font-sizes.
+
+```text
+bin/console theme:compile
+```
+
+Now you can:
 
 * Preview upcoming a11y improvements before they become mandatory.
 * Identify potential breaking changes in your theme or extension.  
