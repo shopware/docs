@@ -77,7 +77,7 @@ To use this feature, you can run the following command:
 <Tab title="Without Docker">
 
 ```shell
-shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro-exp-03-25
+shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro
 ```
 
 </Tab>
@@ -85,7 +85,7 @@ shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemin
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro-exp-03-25
+docker run --rm -v $(pwd):/ext shopware/shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro
 ```
 
 </Tab>
