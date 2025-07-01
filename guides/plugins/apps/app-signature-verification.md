@@ -1,3 +1,9 @@
+---
+nav:
+  title: Signing & Verification in the App System
+  position: 40
+---
+
 # Signing & Verification in the App System
 
 To ensure secure communication between Shopware shops and your app server, Shopware signs all outgoing requests using a cryptographic signature.

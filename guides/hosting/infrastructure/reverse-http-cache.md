@@ -195,8 +195,15 @@ For manual deployment, you can find the VCL Snippets here:
 
 The Reverse Proxy Cache shares the same invalidation mechanism as the Object Cache and has the same tags. So, when a product is invalidated, the object cache and the HTTP cache will also be invalidated.
 
+There are a few different cache clearing commands:
+
+1. `bin/console cache:clear` - Clears and warms up the application cache (In versions before 6.7 this command also cleared the HTTP cache)
+2. `bin/console cache:clear:all` - Clears everything, including application cache, cache pools and the HTTP cache (Since version 6.6.8)
+3. `bin/console cache:clear:http` - Clears the reverse proxy cache if enabled, if not it clears the `http` cache pool (Since version 6.6.10)
+4. `bin/console cache:pool:clear --all` - Clears only the object cache (Useful for when you don't want to clear the http cache, pre version 6.6.10)
+
+If you only want to clear the http cache, use `bin/console cache:clear:http`
+
 ::: warning
 `bin/console cache:clear` will also clear the HTTP cache. If this is not intended, you should manually delete the `var/cache` folder. The object cache can be cleared with `bin/console cache:pool:clear --all` explicitly.
 :::
-
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Storefront/Resources/config/packages/storefront.yaml","WATCHER_HASH":"3ae5bc3363521c72d05f4ecbb89b3505"} -->

@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-Using the Shopware Administration, you can easily create new documents. This guide will teach you how to achieve the same result, which is creating a new document, using your plugin.
+This guide will show you how to add a custom document type to your plugin. This includes adding a new document type to the database, creating a renderer for it, and adding a number range.
 
 ## Prerequisites
 
@@ -17,14 +17,15 @@ This guide is built upon the [plugin base guide](../../plugin-base-guide), but o
 
 Furthermore, adding a custom document type via your plugin is done by using [plugin database migrations](../../plugin-fundamentals/database-migrations). Since this isn't explained in this guide, you will have to know and understand the plugin database migrations first.
 
-## Adding a custom document type, and its own base configuration to the database
+## Adding a custom document type and its own base configuration to the database
 
 Let's start with adding your custom document type to the database, so it's actually available for new document configurations. This is done by adding a plugin database migration. To be precise, we need to add an entry to the database table `document_type` table and an entry for each supported language to the `document_type_translation` table.
 
 Let's have a look at an example migration:
 
-```php
-// <plugin root>/src/Migration/Migration1616677952AddDocumentType.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Migration/Migration1616677952AddDocumentType.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -142,6 +143,8 @@ class Migration1616677952AddDocumentType extends MigrationStep
 }
 ```
 
+:::
+
 So first, we are creating the new document type with the `technical_name` as "example". Make sure to save the ID here since you are going to need it for the following translations:
 
 Afterwards we're inserting the translations, one for German, one for English. For this we're using the `Shopware\Core\Migration\Traits\ImportTranslationsTrait`, which adds the helper method `importTranslation`. There you have to supply the translation table and an instance of `Shopware\Core\Migration\Traits\Translations`. The latter accepts two constructor parameters:
@@ -164,15 +167,16 @@ We will place it in the same directory as all other default document renderers: 
 Your custom document renderer has to implement the `Shopware\Core\Checkout\Document\Renderer\AbstractDocumentRenderer`, which forces you to implement three methods:
 
 * `getDecorated`: Shall return the decorated service (see decoration pattern adr).
-* `supports`: Has to return a string of the document type it supports. We named our document type "example", so our renderer has to return "example".
+* `supports`: Has to return a string of the document type it supports. We named our document type "**example**", so our renderer has to return "**example**".
 * `render`: This needs to return the instance `Shopware\Core\Checkout\Document\Renderer\RendererResult`, which will contain the instance of `Shopware\Core\Checkout\Document\Renderer\RenderedDocument` based on each `orderId`. You will have access to the array of `DocumentGenerateOperation` which contains all respective orderIds, the context and the instance of `Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig` (additional configuration).
 
 Furthermore, your renderer has to be registered to the [service container](../../plugin-fundamentals/dependency-injection) using the tag `document.renderer`.
 
 Let's have a look at an example renderer:
 
-```php
-// <plugin root>/src/Core/Checkout/Document/Render/ExampleDocumentRenderer.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Checkout/Document/Render/ExampleDocumentRenderer.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Checkout\Document\Render;
@@ -182,15 +186,14 @@ use Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig;
 use Shopware\Core\Checkout\Document\Renderer\RenderedDocument;
 use Shopware\Core\Checkout\Document\Renderer\RendererResult;
 use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;
+use Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry;
 use Shopware\Core\Checkout\Document\Struct\DocumentGenerateOperation;
-use Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Shopware\Core\System\Locale\LocaleEntity;
 use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface;
 
 class ExampleDocumentRenderer extends AbstractDocumentRenderer
@@ -205,9 +208,8 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
     public function __construct(
         private readonly EntityRepository $orderRepository,
         private readonly DocumentConfigLoader $documentConfigLoader,
-        private readonly DocumentTemplateRenderer $documentTemplateRenderer,
         private readonly NumberRangeValueGeneratorInterface $numberRangeValueGenerator,
-        private readonly string $rootDir,
+        private readonly DocumentFileRendererRegistry $fileRendererRegistry,
     ) {
     }
 
@@ -228,8 +230,6 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
         }
 
         $result = new RendererResult();
-
-        $template = self::DEFAULT_TEMPLATE;
 
         $criteria = new Criteria($ids);
         $criteria->addAssociation('language');
@@ -263,36 +263,32 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 
                 // The document that uploaded by manual
                 if ($operation->isStatic()) {
-                    $doc = new RenderedDocument('', $number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
+                    $doc = new RenderedDocument($number, $config->buildName(), $operation->getFileType(), $config->jsonSerialize());
                     $result->addSuccess($orderId, $doc);
 
                     continue;
                 }
 
-                /** @var LocaleEntity $locale */
-                $locale = $order->getLanguage()->getLocale();
-
-                $html = $this->documentTemplateRenderer->render(
-                    $template,
-                    [
-                        'order' => $order,
-                        'config' => $config,
-                        'rootDir' => $this->rootDir,
-                        'context' => $context,
-                    ],
-                    $context,
-                    $order->getSalesChannelId(),
-                    $order->getLanguageId(),
-                    $locale->getCode()
-                );
-
                 $doc = new RenderedDocument(
-                    $html,
                     $number,
                     $config->buildName(),
                     $operation->getFileType(),
                     $config->jsonSerialize(),
                 );
+
+                // Utilize the DocumentFileRendererRegistry to generate the content, e.g. PDF or HTML
+                // This is the recommended approach
+                $doc->setTemplate(self::DEFAULT_TEMPLATE);
+                $doc->setOrder($order);
+                $doc->setContext($context);
+                $content = $this->fileRendererRegistry->render($doc);
+                $doc->setContent($content);
+
+                // Alternatively you can manually set the content here, e.g. to some XML or CSV content
+                // $content = '<?xml ...>...';
+                // or
+                // $content = 'Id;Name;...';
+                // $doc->setContent($content);
 
                 $result->addSuccess($orderId, $doc);
             } catch (\Throwable $exception) {
@@ -320,9 +316,11 @@ class ExampleDocumentRenderer extends AbstractDocumentRenderer
 }
 ```
 
-First, we are injecting the `rootDir` of the Shopware installation into our renderer since we will need that for rendering our template, and the `DocumentTemplateRenderer`, which will do the template rendering. We also inject `orderRepository` to get all order entities by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
+:::
 
-The `supports` method just returns the string "example", which is the technical name of our new document type.
+We inject `orderRepository` to get all order entities by list of order's id, `documentConfigLoader` to load the document configuration and `numberRangeValueGenerator` to get the document number
+
+The `supports` method just returns the string "**example**", which is the technical name of our new document type.
 
 Now let's have a look at the `render` method. This function contains three parameters:
 
@@ -339,20 +337,32 @@ Here's what the function does:
 * For each order found, the function attempts to generate a document.
 * If successful, a new `RenderedDocument` object is created. This object is then added to the `RendererResult` object as a success.
 * If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
-* `The RendererResult` object is returned.
+* The `RendererResult` object is returned.
 
-In this example, we are rendering a specific template, which we will have a look at in the next section.
+Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
+`DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., .pdf, .html). It delegates the rendering of documents to the appropriate renderer implementation.
+Therefore, for each registered service that extends the `AbstractDocumentTypeRenderer`, the content of the document can be generated. New types of `AbstractDocumentTypeRenderer` services can be added with `document_type.renderer` as the tag name and the file extension as a key.
+
+```xml
+<service id="Shopware\Core\Checkout\Document\Service\PdfRenderer">
+    ...
+    <tag name="document_type.renderer" key="pdf"/>
+</service>
+```
 
 ### Adding a document type template
 
 Let's have a quick look at an example document type template. Go ahead and create a new file at the path `<plugin root>/src/Resources/views/documents/example_document.html.twig`.
 
-In there you should extend from the default document base template:
+In there, you should extend from the default document base template:
 
-```twig
-// <plugin root>/src/Resources/views/documents/example\_document.html.twig
+:::code-group
+
+```twig [PLUGIN_ROOT/src/Resources/views/documents/example\_document.html.twig]
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
+
+:::
 
 This could be it already. The [base.html.twig](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a lot of default templating, which you can now override by using blocks. If you don't know how that's done, have a look at our guide regarding [customizing templates](../../storefront/customize-templates).
 
@@ -364,15 +374,16 @@ Adding a new number range is also done by using a [plugin database migration](..
 
 For this we need a few more things:
 
-* An entry in `number_range_type`, which is just a new type of a number range with a technical name
+* An entry in `number_range_type`, which is just a new type of number range with a technical name
 * An entry in `number_range`, which represents a properly configured number range, which then will use the previously created type
 * An entry in `number_range_sales_channel` to assign a sales channel to our configured number range
 * An entry for each language in the tables `number_range_translation` and `number_range_type_translation`
 
 Sounds like a lot, but having a look at an example migration, you will notice that it's not too much of a hassle.
 
-```php
-// <plugin root>/src/Migration/Migration1616974646AddDocumentNumberRange.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Migration/Migration1616974646AddDocumentNumberRange.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -496,9 +507,11 @@ SQL;
 }
 ```
 
+:::
+
 As already said, we're first creating the entries in the tables `number_range`, `number_range_type` and `number_range_sales_channel`. For the latter, we're assigning a Storefront sales channel, if any available. Make sure to check here, since in theory there could be no storefront sales channel.
 
-Afterwards we import the translations for the `number_range_translation` and the `number_range_type_translation` tables by using the `ImportTranslationsTrait` once again.
+Afterward we import the translations for the `number_range_translation` and the `number_range_type_translation` tables by using the `ImportTranslationsTrait` once again.
 
 And that's it now. You Have just created:
 

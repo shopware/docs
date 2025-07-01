@@ -7,7 +7,7 @@ nav:
 
 # Storefront Authentication
 
-[Download](../example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../../../../../../products/extensions/b2b/b2b-suite/guides/example-plugins/B2bLogin.zip) a plugin that exchange the login value.
+[Download](../example-plugins/B2bAuth.zip) a plugin showcasing how to add a provider. You can [download](../example-plugins/B2bLogin.zip) a plugin that exchange the login value.
 
 ## Description
 

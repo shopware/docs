@@ -6,9 +6,12 @@ ADRs
 AOF
 API's
 APIs
+APM
 AUR
 AbstractCaptcha
+AbstractDocumentRenderer
 AbstractStockUpdateFilter
+Abzug
 AccountEditOrderPage
 AccountGuestLoginPage
 AccountLoginPage
@@ -26,9 +29,11 @@ ActionButtons
 ActivateContext
 AdapterFactory
 AddCustomerTagActionTest
+AddDocumentType
 AddressBookWidget
 AddressDetailPage
 AddressListingPage
+AddressResponseStruct
 AdminQueueWorker
 AdminWorker
 Adminer
@@ -40,6 +45,7 @@ AfterLineItemQuantityChangedEvent
 AfterLineItemRemovedEvent
 AggregationResultCollection
 AjaxModalPlugin
+Aktions
 Algolia
 AllowEmptyString
 AllowHtml
@@ -65,12 +71,14 @@ AsynchronousPaymentHandlerInterface
 AuditLogValueEntity
 AuthenticationIdentityLoader
 AutoIncrementField
+Autofixer
 AvailableCombinationLoader
 AvgResult
 B2B Component
 B2B Components
 B2B Suite
 BBundle
+BCP
 BDD
 BITV
 BackedEnum
@@ -85,6 +93,9 @@ BeforeRegistrationCompletedEvent
 BeforeShopActivateEvent
 BeforeShopDeactivatedEvent
 BeforeShopDeletionEvent
+Beispiel
+Beispielbeschreibung
+Beschreibung
 BillingCountryRule
 BillingStreetRule
 BillingZipCodeRule
@@ -113,6 +124,8 @@ CSP
 CSPs
 CSRF
 CSV
+CacheInvalidator
+CacheInvalidatorS
 CachedProductListingRouteTest
 Cachix
 Caddy
@@ -141,6 +154,7 @@ CashRounding
 CashRoundingConfigField
 CategoryRoute
 CentOS
+Centric
 Cerebro
 Chai
 ChangeCustomerSpecificFeaturesAction
@@ -148,6 +162,7 @@ ChangeEmployeeStatusAction
 Changelog
 Changelogs
 Chargeback
+CheapestPriceFacade
 CheckoutCartPage
 CheckoutCartPageLoadedEvent
 CheckoutConfirmPage
@@ -163,6 +178,7 @@ ChildCount
 ChildCountField
 ChildrenAssociation
 ChildrenAssociationField
+CircleCI
 ClientInterface
 Cloudflare
 Cmd
@@ -170,6 +186,7 @@ CmsPage
 Codemods
 Codespaces
 Codestyle
+Cognito
 CommercialB
 CommercialBundle
 ComponentFactory
@@ -288,12 +305,16 @@ Dockware
 DomainException
 DomainExceptions
 DynamoDB
+ECDSA
 ENUM
 ENUMS
 EOL
 ERP
+ESI
 ESLint
+ESlint
 EcmaScript
+Eine
 ElasticSearch
 ElasticsearchDefinition
 ElasticsearchEntityAggregator
@@ -325,6 +346,7 @@ ErrorsFacade
 EventListener
 EventSubscriberInterface
 Everytime
+ExampleAppWithCookies
 ExampleController
 ExampleDefinition
 ExampleDescription
@@ -351,6 +373,7 @@ FileReader
 Filesystem
 Fk
 FkField
+FlashBag
 FloatField
 FlowAction
 FlowBuilder
@@ -364,10 +387,13 @@ FlowStorer
 Flysystem
 Fontawesome
 FooterPagelet
+FormData
 FrameworkBundle
+FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
 Fullstack
+GBP
 GDPR
 GIFs
 GenericPage
@@ -386,6 +412,7 @@ GuestWishlistPage
 GuestWishlistPagelet
 HMAC
 HMR
+HeaderPagelet
 Homebrew
 Hono
 HookClasses
@@ -398,6 +425,7 @@ IdField
 IdSearchResult
 Ideate
 Iframe
+ImportTranslationsTrait
 Inclusivity
 IndexerService
 Init
@@ -424,6 +452,10 @@ JsonResponse
 KV
 KeyDB
 Kibana
+Kubernetes
+LLM
+LLMs
+LOCALAPPDATA
 LONGTEXT
 LUA
 LandingPage
@@ -482,6 +514,7 @@ MailService
 MailStorer
 Mailcatcher
 Mailhog
+Mailpit
 MaintenancePage
 ManufacturerAttributeDataSet
 ManyToMany
@@ -506,9 +539,11 @@ MeteorAdminSDK
 Methodize
 Middleware
 MigrationCollection
+MigrationStep
 Minio
 Mixin
 Mixins
+Modul
 Modularity
 ModuleFactory
 MongoDbSessionHandler
@@ -517,6 +552,7 @@ Monorepo
 Monorepos
 MoveShopPermanently
 MultiWarehouse
+MyApiExtension
 MyExampleApp
 MyExtension
 MyPlugin
@@ -524,6 +560,7 @@ MyTestClass
 MyTestInterface
 NPM
 NameAware
+NameOfYourShippingMethodApp
 NameStorer
 NavigationPage
 NelmioCorsBundle
@@ -553,6 +590,8 @@ ObjectType
 OffCanvas
 OffcanvasCartPageLoadedEvent
 OldFeature
+Ollama
+Onboarding
 OneToMany
 OneToManyAssociation
 OneToManyAssociationField
@@ -561,6 +600,7 @@ OneToOneAssociation
 OneToOneAssociationField
 OpenAPI
 OpenApi
+OpenRouter
 OpenSSH
 OpenSSL
 OpenSearch
@@ -569,6 +609,7 @@ Openapi
 Opensearch
 Opensearch's
 OrRule
+OrbStack
 OrderAware
 OrderCountRule
 OrderEntity
@@ -588,6 +629,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+PEM
 PHPStan
 PHPStorm
 PHPUnit
@@ -621,6 +663,7 @@ ParentFkField
 PasswordField
 PaymentGatewayApp
 PaymentHandlerIdentifierSubscriber
+PaymentHandlerType
 PaymentMethod
 PaymentMethodRoute
 PaymentMethodRule
@@ -693,6 +736,7 @@ QuillJS
 RDB
 RDBMS
 README
+RSA
 RabbitMQ
 RabbitMq
 Readonly
@@ -706,6 +750,7 @@ ReferenceVersion
 ReferenceVersionField
 RefundPaymentHandlerInterface
 RegEx
+RegisterCustomerCommand
 RegistrationCompletedEvent
 RegistrationService
 Reindexes
@@ -727,6 +772,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBP
 SCSS
 SDK
 SDK's
@@ -789,6 +835,7 @@ ShopNameStorer
 Shopware
 Shopware's
 SimpleHttpClient
+SimpleNotification
 Sinon
 SitemapPage
 SnippetFileInterface
@@ -818,6 +865,8 @@ Storer
 StringField
 StringFields
 Struct
+Stylelint
+Subcommands
 SubjectAware
 SubjectStorer
 Subprocessor
@@ -846,6 +895,7 @@ TemplateDataAware
 TemplateDataStorer
 TemplateNamespaceHierarchyBuilder
 TestCase
+TestSecret
 TestStockUpdateFilter
 TimeRangeRule
 TimeZoneField
@@ -855,6 +905,8 @@ TipTap's
 ToMany
 ToOne
 Tooltips
+Topseller
+Topsellers
 TransactionalAction
 TranslatedField
 TranslationDataSet
@@ -884,6 +936,7 @@ UninstallApps
 UnitCollection
 UnitEntity
 UnitTests
+Unmount
 UnoCSS
 Unregistering
 Untrusted
@@ -925,7 +978,9 @@ VueJs
 VueX
 Vuei
 Vuex
+WASM
 WCAG
+WSL
 WSL
 WarehouseGroup
 WarehouseGroups
@@ -943,6 +998,7 @@ WishlistPage
 WishlistWidget
 WriteEvents
 WriteProtected
+XDG
 XDebug
 XHR
 XKey
@@ -1006,8 +1062,12 @@ backend
 backends
 backface
 backoff
+backport
 backported
+balancer
+benefitting
 binlog
+bitbucket
 blackbox
 blackfire
 blockquote
@@ -1051,6 +1111,7 @@ changelogs
 changeset
 changesets
 chargeback
+cheapestpricefacade
 checkboxes
 ci
 classmap
@@ -1103,6 +1164,7 @@ createSnippetFixture
 createValidatorDefinition
 cron
 croninterval
+cronjob
 cryptographic
 csrf
 css
@@ -1133,9 +1195,10 @@ datetime
 ddev
 de
 debounce
+declaratively
 decoratable
 decrementing
-declaratively
+decrypted
 deepCopyObject
 deepMergeObject
 defaultConfig
@@ -1200,6 +1263,7 @@ errorsfacade
 erros
 esbuild
 eslint
+eslintrc
 et
 everytime
 evolvability
@@ -1224,12 +1288,14 @@ flyout
 focussed
 focussing
 fontFamily
+formatter
 formatters
 frankdejonge
 frontend
 frontends
 frontmatter
 func
+für
 gRPC
 gd
 german
@@ -1272,6 +1338,7 @@ github
 gitignore
 gitkeep
 gitlab
+gitpod
 globals
 goto
 grantable
@@ -1280,6 +1347,7 @@ graphviz
 gridActions
 gridColumns
 grpc
+grumphp
 guid
 gz
 gzip
@@ -1294,6 +1362,7 @@ hmac
 hono
 hosters
 hostname
+hotspots
 html
 http
 httpCache
@@ -1302,10 +1371,13 @@ hydrator
 iFrame
 iFrames
 iOs
+iap
 iconv
 ified
 iframe
 iframes
+importTranslation
+inappfeatures
 inclusivity
 incrementer
 incrementing
@@ -1322,6 +1394,7 @@ integrations
 intl
 invalidations
 io
+ip
 isActive
 isArray
 isBoolean
@@ -1342,6 +1415,7 @@ isUrl
 isValid
 isValidIp
 iso
+ist
 itemfacade
 itemsfacade
 iterable
@@ -1353,6 +1427,8 @@ js
 js's
 json
 jsonEncode
+junit
+jwks
 jwt
 kebabCase
 keyframes
@@ -1397,6 +1473,7 @@ mbstring
 md
 mediaId
 mediaService
+meiner
 memoization
 memoized
 mercure
@@ -1419,6 +1496,7 @@ moz
 mozilla
 mpn
 mr
+myApp
 myNewMethod
 myPluginLogHandler
 mysql
@@ -1447,6 +1525,8 @@ offCanvasCart
 offcanvas
 og
 ok
+onboarded
+onboarding
 onlyAvailable
 onlyOnFeature
 onwards
@@ -1477,6 +1557,8 @@ param
 params
 parsable
 parsers
+passwordless
+pathInfo
 paypal
 pcre
 pdf
@@ -1553,6 +1635,7 @@ recalculable
 redis
 refactorings
 referenceField
+referer
 refundAmount
 refundId
 refundPositions
@@ -1566,12 +1649,14 @@ removeBy
 renameMedia
 renderer
 renderers
+repo
 repos
 repositoryFactory
 repositoryfacade
 repositorywriterfacade
 reproducibility
 requestAdminApi
+requestfacade
 resetUrl
 resolvers
 resubmittable
@@ -1581,7 +1666,10 @@ revalidation
 rfc
 roadmap
 rollbacking
+rollout
+routeName
 routeScope
+routeScopes
 runtime
 runtimes
 salesChannel
@@ -1652,6 +1740,7 @@ stateId
 stateMachineState
 statesfacade
 statusCode
+stdin
 stdout
 stemmer
 stemmers
@@ -1662,6 +1751,8 @@ storer
 strlen
 struct
 structs
+stylelint
+stylelintrc
 stylesheet
 stylesheets
 stylings
@@ -1672,6 +1763,7 @@ subdirectories
 subdirectory
 subfolder
 suboptimal
+subpaths
 subprocessor
 subprocessors
 supervisord
@@ -1698,6 +1790,7 @@ th
 theming
 themself
 timeframe
+timeframes
 tinyint
 tipps
 tl
@@ -1712,6 +1805,7 @@ transactionCapture
 transactionId
 transactional
 transpiling
+travis
 treepath
 triggerDeprecated
 truthy
@@ -1746,6 +1840,7 @@ untyped
 updateDestructive
 updateViaAdminApi
 upsert
+uri
 url
 urls
 userAware
@@ -1767,6 +1862,7 @@ vimeo
 vscode
 vue
 vuex
+walkthrough
 webhook
 webhooks
 webkit
@@ -1776,6 +1872,7 @@ webserver
 wednesday
 whitespace
 whitespaces
+whoami
 wil
 wishlist
 www

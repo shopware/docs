@@ -1,6 +1,6 @@
 ---
 nav:
   title: Best practices
-  position: 40
+  position: 50
 
 ---

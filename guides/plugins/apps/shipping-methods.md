@@ -27,12 +27,13 @@ The following example represents the most minimal configuration for a shipping m
 
 Ensure that the `<identifier>` of your shipping method remains unchanged, as Shopware will deactivate or delete shipping methods that do no longer appear in the manifest during app updates.
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <!-- Make sure that the name of your app does not change anymore, otherwise there will be duplicates of your shipping methods -->
         <name>NameOfYourShippingMethodApp</name>
@@ -59,6 +60,8 @@ Ensure that the `<identifier>` of your shipping method remains unchanged, as Sho
     </shipping-methods>
 </manifest>
 ```
+
+:::
 
 ### Delivery Time
 
@@ -90,12 +93,13 @@ The following values are possible units
 * month
 * year
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     
     ...
 
@@ -119,6 +123,8 @@ The following values are possible units
 </manifest>
 ```
 
+:::
+
 ### Extended configuration
 
 The functionality offers more than one identifier name. The following examples represent all possible configurations.
@@ -128,12 +134,13 @@ The functionality offers more than one identifier name. The following examples r
 * Shipping method icon
 * Shipping method active (expects true or false). Default value is `false`
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
 
     ...
 
@@ -165,6 +172,8 @@ The functionality offers more than one identifier name. The following examples r
 </manifest>
 ```
 
+:::
+
 ### Description
 
 You can initially add a description for the customer.
@@ -173,12 +182,13 @@ You can initially add a description for the customer.
 Please note that the manifest cannot modify the description once you install the app, as the merchant can change it.
 :::
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     
     ...
 
@@ -198,6 +208,8 @@ Please note that the manifest cannot modify the description once you install the
 </manifest>
 ```
 
+:::
+
 ### Icon
 
 You can initially add a shipping method icon. You must specify the path to this icon as relative to the manifest.xml file. For example, you have the following directory structure:
@@ -216,12 +228,13 @@ The path should be: `assets/icons/yourIcon.png`
 Please note that the manifest cannot modify the icon once you install the app, as the merchant can change it.
 :::
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     
     ...
 
@@ -239,6 +252,8 @@ Please note that the manifest cannot modify the icon once you install the app, a
 </manifest>
 ```
 
+:::
+
 ### Active
 
 You can activate the shipping method by default. Possible values for active are `true` or `false`
@@ -246,12 +261,13 @@ You can activate the shipping method by default. Possible values for active are 
 * true: Activates the shipping method
 * false: Deactivates the shipping method. Alternatively, you can leave out active
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     
     ...
 
@@ -269,16 +285,19 @@ You can activate the shipping method by default. Possible values for active are 
 </manifest>
 ```
 
+:::
+
 ### Tracking url
 
 It is possible to add a tracking URL for customers to monitor the delivery status.
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     
     ...
 
@@ -296,16 +315,19 @@ It is possible to add a tracking URL for customers to monitor the delivery statu
 </manifest>
 ```
 
+:::
+
 ### Position
 
 Here, you can set the display order of the shipping methods in the checkout. If you omit the tag, the position of the shipping method is 1 by default.
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
 
     ...
 
@@ -322,5 +344,7 @@ Here, you can set the display order of the shipping methods in the checkout. If 
     </shipping-methods>
 </manifest>
 ```
+
+:::
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Xml/ShippingMethod/ShippingMethod.php","WATCHER_HASH":"945a4d13311c8ebf3f893d14a9dc0690"} -->

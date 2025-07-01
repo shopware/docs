@@ -17,7 +17,7 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 
 ## Requirements
 
-* Opensearch >= 1.0 or Elasticsearch >= 7.8
+* Opensearch >= 2.0 or Elasticsearch >= 7.8
 * [Running message queue workers in background](../message-queue)
 
 ## Server basics

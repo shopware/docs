@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <!-- The name of the app should not change. Otherwise, all payment methods are created as duplicates. -->
         <name>PaymentApp</name>
@@ -21,18 +21,18 @@
         </payment-method>
 
         <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
             <identifier>synchronousPayment</identifier>
             <name>Synchronous payment</name>
             <name lang="de-DE">Synchrone Zahlung</name>
             <description>This payment method does everything in one request.</description>
             <description lang="de-DE">Diese Zahlungsmethode arbeitet in einem Request.</description>
             <!-- This URL is optional for synchronous payments (see below). -->
-            <pay-url>https://payment.app/sync/process</pay-url>
+            <pay-url>https://payment.app/sync/pay</pay-url>
         </payment-method>
 
         <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
             <identifier>simpleSynchronousPayment</identifier>
             <name>Simple Synchronous payment</name>
             <name lang="de-DE">Einfache synchrone Zahlung</name>
@@ -42,18 +42,18 @@
         </payment-method>
 
         <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
             <identifier>preparedPayment</identifier>
             <name>Payment, that offers everything</name>
             <name lang="de-DE">Eine Zahlungsart, die alles kann</name>
-            <validate-url>https://payment.app/prepared/validate</validate-url>
-            <capture-url>https://payment.app/prepared/capture</capture-url>
+            <validate-url>https://payment.app/validate</validate-url>
+            <pay-url>https://payment.app/pay</pay-url>
             <!-- This optional path to this icon must be relative to the manifest.xml -->
             <icon>Resources/paymentLogo.png</icon>
         </payment-method>
 
         <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
             <identifier>refundPayment</identifier>
             <name>Refund payments</name>
             <name lang="de-DE">Einfache Erstattungen</name>
@@ -63,7 +63,7 @@
         </payment-method>
 
         <payment-method>
-            <!-- The identifier of the payment method should not change. Otherwise a separate method is created. -->
+            <!-- The identifier of the payment method should not change. Otherwise, a separate method is created. -->
             <identifier>recurringPayment</identifier>
             <name>Recurring payments</name>
             <name lang="de-DE">Einfache wiederkehrende Zahlungen</name>

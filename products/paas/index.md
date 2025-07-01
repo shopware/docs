@@ -1,91 +1,15 @@
 ---
 nav:
-  title: PaaS
-  position: 20
-
+    title: PaaS
+    position: 10
 ---
 
-# PaaS
+# Introduction to PaaS
 
-::: info
-Shopware PaaS is available at request for Shopware merchants. Please approach the [Shopware Sales](https://www.shopware.com/en/#contact-sales) to get more information on Shopware PaaS
-:::
+While both [Shopware PaaS Native](./shopware) and [Shopware PaaS](./shopware-paas) offer cloud-based environments for development, they differ in specialization and flexibility:
 
-Shopware PaaS is a platform-as-a-service to host, deploy and scale for your individual Shopware project.
-It comes with full flexibility and code ownership of a self-hosted Shopware project, but takes away the complexity of building custom infrastructure, build and testing pipelines, or deployment automation.
+- **Shopware PaaS**: A generic PaaS provider, [Shopware PaaS](./shopware-paas) supports various applications and multiple cloud providers, giving developers the flexibility to define their infrastructure as code. However, this requires customers to manage more aspects of infrastructure and setup.
 
-Get started by installing the PaaS CLI on your local development machine.
+- **Shopware PaaS Native**: Optimized solely for Shopware, this platform provides a tightly integrated and controlled environment on AWS. This focus ensures higher stability, with Shopware managing all underlying configurations, enabling developers to concentrate on application development.
 
-## Getting started with PaaS - How to deploy your first project
-
-::: info
-Prerequisites:
-
-* Having a Shopware PaaS account (Select Register now on the authentication form when accessing <https://console.shopware.com>)
-* Having the project_id of an empty project created on Shopware PaaS
-* Having the Shopware PaaS CLI installed, see <https://developer.shopware.com/docs/products/paas/cli-setup.html>
-* Having PHP ext-amqp installed (PaaS uses RabbitMQ instead of the regular DB to manage messages)
-:::
-
-Steps:
-
-1.) Create a local Shopware project on your laptop
-
-```sh
-composer create-project shopware/production demo --no-interaction --ignore-platform-reqs
-```
-
-2.) Enter the folder newly created
-
-```sh
-cd /demo
-```
-
-3.) Install the PaaS composer package
-
-```sh
-composer req paas
-```
-
-4.) Initialize your local Git repository
-
-```sh
-git init
-```
-
-5.) Add all the existing files to Git
-
-```sh
-git add .
-```
-
-6.) Create your first commit
-
-```sh
-git commit -am "initial commit"
-```
-
-7.) Configure the CLI with your project_id
-
-```sh
-shopware project:set-remote PROJECT_ID
-```
-
-Where PROJECT_ID is the project_id of your empty project.
-
-8.) Push the code to Shopware PaaS
-
-```sh
-git push shopware
-```
-
-## Step-by-step guide
-
-The sub-pages describe a more detailed step-by-step guide that you can follow to set up your PaaS project.
-
-First, make sure your [CLI is set up correctly](cli-setup).
-Once your CLI is up and running, it is time to [set up your project repository](repository).
-
-When your repository is set up correctly, you are ready to [push and deploy your project](build-deploy) to the PaaS environment.
-
-Finally, you can look into setting up [Elasticsearch](elasticsearch), [RabbitMQ](rabbitmq) and/or [Fastly](fastly) to further enhance the performance of your PaaS project.
+By using [Shopware PaaS Native](./shopware), teams benefit from a unified, robust platform that simplifies the development lifecycle, enhances performance, and enables faster innovation.

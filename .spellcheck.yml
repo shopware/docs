@@ -9,7 +9,8 @@ matrix:
     pipeline:
       - pyspelling.filters.markdown:
           markdown_extensions:
-            - pymdownx.superfences
+            - pymdownx.superfences:
+                relaxed_headers: true
       - pyspelling.filters.html:
           comments: false
           ignores:

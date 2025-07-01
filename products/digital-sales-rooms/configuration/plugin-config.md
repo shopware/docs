@@ -7,7 +7,7 @@ nav:
 
 # Plugin Configuration
 
-There are a lot of settings on the configuration page, but most of them are already filled by default. However, there are some settings that need to be setup.
+There are a lot of settings on the configuration page, but most of them are already filled by default. However, there are some settings that need to be set up.
 
 ## Navigate to the configuration page
 
@@ -19,7 +19,7 @@ Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configurat
 
 ### Appointments
 
-- *Available domains* - This select box shows the list of domains of all sales channel. You should choose the *Digital Sales Rooms* domains from [this section](./domain-config.md)
+- *Available domains* - This select box shows the list of domains of all sales channels. You should choose the *Digital Sales Rooms* domains from [this section](./domain-config.md)
 
 ### Video and Audio
 
@@ -28,7 +28,9 @@ Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configurat
 
 ### Realtime service
 
-- *Hub url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
-- *Hub public url* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
-- *Hub subscriber secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
-- *Hub publisher secret* - get the value from [this section](../setup-3rd-party/realtime-service-mercure.md#attach-mercure-information-into-digital-sales-rooms)
+- *Hub url*
+- *Hub public url*
+- *Hub subscriber secret*
+- *Hub publisher secret*
+
+Get the value of all these from [this section](../setup-3rd-party/realtime-service-mercure.md#setup-via-stackhero-recommended)

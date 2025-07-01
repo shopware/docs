@@ -19,10 +19,11 @@ One extension possibility in the Administration is the ability to add custom act
 
 To get those buttons, you start in the `admin` section of your manifest file. There you can define `<action-button>` elements in order to add your button, as seen as below:
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         ...
     </meta>
@@ -39,6 +40,8 @@ To get those buttons, you start in the `admin` section of your manifest file. Th
     </admin>
 </manifest>
 ```
+
+:::
 
 For a complete reference of the structure of the manifest file take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
 
@@ -296,10 +299,11 @@ This feature was added in Shopware 6.4.10.0, previous versions don't support rel
 
 To use custom endpoints as the target url for action buttons you can define the target url as a relative url in your apps manifest.xml:
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         ...
     </meta>
@@ -310,6 +314,8 @@ To use custom endpoints as the target url for action buttons you can define the 
     </admin>
 </manifest>
 ```
+
+:::
 
 And then add the corresponding app script that should be executed when the user clicks the action button.
 

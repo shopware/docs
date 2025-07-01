@@ -58,10 +58,11 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 
 The manifest file is the central point of your app. It defines the interface between your app and the Shopware instance. It provides all the information concerning your app, as seen in the minimal version below:
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <name>FlowBuilderTriggerApp</name>
         <label>Flow Builder Trigger App</label>
@@ -77,6 +78,8 @@ The manifest file is the central point of your app. It defines the interface bet
 </manifest>
 ```
 
+:::
+
 ::: warning
 The name of your app that you provide in the manifest file needs to match the folder name of your app.
 :::
@@ -85,8 +88,9 @@ The name of your app that you provide in the manifest file needs to match the fo
 
 To create a flow trigger, you need to define a `<flow-event>` block within a file called `flow.xml`. Each `<flow-event>` represents one trigger, and you can define an arbitrary number of events.
 
-```xml
-// Resources/flow.xml
+::: code-group
+
+```xml [Resources/flow.xml]
 <flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-events>
         <flow-event>
@@ -99,6 +103,8 @@ To create a flow trigger, you need to define a `<flow-event>` block within a fil
     ...
 </flow-extensions>
 ```
+
+:::
 
 A single flow trigger would look like this:
 

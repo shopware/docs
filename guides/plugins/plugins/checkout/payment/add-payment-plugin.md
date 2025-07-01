@@ -8,58 +8,38 @@ nav:
 # Add Payment Plugin
 
 ::: warning
-With Shopware 6.6.5.0, the payment handling was refactored.
-Most of this documentation is deprecated and obsolete with 6.7.0.0.
-
-The new payment handling is done via a single `AbstractPaymentHandler`.
-Check out the new documentation here: [Add Payment Plugin (>6.7)](/docs/v6.7/guides/plugins/plugins/checkout/payment/add-payment-plugin.html).
+From Shopware 6.7.0.0, the payment handling is refactored and is done via a single `AbstractPaymentHandler`.
 :::
 
 ## Overview
 
-Payments are an essential part of the checkout process. That's why Shopware 6 offers an easy platform on which you can build payment plugins.
+Payments are an essential part of the checkout process.
+That's why Shopware 6 offers an easy platform on which you can build payment plugins.
 
 ## Prerequisites
 
-The examples mentioned in this guide are built upon our [Plugin base guide](../../plugin-base-guide).
+The examples mentioned in this guide are built upon our plugin base guide.
 
-If you want to understand the payment process in detail, head to our [Payment Concept](../../../../../concepts/commerce/checkout-concept/payments).
+<PageRef page="../../plugin-base-guide.md" title="Plugin base guide"/>
 
-::: info
-Refer to this video on **[Introduction to payment handlers](https://www.youtube.com/watch?v=K58--Pxvudk)** that details you about payment extensions and payment handlers. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-:::
+If you want to understand the payment process in detail, head to our Payment Concept.
+
+<PageRef page="../../../../../concepts/commerce/checkout-concept/payments" title="Payment Concept"/>
 
 ## Creating a custom payment handler
 
 To create a payment method with your plugin, you have to add a custom payment handler.
 
-You can create your payment handler by implementing one of the following interfaces:
-
-| Interface                           | DI container tag                    | Usage                                                                                              |
-|:------------------------------------|:------------------------------------|:---------------------------------------------------------------------------------------------------|
-| SynchronousPaymentHandlerInterface  | `shopware.payment.method.sync`      | Payment can be handled locally, e.g. pre-payment                                                   |
-| AsynchronousPaymentHandlerInterface | `shopware.payment.method.async`     | A redirect to an external payment provider is required, e.g. PayPal                                |
-| PreparedPaymentHandlerInterface     | `shopware.payment.method.prepared`  | The payment was prepared beforehand and will only be validated and captured by your implementation |
-| RefundPaymentHandlerInterface       | `shopware.payment.method.refund`    | The payment allows refund handling                                                                 |
-| RecurringPaymentHandlerInterface    | `shopware.payment.method.recurring` | The payment allows recurring payments, e.g. subscriptions                                          |
-
-Depending on the interface, those methods are required:
-
-* `pay`: This method will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct` or a `Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, a return URL, payment method information and language information. Please be aware, Shopware 6 supports multiple transactions, and you have to use the amount provided and not the total order amount. If you're using the `AsynchronousPaymentHandlerInterface`, the `pay` method has to return a `RedirectResponse` to redirect the customer to an external payment provider. Note: The [AsyncPaymentTransactionStruct](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/Cart/AsyncPaymentTransactionStruct.php) contains a return URL. This represents the URL the external payment provider needs to know to redirect your customer back to your shop. If an error occurs while, e.g., calling the API of your external payment provider, you should throw an `AsyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state. The same happens if you use the `SynchronousPaymentHandlerInterface`: throw a `SyncPaymentProcessException` in an error case.
-* `finalize`: The `finalize` method is only required if you implemented the `AsynchronousPaymentHandlerInterface`, returned a `RedirectResponse` in your `pay` method, and the customer has been redirected from the payment provider back to Shopware 6. You must check here if the payment was successful and update the order transaction state accordingly. Similar to the pay action, you can throw exceptions if some error cases occur. Throw the `CustomerCanceledAsyncPaymentException` if the customer canceled the payment process on the payment provider site. If another general error occurs, throw the `AsyncPaymentFinalizeException` e.g., if your call to the payment provider API fails. Shopware 6 will handle these exceptions and set the transaction to the `cancelled` state.
-* `validate`: This method will be called before an order was placed and should check if a given prepared payment is valid. The payment handler has to verify the given payload with the payment service because Shopware cannot ensure that the transaction created by the frontend is valid for the current cart. Throw a `ValidatePreparedPaymentException` to fail the validation in your implementation.
-* `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created, and the payment handler will be called again to charge the payment. When the charge was successful, the payment handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw a `CapturePreparedPaymentException` on any errors to fail the capture process and, the after-order process will be active so that the customer can complete the payment again.
-* `refund`: This method is called whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
-* `captureRecurring`: This method is called whenever a recurring payment is charged. At this point, a valid billing agreement with the payment provider should exist. Use some of the other payment methods for handling the initial order and billing agreement. Use this interface only for handling all recurring captures afterward.
-
-All payment handler methods have the `\Shopware\Core\System\SalesChannel\SalesChannelContext` injected, except for the new  `captureRecurring`  method. Note that this class contains nullable properties. If you want to use this information, you must ensure in your code that they are set and not `NULL`.
+Shopware provides you with a handy `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler` abstract class for you to extend to get you started quickly.
 
 ### Registering the service
 
-Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container. We'll use a class called `ExamplePayment` here.
+Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container.
+Please make sure to add the `shopware.payment.method` tag to your service definition, otherwise Shopware won't recognize your service as a payment handler.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
+We'll use a class called `MyCustomPaymentHandler` here.
+
+```xml [<plugin root>/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -67,102 +47,150 @@ Before we're going to have a look at some examples, we need to register our new 
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\PaymentPlugin\Service\ExamplePayment">
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <tag name="shopware.payment.method.sync" />
-<!--        <tag name="shopware.payment.method.async" />-->
-<!--        <tag name="shopware.payment.method.prepared" />-->
-<!--        <tag name="shopware.payment.method.refund" />-->
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <tag name="shopware.payment.method"/>
         </service>
     </services>
 </container>
 ```
 
-We inject the `OrderTransactionStateHandler` in this example, as it helps change an order's transaction state, e.g. to `paid`. The payment handler has to be marked as such as well; hence the tag `shopware.payment.method.sync`, `shopware.payment.method.async` or `shopware.payment.method.prepared` respectively for a synchronous, an asynchronous or a prepared payment handler.
-
 Now, let's start with the actual examples.
 
-### Synchronous example
+### Example payment handlers
 
-The following will be a synchronous example, so that no redirect will happen, and the payment can be handled in the shop. Therefore, you don't have to return a `RedirectResponse` in the `pay` method; no `finalize` method is necessary either.
+<Tabs>
 
-Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method. If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state.
+<Tab title="Synchronous">
 
-```php
-// <plugin root>/src/Service/ExamplePayment.php
+The following will be a synchronous example, so that no redirect will happen, and the payment can be handled in the shop.
+Therefore, you don't have to return a `RedirectResponse` in the `pay` method; no `finalize` method is necessary either.
+
+Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method.
+If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `PaymentException`.
+Shopware 6 will handle this exception and set the transaction to the `failed` state.
+
+::: code-group
+
+```php [MyCustomPaymentHandler.php]
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Service;
+namespace Swag\PaymentPlugin\Service;
 
-use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\SynchronousPaymentHandlerInterface;
-use Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
-use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
-use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
+use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
-class ExamplePayment implements SynchronousPaymentHandlerInterface
+class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
-    private OrderTransactionStateHandler $transactionStateHandler;
-
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler)
+    public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
     {
-        $this->transactionStateHandler = $transactionStateHandler;
     }
 
-    public function pay(SyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): void
+    public function supports(PaymentHandlerType $type, string $paymentMethodId, Context $context): bool
     {
-        $context = $salesChannelContext->getContext();
-        $this->transactionStateHandler->paid($transaction->getOrderTransaction()->getId(), $context);
+        // This payment handler does not support recurring payments nor refunds
+        return false;
+    }
+
+    /**
+     * This method is always called during the checkout.
+     * You should process the payment here and return a RedirectResponse if the payment process requires an asynchronous approach.
+     * In that case, the finalize method will be called additionally during checkout after the redirect.
+     * If the payment process is synchronous, you should return null.
+     */
+    public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
+    {
+        // In here you should probably call your payment provider to precess the payment
+        // $this->myPaymentProvider->processPayment($transaction);
+
+        // afterward you should update the transaction with the new state
+        $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
+
+        return null;
     }
 }
 ```
 
-All it does now is to set the state of the order transaction to `paid`.
+```xml [services.xml]
+<?xml version="1.0" ?>
 
-### Asynchronous example
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-In the asynchronous example, the customer gets redirected to an external payment provider, which then, in return, has to redirect your customer back to your shop. Therefore, you must first redirect your customer to the payment provider by returning a `RedirectResponse`.
+    <services>
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <tag name="shopware.payment.method"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+        </service>
+    </services>
+</container>
+```
 
-Also, you need a `finalize` method to properly handle your customer when he was returned to your shop. This is where you check the payment state and set the order transaction state accordingly.
+:::
+
+This payment handler does not do a lot in the current state but is a good starting point for your custom payment handler.
+
+</Tab>
+
+<Tab title="Asynchronous">
+
+In the asynchronous example, the customer gets redirected to an external payment provider,
+which then, in return, has to redirect your customer back to your shop.
+Therefore, you must first redirect your customer to the payment provider by returning a `RedirectResponse`.
+
+Also, you need a `finalize` method to properly handle your customer when he was returned to your shop.
+This is where you check the payment state and set the order transaction state accordingly.
 
 Let's have a look at an example implementation of your custom asynchronous payment handler:
 
-```php
-// <plugin root>/src/Service/ExamplePayment.php
+::: code-group
+
+```php [MyCustomPaymentHandler.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
-use Shopware\Core\Checkout\Payment\PaymentException;
-use Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct;
-use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AsynchronousPaymentHandlerInterface;
-use Shopware\Core\Checkout\Payment\Exception\AsyncPaymentProcessException;
-use Shopware\Core\Checkout\Payment\Exception\CustomerCanceledAsyncPaymentException;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
-use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
-use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
+use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
+use Shopware\Core\Checkout\Payment\PaymentException;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Struct\Struct;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class ExamplePayment implements AsynchronousPaymentHandlerInterface
+class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
-    private OrderTransactionStateHandler $transactionStateHandler;
+    public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
+    {
+    }
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler) {
-        $this->transactionStateHandler = $transactionStateHandler;
+    public function supports(PaymentHandlerType $type, string $paymentMethodId, Context $context): bool
+    {
+        // This payment handler does not support recurring payments nor refunds
+        return false;
     }
 
     /**
-     * @throws AsyncPaymentProcessException
+     * This method is always called during the checkout.
+     * You should process the payment here and return a RedirectResponse.
+     * After redirect the finalize method will be called.
      */
-    public function pay(AsyncPaymentTransactionStruct $transaction, RequestDataBag $dataBag, SalesChannelContext $salesChannelContext): RedirectResponse
+    public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
     {
         // Method that sends the return URL to the external gateway and gets a redirect URL back
         try {
             $redirectUrl = $this->sendReturnUrlToExternalGateway($transaction->getReturnUrl());
         } catch (\Exception $e) {
-            throw PaymentException::asyncProcess(
-                $transaction->getOrderTransaction()->getId(),
+            throw PaymentException::asyncProcessInterrupted(
+                $transaction->getOrderTransactionId(),
                 'An error occurred during the communication with external payment gateway' . PHP_EOL . $e->getMessage()
             );
         }
@@ -172,31 +200,20 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
     }
 
     /**
-     * @throws CustomerCanceledAsyncPaymentException
+     * This method will be called after redirect from the external payment provider.
      */
-    public function finalize(AsyncPaymentTransactionStruct $transaction, Request $request, SalesChannelContext $salesChannelContext): void
+    public function finalize(Request $request, PaymentTransactionStruct $transaction, Context $context): void
     {
-        $transactionId = $transaction->getOrderTransaction()->getId();
-
         // Example check if the user canceled. Might differ for each payment provider
         if ($request->query->getBoolean('cancel')) {
-            throw PaymentException::asyncCustomerCanceled(
-                $transactionId,
+            throw PaymentException::customerCanceled(
+                $transaction->getOrderTransactionId(),
                 'Customer canceled the payment on the PayPal page'
             );
         }
 
-        // Example check for the actual status of the payment. Might differ for each payment provider
-        $paymentState = $request->query->getAlpha('status');
-
-        $context = $salesChannelContext->getContext();
-        if ($paymentState === 'completed') {
-            // Payment completed, set transaction status to "paid"
-            $this->transactionStateHandler->paid($transaction->getOrderTransaction()->getId(), $context);
-        } else {
-            // Payment not completed, set transaction status to "open"
-            $this->transactionStateHandler->reopen($transaction->getOrderTransaction()->getId(), $context);
-        }
+        // handle the payment state
+        $this->transactionStateHandler->paid($transaction->getOrderTransactionId(), $context);
     }
 
     private function sendReturnUrlToExternalGateway(string $getReturnUrl): string
@@ -210,138 +227,233 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
 }
 ```
 
-Let's start with the `pay` method. You'll have to start by letting your external payment provider know where he should redirect your customer in return when the payment is done. This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `AsyncPaymentTransactionStruct` using the method `getReturnUrl`. Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty. Fill in your logic in there in order to actually send the return URL to the external payment provider. The last thing you need to do, is to redirect your customer to the external payment provider via a `RedirectResponse`.
+```xml [services.xml]
+<?xml version="1.0" ?>
 
-Once your customer is done at the external payment provider, he will be redirected back to your shop. This is where the `finalize` method will be executed. In here, you have to check whether or not the payment process was successful. If e.g., the customer canceled the payment process, you'll have to throw a `CustomerCanceledAsyncPaymentException` exception.
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-Otherwise, you can proceed to check if the payment status was successful. If so, set the order's transaction state to `paid`. If not, you could, e.g. reopen the order's transaction.
+    <services>
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <tag name="shopware.payment.method"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+        </service>
+    </services>
+</container>
+```
 
-### Prepared payments example
+:::
 
-To improve the payment workflow on headless systems or reduce orders without payment, payment handlers can implement an additional interface to support pre-created payments. The client (e.g. a single-page application) can prepare the payment directly with the payment service (not through Shopware) and pass a transaction reference (token) to Shopware to complete the payment.
+Let's start with the `pay` method. You'll have to start by letting your external payment provider know where he should redirect your customer in return when the payment is done.
+This is usually done by making an API call and transmitting the return URL, which you can fetch from the passed `PaymentTransactionStruct` using the method `getReturnUrl`.
+Since this is just an example, the method `sendReturnUrlToExternalGateway` is empty.
+Fill in your logic in there in order to actually send the return URL to the external payment provider.
+The last thing you need to do, is to redirect your customer to the external payment provider by returning a `RedirectResponse`.
+Shopware handles the redirect for you automatically.
 
-Two steps are necessary: The handler has to validate the payment beforehand, or throw an exception, if the validation fails. After completing the checkout, Shopware calls the handler again to charge the payment.
+Once your customer is done at the external payment provider, he will be redirected back to your shop.
+This is where the `finalize` method will be executed.
+In here, you have to check whether the payment process was successful.
+If e.g., the customer canceled the payment process, you'll have to throw a `PaymentException::customerCanceled` exception.
+
+Otherwise, you can proceed to check if the payment status was successful.
+If so, set the order's transaction state to `paid`.
+If not, you could, e.g. reopen the order's transaction.
+
+</Tab>
+
+<Tab title="Prepared">
+
+To improve the payment workflow on headless systems or reduce orders without payment, payment handlers can implement an additional method to support pre-created payments.
+The client (e.g. a single-page application) can prepare the payment directly with the payment service (not through Shopware) and pass a transaction reference (token) to Shopware to complete the payment.
+
+Two steps are necessary:
+The handler has to validate the payment beforehand, or throw an exception, if the validation fails.
+If the validation is successful, the payment handler has to capture the payment in the `pay` method.
 
 Let's have a look at a simple example:
 
-```php
-// <plugin root>/src/ExamplePayment.php
+::: code-group
+
+```php [MyCustomPaymentHandler.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
+use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\PaymentException;
-use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PreparedPaymentHandlerInterface;
-use Shopware\Core\Checkout\Payment\Cart\PreparedPaymentTransactionStruct;
-use Shopware\Core\Checkout\Payment\Exception\CapturePreparedPaymentException;
-use Shopware\Core\Checkout\Payment\Exception\ValidatePreparedPaymentException;
+use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Struct\ArrayStruct;
 use Shopware\Core\Framework\Struct\Struct;
 use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
-class ExamplePayment implements PreparedPaymentHandlerInterface
+class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
-    private OrderTransactionStateHandler $stateHandler;
-
-    public function __construct(OrderTransactionStateHandler $stateHandler)
+    public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
     {
-        $this->stateHandler = $stateHandler;
     }
 
-    public function validate(
-        Cart $cart,
-        RequestDataBag $requestDataBag,
-        SalesChannelContext $context
-    ): Struct {
-        if (!$requestDataBag->has('my-payment-token')) {
+    public function supports(PaymentHandlerType $type, string $paymentMethodId, Context $context): bool
+    {
+        // This payment handler does not support recurring payments nor refunds
+        return false;
+    }
+
+    /**
+     * This method will always be called during the checkout, but before order creation.
+     * This is especially helpful for headless systems and single-page applications, that prepare payments not through Shopware.
+     */
+    public function validate(Cart $cart, RequestDataBag $dataBag, SalesChannelContext $context): ?Struct
+    {
+        // the payment is prepared here and most certainly you will receive a token from your PSP
+        if (!$dataBag->has('my-payment-token')) {
             // this will fail the validation
-            throw PaymentException::preparedValidate('No token supplied');
+            throw PaymentException::validatePreparedPaymentInterrupted('No token supplied');
         }
 
-        $token = $requestDataBag->get('my-payment-token');
-        $paymentData = $this->getPaymentDataFromProvider($token);
-
-        if (!$paymentData) {
-            // no payment data simulates an error response from our payment provider in this example
-            throw PaymentException::preparedValidate('Unknown payment for token ' . $token);
-        }
+        $token = $dataBag->get('my-payment-token');
 
         // other checks could include comparing the cart value with the actual payload of your PSP
 
         // return the payment details: these will be given as $preOrderPaymentStruct to the capture method
-        return new ArrayStruct($paymentData);
+        return new ArrayStruct(['my-payment-provider-transaction-token' => $token]);
     }
 
-    public function capture(
-        PreparedPaymentTransactionStruct $transaction,
-        RequestDataBag $requestDataBag,
-        SalesChannelContext $context,
-        Struct $preOrderPaymentStruct
-    ): void {
-
-        // you can find all the order specific information in the PreparedPaymentTransactionStruct
-        $order = $transaction->getOrder();
-        $orderTransaction = $transaction->getOrderTransaction();
-
-        // call you PSP and capture the transaction as usual
-        // do not forget to change the transaction's state here:
-        $this->stateHandler->paid($orderTransaction->getId(), $context->getContext());
-        
-        // or in case of an error:
-        $this->stateHandler->fail($orderTransaction->getId(), $context->getContext());
-        throw PaymentException::preparedCapture($orderTransaction->getId(), 'Capture failed.');
-    }
-
-    private function getPaymentDataFromProvider(string $token): array
+    /**
+     * This method is always called during the checkout, but only after the validate method was called.
+     * You should process the payment here and return a RedirectResponse if the payment process requires an asynchronous approach.
+     * In that case, the finalize method will be called additionally during checkout after the redirect.
+     * If the payment process is synchronous, you should return null.
+     */
+    public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
     {
-        // call your payment provider instead and return your real payment details
-        return [];
+        $validateData = $validateStruct->getVars();
+
+        if (!isset($validateData['my-payment-provider-transaction-token'])) {
+            // this will fail the payment process
+            throw PaymentException::syncProcessInterrupted($transaction->getOrderTransactionId(), 'No payment token provided');
+        }
+
+        // In here you should probably call your payment provider to precess the payment and compare tokens
+        if ($validateData['my-payment-provider-transaction-token'] !== 'hatoooken') {
+            // this will fail the payment process
+            throw PaymentException::syncProcessInterrupted($transaction->getOrderTransactionId(), 'Payment token mismatch');
+        }
+
+        // In here you should probably call your payment provider to precess the payment
+        // $this->myPaymentProvider->processPayment($transaction);
+        
+        // afterward you should update the transaction with the new state
+        $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
+
+        return null;
     }
 }
 ```
 
-### Refund example
+```xml [services.xml]
+<?xml version="1.0" ?>
 
-To allow easy refund handling, Shopware introduced a centralized way of handling refund for transactions.
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-For this, have your payment handler implement the `RefundPaymentHandlerInterface`.
+    <services>
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <tag name="shopware.payment.method"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+        </service>
+    </services>
+</container>
+```
 
-Let's look at a short example of how to implement such payment handlers.
+:::
 
-```php
-// <plugin root>/src/ExamplePayment.php
+</Tab>
+
+<Tab title="Refund">
+
+To allow easy refund handling, your payment handler should return `true` in the supports method,
+whenever the PaymentHandlerType is REFUND.
+
+Let's look at a short example of how to implement a refund handlers.
+
+::: code-group
+
+```php [MyCustomPaymentHandler.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
+use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefund\OrderTransactionCaptureRefundEntity;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefund\OrderTransactionCaptureRefundStateHandler;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCaptureRefundPosition\OrderTransactionCaptureRefundPositionEntity;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
+use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
+use Shopware\Core\Checkout\Payment\Cart\RefundPaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\PaymentException;
-use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\RefundPaymentHandlerInterface;
 use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
-class ExamplePayment implements RefundPaymentHandlerInterface
+class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
-    private OrderTransactionCaptureRefundStateHandler $stateHandler;
-
-    public function __construct(OrderTransactionCaptureRefundStateHandler $stateHandler)
-    {
-        $this->stateHandler = $stateHandler;
+    public function __construct(
+        private readonly EntityRepository $refundRepository,
+        private readonly OrderTransactionStateHandler $transactionStateHandler,
+        private readonly OrderTransactionCaptureRefundStateHandler $refundStateHandler,
+    ) {
     }
 
-    public function refund(OrderTransactionCaptureRefundEntity $refund, Context $context): void
+    public function supports(PaymentHandlerType $type, string $paymentMethodId, Context $context): bool
     {
-        if ($refund->getAmount() > 100.00) {
+        // this payment handler supports refunds
+        return $type === PaymentHandlerType::REFUND;
+    }
+
+    /**
+     * This method is always called during the checkout.
+     * You should process the payment here and return a RedirectResponse if the payment process requires an asynchronous approach.
+     * In that case, the finalize method will be called additionally during checkout after the redirect.
+     * If the payment process is synchronous, you should return null.
+     */
+    public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
+    {
+        // In here you should probably call your payment provider to precess the payment
+        // $this->myPaymentProvider->processPayment($transaction);
+
+        // afterward you should update the transaction with the new state
+        $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
+
+        return null;
+    }
+
+    /**
+     * As long as the supports method returns true for PaymentHandlerType::REFUND, this method will be called during the refund process.
+     */
+    public function refund(RefundPaymentTransactionStruct $transaction, Context $context): void
+    {
+        $refund = $this->getRefund($transaction->getRefundId(), $context);
+
+        if (!$refund) {
             // this will stop the refund process and set the refunds state to `failed`
-            throw PaymentException::refund($refund->getId(), 'Refunds over 100 € are not allowed');
+            throw PaymentException::refundInterrupted($transaction->getRefundId(), 'Refund not found');
         }
 
         // a refund can have multiple positions, with different order line items and amounts
-        /** @var OrderTransactionCaptureRefundPositionEntity $position */
         foreach ($refund->getPositions() as $position) {
             $amount = $position->getAmount()->getTotalPrice();
             $reason = $position->getReason();
@@ -350,88 +462,179 @@ class ExamplePayment implements RefundPaymentHandlerInterface
             // let's say, you allow a position, which was delivered, however broken
             if ($reason === 'malfunction') {
                 // you can call your PSP here to refund
-
                 try {
                     $this->callPSPForRefund($amount, $reason, $lineItem->getId());
                 } catch (\Exception $e) {
                     // something went wrong at PSP side, throw a refund exception
                     // this will set the refund state to `failed`
-                    throw PaymentException::refund($refund->getId(), 'Something went wrong');
+                    throw PaymentException::refundInterrupted($refund->getId(), 'Something went wrong');
                 }
             }
         }
 
         // let Shopware know, that the refund was successful
-        $this->stateHandler->complete($refund->getId(), $context);
+        $this->refundStateHandler->complete($refund->getId(), $context);
     }
 
-    private function callPSPForRefund(float $amount, string $reason, string $id): void
+    private function getRefund(string $refundId, Context $context): ?OrderTransactionCaptureRefundEntity
     {
-        // call you PSP here and process the response
-        // throw an exception to stop the refund process
+        return $this->refundRepository->search(new Criteria([$refundId]), $context)->first();
+    }
+
+    private function callPSPForRefund(float $amount, string $reason, string $lineItemId): void
+    {
+        // call your PSP here
     }
 }
+
 ```
+
+```xml [services.xml]
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <tag name="shopware.payment.method"/>
+            <argument type="service" id="order_transaction_capture_refund.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCapture\OrderTransactionCaptureStateHandler"/>
+        </service>
+    </services>
+</container>
+```
+
+:::
 
 As you can see, you have complete control over handling the refund request and which positions to refund.
 
-### Recurring capture example
+</Tab>
+
+<Tab title="Recurring">
+
+Recurring payment handlers allow continuous charging of a customer's payment method.
+This is especially useful for subscription-based services.
 
 ::: info
-Recurring orders and payments require the Subscriptions feature, available exclusively in our [paid plans](https://www.shopware.com/en/pricing/).
+A full-fledged Subscriptions feature with recurring payments is available exclusively through our [paid plans](https://www.shopware.com/en/pricing/).
 :::
 
-```php
-// <plugin root>/src/ExamplePayment.php
+::: info
+Usually, a billing agreement between the customer and the payment provider is necessary to allow recurring payments.
+:::
+
+::: code-group
+
+```php [MyCustomPaymentHandler.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
 
-use Shopware\Core\Checkout\Payment\PaymentException;
-use Shopware\Core\Checkout\Payment\Exception\RecurringPaymentProcessException;
-use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\RecurringPaymentHandlerInterface;
-use Shopware\Core\Checkout\Payment\Cart\RecurringPaymentTransactionStruct;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
+use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
+use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
-class ExamplePayment implements RecurringPaymentHandlerInterface
+class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
-    private OrderTransactionStateHandler $transactionStateHandler;
-
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler)
+    public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
     {
-        $this->transactionStateHandler = $transactionStateHandler;
+    }
+
+    public function supports(PaymentHandlerType $type, string $paymentMethodId, Context $context): bool
+    {
+        // this payment handler supports recurring payments
+        return $type === PaymentHandlerType::RECURRING;
     }
 
     /**
-     * @throws RecurringPaymentProcessException
+     * This method is in the case of recurring payments only called during the initial checkout.
+     * You probably want to create a billing agreement between the customer and your PSP here.
+     * Do not forget to capture the initial charge as well.
      */
-    public function captureRecurring(RecurringPaymentTransactionStruct $transaction, Context $context): void
+    public function pay(Request $request, PaymentTransactionStruct $transaction, Context $context, ?Struct $validateStruct): ?RedirectResponse
     {
-        // call your PSP here for capturing a recurring payment
-        // a valid billing agreement between the customer and the PSP should already be in place 
-        // use on of the other payment interfaces to create such an agreement on checkout and capture the initial order once
-        // you will probably receive a token from your PSP for the billing agreement, which you will need to capture a recurring payment
+        // You can identify, that this is the intitial capture for a recurring payment by checking the `RecurringDataStruct` in the `PaymentTransactionStruct`
+        if ($transaction->getRecurring()) {
+            // In here you should probably call your payment provider to create a billing agreement
+            // $this->myPaymentProvider->createBillingAgreement($transaction);
+        }
         
+        // Don't forget to capture the initial payment as well
+        // $this->myPaymentProvider->processPayment($transaction);
+        
+        // afterward you should update the transaction with the new state
+        $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
+
+        return null;
+    }
+    
+    /**
+     * call your PSP here for capturing a recurring payment
+     * a valid billing agreement between the customer and the PSP should usually already be in place
+     * use on of the other payment handler methods to create such an agreement on checkout and capture the initial order once
+     * you will probably receive a token from your PSP for the billing agreement, which you will need to capture a recurring payment
+     */
+    public function recurring(PaymentTransactionStruct $transaction, Context $context): void
+    {
         try {
-            // $this->callMyPsp();
+            $data = $transaction->getRecurring()?->getVars();
+
+            if (!$data || !isset($data['pspBillingAgreementToken'])) {
+                throw PaymentException::recurringInterrupted($transaction->getOrderTransactionId(), 'No token supplied');
+            }
+
+            //$this->callPSPForRecurringPayment($data['pspBillingAgreementToken']);
         } catch (\Throwable $e) {
-            // throw a RecurringPaymentProcessException: this will set the transaction state to `failed` 
-            throw PaymentException::recurringInterrupted($transaction->getOrderTransaction()->getId(), 'Something went wrong', $e);
+            // throw a PaymentException::recurringInterrupted to set the transaction state to `failed`
+            throw PaymentException::recurringInterrupted($transaction->getOrderTransactionId(), 'Something went wrong', $e);
         }
     }
 }
+
 ```
 
-## Setting up new payment method
+```xml [services.xml]
+<?xml version="1.0" ?>
 
-The handler itself is not used yet, since there is no payment method actually using the handler created above. In short: Your handler is not handling any payment method so far. The payment method can be added to the system while installing your plugin.
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <tag name="shopware.payment.method"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+        </service>
+    </services>
+</container>
+```
+
+:::
+
+</Tab>
+
+</Tabs>
+
+## Setting up the new payment method
+
+The handler itself is not used yet, since there is no payment method actually using the handler created above.
+In short: Your handler is not handling any payment method so far.
+The payment method can be added to the system while installing your plugin.
 
 An example for your plugin could look like this:
 
-```php
-// <plugin root>/src/SwagBasicExample.php
+::: code-group
+
+```php [SwagBasicExample.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample;
@@ -483,29 +686,29 @@ class SwagBasicExample extends Plugin
             return;
         }
 
-        /** @var PluginIdProvider $pluginIdProvider */
         $pluginIdProvider = $this->container->get(PluginIdProvider::class);
         $pluginId = $pluginIdProvider->getPluginIdByBaseClass(get_class($this), $context);
 
         $examplePaymentData = [
             // payment handler will be selected by the identifier
-            'handlerIdentifier' => ExamplePayment::class,
+            'handlerIdentifier' => MyCustomPaymentHandler::class,
             'name' => 'Example payment',
             'description' => 'Example payment description',
             'pluginId' => $pluginId,
             // if true, payment method will also be available after the order 
             // is created, e.g. if payment fails and the user wants to try again
             'afterOrderEnabled' => true,
+            // the technicalName helps you to identify the payment method uniquely
+            // it is best practice to use a plugin specific prefix to avoid conflicts
+            'technicalName' => 'swag_example-example_payment',
         ];
 
-        /** @var EntityRepository $paymentRepository */
         $paymentRepository = $this->container->get('payment_method.repository');
         $paymentRepository->create([$examplePaymentData], $context);
     }
 
     private function setPaymentMethodIsActive(bool $active, Context $context): void
     {
-        /** @var EntityRepository $paymentRepository */
         $paymentRepository = $this->container->get('payment_method.repository');
 
         $paymentMethodId = $this->getPaymentMethodId();
@@ -525,7 +728,6 @@ class SwagBasicExample extends Plugin
 
     private function getPaymentMethodId(): ?string
     {
-        /** @var EntityRepository $paymentRepository */
         $paymentRepository = $this->container->get('payment_method.repository');
 
         // Fetch ID for update
@@ -535,14 +737,81 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-In the `install` method, you start by creating a new payment method, if it doesn't exist yet. If you need to know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
+:::
 
-::: warning
-**Do not** do the opposite in the `uninstall` method and remove the payment method. This might lead to data inconsistency if the payment method was used in some orders. Instead, only deactivate the method!
+In the `install` method, you start by creating a new payment method, if it doesn't exist yet.
+If you need to know what's happening in there, you might want to have a look at our guide regarding [Writing data](../../framework/data-handling/writing-data).
+
+::: danger
+**Do not** do the opposite in the `uninstall` method and remove the payment method.
+This might lead to data inconsistency if the payment method was used in some orders.
+Instead, only deactivate the method!
 :::
 
 The `activate` method and `deactivate` method just do that, activating and deactivating the payment method, respectively.
 
 ### Identify your payment
 
-You can identify your payment by the entity property `formattedHandlerIdentifier`. It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment`. The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).
+You can identify your payment by the entity property `formattedHandlerIdentifier`.
+It shortens the original handler identifier \(php class reference\): `Custom/Payment/SEPAPayment` to `handler_custom_sepapayment`.
+The syntax for the shortening can be looked up in [Shopware\Core\Checkout\Payment\DataAbstractionLayer\PaymentHandlerIdentifierSubscriber](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/DataAbstractionLayer/PaymentHandlerIdentifierSubscriber.php).
+
+Otherwise, you can use your given technical name to uniquely identify your payment method.
+
+## Migrating payment handlers from 6.6
+
+If you are migrating a payment handler from a version before 6.7,
+you need to move from the existing interfaces to the new abstract class and add your own order data loading..
+
+### Payment handler interfaces removed
+
+Instead of implementing multiple interfaces of `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerInterface` in your payment handler,
+extend the `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler` class and implement the necessary methods.
+
+| Old interface                         | Method used in payment handler                                                                            | Checks for `supports` method    |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------|
+| `SynchronousPaymentHandlerInterface`  | `pay`: always called during checkout                                                                      | -                               |
+| `AsynchronousPaymentHandlerInterface` | `finalize`: only called, if `pay` returns a `RedirectResponse`                                            | -                               |
+| `PreparedPaymentHandlerInterface`     | `validate`: be aware that this method is always called and can be used to validate a cart during checkout | -                               |
+| `RecurringPaymentHandlerInterface`    | `recurring`                                                                                               | `PaymentHandlerType::RECURRING` |
+| `RefundPaymentHandlerInterface`       | `refund`                                                                                                  | `PaymentHandlerType::REFUND`    |
+
+### New single tag for payment handlers
+
+Your payment handler should now have a single tag in the service definition: `shopware.payment.method`.
+Remove any other occurrences of the following tags:
+`shopware.payment.method.sync`, `shopware.payment.method.async`, `shopware.payment.method.prepared`, `shopware.payment.method.recurring`, `shopware.payment.method.refund`.
+
+::: code-group
+
+```xml [services.xml]
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
+            <!-- this is the new tag for payment handlers -->
+            <tag name="shopware.payment.method"/>
+
+            <!-- remove any of these other tags -->
+            <tag name="shopware.payment.method.sync"/>
+            <tag name="shopware.payment.method.async"/>
+            <tag name="shopware.payment.method.prepared"/>
+            <tag name="shopware.payment.method.recurring"/>
+            <tag name="shopware.payment.method.refund"/>
+        </service>
+    </services>
+</container>
+```
+
+:::
+
+### Prepared payments
+
+In the past, you would have to implement the `validate` and `capture` methods when dealing with the `PreparedPaymentHandlerInterface`.
+
+Now, you only have to implement the `validate` method.
+Instead of the `capture` method, the streamlined `pay` method is used and has to be implemented.

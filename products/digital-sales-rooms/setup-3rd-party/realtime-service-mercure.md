@@ -24,13 +24,18 @@ There are different ways to set up Mercure; we choose the quickest and easiest f
 
 - Create the Stackhero account.
 - Access the dashboard.
-- In the **Stacks** menu item, create a new stack with the **Mercure Hub** service.
-- When creating a stack successfully, tap into the Configure button.
-- On this page, it's easy to find the [Mercure general settings](#attach-mercure-information-into-digital-sales-rooms), copy all the necessary information, and paste it into [the proper inputs of the configuration page](../configuration/plugin-config.md#realtime-service).
-
-![Mercure configuration](../../../assets/products-digitalSalesRooms-mercureConfig.png)
+- In the **Stacks** menu item, click on **create a new stack** with the **Mercure Hub** service.
+- When creating a stack successfully, tap into the Configure button. On this page, you will find the Mercure general settings.
+  - *Hub url* - The hub URL.
+  - *Hub public url* - The hub public URL, normally it's the same as the hub URL.
+  - *Hub subscriber secret* - The JWT key used for authenticating subscribers
+  - *Hub publisher secret* - The JWT key used for authenticating publishers
 
 ![ ](../../../assets/products-digitalSalesRooms-mercureConfigExample.png)
+
+- Copy all the necessary information, and paste it into [the proper inputs of the configuration page](../configuration/plugin-config.md#realtime-service).
+
+![Mercure configuration](../../../assets/products-digitalSalesRooms-mercureConfig.png)
 
 ### Setup via Docker
 
@@ -44,18 +49,7 @@ You can clone our [local-mercure-sample](https://github.com/shopware/local-mercu
 
 After init mercure hub, let's make it more secure with your information:
 
-- *Set up CORS allowed origins* - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: `http://localhost:3000` (frontend domain).
-- *Set up publish allowed origins* - The domains that request the Mercure service must be added to publish allowed origins or else it gets rejected. For instance (HTTP protocol must not be included): `http://localhost:3000`  (frontend domain) and `http://localhost:8000` (backend API domain).
+- *Set up CORS allowed origins* - In our case, it would be the domain where the Shopware Frontends is hosted and available. For instance: `https://dsr.shopware.io` (frontend domain).
+- *Set up publish allowed origins* - The domains that request the Mercure service must be added to publish allowed origins, else it gets rejected. For instance (HTTP protocol must not be included): `https://dsr.shopware.io` (frontend domain) and `https://shopware.store` (backend API domain).
 - *Set up the publisher (JWT) key* - Set whatever you want.
 - *Set up the subscriber (JWT) key* - Set whatever you want.
-
-## Attach Mercure information into Digital Sales Rooms
-
-From your Mercure hub, it's easy to get the proper information:
-
-- *Hub url* - The hub URL.
-- *Hub public url* - The hub public URL, normally it's the same as the hub URL.
-- *Hub subscriber secret* - The JWT key used for authenticating subscribers
-- *Hub publisher secret* - The JWT key used for authenticating publishers
-
-Then, fill them in [Configuration Page - Realtime service](../configuration/plugin-config.md#realtime-service)

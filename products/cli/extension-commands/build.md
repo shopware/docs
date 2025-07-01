@@ -169,20 +169,20 @@ With the combination of `pattern`, `variables` and `template` we link the commit
 
 Extension configuration can be overwritten during the zipping process, allowing changes to aspects such as the version and app-related settings.
 
+Replaces the version in `composer.json` or `manifest.xml` with the given version:
+
 ```yaml
 shopware-cli extension zip --overwrite-version=1.0.0 <path>
 ```
 
-Replaces the version in `composer.json` or `manifest.xml` with the given version.
+Replaces all external URLs in `manifest.xml` to that given URL:
 
 ```yaml
 shopware-cli extension zip --overwrite-app-backend-url=https://example.com <path>
 ```
 
-Replaces all external URLs in `manifest.xml` to that given URL.
+Replaces the App secret in `manifest.xml` with the given secret:
 
 ```yaml
 shopware-cli extension zip --overwrite-app-backend-secret=MySecret <path>
 ```
-
-Replaces the App secret in `manifest.xml` with the given secret.

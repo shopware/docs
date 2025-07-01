@@ -36,22 +36,18 @@ ALTER TABLE `swag_example` ADD `parent_id` BINARY(16) NULL;
 ALTER TABLE `swag_example` MODIFY `description` VARCHAR(255) NULL;
 ```
 
-To avoid creating the column incorrectly, you can simply use the `Shopware\Core\Framework\Migration\InheritanceUpdaterTrait` in your migrations for new fields:
+::: code-group
 
-```php
-// <plugin root>/src/Migration/Migration1615363012AddInheritanceColumnToExample.php
+```php [PLUGIN_ROOT/src/Migration/Migration1615363012MakeInheritedColumnsNullable.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
 
 use Doctrine\DBAL\Connection;
-use Shopware\Core\Framework\Migration\InheritanceUpdaterTrait;
 use Shopware\Core\Framework\Migration\MigrationStep;
 
-class Migration1615363012AddInheritanceColumnToExample extends MigrationStep
+class Migration1615363012MakeInheritedColumnsNullable extends MigrationStep
 {
-    use InheritanceUpdaterTrait;
-
     public function getCreationTimestamp(): int
     {
         return 1615363012;
@@ -66,7 +62,6 @@ class Migration1615363012AddInheritanceColumnToExample extends MigrationStep
         SQL;
         
         $connection->executeStatement($query);
-        $this->updateInheritance($connection, 'swag_example', 'example_field');
     }
 
     public function updateDestructive(Connection $connection): void
@@ -74,6 +69,8 @@ class Migration1615363012AddInheritanceColumnToExample extends MigrationStep
     }
 }
 ```
+
+:::
 
 ### Add the ParentFkField and the associations
 
@@ -85,8 +82,9 @@ After we've made all our fields nullable, we still need to add the following fie
 
 In default, ParentFkField points to a `parent_id` column in the database. All these fields must refer to our definition by using `self::class`. The `ParentAssociationField` has as its second parameter the referenceField, which in our case is `id`. Below you can find an example of how it should then look.
 
-```php
-// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Content/Example/ExampleDefinition.php]
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -101,24 +99,30 @@ protected function defineFields(): FieldCollection
 }
 ```
 
+:::
+
 ### Allow inheritance
 
 Now we need to enable inheritance by overriding the `isInheritanceAware` method in our definition, which must then return `true`.
 
-```php
-// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Content/Example/ExampleDefinition.php]
 public function isInheritanceAware(): bool
 {
     return true;
 }
 ```
 
+:::
+
 ### Flag fields as inheritable
 
 After we've enabled inheritance for our definition, we need to add the`Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Inherited` flag to all the fields in our definition that should be inherited.
 
-```php
-// <plugin root>/src/Core/Content/Example/ExampleDefinition.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Content/Example/ExampleDefinition.php]
 protected function defineFields(): FieldCollection
 {
     return new FieldCollection([
@@ -135,12 +139,15 @@ protected function defineFields(): FieldCollection
 }
 ```
 
+:::
+
 ### Add getters and setters to the entity class
 
 The last thing we need to do is add our new fields to our entity class.
 
-```php
-// <plugin root>/src/Core/Content/Example/ExampleEntity.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Content/Example/ExampleEntity.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example;
@@ -192,6 +199,8 @@ class ExampleEntity extends Entity
 }
 ```
 
+:::
+
 ## Translations
 
 This concept also supports translations. Given a parent/child entity with an inherited language \(de-CH _inherits from_ de-DE\), the inheritance system will try to look up the values in following order:
@@ -207,7 +216,90 @@ If an inheritance is not found, the next translation in the chain above will be 
 
 Assuming our definition is already aware of inheritance, we have to update our definition and add the `Inherited` flag to our translated fields and the translation association.
 
-```php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Content/Example/ExampleDefinition.php]
 (new TranslatedField('name'))->addFlags(new Inherited()),
 (new TranslationsAssociationField(ExampleTranslationDefinition::class))->addFlags(new Inherited()),
 ```
+
+:::
+
+## Association inheritance
+
+Association inheritance allows you to inherit associations from a parent entity.
+To make an association inheritable, you need to add the `Inherited` flag to the association field in your definition.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Core/Content/Example/ExampleDefinition.php]
+protected function defineFields(): FieldCollection
+{
+    return new FieldCollection([
+        ...
+        (new FkField('tax_id', 'taxId', TaxDefinition::class))->addFlags(new Inherited()),
+        (new ManyToOneAssociationField('tax', 'tax_id', TaxDefinition::class, 'id'))->addFlags(new Inherited()),
+        ...
+    ]);
+}
+```
+
+:::
+
+We then need to add the foreign key column to our migration:
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Migration/Migration1615363013AddInheritedAssociation.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Migration;
+
+use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\Migration\InheritanceUpdaterTrait;
+use Shopware\Core\Framework\Migration\MigrationStep;
+
+class Migration1615363013AddInheritedAssociation extends MigrationStep
+{
+    use InheritanceUpdaterTrait;
+    
+    public function getCreationTimestamp(): int
+    {
+        return 1615363013;
+    }
+
+    public function update(Connection $connection): void
+    {
+        $query = <<<SQL
+            ALTER TABLE `swag_example` 
+                ADD `tax_id` BINARY(16) NULL,
+                ADD CONSTRAINT `fk.swag_example.tax_id` FOREIGN KEY (`tax_id`)
+                    REFERENCES `tax` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'
+        SQL;
+        
+        $connection->executeStatement($query);
+        
+        $this->updateInheritance($connection, 'swag_example', 'tax');
+    }
+
+}
+```
+
+:::
+
+### "Inheritance columns"
+
+Note the use of the `updateInheritance` method in the migration.
+This method is used to create "inheritance columns" in the database.
+These columns are used internally by the DAL to store the inherited references.
+Those columns need to be present in the database for the inheritance system to work correctly.
+In those columns, the concrete reference values to perform the join on are stored.
+In the case of `ToMany` associations, the ID stored in the column is the ID of the base entity (parent ID if the association is inherited, child ID if not).
+For `ToOne` associations like this example, the ID stored in the column is the ID of the entity that is referenced by the association.
+
+This additional column is needed because of two reasons:
+
+1. To allow overriding the association in the child entity with null values, which would otherwise not be possible.
+2. To improve performance by avoiding additional queries to load the parent entity when the association is inherited.
+
+Those columns are not visible in the entity definition or entity class and cannot be accessed directly. They are only used internally by the DAL.

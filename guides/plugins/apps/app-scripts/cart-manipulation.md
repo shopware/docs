@@ -95,8 +95,9 @@ In general, Shopware prices consist of gross and net prices and are currency dep
 
 You can define price fields for [custom fields](../custom-data/custom-fields)
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <custom-fields>
     <custom-field-set>
         <name>custom_field_test</name>
@@ -114,6 +115,8 @@ You can define price fields for [custom fields](../custom-data/custom-fields)
     </custom-field-set>
 </custom-fields>
 ```
+
+:::
 
 ### Price fields inside app config
 

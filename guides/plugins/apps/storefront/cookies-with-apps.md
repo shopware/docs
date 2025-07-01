@@ -17,10 +17,11 @@ You should be familiar with the concept of apps.
 
 To add new cookies to the cookie consent manager, you can add a `cookies` section to your `manifest.xml`. Inside this section, you can add new `cookie` elements, as shown in the following example. Note that you don't need a `setup` section in your `manifest.xml` since extending the Storefront doesn't need a registration nor an own server to run.
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <name>ExampleAppWithCookies</name>
         <version>1.0.0</version>
@@ -38,6 +39,8 @@ To add new cookies to the cookie consent manager, you can add a `cookies` sectio
 </manifest>
 ```
 
+:::
+
 Cookie elements can be configured by adding the following child elements:
 
 * `cookie` (required): The technical name of the cookie. The value is used to store the cookie in the customer's cookie jar.
@@ -54,10 +57,11 @@ When adding multiple cookies through your app it may become handy to group them.
 
 To add a cookie group, you can add a `groups` section within your `cookies` section in your `manifest.xml`. In the following example, we use the cookie that we created in the previous section but display it in a cookie group:
 
-```xml
-<!-- manifest.xml -->
+::: code-group
+
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <name>ExampleAppWithCookies</name>
         <version>1.0.0</version>
@@ -80,6 +84,8 @@ To add a cookie group, you can add a `groups` section within your `cookies` sect
     </cookies>
 </manifest>
 ```
+
+:::
 
 A `group` element consists of three child elements to configure the cookie group. Here is a description of all of them:
 
