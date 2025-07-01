@@ -215,7 +215,7 @@ While automation helps, **manual checks** ensure real-world usability:
 | **Shopware version** | **Accessibility support** |  
 |---------------------|------------------------|  
 | **6.7+** | Full A11y improvements available for testing |  
-| **6.6+** | Accessibility features introduced |  
+| **6.6+** | Accessibility features introduced (use `ACCESSIBILITY_TWEAKS` feature flag) |  
 | **Shopware 5** | 🚫 **No accessibility support** |  
 
 ### 5. Getting help with accessibility
