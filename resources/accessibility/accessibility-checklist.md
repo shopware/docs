@@ -87,30 +87,30 @@ Help keyboard users skip repetitive content:
 
 Focus should remain within the modal and return to the trigger element after closing:
 
-* Trap focus while the modal is open.
-* Return focus to the initiating element once it is closed.
+- Trap focus while the modal is open.
+- Return focus to the initiating element once it is closed.
 
 ### Avoid Auto-Playing Audio or Video
 
 If unavoidable, make sure users can easily pause or stop it:
 
-* Provide controls on `<video>` or `<audio>` elements.
-* Avoid autoplay unless muted and non-disruptive.
+- Provide controls on `<video>` or `<audio>` elements.
+- Avoid autoplay unless muted and non-disruptive.
 
 ### Ensure Unique IDs and ARIA Attributes
 
 Avoid duplicated IDs to maintain screen reader reliability:
 
-* Validate that `id` attributes are unique.
-* Ensure any referenced IDs in `aria-labelledby` or `aria-describedby` exist and are not duplicated.
+- Validate that `id` attributes are unique.
+- Ensure any referenced IDs in `aria-labelledby` or `aria-describedby` exist and are not duplicated.
 
 ### Test with Assistive Technologies
 
 Test your site with real-world tools and scenarios:
 
-* Use screen readers like NVDA (Windows), VoiceOver (macOS).
-* Navigate with only the keyboard (Tab, Shift+Tab, Enter, Space).
-* Leverage browser dev tools (Chrome DevTools > Accessibility, Axe Core).
+- Use screen readers like NVDA (Windows), VoiceOver (macOS).
+- Navigate with only the keyboard (Tab, Shift+Tab, Enter, Space).
+- Leverage browser dev tools (Chrome DevTools > Accessibility, Axe Core).
 
 ## Conclusion
 
