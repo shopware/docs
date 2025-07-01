@@ -149,7 +149,7 @@ We are using the [WCAG 2.1 Level AA](https://www.w3.org/TR/WCAG21/) standard and
 
 ### Overview of known accessibility issues
 
-To report any new accessibility issues, click the New Issue button, select Bug Report, fill out the require fields and make sure to add the area/accessibility label. 
+To report any new accessibility issues, click the New Issue button, select Bug Report, fill out the require fields and make sure to add the area/accessibility label.
 Here is a reference to the existing [accessibility Issues](https://github.com/shopware/shopware/issues?q=state%3Aopen%20label%3Aarea%2Faccessibility).
 
 ## Best practices for accessibility (a11y) in Shopware extensions
