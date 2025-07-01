@@ -291,11 +291,11 @@ Deployer
 Deprecations
 Deutsch
 DevOps
+DevTools
 Devenv
 DeviceHelper
 Devops
 Devtool
-DevTools
 DifferentAddressesRule
 Differentiator
 DirectoryLoader
@@ -560,6 +560,7 @@ MyPlugin
 MyTestClass
 MyTestInterface
 NPM
+NVDA
 NameAware
 NameOfYourShippingMethodApp
 NameStorer
@@ -579,7 +580,6 @@ NotRule
 NullObject
 Nullsafe
 Nuxt
-NVDA
 Nvidia
 OAuth
 OPENSEARCH
