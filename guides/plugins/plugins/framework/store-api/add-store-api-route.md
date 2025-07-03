@@ -56,13 +56,15 @@ Now we can create a new class `ExampleRoute` which uses our previously created `
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
+use Shopware\Core\Framework\Routing\StoreApiRouteScope;
+use Shopware\Core\PlatformRequest;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['store-api']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 class ExampleRoute extends AbstractExampleRoute
 {
     protected EntityRepository $exampleRepository;
@@ -302,14 +304,16 @@ If you want to access the functionality of your route also from the Storefront y
 
 namespace Swag\BasicExample\Storefront\Controller;
 
+use Shopware\Core\PlatformRequest;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Swag\BasicExample\Core\Content\Example\SalesChannel\AbstractExampleRoute;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
     private AbstractExampleRoute $route;

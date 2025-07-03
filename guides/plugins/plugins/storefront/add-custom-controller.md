@@ -44,10 +44,12 @@ Go ahead and create a new file `ExampleController.php` in the directory `<plugin
 
 namespace Swag\BasicExample\Storefront\Controller;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
 }
@@ -67,13 +69,15 @@ Below you can find an example implementation of a controller method including a 
 
 namespace Swag\BasicExample\Storefront\Controller;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
     #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
@@ -110,14 +114,16 @@ This way of defining the route-scope is deprecated for the 6.5 major version.
 
 namespace Swag\BasicExample\Storefront\Controller;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
-    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: ['_routeScope' => ['storefront']])]
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
     public function showExample(): Response
     {
         ...
@@ -210,13 +216,15 @@ Here's an example:
 
 namespace Swag\BasicExample\Storefront\Controller;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {    
     #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]

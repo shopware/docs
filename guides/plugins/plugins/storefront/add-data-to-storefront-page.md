@@ -100,11 +100,13 @@ Our new Route should look like this:
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['store-api']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 abstract class AbstractProductCountRoute
 {
     abstract public function getDecorated(): AbstractProductCountRoute;
@@ -118,6 +120,8 @@ abstract class AbstractProductCountRoute
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\CountAggregation;
@@ -127,7 +131,7 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['store-api']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 class ProductCountRoute extends AbstractProductCountRoute
 {
     protected EntityRepository $productRepository;
