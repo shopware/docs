@@ -18,7 +18,7 @@ At Shopware, we are committed to creating inclusive and barrier-free shopping ex
 
 ## How are core accessibility improvements released?
 
-Accessibility improvements are rolled out in regular minor releases, similar to other improvements or bug-fixes. We implement all accessibility improvements in the current major version `6.6.x` and its minor versions.
+Starting from **Shopware 6.6+,** accessibility improvements have been introduced, and **6.7+** includes further enhancements. Accessibility improvements are rolled out in regular minor releases, similar to other improvements or bug-fixes.
 There is no large "accessibility release" planned that ships all accessibility improvements at once.
 
 ## How to deal with breaking accessibility changes?
@@ -160,7 +160,7 @@ Ensuring accessibility in your Shopware extension improves **usability, inclusiv
 
 #### Activate the accessibility feature flag
 
-Starting from **Shopware 6.6+,** accessibility improvements have been introduced, and **6.7+** includes further enhancements. Enable the **feature flag** to test changes before release by activating the feature flag in your local environment, modify your `project-root/.env`.
+Enable the **feature flag** to test changes before release by activating the feature flag in your local environment, modify your `project-root/.env`.
 
 ```env
 ACCESSIBILITY_TWEAKS
@@ -176,7 +176,7 @@ Now you can:
 
 * Preview upcoming a11y improvements before they become mandatory.
 * Identify potential breaking changes in your theme or extension.  
-* Ensure your UI remains functional with new accessibility enhancements.
+* Ensure your UI remains functional with new [accessibility enhancements](./accessibility-checklist.md).
 
 ### 2. Testing for accessibility compliance
 
@@ -224,6 +224,6 @@ While automation helps, **manual checks** ensure real-world usability:
 * Stay updated with Shopware's **developer guidelines**.  
 * Discuss A11y best practices with other developers in the **Shopware community**.
 
-## Final Thoughts
+## Conclusion
 
-By following these best practices, you ensure that your extension is **inclusive, user-friendly, and compliant** with Shopware’s accessibility standards. Accessibility is not just about compliance—it’s about making the web usable for everyone.
+Understanding accessibility best-practices is just the beginning. To truly create an inclusive storefront, these ideas must be translated into practice. To help you turn these into action, we have created a comprehensive [Storefront Accessibility Checklist](./accessibility-checklist.md). It outlines the key technical and design practices needed to build accessible interfaces—from semantic HTML to keyboard navigation and ARIA usage.
