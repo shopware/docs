@@ -1,7 +1,7 @@
 ---
 nav:
   title: Accessibility Checklist
-  position: 30
+  position: 31
 ---
 
 # Storefront Accessibility
