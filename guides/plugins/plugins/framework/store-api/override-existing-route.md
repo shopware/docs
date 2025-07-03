@@ -27,12 +27,14 @@ First, we have to create a new class which extends `AbstractExampleRoute`. In th
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['store-api']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
     protected EntityRepository $exampleRepository;

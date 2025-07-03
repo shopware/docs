@@ -117,10 +117,12 @@ For this we need to inject the `Shopware\Core\Framework\RateLimiter\RateLimiter`
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 
+use Shopware\Core\Framework\Routing\StoreApiRouteScope;
+use Shopware\Core\PlatformRequest;
 use Shopware\Core\Framework\RateLimiter\RateLimiter;
 ...
 
-#[Route(defaults: ['_routeScope' => ['store-api']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 class ExampleRoute extends AbstractExampleRoute
 {
     private RateLimiter $rateLimiter;

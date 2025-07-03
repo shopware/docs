@@ -33,16 +33,18 @@ Let's have a look at an example.
 
 namespace Swag\BasicExample\Service;
 
+use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;
 use Shopware\Core\Checkout\Cart\LineItemFactoryRegistry;
 use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
+use Shopware\Core\PlatformRequest;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Shopware\Storefront\Framework\Routing\StorefrontResponse;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Symfony\Component\Routing\Attribute\Route;
-use Shopware\Core\Checkout\Cart\Cart;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
     private LineItemFactoryRegistry $factory;

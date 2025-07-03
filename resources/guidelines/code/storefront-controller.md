@@ -18,7 +18,7 @@ nav:
 * Use Symfony flash bags for error reporting.
 * Each storefront functionality has to be available inside the Store API too.
 * A Storefront controller should never contain business logic.
-* The class requires the attribute: `#[Route(defaults: ['_routeScope' => ['storefront']])]`.
+* The class requires the attribute: `#[Route(defaults: [\Shopware\Core\PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [\Shopware\Storefront\Framework\Routing\StorefrontRouteScope::ID]])]`.
 * Depending services have to be injected over the class constructor.
 * Depending services have to be defined in the DI-Container service definition.
 * Depending services have to be assigned to a private class property.

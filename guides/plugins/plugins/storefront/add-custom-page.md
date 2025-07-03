@@ -30,16 +30,18 @@ Let's have a look at an example controller.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
 
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
     #[Route(path: '/example-page', name: 'frontend.example.page', methods: ['GET'])]
