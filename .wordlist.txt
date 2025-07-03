@@ -291,6 +291,7 @@ Deployer
 Deprecations
 Deutsch
 DevOps
+DevTools
 Devenv
 DeviceHelper
 Devops
@@ -559,6 +560,7 @@ MyPlugin
 MyTestClass
 MyTestInterface
 NPM
+NVDA
 NameAware
 NameOfYourShippingMethodApp
 NameStorer
@@ -971,6 +973,7 @@ VirtualHosts
 Vite
 Vitepress
 Vitest
+VoiceOver
 Vue
 Vue's
 VueJS
@@ -984,6 +987,7 @@ WSL
 WSL
 WarehouseGroup
 WarehouseGroups
+WebAIM
 WebAssembly
 WebKit
 WebSocket
@@ -1044,6 +1048,7 @@ autoloaded
 autoloader
 autoloading
 autom
+autoplay
 autoprefixer
 autowire
 autowiring
@@ -1239,6 +1244,7 @@ dont's
 dr
 dragTo
 dropdown
+dropdowns
 dsr
 dunglas
 duplications
@@ -1285,6 +1291,7 @@ firstname
 fk
 flattenDeep
 flyout
+focusable
 focussed
 focussing
 fontFamily
@@ -1777,6 +1784,7 @@ symlink
 symlinks
 systemconfigfacade
 systemd
+tabindex
 teardown
 templated
 templating
@@ -1796,6 +1804,7 @@ tipps
 tl
 to's
 todo
+toggleable
 tokenized
 tooltip
 tooltips
