@@ -81,7 +81,7 @@ Help keyboard users skip repetitive content:
   
   ```html
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  ````
+  ```
 
 ### Control Focus When Using Modals or Popovers
 
