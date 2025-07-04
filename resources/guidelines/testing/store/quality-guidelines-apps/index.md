@@ -188,7 +188,7 @@ We check for text snippets, `config.xml`, `manifest.xml`, or `theme.json`.
 ### Valid preview images for the Shopware administration
 
 Preview images: There must be a preview image available in the *Extension Manager*.
-You must upload a valid favicon named plugin.png (png / 40 x 40 px) for the app.
+You must upload a valid favicon named plugin.png (png / 112 x 112 pixels) for the app.
 This favicon will help you identify your app in the Extension Manager module in the administration.
 The favicon has to be stored under `src/Resources/config/`.
 
