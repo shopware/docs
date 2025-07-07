@@ -19,3 +19,11 @@ Fastly is supported in Shopware versions 6.4.11 or newer.
 2. Install the Fastly Composer package using `composer req fastly`.
 3. Disable caching in the `.platform/routes.yaml`.
 4. Push the new config and Fastly gets enabled.
+
+
+::: info
+**Enable Fastly Soft Purges**
+
+Make sure your Fastly configuration has [soft purges](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge) enabled to mitigate the impact of large-scale cache invalidations.
+
+:::
