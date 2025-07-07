@@ -29,6 +29,19 @@ Let's delve into a more detailed understanding of products using the example of 
 
 * **Category**: Products in Shopware are organized in categories. It is a grouping of products based on characteristics, marketing or search concerns. Categories are represented as a hierarchical tree to form a navigation menu. A product can be contained in multiple categories.
 
+* **Packaging dimensions**: Physical dimensions and weight of the product packaging. These values are stored in standardized units: weight in kilograms (kg) and dimensions (width, length, height) in millimeters (mm). This information is crucial for shipping calculations, storage planning, and logistics operations. However, these units can be configured to be displayed differently on storefront and APIs depending on the sales channel context.
+
+| Dimension | Stored Value | Display Value (configurable) |
+|-----------|--------------|------------------------------|
+| Weight    | 1.5       | 3.3 lbs/1500g/1.5kg          |
+| Width     | 300       | 11.8 in/300mm/0.3m           |
+| Length    | 400       | 15.7 in/400mm/0.4m           |
+| Height    | 200       | 7.9 in/200mm/0.2m            |
+
+::: info
+The configurable measurement units are only available in Shopware v6.7.1.0 and later version. Before that, the values are always stored in the metric system and displayed in the same way.
+:::
+
 Look at the below condensed overview of relationships between entities - products, categories, options, and property groups are interconnected in the database schema.
 
 ```mermaid
