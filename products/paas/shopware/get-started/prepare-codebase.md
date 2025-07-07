@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Setup Shopware to be deployed to PaaS
-  position: 30
+  title: Prepare Shopware codebase
+  position: 20
 ---
 
-# Shopware Setup for PaaS
+# Prepare Shopware codebase
 
 ## Prerequisite
 
@@ -18,7 +18,7 @@ To ensure consistency and reproducibility across deployments, plugins must be in
 
 Additionally, before installation, verify that each plugin supports **S3-based storage**, as not all extensions are compatible with external file systems.
 
-## Prepare Your Shopware Application
+## Generating the required files
 
 Whether you're starting from scratch or working with an existing Shopware project, the following steps will ensure your setup is ready for deployment on Shopware PaaS Native.
 

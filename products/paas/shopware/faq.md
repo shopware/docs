@@ -18,10 +18,6 @@ No, all containers are stateless, and local file writes are discouraged. Persist
 
 The application that you create is linked to a commit SHA and not to a branch. You can change the existing application commit SHA by running `sw-paas application update`. What matters is the commit configured for a given application.
 
-### Why can't I manage extensions in the Shopware Administration?
-
-Plugin management via the Administration interface is not supported in PaaS because the platform runs in a high-availability (HA) and clustered environment. In such setups, local changes aren't feasible, as all instances must remain identical and stateless. To ensure consistency across all deployments, plugins must be installed or updated via Composer, as part of the project’s codebase. You need to install or update extensions [via Composer](./../../../guides/hosting/installation-updates/extension-managment.html#installing-extensions-with-composer).
-
 ### Can I run different applications like Node.js?
 
 No, currently PaaS is limited to Shopware projects.
@@ -32,7 +28,7 @@ Secrets are stored in the PaaS secret store and can be applied at the organizati
 
 ### Can I access the database directly?
 
-Yes. Follow the guide on [open command](./CLI/open).
+Yes. Follow the guide on [databases](./resources/databases.md).
 
 ### Can I customize the infrastructure (e.g., change web server configurations)?
 
@@ -64,8 +60,8 @@ Custom applications and decoupled storefront hosting will be evaluated based on 
 
 ### Can I connect to my PaaS instance via SSH
 
-Yes, you can connect to your PaaS instance — but not via traditional SSH. Instead, we provide a remote terminal session through the `sw-paas exec` command. This command allows you to execute shell commands inside your PaaS environment remotely, effectively giving you SSH-like access for troubleshooting, deployments, or interactive sessions. You can find the detailed guide on how to use `sw-paas exec` in the [documentation here](../shopware/CLI/exec).
+Yes, you can connect to your PaaS instance — but not via traditional SSH. Instead, we provide a remote terminal session through the `sw-paas exec` CLI command. This command allows you to execute shell commands inside your PaaS environment remotely, effectively giving you SSH-like access for troubleshooting, deployments, or interactive sessions.
 
 ### Where can I see the status of my PaaS application update?
 
-You can see the status of your PaaS application by running `sw-paas application list`. This command shows the current status of your application, including whether the update was successful or if it's still in progress. See more in the [documentation here](../shopware/CLI/applications). To monitor all real-time events associated with the project and its applications run `sw-paas watch` this provides a live stream of events and is especially useful for tracking the progress of an ongoing update. [Learn more here](../shopware/CLI/watch).
+You can see the status of your PaaS application by running `sw-paas application list`. This command shows the current status of your application, including whether the update was successful or if it's still in progress. To monitor all real-time events associated with the project and its applications run `sw-paas watch` this provides a live stream of events and is especially useful for tracking the progress of an ongoing update.
