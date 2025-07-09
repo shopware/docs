@@ -36,8 +36,6 @@ AddressListingPage
 AddressResponseStruct
 AdminQueueWorker
 AdminWorker
-ProxySQL
-failover
 Adminer
 AdministrationNewField
 AdministrationNewModule
@@ -733,6 +731,7 @@ Profiler
 PropertyGroupOptionDataSet
 ProseMirror
 Prosemirror
+ProxySQL
 Pseudocode
 Punctuations
 Quickstart
@@ -1280,6 +1279,7 @@ explainer
 extendability
 extensibility
 externalReference
+failover
 fallbacks
 fastly
 favicon
