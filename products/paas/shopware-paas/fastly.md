@@ -20,7 +20,6 @@ Fastly is supported in Shopware versions 6.4.11 or newer.
 3. Disable caching in the `.platform/routes.yaml`.
 4. Push the new config and Fastly gets enabled.
 
-
 ::: info
 **Enable Fastly Soft Purges**
 
