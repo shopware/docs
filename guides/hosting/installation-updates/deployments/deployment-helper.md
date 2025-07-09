@@ -37,6 +37,44 @@ Besides installing or updating Shopware, it also simplifies common tasks which n
 - Run custom commands
 - Run one time commands
 
+## Execution Flow
+
+```mermaid
+
+graph TD
+    A[Deployment Helper] --> B{Shopware installed?};
+    B -- Yes --> E[Execute pre-update hooks];
+    B -- No --> N[Execute pre-install hooks];
+
+    E --> F[Enable maintenance mode];
+    F --> G[Run system:update:finish];
+    G --> H["Manage Plugins & Apps (install, update, deactivate, remove)"];
+    H --> I["Manage Themes (refresh, compile)"];
+    I --> J[Execute one-time tasks];
+    J --> K[Execute post-update hooks];
+    K --> L[Disable maintenance mode];
+    L --> M(Dispatch PostDeploy event);
+
+    N --> O[Run system:install];
+    O --> P[Create admin user];
+    P --> R["Manage Plugins & Apps (install, update, deactivate, remove)"];
+    R --> S[Execute post-install hooks];
+    S --> M;
+
+    subgraph PostDeploy Listeners
+        direction LR
+        M --> M1["Clear Cache (if configured)"];
+        M --> M2["Update Fastly VCL (if configured)"];
+        M --> M3["Platform.sh specific tasks (if detected)"];
+    end
+
+    M1 --> T[Execute post hooks];
+    M2 --> T;
+    M3 --> T;
+
+    T --> U[End];
+```
+
 ## Configuration
 
 The Deployment Helper can be configured via a `.shopware-project.yml` file in the root of your project.
