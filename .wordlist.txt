@@ -36,6 +36,8 @@ AddressListingPage
 AddressResponseStruct
 AdminQueueWorker
 AdminWorker
+ProxySQL
+failover
 Adminer
 AdministrationNewField
 AdministrationNewModule
