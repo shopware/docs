@@ -104,7 +104,7 @@ deployment:
     exclude:
       - Name
 
-    # These extensions are always updated even if they're version does not change
+    # These extensions are always updated even if their version does not change
     # This is useful for project specific plugins that are not versioned
     force-update:
       - Name
