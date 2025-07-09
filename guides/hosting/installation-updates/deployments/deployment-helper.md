@@ -66,6 +66,11 @@ deployment:
     exclude:
       - Name
 
+    # These extensions are always updated even if they're version does not change
+    # This is useful for project specific plugins that are not versioned
+    force-update:
+      - Name
+
     overrides:
       # the key is the extension name (app or plugin)
       MyPlugin:
