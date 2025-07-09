@@ -50,6 +50,10 @@ For a detailed explanation refer to the cart storage docs:
 
 ## Configure the database cluster
 
+::: info
+We recommend the usage of [ProxySQL](https://proxysql.com/) as a proxy for the database cluster instead of configuring the application to connect to different database servers directly. ProxySQL allows you to manage the database cluster more efficiently and provides additional features like query caching, load balancing, and failover.
+:::
+
 To use the MySQL cluster, you have to configure the following in the `.env` file:
 
 - `DATABASE_URL` is the connection string for the MySQL primary.

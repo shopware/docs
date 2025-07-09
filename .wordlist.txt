@@ -731,6 +731,7 @@ Profiler
 PropertyGroupOptionDataSet
 ProseMirror
 Prosemirror
+ProxySQL
 Pseudocode
 Punctuations
 Quickstart
@@ -1278,6 +1279,7 @@ explainer
 extendability
 extensibility
 externalReference
+failover
 fallbacks
 fastly
 favicon
