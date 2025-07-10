@@ -13,7 +13,7 @@ Get started with Shopware PaaS Native in just a few minutes. This guide will wal
 Before you begin, ensure you have:
 
 - A Git repository with your Shopware application prepared for PaaS. You can follow [this guide](./index.md) for preparation.
-- Access to a terminal/command line
+- Access to the terminal / command line
 - Git installed on your local machine. You can follow [this guide](https://github.com/git-guides/install-git).
 
 ## Step 1: Install the PaaS CLI

@@ -8,7 +8,7 @@ nav:
 
 Shopware PaaS Native allows you to securely store and retrieve sensitive information like passwords or API tokens.
 
-Secrets stored in Vault are reusable, which means that you can easily reuse a secret value in different applications. Secrets are global to the organization, so all applications can access the same values.
+Secrets stored in Vault are reusable, which means that you can reuse a secret value in different applications. Secrets are global to the organization, so all applications can access the same values.
 
 ## Creating a New Secret
 

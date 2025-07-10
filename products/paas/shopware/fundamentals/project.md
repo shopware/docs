@@ -6,7 +6,7 @@ nav:
 
 # Projects
 
-Projects represent a codebase in GitHub, Bitbucket, or GitLab repository that is deployed to Shopware PaaS Native. Projects can contain many applications.
+Projects represent a codebase in a GitHub, Bitbucket, or GitLab repository that is deployed to Shopware PaaS Native. Projects can contain many applications.
 
 ## Creating a New Project
 

@@ -22,7 +22,7 @@ Once logged in to Grafana:
 
 1. Go to the **Explore** tab.
 2. Select **Tempo** as the data source.
-3. Ensure query type is **Search**
+3. Ensure the query type is **Search**
 4. Filter traces by setting the Service Name to the value `shopware`.
 5. Run the query to view your application traces.
 
