@@ -176,7 +176,7 @@ The installation is not always in English or German.
 Could you make sure that your app works in other languages as well?
 For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback.
 
-If your app is available in more than one language (e.g., English, Spanish, French and German), these can be defined using the option "Translations into the following languages are available" (located in the “Description & images” section of your *Accountr*).
+If your app is available in more than one language (e.g., English, Spanish, French and German), these can be defined using the option "Translations into the following languages are available" (located in the “Description & images” section of your *Account*).
 
 We check for text snippets, `config.xml`, `manifest.xml`, or `theme.json`.
 
