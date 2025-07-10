@@ -328,7 +328,7 @@ Menu entries in the main menu of the administration are not allowed because of t
 
 ### Own media folder
 
-Manufacturer must create their own media folders with the right thumbnail settings or use existing ones to upload images, except of upload fields within the config.xml.
+Manufacturer must create their own media folders with the right thumbnail settings or use existing ones to upload images, except for upload fields within the `config.xml`.
 
 If you use your own media folder, keep in mind that the folder and the included data had to be removed if selected during the uninstallation.
 
