@@ -1,7 +1,7 @@
 ---
 nav:
   title: Technical Terms and Concepts
-  position: 30
+  position: 20
 
 ---
 
@@ -25,14 +25,15 @@ An **entity** represents a specific type of data within a component. For example
 
 A **configurator** is a PHP class that defines the migration process for a component’s entities. It specifies:
 
+- Technical name of the component (e.g., `employee_management`).
 - Field mappings between source and target tables (see [Field Mapping Configuration](../development/adding-component.md#field-mapping-configuration)).
 - Migration processes, conditions, default values, and fallback values (see [Migration Conditions and Values Configuration](../development/adding-component.md#define-conditions)).
 - The XML configuration file path for mappings.
 
-Configurators extend classes like `AbstractB2BMigrationConfigurator` or `AbstractB2BExtensionMigrationConfigurator` for base or extended migrations, respectively.
+Configurator extend classes like `AbstractB2BMigrationConfigurator` or `AbstractB2BExtensionMigrationConfigurator` for base or extended migrations, respectively.
 
 :::info
-Configurators provide a structured way to customize and control the migration process for each component.
+Configurator provide a structured way to customize and control the migration process for each component.
 :::
 
 ## Handler

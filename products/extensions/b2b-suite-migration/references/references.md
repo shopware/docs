@@ -13,13 +13,12 @@ This section consolidates key command-line commands used throughout the migratio
 
 The following table lists all console commands used in the migration process, along with their purpose and relevant handbook sections.
 
-| Command                              | Purpose                                                                                                                                                         | Reference                                                                         |
-|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| `bin/console b2b:migrate:validate`   | Validates the migration configuration (XML and configurator classes) for correctness.                                                                           | [Configuration Validation](../development/validation-and-run.md)                  |
-| `bin/console b2b:migrate:progress`   | Displays the current migration status, including counts for `Total`, `Valid`, `Newly`, `Migrated`, `Pending`, and `Error`. Use `--watch` for real-time updates. | [Running the Migration](../execution/running-migration.md#check-migration-status) |
-| `bin/console b2b:migrate:commercial` | Starts the migration process, transferring data from B2B Suite to B2B Commercial.                                                                               | [Running the Migration](../execution/running-migration.md#start-the-migration)    |
-| `bin/console b2b:migrate:rollback`   | Reverts the migration, clearing migrated data from target tables while preserving source data.                                                                  | [Troubleshooting](../execution/troubleshooting.md)                                |
-
+| Command                              | Purpose                                                                                                                                                                                                                                                                               | Reference                                                                         |
+|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `bin/console b2b:migrate:commercial` | Starts the migration process, transferring data from B2B Suite to B2B Commercial.<br/>Arguments: `component_name_1 component_name_2` to specify components to migrate.                                                                                                                | [Running the Migration](../execution/running-migration.md)                        |
+| `bin/console b2b:migrate:validate`   | Validates the migration configuration (XML and configurator classes) for correctness.                                                                                                                                                                                                 | [Configuration Validation](../development/validation-and-run.md)                  |
+| `bin/console b2b:migrate:progress`   | Displays the current migration status. Use `--watch` for real-time updates.                                                                                                                                                                                                           | [Running the Migration](../execution/running-migration.md#check-migration-status) |
+| `bin/console b2b:migrate:rollback`   | Reverts the migration, clearing migrated data from target tables while preserving source data.<br/>`-f --force` to skip confirmation <br/>`--max-batch-size` to set batch size for deletion. <br/> Arguments: `component_name_1 component_name_2` to specify components to roll back. | [Troubleshooting](../execution/troubleshooting.md#rollback-migration)             |
 ::: info
 Ensure the message queue worker is running before executing migration commands, as described in [Prerequisites](../execution/prerequisites.md)
 :::
@@ -56,6 +55,8 @@ To modify the batch size, update the `b2b.migration.batch_size` parameter in the
    ```bash
    bin/console b2b:migrate:commercial
    ```
+
+**Note**: You should also restart the message queue worker to apply the new configuration.
 
 ### Considerations
 

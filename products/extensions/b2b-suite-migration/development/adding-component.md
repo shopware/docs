@@ -29,26 +29,26 @@ This section guides developers on adding a new component to the migration proces
   ```php
   class EmployeeManagementMigrationConfigurator extends AbstractB2BMigrationConfigurator
   {
-      public function getName(): string
-      {
-          return 'employee_management';
-      }
+    public function getName(): string
+    {
+        return 'employee_management';
+    }
+
+    public function configPath(): string
+    {
+        return 'path/to/your/xml/mapping/file.xml';
+    }
   
-      public function configPath(): string
-      {
-          return 'path/to/your/xml/mapping/file.xml';
-      }
-  
-      protected function baseMigrationProcesses(): array
-      {
-          return [
-              // should match the <name> in the XML mapping file
-              'migration_b2b_component_business_partner',
-          ];
-      }
-      ...
+    protected function baseMigrationProcesses(): array
+    {
+        return [
+            // should match the <name> in the XML mapping file
+            'migration_b2b_component_business_partner',
+        ];
+    }
+    ...
   }
-   ```
+  ```
 
 ## Create XML Mapping File
 
