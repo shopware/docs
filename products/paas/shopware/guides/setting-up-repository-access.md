@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Repository Access
+  title: How to set up repository access
   position: 20
 ---
 
