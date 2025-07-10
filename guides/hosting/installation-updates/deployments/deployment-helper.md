@@ -105,7 +105,7 @@ deployment:
       - Name
 
     # These extensions are always updated even if their version does not change
-    # This is useful for project specific plugins that are not versioned
+    # This is useful for project-specific plugins that are not versioned
     force-update:
       - Name
 
