@@ -1,44 +1,35 @@
 ---
 nav:
   title: Validation and Run
-  position: 30
+  position: 50
 
 ---
 
 # Configuration Validation and Migration Execution
 
-## Validation Command
-
-- Validate your migration configuration to ensure correctness before running the migration.
-
-```bash
-bin/console b2b:migrate:validate
-```
-
-- Checks the configuration for errors.
-- Provides hints to resolve issues if validation fails.
-
-::: info
-Validation helps catch configuration errors early, saving time during migration.
-:::
-
-## Next Steps
-
-After configuring and validating your migration, follow these steps:
+After configuring your migration, follow these steps:
 
 1. Validate the configuration:
+   Validate your migration configuration to ensure correctness before running the migration.
 
    ```bash
    bin/console b2b:migrate:validate
    ```
 
-2. Monitor progress:
+   - Checks the configuration for errors. Ensure the XML is well-formed and adheres to a valid schema. It will also verify if the fields and tables exist in the database; otherwise, it will throw an exception.
+   - Provides hints to resolve issues if validation fails.
+
+    ::: info
+    Validation helps catch configuration errors early, saving time during migration.
+    :::
+
+2. Monitor progress (should be run in a separate terminal):
 
    ```bash
    bin/console b2b:migrate:progress --watch
    ```
 
-3. Start the migration:
+3. Start the migration (ensure the queue worker is running):
 
    ```bash
    bin/console b2b:migrate:commercial

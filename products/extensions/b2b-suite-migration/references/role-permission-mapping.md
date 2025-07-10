@@ -13,8 +13,8 @@ This section documents the role mappings from B2B Suite to B2B Commercial, detai
 
 Below is the mapping of permissions from B2B Suite to B2B Commercial. Each permission from B2B Suite is mapped to a corresponding permission in B2B Commercial.
 
-::: note
-Some permissions in B2B Suite do not actually exist in B2B Commercial, because some features are not available in B2B Commercial. In this case, the permission would be mapped to nearst equivalent permission in B2B Commercial.
+::: info
+Some permissions in B2B Suite do not actually exist in B2B Commercial, because some features are not available in B2B Commercial. In this case, the permission would be mapped to nearest equivalent permission in B2B Commercial.
 :::
 
 | B2B Suite Role          | B2B Commercial Role                         | Dependencies                                                                                       | Category        |
@@ -93,6 +93,6 @@ To handle this difference, the migration process uses the following cases to ass
    If an employee has multiple roles and additional specific permissions not tied to a role, these are merged into a single role in B2B Commercial. The new role includes all permissions from the roles and the specific permissions. The role name is a combination of the original role names and the employee’s email address, joined with underscores.  
    **Example**: An employee with email `foo@gmail.com`, roles `role1` and `role2`, and specific permissions will have a new role named `role1_role2_foo@gmail.com` in B2B Commercial.
 
-:::note
+:::info
 After migration, you can rename roles in B2B Commercial to more meaningful names, but the permissions will remain unchanged.
 :::
