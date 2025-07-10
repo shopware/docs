@@ -1,7 +1,7 @@
 ---
 nav:
   title: Monitoring
-  position: 10
+  position: 40
 ---
 
 # Monitoring

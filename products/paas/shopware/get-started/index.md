@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Shopware PaaS Native
+  title: Get Started
   position: 10
 ---
 

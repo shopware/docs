@@ -1,7 +1,7 @@
 ---
 nav:
   title: Guides
-  position: 10
+  position: 50
 ---
 
 # Guides
