@@ -14,5 +14,5 @@ The B2B Suite Migration extension is designed to facilitate the migration of dat
 This section provides a comprehensive guide for developers to migrate data from B2B Suite to B2B Commercial. It covers the migration process, from high-level concepts to detailed execution and development instructions, ensuring a smooth and reliable transition. The content is structured into focused sections to help you understand, execute, and extend the migration process effectively.
 
 ::: warning
-B2B Suite will no longer be supported starting next year. Plan your migration promptly to avoid disruptions.
+B2B Suite will no longer be supported starting Shopware 6.8. Plan your migration promptly to avoid disruptions.
 :::

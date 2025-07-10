@@ -1,7 +1,7 @@
 ---
 nav:
   title: Technical Terms and Concepts
-  position: 30
+  position: 20
 
 ---
 
@@ -25,19 +25,19 @@ An **entity** represents a specific type of data within a component. For example
 
 A **configurator** is a PHP class that defines the migration process for a component’s entities. It specifies:
 
-- Field mappings between source and target tables (see [Field Mapping Configuration](../development/adding-component.md#field-mapping-configuration)).
-- Migration processes, conditions, default values, and fallback values (see [Migration Conditions and Values Configuration](../development/adding-component.md#define-conditions)).
+- Technical name of the component (e.g., `employee_management`).
+- Field mappings between source and target tables (see [Field Mapping Configuration](../development/fields-mapping.md)).
 - The XML configuration file path for mappings.
 
-Configurators extend classes like `AbstractB2BMigrationConfigurator` or `AbstractB2BExtensionMigrationConfigurator` for base or extended migrations, respectively.
+Configurator extend classes like `AbstractB2BMigrationConfigurator` or `AbstractB2BExtensionMigrationConfigurator` for base or extended migrations, respectively.
 
 :::info
-Configurators provide a structured way to customize and control the migration process for each component.
+Configurator provide a structured way to customize and control the migration process for each component.
 :::
 
 ## Handler
 
-A **handler** is a PHP class that implements custom logic to transform data for specific fields during migration. Handlers are used when complex transformations are needed beyond simple mappings, ensuring data integrity and compatibility with B2B Commercial’s format. They are defined in the XML configuration and implemented via the `transform` method, as detailed in [Handler-Based Transformation](../development/adding-component.md#handler-based-transformation).
+A **handler** is a PHP class that implements custom logic to transform data for specific fields during migration. Handlers are used when complex transformations are needed beyond simple mappings, ensuring data integrity and compatibility with B2B Commercial’s format. They are defined in the XML configuration and implemented via the `transform` method, as detailed in [Handler-Based Transformation](../development/handler.md).
 
 :::info
 Handlers are critical for handling complex data transformations, such as reformatting or combining multiple source fields.

@@ -1,7 +1,7 @@
 ---
 nav:
   title: Extending Migration
-  position: 20
+  position: 40
 
 ---
 
@@ -18,13 +18,13 @@ This section explains how to add new fields to an existing entity or introduce n
 
   **Example**:
 
-  ```xml
+  ```XML
   <service id="MigrationExtension\B2BMigration\B2BExtensionMigrationConfigurator">
       <tag name="b2b.migration.configurator.extension"/>
   </service>
   ```
 
-  ```php
+  ```PHP
   class B2BExtensionMigrationConfigurator extends AbstractB2BExtensionMigrationConfigurator
   {
     public function getName(): string
@@ -40,9 +40,33 @@ This section explains how to add new fields to an existing entity or introduce n
   }
   ```
 
-  ::: info
-  The other functions, such as `migrationProcess`, `conditions`, and `defaultValues` ... inside this class will have the same functionality as described at [here](adding-component.md); they will override the base functionality instead of replacing it.
-  :::
+## Adding new conditions to an existing entity
+
+To add new conditions to an existing migration entity, you need to update the XML configuration.
+
+### Update XML Configuration
+
+   Define the new conditions in an XML file using the `<conditions>` element.
+   **Example**:
+
+   ```XML
+   <migration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../SwagCommercial/src/B2B/B2BSuiteMigration/Core/Resources/Schema/Xml/migration-extension-1.0.xsd">
+       <entity>
+           <name>migration_b2b_component_business_partner</name>
+           <source>b2b_customer_data</source>
+           <target>b2b_business_partner</target>
+           <conditions>
+             <condition>new_condition = value</condition>
+             <condition>new_condition2 != value</condition>
+           </conditions>
+           <fields>
+               ...
+           </fields>
+       </entity>
+   </migration>
+   ```
+
+**Note**: The `<conditions>` element allows you to specify additional filtering criteria for the migration entity. Each `<condition>` can be a simple SQL condition that will be applied to the source data. All of these conditions will be merged with the existing conditions defined in the base migration entity.
 
 ## Adding New Fields to an Existing Entity
 
@@ -53,7 +77,7 @@ To add new fields to an existing migration entity, you need to update the XML co
    Define the new fields in an XML file using the `<entity-extension>` element.
    **Example**:
 
-   ```xml
+   ```XML
    <migration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../SwagCommercial/src/B2B/B2BSuiteMigration/Core/Resources/Schema/Xml/migration-extension-1.0.xsd">
        <entity-extension>
            <name>migration_b2b_component_business_partner</name>
@@ -81,7 +105,7 @@ To introduce a new entity to an existing component, define the entity in the XML
 
    **Example**:
 
-   ```xml
+   ```XML
    <migration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../SwagCommercial/src/B2B/B2BSuiteMigration/Core/Resources/Schema/Xml/migration-extension-1.0.xsd">
        <entity>
            <name>migration_b2b_component_customer_specific_features</name>
@@ -93,20 +117,4 @@ To introduce a new entity to an existing component, define the entity in the XML
            </fields>
        </entity>
    </migration>
-   ```
-
-### Update Configurator
-
-   Add the new entity name to the `migrationProcess` method in the `B2BExtensionMigrationConfigurator` class to include it in the migration process.
-
-   **Example**:
-
-   ```php
-   protected function migrationProcess(): array
-   {
-       return [
-           'migration_b2b_component_customer_specific_features',
-           ...
-       ];
-   }
    ```
