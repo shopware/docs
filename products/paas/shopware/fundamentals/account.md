@@ -29,7 +29,7 @@ sw-paas account context set
 The context is saved as `context-production.yaml` and stored alongside the main configuration file in the following locations:
 
 |                 | Unix                   | macOS                                      | Windows        |
-| --------------- | ---------------------- | ------------------------------------------ | -------------- |
+|-----------------|------------------------|--------------------------------------------|----------------|
 | XDG_CONFIG_HOME | ~/.config/sw-paas      | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 | XDG_STATE_HOME  | ~/.local/state/sw-paas | ~/Library/Application&nbsp;Support/sw-paas | %LOCALAPPDATA% |
 
