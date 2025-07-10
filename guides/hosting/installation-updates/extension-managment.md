@@ -78,8 +78,8 @@ When all extensions are installed with Composer, you can enable the Composer cla
 ```diff
 {
     "require": {
-        "shopware/core": "....",
-        // .....
+        "shopware/core": "...",
+        // ...
     },
     "config": {
         "optimize-autoloader": true,
