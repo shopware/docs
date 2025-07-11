@@ -68,3 +68,16 @@ redirects:
     products/paas/blackfire.html: products/paas/shopware-paas/blackfire.html
     guides/plugins/apps/in-app-purchase/: guides/plugins/apps/in-app-purchases.html
     guides/plugins/plugins/in-app-purchase/: guides/plugins/plugins/in-app-purchases.html
+    products/paas/shopware/CLI/account.html: products/paas/shopware/fundamentals/account.html
+    products/paas/shopware/CLI/applications.html: products/paas/shopware/fundamentals/applications.html
+    products/paas/shopware/CLI/command.html: products/paas/shopware/get-started/cli.html
+    products/paas/shopware/CLI/exec.html: products/paas/shopware/get-started/cli.html
+    products/paas/shopware/CLI/index.html: products/paas/shopware/get-started/cli.html
+    products/paas/shopware/CLI/open.html: products/paas/shopware/get-started/cli.html
+    products/paas/shopware/CLI/organizations.html: products/paas/shopware/fundamentals/organization.html
+    products/paas/shopware/CLI/project.html: products/paas/shopware/fundamentals/project.html
+    products/paas/shopware/CLI/vault.html: products/paas/shopware/fundamentals/secrets.html
+    products/paas/shopware/CLI/watch.html: products/paas/shopware/monitoring/watch.html
+    products/paas/shopware/CLI/repository.html: products/paas/shopware/guides/setting-up-repository-access.html
+    products/paas/shopware/setup-shopware-for-paas.html: products/paas/shopware/get-started/prepare-codebase.html
+    products/paas/shopware/project_setup.html: products/paas/shopware/get-started/quickstart.html

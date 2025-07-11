@@ -35,7 +35,7 @@ Use the [Symfony Flex template](../../installation/template) and pin the Shopwar
 
 The following folders are available in the production template:
 
-- **/src**: Here, the project specific bundles and sources can be stored.
+- **/src**: Here, the project-specific bundles and sources can be stored.
 - **/config**: Here are the .yaml config files and other possible configurations (routing, admin configs, etc).
 - **/config/bundles.php**: In this file, all Symfony bundles are defined, which should be included in the project.
 
