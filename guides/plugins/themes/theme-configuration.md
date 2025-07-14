@@ -201,7 +201,7 @@ The following parameters can be defined for a config field item:
 
 Since the translations in `theme.config` are only used by the Theme Manager in the administration, we decided to use snippet keys for translating the configuration in order to ensure inheritance.
 
-Each snippet key begins with `sw-theme`, followed by the theme’s technical name in kebab case. It then includes the names of the relevant `tab`, `block`, `section`, and `field`. If you're translating field options, a numeric index is added to the snippet path. If any of these elements are unnamed, `default` will be used as the replacement in the key.
+Each snippet key begins with `sw-theme`, followed by the theme’s technical name, or its respective parent theme name, since snippets are inherited from the parent theme as well. It then includes the names of the relevant `tab`, `block`, `section`, and `field`. If you're translating field options, a numeric index is added to the snippet path. If any of these elements are unnamed, `default` will be used as the replacement in the key.
 
 At the end of the key, you append `label`. For fields, you may alternatively use `helpText` instead of `label`.
 
@@ -222,7 +222,7 @@ Assuming your `theme.json` is structured as follows:
 ```javascript
 // <plugin root>/src/Resources/theme.json
 {
-  "name": "Just another theme",
+  "name": "JustAnotherTheme",
   // ...
   "config": {
     "fields": {
@@ -254,16 +254,16 @@ Assuming your `theme.json` is structured as follows:
 
 This would generate the following snippet keys:
 
-- **Tab**: `sw-theme.just-another-theme.default.label`
-- **Block**: `sw-theme.just-another-theme.default.exampleBlock.label`
-- **Section**: `sw-theme.just-another-theme.default.exampleBlock.exampleSection.label`
+- **Tab**: `sw-theme.justAnotherTheme.default.label`
+- **Block**: `sw-theme.justAnotherTheme.default.exampleBlock.label`
+- **Section**: `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.label`
 - **Field**:  
-  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.label`  
-  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.helpText`
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.label`  
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.helpText`
 - **Option**:  
-  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.0.label`  
-  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.1.label`  
-  - `sw-theme.just-another-theme.default.exampleBlock.exampleSection.my-single-select-field.2.label`
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.0.label`  
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.1.label`  
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.2.label`
 
 ## Field types
 

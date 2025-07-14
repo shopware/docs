@@ -27,11 +27,43 @@ Create the two themes like described in [Theme inheritance](./add-theme-inherita
 
 Add some configuration fields you need in your basic theme inside the `theme.json` of the `SwagBasicExampleTheme`
 
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
 ```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleTheme",
-  .....
+  ...
+  "config": {
+    "fields": {
+      "sw-color-brand-primary": {
+        "type": "color",
+        "value": "#399",
+        "editable": true,
+        "tab": "colors",
+        "block": "themeColors",
+        "section": "importantColors"
+      },
+      "sw-brand-icon": {
+        "type": "url",
+        "value": "/our-logo.png",
+        "editable": true
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "SwagBasicExampleTheme",
+  ...
   "config": {
     "blocks": {
       "colors": {
@@ -84,15 +116,51 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
 }
 ```
 
+</Tab>
+</Tabs>
+
 ## Extending an existing theme configuration with a new theme
 
 Add configurations to your extended theme
+
+<Tabs>
+<Tab title="Since v6.7.1.0">
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
 {
   "name": "SwagBasicExampleThemeExtend",
-  .....
+  ...
+  "configInheritance": [
+    "@Storefront",
+    "@SwagBasicExampleTheme"
+  ],
+  "config": {
+    "fields": {
+      "sw-brand-icon": {
+        "type": "url",
+        "value": "/our-logo-holidays.png",
+        "editable": true
+      },
+      "sw-advent-calendar-background-color": {
+        "type": "color",
+        "value": "#399",
+        "editable": true
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
+
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  "name": "SwagBasicExampleThemeExtend",
+  ...
   "configInheritance": [
     "@Storefront",
     "@SwagBasicExampleTheme"
@@ -117,6 +185,9 @@ Add configurations to your extended theme
   }
 }
 ```
+
+</Tab>
+</Tabs>
 
 In this theme (`SwagBasicExampleThemeExtend`) all the configuration fields from the themes `Storefront` and `SwagBasicExampleTheme` will be used as inherited values. They will be shown in the Administration with an inherit anchor and will use the value of the parent themes as long as they are not set to a different value. In the `theme.json` the `sw-brand-icon` field value will be overwritten with a different default value. So this field will not be inherited regardless that it is already defined in the `SwagBasicExampleTheme`. This theme also adds a new field for the background color of the advent calendar (`sw-advent-calendar-background-color`) because this is only needed in this special theme which will only be used for 4-6 weeks a year.
 

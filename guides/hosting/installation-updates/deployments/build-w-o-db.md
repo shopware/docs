@@ -62,6 +62,543 @@ index.json
 <details>
 <summary>a729322c1f4e4b4e851137c807b4f363.json</summary>
 
+<Tabs>
+<Tab title="Since v6.7.1.0">
+
+```json
+{
+  "extensions": [],
+  "themeConfig": {
+    "fields": {
+      "sw-color-brand-primary": {
+        "type": "color",
+        "value": "#ff0000",
+        "editable": true,
+        "block": "themeColors",
+        "order": 100
+      },
+      "sw-color-brand-secondary": {
+        "type": "color",
+        "value": "#3d444d",
+        "editable": true,
+        "block": "themeColors",
+        "order": 200
+      },
+      "sw-border-color": {
+        "type": "color",
+        "value": "#798490",
+        "editable": true,
+        "block": "themeColors",
+        "order": 300
+      },
+      "sw-background-color": {
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 400
+      },
+      "sw-color-success": {
+        "type": "color",
+        "value": "#3cc261",
+        "editable": true,
+        "block": "statusColors",
+        "order": 100
+      },
+      "sw-color-info": {
+        "type": "color",
+        "value": "#26b6cf",
+        "editable": true,
+        "block": "statusColors",
+        "order": 200
+      },
+      "sw-color-warning": {
+        "type": "color",
+        "value": "#ffbd5d",
+        "editable": true,
+        "block": "statusColors",
+        "order": 300
+      },
+      "sw-color-danger": {
+        "type": "color",
+        "value": "#e52427",
+        "editable": true,
+        "block": "statusColors",
+        "order": 400
+      },
+      "sw-font-family-base": {
+        "type": "fontFamily",
+        "value": "'Inter', sans-serif",
+        "editable": true,
+        "block": "typography",
+        "order": 100
+      },
+      "sw-text-color": {
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "typography",
+        "order": 200
+      },
+      "sw-font-family-headline": {
+        "type": "fontFamily",
+        "value": "'Inter', sans-serif",
+        "editable": true,
+        "block": "typography",
+        "order": 300
+      },
+      "sw-headline-color": {
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "typography",
+        "order": 400
+      },
+      "sw-color-price": {
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 100
+      },
+      "sw-color-buy-button": {
+        "type": "color",
+        "value": "#0b539b",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 200
+      },
+      "sw-color-buy-button-text": {
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 300
+      },
+      "sw-logo-desktop": {
+        "type": "media",
+        "value": "http:\/\/shopware.local\/media\/64\/17\/g0\/1678462492\/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 100,
+        "fullWidth": true
+      },
+      "sw-logo-tablet": {
+        "type": "media",
+        "value": "http:\/\/shopware.local\/media\/64\/17\/g0\/1678462492\/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 200,
+        "fullWidth": true
+      },
+      "sw-logo-mobile": {
+        "type": "media",
+        "value": "http:\/\/shopware.local\/media\/64\/17\/g0\/1678462492\/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 300,
+        "fullWidth": true
+      },
+      "sw-logo-share": {
+        "type": "media",
+        "value": "",
+        "editable": true,
+        "block": "media",
+        "order": 400
+      },
+      "sw-logo-favicon": {
+        "type": "media",
+        "value": "http:\/\/shopware.local\/media\/d3\/f5\/b7\/1678462492\/favicon.png",
+        "editable": true,
+        "block": "media",
+        "order": 500
+      }
+    },
+    "sw-color-brand-primary": {
+      "extensions": [],
+      "name": "sw-color-brand-primary",
+      "type": "color",
+      "value": "#0b539b",
+      "editable": true,
+      "block": "themeColors",
+      "section": null,
+      "tab": null,
+      "order": 100,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-brand-secondary": {
+      "extensions": [],
+      "name": "sw-color-brand-secondary",
+      "type": "color",
+      "value": "#3d444d",
+      "editable": true,
+      "block": "themeColors",
+      "section": null,
+      "tab": null,
+      "order": 200,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-border-color": {
+      "extensions": [],
+      "name": "sw-border-color",
+      "type": "color",
+      "value": "#798490",
+      "editable": true,
+      "block": "themeColors",
+      "section": null,
+      "tab": null,
+      "order": 300,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-background-color": {
+      "extensions": [],
+      "name": "sw-background-color",
+      "type": "color",
+      "value": "#fff",
+      "editable": true,
+      "block": "themeColors",
+      "section": null,
+      "tab": null,
+      "order": 400,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-success": {
+      "extensions": [],
+      "name": "sw-color-success",
+      "type": "color",
+      "value": "#3cc261",
+      "editable": true,
+      "block": "statusColors",
+      "section": null,
+      "tab": null,
+      "order": 100,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-info": {
+      "extensions": [],
+      "name": "sw-color-info",
+      "type": "color",
+      "value": "#26b6cf",
+      "editable": true,
+      "block": "statusColors",
+      "section": null,
+      "tab": null,
+      "order": 200,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-warning": {
+      "extensions": [],
+      "name": "sw-color-warning",
+      "type": "color",
+      "value": "#ffbd5d",
+      "editable": true,
+      "block": "statusColors",
+      "section": null,
+      "tab": null,
+      "order": 300,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-danger": {
+      "extensions": [],
+      "name": "sw-color-danger",
+      "type": "color",
+      "value": "#e52427",
+      "editable": true,
+      "block": "statusColors",
+      "section": null,
+      "tab": null,
+      "order": 400,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-font-family-base": {
+      "extensions": [],
+      "name": "sw-font-family-base",
+      "type": "fontFamily",
+      "value": "'Inter', sans-serif",
+      "editable": true,
+      "block": "typography",
+      "section": null,
+      "tab": null,
+      "order": 100,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-text-color": {
+      "extensions": [],
+      "name": "sw-text-color",
+      "type": "color",
+      "value": "#2b3136",
+      "editable": true,
+      "block": "typography",
+      "section": null,
+      "tab": null,
+      "order": 200,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-font-family-headline": {
+      "extensions": [],
+      "name": "sw-font-family-headline",
+      "type": "fontFamily",
+      "value": "'Inter', sans-serif",
+      "editable": true,
+      "block": "typography",
+      "section": null,
+      "tab": null,
+      "order": 300,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-headline-color": {
+      "extensions": [],
+      "name": "sw-headline-color",
+      "type": "color",
+      "value": "#2b3136",
+      "editable": true,
+      "block": "typography",
+      "section": null,
+      "tab": null,
+      "order": 400,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-price": {
+      "extensions": [],
+      "name": "sw-color-price",
+      "type": "color",
+      "value": "#2b3136",
+      "editable": true,
+      "block": "eCommerce",
+      "section": null,
+      "tab": null,
+      "order": 100,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-buy-button": {
+      "extensions": [],
+      "name": "sw-color-buy-button",
+      "type": "color",
+      "value": "#0b539b",
+      "editable": true,
+      "block": "eCommerce",
+      "section": null,
+      "tab": null,
+      "order": 200,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-color-buy-button-text": {
+      "extensions": [],
+      "name": "sw-color-buy-button-text",
+      "type": "color",
+      "value": "#fff",
+      "editable": true,
+      "block": "eCommerce",
+      "section": null,
+      "tab": null,
+      "order": 300,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-logo-desktop": {
+      "extensions": [],
+      "name": "sw-logo-desktop",
+      "type": "media",
+      "value": "18f45736ef6a4beea22d867573bd1af6",
+      "editable": true,
+      "block": "media",
+      "section": null,
+      "tab": null,
+      "order": 100,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": true
+    },
+    "sw-logo-tablet": {
+      "extensions": [],
+      "name": "sw-logo-tablet",
+      "type": "media",
+      "value": "18f45736ef6a4beea22d867573bd1af6",
+      "editable": true,
+      "block": "media",
+      "section": null,
+      "tab": null,
+      "order": 200,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": true
+    },
+    "sw-logo-mobile": {
+      "extensions": [],
+      "name": "sw-logo-mobile",
+      "type": "media",
+      "value": "18f45736ef6a4beea22d867573bd1af6",
+      "editable": true,
+      "block": "media",
+      "section": null,
+      "tab": null,
+      "order": 300,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": true
+    },
+    "sw-logo-share": {
+      "extensions": [],
+      "name": "sw-logo-share",
+      "type": "media",
+      "value": "",
+      "editable": true,
+      "block": "media",
+      "section": null,
+      "tab": null,
+      "order": 400,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    },
+    "sw-logo-favicon": {
+      "extensions": [],
+      "name": "sw-logo-favicon",
+      "type": "media",
+      "value": "7bf586ac4343480292ebd5f349e16607",
+      "editable": true,
+      "block": "media",
+      "section": null,
+      "tab": null,
+      "order": 500,
+      "sectionOrder": null,
+      "blockOrder": null,
+      "tabOrder": null,
+      "custom": null,
+      "scss": null,
+      "fullWidth": null
+    }
+  },
+  "name": "Swag Dev Theme",
+  "previewMedia": "custom\/apps\/SwagDevTheme\/Resources\/app\/storefront\/src\/assets\/images\/showroomPreview.png",
+  "author": "Shopware AG",
+  "isTheme": true,
+  "styleFiles": [
+    {
+      "extensions": [],
+      "filepath": "@Storefront",
+      "resolveMapping": []
+    }
+  ],
+  "scriptFiles": [
+    {
+      "extensions": [],
+      "filepath": "@Storefront",
+      "resolveMapping": []
+    }
+  ],
+  "storefrontEntryFilepath": null,
+  "basePath": "custom\/apps\/SwagDevTheme\/Resources",
+  "assetPaths": [
+    "custom\/apps\/SwagDevTheme\/Resources\/app\/storefront\/src\/assets"
+  ],
+  "viewInheritance": [
+    "@Storefront",
+    "@SwagCustomizedProducts",
+    "@SwagPayPal",
+    "@SwagAmazonPay",
+    "@SwagCmsExtensions",
+    "@SwagB2bPlatform",
+    "@SwagDevTheme",
+    "@Plugins"
+  ],
+  "iconSets": {
+    "showroom": "app\/storefront\/src\/assets\/icon\/showroom"
+  },
+  "technicalName": "SwagDevTheme"
+}
+```
+
+</Tab>
+
+<Tab title="Before v6.8.0.0">
+
 ```json
 {
   "extensions": [],
@@ -830,6 +1367,9 @@ index.json
   "technicalName": "SwagDevTheme"
 }
 ```
+
+</Tab>
+</Tabs>
 
 </details>
 
