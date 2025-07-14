@@ -118,8 +118,6 @@ Shopware.Component.register('swag-basic-example', {
         criteria.getAssociation('categories')
             .addSorting(Criteria.sort('category.name', 'ASC'));
 
-        this.productRepository.create('product');
-
         this.productRepository
             .search(criteria, Shopware.Context.api)
             .then(result => {
