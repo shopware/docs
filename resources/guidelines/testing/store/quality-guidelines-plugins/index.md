@@ -24,11 +24,6 @@ This ensures the quickest way for your app to be published.
 
 We perform the *first test*, and if successful, we do the *follow-up test* again with the most current Shopware version.
 
-The Shopware installation is located in a subfolder.
-It has a language sub-shop/sales channel with a virtual URL as well as an independent sub-shop/sales channel with its own URL, also located in a subfolder.
-E.g. `myshop.com/public/admin`.
-The app must neither produce any error messages in the administration nor in the frontend.
-
 The app is tested with the latest official Shopware 6 CE Version.
 
 ::: info
@@ -77,7 +72,7 @@ As an app will be released in both stores (German and International), the conten
 * Check if your configuration manual includes step-by-step instructions on how to configure and use your app.
 * Check if you have included enough screenshots showing the app in action in the Storefront and administration.
 * Check if the display name does not contain the terms "plugin" or "shopware".
-* Check if all images for the English store description contain the English language. [Please do not mix English with other languages in your screenshots. Screenshots in German for the German store description are optional.]
+* Check if all images for the English store description contain the English language. **Please do not mix English with other languages in your screenshots. Screenshots in German for the German store description are optional.**
 * Check if you explained the setup of the app and added a configuration manual.
 
 ### Display Name
@@ -180,9 +175,9 @@ If you want to change the license later, add a new app based on the app system w
 
 The installation is not always in English or German.
 Could you make sure that your app works in other languages as well?
-For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback. Our test environment includes Dutch as the standard language.
+For example, if the customer has his installation in Spanish and your app is not yet available in this language, you should use the English translation as a fallback.
 
-If your app is available in more than one language (e.g., English, Spanish, French and German), these can be defined using the option "Translations into the following languages are available" (located in the “Description & images” section of your *Extension Manager*).
+If your app is available in more than one language (e.g., English, Spanish, French and German), these can be defined using the option "Translations into the following languages are available" (located in the "Description & images" section of your *Account*).
 
 We check for text snippets, `config.xml`, and `composer.json`.
 
@@ -300,6 +295,8 @@ However, you may employ `<span class="h2">`, for instance.
 
 Use your own classes and let your CSS be compiled by the plugin.
 
+[Add SCSS variables](../../../../../guides/plugins/plugins/storefront/add-scss-variables.md#add-scss-variables)
+
 ### Prevent `!important` usage
 
 Please avoid using the `!important` rule whenever possible.
@@ -354,7 +351,7 @@ Menu entries in the main menu of the administration are not allowed because of t
 
 ### Own media folder
 
-Customers must create their own media folders with the right thumbnail settings or use existing ones to upload images.
+Manufacturer must create their own media folders with the right thumbnail settings or use existing ones to upload images, except for upload fields within the `config.xml`.
 
 If you use your own media folder, keep in mind that the folder and the included data had to be removed if selected during the uninstallation.
 
