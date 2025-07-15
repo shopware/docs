@@ -62,7 +62,10 @@ make setup
 ```
 
 This will install Shopware itself, create an admin user with username `admin` and password `shopware`.
-Hint: For the Database Configuration step, you should put the host as `database` instead of `localhost`, which is the Docker container name.
+
+:::info
+For the Database Configuration step, you should put the host as `database` instead of `localhost`, which is the Docker container name.
+:::
 
 If you want to stop the setup, you can run `make stop` and to start it again, you can run `make up` again. If you want to remove the containers, you can run `make down`. This will remove all containers and **keep the data**. If you want to remove all containers and the data, you can run `docker compose down -v`
 
