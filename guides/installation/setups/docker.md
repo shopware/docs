@@ -18,7 +18,7 @@ In this guide, we will run PHP, Node and all required services in Docker contain
 ## Prerequisites
 
 ::: info
-On macOS we recommend OrbStack, instead of Docker Desktop. OrbStack is a lightweight and fast alternative to Docker Desktop, and it is free for personal use. You can follow the official [OrbStack installation guide](https://orbstack.dev/docs/getting-started/installation) to install OrbStack.
+On macOS we recommend OrbStack, instead of Docker Desktop. OrbStack is a lightweight and fast alternative to Docker Desktop, and it is free for personal use. You can follow the official [OrbStack quickstart guide](https://docs.orbstack.dev/quick-start) to install OrbStack.
 :::
 
 - Docker installed on your machine. You can follow the official [Docker installation guide](https://docs.docker.com/get-docker/) to install Docker.

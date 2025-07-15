@@ -254,4 +254,4 @@ bin/console es:create:alias
 ## Logfiles and tipps
 
 You can usually find the Elasticsearch logfiles at [`/var/log/elasticsearch`](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#_config_file_format) to check for any issues when indexing.
-Also, tools like [Kibana](https://www.elastic.co/kibana) or [Cerebro](https://wissen.profihost.com/wissen/artikel/cerebro/) can help you better understand what is happening in your Elasticsearch.
+Also, tools like [Kibana](https://www.elastic.co/kibana) or [Cerebro](https://help.profihost.com/hc/de/articles/18918050563729-Cerebro) can help you better understand what is happening in your Elasticsearch.

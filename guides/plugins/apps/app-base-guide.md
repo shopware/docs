@@ -310,7 +310,7 @@ You can use the `apiKey` and the `secretKey` as `client_id` and `client_secret`,
 
 You can find out more about how to use these credentials in our Admin API authentication guide:
 
-<PageRef page="https://shopware.stoplight.io/docs/admin-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation#integration-client-credentials-grant-type" title="Admin API Authentication & Authorisation" target="_blank" />
+<PageRef page="https://shopware.stoplight.io/docs/admin-api/authentication#integration-client-credentials-grant-type" title="Admin API Authentication & Authorisation" target="_blank" />
 
 ::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.

@@ -7,7 +7,7 @@ nav:
 
 ## Store API
 
-Here are some the actions you can perform on *Shopping lists* with Store API.
+Here are some of the actions you can perform on *Shopping lists* with Store API.
 
 ### Create new shopping list
 
@@ -53,15 +53,15 @@ The shopping list price will be included in the API for getting the shopping lis
 GET {url}/store-api/shopping-list/{id}/summary
 ```
 
-For more details, refer to [B2B Shopping Lists](https://shopware.stoplight.io/docs/store-api/0789edb2e95b6-create-new-shopping-list) from Store API docs.
+For more details, refer to [B2B Shopping Lists](https://shopware.stoplight.io/docs/store-api/c9849725606fd-create-new-shopping-list) from Store API docs.
 
 ## Admin API
 
-Shopping lists does not provide any special APIs. The Admin API offers CRUD operations for every entity within Shopware, and you can use it to work with shopping lists.
+Shopping lists do not provide any special APIs. The Admin API offers CRUD operations for every entity within Shopware, and you can use it to work with shopping lists.
 
 ### Shopping lists price
 
-A shopping lists shows a list of products. The prices of these products may change depending on the time, customers, and sales channels. Therefore, the price of each product and the total price of the shopping list will not be saved in the database but will be calculated when loading the shopping list.
+A shopping list shows a list of products. The prices of these products may change depending on the time, customers, and sales channels. Therefore, the price of each product and the total price of the shopping list will not be saved in the database but will be calculated when loading the shopping list.
 
 The `Shopware\Commercial\B2B\ShoppingList\Subscriber\ShoppingListSubscriber` listens to any loading of a shopping list.
 
