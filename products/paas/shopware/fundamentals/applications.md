@@ -114,7 +114,7 @@ This configuration ensures that all traffic to your custom domain is routed thro
 
 #### Application Updates
 
-Following domain creation, you must update your application using:
+Following domain creation, you must redeploy your application. You can do it by using:
 
 ```sh
 sw-paas application build start
