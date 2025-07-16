@@ -249,6 +249,7 @@ DDL
 DESC
 DIC
 DIC EntityRepository
+DNS
 DOM
 DOMPurify
 DS

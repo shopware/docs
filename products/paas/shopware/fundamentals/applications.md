@@ -88,4 +88,42 @@ The assigned domain is generated based on your application's name and unique ide
 
 ### Custom Domain
 
-This feature is under development.
+You can configure custom domains for your applications using the `sw-paas` CLI domain command. This allows you to attach multiple domains to a single application and route traffic through the Fastly CDN for optimal performance.
+
+#### Creating Custom Domains
+
+To create a custom domain for your application:
+
+```sh
+sw-paas domain create
+```
+
+Follow the prompts to specify your domain name and application. You can attach multiple domains to a single application.
+
+#### DNS Configuration
+
+After creating a custom domain, you must configure your DNS settings to point to the PaaS CDN endpoint:
+
+**Configure your custom domain's DNS to point to:**
+
+```dns
+cdn.shopware.shop
+```
+
+This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
+
+#### Application Updates
+
+Following domain creation, you must redeploy your application. You can do it by using:
+
+```sh
+sw-paas application build start
+```
+
+This process will be automated in future releases.
+
+#### Shopware Configuration
+
+Subsequently, you can configure the domain within Shopware and associate it with a storefront. Status update functionality is currently under development and should be considered a beta feature.
+
+For more detailed information about CDN configuration and best practices, refer to the [CDN documentation](../cdn/index.md).
