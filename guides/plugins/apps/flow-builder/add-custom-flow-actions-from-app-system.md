@@ -47,13 +47,13 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml` will be removed from 6.6.0.0.
 :::
 
-| File name | Description |
-| :--- | :--- |
-| FlowBuilderActionApp | Your app's technical name |
-| app-icon.png | The app's icon |
-| slack-icon.png | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
-| flow-action.xml | Place to define your new actions |
-| manifest.xml | Base information about your app |
+| File name            | Description                                                                                                                  |
+|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| FlowBuilderActionApp | Your app's technical name                                                                                                    |
+| app-icon.png         | The app's icon                                                                                                               |
+| slack-icon.png       | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
+| flow-action.xml      | Place to define your new actions                                                                                             |
+| manifest.xml         | Base information about your app                                                                                              |
 
 ### Manifest file
 
@@ -89,8 +89,9 @@ The name of your app that you provide in the manifest file needs to match the fo
 
 To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
 
-```xml
-// Resources/flow-action.xml
+::: code-group
+
+```xml [Resources/flow-action.xml]
 <flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-action>
         ... # The first action
@@ -104,6 +105,8 @@ To create a flow action, you need to define a `<flow-action>` block within a fil
     ...
 </flow-actions>
 ```
+
+:::
 
 From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.
 
@@ -145,35 +148,35 @@ A single flow action would look like this:
 </flow-action>
 ```
 
-| Key | Required | Description |
-| :--- | :--- | :--- |
-| name | yes | The technical name of your action, unique for all actions |
-| label | yes | A name to be shown for your action in the actions list or action modal title |
-| badge | no | An attached badge shown behind the label in the action modal title |
-| description | yes | Detailed information for your action |
-| sw-icon | no | An icon component name from the [icon library](https://component-library.shopware.com/icons/) |
-| icon | no | Alternatively, a path to your action icon. In the case you define both `<sw-icon>` and `<icon>`, the `<icon>` will be take precedence in this case. |
-| requirements | yes | Available action triggers, read more below |
-| url | yes | External webhook location. Shopware will call this URL when the action is executed |
+| Key          | Required | Description                                                                                                                                         |
+|:-------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
+| name         | yes      | The technical name of your action, unique for all actions                                                                                           |
+| label        | yes      | A name to be shown for your action in the actions list or action modal title                                                                        |
+| badge        | no       | An attached badge shown behind the label in the action modal title                                                                                  |
+| description  | yes      | Detailed information for your action                                                                                                                |
+| sw-icon      | no       | An icon component name from the [icon library](https://shopware.design/icons/)                                                                      |
+| icon         | no       | Alternatively, a path to your action icon. In the case you define both `<sw-icon>` and `<icon>`, the `<icon>` will be take precedence in this case. |
+| requirements | yes      | Available action triggers, read more below                                                                                                          |
+| url          | yes      | External webhook location. Shopware will call this URL when the action is executed                                                                  |
 
 **requirements**
 
 Requirements will decide for which trigger events your action is available.
-Example: The `checkout.order.placed` has an `orderAware` requirements - indicating that your action is allow to use be used in the `checkout.order.placed` event. It is defined using `<requirements>orderAware</requirements>` in your app action definition.
+Example: The `checkout.order.placed` has an `orderAware` requirements - indicating that your action is allowed to use be used in the `checkout.order.placed` event. It is defined using `<requirements>orderAware</requirements>` in your app action definition.
 
 For each value when you define, it'll represent one of the `aware` interfaces from the `core`.
 
 To fulfill the requirements, refer to a subset of action triggers aware:
 
-| Value | Interface |
-| :--- | :--- |
-| customerAware | Shopware\Core\Framework\Event\CustomerAware |
+| Value              | Interface                                        |
+|:-------------------|:-------------------------------------------------|
+| customerAware      | Shopware\Core\Framework\Event\CustomerAware      |
 | customerGroupAware | Shopware\Core\Framework\Event\CustomerGroupAware |
-| delayAware | Shopware\Core\Framework\Event\DelayAware |
-| mailAware | Shopware\Core\Framework\Event\MailAware |
-| orderAware | Shopware\Core\Framework\Event\OrderAware |
-| salesChannelAware | Shopware\Core\Framework\Event\SalesChannelAware |
-| userAware | Shopware\Core\Framework\Event\UserAware |
+| delayAware         | Shopware\Core\Framework\Event\DelayAware         |
+| mailAware          | Shopware\Core\Framework\Event\MailAware          |
+| orderAware         | Shopware\Core\Framework\Event\OrderAware         |
+| salesChannelAware  | Shopware\Core\Framework\Event\SalesChannelAware  |
+| userAware          | Shopware\Core\Framework\Event\UserAware          |
 
 ### Header parameters
 
@@ -189,11 +192,11 @@ To fulfill the requirements, refer to a subset of action triggers aware:
 </flow-action>
  ```
 
-| Key | Description |
-| :--- | :--- |
-| type | Parameter type - currently only `string` supported |
-| name | The header key |
-| value | The header value |
+| Key   | Description                                        |
+|:------|:---------------------------------------------------|
+| type  | Parameter type - currently only `string` supported |
+| name  | The header key                                     |
+| value | The header value                                   |
 
 ### Parameters
 
@@ -214,15 +217,15 @@ To fulfill the requirements, refer to a subset of action triggers aware:
 
 Define the `parameter` for the URL body based on your URL webhook services.
 
-| Key | Description |
-| :--- | :--- |
-| type | Type of parameter, only support `string` type. |
-| name | The body key for your URL. |
-| value | The content message for your URL; free to design your content message here. |
-| <code v-pre>{{ message }}</code> | The variable from your `<input-field>` defined in `flow-action.xml`. |
+| Key                                        | Description                                                                                                                                                            |
+|:-------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type                                       | Type of parameter, only support `string` type.                                                                                                                         |
+| name                                       | The body key for your URL.                                                                                                                                             |
+| value                                      | The content message for your URL; free to design your content message here.                                                                                            |
+| <code v-pre>{{ message }}</code>           | The variable from your `<input-field>` defined in `flow-action.xml`.                                                                                                   |
 | <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
 
-With the parameters configured like described above, an exemplary call of your Webhook Action could look like this:
+With the parameters configured as described above, an exemplary call of your Webhook Action could look like this:
 
 ```text
     POST https://hooks.slack.com/services/{id} {
@@ -265,13 +268,13 @@ You can make your flow action configurable in the Administration by adding input
 
 Available input field attributes:
 
-| Key | Required |
-| :--- | :--- |
-| name | Yes |
-| label | Yes |
-| place-holder | No |
-| required | No |
-| helpText | No |
+| Key          | Required |
+|:-------------|:---------|
+| name         | Yes      |
+| label        | Yes      |
+| place-holder | No       |
+| required     | No       |
+| helpText     | No       |
 
 You assemble your configuration from a variety of input fields.
 
@@ -279,23 +282,23 @@ You assemble your configuration from a variety of input fields.
 To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration#the-different-types-of-input-field).
 :::
 
-| Type | Shopware component |
-| :--- | :--- |
-| text | `<sw-text-field/>` |
-| textarea | `<sw-textarea-field/>` |
-| text-editor | `<sw-text-editor/>` |
-| url | `<sw-url-field/>` |
-| password | `<sw-password-field/>` |
-| int | `<sw-number-field/>` |
-| float | `<sw-number-field/>`  |
-| bool | `<sw-switch-field/>`  |
-| checkbox | `<sw-checkbox-field/>`  |
-| datetime | `<sw-datepicker/>`  |
-| date | `<sw-datepicker/>` |
-| time | `<sw-datepicker/>` |
-| colorpicker | `<sw-colorpicker/>` |
-| single-select | `<sw-single-select/>` |
-| multi-select | `<sw-multi-select/>` |
+| Type          | Shopware component     |
+|:--------------|:-----------------------|
+| text          | `<sw-text-field/>`     |
+| textarea      | `<sw-textarea-field/>` |
+| text-editor   | `<sw-text-editor/>`    |
+| url           | `<sw-url-field/>`      |
+| password      | `<sw-password-field/>` |
+| int           | `<sw-number-field/>`   |
+| float         | `<sw-number-field/>`   |
+| bool          | `<sw-switch-field/>`   |
+| checkbox      | `<sw-checkbox-field/>` |
+| datetime      | `<sw-datepicker/>`     |
+| date          | `<sw-datepicker/>`     |
+| time          | `<sw-datepicker/>`     |
+| colorpicker   | `<sw-colorpicker/>`    |
+| single-select | `<sw-single-select/>`  |
+| multi-select  | `<sw-multi-select/>`   |
 
 ## Install the App
 
