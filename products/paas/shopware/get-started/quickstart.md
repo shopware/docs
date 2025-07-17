@@ -21,7 +21,7 @@ Before you begin, ensure you have:
 First, install the Shopware PaaS Native CLI tool:
 
 ```sh
-curl -L https://install.cli.shopware.systems | sh
+curl -L https://install.sw-paas-cli.shopware.systems | sh
 ```
 
 Verify the installation:
