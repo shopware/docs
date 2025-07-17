@@ -31,7 +31,7 @@ A special action called "Stop flow" stops any further action in the flow sequenc
 
 A flow template is a pre-created [flow](#flow).
 
-The flow library contains the flow template listing that is shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/) and [plugins](../../guides/plugins/apps/flow-builder/).
+The flow library contains the flow template listing shipped with Shopware. Two main ways to create a flow template in the template library are by [apps](../../guides/plugins/plugins/framework/flow/) and [plugins](../../guides/plugins/apps/flow-builder/).
 
 We can help merchants reduce the complexity of creating an automation process in their business by using a flow template rather than building a flow. As a merchant, you may design a flow more easily by using the flow templates. So you don't have to create complicated flows on your own.
 
@@ -78,10 +78,10 @@ end
 
 ## Storer concept
 
-Every flow can have data stored and associated to it. This data can be used in the actions when the flow is triggered (for example for fetching the order that triggered the flow).
+Every flow can have data stored and associated with it. This data can be used in the actions when the flow is triggered (for example, for fetching the order that triggered the flow).
 
-There are many storer classes (`ProductStorer`, `OrderStorer`, `MailStorer` etc) that extend an abstract `FlowStorer` class. They have the methods `store` and `restore`. These are called when the flow (`StorableFlow`) is created in the `FlowFactory` class. The `restore` method can either directly or in some cases lazy load the data that was stored in the `store` method.
+There are many storer classes (`ProductStorer`, `OrderStorer`, `MailStorer` etc.) that extend an abstract `FlowStorer` class. They have the methods `store` and `restore`. These are called when the flow (`StorableFlow`) is created in the `FlowFactory` class. The `restore` method can either directly or in some cases lazy load the data that was stored in the `store` method.
 
 Usually the storer classes are linked to different `*Aware` interfaces and store data relevant to these interfaces. The triggering events can implement multiple `*Aware` interfaces. For example, the `CheckoutOrderPlacedEvent` implements the  `OrderAware` interface and when the flow object is created, the `OrderStorer` will be used to store and then restore the order data.
 
-By default the flow data is not persisted in the database because it's restored already in the same request cycle for actions that are triggered instantly. Only in the case of delayed flows, the data is persisted so that it can be later retrieved when the delayed flow is executed.
+By default, the flow data is not persisted in the database because it's restored already in the same request cycle for actions that are triggered instantly. Only in the case of delayed flows, the data is persisted so that it can be later retrieved when the delayed flow is executed.
