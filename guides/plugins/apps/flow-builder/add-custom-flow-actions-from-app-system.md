@@ -162,7 +162,7 @@ A single flow action would look like this:
 **requirements**
 
 Requirements will decide for which trigger events your action is available.
-Example: The `checkout.order.placed` has an `orderAware` requirements - indicating that your action is allowed to use be used in the `checkout.order.placed` event. It is defined using `<requirements>orderAware</requirements>` in your app action definition.
+Example: The `checkout.order.placed` trigger has an `orderAware` requirement, indicating that your action is allowed to be used in the `checkout.order.placed` event. It is defined using `<requirements>orderAware</requirements>` in your app action definition.
 
 For each value when you define, it'll represent one of the `aware` interfaces from the `core`.
 
