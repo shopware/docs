@@ -5,7 +5,6 @@ nav:
 
 # Shopware Developer Documentation
 
-[![Build and deploy](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml/badge.svg)](https://github.com/shopware/docs/actions/workflows/deploy-developer-portal.yml)
 [![Issues](https://img.shields.io/github/issues/shopware/docs)](https://github.com/shopware/docs/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/shopware/docs)](https://github.com/shopware/docs/pulls)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fdeveloper.shopware.com)](https://developer.shopware.com)
