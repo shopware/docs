@@ -99,12 +99,7 @@ If you don't need such functionality, it is highly recommended that you disable 
 
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
 By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
-
-```yaml
-# config/packages/prod/framework.yaml
-framework:
-    lock: 'redis://host:port'
-```
+For more information on how to configure the lock store, refer to the [Lock storage guide](./lock-store).
 
 ## Number ranges
 
