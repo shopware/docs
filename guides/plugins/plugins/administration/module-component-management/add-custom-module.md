@@ -20,7 +20,7 @@ Head over to our Plugin base guide to learn how to create a plugin at first:
 ## Creating the index.js file
 
 The first step is creating a new directory `<plugin root>/src/Resources/app/administration/src/module/swag-example`, so you can store your own modules files in there.
-Right afterwards, create a new file called `index.js` in there. Consider it to be the main file for your custom module.
+Right afterward, create a new file called `index.js` in there. Consider it to be the main file for your custom module.
 
 ::: warning
 This is necessary, because Shopware 6 is automatically requiring an `index.js` file for each module.
@@ -28,8 +28,8 @@ This is necessary, because Shopware 6 is automatically requiring an `index.js` f
 
 Your custom module directory isn't known to Shopware 6 yet.
 The entry point of your plugin is the `main.js` file.
-That's the file you need to change now, so that it loads your new module.
-For this, simply add the following line to your `main.js` file:
+That's the file you need to change now so that it loads your new module.
+For this, add the following line to your `main.js` file:
 
 ```javascript
 // <plugin root>/src/Resources/app/administration/src/main.js
@@ -59,12 +59,12 @@ Shopware.Module.register('swag-example', {
 
 ## Configuring the module
 
-In this file, you can configure a couple of things, e.g. the color of your module.
+In this file, you can configure a couple of things, e.g., the color of your module.
 Each module needs a primary color, which will be used on specific accents and locations throughout your module.
 To name a few, it's the color of the main icon of the module, the tag in the global search input and the accent color of the smart bar.
 
 In this example `#ff3d58` is used as a color, which is a soft red.
-Also, each module has their own icon. You can see here [here](https://component-library.shopware.com/icons/) which icons are available in Shopware 6 by default.
+Also, each module has its own icon. You can see [here](https://shopware.design/icons/) which icons are available in Shopware 6 by default.
 In our case here, let's say we use the icon `regular-shopping-bag`, which will also be used for the module.
 
 ::: danger
@@ -77,10 +77,10 @@ Just add a string for the key `title`.
 This will be the default title for your module, you can edit this for each component later on.
 
 The `description` is last basic information you should set here, which will be shown as an empty-state.
-That means the description will be shown e.g. when you integrated a list component, but your list is empty as of now.
+That means the description will be shown e.g., when you integrated a list component, but your list is empty as of now.
 In that case, your module's description will be displayed instead.
 
-Another important aspect are the routes which your module is going to use, such as e.g. `swag-example-list` for the list of your module, `swag-example-detail` for the detail page and `swag-example-create` for creating a new entry.
+Another important aspect is the routes that your module is going to use, such as e.g. `swag-example-list` for the list of your module, `swag-example-detail` for the detail page and `swag-example-create` for creating a new entry.
 Those routes are configured as an object in a property named `routes`. We will cover that in the next paragraph.
 
 ## Setting up menu entry and routes
@@ -89,7 +89,7 @@ The next steps are covered in their own guides. The first one would be adding a 
 
 <PageRef page="../routing-navigation/add-menu-entry" />
 
-The second one refers to setting up custom routes, its guide can be found in the guide on adding custom routes:
+The second one refers to setting up custom routes; its guide can be found in the guide on adding custom routes:
 
 <PageRef page="../routing-navigation/add-custom-route" />
 
@@ -112,9 +112,9 @@ Shopware.Module.register('swag-example', {
 ...
 ```
 
-The `name` should be a technical unique one, the `type` would be 'plugin' here. When it comes to this `type`, there are basically two options in Shopware: `core` and `plugin`.
+The `name` should be technically unique, the `type` would be 'plugin' here. When it comes to this `type`, there are basically two options in Shopware: `core` and `plugin`.
 So every third-party module should use `plugin`.
-To give a little context: Looking at `module.factory` inside `registerModule` the plugin type is the only case which is being checked and has some different behaviour.
+To give a little context: Looking at `module.factory` inside `registerModule` the plugin type is the only case which is being checked and has some different behavior.
 So it is more a convention and not a real validation which throws an error when `type` is divergent to these options.
 
 ## Implementing snippets
@@ -122,7 +122,7 @@ So it is more a convention and not a real validation which throws an error when 
 You've already set a label for your module's menu entry.
 Yet, by default the `Administration` expects the value in there to be a [Vuei18n](https://kazupon.github.io/vue-i18n/started.html#html) variable, a translation key that is.
 It's looking for a translation key `example` now and since you did not provide any translations at all yet, it can't find any translation for it and will just print the key of a snippet.
-Sounds like it's time to implement translation snippets as well, right?
+Now let's implement the translation snippets.
 
 This is done by providing a new object to your module configuration, `snippets` this time.
 This object contains another object for each language you want to support.
@@ -153,7 +153,7 @@ It's key should be something like this: `swag-example.general.mainMenuItemGenera
 
 Thus open the `snippet/en-GB.json` file and create the new object in there.
 The structure here is the same as in the first example, just formatted as json file.
-Afterwards, use this path in your menu entry's `label` property.
+Afterward, use this path in your menu entry's `label` property.
 
 To translate the `description` or the `title`, add those to your snippet file as well and edit the values in your module's `description` and `title`.
 The title will be the same as the main menu entry by default.
@@ -202,7 +202,7 @@ Your plugin has to be activated for this to work.
 Make sure to also include that file when publishing your plugin!
 A copy of this file will then be put into the directory `<shopware root>/public/bundles/administration/administrationnewmodule/administration/js/administration-new-module.js`.
 
-Your minified javascript file will now be loaded in production environments.
+Your minified JavaScript file will now be loaded in production environments.
 
 ## Special: Case Settings
 

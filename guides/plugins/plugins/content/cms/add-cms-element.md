@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-This article will teach you how to create a new CMS element via plugin.
+This article will teach you how to create a new CMS element via a plugin.
 The plugin in this example will be named `SwagBasicExample`, similar to the other guides.
 
 ## Prerequisites
@@ -30,7 +30,7 @@ Creating a new element requires you to extend the Administration.
 ### Injecting into the Administration
 
 The main entry point to customize the Administration via plugin is the `main.js` file.
-It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by the Shopware platform.
+It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory to be automatically found by the Shopware platform.
 
 ## Registering a new element
 
@@ -140,7 +140,7 @@ Focus on the template first, create a new file `sw-cms-el-preview-dailymotion.ht
 
 So, for instance, if you want to show the default 'mountain' preview image as an example, then copy it from `<Shopware root>/public/bundles/administration/static/img/cms/preview_mountain_small.jpg` to your static folder.
 You can also replace it with something of your own. Additionally, you can place icons `multicolor-action-play`.
-Head over to [icon library](https://component-library.shopware.com/icons/) to access them.
+Head over to [icon library](https://shopware.design/icons/) to access them.
 
 That means: You'll need a container to contain both the image and the icon.
 In there, you create an `img` tag and use the [sw-icon component](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/app/component/base/sw-icon/index.js) to display the icon.
@@ -164,8 +164,9 @@ The container needs to have a `position: relative;` style.
 This is necessary, so the child can be positioned absolutely and will do so relative to the container's position.
 Thus, the icon receives a `position: absolute;` style, plus some top and left values to center it.
 
-```css
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss
+::: code-group
+
+```css [PLUGIN_ROOT/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss]
 .sw-cms-el-preview-dailymotion {
     position: relative;
 
@@ -187,9 +188,11 @@ Thus, the icon receives a `position: absolute;` style, plus some top and left va
 }
 ```
 
+:::
+
 The centered positioning will be done by translating the elements by 50% via `top` and `left` properties.
 Since that would be 50% from the upper left corner of the icon, this wouldn't really center the icon yet.
-Subtract the half of the icon's width and height and then you're fine.
+Subtract the half of the icon's width and height, and then you're fine.
 
 One last thing: Import your preview component in your element's `index.js` file, so it's loaded.
 
@@ -431,8 +434,8 @@ So go ahead and re-create that structure in your plugin: `<plugin root>/src/Reso
 
 In there create a new twig template named after your element, so `cms-element-dailymotion.html.twig` that is.
 
-The template for this is super easy though, just like it's been in your main component for the Administration.
-Just add an iFrame again. Simply apply the same styles as in the Administration, 100% to both height and width that is.
+The template for this is straightforward, just like it's been in your main component for the Administration.
+Add an iFrame again. Apply the same styles as in the Administration, 100% to both height and width that is.
 
 ```twig
 // platform/src/Storefront/Resources/views/storefront/element/cms-element-dailymotion.html.twig
@@ -460,7 +463,7 @@ The URL is parsed here using the twig variable element, which is automatically a
 
 Once more: That's it! Your element is now fully working!
 The shop managers can choose your new element in the 'Shopping Experiences' module, they can configure it and even see it being rendered live in the Administration.
-After saving and applying this layout to e.g. a category, this element will also be rendered into the Storefront.
+After saving and applying this layout to e.g., a category, this element will also be rendered into the Storefront.
 
 ## Next steps
 
