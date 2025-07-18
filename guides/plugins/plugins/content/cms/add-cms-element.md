@@ -166,7 +166,7 @@ Thus, the icon receives a `position: absolute;` style, plus some top and left va
 
 ::: code-group
 
-```css [[PLUGIN_ROOT]/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss]
+```css [PLUGIN_ROOT/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/preview/sw-cms-el-preview-dailymotion.scss]
 .sw-cms-el-preview-dailymotion {
     position: relative;
 
