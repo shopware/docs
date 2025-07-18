@@ -61,7 +61,7 @@ After the database is imported and the configuration is done, you can activate t
 ./bin/console system:setup:staging
 ```
 
-This command will modify the database to be used in a staging environment. You can pass `--no-interaction` to the command to avoid the interactive questions.
+This command will modify the database to be used in a staging environment. You can pass `--no-interaction` to the command to avoid the interactive questions. In that case, you need to also pass `--force` to the command, because otherwise it would exit immediately.
 
 ### Protecting the staging environment
 
