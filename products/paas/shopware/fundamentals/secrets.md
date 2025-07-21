@@ -32,11 +32,13 @@ To retrieve an existing secret from the Vault, you **must specify the secret ID*
 sw-paas vault get --secret-id SECRET-ID
 ```
 
-> ℹ️ You can obtain the `SECRET-ID` by running:
+::: info
+You can obtain the `SECRET-ID` by running:
 >
 > ```sh
 > sw-paas vault list
 > ```
+:::
 
 ---
 
