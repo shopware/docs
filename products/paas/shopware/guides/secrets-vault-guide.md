@@ -76,7 +76,9 @@ To delete a secret from the Vault:
 sw-paas vault delete --secret-id SECRET-ID
 ```
 
-⚠️ **Warning:** This action is permanent. Ensure the secret is not in use before deleting it.
+::: warning
+This action is permanent. Ensure the secret is not in use before deleting it.
+:::
 
 ---
 
