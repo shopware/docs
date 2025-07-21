@@ -48,41 +48,12 @@ You probably won't be able to use the commands below. Use the following steps to
 
 [Credits: "nixos installation issue,'command not found: nix'", StackOverflow](https://stackoverflow.com/a/70822086/982278)
 
-### Cachix
-
-Next, install [Cachix](https://www.cachix.org/) to speed up the installation:
-
-```bash
-nix-env -iA cachix -f https://cachix.org/api/v1/install
-```
-
-::: info
-If this is the first time using cachix, you need to add your account to the trusted users:
-
-```bash
-echo "trusted-users = root ${USER}" | sudo tee -a /etc/nix/nix.conf && sudo pkill nix-daemon
-```
-
-:::
-
-Before installing devenv, instruct Cachix to use the devenv cache:
-
-```bash
-cachix use devenv
-```
-
 ### Devenv
 
-Finally, install devenv:
+Finally, install/update devenv:
 
 ```bash
-nix-env -iA devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
-```
-
-Before booting up your development environment, configure Cachix to use Shopware's cache:
-
-```bash
-cachix use shopware
+nix-env --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
 ```
 
 You can find the whole installation guide for devenv in their official documentation:
@@ -99,7 +70,7 @@ Depending on whether you want to set up a fresh Shopware project or contribute t
 First, change to a temporary nix shell providing all necessary packages for composer:
 
 ```bash
-nix-shell -p php82 php82Packages.composer
+nix-shell -p php83 php83Packages.composer
 ```
 
 In that shell, create a new project:
@@ -117,7 +88,7 @@ cd <project-name>
 Require devenv:
 
 ```bash
-composer require devenv
+composer require frosh/devenv-meta
 ```
 
 This will create a basic `devenv.nix` file to enable devenv support for Shopware.
@@ -594,13 +565,6 @@ If you decided against using direnv, keep in mind that on every change to the `*
 ```bash
 devenv shell
 ```
-
-### Direnv slow in big projects
-
-The bigger your project directory is getting over time (e.g., cache files piling up), the slower direnv will be.
-This is a known issue, and the devenv developers are working on a solution.
-
-<PageRef page="https://github.com/cachix/devenv/issues/257" title="Devenv slows down with big code repositories #257" target="_blank" />
 
 ### Fail to start Redis with locale other than en_US
 
