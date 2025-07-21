@@ -85,6 +85,7 @@ This action is permanent. Ensure the secret is not in use before deleting it.
 ## Example Workflow: Using SSH Keys
 
 ### Step 1: Generate and store an SSH key
+
 ```sh
 sw-paas vault create --type ssh
 ```
@@ -94,16 +95,19 @@ sw-paas vault create --type ssh
 Navigate to your GitHub repository → Settings → Deploy Keys → Add Key.
 
 ### Step 3: List all secrets to verify
+
 ```sh
 sw-paas vault list
 ```
 
 ### Step 4: Retrieve a specific secret
+
 ```sh
 sw-paas vault get --secret-id ssh-abc123xyz
 ```
 
 ### Step 5: Delete a secret (when no longer needed)
+
 ```sh
 sw-paas vault delete --secret-id ssh-abc123xyz
 ```
