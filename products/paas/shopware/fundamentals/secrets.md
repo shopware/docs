@@ -12,8 +12,7 @@ Secrets stored in Vault are reusable, which means that you can reuse a secret va
 
 ## Creating a New Secret
 
-A secret is composed of a type, a key, and a value. 
-Once created, it is assigned a unique `secret-id`, which is required for retrieving or deleting the secret.
+A secret is composed of a type, a key, and a value. Once created, it is assigned a unique `secret-id`, which is required for retrieving or deleting the secret.
 
 The supported types are `env`, `buildenv`, and `ssh`. `env` is available at runtime in the application, `buildenv` is accessible during build processes, and `ssh` keys are for secure connections.
 
