@@ -22,7 +22,7 @@ To install the CLI, run:
 curl -L https://install.sw-paas-cli.shopware.systems | sh
 ```
 
-The installation script will download the latest version (or specified version) from GitHub releases, Install the binary to ~/.sw-paas/bin/sw-paas and add the installation directory to your PATH (if not already present). You can set `SW_PAAS_DIR` enviroment variable to customize the installation directory which defaults to `~/.sw-paas`
+The installation script will download the latest version (or specified version) from GitHub releases, Install the binary to ~/.sw-paas/bin/sw-paas and add the installation directory to your PATH (if not already present). You can set `SW_PAAS_DIR` environment variable to customize the installation directory which defaults to `~/.sw-paas`
 
 To install a specific version:
 
