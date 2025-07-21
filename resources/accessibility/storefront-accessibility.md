@@ -28,7 +28,7 @@ Ensuring an accessible shop page can require changes in the HTML/Twig structure 
 Because of this, breaking accessibility changes are not enabled by default. All accessibility changes that include breaking changes are implemented behind a feature flag:
 
 ```env
-ACCESSIBILITY_TWEAKS
+ACCESSIBILITY_TWEAKS=1
 ```
 
 However, breaking accessibility changes are still released regularly inside minor releases. They are just not active by default to not cause a breaking change.
@@ -163,7 +163,7 @@ Ensuring accessibility in your Shopware extension improves **usability, inclusiv
 Enable the **feature flag** to test changes before release by activating the feature flag in your local environment, modify your `project-root/.env`.
 
 ```env
-ACCESSIBILITY_TWEAKS
+ACCESSIBILITY_TWEAKS=1
 ```
 
 Once enabled, the `ACCESSIBILITY_TWEAKS` feature flag, a re-compilation of the theme is needed to enable all styling improvements like adjusted font-sizes.
