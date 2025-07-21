@@ -24,6 +24,16 @@ sw-paas vault create
 
 ---
 
+## Listing all Vault secrets
+
+To list all the entries in the Vault you execute:
+
+```sh
+sw-paas vault list
+```
+
+---
+
 ## Retrieving a Secret
 
 To retrieve an existing secret from the Vault, you **must specify the secret ID** using the `--secret-id` flag:
@@ -31,14 +41,6 @@ To retrieve an existing secret from the Vault, you **must specify the secret ID*
 ```sh
 sw-paas vault get --secret-id SECRET-ID
 ```
-
-::: info
-You can obtain the `SECRET-ID` by running:
->
-> ```sh
-> sw-paas vault list
-> ```
-:::
 
 ---
 
