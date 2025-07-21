@@ -566,13 +566,6 @@ If you decided against using direnv, keep in mind that on every change to the `*
 devenv shell
 ```
 
-### Direnv slow in big projects
-
-The bigger your project directory is getting over time (e.g., cache files piling up), the slower direnv will be.
-This is a known issue, and the devenv developers are working on a solution.
-
-<PageRef page="https://github.com/cachix/devenv/issues/257" title="Devenv slows down with big code repositories #257" target="_blank" />
-
 ### Fail to start Redis with locale other than en_US
 
 ```bash
