@@ -22,10 +22,10 @@ Organization members are users who have been granted access to an organization a
 
 Organization members can be assigned different roles that determine their level of access and permissions:
 
-`read-only`: Access to projects and applications. Only actions allowed are `get` and `list`.
-`developer`: Access to projects and applications. All actions are allowed.
-`account-admin`: Access to projects and applications. All actions are allowed.
-`project-admin`: Access to account management. Actions for managing Users are allowed.
+- `read-only`: Access to projects and applications. Only actions allowed are `get` and `list`.
+- `developer`: Access to projects and applications. All actions are allowed.
+- `account-admin`: Access to projects and applications. All actions are allowed.
+- `project-admin`: Access to account management. Actions for managing Users are allowed.
 
 ### User Management
 
