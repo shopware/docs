@@ -1,14 +1,14 @@
 ---
 nav:
-  title: Setting environment variable
+  title: Setting environment variables
   position: 30
 ---
 
-# Guide: Setting environment variable
+# Guide: Setting environment variables
 
-This guide explains how to configure environment variable in Shopware PaaS Native.
+This guide explains how to configure environment variables in Shopware PaaS Native.
 
-## Configure an environment variable
+## Configure environment variables
 
 Environment variables are defined in the `application.yaml` file, in the following array `app.environment_variables`.
 
