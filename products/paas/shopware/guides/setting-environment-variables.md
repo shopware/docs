@@ -19,7 +19,7 @@ Environment variables need to be scoped, they can be configured either for `RUN`
 | `RUN`      | The value is passed to Shopware application (runtime) |
 | `BUILD`    | Build-time environment variables                      |
 
-Once the `application.yaml` is updated as usuel run the following:
+Once the `application.yaml` is updated as usual, run the following:
 
 ```sh
 sw-paas application update
