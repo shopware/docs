@@ -37,7 +37,7 @@ app:
       scope: RUN
 ```
 
-## Configure an environment variable for buildtime
+## Configure an environment variable for build-time
 
 Update the `application.yaml` file like this:
 
