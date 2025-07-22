@@ -16,23 +16,17 @@ A secret is composed of a type, a key, and a value. Once created, it is assigned
 
 The supported types are `env`, `buildenv`, and `ssh`. `env` is available at runtime in the application, `buildenv` is accessible during build processes, and `ssh` keys are for secure connections.
 
-To create a secret:
+To create a secret, use the following command:
 
 ```sh
 sw-paas vault create
 ```
 
----
-
 ## Listing all Vault secrets
-
-To list all the entries in the Vault you execute:
 
 ```sh
 sw-paas vault list
 ```
-
----
 
 ## Retrieving a Secret
 

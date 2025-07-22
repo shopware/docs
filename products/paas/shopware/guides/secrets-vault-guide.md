@@ -18,8 +18,6 @@ The Vault is a secure, centralized location to store sensitive data such as:
 
 Secrets stored in the Vault are reusable across all applications in your organization.
 
----
-
 ## Secret Types
 
 | Type       | Description                                      |
@@ -27,8 +25,6 @@ Secrets stored in the Vault are reusable across all applications in your organiz
 | `env`      | Runtime environment variables for your app       |
 | `buildenv` | Build-time environment variables                 |
 | `ssh`      | SSH keys for secure Git access                   |
-
----
 
 ## Creating a Secret
 
@@ -50,8 +46,6 @@ sw-paas vault create --type ssh
 
 After generation, the CLI will output the public key. Add this to your Git hosting provider (e.g., GitHub under **Deploy Keys**).
 
----
-
 ## Retrieving a Secret
 
 Secrets are accessed by their unique `secret-id`. You can retrieve a secret using:
@@ -66,8 +60,6 @@ To list all secrets and find their IDs:
 sw-paas vault list
 ```
 
----
-
 ## Deleting a Secret
 
 To delete a secret from the Vault:
@@ -79,8 +71,6 @@ sw-paas vault delete --secret-id SECRET-ID
 ::: warning
 This action is permanent. Ensure the secret is not in use before deleting it.
 :::
-
----
 
 ## Example Workflow: Using SSH Keys
 
