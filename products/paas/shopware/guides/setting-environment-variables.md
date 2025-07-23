@@ -51,7 +51,7 @@ app:
 
 ## Complete example
 
-Update the `application.yaml` file like this:
+Here is a full example of environment variables. They can be used for both build-time and runtime, and you can have multiple variables with the same name but different scopes.
 
 ```yaml
 app:
