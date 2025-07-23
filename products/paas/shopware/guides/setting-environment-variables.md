@@ -55,7 +55,7 @@ Here is a full example of environment variables. They can be used for both build
 
 ```yaml
 app:
-  ...
+  # ... Other application settings
   environment_variables:
     - name: MY_BUILDTIME_VARIABLE
       value: bar
