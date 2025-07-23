@@ -1,7 +1,7 @@
 ---
 nav:
   title: Secrets
-  position: 50
+  position: 60
 ---
 
 # Secrets

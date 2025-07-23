@@ -1,12 +1,14 @@
 ---
 nav:
-  title: Setting environment variables
-  position: 30
+  title: Environment variables
+  position: 50
 ---
 
-# Guide: Setting environment variables
+# Setting environment variables
 
-This guide explains how to configure environment variables in Shopware PaaS Native.
+This page explains how to configure environment variables in Shopware PaaS Native.
+
+Please only use this to configure non sensitive environment variables, sensitive variables please use [secrets](./secrets.md), there is a detail guide is [here](../guides/secrets-vault-guide.md).
 
 ## Configure environment variables
 
