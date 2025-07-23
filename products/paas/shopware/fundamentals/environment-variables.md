@@ -8,7 +8,7 @@ nav:
 
 This page explains how to configure environment variables in Shopware PaaS Native.
 
-Please only use this to configure non sensitive environment variables, sensitive variables please use [secrets](./secrets.md), there is a detail guide is [here](../guides/secrets-vault-guide.md).
+Please only use this to configure non-sensitive environment variables. For sensitive variables, please use [secrets](./secrets.md). There is a detailed guide [here](../guides/secrets-vault-guide.md).
 
 ## Configure environment variables
 
