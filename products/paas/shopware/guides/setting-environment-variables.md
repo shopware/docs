@@ -66,7 +66,7 @@ app:
     - name: MY_VARIABLE_WITH_THE_SAME_NAME
       value: my-value
       scope: RUN
-    - name: MY_VARIABLE
+    - name: MY_VARIABLE_WITH_THE_SAME_NAME
       value: my-value
       scope: BUILD
 ```
