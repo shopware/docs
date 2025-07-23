@@ -69,5 +69,4 @@ app:
     - name: MY_VARIABLE
       value: my-value
       scope: BUILD
-...
 ```
