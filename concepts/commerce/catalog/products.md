@@ -15,17 +15,17 @@ Let's delve into a more detailed understanding of products using the example of 
 
 * **Product details**: General information about a Product.
 
-| Title | Product Id | Manufacturer | Prices | .... |
-|-------|-----------|--------------|--------|----------|
-| Levis Ocean Hoodie | SW1001 | CA | 40 | ... |
+| Title              | Product Id | Manufacturer | Prices | .... |
+|--------------------|------------|--------------|--------|------|
+| Levis Ocean Hoodie | SW1001     | CA           | 40     | ...  |
 
-* **Product properties**: Product properties encapsulates property groups and options. They are displayed in a table on product details page, in listings, or even be used for filtering. A product can have arbitrarily many property group options.
+* **Product properties**: Product properties encapsulate property groups and options. They are displayed in a table on product details page, in listings, or even be used for filtering. A product can have arbitrarily many property group options.
 
-| Property Group | Property Group Options |
-|----------------|-----------------------|
-| Size           |  *S*, *M*, *L*, *XL*, etc |
+| Property Group | Property Group Options          |
+|----------------|---------------------------------|
+| Size           | *S*, *M*, *L*, *XL*, etc        |
 | Color          | *Red*, *Blue*, *Green*, *Black* |
-| Material       | *Leather*, *Cotton*, *Jeans* |
+| Material       | *Leather*, *Cotton*, *Jeans*    |
 
 * **Category**: Products in Shopware are organized in categories. It is a grouping of products based on characteristics, marketing or search concerns. Categories are represented as a hierarchical tree to form a navigation menu. A product can be contained in multiple categories.
 
@@ -33,16 +33,16 @@ Let's delve into a more detailed understanding of products using the example of 
 
 | Dimension | Stored Value | Display Value (configurable) |
 |-----------|--------------|------------------------------|
-| Weight    | 1.5       | 3.3 lbs/1500g/1.5kg          |
-| Width     | 300       | 11.8 in/300mm/0.3m           |
-| Length    | 400       | 15.7 in/400mm/0.4m           |
-| Height    | 200       | 7.9 in/200mm/0.2m            |
+| Weight    | 1.5          | 3.3 lbs/1500g/1.5kg          |
+| Width     | 300          | 11.8 in/300mm/0.3m           |
+| Length    | 400          | 15.7 in/400mm/0.4m           |
+| Height    | 200          | 7.9 in/200mm/0.2m            |
 
 ::: info
 The configurable measurement units are only available in Shopware v6.7.1.0 and later version. Before that, the values are always stored in the metric system and displayed in the same way.
 :::
 
-Look at the below condensed overview of relationships between entities - products, categories, options, and property groups are interconnected in the database schema.
+Below you find an overview of relationships between the entities. Products, categories, options, and property groups are interconnected in the database schema.
 
 ```mermaid
 erDiagram
@@ -102,18 +102,18 @@ It is also useful to attach some additional properties to differentiate product 
 * Washing Instructions
 * Manufacturing country
 
-Opposed to that **options** are considered variant defining, as they are the facts that differ from one product variant to another. Such as
+Opposed to that, **options** are considered variant defining, as they are the facts that differ from one product variant to another. Such as
 
 * Shirt Size
 * Color
 * Container volume
 
-It is important to understand the difference between those two because both provide a relation between the *product* and the *property group option* entity. However only one constitutes to *product variants*.
+It is important to understand the difference between those two because both provide a relation between the *product* and the *property group option* entity. However, only one constitutes to *product variants*.
 
-| Variant | Product | Category | Product Group | Product Group Option |
-|---------|---------|----------|---------------|----------------------|
-| Variant 1 | Levis Ocean Hoodie | Hoodie & Sweaters | Color | Red |
-| Variant 2 | Levis Ocean Hoodie | Hoodie & Sweaters | Color | Black |
+| Variant   | Product            | Category          | Product Group | Product Group Option |
+|-----------|--------------------|-------------------|---------------|----------------------|
+| Variant 1 | Levis Ocean Hoodie | Hoodie & Sweaters | Color         | Red                  |
+| Variant 2 | Levis Ocean Hoodie | Hoodie & Sweaters | Color         | Black                |
 
 ## Configurator
 
