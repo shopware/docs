@@ -24,8 +24,8 @@ Organization members can be assigned different roles that determine their level 
 
 - `read-only`: Access to projects and applications. Only actions allowed are `get` and `list`.
 - `developer`: Access to projects and applications. All actions are allowed.
-- `account-admin`: Access to projects and applications. All actions are allowed.
-- `project-admin`: Access to account management. Actions for managing Users are allowed.
+- `project-admin`: Access to projects and applications. All actions are allowed.
+- `account-admin`: Access to account management.  Actions for managing Users are allowed.
 
 ### User Management
 
