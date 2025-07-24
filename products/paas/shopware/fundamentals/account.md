@@ -1,7 +1,7 @@
 ---
 nav:
   title: Account
-  position: 60
+  position: 70
 ---
 
 # Account
