@@ -1,11 +1,11 @@
 ---
 nav:
-  title: End-to-end testing
+  title: Cypress End-to-end testing
   position: 10
 
 ---
 
-# End-to-End Testing
+# Cypress End-to-End Testing
 
 ## Overview
 
