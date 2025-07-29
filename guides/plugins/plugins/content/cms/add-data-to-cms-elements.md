@@ -10,7 +10,7 @@ nav:
 ## Overview
 
 When creating custom CMS elements,
-you sometimes want to use more complex data types than text or boolean values, e.g. other entities such as media or products.
+you sometimes want to use more complex data types than text or boolean values, e.g., other entities such as media or products.
 In those cases you can implement a custom `CmsElementResolver` to resolve the configuration data.
 
 ## Prerequisites
@@ -56,11 +56,11 @@ class DailyMotionCmsElementResolver extends AbstractCmsElementResolver
 
 Our custom resolver extends from the `AbstractCmsElementResolver` which forces us to implement the methods `getType`, `collect` and `enrich`.
 
-In the previous [example](add-cms-element) we added a cms element with the name `dailymotion`.
+In the previous [example](add-cms-element) we added a CMS element with the name `dailymotion`.
 As you can see the `getType` method of our custom resolver reflects that name by returning the `dailymotion` string.
 This resolver is called every time for an element of the type `dailymotion`.
 
-To register our custom resolver to the service container we have to register it in the `services.xml` file in our plugin.
+To register our custom resolver to the service container, we have to register it in the `services.xml` file in our plugin.
 
 ::: code-group
 
@@ -85,7 +85,7 @@ To register our custom resolver to the service container we have to register it 
 
 The `collect` method prepares the criteria object.
 This is useful if, for example, you have a media entity `ID` stored in your configuration.
-As in the following example, you can retrieve the configuration for the current cms element with the call `$slot->getFieldConfig()` and then have access to the individual fields.
+As in the following example, you can retrieve the configuration for the current CMS element with the call `$slot->getFieldConfig()` and then have access to the individual fields.
 In this case we read out `myCustomMedia` field which may contain a mediaId.
 If a `mediaId` exists, we create a new `CriteriaCollection` for it.
 Now we are able to use this media object later on.
