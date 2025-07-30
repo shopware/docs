@@ -11,6 +11,10 @@ The Deployment Helper is a tool that unifies the steps executed after the Code h
 On a traditional deployment, you would run it after the files have been uploaded.
 When using a Containerized environment, you would run Deployment Helper with the new source code and then switch over the traffic.
 
+::: info
+For an overview of the different deployment statuses and their transitions, see the [Deployment Status Overview](index.md#deployment-status-overview) in the main deployments documentation.
+:::
+
 ## Installing the Deployment Helper
 
 The Deployment Helper is a composer package and can be installed via composer:
