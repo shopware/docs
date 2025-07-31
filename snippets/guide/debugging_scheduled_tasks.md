@@ -5,3 +5,10 @@ You can directly run a single scheduled task without the queue. This is useful f
 ```shell
 bin/console scheduled-task:run-single log_entry.cleanup
 ```
+
+You can schedule a scheduled task with the command `scheduled-task:schedule` or deactivate a scheduled task with the command `scheduled-task:deactivate`
+
+```shell
+bin/console scheduled-task:schedule log_entry.cleanup`
+bin/console scheduled-task:deactivate log_entry.cleanup`
+```

@@ -51,6 +51,14 @@ The following commands or flags (--no-wait) are available starting with Shopware
 
 You can list all scheduled tasks with `bin/console scheduled-task:list` command.
 
+## Scheduling a scheduled task
+
+You can schedule a scheduled task with the command `bin/console scheduled-task:schedule`.
+
+## Deactivating a scheduled task
+
+You can deactivate a scheduled task with the command `bin/console scheduled-task:deactivate`.
+
 ## Running scheduled tasks
 
 To run the scheduled tasks, you must set up a background worker like the [Message Queue](message-queue.md) and run the command `bin/console scheduled-task:run`. The command schedules all tasks to the queue and waits until a task needs to be scheduled. It consumes little CPU time or memory.
