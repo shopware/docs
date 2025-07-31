@@ -12,7 +12,7 @@ nav:
 - You are logged into the Shopware Store. Checkout the [Authentication](./authentication.md) guide for more information.
 - You have a zip file of your extensions with all assets. Checkout the [Creating a zip](../extension-commands/build.md) guide for more information.
 - The zip file contains a `CHANGELOG*.md` file with a Changelog entry for the new version. Having a German changelog is optional.
-- You have validated the zip file with `shopware-cli extension validate <zip-path>`. See [Validating the zip](../extension-commands/validation.md) for more information.
+- You have validated the zip file with `shopware-cli extension validate <zip-path>`. See [Validating the zip](../validation.md) for more information.
 
 ## Releasing the extension
 
