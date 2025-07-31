@@ -62,7 +62,7 @@ You can find the whole installation guide for devenv in their official documenta
 
 ### Shopware
 
-Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, you have to choose between the [Symfony Flex template](template) or the Shopware project.
+Depending on whether you want to set up a fresh Shopware project or contribute to the Shopware core, you have to choose between the Symfony Flex template or the Shopware project.
 
 <Tabs>
 <Tab title="Symfony Flex">
@@ -155,7 +155,7 @@ In the devenv shell, run the following command to initialize Shopware:
 bin/console system:install --basic-setup --create-database --force
 ```
 
-Open <http://localhost:8000/admin> in your browser after the installation has finished.
+Open `http://localhost:8000/admin` in your browser after the installation has finished.
 You should see the Shopware admin interface.
 
 The default credentials are:

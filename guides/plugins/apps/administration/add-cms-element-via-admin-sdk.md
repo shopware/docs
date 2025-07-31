@@ -13,8 +13,8 @@ This article will teach you how to create a new CMS element via the Meteor Admin
 
 ## Prerequisites
 
-* Knowledge on the creation of [Plugins](/docs/guides/plugins/plugins/plugin-base-guide) or [Apps](/docs/guides/plugins/apps/app-base-guide)
-* Knowledge on the [creation of custom admin components](/docs/guides/plugins/plugins/administration/add-custom-component#creating-a-custom-component)
+* Knowledge on the creation of [Plugins](../plugins/plugin-base-guide) or [Apps](../app-base-guide)
+* Knowledge on the [creation of custom admin components](../../plugins/administration/module-component-management/add-custom-component#creating-a-custom-component)
 * Understanding the [Meteor Admin SDK](/resources/admin-extension-sdk/getting-started/installation)
 
 ::: info

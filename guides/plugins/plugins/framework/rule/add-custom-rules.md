@@ -140,7 +140,7 @@ $context->getRuleIds();
 
 ### Showing rule in the Administration
 
-Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/add-custom-service#Decorating%20a%20service) guide.
+Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/services-utilities/add-custom-service#Decorating%20a%20service) guide.
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
@@ -208,7 +208,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 
 ### Custom rule component
 
-Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-first-monday`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/add-custom-component) section.
+Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-first-monday`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/module-component-management/add-custom-component) section.
 
 Here's an example of what this component could look like:
 
@@ -346,7 +346,7 @@ When you add a new rule-select component to assign rules somewhere in Shopware, 
 For that, we need to write some twig code. The important property here is the `rule-aware-group-key` property which should match the assignment name of the rule-aware group we just extended.
 
 ::: info
-Refer to [customize administration components](../../administration/customizing-components) to know more about it.
+Refer to [customize administration components](../../administration/module-component-management/customizing-components) to know more about it.
 :::
 
 ```twig
@@ -365,4 +365,4 @@ The above guide explains the integration of a boolean and no values. If you want
 
 ## Further reading
 
-For more other information you can refer to [Add rule assignment configuration](../../administration/add-rule-assignment-configuration) section of the guide.
+For more other information you can refer to [Add rule assignment configuration](../../administration/advanced-configuration/add-rule-assignment-configuration) section of the guide.

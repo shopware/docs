@@ -112,7 +112,7 @@ The content of your snippet file should look something like this:
 }
 ```
 
-To learn more about adding own snippets, please refer to [Add snippets to Administration](../../administration/adding-snippets) for more information.
+To learn more about adding own snippets, please refer to [Add snippets to Administration](../../administration/templates-styling/adding-snippets) for more information.
 
 For all three fields `component`, `configComponent` and `previewComponent`, components that do not _yet_ exist were applied.
 Those will be created in the next few steps as well. The `defaultConfig` defines the default values for the element's configuration.

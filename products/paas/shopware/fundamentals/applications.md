@@ -36,7 +36,7 @@ sw-paas application build logs
 
 ## Plugin Management
 
-Plugin management is done [via Composer](./../../../guides/hosting/installation-updates/extension-managment.html#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
+Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-managment#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
 
 In such setups, local changes aren't feasible, as all instances must remain identical and stateless. This ensures consistency across all deployments.
 

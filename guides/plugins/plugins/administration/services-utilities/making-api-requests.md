@@ -320,4 +320,4 @@ Now that you've created your API service, you might want to:
 - Implement caching strategies for better performance
 - Add request interceptors for global error handling
 
-For more information on creating backend API endpoints, refer to the [API documentation](../../../api).
+For more information on creating backend API endpoints, refer to the [API documentation](../../../../../concepts/api/).
