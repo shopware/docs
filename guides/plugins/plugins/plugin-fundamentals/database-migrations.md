@@ -53,9 +53,9 @@ public function getMigrationNamespace(): string
 
 Since the path is read from the namespace, your Migration directory would have to be named `MyMigrationNamespace` now.
 
-## Create migration
+## Generate migration skeleton
 
-To create a new migration, you have to open your Shopware root directory in your terminal and execute the command `database:create-migration`. Below you can see the command used in this example to create the migration seen above in the file structure.
+To generate the boilerplate code for your migration, you have to open your Shopware root directory in your terminal and execute the command `database:create-migration`. Below you can see the command used in this example to create the migration seen above in the file structure.
 
 ```bash
 $ ./bin/console database:create-migration -p SwagBasicExample --name ExampleDescription
@@ -154,15 +154,20 @@ SQL;
 }
 ```
 
-## SQL schema
+## Generating a complete migration for a entity
 
-If you want to create a migration for your new custom entity, you could execute the following command. This command selects all active entities and saves it into `platform/src/schema`.
-
+Shopware can also generate the complete migration including the SQL statements for you, based on the entity definitions. 
 ```bash
-$ ./bin/console dal:create:schema
+$ ./bin/console dal:migration:create --bundle=SwagBasicExample --entities=your_entity,your_other_entity
 ```
+This command will generate a new migration file including the `CREATE TABLE` or `ALTER TABLE` statements to get the DB schema into a state that matches the entity definitions.
 
-_Note: Your plugin has to be activated, otherwise your custom entity definition will not be considered. The queries are outputted into /schema._
+| Option                         | Meaning                                                                                                              |
+|:-------------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| --bundle                  | The name of the plugin, when not provided the command will generate a migration in the core                          |
+| --entities      | Comma-seperated list of the entities it should create migrations for, it will generate one migration file per entity |
+
+_Note: Your plugin has to be activated, otherwise your custom entity definition can not be found._
 
 ## Execute migration
 
