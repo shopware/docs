@@ -77,7 +77,7 @@ At least one `page` is mandatory in each module. Though views and components can
 
 ### Order module
 
-Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [Add custom module](../../../guides/plugins/plugins/administration/add-custom-module) article if you want to learn more about adding your custom module with a Shopware plugin.
+Having a look at a more practical example, one can look closer at the order module. Typically, you will find this structure alongside other modules, especially when creating pages or views for creating/editing, listing, or viewing a specific entity. Refer to the [Add custom module](../../../guides/plugins/plugins/administration/module-component-management/add-custom-module) article if you want to learn more about adding your custom module with a Shopware plugin.
 
 ```bash
 <shopware/src/Administration/Resources/app/administration/src/module/sw-order/>
@@ -108,10 +108,10 @@ Within plugins, you do have the following options when it comes to adjusting exi
 * Customize a component template with Twig.js
 * Extending methods and computed properties
 
-You will find more information about [customizing components](../../../guides/plugins/plugins/administration/customizing-components) of the Administration in the guide.
+You will find more information about [customizing components](../../../guides/plugins/plugins/administration/module-component-management/customizing-components) of the Administration in the guide.
 
 ## ACL in the Administration
 
 The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted \( CRUD\), once the user has specific privileges for a module. Additionally, one can set up custom roles in the Administrations UI or develop individual privileges with plugins. These roles have finely granular rights, which every shop operator can set up himself and be assigned to users. By default, a module of the Administration has a directory called `acl` included. In this directory, one will find a specific mapping of privileges \(permissions for roles; additional permissions\) for the default roles: `viewer`, `editor`, `creator`, and `deleter`.
 
-For more information, refer to [Adding permissions](../../../guides/plugins/plugins/administration/add-acl-rules) article.
+For more information, refer to [Adding permissions](../../../guides/plugins/plugins/administration/permissions-error-handling/add-acl-rules) article.

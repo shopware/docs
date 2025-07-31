@@ -13,5 +13,5 @@ If you think about providing a decoupled storefront for customers, you can use *
 
 ::: warning
 Shopware PWA is currently in maintenance mode.  
-We recommend using [Composable Frontends](/frontends) as the future of headless commerce with Shopware.
+We recommend using [Composable Frontends](/frontends/) as the future of headless commerce with Shopware.
 :::

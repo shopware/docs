@@ -877,4 +877,4 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
 
 ## Next steps
 
-As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../../../../../guides/plugins/plugins/framework/data-handling) in PHP.
+As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../../../../../guides/plugins/plugins/framework/data-handling/) in PHP.

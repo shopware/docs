@@ -23,4 +23,4 @@ Using plugins, you can add custom routes to the Store API \(as well as any other
 
 * To start working with the Store API, check out our [Quick Start guide](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) and explore all endpoints in our reference guide.
 
-* An interesting project based on the Store API is [Composable Frontends](../../../frontends).
+* An interesting project based on the Store API is [Composable Frontends](../../../frontends/).
