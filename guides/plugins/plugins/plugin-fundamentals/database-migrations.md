@@ -13,10 +13,10 @@ In this guide, you'll learn what migrations are and how to use them. Migrations 
 
 ## Prerequisites
 
-In order to add your own database migrations for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
+To add your own database migrations for your plugin, you first need a plugin as a base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ::: info
-Refer to this video on **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Refer to this video on **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 :::
 
 ## File structure
@@ -34,11 +34,11 @@ By default, Shopware 6 is looking for migration files in a directory called `Mig
 
 As you can see there is one file in the `<plugin root>/src/Migration` directory. Below you find a break down of what each part of its name means.
 
-| File Name Snippet | Meaning |
-| :--- | :--- |
-| Migration | Each migration file has to start with Migration |
-| 1546422281 | A Timestamp used to make migrations incremental |
-| ExampleDescription | A descriptive name for your migration |
+| File Name Snippet  | Meaning                                         |
+|:-------------------|:------------------------------------------------|
+| Migration          | Each migration file has to start with Migration |
+| 1546422281         | A Timestamp used to make migrations incremental |
+| ExampleDescription | A descriptive name for your migration           |
 
 ### Customizing the migration path / namespace
 
@@ -61,18 +61,18 @@ To generate the boilerplate code for your migration, you have to open your Shopw
 $ ./bin/console database:create-migration -p SwagBasicExample --name ExampleDescription
 ```
 
-Below you'll find a break down of the command.
+Below you'll find a breakdown of the command.
 
-| Command Snippet | Meaning |
-| :--- | :--- |
-| ./bin/console | Calls the executable Symfony console application |
-| database:create-migration | The command to create a new migration |
-| -p your\_plugin\_name | -p creates a new migration for the plugin with the name provided |
-| --name your\_descriptive\_name | Appends the provided string after the timestamp |
+| Command Snippet                | Meaning                                                          |
+|:-------------------------------|:-----------------------------------------------------------------|
+| ./bin/console                  | Calls the executable Symfony console application                 |
+| database:create-migration      | The command to create a new migration                            |
+| -p your\_plugin\_name          | -p creates a new migration for the plugin with the name provided |
+| --name your\_descriptive\_name | Appends the provided string after the timestamp                  |
 
 _Note: If you create a new migration yourself, the timestamp will vary._
 
-If you take a look at your created migration it should look similar to this:
+If you take a look at your created migration, it should look similar to this:
 
 ```php
 // <plugin root>/src/Migration/Migration1611740369ExampleDescription.php
@@ -102,7 +102,7 @@ class Migration1611740369ExampleDescription extends MigrationStep
 }
 ```
 
-As you can see your migration contains 3 methods:
+As you can see, your migration contains three methods:
 
 * getCreationTimestamp\(\)
 * update\(\)
@@ -154,9 +154,9 @@ SQL;
 }
 ```
 
-## Generating a complete migration for a entity
+## Generating a complete migration for an entity
 
-Shopware can also generate the complete migration including the SQL statements for you, based on the entity definitions.
+Shopware can also generate the complete migration, including the SQL statements for you, based on the entity definitions.
 
 ```bash
 $ ./bin/console dal:migration:create --bundle=SwagBasicExample --entities=your_entity,your_other_entity
@@ -164,12 +164,12 @@ $ ./bin/console dal:migration:create --bundle=SwagBasicExample --entities=your_e
 
 This command will generate a new migration file including the `CREATE TABLE` or `ALTER TABLE` statements to get the DB schema into a state that matches the entity definitions.
 
-| Option                         | Meaning                                                                                                              |
-|:-------------------------------|:---------------------------------------------------------------------------------------------------------------------|
-| --bundle                  | The name of the plugin, when not provided the command will generate a migration in the core                          |
-| --entities      | Comma-seperated list of the entities it should create migrations for, it will generate one migration file per entity |
+| Option     | Meaning                                                                                                              |
+|:-----------|:---------------------------------------------------------------------------------------------------------------------|
+| --bundle   | The name of the plugin, when not provided the command will generate a migration in the core                          |
+| --entities | Comma-seperated list of the entities it should create migrations for, it will generate one migration file per entity |
 
-_Note: Your plugin has to be activated, otherwise your custom entity definition can not be found._
+_Note: Your plugin has to be activated, otherwise your custom entity definition cannot be found._
 
 ## Execute migration
 
@@ -179,9 +179,9 @@ When you install your plugin, the migration directory is added to a MigrationCol
 When updating a plugin, do not change a migration that was already executed, since every migration is only run once.
 :::
 
-| Command | Arguments | Usage |
-| :--- | :--- | :--- |
-| database:migrate | identifier \(optional\) | Calls the update\(\) methods of unhandled migrations |
+| Command                      | Arguments               | Usage                                                           |
+|:-----------------------------|:------------------------|:----------------------------------------------------------------|
+| database:migrate             | identifier \(optional\) | Calls the update\(\) methods of unhandled migrations            |
 | database:migrate-destructive | identifier \(optional\) | Calls the updateDestructive\(\) methods of unhandled migrations |
 
 The identifier argument is used to decide which migrations should be executed. Per default, the identifier is set to run Shopware Core migrations. To run your plugin migrations, set the identifier argument to your plugin's bundle name, in this example `SwagBasicExample`.
@@ -194,7 +194,7 @@ $ ./bin/console database:migrate SwagBasicExample --all
 
 Once you have become familiar with the migration process and the development flow, you may want to have finer control over the migrations performed during the installation and update. In this case the `MigrationCollection` which is only filled with your specific migrations, can be accessed via the `InstallContext` and all its subclasses \(UpdateContext, ActivateContext, ...\). A plugin must reject the automatic execution of migrations in order to have control over the migrations that are executed.
 
-Therefore a typical update method might look more like this:
+Therefore, a typical update method might look more like this:
 
 ```php
     public function update(UpdateContext $updateContext): void
