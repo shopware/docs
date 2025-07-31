@@ -156,10 +156,12 @@ SQL;
 
 ## Generating a complete migration for a entity
 
-Shopware can also generate the complete migration including the SQL statements for you, based on the entity definitions. 
+Shopware can also generate the complete migration including the SQL statements for you, based on the entity definitions.
+
 ```bash
 $ ./bin/console dal:migration:create --bundle=SwagBasicExample --entities=your_entity,your_other_entity
 ```
+
 This command will generate a new migration file including the `CREATE TABLE` or `ALTER TABLE` statements to get the DB schema into a state that matches the entity definitions.
 
 | Option                         | Meaning                                                                                                              |
