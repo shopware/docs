@@ -184,7 +184,7 @@ In this test-only service config you can override arguments, aliases or paramete
 To execute tests, a PHPUnit binary is necessary, which is most likely located in the `vendor/bin` folder. The command below will use the `phpunit.xml` file in the `custom/plugins/SwagBasicExample` folder and execute the testsuite with the name `migration`.
 
 ```sh
-// <project root>ell
+// <project root>
 ./vendor/bin/phpunit --configuration="custom/plugins/SwagBasicExample" --testsuite "migration"
 ```
 
