@@ -66,6 +66,10 @@ Now, we finally add our custom field as explained before:
 
 Let's say you have a custom field for the customer entity through the administration; now, you want the customer to input data into it through a field in the customer register form. This can be done without the need for a subscriber or listener; simply add a field to the form using the correct custom field name.
 
+::: info
+For custom fields to work in forms, you must enable the **Modifiable via Store API** option in the custom field configuration. This setting allows the Store API to modify the field, which is required for storing custom data from storefront forms such as registration forms.
+:::
+
 ```twig
 // <plugin root>/src/Resources/views/storefront/component/address/address-personal.html.twig
 {% sw_extends '@Storefront/storefront/component/address/address-personal.html.twig' %}
