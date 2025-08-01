@@ -32,7 +32,7 @@ The most important part is [test isolation](https://playwright.dev/docs/best-pra
 - do not expect the shop to have the defaults en_GB and EUR
 - do not change global settings (sales channel is ok, because it's created by us)
   - basically everything in Settings that is not specific to a sales channel (tax, search, etc.)
- 
+
 ## Sensitive Data / Credentials
 
 Sometimes you have to provide sensitive data or credentials for your tests to run, for example, credentials for a sandbox environment for a payment provider. Apart from avoiding having those credentials in the actual code, you should also prevent them from appearing in logs or traces. To achieve that, you should outsource steps using sensitive data to another project, running before the actual test project, and disable traces for it.
@@ -54,7 +54,7 @@ projects: [
       dependencies: ['init'],
     }]
 ```
- 
+
 ## Debugging API calls
 
 Debugging API calls may not be an easy task at first glance, because if the call you made returns an error, it is not directly visible to you. But you can use the `errors[]`-array of the response and log that on the console.

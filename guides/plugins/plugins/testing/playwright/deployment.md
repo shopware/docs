@@ -35,16 +35,16 @@ In most cases, the problem is related to the commit messages not following the [
 
 1. **Create an empty commit to the main branch**  
 
-   ```bash
-   git commit --allow-empty -m "chore: release 2.0.0" -m "Release-As: 2.0.0"
-   ```
+     ```bash
+     git commit --allow-empty -m "chore: release 2.0.0" -m "Release-As: 2.0.0"
+     ```
 
-When a commit to the main branch has Release-As: x.x.x (case-insensitive) in the commit body, Release Please will open a new pull request for the specified version.   
+    When a commit to the main branch has Release-As: x.x.x (case-insensitive) in the commit body, Release Please will open a new pull request for the specified version.
 
 2. **Push the changes**  
 
    ```bash
    git push origin <your-branch>
    ```
-   
+
 3. **Adjust the release notes:** Remember to adjust the release notes in the deployment PR.

@@ -87,6 +87,7 @@ If you want to add new functionality to this service — such as a new type of e
 ### 1. Define the purpose
 
 Decide whether you're creating, assigning, or retrieving data. Most methods fall into one of the following patterns:
+
 - `create*`: Creates a new entity (e.g., product, customer, category)
 - `assign*`: Links existing entities (e.g., assign media to product)
 - `get*`: Retrieves specific or filtered data from the system
@@ -98,6 +99,7 @@ Use the `AdminApiContext` to interact with the Shopware Admin API. Here's a simp
 ### 3. Follow naming conventions
 
 Be consistent in naming:
+
 - Use `createBasic*` for standardized, default setups with predefined values (e.g. `createBasicProduct`)
 - Use `create*With*` for variations (e.g. `createProductWithImage`)
 - Use `assign*` for methods that associate two entities (e.g. `assignProductMedia`)

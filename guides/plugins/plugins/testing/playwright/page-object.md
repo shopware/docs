@@ -30,8 +30,7 @@ The `modules` folder is designed to house reusable utility functions that operat
 For example, utility functions like `getCustomFieldCardLocators` or `getSelectFieldListitem` are used across multiple page objects to handle specific functionality (e.g., managing custom fields or select field list items). Centralizing these utilities in the `modules` folder improves code organization, readability, and reduces duplication.
 Create a new class inside a module when it helps to streamline the codebase and avoid repetitive logic across page objects.
 
-You can find how `getCustomFieldCardLocators` is defined in the [modules folder ](./src/page-objects/administration/modules/CustomFieldCard.ts) and used in other page object class [here](./src/page-objects/administration/ProductDetail.ts).
-
+You can find how `getCustomFieldCardLocators` is defined in the [modules folder](./src/page-objects/administration/modules/CustomFieldCard.ts) and used in other page object class [here](./src/page-objects/administration/ProductDetail.ts).
 
 ## Add new Page Objects
 

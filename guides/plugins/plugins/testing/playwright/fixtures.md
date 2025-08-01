@@ -64,7 +64,7 @@ Note that, other than the AdminApiContext, the StoreApiContext won't do an autom
 
 ### Methods
 
-- `login(user)`: Does a login of a customer and will store the login state for future requests. 
+- `login(user)`: Does a login of a customer and will store the login state for future requests.
 - `get`
 - `post`
 - `patch`

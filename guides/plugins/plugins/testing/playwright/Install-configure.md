@@ -4,7 +4,7 @@ nav:
   position: 11
 ---
 
-# Overview 
+# Overview
 
 This is a setup guide for the Shopware Acceptance Test Suite (ATS). This section will walk you through initializing a Playwright project, installing the ATS package, and configuring the environment for local testing. Whether you are writing new tests or running existing ones, following these steps ensures your environment is correctly prepared.
 
