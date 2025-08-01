@@ -11,8 +11,10 @@ When it comes to testing, you might immediately think about unit tests. Of cours
 
 <PageRef page="php-unit" />
 
+Following section also covers unit tests in [Storefront](./jest-storefront.md) and [Administration](./jest-admin.md).
+
 Even though unit tests are definitely great, you might want to do some end-to-end testing, which is covered here:
 
-<PageRef page="end-to-end-testing" />
+<PageRef page="guides/plugins/plugins/testing/playwright" />
 
-Following section also covers unit tests in Storefront and Administration.
+<PageRef page="guides/plugins/plugins/testing/cypress" />
