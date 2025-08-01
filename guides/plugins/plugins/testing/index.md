@@ -15,6 +15,6 @@ The following section also covers unit tests in [Storefront](./jest-storefront.m
 
 Even though unit tests are definitely great, you might want to do some end-to-end testing, which is covered here:
 
-<PageRef page="playwright" />
+<PageRef page="playwright/index" />
 
 <PageRef page="cypress/cypress-end-to-end-testing" />
