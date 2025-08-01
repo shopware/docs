@@ -149,25 +149,43 @@ While the above examples show how to read plugin configuration in PHP, you might
 
 ### Administration API access
 
-To access your plugin's configuration from JavaScript in the Administration, you can use the Admin API's system-config endpoint. Make a GET request to `/api/_action/system-config` with your plugin's configuration domain.
+To access your plugin's configuration from JavaScript in the Administration, you should use the `systemConfigApiService` which wraps the system-config endpoints.
+
+#### Using injection in Vue components
 
 ```javascript
-// Example: Reading plugin configuration in Administration JavaScript
+// Example: Reading plugin configuration in Administration Vue component
+export default Shopware.Component.wrapComponentConfig({
+    inject: ['systemConfigApiService'],
+    
+    async created() {
+        await this.loadPluginConfig();
+    },
+    
+    methods: {
+        async loadPluginConfig() {
+            try {
+                const config = await this.systemConfigApiService.getValues('SwagBasicExample.config');
+                const exampleValue = config['SwagBasicExample.config.example'];
+                
+                console.log('Plugin configuration value:', exampleValue);
+                return exampleValue;
+            } catch (error) {
+                console.error('Error fetching plugin configuration:', error);
+            }
+        }
+    }
+});
+```
+
+#### Using direct service access
+
+```javascript
+// Example: Reading plugin configuration using direct service access
 async function getPluginConfig() {
     try {
-        const response = await fetch('/api/_action/system-config?domain=SwagBasicExample.config', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}` // Your admin access token
-            }
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const config = await response.json();
+        const systemConfigApiService = Shopware.ApiService.getByName('systemConfigApiService');
+        const config = await systemConfigApiService.getValues('SwagBasicExample.config');
         const exampleValue = config['SwagBasicExample.config.example'];
         
         console.log('Plugin configuration value:', exampleValue);
