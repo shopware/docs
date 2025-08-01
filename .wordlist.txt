@@ -5,6 +5,7 @@ ADR
 ADRs
 AOF
 API's
+APIRequestContext
 APIs
 APM
 AUR
@@ -34,6 +35,8 @@ AddressBookWidget
 AddressDetailPage
 AddressListingPage
 AddressResponseStruct
+AdminApiContext
+AdminPage
 AdminQueueWorker
 AdminWorker
 Adminer
@@ -279,6 +282,7 @@ Datepicker
 DaysSinceLastOrderRule
 DebugStack
 Decrypts
+DefaultSalesChannel
 DelayAction
 DelayAware
 DelegatingLoader
@@ -838,6 +842,7 @@ ShopNameAware
 ShopNameStorer
 Shopware
 Shopware's
+ShopwareTypes
 SimpleHttpClient
 SimpleNotification
 Sinon
@@ -861,9 +866,11 @@ StockUpdater
 Storable
 StorableFlow
 StorageAware
+StoreApiContext
 StoreApiResponse
 StoreApiRoute
 StorefrontController
+StorefrontPage
 StorefrontResponse
 Storer
 StringField
@@ -899,6 +906,8 @@ TemplateDataAware
 TemplateDataStorer
 TemplateNamespaceHierarchyBuilder
 TestCase
+TestDataService
+TestDataService
 TestSecret
 TestStockUpdateFilter
 TimeRangeRule
@@ -1123,6 +1132,7 @@ checkboxes
 ci
 classmap
 classname
+cleanUp
 cleanUpPreviousState
 clearTypeAndCheck
 cli

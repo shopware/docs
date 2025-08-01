@@ -6,7 +6,7 @@ nav:
 
 # Types in the Test Suite
 
-The Shopware Acceptance Test Suite leverages TypeScript’s static typing to ensure that test data structures, API interactions, and test logic are consistent and error-resistant.
+The Shopware Acceptance Test Suite leverages TypeScript's static typing to ensure that test data structures, API interactions, and test logic are consistent and error-resistant.
 
 ## Shopware Types
 

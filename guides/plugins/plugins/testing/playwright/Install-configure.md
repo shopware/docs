@@ -34,7 +34,7 @@ npx playwright install-deps
 
 The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test, you can use the following environment variables. You can decide between two authentication options - admin user or shopware integration (recommended).
 
-```apacheconf
+```dotenv
 # .env
 
 APP_URL="<url-to-the-shopware-instance>"

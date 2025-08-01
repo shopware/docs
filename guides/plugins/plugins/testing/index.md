@@ -17,4 +17,4 @@ Even though unit tests are definitely great, you might want to do some end-to-en
 
 <PageRef page="playwright" />
 
-<PageRef page="cypress" />
+<PageRef page="cypress/cypress-end-to-end-testing" />
