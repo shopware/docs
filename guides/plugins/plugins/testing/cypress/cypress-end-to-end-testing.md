@@ -1,11 +1,11 @@
 ---
 nav:
-  title: End-to-end testing
-  position: 10
+  title: Cypress End-to-end testing
+  position: 11
 
 ---
 
-# End-to-End Testing
+# Cypress End-to-End Testing
 
 ## Overview
 
@@ -119,7 +119,7 @@ open -a XQuartz
 
 Got to `XQuartz > Preferences` (`⌘ + ,`) and enable `Allow connections from network clients`:
 
-![XQuartz Preferences](../../../../assets/xquartz-allow-connections-from-network-clients.png)
+![XQuartz Preferences](../../../../../assets/xquartz-allow-connections-from-network-clients.png)
 
 ::: warning
 Restart your Mac before proceeding with the following steps.
@@ -210,7 +210,7 @@ or
 composer e2e:cypress -- run --spec="cypress/e2e/storefront/**/*.cy.js"
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../resources/references/testing-reference/e2e-commands).
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../../resources/references/testing-reference/e2e-commands).
 </Tab>
 </Tabs>
 
@@ -263,7 +263,7 @@ These two configuration files are important to mention as well:
 
   [Cypress configuration docs](https://docs.cypress.io/guides/references/configuration.html).
 
-If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](end-to-end-testing#setup-steps).
+If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](cypress-end-to-end-testing#setup-steps).
 
 If you want to contribute to Shopware platform's tests, please ensure to place your test in one of those folders:
 
@@ -326,7 +326,7 @@ it('test something', () => {
 
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
-Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../resources/references/testing-reference/e2e-custom-commands) specially for Shopware.
+Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../../resources/references/testing-reference/e2e-custom-commands) specially for Shopware.
 
 ### Assertions
 
@@ -553,6 +553,6 @@ Below you will find some best practices and tricks we explored to help you with 
 
 ## More interesting topics
 
-* [Unit testing with PHPUnit](php-unit)
-* [Jest unit tests in Shopware's administration](jest-admin)
-* [Jest unit tests in Shopware's storefront](jest-storefront)
+* [Unit testing with PHPUnit](../php-unit)
+* [Jest unit tests in Shopware's administration](../jest-admin)
+* [Jest unit tests in Shopware's storefront](../jest-storefront)

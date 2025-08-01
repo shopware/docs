@@ -1,7 +1,7 @@
 ---
 nav:
   title: Best practices on writing end-to-end tests
-  position: 10
+  position: 12
 
 ---
 
