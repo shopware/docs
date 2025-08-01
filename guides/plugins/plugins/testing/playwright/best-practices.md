@@ -17,8 +17,8 @@ The most important part is [test isolation](https://playwright.dev/docs/best-pra
 - ...and clean it up if you don't need it anymore. The TestDataService will take care of it if you used it to create the test data
 - if you need specific settings for your test, set it explicitly for the user/customer/sales channel
 - directly jump to detail pages with the id of the entities you've created
-    - if that's no possible, use the search with a unique name to filter lists to just that single entity
-- if you need to skip tests, comment any relevant github issues as part of the skip method: `test.skip('Blocked by https://[...])`
+    - if that's not possible, use the search with a unique name to filter lists to just that single entity
+- if you need to skip tests, comment any relevant GitHub issues as part of the skip method: `test.skip('Blocked by https://[...])`
 
 ## Don'ts
 
@@ -35,7 +35,7 @@ The most important part is [test isolation](https://playwright.dev/docs/best-pra
  
 ## Sensitive Data / Credentials
 
-Sometimes you have to provide sensitie data or credentials for your tests to run, for example credentials for a sandbox environment for a payment provider. Apart from avoiding to have those credentials in the acutal code, you should also prevent them from appearing in logs or traces. To achieve that you should outsource steps using sensitive data to another project, running before the actual test project, and disable traces for it.
+Sometimes you have to provide sensitive data or credentials for your tests to run, for example, credentials for a sandbox environment for a payment provider. Apart from avoiding having those credentials in the actual code, you should also prevent them from appearing in logs or traces. To achieve that, you should outsource steps using sensitive data to another project, running before the actual test project, and disable traces for it.
 
 **Example**
 

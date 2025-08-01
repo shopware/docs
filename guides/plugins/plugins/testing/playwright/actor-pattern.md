@@ -6,7 +6,7 @@ nav:
 
 # Actor pattern
 
-The actor pattern is a very simple concept that we added to our test suite. It is something that is not related to Playwright, but similar concepts exist in other testing frameworks. We implemented it, because we want to have reusable test logic that can be used in a human-readable form, without abstracting away Playwright as a framework. So you are totally free to use it or not. Any normal Playwright functionality will still be usable in your tests.
+The actor pattern is a basic concept that we added to our test suite. It is something not related to Playwright, but similar concepts exist in other testing frameworks. We implemented it, because we want to have reusable test logic that can be used in a human-readable form, without abstracting away Playwright as a framework. So you are totally free to use it or not. Any normal Playwright functionality will still be usable in your tests.
 
 The concept adds two new entities besides the already mentioned [page objects](./page-object.md)
 
@@ -25,7 +25,7 @@ The actor class is just a lightweight solution to simplify the execution of reus
 
 ### Methods
 
-- `goesTo`: Accepts an url of a page the actor should navigate to.
+- `goesTo`: Accepts a URL of a page the actor should navigate to.
 - `attemptsTo`: Accepts a "task" function with reusable test logic the actor should perform.
 - `expects`: A one-to-one export of the Playwright `expect` method to use it in the actor pattern.
 
@@ -35,7 +35,7 @@ These methods lead to the following pattern:
 - The **actor** *attempts to* perform a certain **task**.
 - The **actor** *expects* a certain result.
 
-Translated into test code this pattern can look like this:
+Translated into test code, this pattern can look like this:
 
 ```TypeScript
 import { test } from './../BaseTestFile';
@@ -95,7 +95,7 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
 });
 ```
 
-This fixture is the "login" task and performs a simple Storefront login of the default customer. Everytime we need a logged in shop customer, we can simply reuse this logic in our test.
+This fixture is the "login" task and performs a simple Storefront login of the default customer. Everytime we need a logged-in shop customer, we can simply reuse this logic in our test.
 
 ```TypeScript
 import { test } from './../BaseTestFile';

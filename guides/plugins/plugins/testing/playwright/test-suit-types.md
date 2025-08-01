@@ -37,7 +37,7 @@ export type Country = Omit<components['schemas']['Country'], 'states'> & {
 }
 ```
 
-For custom use cases, simply define a custom type:
+For custom use cases, define a custom type:
 
 ```
 export type CustomShippingMethod = {
@@ -74,7 +74,7 @@ expect(product.coverId).toBeDefined();
 
 If you want to work on the test suite and try to execute tests from within this repository, you have to run a corresponding docker image for a specific Shopware version.
 
-We publish pre-built images at the [GitHub container registry](https://github.com/orgs/shopware/packages/container/package/acceptance-test-suite%2Ftest-image). The images are built on a daily basis, check to see which versions are available.
+We publish pre-built images at the [GitHub container registry](https://github.com/orgs/shopware/packages/container/package/acceptance-test-suite%2Ftest-image). The images are built daily, check to see which versions are available.
 
 In order to select an image, export the corresponding tag as `SHOPWARE_VERSION` and start the containers:
 
@@ -96,7 +96,7 @@ docker compose up --attach-dependencies shopware # This will build the image if 
 ```
 </details>
 
-Afterwards you can execute the normal playwright commands:
+Afterward you can execute the normal playwright commands:
 
 ```bash
 npx playwright test --ui

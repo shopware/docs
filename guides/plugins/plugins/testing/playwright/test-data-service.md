@@ -11,7 +11,7 @@ The test suite provides several services that can be used to simplify your test 
 ## Test Data Service
 
 The `TestDataService` is a powerful utility designed to simplify test data creation, management, and cleanup when writing acceptance and API tests for Shopware. It provides ready-to-use functions for common data needs and ensures reliable, isolated test environments.
- For detailed documentation of the methods you can have a look at the [service class](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/services/TestDataService.ts) or simply use the auto-completion of your IDE.
+ For detailed documentation of the methods, you can have a look at the [service class](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/services/TestDataService.ts) or use the auto-completion of your IDE.
 
 ## When to use the TestDataService in tests
 
@@ -87,8 +87,8 @@ If you want to add new functionality to this service — such as a new type of e
 ### 1. Define the purpose
 
 Decide whether you're creating, assigning, or retrieving data. Most methods fall into one of the following patterns:
-- `create*`: Creates a new entity (e.g. product, customer, category)
-- `assign*`: Links existing entities (e.g. assign media to product)
+- `create*`: Creates a new entity (e.g., product, customer, category)
+- `assign*`: Links existing entities (e.g., assign media to product)
 - `get*`: Retrieves specific or filtered data from the system
 
 ### 2. Implement the method
@@ -109,7 +109,7 @@ Always define a return type (typically a `Promise<...>`) to improve autocompleti
 
 ### 5. Add cleanup logic
 
-Make sure to clean up the entity via code after test run by putting the entity to a record. See example below:
+Make sure to clean up the entity via code after the test run by putting the entity to a record. See the example below:
 
 ```typescript
 async createBasicRule(): Promise<Rule> {
@@ -149,13 +149,13 @@ When you create an entity using a `create*` method (e.g., `createBasicProduct`, 
 this.addCreatedRecord('product', product.id);
 ```
 
-These records are stored in a cleanup queue that is processed at the end of each test using the Playwright lifecycle.
+These records are stored in a cleanup queue processed at the end of each test using the Playwright lifecycle.
 
 ### Cleanup execution
 
 The `cleanup()` method handles the deletion of all registered entities and system config changes. All created records are grouped into two categories:
 
-- Priority Deletions (`priorityDeleteOperations`) – for entities with dependencies that must be deleted first (e.g. orders, customers)
+- Priority Deletions (`priorityDeleteOperations`) – for entities with dependencies that must be deleted first (e.g., orders, customers)
 - Standard Deletions (`deleteOperations`) – for all other entities
 
 This prioritization prevents errors when deleting interdependent data. Any modified system configurations are reset to their previous state after deleting priority records.

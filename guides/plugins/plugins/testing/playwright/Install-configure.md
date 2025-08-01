@@ -22,7 +22,7 @@ Add the package for the Shopware Acceptance Test Suite to your project.
 npm install @shopware-ag/acceptance-test-suite
 ```
 
-Make sure to install Playwright and it's dependencies.
+Make sure to install Playwright and its dependencies.
 
 ```shell
 npm install
@@ -32,7 +32,7 @@ npx playwright install-deps
 
 ## Configuration
 
-The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test you can use the following environment variables. You can decide between two authentication options - admin user or shopware integration (recommended).
+The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test, you can use the following environment variables. You can decide between two authentication options - admin user or shopware integration (recommended).
 
 ```apacheconf
 # .env

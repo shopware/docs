@@ -31,7 +31,7 @@ To deploy a new version of the Acceptance Test Suite, follow the steps below:
 
 If you encounter any issues with the automated deployment process, please check the following [troubleshooting page of release-please](https://github.com/googleapis/release-please?tab=readme-ov-file#release-please-bot-does-not-create-a-release-pr-why).
 
-In the most cases, the problem is related to the commit messages not following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. Make sure to check your commit messages and rebase your branch if necessary. If your PR is merged with a commit message that does not follow the specification you can do the following:
+In most cases, the problem is related to the commit messages not following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. Make sure to check your commit messages and rebase your branch if necessary. If your PR is merged with a commit message that does not follow the specification you can do the following:
 
 1. **Create an empty commit to the main branch**  
 
@@ -39,7 +39,7 @@ In the most cases, the problem is related to the commit messages not following t
    git commit --allow-empty -m "chore: release 2.0.0" -m "Release-As: 2.0.0"
    ```
 
-When a commit to the main branch has Release-As: x.x.x (case insensitive) in the commit body, Release Please will open a new pull request for the specified version.   
+When a commit to the main branch has Release-As: x.x.x (case-insensitive) in the commit body, Release Please will open a new pull request for the specified version.   
 
 2. **Push the changes**  
 
@@ -47,4 +47,4 @@ When a commit to the main branch has Release-As: x.x.x (case insensitive) in the
    git push origin <your-branch>
    ```
    
-3. **Adjust the release notes:** Don't forget to adjust the release notes in the deployment PR.
+3. **Adjust the release notes:** Remember to adjust the release notes in the deployment PR.

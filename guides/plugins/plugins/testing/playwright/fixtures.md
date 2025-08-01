@@ -8,7 +8,7 @@ nav:
 
 ## DefaultSalesChannel
 
-We try to encapsulate test execution within the system under test and make tests as deterministic as possible. The idea is, to have a separate sales channel created which is used to do tests within the standard Storefront. The `DefaultSalesChannel` fixture is a worker scoped fixture and is there to achieve exactly that. Using it will provide you with a new sales channel with default settings, including a default Storefront customer.
+We try to encapsulate test execution within the system under test and make tests as deterministic as possible. The idea is to have a separate sales channel created which is used to do tests within the standard Storefront. The `DefaultSalesChannel` fixture is a worker-scoped fixture and is there to achieve exactly that. Using it will provide you with a new sales channel with default settings, including a default Storefront customer.
 
 ### Properties
 
@@ -60,7 +60,7 @@ test('Property group test scenario', async ({ AdminApiContext }) => {
 
 This context provides a ready to use client for the Store-API of Shopware and is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext). You can do API calls on behalf of a Storefront user. Learn more about the usage of the Shopware Store-API in the [documentation](https://shopware.stoplight.io/docs/store-api/).
 
-Note that, other than the AdminApiContext, the StoreApiContext won't do an automated login of the shop customer. This is, because a Storefront user isn't always a registered user by default, and you might want to test this behaviour explicitly. You can use the `login` method to simply login as a registered shop customer.
+Note that, other than the AdminApiContext, the StoreApiContext won't do an automated login of the shop customer. This is because a Storefront user isn't always a registered user by default, and you might want to test this behaviour explicitly. You can use the `login` method to simply log in as a registered shop customer.
 
 ### Methods
 
@@ -115,4 +115,4 @@ This fixture provides a Playwright [page](https://playwright.dev/docs/api/class-
 
 ## Add new fixtures
 
-To add new general fixtures create them inside the `src/fixtures` folder. Keep in mind, that you need to merge your new fixture inside the `/src/index.ts` file.
+To add new general fixtures create them inside the `src/fixtures` folder. Keep in mind that you need to merge your new fixture inside the `/src/index.ts` file.
