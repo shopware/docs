@@ -937,6 +937,7 @@ TwigJS
 TypeError
 TypeError's
 TypeScript
+TypeScript's
 UI
 UML
 USD
@@ -1650,6 +1651,7 @@ readAsArrayBuffer
 readAsDataURL
 readAsText
 realtime
+rebase
 rebasing
 rebranded
 recalculable
