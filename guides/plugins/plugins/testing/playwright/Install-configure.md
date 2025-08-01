@@ -43,7 +43,7 @@ APP_URL="<url-to-the-shopware-instance>"
 SHOPWARE_ACCESS_KEY_ID="<your-shopware-integration-id>"
 SHOPWARE_SECRET_ACCESS_KEY="<your-shopware-integration-secret>"
 
-# Autentication via admin user
+# Authentication via admin user
 SHOPWARE_ADMIN_USERNAME="<administrator-user-name>"
 SHOPWARE_ADMIN_PASSWORD="<administrator-user-password>"
 ```
