@@ -71,7 +71,7 @@ Example implementation:
 ```php
 <?php declare(strict_types=1);
 
-#[Route(defaults: ['_routeScope' => ['store-api']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 class ContextGatewayRoute extends AbstractContextGatewayRoute
 {
     public function __construct(
@@ -104,7 +104,7 @@ Example implementation:
 ```php
 <?php declare(strict_types=1);
 
-#[Route(defaults: ['_routeScope' => ['storefront']])]
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ContextGatewayController extends StorefrontController
 {
     public function __construct(
