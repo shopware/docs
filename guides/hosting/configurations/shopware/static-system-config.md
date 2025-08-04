@@ -7,7 +7,7 @@ nav:
 
 # Static System Configuration
 
-::: note
+::: info
 This feature is available since Shopware 6.6.4.0
 :::
 

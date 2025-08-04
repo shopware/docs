@@ -104,7 +104,7 @@ All field types are defined in the [`FieldType`](https://github.com/shopware/sho
 It is also possible to directly define the field type with any class extending `\Shopware\Core\Framework\DataAbstractionLayer\Field\Field`.
 Use the fully qualified class name reference as value for the `type` parameter.
 
-::: note
+::: info
 This feature is available since Shopware 6.6.9.0.
 :::
 
