@@ -57,8 +57,6 @@ Shopware sets some MySQL configuration variables on each request to ensure it wo
 
 - Make sure that `group_concat_max_len` is by default higher or equal to `320000`
 - Make sure that `sql_mode` doesn't contain `ONLY_FULL_GROUP_BY`
-- Make sure that `time_zone` is set to UTC (`default-time-zone='+00:00'` in `my.cnf`)
-and then you can set `SQL_SET_DEFAULT_SESSION_VARIABLES=0` to your `.env` file
 
 ## SQL is faster than DAL
 
