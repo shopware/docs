@@ -13,7 +13,7 @@ This guide will teach you how to create your very own CMS block with your plugin
 
 ## Prerequisites
 
-This plugin is built upon our plugin from the [Plugin base guide](../../plugin-base-guide), but the examples mentioned here are applicable to every valid Shopware 6 plugin. Also, you should know how to handle the "Shopping Experiences" module in the Administration first. Furthermore, you definitely need to know how to create a custom component in the Administration, which is covered here [Creating a component](../../administration/add-custom-component).
+This plugin is built upon our plugin from the [Plugin base guide](../../plugin-base-guide), but the examples mentioned here are applicable to every valid Shopware 6 plugin. Also, you should know how to handle the "Shopping Experiences" module in the Administration first. Furthermore, you definitely need to know how to create a custom component in the Administration, which is covered here [Creating a component](../../administration/module-component-management/add-custom-component).
 
 ## Custom block in the Administration
 
@@ -109,7 +109,7 @@ The `component` and `previewComponent` do not exist yet, but they are created la
 
 ### Rendering the block
 
-You've set the `name` of the component to be used when rendering your block to be 'sw-cms-block-my-image-text-reversed'. This component does not exist yet, so let's create this one real quick. As already mentioned, creating a component is not explained by this guide in detail, so you might want to head over to our guide about [Creating a component](../../administration/add-custom-component) first.
+You've set the `name` of the component to be used when rendering your block to be 'sw-cms-block-my-image-text-reversed'. This component does not exist yet, so let's create this one real quick. As already mentioned, creating a component is not explained by this guide in detail, so you might want to head over to our guide about [Creating a component](../../administration/module-component-management/add-custom-component) first.
 
 First of all, create a new directory `component` in your block's directory. In there, create a new `index.js` file and register your custom component `sw-cms-block-my-image-text-reversed`.
 

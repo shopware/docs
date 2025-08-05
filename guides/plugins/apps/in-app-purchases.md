@@ -49,7 +49,7 @@ Alternatively, you can trigger a checkout manually by sending a properly formatt
 
 ## Check active In-App Purchases
 
-Whenever Shopware sends you a request, you'll receive a [JWT](../../../../concepts/framework/in-app-purchases.md#token) as a query parameter `in-app-purchases` or in the request body as `inAppPurchases` as part of the `source`, depending on whether the request is a GET or POST. The claims of the JWT will contain all bought In-App Purchases.
+Whenever Shopware sends you a request, you'll receive a [JWT](../../../concepts/framework/in-app-purchases.md#token) as a query parameter `in-app-purchases` or in the request body as `inAppPurchases` as part of the `source`, depending on whether the request is a GET or POST. The claims of the JWT will contain all bought In-App Purchases.
 
 ### Symfony or PHP app servers
 

@@ -92,7 +92,6 @@ shopware:
         bucket: "{{AWS_BUCKET}}"
         region: "{{AWS_REGION}}"
         endpoint: "{{AWS_ENDPOINT}}"
-        visibility: "public"
         credentials:
           key: "{{AWS_ACCESS_KEY_ID}}"
           secret: "{{AWS_SECRET_ACCESS_KEY}}"

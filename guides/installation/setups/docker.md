@@ -13,7 +13,7 @@ This setup is intended for development, if you want to use Docker for production
 
 Docker is a platform that enables developers to develop, ship, and run applications inside containers. These containers are lightweight, standalone, and executable packages that include everything needed to run an application: code, runtime, system tools, libraries, and settings. To get started with Docker, you can follow the official [Docker installation guide](https://docs.docker.com/get-docker/).
 
-In this guide, we will run PHP, Node and all required services in Docker containers. If you just want to run the services (MySQL/OpenSearch/Redis/...) in Docker, check out the [Docker + Symfony CLI](./docker+symfony-cli.md) guide.
+In this guide, we will run PHP, Node and all required services in Docker containers. If you just want to run the services (MySQL/OpenSearch/Redis/...) in Docker, check out the [Docker](./docker.md) guide.
 
 ## Prerequisites
 

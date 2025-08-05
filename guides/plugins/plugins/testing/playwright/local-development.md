@@ -21,9 +21,11 @@ npm run build
 This will generate the necessary artifacts in the `dist` folder.
 
 Copy the generated artifacts (e.g., all files in the `dist` folder) from the ATS repository to your local Shopware instance's `node_modules` folder, specifically under the ATS package path:
+
 ```bash
 cp -R dist/* <path-to-your-shopware-instance>/tests/acceptance/node_modules/@shopware-ag/acceptance-test-suite/dist
 ````
+
 ### Adjust tests, Page Objects, and methods
 
 In your Shopware instance, adjust any tests, page objects, TestDataService methods, or other related files to align them with the changes made in the ATS repository.

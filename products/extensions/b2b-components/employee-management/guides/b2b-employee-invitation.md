@@ -24,4 +24,4 @@ The default URL for the acceptance is `/account/business-partner/employee/invite
 The default URL can be replaced with a custom URL. This is helpful if you want to provide a custom endpoint.
 To override it, you need to insert the URL as a string into the key-value system config with the key `b2b.employee.invitationURL`.
 
-You can find more information about the system config here: [System Config](/guides/plugins/apps/configuration.md).
+You can find more information about the system config here: [System Config](../../../../../guides/plugins/apps/configuration.md).

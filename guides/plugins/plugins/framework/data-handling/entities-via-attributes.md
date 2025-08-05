@@ -50,7 +50,7 @@ To register the entity, you have to add this class to the DI container in the `s
 This is done by adding the `shopware.entity` tag to the service definition.
 
 ```xml
-<service id="Shopware\Tests\Integration\Core\Framework\DataAbstractionLayer\fixture\ExampleEntity">
+<service id="Examples\ExampleEntity">
     <tag name="shopware.entity"/>
 </service>
 ```
@@ -58,6 +58,7 @@ This is done by adding the `shopware.entity` tag to the service definition.
 That's it.
 Your entity is registered, and you can read and write data to it over the DAL.
 Using the tag, Shopware automatically registers an `EntityDefinition` and `EntityRepository` for the entity.
+Those are registered in the DI container with the names `example_entity.definition` and `example_entity.repository`, respectively.
 
 ## Field Types
 

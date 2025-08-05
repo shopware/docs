@@ -97,4 +97,4 @@ Finally, you need to register the custom check as a service resource.
 
 ### Trigger the check
 
-The system check is now part of the system check collection and will be executed when the system check is triggered. Refer to the [System Check](../system-check.md) guide for more information.
+The system check is now part of the system check collection and will be executed when the system check is triggered. Refer to the [System Check](./) guide for more information.
