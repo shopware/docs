@@ -51,6 +51,7 @@ export SHOPWARE_BUILD_SOURCE="tag" # Either "branch" or "tag"
 
 docker compose up --attach-dependencies shopware # This will build the image if it's not available
 ```
+
 </details>
 
 Afterwards, you can execute the normal playwright commands:

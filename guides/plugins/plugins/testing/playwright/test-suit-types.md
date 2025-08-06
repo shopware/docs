@@ -12,7 +12,7 @@ The Shopware Acceptance Test Suite leverages TypeScript’s static typing to ens
 
 The centralized type definition file, [ShopwareTypes.ts](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/types/ShopwareTypes.ts) is tightly coupled with the TestDataService, which defines the shape and default data of all supported Shopware entities. Each supported entity—such as Product, Customer, Media, etc.—is defined with its properties and default values. These types are then referenced throughout the TestDataService to provide IntelliSense, validation, and consistent data structures.
 
-```
+```typescript
 export type ProductReview = components['schemas']['ProductReview'] & {
  id: string,
  productId: string,
@@ -27,7 +27,7 @@ Within that example above, you are importing the auto-generated type for `Produc
 
 Sometimes, you might want to remove fields from a type. TypeScript provides the Omit<T, K> utility to exclude fields from a type:
 
-```
+```typescript
 export type Country = Omit<components['schemas']['Country'], 'states'> & {
  id: string,
  states: [{
@@ -39,7 +39,7 @@ export type Country = Omit<components['schemas']['Country'], 'states'> & {
 
 For custom use cases, simply define a custom type:
 
-```
+```typescript
 export type CustomShippingMethod = {
  name: string;
  active: boolean;
