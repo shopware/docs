@@ -96,6 +96,8 @@ The name of the method does not really matter, but it should somehow fit its pur
 More important is the `Route` attribute, that points to the route `/example`.
 Also note its name, which is also quite important.
 Make sure to use prefixes `frontend`, `widgets`, `payment`, `api` or `store-api` here, depending on what your route does.
+The first three prefixes are necessary to identify the route as a Storefront route.
+If you do not want to use the prefixes, you can [add allowed route names via configuration](#allow-custom-route-names-as-storefront-routes).
 Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`.
 This template variable will be usable in the rendered template file.
 The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
@@ -236,6 +238,80 @@ class ExampleController extends StorefrontController
 ```
 
 :::
+
+### Allow custom route names as Storefront routes
+
+::: info
+This feature is available since Shopware 6.7.2.0
+:::
+
+To allow custom route names without a `frontend`, `widgets` or `payment` prefix, add the following configuration file to your plugin.
+
+::: code-group
+
+```yaml [PLUGIN_ROOT]/src/Resources/config/packages/storefront.yaml]
+storefront:
+    router:
+        allowed_routes:
+            - swag.test.foo-bar
+
+```
+
+:::
+
+Make sure, this file is loaded during the container build process.
+Overwrite the `build` method in your plugin base class to load the configuration files from the `Resources/config` directory.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/SwagBasicExample.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample;
+
+use Shopware\Core\Framework\Plugin;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
+use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+class SwagBasicExample extends Plugin
+{
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        $locator = new FileLocator('Resources/config');
+
+        $resolver = new LoaderResolver([
+            new YamlFileLoader($container, $locator),
+            new GlobFileLoader($container, $locator),
+            new DirectoryLoader($container, $locator),
+        ]);
+
+        $configLoader = new DelegatingLoader($resolver);
+
+        $confDir = \rtrim($this->getPath(), '/') . '/Resources/config';
+
+        $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
+    }
+}
+```
+
+:::
+
+Now you can use the route name `swag.test.foo-bar` in your controller without the need for a prefix.
+
+```php
+#[Route(path: '/example', name: 'swag.test.foo-bar', methods: ['GET'])]
+public function showExample(Request $request, SalesChannelContext $context): Response
+{
+    //...
+}
+```
 
 ## Next steps
 
