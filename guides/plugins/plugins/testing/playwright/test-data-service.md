@@ -11,7 +11,7 @@ The test suite provides several services that can be used to simplify your test 
 ## Test Data Service
 
 The `TestDataService` is a powerful utility designed to simplify test data creation, management, and cleanup when writing acceptance and API tests for Shopware. It provides ready-to-use functions for common data needs and ensures reliable, isolated test environments.
- For detailed documentation of the methods, you can have a look at the [service class](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/services/TestDataService.ts) or use the auto-completion of your IDE.
+For detailed documentation of the methods, you can have a look at the [service class](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/services/TestDataService.ts) or use the auto-completion of your IDE.
 
 ## When to use the TestDataService in tests
 
@@ -56,7 +56,6 @@ These methods are designed to streamline the setup of test data, ensuring consis
 - `createColorPropertyGroup(): Promise<PropertyGroup>`
 - `createBasicPaymentMethod(): Promise<PaymentMethod>`
 - `createBasicShippingMethod(): Promise<ShippingMethod>`
-
 - [...]
 
 ## Available `assign*` methods in TestDataService
@@ -99,9 +98,10 @@ Use the `AdminApiContext` to interact with the Shopware Admin API. Here's a simp
 ### 3. Follow naming conventions
 
 Be consistent in naming:
-- Use `createBasic*` for standardized, default setups with predefined values (e.g. `createBasicProduct`)
+
+- Use `createBasic*` for standardized, default setups with predefined values (e.g., `createBasicProduct`)
 - Use `create*With*` for variations (e.g. `createProductWithImage`)
-- Use `assign*` for methods that associate two entities (e.g. `assignProductMedia`)
+- Use `assign*` for methods that associate two entities (e.g., `assignProductMedia`)
 - Use `get*` to retrieve specific entities or lists (e.g. `getCurrency`)
 
 ### 4. Add a return type
@@ -110,16 +110,16 @@ Always define a return type (typically a `Promise<...>`) to improve autocompleti
 
 ### 5. Add cleanup logic
 
-Make sure to clean up the entity via code after the test run by putting the entity to a record. See the example below:
+Make sure to clean up the entity via code after the test run by putting the entity in a record. See the example below:
 
 ```typescript
 async createBasicRule(): Promise<Rule> {
         [...]
                 
-        this.addCreatedRecord('rule', rule.id);
+ this.addCreatedRecord('rule', rule.id);
 
-        [...]
-    }
+ [...]
+ }
 ```
 
 Further information you can explore in the chapter: [Automatic Cleanup](#automatic-cleanup-of-test-data-and-system-configurations)
@@ -132,7 +132,7 @@ Once added, use your new method inside a test to verify it works as expected (`/
 test('Verify new shipping method creation', async ({ TestDataService }) => {
     const shippingMethod = await TestDataService.createShippingMethod({
         name: 'Express Delivery'
-    });
+ });
 
     expect(shippingMethod.name).toEqual('Express Delivery');
 });
@@ -140,7 +140,7 @@ test('Verify new shipping method creation', async ({ TestDataService }) => {
 
 ## Automatic cleanup of test data and system configurations
 
-The `TestDataService` includes a built-in mechanism to ensure that any test data & system configuration entries created during a test run is automatically deleted afterward. This ensures that the Shopware instance remains clean and consistent between tests, helping to maintain **test isolation** and prevent **state leakage**.
+The `TestDataService` includes a built-in mechanism to ensure that any test data & system configuration entries created during a test run are automatically deleted afterward. This ensures that the Shopware instance remains clean and consistent between tests, helping to maintain **test isolation** and prevent **state leakage**.
 
 ### How cleanup works
 
@@ -181,20 +181,20 @@ export class CustomTestDataService extends TestDataService {
 
     constructor(AdminApiContext, DefaultSalesChannel) {
         super(...);
-    }
+ }
     
     async createCustomCustomerGroup(data: Partial<CustomerGroup>) {
         const response = await this.adminApi.post('customer-group?_response=true', {
             data: {
-                ...
-            },
-        });
+ ...
+ },
+ });
 
         const { data: createdGroup } = await response.json();
         this.addCreatedRecord('customer-group', createdGroup.id);
 
         return createdGroup;
-    }
+ }
 }
 ```
 
@@ -218,12 +218,12 @@ export const test = base.extend<FixtureTypes & CustomTestDataServiceType>({
         const service = new CustomTestDataService(AdminApiContext, DefaultSalesChannel.salesChannel);
         await use(service);
         await service.cleanUp();
-    },
+ },
 });
 ```
 
 In this setup:
 
 - The `TestDataService` fixture is **overridden** with your custom `CustomTestDataService`.
-- Now all tests that use `TestDataService` will have access to both the original and your extended methods.
+- Now, all tests that use `TestDataService` will have access to both the original and your extended methods.
 - The automated cleanup is still in place, ensuring that any test data created during the test run is removed afterward.

@@ -32,7 +32,7 @@ npx playwright install-deps
 
 ## Configuration
 
-The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test, you can use the following environment variables. You can decide between two authentication options - admin user or shopware integration (recommended).
+The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test, you can use the following environment variables. You can choose between two authentication options: admin user or shopware integration (recommended).
 
 ```dotenv
 # .env
@@ -48,7 +48,7 @@ SHOPWARE_ADMIN_USERNAME="<administrator-user-name>"
 SHOPWARE_ADMIN_PASSWORD="<administrator-user-password>"
 ```
 
-To ensure Playwright is referencing the right instance, you can use the same environment variable in your Playwright configuration.
+To ensure Playwright is referencing the correct instance, you can use the same environment variable in your Playwright configuration.
 
 ```TypeScript
 // playwright.config.ts
@@ -58,11 +58,11 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
     use: {
         baseURL: process.env['APP_URL'],
-    }
+ }
 });
 ```
 
-For more information about how to configure your Playwright project, have a look into the [official documentation](https://playwright.dev/docs/test-configuration).
+For more information about how to configure your Playwright project, have a look at the [official documentation](https://playwright.dev/docs/test-configuration).
 
 ## Mailpit configuration
 
@@ -72,7 +72,7 @@ Set the `MAILPIT_BASE_URL` environment variable in `playwright.config.ts` to `ht
 
 ## Usage
 
-The test suite uses the [extension system](https://playwright.dev/docs/extensibility) of Playwright and can be used as a full drop-in for Playwright. But, as you might also want to add your own extensions, the best way to use it is to create your own base test file and use it as the central reference for your test files. Add it to your project root or a specific fixture directory and name it whatever you like.
+The test suite uses the [extension system](https://playwright.dev/docs/extensibility) of Playwright and can be used as a complete drop-in for Playwright. However, if you also want to add your extensions, the best approach is to create your base test file and use it as the central reference for your test files. Add it to your project root or a specific fixture directory and name it whatever you like.
 
 Make sure to set `"type": "module",` in your `package.json`.
 
@@ -86,12 +86,12 @@ export * from '@shopware-ag/acceptance-test-suite';
 
 export const test = base.extend<FixtureTypes>({
     
-    // Your own fixtures 
+    // Your fixtures 
     
 });
 ```
 
-Within your tests you can import the necessary dependencies from your base file.
+Within your tests, you can import the necessary dependencies from your base file.
 
 ```TypeScript
 // tests/MyFirstTest.spec.ts
@@ -105,4 +105,4 @@ test('My first test scenario.', async ({ AdminApiContext, DefaultSalesChannel })
 });
 ```
 
-In the example above you can see two Shopware specific fixtures that are used in the test, `AdminApiContext` and `DefaultSalesChannel`. Every fixture can be used as an argument within the test method. Read more about available [fixtures](./fixtures.md) in the next section.
+In the example above, you can see two Shopware-specific fixtures that are used in the test, `AdminApiContext` and `DefaultSalesChannel`. Every fixture can be used as an argument within the test method. Read more about available [fixtures](./fixtures.md) in the next section.

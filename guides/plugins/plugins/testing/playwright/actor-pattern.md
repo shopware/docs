@@ -6,27 +6,27 @@ nav:
 
 # Actor pattern
 
-The actor pattern is a basic concept that we added to our test suite. It is something not related to Playwright, but similar concepts exist in other testing frameworks. We implemented it, because we want to have reusable test logic that can be used in a human-readable form, without abstracting away Playwright as a framework. So you are totally free to use it or not. Any normal Playwright functionality will still be usable in your tests.
+The actor pattern is a basic concept that we added to our test suite. It is something not related to Playwright, but similar concepts exist in other testing frameworks. We implemented it to create reusable test logic that can be used in a human-readable form, without abstracting away Playwright as a framework. So you are free to use it or not. Any standard Playwright functionality will still be usable in your tests.
 
 The concept adds two new entities besides the already mentioned [page objects](./page-object.md)
 
 - **Actor**: A specific user with a given context performing actions (tasks) inside the application.
-- **Task**: A certain action performed by an actor.
+- **Task**: A specific action performed by an actor.
 - **Pages**: A page of the application on which an actor performs a task.
 
 ## Actors
 
-The actor class is just a lightweight solution to simplify the execution of reusable test logic or the navigation to a certain page.
+The Actor class is a lightweight solution to simplify the execution of reusable test logic or navigate to a specific page.
 
 ### Properties
 
 - `name`: The human-readable name of the actor.
-- `page`: A Playwright page context the actor is navigating.
+- `page`: A Playwright page context that the actor is navigating.
 
 ### Methods
 
 - `goesTo`: Accepts a URL of a page the actor should navigate to.
-- `attemptsTo`: Accepts a "task" function with reusable test logic the actor should perform.
+- `attemptsTo`: Accepts a "task" function with reusable test logic that the actor should perform.
 - `expects`: A one-to-one export of the Playwright `expect` method to use it in the actor pattern.
 
 These methods lead to the following pattern:
@@ -52,12 +52,12 @@ test('Product detail test scenario', async ({
 });
 ```
 
-In this example you can see that this pattern creates tests that are very comprehensible, even for non-tech people. They also make it easier to abstract simple test logic that might be used in different scenarios into executable tasks, like adding a product to the cart.
+In this example, you can see that this pattern creates very comprehensible tests, even for non-tech people. They also make it easier to abstract simple test logic that might be used in different scenarios into executable tasks, like adding a product to the cart.
 
 The test suite offers two different actors by default:
 
 - `ShopCustomer`: A user that is navigating the Storefront.
-- `ShopAdmin`: A user that is managing Shopware via the Administration.
+- `ShopAdmin`: A user who manages Shopware via the Administration.
 
 ## Tasks
 
@@ -75,7 +75,7 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
         DefaultSalesChannel,
         StorefrontAccountLogin,
         StorefrontAccount,
-    }, use)=> {
+ }, use)=> {
         const task = () => {
             return async function Login() {
                 const { customer } = DefaultSalesChannel;
@@ -87,15 +87,15 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
                 await StorefrontAccountLogin.loginButton.click();
 
                 await ShopCustomer.expects(StorefrontAccount.personalDataCardTitle).toBeVisible();
-            }
-        };
+ }
+ };
 
         await use(task);
-    },
+ },
 });
 ```
 
-This fixture is the "login" task and performs a simple Storefront login of the default customer. Everytime we need a logged-in shop customer, we can simply reuse this logic in our test.
+This fixture is the "login" task and performs a simple Storefront login of the default customer. Every time we need a logged-in shop customer, we can simply reuse this logic in our test.
 
 ```TypeScript
 import { test } from './../BaseTestFile';
@@ -106,9 +106,9 @@ test('Customer login test scenario', async ({ ShopCustomer, Login }) => {
 });
 ```
 
-You can create your own tasks in the same way to make them available for the actor pattern. Every task is just a simple Playwright fixture containing a function call with the corresponding test logic. Make sure to merge your task fixtures with other fixtures you created in your base test file. You can use the `mergeTests` method of Playwright to combine several fixtures into one test extension. Use `/src/tasks/shop-customer-tasks.ts` or `/src/tasks/shop-admin-tasks.ts` for that.
+You can create your tasks in the same way to make them available for the actor pattern. Every task is just a simple Playwright fixture containing a function call with the corresponding test logic. Make sure to merge your task fixtures with other fixtures you created in your base test file. You can use the `mergeTests` method of Playwright to combine several fixtures into one test extension. Use `/src/tasks/shop-customer-tasks.ts` or `/src/tasks/shop-admin-tasks.ts` for that.
 
-To keep tests easily readable, use names for your tasks so that in the test itself the code line resembles the `Actor.attemptsTo(doSomething)` pattern as good as possible.
+To keep tests easily readable, use names for your tasks so that in the test itself, the code line resembles the `Actor.attemptsTo(doSomething)` pattern as closely as possible.
 
 **Example**
 

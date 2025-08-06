@@ -14,26 +14,26 @@ The centralized type definition file, [ShopwareTypes.ts](https://github.com/shop
 
 ```
 export type ProductReview = components['schemas']['ProductReview'] & {
-    id: string,
-    productId: string,
-    salesChannelId: string,
-    title: string,
-    content: string,
-    points: number,
+ id: string,
+ productId: string,
+ salesChannelId: string,
+ title: string,
+ content: string,
+ points: number,
 }
 ```
 
-Within that example above you are importing the auto-generated type for `ProductReview` from the Shopware Admin API OpenAPI schema and extending it with additional or overridden fields using & { ... }.
+Within that example above, you are importing the auto-generated type for `ProductReview` from the Shopware Admin API OpenAPI schema and extending it with additional or overridden fields using & { ... }.
 
 Sometimes, you might want to remove fields from a type. TypeScript provides the Omit<T, K> utility to exclude fields from a type:
 
 ```
 export type Country = Omit<components['schemas']['Country'], 'states'> & {
-  id: string,
-  states: [{
-    name: string,
-    shortCode: string,
-  }],
+ id: string,
+ states: [{
+ name: string,
+ shortCode: string,
+ }],
 }
 ```
 
@@ -41,8 +41,8 @@ For custom use cases, simply define a custom type:
 
 ```
 export type CustomShippingMethod = {
-  name: string;
-  active: boolean;
-  deliveryTimeId: string;
+ name: string;
+ active: boolean;
+ deliveryTimeId: string;
 }
 ```

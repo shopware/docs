@@ -39,5 +39,5 @@ cd tests/acceptance
 npx playwright test --ui
 ```
 
-This will launch the Playwright Test Runner UI where you can select and run specific tests.
+This will launch the Playwright Test Runner UI, where you can select and run specific tests.
 By following these steps, you can work locally with the ATS and test your changes in your Shopware instance.

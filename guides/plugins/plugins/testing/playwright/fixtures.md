@@ -8,7 +8,7 @@ nav:
 
 ## DefaultSalesChannel
 
-We try to encapsulate test execution within the system under test and make tests as deterministic as possible. The idea is to have a separate sales channel created which is used to do tests within the standard Storefront. The `DefaultSalesChannel` fixture is a worker-scoped fixture and is there to achieve exactly that. Using it will provide you with a new sales channel with default settings, including a default Storefront customer.
+We try to encapsulate test execution within the system under test and make tests as deterministic as possible. The idea is to create a separate sales channel for testing purposes within the standard Storefront. The `DefaultSalesChannel` fixture is worker-scoped and is there to achieve exactly that. Using it will provide you with a new sales channel with default settings, including a default Storefront customer.
 
 ### Properties
 
@@ -18,7 +18,7 @@ We try to encapsulate test execution within the system under test and make tests
 
 ## AdminApiContext
 
-This context provides a ready to use client for the Admin-API of Shopware. It is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext), but will handle authentication for you, so you can start doing API request to the Shopware instance under test right away. You can use it, for example, for test data creation or API testing. Learn more about the usage of the Shopware Admin-API in the [API documentation](https://shopware.stoplight.io/docs/admin-api).
+This context provides a ready-to-use client for the Admin-API of Shopware. It is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext), but will handle authentication for you, so you can start making API requests to the Shopware instance under test right away. You can use it, for example, for test data creation or API testing. Learn more about the usage of the Shopware Admin-API in the [API documentation](https://shopware.stoplight.io/docs/admin-api).
 
 ### Methods
 
@@ -44,13 +44,13 @@ test('Property group test scenario', async ({ AdminApiContext }) => {
             sortingType: 'name',
             options: [{
                 name: 'Small',
-            }, {
+ }, {
                 name: 'Medium',
-            }, {
+ }, {
                 name: 'Large',
-            }],
-        },
-    });
+ }],
+ },
+ });
 
     expect(response.ok()).toBeTruthy();
 });
@@ -58,13 +58,13 @@ test('Property group test scenario', async ({ AdminApiContext }) => {
 
 ## StoreApiContext
 
-This context provides a ready to use client for the Store-API of Shopware and is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext). You can do API calls on behalf of a Storefront user. Learn more about the usage of the Shopware Store-API in the [documentation](https://shopware.stoplight.io/docs/store-api/).
+This context provides a ready-to-use client for the Store-API of Shopware and is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext). You can do API calls on behalf of a Storefront user. Learn more about the usage of the Shopware Store-API in the [documentation](https://shopware.stoplight.io/docs/store-api/).
 
-Note that, other than the AdminApiContext, the StoreApiContext won't do an automated login of the shop customer. This is because a Storefront user isn't always a registered user by default, and you might want to test this behaviour explicitly. You can use the `login` method to simply log in as a registered shop customer.
+Note that, other than the AdminApiContext, the StoreApiContext won't do an automated login of the shop customer. This is because a Storefront user isn't always a registered user by default, and you might want to test this behaviour explicitly. You can use the `login` method to log in as a registered shop customer.
 
 ### Methods
 
-- `login(user)`: Does a login of a customer and will store the login state for future requests.
+- `login(user)`: Does a login of a customer and stores the login state for future requests.
 - `get`
 - `post`
 - `patch`
@@ -85,7 +85,7 @@ test('Store customer test scenario', async ({ StoreApiContext, DefaultSalesChann
     // Create a new cart for the customer.
     const response = await StoreApiContext.post('checkout/cart', {
         data: { name: 'default-customer-cart' },
-    });
+ });
 
     expect(response.ok()).toBeTruthy();
 });
@@ -107,7 +107,7 @@ test('Shopware admin test scenario', async ({ AdminPage }) => {
 });
 ```
 
-Note that this is just a very rough example. In most cases you won't use this page context directly, but maybe a [page-object](#page-objects) using this page.
+Note that this is just a very rough example. In most cases, you won't use this page context directly, but maybe a [page-object](#page-objects) using this page.
 
 ## StorefrontPage
 
@@ -115,4 +115,4 @@ This fixture provides a Playwright [page](https://playwright.dev/docs/api/class-
 
 ## Add new fixtures
 
-To add new general fixtures create them inside the `src/fixtures` folder. Keep in mind that you need to merge your new fixture inside the `/src/index.ts` file.
+To add new general fixtures, create them inside the `src/fixtures` folder. Keep in mind that you need to merge your new fixture inside the `/src/index.ts` file.

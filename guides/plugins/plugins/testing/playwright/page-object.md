@@ -6,7 +6,7 @@ nav:
 
 # Page Objects
 
-Page objects can be helpful to simplify the usage of element selectors and make them available in a reusable way. They help you to organize page-specific locators and provide helpers for interacting with a given page. Within our test suite we try to keep the page objects very simple and not to add too much logic to them. So most of the page objects resemble just a collection of element locators and maybe some little helper methods.
+Page objects can be helpful to simplify the usage of element selectors and make them available in a reusable way. They help you to organize page-specific locators and provide helpers for interacting with a given page. Within our test suite, we try to keep the page objects very simple and not add too much logic to them. So most of the page objects resemble just a collection of element locators and maybe some little helper methods.
 
 There are several page objects to navigate the different pages of the Administration and Storefront. You can use them as any other fixture within your test. There is also a guide on page objects in the official Playwright [documentation](https://playwright.dev/docs/pom).
 
@@ -30,11 +30,11 @@ The `modules` folder is designed to house reusable utility functions that operat
 For example, utility functions like `getCustomFieldCardLocators` or `getSelectFieldListitem` are used across multiple page objects to handle specific functionality (e.g., managing custom fields or select field list items). Centralizing these utilities in the `modules` folder improves code organization, readability, and reduces duplication.
 Create a new class inside a module when it helps to streamline the codebase and avoid repetitive logic across page objects.
 
-You can find how `getCustomFieldCardLocators` is defined in the [modules folder](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/page-objects/administration/modules/CustomFieldCard.ts) and used in other page object class [here](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/page-objects/administration/ProductDetail.ts).
+You can find how `getCustomFieldCardLocators` is defined in the [modules folder](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/page-objects/administration/modules/CustomFieldCard.ts) and used in other [page object classes](https://github.com/shopware/acceptance-test-suite/blob/trunk/src/page-objects/administration/ProductDetail.ts).
 
 ## Add new Page Objects
 
-Page objects are organized mainly by their usage in the administration or storefront. To add a new page object just add it in the respective subfolder and reference it in the `AdministrationPages.ts` or `StorefrontPages.ts`.
+Page objects are organized mainly by their usage in the administration or storefront. To add a new page object, simply add it to the respective subfolder and reference it in `AdministrationPages.ts` or `StorefrontPages.ts`.
 
 **Usage**
 
