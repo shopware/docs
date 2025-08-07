@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Installation & Configuration
+  title: Install & Configure
   position: 11
 ---
 
@@ -16,7 +16,7 @@ Start by creating your own [Playwright](https://playwright.dev/docs/intro) proje
 npm init playwright@latest
 ```
 
-Add the package for the Shopware Acceptance Test Suite to your project.
+Add the package for the Shopware ATS to your project.
 
 ```shell
 npm install @shopware-ag/acceptance-test-suite
@@ -32,7 +32,7 @@ npx playwright install-deps
 
 ## Configuration
 
-The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test, you can use the following environment variables. You can choose between two authentication options: admin user or shopware integration (recommended).
+The test suite is designed to test against any Shopware instance with pure API usage. To grant access to the instance under test, you can use the following environment variables. You can choose between two authentication options: **admin user** or **shopware integration** (recommended).
 
 ```dotenv
 # .env
@@ -105,4 +105,4 @@ test('My first test scenario.', async ({ AdminApiContext, DefaultSalesChannel })
 });
 ```
 
-In the example above, you can see two Shopware-specific fixtures that are used in the test, `AdminApiContext` and `DefaultSalesChannel`. Every fixture can be used as an argument within the test method. Read more about available [fixtures](./fixtures.md) in the next section.
+In the example above, you can see two Shopware-specific fixtures that are used in the test, `AdminApiContext` and `DefaultSalesChannel`. Every fixture can be used as an argument within the test method. Read more about available [fixtures](./fixtures.md) in the following section.

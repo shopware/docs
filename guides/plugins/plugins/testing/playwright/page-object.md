@@ -8,7 +8,7 @@ nav:
 
 Page objects can be helpful to simplify the usage of element selectors and make them available in a reusable way. They help you to organize page-specific locators and provide helpers for interacting with a given page. Within our test suite, we try to keep the page objects very simple and not add too much logic to them. So most of the page objects resemble just a collection of element locators and maybe some little helper methods.
 
-There are several page objects to navigate the different pages of the Administration and Storefront. You can use them as any other fixture within your test. There is also a guide on page objects in the official Playwright [documentation](https://playwright.dev/docs/pom).
+There are several page objects to navigate the different pages of the Administration and Storefront. You can use them as any other fixture within your test. There is also a guide on page objects in the [official Playwright documentation](https://playwright.dev/docs/pom).
 
 ## Usage
 
@@ -34,9 +34,9 @@ You can find how `getCustomFieldCardLocators` is defined in the [modules folder]
 
 ## Add new Page Objects
 
-Page objects are organized mainly by their usage in the administration or storefront. To add a new page object, simply add it to the respective subfolder and reference it in `AdministrationPages.ts` or `StorefrontPages.ts`.
+Page objects are organized mainly by their usage in the Administration or Storefront. To add a new page object, simply add it to the respective subfolder and reference it in `AdministrationPages.ts` or `StorefrontPages.ts`.
 
-**Usage**
+### Usage
 
 ```TypeScript
 import { test as base } from '@playwright/test';

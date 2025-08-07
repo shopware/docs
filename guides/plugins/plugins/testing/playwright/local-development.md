@@ -6,11 +6,11 @@ nav:
 
 # Local development with ATS
 
-To work locally with the Acceptance Test Suite (ATS) and your development setup, follow these steps:
+To work locally with ATS and your development setup, follow these steps:
 
 ## Create your Page Objects and TestDataService methods
 
-In the ATS repository ([shopware/acceptance-test-suite](https://github.com/shopware/acceptance-test-suite)), create or modify your custom page objects, TestDataService methods, or any related files.
+In the ATS repository ([shopware/acceptance-test-suite](https://github.com/shopware/acceptance-test-suite)), create or modify your custom page objects, `TestDataService` methods, or any related files.
 
 After making your changes, build the project by running the following command in the ATS repository:
 
@@ -24,11 +24,11 @@ Copy the generated artifacts (e.g., all files in the `dist` folder) from the ATS
 
 ```bash
 cp -R dist/* <path-to-your-shopware-instance>/tests/acceptance/node_modules/@shopware-ag/acceptance-test-suite/dist
-````
+```
 
 ### Adjust tests, Page Objects, and methods
 
-In your Shopware instance, adjust any tests, page objects, TestDataService methods, or other related files to align them with the changes made in the ATS repository.
+In your Shopware instance, adjust any tests, page objects, `TestDataService` methods, or other related files to align them with the changes made in the ATS repository.
 
 ### Run the tests
 

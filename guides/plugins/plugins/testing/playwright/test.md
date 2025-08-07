@@ -40,7 +40,7 @@ SHOPWARE_VERSION=trunk docker compose up --wait shopware
 ```
 
 <details>
-<summary>What if the version I'd like to test is not available as a pre-built image?</summary>
+<summary>What if the version I would like to test is not available as a pre-built image?</summary>
 
 If you want to test with an image that's not available already, you can build it yourself by exporting a few more variables:
 

@@ -4,9 +4,9 @@ nav:
   position: 12
 ---
 
-## Deployment Process
+# Deployment Process
 
-To deploy a new version of the Acceptance Test Suite, follow the steps below:
+To deploy a new version of the ATS, follow the steps below:
 
 1. **Create a Pull Request**  
  Open a new pull request with your changes. Ensure that all commits follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification to support automated versioning and changelog generation.
@@ -21,13 +21,12 @@ To deploy a new version of the Acceptance Test Suite, follow the steps below:
  The deployment pull request requires an additional approval before it can be merged.
 
 5. **Merge the Deployment PR**  
- Once the deployment PR is approved and merged, a new release of the Acceptance Test Suite will be created in the GitHub repository. This action will also publish a new package version to NPM under  
- [@shopware-ag/acceptance-test-suite](https://www.npmjs.com/package/@shopware-ag/acceptance-test-suite).
+ Once the deployment PR is approved and merged, a new release of the ATS will be created in the GitHub repository. This action will also publish a new package version to NPM under [@shopware-ag/acceptance-test-suite](https://www.npmjs.com/package/@shopware-ag/acceptance-test-suite).
 
 6. **Use the New Version**  
  After a short delay, the newly published version will be available on NPM. You can then reference it in your project folders as needed.
 
-### Troubleshooting
+## Troubleshooting
 
 If you encounter any issues with the automated deployment process, please check the following [troubleshooting page of release-please](https://github.com/googleapis/release-please?tab=readme-ov-file#release-please-bot-does-not-create-a-release-pr-why).
 
@@ -47,4 +46,5 @@ In most cases, the problem is related to the commit messages not following the [
     git push origin <your-branch>
   ```
 
-- **Adjust the release notes:** Remember to adjust the release notes in the deployment PR.
+- **Adjust the release notes** 
+  Remember to adjust the release notes in the deployment PR.
