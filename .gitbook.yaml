@@ -81,3 +81,5 @@ redirects:
     products/paas/shopware/CLI/repository.html: products/paas/shopware/guides/setting-up-repository-access.html
     products/paas/shopware/setup-shopware-for-paas.html: products/paas/shopware/get-started/prepare-codebase.html
     products/paas/shopware/project_setup.html: products/paas/shopware/get-started/quickstart.html
+    guides/plugins/plugins/testing/end-to-end-testing.html: guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing.html
+    resources/guidelines/testing/cypress-best-practices.html: guides/plugins/plugins/testing/cypress/cypress-best-practises.html
