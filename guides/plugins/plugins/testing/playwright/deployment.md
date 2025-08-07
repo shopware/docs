@@ -47,4 +47,5 @@ In most cases, the problem is related to the commit messages not following the [
   ```
 
 - **Adjust the release notes** 
-  Remember to adjust the release notes in the deployment PR.
+  
+    Remember to adjust the release notes in the deployment PR.
