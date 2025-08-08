@@ -260,10 +260,12 @@ $ bin/console [command] [parameters]
 
 | Command | Description | Version |
 | :--- | :--- | :--- |
+| `scheduled-task:deactivate` | Deactivate a scheduled task |
 | `scheduled-task:register` | Registers all scheduled tasks |
 | `scheduled-task:run` | Runs scheduled tasks |
 | `scheduled-task:run-single` | Runs single scheduled tasks | 6.5.5.0 |
 | `scheduled-task:list` | Lists all scheduled tasks | 6.5.5.0 |
+| `scheduled-task:schedule` | Schedule a scheduled task |
 
 ### Secrets
 
