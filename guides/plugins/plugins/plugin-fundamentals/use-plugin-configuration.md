@@ -142,3 +142,103 @@ class MySubscriber implements EventSubscriberInterface
 ::: info
 Set the `saleschannelId` to `null` for the plugin configuration to be used by all Sales Channels else set to the corresponding Sales Channel ID.
 :::
+
+## Reading configuration in JavaScript
+
+While the above examples show how to read plugin configuration in PHP, you might also need to access these values in JavaScript for Administration extensions or Storefront functionality.
+
+### Administration API access
+
+To access your plugin's configuration from JavaScript in the Administration, you should use the `systemConfigApiService` which wraps the system-config endpoints.
+
+#### Using injection in Vue components
+
+```javascript
+// Example: Reading plugin configuration in Administration Vue component
+export default Shopware.Component.wrapComponentConfig({
+    inject: ['systemConfigApiService'],
+    
+    async created() {
+        await this.loadPluginConfig();
+    },
+    
+    methods: {
+        async loadPluginConfig() {
+            try {
+                const config = await this.systemConfigApiService.getValues('SwagBasicExample.config');
+                const exampleValue = config['SwagBasicExample.config.example'];
+                
+                console.log('Plugin configuration value:', exampleValue);
+                return exampleValue;
+            } catch (error) {
+                console.error('Error fetching plugin configuration:', error);
+            }
+        }
+    }
+});
+```
+
+#### Using direct service access
+
+```javascript
+// Example: Reading plugin configuration using direct service access
+async function getPluginConfig() {
+    try {
+        const systemConfigApiService = Shopware.ApiService.getByName('systemConfigApiService');
+        const config = await systemConfigApiService.getValues('SwagBasicExample.config');
+        const exampleValue = config['SwagBasicExample.config.example'];
+        
+        console.log('Plugin configuration value:', exampleValue);
+        return exampleValue;
+    } catch (error) {
+        console.error('Error fetching plugin configuration:', error);
+    }
+}
+```
+
+::: warning
+Your plugin needs the `system_config:read` permission to access this API endpoint.
+:::
+
+### Storefront template access
+
+In Storefront templates, you can use the `config()` twig function to access plugin configuration values directly without making API calls:
+
+```twig
+{# Example: Reading plugin configuration in Storefront templates #}
+{% set exampleValue = config('SwagBasicExample.config.example') %}
+
+{% if exampleValue %}
+    <div class="plugin-config-value">{{ exampleValue }}</div>
+{% endif %}
+```
+
+### Storefront JavaScript access
+
+For Storefront JavaScript plugins, you can pass configuration values from Twig templates to your JavaScript code:
+
+```twig
+{# In your Storefront template #}
+<script>
+    window.pluginConfig = {
+        example: {{ config('SwagBasicExample.config.example')|json_encode|raw }}
+    };
+</script>
+```
+
+```javascript
+// In your Storefront JavaScript plugin
+const { PluginBaseClass } = window;
+
+export default class ExamplePlugin extends PluginBaseClass {
+    init() {
+        // Access the configuration value passed from Twig
+        const exampleConfig = window.pluginConfig?.example;
+        
+        if (exampleConfig) {
+            console.log('Plugin configuration:', exampleConfig);
+            // Use the configuration value in your plugin logic
+        }
+    }
+}
+```
