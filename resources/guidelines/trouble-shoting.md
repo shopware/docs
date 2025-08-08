@@ -31,7 +31,7 @@ You might consider [activating this feature](../../guides/hosting/performance/pe
 ### High Memory Usage
 
 While using certain APIs or e.g., the `EntityRepository` it might happen that the memory usage is increasing constantly.
-First you should make sure that you have set the `APP_ENV` variable to `prod` in your `.env` file.
+First, you should make sure that you have set the `APP_ENV` variable to `prod` in your `.env` file.
 If the `APP_ENV` is set to `dev` Shopware keeps many objects for debugging purposes, which will lead to high memory usage.
 If the memory usage issue persists after setting `APP_ENV` to `prod`, check if you are using the [sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads).
 Also consider changing the `indexing-behavior` to your needs if you need to sync many entities.
