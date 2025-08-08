@@ -148,6 +148,7 @@ Additionally, you can configure the Shopware installation using the following en
 - `SHOPWARE_STORE_ACCOUNT_EMAIL` - The email address of the Shopware account
 - `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
 - `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
+- `SHOPWARE_USAGE_DATA_CONSENT` - Controls Shopware Usage Data sharing (`accepted` or `revoked`), overwrites Administration choice
 
 ## One Time Tasks
 

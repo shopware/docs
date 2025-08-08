@@ -36,6 +36,7 @@ This page lists all environment variables that can be used to configure Shopware
 | `COMPOSER_HOME`                        | `/tmp/composer`           | Caching for the Plugin Manager                                                                                       |
 | `SHOPWARE_HTTP_CACHE_ENABLED`          | `1`                       | Is HTTP Cache enabled?                                                                                               |
 | `SHOPWARE_HTTP_DEFAULT_TTL`            | `7200`                    | Default TTL for HTTP Cache                                                                                           |
+| `SHOPWARE_USAGE_DATA_CONSENT`          | (empty)                   | Controls Shopware Usage Data sharing (`accepted` or `revoked`), overwrites Administration choice                     |
 | `MESSENGER_TRANSPORT_DSN`              | (empty)                   | DSN for default async queue (example: `amqp://guest:guest@localhost:5672/%2f/default`)                               |
 | `MESSENGER_TRANSPORT_LOW_PRIORITY_DSN` | (empty)                   | DSN for low priority queue (example: `amqp://guest:guest@localhost:5672/%2f/low_prio`)                               |
 | `MESSENGER_TRANSPORT_FAILURE_DSN`      | (empty)                   | DSN for failed messages queue (example: `amqp://guest:guest@localhost:5672/%2f/failure`)                             |
