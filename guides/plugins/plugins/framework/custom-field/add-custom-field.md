@@ -244,6 +244,7 @@ use \Shopware\Core\Defaults;
 $this->customFieldSetRepository->create([
     [
         'name' => 'swag_example_set',
+        'global' => true,
         'config' => [
             'label' => [
                 'en-GB' => 'English custom field set label',
@@ -276,7 +277,7 @@ The translated labels are added to both the field and the set, which are going t
 If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
 ::: warning
-Custom field sets are deletable by the shop administrator, so you cannot rely on their existence.
+Custom field sets are deletable by the shop administrator, when it is not marked as global, so you cannot rely on their existence.
 :::
 
 To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`.
