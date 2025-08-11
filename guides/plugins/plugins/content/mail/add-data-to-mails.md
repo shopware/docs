@@ -93,6 +93,7 @@ Here's the respective example `services.xml`:
 ```
 
 ## Adding data via subscriber
+
 In many cases, adding mail data via an event subscriber is a suitable solution. This way, you avoid the overhead of decorating the mail service. Simply create an event subscriber and listen to the `MailBeforeValidateEvent` event. There, you can safely add template or mail data.
 Here is a small example:
 
