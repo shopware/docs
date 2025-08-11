@@ -66,7 +66,7 @@ To add new conditions to an existing migration entity, you need to update the XM
    </migration>
    ```
 
-**Note**: The `<conditions>` element allows you to specify additional filtering criteria for the migration entity. Each `<condition>` can be a simple SQL condition that will be applied to the source data. All of these conditions will be merged with the existing conditions defined in the base migration entity.
+**Note**: The `<conditions>` element allows you to specify additional filtering criteria for the migration entity. Each `<condition>` can be a simple SQL condition that will be applied to the source data. All of these conditions will be merged with the existing conditions defined in the base migration entity and applied together with `AND` logic.
 
 ## Adding New Fields to an Existing Entity
 

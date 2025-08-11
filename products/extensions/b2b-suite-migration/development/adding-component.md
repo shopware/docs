@@ -39,8 +39,20 @@ This section guides developers on adding a new component to the migration proces
   }
   ```
   
-- The `priority` attribute in the tag determines the order of execution among multiple configurator. Higher values execute first.
+  - The `priority` attribute in the tag determines the order of execution among multiple configurator. Higher values execute first.
+    :::info
+    You can run this command to see the order of execution:
 
+    ```bash
+    php bin/console debug:container --tag=b2b.migration.configurator
+    ```
+
+    The default priorities for existing configurator are:
+    - `EmployeeManagementMigrationConfigurator` has a priority of `9000`.
+    - `QuoteB2BMigrationConfigurator` has a priority of `8000`.
+    - `ShoppingListMigrationConfigurator` has a priority of `7000`.
+    :::
+  
 ## Create XML Mapping File
 
 ### Entity Definition
@@ -96,7 +108,7 @@ This section guides developers on adding a new component to the migration proces
 </entity>
 ```
 
-- **Explanation**: This filters records for the entity `migration_b2b_component_business_partner` (as defined in the XML configuration) to include only those where the `is_debtor` field equals `1`.
+- **Explanation**: This filters the records from the `b2b_customer_data` source table (as specified in the XML configuration) to include only entries where the `is_debtor` field is set to `1`.
 - **Key Points**:
   - Conditions are written as SQL-like expressions (e.g., `is_debtor = 1`, `status != 'inactive'`).
   - Multiple conditions can be specified, and they are combined with `AND` logic.
