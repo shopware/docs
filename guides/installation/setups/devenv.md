@@ -270,6 +270,7 @@ Adminer is a full-featured database management tool written in PHP.
 
 [http://127.0.0.1:9080](http://127.0.0.1:9080)
 The default credentials are:
+
 * User: shopware
 * Password: shopware
 
