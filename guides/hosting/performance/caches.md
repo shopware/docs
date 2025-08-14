@@ -81,7 +81,7 @@ When using Redis as a cache backend with `cache.adapter.redis_tag_aware`, you ma
 2. **Namespace accumulation**: Each deployment may create new Redis namespaces, leaving old ones unused
 3. **volatile-lru limitation**: The `volatile-lru` eviction policy only removes expired cache entries, not the associated tags
 
-The [FroshTools](https://github.com/FriendsOfShopware/FroshTools) extension provides commands to clean up Redis namespaces and tags:
+The [FroshTools](https://github.com/FriendsOfShopware/FroshTools) extension provides **experimental** commands to clean up Redis namespaces and tags:
 
 ```bash
 # Clean up old Redis namespaces (run after deployments)
