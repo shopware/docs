@@ -28,7 +28,7 @@ This page lists all environment variables that can be used to configure Shopware
 | `DATABASE_SSL_KEY`                     | (empty)                   | Path to SSL Key file                                                                                                 |
 | `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | (empty)                   | Disables verification of the server certificate (1 disables it)                                                      |
 | `MAILER_DSN`                           | `null://localhost`        | Mailer DSN (Admin Configuration overwrites this)                                                                     |
-| `ENABLE_SERVICES`                      | `auto`                    | Determines if services are enabled, auto detects that based on `APP_ENV`, other possible values are `true`, `false` & `0`. When set to `0`, Shopware Services won't be installed on the system |
+| `ENABLE_SERVICES`                      | `auto`                    | Determines if services are enabled, auto detects that based on `APP_ENV`, other possible values are `true` (or `1`), `false` & `0`. When set to `0`, Shopware Services won't be installed on the system |
 | `OPENSEARCH_URL`                       | (empty)                   | Open Search Hosts                                                                                                    |
 | `SHOPWARE_ES_ENABLED`                  | `0`                       | Open Search Support Enabled?                                                                                         |
 | `SHOPWARE_ES_INDEXING_ENABLED`         | `0`                       | Open Search Indexing Enabled?                                                                                        |
