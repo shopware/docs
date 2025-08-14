@@ -29,10 +29,10 @@ A **configurator** is a PHP class that defines the migration process for a compo
 - Field mappings between source and target tables (see [Field Mapping Configuration](../development/fields-mapping.md)).
 - The XML configuration file path for mappings.
 
-Configurator extend classes like `AbstractB2BMigrationConfigurator` or `AbstractB2BExtensionMigrationConfigurator` for base or extended migrations, respectively.
+Configurator extends classes like `AbstractB2BMigrationConfigurator` or `AbstractB2BExtensionMigrationConfigurator` for base or extended migrations, respectively.
 
 :::info
-Configurator provide a structured way to customize and control the migration process for each component.
+Configurator provides a structured way to customize and control the migration process for each component.
 :::
 
 ## Handler

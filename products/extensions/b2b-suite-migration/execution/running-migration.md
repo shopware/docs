@@ -11,7 +11,7 @@ This section describes how to execute and monitor the migration process.
 
 ## Commands
 
-In this section, we will introduce 2 helpful commands:
+In this section, we will introduce two helpful commands:
 
 - `b2b:migrate:commercial`: Start the migration process.
 - `b2b:migrate:progress`: Check migration status.
@@ -84,7 +84,7 @@ And the **Status** column will indicate the current state of the migration:
      bin/console b2b:migrate:progress
    ```
 
-In order to monitor the migration process effectively, it is recommended to run this command in a separate terminal window while the migration is ongoing. This allows you to see real-time updates on the migration status. You could also add `--watch` option to automatically refresh the output every 5 seconds:
+To monitor the migration process effectively, it is recommended to run this command in a separate terminal window while the migration is ongoing. This allows you to see real-time updates on the migration status. You could also add `--watch` option to automatically refresh the output every 5 seconds:
 
    ```bash
    bin/console b2b:migrate:progress --watch
