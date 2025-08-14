@@ -72,3 +72,91 @@ redis://auth@/var/run/redis.sock
 ```
 
 For more information or other adapters checkout [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle) documentation.
+
+### Redis Cache Tag Cleanup
+
+When using Redis as a cache backend with `cache.adapter.redis_tag_aware`, you may encounter an issue where cache tags accumulate over time without proper cleanup. This happens because:
+
+1. **Cache tags don't have expiry times**: Cache tags themselves don't have TTL (Time To Live) values, even though the actual cache entries do
+2. **Namespace accumulation**: Each deployment may create new Redis namespaces, leaving old ones unused
+3. **volatile-lru limitation**: The `volatile-lru` eviction policy only removes expired cache entries, not the associated tags
+
+#### The Problem
+
+You can verify this issue by checking your Redis instance:
+
+```bash
+# Connect to Redis CLI
+redis-cli
+
+# Check TTL for a cache tag
+TTL "ZZiM8ztKU0:\x01tags\x01product-a8682854b7244eaa920513a0a6e84a61"
+# Returns: (integer) -1 (meaning no expiry)
+```
+
+The `-1` response indicates that the tag has no expiry time, which means it will never be automatically removed by Redis.
+
+#### Why This Happens
+
+Cache tags are complex to manage because:
+- Different cache items can have different expiry times
+- Tags need to reference multiple cache entries
+- Setting expiry on tags would require calculating the maximum expiry time of all affected caches
+- Symfony's default behavior doesn't include automatic tag cleanup
+
+#### Solutions
+
+##### 1. Manual Cleanup with FroshTools
+
+The [FroshTools](https://github.com/FriendsOfShopware/FroshTools) extension provides commands to clean up Redis namespaces and tags:
+
+```bash
+# Clean up old Redis namespaces (run after deployments)
+bin/console frosh:redis:namespace:cleanup
+
+# Clean up orphaned cache tags
+bin/console frosh:redis-tag:cleanup
+
+# Use dry-run option to see what would be cleaned up
+bin/console frosh:redis-tag:cleanup --dry-run
+```
+
+##### 2. Automated Cleanup
+
+Consider setting up automated cleanup processes:
+
+```bash
+# Add to your deployment script
+bin/console frosh:redis:namespace:cleanup
+bin/console frosh:redis-tag:cleanup
+
+# Or set up a cron job
+0 2 * * * cd /path/to/shopware && bin/console frosh:redis:namespace:cleanup
+0 3 * * * cd /path/to/shopware && bin/console frosh:redis-tag:cleanup
+```
+
+##### 3. Redis Configuration Optimization
+
+Ensure your Redis configuration is optimized for cache usage:
+
+```conf
+# redis.conf
+maxmemory-policy volatile-lru
+maxmemory 2gb
+```
+
+#### Best Practices
+
+1. **Run cleanup after deployments**: Always run namespace cleanup after deploying new versions
+2. **Monitor tag accumulation**: Regularly check Redis memory usage and tag counts
+3. **Use dry-run**: Test cleanup commands with `--dry-run` before executing
+4. **Automate the process**: Integrate cleanup into your CI/CD pipeline
+5. **Monitor performance**: Watch for any performance impact during cleanup operations
+
+#### Alternative Approaches
+
+If tag cleanup becomes a significant issue, consider:
+
+- Using a different cache backend (e.g., filesystem for smaller installations)
+- Implementing custom cache tag management
+- Using external reverse proxy caching (Varnish, Fastly) instead of application-level caching
