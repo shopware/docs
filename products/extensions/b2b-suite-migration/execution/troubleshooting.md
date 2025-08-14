@@ -41,7 +41,7 @@ Additionally, you can specify which component to roll back. This is useful if yo
   bin/console b2b:migrate:rollback quote_management shopping_list
   ```
 
-**Note**: The `employee_management` component is a prerequisite for all other B2B components and. Therefore, if you specify `employee_management` in the rollback command, it will roll back all other components as well.
+**Note**: The `employee_management` component is a prerequisite for all other B2B components. Therefore, if you specify `employee_management` in the rollback command, it will roll back all other components as well.
 
 :::info
 The order of components listed in the command does not matter for rollback. The command will process all specified components in the reverse order of their migration sequence.

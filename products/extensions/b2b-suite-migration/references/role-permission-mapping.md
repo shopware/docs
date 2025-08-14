@@ -7,7 +7,7 @@ nav:
 
 # Role and Permission Mapping
 
-This section documents the role mappings from B2B Suite to B2B Commercial, detailing how permissions and roles are transformed during the migration. Roles define the permissions assigned to employee within the B2B Commercial, and dependencies ensure that related permissions are included to maintain functionality. This reference is essential for developers to understand how roles and permissions are structured in the new system.
+This section documents the role mappings from B2B Suite to B2B Commercial, detailing how permissions and roles are transformed during the migration. Roles define the permissions assigned to employees within the B2B Commercial, and dependencies ensure that related permissions are included to maintain functionality. This reference is essential for developers to understand how roles and permissions are structured in the new system.
 
 ## Permission Mapping
 
