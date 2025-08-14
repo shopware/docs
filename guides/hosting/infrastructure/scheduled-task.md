@@ -53,9 +53,17 @@ You can list all scheduled tasks with `bin/console scheduled-task:list` command.
 
 ## Scheduling a scheduled task
 
+::: info
+Available starting with Shopware 6.7.2.0.
+:::
+
 You can schedule a scheduled task with the command `bin/console scheduled-task:schedule`.
 
 ## Deactivating a scheduled task
+
+::: info
+Available starting with Shopware 6.7.2.0.
+:::
 
 You can deactivate a scheduled task with the command `bin/console scheduled-task:deactivate`.
 

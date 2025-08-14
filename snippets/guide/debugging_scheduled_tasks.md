@@ -6,6 +6,10 @@ You can directly run a single scheduled task without the queue. This is useful f
 bin/console scheduled-task:run-single log_entry.cleanup
 ```
 
+::: info
+Available starting with Shopware 6.7.2.0.
+:::
+
 You can schedule a scheduled task with the command `scheduled-task:schedule` or deactivate a scheduled task with the command `scheduled-task:deactivate`
 
 ```shell
