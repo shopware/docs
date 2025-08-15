@@ -1916,3 +1916,4 @@ youtube
 zipignore
 zlib
 zsh
+zstd
