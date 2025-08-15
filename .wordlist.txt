@@ -177,6 +177,7 @@ CheckoutOrderPlacedCriteriaEvent
 CheckoutOrderPlacedEvent
 CheckoutRegisterPage
 CheckoutRegisterPageLoadedEvent
+Checksums
 ChildCount
 ChildCountField
 ChildrenAssociation
@@ -398,6 +399,7 @@ FrameworkBundle
 FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
+FroshTools
 Fullstack
 GBP
 GDPR
@@ -907,7 +909,6 @@ TemplateDataStorer
 TemplateNamespaceHierarchyBuilder
 TestCase
 TestDataService
-TestDataService
 TestSecret
 TestStockUpdateFilter
 TimeRangeRule
@@ -995,7 +996,6 @@ Vuei
 Vuex
 WASM
 WCAG
-WSL
 WSL
 WarehouseGroup
 WarehouseGroups
@@ -1130,6 +1130,7 @@ changesets
 chargeback
 cheapestpricefacade
 checkboxes
+checksums
 ci
 classmap
 classname
