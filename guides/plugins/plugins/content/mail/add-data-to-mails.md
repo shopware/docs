@@ -110,7 +110,6 @@ use Shopware\Core\Content\MailTemplate\Service\Event\MailBeforeValidateEvent;
 
 class MyMailSubscriber implements EventSubscriberInterface
 {
-    public function __construct() {}
 
     public static function getSubscribedEvents(): array
     {
@@ -123,14 +122,10 @@ class MyMailSubscriber implements EventSubscriberInterface
         MailBeforeValidateEvent $event
     ): void {
         $context = $event->getContext();
-        $data = $event->getData();
-        $templateData = $event->getTemplateData();
+        $data = $event->getData(); // Get mail data
+        $templateData = $event->getTemplateData(); // Get mail template data
 
-        $event->setTemplateData([
-            'key' => 'key',
-        ]); // Example of set template data
-
-        $event->addTemplateData('key', 'value'); // Example of adding data to the template
+        $event->addTemplateData('key', 'value'); // Example of adding data to the mail template
     }
 }
 ```
