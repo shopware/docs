@@ -91,3 +91,41 @@ Here's the respective example `services.xml`:
     </services>
 </container>
 ```
+
+## Adding data via subscriber
+
+In many cases, adding mail data via an event subscriber is a suitable solution. This way, you avoid the overhead of decorating the mail service. Simply create an event subscriber and listen to the `MailBeforeValidateEvent` event. There, you can safely add template or mail data.
+Here is a small example:
+
+```php
+// <plugin root>/src/Subscriber/MyMailSubscriber.php
+<?php
+
+declare(strict_types=1);
+
+namespace Swag\BasicExample\Subscriber;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Shopware\Core\Content\MailTemplate\Service\Event\MailBeforeValidateEvent;
+
+class MyMailSubscriber implements EventSubscriberInterface
+{
+
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            MailBeforeValidateEvent::class => 'beforeMailValidate'
+        ];
+    }
+
+    public function beforeMailValidate(
+        MailBeforeValidateEvent $event
+    ): void {
+        $context = $event->getContext();
+        $data = $event->getData(); // Get mail data
+        $templateData = $event->getTemplateData(); // Get mail template data
+
+        $event->addTemplateData('key', 'value'); // Example of adding data to the mail template
+    }
+}
+```
