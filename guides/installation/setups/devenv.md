@@ -268,7 +268,11 @@ Caddy is a powerful, enterprise-ready, open-source web server with automatic HTT
 
 Adminer is a full-featured database management tool written in PHP.
 
-[http://localhost:8010](http://localhost:8010)
+[http://127.0.0.1:9080](http://127.0.0.1:9080)
+The default credentials are:
+
+* User: shopware
+* Password: shopware
 
 ### Mailhog
 
