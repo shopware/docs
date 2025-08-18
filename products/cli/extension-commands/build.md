@@ -134,6 +134,35 @@ build:
 
 This skips unnecessary `npm install` and `npm ci` commands and only installs the runtime dependencies.
 
+### Checksums
+
+When creating an archive using `shopware-cli extension zip`, a `checksum.json` file is automatically generated. This file contains checksums for all files in the extension, which can be used to verify the integrity of the extension after installation.
+
+If you want to exclude certain files or paths from the checksum calculation, you can configure this in your `.shopware-extension.yml` file:
+
+```yaml
+# .shopware-extension.yml
+build:
+  zip:
+    checksum:
+      ignore:
+        - <path>
+        - <another_path>
+```
+
+For example, to exclude the `src/Resources/config/services.xml` file from checksum calculation:
+
+```yaml
+# .shopware-extension.yml
+build:
+  zip:
+    checksum:
+      ignore:
+        - src/Resources/config/services.xml
+```
+
+To verify the checksum of installed extensions, you can use the [FroshTools](https://github.com/FriendsOfShopware/FroshTools#froshextensionchecksumcheck---check-extension-file-integrity) plugin which provides a checksum verification feature for all extensions.
+
 ### Release mode
 
 If you are building an archive for distribution, you can enable the release mode with the flag `--release`. This will remove the App secret from the `manifest.xml` and generate changelog files if enabled.
