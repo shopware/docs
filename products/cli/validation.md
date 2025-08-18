@@ -26,7 +26,7 @@ shopware-cli extension validate /path/to/your/extension
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate /ext
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate /ext
 ```
 
 </Tab>
@@ -73,7 +73,7 @@ shopware-cli extension validate --full /path/to/your/extension
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate --full /ext
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext
 ```
 
 </Tab>
@@ -96,8 +96,8 @@ shopware-cli extension validate --full /ext --check-against highest
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate --full /ext --check-against lowest
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate --full /ext --check-against highest
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against lowest
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against highest
 ```
 
 </Tab>
@@ -150,13 +150,13 @@ shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate --full /ext --only phpstan
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only phpstan
 ```
 
 Or run multiple tools by separating them with commas:
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
 ```
 
 </Tab>

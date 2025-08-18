@@ -34,7 +34,7 @@ shopware-cli extension fix /path/to/your/extension
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension fix /ext
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension fix /ext
 ```
 
 </Tab>
@@ -56,7 +56,7 @@ shopware-cli project fix /path/to/your/project
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli project fix /project
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli project fix /project
 ```
 
 </Tab>
@@ -85,7 +85,7 @@ shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemin
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro
 ```
 
 </Tab>

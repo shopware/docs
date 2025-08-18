@@ -120,7 +120,7 @@ Using Shopware CLI Action :
 build:
   stage: build
   image:
-    name: shopware/shopware-cli:latest
+    name: ghcr.io/shopware/shopware-cli:latest
     entrypoint: [ "/bin/sh", "-c" ]
   script:
     - shopware-cli --version
@@ -132,7 +132,7 @@ Add a file `.ddev/web-build/Dockerfile.shopware-cli`
 
 ```Dockerfile
 # .ddev/web-build/Dockerfile.shopware-cli
-COPY --from=shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
+COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
 
 ### Docker Image
@@ -141,7 +141,7 @@ Add the following line to your docker image to copy the binary into your image.
 
 ```Dockerfile
 # Dockerfile
-COPY --from=shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
+COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
 
 ## Add binary manually
@@ -154,7 +154,7 @@ You can also use it within a Docker container. To do that, you will need to exec
 
 Registries:
 
-- [shopware/shopware-cli](https://hub.docker.com/r/shopware/shopware-cli)
+- [ghcr.io/shopware/shopware-cli](https://github.com/orgs/shopware/packages/container/package/shopware-cli)
 
 Example usage:
 
@@ -166,7 +166,7 @@ docker run \
     -v $(pwd):$(pwd) \
     -w $(pwd) \
     -u $(id -u) \
-    shopware/shopware-cli \
+    ghcr.io/shopware/shopware-cli \
     extension build FroshPlatformAdminer
 ```
 
