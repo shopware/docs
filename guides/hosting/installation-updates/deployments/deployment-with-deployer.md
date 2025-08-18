@@ -67,7 +67,7 @@ The [GitLab runner](https://docs.gitlab.com/runner/) must have the following pac
 * [Node Package Manager \(npm\)](https://www.npmjs.com/)
 * OpenSSH
 
-This example uses the docker image `shopware/shopware-cli:latest-php-8.3`. This image meets all requirements.
+This example uses the docker image `ghcr.io/shopware/shopware-cli:latest-php-8.3`. This image meets all requirements.
 
 ## Deployment steps
 
@@ -239,7 +239,7 @@ Deploy:
     stage: deploy
     # Tags are useful to only use runners that are safe or meet specific requirements
     image:
-        name: shopware/shopware-cli:latest
+        name: ghcr.io/shopware/shopware-cli:latest
         entrypoint: [ "/bin/sh", "-c" ]
     before_script:
         # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
