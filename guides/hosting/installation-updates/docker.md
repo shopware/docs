@@ -33,7 +33,7 @@ You may want to pin the Docker image to a specific sha256 digest to ensure you a
 
 ARG PHP_VERSION=8.3
 FROM ghcr.io/shopware/docker-base:$PHP_VERSION-caddy AS base-image
-FROM shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
+FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 
 FROM shopware-cli AS build
 

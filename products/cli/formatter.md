@@ -32,13 +32,13 @@ shopware-cli extension format /path/to/your/extension --dry-run
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension format /ext
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension format /ext
 ```
 
 You can also run it in dry mode to just show the changes instead of editing the files.
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli extension format /ext --dry-run
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension format /ext --dry-run
 ```
 
 </Tab>
@@ -66,13 +66,13 @@ shopware-cli project format /path/to/your/project --dry-run
 <Tab title="Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli project format /ext
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli project format /ext
 ```
 
 You can also run it in dry mode to just show the changes instead of editing the files.
 
 ```shell
-docker run --rm -v $(pwd):/ext shopware/shopware-cli project format /ext --dry-run
+docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli project format /ext --dry-run
 ```
 
 </Tab>

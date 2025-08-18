@@ -154,7 +154,7 @@ You can also use it within a Docker container. To do that, you will need to exec
 
 Registries:
 
-- [shopware/shopware-cli](https://hub.docker.com/r/shopware/shopware-cli)
+- [ghcr.io/shopware/shopware-cli](https://github.com/orgs/shopware/packages/container/package/shopware-cli)
 
 Example usage:
 
@@ -166,7 +166,7 @@ docker run \
     -v $(pwd):$(pwd) \
     -w $(pwd) \
     -u $(id -u) \
-    shopware/shopware-cli \
+    ghcr.io/shopware/shopware-cli \
     extension build FroshPlatformAdminer
 ```
 
