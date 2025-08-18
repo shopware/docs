@@ -161,7 +161,7 @@ build:
         - src/Resources/config/services.xml
 ```
 
-To verify the checksum of installed extensions, you can use the [FroshTools](https://github.com/FriendsOfShopware/FroshTools) plugin which provides a checksum verification feature for all extensions.
+To verify the checksum of installed extensions, you can use the [FroshTools](https://github.com/FriendsOfShopware/FroshTools#froshextensionchecksumcheck---check-extension-file-integrity) plugin which provides a checksum verification feature for all extensions.
 
 ### Release mode
 
