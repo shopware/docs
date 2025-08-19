@@ -117,7 +117,6 @@ use Shopware\Core\Content\MailTemplate\Service\Event\MailBeforeValidateEvent;
 
 class MyMailSubscriber implements EventSubscriberInterface
 {
-
     public static function getSubscribedEvents(): array
     {
         return [
