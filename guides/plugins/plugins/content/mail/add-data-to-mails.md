@@ -120,7 +120,7 @@ class MyMailSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            MailBeforeValidateEvent::class => 'beforeMailValidate'
+            MailBeforeValidateEvent::class => 'beforeMailValidate',
         ];
     }
 
