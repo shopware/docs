@@ -50,12 +50,12 @@ sw-paas account token create --name "ci-token"
 To use a token you have multiple options:
 
 ```sh
-token=long-jwt
+token=<your-token-here>
 sw-paas --token $token account whoami
-sw-paas --token "long-jwt" account whoami
+sw-paas --token "<your-token-here>" account whoami
 
 # Set it for the current terminal session
-export SW_PAAS_TOKEN=long-jwt
+export SW_PAAS_TOKEN=<your-token-here>
 sw-paas account whoami
 ```
 
