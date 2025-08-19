@@ -27,8 +27,9 @@ To be precise, you have to extend the `send` method, whose last parameter is the
 
 So let's do that, here's an example of a decorated mail service:
 
-```php
-// <plugin root>/src/Service/AddDataToMails.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Service/AddDataToMails.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -63,13 +64,15 @@ class AddDataToMails extends AbstractMailService
 }
 ```
 
+:::
+
 If you don't recognise the decoration pattern used here, make sure to have a look at our guide about [decorations](../../plugin-fundamentals/adjusting-service).
 
 As always, we're passing in the original `MailService` as a constructor parameter, so we can return it in the `getDecorated` method, as well as use the original `send` method after having adjusted the `$templateData`.
 
 In this example, we're adding `myCustomData` to the `$templateData`, so that one should be available then.
 
-If we add `{{ myCustomData }}` to any mail template, it should then print "Example data". You can use any kind of data here, e.g. an array of data.
+If we add <code v-pre>{{ myCustomData }}</code> to any mail template, it should then print "Example data". You can use any kind of data here, e.g. an array of data.
 
 ### Register your decorator
 
@@ -77,8 +80,9 @@ Of course you still have to register the decoration to the service container. Be
 
 Here's the respective example `services.xml`:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
+::: code-group
+
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -92,13 +96,16 @@ Here's the respective example `services.xml`:
 </container>
 ```
 
+:::
+
 ## Adding data via subscriber
 
 In many cases, adding mail data via an event subscriber is a suitable solution. This way, you avoid the overhead of decorating the mail service. Simply create an event subscriber and listen to the `MailBeforeValidateEvent` event. There, you can safely add template or mail data.
 Here is a small example:
 
-```php
-// <plugin root>/src/Subscriber/MyMailSubscriber.php
+::: code-group
+
+```php [PLUGIN_ROOT/src/Subscriber/MyMailSubscriber.php]
 <?php
 
 declare(strict_types=1);
@@ -129,3 +136,5 @@ class MyMailSubscriber implements EventSubscriberInterface
     }
 }
 ```
+
+:::
