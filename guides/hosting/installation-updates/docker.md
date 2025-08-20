@@ -261,7 +261,7 @@ The `.inc` will be added to the main `server block.
 
 ## Nginx and PHP_MAX_UPLOAD_SIZE
 
-The default `client_max_body_size` is equalt to the default `PHP_MAX_UPLOAD_SIZE` which is 128M
+The default `client_max_body_size` is equal to the default `PHP_MAX_UPLOAD_SIZE`, which is 128M
 
 If you wish to increate the `PHP_MAX_UPLOAD_SIZE` over 128M, you need to manually adjust the `client_max_body_size`
 
