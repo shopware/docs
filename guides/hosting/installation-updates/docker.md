@@ -257,7 +257,7 @@ Create a new config file at `/etc/nginx/conf.d/` with the `.conf` or `.inc` exte
 
 The `.conf` will be added to the main `http` block.
 
-The `.inc` will be added to the main `server block.
+The `.inc` will be added to the main `server` block.
 
 ## Nginx and PHP_MAX_UPLOAD_SIZE
 
