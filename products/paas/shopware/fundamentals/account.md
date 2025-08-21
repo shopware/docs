@@ -45,6 +45,20 @@ Generate a new access token:
 sw-paas account token create --name "ci-token"
 ```
 
+### Using a Token
+
+To use a token you have multiple options:
+
+```sh
+token=<your-token-here>
+sw-paas --token $token account whoami
+sw-paas --token "<your-token-here>" account whoami
+
+# Set it for the current terminal session
+export SW_PAAS_TOKEN=<your-token-here>
+sw-paas account whoami
+```
+
 ### Revoking a Token
 
 Remove a specific token by ID:
