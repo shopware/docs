@@ -18,7 +18,7 @@ We try to encapsulate test execution within the system under test and make tests
 
 ## AdminApiContext
 
-This context provides a ready-to-use client for the Admin-API of Shopware. It is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext), but will handle authentication for you, so you can start making API requests to the Shopware instance under test right away. You can use it, for example, for test data creation or API testing. Learn more about the usage of the Shopware Admin-API in the [API documentation](https://shopware.stoplight.io/docs/admin-api).
+This context provides a ready-to-use client for the Admin-API of Shopware. It is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext), but will handle authentication for you, so you can start making API requests to the Shopware instance under test right away. You can use it, for example, for test data creation or API testing. Learn more about the usage of the Shopware Admin-API in the [API documentation](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide).
 
 ### Methods
 
@@ -58,7 +58,7 @@ test('Property group test scenario', async ({ AdminApiContext }) => {
 
 ## StoreApiContext
 
-This context provides a ready-to-use client for the Store-API of Shopware and is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext). You can do API calls on behalf of a Storefront user. Learn more about the usage of the Shopware Store-API in the [documentation](https://shopware.stoplight.io/docs/store-api/).
+This context provides a ready-to-use client for the Store-API of Shopware and is based on the standard Playwright [APIRequestContext](https://playwright.dev/docs/api/class-apirequestcontext). You can do API calls on behalf of a Storefront user. Learn more about the usage of the Shopware Store-API in the [documentation](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide).
 
 Note that, other than the AdminApiContext, the StoreApiContext won't do an automated login of the shop customer. This is because a Storefront user isn't always a registered user by default, and you might want to test this behaviour explicitly. You can use the `login` method to log in as a registered shop customer.
 
