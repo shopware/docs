@@ -72,3 +72,24 @@ redis://auth@/var/run/redis.sock
 ```
 
 For more information or other adapters checkout [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle) documentation.
+
+### Redis Cache Tag Cleanup
+
+When using Redis as a cache backend with `cache.adapter.redis_tag_aware`, you may encounter an issue where cache tags accumulate over time without proper cleanup. This happens because:
+
+1. **Cache tags don't have expiry times**: Cache tags themselves don't have TTL (Time To Live) values, even though the actual cache entries do
+2. **Namespace accumulation**: Each deployment may create new Redis namespaces, leaving old ones unused
+3. **volatile-lru limitation**: The `volatile-lru` eviction policy only removes expired cache entries, not the associated tags
+
+The [FroshTools](https://github.com/FriendsOfShopware/FroshTools) extension provides **experimental** commands to clean up Redis namespaces and tags:
+
+```bash
+# Clean up old Redis namespaces (run after deployments)
+bin/console frosh:redis-namespace:cleanup
+
+# Clean up orphaned cache tags
+bin/console frosh:redis-tag:cleanup
+
+# Use dry-run option to see what would be cleaned up
+bin/console frosh:redis-tag:cleanup --dry-run
+```
