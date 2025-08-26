@@ -5,13 +5,6 @@ area: administration
 tags: [admin, plugin, block, system]
 ---
 
-# Native Block System in Shopware
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-09-26-native-block-system.md)
-:::
-
 ## Context
 The current block system relies on TwigJs for creating reusable and extendable component template.
 This system allows plugin developers to override or extend content in predefined blocks using TwigJs’s inheritance mechanisms. Vue.js offers a more dynamic and reactive component-based architecture which is better suited for modern frontend development.

@@ -5,13 +5,6 @@ area: checkout
 tags: [checkout, app, context, personalization, gateway, storefront]  
 ---
 
-# Context Gateway  
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-04-01-context-gateway.md)
-:::
-
 # ADR: Context Gateway Feature
 
 ## Context

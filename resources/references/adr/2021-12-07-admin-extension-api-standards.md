@@ -5,13 +5,6 @@ area: administration
 tags: [plugin, admin, extension-api]
 ---
 
-# Admin extension API standards
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-12-07-admin-extension-api-standards.md)
-:::
-
 ## Context
 We need to provide ways for extension developers to add custom components and views to different places in the administration. Multiple solutions where discussed and tested, this ADR contains a summary of the final solution.
 

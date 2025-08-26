@@ -5,13 +5,6 @@ area: product-operations
 tags: [shopware, platform, development, testing]
 ---
 
-# Make shopware/shopware stand-alone for development and testing
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-08-11-make-platform-stand-alone.md)
-:::
-
 ## Context
 
 The platform requires some additional config, a console and web entrypoint and additional development tooling for development, tests and

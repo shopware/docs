@@ -5,13 +5,6 @@ area: discovery
 tags: [plugin, languages, language-pack, translations, crowdin]
 ---
 
-# Integrating the language pack into platform
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-06-03-integrating-the-language-pack-into-platform.md)
-:::
-
 ## Context
 The Shopware Language Pack plugin enables us to distribute translations from Crowdin to Shopware installations. While this was a convenient solution in the past, when most of our repositories and workflows were kept private. This approach is unnecessarily convoluted and cumbersome for developers and users, because changes to any snippet require multiple steps:
 

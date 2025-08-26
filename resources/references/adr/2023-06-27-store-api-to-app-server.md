@@ -5,13 +5,6 @@ area: core
 tags: [core, app-system]
 ---
 
-# Client side communication to App Server
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-06-27-store-api-to-app-server.md)
-:::
-
 ## Context
 
 Right now only Shopware Backend is able to communicate with the App Server in a secure way.

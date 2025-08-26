@@ -5,13 +5,6 @@ area: Core
 tags: [flow, flow-action, experimental]
 ---
 
-# Move flow execution after business process
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-01-31-move-flow-execution-after-business-process.md)
-:::
-
 ## Context
 
 Currently, flows are executed during the business process. A business
