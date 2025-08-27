@@ -33,6 +33,14 @@ Can be omitted if your app template needs higher load priority than other plugin
 
 _Optional_, can be omitted if your app does not need permissions. For more follow the [app base guide](../../../guides/plugins/apps/app-base-guide).
 
+You can use individual permission elements (`read`, `create`, `update`, `delete`) or the `<crud>` shortcut element which automatically grants all four CRUD permissions for an entity:
+
+- `<crud>product</crud>` is equivalent to `<read>product</read>`, `<create>product</create>`, `<update>product</update>`, `<delete>product</delete>`
+
+:::info
+The `<crud>` shortcut element is available since version 6.7.3.0. If your app needs to support earlier Shopware versions, use the individual permission elements instead.
+:::
+
 <<< @/docs/snippets/config/app/permissions.xml
 
 ## Allowed hosts

@@ -4,10 +4,10 @@
         ...
     </meta>
     <permissions>
-        <read>product</read>
-        <create>product</create>
-        <update>product</update>
+        <!-- CRUD shortcut - equivalent to read, create, update, delete for product (since 6.7.3.0) -->
+        <crud>product</crud>
 
+        <!-- Individual permissions can still be used for backward compatibility -->
         <delete>order</delete>
 
         <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
