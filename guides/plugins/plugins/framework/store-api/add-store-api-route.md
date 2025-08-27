@@ -161,7 +161,7 @@ To check if your route was registered correctly, you can use the [Symfony route 
 $ ./bin/console debug:router store-api.example.search
 ```
 
-## Add a route to openAPI schema
+## Add a route to the OpenAPI schema
 
 To add the route to the Stoplight page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminApi`).
 
