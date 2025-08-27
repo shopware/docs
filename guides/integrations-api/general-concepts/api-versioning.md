@@ -85,6 +85,6 @@ You can read the currently used version in the API as well. Starting with Shopwa
 
 Prior to that, the version was readable using the following route: `GET /api/v2/_info/config`
 
-### How do I open up the Swagger page?
+### How do I open up the Stoplight page?
 
-Simply navigate to the following URL in your shop: `/api/_info/swagger.html`
+Navigate to the following URL in your shop: `/api/_info/stoplightio.html`

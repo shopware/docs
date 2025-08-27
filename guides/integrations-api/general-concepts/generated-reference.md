@@ -7,7 +7,7 @@ nav:
 
 # Generated Reference
 
-Shopware generates schemas for both HTTP APIs that can be interpreted by API client libraries and documentation tools, such as [Swagger.io](https://swagger.io/).
+Shopware generates schemas for both HTTP APIs that can be interpreted by API client libraries and documentation tools, such as [Stoplight.io](https://stoplight.io/).
 
 These schemas are generated using PHP annotations based on the [swagger-php](https://github.com/zircote/swagger-php) library. When building API extensions, you can also leverage these annotations to let Shopware generate standardized endpoint documentation for your custom endpoints on-the-fly.
 

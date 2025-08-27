@@ -154,16 +154,16 @@ The last thing we need to do now is to tell Shopware how to look for new routes 
 
 ## Check route via Symfony debugger
 
-To check, if your route was registered correctly, you can use the [Symfony route debugger](https://symfony.com/doc/current/routing.html#debugging-routes).
+To check if your route was registered correctly, you can use the [Symfony route debugger](https://symfony.com/doc/current/routing.html#debugging-routes).
 
 ```bash
 // 
 $ ./bin/console debug:router store-api.example.search
 ```
 
-## Add route to Swagger
+## Add a route to openAPI schema
 
-To add the route to the Swagger page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminApi`).
+To add the route to the Stoplight page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminApi`).
 
 ```javascript
 // <plugin root>/src/Resources/Schema/StoreApi/example.json
@@ -217,9 +217,9 @@ To add the route to the Swagger page, a JSON file is needed in a specific [forma
 }
 ```
 
-### Check route in Swagger
+### Check route in Stoplight
 
-To check, if your file has the correct format, you'll have to check Swagger. To do this, go to the following route: `/store-api/_info/swagger.html`.
+To check if your file has the correct format, you'll have to check Stoplight. To do this, go to the following route: `/store-api/_info/stoplightio.html`.
 
 Your generated request and response could look like this:
 
