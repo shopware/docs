@@ -41,7 +41,14 @@ You can use individual permission elements (`read`, `create`, `update`, `delete`
 The `<crud>` shortcut element is available since version 6.7.3.0. If your app needs to support earlier Shopware versions, use the individual permission elements instead.
 :::
 
-<<< @/docs/snippets/config/app/permissions.xml
+
+::: code-group
+
+<<< @/docs/snippets/config/app/granular-permissions.xml [Granular permissions]
+
+<<< @/docs/snippets/config/app/full-permissions.xml [Full permissions]
+
+:::
 
 ## Allowed hosts
 

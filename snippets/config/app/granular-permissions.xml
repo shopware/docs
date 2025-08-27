@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
+  <meta>
+    ...
+  </meta>
+  <permissions>
+    <!-- CRUD shortcut - equivalent to read, create, update, delete for product (since 6.7.3.0) -->
+    <read>product</read> <!-- [!code focus] -->
+    <create>product</create> <!-- [!code focus] -->
+    <update>product</update> <!-- [!code focus] -->
+    <delete>product</delete> <!-- [!code focus] -->
+
+    <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
+    <permission>system:cache:info</permission>
+  </permissions>
+</manifest>
