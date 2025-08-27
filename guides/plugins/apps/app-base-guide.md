@@ -344,7 +344,7 @@ Since version 6.4.12.0, your app can also request additional non-CRUD privileges
 
 For entities that need all CRUD operations (create, read, update, delete), you can use the `<crud>` shortcut element instead of declaring each permission individually:
 
-- `<crud>product</crud>` automatically grants `read`, `create`, `update`, and `delete` permissions for the product entity
+* `<crud>product</crud>` automatically grants `read`, `create`, `update`, and `delete` permissions for the product entity
 
 :::info
 The `<crud>` shortcut element is available since version 6.7.3.0. If your app needs to support earlier Shopware versions, use the individual permission elements (`read`, `create`, `update`, `delete`) instead.
