@@ -80,7 +80,7 @@ But, when a request passes through a proxy, certain request information is sent 
 For example, instead of reading the *REMOTE_ADDR* header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or an *X-Forwarded-For* header.
 
 If you don't configure Symfony to look for these headers, you will get incorrect information about the client's IP address.
-Whether or not the client connects via https, the client's port and the hostname are requested.
+Whether or not the client connects via HTTPS, the client's port and the hostname are requested.
 
 Go through [Proxies](https://symfony.com/doc/current/deployment/proxies.html) section for more information.
 
