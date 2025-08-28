@@ -199,7 +199,7 @@ opcache.preload_user=nginx
 
 ## .env.local.php
 
-[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in Production instead of a `.env` file to skip parsing of the .env file on every request.
+[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in production instead of a `.env` file to skip parsing of the `.env` file on every request.
 If you are using a containerized environment, all those variables can also be set directly in the environment variables instead of dumping them into a file.
 
 Since Shopware 6.4.15.0, you can dump the content of the `.env` file to a `.env.local.php` file by running `bin/console system:setup --dump-env` or `bin/console dotenv:dump {APP_ENV}`.
