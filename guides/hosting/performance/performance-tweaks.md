@@ -267,7 +267,7 @@ shopware:
 
 Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation.
 That allows the encryption of environment variables and their decryption on the fly.
-If you don't use Symfony Secrets, you can disable this complete behavior, saving some CPU cycles while booting the Application.
+If you don't use Symfony Secrets, you can disable this complete behaviour, saving some CPU cycles while booting the application.
 
 ```yaml
 framework:
