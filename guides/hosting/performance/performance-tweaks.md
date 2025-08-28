@@ -136,7 +136,7 @@ The generation of the number ranges is an **atomic** operation, which guarantees
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
 Redis offers better support for atomic increments than the database.
-Therefore, the number ranges should be stored in Redis in such scenarios, see [Number Ranges - using Redis as a storage](./number-ranges#using-redis-as-storage).
+Therefore, the number ranges should be [stored in Redis](./number-ranges#using-redis-as-storage) in such scenarios.
 
 ## Sending mails with the Queue
 
