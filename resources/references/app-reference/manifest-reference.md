@@ -43,7 +43,7 @@ The `<crud>` shortcut element is available since version 6.7.3.0. If your app ne
 
 ::: code-group
 
-<<< @/docs/snippets/config/app/granular-permissions.xml [Granular permissions]
+<<< @/docs/snippets/config/app/permissions.xml [Granular permissions]
 
 <<< @/docs/snippets/config/app/full-permissions.xml [Full permissions]
 
