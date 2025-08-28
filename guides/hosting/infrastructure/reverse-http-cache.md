@@ -117,8 +117,8 @@ Make sure to replace the `__XXX__` placeholders with your actual values.
 
 ### Soft Purge vs Hard Purge
 
-The default configuration Varnish uses Hard purges, so when you update a product, the page will be removed from the cache and the next request takes longer because the cache is empty.
-To avoid this, you can use Soft purges.
+The default configuration Varnish uses hard purges, so when you update a product, the page will be removed from the cache and the next request takes longer because the cache is empty.
+To avoid this, you can use soft purges.
 Soft purge keeps the old page in case and serves it still to the clients and refreshes the cache in the background.
 This way the client gets **always** a cached page and the cache is updated in the background.
 
