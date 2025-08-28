@@ -182,7 +182,7 @@ On soft purge, the user still gets the cached response after the purge, but in t
 This makes sure that the client gets the fastest response possible.
 
 ```yaml
-# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
+# Be aware that the configuration key changed from `storefront.reverse_proxy` to `shopware.http_cache.reverse_proxy` starting with Shopware 6.6
 shopware:
   http_cache:
     # Allow to serve the out-dated cache for 300 seconds
