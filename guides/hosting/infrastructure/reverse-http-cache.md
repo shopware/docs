@@ -160,7 +160,7 @@ Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configur
 To enable it, we need to create a new file in `config/packages/storefront.yaml`
 
 ```yaml
-# Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
+# Be aware that the configuration key changed from `storefront.reverse_proxy` to `shopware.http_cache.reverse_proxy` starting with Shopware 6.6
 shopware:
   http_cache:
     reverse_proxy:
