@@ -67,7 +67,7 @@ shopware:
 
 ### Cache control header for assets
 
-If you are using a CDN for providing assets, you should make sure that the assets make use of the `Cache-Control` header.
+If you are using a CDN to provide assets, ensure that the assets utilize the `Cache-Control` header.
 E.g., `public, max-age=86400`.
 How this is achieved is highly dependent on the setup.
 Please refer to the docs of your server components in use.
