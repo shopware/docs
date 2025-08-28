@@ -87,7 +87,7 @@ Go through [Proxies](https://symfony.com/doc/current/deployment/proxies.html) se
 ### Varnish Docker Image
 
 Shopware offers a Varnish Docker image that is pre-configured to work with Shopware.
-You can find the image [here](https://github.com/shopware/varnish-shopware).
+Find the [image](https://github.com/shopware/varnish-shopware) here.
 The image is based on the official Varnish image and contains the Shopware default VCL with few configurations as environment variables.
 
 ### Configure Varnish
