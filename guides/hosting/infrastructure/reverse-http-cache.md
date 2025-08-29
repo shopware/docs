@@ -31,7 +31,7 @@ This setup is compatible with Shopware version 6.4 and higher
 ### Shopware Varnish Docker image
 
 Feel free to check out the [Shopware Varnish Docker image](https://github.com/shopware/varnish-shopware) for a quick start.
-It contains the Shopware default VCL. The containing VCL is for the usage with xkeys.
+It contains the Shopware default VCL (Varnish Configuration Language). The containing VCL is for the usage with `xkeys`.
 
 ### Configure Shopware
 
