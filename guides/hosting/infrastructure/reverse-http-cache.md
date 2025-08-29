@@ -40,7 +40,7 @@ From version v6.6.x onwards, this method is deprecated and will be removed in v6
 Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request.
 This can cause problems depending on the setup or network.
 Furthermore, Redis clusters are not supported.
-Therefore, it is advisable to opt for the [Varnish with XKey](#configure-varnish) integration instead.
+Therefore, it is advisable to opt for the [Varnish with `XKey`](#configure-varnish) integration instead.
 :::
 
 First, we need to activate the reverse proxy support in Shopware.
@@ -92,7 +92,7 @@ The image is based on the official Varnish image and contains the Shopware defau
 
 ### Configure Varnish
 
-Varnish XKey is a cache key module that allows you to use Varnish with surrogate keys.
+Varnish `XKey` is a cache key module that allows you to use Varnish with surrogate keys.
 It is a module not included in the default Varnish installation.
 It is available for Varnish 6.0 or higher.
 
@@ -204,15 +204,15 @@ You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets a
 
 For manual deployment, you can find the VCL Snippets here:
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/deliver/default.vcl" title="vcl_deliver" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/deliver/default.vcl />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/fetch/default.vcl" title="vcl_fetch" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/fetch/default.vcl />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hash/default.vcl" title="vcl_hash" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hash/default.vcl />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hit/default.vcl" title="vcl_hit" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hit/default.vcl />
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/recv/default.vcl" title="vcl_recv" target="_blank" />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/recv/default.vcl />
 
 ### Cache Invalidations
 
