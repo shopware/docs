@@ -5,7 +5,6 @@
     ...
   </meta>
   <permissions>
-    <!-- CRUD shortcut - equivalent to read, create, update, delete for product (since 6.7.3.0) -->
     <read>product</read> <!-- [!code focus] -->
     <create>product</create> <!-- [!code focus] -->
     <update>product</update> <!-- [!code focus] -->
