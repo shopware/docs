@@ -204,15 +204,15 @@ You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets a
 
 For manual deployment, you can find the VCL Snippets here:
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/deliver/default.vcl />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/deliver/default.vcl"/>
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/fetch/default.vcl />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/fetch/default.vcl"/>
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hash/default.vcl />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hash/default.vcl"/>
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hit/default.vcl />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/hit/default.vcl"/>
 
-<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/recv/default.vcl />
+<PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/recv/default.vcl"/>
 
 ### Cache Invalidations
 
