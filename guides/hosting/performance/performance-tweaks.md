@@ -7,23 +7,32 @@ nav:
 
 # Performance Tweaks
 
-Shopware is a platform for many different projects. It needs to handle a broad range of load characteristics and environments. It means that the default configuration is optimized for the best out-of-the-box experience. However, there are many opportunities to increase the performance by fitting the configuration to your needs.
+Shopware is a platform for many different projects.
+It needs to handle a broad range of load characteristics and environments.
+It means that the default configuration is optimized for the best out-of-the-box experience.
+However, there are many opportunities to increase the performance by fitting the configuration to your needs.
 
 ## HTTP cache
 
-To ensure a high RPS (Requests Per Second), Shopware offers an integrated HTTP cache with a possible reverse proxy configuration. Any system that handles high user numbers should always use HTTP caching to reduce server resources.
+To ensure a high RPS (Requests Per Second), Shopware offers an integrated HTTP cache with a possible reverse proxy configuration.
+Any system that handles high user numbers should always use HTTP caching to reduce server resources.
 
 To enable this, set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 ### Reverse proxy cache
 
-When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish. Shopware offers a default configuration for Varnish out-of-the-box and a [Varnish Docker image](https://github.com/shopware/varnish-shopware) for development.
+When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish.
+Shopware offers a default configuration for Varnish out-of-the-box and a [Varnish Docker image](https://github.com/shopware/varnish-shopware) for development.
 
 ### Logged-in / cart-filled
 
-By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart. As soon as this happens, the user sessions differ, and the context rules could be different depending on the user. This results in different content for each customer. A good example is the [Dynamic Access](https://docs.shopware.com/en/shopware-6-en/extensions/dynamiccontent) plugin.
+By default, Shopware can no longer deliver complete pages from a cache for a logged-in customer or if products are in the shopping cart.
+As soon as this happens, the user sessions differ, and the context rules could be different depending on the user.
+This results in different content for each customer.
+A good example is the [Dynamic Access](https://docs.shopware.com/en/shopware-6-en/extensions/dynamiccontent) plugin.
 
-However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy. To disable cache invalidation in these cases:
+However, if the project does not require such functionality, pages can also be cached by the HTTP cache/reverse proxy.
+To disable cache invalidation in these cases:
 
 ```yaml
 # config/packages/prod/shopware.yaml
@@ -35,10 +44,15 @@ shopware:
 
 ### Redis for delayed cache invalidation
 
-The HTTP cache will be invalidated in regular intervals, benefitting systems with a high update frequency for the inventory (products, categories). Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task. Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
+The HTTP cache will be invalidated in regular intervals, benefitting systems with a high update frequency for the inventory (products, categories).
+Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task.
+Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
 By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
 
-Out of the box the information which tags need to be invalidated is stored in the DB, however especially in systems which a high amount of concurrent write request this can become a bottleneck, and at a certain load, deadlocks are inevitable. If you already use Redis, use it also for the delayed cached. The MySQL adapter should only be used when you cannot use Redis.
+Information about which tags need to be invalidated is stored in the DB.
+However, especially in systems which have a high number of concurrent write requests, this can become a bottleneck, and at a certain load, deadlocks are inevitable.
+If you already use Redis, use it also for the delayed cached.
+The MySQL adapter should only be used when you cannot use Redis.
 To offload this to a Redis instance, you can configure the following:
 
 ```yaml
@@ -51,24 +65,37 @@ shopware:
                 connection: 'ephemeral' # connection name from redis configuration
 ```
 
+### Cache control header for assets
+
+If you are using a CDN to provide assets, ensure that the assets utilize the `Cache-Control` header.
+E.g., `public, max-age=86400`.
+How this is achieved is highly dependent on the setup.
+Please refer to the docs of your server components in use.
+
 ## MySQL configuration
 
-Shopware sets some MySQL configuration variables on each request to ensure it works in any environment. You can disable this behavior if you have correctly configured your MySQL server.
+Shopware sets some MySQL configuration variables on each request to ensure it works in any environment.
+You can disable this behavior if you have correctly configured your MySQL server.
 
 - Make sure that `group_concat_max_len` is by default higher or equal to `320000`
 - Make sure that `sql_mode` doesn't contain `ONLY_FULL_GROUP_BY`
 
 ## SQL is faster than DAL
 
-DAL(Data Abstraction Layer) has been designed suitably to provide developers with a flexible and extensible data management. However, features in such a system come at the cost of performance. Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
+The DAL (Data Abstraction Layer) has been designed suitably to provide developers with flexible and extensible data management.
+However, features in such a system come at the cost of performance.
+Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
 Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
 
 ## Elasticsearch/Opensearch
 
-Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server. Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
+Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server.
+Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
 
-When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable. This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch. In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
+When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable.
+This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch.
+In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
 Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
@@ -90,13 +117,15 @@ If you ever wonder why it is in `prod`, take a look into the [Symfony configurat
 ## Increment storage
 
 The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
-This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage. Therefore, we recommend moving this source of server load to a separate Redis, as described in [Increment storage Redis configuration](./increment#redis-configuration).  
+This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage.
+Therefore, we recommend moving this source of server load to a separate Redis, as described in [Increment storage Redis configuration](./increment#redis-configuration).  
 If you don't need such functionality, it is highly recommended that you disable this behavior by using `array` as a type.
 
 ## Lock storage
 
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.4/lock.html) to implement locking functionality.
-By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups. This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
+By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups.
+This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.4/components/lock.html#available-stores).
 For more information on how to configure the lock store, refer to the [Lock storage guide](./lock-store).
 
 ## Number ranges
@@ -106,11 +135,15 @@ The generation of the number ranges is an **atomic** operation, which guarantees
 
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
-Redis offers better support for atomic increments than the database. Therefore, the number ranges should be stored in Redis in such scenarios, see [Number Ranges - using Redis as a storage](./number-ranges#using-redis-as-storage).
+Redis offers better support for atomic increments than the database.
+Therefore, the number ranges should be [stored in Redis](./number-ranges#using-redis-as-storage) in such scenarios.
 
 ## Sending mails with the Queue
 
-Shopware sends the mails by default synchronously. This process can take a while when the remote SMTP server is struggling. For this purpose, it is possible to handle the mails in the message queue. To enable this, add the following config to your config:
+Shopware sends the mails synchronously by default.
+This process can take a while when the remote SMTP server is struggling.
+For this purpose, it is possible to handle the mails in the message queue.
+To enable this, add the following config to your config:
 
 ```yaml
 # config/packages/prod/framework.yaml
@@ -147,9 +180,11 @@ realpath_cache_ttl=3600
 The web updater is not compatible with opcache, as updates require an opcache clear.
 :::
 
-Also, PHP PCRE Jit Target should be enabled. This can be checked using `php -i | grep 'PCRE JIT Target'` or looking into the *phpinfo* page.
+Also, PHP PCRE Jit Target should be enabled.
+This can be checked using `php -i | grep 'PCRE JIT Target'` or looking into the *phpinfo* page.
 
-For an additional 2-5% performance improvement, it is possible to provide a preload file to opcache. Preload also brings a lot of drawbacks:
+For an additional 2-5% performance improvement, it is possible to provide a preload file to opcache.
+Preload also brings a lot of drawbacks:
 
 - Each cache clear requires a PHP-FPM restart
 - Each file change requires a PHP-FPM restart
@@ -164,19 +199,21 @@ opcache.preload_user=nginx
 
 ## .env.local.php
 
-[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in Production instead of a `.env` file to skip parsing of the  .env file on every request.
+[Symfony recommends](https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production) that a `.env.local.php` file is used in production instead of a `.env` file to skip parsing of the `.env` file on every request.
 If you are using a containerized environment, all those variables can also be set directly in the environment variables instead of dumping them into a file.
 
-Since Shopware 6.4.15.0, you can dump the content of the `.env` file to a `.env.local.php` file by running `bin/console system:setup --dump-env` or `bin/console dotenv:dump {APP_ENV}`.
+Since Shopware v6.4.15.0, you can dump the content of the `.env` file to a `.env.local.php` file by running `bin/console system:setup --dump-env` or `bin/console dotenv:dump {APP_ENV}`.
 
 ## Benchmarks
 
-In addition to the benchmarks that Shopware regularly performs with the software, we strongly recommend integrating your benchmark tools and pipelines for larger systems. A generic benchmark of a product can rarely be adapted to individual, highly customized projects.
+In addition to the benchmarks that Shopware regularly performs with the software, we strongly recommend integrating your benchmark tools and pipelines for larger systems.
+A generic benchmark of a product can rarely be adapted to individual, highly customized projects.
 Tools such as [locust](https://locust.io/) or [k6](https://k6.io/) can be used for this purpose.
 
 ## Logging
 
-Set the log level of the monolog to `error` to reduce the amount of logged events. Also, limiting the `buffer_size` of monolog prevents memory overflows for long-lived jobs:
+Set the log level of the monolog to `error` to reduce the number of logged events.
+Also, limiting the `buffer_size` of monolog prevents memory overflows for long-lived jobs:
 
 ```yaml
 # config/packages/prod/monolog.yaml
@@ -189,7 +226,8 @@ monolog:
             level: error
 ```
 
-The `business_event_handler_buffer` handler logs flow. Setting it to `error` will disable the logging of flow activities that succeed.
+The `business_event_handler_buffer` handler logs flow.
+Setting it to `error` will disable the logging of flow activities that succeed.
 
 ## Disable App URL external check
 
@@ -198,9 +236,12 @@ If your `APP_URL` is correct, you can disable this behavior with an environment 
 
 ## Using zstd instead of gzip for compression
 
-Shopware uses `gzip` for compressing the cache elements and the cart when enabled. `gzip` saves a lot of storage, but it can be slow with huge values.
+Shopware uses `gzip` for compressing the cache elements and the cart when enabled.
+`gzip` saves a lot of storage, but it can be slow with huge values.
 
-Since Shopware 6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm. `zstd` is faster than `gzip` and has a better compression ratio. Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
+Since Shopware v6.6.4.0, it has been possible to use `zstd` as an alternative compression algorithm.
+`zstd` is faster than `gzip` and has a better compression ratio.
+Unfortunately, `zstd` is not included by default in PHP, so you need to install the extension first.
 
 ```yaml
 # Enabling cart compression with zstd
@@ -224,7 +265,9 @@ shopware:
 
 ## Disable Symfony Secrets
 
-Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation. That allows the encryption of environment variables and their decryption on the fly. If you don't use Symfony Secrets, you can disable this complete behavior, saving some CPU cycles while booting the Application.
+Symfony has a [secret](https://symfony.com/doc/current/configuration/secrets.html) implementation.
+That allows the encryption of environment variables and their decryption on the fly.
+If you don't use Symfony Secrets, you can disable this complete behaviour, saving some CPU cycles while booting the application.
 
 ```yaml
 framework:
@@ -234,9 +277,11 @@ framework:
 
 ## Disable auto_setup
 
-By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#transport-configuration) checks if the queue exists and creates it when not. This can be an overhead when the system is under load.
+By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#transport-configuration) checks if the queue exists and creates it when not.
+This can be an overhead when the system is under load.
 Therefore, make sure that you disable the `auto_setup` in the connection URL like so: `redis://localhost?auto_setup=false`.
-That query parameter can be passed to all transports. After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
+That query parameter can be passed to all transports.
+After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
 
 ## Disable Product Stream Indexer
 
@@ -245,7 +290,8 @@ This is available starting with Shopware 6.6.10.0
 :::
 
 The **Product Stream Indexer** is a background process that creates a mapping table of products to their streams.
-It is used to find which category pages are affected by product changes. On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
+It is used to find which category pages are affected by product changes.
+On a larger inventory set or a high update frequency, the **Product Stream Indexer** can be a performance bottleneck.
 
 Disabling the Product Stream Indexer has the following disadvantages:
 
@@ -260,10 +306,11 @@ To disable the Product Stream Indexer, you can set the following configuration:
 ## Disable Scheduled Sitemap Generation
 
 ::: info
-This is available starting with Shopware 6.7.1.0
+This is available starting with Shopware v6.7.1.0
 :::
 
-The sitemap generation can be a resource-intensive and time-consuming task, especially for shops with large product catalogs. When running as a scheduled task through the message queue, it can block the queue for an extended period, preventing other important tasks from being processed.
+The sitemap generation can be a resource-intensive and time-consuming task, especially for shops with large product catalogs.
+When running as a scheduled task through the message queue, it can block the queue for an extended period, preventing other important tasks from being processed.
 
 To disable the scheduled sitemap generation and set up your own cronjob instead, you can use the following configuration:
 
@@ -298,10 +345,11 @@ This feature is available starting with Shopware 6.6.10.0
 The Speculation Rules API allows browsers to pre-render pages based on user interactions or immediately, depending on the eagerness setting.
 This can improve the perceived performance of a website by loading pages in the background before the user navigates to them.
 
-You can enable that **experimental feature** via `Admin > Settings > System > Storefront`. The JavaScript Plugin will then
-check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so,
-it will add a script tag to the head of the document. For the [eagerness setting](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness)
-we are using `moderate` everywhere. That means **a user must interact** with a link to execute the pre-rendering.
+You can enable that **experimental feature** via `Admin > Settings > System > Storefront`.
+The JavaScript Plugin will then check if the [Browser supports the Speculation Rules API](https://caniuse.com/mdn-http_headers_speculation-rules) and if so,
+it will add a script tag to the head of the document.
+For the [eagerness setting](https://developer.chrome.com/docs/web-platform/prerender-pages#eagerness) we are using `moderate` everywhere.
+That means **a user must interact** with a link to execute the pre-rendering.
 
 ::: info
 Keep in mind that pre-rendering puts extra load on your server and also can affect your [Analytics](https://developer.chrome.com/docs/web-platform/prerender-pages#impact-on-analytics).
@@ -311,7 +359,8 @@ Keep in mind that pre-rendering puts extra load on your server and also can affe
 
 ### opcache.max_accelerated_files
 
-PHP loads many classes on each request, which can be a performance bottleneck. To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
+PHP loads many classes on each request, which can be a performance bottleneck.
+To optimize this, make sure `opcache.max_accelerated_files` is set to `20000` or higher.
 
 ### classmap-authoritative
 
@@ -326,7 +375,7 @@ To enable this, set the following configuration in your `composer.json`:
             "symfony/runtime": true
         },
         "optimize-autoloader": true,
-+        "classmap-authoritative": true,
++       "classmap-authoritative": true,
         "sort-packages": true
 },
 ```
@@ -335,7 +384,8 @@ For more information, check out the [Composer documentation](https://getcomposer
 
 ### opcache.preload
 
-To completely reduce the class loading at runtime, you can enable `opcache.preload` by setting it to `<project-root>/var/cache/opcache-preload.php` and `opcache.preload_user` to the user running the PHP process. This will preload all classes into the opcache on PHP-FPM startup and reduce the class loading at runtime.
+To completely reduce the class loading at runtime, you can enable `opcache.preload` by setting it to `<project-root>/var/cache/opcache-preload.php` and `opcache.preload_user` to the user running the PHP process.
+This will preload all classes into the opcache on PHP-FPM startup and reduce the class loading at runtime.
 
 ::: warning
 When using `opcache.preload`, you need to **restart** the PHP-FPM after each modification to reload the preloaded classes.
