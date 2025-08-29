@@ -6,10 +6,7 @@
   </meta>
   <permissions>
     <!-- CRUD shortcut - equivalent to read, create, update, delete for product (since 6.7.3.0) -->
-    <read>product</read> <!-- [!code focus] -->
-    <create>product</create> <!-- [!code focus] -->
-    <update>product</update> <!-- [!code focus] -->
-    <delete>product</delete> <!-- [!code focus] -->
+    <crud>product</crud> <!-- [!code focus] -->
 
     <!-- Since version 6.4.12.0 your app can request additional non-CRUD privileges-->
     <permission>system:cache:info</permission>
