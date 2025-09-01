@@ -22,6 +22,7 @@ Extensions in Shopware extend the base `Extension` class and are typically locat
 You can find Extension classes by searching for the following patterns in the Shopware source code:
 
 #### Search Terms
+
 - `extends Extension`: Find all Extension classes
 - `Extension<`: Find typed Extensions with specific return types
 - `ExtensionDispatcher`: Find where Extensions are dispatched
@@ -40,6 +41,7 @@ Extensions are typically located in:
 Here are some common Extension classes you might encounter:
 
 #### Product Extensions
+
 ```php
 // Product price calculation
 src/Core/Content/Product/Extension/ProductPriceCalculationExtension.php
@@ -52,6 +54,7 @@ src/Core/Content/Product/Extension/ProductListingCriteriaExtension.php
 ```
 
 #### Cart Extensions
+
 ```php
 // Checkout place order
 src/Core/Checkout/Cart/Extension/CheckoutPlaceOrderExtension.php
@@ -61,6 +64,7 @@ src/Core/Checkout/Cart/Extension/CheckoutCartRuleLoaderExtension.php
 ```
 
 #### CMS Extensions
+
 ```php
 // CMS slots data enrichment
 src/Core/Content/Cms/Extension/CmsSlotsDataEnrichExtension.php
@@ -74,6 +78,7 @@ src/Core/Content/Cms/Extension/CmsSlotsDataResolveExtension.php
 Extensions follow a consistent naming pattern:
 
 ### Event Names
+
 Extensions use a `NAME` constant that defines the event name:
 
 ```php
@@ -86,7 +91,9 @@ final class ResolveListingExtension extends Extension
 ```
 
 ### Event Lifecycle
+
 Extensions are dispatched with lifecycle suffixes:
+
 - `{name}.pre` - Before the default implementation
 - `{name}.post` - After the default implementation  
 - `{name}.error` - When an error occurs
@@ -135,6 +142,7 @@ $result = $this->extensionDispatcher->publish(
 ### Product Extensions
 
 #### ProductPriceCalculationExtension
+
 **Purpose**: Intercept and modify product price calculations
 **Event Name**: `product.calculate-prices`
 **Return Type**: `void`
@@ -152,6 +160,7 @@ final class ProductPriceCalculationExtension extends Extension
 ```
 
 #### ResolveListingExtension
+
 **Purpose**: Replace product listing resolution logic
 **Event Name**: `listing-loader.resolve`
 **Return Type**: `EntitySearchResult<ProductCollection>`
@@ -171,6 +180,7 @@ final class ResolveListingExtension extends Extension
 ### Cart Extensions
 
 #### CheckoutPlaceOrderExtension
+
 **Purpose**: Intercept order placement process
 **Event Name**: `checkout.place-order`
 **Return Type**: `OrderPlaceResult`
@@ -190,6 +200,7 @@ final class CheckoutPlaceOrderExtension extends Extension
 ### CMS Extensions
 
 #### CmsSlotsDataEnrichExtension
+
 **Purpose**: Enrich CMS slot data before rendering
 **Event Name**: `cms.slots.data-enrich`
 **Return Type**: `CmsSlotCollection`
@@ -279,6 +290,7 @@ public function handlePostExtension(SomeExtension $event): void
 ## Best Practices
 
 ### 1. Use Type Hints
+
 Always use proper type hints for Extension parameters:
 
 ```php
@@ -291,6 +303,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 ```
 
 ### 2. Handle Results Properly
+
 Check if a result has already been set:
 
 ```php
@@ -306,6 +319,7 @@ public function onExtension(SomeExtension $event): void
 ```
 
 ### 3. Use Stop Propagation Wisely
+
 Only stop propagation when you're providing a complete replacement:
 
 ```php
@@ -320,6 +334,7 @@ public function onExtension(SomeExtension $event): void
 ```
 
 ### 4. Error Handling
+
 Extensions have built-in error handling, but you can also handle errors gracefully:
 
 ```php

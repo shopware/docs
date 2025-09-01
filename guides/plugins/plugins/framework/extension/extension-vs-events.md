@@ -16,11 +16,13 @@ Shopware 6 provides two different mechanisms for extending functionality: **Exte
 ### Purpose and Design Philosophy
 
 #### Extensions
+
 - **Purpose**: Replace or extend core functionality
 - **Design**: Result-oriented, flow-controlling
 - **Philosophy**: "I want to change how this works"
 
 #### Events
+
 - **Purpose**: Notify about actions that occurred
 - **Design**: Notification-based, fire-and-forget
 - **Philosophy**: "I want to know when this happens"
@@ -28,6 +30,7 @@ Shopware 6 provides two different mechanisms for extending functionality: **Exte
 ### Return Values and Flow Control
 
 #### Extensions
+
 ```php
 public function onResolveListing(ResolveListingExtension $event): void
 {
@@ -40,6 +43,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 ```
 
 #### Events
+
 ```php
 public function onProductCreated(ProductCreatedEvent $event): void
 {
@@ -53,11 +57,13 @@ public function onProductCreated(ProductCreatedEvent $event): void
 ### Execution Timing
 
 #### Extensions
+
 - **Timing**: Before or during the action
 - **Purpose**: Intercept and modify the process
 - **Example**: Before product prices are calculated
 
 #### Events
+
 - **Timing**: After the action is completed
 - **Purpose**: React to completed actions
 - **Example**: After a product has been created
@@ -65,6 +71,7 @@ public function onProductCreated(ProductCreatedEvent $event): void
 ### Error Handling
 
 #### Extensions
+
 ```php
 // Built-in error handling with recovery
 try {
@@ -84,6 +91,7 @@ try {
 ```
 
 #### Events
+
 ```php
 // Basic error handling
 public function onProductCreated(ProductCreatedEvent $event): void
@@ -102,6 +110,7 @@ public function onProductCreated(ProductCreatedEvent $event): void
 Use Extensions when you need to:
 
 ### 1. Replace Core Functionality
+
 ```php
 // Replace default product loading with custom logic
 public function onResolveListing(ResolveListingExtension $event): void
@@ -112,6 +121,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 ```
 
 ### 2. Modify Data Before Processing
+
 ```php
 // Filter products before they're displayed
 public function onProductListing(ProductListingExtension $event): void
@@ -123,6 +133,7 @@ public function onProductListing(ProductListingExtension $event): void
 ```
 
 ### 3. Integrate External Systems
+
 ```php
 // Use external pricing service
 public function onPriceCalculation(ProductPriceCalculationExtension $event): void
@@ -134,6 +145,7 @@ public function onPriceCalculation(ProductPriceCalculationExtension $event): voi
 ```
 
 ### 4. Add Conditional Business Logic
+
 ```php
 // Apply special pricing for VIP customers
 public function onPriceCalculation(ProductPriceCalculationExtension $event): void
@@ -150,6 +162,7 @@ public function onPriceCalculation(ProductPriceCalculationExtension $event): voi
 Use Events when you need to:
 
 ### 1. Send Notifications
+
 ```php
 public function onOrderPlaced(OrderPlacedEvent $event): void
 {
@@ -159,6 +172,7 @@ public function onOrderPlaced(OrderPlacedEvent $event): void
 ```
 
 ### 2. Log Actions
+
 ```php
 public function onProductCreated(ProductCreatedEvent $event): void
 {
@@ -170,6 +184,7 @@ public function onProductCreated(ProductCreatedEvent $event): void
 ```
 
 ### 3. Update External Systems
+
 ```php
 public function onCustomerRegistered(CustomerRegisteredEvent $event): void
 {
@@ -179,6 +194,7 @@ public function onCustomerRegistered(CustomerRegisteredEvent $event): void
 ```
 
 ### 4. Trigger Follow-up Actions
+
 ```php
 public function onOrderCompleted(OrderCompletedEvent $event): void
 {
@@ -206,6 +222,7 @@ public function onOrderCompleted(OrderCompletedEvent $event): void
 ### E-commerce Scenarios
 
 #### Product Pricing (Extension)
+
 ```php
 // Replace default pricing with dynamic pricing from external API
 public function onPriceCalculation(ProductPriceCalculationExtension $event): void
@@ -217,6 +234,7 @@ public function onPriceCalculation(ProductPriceCalculationExtension $event): voi
 ```
 
 #### Order Notification (Event)
+
 ```php
 // Send notifications after an order is placed
 public function onOrderPlaced(OrderPlacedEvent $event): void
@@ -227,6 +245,7 @@ public function onOrderPlaced(OrderPlacedEvent $event): void
 ```
 
 #### Product Search (Extension)
+
 ```php
 // Replace default search with AI-powered search
 public function onProductSearch(ProductSearchExtension $event): void
@@ -238,6 +257,7 @@ public function onProductSearch(ProductSearchExtension $event): void
 ```
 
 #### Inventory Update (Event)
+
 ```php
 // Update an external inventory system after a product update
 public function onProductUpdated(ProductUpdatedEvent $event): void
@@ -251,6 +271,7 @@ public function onProductUpdated(ProductUpdatedEvent $event): void
 If you're currently using Events for functionality replacement, consider migrating to Extensions:
 
 ### Before (Event-based)
+
 ```php
 // Old approach - using events for functionality replacement
 public function onProductListingCriteria(ProductListingCriteriaEvent $event): void
@@ -269,6 +290,7 @@ public function onProductLoaded(ProductLoadedEvent $event): void
 ```
 
 ### After (Extension-based)
+
 ```php
 // New approach - using extensions for functionality replacement
 public function onResolveListing(ResolveListingExtension $event): void
@@ -282,6 +304,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 ## Best Practices
 
 ### For Extensions
+
 1. **Use sparingly**: Only when you need to replace core functionality
 2. **Handle errors gracefully**: Provide fallback implementations
 3. **Document thoroughly**: Extensions are part of the public API
@@ -289,6 +312,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 5. **Consider performance**: Extensions can impact performance significantly
 
 ### For Events
+
 1. **Keep side effects minimal**: Don't perform heavy operations
 2. **Handle errors gracefully**: Don't let event failures break the main flow
 3. **Use async processing**: For heavy operations, use message queues

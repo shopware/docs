@@ -351,19 +351,25 @@ public function onErrorPhase(MyExtension $event): void
 ## Extension Lifecycle Management
 
 ### Pre-Phase Extensions
+
 Use `.pre` events to:
+
 - Validate input data
 - Modify criteria or parameters
 - Replace default implementation entirely
 
 ### Post-Phase Extensions
+
 Use `.post` events to:
+
 - Enrich results
 - Log completion
 - Trigger follow-up actions
 
 ### Error-Phase Extensions
+
 Use `.error` events to:
+
 - Provide fallback implementations
 - Log errors
 - Recover from failures
@@ -371,31 +377,37 @@ Use `.error` events to:
 ## Best Practices
 
 ### 1. Naming Conventions
+
 - Use descriptive, domain-specific names
 - Follow the pattern: `{plugin}.{domain}.{action}`
 - Use kebab-case for event names
 
 ### 2. Type Safety
+
 - Always define generic types for Extensions
 - Use proper type hints for parameters
 - Validate input data in constructors
 
 ### 3. Documentation
+
 - Document all public properties with `@public` and `@description`
 - Provide clear examples in docblocks
 - Include usage examples in plugin documentation
 
 ### 4. Error Handling
+
 - Use try-catch blocks for risky operations
 - Provide meaningful error messages
 - Consider fallback implementations
 
 ### 5. Performance
+
 - Avoid expensive operations in Extensions
 - Cache results when appropriate
 - Use lazy loading for heavy dependencies
 
 ### 6. Testing
+
 - Write unit tests for Extension classes
 - Test event subscribers thoroughly
 - Mock external dependencies
