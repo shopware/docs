@@ -25,7 +25,7 @@ Organization members can be assigned different roles that determine their level 
 - `read-only`: Access to projects and applications. Only actions allowed are `get` and `list`.
 - `developer`: Access to projects and applications. All actions are allowed.
 - `project-admin`: Access to projects and applications. All actions are allowed.
-- `account-admin`: Access to account management.  Actions for managing Users are allowed.
+- `account-admin`: Access to account management. Actions for managing users are allowed.
 
 ### User Management
 
@@ -44,11 +44,11 @@ sw-paas account whoami --output json | jq ".sub"
 Once you receive their `sub` (subject ID), you can proceed to add them to your organization with the appropriate role.
 
 ```sh
-sw-paas organization add user
+sw-paas organization user add
 ```
 
 To remove a user from the organization:
 
 ```sh
-sw-paas organization remove user
+sw-paas organization user remove
 ```
