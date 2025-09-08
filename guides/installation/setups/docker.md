@@ -138,7 +138,7 @@ services:
             BLACKFIRE_SERVER_TOKEN: XXXX
 ```
 
-# Image Variations
+## Image Variations
 
 The Docker image comes in different variations. You can choose the one that fits your needs best. The variations are:
 
