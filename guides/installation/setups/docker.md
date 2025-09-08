@@ -37,10 +37,10 @@ cd my-project
 Then create a new Project:
 
 ```bash
-docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopwarelabs/devcontainer/base-slim:8.3 new-shopware-setup
+docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup
 
 # or specific version
-docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopwarelabs/devcontainer/base-slim:8.3 new-shopware-setup 6.6.10.0
+docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup 6.6.10.0
 ```
 
 This will create a new Shopware project in the current directory additionally with a `compose.yaml` and a `Makefile`. The difference to regular `composer create-project` is that we use PHP, Composer from the Docker image and do not need to install PHP and Composer on your local machine.
