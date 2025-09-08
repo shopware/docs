@@ -1,21 +1,21 @@
 ---
 nav:
-  title: Creating Custom Extensions
+  title: Creating Custom Extension Points
   position: 30
 
 ---
 
-# Creating Custom Extensions
+# Creating Custom Extension Points
 
 ## Overview
 
-While Shopware provides many built-in Extensions, you may need to create custom Extensions for your specific use cases. This guide will walk you through creating custom Extensions that follow Shopware's extension system patterns.
+While Shopware provides many built-in extension points, you may need to create custom extension points for your specific use cases. This guide will walk you through creating custom extension points that follow Shopware's extension system patterns.
 
 ## Extension Class Structure
 
 ### Basic Extension Class
 
-All Extensions must extend the base `Extension` class and define a typed result:
+All extension points must extend the base `Extension` class and define a typed result:
 
 ```php
 <?php declare(strict_types=1);
@@ -59,7 +59,7 @@ final class MyCustomExtension extends Extension
 
 ## Example: Custom Product Filter Extension
 
-Let's create a custom Extension for filtering products based on custom business logic:
+Let's create a custom extension point for filtering products based on custom business logic:
 
 ### 1. Define the Extension Class
 
@@ -384,7 +384,7 @@ Use `.error` events to:
 
 ### 2. Type Safety
 
-- Always define generic types for Extensions
+- Always define generic types for extension points
 - Use proper type hints for parameters
 - Validate input data in constructors
 
@@ -408,13 +408,13 @@ Use `.error` events to:
 
 ### 6. Testing
 
-- Write unit tests for Extension classes
+- Write unit tests for extension point classes
 - Test event subscribers thoroughly
 - Mock external dependencies
 
-## Example: Complete Plugin with Custom Extension
+## Example: Complete Plugin with Custom Extension Point
 
-Here's a complete example of a plugin that creates and uses a custom Extension:
+Here's a complete example of a plugin that creates and uses a custom extension point:
 
 ```php
 // 1. Extension class
@@ -472,4 +472,4 @@ class ProductRecommendationSubscriber implements EventSubscriberInterface
 }
 ```
 
-This comprehensive guide should help you create custom Extensions that integrate seamlessly with Shopware's extension system.
+This comprehensive guide should help you create custom extension points that integrate seamlessly with Shopware's extension system.

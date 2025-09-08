@@ -1,21 +1,21 @@
 ---
 nav:
-  title: Extension vs Events
+  title: Extension Points vs Events
   position: 50
 
 ---
 
-# Extension vs Events
+# Extension Points vs Events
 
 ## Overview
 
-Shopware 6 provides two different mechanisms for extending functionality: **Extensions** and **Events**. While they may seem similar, they serve different purposes and have distinct characteristics. Understanding when to use each approach is crucial for effective plugin development.
+Shopware 6 provides two different mechanisms for extending functionality: **Extension Points** and **Events**. While they may seem similar, they serve different purposes and have distinct characteristics. Understanding when to use each approach is crucial for effective plugin development.
 
 ## Key Differences
 
 ### Purpose and Design Philosophy
 
-#### Extensions
+#### Extension Points
 
 - **Purpose**: Replace or extend core functionality
 - **Design**: Result-oriented, flow-controlling
@@ -29,7 +29,7 @@ Shopware 6 provides two different mechanisms for extending functionality: **Exte
 
 ### Return Values and Flow Control
 
-#### Extensions
+#### Extension Points
 
 ```php
 public function onResolveListing(ResolveListingExtension $event): void
@@ -56,7 +56,7 @@ public function onProductCreated(ProductCreatedEvent $event): void
 
 ### Execution Timing
 
-#### Extensions
+#### Extension Points
 
 - **Timing**: Before or during the action
 - **Purpose**: Intercept and modify the process
@@ -70,7 +70,7 @@ public function onProductCreated(ProductCreatedEvent $event): void
 
 ### Error Handling
 
-#### Extensions
+#### Extension Points
 
 ```php
 // Built-in error handling with recovery
@@ -105,9 +105,9 @@ public function onProductCreated(ProductCreatedEvent $event): void
 }
 ```
 
-## When to Use Extensions
+## When to Use Extension Points
 
-Use Extensions when you need to:
+Use Extension Points when you need to:
 
 ### 1. Replace Core Functionality
 
@@ -205,7 +205,7 @@ public function onOrderCompleted(OrderCompletedEvent $event): void
 
 ## Comparison Table
 
-| Aspect                     | Extensions                    | Events               |
+| Aspect                     | Extension Points              | Events               |
 |----------------------------|-------------------------------|----------------------|
 | **Purpose**                | Replace/Extend functionality  | Notify about actions |
 | **Return Values**          | Yes (via `result` property)   | No                   |
@@ -221,7 +221,7 @@ public function onOrderCompleted(OrderCompletedEvent $event): void
 
 ### E-commerce Scenarios
 
-#### Product Pricing (Extension)
+#### Product Pricing (Extension Point)
 
 ```php
 // Replace default pricing with dynamic pricing from external API
@@ -244,7 +244,7 @@ public function onOrderPlaced(OrderPlacedEvent $event): void
 }
 ```
 
-#### Product Search (Extension)
+#### Product Search (Extension Point)
 
 ```php
 // Replace default search with AI-powered search
@@ -266,9 +266,9 @@ public function onProductUpdated(ProductUpdatedEvent $event): void
 }
 ```
 
-## Migration from Events to Extensions
+## Migration from Events to Extension Points
 
-If you're currently using Events for functionality replacement, consider migrating to Extensions:
+If you're currently using Events for functionality replacement, consider migrating to Extension Points:
 
 ### Before (Event-based)
 
@@ -289,10 +289,10 @@ public function onProductLoaded(ProductLoadedEvent $event): void
 }
 ```
 
-### After (Extension-based)
+### After (Extension Point-based)
 
 ```php
-// New approach - using extensions for functionality replacement
+// New approach - using extension points for functionality replacement
 public function onResolveListing(ResolveListingExtension $event): void
 {
     // Replace entire listing resolution
@@ -303,13 +303,13 @@ public function onResolveListing(ResolveListingExtension $event): void
 
 ## Best Practices
 
-### For Extensions
+### For Extension Points
 
 1. **Use sparingly**: Only when you need to replace core functionality
 2. **Handle errors gracefully**: Provide fallback implementations
-3. **Document thoroughly**: Extensions are part of the public API
-4. **Test extensively**: Extensions can break core functionality
-5. **Consider performance**: Extensions can impact performance significantly
+3. **Document thoroughly**: Extension points are part of the public API
+4. **Test extensively**: Extension points can break core functionality
+5. **Consider performance**: Extension points can impact performance significantly
 
 ### For Events
 

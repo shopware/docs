@@ -1,21 +1,21 @@
 ---
 nav:
-  title: Finding Extensions
+  title: Finding Extension Points
   position: 20
 
 ---
 
-# Finding Extensions
+# Finding Extension Points
 
 ## Overview
 
-Shopware 6 provides a modern extension system that allows you to intercept and modify core functionality. Unlike traditional events that are primarily for notifications, Extensions are designed for **replacing and extending** core system processes.
+Shopware 6 provides a modern extension system that allows you to intercept and modify core functionality. Unlike traditional events that are primarily for notifications, Extension Points are designed for **replacing and extending** core system processes.
 
-This guide will cover how you can find available Extensions in the Shopware codebase to use them in your plugin.
+This guide will cover how you can find available Extension Points in the Shopware codebase to use them in your plugin.
 
 ## Extension Classes
 
-Extensions in Shopware extend the base `Extension` class and are typically located in domain-specific directories. They follow a consistent naming pattern and structure.
+Extension Points in Shopware extend the base `Extension` class and are typically located in domain-specific directories. They follow a consistent naming pattern and structure.
 
 ### Finding Extension Classes
 
@@ -24,12 +24,12 @@ You can find Extension classes by searching for the following patterns in the Sh
 #### Search Terms
 
 - `extends Extension`: Find all Extension classes
-- `Extension<`: Find typed Extensions with specific return types
-- `ExtensionDispatcher`: Find where Extensions are dispatched
+- `Extension<`: Find typed Extension Points with specific return types
+- `ExtensionDispatcher`: Find where Extension Points are dispatched
 
 #### Common Locations
 
-Extensions are typically located in:
+Extension Points are typically located in:
 
 - `src/Core/Content/*/Extension/`
 - `src/Core/Checkout/*/Extension/`
@@ -38,7 +38,7 @@ Extensions are typically located in:
 
 ### Example Extension Classes
 
-Here are some common Extension classes you might encounter:
+Here are some common Extension Point you might encounter:
 
 #### Product Extensions
 
@@ -75,11 +75,11 @@ src/Core/Content/Cms/Extension/CmsSlotsDataResolveExtension.php
 
 ## Extension Naming Convention
 
-Extensions follow a consistent naming pattern:
+Extension Points follow a consistent naming pattern:
 
 ### Event Names
 
-Extensions use a `NAME` constant that defines the event name:
+Extension Points use a `NAME` constant that defines the event name:
 
 ```php
 final class ResolveListingExtension extends Extension
@@ -92,7 +92,7 @@ final class ResolveListingExtension extends Extension
 
 ### Event Lifecycle
 
-Extensions are dispatched with lifecycle suffixes:
+Extension Points are dispatched with lifecycle suffixes:
 
 - `{name}.pre` - Before the default implementation
 - `{name}.post` - After the default implementation  
@@ -102,7 +102,7 @@ Extensions are dispatched with lifecycle suffixes:
 
 ### In Service Definitions
 
-Services that use Extensions typically inject the `ExtensionDispatcher`:
+Services that use Extension Points typically inject the `ExtensionDispatcher`:
 
 ```xml
 <service id="Some\Service">
@@ -123,7 +123,7 @@ public function __construct(
 
 ### Extension Dispatch Pattern
 
-Extensions are typically dispatched using this pattern:
+Extension Points are typically dispatched using this pattern:
 
 ```php
 $extension = new SomeExtension($parameters);
@@ -221,7 +221,7 @@ final class CmsSlotsDataEnrichExtension extends Extension
 
 ### Event Subscriber
 
-Create an event subscriber to listen for Extensions:
+Create an event subscriber to listen for Extension Points:
 
 ```php
 <?php declare(strict_types=1);
@@ -261,7 +261,7 @@ Register your subscriber in the service configuration:
 
 ## Extension Lifecycle
 
-Extensions follow a specific lifecycle:
+Extension Points follow a specific lifecycle:
 
 1. **Pre-Event**: `{name}.pre` - Before default implementation
 2. **Default Implementation**: Core logic (if not stopped)
@@ -291,7 +291,7 @@ public function handlePostExtension(SomeExtension $event): void
 
 ### 1. Use Type Hints
 
-Always use proper type hints for Extension parameters:
+Always use proper type hints for Extension Point parameters:
 
 ```php
 public function onResolveListing(ResolveListingExtension $event): void
@@ -335,7 +335,7 @@ public function onExtension(SomeExtension $event): void
 
 ### 4. Error Handling
 
-Extensions have built-in error handling, but you can also handle errors gracefully:
+Extension Points have built-in error handling, but you can also handle errors gracefully:
 
 ```php
 public function onExtension(SomeExtension $event): void
@@ -354,11 +354,11 @@ public function onExtension(SomeExtension $event): void
 
 ### Using the Symfony Profiler
 
-The Symfony profiler shows all dispatched Extensions in the "Events" tab. Look for events with `.pre`, `.post`, or `.error` suffixes.
+The Symfony profiler shows all dispatched Extension Points in the "Events" tab. Look for events with `.pre`, `.post`, or `.error` suffixes.
 
 ### Logging Extension Calls
 
-You can log Extension calls to understand the flow:
+You can log Extension Point calls to understand the flow:
 
 ```php
 public function onExtension(SomeExtension $event): void
@@ -371,4 +371,4 @@ public function onExtension(SomeExtension $event): void
 }
 ```
 
-This comprehensive guide should help you find and use Extensions effectively in your Shopware plugins.
+This comprehensive guide should help you find and use Extension Points effectively in your Shopware plugins.
