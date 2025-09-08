@@ -138,6 +138,33 @@ services:
             BLACKFIRE_SERVER_TOKEN: XXXX
 ```
 
+# Image Variations
+
+The Docker image comes in different variations. You can choose the one that fits your needs best. The variations are:
+
+`ghcr.io/shopware/docker-dev:php(PHP_VERSION)-node(NODE_VERSION)-(WEBSERVER)`
+
+the Matrix is:
+
+Webserver:
+- `caddy` - Caddy as web server
+- `nginx` - Nginx as web server
+
+PHP Versions:
+- `8.4` - PHP 8.4
+- `8.3` - PHP 8.3
+- `8.2` - PHP 8.2
+
+Node Versions:
+- `node24` - Node 24
+- `node22` - Node 22
+
+Example:
+- `ghcr.io/shopware/docker-dev:php8.4-node24-caddy` - PHP 8.4, Node 24, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.3-node24-caddy` - PHP 8.3, Node 24, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.4-node22-caddy` - PHP 8.4, Node 22, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.3-node22-caddy` - PHP 8.3, Node 22, Caddy as web server
+
 ### Using OrbStack Routing
 
 If you are using OrbStack as your Docker provider, you can use the OrbStack routing feature to access your services without needing to manage port mappings.
