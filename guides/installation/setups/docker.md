@@ -146,11 +146,6 @@ The Docker image comes in different variations. You can choose the one that fits
 
 the Matrix is:
 
-Webserver:
-
-- `caddy` - Caddy as web server
-- `nginx` - Nginx as web server
-
 PHP Versions:
 
 - `8.4` - PHP 8.4
@@ -162,12 +157,17 @@ Node Versions:
 - `node24` - Node 24
 - `node22` - Node 22
 
+Webserver:
+
+- `caddy` - Caddy as web server
+- `nginx` - Nginx as web server
+
 Example:
 
 - `ghcr.io/shopware/docker-dev:php8.4-node24-caddy` - PHP 8.4, Node 24, Caddy as web server
 - `ghcr.io/shopware/docker-dev:php8.3-node24-caddy` - PHP 8.3, Node 24, Caddy as web server
-- `ghcr.io/shopware/docker-dev:php8.4-node22-caddy` - PHP 8.4, Node 22, Caddy as web server
-- `ghcr.io/shopware/docker-dev:php8.3-node22-caddy` - PHP 8.3, Node 22, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.4-node22-nginx` - PHP 8.4, Node 22, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.3-node22-nginx` - PHP 8.3, Node 22, Caddy as web server
 
 ### Using OrbStack Routing
 
