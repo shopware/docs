@@ -202,7 +202,7 @@ You can also open `https://orb.local` in your browser and see all running contai
 
 ## Proxy Production Images
 
-<PageRef page="products/cli/project-commands/image-proxy" />
+<PageRef page="../../../products/cli/project-commands/image-proxy" />
 
 ## Known issues
 
