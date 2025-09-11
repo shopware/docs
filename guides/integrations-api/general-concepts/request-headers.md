@@ -78,3 +78,11 @@ POST /api/search/product
 ## sw-app-integration-id
 
 The `sw-app-integration-id` enables seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Meteor Admin SDK for the [Repository Data Handling](/resources/admin-extension-sdk/api-reference/data/repository). But the developer itself doesn’t need to care about it because it is handled automatically by the admin.
+
+## sw-app-user-id
+
+The `sw-app-user-id` header allows apps to execute API requests in the context of a specific user. When this header is included, the system calculates the effective permissions by intersecting the user's permissions with the app's permissions, ensuring that the request runs with the most restrictive permissions from both sources.
+
+This header is particularly useful when an app needs to perform actions on behalf of a user while maintaining proper permission boundaries.
+
+To use the `sw-app-user-id` header, the specified user must either be an admin user, have explicit permission for the specific app, or have the `app.all` permission.
