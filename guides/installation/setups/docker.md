@@ -202,33 +202,7 @@ You can also open `https://orb.local` in your browser and see all running contai
 
 ## Proxy Production Images
 
-Typically, you import for local development a copy of the production database to your local environment. This allows you to test changes with production similar data. However, this can lead to issues that all images are missing in the local environment. To avoid this, you can download all images from the production environment and import them into your local environment. Or set up a proxy server that serves the images from the production environment.
-
-To do this, you can add a `imageproxy` service to your `compose.override.yaml`:
-
-```yaml
-services:
-    imageproxy:
-        image: ghcr.io/shopwarelabs/devcontainer/image-proxy
-        ports:
-          - "8050:80"
-        environment:
-          # Your production URL.
-          REMOTE_SERVER_HOST: shopware.com
-```
-
-This will start a proxy server that serves all images from the production environment. In this case if we request `http://localhost:8050/assets/images.png`, it will load `https://[REMOTE_SERVER_HOST]/assets/images.png` and serve it to the local environment, it will also cache the images locally.
-
-Next, we need to configure Shopware to use the proxy server. To do this, create a new YAML file `config/packages/media-proxy.yaml`
-
-```yaml
-shopware:
-  filesystem:
-    public:
-      url: "http://localhost:8050"
-```
-
-This will tell Shopware to use the proxy server URL for all images.
+<PageRef page="products/cli/project-commands/image-proxy" />
 
 ## Known issues
 
