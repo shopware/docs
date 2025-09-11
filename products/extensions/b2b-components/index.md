@@ -23,6 +23,8 @@ In the world of digital B2B commerce, where businesses engage with other compani
 
 * **Digital Sales Composables** aims to provide a set of composable frontends to cover more complex Sales Representative jobs.
 
+* **Advanced product catalog** allows merchants to define and manage product visibility for customer groups and organizational units, ensuring tailored catalogues.
+
 ## Configuring custom toggles for B2B components
 
 The B2B components allow merchants to selectively choose and configure B2B features according to their needs. They offer merchants the ability to craft a tailored B2B ecommerce experience for their business partners while also allowing agencies to fine-tune Shopware to meet specific requirements. This means that B2B components can be individually activated or deactivated for each business partner within the shop.
