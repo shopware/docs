@@ -34,12 +34,27 @@ Fastly is automatically configured and enabled by default in Shopware PaaS Nativ
 
 #### Custom Domain DNS Configuration
 
-To utilize custom domains with the Fastly CDN, you must configure your DNS settings to point to the PaaS CDN endpoint:
+To configure your custom domain with the Fastly CDN, you must configure a DNS record. Depending of the type of your record, the DNS configuration is different.
 
-**Configure your custom domain's DNS to point to:**
+If you have multiple custom domains, you need to create a record per domain.
+
+**None APEX record**
+
+Configure a `CNAME` record with your custom domain's DNS to point to:
 
 ```dns
 cdn.shopware.shop
+```
+
+**APEX record**
+
+Configure a `A` with your custom domain's DNS to point to:
+
+```dns
+151.101.3.52
+151.101.67.52
+151.101.131.52
+151.101.195.52
 ```
 
 This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
