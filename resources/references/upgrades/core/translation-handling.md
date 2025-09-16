@@ -12,11 +12,11 @@ Starting with Shopware **6.7.3**, translations are managed directly in Shopware.
 
 - **From Shopware 6.7.3 onward**
 
-  - Translations can be installed via Shopware itself, the [Language Pack Plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) is not required to fetch the newest [Crowdin](https://crowdin.com/project/shopware6) translations.
-  - New CLI command available:
-    ```bash
-    bin/console translation:install --locales it-IT
-    ```
+  - Translations can be installed via Shopware itself, the [Language Pack Plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) is not required to fetch the newest [shopware translations](https://translate.shopware.com).
+- New CLI command available:
+```bash
+  bin/console translation:install --locales it-IT
+```
   - The [Language Pack Plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) still works but is optional.
   - Languages now have an active flag which can be toggled in the Administration under `Settings → Languages`
   - Languages installed/managed from other sources do not need to register their locales in the admin anymore.
@@ -25,7 +25,7 @@ Starting with Shopware **6.7.3**, translations are managed directly in Shopware.
 - **Shopware 6.8 and later**
 
   - The [Language Pack Plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) is **not compatible**.
-  - The integrated [language handling](link-to-language-handling-docs) should be used to fetch the newest [Crowdin](https://crowdin.com/project/shopware6) translations.
+    - The [integrated language handling](../../../../guides/plugins/plugins/translations/built-in-translation-system.md) should be used to fetch the newest [shopware translations](https://translate.shopware.com).
   - **Other translation plugins or snippets in themes are not affected and can still be used alongside the integrated handling.**
 
 
@@ -35,9 +35,9 @@ Starting with Shopware **6.7.3**, translations are managed directly in Shopware.
 
 - Nothing changes.
 - To install additional languages, use the CLI command:
-  ```bash  
+```bash  
   bin/console translation:install --locales <locale-code>
-  ```
+```
 
 Example: `bin/console translation:install --locales it-IT,fr-FR` will install Italian and French.
 
@@ -45,9 +45,9 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 1. Run the translation command and install every language you are using in your shop
 
-   ```bash
-   bin/console translation:install --locales <locale-code>,<locale-code>
-   ```
+```bash
+  bin/console translation:install --locales <locale-code>,<locale-code>
+```
 2. The command uses the **same source ([translate.shopware.com](https://translate.shopware.com))** as the [Language Pack Plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html), but is updated more frequently. So it's essentially identical – or even more up to date!
 3. You can safely uninstall and remove the Language Pack Plugin. Your **custom snippets** created in the Snippet Module remain intact, since they are saved in the database.
 4. Make sure that all languages you need are **active** in the Administration:
@@ -55,10 +55,10 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ## New Installations
 
-* During a fresh Shopware installation, you can select desired languages directly in the installer. They will be downloaded and installed automatically.
-* No additional language plugin is required.
+- During a fresh Shopware installation, you can select desired languages directly in the installer. They will be downloaded and installed automatically.
+- No additional language plugin is required.
 
 ## More Information
 
-* Additional details about the new translation handling are available in the [Translation Guide](link).
+- Additional details about the new translation handling are available in the [integrated language handling](../../../../guides/plugins/plugins/translations/built-in-translation-system.md) guide.
 
