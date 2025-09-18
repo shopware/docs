@@ -15,7 +15,7 @@ Starting with Shopware **6.7.3.0**, translations are managed directly in Shopwar
 
   - Translations can be installed via Shopware itself, the [Language Pack plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) is not required to fetch the
     newest [Shopware translations](https://translate.shopware.com).
-- A new CLI command is available:
+  - A new CLI command is available:
 
 ```bash
   bin/console translation:install --locales it-IT
