@@ -7,7 +7,7 @@ nav:
 # Migration Guide: Language Pack Plugin → Integrated Translation Handling
 
 Starting with Shopware **6.7.3.0**, translations are managed directly in Shopware. From **6.8.0.0**, the
-[Language Pack Plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) will no longer be compatible. Follow this guide to migrate safely.
+[Language Pack plugin](https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html) will no longer be compatible. Follow this guide to migrate safely.
 
 ## What changes
 
