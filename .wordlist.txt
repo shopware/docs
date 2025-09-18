@@ -469,7 +469,6 @@ LOCALAPPDATA
 LONGTEXT
 LUA
 LandingPage
-LanguagePack
 LastNameRule
 Lerna
 Lifecycle

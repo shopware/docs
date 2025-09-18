@@ -5,6 +5,6 @@ nav:
 
 ---
 
-# Core
+# Core upgrade and migration guides
 
-This section contains all upgrade guides related to the Shopware Core.
+This section contains all upgrade and migration guides related to the Shopware Core.
