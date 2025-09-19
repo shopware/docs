@@ -447,7 +447,7 @@ Refer to the official devenv documentation to get a complete list of all availab
     virtualHosts."http://localhost" = {
       extraConfig = ''
         reverse_proxy 127.0.0.1:6081 {
-          # header_up solves this issue: https://shopwarecommunity.slack.com/archives/C05CQT51H1V/p1721754934084939
+          # header_up solves this issue: https://discord.com/channels/1308047705309708348/1309107911175176217
           header_up Host sw.localhost
         }
       '';
