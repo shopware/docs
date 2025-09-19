@@ -175,6 +175,7 @@ CheckoutInfoWidget
 CheckoutOffcanvasWidget
 CheckoutOrderPlacedCriteriaEvent
 CheckoutOrderPlacedEvent
+CheckoutPlaceOrderExtension
 CheckoutRegisterPage
 CheckoutRegisterPageLoadedEvent
 Checksums
@@ -187,6 +188,7 @@ ClientInterface
 Cloudflare
 Cmd
 CmsPage
+CmsSlotsDataEnrichExtension
 Codemods
 Codespaces
 Codestyle
@@ -724,6 +726,7 @@ ProductNumber
 ProductOptionRelationDataSet
 ProductPage
 ProductPriceAttributeDataSet
+ProductPriceCalculationExtension
 ProductPriceCalculator
 ProductPropertyRelationDataSet
 ProductQuickViewWidget
@@ -773,6 +776,7 @@ Repo
 RepositoryIterator
 ResetUrlAware
 ResetUrlStorer
+ResolveListingExtension
 RestAPI
 RestrictDelete
 Reusability
@@ -1254,6 +1258,7 @@ direnv's
 discountfacade
 discoverability
 docblock
+docblocks
 dockware
 dom
 don'ts
