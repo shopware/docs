@@ -8,7 +8,7 @@ It provides the same set of translations as the **Language Pack** plugin and is 
 
 > **Note:** The Language Pack plugin is deprecated and will be removed with Shopware version **6.8.0.0**.
 > If you are currently using the Language Pack plugin, please refer to
-> the [Migration guide](../../resources/references/upgrades/core/translation/language-pack-migration.md) for instructions
+> the [Migration guide][migration-guide] for instructions
 > on switching to the new system.
 
 ## Where do the translations come from?
