@@ -8,7 +8,7 @@ It provides the same set of translations as the **Language Pack** plugin and is 
 
 > **Note:** The Language Pack plugin is deprecated and will be removed with Shopware version **6.8.0.0**.
 > If you are currently using the Language Pack plugin, please refer to
-> the [Migration guide][migration-guide] for instructions
+> the [Migration guide](../../resources/references/upgrades/core/translation/language-pack-migration.md) for instructions
 > on switching to the new system.
 
 ## Where do the translations come from?
@@ -72,7 +72,7 @@ When loading translations, the system follows a defined priority order to resolv
 1. Database translations – These have the highest priority. You can define them to override all other translations.
 2. Region-specific translations (e.g. `en-GB`, `en-US` or `de-DE`) – These can be provided for country-dependent
    translations or dialects as small patch files. For more information about the language-layer changes, you can have a
-   look at its [documentation][language-layer-docs].
+   look at its documentation.
 3. Region-agnostic translations (`en` and `de`) – These are shipped with Shopware and its plugins. They ensure that the
    system always has a reliable fallback language and provide a consistent developer experience without requiring you
    to wait until your translations are accepted at [translate.shopware.com](https://translate.shopware.com).

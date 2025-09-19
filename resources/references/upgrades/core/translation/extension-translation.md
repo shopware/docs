@@ -71,8 +71,8 @@ Here are some example locales that are a dialect to the generic base layer.
 
 ### Automatic
 
-Shipping with Shopware **6.7.3**, there's the command line tool `bin/console snippet:migrate` that can be used to
-automate the migration process. See the [CLI documentation][snippet-fix-cli-docs] for more
+Shipping with Shopware **6.7.3**, there's the command line tool `bin/console snippet:check-files` that can be used to
+check the translation files, or use the `--fix` parameter to even automate the migration process.
 
 ## Testing Your Migration
 
@@ -100,5 +100,3 @@ support the base layer.
 bin/console cache:clear
 bin/console snippet:validate
 ```
-
-[snippet-fix-cli-docs]: TODO
