@@ -230,6 +230,7 @@ CriteriaTest
 CronIntervalField
 Cronjobs
 CrossSellingDataSet
+Crowdin
 Ctrl
 CurrencyRule
 CustomAppAware
@@ -429,6 +430,7 @@ HookClasses
 HookExecutor
 HowTos
 IDEs
+IETF
 IPV
 IPv
 IdField
@@ -927,6 +929,8 @@ Topseller
 Topsellers
 TransactionalAction
 TranslatedField
+TranslationConfig
+TranslationConfigLoader
 TranslationDataSet
 TranslationsAssociation
 TranslationsAssociationField
@@ -1273,6 +1277,7 @@ editorconfig
 eg
 elasticsearch
 employeeId
+english
 enqueue
 entityIds
 entityName
