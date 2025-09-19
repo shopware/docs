@@ -5,13 +5,6 @@ area: inventory
 tags: [measurement system]
 ---
 
-# Implement measurement system  
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-05-12-implement-measurement-system.md)
-:::
-
 ## Context
 
 We want to provide merchants with the ability to define the measurement system for their products—e.g., metric or imperial.

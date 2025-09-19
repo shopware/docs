@@ -5,13 +5,6 @@ area: content
 tags: [cms, product, category]
 ---
 
-# Add default cms pages to products and categories
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2022-04-06-add-default-cms-layouts-to-products-and-categories.md)
-:::
-
 ## Context
 
 We want to provide a way to set a default cms page.  

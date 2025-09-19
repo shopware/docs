@@ -5,13 +5,6 @@ area: services-settings
 tags: [architecture, increment, message-queue-stats]
 ---
 
-# Introduce increment pattern
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2021-11-09-increment-pattern.md)
-:::
-
 ## Context
 The current `message_queue_stats` table records which messages are in the message queue and how often. This
 is done by a subscriber, which then writes a record to the database via the mysql connection. If this record already exists,

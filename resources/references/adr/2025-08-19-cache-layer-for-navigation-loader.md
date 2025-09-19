@@ -5,13 +5,6 @@ area: framework & discovery
 tags: [performance, cache, categories]
 ---
 
-# Cache layer for navigation loader
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-08-19-cache-layer-for-navigation-loader.md)
-:::
-
 ## Context
 We see in multiple performance analysis that the navigation loader can be a bottleneck for the performance of the storefront, especially with a huge number of categories in the first levels of the category tree.
 The navigation loader is responsible for loading the categories and their children, which are then used to render the navigation in the storefront. 

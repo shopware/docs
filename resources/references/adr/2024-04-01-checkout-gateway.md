@@ -5,13 +5,6 @@ area: checkout
 tags: [checkout, app, payment, shipping, cart]
 ---
 
-# Checkout gateway
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2024-04-01-checkout-gateway.md)
-:::
-
 # ADR: Enhanced Checkout Gateway Feature
 ## Context
 In response to the evolving landscape of checkout decision-making, we propose the introduction of a centralized and opinionated solution. 

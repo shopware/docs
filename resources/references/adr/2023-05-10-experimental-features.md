@@ -5,13 +5,6 @@ area: core, administration, storefront
 tags: [process, backwards compatibility]
 ---
 
-# Experimental features
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2023-05-10-experimental-features.md)
-:::
-
 ## Context
 
 Currently, it is hard to publish features in an early state to gather feedback regarding those features. If they are useful, what needs to be improved etc.

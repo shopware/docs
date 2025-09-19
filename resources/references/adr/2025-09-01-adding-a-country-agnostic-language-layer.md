@@ -5,13 +5,6 @@ area: discovery
 tags: [administration, storefront, plugin, app, languages, language-pack, translations, crowdin]
 ---
 
-# Adding a country-agnostic language layer
-
-::: info
-This document represents an architecture decision record (ADR) and has been mirrored from the ADR section in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/adr/2025-09-01-adding-a-country-agnostic-language-layer.md)
-:::
-
 ## Context
 Currently, Shopware’s language system uses a specific language locale (e.g. `de-DE` for German in Germany) for its translation, while falling back to another specific locale (e.g. `en-GB` for English in Great Britain).
 
