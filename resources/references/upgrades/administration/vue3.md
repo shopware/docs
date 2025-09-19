@@ -45,7 +45,7 @@ Yes, there are tools and migration helpers that can automate certain aspects of 
 
 ### Where can I find support and community discussions about updating Shopware plugin to Vue 3?
 
-You can participate in discussions and seek help on the Shopware community Slack. There is a dedicated channel for this topic called `#vue3-update`.
+You can participate in discussions and seek help on the Shopware community Discord. There is a dedicated channel for this topic called `#shopware-development`.
 
 ## External resources
 
@@ -137,4 +137,4 @@ This document emphasizes the crucial need to upgrade your Shopware extensions to
   - **Breaking Changes**: Vue 3 introduces significant modifications, necessitating review through the Vue.js migration guide.
   - **Migration Steps**: Adapting your Shopware plugin to Vue 3 involves aligning dependencies and adhering to Vue 3's API changes, following the Vue 3 documentation.
 - **Dual Compatibility**: For plugins serving both Shopware 6.5 and 6.6, separate versions are required.
-- **Support**: Find support in the Shopware community Slack channel #vue3-update.
+- **Support**: Find support in the Shopware community Discord channel #shopware-development.

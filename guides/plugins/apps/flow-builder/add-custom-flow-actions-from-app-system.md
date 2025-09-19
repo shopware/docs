@@ -38,7 +38,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     │       └── Resources
     │           └── flow-action.xml
     │           └── app-icon.png
-    │           └── slack-icon.png
+    │           └── discord-icon.png
     │       └── manifest.xml
     └── plugins
 ```
@@ -51,7 +51,7 @@ From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml
 |:---------------------|:-----------------------------------------------------------------------------------------------------------------------------|
 | FlowBuilderActionApp | Your app's technical name                                                                                                    |
 | app-icon.png         | The app's icon                                                                                                               |
-| slack-icon.png       | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
+| discord-icon.png       | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
 | flow-action.xml      | Place to define your new actions                                                                                             |
 | manifest.xml         | Base information about your app                                                                                              |
 
