@@ -51,7 +51,7 @@ From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml
 |:---------------------|:-----------------------------------------------------------------------------------------------------------------------------|
 | FlowBuilderActionApp | Your app's technical name                                                                                                    |
 | app-icon.png         | The app's icon                                                                                                               |
-| discord-icon.png       | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
+| slack-icon.png       | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
 | flow-action.xml      | Place to define your new actions                                                                                             |
 | manifest.xml         | Base information about your app                                                                                              |
 
