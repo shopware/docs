@@ -498,7 +498,7 @@ class ProductRoute
 ### Complex examples
 You don't have to read all these examples in one take. It's most likely they will confuse you more than help you if you don't have a concrete case in mind.
 Come to this section if you stumble over a case where you don't exactly know that to do.
-If you don't find your answer here, don't be silent. Call us out in [discord](https://discord.com/channels/1308047705309708348/1309107911175176217) for that we are aware of cases that have to be stated here.
+If you don't find your answer here, don't be silent. Call us out in slack for that we are aware of cases that have to be stated here.
 
 #### Rename or removal of a property
 Should a property of a class be removed, it will be annotated as deprecated and will only be used in code which is also deprecated. Should a property be renamed, it will be deprecated instead and we implement a new property with the new name.
