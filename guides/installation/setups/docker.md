@@ -254,6 +254,18 @@ shopware:
 
 ```
 
+After adding the Minio service to your `compose.yaml` and creating the configuration file, this will configure Shopware to use Minio as the S3 storage for public and private files.
+
+Run `docker compose up -d` to start the Minio containers. You can access the Minio console at <http://localhost:9001> with the username `minioadmin` and password `minioadmin`.
+
+Finally, regenerate the assets to upload them to S3:
+
+```bash
+make shell
+bin/console asset:install
+bin/console theme:compile
+```
+
 ### Using OrbStack Routing
 
 If you are using OrbStack as your Docker provider, you can use the OrbStack routing feature to access your services without needing to manage port mappings.
