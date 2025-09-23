@@ -37,10 +37,10 @@ cd my-project
 Then create a new Project:
 
 ```bash
-docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopwarelabs/devcontainer/base-slim:8.3 new-shopware-setup
+docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup
 
 # or specific version
-docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopwarelabs/devcontainer/base-slim:8.3 new-shopware-setup 6.6.10.0
+docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup 6.6.10.0
 ```
 
 This will create a new Shopware project in the current directory additionally with a `compose.yaml` and a `Makefile`. The difference to regular `composer create-project` is that we use PHP, Composer from the Docker image and do not need to install PHP and Composer on your local machine.
@@ -137,6 +137,37 @@ services:
             BLACKFIRE_SERVER_ID: XXXX
             BLACKFIRE_SERVER_TOKEN: XXXX
 ```
+
+## Image Variations
+
+The Docker image comes in different variations. You can choose the one that fits your needs best. The variations are:
+
+`ghcr.io/shopware/docker-dev:php(PHP_VERSION)-node(NODE_VERSION)-(WEBSERVER)`
+
+the Matrix is:
+
+PHP Versions:
+
+- `8.4` - PHP 8.4
+- `8.3` - PHP 8.3
+- `8.2` - PHP 8.2
+
+Node Versions:
+
+- `node24` - Node 24
+- `node22` - Node 22
+
+Webserver:
+
+- `caddy` - Caddy as web server
+- `nginx` - Nginx as web server
+
+Example:
+
+- `ghcr.io/shopware/docker-dev:php8.4-node24-caddy` - PHP 8.4, Node 24, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.3-node24-caddy` - PHP 8.3, Node 24, Caddy as web server
+- `ghcr.io/shopware/docker-dev:php8.4-node22-nginx` - PHP 8.4, Node 22, Nginx as web server
+- `ghcr.io/shopware/docker-dev:php8.3-node22-nginx` - PHP 8.3, Node 22, Nginx as web server
 
 ### Using OrbStack Routing
 

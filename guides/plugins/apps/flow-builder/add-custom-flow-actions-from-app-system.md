@@ -38,7 +38,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     │       └── Resources
     │           └── flow-action.xml
     │           └── app-icon.png
-    │           └── slack-icon.png
+    │           └── discord-icon.png
     │       └── manifest.xml
     └── plugins
 ```

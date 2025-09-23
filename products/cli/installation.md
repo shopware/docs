@@ -18,7 +18,7 @@ Shopware CLI is published in various package managers. You can install it using 
 ### Homebrew
 
 ```bash
-brew install shopware/tap/shopware-cli
+brew install --cask shopware/tap/shopware-cli
 ```
 
 ### Debian/Ubuntu — APT based Linux
