@@ -25,7 +25,7 @@ The variety of Shopware's extension interfaces can be overwhelming, so let us st
 
 ## Plugins
 
-Plugins are the most powerful extension mechanism, as they can be used to extend, overwrite and modify almost any part of the software. At the same time, they can also be the most harmful for the same reasons. You will probably need to write a plugin, if you make profound changes or complex functionalities such as:
+Plugins are the most powerful extension mechanism, as they can be used to extend, overwrite and modify almost any part of the software. You will probably need to write a plugin, if you make profound changes or complex functionalities such as:
 
 * Custom price calculation
 * Product imports
@@ -34,13 +34,41 @@ Plugins are the most powerful extension mechanism, as they can be used to extend
 * Dynamic validations
 * Customer tracking
 
-Follow our [Plugin Base Guide](plugins/plugin-base-guide) to learn how to develop a plugin. See the [Plugin Fundamentals](plugins/plugin-fundamentals/) section below for more examples.
+Follow our [Plugin Base Guide](plugins/plugin-base-guide) to learn how to develop a plugin. Also refer to [Plugin Fundamentals](plugins/plugin-fundamentals/) section.
 
 ::: info
-If your extensions do not require any of the above but rather design changes, a template tweak might ideally be appropriate.
+If your extension doesn’t need any of the above functionalities and is only about design changes, a simple template adjustment may be the best choice - typically done through a theme plugin.
+:::
+
+## Apps
+
+Apps are the extension mechanism designed for Shopware’s Cloud environment. Unlike plugins, they don’t run code directly inside the shop system. Instead, they work in an event-driven way and communicate with external services through APIs. This makes them less intrusive, but still very flexible.
+
+You’ll probably want to build an app if your use case involves:
+
+* Integrating with third-party services (e.g. ERP, CRM, marketing tools)
+
+* Providing payment methods and forwarding to external payment providers
+
+* Adding storefront customizations, including themes
+
+* Handling data or processes outside of the shop system (e.g. product synchronization, shipping, analytics)
+
+Follow our [App Base Guide](https://developer.shopware.com/docs/guides/plugins/apps/app-base-guide.html) and [App Starter Guide](https://developer.shopware.com/docs/guides/plugins/apps/starter/) to learn how to develop an app.
+
+::: info
+Apps also provide theme support, so everything you can do with a theme plugin is also possible in an app — making them the way to customize design in Cloud shops.
 :::
 
 ## Themes
+
+Basically a theme can be an app/plugin that aims at changing the visual appearance of the Storefront.
+
+Extensions
+├── Plugin
+│   └── can include a Theme (not for Cloud)
+└── App
+    └── can include a Theme (Cloud-ready)
 
 A theme lets you perform the tasks listed below.
 
@@ -49,18 +77,8 @@ A theme lets you perform the tasks listed below.
 * Configuration interfaces
 * Control the order in which styles and templates are loaded
 
-Technically, plugins and themes are very similar and overlap in most of their logic. However, some special aspects are handled differently, such as template and style priority or their activation. Once plugins are installed and activated, their styles and templates are applied immediately. If a theme is installed, it must first be selected in the theme manager.
-
 ::: info
 Note that a plugin can also override templates.
 :::
 
 To get started with your first theme, follow our [Theme Base Guide](themes/theme-base-guide).
-
-## Apps
-
-Operation in cloud environments is not possible due to the aspects listed under [Plugins](overview#plugins). Therefore, a different, less intrusive pattern was introduced. Apps enable event-based integrations that communicate with external services via a synchronous API.
-
-Most of the app's logic resides in this third-party service, so developers must ensure that they handle the details of the API and provide their service with appropriate security, protection, and reliability. While it comes with these responsibilities, you are free to choose which operating environment, framework, or programming language you wish to use as long as our [guidelines for Shopware apps](apps/app-base-guide) are followed.
-
-Apps also provide theme support, so all the features of [Themes](overview#themes) are also available for apps. Payments are also supported by apps and the user can be forwarded to a payment provider.

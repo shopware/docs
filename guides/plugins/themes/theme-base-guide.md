@@ -11,8 +11,6 @@ A theme gives you the ability to extend/change the visual appearance of the Stor
 
 Another handy capability is the theme configuration: As a theme developer you can define variables which can be configured by the shop owner in the Administration. Those variables are accessible in your theme and let you implement powerful features.
 
-Basically a theme can be an app/plugin that aims at changing the visual appearance of the Storefront. To be better understand the difference among [Plugins and Apps vs Themes](differences-plugins-and-apps-vs-themes), refer to the corresponding article.
-
 ## Next steps
 
 Now that you know what you can do with themes, the next steps would be to [create themes](create-a-theme).
