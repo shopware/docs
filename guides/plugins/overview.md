@@ -70,6 +70,8 @@ Extensions
 └── App
     └── can include a Theme (Cloud-ready)
 
+To better understand the difference among [Plugins and Apps vs Themes](./differences-plugins-and-apps-vs-themes.md), refer to the corresponding article.
+
 A theme lets you perform the tasks listed below.
 
 * Template overrides
