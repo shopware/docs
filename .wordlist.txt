@@ -231,6 +231,7 @@ CronIntervalField
 Cronjobs
 CrossSellingDataSet
 Crowdin
+CRM
 Ctrl
 CurrencyRule
 CustomAppAware
