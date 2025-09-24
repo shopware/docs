@@ -21,14 +21,6 @@ Technically there is no real difference between a Development Setup and a Produc
 
 * [Symfony CLI](symfony-cli) - This setup uses the Symfony CLI to run Shopware. It is the default way to run Symfony applications and is also suitable for Shopware.
 
-* [Devenv](devenv) - This is a setup that manages all necessary services. A description file in the source code manages the versions of these services. This setup works for Linux, WSL, and macOS.
-
-* [Dockware*](https://dockware.io/getstarted) - This is a managed docker setup for Shopware 6 by Shopware agency [dasistweb](https://www.dasistweb.de/).
-
-* [DDEV*](https://notebook.vanwittlaer.de/ddev-for-shopware/less-than-5-minutes-install-with-ddev-and-symfony-flex) - Docker-based PHP development environments, works on all platforms and is generic enough to be used for any PHP project. [Project Page](https://ddev.com/)
-
-> \* These setups are maintained by the community and not directly by Shopware. If you have any questions or issues, please open an issue in the respective repository.
-
 ## Production setup
 
 ### Managed hosting
