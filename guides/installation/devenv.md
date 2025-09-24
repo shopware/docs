@@ -1,11 +1,21 @@
 ---
 nav:
-  title: Devenv
+  title: Devenv (legacy)
   position: 30
 
 ---
 
-# Devenv
+# Devenv (legacy)
+
+::: warning Migration Recommended
+**While Devenv is still functional for Shopware development**, we recommend migrating to our [Docker-based setup](../setup) for new projects. Docker provides:
+- Easier setup and maintenance
+- Active support and updates from the Shopware team
+- Consistent experience across all platforms
+- Better community support
+
+Existing projects using Devenv can continue to work with it, but consider migrating to Docker for better long-term support.
+:::
 
 ## What is devenv?
 

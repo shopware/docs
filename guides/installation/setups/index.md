@@ -5,27 +5,33 @@ nav:
 
 ---
 
-# Setups
+# Alternative Setup Options
 
-## Set up your own environment
-
-Head over to the [Requirements](../requirements) section to install and configure the necessary services like a database and a webserver to a Unix system like Linux, macOS, WSL, etc.
-
-## Development setup
-
-::: info
-Technically there is no real difference between a Development Setup and a Production Setup, they only differ on performance and security optimizations.
+::: tip Recommended Approach
+We **strongly recommend** using our main [Development Setup](../setup) guide which provides a complete Docker-based environment with zero configuration.
 :::
 
-* [Docker](docker) (beginner-friendly) - This is a Docker setup for Shopware 6. It is a lightweight and easy way to get started with Shopware. It uses Docker Compose to manage the services and is suitable for local development.
+## Why Use Alternatives?
 
-* [Symfony CLI](symfony-cli) - This setup uses the Symfony CLI to run Shopware. It is the default way to run Symfony applications and is also suitable for Shopware.
+Our Docker setup covers 99% of use cases. Only consider alternatives if:
+- Corporate policies prevent Docker usage
+- You have specific infrastructure requirements
+- You're working with legacy systems
 
-## Production setup
+## Alternative Setup
+
+::: warning
+Manual configuration required. Only use if Docker is not an option for your use case.
+:::
+
+* [Manual Setup](../requirements) - Full manual installation for specific requirements
+* [Devenv (Legacy)](../devenv) - Nix-based setup (no longer recommended)
+
+## Production Setup
 
 ### Managed hosting
 
-Many hosting providers, especially Shopware certified ones, offer a fully pre-configured Hosting environment for Shopware. This is the easiest way to get started with Shopware. You can find a list of certified hosting partners on the [Shopware website](https://www.shopware.com/en/partner/hosting/). You will need to upload your [Shopware project template](../template.md) to the server and run the installation commands.
+Many hosting providers, especially Shopware certified ones, offer a fully pre-configured Hosting environment for Shopware. This is the easiest way to get started with Shopware. You can find a list of certified hosting partners on the [Shopware website](https://www.shopware.com/en/partner/hosting/). You will need to upload your Shopware project to the server and run the installation commands.
 
 If you want to automate the installation process, consider using [Deployer](https://deployer.org/) to deploy the code changes. You can find here the [Deployer documentation](../../hosting/installation-updates/deployments/deployment-with-deployer.md).
 

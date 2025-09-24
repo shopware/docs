@@ -7,16 +7,20 @@ nav:
 
 # Installation Overview
 
-This section discusses ways to set up Shopware on local machines so you can use it as a foundation for your development.
+::: tip Quick Start
+Get started with our recommended [Docker-based setup](./setup). It provides a zero-configuration development environment.
+:::
 
-There are a couple of ways to get Shopware running on your system, together with the most useful services for data storage and the web server.
+This section covers setting up Shopware for local development using our recommended Docker approach.
 
-## Template
+## Project Structure
 
-Regardless of your choice of setup, all setup methods are based on the [Project template](./template.md). This template is a new Composer project, which requires Shopware itself. Therefore, you can further customize your installation with additional extensions, themes, or configurations.
+Shopware uses a Composer-based project structure that allows you to manage extensions, themes, and configurations alongside the core application. Learn more in our [setup guide](./setup).
 
-## Setups
+## Development Setup
 
-The following setups are available for Shopware 6:
+<PageRef page="./setup" title="Shopware Development Setup" />
 
-<PageRef page="./setups/" />
+## Alternative Approaches
+
+<PageRef page="./setups/" title="Other Setup Options" />

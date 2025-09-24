@@ -7,7 +7,11 @@ nav:
 
 # Requirements
 
-Before installing Shopware 6, take a quick look at the requirements below to check if your local environment is capable of running it.
+::: tip Recommended Approach
+Want to skip manual setup? Use our [Docker setup](./setup) which includes all requirements pre-configured.
+:::
+
+These are the requirements for running Shopware 6. If you're using our recommended Docker setup, all of these are already included.
 
 ## Operating System
 
@@ -51,53 +55,7 @@ On many shared hosting environments, you have multiple PHP versions installed. M
   * `ext-xml`
   * `ext-zip`
   * `ext-zlib`
-* Composer recommended version: 2.2 or higher
-
-This is how you install PHP and Composer:
-
-<Tabs>
-
-<Tab title="Ubuntu">
-
-Add a new software repository to your system to have the latest PHP version.
-
-```bash
-sudo add-apt-repository ppa:ondrej/php
-
-sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
-
-sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
-sudo chmod +x /usr/local/bin/composer
-```
-
-</Tab>
-
-<Tab title="Debian">
-
-Add a new software repository to your system to have the latest PHP version:
-
-```bash
-sudo apt-get install extrepo
-sudo extrepo enable sury
-
-sudo apt-get update
-sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
-
-sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
-sudo chmod +x /usr/local/bin/composer
-```
-
-</Tab>
-
-<Tab title="macOS">
-
-```bash
-brew install php@8.3 composer
-```
-
-</Tab>
-
-</Tabs>
+* Composer version: 2.2 or higher
 
 ### SQL
 
@@ -111,60 +69,15 @@ brew install php@8.3 composer
   * Recommended version: 11.4
   * Minimum version : 10.11.6 or 11.0.4
 
-For optimal MySQL performance, it is advisable to set `max_allowed_packet` to a minimum of 32 MB.
-
-This is how you install MariaDB:
-
-<Tabs>
-
-<Tab title="Ubuntu / Debian">
-
-```bash
-sudo apt install -y mariadb-server
-```
-
-</Tab>
-
-<Tab title="macOS">
-
-The easiest way is to use [Homebrew](https://brew.sh/):
-
-```bash
-brew install mariadb
-```
-
-</Tab>
-
-</Tabs>
+For optimal MySQL performance, see [Performance Tweaks](../hosting/performance/performance-tweaks#mysql-configuration).
 
 ### JavaScript
 
+::: info
+Node.js is only required for building custom extensions and themes, not for operating the store itself. It does not need to be available in the **production environment**.
+:::
+
 * Node.js 22.0.0 or higher
-
-This is how you install Node.js:
-
-<Tabs>
-
-<Tab title="Ubuntu / Debian">
-
-```bash
-curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
-sudo -E bash nodesource_setup.sh
-
-sudo apt-get install -y nodejs
-```
-
-</Tab>
-
-<Tab title="macOS">
-
-```bash
-brew install node@22
-```
-
-</Tab>
-
-</Tabs>
 
 ## Redis or key/value stores
 
@@ -177,7 +90,7 @@ Shopware uses the Redis Protocol and, therefore, supports the following key/valu
 
 ## Webserver
 
-To run Shopware in a development context, the [Symfony CLI](https://symfony.com/doc/current/setup/symfony_server.html) will work nicely.
+Any webserver that can serve PHP will work. Here are example configurations for common webservers:
 
 <PageRef page="../../resources/references/config-reference/server/apache" />
 <PageRef page="../../resources/references/config-reference/server/caddy" />
@@ -189,8 +102,8 @@ We recommend the following stack:
 
 * Webserver: Caddy
 * PHP: 8.4
-* SQL: MariaDB 11.4
-* Node: 22
+* SQL: MariaDB 11.8
+* Node: 24
 * Search: OpenSearch 2.17.1
 * Queue: RabbitMQ
 * Cache: Valkey 8.0
@@ -198,6 +111,14 @@ We recommend the following stack:
 Recommended PHP ini:
 <PageRef page="../hosting/performance/performance-tweaks#php-config-tweaks" />
 
-## Setup
+## Next Steps
 
-Once the requirements are fulfilled, follow up with the [Template](template) guide to set up Shopware.
+### Recommended: Docker Setup
+
+Skip the manual installation and use our pre-configured Docker environment:
+
+<PageRef page="./setup" title="Shopware Development Setup" />
+
+### Alternative: Manual Setup
+
+If you must install everything manually, you'll need to set up all the services listed above and then follow the Composer installation process described in our [setup guide](./setup#project-structure).

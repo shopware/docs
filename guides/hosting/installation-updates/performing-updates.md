@@ -7,6 +7,33 @@ nav:
 
 # Performing Shopware Updates
 
+## Updating from Composer Project
+
+If you're using the Composer-based setup (as described in our [development setup guide](../../installation/setup)), follow these steps:
+
+```bash
+# Enable maintenance mode
+bin/console system:update:prepare
+
+# Update packages
+composer update
+
+# Update configuration files
+composer recipes:update
+
+# Apply database migrations and finish update
+bin/console system:update:finish
+```
+
+For Docker environments:
+
+```bash
+# Enter container first
+make shell
+
+# Then run the update commands above
+```
+
 ## When to update
 
 Shopware releases updates every month. It's not necessary to update every month, but you should always install the latest security patches through the [Security Plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) or update Shopware itself to the latest version. To check if your Shopware version still gets security updates, you can check the [Shopware Release Cycle](https://developer.shopware.com/release-notes/). But generally speaking, the maintenance effort is the same when you wait a long period or update more regularly. So our recommendation would be to update from every major version to the next major version, and stay on a minor version for a longer period of time, if you don't need any new features or encounter issues with the used version.
