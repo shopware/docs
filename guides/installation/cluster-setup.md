@@ -13,10 +13,6 @@ This guide contains information for everyone who intends to start with such a pr
 
 ## Shopware configuration
 
-::: info
-This configuration is available starting with Shopware version 6.5.6.0
-:::
-
 To configure Shopware for a cluster setup, you have to set the following configuration in your shopware.yaml file:
 
 ```yaml
@@ -26,22 +22,6 @@ shopware:
 ```
 
 This option prevents shopware from running operations locally (meaning only on one node in a cluster), that potentially can corrupt the state of the cluster by having the state of the nodes diverge from each other, e.g. clearing symfony cache files at runtime.
-
-## Symfony Flex template
-
-Use the [Symfony Flex template](../../installation/template) and pin the Shopware versions in the `composer.json` file. This prevents unwanted updates when deploying (without a composer.lock).
-
-## Sources
-
-The following folders are available in the production template:
-
-- **/src**: Here, the project-specific bundles and sources can be stored.
-- **/config**: Here are the .yaml config files and other possible configurations (routing, admin configs, etc).
-- **/config/bundles.php**: In this file, all Symfony bundles are defined, which should be included in the project.
-
-## Third-party sources
-
-Most big-scale projects have a development team assigned. It is responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be useful but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including necessary plugins as Composer packages instead of user-managed plugins.
 
 ## Redis
 
@@ -73,11 +53,6 @@ For more information, refer to the [filesystems](../infrastructure/filesystem) s
 ### Shared directories
 
 Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem.
-
-## Shopware updates + security
-
-To update your project, we always recommend using a staging environment. However, updates for a project should only be obtained if there are critical problems with the system or if essential features have been provided by Shopware.
-Updates of such systems require a certain amount of effort, as issues often arise during deployments to production systems.
 
 ### Security plugin
 

@@ -7,10 +7,6 @@ nav:
 
 # HTML Sanitizer
 
-::: info
-This feature has been introduced with Shopware version 6.5. This is exclusively intended for self-hosted shops. However, it's important to note that the implementation is currently not available for cloud stores.
-:::
-
 ## Overview
 
 HTML sanitizer improves security, reliability and usability of the text editor by removing potentially unsafe or malicious HTML code. It also sanitizes styles and attributes for consistent and correct code rendering regardless of platform and browser. For example, if the `<img>` tag is added, it is automatically removed by the editor after a few seconds and an additional notice appears that some of your inputs have been sanitized.

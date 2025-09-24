@@ -7,10 +7,6 @@ nav:
 
 # Static System Configuration
 
-::: info
-This feature is available since Shopware 6.6.4.0
-:::
-
 The static system configuration is a feature that allows you to configure system configurations inside the `config/packages` directory and **overwrite** the configuration set in the database. This is useful for setting up configurations that should not be changed by the user, or properly configuring the system for different environments without the need to change the database.
 
 ## How it works

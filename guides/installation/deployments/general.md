@@ -1,15 +1,15 @@
 ---
 nav:
-  title: Deployment Helper
-  position: 15
+  title: General
+  position: 5
 
 ---
 
-# Deployment Helper
+# General
 
-The Deployment Helper is a tool that unifies the steps executed after the Code has been uploaded to the server.
+For deployment, we recommend using the Deployment Helper, which is a tool that unifies the steps executed after the code has been uploaded to the server.
 On a traditional deployment, you would run it after the files have been uploaded.
-When using a Containerized environment, you would run Deployment Helper with the new source code and then switch over the traffic.
+When using a containerized environment, you would run the Deployment Helper with the new source code and then switch over the traffic.
 
 ## Installing the Deployment Helper
 
@@ -220,19 +220,3 @@ and deploy the changes. The extension will be uninstalled and is inactive.
 2.) Remove the extension from source code
 
 After the deployment, you can remove the extension from the source code, remove the entry from the `.shopware-project.yml` file and deploy the changes again.
-
-## Usage examples
-
-### Container
-
-In a Docker environment, you have a base image with a running PHP Webserver.
-From that image you make a new image with your Shopware source code.
-To prepare the Shopware source code, you can run [shopware-cli project ci](../../../../products/cli/) to install the dependencies and build the assets.
-On deployment, you spawn a second container or init a container, which runs the Deployment Helper.
-The Deployment Helper sets up Shopware when it is not installed, installs the extensions and runs the one-time tasks.
-
-### SFTP / Deployer
-
-When using SFTP or Deployer, you clone the repository to the CI/CD server, run the [shopware-cli project ci](../../../../products/cli/) command to install the dependencies and build the assets.
-Then you upload the source code to the server and run the Deployment Helper on the server.
-The Deployment Helper sets up Shopware when it is not installed, installs the extensions and runs the one-time tasks.

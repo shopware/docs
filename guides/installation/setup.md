@@ -1,7 +1,7 @@
 ---
 nav:
   title: Setup
-  position: 3
+  position: -30000
 ---
 
 # Setup
@@ -15,7 +15,7 @@ Our Docker setup provides a **zero-configuration** development environment that 
 ## Prerequisites
 
 ::: info macOS Users
-We recommend [OrbStack](https://orbstack.dev) over Docker Desktop for better performance. Install via `brew install orbstack` or enable [Docker VMM](https://docs.docker.com/desktop/features/vmm/#docker-vmm) if using Docker Desktop.
+We recommend [OrbStack](https://orbstack.dev) over Docker Desktop for better performance. If you want to stick to Docker Desktop, enable [Docker VMM](https://docs.docker.com/desktop/features/vmm/#docker-vmm) in the settings for improved performance.
 :::
 
 You only need:
@@ -45,6 +45,14 @@ This creates a complete Shopware project with:
 - `Makefile` with convenience commands
 - Pre-configured environment settings
 
+At this point, you should consider initializing a Git repository to track your project changes.
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
 ### 2. Start the environment
 
 ```bash
@@ -55,27 +63,39 @@ This starts:
 - **Web server** (Nginx/Caddy) on port 8000
 - **MariaDB** on port 3306
 - **Mailpit** (email testing) on port 8025
+- **Adminer** (database management) on port 9080
 
 ### 3. Install Shopware
 
+:::warning Default language and currency cannot be changed
+
+The default installation uses `en-GB` as the language and `EUR` as the currency. The default currency and locale cannot be changed after installation. You can still add additional languages and currencies later. Each product/category will be required to be translated into the default language / currency.
+:::
+
 ```bash
-make setup
+make shell
+
+# Installs Shopware with en-GB locale and default currency EUR
+bin/console system:install --basic-setup --create-database --drop-database --force
+
+# Or with en-US locale and default currency USD
+bin/console system:install --basic-setup --create-database --drop-database --force --shop-locale=en-US --shop-currency=USD
 ```
 
 This automatically:
 - Creates the database
 - Installs Shopware
 - Creates admin user (username: `admin`, password: `shopware`)
-- Sets up demo data
 
 Your shop is now running at:
 - **Storefront**: <http://localhost:8000>
 - **Administration**: <http://localhost:8000/admin>
 - **Mailpit**: <http://localhost:8025>
+- **Adminer**: <http://localhost:9080>
 
 ## Project Structure
 
-Your Shopware project follows the [Symfony Flex](https://symfony.com/doc/current/setup/flex.html) structure:
+Your Shopware project has this structure:
 
 ```
 my-shopware-project/
@@ -88,9 +108,10 @@ my-shopware-project/
 ├── var/                    # Cache, logs, and generated files
 ├── vendor/                 # Composer dependencies
 ├── .env                    # Environment variables
+├── .env.local              # Environment variables specific to this environment
 ├── composer.json           # Project dependencies
-├── compose.yaml           # Docker services
-└── Makefile              # Convenience commands
+├── compose.yaml            # Docker services
+└── Makefile                # Convenience commands
 ```
 
 ### Managing Extensions
@@ -121,6 +142,8 @@ APP_ENV=dev
 APP_URL=http://localhost:8000
 DATABASE_URL=mysql://shopware:shopware@database:3306/shopware
 ```
+
+For a complete list of all available environment variables, see [Environment Variables Reference](./configurations/shopware/environment-variables.md).
 
 ## Daily Development
 
@@ -277,28 +300,6 @@ shopware:
       url: "http://localhost:8050"
 ```
 
-## Updating Shopware
-
-For detailed update instructions including preparations, compatibility checks, and best practices, see our [Performing Updates Guide](../hosting/installation-updates/performing-updates).
-
-Quick update commands:
-
-```bash
-# Enter container
-make shell
-
-# Run update process
-bin/console system:update:prepare
-composer update
-composer recipes:update
-bin/console system:update:finish
-```
-
-## Production Deployment
-
-::: warning
-This Docker setup is for **development only**. For production deployments, see our [production Docker guide](../hosting/installation-updates/docker.md) or [deployment documentation](../hosting/installation-updates/deployments/).
-:::
 
 ## Troubleshooting
 
@@ -329,16 +330,9 @@ The admin watcher may not work out of the box in some configurations. Use the bu
 make build-administration
 ```
 
-## Alternative Setup Methods
-
-While we strongly recommend Docker, alternative setup methods are documented for specific use cases:
-
-- [Manual Setup](./requirements) - For specific infrastructure requirements
-- [Devenv (Legacy)](./devenv) - Existing Nix-based projects
-
 ## Next Steps
 
 - Learn about [Shopware's architecture](../../concepts/)
-- Create your first [plugin](../../plugins/)
-- Build a custom [theme](../../themes/)
-- Explore the [API](../../integrations/api/)
+- Create your first [extension](../plugins/)
+- Build a custom [theme](../plugins/themes/)
+- Explore the [API](../../concepts/api/)

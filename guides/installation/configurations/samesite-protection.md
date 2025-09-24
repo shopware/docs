@@ -7,10 +7,6 @@ nav:
 
 # SameSite protection
 
-::: info
-This feature has been introduced with Shopware version 6.4.3.1
-:::
-
 ## Overview
 
 The [SameSite configuration](https://symfony.com/doc/current/reference/configuration/framework.html#cookie-samesite) comes with the Symfony FrameworkBundle and supersedes the removed `sw_csrf` Twig function.

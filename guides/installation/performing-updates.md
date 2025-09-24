@@ -1,38 +1,11 @@
 ---
 nav:
-  title: Performing Shopware Updates
+  title: Performing Updates
   position: 20
 
 ---
 
-# Performing Shopware Updates
-
-## Updating from Composer Project
-
-If you're using the Composer-based setup (as described in our [development setup guide](../../installation/setup)), follow these steps:
-
-```bash
-# Enable maintenance mode
-bin/console system:update:prepare
-
-# Update packages
-composer update
-
-# Update configuration files
-composer recipes:update
-
-# Apply database migrations and finish update
-bin/console system:update:finish
-```
-
-For Docker environments:
-
-```bash
-# Enter container first
-make shell
-
-# Then run the update commands above
-```
+# Performing Updates
 
 ## When to update
 
@@ -88,6 +61,33 @@ First, you should check that all extensions obtained from Shopware Store are com
 For the Hosting environment, it makes sense to update the PHP version to the minimum required version for the new Shopware version before updating Shopware itself. Shopware versions always support an overlapping PHP version, so you can update the PHP version before updating Shopware itself. You can find the minimum required PHP version in the [System Requirements](../../installation/requirements.md).
 
 For customizations, you should check the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown), it contains all breaking changes and migration instructions. Most of the time, it's easier to update to the latest version in a local environment and take a look at what is not working anymore.
+
+## Updating from Composer Project
+
+If you're using the Composer-based setup (as described in our [development setup guide](../../installation/setup)), follow these steps:
+
+```bash
+# Enable maintenance mode
+bin/console system:update:prepare
+
+# Update packages
+composer update
+
+# Update configuration files
+composer recipes:update
+
+# Apply database migrations and finish update
+bin/console system:update:finish
+```
+
+For Docker environments:
+
+```bash
+# Enter container first
+make shell
+
+# Then run the update commands above
+```
 
 ## Final Steps
 

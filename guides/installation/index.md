@@ -7,20 +7,24 @@ nav:
 
 # Installation Overview
 
-::: tip Quick Start
-Get started with our recommended [Docker-based setup](./setup). It provides a zero-configuration development environment.
-:::
+This section covers setting up Shopware for local development and for deployment to external servers.
 
-This section covers setting up Shopware for local development using our recommended Docker approach.
+## Local Setup
 
-## Project Structure
+For a local setup, we recommand to go straight to [Setup](./setup.md) which will guide you through the installation process.
 
-Shopware uses a Composer-based project structure that allows you to manage extensions, themes, and configurations alongside the core application. Learn more in our [setup guide](./setup).
+## Hosting
 
-## Development Setup
+For hosting Shopware on a server, please check the available options below.
 
-<PageRef page="./setup" title="Shopware Development Setup" />
+### Webspace Hosting / Shopware Hosting Partner
 
-## Alternative Approaches
+If you want to host Shopware at a traditional webspace hosting provider, we recommend creating a local installation first using the [Setup](./setup.md) guide and then [using Deployer](./deployments/deployment-with-deployer.md) to deploy your code to the server.
 
-<PageRef page="./setups/" title="Other Setup Options" />
+### PaaS Hosting
+
+If you want to host Shopware on a Shopware PaaS see [Shopware PaaS section](../../products/paas/index.md) for more information.
+
+### Containerized Hosting
+
+If you want to host Shopware in a containerized environment, we recommend creating first a local installation using the [Setup](./setup.md) guide and then [using Docker](./deployments/deployment-with-docker.md) to learn how to build and deploy your containers.

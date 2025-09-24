@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Staging
+  title: Staging mode
   position: 10
 
 ---
 
-# Staging
+# Staging mode
 
-Since Shopware 6.6.1.0, Shopware has an integrated staging mode. This mode prepares the shop to be used in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
+Shopware has an integrated staging mode. This mode prepares the shop to be used in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
 
 ## The workflow
 
