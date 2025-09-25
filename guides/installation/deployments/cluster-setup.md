@@ -7,9 +7,7 @@ nav:
 
 # Cluster Setup
 
-The setup of high-scaling systems differs from a normal installation of Shopware. They are completely customized stores with individual templates and extensions.
-
-This guide contains information for everyone who intends to start with such a project.
+The setup of multiple app servers / instances is a common requirement for high-availability and high-traffic scenarios. In this guide we provide best practices and recommendations for such setups.
 
 ## Shopware configuration
 

@@ -7,10 +7,6 @@ nav:
 
 # Rate Limiter
 
-::: info
-This functionality is available starting with Shopware 6.4.6.0.
-:::
-
 ## Overview
 
 Shopware 6 provides certain rate limits by default that reduces the risk of brute-force attacks for pages like login or password reset.
