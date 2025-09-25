@@ -225,9 +225,9 @@ Create `compose.override.yaml`:
 services:
     web:
         environment:
-            - XDEBUG_MODE=debug
-            - XDEBUG_CONFIG=client_host=host.docker.internal
-            - PHP_PROFILER=xdebug
+            XDEBUG_MODE: debug
+            XDEBUG_CONFIG: client_host=host.docker.internal
+            PHP_PROFILER: xdebug
 ```
 
 Then restart: `docker compose up -d`
@@ -238,7 +238,7 @@ Then restart: `docker compose up -d`
 services:
     web:
         environment:
-            - PHP_PROFILER=blackfire
+            PHP_PROFILER: blackfire
     blackfire:
         image: blackfire/blackfire:2
         environment:
