@@ -69,7 +69,7 @@ Here are some example locales that are a dialect to the generic base layer.
 └············
 ```
 
-For more details on selecting a base language and structuring your snippet files, see the [Base Languages guide](/concepts/translations/built-in-translation-system.md).
+For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
 
 ### Automatic
 

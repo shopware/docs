@@ -75,7 +75,7 @@ When loading translations, the system follows a defined priority order to resolv
    look at its documentation.
 3. Region-agnostic translations (`en` and `de`) – These are shipped with Shopware and its plugins. They ensure that the
    system always has a reliable fallback language and provide a consistent developer experience without requiring you
-   to wait until your translations are accepted at [translate.shopware.com](https://translate.shopware.com). For more details on selecting a base language and structuring your snippet files, see the [Base Languages guide](/concepts/translations/built-in-translation-system.md).
+   to wait until your translations are accepted at [translate.shopware.com](https://translate.shopware.com). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
 4. Built-in translation system – Finally, the translations installed via the built-in translation system are applied.
 
 ## Built-in translation system and Flysystem
