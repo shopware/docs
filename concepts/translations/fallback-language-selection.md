@@ -1,6 +1,6 @@
 # Fallback language selection
 
-With Shopware 6.7 a **country agnostic snippet layer** was introduced to reduce duplicate translations.  
+With Shopware 6.7 a **country-agnostic snippet layer** was introduced to reduce duplicate translations.  
 In this model the snippet loader first attempts to load a country-specific variant (e.g. `de-DE`), then falls back to an agnostic **base language** (e.g. `de`), and as a last resort falls back to `en` as a universal default.  
 The base layer concept and fallback order are explained in detail in the [Built-in Translation Handling](built-in-translation-system.md) page, which you should read alongside this guide.
 
@@ -14,13 +14,9 @@ Detailed examples of how Shopware resolves translations are available in the [Bu
 
 A fallback language is a **locale code without a regional part** (for example `en` instead of `en-US` or `en-GB`).  
 Shopware’s core repository defines which languages have a base file; if your language appears only as a single locale (such as `sv-SE`), that file serves as both the base and regional variant.  
-To decide whether your language needs a base file and which variant defines it, follow these principles:
+**Aim for neutrality** – Avoid region-specific terminology in the base files. For example, in Spanish, a neutral Castilian register is recommended to maximize comprehension.
 
-* **Use the standard variant** – The base file should reflect the official standard form of a language. Shopware uses British English (en-GB) as the basis for `en` and European Portuguese (pt-PT) for `pt`.
-* **Create a base only when multiple regional variants exist** – If there is only one supported locale (for example Czech), you don’t need a separate `cs` file.
-* **Aim for neutrality** – Avoid region-specific terminology in the base file. For Spanish, a neutral Castilian register is recommended to maximize comprehension.
-
-## Base languages
+## Fallback languages
 
 The **fallback code** is the plain language code (e.g. `en` or `de`), and the **defining dialect** is the standard locale from which the base translations derive.  
 The table shows some examples of common cases:
@@ -40,8 +36,8 @@ For detailed instructions, see the [Extension Translation Migration](/resources/
 
 * **Create a complete base file** (`messages.<language>.base.json`) for each supported language.
 * **Add patch files only when needed** – keep them minimal.
-* **Follow naming conventions** – base file: `messages.<language>.base.json`; patch file: `messages.<locale>.base.json`.
-* **Validate your snippets** – clear the cache and run `bin/console snippet:validate`.
+* **Follow naming conventions** – E.g., agnostic file: `storefront.nl.json`; patch file: `storefront.nl-BE.base.json`.
+* **Validate your snippets** – clear the cache and run `bin/console translation:validate`.
 
 ## Conclusion
 
