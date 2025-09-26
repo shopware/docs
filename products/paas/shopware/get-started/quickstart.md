@@ -71,12 +71,18 @@ Initialize a new PaaS project:
 sw-paas project create --name "my-shopware-app" --repository "git@github.com:username/repo.git"
 ```
 
-## Step 4: Deploy an Application Instance of the project
+## Step 4: Create and deploy an Application Instance of the project
 
-Deploy your application. Choose your earlier created project:
+Create your application:
 
 ```sh
 sw-paas application create
+```
+
+Then, deploy your application:
+
+```sh
+sw-paas application deploy
 ```
 
 Monitor the deployment progress:

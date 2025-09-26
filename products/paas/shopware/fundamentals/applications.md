@@ -14,13 +14,13 @@ For instance, you might allocate smaller, hibernating compute instances for stag
 
 ## Creating an Application
 
-Deploy a new application to a project:
+Create a new application to a project:
 
 ```sh
 sw-paas application create
 ```
 
-## Build and Deployments
+## Build your application
 
 To trigger a new build for the application via CLI, use the following command:
 
@@ -32,6 +32,42 @@ This command initiates the build process, packaging your application and prepari
 
 ```sh
 sw-paas application build logs
+```
+
+## Update your application
+
+To update your application, you need to run the following command, and provide the commit SHA:
+
+```sh
+sw-paas application update
+```
+
+This command initiates the build process, packaging your application and preparing it for deployment.
+Then you need to deploy it, see below.
+
+## Deploy your application
+
+To deploy your application and make your changes live, you need to run the following command:
+
+```sh
+sw-paas application deploy
+```
+
+It will let you chose, which build you want to deploy.
+This is very handy, since you chose any successful build to deploy. The lastest one to bring your change live, or previous one to fix an issue that arise.
+
+## Deployments management
+
+To list all past deployments:
+
+```sh
+sw-paas application list-deployments
+```
+
+To get details about a given deployment:
+
+```sh
+sw-paas application get-deployment
 ```
 
 ## Plugin Management
@@ -112,12 +148,12 @@ cdn.shopware.shop
 
 This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
 
-#### Application Updates
+#### Application Deployment
 
 Following domain creation, you must redeploy your application. You can do it by using:
 
 ```sh
-sw-paas application build start
+sw-paas application deploy
 ```
 
 This process will be automated in future releases.
