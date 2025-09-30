@@ -25,9 +25,9 @@ Here are the main Blackfire features:
 ## Access
 
 You'll find the link to access Blackfire on the Shopware PaaS Console at the environment level.
-Once you click on the link, you'll be redirected to the Platform.sh authentication portal.
+Once you click on the link, you'll be redirected to the Upsun authentication portal.
 
-If this is your first authentication, please use your usual Shopware PaaS email and follow the "reset password" workflow so you can set your Platform.sh password.
+If this is your first authentication, please use your usual Shopware PaaS email and follow the "reset password" workflow so you can set your Upsun password.
 
 ## Onboarding Guide
 
