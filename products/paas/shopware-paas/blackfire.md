@@ -5,6 +5,10 @@ nav:
 
 ---
 
+::: info
+**Platform.sh** is now **Upsun**. You may still encounter references to Platform.sh in code, documentation, or older materials. These references are equivalent to Upsun.
+:::
+
 # Blackfire Continuous Observability Solution
 
 Blackfire is bundled with every Enterprise Shopware PaaS project without any additional fees.  

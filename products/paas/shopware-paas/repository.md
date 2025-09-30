@@ -5,6 +5,10 @@ nav:
 
 ---
 
+::: info
+**Platform.sh** is now **Upsun**. You may still encounter references to Platform.sh in code, documentation, or older materials. These references are equivalent to Upsun.
+:::
+
 # Repository
 
 The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new Composer create-project. You will learn more about the setup template in the [Setup Template](setup-template) section.
