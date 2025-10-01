@@ -10,8 +10,8 @@ nav:
 It's possible to enable [Blackfire Continuous Profiling](https://www.blackfire.io/continuous-profiler/) on a frontend based on Nuxt.js.
 
 1. Install the BlackFire Node.js Lib: `npm install @blackfireio/node-tracing`
-
-2. Add `./server/plugins/blackfire.ts`:
+1. Add the environment variable `BLACKFIRE_ENABLE=1`
+1. Add `./server/plugins/blackfire.ts`:
 
 ```ts
 // server/plugins/blackfire.ts
@@ -38,4 +38,3 @@ export default defineNitroPlugin(async () => {
 });
 ```
 
-3. Add the environment variable `BLACKFIRE_ENABLE=1`

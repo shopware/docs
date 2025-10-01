@@ -1,35 +1,36 @@
 ---
 nav:
-  title: Composable Frontends Performance
+  title: Composable-Frontends Performance
   position: 10
 
 ---
 
-# Shopware Backend caching
+# Composable-Frontends Performance
+
+## Shopware Backend caching
 
 The current versions of Shopware rely heavily on POST requests for `/store-api/`.  
 POST requests are by design uncacheable, so Fastly simply passes them to the backend cluster without even trying to cache them.
 
-A temporary plugin has been developed.  With this workaround, Fastly can cache some of the `/store-api/` POST requests.
-
-Github repo: https://github.com/shopwareLabs/SwagStoreApiCache
+A temporary [plugin](https://github.com/shopwareLabs/SwagStoreApiCache) has been developed.  With this workaround, Fastly can cache some of the `/store-api/` POST requests.
 
 This plugin includes new Fastly snippets that must be used instead of the usual ones.
 
-The plugin includes a few routes which will become automatically cacheable, see https://github.com/shopwareLabs/SwagStoreApiCache/blob/trunk/src/Listener/StoreAPIResponseListener.php#L57.
+The plugin includes [a few routes](https://github.com/shopwareLabs/SwagStoreApiCache/blob/trunk/src/Listener/StoreAPIResponseListener.php#L57) which will become automatically cacheable.
 
 If you need to cache additional routes, it can be done via the admin config: `SwagStoreAPICache.config.additionalCacheableRoutes`.
 
-As usual, ensure soft-purges are enabled: https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge.
+As usual, ensure [soft-purges](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge) are enabled.
 
 Please note that we're actively working on moving the `store-api` requests from POST to GET to make them cacheable, so the use of this plugin would be no longer required.  
-Epic: https://github.com/shopware/shopware/issues/7783
+More details in the [Epic](https://github.com/shopware/shopware/issues/7783). 
 
-# Composable Frontend caching
+## Composable Frontend caching
 
 To get the best performance, Frontend caching must be enabled.
 
 There are a few steps to get there:
+
 1. Configure a Fastly service on top of each Frontend
 
 It can be one Fastly service per Frontend, or it can be a single Fastly service with multiple domains and hosts configured.
@@ -63,7 +64,7 @@ The Shopware instance is not "aware" of the Frontend instance. It cannot trigger
 
 :::
 
-# Get rid of the OPTIONS requests (CORS)
+## Get rid of the OPTIONS requests (CORS)
 
 When using a different domain for backend requests, browsers are forced to send `OPTIONS` requests. Those requests, also named preflight requests, are due to `CORS` checks. Every time the browser needs to send a request to the backend, it must first confirm it's authorized to do so. 
 
@@ -83,13 +84,14 @@ if (req.url.path ~ "^/store-api/") {
 }
 The `return (pass)` is very important: we must not add a cache layer on the Frontend Fastly service to avoid invalidations issues. The Backend Fastly service remains the one responsible for caching.
 
-# Optimize the Fastly Backend hit-ratio
+## Optimize the Fastly Backend hit-ratio
 
 Once an item has been set into the cart, a new cookie named `sw-cache-hash` is sent.
 The default VCL hash snippet includes the content of this cookie in the hash (aka the cache key).
 It means that the first backend request that was cached will no longer be cached when requested once an item has been added to the cart.
 
 If rules based pricing is not used in the Shopware instance, the following section can be commented out in the VCL hash snippet:
+```vcl
 # Consider Shopware http cache cookies
 #if (req.http.cookie:sw-cache-hash) {
 #	set req.hash += req.http.cookie:sw-cache-hash;
@@ -98,7 +100,7 @@ If rules based pricing is not used in the Shopware instance, the following secti
 #}
 ```
 
-# Checks the results using the Developer Tools.
+## Checks the results using the Developer Tools.
 
 Once everything is configured, check for the `Age` header to confirm the responses are cached.
 
