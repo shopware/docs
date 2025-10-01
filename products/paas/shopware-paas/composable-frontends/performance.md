@@ -9,10 +9,10 @@ nav:
 
 ## Shopware Backend caching
 
-The current versions of Shopware rely heavily on POST requests for `/store-api/`.  
-POST requests are by design not cacheable, so Fastly simply passes them to the backend cluster without even trying to cache them.
+The current versions of Shopware rely heavily on `POST` requests for `/store-api/`.  
+`POST` requests are by design not cacheable, so Fastly simply passes them to the backend cluster without even trying to cache them.
 
-A temporary [plugin](https://github.com/shopwareLabs/SwagStoreApiCache) has been developed.  With this workaround, Fastly can cache some of the `/store-api/` POST requests.
+A temporary [plugin](https://github.com/shopwareLabs/SwagStoreApiCache) has been developed.  With this workaround, Fastly can cache some of the `/store-api/` `POST` requests.
 
 This plugin includes new Fastly snippets that must be used instead of the usual ones.
 
@@ -22,7 +22,7 @@ If you need to cache additional routes, it can be done via the admin config: `Sw
 
 As usual, ensure [soft-purges](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge) are enabled.
 
-Please note that we're actively working on moving the `store-api` requests from POST to GET to make them cacheable, so the use of this plugin would be no longer required.  
+Please note that we're actively working on moving the `store-api` requests from `POST` to `GET` to make them cacheable, so the use of this plugin would no longer be required.  
 More details in the [Epic](https://github.com/shopware/shopware/issues/7783).
 
 ## Composable Frontend caching
