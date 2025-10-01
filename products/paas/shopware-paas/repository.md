@@ -5,12 +5,16 @@ nav:
 
 ---
 
+::: info
+**Platform.sh** is now **Upsun**. You may still encounter references to Platform.sh in code, documentation, or older materials. These references are equivalent to Upsun.
+:::
+
 # Repository
 
 The source code of your project will reside in a git-based VCS repository. You can start with a plain project. However, we suggest starting with a new Composer create-project. You will learn more about the setup template in the [Setup Template](setup-template) section.
 
 ::: info
-This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab-based version control environments with Shopware PaaS. Refer to [Source Integrations](https://docs.platform.sh/integrations/source.html) for more information.
+This guide explains the repository setup using **GitHub**. You can also integrate Bitbucket or GitLab-based version control environments with Shopware PaaS. Refer to [Source Integrations](https://fixed.docs.upsun.com/integrations/source.html) for more information.
 :::
 
 ## Create a Shopware project
@@ -86,4 +90,4 @@ As the services are renamed, a completely new service will be created. Here are 
 
 * Rename the services back again
 * Start with a new service and re-index Elasticsearch
-* [Perform the transitional upgrade of two services in parallel for some time](https://docs.platform.sh/add-services/opensearch.html#upgrading)
+* [Perform the transitional upgrade of two services in parallel for some time](https://fixed.docs.upsun.com/add-services/opensearch.html#upgrading)
