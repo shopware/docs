@@ -31,8 +31,7 @@ To get the best performance, Frontend caching must be enabled.
 
 There are a few steps to get there:
 
-1. Configure a Fastly service on top of each Frontend.  
-  It can be one Fastly service per Frontend, or it can be a single Fastly service with multiple domains and hosts configured.
+1. Configure a Fastly service on top of each Frontend. It can be one Fastly service per Frontend, or it can be a single Fastly service with multiple domains and hosts configured.
 
 2. Update `nuxt.config.ts` so `routesRules`, using Incremental Static Regeneration (`ISR`), have the required cache headers.
 Example:
