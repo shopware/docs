@@ -37,6 +37,7 @@ Here's an example `services.xml` containing a new `ScheduledTask` as well as a n
         </service>
         <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTaskHandler">
             <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="logger"/>
             <tag name="messenger.message_handler" />
         </service>
     </services>
