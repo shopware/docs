@@ -74,7 +74,7 @@ To do so, all the requests to the Shopware backend must be sent on the same doma
 
 For this, the Frontend Fastly service can be configured to serve both the Frontend and the Backend requests.
 
-The config is pretty simple. With the additional host, the logic is only 4 lines of code:
+The config is pretty simple. With the additional host, the logic is only four lines of code:
 
 ```vcl
 if (req.url.path ~ "^/store-api/") { 
