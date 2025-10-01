@@ -103,6 +103,6 @@ If rules based pricing is not used in the Shopware instance, the following secti
 #}
 ```
 
-## Checks the results using the Developer Tools
+## Check the results using the Developer Tools
 
 Once everything is configured, check for the `Age` header to confirm the responses are cached.
