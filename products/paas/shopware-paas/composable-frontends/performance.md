@@ -84,7 +84,7 @@ if (req.url.path ~ "^/store-api/") {
 }
 ```
 
-The `return (pass)` is very important: we must not add a cache layer on the Frontend Fastly service to avoid invalidations issues. The Backend Fastly service remains the one responsible for caching.
+The `return (pass)` is very important. We must not add a cache layer on the Frontend Fastly service to avoid invalidation issues. The Backend Fastly service remains the one responsible for caching.
 
 ## Optimize the Fastly Backend hit-ratio
 
