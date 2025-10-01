@@ -23,7 +23,7 @@ If you need to cache additional routes, it can be done via the admin config: `Sw
 As usual, ensure [soft-purges](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#fastly-soft-purge) are enabled.
 
 Please note that we're actively working on moving the `store-api` requests from POST to GET to make them cacheable, so the use of this plugin would be no longer required.  
-More details in the [Epic](https://github.com/shopware/shopware/issues/7783). 
+More details in the [Epic](https://github.com/shopware/shopware/issues/7783).
 
 ## Composable Frontend caching
 
@@ -31,9 +31,8 @@ To get the best performance, Frontend caching must be enabled.
 
 There are a few steps to get there:
 
-1. Configure a Fastly service on top of each Frontend
-
-It can be one Fastly service per Frontend, or it can be a single Fastly service with multiple domains and hosts configured.
+1. Configure a Fastly service on top of each Frontend.  
+  It can be one Fastly service per Frontend, or it can be a single Fastly service with multiple domains and hosts configured.
 
 2. Update `nuxt.config.ts` so `routesRules`, using ISR, have the required cache headers.
 Example:
@@ -60,15 +59,15 @@ Example:
 ::: Note
 
 The cache invalidation process is only on the Fastly Backend service.
-The Shopware instance is not "aware" of the Frontend instance. It cannot trigger cache invalidation. Items will remain in cache for the `s-maxage` duration. 
+The Shopware instance is not "aware" of the Frontend instance. It cannot trigger cache invalidation. Items will remain in cache for the `s-maxage` duration.
 
 :::
 
 ## Get rid of the OPTIONS requests (CORS)
 
-When using a different domain for backend requests, browsers are forced to send `OPTIONS` requests. Those requests, also named preflight requests, are due to `CORS` checks. Every time the browser needs to send a request to the backend, it must first confirm it's authorized to do so. 
+When using a different domain for backend requests, browsers are forced to send `OPTIONS` requests. Those requests, also named preflight requests, are due to `CORS` checks. Every time the browser needs to send a request to the backend, it must first confirm it's authorized to do so.
 
-`OPTIONS` requests are by default not cacheable as the responses may vary depending on the request's headers. 
+`OPTIONS` requests are by default not cacheable as the responses may vary depending on the request's headers.
 There is a possibility to include an `Access-Control-Max-Age` header in the `OPTIONS` responses, so it forces the browser to cache the answer for a longer period than the default 5 seconds.
 
 But the recommended action is to remove those `CORS` checks completely.
@@ -77,11 +76,15 @@ To do so, all the requests to the Shopware backend must be sent on the same doma
 For this, the Frontend Fastly service can be configured to serve both the Frontend and the Backend requests.
 
 The config is pretty simple. With the additional host, the logic is only 4 lines of code:
+
+```vcl
 if (req.url.path ~ "^/store-api/") { 
   set req.http.host = "backend.mydomain.com"; 
   set req.backend = F_Backend__Shopware_instance_; 
   return (pass);
 }
+```
+
 The `return (pass)` is very important: we must not add a cache layer on the Frontend Fastly service to avoid invalidations issues. The Backend Fastly service remains the one responsible for caching.
 
 ## Optimize the Fastly Backend hit-ratio
@@ -91,6 +94,7 @@ The default VCL hash snippet includes the content of this cookie in the hash (ak
 It means that the first backend request that was cached will no longer be cached when requested once an item has been added to the cart.
 
 If rules based pricing is not used in the Shopware instance, the following section can be commented out in the VCL hash snippet:
+
 ```vcl
 # Consider Shopware http cache cookies
 #if (req.http.cookie:sw-cache-hash) {
@@ -100,7 +104,6 @@ If rules based pricing is not used in the Shopware instance, the following secti
 #}
 ```
 
-## Checks the results using the Developer Tools.
+## Checks the results using the Developer Tools
 
 Once everything is configured, check for the `Age` header to confirm the responses are cached.
-
