@@ -69,6 +69,8 @@ Here are some example locales that are a dialect to the generic base layer.
 └············
 ```
 
+For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
+
 ### Automatic
 
 Shipping with Shopware **6.7.3**, there's the command line tool `bin/console snippet:check-files` that can be used to

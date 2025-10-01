@@ -65,7 +65,7 @@ graph TD
         direction LR
         M --> M1["Clear Cache (if configured)"];
         M --> M2["Update Fastly VCL (if configured)"];
-        M --> M3["Platform.sh specific tasks (if detected)"];
+        M --> M3["Upsun specific tasks (if detected)"];
     end
 
     M1 --> T[Execute post hooks];
