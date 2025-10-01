@@ -12,7 +12,8 @@ It's possible to enable [Blackfire Continuous Profiling](https://www.blackfire.i
 1. Install the BlackFire Node.js Lib: `npm install @blackfireio/node-tracing`
 
 2. Add `./server/plugins/blackfire.ts`:
-```
+
+```ts
 // server/plugins/blackfire.ts
 export default defineNitroPlugin(async () => {
   if (process.env.BLACKFIRE_ENABLE !== '1') return;
