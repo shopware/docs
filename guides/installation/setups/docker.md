@@ -106,8 +106,14 @@ make watch-storefront
 The setup comes with the following services:
 
 - Nginx + PHP-FPM at port 8000
+  - Storefront at `http://localhost:8000`
+  - Admin at `http://localhost:8000/admin` (username: `admin`, password: `shopware`)
 - MariaDB at port 3306
 - Mailpit at port 8025
+
+### Changing environment variables
+
+You can create a `.env` file to override the default environment variables. These are loaded automatically without having to restart the containers. **Except for the `APP_ENV` variable**, which requires `docker compose up -d` to apply the changes.
 
 ### Enable Profiler/Debugging for PHP
 
@@ -168,6 +174,97 @@ Example:
 - `ghcr.io/shopware/docker-dev:php8.3-node24-caddy` - PHP 8.3, Node 24, Caddy as web server
 - `ghcr.io/shopware/docker-dev:php8.4-node22-nginx` - PHP 8.4, Node 22, Nginx as web server
 - `ghcr.io/shopware/docker-dev:php8.3-node22-nginx` - PHP 8.3, Node 22, Nginx as web server
+
+## Adding Minio for local S3 storage
+
+To add Minio as a local S3 storage, you need to add `minio` service to your `compose.yaml`:
+
+```yaml
+services:
+  # ....
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      start_period: 20s
+      start_interval: 10s
+      interval: 1m
+      timeout: 20s
+      retries: 3
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - minio-data:/data
+  
+  minio-setup:
+    image: minio/mc
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+        set -e;
+        mc alias set local http://minio:9000 minioadmin minioadmin;
+        mc mb local/shopware-public local/shopware-private --ignore-existing;
+        mc anonymous set download local/shopware-public;
+        "
+    restart: no
+  # ...
+
+volumes:
+  # ...
+  minio-data:
+```
+
+Then, create a new YAML file `config/packages/minio.yaml` with the following content:
+
+```yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/shopware/shopware/refs/heads/trunk/config-schema.json
+
+shopware:
+  filesystem:
+    public: &s3_public
+      type: "amazon-s3"
+      url: "http://localhost:9000/shopware-public"
+      config:
+        bucket: shopware-public
+        endpoint: http://minio:9000
+        use_path_style_endpoint: true
+        region: us-east-1
+        credentials:
+          key: minioadmin
+          secret: minioadmin
+    theme: *s3_public
+    sitemap: *s3_public
+    private:
+      type: "amazon-s3"
+      config:
+        bucket: shopware-private
+        endpoint: http://minio:9000
+        use_path_style_endpoint: true
+        region: us-east-1
+        credentials:
+          key: minioadmin
+          secret: minioadmin
+
+```
+
+After adding the Minio service to your `compose.yaml` and creating the configuration file, this will configure Shopware to use Minio as the S3 storage for public and private files.
+
+Run `docker compose up -d` to start the Minio containers. You can access the Minio console at <http://localhost:9001> with the username `minioadmin` and password `minioadmin`.
+
+Finally, regenerate the assets to upload them to S3:
+
+```bash
+make shell
+bin/console asset:install
+bin/console theme:compile
+```
 
 ### Using OrbStack Routing
 

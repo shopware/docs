@@ -30,6 +30,8 @@ Later, this will be converted to the ICU format (`de_DE`), which is also used by
 In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name.
 Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `example.de-AT.base.json`.
 
+For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
+
 So your structure could then look like this:
 
 ```text

@@ -62,6 +62,30 @@ shopware:
 ```
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
 
+### Using YAML anchors to avoid repetition
+
+You can use YAML anchors to avoid repeating the same configuration for multiple filesystems. This is particularly useful when you want to use the same storage backend for public, theme, and sitemap files:
+
+```yaml
+shopware:
+  filesystem:
+    public: &s3_config
+      type: "amazon-s3"
+      url: "{{S3_URL}}"
+      config:
+        bucket: "{{AWS_BUCKET}}"
+        region: "{{AWS_REGION}}"
+        endpoint: "{{AWS_ENDPOINT}}"
+        use_path_style_endpoint: true
+        credentials:
+          key: "{{AWS_ACCESS_KEY_ID}}"
+          secret: "{{AWS_SECRET_ACCESS_KEY}}"
+    theme: *s3_config
+    sitemap: *s3_config
+```
+
+In this example, the `&s3_config` creates an anchor that can be referenced with `*s3_config` in other filesystem configurations, avoiding duplication.
+
 ### Fallback adapter configuration
 
 By default, the configuration for the theme, asset and sitemap filesystem will use the configuration from the `public` filesystem if they are not specifically configured.
