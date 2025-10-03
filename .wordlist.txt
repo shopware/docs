@@ -599,6 +599,8 @@ ORM
 ORMs
 OTEL
 OTLP
+OU
+OUs
 ObjectField
 ObjectType
 OffCanvas
