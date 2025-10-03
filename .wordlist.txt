@@ -403,6 +403,7 @@ FrameworkBundle
 FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
+FroshPlatformTemplateMail
 FroshTools
 Fullstack
 GBP
@@ -523,6 +524,7 @@ MRs
 MVC
 MailAware
 MailHog
+Mailjet
 MailService
 MailStorer
 Mailcatcher
@@ -556,6 +558,7 @@ MigrationStep
 Minio
 Mixin
 Mixins
+MJML
 Modul
 Modularity
 ModuleFactory
