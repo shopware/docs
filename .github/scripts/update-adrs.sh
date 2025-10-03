@@ -5,6 +5,7 @@ git clone --depth 1 https://github.com/shopware/shopware.git
 rm -r ./resources/references/adr
 rm -r ./assets/adr
 cp -r ./shopware/adr ./resources/references
+rm -rf ./resources/references/adr/_superseded
 rm -rf ./shopware
 
 #deno run --allow-read --allow-write ./.github/scripts/update-summary.ts || true
