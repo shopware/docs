@@ -24,16 +24,40 @@ The table shows some examples of common cases:
 | **`fr`**      | `fr-FR` (French in France)          | `fr-CA`, `fr-CH`          |
 | **`nl`**      | `nl-NL` (Dutch in the Netherlands)  | `nl-BE`                   |
 
+## Migration and linting using "LintTranslationFilesCommand"
+
+To support these processes, the `LintTranslationFilesCommand` can be executed using `bin/console translation:lint-filenames` to validate translation filenames.
+
+The command outputs tables for each domain (Administration, Core/base files, and Storefront) containing the following information:
+
+- **Filename** – The name of the translation file, e.g. `storefront.de.json`.
+- **Path** – The file path where this translation file was found, e.g. `src/Storefront/Resources/snippet`.
+- **Domain** – The prefix of the corresponding storefront translation file. For administration files, `administration` is shown in this column. For extensions, it can be helpful to name storefront files accordingly, for example `cms-extensions.en.json`. Please note: language-defining base files **must always** use `messages` here!
+- **Locale** – The language code following [IETF BCP 47](https://datatracker.ietf.org/doc/html/bcp47), restricted to [ISO 639-1 (2-letter) language codes](https://en.wikipedia.org/wiki/ISO_639-1). Example: `de-DE` for German (Germany).
+- **Language** – The first part of the locale, representing the language used. Example: `de` (German) when the full locale is `de-DE`.
+- **Script** – Specifies the writing system used for the language when multiple scripts exist. This part is optional and rarely used, as most Shopware processes currently do not support or distinguish between scripts. For example, Serbian (Serbia) can be written in both Cyrillic and Latin (`sr-Cyrl-RS` vs. `sr-Latn-RS`).
+- **Region** – The suffix of the locale, used to specify a regional variant of a language. Shopware’s best practice is to avoid using regional locales for the main language, so that regional differences can be handled through overrides. Example: `de-AT` (German for Austria) can be used to patch differences from the main `de` locale.
+
+### Command parameters
+
+The command supports several options:
+
+- **`--fix`** – This parameter helps you **migrate** to Shopware's best practices by automatically renaming files to their agnostic equivalents. If multiple country-specific candidates exist for a single agnostic file, you’ll need to select one manually via prompt.
+- **`--all`** – Includes the `custom` directory in the linting of filenames to **include all extensions as well**. If specified, the `extensions` option will be ignored.
+- **`--extensions`** – Restricts the search to the given **technical** extension names (for example: `SwagCmsExtensions`), if provided. Multiple values can be passed as a comma-separated list.
+- **`--ignore`** – Excludes the specified paths relative to `src`, or, if applicable, the provided (bundle) paths. Multiple values can be passed as a comma-separated list.
+- **`--dir`** – Limits the search to a specific directory for translation files, **taking precedence over** the `ignore` parameter.
+
 ## Implementation guidelines for extension developers
 
 For detailed instructions, see the [Extension Translation Migration](/resources/references/upgrades/core/translation/extension-translation.md) guide. In short:
 
-* **Create a complete base file** (`messages.<language>.base.json`) for each supported language.
-* **Add patch files only when needed** – keep them minimal.
-* **Aim for neutrality** – Avoid country-specific terminology in the fallback files.
-* Properly select which dialect is your standard — for example, looking at Spanish, a neutral Castilian is recommended to maximize comprehension.
-* **Follow naming conventions** – E.g., agnostic file: `storefront.nl.json`; patch file: `storefront.nl-BE.json`.
-* **Validate your snippets** – clear the cache and run `bin/console translation:validate`.
+- **Create a complete base file** (`messages.<language>.base.json`) for each supported language.
+- **Add patch files only when needed** – keep them minimal.
+- **Aim for neutrality** – Avoid country-specific terminology in the fallback files.
+- **Properly select which dialect is your standard** — for example, looking at Spanish, a neutral Castilian is recommended to maximize comprehension.
+- **Follow naming conventions** – E.g., agnostic file: `storefront.nl.json`; patch file: `storefront.nl-BE.json`.
+- **Validate your snippets** – clear the cache and run `bin/console translation:validate`.
 
 ## Conclusion
 
