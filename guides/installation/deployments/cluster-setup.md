@@ -1,13 +1,101 @@
 ---
 nav:
   title: Cluster Setup
-  position: 10
+  position: 5
 
 ---
 
 # Cluster Setup
 
 The setup of multiple app servers / instances is a common requirement for high-availability and high-traffic scenarios. In this guide we provide best practices and recommendations for such setups.
+
+## Typical architecture
+
+```mermaid
+flowchart LR
+  %% Client
+  B[Browser]
+
+  %% Entry / Load Balancer with TLS termination
+  subgraph LB[Load Balancer]
+    HA[HAProxy]
+  end
+
+  %% App tier
+  subgraph APP[App Server]
+    direction TB
+    A1[App-1]
+    A2[App-2]
+  end
+
+  %% Data/infra services
+  subgraph REDIS[Redis Cluster]
+    direction TB
+    R1[(Redis-1)]
+    R2[(Redis-2)]
+  end
+
+  subgraph RMQ[RabbitMQ Cluster]
+    direction TB
+    Q1[(RabbitMQ-1)]
+    Q2[(RabbitMQ-2)]
+  end
+
+  subgraph ES[Elasticsearch Cluster]
+    direction TB
+    E1[(ES-1)]
+    E2[(ES-2)]
+  end
+
+  %% New: MySQL cluster
+  subgraph MYSQL[MySQL Cluster]
+    direction TB
+    M1[(MySQL-1)]
+    M2[(MySQL-2)]
+  end
+
+  %% Routing
+  B -->|HTTPS :443| HA
+  HA -->|HTTP| A1
+  HA -->|HTTP| A2
+
+  %% App → Redis
+  A1 <-->|TCP 6379| R1
+  A2 <-->|TCP 6379| R2
+
+  %% App → RabbitMQ
+  A1 -->|AMQP :5672| Q1
+  A2 -->|AMQP :5672| Q2
+
+  %% App → Elasticsearch
+  A1 -->|REST :9200| E1
+  A2 -->|REST :9200| E2
+
+  %% App → MySQL
+  A1 -->|MySQL :3306| M1
+  A2 -->|MySQL :3306| M2
+
+  %% Styles
+  classDef lb fill:#f6d365,stroke:#333,stroke-width:1px;
+  classDef app fill:#d4f1f4,stroke:#333,stroke-width:1px;
+  classDef redis fill:#ffd6e7,stroke:#333,stroke-width:1px;
+  classDef rmq fill:#e7f6d5,stroke:#333,stroke-width:1px;
+  classDef es fill:#f0e6ff,stroke:#333,stroke-width:1px;
+  classDef mysql fill:#fff2cc,stroke:#333,stroke-width:1px;
+  classDef client fill:#e8e8e8,stroke:#333,stroke-width:1px;
+
+  class HA lb;
+  class A1,A2,A3 app;
+  class R1,R2,R3 redis;
+  class Q1,Q2,Q3 rmq;
+  class E1,E2,E3 es;
+  class M1,M2,M3 mysql;
+  class B client;
+```
+
+::: info
+If you use an external cache server like Varnish / Fastly, that would be placed between the client and the load balancer.
+:::
 
 ## Shopware configuration
 
@@ -16,108 +104,33 @@ To configure Shopware for a cluster setup, you have to set the following configu
 ```yaml
 shopware:
     deployment:
+        # Cache clearing only deletes object cache files, no Symfony cache files on node
         cluster_setup: true
-```
-
-This option prevents shopware from running operations locally (meaning only on one node in a cluster), that potentially can corrupt the state of the cluster by having the state of the nodes diverge from each other, e.g. clearing symfony cache files at runtime.
-
-## Redis
-
-We recommend setting up at least five Redis servers for the following resources:
-
-1. [Session](../performance/session) + [cart](../infrastructure/database-cluster#cart-in-redis)
-2. [cache.object](../performance/caches#example-replace-some-cache-with-redis)
-3. [Lock](../performance/lock-store) + [Increment storage](../performance/increment)
-4. [Number Ranges](../performance/number-ranges)
-5. [Message Queue](../infrastructure/message-queue#transport-redis-example)  
-   Instead of setting up a Redis server for `messenger`, you can also work directly with [RabbitMQ](../infrastructure/message-queue#transport-rabbitmq-example)
-
-The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.
-
-When a Redis cluster is in usage, the `php.ini` setting `redis.clusters.cache_slots=1` should be set to skip the cluster node lookup on each connection.
-
-## Database cluster
-
-We have compiled some best practices and configurations to allow you to operate Shopware in a clustered database environment. Please refer to the guide below.
-
-<PageRef page="../infrastructure/database-cluster" />
-
-## Filesystem
-
-In a multi-app-server system, manage specific directories over a shared filesystem. This includes assets, theme files, and private as well as public filesystems. The recommendation is to use an S3 compatible bucket.
-
-For more information, refer to the [filesystems](../infrastructure/filesystem) section of this guide.
-
-### Shared directories
-
-Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem.
-
-### Security plugin
-
-For obtaining security fixes, without version upgrades, we provide a dedicated [Security plugin](https://store.shopware.com/swag136939272659f/shopware-6-sicherheits-plugin.html). This is compatible with all Shopware versions and corresponding hot fixes are only included in versions that are affected.
-
-### Update of composer dependencies
-
-To ensure the security of your Shopware installation, it's essential to be vigilant about third-party dependencies that might be affected by security vulnerabilities. In that case, a new Shopware version will be released with updated dependencies. If an update to the latest Shopware version in a timely manner is not possible, it is recommended to update the affected dependency manually. This can be done by using the following command:
-
-```bash
- composer update <dependency-name>
-```
-
-To identify any potential security risk in your current dependencies, it's a good practice to regularly run the [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) command. This command scans your dependencies and alerts you if there are any known vulnerabilities that need to be addressed.
-
-### Disable auto-update
-
-Shopware's integrated auto-update functionality should be disabled to prevent unwanted updates. Also, this feature is not multi-app server compatible and should be controlled via deployment.
-
-```yaml
-shopware:
+        # Disables the extension management in the administration
+        runtime_extension_management: false
     auto_update:
+        # Disables updates via the administration
         enabled: false
 ```
 
-## Message queue
+This option prevents Shopware from running operations locally (meaning only on one node in a cluster), that potentially can corrupt the state of the cluster by having the state of the nodes diverge from each other, e.g. clearing symfony cache files at runtime.
 
-On a productive system, the [message queue](../infrastructure/message-queue) should be processed via CLI processes instead of the [Admin worker](../infrastructure/message-queue#admin-worker). This way, messages are completed regardless of logged-in Administration users and CPU load, as messages can be regulated through the amount of worker processes. Furthermore, you can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/).
+## Sharing services
 
-It is recommended to run multiple `messenger:consume` workers. To automatically start the processes again after they stopped because of exceeding the given limits you can use a process control system like [systemd](https://www.freedesktop.org/wiki/Software/systemd/) or [supervisor](http://supervisord.org/running.html).
+In a clustered environment, it is important to share certain services across all nodes to ensure consistency and reliability. This includes:
 
-### Own queue
+- **Cache**: Implement a distributed cache solution (e.g. Redis) to share cached data between nodes.
+- **File storage**: Use a shared file storage solution (e.g. S3) to ensure all nodes have access to the same files.
+- **Sessions**: Store sessions in a shared storage (e.g. Redis) to allow users to maintain their sessions across different nodes.
 
-It is also recommended to define your own message queue in addition to the standard message queue. This gives you more control over the load distribution and allows you to prioritize your own processes higher than the data indexing of Shopware.
+## Database cluster
 
-## Monitoring
+If you need high availability for your database, you can set up a database cluster. This typically involves setting up multiple database instances with replication and failover mechanisms.
 
-Likewise, we recommend setting up an appropriate monitoring dashboard with well-known software such as:
-
-- [Blackfire](https://www.blackfire.io/)
-- [Tideways](https://tideways.com/)
-- [Datadog](https://www.datadoghq.com/)
-- [Elastic](https://www.elastic.co/)
-
-## Local machines
-
-It is important to keep the local development environments of the developers similar to the live environments. A development environment without Redis or Elasticsearch is always too far away from reality and often leads to complications after deployment. Therefore, it is advisable to maintain internal documentation on how to deploy the server structure and how to set up local machines.
-
-## Theme compiling
-
-The [theme compilation](deployments/build-w-o-db#compiling-the-storefront-without-database) in Shopware by default depends on the settings in the database. However, since a connection to the database is usually not guaranteed during deployment, we recommend configuring static theme compilation.
-
-## Strong CPU
-
-For the server setup, pay special attention to CPU speed. This applies to all servers (app, SQL, Elasticsearch, Redis). Usually, it is more optimal to choose a slightly stronger CPU. This has to be determined more precisely depending on the project and load. Experience has shown that systems with powerful CPUs finish processes faster and can release resources sooner.
-
-## Health Check
-
-::: info
-This feature is available starting with Shopware version 6.5.5.0
-:::
-
-Use the Shopware-provided Health Check API (`/api/_info/health-check`) to monitor the health of your Shopware app server. It responds with HTTP status `200` when the Shopware Application is working and `50x` when it is not.
-For docker, you can use: `HEALTHCHECK CMD curl --fail http://localhost/api/_info/health-check || exit 1`
+<PageRef page="../configurations/database-cluster" />
 
 ## Performance tweaks
 
-When setting up big-scale projects, there are some settings and conditions that should be taken into account with regard to performance.
+Besides the generally sharing of services, there are some performance tweaks that can be applied in a clustered environment:
 
-Read more on [performance tweaks](../performance/performance-tweaks).
+<PageRef page="../configurations/performance-tweaks" />

@@ -47,6 +47,7 @@ There are two Shopware update types:
 
 - **Minor/Patch updates**: These are updates that only contain new features, bug fixes and security patches. They are released every month for the active supported versions.
 - **Major updates**: These updates are intended to clean up the codebase and introduce breaking changes. They are released once a year.
+- **Security updates**: These updates are released as soon as a security vulnerability is found and fixed. They are only available for the active supported versions.
 
 ### Minor/Patch updates
 
@@ -61,6 +62,20 @@ First, you should check that all extensions obtained from Shopware Store are com
 For the Hosting environment, it makes sense to update the PHP version to the minimum required version for the new Shopware version before updating Shopware itself. Shopware versions always support an overlapping PHP version, so you can update the PHP version before updating Shopware itself. You can find the minimum required PHP version in the [System Requirements](../../installation/requirements.md).
 
 For customizations, you should check the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown), it contains all breaking changes and migration instructions. Most of the time, it's easier to update to the latest version in a local environment and take a look at what is not working anymore.
+
+### Security updates
+
+Security updates are released only for the newest minor version of each major version. For obtaining security fixes, without version upgrades, we provide a dedicated [Security plugin](https://store.shopware.com/swag136939272659f/shopware-6-sicherheits-plugin.html). This is compatible with all Shopware versions and corresponding hot fixes are only included in versions that are affected.
+
+#### Update of composer dependencies
+
+To ensure the security of your Shopware installation, it's essential to be vigilant about third-party dependencies that might be affected by security vulnerabilities. In that case, a new Shopware version will be released with updated dependencies. If an update to the latest Shopware version in a timely manner is not possible, it is recommended to update the affected dependency manually. This can be done by using the following command:
+
+```bash
+ composer update <dependency-name>
+```
+
+To identify any potential security risk in your current dependencies, it's a good practice to regularly run the [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) command. This command scans your dependencies and alerts you if there are any known vulnerabilities that need to be addressed.
 
 ## Updating from Composer Project
 

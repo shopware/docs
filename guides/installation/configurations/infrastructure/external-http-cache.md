@@ -1,32 +1,31 @@
 ---
 nav:
-  title: Reverse HTTP Cache
+  title: External HTTP Cache
   position: 40
 
 ---
 
-# Reverse HTTP Cache
+# External HTTP Cache
 
 ## Overview
 
-A reverse HTTP cache is a cache server placed before the web shop.
+An external HTTP cache is a cache server placed before the web shop.
 If you are not familiar with HTTP caching, please refer to the [HTTP cache](../../../concepts/framework/http_cache) concept.
-The reverse http cache needs the following capabilities to function fully with Shopware:
+The external HTTP cache needs the following capabilities to function fully with Shopware:
 
 * Able to differentiate the request with multiple cookies
-* Allow clearing the cache using a web request for a specific site or with `/` for all pages
+* Allow tagging the cache items with surrogate keys
+* Allow invalidating the cache items by surrogate keys
 
 ::: info
 In this guide, we will use Varnish as an example for HTTP cache.
 :::
 
+## Varnish
+
 ### The example Setup with Varnish
 
-::: warning
-This setup is compatible with Shopware version 6.4 and higher
-:::
-
-![Http cache](../../../assets/hosting-infrastructure-reverseHttpCache.svg)
+![Http cache](../../../../assets/hosting-infrastructure-reverseHttpCache.svg)
 
 ### Shopware Varnish Docker image
 
@@ -34,14 +33,6 @@ Feel free to check out the [Shopware Varnish Docker image](https://github.com/sh
 It contains the Shopware default VCL (Varnish Configuration Language). The containing VCL is for the usage with `xkeys`.
 
 ### Configure Shopware
-
-:::warning
-From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0.
-Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request.
-This can cause problems depending on the setup or network.
-Furthermore, Redis clusters are not supported.
-Therefore, it is advisable to opt for the [Varnish with `XKey`](#configure-varnish) integration instead.
-:::
 
 First, we need to activate the reverse proxy support in Shopware.
 To enable it, we need to create a new file in `config/packages/storefront.yaml`:
@@ -62,18 +53,8 @@ shopware:
 
 Also set `SHOPWARE_HTTP_CACHE_ENABLED=1` in your `.env` file.
 
-::: info
-The configuration key changed from `storefront.reverse_proxy` up to Shopware 6.5.x to `shopware.http_cache.reverse_proxy` starting with Shopware 6.6.0.0.
-So you will need to adjust your config while upgrading.
-If you look for the old documentation and examples, you can find it [here](https://developer.shopware.com/docs/v6.5/guides/hosting/infrastructure/reverse-http-cache.html)
-:::
 
 #### Trusted proxies
-
-::: info
-Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box.
-Make sure to create a Symfony configuration to make it configurable again, as shown in the [trusted_env.yaml example](https://github.com/shopware/recipes/blob/main/shopware/docker/0.1/config/packages/trusted_env.yaml).
-:::
 
 For the most part, using Symfony and Varnish doesn't cause any problem.
 But, when a request passes through a proxy, certain request information is sent using either the *standard Forwarded* header or *X-Forwarded* headers.
@@ -83,12 +64,6 @@ If you don't configure Symfony to look for these headers, you will get incorrect
 Whether or not the client connects via HTTPS, the client's port and the hostname are requested.
 
 Go through [Proxies](https://symfony.com/doc/current/deployment/proxies.html) section for more information.
-
-### Varnish Docker Image
-
-Shopware offers a Varnish Docker image that is pre-configured to work with Shopware.
-Find the [image](https://github.com/shopware/varnish-shopware) here.
-The image is based on the official Varnish image and contains the Shopware default VCL with few configurations as environment variables.
 
 ### Configure Varnish
 
@@ -154,7 +129,7 @@ If you don't see the `Cache-Control: public` header or the `Xkey` header, you ne
 
 For more details, please refer to the [Varnish documentation](https://www.varnish-software.com/developers/tutorials/logging-cache-hits-misses-varnish/) on logging cache hits and misses.
 
-## Configure Fastly
+## Fastly
 
 Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configurations.
 To enable it, we need to create a new file in `config/packages/storefront.yaml`
@@ -214,7 +189,7 @@ For manual deployment, you can find the VCL Snippets here:
 
 <PageRef page="https://github.com/shopware/recipes/blob/main/shopware/fastly-meta/6.7/config/fastly/recv/default.vcl"/>
 
-### Cache Invalidations
+## Cache Invalidations
 
 The Reverse Proxy Cache shares the same invalidation mechanism as the Object Cache and has the same tags.
 So, when a product is invalidated, the object cache and the HTTP cache will also be invalidated.
