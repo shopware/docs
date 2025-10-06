@@ -123,6 +123,46 @@ In a clustered environment, it is important to share certain services across all
 - **File storage**: Use a shared file storage solution (e.g. S3) to ensure all nodes have access to the same files.
 - **Sessions**: Store sessions in a shared storage (e.g. Redis) to allow users to maintain their sessions across different nodes.
 
+## Session storage
+
+By default, Shopware uses the settings configured in PHP. You can reconfigure the Session config directly in your `php.ini`. Here is an example of configuring it directly in PHP.
+
+::: warning
+When using Redis for session storage, ensure that the Redis instance is configured for durability and persistence, as session data should not be lost in case of a Redis restart.
+
+:::
+
+```ini
+session.save_handler = redis
+session.save_path = "tcp://host:6379?database=0"
+```
+
+Please refer to the official [PhpRedis documentation](https://github.com/phpredis/phpredis#php-session-handler) for all possible options.
+
+### Configure Redis using Shopware configuration
+
+If you don't have access to the php.ini configuration, you can configure it directly in Shopware itself. For this, create a `config/packages/redis.yml` file with the following content:
+
+```yaml
+# config/packages/redis.yml
+framework:
+    session:
+        handler_id: "redis://host:port/0"
+```
+
+## Lock Storage
+
+Shopware uses a locking mechanism to prevent race conditions and ensure that certain operations are only performed by one node at a time. By default Shopware uses files in the local filesystem for locking, which does not work in a clustered environment. Therefore, it is recommended to use a remote lock store like Redis.
+
+```yaml
+# config/packages/framework.yaml
+framework:
+  lock: 'redis://host:port/0'
+```
+
+See also the official [Symfony documentation](https://symfony.com/doc/current/lock.html#configuring) for more available options.
+
+
 ## Database cluster
 
 If you need high availability for your database, you can set up a database cluster. This typically involves setting up multiple database instances with replication and failover mechanisms.

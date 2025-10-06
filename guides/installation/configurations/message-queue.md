@@ -29,11 +29,11 @@ It is recommended to use a third-party message queue to support multiple consume
 
 ## Execution methods
 
-### CLI worker
-
 ::: info
-The CLI worker is the recommended way to consume messages.
+The Admin Worker is enabled by default, but it's recommended to disable it and use the CLI worker in production systems.
 :::
+
+### CLI worker
 
 You can configure the command just to run a certain amount of time and to stop if it exceeds a certain memory limit like:
 
@@ -62,56 +62,6 @@ shopware:
         enable_admin_worker: false
 ```
 
-::: warning
-Make sure to set up the CLI worker also for the failed queue. Otherwise, failed messages will not be processed.
-:::
-
-#### systemd example
-
-We assume the services to be called `shopware_consumer`.
-
-Create a new file `/etc/systemd/system/shopware_consumer@.service`
-
-```bash
-[Unit]
-Description=Shopware Message Queue Consumer, instance %i
-PartOf=shopware_consumer.target
-
-[Service]
-Type=simple
-User=www-data # Change this to webserver's user name
-Restart=always
-# Change the path to your shop path
-WorkingDirectory=/var/www/html
-ExecStart=php /var/www/html/bin/console messenger:consume --time-limit=60 --memory-limit=512M async low_priority
-
-[Install]
-WantedBy=shopware_consumer.target
-```
-
-Create a new file `/etc/systemd/system/shopware_consumer.target`
-
-```bash
-[Install]
-WantedBy=multi-user.target
-
-[Unit]
-Description=shopware_consumer service
-```
-
-Enable multiple instances. Example for three instances:
-`systemctl enable shopware_consumer@{1..3}.service`
-
-Enable the dummy target:
-`systemctl enable shopware_consumer.target`
-
-At the end start the services:
-`systemctl start shopware_consumer.target`
-
-#### supervisord example
-
-Please refer to the [Symfony documentation](https://symfony.com/doc/current/messenger.html#supervisor-configuration) for the setup.
-
 ### Admin worker
 
 The admin worker, if used, can be configured in the general `shopware.yml` configuration. If you want to use the admin worker, you have to specify each transport that was previously configured. The poll interval is the time in seconds that the admin worker polls messages from the queue. After the poll interval is over, the request terminates, and the Administration initiates a new request.
@@ -122,7 +72,6 @@ shopware:
     admin_worker:
         enable_admin_worker: true
         poll_interval: 30
-        transports: ["async", "low_priority"]
 ```
 
 ## Sending mails over the message queue
@@ -161,42 +110,6 @@ Sometimes, it also makes sense to route messages to a different transport to lim
 
 ## Configuration
 
-### Message bus
-
-The message bus is used to dispatch your messages to your registered handlers. While dispatching your message, it loops through the configured middleware for that bus. The message bus used inside Shopware can be found under the service tag `messenger.bus.default`. It is mandatory to use this message bus if your messages should be handled inside Shopware. However, if you want to send messages to external systems, you can define your custom message bus for that.
-
-You can configure an array of buses and define one default bus in your `framework.yaml`.
-
-```yaml
-// <platform root>/src/Core/Framework/Resources/config/packages/framework.yaml
-framework:
-    messenger:
-        default_bus: my.messenger.bus
-        buses:
-            my.messenger.bus:
-```
-
-For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
-
-### Transport
-
-A [transport](https://symfony.com/doc/current/messenger.html#transports-async-queued-messages) is responsible for communicating with your 3rd party message broker. You can configure multiple transports and route messages to multiple or different transports. Supported are all transports that are either supported by [Symfony](https://symfony.com/doc/current/messenger.html#transport-configuration) itself. If you don't configure a transport, messages will be processed synchronously like in the Symfony event system.
-
-You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your  transports.
-
-In a simple setup you only need to set the transport to a valid DSN like:
-
-```yaml
-// <platform root>/src/Core/Framework/Resources/config/packages/queue.yaml
-framework:
-  messenger:
-    transports:
-      my_transport:
-        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
-```
-
-For more information on this check the [symfony docs](https://symfony.com/doc/current/messenger.html#transport-configuration).
-
 ### Routing
 
 You can route messages to different transports. For that, just configure your routing in the `framework.yaml`.
@@ -229,7 +142,3 @@ shopware:
 
 The `shopware.messenger.routing_overwrite` config option accepts the same format as the `framework.messenger.routing` option, but it will overwrite the routing for the given message class instead of adding to it.
 This is especially useful if there is a default routing already configured based on a message interface, but you need to change the routing for a specific message.
-
-::: info
-This configuration option was added in Shopware 6.6.4.0 and 6.5.12.0.
-:::
