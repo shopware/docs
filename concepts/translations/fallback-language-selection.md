@@ -24,7 +24,7 @@ The table shows some examples of common cases:
 | **`fr`**      | `fr-FR` (French in France)          | `fr-CA`, `fr-CH`          |
 | **`nl`**      | `nl-NL` (Dutch in the Netherlands)  | `nl-BE`                   |
 
-## Migration and linting using "LintTranslationFilesCommand"
+## Migration and linting via command
 
 To support these processes, the `LintTranslationFilesCommand` can be executed using `bin/console translation:lint-filenames` to validate translation filenames.
 
