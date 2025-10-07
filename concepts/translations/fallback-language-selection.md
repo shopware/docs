@@ -32,11 +32,11 @@ The command outputs tables for each domain (Administration, Core/base files, and
 
 - **Filename** – The name of the translation file, e.g. `storefront.de.json`.
 - **Path** – The file path where this translation file was found, e.g. `src/Storefront/Resources/snippet`.
-- **Domain** – The prefix of the corresponding storefront translation file. For administration files, `administration` is shown in this column. For extensions, it can be helpful to name storefront files accordingly, for example `cms-extensions.en.json`. Please note: language-defining base files **must always** use `messages` here!
+- **Domain** – The prefix of the corresponding storefront translation file. For administration files, `administration` is shown in this column. For extensions, it can be helpful to name storefront files accordingly, for example `cms-extensions.en.json`. Please note: language-defining base files **must always** use `messages` here, like in `messages.fr.base.json`!
 - **Locale** – The language code following [IETF BCP 47](https://datatracker.ietf.org/doc/html/bcp47), restricted to [ISO 639-1 (2-letter) language codes](https://en.wikipedia.org/wiki/ISO_639-1). Example: `de-DE` for German (Germany).
 - **Language** – The first part of the locale, representing the language used. Example: `de` (German) when the full locale is `de-DE`.
-- **Script** – Specifies the writing system used for the language when multiple scripts exist. This part is optional and rarely used, as most Shopware processes currently do not support or distinguish between scripts. For example, Serbian (Serbia) can be written in both Cyrillic and Latin (`sr-Cyrl-RS` vs. `sr-Latn-RS`).
-- **Region** – The suffix of the locale, used to specify a regional variant of a language. Shopware’s best practice is to avoid using regional locales for the main language, so that regional differences can be handled through overrides. Example: `de-AT` (German for Austria) can be used to patch differences from the main `de` locale.
+- **Script** – Specifies the writing system used for the language when multiple scripts exist. This part is optional and rarely used, as Shopware processes currently do not support or distinguish between scripts and only offer it for extensibility. For example, Serbian (Serbia) can be written in both Cyrillic and Latin (`sr-Cyrl-RS` vs. `sr-Latn-RS`).
+- **Region** – The suffix of the locale, used to specify a regional variant of a language. Shopware’s best practice is to avoid using regional locales for the base language, so that regional differences can be handled through overrides. Example: `de-AT` (German for Austria) can be used to patch differences from the base `de` locale.
 
 ### Command parameters
 
@@ -57,7 +57,7 @@ For detailed instructions, see the [Extension Translation Migration](/resources/
 - **Aim for neutrality** – Avoid country-specific terminology in the fallback files.
 - **Properly select which dialect is your standard** — for example, looking at Spanish, a neutral Castilian is recommended to maximize comprehension.
 - **Follow naming conventions** – E.g., agnostic file: `storefront.nl.json`; patch file: `storefront.nl-BE.json`.
-- **Validate your snippets** – clear the cache and run `bin/console translation:validate`.
+- **Validate your translations** – clear the cache and run `bin/console translation:validate`, as well as `bin/console translation:lint-filenames` to be ready to go.
 
 ## Conclusion
 
