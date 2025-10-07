@@ -212,7 +212,7 @@ export type { CustomTranslationKey };
 
 Organize your translation files by language and area:
 
-```
+```text
 project-root/
 ├── locales/
 │   ├── en/
