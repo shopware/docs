@@ -6,7 +6,7 @@ nav:
 
 # Language Agnostic Testing in @shopware-ag/acceptance-test-suite
 
-Language agnostic testing allows you to write acceptance tests that work across different languages without hardcoding text strings. Tests use translation keys instead of hardcoded strings and automatically adapt to different locales via environment variables.
+Language agnostic testing allows you to write acceptance tests that work across different languages without hard-coding text strings. Tests use translation keys instead of hard-coded strings and automatically adapt to different locales via environment variables.
 
 ## translate() Function
 
@@ -67,10 +67,10 @@ Translation keys follow the pattern: `area:module:section.key`
 
 Translations are stored in JSON files organized by language and area:
 
--   `locales/en/administration/category.json`
--   `locales/de/administration/category.json`
--   `locales/en/storefront/account.json`
--   `locales/de/storefront/account.json`
+- `locales/en/administration/category.json`
+- `locales/de/administration/category.json`
+- `locales/en/storefront/account.json`
+- `locales/de/storefront/account.json`
 
 ### Example Translation Files
 
@@ -111,25 +111,25 @@ Translations are stored in JSON files organized by language and area:
 
 **Translation key not found:**
 
--   Verify key exists in both EN/DE locale files
--   Check import in `locales/index.ts`
--   Ensure proper namespace structure
+- Verify key exists in both EN/DE locale files
+- Check import in `locales/index.ts`
+- Ensure proper namespace structure
 
 **Tests fail with LANG changes:**
 
--   Move `translate()` calls inside constructors/functions, not at module level
--   Ensure translation resources are properly loaded
+- Move `translate()` calls inside constructors/functions, not at module level
+- Ensure translation resources are properly loaded
 
 **JSON import errors:**
 
--   Always use `with { type: 'json' }` import attribute
--   Check file paths and naming conventions
+- Always use `with { type: 'json' }` import attribute
+- Check file paths and naming conventions
 
 **Browser locale not matching:**
 
--   Verify locale mapping in `playwright.config.ts`
--   Check browser args configuration
--   Ensure language detection is working correctly
+- Verify locale mapping in `playwright.config.ts`
+- Check browser args configuration
+- Ensure language detection is working correctly
 
 ## Using in Your Own Project
 
@@ -276,9 +276,9 @@ export const enNamespaces = {
 
 Create `types/TranslationTypes.ts` to define your custom translation types. This provides:
 
--   **Type Safety**: Ensures translation keys exist in your locale files
--   **IntelliSense**: Auto-completion for available translation keys
--   **Compile-time Validation**: Catches typos and missing keys before runtime
+- **Type Safety**: Ensures translation keys exist in your locale files
+- **IntelliSense**: Auto-completion for available translation keys
+- **Compile-time Validation**: Catches typos and missing keys before runtime
 
 ```typescript
 import { TranslationKey, TranslateFn } from '@shopware-ag/acceptance-test-suite';
