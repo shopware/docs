@@ -42,15 +42,14 @@ To update your application, you need to run the following command, and provide t
 sw-paas application update
 ```
 
-This command initiates the build process, packaging your application and preparing it for deployment.
-Then you need to deploy it, see below.
+This command initiates the build process, wait until its done and run the deployment for you.
 
-## Deploy your application
+## Deploy a specific build of your application
 
-To deploy your application and make your changes live, you need to run the following command:
+To create a deployment with a specific build, use the following command:
 
 ```sh
-sw-paas application deploy
+sw-paas application deploy create
 ```
 
 It will let you chose, which build you want to deploy.
@@ -61,13 +60,13 @@ This is very handy, since you chose any successful build to deploy. The lastest 
 To list all past deployments:
 
 ```sh
-sw-paas application list-deployments
+sw-paas application deploy list
 ```
 
 To get details about a given deployment:
 
 ```sh
-sw-paas application get-deployment
+sw-paas application deploy get
 ```
 
 ## Plugin Management
@@ -153,10 +152,8 @@ This configuration ensures that all traffic to your custom domain is routed thro
 Following domain creation, you must redeploy your application. You can do it by using:
 
 ```sh
-sw-paas application deploy
+sw-paas application deploy create
 ```
-
-This process will be automated in future releases.
 
 #### Shopware Configuration
 

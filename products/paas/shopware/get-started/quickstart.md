@@ -82,7 +82,7 @@ sw-paas application create
 Then, deploy your application:
 
 ```sh
-sw-paas application deploy
+sw-paas application deploy create
 ```
 
 Monitor the deployment progress:
