@@ -36,7 +36,7 @@ The command outputs tables for each domain (Administration, Core/base files, and
 - **Locale** – The language code following [IETF BCP 47](https://datatracker.ietf.org/doc/html/bcp47), restricted to [ISO 639-1 (2-letter) language codes](https://en.wikipedia.org/wiki/ISO_639-1). Example: `de-DE` for German (Germany).
 - **Language** – The first part of the locale, representing the language used. Example: `de` (German) when the full locale is `de-DE`.
 - **Script** – Specifies the writing system used for the language when multiple scripts exist. This part is optional and rarely used, as Shopware processes currently do not support or distinguish between scripts and only offer it for extensibility. For example, Serbian (Serbia) can be written in both Cyrillic and Latin (`sr-Cyrl-RS` vs. `sr-Latn-RS`).
-- **Region** – The suffix of the locale, used to specify a regional variant of a language. Shopware’s best practice is to avoid using regional locales for the base language, so that regional differences can be handled through overrides. Example: `de-AT` (German for Austria) can be used to patch differences from the base `de` locale.
+- **Region** – The suffix of the locale, used to specify a regional variant of a language. Shopware’s best practice is to avoid using regional locales for the base language so that regional differences can be handled through overrides. Example: `de-AT` (German for Austria) can be used to patch differences from the base `de` locale.
 
 ### Command parameters
 
