@@ -70,7 +70,7 @@ pnpm dev
 pnpm app:build
 ```
 
-* Upload zip from `bundle/swagsalesagent.zip` into Shopware Extensions `.
+* Upload zip from `bundle/swagsalesagent.zip` into Shopware Extensions.
 
 * Verify the Installed App: after installation, you should see the Sales Agent menu item appear in the Settings.
 
