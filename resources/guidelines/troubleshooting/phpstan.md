@@ -8,7 +8,7 @@ nav:
 
 ## Common PHPStan Issues in Shopware Code
 
-### EntityRepositorys Should Define a Generic Type
+### EntityRepository Should Define a Generic Type
 
 **Problem**: Repository returns EntityCollection without type information.
 
@@ -45,7 +45,7 @@ class Foo
 ```
 
 Be aware that the `EntityRepository` class is a generic class, which gets an EntityCollection as type.
-This might sound counterintuitive and different to other well-known repository classes, which take the Entity class as the generic type.
+This might sound counter-intuitive and different to other well-known repository classes, which take the Entity class as the generic type.
 But it was the easiest technical solution to get PHPStan to understand the type of the collection returned by the search method.
 
 ### Null Safety with First method and Associations
