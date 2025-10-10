@@ -4,9 +4,9 @@ nav:
     position: 20
 ---
 
-# Language Agnostic Testing in @shopware-ag/acceptance-test-suite
+# Language Agnostic Testing
 
-Language agnostic testing allows you to write acceptance tests that work across different languages without hard-coding text strings. Tests use translation keys instead of hard-coded strings and automatically adapt to different locales via environment variables.
+Language agnostic testing in @shopware-ag/acceptance-test-suite allows you to write acceptance tests that work across different languages without hard-coding text strings. Tests use translation keys instead of hard-coded strings and automatically adapt to different locales via environment variables.
 
 ## translate() Function
 
