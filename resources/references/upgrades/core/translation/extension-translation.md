@@ -4,7 +4,7 @@ title: Migrating Extensions
 position: 20
 ---
 
-# Migrating Extension Translations To The Region-Independent Snippet Layer
+# Migrating Extension Translations To The Country-Independent Snippet Layer
 
 Starting with **Shopware 6.7.3**, a new region-independent snippet layer has been introduced to reduce duplicate
 translations across similar language variants (e.g., `en-GB`, `en-US`, `en-CA` can share a common "en" base layer).
@@ -12,27 +12,34 @@ translations across similar language variants (e.g., `en-GB`, `en-US`, `en-CA` c
 This change implements a hierarchical fallback system that automatically resolves translations through multiple layers,
 significantly reducing maintenance overhead for extension developers.
 
-## How the New System Works
+## How The New System Works
 
 The snippet loading system now follows this resolution order:
 
 1. **Region-specific layer** (e.g., `en-GB`, `de-DE`) — Highest priority
 2. **Language base layer** (e.g., `en`, `de`, `es`)  **NEW fallback layer**
-3. **Default fallback** (`en`) - Last resort
+3. **British English fallback** (`en-GB`) - Legacy fallback to maximize compatibility
+4. **Default fallback** (`en`) - Last resort
 
 When a translation key is requested, Shopware will:
 
 - First check the specific region variant (e.g., `es-AR`)
 - If not found, check the base language (e.g., `es`)
+- If not found, the legacy fallback will be checked (`en-GB`)
 - Finally, fall back to `en` if still not found
 
 **Result**: ~90% reduction in duplicate translations while maintaining full functionality.
 
-## Migrating your extensions
+## Migrating Your Extensions
+
+### Automatic
+
+Shipping with Shopware **6.7.3**, there's the command line tool `bin/console translation:lint-filenames` that can be used to
+check the translation files, or use the `--fix` parameter to even automate the migration process. For more information, see [this migration article](https://developer.shopware.com/docs/concepts/translations/fallback-language-selection.html#migration-and-linting-via-command).
 
 ### Manual
 
-### Step 1: Rename your existing files
+#### Step 1: Rename your existing files
 
 Rename your existing files from country-specific naming to the language base layer naming.
 
@@ -43,7 +50,7 @@ Rename your existing files from country-specific naming to the language base lay
 └············
 ```
 
-### Step 2: Re-create empty country-specific files
+#### Step 2: Re-create empty country-specific files
 
 Re-create empty files with the former names of the country-specific naming.
 
@@ -54,7 +61,7 @@ Re-create empty files with the former names of the country-specific naming.
 └············
 ```
 
-### Step 3: Remove duplicates from other country-specific files
+#### Step 3: Remove duplicates from other country-specific files
 
 Check for duplicate translations across country-specific files and remove them from the country-specific layer.
 
@@ -70,11 +77,6 @@ Here are some example locales that are a dialect to the generic base layer.
 ```
 
 For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
-
-### Automatic
-
-Shipping with Shopware **6.7.3**, there's the command line tool `bin/console snippet:check-files` that can be used to
-check the translation files, or use the `--fix` parameter to even automate the migration process.
 
 ## Testing Your Migration
 
