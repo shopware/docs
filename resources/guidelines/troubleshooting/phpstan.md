@@ -20,7 +20,7 @@ foreach ($products as $product) {
 }
 ```
 
-**Solution**: Add PHPDoc with generics to EntityRepository:
+**Solution**: Add a PHP doc with a generic type to EntityRepository:
 
 ```php
 class Foo
