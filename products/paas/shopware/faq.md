@@ -13,6 +13,7 @@ For now, no rollback is possible when you do a force push and lose your git hist
 ### Is it possible to write to the local filesystem?
 
 No, all containers are stateless, and local file writes are discouraged. Persistent storage must use S3 buckets or other external storage solutions.
+Changes to the filesystem and shopware code must be applied by changed in the git repository itself.
 
 ### How can I connect my already deployed application to a new branch?
 
