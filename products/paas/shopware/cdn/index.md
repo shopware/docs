@@ -32,6 +32,10 @@ Fastly is fully integrated into Shopware PaaS Native. The integration includes:
 
 Fastly is automatically configured and enabled by default in Shopware PaaS Native environments. No additional Shopware configuration is required - the PaaS platform handles all Fastly setup, VCL snippets, and cache management automatically.
 
+#### Repository Changes
+
+To enable Fastly integration, update your composer packages as described in the [Fastly integration guide](https://developer.shopware.com/docs/products/paas/shopware-paas/fastly.html). This integration adds the necessary configuration files to your repository and enables automatic cache invalidation through Shopware's native mechanisms.
+
 #### Custom Domain DNS Configuration
 
 To configure your custom domain with the Fastly CDN, you must configure a DNS record. Depending of the type of your record, the DNS configuration is different.
