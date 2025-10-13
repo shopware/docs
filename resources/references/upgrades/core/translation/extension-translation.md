@@ -12,7 +12,7 @@ translations across similar language variants (e.g., `en-GB`, `en-US`, `en-CA` c
 This change implements a hierarchical fallback system that automatically resolves translations through multiple layers,
 significantly reducing maintenance overhead for extension developers.
 
-## How The New System Works
+## How the New System Works
 
 The snippet loading system now follows this resolution order:
 
@@ -35,7 +35,7 @@ When a translation key is requested, Shopware will:
 ### Automatic
 
 Shipping with Shopware **6.7.3**, there's the command line tool `bin/console translation:lint-filenames` that can be used to
-check the translation files, or use the `--fix` parameter to even automate the migration process. For more information, see [this migration article](https://developer.shopware.com/docs/concepts/translations/fallback-language-selection.html#migration-and-linting-via-command).
+check the translation files, or use the `--fix` parameter to even automate the migration process. For more information, see [this migration article](../../../../../concepts/translations/fallback-language-selection.md#migration-and-linting-via-command).
 
 ### Manual
 
@@ -76,13 +76,11 @@ Here are some example locales that are a dialect to the generic base layer.
 └············
 ```
 
-For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
+For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../../../../concepts/translations/fallback-language-selection.md).
 
 ## Testing Your Migration
 
-After the snippet files have been renamed, changing the locale to one of the empty snippet sets should still provide
-all translated strings. Changing to a region-specific locale should also provide all translated strings with just
-region-specific terms being replaced.
+After the snippet files have been renamed, changing the locale to one of the empty snippet sets should still provide all translated strings. Changing to a region-specific locale should also provide all translated strings with just region-specific terms being replaced.
 
 ## Best Practices
 
