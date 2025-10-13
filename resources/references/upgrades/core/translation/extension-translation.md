@@ -4,7 +4,7 @@ title: Migrating Extensions
 position: 20
 ---
 
-# Migrating Extension Translations To The Country-Independent Snippet Layer
+# Migrating Extension Translations to the Country-Independent Snippet Layer
 
 Starting with **Shopware 6.7.3**, a new region-independent snippet layer has been introduced to reduce duplicate
 translations across similar language variants (e.g., `en-GB`, `en-US`, `en-CA` can share a common "en" base layer).
