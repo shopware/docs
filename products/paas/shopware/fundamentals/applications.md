@@ -10,7 +10,7 @@ Shopware PaaS Native supports multiple applications within a project, such as en
 
 Each application has its own compute resources, infrastructure, and deployment configuration, so you can tailor each environment to its specific needs.
 
-For instance, you might allocate smaller, hibernating compute instances for staging, while reserving larger, always-on resources for production.
+For instance, you might allocate smaller, hibernating compute instances for staging while reserving larger, always-on resources for production.
 
 ## Creating an Application
 
@@ -36,13 +36,13 @@ sw-paas application build logs
 
 ## Update your application
 
-To update your application, you need to run the following command, and provide the commit SHA:
+To update your application, you need to run the following command and provide the commit SHA:
 
 ```sh
 sw-paas application update
 ```
 
-This command initiates the build process, wait until it's done and run the deployment for you.
+This command initiates the build process, waits until it's done, and runs the deployment for you.
 
 ## Deploy a specific build of your application
 
