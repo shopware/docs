@@ -47,7 +47,7 @@ The event stream will continue running until you stop it with `Ctrl+C`. All even
 
 Events are generally linked to a preceding action.
 Each action is connected to a specific event type, which is emitted when a state change occurs.
-The type of each events is indicated in the output of the `sw-paas watch` command and can help to understand what is happening in your project.
+The type of each event is indicated in the output of the `sw-paas watch` command and can help to understand what is happening in your project.
 
 Especially for deployments, the history of the events can be used to understand what happened during a deployment.
 To list all events of a specific deployment, use the following command:
