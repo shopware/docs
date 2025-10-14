@@ -43,7 +43,7 @@ Common event types include:
 
 The event stream will continue running until you stop it with `Ctrl+C`. All events are displayed in real-time with timestamps and detailed information about what's happening in your project.
 
-## Understating different Event Types
+## Understanding different Event Types
 
 Events are generally linked to a preceding action.
 Each action is connected to a specific event type, which is emitted when a state change occurs.
