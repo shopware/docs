@@ -1489,6 +1489,7 @@ loginViaApi
 longtext
 lookups
 lowerCamelCase
+lru
 lychee
 macOS
 mailAware
