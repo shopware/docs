@@ -42,3 +42,37 @@ Common event types include:
 - `EVENT_TYPE_DEPLOYMENT_FINISHED` - When a deployment completes
 
 The event stream will continue running until you stop it with `Ctrl+C`. All events are displayed in real-time with timestamps and detailed information about what's happening in your project.
+
+## Understanding different Event Types
+
+Events are generally linked to a preceding action.
+Each action is connected to a specific event type, which is emitted when a state change occurs.
+The type of each event is indicated in the output of the `sw-paas watch` command and can help to understand what is happening in your project.
+
+Especially for deployments, the history of the events can be used to understand what happened during a deployment.
+To list all events of a specific deployment, use the following command:
+
+```bash
+sw-paas application deploy get 
+```
+
+The output of the `DEPLOYMENT STATUS HISTORY` shows all events that were emitted during the deployment.
+This contains events from the underlying PaaS infrastructure as well as events from the shop itself.
+
+The following table lists the most common event types and their descriptions:
+
+| Event | Description |
+|-------|-------------|
+| `UNSPECIFIED` | Default or unspecified deployment status |
+| `PENDING` | Deployment is queued and waiting to start |
+| `BASE` | Infrastructure: Base infrastructure components are being deployed |
+| `BASE_FAILED` | Infrastructure: Base infrastructure deployment has failed |
+| `BASE_SUCCESS` | Infrastructure: Base infrastructure deployment completed successfully |
+| `SHOP` | Infrastructure: Shop-specific infrastructure components are being deployed |
+| `SHOP_FAILED` | Infrastructure: Shop infrastructure deployment has failed |
+| `SHOP_SUCCESS` | Infrastructure: Shop infrastructure deployment completed successfully |
+| `DEPLOYING_STORE` | Store: Shopware store application is being deployed |
+| `DEPLOYING_STORE_FAILED` | Store: Shopware store deployment has failed |
+| `DEPLOYING_STORE_SUCCESS` | Store: Shopware store deployment completed successfully |
+| `DEPLOYMENT_SUCCESS` | Complete deployment finished successfully |
+| `DEPLOYMENT_FAILED` | Complete deployment has failed |
