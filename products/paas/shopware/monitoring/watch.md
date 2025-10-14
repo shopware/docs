@@ -76,9 +76,3 @@ The following table lists the most common event types and their descriptions:
 | `DEPLOYING_STORE_SUCCESS` | Store: Shopware store deployment completed successfully |
 | `DEPLOYMENT_SUCCESS` | Complete deployment finished successfully |
 | `DEPLOYMENT_FAILED` | Complete deployment has failed |
-
-
-
-
-
-
