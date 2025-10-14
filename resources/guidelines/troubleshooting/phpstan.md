@@ -1,7 +1,7 @@
 ---
 nav:
   title: PHPStan
-  position: 10
+  position: 30
 ---
 
 # PHPStan
