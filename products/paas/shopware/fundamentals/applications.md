@@ -52,8 +52,8 @@ To create a deployment with a specific build, use the following command:
 sw-paas application deploy create
 ```
 
-It will let you chose, which build you want to deploy.
-This is very handy, since you chose any successful build to deploy. The lastest one to bring your change live, or previous one to fix an issue that arise.
+It will let you choose which build you want to deploy.
+This is very handy, since you can choose any successful build to deploy: the latest one to bring your change live, or a previous one to fix an issue that arose.
 
 ## Deployments management
 
