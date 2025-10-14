@@ -42,7 +42,7 @@ To update your application, you need to run the following command, and provide t
 sw-paas application update
 ```
 
-This command initiates the build process, wait until its done and run the deployment for you.
+This command initiates the build process, wait until it's done and run the deployment for you.
 
 ## Deploy a specific build of your application
 
