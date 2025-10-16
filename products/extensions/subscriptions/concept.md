@@ -47,6 +47,7 @@ Subscription products are ordinary product line items when added to the cart, bu
 
 A subscription contains all the information needed to generate new orders on a recurring basis.
 This includes among other things:
+
 - The subscription plan and interval
 - The schedule for subsequent orders
 - The number of deliveries left to fulfil the minimum delivery cycles
@@ -81,10 +82,11 @@ As the subscription context is derived from the sales channel context, the origi
 
 ### Separate Subscription Checkout
 
-The **separate subscription checkout** allows customers to purchase subscription products via an isolated checkout process and dedicated cart. 
+The **separate subscription checkout** allows customers to purchase subscription products via an isolated checkout process and dedicated cart.
 This process is best described as an express checkout for subscription products.
 
 **Key aspects:**
+
 - Subscription products have to checked out one by one
 - For each subscription product a new [subscription cart](#subscription-cart) is created, preserving the contents of the main cart
 - For each subscription checkout a new [subscription context](#subscription-context) is derived, preserving the address, shipping method and payment method selections of the main cart
@@ -98,6 +100,7 @@ Available since Shopware version 6.7.4.0
 The **mixed cart checkout** allows customers to purchase subscription products and one-time products together in a single cart.
 
 **Key aspects:**
+
 - Subscription products are added to the main cart normal product line items, but additionally containing subscription plan and subscription interval metadata in its payload
 - For each combination of subscription interval and subscription plan a new _managed*_ subscription cart will be derived, only containing matching products of the main cart
 - For each combination of subscription interval and subscription plan a new _managed*_ subscription context will be derived, allowing for context changes in a managed subscription cart

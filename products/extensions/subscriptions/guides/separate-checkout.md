@@ -8,7 +8,7 @@ nav:
 # Separate subscription checkout
 
 This guide describes how buying a subscription via the separate checkout flow works and how extensions should integrate with it.
-The **separated subscription checkout** allows customers to purchase subscription products via an isolated checkout process and dedicated cart. 
+The **separated subscription checkout** allows customers to purchase subscription products via an isolated checkout process and dedicated cart.
 This process is best described as an _express checkout_ for subscription products.
 
 Please familiarise yourself with the [concept](../concept.md) first before continuing here.
@@ -34,18 +34,20 @@ The [subscription cart](../concept.md#subscription-cart) is calculated with the 
 To add cart collectors or processors to the calculation process, they have to be tagged with `subscription.cart.collector` and `subscription.cart.processor` respectively.
 If you need to differentiate between a separate and a mixed subscription cart calculation, check `salesChannelContext.extensions.subscription.isManaged`.
 
-The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\SubscriptionDiscountProcessor` can serve as example how to add line items to subscription carts. But note that the processor supports [mixed carts](./mixed-checkout.md) too. 
+The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\SubscriptionDiscountProcessor` can serve as example how to add line items to subscription carts. But note that the processor supports [mixed carts](./mixed-checkout.md) too.
 
 ### Adding subscription line items
 
 In order to add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
 
 The following methods are available to do so via the **API**, remember to use the subscription endpoints including necessary headers:
+
 - Add `subscription-plan-option` and `subscription-plan-option-<subscription-plan-id>-interval` ids besides `lineItems`.
 
 Information added through the first two methods will be remapped to the line item's payload, as shown in the last method.
 
-To do so via the **backend**, like in cart collectors or processors, the following methods are available: 
+To do so via the **backend**, like in cart collectors or processors, the following methods are available:
+
 - Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` ids to a line items payload
 
 <Tabs>
@@ -196,6 +198,7 @@ These context definitions can be found in `Subscription/Resources/app/config/rou
 
 In order to change Storefront pages while a customer is a subscription checkout process, the template scope `subscription` must be added to the page's Twig templates and subsequent Twig templates used.
 This effects at least the following pages:
+
 - `frontend.checkout.cart.page` / `@Storefront/storefront/page/checkout/cart/index.html.twig`
 - `frontend.checkout.confirm.page` / `@Storefront/storefront/page/checkout/confirm/index.html.twig`
 - `frontend.checkout.register.page` / `@Storefront/storefront/page/checkout/address/index.html.twig`

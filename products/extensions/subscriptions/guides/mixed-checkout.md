@@ -56,13 +56,15 @@ If you still want to add line items to subscription carts only, please add a sub
 In order to add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
 
 The following methods are available to do so via the **API**:
+
 - Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval` ids to a line item
 - Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval-<plan-id>` ids to a line item (useful when submitting HTML forms)
 - Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` ids to a line item's payload
 
 Information added through the first two methods will be remapped to the line item's payload, as shown in the last method.
 
-To do so via the **backend**, like in cart collectors or processors, the following methods are available: 
+To do so via the **backend**, like in cart collectors or processors, the following methods are available:
+
 - Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` ids to a line items payload
 
 <Tabs>
@@ -138,11 +140,12 @@ curl -XPOST '/store-api/checkout/line-item/add' -d '{
 
 A mixed cart will fire all events like usual.
 Additionally, any event fired during the subscription cart calculation will be prefixed with `subscription.` like it is the case in the [separate checkout](./separate-checkout.md#events).
-Unlike the separate checkout, only the normal `CheckoutOrderPlacedEvent` but no `'subscription.' . CheckoutOrderPlacedEvent` (or similar) will be fired, as the subscription carts are not placed as separate orders. 
+Unlike the separate checkout, only the normal `CheckoutOrderPlacedEvent` but no `'subscription.' . CheckoutOrderPlacedEvent` (or similar) will be fired, as the subscription carts are not placed as separate orders.
 
 ## Mixed carts in the Storefront
 
 In order to change the following Storefront pages if a mixed cart is present, the template scope `mixed-subscription` must be added to the page's Twig templates and subsequent Twig templates used:
+
 - `frontend.checkout.cart.page` / `@Storefront/storefront/page/checkout/cart/index.html.twig`
 - `frontend.checkout.confirm.page` / `@Storefront/storefront/page/checkout/confirm/index.html.twig`
 - `frontend.checkout.register.page` / `@Storefront/storefront/page/checkout/address/index.html.twig`
@@ -155,6 +158,7 @@ Further information can be found in the [dedicated guide here](./template-scopin
 The list can be changed through the `subscription.routes.mixed-storefront-scope` Symfony container parameter.
 
 Besides the scope change in Twig templates, the following additional information is available in Twig templates:
+
 - The global `context` will have the `subscriptionManagedContexts` extension available. See [here](#where-to-retrieve-information)
 - `page.cart` will have the `subscriptionManagedCarts` extension available. See [here](#where-to-retrieve-information)
 - `page.order` will have the `initialSubscriptions` extension available, containing the collection
