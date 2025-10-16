@@ -87,7 +87,7 @@ This process is best described as an express checkout for subscription products.
 
 **Key aspects:**
 
-- Subscription products have to checked out one by one
+- Subscription products have to be checked out one by one
 - For each subscription product a new [subscription cart](#subscription-cart) is created, preserving the contents of the main cart
 - For each subscription checkout a new [subscription context](#subscription-context) is derived, preserving the address, shipping method and payment method selections of the main cart
 

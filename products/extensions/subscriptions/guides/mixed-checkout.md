@@ -57,21 +57,21 @@ In order to add a line item to a subscription cart, the relevant subscription pl
 
 The following methods are available to do so via the **API**:
 
-- Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval` ids to a line item
-- Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval-<plan-id>` ids to a line item (useful when submitting HTML forms)
-- Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` ids to a line item's payload
+- Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval` IDs to a line item
+- Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval-<plan-id>` IDs to a line item (useful when submitting HTML forms)
+- Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` IDs to a line item's payload
 
 Information added through the first two methods will be remapped to the line item's payload, as shown in the last method.
 
 To do so via the **backend**, like in cart collectors or processors, the following methods are available:
 
-- Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` ids to a line items payload
+- Add `lineItem.payload.subscriptionPlan` and `lineItem.payload.subscriptionInterval` IDs to a line items payload
 
 <Tabs>
 <Tab title="PHP">
 
 ```php
-// retrieve plan and interval Ids in subscription collectors and processors 
+// retrieve plan and interval IDs in subscription collectors and processors 
 $subscriptionPlanId = $salesChannelContext->getExtension('subscription')->getPlan()->getId();
 $subscriptionIntervalId = $salesChannelContext->getExtension('subscription')->getInterval()->getId();
 
