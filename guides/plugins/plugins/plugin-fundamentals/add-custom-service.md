@@ -30,8 +30,8 @@ Place a file with name `services.xml` into a directory called `src/Resources/con
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-  <services>
-  </services>
+    <services>
+    </services>
 </container>
 ```
 
@@ -43,7 +43,7 @@ Now you have two possibilities to add a service to your plugin.
 
 Set `autowire` and `autoconfigure` to `true` in your `services.xml` file.
 Symfony will then automatically register your service.
-Read more about it, in the [Symfony docs](https://symfony.com/doc/current/service_container.html#creating-configuring-services-in-the-container)
+Read more about it, in the [Symfony docs](https://symfony.com/doc/current/service_container.html#creating-configuring-services-in-the-container).
 
 ::: code-group
 
@@ -69,6 +69,7 @@ The directory `Resources` and `Migration` are excluded, as they usually should n
 ### Explicit declaration
 
 Instead of autowiring and autoconfiguring, you can also declare your service explicitly.
+Use this option if you want to have more control over your service.
 
 ::: code-group
 
@@ -89,7 +90,7 @@ Instead of autowiring and autoconfiguring, you can also declare your service exp
 
 ### Actual service class
 
-Therefore, this is what your service could then look like:
+Then this is what your service could look like:
 
 ::: code-group
 
