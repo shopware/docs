@@ -2,299 +2,226 @@
 nav:
   title: Add CMS block
   position: 10
-
 ---
 
-# Add CMS Block
+# Add CMS Blocks
 
-## Overview
+## What is a Block?
 
-This guide will teach you how to create your very own CMS block with your plugin.
+A CMS block in Shopware is a fundamental structural component of the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what blocks are:
 
-## Prerequisites
+### CMS Hierarchy
 
-This plugin is built upon our plugin from the [Plugin base guide](../../plugin-base-guide), but the examples mentioned here are applicable to every valid Shopware 6 plugin. Also, you should know how to handle the "Shopping Experiences" module in the Administration first. Furthermore, you definitely need to know how to create a custom component in the Administration, which is covered here [Creating a component](../../administration/module-component-management/add-custom-component).
+* Page - The top-level container (e.g., category page, shop page, product page)
+* Section - Horizontal segments within a page (can be single-column or two-column with sidebar)
+* **Block - Units that usually span an entire row with custom layout and styling**
+* **Slots - Named containers within blocks**
+* Elements - The actual content primitives (text, image, video, product listing, etc.) placed inside slots
 
-## Custom block in the Administration
+A block represents a reusable layout unit that defines how elements are arranged in slots. For example, Shopware's built-in `image-text` block displays an image on the left and text on the right. Blocks are clustered into categories like Text, Images, Commerce, and Video for organizational purposes in the administration interface.
 
-Let's get started with adding your first custom block. By default, Shopware 6 comes with several blocks, such as a block called `image_text`. It renders an image element on the left side and a simple text element on the right side. In this guide, you're going to create a new block to swap those two elements, so the text is on the left side and the image on the right side.
+**Key Concept**: Blocks define the structure (layout and slots), while elements provide the actual content. This separation allows the same block to display different types of content in its slots.
 
-All blocks can be found in the directory [/src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/shopware/tree/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/blocks). In there, they are divided into the categories `commerce`, `form`, `image`, `sidebar`, `text-image`, `text` and `video`.
+> **Learn More**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
 
-`commerce` : Blocks using a special template can be found here, e.g. a product slider block.
+## Where to Find Blocks
 
-`form` : A single block displaying a form, mainly the `contact` or the `newsletter` form.
+Blocks are located in the Shopping Experience module in the Shopware Administration:
 
-`image` : Only image elements are used by these blocks.
+* Navigate to Content → Shopping Experience
+* Create a new layout or edit an existing one
+* In the layout designer, you'll see a sidebar with available blocks organized by category:
+  * Text - Text-only blocks
+  * Images - Image-only blocks
+  * Text & Images - Combined text and image blocks
+  * Commerce - Product sliders, listings, etc.
+  * Video - YouTube and Vimeo video blocks
+  * Form - Contact and newsletter forms
+  * Sidebar - Category navigation, listing filters
 
-`sidebar` : Blocks for the sidebar, such as the listing filters or the category navigation.
+Drag and drop blocks from the sidebar into your layout sections.
 
-`text-image` : Blocks, that are making use of both, text and images, belong here.
+You can find related block code here:
 
-`text` : Blocks only using text elements are located here.
+* Administration: `src/Administration/Resources/app/administration/src/module/sw-cms/blocks/`
+* Storefront: `src/Storefront/Resources/views/storefront/block/`
+* Core: `\Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader::load`
 
-`video` : Our blocks for youtube and vimeo videos reside here.
+## How to Create a Block in the Administration
 
-### Injecting into the Administration
+### Directory Structure
 
-The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
+We recommend this structure for CMS blocks.
 
-Create this `main.js` file for now, it will be used later.
+```TEXT
+<plugin root>/src/Resources/app/administration/src/
+├── main.js
+└── module/
+    └── sw-cms/
+        └── blocks/
+            └── text-image/              (category)
+                └── image-text-reversed/ (block name)
+                    ├── index.js
+                    ├── component/
+                    │   ├── index.js
+                    │   ├── cms-block-image-text-reversed.html.twig
+                    │   └── cms-block-image-text-reversed.scss
+                    └── preview/
+                        ├── index.js
+                        ├── cms-block-preview-image-text-reversed.html.twig
+                        └── cms-block-preview-image-text-reversed.scss
+```
 
-### Registering a new block
+### Step 1: Import Your Block in main.js
 
-Your plugin's structure should always match the core's structure. When thinking about creating a new block, you should recreate the directory structure of core blocks in your plugin. The block, which you're going to create, consists of an `image` and a `text` element, so it belongs to the category `text-image`. Thus, create the directory `<plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image`.
-
-In there, you have to create a new directory for each block you want to create, the directory's name representing the block's name. For this example, the name `my-image-text-reversed` is going to be used, so create this directory in there.
-
-Now create a new file `index.js` inside the `my-image-text-reversed` directory, since it will be automatically loaded when importing this block in your `main.js`. Speaking of that, right after having created the `index.js` file, you can actually import your new block directory in the `main.js` file already:
-
-```javascript
+```JS
 // <plugin root>/src/Resources/app/administration/src/main.js
-import './module/sw-cms/blocks/text-image/my-image-text-reversed';
+import './module/sw-cms/blocks/text-image/image-text-reversed';
 ```
 
-Back to your `index.js`, which is still empty. In order to register a new block, you have to call the `registerCmsBlock` method of the [cmsService](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/service/cms.service.js). Since it's available in the Dependency Injection Container, you can fetch it from there.
+### Step 2: Register the Block
 
-First of all, access our `Application` wrapper, which will grant you access to the DI container. This `Application` wrapper has access to the DI container, so go ahead and fetch the `cmsService` from it and call the mentioned `registerCmsBlock` method.
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js
-Shopware.Service('cmsService').registerCmsBlock();
-```
-
-#### The configuration object
-
-The method `registerCmsBlock` takes a configuration object, containing the following necessary data:
-
-`name` : The technical name of your block. Will be used for the template and component loading later on.
-
-`label` : A name to be shown for your block in the User Interface.
-
-`category` : The category this block belongs to.
-
-`component` : The Vue component to be used when rendering your actual block in the Administration sidebar.
-
-`previewComponent` : The Vue component to be used in the "list of available blocks". Just shows a tiny preview of what your block would look like if it was used.
-
-`defaultConfig` : A default configuration to be applied to this block. Must be an object containing those default values.
-
-`slots` : Key-value pair to configure which element to be shown in which slot. Will be explained in the next few steps when creating a template for this block.
-
-Go ahead and create this configuration object yourself. Here's what it should look like after having set all of those options:
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js
-Shopware.Service('cmsService').registerCmsBlock({
-    name: 'my-image-text-reversed',
-    category: 'text-image',
-    label: 'My Image Text Block!',
-    component: 'sw-cms-block-my-image-text-reversed',
-    previewComponent: 'sw-cms-preview-my-image-text-reversed',
-    defaultConfig: {
-        marginBottom: '20px',
-        marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        sizingMode: 'boxed'
-    },
-    slots: {
-        left: 'text',
-        right: 'image'
-    }
-});
-```
-
-The `component` and `previewComponent` do not exist yet, but they are created later in this guide. The `defaultConfig` just gets some minor margins and the sizing mode 'boxed', which will result in a CSS class [is--boxed](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/module/sw-cms/component/sw-cms-block/sw-cms-block.scss) being applied to that block later. The slots are defined by an object, where the key represents the slot's name and the value being the technical name of the element to be used in this slot. This will be easier to understand when having a look at the respective template in a few minutes. Also you might want to have a look at the [Vue documentation regarding slots](https://vuejs.org/v2/guide/components-slots.html).
-
-### Rendering the block
-
-You've set the `name` of the component to be used when rendering your block to be 'sw-cms-block-my-image-text-reversed'. This component does not exist yet, so let's create this one real quick. As already mentioned, creating a component is not explained by this guide in detail, so you might want to head over to our guide about [Creating a component](../../administration/module-component-management/add-custom-component) first.
-
-First of all, create a new directory `component` in your block's directory. In there, create a new `index.js` file and register your custom component `sw-cms-block-my-image-text-reversed`.
-
-**Keep in mind: The component name consists of `sw-cms-block-` and the `name` property mentioned in your `index.js`, while registering your cms block component via `registerCmsBlock()`!**
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/index.js
-import template from './sw-cms-block-my-image-text-reversed.html.twig';
-import './sw-cms-block-my-image-text-reversed.scss';
-
-Shopware.Component.register('sw-cms-block-my-image-text-reversed', {
-    template
-});
-```
-
-Just like most components, it has a custom template and also some styles. Focus on the template first, create a new file `sw-cms-block-my-image-text-reversed.html.twig`.
-
-This template now has to define the basic structure of your custom block. In this simple case, you only need a parent container and two sub-elements, whatever those are. That's also were the slots come into play: You've used two slots in your block's configuration, `left` and `right`. Make sure to create those slots in the template as well now.
-
-```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.html.twig
-{% block sw_cms_block_my_image_text_reversed %}
-    <div class="sw-cms-block-my-image-text-reversed">
-        <slot name="left">{% block sw_cms_block_my_image_text_reversed_slot_left %}{% endblock %}</slot>
-        <slot name="right">{% block sw_cms_block_my_image_text_reversed_slot_right %}{% endblock %}</slot>
-    </div>
-{% endblock %}
-```
-
-You've got a parent `div` containing the two required [slots](https://vuejs.org/v2/guide/components-slots.html). If you were to rename the first slot `left` to something else, you'd have to adjust this in your block's configuration as well.
-
-Those slots would be rendered from top to bottom now, instead of from left to right. That's why your block comes with a custom `.scss` file, create it now by adding the file `sw-cms-block-my-image-text-reversed.scss` to your `component` directory.
-
-In there, use a grid to display your elements next to each other. You've set a CSS class for your block, which is the same as its name.
-
-```css
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/component/sw-cms-block-my-image-text-reversed.scss
-.sw-cms-block-my-image-text-reversed {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 40px;
-}
-```
-
-That's it for this component! Make sure to import your `component` directory in your `index.js` file, so your new component actually gets loaded.
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js
-import './component'; // <- Right here!
-
-Shopware.Service('cmsService').registerCmsBlock({
-    ...
-});
-```
-
-Your block can now be rendered in the designer. Let's continue with the preview component.
-
-### Block preview
-
-You've also set a property `previewComponent` containing the value `sw-cms-preview-my-image-text-reversed`. Time to create this component as well. For this purpose, stick to the core structure again and create a new directory `preview`. In there, again, create an `index.js` file, register your component by its name and load a template and a `.scss` file.
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/index.js
-import template from './sw-cms-preview-my-image-text-reversed.html.twig';
-import './sw-cms-preview-my-image-text-reversed.scss';
-
-Shopware.Component.register('sw-cms-preview-my-image-text-reversed', {
-    template
-});
-```
-
-The preview element doesn't have to deal with mobile viewports or anything alike, it's just a simplified preview of your block. Thus, create a template containing a text and an image and use the styles to place them next to each other. Create a `sw-cms-preview-my-image-text-reversed.html.twig` file in your `preview` directory with the following content.
-
-```twig
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.html.twig
-{% block sw_cms_block_my_image_text_reversed_preview %}
-    <div class="sw-cms-preview-my-image-text-reversed">
-        <div>
-            <h2>Lorem ipsum dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-        </div>
-        <img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')">
-    </div>
-{% endblock %}
-```
-
-Also, you need to create a computed component to access the asset filter in your template.
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/index.js
-computed: {
-    assetFilter() {
-        return Shopware.Filter.getByName('asset');
-    },
-}
-```
-
-Just a div containing some text and an example image next to that. For the styles, you can simply use the grid property of CSS again. Since you don't have to care about mobile viewports, this is even easier this time.
-
-Now create the styles file `sw-cms-preview-my-image-text-reversed.scss` with the following styles:
-
-```css
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/preview/sw-cms-preview-my-image-text-reversed.scss
-.sw-cms-preview-my-image-text-reversed {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 20px;
-    padding: 15px;
-}
-```
-
-A two-column layout, some padding and spacing here and there, done.
-
-Now, import this component in your block's `index.js` as well. This is, what your final block's `index.js` file should look like now:
-
-```javascript
-// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/my-image-text-reversed/index.js
+```JS
+// <plugin root>/src/Resources/app/administration/src/module/sw-cms/blocks/text-image/image-text-reversed/index.js
 import './component';
 import './preview';
 
 Shopware.Service('cmsService').registerCmsBlock({
-    name: 'my-image-text-reversed',
+    name: 'image-text-reversed',
     category: 'text-image',
-    label: 'My Image Text Block!',
-    component: 'sw-cms-block-my-image-text-reversed',
-    previewComponent: 'sw-cms-preview-my-image-text-reversed',
+    label: 'cms.blocks.imageTextReversed.label',
+    component: 'cms-block-image-text-reversed',
+    previewComponent: 'cms-block-preview-image-text-reversed',
     defaultConfig: {
         marginBottom: '20px',
         marginTop: '20px',
         marginLeft: '20px',
         marginRight: '20px',
-        sizingMode: 'boxed'
+        sizingMode: 'boxed',
     },
     slots: {
         left: 'text',
-        right: 'image'
-    }
+        right: 'image',
+    },
 });
 ```
 
-In order to test your changes now, you should rebuild your Administration. This can be done with the following command:
+| Property         | Description                                                                                   |
+|------------------|----------------------------------------------------------------------------------------------|
+| `name`           | Technical name of your block                                                                 |
+| `category`       | Which category it appears under (`text`, `image`, `text-image`, `commerce`, `form`, `video`, `sidebar`) |
+| `label`          | Display name in the UI                                                                       |
+| `component`      | Vue component for rendering the block in the designer                                        |
+| `previewComponent` | Vue component for the block thumbnail preview                                              |
+| `defaultConfig`  | Default styling values                                                                       |
+| `slots`          | Defines which element types go in which slots (key = slot name, value = element type)        |
 
-<Tabs>
-<Tab title="Template">
+### Step 3: Create the Block Component
 
-```bash
-./bin/build-administration.sh
+It's important to include all slots you defined in the block configuration (Step 2). These are used for configuring elements in the administration interface.
+
+```JS
+// image-text-reversed/component/index.js
+Shopware.Component.register('cms-block-image-text-reversed', {
+    template: `<div style="display: flex; gap: 16px;">
+        <slot name="left" />
+        <slot name="right" />
+    </div>`,
+});
 ```
 
-</Tab>
-<Tab title="platform only (contribution setup)">
+### Step 4: Create the Preview Component
 
-```bash
-composer run build:js:admin
+The preview is shown as a thumbnail when selecting a block from the editor sidebar. You could also display a static image of your final Storefront block here.
+
+```JS
+// image-text-reversed/preview/index.js
+Shopware.Component.register('cms-block-preview-image-text-reversed', {
+    template: `<div style="display: flex; gap: 16px;">
+        <h2>Lorem ipsum dolor sit amet</h2>
+        <img :src="assetFilter('/administration/administration/static/img/cms/preview_mountain_small.jpg')" />
+    </div>`,
+    computed: {
+        assetFilter() {
+            return Shopware.Filter.getByName('asset');
+        },
+    },
+});
 ```
 
-</Tab>
-</Tabs>
+After this, the block preview should appear in the Shopping Experience block sidebar under the "Text & Images" category and can be added to a layout.
 
-You should now be able to use your new block in the "Shopping Experiences" module.
+## How to Create a Block in the Storefront
 
-## Storefront representation
+The Storefront template defines how your element appears on the actual storefront. It is expected to be located in the directory `src/Resources/views/storefront/block`. In there, a twig template file has to follow this naming convention:
 
-While your new block is fully functional in the Administration already, you've never defined a template for it for the Storefront.
+* **Prefix**: `cms-block-`
+* **Technical name**: `image-text-reversed` (The `name` property in Step 2)
+* **Extension**: `.html.twig`
 
-A block's Storefront representation is always expected in the directory [platform/src/Storefront/Resources/views/storefront/block](https://github.com/shopware/shopware/tree/v6.3.4.1/src/Storefront/Resources/views/storefront/block). In there, a twig template named after your block is expected.
+Shopware is expecting the prefix as part of the full filename in `src/Storefront/Resources/views/storefront/section/cms-section-block-container.html.twig`.
 
-So go ahead and re-create that structure in your plugin: `<plugin root>/src/Resources/views/storefront/block/`
+Full example: `cms-block-image-text-reversed.html.twig`
 
-Create a new twig template named after your block. The filename convention for this is :
+### Basic Template
 
-- Starts with the prefix `cms-block-`
-- Followed by the technical name of the block `my-image-text-reversed`
-- Ends with the extension `.html.twig`
+You can create your own blocks or extend and reuse existing ones. Don't forget to clear the Storefront cache after adding new templates.
 
-Example : `cms-block-my-image-text-reversed.html.twig`.
+```TWIG
+{# <plugin root>/src/Resources/views/storefront/block/cms-block-image-text-reversed.html.twig #}
+<div class="col-md-6">
+    {% set element = block.slots.getSlot('left') %}
 
-Since the [original 'image\_text' file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/block/cms-block-image-text.html.twig) is already perfectly fine, you can go ahead and extend from it in your storefront template.
+    {% sw_include '@Storefront/storefront/element/cms-element-' ~ element.type ~ '.html.twig' with {
+        'element': element
+     } %}
+</div>
 
-```twig
-// <plugin root>/src/Resources/views/storefront/block/cms-block-my-image-text-reversed.html.twig
-{% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
+<div class="col-md-6">
+    {% set element = block.slots.getSlot('right') %}
+
+    {% sw_include '@Storefront/storefront/element/cms-element-' ~ element.type ~ '.html.twig' with {
+        'element': element
+     } %}
+</div>
 ```
 
-And that's it for the Storefront as well in this example! Make sure to have a look at the other original templates to get and understand how the templating for blocks works.
+The `block` is automatically passed to the template and contains meta data and configuration values.  See the `CmsBlockDefinition.php` for a full overview.
+
+### How to Render Slots
+
+Slots contain elements that need to be rendered. Here are the key methods:
+
+#### 1. Get a Slot by Name
+
+```TWIG
+{% set leftSlot = block.slots.getSlot('left') %}
+```
+
+#### 2. Render an Element
+
+Use `sw_include` to dynamically include the correct element template:
+
+```TWIG
+{% sw_include "@Storefront/storefront/element/cms-element-" ~ leftSlot.type ~ ".html.twig" with {
+   'element': leftSlot
+} %}
+```
+
+This dynamically builds the template path based on the element type. For example:
+
+* If `leftSlot.type` is text, it includes cms-element-text.html.twig
+* If `leftSlot.type` is image, it includes cms-element-image.html.twig
+
+#### 3. Loop Through All Slots
+
+```TWIG
+{% for slotName, slot in block.slots %}
+    {% sw_include "@Storefront/storefront/element/cms-element-" ~ slot.type ~ ".html.twig" with {
+        'element': slot
+    } %}
+{% endfor %}
+```
 
 ## Next steps
 
