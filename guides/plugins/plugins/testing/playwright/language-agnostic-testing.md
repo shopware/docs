@@ -1,7 +1,7 @@
 ---
 nav:
     title: Language Agnostic Testing
-    position: 20
+    position: 19
 ---
 
 # Language Agnostic Testing
@@ -46,8 +46,8 @@ test('Category creation', async ({ AdminPage, Translate }) => {
 Switch test language using environment variables:
 
 ```bash
-LANG=de npm run test  # German
-LANG=en npm run test  # English (default)
+LANG=de-DE npm run test  # German
+LANG=en-GB npm run test  # English (default)
 ```
 
 ## Translation Keys
@@ -365,11 +365,8 @@ export default defineConfig({
 
 ```bash
 # German
-lang=de npx playwright test
+LANG=de-DE npx playwright test
 
 # English (default)
 npx playwright test
-
-# Using system environment
-LANG=de npx playwright test
 ```
