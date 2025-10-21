@@ -40,7 +40,7 @@ The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\Subs
 
 In order to add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
 
-The following methods are available to do so via the **API**, remember to use the subscription endpoints including necessary headers:
+The following methods are available to do so via the **Store-API**, remember to use the subscription endpoints including necessary headers:
 
 - Add `subscription-plan-option` and `subscription-plan-option-<subscription-plan-id>-interval` IDs besides `lineItems`.
 

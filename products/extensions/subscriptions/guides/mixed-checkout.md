@@ -10,8 +10,8 @@ nav:
 Available since Shopware version 6.7.4.0
 :::
 
-This guide describes how the mixed carts in the subscription feature works and how extensions should integrate with it.
-Mixed carts let customers buy subscription products and one‑time products in the same checkout while keeping subscription calculation isolated and predictable.
+This guide describes how the so-called `mixed carts` for subscriptions work and how extensions should integrate with it.
+Mixed carts let customers buy subscription products and one‑time products during a single checkout while keeping subscription calculation isolated and predictable.
 
 Please familiarise yourself with the [concept](../concept.md) first before continuing here.
 
@@ -20,7 +20,7 @@ Please familiarise yourself with the [concept](../concept.md) first before conti
 Subscription line items are ordinary product line items in the main cart, but they carry subscription plan and interval IDs in their payload.
 During cart calculation, line items containing subscription plan and interval IDs in their payload are collected and grouped by plan and interval.
 For each group a derived _managed_ subscription context and a _managed_ subscription cart are created and calculated using the subscription cart calculation path.
-These represent the context and content of the later generated subscription.
+These represent the context and content of the upcoming generated subscription.
 
 Managed subscription contexts and carts are persisted in the database as well.
 They are linked back to the main context by the `subscription_cart` database table.
@@ -44,7 +44,8 @@ If you need to differentiate between a mixed and a separate subscription cart ca
 The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\SubscriptionDiscountProcessor` is a good example how to add line items to mixed carts.
 
 :::warning
-We discourage the use of subscription collectors and processors for adding new line items to subscription carts **only**.
+We discourage the use of subscription collectors and processors for adding new line items **only** to subscription carts.
+Instead, always make sure to add line items to the main cart as well.
 This is because its potentially confusing for customers and handling line items in subscription carts missing in the main cart is more difficult.
 Instead, follow [the steps described below](#how-to-add-a-subscription-line-item) to add additional line items.
 
@@ -55,7 +56,7 @@ If you still want to add line items to subscription carts only, please add a sub
 
 In order to add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
 
-The following methods are available to do so via the **API**:
+The following methods are available to do so via the **Store-API**:
 
 - Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval` IDs to a line item
 - Add `lineItem.subscriptionPlan` and `lineItem.subscriptionInterval-<plan-id>` IDs to a line item (useful when submitting HTML forms)
@@ -140,7 +141,10 @@ curl -XPOST '/store-api/checkout/line-item/add' -d '{
 
 A mixed cart will fire all events like usual.
 Additionally, any event fired during the subscription cart calculation will be prefixed with `subscription.` like it is the case in the [separate checkout](./separate-checkout.md#events).
-Unlike the separate checkout, only the normal `CheckoutOrderPlacedEvent` but no `'subscription.' . CheckoutOrderPlacedEvent` (or similar) will be fired, as the subscription carts are not placed as separate orders.
+
+:::info
+Note that unlike the separate checkout, only the normal `CheckoutOrderPlacedEvent` but no `'subscription.' . CheckoutOrderPlacedEvent` (or similar) will be fired, as the subscription carts are not placed as separate orders.
+:::
 
 ## Mixed carts in the Storefront
 
