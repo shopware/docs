@@ -22,13 +22,13 @@ Therefore, you can refer to [Adding a custom service](add-custom-service) guide.
 
 ::: info
 Refer to this video on **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)** explaining DI based on the example of a custom CLI command.
-Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+It is also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 :::
 
 ## Injecting another service
 
 This example will be about injecting the `SystemConfigService` into our `ExampleService`.
-First we are preparing the `ExampleService` PHP class.
+First, we are preparing the `ExampleService` PHP class.
 Add the `SystemConfigService` as parameter to the constructor of the service class.
 
 ::: code-group

@@ -43,7 +43,7 @@ Now you have two possibilities to add a service to your plugin.
 
 Set `autowire` and `autoconfigure` to `true` in your `services.xml` file.
 Symfony will then automatically register your service.
-Read more about it, in the [Symfony docs](https://symfony.com/doc/current/service_container.html#creating-configuring-services-in-the-container).
+Read more about it in the [Symfony docs](https://symfony.com/doc/current/service_container.html#creating-configuring-services-in-the-container).
 
 ::: code-group
 
