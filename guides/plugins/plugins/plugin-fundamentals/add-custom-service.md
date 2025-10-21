@@ -23,7 +23,7 @@ Place a file with name `services.xml` into a directory called `src/Resources/con
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -47,7 +47,7 @@ Read more about it in the [Symfony docs](https://symfony.com/doc/current/service
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -73,7 +73,7 @@ Use this option if you want to have more control over your service.
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -94,7 +94,7 @@ Then this is what your service could look like:
 
 ::: code-group
 
-```php [<plugin root>/src/Service/ExampleService.php]
+```php [PLUGIN_ROOT/src/Service/ExampleService.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;

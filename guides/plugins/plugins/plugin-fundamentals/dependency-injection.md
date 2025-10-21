@@ -33,7 +33,7 @@ Add the `SystemConfigService` as parameter to the constructor of the service cla
 
 ::: code-group
 
-```php [<plugin root>/src/Service/ExampleService.php]
+```php [PLUGIN_ROOT/src/Service/ExampleService.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -68,7 +68,7 @@ If you declared the service explicitly, you need to add the `SystemConfigService
 
 ::: code-group
 
-```xml [<plugin root>/src/Resources/config/services.xml]
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
