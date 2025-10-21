@@ -10,17 +10,17 @@ Shopware PaaS Native supports multiple applications within a project, such as en
 
 Each application has its own compute resources, infrastructure, and deployment configuration, so you can tailor each environment to its specific needs.
 
-For instance, you might allocate smaller, hibernating compute instances for staging, while reserving larger, always-on resources for production.
+For instance, you might allocate smaller, hibernating compute instances for staging while reserving larger, always-on resources for production.
 
 ## Creating an Application
 
-Deploy a new application to a project:
+Create a new application to a project:
 
 ```sh
 sw-paas application create
 ```
 
-## Build and Deployments
+## Build your application
 
 To trigger a new build for the application via CLI, use the following command:
 
@@ -32,6 +32,41 @@ This command initiates the build process, packaging your application and prepari
 
 ```sh
 sw-paas application build logs
+```
+
+## Update your application
+
+To update your application, you need to run the following command and provide the commit SHA:
+
+```sh
+sw-paas application update
+```
+
+This command initiates the build process, waits until it's done, and runs the deployment for you.
+
+## Deploy a specific build of your application
+
+To create a deployment with a specific build, use the following command:
+
+```sh
+sw-paas application deploy create
+```
+
+It will let you choose which build you want to deploy.
+This is very handy, since you can choose any successful build to deploy: the latest one to bring your change live, or a previous one to fix an issue that arose.
+
+## Deployments management
+
+To list all past deployments:
+
+```sh
+sw-paas application deploy list
+```
+
+To get details about a given deployment:
+
+```sh
+sw-paas application deploy get
 ```
 
 ## Plugin Management
@@ -112,15 +147,13 @@ cdn.shopware.shop
 
 This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
 
-#### Application Updates
+#### Application Deployment
 
 Following domain creation, you must redeploy your application. You can do it by using:
 
 ```sh
-sw-paas application build start
+sw-paas application deploy create
 ```
-
-This process will be automated in future releases.
 
 #### Shopware Configuration
 

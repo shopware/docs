@@ -96,7 +96,7 @@ The images are available at Docker Hub and GitHub Container Registry (ghcr.io) w
 
 ## Default installed PHP Extensions
 
-The Docker image contains the following PHP extensions: `bcmath`, `gd`, `intl`, `mysqli`, `pdo_mysql`, `pcntl`, `sockets`, `bz2`, `gmp`, `soap`, `zip`, `ffi`, `opcache`, `redis`, `apcu`, `amqp` and `zstd`
+The Docker image contains the following PHP extensions: `bcmath`, `gd`, `intl`, `mysqli`, `pdo_mysql`, `pcntl`, `sockets`, `bz2`, `gmp`, `soap`, `zip`, `ftp`, `ffi`, `opcache`, `redis`, `apcu`, `amqp` and `zstd`
 
 ## Environment Variables
 

@@ -123,6 +123,7 @@ CLI
 CMS
 CORS
 CPUs
+CRM
 CSP
 CSPs
 CSRF
@@ -175,6 +176,7 @@ CheckoutInfoWidget
 CheckoutOffcanvasWidget
 CheckoutOrderPlacedCriteriaEvent
 CheckoutOrderPlacedEvent
+CheckoutPlaceOrderExtension
 CheckoutRegisterPage
 CheckoutRegisterPageLoadedEvent
 Checksums
@@ -187,6 +189,7 @@ ClientInterface
 Cloudflare
 Cmd
 CmsPage
+CmsSlotsDataEnrichExtension
 Codemods
 Codespaces
 Codestyle
@@ -228,6 +231,7 @@ CriteriaTest
 CronIntervalField
 Cronjobs
 CrossSellingDataSet
+Crowdin
 Ctrl
 CurrencyRule
 CustomAppAware
@@ -427,6 +431,7 @@ HookClasses
 HookExecutor
 HowTos
 IDEs
+IETF
 IPV
 IPv
 IdField
@@ -705,6 +710,7 @@ PriceFacade
 PriceField
 PriceFieldSerializer
 PrimaryKey
+Prisma
 ProductAttributeDataSet
 ProductAware
 ProductCartProcessor
@@ -722,6 +728,7 @@ ProductNumber
 ProductOptionRelationDataSet
 ProductPage
 ProductPriceAttributeDataSet
+ProductPriceCalculationExtension
 ProductPriceCalculator
 ProductPropertyRelationDataSet
 ProductQuickViewWidget
@@ -771,6 +778,7 @@ Repo
 RepositoryIterator
 ResetUrlAware
 ResetUrlStorer
+ResolveListingExtension
 RestAPI
 RestrictDelete
 Reusability
@@ -923,6 +931,8 @@ Topseller
 Topsellers
 TransactionalAction
 TranslatedField
+TranslationConfig
+TranslationConfigLoader
 TranslationDataSet
 TranslationsAssociation
 TranslationsAssociationField
@@ -963,6 +973,7 @@ UpdatedBy
 UpdatedByField
 UpperCamelCase
 Upserting
+Upsun
 UrlAware
 UrlStorer
 UserAware
@@ -1250,6 +1261,7 @@ direnv's
 discountfacade
 discoverability
 docblock
+docblocks
 dockware
 dom
 don'ts
@@ -1268,6 +1280,7 @@ editorconfig
 eg
 elasticsearch
 employeeId
+english
 enqueue
 entityIds
 entityName

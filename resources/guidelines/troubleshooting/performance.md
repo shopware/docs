@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Troubleshooting
-  position: 80
+  title: Performance
+  position: 20
 
 ---
 
-# Troubleshooting
+# Performance
 
-## Performance
+## Common Performance Considerations
 
 ### Dynamic product groups are slow to load
 

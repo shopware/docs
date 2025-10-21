@@ -7,6 +7,7 @@ rm -r ./resources/guidelines/code/core
 
 # copy contents
 cp -r ./shopware/coding-guidelines/core ./resources/guidelines/code/core
+rm ./resources/guidelines/code/core/AGENTS.md
 
 rm -rf ./shopware
 

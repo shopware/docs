@@ -47,13 +47,6 @@ Please pay attention to every point in this guide. We'll review it before you re
 
 * We check the complete functionality of the app (separately sales channel configurations in the config.xml, the uninstallation and reinstallation procedure) and check for styling errors on every viewport.
 
-* We want to improve the quality of the Shopware Community Store and offer as many different apps as possible.
-Hence, we check for a functional comparison with other apps already in the Shopware Community store, in the Rise edition or above.
-If an extension with the same function exists and it does not fit into one of our differentiator clusters, it can be rejected as it doesn't provide any added value.
-If you would like more information, please write an email to [qa@shopware.com](mailto:qa@shopware.com).
-
-[Differentiator cluster for Shopware extensions](../../../../../resources/guidelines/testing/Differentiator-Clusters.md)
-
 [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
 ::: info
