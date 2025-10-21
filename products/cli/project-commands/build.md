@@ -45,6 +45,61 @@ build:
 
 You can check [here which browsers would be affected](https://browsersl.ist/#q=defaults).
 
+## MJML Email Template Compilation
+
+Starting with Shopware CLI 0.6.32, the `project ci` command can compile MJML email templates during the build process
+for projects using the [FroshPlatformTemplateMail](https://github.com/FriendsOfShopware/FroshPlatformTemplateMail) plugin.
+[MJML](https://mjml.io) is a markup language designed to reduce the pain of coding responsive emails by providing
+semantic components that compile to responsive HTML.
+
+### Prerequisites
+
+This feature is specifically designed for projects using the **FroshPlatformTemplateMail** plugin. The primary purpose of this plugin is to manage email templates as source files in your codebase, rather than storing them in the database. This approach enables:
+
+- **Version control**: Email templates can be tracked in Git alongside your code
+- **Deployment consistency**: Templates are deployed with your code, ensuring consistency across environments
+- **MJML support**: Optionally write templates in MJML (Mailjet Markup Language) format for responsive emails
+- **Build-time compilation**: Since templates are in source files, they can be compiled during the build process
+
+Having email templates in source files is essential for the shopware-cli MJML compilation feature to work, as it processes these files during the build phase.
+
+### Why compile MJML during build?
+
+By default, FroshPlatformTemplateMail compiles MJML templates at runtime when emails are sent. The shopware-cli build-time compilation offers several advantages:
+
+- **Early error detection**: Catch MJML syntax errors during CI/CD instead of when sending emails
+- **Better performance**: Eliminate runtime compilation overhead
+- **Improved reliability**: Remove potential runtime failures in production
+- **Reduced dependencies**: No need for MJML compilation services in production
+
+### Configuration
+
+Enable MJML compilation in your `.shopware-project.yml` file:
+
+```yaml
+build:
+  mjml:
+    # Enable MJML compilation during build
+    enabled: true
+    # Directories to search for MJML templates (defaults to custom/plugins and custom/static-plugins if not specified)
+    searchPaths:
+      - custom/plugins
+      - custom/static-plugins
+```
+
+### How it works
+
+When MJML compilation is enabled:
+
+1. The CLI searches for `html.mjml` files in the configured search paths (defaults to `custom/plugins` and `custom/static-plugins`)
+2. Each `html.mjml` file is compiled to HTML and saved as `html.twig`
+3. The original `html.mjml` files are removed after successful compilation to prevent runtime re-compilation attempts
+4. Any compilation errors are reported and cause the build to fail, ensuring broken templates don't reach production
+
+### Requirements
+
+MJML compilation requires the `mjml` package to be installed via NPM in your build environment. The CLI uses local compilation to convert MJML templates to HTML.
+
 ## Configuration options
 
 You can configure the build process with a `.shopware-project.yml` file. The following options are available:
@@ -71,6 +126,12 @@ build:
   # Allows to force building an extension even when the assets existing. A use-case could be if you used composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
+  # MJML compilation configuration (see MJML section above for details)
+  mjml:
+    enabled: false
+    searchPaths:
+      - custom/plugins
+      - custom/static-plugins
 ```
 
 ## Supporting bundles
