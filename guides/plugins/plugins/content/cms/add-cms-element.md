@@ -15,14 +15,14 @@ A CMS element in Shopware is the smallest content unit in the Shopping Experienc
 * Page - The top-level container (e.g., category page, shop page, product page)
 * Section - Horizontal segments within a page (can be single-column or two-column with sidebar)
 * Block - Units that usually span an entire row with custom layout and styling
-* Slots - Named containers within blocks
+* Slots - A named container inside a block. Each slot represents a designated area that can hold exactly one CMS element
 * **Elements - The actual content primitives (text, image, video, product listing, etc.) placed inside slots**
 
 Elements are the "primitives" in the CMS hierarchy. They have no knowledge of their context and contain minimal markup. Elements are always rendered inside slots of their parent blocks.
 
-**Key Concept**: Elements provide the actual content, while blocks define the structure and layout. This separation allows different element types to be placed in the same block slot.
+**Key concept**: Elements provide the actual content, while blocks define the structure and layout. This separation allows different element types to be placed in the same block slot.
 
-> **Learn More**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
+> **Learn more**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
 
 ## Where to Find Elements
 
@@ -43,7 +43,7 @@ You can find related element code here:
 
 ## How to Create an Element in the Administration
 
-We recommend this structure for CMS elements.
+We recommend this structure for CMS elements:
 
 ```TEXT
 <plugin root>/src/Resources/app/administration/src/
@@ -153,7 +153,7 @@ Shopware.Component.register('cms-el-dailymotion', {
 });
 ```
 
-**Key Points**:
+**Key points**:
 
 * The `cms-element` mixin provides common props and data-mapping for config objects
 * Use fallback content to avoid invisible elements in the editor (for example when missing an `iframe` or `img` `src`)
@@ -181,7 +181,7 @@ Shopware.Component.register('cms-el-config-dailymotion', {
 });
 ```
 
-**Key Points**:
+**Key points**:
 
 * The `cms-element` mixin provides common props and data-mapping for config objects
 * Use [Shopware meteor components](https://shopware.design/meteor-components/) for a consistent UI
@@ -194,7 +194,7 @@ The Storefront template defines how your element appears on the actual storefron
 * **Technical name**: `dailymotion` (the `name` property defined in Step 2)
 * **Extension**: `.html.twig`
 
-Shopware is expecting the prefix as part of the full filename.
+**Shopware is expecting the prefix as part of the full filename.**
 
 Full example: `cms-element-dailymotion.html.twig`
 

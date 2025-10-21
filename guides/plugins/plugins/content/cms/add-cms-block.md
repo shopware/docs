@@ -15,14 +15,14 @@ A CMS block in Shopware is a fundamental structural component of the Shopping Ex
 * Page - The top-level container (e.g., category page, shop page, product page)
 * Section - Horizontal segments within a page (can be single-column or two-column with sidebar)
 * **Block - Units that usually span an entire row with custom layout and styling**
-* **Slots - Named containers within blocks**
+* **Slots - A named container inside a block. Each slot represents a designated area that can hold exactly one CMS element**
 * Elements - The actual content primitives (text, image, video, product listing, etc.) placed inside slots
 
 A block represents a reusable layout unit that defines how elements are arranged in slots. For example, Shopware's built-in `image-text` block displays an image on the left and text on the right. Blocks are clustered into categories like Text, Images, Commerce, and Video for organizational purposes in the administration interface.
 
-**Key Concept**: Blocks define the structure (layout and slots), while elements provide the actual content. This separation allows the same block to display different types of content in its slots.
+**Key concept**: Blocks define the structure (layout and slots), while elements provide the actual content. This separation allows the same block to display different types of content in its slots.
 
-> **Learn More**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
+> **Learn more**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
 
 ## Where to Find Blocks
 
@@ -37,7 +37,7 @@ Blocks are located in the Shopping Experience module in the Shopware Administrat
   * Commerce - Product sliders, listings, etc.
   * Video - YouTube and Vimeo video blocks
   * Form - Contact and newsletter forms
-  * Sidebar - Category navigation, listing filters
+  * Sidebar - Category navigation and listing filters
 
 Drag and drop blocks from the sidebar into your layout sections.
 
@@ -51,7 +51,7 @@ You can find related block code here:
 
 ### Directory Structure
 
-We recommend this structure for CMS blocks.
+We recommend this structure for CMS blocks:
 
 ```TEXT
 <plugin root>/src/Resources/app/administration/src/
@@ -159,7 +159,7 @@ The Storefront template defines how your element appears on the actual storefron
 * **Technical name**: `image-text-reversed` (The `name` property in Step 2)
 * **Extension**: `.html.twig`
 
-Shopware is expecting the prefix as part of the full filename in `src/Storefront/Resources/views/storefront/section/cms-section-block-container.html.twig`.
+**Shopware is expecting the prefix as part of the full filename in `src/Storefront/Resources/views/storefront/section/cms-section-block-container.html.twig`.**
 
 Full example: `cms-block-image-text-reversed.html.twig`
 
@@ -210,8 +210,8 @@ Use `sw_include` to dynamically include the correct element template:
 
 This dynamically builds the template path based on the element type. For example:
 
-* If `leftSlot.type` is text, it includes cms-element-text.html.twig
-* If `leftSlot.type` is image, it includes cms-element-image.html.twig
+* If `leftSlot.type` is text, it renders cms-element-text.html.twig
+* If `leftSlot.type` is image, it renders cms-element-image.html.twig
 
 #### 3. Loop Through All Slots
 
