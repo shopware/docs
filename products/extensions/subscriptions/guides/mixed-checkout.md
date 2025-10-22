@@ -29,14 +29,15 @@ They are linked back to the main context by the `subscription_cart` database tab
 
 You can access the managed carts through the cart extension named `subscriptionManagedCarts`, which maps keys in the form `<plan-id>-<interval-id>` to their corresponding [managed cart](../concept.md#subscription-cart).
 The sales channel context extension named `subscriptionManagedContexts` provides the same mapping for [managed sales channel contexts](../concept.md#subscription-context).
-The mapping is considered stable and the plan and interval IDs can be retrieved by splitting the composite ID.
+The intended way of retrieving plan and interval IDs is to split the composite ID out of this mapping.
 
 When an order is placed from a mixed cart, the order will contain an `initialSubscriptions` extension that includes all created subscriptions.
 As any subsequent orders are generated per subscription, the orders will contain a `subscriptionId` / `subscription` extension instead.
 
 ## Manipulate mixed cart
 
-Subscription mixed carts does not change how the main cart is manipulated.
+With subscription mixed carts, you manipulate the main cart as [you are used to](../../../../guides/plugins/plugins/checkout/cart).
+This is different from the [separate checkout](./separate-checkout.md#manipulate-subscription-cart), where you are needed to manipulate the subscription cart with custom collectors and processors.
 If your cart collectors and processors should process subscription carts too, they need to be tagged with `subscription.cart.collector` and `subscription.cart.processor` too.
 If you need to differentiate between main and subscription cart calculations, check the sales channel context for the [subscription extension](../concept.md#subscription-context).
 If you need to differentiate between a mixed and a separate subscription cart calculation, check `salesChannelContext.extensions.subscription.isManaged`.
