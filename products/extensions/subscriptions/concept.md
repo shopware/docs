@@ -31,10 +31,9 @@ Intervals can be of three different types:
    For example, if a customer subscribes to a monthly plan, the next interval will be on a fixed day like the 1st or 15th of each month.
    These intervals are defined using cron expressions.
 
-3. **Mixed**  
-   A mix of the two types above.
-   For instance, a customer subscribes to a plan that delivers every 12 weeks, but only on a Friday.
-   These intervals are determined using PHP's `DateInterval` in combination with cron expressions.
+   Absolute intervals can also possess a relative element, such as a delivery occurring every 12 weeks (relative component), but exclusively on Fridays (absolute component).
+   Note that both parts will be satisfied in sequence.
+   Depending on the order date, in this example the next calculated date could exceed 12 weeks by an additional 6 days in order to fulfil the requirement of being a Friday.
 
 ### Subscription products
 
@@ -52,7 +51,7 @@ This includes among other things:
 - The schedule for subsequent orders
 - The number of deliveries left to fulfil the minimum delivery cycles
 - The payment method used
-- A copy of the order to be placed
+- A copy of the order to be placed on a recurring basis
 
 :::info
 Please note that the necessary payment information for paying subsequent orders is not included in a subscription.

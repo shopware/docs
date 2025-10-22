@@ -37,8 +37,8 @@ As any subsequent orders are generated per subscription, the orders will contain
 ## Manipulate mixed cart
 
 With subscription mixed carts, you manipulate the main cart as [you are used to](../../../../guides/plugins/plugins/checkout/cart).
-This is different from the [separate checkout](./separate-checkout.md#manipulate-subscription-cart), where you are needed to manipulate the subscription cart with custom collectors and processors.
-If your cart collectors and processors should process subscription carts too, they need to be tagged with `subscription.cart.collector` and `subscription.cart.processor` too.
+This is different from the [separate checkout](./separate-checkout.md#manipulate-subscription-cart), where you manipulate a separate subscription cart directly, e.g. by subscription scoped cart processors or separate Store API routes.
+Therefore, to support mixed carts, your cart collectors and processors should process both subscription carts and regular carts, so they need to be tagged with `subscription.cart.collector` (or `subscription.cart.processor`) as well as `shopware.cart.collector` (or `shopware.cart.processor`).
 If you need to differentiate between main and subscription cart calculations, check the sales channel context for the [subscription extension](../concept.md#subscription-context).
 If you need to differentiate between a mixed and a separate subscription cart calculation, check `salesChannelContext.extensions.subscription.isManaged`.
 
@@ -125,7 +125,7 @@ $cart->add($lineItem);
 <Tab title="Headless (curl)">
 
 ```sh
-curl -XPOST '/store-api/checkout/line-item/add' -d '{
+curl -XPOST '/store-api/checkout/cart/line-item' -d '{
     "lineItems": [{
       "id": <product-id>,
       "subscriptionPlan": <subscription-plan-id>,

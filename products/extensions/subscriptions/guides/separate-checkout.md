@@ -110,7 +110,7 @@ Store-API requests need the subscription headers to be set, see [Request scoping
 The only exception is adding a line item:
 
 ```sh
-curl -XPOST '/store-api/suscription/checkout/line-item/add' -d '{
+curl -XPOST '/store-api/subscription/checkout/cart/line-item' -d '{
     "lineItems": [{
       "id": <product-id>,
       ...
@@ -186,10 +186,17 @@ Below is an example of the context set on a subscription cart in the Storefront:
 And, here is an example of the headers set on a subscription cart using headless:
 
 ```sh
-curl -XPOST '/store-api/subscription/{subscriptionId}/activate' /
+curl -XPOST '/store-api/subscription/checkout/cart/line-item' /
     -H 'sw-subscription-plan: <subscription-plan-id>' /
     -H 'sw-subscription-interval: <subscription-interval-id>' /
-    -d 'your body'
+    -d '{
+      "lineItems": [{
+        "id": <product-id>,
+        "subscriptionPlan": <subscription-plan-id>,
+        "subscriptionInterval": <subscription-interval-id>
+        ...
+      }]
+    }'
 ```
 
 These context definitions can be found in `Subscription/Resources/app/config/routes/storefront.xml` or `Subscription/Resources/app/config/routes/store-api.xml`.
