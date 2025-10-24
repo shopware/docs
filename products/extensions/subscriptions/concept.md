@@ -115,7 +115,7 @@ The Subscriptions feature is designed to prevent interference from existing exte
 Developers who want to have their manipulations, PHP or Storefront, applied to subscriptions have to "opt-in" via [scoped templates](guides/template-scoping.md), [scoped events](guides/separate-checkout.md#events) or by [special service tags](guides/separate-checkout.md#manipulate-subscription-cart).
 This is done to ensure that existing extensions do not manipulate the cart in a way that is not intended in a subscription context or hinder the subsequent generation of orders.
 This should ensure a smooth subscription process from the beginning, eliminating the need to ask extension authors to adapt their integration before the feature can be used.
-For that reason [Storefront scopes](guides/template-scoping.md) were introduced to avoid template additions like express checkout buttons, which are incompatible due to being a guest checkout or may not support recurring payments and would not be hideable otherwise.
+For that reason [Storefront scopes](guides/template-scoping.md) were introduced to avoid template additions like express checkout buttons, which are incompatible due to being a guest checkout or may not support recurring payments and would not be possible to hide otherwise.
 The same applies to the isolated subscription calculation process and event scoping - all to avoid undesirable cart manipulation.\
 Note that promotions are one example for undesirable business logic due to their complexity when it comes to including them in recurring orders or excluding specific cases, such as one-use codes.
 
@@ -124,7 +124,7 @@ It was chosen because it only handles one subscription at a time, which keeps th
 Generated subscription orders are straight forward and look exactly like their storefront cart representation.\
 In order for such a checkout to be possible, a cart containing only the subscription product is required.
 A new cart and context are created to avoid manipulating the main cart and context if it has already been filled.
-As this subscription cart is independent from the main cart, all cart routes were copied and scoped to be able to resolve the correct subscription cart. You can find out more about [request scoping here](./guides/separate-checkout.md#request-scoping).
+As this subscription cart is independent of the main cart, all cart routes were copied and scoped to be able to resolve the correct subscription cart. You can find out more about [request scoping here](./guides/separate-checkout.md#request-scoping).
 
 The mixed cart checkout was added later and is built on top of the existing codebase for calculating and managing additional [subscription carts](#subscription-cart).
 This was done so that orders generated from subscriptions created by a mixed cart would appear as if they had been placed independently, with their own total price, shipping costs, and so on.

@@ -104,7 +104,7 @@ The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\Subs
 We discourage the use of subscription collectors and processors for adding new line items **only** to subscription carts.
 Instead, always make sure to add line items to the main cart as well.
 This is because its potentially confusing for customers and handling line items in subscription carts missing in the main cart is more difficult.
-Instead, follow [the steps described below](#how-to-add-a-subscription-line-item) to add additional line items.
+Instead, follow [the steps described below](#adding-subscription-line-items) to add additional line items.
 
 If you still want to add line items to subscription carts only, please add a subscriber to the `SubscriptionOrderLineItemRestoredEvent` event to correctly show the line item in Shopware's after order process.
 :::
@@ -220,6 +220,6 @@ The list can be changed through the `subscription.routes.mixed-storefront-scope`
 
 Besides the scope change in Twig templates, the following additional information is available in Twig templates:
 
-- The global `context` will have the `subscriptionManagedContexts` extension available. See [here](#where-to-retrieve-information)
-- `page.cart` will have the `subscriptionManagedCarts` extension available. See [here](#where-to-retrieve-information)
+- The global `context` will have the `subscriptionManagedContexts` extension available. See [here](#retrieving-information)
+- `page.cart` will have the `subscriptionManagedCarts` extension available. See [here](#retrieving-information)
 - `page.order` will have the `initialSubscriptions` extension available, containing the collection
