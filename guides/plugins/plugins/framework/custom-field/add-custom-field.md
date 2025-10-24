@@ -234,6 +234,7 @@ Only if you want your custom field to show up in the Administration and to be ed
 If you need to learn how that is done in full, head to our guide regarding [Writing data](../data-handling/writing-data).
 
 Now use the `create` method of the repository to create a new custom field set.
+Plugin lifecycle events are perfect for this as the container can provide the `custom_field_set.repository` service and can be used to setup on installation and remove the set on removal.
 
 ```php
 use Shopware\Core\System\CustomField\CustomFieldTypes;
@@ -280,11 +281,51 @@ If you have several custom fields and want to order them within a specific order
 If you want the custom field set to be deletable and editable in the administration, you need to set global to false
 :::
 
-To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`.
-
 While theoretically your custom field is now properly defined for the Administration, you'll still have to do some work in your custom entities' Administration module. Head over to this guide to learn how to add your field to the Administration:
 
 <PageRef page="../../administration/data-handling-processing/using-custom-fields" />
+
+### Deleting a custom field
+
+
+On uninstallation of your plugin you should remove your custom field definition.
+To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`:
+
+```php
+$setId = $this->customFieldSetRepository->searchIds((new Criteria())->addFilter(new EqualsFilter('name', 'swag_example_set')), $context)->firstId();
+$this->customFieldSetRepository->delete([['id' => $setId]], $context);
+```
+
+When you delete a custom field in a set or a complete set you should remove the values from the entities customFields property as without the custom field definition the data is still taking up space and some checks regarding API usage are not performed anymore.
+This batch operation is fast in SQL with a query like:
+```sql
+UPDATE swag_example SET custom_fields = JSON_REMOVE(custom_fields, '$.swag_example_size') WHERE JSON_CONTAINS_PATH(custom_fields, 'one', '$.swag_example_size');
+```
+
+If you have a table, that is expected to have a lot of data like orders or products, this should not be approached carelessly to avoid the database to being overwhelmed by too many changes at once.
+This can look like this instead:
+
+````php
+$updateLimit = 1000;
+
+do {
+    $ids = $connection->fetchFirstColumn(
+        'SELECT `id` FROM `order` WHERE JSON_CONTAINS_PATH(`custom_fields`, \'one\', \'$.swag_example_size\') LIMIT :limit',
+        ['limit' => $updateLimit],
+        ['limit' => ParameterType::INTEGER]
+    );
+
+    if ($ids === []) {
+        break;
+    }
+
+    $connection->executeStatement(
+        'UPDATE `order` SET `custom_fields` = JSON_REMOVE(`custom_fields`, \'$.swag_example_size\') WHERE `id` IN (:ids)',
+        ['ids' => $ids],
+        ['ids' => ArrayParameterType::BINARY]
+    );
+} while (\count($ids) === $updateLimit);
+```
 
 ## Next steps
 
