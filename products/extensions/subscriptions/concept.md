@@ -40,7 +40,7 @@ Intervals can be of three different types:
 A product with a [subscription plan](#subscription-plans) assigned.
 You can purchase the product as a one-off or subscribe to it at the intervals assigned to the plan.
 
-Subscription products are ordinary product line items when added to the cart, but carry the selected subscription plan and interval IDs in their payload.
+Subscription products are ordinary product line items when added to the cart, but since 6.7.4.0 carry the selected subscription plan and interval IDs in their payload.
 
 ### Subscription
 
