@@ -25,7 +25,7 @@ The main cart and the original sales channel context will be left untouched.
 In a separated subscription checkout a [subscription cart](../concept.md#subscription-cart) and [subscription context](../concept.md#subscription-context) and replaces the main cart and sales channel context.
 Additional information about the subscription can be retrieved from the subscription context via it's `subscription` extension.
 
-When an order is placed from a subscription cart, the order will contain an `subscriptionId` / `subscription` extension references the created subscription as well as an `initialSubscriptions` extension like a [mixed order](./mixed-checkout.md#retrieving-information).
+When an order is placed from a subscription cart, the order will contain an `subscriptionId` / `subscription` extension that references the created subscription as well as an `initialSubscriptions` extension like a [mixed order](./mixed-checkout.md#retrieving-information).
 Any subsequent orders generated will only contain the `subscriptionId` / `subscription` extension.
 
 <Tabs>
@@ -244,7 +244,7 @@ These context definitions can be found in `Subscription/Resources/app/config/rou
 ## Subscription carts in the Storefront
 
 In order to change Storefront pages while a customer is a subscription checkout process, the template scope `subscription` must be added to the page's Twig templates and subsequent Twig templates used.
-This effects at least the following pages:
+This affects at least the following pages:
 
 - `frontend.checkout.cart.page` / `@Storefront/storefront/page/checkout/cart/index.html.twig`
 - `frontend.checkout.confirm.page` / `@Storefront/storefront/page/checkout/confirm/index.html.twig`
