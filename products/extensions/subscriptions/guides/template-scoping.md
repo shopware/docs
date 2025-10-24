@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Template scoping
+# Subscription template scoping
 
 Please familiarise yourself with the [concept](../concept.md) first before continuing here.
 

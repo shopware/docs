@@ -34,6 +34,62 @@ The intended way of retrieving plan and interval IDs is to split the composite I
 When an order is placed from a mixed cart, the order will contain an `initialSubscriptions` extension that includes all created subscriptions.
 As any subsequent orders are generated per subscription, the orders will contain a `subscriptionId` / `subscription` extension instead.
 
+<Tabs>
+<Tab title="Sales Channel Context">
+
+```json
+{ // main sales channel context
+  "token": "<main-context-token>",
+  "extensions" {
+    "subscriptionManagedContexts": {
+      "<plan-id>-<interval-a-id>": {}, // subscription sales channel context
+      "<plan-id>-<interval-b-id>": {   // subscription sales channel context
+        "token": "<subscription-context-token>",
+        "extensions": {
+          "subscription": {
+            "mainToken": "<main-context-token>",
+            "subscriptionToken": "<subscription-context-token>",
+            "managed": true,
+            "plan": {},     // subscription plan entity
+            "interval": {}, // subscription interval entity
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Cart">
+
+```json
+{ // main cart
+  "token": "<main-context-token>",
+  "extensions" {
+    "subscriptionManagedCarts": {
+      "<plan-id>-<interval-a-id>": {}, // subscription cart
+      "<plan-id>-<interval-b-id>": {   // subscription cart
+        "token": "<subscription-context-token>",
+        "lineItems": [
+          { // subscription line item
+            "label": "Product A",
+            "payload": {
+              "subscriptionPlan": "<plan-id>",
+              "subscriptionInterval": "<interval-id>",
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+</Tab>
+</Tabs>
+
 ## Manipulate mixed cart
 
 With subscription mixed carts, you manipulate the main cart as [you are used to](../../../../guides/plugins/plugins/checkout/cart).

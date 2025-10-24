@@ -1,4 +1,4 @@
-# Concept
+# Subscription concept
 
 To use subscriptions, you will need to be familiar with three core concepts: **Subscription Plans**, **Subscription Intervals**, and the **Checkout Processes**.
 
@@ -100,7 +100,7 @@ The **mixed cart checkout** allows customers to purchase subscription products a
 
 **Key aspects:**
 
-- Subscription products are added to the main cart normal product line items, but additionally containing subscription plan and subscription interval metadata in its payload
+- Subscription products are added to the main cart as normal product line items, but additionally containing subscription plan and subscription interval metadata in its payload
 - For each combination of subscription interval and subscription plan a new _managed*_ subscription cart will be derived, only containing matching products of the main cart
 - For each combination of subscription interval and subscription plan a new _managed*_ subscription context will be derived, allowing for context changes in a managed subscription cart
 - Each managed subscription cart will be calculated and serves as the point of truth for the later generated subscriptions and are shown as subscription group in the storefront
@@ -119,14 +119,14 @@ For that reason [Storefront scopes](guides/template-scoping.md) were introduced 
 The same applies to the isolated subscription calculation process and event scoping - all to avoid undesirable cart manipulation.\
 Note that promotions are one example for undesirable business logic due to their complexity when it comes to including them in recurring orders or excluding specific cases, such as one-use codes.
 
-The subscription feature was first implemented with the a [separate checkout](#separate-subscription-checkout) experience.
+The subscription feature was first implemented with the [separate checkout](#separate-subscription-checkout) experience.
 It was chosen because it only handles one subscription at a time, which keeps the complexity low.
 Generated subscription orders are straight forward and look exactly like their storefront cart representation.\
 In order for such a checkout to be possible, a cart containing only the subscription product is required.
 A new cart and context are created to avoid manipulating the main cart and context if it has already been filled.
 As this subscription cart is independent from the main cart, all cart routes were copied and scoped to be able to resolve the correct subscription cart. You can find out more about [request scoping here](./guides/separate-checkout.md#request-scoping).
 
-The mixed cart checkout was added later and is build on top of the existing codebase for calculating and managing additional [subscription carts](#subscription-cart).
+The mixed cart checkout was added later and is built on top of the existing codebase for calculating and managing additional [subscription carts](#subscription-cart).
 This was done so that orders generated from subscriptions created by a mixed cart would appear as if they had been placed independently, with their own total price, shipping costs, and so on.
 Reusing existing logic reduces the friction to adapt existing extensions too.\
 It would be far too complex to treat subscription carts as separate entities, so they are always derived from the main cart.

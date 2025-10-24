@@ -28,6 +28,46 @@ Additional information about the subscription can be retrieved from the subscrip
 When an order is placed from a subscription cart, the order will contain an `subscriptionId` / `subscription` extension references the created subscription as well as an `initialSubscriptions` extension like a [mixed order](./mixed-checkout.md#retrieving-information).
 Any subsequent orders generated will only contain the `subscriptionId` / `subscription` extension.
 
+<Tabs>
+<Tab title="Sales Channel Context">
+
+```json
+{   // subscription sales channel context
+  "token": "<subscription-context-token>",
+  "extensions": {
+    "subscription": {
+      "mainToken": "<main-context-token>",
+      "subscriptionToken": "<subscription-context-token>",
+      "managed": true,
+      "plan": {},     // subscription plan entity
+      "interval": {}, // subscription interval entity
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Cart">
+
+```json
+{   // subscription cart
+  "token": "<subscription-context-token>",
+  "lineItems": [
+    { // subscription line item
+      "label": "Product A",
+      "payload": { // Only since 6.7.4.0
+        "subscriptionPlan": "<plan-id>",
+        "subscriptionInterval": "<interval-id>",
+      }
+    }
+  ]
+}
+```
+
+</Tab>
+</Tabs>
+
 ## Manipulate subscription cart
 
 The [subscription cart](../concept.md#subscription-cart) is calculated with the subscription cart calculator.
