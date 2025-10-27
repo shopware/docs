@@ -16,7 +16,7 @@ Please familiarize yourself with the [concept](../concept.md) first before conti
 ## Overview
 
 Subscription line items are added to a new subscription cart containing **only** the subscription product.
-The checkout process will start right away and the customer will not be able to add any additional products.
+The checkout process will start right away, and the customer will not be able to add any additional products.
 If a customer leaves the subscription checkout, they can only return to it via their browser history or by starting a new checkout with their desired product.
 The main cart and the original sales channel context will be left untouched.
 
@@ -72,13 +72,13 @@ Any subsequent orders generated will only contain the `subscriptionId` / `subscr
 
 The [subscription cart](../concept.md#subscription-cart) is calculated with the subscription cart calculator.
 To add cart collectors or processors to the calculation process, they have to be tagged with `subscription.cart.collector` and `subscription.cart.processor` respectively.
-If you need to differentiate between a separate and a mixed subscription cart calculation, check `salesChannelContext.extensions.subscription.isManaged`.
+If you need to differentiate between a separate and mixed subscription cart calculation, check `salesChannelContext.extensions.subscription.isManaged`.
 
 The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\SubscriptionDiscountProcessor` can serve as example how to add line items to subscription carts. But note that the processor supports [mixed carts](./mixed-checkout.md) too.
 
 ### Adding subscription line items
 
-In order to add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
+To add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
 
 The following methods are available to do so via the **Store-API**, remember to use the subscription endpoints including necessary headers:
 
@@ -243,7 +243,7 @@ These context definitions can be found in `Subscription/Resources/app/config/rou
 
 ## Subscription carts in the Storefront
 
-In order to change Storefront pages while a customer is a subscription checkout process, the template scope `subscription` must be added to the page's Twig templates and subsequent Twig templates used.
+To change Storefront pages while a customer is a subscription checkout process, the template scope `subscription` must be added to the page's Twig templates and subsequent Twig templates used.
 This affects at least the following pages:
 
 - `frontend.checkout.cart.page` / `@Storefront/storefront/page/checkout/cart/index.html.twig`

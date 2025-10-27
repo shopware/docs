@@ -103,7 +103,7 @@ The cart processor `Shopware\Commercial\Subscription\Checkout\Cart\Discount\Subs
 :::warning
 We discourage the use of subscription collectors and processors for adding new line items **only** to subscription carts.
 Instead, always make sure to add line items to the main cart as well.
-This is because its potentially confusing for customers and handling line items in subscription carts missing in the main cart is more difficult.
+This is because it's potentially confusing for customers, and handling line items in subscription carts missing in the main cart is more difficult.
 Instead, follow [the steps described below](#adding-subscription-line-items) to add additional line items.
 
 If you still want to add line items to subscription carts only, please add a subscriber to the `SubscriptionOrderLineItemRestoredEvent` event to correctly show the line item in Shopware's after order process.
@@ -111,7 +111,7 @@ If you still want to add line items to subscription carts only, please add a sub
 
 ### Adding subscription line items
 
-In order to add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
+To add a line item to a subscription cart, the relevant subscription plan and interval IDs must be added.
 
 The following methods are available to do so via the **Store-API**:
 
@@ -205,7 +205,7 @@ Note that unlike the separate checkout, only the normal `CheckoutOrderPlacedEven
 
 ## Mixed carts in the Storefront
 
-In order to change the following Storefront pages if a mixed cart is present, the template scope `mixed-subscription` must be added to the page's Twig templates and subsequent Twig templates used:
+To change the following Storefront pages if a mixed cart is present, the template scope `mixed-subscription` must be added to the page's Twig templates and subsequent Twig templates used:
 
 - `frontend.checkout.cart.page` / `@Storefront/storefront/page/checkout/cart/index.html.twig`
 - `frontend.checkout.confirm.page` / `@Storefront/storefront/page/checkout/confirm/index.html.twig`
