@@ -14,9 +14,9 @@ This guide explains how to create a new CMS element using the Meteor Admin SDK. 
 
 ## Prerequisites
 
-* Familiarity with creating [Plugins][plugins-guide] or [Apps][apps-guide]
-* Familiarity with [creating custom admin components][custom-component-creation]
-* Understanding of the [Meteor Admin SDK][meteor-sdk-installation]
+* Familiarity with creating [Plugins](../../plugins/plugin-base-guide) or [Apps](../app-base-guide)
+* Familiarity with [creating custom admin components](../../plugins/administration/module-component-management/add-custom-component#creating-a-custom-component)
+* Understanding of the [Meteor Admin SDK](/resources/admin-extension-sdk/getting-started/installation)
 
 ::: info
 This example uses TypeScript, which is recommended but not required to develop Shopware.
@@ -24,7 +24,7 @@ This example uses TypeScript, which is recommended but not required to develop S
 
 ## Creating your custom element
 
-Similar to [creating a new custom element via plugin][custom-cms-element], this guide describes how to create a new
+Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element#creating-your-custom-element), this guide describes how to create a new
 custom element via an app. Creating a new element requires the Meteor Admin SDK.
 
 In this example, you will build a scenario where a shop manager can configure a link to display a Dailymotion video.
@@ -148,7 +148,7 @@ use the Vue.js component to make them work.
 What's especially interesting here is the use of the `location` object. This is a main concept of the Meteor Admin SDK,
 where Shopware provides dedicated `locationIds` to offer you places to inject your templates into. For further
 information on that, it is recommended to take a look at the documentation of the
-[Meteor Admin SDK][meteor-sdk-locations] to learn more about its concepts.
+[Meteor Admin SDK](/resources/admin-extension-sdk/concepts/locations) to learn more about its concepts.
 
 In your case, we will get your own **auto-generated** `locationIds`, depending on the name of your CMS element and
 suffixes, such as `-element`, `-config`, and `-preview`.
@@ -373,7 +373,7 @@ After completing the admin implementation, you also need a storefront representa
 typical plugin development, except for the path. All storefront templates must follow this pattern:
 `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
 
-For more details, see the guide on [CMS element development for plugins][add-cms-element-storefront].
+For more details, see the guide on [CMS element development for plugins](../../plugins/content/cms/add-cms-element#storefront-implementation).
 Below is an example of how your storefront template
 (`swag-dailymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look:
 
@@ -396,11 +396,3 @@ Below is an example of how your storefront template
 </div>
 {% endblock %}
 ```
-
-[plugins-guide]: ../../plugins/plugin-base-guide
-[apps-guide]: ../app-base-guide
-[custom-component-creation]: ../../plugins/administration/module-component-management/add-custom-component#creating-a-custom-component
-[meteor-sdk-installation]: /resources/admin-extension-sdk/getting-started/installation
-[meteor-sdk-locations]: /resources/admin-extension-sdk/concepts/locations
-[custom-cms-element]: ../../plugins/content/cms/add-cms-element#creating-your-custom-element
-[add-cms-element-storefront]: ../../plugins/content/cms/add-cms-element#storefront-implementation
