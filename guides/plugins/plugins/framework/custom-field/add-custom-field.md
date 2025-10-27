@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-Shopware's custom field system allows you to extend entities, without writing a complete entity extension. This is possible by storing the additional data in a [JSON-Field](https://dev.mysql.com/doc/refman/8.0/en/json.html). Custom fields therefore can only be used to store scalar values. If you'd like to create associations between entities, you'll need to use an [Entity extension](../data-handling/add-complex-data-to-existing-entities).
+Shopware's custom field system allows you to extend entities without writing a complete entity extension. This is possible by storing the additional data in a [JSON-Field](https://dev.mysql.com/doc/refman/8.0/en/json.html). Custom fields, therefore, can only be used to store scalar values. If you'd like to create associations between entities, you'll need to use an [Entity extension](../data-handling/add-complex-data-to-existing-entities).
 
 This guide will cover two similar subjects:
 
@@ -18,7 +18,7 @@ This guide will cover two similar subjects:
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide) as well as the [Add custom complex data](../data-handling/add-custom-complex-data) guide. The latter explained how to create your very first entity, which is used in the following examples.
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom complex data](../data-handling/add-custom-complex-data) guide. The latter explained how to create your very first entity, which is used in the following examples.
 
 Since migrations will also be used here, it won't hurt to have a look at our guide about [Executing database queries](../../plugin-fundamentals/database-migrations).
 
@@ -28,7 +28,7 @@ Also, adding translatable custom fields is covered here in short as well, for wh
 
 This short section will cover how to add a custom field support for your custom entity. As previously mentioned, the example from our [Add custom complex data](../data-handling/add-custom-complex-data) guide is used and extended here.
 
-In order to support custom fields with your custom entity, there are three necessary steps :
+To support custom fields with your custom entity, there are three necessary steps :
 
 * Add `EntityCustomFieldsTrait` trait to your `Entity`.
 * Add a `CustomFields` field to your `EntityDefinition`.
@@ -36,7 +36,7 @@ In order to support custom fields with your custom entity, there are three neces
 
 Also, you may want to add translatable custom fields, which is also covered in very short here.
 
-### Add custom field to entity
+### Add a custom field to an entity
 
 ::: info
   Available starting with Shopware 6.4.1.0.
@@ -61,7 +61,7 @@ class ExampleEntity extends Entity
 }
 ```
 
-### Add custom field to entity definition
+### Add a custom field to entity definition
 
 Now follows the important part. For this to work, you have to add the Data Abstraction Layer \(DAL\) field `CustomFields` to your entity definition.
 
@@ -91,7 +91,7 @@ class ExampleDefinition extends EntityDefinition
 
 Note the new field that was added in the `FieldCollection`. That's already it for your custom entity definition. Now go ahead and add the column to the database.
 
-### Add column in database table
+### Add a column in the database table
 
 Once again, this example is built upon the [Add custom complex data](../data-handling/add-custom-complex-data) guide, which also comes with an example migration. This one will be used in this example here as well.
 
@@ -186,9 +186,9 @@ Because of that, we'll start with filling data to an actual entities' custom fie
 
 ### Filling data into custom fields
 
-So let's assume you've got your own `example` entity up and running and now you want to add data to its custom fields via the DAL.
+So let's assume you've got your own `example` entity up and running, and now you want to add data to its custom fields via the DAL.
 
-For that case, you can simply use your entities' repository and start creating or updating entities with custom fields. If you don't understand what's going on here, head over to our guide about [Writing data](../data-handling/writing-data) first.
+In that case, you can use your entities' repository and start creating or updating entities with custom fields. If you don't understand what's going on here, head over to our guide about [Writing data](../data-handling/writing-data) first.
 
 ```php
 $this->swagExampleRepository->upsert([[
@@ -197,7 +197,7 @@ $this->swagExampleRepository->upsert([[
 ]], $context);
 ```
 
-This will execute perfectly fine and you just saved a custom field with name `swag_example_size` with its value `15` to your entity. And you haven't even defined the custom field `swag_example_size` yet.
+This will execute perfectly fine, and you just saved a custom field with name `swag_example_size` with its value `15` to your entity. And you haven't even defined the custom field `swag_example_size` yet.
 
 As already mentioned, you do not have to define a custom field first before saving it. That's because there is no validation happening here yet, you can write whatever valid JSON you want to that column, so the following example would also execute without any issues:
 
@@ -297,6 +297,7 @@ $this->customFieldSetRepository->delete([['id' => $setId]], $context);
 
 When you delete a custom field in a set or a complete set, you should remove the values from the entity's customFields property. Without the custom field definition, the data is still taking up space, and some checks regarding API usage are no longer performed.
 This batch operation is fast in SQL with a query like:
+
 ```sql
 UPDATE swag_example SET custom_fields = JSON_REMOVE(custom_fields, '$.swag_example_size') WHERE JSON_CONTAINS_PATH(custom_fields, 'one', '$.swag_example_size');
 ```
