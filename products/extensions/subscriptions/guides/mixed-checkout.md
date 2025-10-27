@@ -13,7 +13,7 @@ Available since Shopware version 6.7.4.0
 This guide describes how the so-called `mixed carts` for subscriptions work and how extensions should integrate with it.
 Mixed carts let customers buy subscription products and one‑time products during a single checkout while keeping subscription calculation isolated and predictable.
 
-Please familiarise yourself with the [concept](../concept.md) first before continuing here.
+Please familiarize yourself with the [concept](../concept.md) first before continuing here.
 
 ## Overview
 

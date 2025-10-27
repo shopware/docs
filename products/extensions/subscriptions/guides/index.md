@@ -7,6 +7,6 @@ nav:
 
 # Guides
 
-This section will help with common topics regarding usage of subscriptions.
+This section will help with common topics regarding the usage of subscriptions.
 
-Please familiarise yourself with the [concept](../concept.md) first before continuing.
+Please familiarize yourself with the [concept](../concept.md) first before continuing.

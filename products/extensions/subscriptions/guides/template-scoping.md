@@ -7,7 +7,7 @@ nav:
 
 # Subscription template scoping
 
-Please familiarise yourself with the [concept](../concept.md) first before continuing here.
+Please familiarize yourself with the [concept](../concept.md) first before continuing here.
 
 In a subscription context, it's important to ensure that certain twig template adjustments, which are applicable to the standard storefront, are not automatically applied.
 This precaution helps in maintaining a clear distinction between the regular checkout process and the subscription checkout process.

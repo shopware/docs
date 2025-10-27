@@ -11,7 +11,7 @@ This guide describes how buying a subscription via the separate checkout flow wo
 The **separated subscription checkout** allows customers to purchase subscription products via an isolated checkout process and dedicated cart.
 This process is best described as an _express checkout_ for subscription products.
 
-Please familiarise yourself with the [concept](../concept.md) first before continuing here.
+Please familiarize yourself with the [concept](../concept.md) first before continuing here.
 
 ## Overview
 
