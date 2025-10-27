@@ -234,7 +234,7 @@ Only if you want your custom field to show up in the Administration and to be ed
 If you need to learn how that is done in full, head to our guide regarding [Writing data](../data-handling/writing-data).
 
 Now use the `create` method of the repository to create a new custom field set.
-Plugin lifecycle events are perfect for this as the container can provide the `custom_field_set.repository` service and can be used to setup on installation and remove the set on removal.
+Plugin lifecycle events are perfect for this as the container can provide the `custom_field_set.repository` service and can be used to set up on installation and remove the set on removal.
 
 ```php
 use Shopware\Core\System\CustomField\CustomFieldTypes;
@@ -287,8 +287,7 @@ While theoretically your custom field is now properly defined for the Administra
 
 ### Deleting a custom field
 
-
-On uninstallation of your plugin you should remove your custom field definition.
+On uninstallation of your plugin, you should remove your custom field definition.
 To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`:
 
 ```php
@@ -296,16 +295,16 @@ $setId = $this->customFieldSetRepository->searchIds((new Criteria())->addFilter(
 $this->customFieldSetRepository->delete([['id' => $setId]], $context);
 ```
 
-When you delete a custom field in a set or a complete set you should remove the values from the entities customFields property as without the custom field definition the data is still taking up space and some checks regarding API usage are not performed anymore.
+When you delete a custom field in a set or a complete set, you should remove the values from the entity's customFields property. Without the custom field definition, the data is still taking up space, and some checks regarding API usage are no longer performed.
 This batch operation is fast in SQL with a query like:
 ```sql
 UPDATE swag_example SET custom_fields = JSON_REMOVE(custom_fields, '$.swag_example_size') WHERE JSON_CONTAINS_PATH(custom_fields, 'one', '$.swag_example_size');
 ```
 
-If you have a table, that is expected to have a lot of data like orders or products, this should not be approached carelessly to avoid the database to being overwhelmed by too many changes at once.
+If you have a table with a lot of data, like orders or products, you should not approach it carelessly to avoid overwhelming the database with too many changes at once.
 This can look like this instead:
 
-````php
+```php
 $updateLimit = 1000;
 
 do {
