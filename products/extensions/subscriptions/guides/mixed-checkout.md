@@ -40,7 +40,7 @@ As any subsequent orders are generated per subscription, the orders will contain
 ```json
 { // main sales channel context
   "token": "<main-context-token>",
-  "extensions" {
+  "extensions": {
     "subscriptionManagedContexts": {
       "<plan-id>-<interval-a-id>": {}, // subscription sales channel context
       "<plan-id>-<interval-b-id>": {   // subscription sales channel context
@@ -67,7 +67,7 @@ As any subsequent orders are generated per subscription, the orders will contain
 ```json
 { // main cart
   "token": "<main-context-token>",
-  "extensions" {
+  "extensions": {
     "subscriptionManagedCarts": {
       "<plan-id>-<interval-a-id>": {}, // subscription cart
       "<plan-id>-<interval-b-id>": {   // subscription cart
