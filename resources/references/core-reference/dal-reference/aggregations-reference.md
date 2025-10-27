@@ -234,7 +234,7 @@ Response
 
 ## Min aggregation
 
-The `min` aggregation makes it possible to determine the minimum value of a field. The following SQL statement is executed in the background: `MIN(price)`
+The `min` aggregation makes it possible to determine the minimum value of a field. The following SQL statement is executed in the background: `MIN(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -302,7 +302,7 @@ Response
 
 ## Sum aggregation
 
-The `sum` aggregation makes it possible to determine the total of a field. The following SQL statement is executed in the background: `SUM(price)`.[PHP](https://docs.shopware.com/en/shopware-platform-dev-en/references-internals/core/dal?category=shopware-platform-dev-en/references-internals/core#)[API](https://docs.shopware.com/en/shopware-platform-dev-en/references-internals/core/dal?category=shopware-platform-dev-en/references-internals/core#)
+The `sum` aggregation makes it possible to determine the total of a field. The following SQL statement is executed in the background: `SUM(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -450,7 +450,7 @@ The `terms` aggregation belongs to the bucket aggregations. This allows you to d
 * `sort` - Defines the order of the entries. By default, the following is not sorted
 * `aggregation` - Enables you to calculate further aggregations for each key
 
-The following SQL statement is executed in the background: `SELECT DISTINCT(manufacturerId) as key, COUNT(manufacturerId) as count`
+The following SQL statement is executed in the background: `SELECT DISTINCT(manufacturerId) as key, COUNT(manufacturerId) as count`.
 
 <Tabs>
 <Tab title="PHP Criteria">
