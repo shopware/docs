@@ -101,7 +101,7 @@ The **mixed cart checkout** allows customers to purchase subscription products a
 **Key aspects:**
 
 - Subscription products are added to the main cart as normal product line items, but additionally containing subscription plan and subscription interval metadata in its payload
-- For each combination of subscription interval and subscription plan a new _managed*_ subscription cart will be derived, only containing matching products of the main cart
+- For each combination of subscription interval and subscription plan a new _managed_ subscription cart will be derived, only containing matching products of the main cart
 - For each combination of subscription interval and subscription plan a new _managed*_ subscription context will be derived, allowing for context changes in a managed subscription cart
 - Each managed subscription cart will be calculated and serves as the point of truth for the later generated subscriptions and are shown as subscription group in the storefront
 
