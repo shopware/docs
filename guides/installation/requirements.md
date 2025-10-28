@@ -141,7 +141,7 @@ brew install mariadb
 
 ### JavaScript
 
-* Node.js 
+* Node.js
 
   * Recommended version: 24.0.0 or higher
   * Minimum version: 20.0.0
