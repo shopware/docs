@@ -329,6 +329,7 @@ set('shared_dirs', [
     'files',
     'var/log',
     'public/media',
+    'public/plugins',
     'public/thumbnail',
     'public/sitemap',
 ]);
