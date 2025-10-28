@@ -19,7 +19,7 @@ Billing is triggered each time a delivery cycle repeats.
 The interval is defined in the plan and can be set to any time frame.
 This is also created and managed in the Shopware administration.
 
-Intervals can be of three different types:
+Intervals can be of two different types:
 
 1. **Relative**  
    A relative interval is determined by a previous interval.
