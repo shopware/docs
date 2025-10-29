@@ -18,7 +18,9 @@ Shopware 6 is currently only supported on any Unix operating system. Windows is 
 You can use these commands to check your actual environment:
 
 ::: info
-On many shared hosting environments, you have multiple PHP versions installed. Make sure that you use the correct PHP binary and often CLI and FPM have different `php.ini` files. Ask your hosting provider for the correct PHP binary to use and how to change the `php.ini` file.
+On many shared hosting environments, you have multiple PHP versions installed.
+Make sure that you use the correct PHP binary, as often CLI and FPM have different `php.ini` files.
+Ask your hosting provider for the correct PHP binary to use and how to change the `php.ini` file.
 :::
 
 * `php -v`: Shows CLI PHP version
@@ -64,7 +66,7 @@ Add a new software repository to your system to have the latest PHP version.
 ```bash
 sudo add-apt-repository ppa:ondrej/php
 
-sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
+sudo apt-get install -y php8.4-fpm php8.4-mysql php8.4-curl php8.4-gd php8.4-xml php8.4-zip php8.4-opcache php8.4-mbstring php8.4-intl php8.4-cli
 
 sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
 sudo chmod +x /usr/local/bin/composer
@@ -81,7 +83,7 @@ sudo apt-get install extrepo
 sudo extrepo enable sury
 
 sudo apt-get update
-sudo apt-get install -y php8.3-fpm php8.3-mysql php8.3-curl php8.3-gd php8.3-xml php8.3-zip php8.3-opcache php8.3-mbstring php8.3-intl php8.3-cli
+sudo apt-get install -y php8.4-fpm php8.4-mysql php8.4-curl php8.4-gd php8.4-xml php8.4-zip php8.4-opcache php8.4-mbstring php8.4-intl php8.4-cli
 
 sudo wget https://getcomposer.org/download/latest-stable/composer.phar -O /usr/local/bin/composer
 sudo chmod +x /usr/local/bin/composer
@@ -92,7 +94,7 @@ sudo chmod +x /usr/local/bin/composer
 <Tab title="macOS">
 
 ```bash
-brew install php@8.3 composer
+brew install php@8.4 composer
 ```
 
 </Tab>
@@ -139,7 +141,10 @@ brew install mariadb
 
 ### JavaScript
 
-* Node.js 22.0.0 or higher
+* Node.js
+
+  * Recommended version: 24.0.0 or higher
+  * Minimum version: 20.0.0
 
 This is how you install Node.js:
 
@@ -148,7 +153,7 @@ This is how you install Node.js:
 <Tab title="Ubuntu / Debian">
 
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+curl -fsSL https://deb.nodesource.com/setup_24.x -o nodesource_setup.sh
 sudo -E bash nodesource_setup.sh
 
 sudo apt-get install -y nodejs
@@ -193,7 +198,7 @@ We recommend the following stack:
 * Webserver: Caddy
 * PHP: 8.4
 * SQL: MariaDB 11.4
-* Node: 22
+* Node: 24
 * Search: OpenSearch 2.17.1
 * Queue: RabbitMQ
 * Cache: Valkey 8.0
