@@ -520,15 +520,16 @@ LongText
 LongTextField
 Lychee
 MACOSX
+MJML
 MRs
 MVC
 MailAware
 MailHog
-Mailjet
 MailService
 MailStorer
 Mailcatcher
 Mailhog
+Mailjet
 Mailpit
 MaintenancePage
 ManufacturerAttributeDataSet
@@ -558,7 +559,6 @@ MigrationStep
 Minio
 Mixin
 Mixins
-MJML
 Modul
 Modularity
 ModuleFactory
