@@ -63,7 +63,7 @@ This feature is specifically designed for projects using the **FroshPlatformTemp
 
 Having email templates in source files is essential for the shopware-cli MJML compilation feature to work, as it processes these files during the build phase.
 
-### Why compile MJML during build?
+### Why compile MJML during build-time?
 
 By default, FroshPlatformTemplateMail compiles MJML templates at runtime when emails are sent. The shopware-cli build-time compilation offers several advantages:
 
@@ -79,7 +79,7 @@ Enable MJML compilation in your `.shopware-project.yml` file:
 ```yaml
 build:
   mjml:
-    # Enable MJML compilation during build
+    # Enable MJML compilation during build-time
     enabled: true
     # Directories to search for MJML templates (defaults to custom/plugins and custom/static-plugins if not specified)
     searchPaths:
@@ -126,7 +126,7 @@ build:
   # Allows to force building an extension even when the assets existing. A use-case could be if you used composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
-  # MJML compilation configuration (see MJML section above for details)
+  # MJML compilation configuration (see the MJML section above for details)
   mjml:
     enabled: false
     searchPaths:
@@ -136,8 +136,8 @@ build:
 
 ## Supporting bundles
 
-Plugins and Apps are automatically detected by Shopware CLI. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
-Therefore you need to add the path of the custom bundle to your project `composer.json`:
+Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
+Therefore, you need to add the path of the custom bundle to your project `composer.json`:
 
 ```json
 {
@@ -150,7 +150,7 @@ Therefore you need to add the path of the custom bundle to your project `compose
 }
 ```
 
-If your bundle folder names does not match your bundle name, you can use the `name` key to map the folder to the bundle name.
+If your bundle folder name does not match your bundle name, you can use the `name` key to map the folder to the bundle name.
 
 ```json
 {
@@ -166,7 +166,7 @@ If your bundle folder names does not match your bundle name, you can use the `na
 
 ### Bundle packaged in own composer package
 
-If your bundle is a own composer package, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the extra part of the config like this:
+If your bundle is an own composer package, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the extra part of the config like this:
 
 ```json
 {
@@ -182,7 +182,7 @@ With this Composer type, `shopware-cli extension build` also works for your bund
 
 ## Example Docker Image
 
-This is an example Dockerfile which builds a Shopware project and copies the source code to the `/var/www/html` folder.
+This is an example Dockerfile that builds a Shopware project and copies the source code to the `/var/www/html` folder.
 
 ```dockerfile
 #syntax=docker/dockerfile:1.4
