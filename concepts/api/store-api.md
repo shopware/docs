@@ -19,7 +19,6 @@ Using plugins, you can add custom routes to the Store API \(as well as any other
 
 <PageRef page="../../guides/plugins/plugins/framework/store-api/" />
 
-
 ## Store API and the traditional TWIG storefront
 
 When using the server-side rendered TWIG storefront, the Store API is not used.
