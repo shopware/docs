@@ -93,11 +93,16 @@ Shopware PaaS Native provides two primary ways to run commands in your applicati
 
 The `exec` command allows you to execute commands in a remote terminal session for your applications. This is useful for running commands directly on your application's environment, such as debugging, maintenance, or running one-off commands interactively.
 
+
 ```sh
 sw-paas exec --new
 ```
 
 This opens an interactive shell session inside your application's container.
+
+#### Note:
+Please check the [known issues](../known-issues.md) regarding network considerations when running this command.
+
 
 ### `command` Command
 
