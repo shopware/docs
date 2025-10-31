@@ -22,13 +22,130 @@ For information on how to configure the different cache layers, please refer to 
 
 ### HTTP-Cache
 
+Before jumping in and adjusting the HTTP-Caching, please familiarize yourself with the general [HTTP-Cache concept](../../../../../concepts/framework/http_cache.md) first.
+
+#### Manipulating the cache key
+
+There are several entry points to manipulate the cache key.
+
+* `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheCookieEvent`: used to calculate the cache hash based on the application state, supports both reverse proxy caches and the default symfony HTTP-cache component.
+* `Shopware\Core\Framework\Adapter\Cache\Http\Extension\ResolveCacheRelevantRuleIdsExtension`: used to determine which rule ids are relevant for the cache hash.
+* `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheKeyEvent`: used to calculate the exact cache key based on the response, only for symfony's default HTTP-cache component. 
+
+#### Modifying the cache hash
+
+The cache hash is used as the basis for the cache key.
+It is calculated based on the application state, which includes the current user, the current language, and so on.
+As the cache hash is calculated based on the application state, you have access to the resolved `SalesChannelContext` to determine the cache hash.
+It is stored alongside the response as a cookie and thus also provided with all following requests, to allow differentiating the cache based on the application state.
+As the cache hash will be carried over to the next request, the computed cache hash can be used inside reverse proxy caches as well as the default symfony HTTP-cache component.
+
+:::info
+The cache hash is only computed on every response as soon as the application state differs from the default state (no logged in customer, default currency, empty cart).
+:::
+
+By default, the cache hash will consist of the following parts:
+* `rule-ids`: The matched rule ids, to reduce possible cache permutations starting with v6.8.0.0, this will only include the rule ids in `rule areas` that are cache relevant. See the next chapter how to extend this.
+* `version-id`: The specified version in the context.
+* `currency-id`: The currency id of the context.
+* `tax-state`: The tax state of the context (gross/net).
+* `logged-in`: Whether a customer is logged in in the current state or not.
+
+To modify the cache hash, you can subscribe to the `HttpCacheCookieEvent` event and add your own parts to the cache hash.
+This allows you to add more parts to the cache hash, e.g., the current customer's group.
+You can also disable the cache for certain conditions, because if that condition is met, the content is so dynamic that caching is not efficiently possible e.g., if the cart is filled.
+```php
+class HttpCacheCookieListener implements EventSubscriberInterface
+{
+    public function __construct(
+        private readonly CartService $cartService
+    ) {
+    }
+    
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            HttpCacheCookieEvent::class => 'onCacheCookie',
+        ];
+    }
+
+    public function onCacheCookie(HttpCacheCookieEvent $event): void
+    {
+        // you can add custom parts to the cache hash
+        // keep in mind that every possible value will increase the number of possible cache permutations
+        // and therefore directly impact cache hit rates
+        $event->add('customer-group', $event->context->getCustomerId());
+
+        // disable cache for filled carts
+        $cart = $this->cartService->getCart($event->context->getToken(), $event->context);
+        if ($cart->getLineItems()->count() > 0) {
+            // you can also explicitly disable caching based on specific conditions
+            $event->isCacheable = false;
+        }
+    }
+}
+```
+
+#### Marking rule areas as cache relevant
+
+Starting with v6.8.0.0, the cache hash will only include the rule ids in `rule areas` that are cache relevant.
+The reason is that a lot of rules are not relevant for the cache, e.g., rules that only affect pricing or shipping methods.
+This greatly reduces the number of possible cache permutations, which in turn improves the cache hit rate.
+
+By default, only the following rule areas are cache relevant:
+* `RuleAreas::PRODUCT_AREA`
+
+If you use the rule system in a way that is relevant for the cache (because the response differs based on the rules), you should add your rule area to the list of cache relevant rule areas.
+To do so, you need to subscribe to the `ResolveCacheRelevantRuleIdsExtension` event.
+
+```php
+class ResolveRuleIds implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            ResolveCacheRelevantRuleIdsExtension::NAME . '.pre' => 'onResolveRuleAreas',
+        ];
+    }
+
+    public function onResolveRuleAreas(ResolveCacheRelevantRuleIdsExtension $extension): void
+    {
+        $extension->ruleAreas[] = RuleExtension::MY_CUSTOM_RULE_AREA;
+    }
+}
+```
+
+This implies that you defined the rule area in your custom entities that have an associated rule entity, by using the DAL flag `Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\RuleAreas` on the rule association in the entity extension.
+```php
+class RuleExtension extends EntityExtension
+{
+    public const MY_CUSTOM_RULE_AREA = 'custom';
+
+    public function getEntityName(): string
+    {
+        return RuleDefinition::ENTITY_NAME;
+    }
+
+    public function extendFields(FieldCollection $collection): void
+    {
+        $collection->add(
+            (new ManyToManyAssociationField(
+                'myPropertyName',
+                MyCustomDefinition::class,
+                MyMappingDefinition::class,
+                RuleDefinition::ENTITY_NAME . '_id',
+                MyCustomDefinition::ENTITY_NAME . '_id',
+            ))->addFlags(new CascadeDelete(), new RuleAreas(self::MY_CUSTOM_RULE_AREA)),
+        );
+    }
+}
+```
+For details on how to extend core definitions refer to the [DAL Guide](../../framework/data-handling/add-complex-data-to-existing-entities.md).
+
 #### Modifying the cache keys
 
-Every cached item has a unique key used to retrieve the cached data later on. For that, it is important that all the relevant information that affects the data that is being cached is part of the key.
-For example, if the same data is cached in multiple languages or for multiple sales channels, the key must contain the language and sales channel information, so that the correct data can be retrieved later on.
-Please note that for every potential value your key part can take, a new cache entry will be created. So if you have a key part that can take 10 different values, you will have 10 times the number of cache entries for the same data.
-
-If you add customization to your projects that lead to different versions of the page being rendered, you need to make sure that the cache key is unique for each version of the page. This can be done by adding a specific part to the cache key that shopware is generating.
+You can also modify the exact cache key used to store the response in the [symfony HTTP-Cache](https://symfony.com/doc/current/http_cache.html).
+If possible, you should manipulate the cache hash (as already explained above) instead, as that is also used in reverse proxy caches.
 You can do so by subscribing to the `HttpCacheKeyEvent` event and add your specific part to the key.
 
 ```php
@@ -47,6 +164,9 @@ class CacheKeySubscriber implements EventSubscriberInterface
         // Perform checks to determine the key
         $key = $this->determineKey($request);
         $event->add('myCustomKey', $key);
+        
+        // You can also disable caching for certain conditions
+        $event->isCacheable = false;
     }
 }
 ```
@@ -64,21 +184,19 @@ Only invalidating the caches based on the unique cache key is often not that hel
 Therefore, a tagging system is used alongside the cache keys to make cache invalidations easier and more performant. Every cache entry can be tagged with multiple tags, thus we can invalidate the cache based on the tags.
 For example, all pages that contain product data are tagged with product ids of all products they contain. So if a product is changed, we can invalidate all cache entries that are tagged with the product id of the changed product.
 
-To add your own cache tags to the HTTP-Cache, you need to dispatch the `AddCacheTagEvent` with the tag you want to add to the cache entry for the current request.
+To add your own cache tags to the HTTP-Cache, you can use the `CacheTagCollector` service.
 
 ```php
 class MyCustomEntityExtension
 {
     public function __construct(
-        private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly CacheTagCollector $cacheTagCollector,
     ) {}
     
     public function loadAdditionalData(): void
     {
         // Load the additional data you need, add it to the response, then add the correct tag to the cache entry
-        $this->eventDispatcher->dispatch(
-            new AddCacheTagEvent('my-custom-entity-' . $idOfTheLoadedData)
-        );
+        $this->cacheTagCollector->addTag('my-custom-entity-' . $idOfTheLoadedData);
     }
 }
 ```
