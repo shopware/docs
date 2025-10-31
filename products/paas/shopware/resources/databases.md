@@ -19,4 +19,4 @@ sw-paas open service --service database --port 3306
 ```
 
 #### Note:
-Please check the [known issues](../known-issues.md) regarding network consideration when running this command.
+Please check the [known issues](../known-issues.md) regarding network considerations when running this command.
