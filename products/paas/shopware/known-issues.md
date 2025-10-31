@@ -20,6 +20,6 @@ Some third-party plugin providers may not currently support S3 compatible storag
 
 Some commands do not support certain network configurations in the environment where they are executed.
 
-The following commands — exec and service — establish mTLS tunnels, which are not compatible with **NAT** (Network Address Translation).
+The following commands — `exec` and `service` — establish mTLS tunnels, which are not compatible with **NAT** (Network Address Translation).
 
 If you run these commands in environments such as a Virtual Machine (VM) or Windows Subsystem for Linux (WSL), ensure that the network mode is configured to `Host` or `Mirrored` mode.
