@@ -1,17 +1,17 @@
 ---
 nav:
-  title: Extend robots.txt
+  title: Extend robots.txt file
   position: 20
 
 ---
 
-# Extend robots.txt
+# Extend robots.txt file
 
 ## Overview
 
-Since Shopware 6.7.1, the platform provides full robots.txt support with all standard directives and user-agent blocks. This feature was developed during [Hacktoberfest 2024](https://www.shopware.com/en/news/hacktoberfest-2024-outcome-a-robots-txt-for-shopware/). Learn more about [configuring robots.txt](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/creation-of-robots-txt) in the user documentation.
+Since Shopware 6.7.1, the platform provides full `robots.txt` support with all standard directives and user-agent blocks. This feature was developed as a community contribution during the 2024 Hacktoberfest event ([learn more](https://www.shopware.com/en/news/hacktoberfest-2024-outcome-a-robots-txt-for-shopware/)). For general configuration, refer to the [user documentation](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/creation-of-robots-txt).
 
-Starting with Shopware 6.7.4, you can extend the robots.txt functionality through events to:
+Starting with Shopware 6.7.4, you can extend the `robots.txt` functionality through events to:
 
 * Add custom validation rules during parsing
 * Modify or generate directives dynamically
@@ -32,7 +32,7 @@ You should also be familiar with [Event subscribers](../../plugin-fundamentals/l
 
 ## Modifying parsed directives
 
-The `RobotsDirectiveParsingEvent` is dispatched after robots.txt content is parsed. You can modify the parsed result, add validation, or inject dynamic directives.
+The `RobotsDirectiveParsingEvent` is dispatched after `robots.txt` content is parsed. You can modify the parsed result, add validation, or inject dynamic directives.
 
 This example shows how to add AI crawler restrictions and validate crawl-delay values:
 
@@ -201,4 +201,4 @@ $event->addIssue(new ParseIssue(
 ));
 ```
 
-Issues are automatically logged when the robots.txt configuration is saved in the Administration. Use `WARNING` for recommendations and `ERROR` for critical problems that prevent proper generation.
+Issues are automatically logged when the `robots.txt` configuration is saved in the Administration. Use `WARNING` for recommendations and `ERROR` for critical problems that prevent proper generation.
