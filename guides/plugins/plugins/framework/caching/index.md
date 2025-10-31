@@ -41,7 +41,7 @@ It is stored alongside the response as a cookie and thus also provided with all 
 As the cache hash will be carried over to the next request, the computed cache hash can be used inside reverse proxy caches as well as the default symfony HTTP-cache component.
 
 :::info
-The cache hash is only computed on every response as soon as the application state differs from the default state (no logged in customer, default currency, empty cart).
+The cache hash is only computed on every response as soon as the application state differs from the default state, which is: no logged in customer, default currency and an empty cart.
 :::
 
 By default, the cache hash will consist of the following parts:
