@@ -30,7 +30,7 @@ There are several entry points to manipulate the cache key.
 
 * `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheCookieEvent`: used to calculate the cache hash based on the application state, supports both reverse proxy caches and the default symfony HTTP-cache component.
 * `Shopware\Core\Framework\Adapter\Cache\Http\Extension\ResolveCacheRelevantRuleIdsExtension`: used to determine which rule ids are relevant for the cache hash.
-* `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheKeyEvent`: used to calculate the exact cache key based on the response, only for symfony's default HTTP-cache component. 
+* `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheKeyEvent`: used to calculate the exact cache key based on the response, only for symfony's default HTTP-cache component.
 
 #### Modifying the cache hash
 
@@ -45,6 +45,7 @@ The cache hash is only computed on every response as soon as the application sta
 :::
 
 By default, the cache hash will consist of the following parts:
+
 * `rule-ids`: The matched rule ids, to reduce possible cache permutations starting with v6.8.0.0, this will only include the rule ids in `rule areas` that are cache relevant. See the next chapter how to extend this.
 * `version-id`: The specified version in the context.
 * `currency-id`: The currency id of the context.
@@ -54,6 +55,7 @@ By default, the cache hash will consist of the following parts:
 To modify the cache hash, you can subscribe to the `HttpCacheCookieEvent` event and add your own parts to the cache hash.
 This allows you to add more parts to the cache hash, e.g., the current customer's group.
 You can also disable the cache for certain conditions, because if that condition is met, the content is so dynamic that caching is not efficiently possible e.g., if the cart is filled.
+
 ```php
 class HttpCacheCookieListener implements EventSubscriberInterface
 {
@@ -93,6 +95,7 @@ The reason is that a lot of rules are not relevant for the cache, e.g., rules th
 This greatly reduces the number of possible cache permutations, which in turn improves the cache hit rate.
 
 By default, only the following rule areas are cache relevant:
+
 * `RuleAreas::PRODUCT_AREA`
 
 If you use the rule system in a way that is relevant for the cache (because the response differs based on the rules), you should add your rule area to the list of cache relevant rule areas.
@@ -116,6 +119,7 @@ class ResolveRuleIds implements EventSubscriberInterface
 ```
 
 This implies that you defined the rule area in your custom entities that have an associated rule entity, by using the DAL flag `Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\RuleAreas` on the rule association in the entity extension.
+
 ```php
 class RuleExtension extends EntityExtension
 {
@@ -140,6 +144,7 @@ class RuleExtension extends EntityExtension
     }
 }
 ```
+
 For details on how to extend core definitions refer to the [DAL Guide](../../framework/data-handling/add-complex-data-to-existing-entities.md).
 
 #### Modifying the cache keys

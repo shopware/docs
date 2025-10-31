@@ -55,10 +55,10 @@ At the same time, it needs to be possible to generate the cache key directly fro
 Shopware generates a `cache-hash` that encodes the application state and this hash is passed alongside every request and response, the caching component will then generate the exact cache key based on the cache-hash.
 
 Concretely Shopware uses Cookies to store the `cache-hash` as part of the request/response structure. The `cache-hash` describes the current state of the customer "session", every parameter that leads to different responses being generated (e.g. tax-states, matched rules) should be taken into account for the cache hash to ensure that every user sees the correct page.
-However, it is equally important to keep the number of different cache entries/permutations as low as possible to maximize the cache hits. 
-The reason the cache-hash is stored as a cookie is that it needs to be sent with every request and can change on any response sent from shopware. 
+However, it is equally important to keep the number of different cache entries/permutations as low as possible to maximize the cache hits.
+The reason the cache-hash is stored as a cookie is that it needs to be sent with every request and can change on any response sent from shopware.
 The client needs to send the latest value back to shopware on every request to ensure the correct cache entry is used. This is needed as the cache is resolved before the request is handled by shopware itself.
-To allow reverse proxies to cache based on the application state, the information needs to be present on every request. 
+To allow reverse proxies to cache based on the application state, the information needs to be present on every request.
 
 #### sw-cache-hash
 
