@@ -1,17 +1,17 @@
 ---
 nav:
-  title: Extend robots.txt file
+  title: Extend robots configuration
   position: 20
 
 ---
 
-# Extend robots.txt file
+# Extend robots configuration
 
 ## Overview
 
-Since Shopware 6.7.1, the platform provides full `robots.txt` support with all standard directives and user-agent blocks. This feature was developed as a community contribution during the 2024 Hacktoberfest event ([learn more](https://www.shopware.com/en/news/hacktoberfest-2024-outcome-a-robots-txt-for-shopware/)). For general configuration, refer to the [user documentation](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/creation-of-robots-txt).
+Since Shopware 6.7.1, the platform provides full `robots.txt` support with all standard directives and user-agent blocks. This feature was developed as an open-source contribution during October 2024 ([learn more](https://www.shopware.com/en/news/hacktoberfest-2024-outcome-a-robots-txt-for-shopware/)). For general configuration, refer to the [user documentation](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/creation-of-robots-txt).
 
-Starting with Shopware 6.7.4, you can extend the `robots.txt` functionality through events to:
+Starting with Shopware 6.7.5, you can extend the `robots.txt` functionality through events to:
 
 * Add custom validation rules during parsing
 * Modify or generate directives dynamically
@@ -19,7 +19,7 @@ Starting with Shopware 6.7.4, you can extend the `robots.txt` functionality thro
 * Prevent warnings for known non-standard directives
 
 ::: info
-The event system described in this guide requires Shopware 6.7.4 or later.
+The events described in this guide require Shopware 6.7.5 or later.
 :::
 
 ## Prerequisites
@@ -180,25 +180,93 @@ Register the subscriber in your `services.xml`:
 
 ## Parse issues
 
-You can add validation warnings or errors during parsing using the `ParseIssue` class:
+You can add validation warnings or errors during parsing using the `ParseIssue` class. This example shows a complete subscriber that validates sitemap directives:
+
+<Tabs>
+<Tab title="RobotsValidationSubscriber.php">
 
 ```php
+<?php declare(strict_types=1);
+
+namespace Swag\Example\Subscriber;
+
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
+use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-// Add a warning
-$event->addIssue(new ParseIssue(
-    severity: ParseIssueSeverity::WARNING,
-    message: 'Consider adding a sitemap directive for better SEO',
-    lineNumber: null,
-));
+#[Package('storefront')]
+class RobotsValidationSubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            RobotsDirectiveParsingEvent::class => 'validateRobots',
+        ];
+    }
 
-// Add an error
-$event->addIssue(new ParseIssue(
-    severity: ParseIssueSeverity::ERROR,
-    message: 'Invalid crawl-delay value: must be a positive integer',
-    lineNumber: 42,
-));
+    public function validateRobots(RobotsDirectiveParsingEvent $event): void
+    {
+        $parsedRobots = $event->getParsedRobots();
+
+        // Check if sitemap directive exists
+        $hasSitemap = false;
+        foreach ($parsedRobots->getDirectives() as $directive) {
+            if ($directive->getType() === RobotsDirectiveType::SITEMAP) {
+                $hasSitemap = true;
+                break;
+            }
+        }
+
+        if (!$hasSitemap) {
+            $event->addIssue(new ParseIssue(
+                severity: ParseIssueSeverity::WARNING,
+                message: 'Consider adding a sitemap directive for better SEO',
+                lineNumber: null,
+            ));
+        }
+
+        // Validate crawl-delay values
+        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
+            foreach ($block->getDirectives() as $directive) {
+                if ($directive->getType() === RobotsDirectiveType::CRAWL_DELAY) {
+                    $value = (int) $directive->getValue();
+
+                    if ($value <= 0) {
+                        $event->addIssue(new ParseIssue(
+                            severity: ParseIssueSeverity::ERROR,
+                            message: 'Invalid crawl-delay value: must be a positive integer',
+                            lineNumber: null,
+                        ));
+                    }
+                }
+            }
+        }
+    }
+}
 ```
+
+</Tab>
+
+<Tab title="services.xml">
+
+```xml
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\Example\Subscriber\RobotsValidationSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>
+```
+
+</Tab>
+</Tabs>
 
 Issues are automatically logged when the `robots.txt` configuration is saved in the Administration. Use `WARNING` for recommendations and `ERROR` for critical problems that prevent proper generation.
