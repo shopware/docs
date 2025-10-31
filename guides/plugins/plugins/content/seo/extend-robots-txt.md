@@ -139,6 +139,9 @@ class RobotsExtensionSubscriber implements EventSubscriberInterface
 
 The `RobotsUnknownDirectiveEvent` is dispatched when an unknown directive is encountered. Use this to support vendor-specific directives or prevent warnings for known non-standard directives:
 
+<Tabs>
+<Tab title="CustomDirectiveSubscriber.php">
+
 ```php
 <?php declare(strict_types=1);
 
@@ -170,13 +173,26 @@ class CustomDirectiveSubscriber implements EventSubscriberInterface
 }
 ```
 
-Register the subscriber in your `services.xml`:
+</Tab>
+
+<Tab title="services.xml">
 
 ```xml
-<service id="Swag\Example\Subscriber\CustomDirectiveSubscriber">
-    <tag name="kernel.event_subscriber"/>
-</service>
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\Example\Subscriber\CustomDirectiveSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>
 ```
+
+</Tab>
+</Tabs>
 
 ## Parse issues
 
