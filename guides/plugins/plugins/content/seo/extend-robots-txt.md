@@ -202,4 +202,3 @@ $event->addIssue(new ParseIssue(
 ```
 
 Issues are automatically logged when the robots.txt configuration is saved in the Administration. Use `WARNING` for recommendations and `ERROR` for critical problems that prevent proper generation.
-
