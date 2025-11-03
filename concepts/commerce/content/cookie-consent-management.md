@@ -15,6 +15,10 @@ Shopware provides a cookie consent management system with features designed to s
 While Shopware provides tools and features to help with GDPR compliance, shop owners are ultimately responsible for ensuring their shop complies with GDPR and other applicable data protection regulations. This includes proper cookie configuration, privacy policies, and legal review of all data processing activities.
 :::
 
+::: info
+The cookie-hash and re-consent functionality is available starting with Shopware 6.7.3.0.
+:::
+
 ## How it works
 
 The cookie consent system operates through several integrated components:
@@ -168,6 +172,10 @@ Cookie configurations are defined using structured objects for type safety:
 This provides better IDE support, type checking, and consistency across implementations.
 
 ## Store API Integration
+
+::: info
+The Store API endpoint for cookie groups is available starting with Shopware 6.7.3.0.
+:::
 
 The cookie consent system exposes its configuration through the Store API endpoint:
 

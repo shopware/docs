@@ -24,7 +24,7 @@ This guide is built upon the [Plugin base guide](../plugin-base-guide), so have 
 Adding custom cookies basically requires you to decorate a service, the `CookieProvider` to be precise. Neither decorations, nor adding a service via a `services.xml` is explained here, so make sure to have a look at the previously mentioned guides first, if you're lacking this knowledge.
 
 ::: warning
-Since Shopware 6.7, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
+Since Shopware 6.7.3.0, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
 :::
 
 ### Registering your decoration
