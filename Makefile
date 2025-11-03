@@ -12,9 +12,17 @@ help: ## Show this help
 	@printf "\033[33m%s:\033[0m\n" 'Available commands'
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[32m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-spellcheck: ## Runs the spellcheck tool
+spellcheck: ## Runs the spellcheck tool (via Docker)
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -w /docs -e INPUT_IGNORE=${ignored} ${image} \
 	    --config /docs/markdown-style-config.yml /docs
+
+spellcheck-local: ## Runs the spellcheck tool locally (requires aspell and pyspelling)
+	@if [ ! -d ".venv-spellcheck" ]; then \
+		echo "Creating virtual environment and installing dependencies..."; \
+		python3 -m venv .venv-spellcheck && \
+		.venv-spellcheck/bin/pip install -q pyspelling pymdown-extensions markdown; \
+	fi
+	@.venv-spellcheck/bin/pyspelling -c .spellcheck.yml
 
 fix: ## Runs the linting tool and fixes simple mistakes
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -e INPUT_FIX=true -e INPUT_IGNORE=${ignored} avtodev/markdown-lint:v1.5 \
