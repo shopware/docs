@@ -162,8 +162,8 @@ Certain cookies are **never removed** by the consent system, even during re-cons
 
 Cookie configurations are defined using structured objects for type safety:
 
-- **`CookieStruct`** - Individual cookie definition
-- **`CookieGroupStruct`** - Group of related cookies
+- **`CookieEntry`** - Individual cookie definition
+- **`CookieGroup`** - Group of related cookies
 
 This provides better IDE support, type checking, and consistency across implementations.
 

@@ -24,7 +24,7 @@ This guide is built upon the [Plugin base guide](../plugin-base-guide), so have 
 Adding custom cookies basically requires you to decorate a service, the `CookieProvider` to be precise. Neither decorations, nor adding a service via a `services.xml` is explained here, so make sure to have a look at the previously mentioned guides first, if you're lacking this knowledge.
 
 ::: warning
-Since Shopware 6.7, cookies use structured objects (`CookieStruct` and `CookieGroupStruct`) instead of arrays for better type safety and consistency. The array format is deprecated.
+Since Shopware 6.7, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
 :::
 
 ### Registering your decoration
@@ -55,7 +55,7 @@ In the next step we'll create the actual decorated class.
 
 We need to create a class called `CustomCookieProvider`, which implements the `CookieProviderInterface`. Our constructor parameter is the original `CookieProviderInterface` instance, which we need to call to get all other cookies as well.
 
-The interface mentioned above requires you to implement a method called `getCookieGroups`, which has to return an array of cookie groups and their respective cookies. You need to call the original method now, receive the default cookie groups and then add your custom cookies using the `CookieStruct` and `CookieGroupStruct` classes.
+The interface mentioned above requires you to implement a method called `getCookieGroups`, which has to return an array of cookie groups and their respective cookies. You need to call the original method now, receive the default cookie groups and then add your custom cookies using the `CookieEntry` and `CookieGroup` classes.
 
 Let's have a look at an example:
 
@@ -66,8 +66,8 @@ Let's have a look at an example:
 namespace PluginName\Framework\Cookie;
 
 use Shopware\Storefront\Framework\Cookie\CookieProviderInterface;
-use Shopware\Core\Content\Cookie\Struct\CookieStruct;
-use Shopware\Core\Content\Cookie\Struct\CookieGroupStruct;
+use Shopware\Core\Content\Cookie\Struct\CookieEntry;
+use Shopware\Core\Content\Cookie\Struct\CookieGroup;
 use Shopware\Core\Framework\Struct\Collection;
 
 class CustomCookieProvider implements CookieProviderInterface {
@@ -85,7 +85,7 @@ class CustomCookieProvider implements CookieProviderInterface {
         $cookieGroups = $this->originalService->getCookieGroups();
 
         // Create a single cookie
-        $singleCookie = new CookieStruct(
+        $singleCookie = new CookieEntry(
             snippetName: 'cookie.name',
             cookie: 'cookie-key',
             value: 'cookie value',
@@ -95,13 +95,13 @@ class CustomCookieProvider implements CookieProviderInterface {
 
         // Create entries collection for cookie group
         $groupEntries = new Collection([
-            new CookieStruct(
+            new CookieEntry(
                 snippetName: 'cookie.first_child_name',
                 cookie: 'cookie-key-1',
                 value: 'cookie value',
                 expiration: 30
             ),
-            new CookieStruct(
+            new CookieEntry(
                 snippetName: 'cookie.second_child_name',
                 cookie: 'cookie-key-2',
                 value: 'cookie value',
@@ -110,7 +110,7 @@ class CustomCookieProvider implements CookieProviderInterface {
         ]);
 
         // Create a cookie group with multiple cookies
-        $cookieGroup = new CookieGroupStruct(
+        $cookieGroup = new CookieGroup(
             snippetName: 'cookie.group_name',
             entries: $groupEntries,
             snippetDescription: 'cookie.group_description'
@@ -132,31 +132,15 @@ This will eventually lead to a new group being created, containing two new cooki
 
 And that's basically it already. After loading your Storefront, you should now see your new cookies and the cookie-group.
 
-### CookieStruct Parameters
+## Parameter Reference
 
-Here's a list of parameters you can use when creating a `CookieStruct`:
+For a complete list of available parameters and their types, refer to the source code:
 
-| Parameter | Data type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `snippetName` | String | Yes | Key of a snippet containing the display name of a cookie. |
-| `cookie` | String | Yes | The internal cookie name used to save the cookie. |
-| `snippetDescription` | String | No | Key of a snippet containing a short description of a cookie. |
-| `value` | String | No | If unset, the cookie will not be updated \(set active or inactive\) by Shopware, but passed to the update event only. |
-| `expiration` | Int | No | Cookie lifetime in days. **If unset, the cookie expires with the session**. |
-| `isRequired` | Bool | No | If true, the cookie cannot be disabled by the user. Default: false. |
-
-### CookieGroupStruct Parameters
-
-Here's a list of parameters you can use when creating a `CookieGroupStruct`:
-
-| Parameter | Data type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `snippetName` | String | Yes | Key of a snippet containing the display name of a cookie group. |
-| `entries` | Collection\|Array&lt;CookieStruct&gt; | Yes | A Collection of CookieStruct objects or array of CookieStruct objects. Nested groups are not supported. Using Collection is recommended. |
-| `snippetDescription` | String | No | Key of a snippet containing a short description of a cookie group. |
+* [`CookieEntry`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Cookie/Struct/CookieEntry.php) - Individual cookie definition
+* [`CookieGroup`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Cookie/Struct/CookieGroup.php) - Cookie group definition
 
 ::: info
-Cookie groups themselves should not have the `cookie`, `value`, `expiration`, or `isRequired` parameters. These only apply to individual cookies within the group.
+Cookie groups should not have the `cookie`, `value`, `expiration`, or `isRequired` parameters. These only apply to individual `CookieEntry` objects within the group's `entries`.
 :::
 
 ## Migrating from Array Format (Shopware 6.6 and earlier)
@@ -202,18 +186,18 @@ public function getCookieGroups(): array
 ### After (Struct format - recommended)
 
 ```php
-use Shopware\Core\Content\Cookie\Struct\CookieStruct;
-use Shopware\Core\Content\Cookie\Struct\CookieGroupStruct;
+use Shopware\Core\Content\Cookie\Struct\CookieEntry;
+use Shopware\Core\Content\Cookie\Struct\CookieGroup;
 use Shopware\Core\Framework\Struct\Collection;
 
-private readonly CookieStruct $singleCookie;
-private readonly CookieGroupStruct $cookieGroup;
+private readonly CookieEntry $singleCookie;
+private readonly CookieGroup $cookieGroup;
 
 public function __construct(CookieProviderInterface $service)
 {
     $this->originalService = $service;
 
-    $this->singleCookie = new CookieStruct(
+    $this->singleCookie = new CookieEntry(
         snippetName: 'cookie.name',
         cookie: 'cookie-key',
         value: 'cookie value',
@@ -221,10 +205,10 @@ public function __construct(CookieProviderInterface $service)
         snippetDescription: 'cookie.description'
     );
 
-    $this->cookieGroup = new CookieGroupStruct(
+    $this->cookieGroup = new CookieGroup(
         snippetName: 'cookie.group_name',
         entries: new Collection([
-            new CookieStruct(
+            new CookieEntry(
                 snippetName: 'cookie.first_child_name',
                 cookie: 'cookie-key-1',
                 value: 'cookie value',
@@ -247,13 +231,13 @@ public function getCookieGroups(): array
 
 ### Key Migration Changes
 
-- Use `CookieStruct` and `CookieGroupStruct` objects instead of arrays
-- Use `Collection` objects for cookie group entries instead of plain arrays
-- Parameter names are camelCase (e.g., `snippetName` instead of `snippet_name`)
-- Use named parameters for better readability
-- `expiration` is now an integer instead of a string
-- Create objects explicitly and assign them to variables for better code clarity
-- Import the struct classes and Collection at the top of your file
+* Use `CookieEntry` and `CookieGroup` objects instead of arrays
+* Use `Collection` objects for cookie group entries instead of plain arrays
+* Parameter names are camelCase (e.g., `snippetName` instead of `snippet_name`)
+* Use named parameters for better readability
+* `expiration` is now an integer instead of a string
+* Create objects explicitly and assign them to variables for better code clarity
+* Import the struct classes and Collection at the top of your file
 
 ## Cookie Configuration Changes and Re-Consent
 
