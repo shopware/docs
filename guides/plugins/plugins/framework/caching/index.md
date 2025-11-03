@@ -47,7 +47,7 @@ The cache hash is only computed on every response as soon as the application sta
 By default, the cache hash will consist of the following parts:
 
 * `rule-ids`: The matched rule ids, to reduce possible cache permutations starting with v6.8.0.0, this will only include the rule ids in `rule areas` that are cache relevant. See the next chapter how to extend this.
-* `version-id`: The specified version in the context.
+* `version-id`: The context version used to load versioned DAL entities.
 * `currency-id`: The currency id of the context.
 * `tax-state`: The tax state of the context (gross/net).
 * `logged-in`: Whether a customer is logged in in the current state or not.

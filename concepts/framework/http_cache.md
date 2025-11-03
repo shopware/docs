@@ -52,20 +52,21 @@ public function index(SalesChannelContext $context, Request $request): Response
 Determining the cache key is one of the most important tasks of the HTTP cache. The cache key is used to identify a request and its corresponding response. If the same request comes in again, the cache key will be used to look up the corresponding response in the cache storage.
 For a dynamic system like Shopware, the cache key needs to take the application state into account, as the response to the same request might differ e.g., based on the tax state of the currently logged-in customer.
 At the same time, it needs to be possible to generate the cache key directly from the request to support reverse proxy caches, where the caching is handled by a standalone application that has no access to Shopware's internal application state.
-Shopware generates a `cache-hash` that encodes the application state and this hash is passed alongside every request and response, the caching component will then generate the exact cache key based on the cache-hash.
+Shopware generates a `cache-hash` that encodes the application state and this hash is passed alongside every request and response, the caching component will then generate the exact cache key based on the `cache-hash`.
 
-Concretely Shopware uses Cookies to store the `cache-hash` as part of the request/response structure. The `cache-hash` describes the current state of the customer "session", every parameter that leads to different responses being generated (e.g. tax-states, matched rules) should be taken into account for the cache hash to ensure that every user sees the correct page.
+Concretely Shopware uses Cookies to store the `cache-hash` as part of the request/response structure. The `cache-hash` describes the current state of the customer "session", every parameter that leads to different responses being generated (e.g. tax-states, matched rules) should be taken into account for the `cache-hash` to ensure that every user sees the correct page.
 However, it is equally important to keep the number of different cache entries/permutations as low as possible to maximize the cache hits.
-The reason the cache-hash is stored as a cookie is that it needs to be sent with every request and can change on any response sent from shopware.
+The reason the `cache-hash` is stored as a cookie is that it needs to be sent with every request and can change on any response sent from shopware.
 The client needs to send the latest value back to shopware on every request to ensure the correct cache entry is used. This is needed as the cache is resolved before the request is handled by shopware itself.
-To allow reverse proxies to cache based on the application state, the information needs to be present on every request.
+To allow reverse proxies to cache based on the application state, the information needs to be present on every request. The reverse proxies (e.g. Fastly or Varnish) or the symfony cache component use the provided `cache-hash` as part of the cache key they generate for every request, thus they can differentiate the cache entries for the same request based on the application state.
 
 #### sw-cache-hash
 
 This cookie contains the hash of all cache-relevant information (e.g. is the user logged-in, what tax state and what currency do they use, which cache-relevant rules have matched).
+This is the cookie that stores the `cache-hash`mentioned above.
 This cookie will be set as soon as the application state differs from the default, which is: no logged in customer, the default currency and an empty cart.
 
-If you want to know how to manipulate and control the cache hash, you can refer to the [Plugin caching guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache).
+If you want to know how to manipulate and control the `cache-hash`, you can refer to the [Plugin caching guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache).
 
 #### sw-currency
 
