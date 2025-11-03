@@ -41,6 +41,8 @@ Shopware 6 stores and processes a wide variety of files. This goes from product 
 
 General Data Protection Regulation (GDPR) is a comprehensive European Union (EU) regulation that enhances individuals' privacy rights by imposing strict rules on how organizations collect, process, and protect personal data. For more information, refer to [GDPR](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/gdpr) guide.
 
+Shopware provides a comprehensive [Cookie Consent Management](../../concepts/commerce/content/cookie-consent-management) system with features to help shop owners handle customer privacy preferences, ensure transparent cookie handling, and support GDPR compliance efforts.
+
 ## HTML sanitizer
 
 HTML sanitizer improves security, reliability, and usability of the text editor by removing potentially unsafe or malicious HTML code. For more information, refer to [HTML Sanitizer](../../guides/hosting/configurations/shopware/html-sanitizer.md) guide.
