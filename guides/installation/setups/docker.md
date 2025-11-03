@@ -183,7 +183,7 @@ If you also want to remove all data and volumes (for example, to perform a full 
 docker compose down -v
 ```
 
-This will delete the containers, networks, and volumes, meaning all stored data will be lost.
+The `-v` flag will delete the containers, networks, and volumes, meaning all stored data will be lost.
 
 ### Known issue on Linux hosts
 
