@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Extend robots configuration
+  title: Extend robots.txt configuration
   position: 20
 
 ---
 
-# Extend robots configuration
+# Extend robots.txt configuration
 
 ## Overview
 
