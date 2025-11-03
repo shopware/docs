@@ -213,7 +213,7 @@ This command drops you into the container’s terminal (you’ll see the prompt 
 docker compose exec web bin/console cache:clear
 ```
 
-**Tip**: When you’re inside the container, you only need `bin/console …`. If you prefer to run commands from your host machine instead, use the full Docker prefix: `docker compose exec web bin/console cache:clear`. 
+**Tip**: When you’re inside the container, you only need `bin/console …`. If you prefer to run commands from your host machine instead, use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
 
 You’ll use the following Makefile commands later on, when you modify frontend or admin code, or develop plugins that affect the UI:
 
@@ -230,6 +230,7 @@ make watch-admin
 # Start a watcher for Storefront
 make watch-storefront
 ```
+
 These will become part of your everyday development workflow.
 
 ## Verify your installation in the browser (optional)
