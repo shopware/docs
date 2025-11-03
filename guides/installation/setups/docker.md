@@ -17,7 +17,7 @@ In this guide, we will run PHP, Node, and all required services in Docker contai
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) installed and running. OrbStack is a fast, free alternative to Docker.
+- [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) installed and running. OrbStack is a fast, free (for personal use) alternative to Docker.
 - make installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS) 
 - Docker Compose installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 - Enough disk and network capacity to pull images (~500MB+ per image depending on tags)
