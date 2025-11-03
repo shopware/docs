@@ -39,7 +39,7 @@ This example shows how to add AI crawler restrictions and validate crawl-delay v
 <Tabs>
 <Tab title="RobotsExtensionSubscriber.php">
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Subscriber;
@@ -117,7 +117,7 @@ class RobotsExtensionSubscriber implements EventSubscriberInterface
 
 <Tab title="services.xml">
 
-```xml
+```XML
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -142,7 +142,7 @@ The `RobotsUnknownDirectiveEvent` is dispatched when an unknown directive is enc
 <Tabs>
 <Tab title="CustomDirectiveSubscriber.php">
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Subscriber;
@@ -177,7 +177,7 @@ class CustomDirectiveSubscriber implements EventSubscriberInterface
 
 <Tab title="services.xml">
 
-```xml
+```XML
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -201,7 +201,7 @@ You can add validation warnings or errors during parsing using the `ParseIssue` 
 <Tabs>
 <Tab title="RobotsValidationSubscriber.php">
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\Example\Subscriber;
@@ -268,7 +268,7 @@ class RobotsValidationSubscriber implements EventSubscriberInterface
 
 <Tab title="services.xml">
 
-```xml
+```XML
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
