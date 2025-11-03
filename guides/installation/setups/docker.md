@@ -85,9 +85,9 @@ Shopware projects include files that use a combination of Symfony, Composer, Doc
 </details>
 
 You’ll mostly interact with these:
-- Makefile, to run Docker/Shopware commands.
-- `custom/`, to build your own plugins.
-- `bin/console`, to run Shopware CLI tasks.
+- **Makefile**, which provides convenient shortcuts for common Docker and Shopware commands. It acts as a lightweight wrapper around standard `docker compose` commands. You can still use the underlying Docker commands directly, but it’s recommended to stick with the `make` targets where possible, as they ensure consistent behavior across setups.
+- **`custom/`**, to build your own plugins.
+- **`bin/console`**, to run Shopware CLI tasks.
 
 Everything else in your project either supports or configures those layers.
 
@@ -169,9 +169,21 @@ If you want to stop the setup, run `make stop`.
 
 To start it again, use `make up`. 
 
-If you want to remove the containers, run `make down`. This removes all containers but **keeps your data**. 
+To stop and remove all containers, run:
 
-To remove both containers *and* data, run `docker compose down -v`. You can then do a full reset.
+```bash
+make down
+```
+
+This command removes all containers and associated networks.
+
+If you also want to remove all data and volumes (for example, to perform a full reset of your environment), run:
+
+```bash
+docker compose down -v
+```
+
+This will delete the containers, networks, and volumes, meaning all stored data will be lost.
 
 ### Known issue on Linux hosts
 
@@ -254,9 +266,10 @@ With Shopware running, here are the services in your local stack and how to acce
 You can create a `.env` file in the project root to override default environment variables. Changes take effect automatically without restarting containers  **except for** the `APP_ENV` variable, which requires:
 
 ```bash
-docker compose up -d
+make up
 ```
-to apply the changes.
+
+This command restarts the containers so that the updated environment variable takes effect.
 
 ### Enable profiler/debugging for PHP (optional, recommended)
 
