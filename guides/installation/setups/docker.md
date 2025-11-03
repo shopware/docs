@@ -18,7 +18,7 @@ In this guide, we will run PHP, Node, and all required services in Docker contai
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) installed and running. OrbStack is a fast, free (for personal use) alternative to Docker.
-- make installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS) 
+- make installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS)
 - Docker Compose installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 - Enough disk and network capacity to pull images (~500MB+ per image depending on tags)
 
@@ -54,11 +54,12 @@ docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-nod
 
 This step creates your new Shopware project in the current directory, along with a `compose.yaml` and a `Makefile`. The difference from regular `composer create-project` is that we run PHP and Composer from within the Docker image. This means you don’t need to have PHP or Composer installed on your local machine.
 
-The project creation currently takes several minutes to complete. 
+The project creation currently takes several minutes to complete.
 
-During the process, this prompt will appear: `Do you want to use Elasticsearch? (y/N)`. Elasticsearch improves search performance for large catalogs. 
-- We recommend answering "yes" if you expect thousands of products or use Shopware's advanced search features. You'll need an `elasticsearch` container/service. [Go here](https://developer.shopware.com/docs/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.html) to learn more about Elasticsearch setup.
-- We recommend answering "no" if you’re just testing locally or have a small dataset. In this case, Shopware will use the MariaDB database for search. 
+During the process, this prompt will appear: `Do you want to use Elasticsearch? (y/N)`. Elasticsearch improves search performance for large catalogs. We recommend:
+
+- answering "yes" if you expect thousands of products or use Shopware's advanced search features. You'll need an `elasticsearch` container/service. [Go here](https://developer.shopware.com/docs/guides/hosting/infrastructure/elasticsearch/elasticsearch-setup.html) to learn more about Elasticsearch setup.
+- answering "no" if you’re just testing locally or have a small dataset. In this case, Shopware will use the MariaDB database for search.
 
 Shopware projects include files that use a combination of Symfony, Composer, Docker, and Shopware-specific conventions.
 
@@ -85,6 +86,7 @@ Shopware projects include files that use a combination of Symfony, Composer, Doc
 </details>
 
 You’ll mostly interact with these:
+
 - **Makefile**, which provides convenient shortcuts for common Docker and Shopware commands. It acts as a lightweight wrapper around standard `docker compose` commands. You can still use the underlying Docker commands directly, but it’s recommended to stick with the `make` targets where possible, as they ensure consistent behavior across setups.
 - **`custom/`**, to build your own plugins.
 - **`bin/console`**, to run Shopware CLI tasks.
@@ -115,14 +117,16 @@ This command builds (if needed) and starts all required Docker services (web ser
 | **Container `my-project-adminer-1`** | Adminer (DB UI) | Lightweight web interface for viewing and editing your database. Available at [http://localhost:8080](http://localhost:8080). |
 
 💡 **Tip:** You can check container status anytime with:
+
 ```bash
 docker compose ps
 ```
+
 “Healthy” means the service passed its internal health check and is ready to use.
 </details>
 
-
 Once the containers are running, you can install Shopware in one of two ways:
+
 - **Browser installer**: open <http://localhost:8000> to walk through the installation wizard.
 - **CLI**: run the following command to perform a quick, non-interactive setup:
 
@@ -143,7 +147,7 @@ If you connect to the database from your host machine (for example, via Adminer 
 
 During setup, you’ll see an output similar to this:
 
-```
+```bash
 Access tokens:
 +------------+----------------------------+
 | Key | Value |
@@ -165,9 +169,9 @@ You can view or regenerate this key later in the Admin under Sales Channels → 
 💡 **Tip:** The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
 </details>
 
-If you want to stop the setup, run `make stop`. 
+If you want to stop the setup, run `make stop`.
 
-To start it again, use `make up`. 
+To start it again, use `make up`.
 
 To stop and remove all containers, run:
 
@@ -237,9 +241,10 @@ Shopware’s CLI setup automatically installs a complete, preconfigured demo sto
 You can also check out the Shopware Admin dashboard to verify that the Admin is accessible:
 
 - Log in to the **Admin** at [http://localhost:8000/admin](http://localhost:8000/admin) using `admin / shopware` (default credentials).
-- Once logged in, you’ll see the Shopware Admin dashboard and merchant setup wizard. 
+- Once logged in, you’ll see the Shopware Admin dashboard and merchant setup wizard.
 
 As a developer, you can skip the wizard and use the Admin to:
+
 - confirm your installation and database are running correctly.
 - manage extensions or themes you install later.
 - inspect system settings and logs.
