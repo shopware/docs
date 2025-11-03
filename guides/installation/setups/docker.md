@@ -22,7 +22,7 @@ In this guide, we will run PHP, Node, and all required services in Docker contai
 - Docker Compose installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 - Enough disk and network capacity to pull images (~500MB+ per image depending on tags)
 
-## Pre-pull the image (recommended)
+## Pre-pull the image (optional)
 
 If you haven’t yet downloaded the Shopware Docker image, pull it now:
 
