@@ -35,7 +35,21 @@ The markdown files are checked with [markdown-lint](https://github.com/avto-dev/
 
 ### Spellcheck
 
-The markdown files are checked with [py-spelling](https://facelessuser.github.io/pyspelling/) to rectify spelling errors. The configuration for py-spelling can be found in [`.spellcheck.yml`](./.github/workflows/spellcheck.yml). To exclude a word from being spellchecked, add it to the [`.wordlist.txt`](./.wordlist.txt) file. Make sure to add the word at the right position, as the file doesn't automatically sort alphabetically. You can use the following command to sort the file:
+The markdown files are checked with [py-spelling](https://facelessuser.github.io/pyspelling/) to rectify spelling errors. The configuration for py-spelling can be found in [`.spellcheck.yml`](./.spellcheck.yml).
+
+You can run spellcheck locally using:
+
+```bash
+make spellcheck-local
+```
+
+This will automatically create a virtual environment and install the required dependencies if needed. Alternatively, you can use the Docker-based version:
+
+```bash
+make spellcheck
+```
+
+To exclude a word from being spellchecked, add it to the [`.wordlist.txt`](./.wordlist.txt) file. Make sure to add the word at the right position, as the file doesn't automatically sort alphabetically. You can use the following command to sort the file:
 
 ```bash
 LC_ALL=C sort .wordlist.txt -o .wordlist.txt
