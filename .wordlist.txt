@@ -1,3 +1,4 @@
+
 ACL
 ACLs
 ADDR
@@ -429,6 +430,7 @@ Homebrew
 Hono
 HookClasses
 HookExecutor
+Hotjar
 HowTos
 IDEs
 IETF
@@ -772,6 +774,7 @@ RegistrationCompletedEvent
 RegistrationService
 Reindexes
 ReinstallApps
+Remarketing
 RemoteAddress
 RemoteAddressField
 Repo
@@ -1683,6 +1686,7 @@ regexes
 reindex
 reinitializing
 reinstallation
+remarketing
 remoteaddress
 removeBy
 renameMedia
@@ -1932,7 +1936,3 @@ zipignore
 zlib
 zsh
 zstd
-Remarketing
-remarketing
-Hotjar
-
