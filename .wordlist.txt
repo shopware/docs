@@ -1852,6 +1852,7 @@ triggerDeprecated
 truthy
 tsx
 twigjs
+txt
 typeAndCheck
 typeAndCheckSearchField
 typeLegacySelectAndCheck
