@@ -76,12 +76,12 @@ Cookies that enhance user experience but are not essential for basic functionali
 
 ### Marketing
 
-Cookies used for marketing and advertising purposes, including tracking user behavior for personalized ads and retargeting (`cookie.groupMarketing`).
+Cookies used for marketing and advertising purposes, including tracking user behavior for personalized ads and remarketing (`cookie.groupMarketing`).
 
 **Examples:**
 
 - Marketing pixels (Facebook Pixel, Google Ads)
-- Retargeting cookies
+- Remarketing and advertising cookies
 - Conversion tracking
 - Affiliate tracking
 
@@ -92,7 +92,7 @@ Cookies used for analytics and website optimization purposes (`cookie.groupStati
 **Examples:**
 
 - Google Analytics
-- Heatmap tracking (Hotjar, Crazy Egg)
+- User interaction tracking (Hotjar, Crazy Egg)
 - A/B testing
 - User behavior analytics
 

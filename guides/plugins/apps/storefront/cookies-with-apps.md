@@ -272,7 +272,7 @@ When assigning cookies to groups, consider these guidelines:
 
 **Marketing (`cookie.groupMarketing`):**
 
-* Advertising and retargeting pixels
+* Advertising pixels and remarketing
 * Conversion tracking
 * Marketing campaign attribution
 * User behavior tracking for advertising
@@ -281,7 +281,7 @@ When assigning cookies to groups, consider these guidelines:
 
 * Analytics and statistics
 * A/B testing
-* Heatmaps and user behavior analysis
+* User interaction tracking and click analysis
 * Performance monitoring
 
 ::: warning
