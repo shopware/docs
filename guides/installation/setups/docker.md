@@ -226,7 +226,7 @@ make watch-admin
 # Start a watcher for Storefront
 make watch-storefront
 ```
-These will become part of your everyday development workflow.  
+These will become part of your everyday development workflow.
 
 ## Verify your installation in the browser (optional)
 
@@ -236,34 +236,30 @@ Shopware’s CLI setup automatically installs a complete, preconfigured demo sto
 
 You can also check out the Shopware Admin dashboard to verify that the Admin is accessible:
 
-- Log in to the **Admin** at [http://localhost:8000/admin](http://localhost:8000/admin) using  
-  `admin / shopware` (default credentials).  
+- Log in to the **Admin** at [http://localhost:8000/admin](http://localhost:8000/admin) using `admin / shopware` (default credentials).
 - Once logged in, you’ll see the Shopware Admin dashboard and merchant setup wizard. 
 
 As a developer, you can skip the wizard and use the Admin to:
-  - confirm your installation and database are running correctly.
-  - manage extensions or themes you install later.
-  - inspect system settings and logs.
-  - verify that changes from your code (for example, new entities or configuration options) appear in the UI.
+- confirm your installation and database are running correctly.
+- manage extensions or themes you install later.
+- inspect system settings and logs.
+- verify that changes from your code (for example, new entities or configuration options) appear in the UI.
 
 ## Services
 
 With Shopware running, here are the services in your local stack and how to access them. Understanding what each one does helps you troubleshoot issues and connect external tools if needed:
 
 - **Web service (Nginx + PHP-FPM)** — serves both the storefront and the admin interface.
-  - Storefront: [http://localhost:8000](http://localhost:8000)
-  - Admin: [http://localhost:8000/admin](http://localhost:8000/admin)  
-    *(default credentials: `admin` / `shopware`)*
+- Storefront: [http://localhost:8000](http://localhost:8000)
+- Admin: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
 
-- **Database (MariaDB)** — runs on port **3306** inside Docker.  
-  The internal hostname is `database`. You can connect from your host using `localhost:3306` if you want to inspect the database directly.
+- **Database (MariaDB)** — runs on port **3306** inside Docker. The internal hostname is `database`. You can connect from your host using `localhost:3306` if you want to inspect the database directly.
 
-- **Mailpit** — local mail testing tool, available at [http://localhost:8025](http://localhost:8025).  
-  Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
+- **Mailpit** — local mail testing tool, available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
 
 ### Changing environment variables
 
-You can create a `.env` file in the project root to override default environment variables. Changes take effect automatically without restarting containers  **except for** the `APP_ENV` variable, which requires:
+You can create a `.env` file in the project root to override default environment variables. Changes take effect automatically without restarting containers **except for** the `APP_ENV` variable, which requires:
 
 ```bash
 make up
@@ -471,7 +467,7 @@ You can also open `https://orb.local` in your browser to view all running contai
 
 When you import a production database into your local environment, image URLs in the data may still point to production servers. As a result, your local store might show broken or missing images. You can fix this in two ways:
 
-- **download all production images** and import them locally, or  
+- **download all production images** and import them locally, or
 - **set up a lightweight proxy service** that serves those images directly from the production server (recommended for quick testing).
 
 ### 1. Add the image proxy service
