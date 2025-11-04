@@ -18,5 +18,6 @@ To connect to your database via CLI:
 sw-paas open service --service database --port 3306
 ```
 
-#### Note:
+#### Note
+
 Please check the [known issues](../known-issues.md) regarding network considerations when running this command.
