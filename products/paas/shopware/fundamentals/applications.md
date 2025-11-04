@@ -99,6 +99,10 @@ sw-paas exec --new
 
 This opens an interactive shell session inside your application's container.
 
+#### Note
+
+Please check the [known issues](../known-issues.md) regarding network considerations when running this command.
+
 ### `command` Command
 
 The `command` command lets you create and manage commands that are executed in dedicated containers. This is particularly useful for CI/CD environments, asynchronous command execution, automated processes, or situations where you don't need to wait for command completion.
