@@ -216,6 +216,7 @@ ContextResolver
 ContextTokenAware
 ContextTokenStorer
 CookiePermission
+CookieProviderInterface
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction

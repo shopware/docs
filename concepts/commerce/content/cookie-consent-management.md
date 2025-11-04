@@ -191,7 +191,7 @@ The cookie consent system can be extended in multiple ways:
 
 ### For Plugins
 
-Use the `CookieProviderInterface` to add custom cookies via service decoration.
+Use an event subscriber to add custom cookies.
 
 <PageRef page="../../../guides/plugins/plugins/storefront/add-cookie-to-manager" />
 
