@@ -130,11 +130,11 @@ The main component is displayed in the editor layout. It should provide a good r
 // dailymotion/component/index.js
 Shopware.Component.register('cms-el-dailymotion', {
     template: `
-        <iframe 
+        <iframe
             v-if="element.config.url.value"
             class="cms-el-dailymotion"
-            :src="embedUrl" 
-            width="100%" 
+            :src="embedUrl"
+            width="100%"
             height="480"
         />
         <h3 v-else>Dailymotion</h3>
@@ -185,6 +185,34 @@ Shopware.Component.register('cms-el-config-dailymotion', {
 
 * The `cms-element` mixin provides common props and data-mapping for config objects
 * Use [Shopware meteor components](https://shopware.design/meteor-components/) for a consistent UI
+
+### Step 6: Inheritance Support For Elements
+
+Inheritance in the CMS provides fine-grained control over how content is customized between the base layout and content pages (category, product, landing page, ..) they are assigned to.
+Similar to how product variants work, content managers can choose to either inherit the content from the base layout or override it with custom content for each page.
+
+By default, configuration will be inherited unless explicitly overridden though the UI may not be as clear.
+
+For an improved user experience when working with inherited fields, we provide a [wrapper component](https://github.com/shopware/shopware/blob/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/component/sw-cms-inherit-wrapper/index.ts) that handles removing and restoring inherited values and displaying proper UI states. To use this is in your own elements, you can add the `sw-cms-inherit-wrapper` component to individual fields in your element.
+
+```VUE
+<!-- src/module/sw-cms/elements/text/config/sw-cms-el-config-text.html.twig -->
+<sw-cms-inherit-wrapper
+    field="verticalAlign"
+    :element="element"
+    :label="$t('sw-cms.elements.general.config.label.verticalAlign')"
+>
+    <template #default="{ isInherited }">
+        <mt-select
+            v-model:model-value="element.config.verticalAlign.value"
+            :placeholder="$t('sw-cms.elements.general.config.label.verticalAlign')"
+            :disabled="isInherited"
+        />
+    </template>
+</sw-cms-inherit-wrapper>
+```
+
+You can find more references in the standard CMS elements located in `src/Administration/Resources/app/administration/src/module/sw-cms/elements/`.
 
 ## How to Create an Element in the Storefront
 
