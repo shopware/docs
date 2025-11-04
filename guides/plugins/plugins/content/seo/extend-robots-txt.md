@@ -9,18 +9,19 @@ nav:
 
 ## Overview
 
-Since Shopware 6.7.1, the platform provides full `robots.txt` support with all standard directives and user-agent blocks. This feature was developed as an open-source contribution during October 2024 ([learn more](https://www.shopware.com/en/news/hacktoberfest-2024-outcome-a-robots-txt-for-shopware/)). For general configuration, refer to the [user documentation](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/creation-of-robots-txt).
+Since Shopware 6.7.1, the platform provides full `robots.txt` support with all standard directives and user-agent blocks.
+This feature was developed as an open-source contribution during Hacktober 2024 ([learn more](https://www.shopware.com/en/news/hacktoberfest-2024-outcome-a-robots-txt-for-shopware/)).
+For general configuration, refer to the [user documentation](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/creation-of-robots-txt).
 
-Starting with Shopware 6.7.5, you can extend the `robots.txt` functionality through events to:
+::: info
+The events and features described in this guide are available since Shopware 6.7.5.
+:::
 
+You can extend the `robots.txt` functionality through events to:
 * Add custom validation rules during parsing
 * Modify or generate directives dynamically
 * Support custom or vendor-specific directives
 * Prevent warnings for known non-standard directives
-
-::: info
-The events described in this guide require Shopware 6.7.5 or later.
-:::
 
 ## Prerequisites
 
@@ -28,52 +29,46 @@ This guide requires you to have a basic plugin running. If you don't know how to
 
 <PageRef page="../../plugin-base-guide" />
 
-You should also be familiar with [Event subscribers](../../plugin-fundamentals/listening-to-events).
+You should also be familiar with [Event listeners](../../plugin-fundamentals/listening-to-events).
+
+::: info
+This guide uses EventListeners since each example listens to a single event. If you need to subscribe to multiple events in the same class, consider using an [EventSubscriber](../../plugin-fundamentals/listening-to-events#listening-to-events-via-subscriber) instead.
+:::
 
 ## Modifying parsed directives
 
 The `RobotsDirectiveParsingEvent` is dispatched after `robots.txt` content is parsed. You can modify the parsed result, add validation, or inject dynamic directives.
 
-This example shows how to add AI crawler restrictions and validate crawl-delay values:
+This example shows how to dynamically add restrictions for AI crawlers:
 
 <Tabs>
-<Tab title="RobotsExtensionSubscriber.php">
+<Tab title="RobotsExtensionListener.php">
 
 ```PHP
 <?php declare(strict_types=1);
 
-namespace Swag\Example\Subscriber;
+namespace Swag\Example\Listener;
 
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
-use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
-use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirective;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsUserAgentBlock;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 #[Package('storefront')]
-class RobotsExtensionSubscriber implements EventSubscriberInterface
+class RobotsExtensionListener
 {
     public function __construct(
         private readonly LoggerInterface $logger,
     ) {
     }
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            RobotsDirectiveParsingEvent::class => 'onRobotsParsing',
-        ];
-    }
-
-    public function onRobotsParsing(RobotsDirectiveParsingEvent $event): void
+    public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
         $parsedRobots = $event->getParsedRobots();
 
-        // 1. Add restrictions for AI crawlers
+        // Add restrictions for AI crawlers
         $aiCrawlers = ['GPTBot', 'ChatGPT-User', 'CCBot', 'anthropic-ai'];
 
         $aiBlock = new RobotsUserAgentBlock(
@@ -87,26 +82,6 @@ class RobotsExtensionSubscriber implements EventSubscriberInterface
         );
 
         $parsedRobots->addUserAgentBlock($aiBlock);
-
-        // 2. Validate existing crawl-delay values
-        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
-            foreach ($block->getDirectives() as $directive) {
-                if ($directive->getType() === RobotsDirectiveType::CRAWL_DELAY) {
-                    $value = (int) $directive->getValue();
-
-                    if ($value > 60) {
-                        $event->addIssue(new ParseIssue(
-                            severity: ParseIssueSeverity::WARNING,
-                            message: sprintf(
-                                'Crawl-delay of %d seconds may be too high',
-                                $value
-                            ),
-                            lineNumber: null,
-                        ));
-                    }
-                }
-            }
-        }
 
         $this->logger->info('Extended robots.txt with AI crawler rules');
     }
@@ -124,9 +99,9 @@ class RobotsExtensionSubscriber implements EventSubscriberInterface
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\Example\Subscriber\RobotsExtensionSubscriber">
+        <service id="Swag\Example\Listener\RobotsExtensionListener">
             <argument type="service" id="logger"/>
-            <tag name="kernel.event_subscriber"/>
+            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent"/>
         </service>
     </services>
 </container>
@@ -140,28 +115,20 @@ class RobotsExtensionSubscriber implements EventSubscriberInterface
 The `RobotsUnknownDirectiveEvent` is dispatched when an unknown directive is encountered. Use this to support vendor-specific directives or prevent warnings for known non-standard directives:
 
 <Tabs>
-<Tab title="CustomDirectiveSubscriber.php">
+<Tab title="CustomDirectiveListener.php">
 
 ```PHP
 <?php declare(strict_types=1);
 
-namespace Swag\Example\Subscriber;
+namespace Swag\Example\Listener;
 
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 #[Package('storefront')]
-class CustomDirectiveSubscriber implements EventSubscriberInterface
+class CustomDirectiveListener
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            RobotsUnknownDirectiveEvent::class => 'handleCustomDirective',
-        ];
-    }
-
-    public function handleCustomDirective(RobotsUnknownDirectiveEvent $event): void
+    public function __invoke(RobotsUnknownDirectiveEvent $event): void
     {
         // Support Google and Yandex specific directives
         $knownCustomDirectives = ['noimageindex', 'noarchive', 'clean-param'];
@@ -184,8 +151,8 @@ class CustomDirectiveSubscriber implements EventSubscriberInterface
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\Example\Subscriber\CustomDirectiveSubscriber">
-            <tag name="kernel.event_subscriber"/>
+        <service id="Swag\Example\Listener\CustomDirectiveListener">
+            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent"/>
         </service>
     </services>
 </container>
@@ -194,55 +161,30 @@ class CustomDirectiveSubscriber implements EventSubscriberInterface
 </Tab>
 </Tabs>
 
-## Parse issues
+## Validation and parse issues
 
-You can add validation warnings or errors during parsing using the `ParseIssue` class. This example shows a complete subscriber that validates sitemap directives:
+You can add validation warnings or errors during parsing using the `ParseIssue` class. This example shows common validation scenarios:
 
 <Tabs>
-<Tab title="RobotsValidationSubscriber.php">
+<Tab title="RobotsValidationListener.php">
 
 ```PHP
 <?php declare(strict_types=1);
 
-namespace Swag\Example\Subscriber;
+namespace Swag\Example\Listener;
 
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 #[Package('storefront')]
-class RobotsValidationSubscriber implements EventSubscriberInterface
+class RobotsValidationListener
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            RobotsDirectiveParsingEvent::class => 'validateRobots',
-        ];
-    }
-
-    public function validateRobots(RobotsDirectiveParsingEvent $event): void
+    public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
         $parsedRobots = $event->getParsedRobots();
-
-        // Check if sitemap directive exists
-        $hasSitemap = false;
-        foreach ($parsedRobots->getDirectives() as $directive) {
-            if ($directive->getType() === RobotsDirectiveType::SITEMAP) {
-                $hasSitemap = true;
-                break;
-            }
-        }
-
-        if (!$hasSitemap) {
-            $event->addIssue(new ParseIssue(
-                severity: ParseIssueSeverity::WARNING,
-                message: 'Consider adding a sitemap directive for better SEO',
-                lineNumber: null,
-            ));
-        }
 
         // Validate crawl-delay values
         foreach ($parsedRobots->getUserAgentBlocks() as $block) {
@@ -254,6 +196,40 @@ class RobotsValidationSubscriber implements EventSubscriberInterface
                         $event->addIssue(new ParseIssue(
                             severity: ParseIssueSeverity::ERROR,
                             message: 'Invalid crawl-delay value: must be a positive integer',
+                            lineNumber: null,
+                        ));
+                    }
+
+                    if ($value > 10) {
+                        $event->addIssue(new ParseIssue(
+                            severity: ParseIssueSeverity::WARNING,
+                            message: 'Crawl-delay value is very high. This may significantly slow down indexing.',
+                            lineNumber: null,
+                        ));
+                    }
+                }
+            }
+        }
+
+        // Check for conflicting Allow/Disallow directives
+        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
+            $disallowed = [];
+            $allowed = [];
+
+            foreach ($block->getDirectives() as $directive) {
+                if ($directive->getType() === RobotsDirectiveType::DISALLOW) {
+                    $disallowed[] = $directive->getValue();
+                } elseif ($directive->getType() === RobotsDirectiveType::ALLOW) {
+                    $allowed[] = $directive->getValue();
+                }
+            }
+
+            foreach ($allowed as $allowPath) {
+                foreach ($disallowed as $disallowPath) {
+                    if ($allowPath === $disallowPath) {
+                        $event->addIssue(new ParseIssue(
+                            severity: ParseIssueSeverity::WARNING,
+                            message: sprintf('Conflicting directives: Path "%s" is both allowed and disallowed', $allowPath),
                             lineNumber: null,
                         ));
                     }
@@ -275,8 +251,8 @@ class RobotsValidationSubscriber implements EventSubscriberInterface
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\Example\Subscriber\RobotsValidationSubscriber">
-            <tag name="kernel.event_subscriber"/>
+        <service id="Swag\Example\Listener\RobotsValidationListener">
+            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent"/>
         </service>
     </services>
 </container>

@@ -355,6 +355,8 @@ Enums
 EqualsAny
 ErrorsFacade
 EventListener
+EventListeners
+EventSubscriber
 EventSubscriberInterface
 Everytime
 ExampleAppWithCookies
@@ -424,6 +426,7 @@ GuestWishlistPage
 GuestWishlistPagelet
 HMAC
 HMR
+Hacktober
 HeaderPagelet
 Homebrew
 Hono
