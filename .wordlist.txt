@@ -1492,6 +1492,7 @@ longtext
 lookups
 lowerCamelCase
 lychee
+mTLS
 macOS
 mailAware
 mailTemplates
