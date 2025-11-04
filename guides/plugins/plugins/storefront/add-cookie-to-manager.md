@@ -64,9 +64,8 @@ Let's have a look at an example:
 namespace PluginName\Subscriber;
 
 use Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent;
-use Shopware\Core\Content\Cookie\Struct\CookieEntry;
-use Shopware\Core\Content\Cookie\Struct\CookieGroup;
-use Shopware\Core\Framework\Struct\Collection;
+use Shopware\Core\Framework\Cookie\CookieEntry;
+use Shopware\Core\Framework\Cookie\CookieGroup;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class CookieSubscriber implements EventSubscriberInterface
@@ -84,34 +83,34 @@ class CookieSubscriber implements EventSubscriberInterface
 
         // Create a single cookie
         $singleCookie = new CookieEntry(
-            snippetName: 'cookie.name',
-            cookie: 'cookie-key',
-            value: 'cookie value',
-            expiration: 30,
-            snippetDescription: 'cookie.description'
+            'cookie.name',
+            'cookie-key',
+            'cookie value',
+            30,
+            'cookie.description'
         );
 
         // Create entries collection for cookie group
-        $groupEntries = new Collection([
+        $groupEntries = [
             new CookieEntry(
-                snippetName: 'cookie.first_child_name',
-                cookie: 'cookie-key-1',
-                value: 'cookie value',
-                expiration: 30
+                'cookie.first_child_name',
+                'cookie-key-1',
+                'cookie value',
+                30
             ),
             new CookieEntry(
-                snippetName: 'cookie.second_child_name',
-                cookie: 'cookie-key-2',
-                value: 'cookie value',
-                expiration: 60
+                'cookie.second_child_name',
+                'cookie-key-2',
+                'cookie value',
+                60
             )
-        ]);
+        ];
 
         // Create a cookie group with multiple cookies
         $cookieGroup = new CookieGroup(
-            snippetName: 'cookie.group_name',
-            entries: $groupEntries,
-            snippetDescription: 'cookie.group_description'
+            'cookie.group_name',
+            $groupEntries,
+            'cookie.group_description'
         );
 
         $cookieGroups->add($cookieGroup);
@@ -128,8 +127,8 @@ And that's basically it already. After loading your Storefront, you should now s
 
 For a complete list of available parameters and their types, refer to the source code:
 
-* [`CookieEntry`](https://github.com/shopware/shopware/tree/v6.7.4.0/src/Core/Content/Cookie/Struct/CookieEntry.php) - Individual cookie definition
-* [`CookieGroup`](https://github.com/shopware/shopware/tree/v6.7.4.0/src/Core/Content/Cookie/Struct/CookieGroup.php) - Cookie group definition
+* [`CookieEntry`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Cookie/CookieEntry.php) - Individual cookie definition
+* [`CookieGroup`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Cookie/CookieGroup.php) - Cookie group definition
 
 ::: info
 Cookie groups should not have the `cookie`, `value`, `expiration`, or `isRequired` parameters. These only apply to individual `CookieEntry` objects within the group's `entries`.
