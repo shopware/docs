@@ -18,6 +18,7 @@ The events and features described in this guide are available since Shopware 6.7
 :::
 
 You can extend the `robots.txt` functionality through events to:
+
 * Add custom validation rules during parsing
 * Modify or generate directives dynamically
 * Support custom or vendor-specific directives
