@@ -23,9 +23,9 @@ For a comprehensive understanding of Shopware's cookie consent system, see the [
 
 To create a cookie-aware plugin, you need to handle two main scenarios:
 
-1.  **Initial Page Load**: When a page loads, you must check if the user has already given consent for your cookie.
-2.  **Consent Changes**: If the user changes their cookie settings while on the site, your plugin must react to that change in real-time, enabling or disabling its functionality accordingly.
-3.  **Cleaning Up**: If a user withdraws consent, it's crucial to clean up any resources your plugin has loaded, such as scripts, tracking cookies, or data in local storage.
+1. **Initial Page Load**: When a page loads, you must check if the user has already given consent for your cookie.
+2. **Consent Changes**: If the user changes their cookie settings while on the site, your plugin must react to that change in real-time, enabling or disabling its functionality accordingly.
+3. **Cleaning Up**: If a user withdraws consent, it's crucial to clean up any resources your plugin has loaded, such as scripts, tracking cookies, or data in local storage.
 
 This guide will walk you through implementing these principles.
 
