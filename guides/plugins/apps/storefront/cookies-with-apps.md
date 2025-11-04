@@ -253,9 +253,9 @@ If you are not familiar with setting up Storefront snippets, please refer to our
 
 ## Automatic Configuration Change Detection
 
-Since Shopware 6.7.3.0, cookie configurations defined in your app's `manifest.xml` are automatically included in the configuration hash. When you update your app and change cookie definitions, Shopware automatically detects this, and the configuration hash changes, triggering a re-consent flow for users.
+Any changes made to the cookie definitions in your app's `manifest.xml` are automatically detected by Shopware's consent system. This will trigger a re-consent flow for users, ensuring they are always prompted about the latest cookie settings.
 
-For more details on how the hash mechanism works, refer to the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management#configuration-hash-mechanism).
+This process is handled by a configuration hash mechanism, which is explained in detail in the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management#configuration-hash-mechanism).
 
 ## Reacting to cookie consent changes
 
