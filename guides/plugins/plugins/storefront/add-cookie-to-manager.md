@@ -17,7 +17,7 @@ For a comprehensive understanding of Shopware's cookie consent system, see the [
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../plugin-base-guide), so have a look at that first if you're lacking a running plugin. Also you will have to know how to [create your own service](../plugin-fundamentals/add-custom-service) and [subscribe to an event](../plugin-fundamentals/listening-to-events), so you might want to have a look at those guides as well.
+This guide is built upon the [Plugin base guide](../plugin-base-guide), so take a look at that first if you're lacking a running plugin. Also, you will need to know how to [create your own service](../plugin-fundamentals/add-custom-service) and [subscribe to an event](../plugin-fundamentals/listening-to-events), so you might want to take a look at those guides as well.
 
 ## Extend the cookie consent manager
 

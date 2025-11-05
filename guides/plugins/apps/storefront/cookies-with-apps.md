@@ -21,10 +21,8 @@ For a comprehensive understanding of Shopware's cookie consent system, see the [
 
 To add new cookies to the cookie consent manager, you can add a `cookies` section to your `manifest.xml`. Inside this section, you can add new `cookie` elements, as shown in the following example. Note that you don't need a `setup` section in your `manifest.xml` since extending the Storefront doesn't need a registration nor an own server to run.
 
-::: code-group
-
-```xml [manifest.xml]
-<?xml version="1.0" encoding="UTF-8"?>
+```XML
+<?XML version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <name>ExampleAppWithCookies</name>
@@ -43,8 +41,6 @@ To add new cookies to the cookie consent manager, you can add a `cookies` sectio
 </manifest>
 ```
 
-:::
-
 Cookie elements can be configured by adding the following child elements:
 
 * `cookie` (required): The technical name of the cookie. The value is used to store the cookie in the customer's cookie jar.
@@ -57,14 +53,12 @@ For a complete reference of the structure of the manifest file, take a look at t
 
 ## Create a cookie group
 
-When adding multiple cookies through your app it may become handy to group them. This makes it possible for the customer to accept all of your cookies at once and additionally enhances the readability of the cookie consent manager.
+When adding multiple cookies through your app, it may become handy to group them. This makes it possible for the customer to accept all of your cookies at once and additionally enhances the readability of the cookie consent manager.
 
 To add a cookie group, you can add a `groups` section within your `cookies` section in your `manifest.xml`. In the following example, we use the cookie that we created in the previous section but display it in a cookie group:
 
-::: code-group
-
-```xml [manifest.xml]
-<?xml version="1.0" encoding="UTF-8"?>
+```XML
+<?XML version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
         <name>ExampleAppWithCookies</name>
@@ -89,8 +83,6 @@ To add a cookie group, you can add a `groups` section within your `cookies` sect
 </manifest>
 ```
 
-:::
-
 A `group` element consists of three child elements to configure the cookie group. Here is a description of all of them:
 
 * `snippet-name` (required): A string that represents the label of the cookie group in the cookie consent manager. To provide translations this should be the key of a Storefront snippet.
@@ -105,9 +97,8 @@ You can assign your app's cookies to Shopware's standard cookie groups by using 
 
 The following example shows how to assign cookies to the **Marketing group**:
 
-::: code-group
-```xml [manifest.xml]
-<?xml version="1.0" encoding="UTF-8"?>
+```XML
+<?XML version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
     <meta>
@@ -140,7 +131,6 @@ The following example shows how to assign cookies to the **Marketing group**:
     </cookies>
 </manifest>
 ```
-:::
 
 ## Snippet handling
 

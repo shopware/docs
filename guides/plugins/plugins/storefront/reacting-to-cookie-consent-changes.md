@@ -13,7 +13,7 @@ This guide explains how to react to changes in cookie consent made by the user v
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../plugin-base-guide) as well as the [Adding a cookie to the consent manager](add-cookie-to-manager) guide, so make sure to know those beforehand. Also nice to know is the guide about [Reacting to javascript events](reacting-to-javascript-events), since this will be done here, same as how to [create and load a JavaScript](add-custom-javascript) file in the first place.
+This guide is built upon both the [Plugin base guide](../plugin-base-guide) and the [Adding a cookie to the consent manager](add-cookie-to-manager) guide, so make sure to know those beforehand. Also, nice to know is the guide about [Reacting to javascript events](reacting-to-javascript-events), since this will be done here, same as how to [create and load a JavaScript](add-custom-javascript) file in the first place.
 
 ::: info
 For a comprehensive understanding of Shopware's cookie consent system, see the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management).
