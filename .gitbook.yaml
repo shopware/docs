@@ -84,3 +84,5 @@ redirects:
     guides/plugins/plugins/testing/end-to-end-testing.html: guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing.html
     resources/guidelines/testing/cypress-best-practices.html: guides/plugins/plugins/testing/cypress/cypress-best-practises.html
     resources/guidelines/trouble-shoting.html: resources/guidelines/troubleshooting.html
+    products/extensions/subscriptions/guides/event.html: products/extensions/subscriptions/guides/separate-checkout.html
+    products/extensions/subscriptions/guides/request-scoping.html: products/extensions/subscriptions/guides/separate-checkout.html
