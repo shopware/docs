@@ -23,13 +23,13 @@ This guide is built upon the [Plugin base guide](../plugin-base-guide), so have 
 
 Adding custom cookies requires you to listen to the `CookieGroupsCollectEvent` and add your custom cookies to the collection.
 
-::: warning
-Since Shopware 6.7.3.0, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
+::: tip
+It is recommended to use an event listener if you're listening to a single event. If you need to react to multiple events, an event subscriber is the better choice.
 :::
 
-### Registering your event subscriber
+### Registering your event listener
 
-Start with creating the `services.xml` and registering your event subscriber.
+Start with creating the `services.xml` and registering your event listener.
 
 ```xml
 // <plugin root>/src/Resources/config/services.xml
@@ -40,43 +40,39 @@ Start with creating the `services.xml` and registering your event subscriber.
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="PluginName\Subscriber\CookieSubscriber">
-            <tag name="kernel.event_subscriber"/>
+        <service id="PluginName\Listener\CookieListener">
+            <tag name="kernel.event_listener" event="Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent" method="onCookieGroupsCollect"/>
         </service>
     </services>
 </container>
 ```
 
-In the next step we'll create the actual subscriber class.
+In the next step we'll create the actual listener class.
 
-### Creating the subscriber
+### Creating the listener
 
-We need to create a class called `CookieSubscriber`, which implements the `EventSubscriberInterface`. The `getSubscribedEvents` method returns an array of events that we want to listen to. In our case, this is the `CookieGroupsCollectEvent`.
+We need to create a class called `CookieListener`. The method `onCookieGroupsCollect` will be executed once the `CookieGroupsCollectEvent` is dispatched.
 
 The event object that is passed to our listener method contains the cookie groups collection, which we can use to add our custom cookies.
+
+::: warning
+Since Shopware 6.7.3.0, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
+:::
 
 Let's have a look at an example:
 
 ```php
-// <plugin root>/src/Subscriber/CookieSubscriber.php
+// <plugin root>/src/Listener/CookieListener.php
 <?php declare(strict_types=1);
 
-namespace PluginName\Subscriber;
+namespace PluginName\Listener;
 
 use Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent;
 use Shopware\Core\Framework\Cookie\CookieEntry;
 use Shopware\Core\Framework\Cookie\CookieGroup;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class CookieSubscriber implements EventSubscriberInterface
+class CookieListener
 {
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            CookieGroupsCollectEvent::class => 'onCookieGroupsCollect'
-        ];
-    }
-
     public function onCookieGroupsCollect(CookieGroupsCollectEvent $event): void
     {
         $cookieGroups = $event->getCookieGroups();
