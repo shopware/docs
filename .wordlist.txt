@@ -403,6 +403,7 @@ FrameworkBundle
 FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
+FroshPlatformTemplateMail
 FroshTools
 Fullstack
 GBP
@@ -519,6 +520,7 @@ LongText
 LongTextField
 Lychee
 MACOSX
+MJML
 MRs
 MVC
 MailAware
@@ -527,6 +529,7 @@ MailService
 MailStorer
 Mailcatcher
 Mailhog
+Mailjet
 Mailpit
 MaintenancePage
 ManufacturerAttributeDataSet
