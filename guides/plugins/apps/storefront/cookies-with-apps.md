@@ -101,54 +101,12 @@ For a complete reference of the structure of the manifest file, take a look at t
 
 ## Assigning Cookies to Standard Cookie Groups
 
-Apps can assign cookies to Shopware's standard cookie groups by using the built-in cookie group snippet names in your manifest.xml.
+You can assign your app's cookies to Shopware's standard cookie groups by using one of the built-in snippet names in your `manifest.xml`: `cookie.groupRequired`, `cookie.groupComfortFeatures`, `cookie.groupStatistical`, and `cookie.groupMarketing`.
 
-::: info
-For a complete overview of cookie categories and their purposes, see the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management#cookie-categories).
-:::
-
-### Example: Assigning Cookies to Different Groups
-
-Here's how to assign your app's cookies to different standard groups in your `manifest.xml`:
+The following example shows how to assign cookies to the **Marketing group**:
 
 ::: code-group
-
-```xml [Statistical]
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
-    <meta>
-        <name>MyApp</name>
-        <label>My App</label>
-        <version>1.0.0</version>
-        <author>Your Name</author>
-    </meta>
-
-    <cookies>
-        <!-- Analytics cookies go to Statistical group -->
-        <group>
-            <snippet-name>cookie.groupStatistical</snippet-name>
-            <entries>
-                <cookie>
-                    <cookie>myapp_analytics_session</cookie>
-                    <snippet-name>myapp.cookie.analyticsSession</snippet-name>
-                    <snippet-description>myapp.cookie.analyticsSessionDescription</snippet-description>
-                    <value>1</value>
-                    <expiration>30</expiration>
-                </cookie>
-                <cookie>
-                    <cookie>myapp_pageview_tracker</cookie>
-                    <snippet-name>myapp.cookie.pageviewTracker</snippet-name>
-                    <value>1</value>
-                    <expiration>30</expiration>
-                </cookie>
-            </entries>
-        </group>
-    </cookies>
-</manifest>
-```
-
-```xml [Marketing]
+```xml [manifest.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
@@ -182,65 +140,6 @@ Here's how to assign your app's cookies to different standard groups in your `ma
     </cookies>
 </manifest>
 ```
-
-```xml [Comfort Features]
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
-    <meta>
-        <name>MyApp</name>
-        <label>My App</label>
-        <version>1.0.0</version>
-        <author>Your Name</author>
-    </meta>
-
-    <cookies>
-        <!-- User preferences go to Comfort Features group -->
-        <group>
-            <snippet-name>cookie.groupComfortFeatures</snippet-name>
-            <entries>
-                <cookie>
-                    <cookie>myapp_user_preferences</cookie>
-                    <snippet-name>myapp.cookie.userPreferences</snippet-name>
-                    <snippet-description>myapp.cookie.userPreferencesDescription</snippet-description>
-                    <value>{}</value>
-                    <expiration>365</expiration>
-                </cookie>
-            </entries>
-        </group>
-    </cookies>
-</manifest>
-```
-
-```xml [Required]
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/refs/tags/v6.7.4.0/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
-    <meta>
-        <name>MyApp</name>
-        <label>My App</label>
-        <version>1.0.0</version>
-        <author>Your Name</author>
-    </meta>
-
-    <cookies>
-        <!-- Essential cookies go to Required group (rarely needed for apps) -->
-        <group>
-            <snippet-name>cookie.groupRequired</snippet-name>
-            <entries>
-                <cookie>
-                    <cookie>myapp_essential_functionality</cookie>
-                    <snippet-name>myapp.cookie.essential</snippet-name>
-                    <snippet-description>myapp.cookie.essentialDescription</snippet-description>
-                    <value>1</value>
-                    <expiration>365</expiration>
-                </cookie>
-            </entries>
-        </group>
-    </cookies>
-</manifest>
-```
-
 :::
 
 ## Snippet handling

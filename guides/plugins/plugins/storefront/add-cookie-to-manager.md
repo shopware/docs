@@ -41,7 +41,7 @@ Start with creating the `services.xml` and registering your event listener.
 
     <services>
         <service id="PluginName\Listener\CookieListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent" method="onCookieGroupsCollect"/>
+            <tag name="kernel.event_listener" event="Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent"/>
         </service>
     </services>
 </container>
@@ -51,7 +51,7 @@ In the next step we'll create the actual listener class.
 
 ### Creating the listener
 
-We need to create a class called `CookieListener`. The method `onCookieGroupsCollect` will be executed once the `CookieGroupsCollectEvent` is dispatched.
+We need to create a class called `CookieListener` with an `__invoke` method. This method will be executed once the `CookieGroupsCollectEvent` is dispatched.
 
 The event object that is passed to our listener method contains the cookie groups collection, which we can use to add our custom cookies.
 
@@ -73,7 +73,7 @@ use Shopware\Core\Framework\Cookie\CookieGroup;
 
 class CookieListener
 {
-    public function onCookieGroupsCollect(CookieGroupsCollectEvent $event): void
+    public function __invoke(CookieGroupsCollectEvent $event): void
     {
         $cookieGroups = $event->getCookieGroups();
 
