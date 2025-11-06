@@ -17,9 +17,9 @@ In this guide, we will run PHP, Node, and all required services in Docker contai
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) installed and running. OrbStack is a fast, free (for personal use) alternative to Docker.
-- make installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS)
-- Docker Compose installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
+- [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) is installed and running. OrbStack is a fast, free (for personal use) alternative to Docker.
+- `make` is installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS)
+- `Docker Compose` is installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 - Enough disk and network capacity to pull images (~500MB+ per image depending on tags)
 
 ## Pre-pull the image (optional)
@@ -66,22 +66,22 @@ Shopware projects include files that use a combination of Symfony, Composer, Doc
 <details>
 <summary>Project structure explained (click to expand)</summary>
 
-| Item | Type | Purpose / what it contains | Notes |
-|------|------|-----------------------------|---------------------|
-| **bin/** | Directory | Executable scripts (e.g., `bin/console` — the main CLI for Shopware/Symfony). | Think of it like `npm run` or `go run` scripts. Use `bin/console` to run commands inside the app. |
-| **compose.yaml** | Docker | Defines the Docker services (web, database, mailpit, etc.). | Equivalent to your project’s “infrastructure recipe.” |
-| **compose.override.yaml** | Docker | Local overrides for the default Docker Compose stack (e.g., port mappings, extra volumes). | Optional; used to customize or extend services locally. |
-| **composer.json** | PHP dependency manifest | Lists PHP dependencies and metadata (like `package.json`). | `composer install` reads this. |
-| **composer.lock** | Dependency lock file | Locks exact versions of PHP packages. | Don’t edit manually; committed to git. |
-| **config/** | Directory | Symfony configuration files (framework, database, mail, etc.). | Similar to `config/` in many web frameworks. |
-| **custom/** | Directory | Your plugins, themes, or app customizations. | This is where you add new extensions — your “src” for Shopware plugins. |
-| **files/** | Directory | Uploaded media and temporary files. | Ignored by git; generated at runtime. |
-| **Makefile** | Build helper | Shortcuts for Docker tasks (`make up`, `make setup`, etc.). | Replaces long Docker commands with memorable aliases. |
-| **public/** | Web root | The actual web-server-accessible directory (contains `index.php`, assets, etc.). | Like `/dist` in JS frameworks or `/public_html`. |
-| **src/** | Source code | Shopware’s core application source. | Where the main PHP codebase lives; not usually edited in a project clone. |
-| **symfony.lock** | Symfony dependency snapshot | Records Symfony recipes applied during setup. | Used internally by Symfony Flex; no manual editing. |
-| **var/** | Runtime data | Cache, logs, temporary files. | Can safely be deleted (Shopware rebuilds it). |
-| **vendor/** | Dependency code | All installed PHP libraries from Composer. | Analogous to `node_modules/`. |
+| Item                      | Type                        | Purpose / what it contains                                                                 | Notes                                                                                             |
+|---------------------------|-----------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| **bin/**                  | Directory                   | Executable scripts (e.g., `bin/console` — the main CLI for Shopware/Symfony).              | Think of it like `npm run` or `go run` scripts. Use `bin/console` to run commands inside the app. |
+| **compose.yaml**          | Docker                      | Defines the Docker services (web, database, mailpit, etc.).                                | Equivalent to your project’s “infrastructure recipe.”                                             |
+| **compose.override.yaml** | Docker                      | Local overrides for the default Docker Compose stack (e.g., port mappings, extra volumes). | Optional; used to customize or extend services locally.                                           |
+| **composer.json**         | PHP dependency manifest     | Lists PHP dependencies and metadata (like `package.json`).                                 | `composer install` reads this.                                                                    |
+| **composer.lock**         | Dependency lock file        | Locks exact versions of PHP packages.                                                      | Don’t edit manually; committed to git.                                                            |
+| **config/**               | Directory                   | Symfony configuration files (framework, database, mail, etc.).                             | Similar to `config/` in many web frameworks.                                                      |
+| **custom/**               | Directory                   | Your plugins, themes, or app customizations.                                               | This is where you add new extensions — your “src” for Shopware plugins.                           |
+| **files/**                | Directory                   | Uploaded media and temporary files.                                                        | Ignored by git; generated at runtime.                                                             |
+| **Makefile**              | Build helper                | Shortcuts for Docker tasks (`make up`, `make setup`, etc.).                                | Replaces long Docker commands with memorable aliases.                                             |
+| **public/**               | Web root                    | The actual web-server-accessible directory (contains `index.php`, assets, etc.).           | Like `/dist` in JS frameworks or `/public_html`.                                                  |
+| **src/**                  | Source code                 | Shopware’s core application source.                                                        | Where the main PHP codebase lives; not usually edited in a project clone.                         |
+| **symfony.lock**          | Symfony dependency snapshot | Records Symfony recipes applied during setup.                                              | Used internally by Symfony Flex; no manual editing.                                               |
+| **var/**                  | Runtime data                | Cache, logs, temporary files.                                                              | Can safely be deleted (Shopware rebuilds it).                                                     |
+| **vendor/**               | Dependency code             | All installed PHP libraries from Composer.                                                 | Analogous to `node_modules/`.                                                                     |
 
 </details>
 
@@ -108,14 +108,14 @@ This command builds (if needed) and starts all required Docker services (web ser
 <details>
 <summary>Components explained (click to expand)</summary>
 
-| Name | Type | Purpose |
-|------|------|----------|
-| **Network `my-project_default`** | Docker network | A private virtual network so all containers can communicate (for example, the web container connects to the database). |
-| **Volume `my-project_db-data`** | Persistent storage | Stores the MariaDB database files so your data isn’t lost when containers are stopped or rebuilt. |
-| **Container `my-project-mailer-1`** | Mailpit service | Captures outgoing emails for local testing. View at [http://localhost:8025](http://localhost:8025). |
-| **Container `my-project-database-1`** | MariaDB service | Runs the Shopware database. Inside the Docker network its host name is `database`. |
-| **Container `my-project-web-1`** | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at [http://localhost:8000](http://localhost:8000). |
-| **Container `my-project-adminer-1`** | Adminer (DB UI) | Lightweight web interface for viewing and editing your database. Available at [http://localhost:8080](http://localhost:8080). |
+| Name                                  | Type                    | Purpose                                                                                                                       |
+|---------------------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **Network `my-project_default`**      | Docker network          | A private virtual network so all containers can communicate (for example, the web container connects to the database).        |
+| **Volume `my-project_db-data`**       | Persistent storage      | Stores the MariaDB database files so your data isn’t lost when containers are stopped or rebuilt.                             |
+| **Container `my-project-mailer-1`**   | Mailpit service         | Captures outgoing emails for local testing. View at [http://localhost:8025](http://localhost:8025).                           |
+| **Container `my-project-database-1`** | MariaDB service         | Runs the Shopware database. Inside the Docker network its host name is `database`.                                            |
+| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at [http://localhost:8000](http://localhost:8000).                |
+| **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at [http://localhost:8080](http://localhost:8080). |
 
 </details>
 
@@ -193,7 +193,7 @@ The `-v` flag will delete the containers, networks, and volumes, meaning all sto
 
 ### Known issue on Linux hosts
 
-If you are using Docker on Linux, your host user id (uid) must be **1000** for file permissions to work correctly inside the containers. You can check your identification (ID) with:
+If you are using Docker on Linux, your host user id (UID) must be **1000** for file permissions to work correctly inside the containers. You can check your identification (ID) with:
 
 ```bash
 id -u
@@ -374,7 +374,7 @@ services:
       - 9001:9001
     volumes:
       - minio-data:/data
-  
+
   minio-setup:
     image: minio/mc
     depends_on:
@@ -444,7 +444,7 @@ bin/console theme:compile
 
 ### Using OrbStack routing (optional)
 
-If you're using [OrbStack](https://orbstack.dev) on macOS, you can take advantage of its built-in routing feature.  
+If you're using [OrbStack](https://orbstack.dev) on macOS, you can take advantage of its built-in routing feature.
 OrbStack automatically assigns local `.orb.local` URLs to your containers, so you don’t need to manage port mappings manually. This allows running multiple Shopware instances at the same time without port conflicts.
 
 To enable it, create a `compose.override.yaml` in your project root with the following content:
