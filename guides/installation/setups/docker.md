@@ -107,6 +107,7 @@ This command builds (if needed) and starts all required Docker services (web ser
 
 <details>
 <summary>Components explained (click to expand)</summary>
+
 | Name | Type | Purpose |
 |------|------|----------|
 | **Network `my-project_default`** | Docker network | A private virtual network so all containers can communicate (for example, the web container connects to the database). |
@@ -116,6 +117,8 @@ This command builds (if needed) and starts all required Docker services (web ser
 | **Container `my-project-web-1`** | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at [http://localhost:8000](http://localhost:8000). |
 | **Container `my-project-adminer-1`** | Adminer (DB UI) | Lightweight web interface for viewing and editing your database. Available at [http://localhost:8080](http://localhost:8080). |
 
+</details>
+
 💡 **Tip:** You can check container status anytime with:
 
 ```bash
@@ -123,7 +126,6 @@ docker compose ps
 ```
 
 “Healthy” means the service passed its internal health check and is ready to use.
-</details>
 
 Once the containers are running, you can install Shopware in one of two ways:
 
