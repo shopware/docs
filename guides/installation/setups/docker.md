@@ -193,7 +193,7 @@ The `-v` flag will delete the containers, networks, and volumes, meaning all sto
 
 ### Known issue on Linux hosts
 
-If you are using Docker on Linux, your host user id (UID) must be **1000** for file permissions to work correctly inside the containers. You can check your identification (ID) with:
+If you are using Docker on Linux, your host user id (UID) must be **1000** for file permissions to work correctly inside the containers. You can check your user ID with:
 
 ```bash
 id -u
