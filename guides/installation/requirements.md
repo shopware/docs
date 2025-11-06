@@ -97,37 +97,37 @@ Make sure to use the correct PHP binary, as CLI and FPM often have different `ph
 Ask your hosting provider for the correct PHP binary and how to adjust `php.ini`.
 :::
 
-* `php -v`: Show CLI PHP version
-* `php -m`: List CLI PHP modules
-* `php -i | grep memory_limit`: Show your CLI PHP memory limit
-* `composer -V`: Show composer version
-* `node -v`: Show Node version
-* `npm -v`: Show NPM version
+- `php -v`: Show CLI PHP version
+- `php -m`: List CLI PHP modules
+- `php -i | grep memory_limit`: Show your CLI PHP memory limit
+- `composer -V`: Show composer version
+- `node -v`: Show Node version
+- `npm -v`: Show NPM version
 
 ### PHP
 
-* Compatible versions: 8.2, 8.3, 8.4
-* `memory_limit`: 512MB minimum
-* `max_execution_time`: 30 seconds minimum
-* Extensions:
-  * `ext-amqp` (optional; required for message queue, which is the default on PaaS)
-  * `ext-curl`
-  * `ext-dom`
-  * `ext-fileinfo`
-  * `ext-gd`
-  * `ext-iconv`
-  * `ext-intl`
-  * `ext-mbstring`
-  * `ext-openssl`
-  * `ext-pcre`
-  * `ext-pdo`
-  * `ext-pdo_mysql`
-  * `ext-phar`
-  * `ext-simplexml`
-  * `ext-xml`
-  * `ext-zip`
-  * `ext-zlib`
-* Composer recommended version: 2.2 or higher
+- Compatible versions: 8.2, 8.3, 8.4
+- `memory_limit`: 512MB minimum
+- `max_execution_time`: 30 seconds minimum
+- Extensions:
+  - `ext-amqp` (optional; required for message queue, which is the default on PaaS)
+  - `ext-curl`
+  - `ext-dom`
+  - `ext-fileinfo`
+  - `ext-gd`
+  - `ext-iconv`
+  - `ext-intl`
+  - `ext-mbstring`
+  - `ext-openssl`
+  - `ext-pcre`
+  - `ext-pdo`
+  - `ext-pdo_mysql`
+  - `ext-phar`
+  - `ext-simplexml`
+  - `ext-xml`
+  - `ext-zip`
+  - `ext-zlib`
+- Composer recommended version: 2.2 or higher
 
 **Install PHP and Composer**:
 
@@ -179,13 +179,13 @@ brew install php@8.4 composer
 
 **MySQL**
 
-  * Recommended: 8.4
-  * Minimum: 8.0.22
+  - Recommended: 8.4
+  - Minimum: 8.0.22
 
 **MariaDB**
 
-  * Recommended: 11.4
-  * Minimum: 10.11.6 or 11.0.4
+  - Recommended: 11.4
+  - Minimum: 10.11.6 or 11.0.4
 
 Set `max_allowed_packet` to at least 32MB for optimal MySQL performance.
 
@@ -217,8 +217,8 @@ brew install mariadb
 
 **Node.js**
 
-  * Recommended: 24.0.0 or higher
-  * Minimum: 20.0.0
+  - Recommended: 24.0.0 or higher
+  - Minimum: 20.0.0
 
 **Install Node.js**:
 
@@ -249,13 +249,13 @@ brew install node@22
 
 Shopware uses the Redis Protocol and therefore supports the following key/value stores:
 
-* [Valkey (recommended)](https://valkey.io/)
-* [Redis v7 or higher](https://redis.io)
-* [Redict](https://redict.io)
-* [KeyDB](https://docs.keydb.dev)
-* [Dragonfly](https://www.dragonflydb.io)
+- [Valkey (recommended)](https://valkey.io/)
+- [Redis v7 or higher](https://redis.io)
+- [Redict](https://redict.io)
+- [KeyDB](https://docs.keydb.dev)
+- [Dragonfly](https://www.dragonflydb.io)
 
-* Recommended configuration: `maxmemory-policy`: `volatile-lfu`
+- Recommended configuration: `maxmemory-policy`: `volatile-lfu`
 
 ## Web server
 
@@ -269,13 +269,13 @@ For local development, the [Symfony CLI](https://symfony.com/doc/current/setup/s
 
 We recommend the following stack for optimal development performance:
 
-* Web server: Caddy
-* PHP: 8.4
-* SQL: MariaDB 11.4
-* Node: 24
-* Search: OpenSearch 2.17.1
-* Queue: RabbitMQ
-* Cache: Valkey 8.0
+- Web server: Caddy
+- PHP: 8.4
+- SQL: MariaDB 11.4
+- Node: 24
+- Search: OpenSearch 2.17.1
+- Queue: RabbitMQ
+- Cache: Valkey 8.0
 
 Recommended PHP ini:
 
