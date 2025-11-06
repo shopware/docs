@@ -5,18 +5,26 @@ nav:
 
 ---
 
-# Installation Overview
+# Shopware 6 installation overview
 
-This section discusses ways to set up Shopware on local machines so you can use it as a foundation for your development.
+Welcome! This guide helps you set up a **Shopware 6 development environment**—whether you're building a shop project; developing a plugin, app or theme, or contributing to the Shopware core.
 
-There are a couple of ways to get Shopware running on your system, together with the most useful services for data storage and the web server.
+We'll focus on three supported setups, each tailored for different developer needs and environments. All of them start from the **Shopware Project Template**.
 
-## Template
+## The Shopware project template
 
-Regardless of your choice of setup, all setup methods are based on the [Project template](./template.md). This template is a new Composer project, which requires Shopware itself. Therefore, you can further customize your installation with additional extensions, themes, or configurations.
+Every setup begins with the [Project template](./template.md), which creates a new Composer project that includes Shopware as a dependency. You can then extend your installation with additional extensions (plugins or custom apps), themes, or configurations, depending on your project goals.
 
-## Setups
+## Setup options
 
-The following setups are available for Shopware 6:
+The three setups we'll highlight here:
+
+| Setup | Description | When to use |
+|:------|:-------------|:------------|
+| 🐳 **[Docker Setup](./setups/docker.md)** | A complete, containerized environment with all required services (database, search, cache, etc.). | Recommended for most users, as it provides production-like conditions and consistency across teams and CI/CD. |
+| ⚡ **[Symfony CLI Setup](./setups/symfony-cli.md)** | A lightweight setup that runs directly on your host using your local PHP and Composer. | Best for quick plugin or theme development, or when Docker isn’t available. |
+| ⚙️ **[Devenv Setup](./setups/devenv.md)** | A modern, reproducible setup based on Nix for cross-platform consistency. | Ideal for core contributors or advanced users managing multiple Shopware versions. |
+
+If you’re unsure which to choose, start with the Docker setup. It offers the smoothest onboarding and most complete environment.
 
 <PageRef page="./setups/" />
