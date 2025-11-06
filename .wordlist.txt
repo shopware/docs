@@ -216,6 +216,7 @@ ContextResolver
 ContextTokenAware
 ContextTokenStorer
 CookiePermission
+CookieProviderInterface
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -430,6 +431,7 @@ Homebrew
 Hono
 HookClasses
 HookExecutor
+Hotjar
 HowTos
 IDEs
 IETF
@@ -775,6 +777,7 @@ RegistrationCompletedEvent
 RegistrationService
 Reindexes
 ReinstallApps
+Remarketing
 RemoteAddress
 RemoteAddressField
 Repo
@@ -1687,6 +1690,7 @@ regexes
 reindex
 reinitializing
 reinstallation
+remarketing
 remoteaddress
 removeBy
 renameMedia
