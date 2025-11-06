@@ -179,13 +179,13 @@ brew install php@8.4 composer
 
 **MySQL**
 
-  - Recommended: 8.4
-  - Minimum: 8.0.22
+- Recommended: 8.4
+- Minimum: 8.0.22
 
 **MariaDB**
 
-  - Recommended: 11.4
-  - Minimum: 10.11.6 or 11.0.4
+- Recommended: 11.4
+- Minimum: 10.11.6 or 11.0.4
 
 Set `max_allowed_packet` to at least 32MB for optimal MySQL performance.
 
@@ -217,8 +217,8 @@ brew install mariadb
 
 **Node.js**
 
-  - Recommended: 24.0.0 or higher
-  - Minimum: 20.0.0
+- Recommended: 24.0.0 or higher
+- Minimum: 20.0.0
 
 **Install Node.js**:
 
