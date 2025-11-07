@@ -105,7 +105,7 @@ devenv up
 ```
 
 ::: warning
-Before starting Devenv, ensure that common service ports (e.g., `80`, `3306`, `6379`) are not already in use. If they are, Devenv will fail to start the corresponding services.
+Before starting Devenv, ensure that common service ports (e.g., `8000`, `3306`, `6379`) are not already in use. If they are, Devenv will fail to start the corresponding services.
 :::
 
 Check for active services:
