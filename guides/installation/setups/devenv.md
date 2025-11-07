@@ -114,7 +114,7 @@ Check for active services:
 <Tab title="macOS">
 
 ```bash
-lsof -i :80 -i :3306 -i :6379
+lsof -i :80 -i :3306 -i :6379 -i :8000
 ```
 
 </Tab>
@@ -122,13 +122,13 @@ lsof -i :80 -i :3306 -i :6379
 <Tab title="Linux (Ubuntu, Debian, etc.)">
 
 ```bash
-ss -tulpn | grep ':80\|:3306\|:6379'
+ss -tulpn | grep ':80\|:3306\|:6379\|:8000'
 ```
 
 If you see no output for a given port, rerun the check with elevated privileges to include system services. For example:
 
 ```bash
-sudo ss -tulpn | grep ':80\|:3306\|:6379'
+sudo ss -tulpn | grep ':80\|:3306\|:6379\|:8000'
 ```
 
 </Tab>
@@ -159,7 +159,7 @@ Then open a *new terminal* and enter the Devenv shell, which provides PHP, Compo
 devenv shell
 ```
 
-Inside the devenv shell, install Shopware:
+Inside the Devenv shell, install Shopware:
 
 ```bash
 bin/console system:install --basic-setup --create-database --force
@@ -186,7 +186,7 @@ If installation completes without schema creation, run `bin/console database:mig
 
 ### Direnv (optional)
 
-[Direnv](https://direnv.net/) makes it easier to work with multiple Devenv projects by automatically activating the correct environment when you enter a project directory. It's optional but recommended for smoother workflow.
+[Direnv](https://direnv.net/) makes it easier to work with multiple Devenv projects by automatically activating the correct environment when you enter a project directory. It's optional but recommended for a smoother workflow.
 
 With Direnv, you don’t have to run `devenv shell` manually every time you use the binaries. The environment loads automatically.
 
@@ -213,7 +213,14 @@ apt install direnv
 </Tab>
 
 <Tab title="Other systems">
-Follow the installation steps for your platform in Direnv's [official documentation](https://direnv.net/docs/hook.html).
+
+If you have [Nix](https://nixos.org) installed, you can install Direnv using:
+
+```bash
+nix profile install nixpkgs#direnv
+```
+
+Otherwise, follow the installation steps for your platform in Direnv's [official documentation](https://direnv.net/docs/hook.html).
 </Tab>
 </Tabs>
 
@@ -262,6 +269,12 @@ When you enter a Devenv project directory for the first time, allow Direnv to lo
 
 ```bash
 direnv allow
+```
+
+If you change the Devenv configuration or your `.envrc` file after running `direnv allow`, reload the environment with:
+
+```bash
+direnv reload
 ```
 
 Direnv will now automatically activate the Devenv environment whenever you enter the directory.
