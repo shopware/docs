@@ -171,6 +171,18 @@ sudo chmod +x /usr/local/bin/composer
 brew install php@8.4 composer
 ```
 
+If you use Homebrew PHP, the `intl` extension may not be included by default. Install it separately with:
+
+```bash
+brew install php-intl
+```
+
+Then restart PHP and verify:
+
+```bash
+php -m | grep intl
+```
+
 </Tab>
 
 </Tabs>
