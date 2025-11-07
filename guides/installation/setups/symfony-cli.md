@@ -21,6 +21,8 @@ Before you begin, make sure your system meets the [Shopware 6 requirements](../r
 - [Node.js 20+](https://nodejs.org/en/download) and npm
 - A running MySQL 8 or MariaDB 11 database (local or remote)
 
+You’ll also need a working web server. The Symfony CLI can provide one automatically for development.
+
 > **macOS note:** If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
 
 Optional tools:
