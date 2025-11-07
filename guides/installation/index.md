@@ -21,9 +21,9 @@ The three setups we'll highlight here:
 
 | Setup | Description | When to use |
 |:------|:-------------|:------------|
-| 🐳 **[Docker Setup](./setups/docker.md)** | A complete, containerized environment with all required services (database, search, cache, etc.). | Recommended for most users, as it provides production-like conditions and consistency across teams and CI/CD. |
-| ⚡ **[Symfony CLI Setup](./setups/symfony-cli.md)** | A lightweight setup that runs directly on your host using your local PHP and Composer. | Best for quick plugin or theme development, or when Docker isn’t available. |
-| ⚙️ **[Devenv Setup](./setups/devenv.md)** | A modern, reproducible setup based on Nix for cross-platform consistency. | Ideal for core contributors or advanced users managing multiple Shopware versions. |
+| **[Docker Setup](./setups/docker.md)** | A complete, containerized environment with all required services (database, search, cache, etc.). | Recommended for most users, as it provides production-like conditions and consistency across teams and CI/CD. |
+| **[Symfony CLI Setup](./setups/symfony-cli.md)** | A lightweight setup that runs directly on your host using your local PHP and Composer. | Best for quick plugin or theme development, or when Docker isn’t available. |
+| **[Devenv Setup](./setups/devenv.md)** | A modern, reproducible setup based on Nix for cross-platform consistency. | Ideal for core contributors or advanced users managing multiple Shopware versions. |
 
 If you’re unsure which to choose, start with the Docker setup. It offers the smoothest onboarding and most complete environment.
 
