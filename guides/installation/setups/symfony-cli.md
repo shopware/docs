@@ -5,36 +5,47 @@ nav:
 
 ---
 
-# Symfony CLI
+# Symfony CLI setup
 
-Symfony CLI is a popular tool in the Symfony ecosystem that lets you run a local development environment without Docker. It is a lightweight alternative for running Shopware on your host system.
+Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
-Shopware recommends [Docker](./docker.md) as the default setup for most users because it mirrors production and includes all services out of the box. However, if you already have PHP and a database locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
+Shopware recommends [Docker](./docker.md) as the default setup for most users because it mirrors production and includes all services out of the box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
 
 ## Prerequisites
 
-- Install Symfony CLI locally, following the official [Symfony CLI installation guide](https://symfony.com/download).
-- PHP, Composer, and Node installed locally. See [Requirements](../requirements.md) for guidance.
-- A database server such as MySQL or MariaDB. Install this locally, using your system package manager. Or, if Docker is available, you can optionally run the database in a container while keeping PHP and Shopware local.
+Before you begin, make sure your system meets the [Shopware 6 requirements](../requirements.md). You’ll need the following tools installed on your host machine:
+
+- [Symfony CLI](https://symfony.com/download)
+- PHP 8.2 or higher with the required extensions; see the [Requirements page](../requirements.md) for the complete list
+- [Composer 2.x](https://getcomposer.org/)
+- [Node.js 20+](https://nodejs.org/en/download) and npm
+- A running MySQL 8 or MariaDB 11 database (local or remote)
+
+> **macOS note:** If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
+
+Optional tools:
+
+- [Elasticsearch 8](https://www.elastic.co/elasticsearch/) for product search and indexing
+- Docker (for running only the database while keeping PHP local)
 
 ## Create a new project
 
-This command downloads the latest Shopware Production template and installs all dependencies automatically. It’s the recommended way to start a new project because it ensures your setup matches the official Shopware structure:
+Run this command to create a new Shopware production project:
 
 ```bash
 composer create-project shopware/production <project-name>
 
-# or install a specific version
+# or specify a version
 composer create-project shopware/production:6.6.10.0 <project-name>
 ```
 
 During project creation, Symfony Flex asks whether you want to use Docker. Choose **Yes** if you want to run the database in a container, or **No** to use a local MySQL/MariaDB server.
 
+For more details, see the [Shopware Production template documentation](https://developer.shopware.com/docs/guides/installation/production.html).
+
 ## Configure the database connection
 
-Once the project is created, you’ll need to configure the database connection.
-
-After creating the project, update the `DATABASE_URL` in a `.env.local` file to match your local database settings. In the project root, create `.env.local` and add:
+After creating the project, define your database settings in a `.env.local` file in the project root:
 
 ```dotenv
 DATABASE_URL=mysql://username:password@localhost:3306/dbname
@@ -82,11 +93,11 @@ If you encounter file-permission issues when installing or rebuilding caches, ru
 
 ### Default Administration credentials
 
-Shopware creates a default administration user during installation:
+Shopware creates a default Administration user during installation:
 
-| Username | Password   |
-|:---------|:-----------|
-| `admin`  | `shopware` |
+| Username | Password |
+|:----------|:----------|
+| `admin` | `shopware` |
 
 **Tip**: Change these credentials after installation for security.
 
@@ -120,7 +131,7 @@ symfony server:stop
 
 **Tip**: If port 8000 is already in use, start the server on a different port: `symfony server:start --port=8080`
 
-## Change the PHP version (optional, recommended)
+## Set the PHP version (optional, recommended)
 
 Specify a PHP version to ensure consistent environments across team members.
 
