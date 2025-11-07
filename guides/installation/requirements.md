@@ -37,7 +37,7 @@ These recommendations ensure smooth local development regardless of setup:
 
 ## Permissions and networking
 
-- Ensure Docker or Symfony CLI has permission to bind to local ports (typically :80 or :8080).
+- Ensure Docker or Symfony CLI has permission to bind to local ports (typically:80 or:8080).
 - Allow your system’s firewall to let containers or local web servers communicate internally.
 - On Linux, you may need to add your user to the `docker` group:
 

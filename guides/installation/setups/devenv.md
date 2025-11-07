@@ -7,8 +7,6 @@ nav:
 
 # Devenv
 
-## What is Devenv?
-
 [Devenv](https://devenv.sh) is a Nix-based tool for defining and managing fully reproducible development environments for local workstations or continuous integration (CI) systems. It works like a dependency manager for your entire development stack.
 
 Instead of manually installing and configuring PHP, Node.js, MySQL, Redis, or other services, you describe your setup once in a `devenv.nix` file. Devenv then installs and runs the exact versions you specify, ensuring consistency across every developer’s machine.
@@ -56,7 +54,7 @@ After installation, restart your terminal to load Nix’s environment variables 
 The Determinate Systems installer also handles shell integration, including Zsh and [Oh My Zsh](https://ohmyz.sh/), so you don't need to manually copy Nix configuration lines into your shell startup files.
 
 ::: warning
-If you’ve previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts:
+If you have previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts:
 
 ```bash
 rm -rf ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.local/state/nix
@@ -102,7 +100,7 @@ lsof -i :8000 -i :3306 -i :6379 || ss -tulpn | grep ':8000\|:3306\|:6379'
 
 ### Shopware
 
-Depending on your goals, you can either create a new Shopware project using the production template, or contribute to the Shopware core, which already includes a `devenv.nix` file.
+Depending on your goals, you can either create a new Shopware project using the production template or contribute to the Shopware core, which already includes a `devenv.nix` file.
 
 <Tabs>
 <Tab title="New Shopware project">
@@ -376,25 +374,25 @@ Example:
 { pkgs, config, lib, ... }:
 
 {
-  # Disable a service
-  services.adminer.enable = false;
+ # Disable a service
+ services.adminer.enable = false;
   
-  # Use a custom virtual host
-  services.caddy.virtualHosts."http://shopware.swag" = {
-    extraConfig = ''
-      root * public
-      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
-      file_server
-    '';
-  };
+ # Use a custom virtual host
+ services.caddy.virtualHosts."http://shopware.swag" = {
+ extraConfig = ''
+ root * public
+ php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+ file_server
+ '';
+ };
   
-  # Customize nodejs version
-  languages.javascript = {
-    package = pkgs.nodejs-18_x;
-  };
+ # Customize nodejs version
+ languages.javascript = {
+ package = pkgs.nodejs-18_x;
+ };
 
-  # Override an environment variable
-  env.APP_URL = "http://shopware.swag:YOUR_CADDY_PORT";
+ # Override an environment variable
+ env.APP_URL = "http://shopware.swag:YOUR_CADDY_PORT";
 }
 ```
 
@@ -426,11 +424,11 @@ To enable [Blackfire](https://blackfire.io/) profiling in your Devenv setup, add
 { pkgs, config, lib, ... }:
 
 {
-  services.blackfire.enable = true;
-  services.blackfire.server-id = "<SERVER_ID>";
-  services.blackfire.server-token = "<SERVER_TOKEN>";
-  services.blackfire.client-id = "<CLIENT_ID>";
-  services.blackfire.client-token = "<CLIENT_TOKEN>";
+ services.blackfire.enable = true;
+ services.blackfire.server-id = "<SERVER_ID>";
+ services.blackfire.server-token = "<SERVER_TOKEN>";
+ services.blackfire.client-id = "<CLIENT_ID>";
+ services.blackfire.client-token = "<CLIENT_TOKEN>";
 }
 ```
 
@@ -443,13 +441,13 @@ To enable [Xdebug](https://xdebug.org/) for debugging or profiling, add the foll
 { pkgs, config, lib, ... }:
 
 {
-  # XDebug
-  languages.php.extensions = [ "xdebug" ];
-  languages.php.ini = ''
-    xdebug.mode = debug
-    xdebug.discover_client_host = 1
-    xdebug.client_host = 127.0.0.1
-  '';
+ # XDebug
+ languages.php.extensions = [ "xdebug" ];
+ languages.php.ini = ''
+ xdebug.mode = debug
+ xdebug.discover_client_host = 1
+ xdebug.client_host = 127.0.0.1
+ '';
 }
 ```
 
@@ -464,7 +462,7 @@ To switch from MySQL to [MariaDB](https://mariadb.org/), update your `devenv.loc
 { pkgs, config, lib, ... }:
 
 {
-  services.mysql.package = pkgs.mariadb;
+ services.mysql.package = pkgs.mariadb;
 }
 ```
 
@@ -477,11 +475,11 @@ You can change the default MySQL port if it conflicts with another service on yo
 { pkgs, config, lib, ... }:
 
 {
-  services.mysql.settings = {
-    mysqld = {
-      port = 33881;
-    };
-  };
+ services.mysql.settings = {
+ mysqld = {
+ port = 33881;
+ };
+ };
   
 }
 ```
@@ -500,13 +498,13 @@ You can adjust the Caddy web server configuration to use a different port or vir
 { pkgs, config, lib, ... }:
 
 {
-  services.caddy.virtualHosts.":8029" = {
-    extraConfig = ''
-      root * public
-      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
-      file_server
-    '';
-  };
+ services.caddy.virtualHosts.":8029" = {
+ extraConfig = ''
+ root * public
+ php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+ file_server
+ '';
+ };
 }
 ```
 
@@ -519,13 +517,13 @@ You can adjust the Caddy web server configuration to use a different port or vir
 { pkgs, config, lib, ... }:
 
 {
-  services.caddy.virtualHosts."http://shopware.swag:8029" = {
-    extraConfig = ''
-      root * public
-      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
-      file_server
-    '';
-  };
+ services.caddy.virtualHosts."http://shopware.swag:8029" = {
+ extraConfig = ''
+ root * public
+ php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+ file_server
+ '';
+ };
 }
 ```
 
@@ -541,7 +539,7 @@ If you need to change the default Adminer port (for example, to avoid conflicts 
 { pkgs, config, lib, ... }:
 
 {
-  services.adminer.listen = "127.0.0.1:9084";
+ services.adminer.listen = "127.0.0.1:9084";
 }
 ```
 
@@ -556,73 +554,73 @@ You can integrate [Varnish](https://varnish-cache.org/) into your local Shopware
 { pkgs, config, lib, ... }:
 
 {
-  # caddy config
-  services.caddy = {
-    enable = true;
+ # caddy config
+ services.caddy = {
+ enable = true;
 
-    # all traffic to localhost is redirected to varnish
-    virtualHosts."http://localhost" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:6081 {
-          # header_up solves this issue: https://discord.com/channels/1308047705309708348/1309107911175176217
-          header_up Host sw.localhost
-        }
-      '';
-    };
+ # all traffic to localhost is redirected to varnish
+ virtualHosts."http://localhost" = {
+ extraConfig = ''
+ reverse_proxy 127.0.0.1:6081 {
+ # header_up solves this issue: https://discord.com/channels/1308047705309708348/1309107911175176217
+ header_up Host sw.localhost
+ }
+ '';
+ };
 
-    # the actual shopware application is served from sw.localhost,
-    # choose any domain you want.
-    # you may need to add the domain to /etc/hosts:
-    # 127.0.0.1       sw.localhost
-    virtualHosts."http://sw.localhost" = {
-      extraConfig = ''
-        # set header to avoid CORS errors
-        header {
-            Access-Control-Allow-Origin *
-            Access-Control-Allow-Credentials true
-            Access-Control-Allow-Methods *
-            Access-Control-Allow-Headers *
-            defer
-        }
-        root * public
-        php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
-        encode zstd gzip
-        file_server
-        log {
-          output stderr
-          format console
-          level ERROR
-        }
-      '';
-    };
-  };
+ # the actual shopware application is served from sw.localhost,
+ # choose any domain you want.
+ # you may need to add the domain to /etc/hosts:
+ # 127.0.0.1       sw.localhost
+ virtualHosts."http://sw.localhost" = {
+ extraConfig = ''
+ # set header to avoid CORS errors
+ header {
+ Access-Control-Allow-Origin *
+ Access-Control-Allow-Credentials true
+ Access-Control-Allow-Methods *
+ Access-Control-Allow-Headers *
+ defer
+ }
+ root * public
+ php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+ encode zstd gzip
+ file_server
+ log {
+ output stderr
+ format console
+ level ERROR
+ }
+ '';
+ };
+ };
 
-  # varnish config
-  services.varnish = {
-    enable = true;
-    package = pkgs.varnish;
-    listen = "127.0.0.1:6081";
-    # enables xkey module
-    extraModules = [ pkgs.varnishPackages.modules ];
-    # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
-    vcl = ''
-      # ...
-      # Specify your app nodes here. Use round-robin balancing to add more than one.
-      backend default {
-          .host = "sw.localhost";
-          .port = "80";
-      }
-      # ...
-      # ACL for purgers IP. (This needs to contain app server ips)
-      acl purgers {
-          "sw.localhost";
-          "127.0.0.1";
-          "localhost";
-          "::1";
-      }
-      # ...
-    '';
-  };
+ # varnish config
+ services.varnish = {
+ enable = true;
+ package = pkgs.varnish;
+ listen = "127.0.0.1:6081";
+ # enables xkey module
+ extraModules = [ pkgs.varnishPackages.modules ];
+ # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
+ vcl = ''
+ # ...
+ # Specify your app nodes here. Use round-robin balancing to add more than one.
+ backend default {
+ .host = "sw.localhost";
+ .port = "80";
+ }
+ # ...
+ # ACL for purgers IP. (This needs to contain app server ips)
+ acl purgers {
+ "sw.localhost";
+ "127.0.0.1";
+ "localhost";
+ "::1";
+ }
+ # ...
+ '';
+ };
 }
 ```
 
@@ -642,27 +640,27 @@ Here are examples showing how to use older versions of MySQL and RabbitMQ in you
 
 ```nix
 {
-  services.mysql = let 
-    mysql8033 = pkgs.mysql80.overrideAttrs (oldAttrs: {
-      version = "8.0.33";
-      # the final url would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
-      # make sure the url exists. 
-      # alternatively you could use that url directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
-      # for reference see the [different fetchers](https://ryantm.github.io/nixpkgs/builders/fetchers/#chap-pkgs-fetchers)
-      src = pkgs.fetchFromGitHub {
-        owner = "mysql";
-        repo = "mysql-server";
-        rev = "mysql-8.0.33";
-        # leave empty on the first run, you will get prompted with the expected hash
-        sha256 = "sha256-s4llspXB+rCsGLEtI4WJiPYvtnWiKx51oAgxlg/lATg=";
-      };
-    });
-  in
-  {
-    enable = true;
-    package = mysql8033; # use the overridden package
-    # ...
-  };
+ services.mysql = let 
+ mysql8033 = pkgs.mysql80.overrideAttrs (oldAttrs: {
+ version = "8.0.33";
+ # the final url would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
+ # make sure the url exists. 
+ # alternatively you could use that url directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
+ # for reference see the [different fetchers](https://ryantm.github.io/nixpkgs/builders/fetchers/#chap-pkgs-fetchers)
+ src = pkgs.fetchFromGitHub {
+ owner = "mysql";
+ repo = "mysql-server";
+ rev = "mysql-8.0.33";
+ # leave empty on the first run, you will get prompted with the expected hash
+ sha256 = "sha256-s4llspXB+rCsGLEtI4WJiPYvtnWiKx51oAgxlg/lATg=";
+ };
+ });
+ in
+ {
+ enable = true;
+ package = mysql8033; # use the overridden package
+ # ...
+ };
 }
 ```
 
@@ -670,19 +668,19 @@ Here are examples showing how to use older versions of MySQL and RabbitMQ in you
 
 ```nix
 {
-  services.rabbitmq = let
-    rabbitmq3137 = pkgs.rabbitmq-server.overrideAttrs (oldAttrs: {
-      version = "3.13.7";
-      src = pkgs.fetchurl {
-        url = "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.7/rabbitmq-server-3.13.7.tar.xz";
-        sha256 = "sha256-GDUyYudwhQSLrFXO21W3fwmH2tl2STF9gSuZsb3GZh0=";
-      };
-    });
-  in
-  {
-    enable = true;
-    package = rabbitmq3137; # use the overridden package
-  };
+ services.rabbitmq = let
+ rabbitmq3137 = pkgs.rabbitmq-server.overrideAttrs (oldAttrs: {
+ version = "3.13.7";
+ src = pkgs.fetchurl {
+ url = "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.7/rabbitmq-server-3.13.7.tar.xz";
+ sha256 = "sha256-GDUyYudwhQSLrFXO21W3fwmH2tl2STF9gSuZsb3GZh0=";
+ };
+ });
+ in
+ {
+ enable = true;
+ package = rabbitmq3137; # use the overridden package
+ };
 }
 ```
 

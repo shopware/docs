@@ -147,4 +147,6 @@ Choose your preferred setup and follow its related guide:
 
 Once your setup is running, you can start developing your **shop**, **app**, **plugin**, or **theme**.
 
-**Tip:** Each setup uses the same Shopware Project Template at its core. Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
+::: info 
+Each setup uses the same Shopware Project Template at its core. Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
+:::

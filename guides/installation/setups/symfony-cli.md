@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Symfony CLI setup
+# Symfony CLI Setup
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
@@ -30,7 +30,7 @@ Optional tools:
 - [Elasticsearch 8](https://www.elastic.co/elasticsearch/) for product search and indexing
 - Docker (for running only the database while keeping PHP local)
 
-## Create a new project
+## Create a New Project
 
 Run this command to create a new Shopware production project:
 
@@ -45,7 +45,7 @@ During project creation, Symfony Flex asks whether you want to use Docker. Choos
 
 For more details, see the [Shopware Production template documentation](https://developer.shopware.com/docs/guides/installation/production.html).
 
-## Configure the database connection
+## Configure Database Connection
 
 After creating the project, define your database settings in a `.env.local` file in the project root:
 
@@ -57,7 +57,7 @@ You can define other environment settings (like `APP_URL`, `MAILER_DSN`, or `SHO
 
 Git ignores `.env.local`, so you can safely define machine-specific settings here without affecting your team’s shared configuration.
 
-### Using Docker for the database (optional)
+### Using Docker for the Database (optional)
 
 Running the database in a Docker container helps keep your local system clean and ensures version consistency with production environments. If you prefer this instead of installing MySQL or MariaDB locally, start Docker with:
 
@@ -75,7 +75,9 @@ docker compose down
 
 Run `docker compose down -v` to remove the containers and delete all stored data volumes.
 
-**Tip**: Use the `-v` flag only if you want to completely reset the database.
+::: info
+Tip - Use the `-v` flag only if you want to completely reset the database.
+:::
 
 ## Install Shopware
 
@@ -93,7 +95,7 @@ The `--basic-setup` flag initializes Shopware with sensible defaults. It automat
 
 If you encounter file-permission issues when installing or rebuilding caches, run `symfony console cache:clear` or check directory ownership.
 
-### Default Administration credentials
+### Default Administration Credentials
 
 Shopware creates a default Administration user during installation:
 
@@ -103,7 +105,7 @@ Shopware creates a default Administration user during installation:
 
 **Tip**: Change these credentials after installation for security.
 
-## Start the web server
+## Start the Web Server
 
 The Symfony local web server automatically uses the correct PHP version, reads your `.env` configuration, and exposes HTTPS by default. This makes it more reliable than the built-in PHP server for local development.
 
@@ -123,7 +125,7 @@ symfony server:start -d
 
 This frees up your terminal for other commands.
 
-### Stopping the web server
+### Stopping the Web Server
 
 To stop the server and all running processes, run:
 
@@ -133,7 +135,7 @@ symfony server:stop
 
 **Tip**: If port 8000 is already in use, start the server on a different port: `symfony server:start --port=8080`
 
-## Set the PHP version (optional, recommended)
+## Set the PHP Version (Optional, Recommended)
 
 Specify a PHP version to ensure consistent environments across team members.
 
@@ -151,7 +153,7 @@ To verify which PHP version is active, run:
 symfony php -v
 ```
 
-## Adjust PHP configuration (optional)
+## Adjust PHP Configuration (Optional)
 
 Adjusting PHP settings like `memory_limit` or `max_execution_time` can prevent build or cache warm-up processes from failing, especially during large Administration builds or when working on plugins.
 
@@ -171,7 +173,7 @@ By keeping your `php.ini` in version control, you ensure consistent behavior acr
 
 Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../resources/references/config-reference/server/nginx.md).
 
-## Build and watch the Administration and Storefront (optional)
+## Build and Watch the Administration and Storefront (Optional)
 
 You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
 
