@@ -11,7 +11,7 @@ This page lists the system requirements and supported software versions for deve
 
 - [Docker setup](./setups/docker.md); recommended for most users
 - [Devenv setup](./setups/devenv.md)
-- [Symfony CLI](./setups/symfony.md)
+- [Symfony CLI](./setups/symfony-cli.md)
 
 ## Requirements for all setups
 
