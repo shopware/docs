@@ -257,7 +257,7 @@ As a developer, you can skip the wizard and use the Admin to:
 
 With Shopware running, here are the services in your local stack and how to access them. Understanding what each one does helps you troubleshoot issues and connect external tools if needed:
 
-- **Web service (Nginx + PHP-FPM)** — serves both the storefront and the admin interface.
+- **Web service (Caddy + PHP-FPM by default, or Nginx + PHP-FPM)** — serves both the storefront and the admin interface. The default image uses Caddy; you can choose Nginx in image variations.
 - Storefront: [http://localhost:8000](http://localhost:8000)
 - Admin: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
 
