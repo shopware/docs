@@ -21,17 +21,17 @@ Unlike Docker or virtual machines, Devenv does not use containerization or virtu
 
 ### Nix
 
-Devenv is built on top of [Nix](https://nixos.org/), so you need to [install it](https://nixos.org/download.html) first. The Nix community recommends using the cross-platform [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer), which provides a fast, consistent setup across macOS, Linux, and WSL2:
+Devenv is built on top of [Nix](https://nixos.org/), so you need to [install it](https://nixos.org/download.html) first. The Nix community recommends using the cross-platform [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer), which provides a fast, consistent setup across macOS, Linux, and WSL2 that requires no manual configuration:
 
 ```bash
 curl -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-This installs Nix in multi-user mode and configures it for your shell automatically. If you prefer, you can still use the [official Nix installer](https://nixos.org/download.html), but it may require additional manual configuration.
+This installs Nix in multi-user mode and automatically configures your shell. If you prefer, you can still use the [official Nix installer](https://nixos.org/download.html), but it may require additional manual steps, such as updating your shell profile or enabling the Nix daemon.
 
-For CI pipelines or non-interactive environments, you can also use nix-shell or Nix Flakes directly instead of the Determinate installer.
+For CI pipelines, Docker images, or other non-interactive environments, you can skip the Determinate Systems installer and invoke Nix directly using `nix-shell` or [Nix Flakes](https://nixos.wiki/wiki/Flakes). Use `nix-shell` for a simple, one-off environment defined by a `shell.nix` file. Use Nix Flakes for more reproducible builds and shared dependency management across systems or teams.
 
-Restart your terminal after installation or load Nix manually:
+After installation, restart your terminal to load Nix’s environment variables automatically. Alternatively, to avoid restarting, you can load Nix manually in your current shell session:
 
 ```bash
 # Load Nix into your current shell session
@@ -39,7 +39,7 @@ Restart your terminal after installation or load Nix manually:
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 ```
 
-The Determinate Systems installer automatically sets up your shell, including Zsh and [Oh My Zsh](https://ohmyz.sh/). You no longer need to manually copy Nix lines into your shell configuration.
+The Determinate Systems installer also handles shell integration, including Zsh and [Oh My Zsh](https://ohmyz.sh/), so you don't need to manually copy Nix configuration lines into your shell startup files.
 
 ::: warning
 If you’ve previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts:
@@ -49,7 +49,7 @@ rm -rf ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.local/state/nix
 rm -rf /nix
 ```
 
-Removing `/nix` deletes the global Nix store and may require elevated privileges. Only run these commands if you intend to fully remove previous Nix installations.
+Removing `/nix` deletes the global Nix store and may require elevated privileges. Only run these commands if you intend to completely remove previous Nix installations.
 :::
 
 If Nix commands aren’t available after installation, restart your terminal or run `source ~/.zshrc`.
