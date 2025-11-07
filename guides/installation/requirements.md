@@ -178,7 +178,6 @@ Shopware uses the Redis Protocol and, therefore, supports the following key/valu
 * [Valkey (recommended)](https://valkey.io/)
 * [Redis v7 or higher](https://redis.io)
 * [Redict](https://redict.io)
-* [KeyDB](https://docs.keydb.dev)
 * [Dragonfly](https://www.dragonflydb.io)
 
 * Recommended configuration `maxmemory-policy`: `volatile-lfu`
