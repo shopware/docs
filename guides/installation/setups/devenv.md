@@ -17,6 +17,20 @@ Devenv lets you choose specific versions of binaries (e.g., PHP, Node, or npm) a
 
 Unlike Docker or virtual machines, Devenv does not use containerization or virtualization. Instead, all services and binaries run natively on your host system. This makes it an appealing choice for Shopware core contributors or advanced users who want consistent local and CI builds.
 
+## Required on your host
+
+Devenv provides project-local PHP, Node, Composer and services via Nix, so you don't need to install those runtimes globally for a project that uses Devenv.
+
+On the host you only need a minimal toolchain:
+
+- [Nix package manager](https://nixos.org/download.html)
+- Git
+- Optional: Docker Engine, only if you plan to run additional containerized services alongside Devenv
+
+See the [Shopware 6 requirements](../requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
+
+> **Note:** If you previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts. Removing `/nix` deletes the global Nix store and may require elevated privileges. Use `sudo` if appropriate and double-check before running destructive commands.
+
 ## Installation
 
 ### Nix
@@ -63,6 +77,28 @@ nix profile install github:cachix/devenv/latest
 ```
 
 You can find the full installation guide and advanced options in the [official Devenv documentation](https://devenv.sh/getting-started/).
+
+## Quick checks (verify host & Devenv)
+
+Run these to confirm your host environment is ready:
+
+```bash
+# Nix installed and on PATH
+nix --version
+
+# Devenv installed and available
+devenv --version
+which devenv
+
+# Direnv (optional)
+direnv --version || echo "direnv not installed"
+
+# Basic sanity: list Devenv commands
+devenv help
+
+# Check few common ports (macOS / Linux examples)
+lsof -i :8000 -i :3306 -i :6379 || ss -tulpn | grep ':8000\|:3306\|:6379'
+```
 
 ### Shopware
 
@@ -285,13 +321,13 @@ See the official [Automatic Shell Activation guide](https://devenv.sh/automatic-
 
 When you start Devenv with `devenv up`, Shopware automatically provides several core services. You can access them using the following addresses:
 
-| Service        | Default address                           | Description                                 |
-|----------------|-------------------------------------------|---------------------------------------------|
-| MySQL          | `mysql://shopware:shopware@127.0.0.1:3306`| Primary database for Shopware.              |
-| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                   | Local mail capture for testing email.       |
-| Redis (TCP)    | `tcp://127.0.0.1:6379`                    | Used for caching and sessions.              |
-| Caddy          | `http://127.0.0.1:8000`                   | Web server.                                 |
-| Adminer        | `http://127.0.0.1:9080`                   | Database management tool.                   |
+| Service | Default address | Description |
+|----------|-----------------|--------------|
+| MySQL | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware. |
+| Mailhog (SMTP) | `smtp://127.0.0.1:1025` | Local mail capture for testing email. |
+| Redis (TCP) | `tcp://127.0.0.1:6379` | Used for caching and sessions. |
+| Caddy | `http://127.0.0.1:8000` | Web server. |
+| Adminer | `http://127.0.0.1:9080` | Database management tool. |
 
 ::: tip
 The MySQL service listens on port `3306` and stores its data in `<PROJECT_ROOT>/.devenv/state/mysql`. Use `127.0.0.1` instead of `localhost` when connecting to MySQL.
@@ -309,7 +345,7 @@ export LANG=en_US.UTF-8
 
 ### Caddy
 
-[Caddy](https://caddyserver.com/)  is an open-source web server written in Go with automatic HTTPS. It serves your local Shopware instance by default at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+[Caddy](https://caddyserver.com/) is an open-source web server written in Go with automatic HTTPS. It serves your local Shopware instance by default at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 ### Adminer
 
@@ -654,8 +690,7 @@ Pinning versions may increase build time; use only when necessary.
 
 ## Maintenance (recommended)
 
-Run `devenv gc` periodically to remove unused packages, services, and caches.  
-This helps free disk space and keeps your environment clean.
+Run `devenv gc` periodically to remove unused packages, services, and caches. This helps free disk space and keeps your environment clean.
 
 Use `devenv down` to stop services first. If processes remain, as a last resort terminate them manually:
 
