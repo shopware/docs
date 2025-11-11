@@ -9,6 +9,7 @@ nav:
 
 Welcome to the Shopware 6 Developer Installation Guide.
 This guide will help you set up a local Shopware 6 development environment - whether you’re:
+
 - Building a custom shop project
 - Developing a plugin, app, or theme
 - Contributing to the Shopware core
@@ -18,6 +19,7 @@ You can choose from three supported setup options, each designed for specific us
 ## Shopware Project Template
 
 Every setup begins with the Project Template. It creates a new Composer project that includes Shopware as a dependency, allowing you to:
+
 - Extend the project with plugins, apps, or themes
 - Customize configurations and services
 - Align the environment with your development goals

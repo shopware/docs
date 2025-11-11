@@ -203,8 +203,8 @@ Once installation completes, open `http://localhost:8000/admin` in your browser.
 
 The default credentials are:
 
-* User: `admin`
-* Password: `shopware`
+- User: `admin`
+- Password: `shopware`
 
 ::: info
 On Windows with WSL2, change the default sales channel domain to `http://localhost:8000`. Use *http*, not https.
@@ -351,8 +351,8 @@ export LANG=en_US.UTF-8
 
 Default credentials:
 
-* User: `shopware`
-* Password: `shopware`
+- User: `shopware`
+- Password: `shopware`
 
 ### Mailhog
 
@@ -376,7 +376,7 @@ Example:
 {
  # Disable a service
  services.adminer.enable = false;
-  
+
  # Use a custom virtual host
  services.caddy.virtualHosts."http://shopware.swag" = {
  extraConfig = ''
@@ -385,7 +385,7 @@ Example:
  file_server
  '';
  };
-  
+
  # Customize nodejs version
  languages.javascript = {
  package = pkgs.nodejs-18_x;
@@ -480,7 +480,7 @@ You can change the default MySQL port if it conflicts with another service on yo
  port = 33881;
  };
  };
-  
+
 }
 ```
 
@@ -640,11 +640,11 @@ Here are examples showing how to use older versions of MySQL and RabbitMQ in you
 
 ```nix
 {
- services.mysql = let 
+ services.mysql = let
  mysql8033 = pkgs.mysql80.overrideAttrs (oldAttrs: {
  version = "8.0.33";
  # the final url would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
- # make sure the url exists. 
+ # make sure the url exists.
  # alternatively you could use that url directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
  # for reference see the [different fetchers](https://ryantm.github.io/nixpkgs/builders/fetchers/#chap-pkgs-fetchers)
  src = pkgs.fetchFromGitHub {
