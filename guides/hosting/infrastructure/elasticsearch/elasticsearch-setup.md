@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project, you can simply add it via `composer require shopware/elasticsearch`. In this documentation, we will provide you with a short overview of the functionalities of Elasticsearch on your server and the configuration, activation, and indexing process in Shopware for live and test environments.
+As soon as several thousand data sets are used in a project, it makes sense to deal with Elasticsearch. The Elasticsearch integration for Shopware is in the [shopware/elasticsearch](https://github.com/shopware/elasticsearch) bundle. If this is not available in your project, you can add it via `composer require shopware/elasticsearch`. In this documentation, we will provide you with a short overview of the functionalities of Elasticsearch on your server and the configuration, activation, and indexing process in Shopware for live and test environments.
 
 ::: info
 Currently, the implementation for Elasticsearch/Opensearch works in the same way.
@@ -18,21 +18,21 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 ## Requirements
 
 * Opensearch >= 1.0 or Elasticsearch >= 7.8 (It's recommended to use OpenSearch in version 2.17.1 or newer)
-* [Running message queue workers in background](../message-queue)
+* [Running message queue workers in the background](../message-queue)
 
 **Note:**: support for OpenSearch 3.1 was added in shopware v6.7.3.1.
 
 ## Server basics
 
-Elasticsearch installation and configuration greatly depend on your operating system and hosting provider. You will find extensive documentation online regarding the installation and configuration of Elasticsearch on most common Linux distributions. Some hosting providers might also provide specific documentation regarding this subject. Installation on Mac OS or Windows is also possible but not officially supported.
+Elasticsearch installation and configuration greatly depend on your operating system and hosting provider. You will find extensive documentation online regarding the installation and configuration of Elasticsearch on most common Linux distributions. Some hosting providers might also provide specific documentation regarding this subject. Installation on macOS or Windows is also possible but not officially supported.
 
-The current Shopware 6 integration is designed to work with the out-of-the-box configuration of Elasticsearch. This does not mean, of course, that these are the best settings for a production environment. Although they will affect performance and security, the settings you choose to use on your Elasticsearch setup will be mostly transparent to your Shopware installation. The best setting constellation for your shop will greatly depend on your server setup, the number, and structure of products, and replication requirements, to name a few. In this document, we can't give you specific examples for your setup, but provide you with hints and basics you might need to choose your perfect setup. More detailed information can be found on the official [Elasticsearch](https://www.elastic.co/guide/index.html)  documentation page.
+The current Shopware 6 integration is designed to work with the out-of-the-box configuration of Elasticsearch. This does not mean, of course, that these are the best settings for a production environment. Although they will affect performance and security, the settings you choose to use on your Elasticsearch setup will be mostly transparent to your Shopware installation. The best setting constellation for your shop will greatly depend on your server setup, the number, and structure of products, and replication requirements, to name a few. In this document, we can't give you specific examples for your setup, but provide you with hints and basics you might need to choose your perfect setup. More detailed information can be found on the official [Elasticsearch](https://www.elastic.co/guide/index.html) documentation page.
 
 ### Elasticsearch server setup
 
 Elasticsearch is meant to be used as a cluster setup so it can scale properly and provide you with reliability.
 In this cluster, you can choose how many nodes you want to use and which different type each node in the cluster shall have.
-A one node cluster is only meant for development or test environments because it can't scale at all and does not give you any more reliability.
+A one-node cluster is only meant for development or test environments because it can't scale at all and does not give you any more reliability.
 Reliability is given when you have at least 3 nodes because of the process of election of the master node. This is further explained in more detail in the [Master Node](#master-node) section.
 From our experience, the best way is to have a cluster with 5 nodes. You can have the 3 needed master-eligible nodes and 2 nodes which are data nodes and do not proceed in the election process.
 Which cluster is really needed in your setup and fits your needs best is up to you.
@@ -40,29 +40,29 @@ Which cluster is really needed in your setup and fits your needs best is up to y
 Most configurations of the Elasticsearch cluster can be done in the elasticsearch.yml file you find in the [config folder](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#config-files-location).
 This file configures, for example, the name of your cluster (`cluster.name`), the name of your node (`node.name`), nodes that know each other (`discovery.seed_hosts`), the type of the node (`node.master`, `node.data`, `node.ingest`), the host (`network.host`) and the port (`network.host`).
 Sometimes it makes sense to configure your [JVM](https://www.elastic.co/guide/en/elasticsearch/reference/master/advanced-configuration.html#set-jvm-options) as well. You should only make changes here if you know exactly what you do. Most hosting partners will provide you with a fitting setup that will not require many changes here.
-The data files of the index will be found in the data directory later on. Another important folder is the logs folder. If not configured differently, you will find the different logfiles for your cluster here in case you ever need to check an error or slowlog.
+The data files of the index will be found in the data directory later on. Another important folder is the `logs` folder. If not configured differently, you will find the different logfiles for your cluster here in case you ever need to check an error or slowlog.
 
 ### Nodes
 
-Every instance of Elasticsearch starts a node. A collection of connected nodes are called a cluster. All nodes can handle HTTP and transport traffic.
-Depending on your setup, the needed performance, and reliability, you might want to have dedicated nodes of the following types in your cluster.
+Every instance of Elasticsearch starts a node. A collection of connected nodes is called a cluster. All nodes can handle HTTP and transport traffic.
+Depending on your setup, the necessary performance, and reliability, you might want to have dedicated nodes of the following types in your cluster.
 
 #### Master nodes
 
-Master nodes are in charge of the cluster-wide settings and changes like CRUD operations of indices, including mappings and settings of those, adding nodes, removing nodes and allocating the [shards](#shards) to the nodes.
+Master nodes are in charge of the cluster-wide settings and changes like CRUD operations of indices, including mappings and settings of those, adding nodes, removing nodes, and allocating the [shards](#shards) to the nodes.
 A productive cluster of Elasticsearch should always contain 3 nodes that are all master-eligible nodes set by the `node.master` property in the elasticsearch.yml file. The master node is chosen by an election process of which only the master-eligible nodes are part. In an election process, you have to mind a quorum of master-eligible nodes, so you get a specific result of the election, so you should have N/2+1 master-eligible nodes. 3 is the minimum number for this because then the currently elected master node fails, you can still have a correct election process for a new master. The setting "cluster.initial_master_nodes: ["masternode1","masternode2","masternode3"]" should be provided on each of those master-eligible nodes on start.
 
 #### Ingest nodes
 
 Ingest nodes provide the ability to pre-process a document before it gets indexed.
-The ingest node intercepts bulk and index requests applies transformations and then passes the documents back to the index or bulk APIs.
-All nodes are Ingest nodes by default which can be changed by the `node.ingest` property in the elasticsearch.yml file.
+The ingest node intercepts bulk and index requests, applies transformations, and then passes the documents back to the index or bulk APIs.
+All nodes are Ingest nodes by default. This can be changed by the `node.ingest` property in the elasticsearch.yml file.
 
 #### Data nodes
 
-Data nodes have two main features. They hold the [shards](#shards) that contain the documents/elements you have indexed and execute data related operations like CRUD, search and aggregations.
+Data nodes have two main features. They hold the [shards](#shards) that contain the documents/elements you have indexed and execute data-related operations like CRUD, search, and aggregations.
 By default, all nodes are Data nodes, which can be changed using the `node.data` property in the elasticsearch.yml file.
-Data nodes are very resource intensive, so you definitely want to monitor the resources and add more data nodes if they are overloaded.
+Data nodes are very resource-intensive, so you definitely want to monitor the resources and add more data nodes if they are overloaded.
 
 ### Shards
 
@@ -72,7 +72,7 @@ A shard is a worker unit that holds the data of the index and can be assigned to
 * **Replica**: A replica is a copy of a primary shard.
 
 The number of replica shards is up to you and the reliability you need in your cluster. The more replica shards you have, the more nodes can fail before the data in the shard becomes unavailable.
-But reliability is not the only usage of a replica shard. Queries like search can be performed on a primary or replica. So if you have replicas of your shards you can better scale your data and cluster resources.
+But reliability is not the only usage of a replica shard. Queries like search can be performed on a primary or replica. So if you have replicas of your shards, you can better scale your data and cluster resources.
 A replica is only created when there are enough nodes because a replica can never be created in the same node as its primary or another replica of its primary.
 The master node determines where the shard is distributed.
 Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you might want to keep this in mind when setting your number of shards and replicas.
@@ -81,14 +81,14 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 
 ### Variables in your *.env*
 
-| Variable | Possible values | Description |
-| ---------|-----------------|-------------|
-| `APP_ENV`| `prod` / `dev` | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use Elasticsearch in a productive system.|
-| `OPENSEARCH_URL`| `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)|
-| `SHOPWARE_ES_INDEXING_ENABLED`| `0` / `1` |  This variable activates the indexing to Elasticsearch|
-| `SHOPWARE_ES_ENABLED`| `0` / `1` | This variable activates the usage of Elasticsearch for your shop|
-| `SHOPWARE_ES_INDEX_PREFIX`| `sw_myshop` | This variable defines the prefix for the Elasticsearch indices|
-| `SHOPWARE_ES_THROW_EXCEPTION`| `0` / `1` | This variable activates the debug mode for Elasticsearch. Without this variable as = 0 you will get a fallback to mysql without any error message if Elasticsearch is not working|
+| Variable                       | Possible values  | Description                                                                                                                                                                                                                      |
+|--------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `APP_ENV`                      | `prod` / `dev`   | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use Elasticsearch in a productive system. |
+| `OPENSEARCH_URL`               | `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)                                |
+| `SHOPWARE_ES_INDEXING_ENABLED` | `0` / `1`        | This variable activates the indexing to Elasticsearch                                                                                                                                                                            |
+| `SHOPWARE_ES_ENABLED`          | `0` / `1`        | This variable activates the usage of Elasticsearch for your shop                                                                                                                                                                 |
+| `SHOPWARE_ES_INDEX_PREFIX`     | `sw_myshop`      | This variable defines the prefix for the Elasticsearch indices                                                                                                                                                                   |
+| `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable activates the debug mode for Elasticsearch. Without this variable as = 0 you will get a fallback to mysql without any error message if Elasticsearch is not working                                                |
 
 ### Example file for productive environments
 
@@ -157,7 +157,7 @@ For a reindex of the whole shop, you can use the command `bin/console dal:refres
 ### Alias creation
 
 Some systems require you to manually execute `bin/console es:create:alias` after the indexing is processed completely.
-Try that command if your index was created fully without errors and you still don't see products in your Storefront.
+Try that command if your index was created fully without errors, and you still don't see products in your Storefront.
 
 ### What happens when indexing
 
@@ -168,7 +168,7 @@ In case a message runs into an error, it is written into the `dead_messages` tab
 You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
 In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](/docs/guides/plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
 
-Our experience has shown that up to 3 worker processes are normal and useful for a production environment.
+Our experience has shown that up to three worker processes are normal and useful for a production environment.
 If you want more than that, a tool like [RabbitMq](/docs/guides/hosting/infrastructure/message-queue#transport-rabbitmq-example) to handle the queue is needed so your database will not become a bottleneck.
 
 ## Configuration
@@ -183,17 +183,17 @@ Shopware 6.4.19.0 and above supports "AND/OR Search" functionality in Administra
 Add the below config variables to set up Elasticsearch for Administration:
 
 ```bash
-ADMIN_OPENSEARCH_URL=YOUR OPEN SEARCH URL 
+ADMIN_OPENSEARCH_URL=YOUR OPEN SEARCH URL
 SHOPWARE_ADMIN_ES_ENABLED=1
 SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
 SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
 ```
 
-Also the CLI commands can be used as below:
+Also, the CLI commands can be used as below:
 
 ```bash
-bin/console es:admin:index                                              
-bin/console es:admin:reset                                              
+bin/console es:admin:index
+bin/console es:admin:reset
 bin/console es:admin:test
 ```
 
