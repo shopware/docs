@@ -647,6 +647,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+PCOV
 PEM
 PHPStan
 PHPStorm
@@ -955,6 +956,7 @@ TypeError's
 TypeScript
 TypeScript's
 UI
+UID
 UML
 USD
 UUID
@@ -1501,6 +1503,7 @@ mTLS
 macOS
 mailAware
 mailTemplates
+mailpit
 makefile
 mandatorily
 manufacturerId
