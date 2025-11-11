@@ -216,6 +216,7 @@ ContextResolver
 ContextTokenAware
 ContextTokenStorer
 CookiePermission
+CookieProviderInterface
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -403,6 +404,7 @@ FrameworkBundle
 FrankenPHP
 FriendsOfShopware
 FroshDevelopmentHelper
+FroshPlatformTemplateMail
 FroshTools
 Fullstack
 GBP
@@ -429,6 +431,7 @@ Homebrew
 Hono
 HookClasses
 HookExecutor
+Hotjar
 HowTos
 IDEs
 IETF
@@ -519,6 +522,7 @@ LongText
 LongTextField
 Lychee
 MACOSX
+MJML
 MRs
 MVC
 MailAware
@@ -527,6 +531,7 @@ MailService
 MailStorer
 Mailcatcher
 Mailhog
+Mailjet
 Mailpit
 MaintenancePage
 ManufacturerAttributeDataSet
@@ -643,6 +648,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+PCOV
 PEM
 PHPStan
 PHPStorm
@@ -772,6 +778,7 @@ RegistrationCompletedEvent
 RegistrationService
 Reindexes
 ReinstallApps
+Remarketing
 RemoteAddress
 RemoteAddressField
 Repo
@@ -950,6 +957,7 @@ TypeError's
 TypeScript
 TypeScript's
 UI
+UID
 UML
 USD
 UUID
@@ -1492,9 +1500,11 @@ longtext
 lookups
 lowerCamelCase
 lychee
+mTLS
 macOS
 mailAware
 mailTemplates
+mailpit
 makefile
 mandatorily
 manufacturerId
@@ -1683,6 +1693,7 @@ regexes
 reindex
 reinitializing
 reinstallation
+remarketing
 remoteaddress
 removeBy
 renameMedia

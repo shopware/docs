@@ -11,17 +11,25 @@ nav:
 
 Since the GDPR was introduced, every website has to be shipped with some sort of a cookie consent manager. This is also the case for Shopware 6 of course, which comes with a cookie consent manager by default. In this guide you will learn how you can add your own cookies to the cookie consent manager of Shopware 6.
 
+::: info
+For a comprehensive understanding of Shopware's cookie consent system, see the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management).
+:::
+
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../plugin-base-guide), so have a look at that first if you're lacking a running plugin. Also you will have to know how to [create your own service](../plugin-fundamentals/add-custom-service) and [decorations](../plugin-fundamentals/adjusting-service#decorating-the-service), so you might want to have a look at those guides as well.
+This guide is built upon the [Plugin base guide](../plugin-base-guide), so take a look at that first if you're lacking a running plugin. Also, you will need to know how to [create your own service](../plugin-fundamentals/add-custom-service) and [subscribe to an event](../plugin-fundamentals/listening-to-events), so you might want to take a look at those guides as well.
 
 ## Extend the cookie consent manager
 
-Adding custom cookies basically requires you to decorate a service, the `CookieProvider` to be precise. Neither decorations, nor adding a service via a `services.xml` is explained here, so make sure to have a look at the previously mentioned guides first, if you're lacking this knowledge.
+Adding custom cookies requires you to listen to the `CookieGroupsCollectEvent` and add your custom cookies to the collection.
 
-### Registering your decoration
+::: tip
+It is recommended to use an event listener if you're listening to a single event. If you need to react to multiple events, an event subscriber is the better choice.
+:::
 
-Start with creating the `services.xml` entry and with decorating the `CookieProviderInterface`. The `CookieProvider` service was already built before we decided to use abstract classes for decorations, so don't be confused here.
+### Registering your event listener
+
+Start with creating the `services.xml` and registering your event listener.
 
 ```xml
 // <plugin root>/src/Resources/config/services.xml
@@ -32,101 +40,129 @@ Start with creating the `services.xml` entry and with decorating the `CookieProv
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-       <service id="PluginName\Framework\Cookie\CustomCookieProvider"
-                decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
-             <argument type="service" 
-                       id="PluginName\Framework\Cookie\CustomCookieProvider.inner" />
-         </service>
+        <service id="PluginName\Listener\CookieListener">
+            <tag name="kernel.event_listener" event="Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent"/>
+        </service>
     </services>
 </container>
 ```
 
-In the next step we'll create the actual decorated class.
+In the next step we'll create the actual listener class.
 
-### Creating the decorated service
+### Creating the listener
 
-We need to create a class called `CustomCookieProvider`, which implements the `CookieProviderInterface`. Our constructor parameter is the original `CookieProviderInterface` instance, which we need to call to get all other cookies as well.
+We need to create a class called `CookieListener` with an `__invoke` method. This method will be executed once the `CookieGroupsCollectEvent` is dispatched.
 
-The interface mentioned above requires you to implement a method called `getCookieGroups`, which has to return an array of cookie groups and their respective cookies. You need to call the original method now, receive the default cookie groups and then merge your custom group, if there's any, and your custom cookies into it.
+The event object that is passed to our listener method contains the cookie groups collection, which we can use to add our custom cookies.
+
+::: warning
+Since Shopware 6.7.3.0, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
+:::
 
 Let's have a look at an example:
 
 ```php
-// <plugin root>/src/Framework/Cookie/CustomCookieProvider.php
+// <plugin root>/src/Listener/CookieListener.php
 <?php declare(strict_types=1);
 
-namespace PluginName\Framework\Cookie;
+namespace PluginName\Listener;
 
-use Shopware\Storefront\Framework\Cookie\CookieProviderInterface;
+use Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent;
+use Shopware\Core\Framework\Cookie\CookieEntry;
+use Shopware\Core\Framework\Cookie\CookieGroup;
 
-class CustomCookieProvider implements CookieProviderInterface {
-
-    private CookieProviderInterface $originalService;
-
-    public function __construct(CookieProviderInterface $service)
+class CookieListener
+{
+    public function __invoke(CookieGroupsCollectEvent $event): void
     {
-        $this->originalService = $service;
-    }
+        $cookieGroups = $event->getCookieGroups();
 
-    private const singleCookie = [
-        'snippet_name' => 'cookie.name',
-        'snippet_description' => 'cookie.description ',
-        'cookie' => 'cookie-key',
-        'value' => 'cookie value',
-        'expiration' => '30'
-    ];
-
-    // cookies can also be provided as a group
-    private const cookieGroup = [
-        'snippet_name' => 'cookie.group_name',
-        'snippet_description' => 'cookie.group_description ',
-        'entries' => [
-            [
-                'snippet_name' => 'cookie.first_child_name',
-                'cookie' => 'cookie-key-1',
-                'value'=> 'cookie value',
-                'expiration' => '30'
-            ],
-            [
-                'snippet_name' => 'cookie.second_child_name',
-                'cookie' => 'cookie-key-2',
-                'value'=> 'cookie value',
-                'expiration' => '60'
-            ]
-        ],
-    ];
-
-    public function getCookieGroups(): array
-    {
-        return array_merge(
-            $this->originalService->getCookieGroups(),
-            [
-                self::cookieGroup,
-                self::singleCookie
-            ]
+        // Create a single cookie
+        $singleCookie = new CookieEntry(
+            'cookie.name',
+            'cookie-key',
+            'cookie value',
+            30,
+            'cookie.description'
         );
+
+        // Create entries collection for cookie group
+        $groupEntries = [
+            new CookieEntry(
+                'cookie.first_child_name',
+                'cookie-key-1',
+                'cookie value',
+                30
+            ),
+            new CookieEntry(
+                'cookie.second_child_name',
+                'cookie-key-2',
+                'cookie value',
+                60
+            )
+        ];
+
+        // Create a cookie group with multiple cookies
+        $cookieGroup = new CookieGroup(
+            'cookie.group_name',
+            $groupEntries,
+            'cookie.group_description'
+        );
+
+        $cookieGroups->add($cookieGroup);
+        $cookieGroups->add($singleCookie);
     }
 }
 ```
-
-As already mentioned, we're overwriting the method `getCookieGroups` and in there we're calling the original method first. We then proceed to merge our own custom group into it, as well as a custom cookie.
 
 This will eventually lead to a new group being created, containing two new cookies, as well as a new cookie without a group.
 
 And that's basically it already. After loading your Storefront, you should now see your new cookies and the cookie-group.
 
-### Cookie array keys
+## Parameter Reference
 
-Here's a list of attributes, that you can apply to a cookie array:
+For a complete list of available parameters and their types, refer to the source code:
 
-| Attribute | Data type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| snippet\_name | String | Yes | Key of a snippet containing the display name of a cookie or cookie group. |
-| snippet\_description | String | No | Key of a snippet containing a short description of a cookie or cookie group. |
-| cookie | String | Yes | The internal cookie name used to save the cookie. |
-| value | String | No | If unset, the cookie will not be updated \(set active or inactive\) by Shopware, but passed to the update event only. |
-| expiration | String | No | Cookie lifetime in days. **If unset, the cookie expires with the session**. |
-| entries | Array | No | An array of cookie objects. Used to create grouped cookies. Nested groups are not supported. If using this, **the group itself should not have the attributes** _**cookie**_**,** _**value**_ **and** _**expiration**_**.**. |
+* [`CookieEntry`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Cookie/CookieEntry.php) - Individual cookie definition
+* [`CookieGroup`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Cookie/CookieGroup.php) - Cookie group definition
+
+::: info
+Cookie groups should not have the `cookie`, `value`, `expiration`, or `isRequired` parameters. These only apply to individual `CookieEntry` objects within the group's `entries`.
+:::
+
+## Migrating from CookieProviderInterface (Shopware 6.7.2 and earlier)
+
+If you are upgrading from an older version, you might have used the `CookieProviderInterface` to add custom cookies. This interface is now deprecated and should be replaced with the `CookieGroupsCollectEvent`.
+
+For backward compatibility, you can still use the `CookieProviderInterface` to provide cookies in the old array syntax. However, it is highly recommended to use the new event-based system to provide the new object structure.
+
+## Cookie Configuration Changes and Re-Consent
+
+Since Shopware 6.7.3.0, cookie configurations include a hash that tracks changes. When you modify cookie configurations through your plugin (add/remove/change cookies), the hash changes automatically, triggering a re-consent flow for users.
+
+This helps maintain transparency by re-prompting users when cookie handling changes, supporting GDPR compliance requirements. The hash is automatically calculated from all cookie configurations provided by the `CookieProvider`.
+
+::: info
+While this feature helps with GDPR compliance, shop owners are responsible for ensuring their overall cookie usage, privacy policies, and data handling practices comply with GDPR and other applicable regulations.
+:::
+
+### How it works
+
+1. Your plugin adds/modifies cookies via the `CookieGroupsCollectEvent`
+2. Shopware calculates a hash of the entire cookie configuration
+3. The hash is stored in the user's browser
+4. On the next visit, if the hash differs, the consent banner appears again
+5. Users are informed about changes and can make new choices
+
+This automatic re-consent mechanism helps shop owners maintain transparency about cookie changes.
+
+::: info
+The configuration hash is exposed via the Store API endpoint `/store-api/cookie/groups`. For API documentation, see [Fetch all cookie groups](https://shopware.stoplight.io/docs/store-api/f9c70be044a15-fetch-all-cookie-groups).
+:::
+
+## Video Platform Cookies
+
+YouTube and Vimeo cookies are now handled separately in Shopware's cookie management. If you're adding video functionality to your plugin, ensure you register the appropriate cookie for your video platform or reuse existing ones.
 
 ## Next steps
 
