@@ -183,7 +183,7 @@ Shopware uses the Redis Protocol and, therefore, supports the following key/valu
 
 * Recommended configuration `maxmemory-policy`: `volatile-lfu`
 
-It is highly recommended to use a dedicated Redis instance for Shopware when you run a cluster of Shopware instances or when performance is a concern. 
+It is highly recommended to use a dedicated Redis instance for Shopware when you run a cluster of Shopware instances or when performance is a concern.
 Local caching quickly reaches its limit in such situations, and a dedicated Redis cache instance is highly beneficial.
 
 For more information on how to configure Redis for Shopware, refer to the Redis guide.
@@ -192,10 +192,11 @@ For more information on how to configure Redis for Shopware, refer to the Redis 
 
 ## Search (optional)
 
-To support advanced full-text search capabilities even on bigger catalogues, shopware recommends using a dedicated search engine.
+To support advanced full-text search capabilities even on bigger catalogues, Shopware recommends using a dedicated search engine.
 
 The following search engines are supported:
-* [OpenSearch (recommended)](https://opensearch.org/) (v1.0 or higher, recommended Version 2.17.1)
+
+* [OpenSearch (recommended)](https://opensearch.org/) (v1.0 or higher, recommended Version 2.17.1 or higher)
 * [Elasticsearch](https://www.elastic.co/de/elasticsearch/) (v7.8 or higher)
 
 **Note:**: support for OpenSearch 3.1 was added in shopware v6.7.3.1.
