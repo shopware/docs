@@ -17,8 +17,10 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 
 ## Requirements
 
-* Opensearch >= 2.0 or Elasticsearch >= 7.8
+* Opensearch >= 1.0 or Elasticsearch >= 7.8 (It's recommended to use OpenSearch in version 2.17.1 or newer)
 * [Running message queue workers in background](../message-queue)
+
+**Note:**: support for OpenSearch 3.1 was added in shopware v6.7.3.1.
 
 ## Server basics
 

@@ -200,9 +200,9 @@ The following search engines are supported:
 
 **Note:**: support for OpenSearch 3.1 was added in shopware v6.7.3.1.
 
-For detailed documentation on how to configure OpenSearch for Shopware, refer to the OpenSearch guide.
+For detailed documentation on how to configure OpenSearch for Shopware, refer to the OpenSearch setup guide.
 
-<PageRef page="../hosting/infrastructure/elasticsearch" />
+<PageRef page="../hosting/infrastructure/elasticsearch/elasticsearch-setup" />
 
 ## Webserver
 
