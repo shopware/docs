@@ -33,7 +33,7 @@ The current Shopware 6 integration is designed to work with the out-of-the-box c
 
 Elasticsearch is meant to be used as a cluster setup so it can scale properly and provide you with reliability.
 In this cluster, you can choose how many nodes you want to use and which different type each node in the cluster shall have.
-A one-node cluster is only meant for development or test environments because it can't scale at all and does not give you any more reliability.
+A one-node cluster should only be used for development or test environments, because it can't scale and does not provide additional reliability.
 Reliability is given when you have at least 3 nodes because of the process of election of the master node. This is further explained in more detail in the [Master Node](#master-node) section.
 From our experience, the best way is to have a cluster with 5 nodes. You can have the 3 needed master-eligible nodes and 2 nodes which are data nodes and do not proceed in the election process.
 Which cluster is really needed in your setup and fits your needs best is up to you.
