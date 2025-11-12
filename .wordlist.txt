@@ -466,7 +466,6 @@ Jonge
 JsonField
 JsonResponse
 KV
-KeyDB
 Kibana
 Kubernetes
 LLM
@@ -648,6 +647,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+PCOV
 PEM
 PHPStan
 PHPStorm
@@ -956,6 +956,7 @@ TypeError's
 TypeScript
 TypeScript's
 UI
+UID
 UML
 USD
 UUID
@@ -1502,6 +1503,7 @@ mTLS
 macOS
 mailAware
 mailTemplates
+mailpit
 makefile
 mandatorily
 manufacturerId
@@ -1846,6 +1848,7 @@ to's
 todo
 toggleable
 tokenized
+toolchain
 tooltip
 tooltips
 totalAmount
