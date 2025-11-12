@@ -17,7 +17,7 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 
 ## Requirements
 
-* A supported OpenSearch (or ElasticSearch) server
+* A supported OpenSearch (or Elasticsearch) server
 
 <PageRef page="../../../installation/requirements#recommended-stack-and-supported-versions" />
 
@@ -34,8 +34,8 @@ The current Shopware 6 integration is designed to work with the out-of-the-box c
 Elasticsearch is meant to be used as a cluster setup so it can scale properly and provide you with reliability.
 In this cluster, you can choose how many nodes you want to use and which different type each node in the cluster shall have.
 A one-node cluster should only be used for development or test environments, because it can't scale and does not provide additional reliability.
-Reliability is given when you have at least 3 nodes because of the process of election of the master node. This is further explained in more detail in the [Master Node](#master-node) section.
-From our experience, the best way is to have a cluster with 5 nodes. You can have the 3 needed master-eligible nodes and 2 nodes which are data nodes and do not proceed in the election process.
+Reliability is given when you have at least three nodes because of the process of election of the master node. This is further explained in more detail in the [Master Node](#master-node) section.
+From our experience, the best way is to have a cluster with five nodes. You can have the three needed master-eligible nodes and 2 nodes which are data nodes and do not proceed in the election process.
 Which cluster is really needed in your setup and fits your needs best is up to you.
 
 Most configurations of the Elasticsearch cluster can be done in the elasticsearch.yml file you find in the [config folder](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#config-files-location).
@@ -51,7 +51,7 @@ Depending on your setup, the necessary performance, and reliability, you might w
 #### Master nodes
 
 Master nodes are in charge of the cluster-wide settings and changes like CRUD operations of indices, including mappings and settings of those, adding nodes, removing nodes, and allocating the [shards](#shards) to the nodes.
-A productive cluster of Elasticsearch should always contain 3 nodes that are all master-eligible nodes set by the `node.master` property in the elasticsearch.yml file. The master node is chosen by an election process of which only the master-eligible nodes are part. In an election process, you have to mind a quorum of master-eligible nodes, so you get a specific result of the election, so you should have N/2+1 master-eligible nodes. 3 is the minimum number for this because then the currently elected master node fails, you can still have a correct election process for a new master. The setting "cluster.initial_master_nodes: ["masternode1","masternode2","masternode3"]" should be provided on each of those master-eligible nodes on start.
+A productive cluster of Elasticsearch should always contain three nodes that are all master-eligible nodes set by the `node.master` property in the elasticsearch.yml file. The master node is chosen by an election process of which only the master-eligible nodes are part. In an election process, you have to mind a quorum of master-eligible nodes, so you get a specific result of the election, so you should have N/2+1 master-eligible nodes. Three is the minimum number for this because then the currently elected master node fails, you can still have a correct election process for a new master. The setting "cluster.initial_master_nodes: ["masternode1","masternode2","masternode3"]" should be provided on each of those master-eligible nodes on start.
 
 #### Ingest nodes
 
@@ -61,7 +61,7 @@ All nodes are Ingest nodes by default. This can be changed by the `node.ingest` 
 
 #### Data nodes
 
-Data nodes have two main features. They hold the [shards](#shards) that contain the documents/elements you have indexed and execute data-related operations like CRUD, search, and aggregations.
+Data nodes have two main features: they hold the [shards](#shards) that contain the documents/elements you have indexed and execute data-related operations like CRUD, search, and aggregations.
 By default, all nodes are Data nodes, which can be changed using the `node.data` property in the elasticsearch.yml file.
 Data nodes are very resource-intensive, so you definitely want to monitor the resources and add more data nodes if they are overloaded.
 
@@ -129,7 +129,7 @@ SHOPWARE_ES_THROW_EXCEPTION=1
 
 ### Example for changing index configuration
 
-Shopware will use by default 3 shards and 3 replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
+Shopware will use by default three shards and three replicas for the created index. This configuration can be overwritten with a new config file in `config/packages/elasticsearch.yml`
 
 ::: info
 This configuration is available since Shopware version 6.4.12.0
@@ -170,7 +170,7 @@ You can start multiple messenger consumer processes by using the command `bin/co
 In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](/docs/guides/plugins/plugins/framework/message-queue/add-message-handler#the-admin-worker).
 
 Our experience has shown that up to three worker processes are normal and useful for a production environment.
-If you want more than that, a tool like [RabbitMq](/docs/guides/hosting/infrastructure/message-queue#transport-rabbitmq-example) to handle the queue is needed so your database will not become a bottleneck.
+If you want more than that, a tool like [RabbitMQ](/docs/guides/hosting/infrastructure/message-queue#transport-rabbitmq-example) to handle the queue is needed so your database will not become a bottleneck.
 
 ## Configuration
 
