@@ -5,136 +5,176 @@ nav:
 
 ---
 
-# Symfony CLI
+# Symfony CLI Setup
 
-Symfony CLI is a popular tool in the Symfony ecosystem that helps to spawn a local development environment. It is a lightweight and an alternative way to Docker to run the application locally.
+Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
+
+Shopware recommends [Docker](./docker.md) as the default setup for most users because it mirrors production and includes all services out of the box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
 
 ## Prerequisites
 
-- Symfony CLI installed on your machine. You can follow the official [Symfony CLI installation guide](https://symfony.com/download) to install Symfony CLI.
-- PHP, Composer and Node installed locally, see [here](../requirements.md) to install them.
+Before you begin, make sure your system meets the [Shopware 6 requirements](../requirements.md). You’ll need the following tools installed on your host machine:
 
-Shopware requires a Database server, you can install MySQL or MariaDB locally using your system package manager or if Docker is installed, Symfony CLI can run the database server in a container.
+- [Symfony CLI](https://symfony.com/download)
+- PHP 8.2 or higher with the required extensions; see the [Requirements page](../requirements.md) for the complete list
+- [Composer 2.x](https://getcomposer.org/)
+- [Node.js 20+](https://nodejs.org/en/download) and npm
+- A running MySQL 8 or MariaDB 11 database (local or remote)
 
-## Create a new project
+You’ll also need a working web server. The Symfony CLI can provide one automatically for development.
+
+> **macOS note:** If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
+
+Optional tools:
+
+- [Elasticsearch 8](https://www.elastic.co/elasticsearch/) for product search and indexing
+- Docker (for running only the database while keeping PHP local)
+
+## Create a New Project
+
+Run this command to create a new Shopware production project:
 
 ```bash
 composer create-project shopware/production <project-name>
 
-# or install a specific version
+# or specify a version
 composer create-project shopware/production:6.6.10.0 <project-name>
 ```
 
-Symfony Flex will ask while you create if you want to use Docker or not, choose **Yes** if you want to run the database in a container. If you choose **No**, you need to install MySQL or MariaDB locally.
+During project creation, Symfony Flex asks whether you want to use Docker. Choose **Yes** if you want to run the database in a container, or **No** to use a local MySQL/MariaDB server.
 
-## Initial Setup
+For more details, see the [Shopware Production template documentation](https://developer.shopware.com/docs/guides/installation/production.html).
 
-### Local
+## Configure Database Connection
 
-After the project is created, you need to adjust the `DATABASE_URL` to match your local database server. To do that create a `.env.local` file in the project root and add the following line:
+After creating the project, define your database settings in a `.env.local` file in the project root:
 
 ```dotenv
 DATABASE_URL=mysql://username:password@localhost:3306/dbname
 ```
 
-### Docker
+You can define other environment settings (like `APP_URL`, `MAILER_DSN`, or `SHOPWARE_ES_HOSTS`) in `.env.local` as needed.
 
-To run the database in a container, you need to start the containers first with:
+Git ignores `.env.local`, so you can safely define machine-specific settings here without affecting your team’s shared configuration.
+
+### Using Docker for the Database (optional)
+
+Running the database in a Docker container helps keep your local system clean and ensures version consistency with production environments. If you prefer this instead of installing MySQL or MariaDB locally, start Docker with:
 
 ```bash
 docker compose up -d
 ```
 
-To stop the containers, you can run:
+This command starts the database container in the background.
+
+To stop and remove the containers, while preserving the database data, run:
 
 ```bash
 docker compose down
 ```
 
-This will stop the containers and remove them. If you want to remove the containers and the data, you can run `docker compose down -v`.
-This will remove all containers and the data.
-If you want to remove the containers and keep the data, you can run `docker compose down` without the `-v` flag.
-This will remove all containers and keep the data.
+Run `docker compose down -v` to remove the containers and delete all stored data volumes.
+
+::: info
+Tip - Use the `-v` flag only if you want to completely reset the database.
+:::
 
 ## Install Shopware
 
 ::: info
-It's important that you prefix all your commands with `symfony` to ensure that the correct PHP version is used. If you don't do this, you might run into issues with the wrong PHP version being used or the Docker MySQL database is not used.
+Always prefix commands with `symfony` to ensure the correct PHP version and configuration are used. Skipping this can cause issues such as using the wrong PHP binary or failing to connect to the Docker-based MySQL database.
 :::
 
-After that, you can run the following command to install Shopware:
+Run the following command to install Shopware:
 
 ```bash
 symfony console system:install --basic-setup
 ```
 
-The flag `--basic-setup` will automatically create an admin user and a default sales channel for the given `APP_URL`. If you didn't create a MySQL Database yet, you can pass the `--create-database` flag to create a new database.
+The `--basic-setup` flag initializes Shopware with sensible defaults. It automatically creates a database schema, an admin user, and a default sales channel for the specified `APP_URL` so you can start testing immediately without manual configuration. Optional: Add the `--create-database` flag if your database doesn’t already exist.
+
+If you encounter file-permission issues when installing or rebuilding caches, run `symfony console cache:clear` or check directory ownership.
 
 ### Default Administration Credentials
 
-The Shopware's default Administration credentials are:
+Shopware creates a default Administration user during installation:
 
-| Username | Password   |
-|:---------|:-----------|
-| `admin`  | `shopware` |
+| Username | Password |
+|:----------|:----------|
+| `admin` | `shopware` |
 
-Change these credentials after finishing the installation.
+**Tip**: Change these credentials after installation for security.
 
-## Starting the Webserver
+## Start the Web Server
 
-To start the webserver, run the following command:
+The Symfony local web server automatically uses the correct PHP version, reads your `.env` configuration, and exposes HTTPS by default. This makes it more reliable than the built-in PHP server for local development.
+
+Start the local web server with:
 
 ```bash
 symfony server:start
 ```
 
-This will start the webserver on port 8000. You can access the Shopware Administration at [http://localhost:8000/admin](http://localhost:8000/admin) and the Storefront at [http://localhost:8000](http://localhost:8000).
+By default, this starts the server on port `8000`. Access the Shopware Administration at [http://localhost:8000/admin](http://localhost:8000/admin) and the Storefront at [http://localhost:8000](http://localhost:8000).
 
-If you wish to run it on the background, you can use the `-d` flag:
+To run the server in the background, add the `-d` flag:
 
 ```bash
 symfony server:start -d
 ```
 
-### Stopping the Webserver
+This frees up your terminal for other commands.
 
-To stop the webserver, run the following command:
+### Stopping the Web Server
+
+To stop the server and all running processes, run:
 
 ```bash
 symfony server:stop
 ```
 
-This will stop the webserver and all running processes.
+**Tip**: If port 8000 is already in use, start the server on a different port: `symfony server:start --port=8080`
 
-## Change PHP Version
+## Set the PHP Version (Optional, Recommended)
 
-To change the used PHP version, you need to create a `.php-version` file in the project root and add the desired PHP version to it. For example, to use PHP 8.3, create a file called `.php-version` and add the following line:
+Specify a PHP version to ensure consistent environments across team members.
+
+To change the PHP version used by Symfony CLI, create a `.php-version` file in the project root and specify the desired version. For example, to use PHP 8.3, create `.php-version` and add:
 
 ```dotenv
 8.3
 ```
 
-This will set the PHP version to 8.3 for the current project so that any `symfony` commands will use this version. Make sure to commit this change to your version control system to keep track of the PHP version configuration. You can also verify the PHP version by running the command:
+Symfony CLI will now use PHP 8.3 for all commands in this project. Commit this file to your version control system so everyone on your team uses the same PHP version.
+
+To verify which PHP version is active, run:
 
 ```bash
 symfony php -v
 ```
 
-## Changing PHP Configuration
+## Adjust PHP Configuration (Optional)
 
-To change the PHP Configuration, you need to create a `php.ini` file in the project root and add the desired PHP configuration to it. For example, to change the `memory_limit` to `512M`, create a file called `php.ini` and add the following line:
+Adjusting PHP settings like `memory_limit` or `max_execution_time` can prevent build or cache warm-up processes from failing, especially during large Administration builds or when working on plugins.
+
+You can override PHP settings for this project by adding a `php.ini` file in the project root. For example, to increase the `memory_limit` to 512 MB, add:
 
 ```ini
 memory_limit = 512M
 ```
 
-This will set the `memory_limit` to `512M` for the current project so that any `symfony` commands will use this configuration. Make sure to commit this change to your version control system to keep track of the PHP configuration.
-You can also verify the PHP configuration by running the command:
+To confirm your configuration, run:
 
 ```bash
 symfony php -i
 ```
 
-## Building/Watcher the Administration and Storefront
+By keeping your `php.ini` in version control, you ensure consistent behavior across development environments and CI pipelines.
+
+Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../resources/references/config-reference/server/nginx.md).
+
+## Build and Watch the Administration and Storefront (Optional)
+
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
 
 <PageRef page="../template#building-watching-administration-and-storefront" />
