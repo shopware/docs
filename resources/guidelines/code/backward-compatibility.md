@@ -21,41 +21,24 @@ During the development, different cases occur where you want to replace old code
 
 ```php
 /**
- * @deprecated tag:v6.5.0 - Use NewFunction() instead
+ * @deprecated tag:v6.8.0 - Use NewFunction() instead
  */
 ```
 
 The `@deprecated` annotation is used for obsolete public code, which will be removed with the next major release. The annotation always needs the specific major version tag, in which the code should be removed. Always add a meaningful comment with information about the corresponding replacement and how the deprecated code can be removed.
 
-### @feature-deprecated
+
+### @experimental
 
 ```php
 /**
- * @feature-deprecated (flag:FEATURE_NEXT_11111)
+ * @experimental feature:FEATURE_FLAG stableVersion:v6.8.0
  */
 ```
 
-The `@feature-deprecated` annotation is used for obsolete code during the development of a feature when the code is still hidden behind a feature flag. This is important so that code that is not public will not trigger deprecation warnings. This annotation has to be changed to the correct `@deprecated` annotation when the feature is released, and the corresponding feature flag is removed. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the flag is removed.
-
-### @major-deprecated
-
-```php
-/**
- * @major-deprecated (flag:FEATURE_NEXT_22222)
- */
-```
-
-The `@major-deprecated` annotation is used for breaking code which has to stay behind a specific major feature flag until the next major release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the flag is removed.
-
-### @internal
-
-```php
-/**
- * @internal (flag:FEATURE_NEXT_11111)
- */
-```
-
-In combination with a feature flag, like shown above, the `@internal` annotation is used for newly introduced code, which is not yet released. This ensures that it will not be treated as a public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the corresponding feature is released.
+The `@experimental` annotation is used for newly introduced code, which is not yet released. This ensures that it will not be treated as a public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the corresponding feature is released.
+The `@experimental` annotation should be treated like the default `@internal` annotation. 
+The mentioned  `stableVersion` tag is used to hint when the feature will be considered stable.
 
 ## Workflows
 
@@ -209,6 +192,14 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | Renaming or removing functional selectors, like `is--*`. | 🔴 NO      |                                                                                                                                                                                                                                                             |
 | Renaming or removing root CSS selectors.                    | 🔴 NO      |                                                                                                                                                                                                                                                             |
 
+### Feature Flags
+
+Feature flags itself, mainly the name and existence of the feature flag itself, are not part of the backward compatibility promise. 
+Which means feature flags can be renamed or removed without any prior notice; however, those changes will always be documented in the release notes.
+
+The reason is that features behind a feature flag are not part of the public API, and therefore the features itself can be changed or removed without any notice.
+Additionally, if the feature flag is still activated in a project, it should not lead to a break if that flag does not exist anymore, as the enabled feature flag is just an env variable.
+
 ## Code Examples
 
 ### PHP
@@ -228,7 +219,7 @@ class AbstractMailService implements MailServiceInterface
 
 ```php
 /**
- * @feature-deprecated tag:v6.5.0 (flag:FEATURE_NEXT_22222)
+ * @deprecated tag:v6.5.0 (flag:FEATURE_NEXT_22222)
  * Parameter $precision will be mandatory in future implementation
  */
 public function calculate(ProductEntity $product, Context $context /*, int $precision */): Product
