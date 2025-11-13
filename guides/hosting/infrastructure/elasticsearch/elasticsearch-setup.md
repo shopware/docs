@@ -103,7 +103,7 @@ OPENSEARCH_URL="elasticsearchhostname:9200"
 SHOPWARE_ES_ENABLED="1"
 SHOPWARE_ES_INDEXING_ENABLED="1"
 SHOPWARE_ES_INDEX_PREFIX="sw"
-SHOPWARE_ES_THROW_EXCEPTION=1
+SHOPWARE_ES_THROW_EXCEPTION=0
 ```
 
 ### Example file for debug configuration
@@ -146,6 +146,10 @@ Before indexing, you might want to clear your cache with `bin/console cache:clea
 ### Basic Elasticsearch indexing
 
 Normally, you can index by executing the command `bin/console es:index`.
+
+::: info
+Elasticsearch common error handling and tips can refer to [elasticsearch troubleshooting](https://developer.shopware.com/docs/resources/guidelines/troubleshooting/elasticsearch.html).
+:::
 
 ### Indexing the whole shop
 
@@ -198,3 +202,4 @@ bin/console es:admin:test
 ::: info
 Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) for complex search queries.
 :::
+
