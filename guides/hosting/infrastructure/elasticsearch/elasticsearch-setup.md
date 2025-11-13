@@ -151,7 +151,7 @@ Before indexing, you might want to clear your cache with `bin/console cache:clea
 Normally, you can index by executing the command `bin/console es:index`.
 
 ::: info
-Elasticsearch common error handling and tips can refer to [elasticsearch troubleshooting](https://developer.shopware.com/docs/resources/guidelines/troubleshooting/elasticsearch.html).
+For additional support with common Elasticsearch errors and more tips please refer to [elasticsearch troubleshooting](https://developer.shopware.com/docs/resources/guidelines/troubleshooting/elasticsearch.html).
 :::
 
 ### Indexing the whole shop
