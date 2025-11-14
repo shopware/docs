@@ -21,7 +21,7 @@ This guide **does not** explain how you can create a new plugin for Shopware 6. 
 
 The main entry point to customize the Administration via plugin is the `main.js` file. It has to be placed into a `<plugin root>/src/Resources/app/administration/src` directory in order to be automatically found by Shopware 6.
 
-Your `main.js` file then needs to override the [Vue component](https://vuejs.org/v2/guide/components.html) using the `override` method of our `ComponentFactory`.
+Your `main.js` file then needs to override the [Vue component](https://vuejs.org/guide/essentials/component-basics.html) using the `override` method of our `ComponentFactory`.
 
 The first parameter matches the component to override, the second parameter has to be an object containing the actually overridden properties , e.g. the new twig template extension for this component.
 

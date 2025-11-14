@@ -27,7 +27,7 @@ This guide also won't teach you how to write Cypress tests in general. Please ta
 
 ### Using our testsuite
 
-The [E2E platform testsuite package](https://github.com/shopware/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference).
+The [E2E platform testsuite package](https://github.com/shopwareArchive/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference).
 
 This test suite is built on top of [Cypress](https://www.cypress.io/) as well as the following Cypress plugins:
 
@@ -39,11 +39,11 @@ Here you can find the npm package of our testsuite:
 
 <PageRef page="https://www.npmjs.com/package/@shopware-ag/e2e-testsuite-platform" title="@shopware-ag/e2e-testsuite-platform - npm" target="_blank" />
 
-Please have a look on our [cypress.json](https://github.com/shopware/e2e-testsuite-platform/blob/3.x/cypress.json), a few of our commands expect some configuration, e.g. viewportHeight and width, because the admin menu only opens if the viewport is wide enough.
+Please have a look on our [cypress.json](https://github.com/shopwareArchive/e2e-testsuite-platform/blob/3.x/cypress.json), a few of our commands expect some configuration, e.g. viewportHeight and width, because the admin menu only opens if the viewport is wide enough.
 
 ## Setup steps
 
-When you use our [Development template](https://github.com/shopware/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
+When you use our [Development template](https://github.com/shopwareArchive/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
 
 The`composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing#executing-e2e-tests).
 
@@ -542,7 +542,7 @@ return Promise.all([
 });
 ```
 
-That's it! There you go: You have successfully created a customised service that sets up a shipping method in Shopware. Actually, we use this service in our platform test to create our shipping method as well. You can find the full service [here](https://github.com/shopware/e2e-testsuite-platform/blob/master/cypress/support/service/administration/fixture/shipping.fixture.js). So please look at this example to see the whole class.
+That's it! There you go: You have successfully created a customised service that sets up a shipping method in Shopware. Actually, we use this service in our platform test to create our shipping method as well. You can find the full service [here](https://github.com/shopwareArchive/e2e-testsuite-platform/blob/master/cypress/support/service/administration/fixture/shipping.fixture.js). So please look at this example to see the whole class.
 
 Below you will find some best practices and tricks we explored to help you with your testing tasks:
 
