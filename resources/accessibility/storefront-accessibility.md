@@ -102,7 +102,7 @@ If the block `component_list_items` is being extended, the new accessibility cha
 
 ::: info
 With accessibility iteration 1 we have addressed the most critical accessibility problems and implemented multiple improvements.
-You can find an overview of the accessibility iteration 1 epic in the following ticket: [NEXT-37039](https://issues.shopware.com/issues/NEXT-37039)
+You can find an overview of the accessibility iteration 1 epic in the following ticket: [NEXT-37039](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/GithubIssues)
 :::
 
 ### Continuous efforts to ensure accessibility

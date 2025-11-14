@@ -870,4 +870,4 @@ This writer will be called automatically as the `getEntityName` method of your `
 
 ## Source
 
-Check out this [GitHub repository](https://github.com/shopware/swag-docs-create-migration-profile) containing a full example source.
+Check out this [GitHub repository](https://github.com/shopwareArchive/swag-docs-create-migration-profile) containing a full example source.

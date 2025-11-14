@@ -53,7 +53,7 @@ When developing new features, the goal should always be to do this in a backward
 | 🔴 **Breaking change** | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](../../references/adr/2020-08-10-feature-flag-system.md). Also, create a separate [changelog](../../references/adr/2020-08-03-implement-new-changelog.md) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
 | 🔍 **Tests**           | Add new tests behind a feature flag.                                                                                                                                                                                                                                                       | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                            |
 
-You can also find more detailed information and code examples in the corresponding **[ADR](https://github.com/shopware/shopware/blob/trunk/adr/)** for the deprecation strategy.
+You can also find more detailed information and code examples in the corresponding **[ADR](https://github.com/shopware/shopware/tree/trunk/adr)** for the deprecation strategy.
 
 ### Breaking Changes / Features
 

@@ -99,7 +99,7 @@ require('@shopware-ag/e2e-testsuite-platform/cypress/support');
 <Tab title="Platform: Developing with docker">
 If you are using docker, you don't need to install a thing: We use the [Cypress/Included image](https://github.com/cypress-io/cypress-docker-images/tree/master/included) to use Cypress in Docker completely.
 
-However, as we're using this image for running the test runner as well, you may need to do some configuration first. Based on this [guide](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command) you need to forward the XVFB messages from Cypress out of the Docker container into an X11 server running on the host machine. The guide shows an example for Mac; other operating systems might require different commands.
+However, as we're using this image for running the test runner as well, you may need to do some configuration first. Based on this [guide](https://www.cypress.io/blog/run-cypress-with-a-single-docker-command) you need to forward the XVFB messages from Cypress out of the Docker container into an X11 server running on the host machine. The guide shows an example for Mac; other operating systems might require different commands.
 
 In case you're using Docker on Mac we have summarized the steps from the guide mentioned above, so you can follow these to prepare your environment to get the Test Runner up and running:
 
@@ -261,7 +261,7 @@ These two configuration files are important to mention as well:
 
   These are Cypress configuration files. If you need more information about them, take a look at the
 
-  [Cypress configuration docs](https://docs.cypress.io/guides/references/configuration.html).
+  [Cypress configuration docs](https://docs.cypress.io/app/references/configuration).
 
 If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](cypress-end-to-end-testing#setup-steps).
 
