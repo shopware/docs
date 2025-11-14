@@ -27,7 +27,6 @@ During the development, different cases occur where you want to replace old code
 
 The `@deprecated` annotation is used for obsolete public code, which will be removed with the next major release. The annotation always needs the specific major version tag, in which the code should be removed. Always add a meaningful comment with information about the corresponding replacement and how the deprecated code can be removed.
 
-
 ### @experimental
 
 ```php
@@ -38,7 +37,7 @@ The `@deprecated` annotation is used for obsolete public code, which will be rem
 
 The `@experimental` annotation is used for newly introduced code, which is not yet released. This ensures that it will not be treated as a public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the corresponding feature is released.
 The `@experimental` annotation should be treated like the default `@internal` annotation. 
-The mentioned  `stableVersion` tag is used to hint when the feature will be considered stable.
+The mentioned  `stableVersion` tag is used to hint when the feature is planned to be stable.
 
 ## Workflows
 
@@ -194,11 +193,14 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 
 ### Feature Flags
 
-Feature flags itself, mainly the name and existence of the feature flag itself, are not part of the backward compatibility promise. 
-Which means feature flags can be renamed or removed without any prior notice; however, those changes will always be documented in the release notes.
+Feature flags itself, mainly the name and existence of the feature flag itself, are part of the backward compatibility promise.
+Which means feature flags won't be removed in a minor version and will be deprecated instead.
 
-The reason is that features behind a feature flag are not part of the public API, and therefore the features itself can be changed or removed without any notice.
-Additionally, if the feature flag is still activated in a project, it should not lead to a break if that flag does not exist anymore, as the enabled feature flag is just an env variable.
+However, the behaviour behind the feature flag might change at any time, this might include the complete removal of the feature behind the flag, or the use of a new flag to toggle the behaviour.
+In these cases the old feature flag will still be registered, so checks for that feature flag won't throw any error, but the feature flag itself will do nothing.
+
+This allows for easier compatibility across different versions in plugins, as the feature flag checks can stay in the plugin code. 
+All changes to the functionality behind the feature flag will be documented in the release notes.
 
 ## Code Examples
 
