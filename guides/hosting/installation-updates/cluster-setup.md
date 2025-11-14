@@ -81,7 +81,7 @@ Updates of such systems require a certain amount of effort, as issues often aris
 
 ### Security plugin
 
-For obtaining security fixes, without version upgrades, we provide a dedicated [Security plugin](https://store.shopware.com/swag136939272659f/shopware-6-sicherheits-plugin.html). This is compatible with all Shopware versions and corresponding hot fixes are only included in versions that are affected.
+For obtaining security fixes, without version upgrades, we provide a dedicated [Security plugin](https://store.shopware.com/de/swag136939272659/shopware-6-sicherheits-plugin.html). This is compatible with all Shopware versions and corresponding hot fixes are only included in versions that are affected.
 
 ### Update of composer dependencies
 

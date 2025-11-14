@@ -11,7 +11,7 @@ nav:
 
 Automated deployments shouldn't be a pain and have several advantages, like lower failure rates and reproducible builds. Also, they increase overall productivity because actual testing can get more attention.
 
-This article explains the fundamental steps to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ee/ci/) or [GitHub Actions](https://github.com/features/actions) and [Deployer](https://deployer.org/) (a deployment tool written in PHP).
+This article explains the fundamental steps to deploy Shopware 6 to a certain infrastructure, focussing on continuous deployment using [GitLab CI](https://docs.gitlab.com/ci/) or [GitHub Actions](https://github.com/features/actions) and [Deployer](https://deployer.org/) (a deployment tool written in PHP).
 
 ## Video
 
@@ -58,7 +58,7 @@ composer require deployer/deployer shopware/deployment-helper
 
 ## GitLab runner requirements
 
-[GitLab pipelines](https://docs.gitlab.com/ee/ci/pipelines/) are processed by [runners](https://docs.gitlab.com/runner/). Once a pipeline job is created, GitLab notifies a registered runner, and the job will then be processed by that runner.
+[GitLab pipelines](https://docs.gitlab.com/ci/pipelines/) are processed by [runners](https://docs.gitlab.com/runner/). Once a pipeline job is created, GitLab notifies a registered runner, and the job will then be processed by that runner.
 
 The [GitLab runner](https://docs.gitlab.com/runner/) must have the following packages installed:
 
