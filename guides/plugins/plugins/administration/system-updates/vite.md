@@ -59,7 +59,7 @@ export default defineConfig({
 });
 ```
 
-Of course, this is a very basic example. The Vite config can be much more complex and powerful. You can find more information about the Vite config in the [Vite documentation](https://vitejs.dev/config/). Depending on your webpack config, the migration can be very individual.
+Of course, this is a very basic example. The Vite config can be much more complex and powerful. You can find more information about the Vite config in the [Vite documentation](https://vite.dev/config/). Depending on your webpack config, the migration can be very individual.
 
 ## Implementation details
 

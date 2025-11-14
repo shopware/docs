@@ -195,7 +195,7 @@ Never use fixed waiting times in the form of `.wait(500)` or similar. Using Cypr
 cy.get('.sw-category-tree').should('be.visible');
 ```
 
-Another useful way for waiting in the Administration is using Cypress possibility to work with [network requests](https://docs.cypress.io/guides/guides/network-requests.html). Here you can let the test wait for a successful API response:
+Another useful way for waiting in the Administration is using Cypress possibility to work with [network requests](https://docs.cypress.io/app/guides/network-requests). Here you can let the test wait for a successful API response:
 
 ```javascript
 cy.server();

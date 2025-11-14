@@ -494,4 +494,4 @@ With that have implemented your first plugin migration. Install your plugin, cle
 
 ## Source
 
-Check out this [GitHub repository](https://github.com/shopware/swag-docs-extending-shopware-migration-profile) containing a full example source.
+Check out this [GitHub repository](https://github.com/shopwareArchive/swag-docs-extending-shopware-migration-profile) containing a full example source.

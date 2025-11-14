@@ -85,7 +85,7 @@ The command `es:status` returns the status of all current Elasticsearch indices.
 
 ### es:test:analyzer
 
-The command `es:test:analyzer` runs an Elasticsearch analyzer on your indices. For more details on Elasticsearch analyzers, take a look at this [external link](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html).
+The command `es:test:analyzer` runs an Elasticsearch analyzer on your indices. For more details on Elasticsearch analyzers, take a look at this [external link](https://www.elastic.co/docs/reference/text-analysis/analyzer-reference).
 
 ## Customize the Elasticsearch integration
 

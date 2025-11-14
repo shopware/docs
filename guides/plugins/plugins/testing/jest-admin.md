@@ -82,7 +82,7 @@ However, when it comes to writing component tests for Shopware's Administration,
 
 ## Setup for testing Vue components
 
-We are using the [Vue Test Utils](https://vue-test-utils.vuejs.org) for easier testing of Vue components. If you don't have experience with testing Vue components it is useful to read some basic guides on this topic. The main part of testing components is similar in Shopware 6.
+We are using the [Vue Test Utils](https://v1.test-utils.vuejs.org/) for easier testing of Vue components. If you don't have experience with testing Vue components it is useful to read some basic guides on this topic. The main part of testing components is similar in Shopware 6.
 
 However, there are some important differences. We can't test components that easily like in other Vue projects because we are supporting template inheritance and extendability for third party developers. This causes overhead which we need to bear in mind.
 
@@ -543,7 +543,7 @@ When working with components of Shopware's Administration, you might stumble upo
 
 > \[Vue warn\]: Failed to resolve directive: clipboard
 
-If that happens, you need to use [localVue](https://vue-test-utils.vuejs.org/api/#createlocalvue) to provide the directive mock. `createLocalVue` returns a Vue class for you to add components, mixins and install plugins without polluting the global Vue class. In our context, it looks like this:
+If that happens, you need to use [localVue](https://v1.test-utils.vuejs.org/api/#createlocalvue) to provide the directive mock. `createLocalVue` returns a Vue class for you to add components, mixins and install plugins without polluting the global Vue class. In our context, it looks like this:
 
 ```javascript
 import { shallowMount, createLocalVue } from '@vue/test-utils';

@@ -179,7 +179,7 @@ If you want more than that, a tool like [RabbitMQ](/docs/guides/hosting/infrastr
 ## Configuration
 
 Keep in mind that the search configuration of Shopware has no effect when using Elasticsearch.
-To configure which fields and elements are searchable when using Elasticsearch, you must install the extension [Advanced Search](https://docs.shopware.com/en/shopware-6-en/enterprise-extensions/enterprise-search).
+To configure which fields and elements are searchable when using Elasticsearch, you must install the extension [Advanced Search](https://docs.shopware.com/en/shopware-6-en/extensions/advanced-search).
 
 ## Elasticsearch for Admin
 
@@ -203,5 +203,5 @@ bin/console es:admin:test
 ```
 
 ::: info
-Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html) for complex search queries.
+Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-simple-query-string-query) for complex search queries.
 :::

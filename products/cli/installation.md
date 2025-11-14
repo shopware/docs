@@ -154,7 +154,7 @@ You can also use it within a Docker container. To do that, you will need to exec
 
 Registries:
 
-- [ghcr.io/shopware/shopware-cli](https://github.com/orgs/shopware/packages/container/package/shopware-cli)
+- [ghcr.io/shopware/shopware-cli](https://github.com/shopware/shopware-cli/pkgs/container/shopware-cli)
 
 Example usage:
 

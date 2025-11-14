@@ -57,7 +57,7 @@ The Shopware 6 Administration mixes, as mentioned in the beginning, [twig](https
 
 Generally speaking, twig is used for **extending** from another template and adjusting it to your needs. For example overriding a twig block could provide a hook to place your own markup. But be careful overrides apply to all occurrences of this template.
 
-Vue is used to link the data and the DOM to make them reactive. Learn about Vue and its capabilities [here](https://vuejs.org/v2/guide/index.html).
+Vue is used to link the data and the DOM to make them reactive. Learn about Vue and its capabilities [here](https://vuejs.org/guide/introduction.html).
 
 ## More interesting topics
 

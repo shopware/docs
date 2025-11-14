@@ -11,7 +11,7 @@ Shopware-CLI comes with a built-in automatic refactoring tool for PHP, JavaScrip
 
 It uses the tools:
 
-- [Rector](https://getrector.org/) for PHP
+- [Rector](https://getrector.com/) for PHP
 - [ESLint](https://eslint.org/) for JavaScript
 - Custom rules for Admin Twig files
 

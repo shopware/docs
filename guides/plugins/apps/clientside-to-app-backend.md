@@ -89,7 +89,7 @@ const { token, shopId } = await response.json();
 </Tabs>
 
 ::: info
-Requesting from the browser to the app backend is only possible when your app backend allows [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requests. Example:
+Requesting from the browser to the app backend is only possible when your app backend allows [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) requests. Example:
 
 - Access-Control-Allow-Origin: *
 - Access-Control-Allow-Methods: GET, POST, OPTIONS

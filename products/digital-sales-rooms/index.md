@@ -33,5 +33,5 @@ Review the below minimum operating requirements before you install the *Digital 
 * Instance of [Shopware 6](../../guides/installation/) (version 6.6.0 and above).
   * Recommend installing with [devenv](../../guides/installation/setups/devenv.md)
 * Third party services:
-  * [Daily.co](https://daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
+  * [Daily.co](https://www.daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
   * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](./setup-3rd-party/realtime-service-mercure.md)

@@ -57,6 +57,6 @@ Refer to [Vitepress syntax](https://vitepress.dev/guide/markdown) for features l
 
 Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. Further sections describe the usage of these patterns and let us comply with them.
 
-Also, user-defined rules govern the content quality, such as removing trailing spaces, code fence style, and more. You may refer to these rules in the [Markdown style of Shopware docs](https://github.com/shopware/docs/blob/master/markdown-style-config.yml).
+Also, user-defined rules govern the content quality, such as removing trailing spaces, code fence style, and more. You may refer to these rules in the [Markdown style of Shopware docs](https://github.com/shopware/docs/blob/main/markdown-style-config.yml).
 
 The following section details the conceptual outline structure of our documentation.

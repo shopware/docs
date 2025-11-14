@@ -13,11 +13,11 @@ This documentation chapter will cover how to add a new Administration mixin for 
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. As stated before mixins in Shopware are basically the same as in Vue, so you should have read their [documentation](https://vuejs.org/v2/guide/mixins.html) on them first.
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. As stated before mixins in Shopware are basically the same as in Vue, so you should have read their [documentation](https://v2.vuejs.org/v2/guide/mixins.html?redirect=true) on them first.
 
 ## Register a new Mixin
 
-For this example, we'll just use the example mixin from the [VueJS documentation](https://vuejs.org/v2/guide/mixins.html) and adjust it to be used in Shopware.
+For this example, we'll just use the example mixin from the [VueJS documentation](https://v2.vuejs.org/v2/guide/mixins.html?redirect=true) and adjust it to be used in Shopware.
 
 Mixins in Shopware have to be registered in the mixin registry via the `Mixin.register` function to be available everywhere in the Administration.
 

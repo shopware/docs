@@ -157,7 +157,7 @@ The following download strategies are valid:
 
 * `php` (default): A streamed response of content type `application/octet-stream` with binary data
 * `x-sendfile` (Apache only): X-Sendfile allows you to use PHP to instruct the server to send a file to a user, without having to load that file into PHP. You must have the [`mod_xsendfile`](https://github.com/nmaier/mod_xsendfile) Apache module installed.
-* `x-accel` (Nginx only): X-accel allows for internal redirection to a location determined by a header returned from a backend. See the [example configuration](https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/).
+* `x-accel` (Nginx only): X-accel allows for internal redirection to a location determined by a header returned from a backend. See the [example configuration](https://docs.nginx.com/).
 
 ## CDN configuration
 

@@ -7,7 +7,7 @@ nav:
 
 # Add / Modify language analyzers, stopwords, stemmer
 
-With the introduction of the multi-language index, support for built-in [Elasticsearch language analyzers]( https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lang-analyzer.html) was also introduced.
+With the introduction of the multi-language index, support for built-in [Elasticsearch language analyzers](https://www.elastic.co/docs/reference/text-analysis/analysis-lang-analyzer) was also introduced.
 
 This would help language-based fields have different analyzers for each language's specific features, like stopwords, stemmers, and normalization, out of the box.
 
