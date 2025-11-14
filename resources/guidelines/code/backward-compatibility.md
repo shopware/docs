@@ -221,17 +221,19 @@ class AbstractMailService implements MailServiceInterface
 
 ```php
 /**
- * @deprecated tag:v6.5.0 (flag:FEATURE_NEXT_22222)
- * Parameter $precision will be mandatory in future implementation
+ * @deprecated tag:v6.5.0 - Parameter $precision will be mandatory in future implementation
  */
 public function calculate(ProductEntity $product, Context $context /*, int $precision */): Product
 {
-   if (Feature::isActive('FEATURE_NEXT_22222')) {
+   if (Feature::isActive('v6.5.0.0')) {
       if (\func_num_args() === 3) {
          $precision = func_get_arg(2);
          // Do new calculation
       } else {
-         throw new InvalidArgumentException('Argument 3 $precision is required with feature FEATURE_NEXT_22222');
+         Feature::triggerDeprecationOrThrow(
+            'v6.5.0.0', 
+            'The parameter $precision will be mandatory in future implementation.'
+         );
       }
    } else {
       // Do old calculation
