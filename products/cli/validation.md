@@ -160,6 +160,8 @@ Or run multiple tools by separating them with commas:
 shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
 ```
 
+</Tab>
+
 </Tabs>
 
 This is particularly useful when:
