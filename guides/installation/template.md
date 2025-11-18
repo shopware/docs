@@ -17,7 +17,6 @@ If you [downloaded the ZIP package](https://www.shopware.com/en/download/) inste
 
 This method is equivalent to creating a project using Composer but is suited for environments where Composer is not available (for example, shared hosting or limited enterprise servers).
 
-
 ## Set up a new project
 
 To create a new Shopware project, run the following command:
