@@ -206,7 +206,6 @@ id -u
 
 If it’s not `1000`, you may encounter permission errors when running `make up` or writing to project files.
 
-
 ## Connecting to a remote database (optional)
 
 If you want to use a database outside the Docker stack (running on your host or another server, for examples), set `DATABASE_URL` in `.env.local` in the standard form:
