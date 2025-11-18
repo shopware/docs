@@ -21,55 +21,37 @@ During the development, different cases occur where you want to replace old code
 
 ```php
 /**
- * @deprecated tag:v6.5.0 - Use NewFunction() instead
+ * @deprecated tag:v6.8.0 - Use NewFunction() instead
  */
 ```
 
 The `@deprecated` annotation is used for obsolete public code, which will be removed with the next major release. The annotation always needs the specific major version tag, in which the code should be removed. Always add a meaningful comment with information about the corresponding replacement and how the deprecated code can be removed.
 
-### @feature-deprecated
+### @experimental
 
 ```php
 /**
- * @feature-deprecated (flag:FEATURE_NEXT_11111)
+ * @experimental feature:FEATURE_FLAG stableVersion:v6.8.0
  */
 ```
 
-The `@feature-deprecated` annotation is used for obsolete code during the development of a feature when the code is still hidden behind a feature flag. This is important so that code that is not public will not trigger deprecation warnings. This annotation has to be changed to the correct `@deprecated` annotation when the feature is released, and the corresponding feature flag is removed. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the flag is removed.
-
-### @major-deprecated
-
-```php
-/**
- * @major-deprecated (flag:FEATURE_NEXT_22222)
- */
-```
-
-The `@major-deprecated` annotation is used for breaking code which has to stay behind a specific major feature flag until the next major release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the flag is removed.
-
-### @internal
-
-```php
-/**
- * @internal (flag:FEATURE_NEXT_11111)
- */
-```
-
-In combination with a feature flag, like shown above, the `@internal` annotation is used for newly introduced code, which is not yet released. This ensures that it will not be treated as a public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the corresponding feature is released.
+The `@experimental` annotation is used for newly introduced code, which is not yet released. This ensures that it will not be treated as a public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the corresponding feature is released.
+The `@experimental` annotation should be treated like the default `@internal` annotation.
+The mentioned  `stableVersion` tag is used to hint when the feature is planned to be stable.
 
 ## Workflows
 
-### Backward compatible features
+### Backward-compatible features
 
 When developing new features, the goal should always be to do this in a backward compatible way. This ensures that the feature can be shipped with a minor release to provide value for customers as soon as possible. The following table should help you to use the correct approach for each type of change.
 
-| Case                    | During development                                                                                                                                                                                                                                                                                                                                       | On feature release                                                                                                                                       | Next major release                          |
-| ---                     | ---                                                                                                                                                                                                                                                                                                                                                      | ---                                                                                                                                                      | ---                                         |
-| 🚩 **Feature Flag**     | Hide code behind normal [feature flag](../../references/adr/2020-08-10-feature-flag-system.md).                                                                                                                                                                                                                                                                                            | Remove the feature flag.                                                                                                                                     |                                             |
-| ➕ **New code**         | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                                                                                           | Remove `@internal` annotation.                                                                                                                           |                                             |
-| ⚪ **Obsolete code**    | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                                                                                    | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                        | Remove old code.                            |
-| 🔴 **Breaking change**  | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](../../references/adr/2020-08-10-feature-flag-system.md). Also, create a separate [changelog](../../references/adr/2020-08-03-implement-new-changelog.md) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
-| 🔍 **Tests**            | Add new tests behind a feature flag.                                                                                                                                                                                                                                                                                                                       | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                        |
+| Case                   | During development                                                                                                                                                                                                                                                                         | On feature release                                                                                                                                       | Next major release                              |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| 🚩 **Feature Flag**    | Hide code behind normal [feature flag](../../references/adr/2020-08-10-feature-flag-system.md).                                                                                                                                                                                            | Remove the feature flag.                                                                                                                                 |                                                 |
+| ➕ **New code**         | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                             | Remove `@internal` annotation.                                                                                                                           |                                                 |
+| ⚪ **Obsolete code**    | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                      | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                        | Remove old code.                                |
+| 🔴 **Breaking change** | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](../../references/adr/2020-08-10-feature-flag-system.md). Also, create a separate [changelog](../../references/adr/2020-08-03-implement-new-changelog.md) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
+| 🔍 **Tests**           | Add new tests behind a feature flag.                                                                                                                                                                                                                                                       | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                            |
 
 You can also find more detailed information and code examples in the corresponding **[ADR](https://github.com/shopware/shopware/blob/trunk/adr/)** for the deprecation strategy.
 
@@ -209,16 +191,27 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | Renaming or removing functional selectors, like `is--*`. | 🔴 NO      |                                                                                                                                                                                                                                                             |
 | Renaming or removing root CSS selectors.                    | 🔴 NO      |                                                                                                                                                                                                                                                             |
 
+### Feature Flags
+
+Feature flags itself, mainly the name and existence of the feature flag itself, are part of the backward compatibility promise.
+Which means feature flags won't be removed in a minor version and will be deprecated instead.
+
+However, the behavior behind the feature flag might change at any time, this might include the complete removal of the feature behind the flag, or the use of a new flag to toggle the behaviour.
+In these cases the old feature flag will still be registered, so checks for that feature flag won't throw any error, but the feature flag itself will do nothing.
+
+This allows for easier compatibility across different versions in plugins, as the feature flag checks can stay in the plugin code.
+All changes to the functionality behind the feature flag will be documented in the release notes.
+
 ## Code Examples
 
 ### PHP
 
-#### Extend class with abstract class
+#### Extend a class with an abstract class
 
 ```php
 /** Before */
 class MailService implements MailServiceInterface
- 
+
 /** After */
 class MailService extends AbstractMailService
 class AbstractMailService implements MailServiceInterface
@@ -228,17 +221,19 @@ class AbstractMailService implements MailServiceInterface
 
 ```php
 /**
- * @feature-deprecated tag:v6.5.0 (flag:FEATURE_NEXT_22222)
- * Parameter $precision will be mandatory in future implementation
+ * @deprecated tag:v6.5.0 - Parameter $precision will be mandatory in future implementation
  */
 public function calculate(ProductEntity $product, Context $context /*, int $precision */): Product
 {
-   if (Feature::isActive('FEATURE_NEXT_22222')) {
+   if (Feature::isActive('v6.5.0.0')) {
       if (\func_num_args() === 3) {
          $precision = func_get_arg(2);
          // Do new calculation
       } else {
-         throw new InvalidArgumentException('Argument 3 $precision is required with feature FEATURE_NEXT_22222');
+         Feature::triggerDeprecationOrThrow(
+            'v6.5.0.0',
+            'The parameter $precision will be mandatory in future implementation.'
+         );
       }
    } else {
       // Do old calculation
@@ -253,20 +248,20 @@ public function calculate(ProductEntity $product, Context $context /*, int $prec
 abstract class AbstractProductRoute
 {
     abstract public function getDecorated(): AbstractProductRoute;
- 
+
     abstract public function load();
 }
- 
- 
+
+
 /** After */
 abstract class AbstractProductRoute
 {
     abstract public function getDecorated(): AbstractProductRoute;
- 
+
     abstract public function load();
- 
+
     /**
-     * @deprecated tag:v6.5.0 - Will be abstract 
+     * @deprecated tag:v6.5.0 - Will be abstract
      */
     public function loadV2()
     {
@@ -339,7 +334,7 @@ export default class RouteService {
         // Returns string 'foo/bar'
         return this._someMagic(symfonyRoute);
     }
- 
+
     getRouteConfig() {
         // Returns object { name: 'foo/bar', params: [] }
         return {
@@ -359,7 +354,7 @@ export default class RouteService {
 onClick(event) {
     return onItemClick(event);
 },
- 
+
 onItemClick(event) {
     // ...
 }
@@ -399,7 +394,7 @@ Shopware.Component.register('sw-old', {
 
 #### Adding required properties to components
 
-```json
+```javascript
 {
     createdComponent() {
         /** @deprecated tag:v6.5.0 - Warning will be removed when prop is required */
@@ -423,7 +418,7 @@ Shopware.Component.register('sw-old', {
 export default class HttpClient {
     // ...
 }
- 
+
 // new-http-client.service.js
 export default class NewHttpClient {
     // ...
@@ -440,7 +435,7 @@ export default class NewHttpClient {
 export default class BuyButtonPlugin extends Plugin {
     // ...
 }
- 
+
 // new-buy-button.plugin.js
 export default class NewBuyButtonPlugin extends Plugin {
     // ...
