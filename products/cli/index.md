@@ -18,16 +18,16 @@ Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements
 
 **Supported platforms (short):** macOS (Homebrew), Debian/Ubuntu (APT), other Linux via RPM or manual installation, and Docker. Windows users should use WSL 2 or Docker. (See full [installation](installation.md) page for Windows details.)
 
-## One-minute Quickstart
+## Quickstart
 
-Select your environment to install or try the CLI:
+Select your environment to install or try out the CLI:
 
 <Tabs groupId="os">
 
 <TabItem value="macOS" label="macOS / Linux (Homebrew)">
 
 ```bash
-brew install shopware/tap/shopware-cli
+brew install --cask shopware/tap/shopware-cli
 ```
 
 </TabItem> 
@@ -35,20 +35,21 @@ brew install shopware/tap/shopware-cli
 <TabItem value="debian" label="Debian / Ubuntu (APT)">
 
 ```bash
-curl -1sLf 'https://dl.cloudsmith.io/public/friendsofshopware/stable/setup.deb.sh' | sudo -E bash
+curl -1sLf \
+  'https://dl.cloudsmith.io/public/friendsofshopware/stable/setup.deb.sh' \
+  | sudo -E bash
 sudo apt install shopware-cli
 ```
 
 </TabItem> 
 
-<TabItem value="docker" label="Docker (no install)">
+<TabItem value="dockerfile" label="Dockerfile">
+
+Add the following line to your Docker image to copy the binary into your image:
 
 ```bash
-docker run --rm \
-  -v "$(pwd):/app" \
-  -w "$(pwd)" \
-  -u "$(id -u)" \
-  ghcr.io/shopware/shopware-cli --help
+# Dockerfile
+COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
 
 </TabItem>
@@ -96,39 +97,31 @@ Always back up or version your code before running refactoring commands, as they
 
 ### Project commands
 
-Work directly with your [Shopware project](deployment.md) to automate setup and maintenance tasks. Typical commands include:
+Work directly with your [Shopware project](deployment.md) to automate setup and maintenance tasks. Available commands include:
 
 ```bash
-shopware project status         # Show project info and environment details
-shopware project dump           # Export database and media for backups or CI
-shopware project build          # Build the project (e.g., administration, storefront)
+shopware-cli project create         # Create a new Shopware 6 project
+shopware-cli project dump       # Dumps the Shopware database
+shopware-cli project ci          # Build Shopware in the CI
 ```
-
-**Use cases**: keep environments in sync, build assets in CI/CD, or quickly check project health.
 
 ### Extension commands
 
-Create, build, and validate Shopware [extensions](plugins.md) and prepare them for the [Store](https://store.shopware.com/de/) or distribution.
+Create, build, and validate Shopware [extensions](plugins.md) and prepare them for the [Store](https://store.shopware.com/de/) or distribution. Available commands include:
 
 ```bash
-shopware extension create MyExtension   # Scaffold a new extension
-shopware extension build MyExtension    # Build administration and storefront assets
-shopware extension validate zip         # Validate extension ZIP before publishing
+shopware-cli extension fix   # Fix an extension
+shopware-cli extension build    # Builds assets for extensions
+shopware-cli extension validate         # Validate an extension
 ```
-
-**Use cases**: local development, CI testing, or packaging extensions for deployment.
 
 ### Store commands
 
-Publish and manage your extensions in the [Store](https://store.shopware.com/de/):
+Publish and manage your extensions in the [Store](https://store.shopware.com/de/), with commands such as:
 
 ```bash
-shopware store auth                # Authenticate with your Shopware account
-shopware store upload MyExtension.zip
-shopware store update MyExtension.zip
+shopware-cli store login # Login to Shopware Store portal. store
+shopware-cli token: Manage tokens for Store authentication
 ```
 
-**Use cases**: automate Store uploads, update listings, or integrate Store releases into pipelines.
-
-> **Tip:** Run any command with `--help` to see its available options.  
-> Example: `shopware extension --help`
+Run any command with `--help` to see its available options.   Example: `shopware-cli extension --help`
