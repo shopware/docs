@@ -11,7 +11,7 @@ The Shopware project template is a Composer project that can be used as starting
 
 Each official setup option—[Docker](./setups/docker.md), [Symfony CLI](./setups/symfony-cli.md), and [Devenv](./setups/devenv.md)—builds upon this project template, either directly or via a pre-configured environment. See [Installation Overview](./index.md) for a comparison of setup options.
 
-## Alternative: Using the Downloaded Package
+## Alternative: Using the Installer Package
 
 If you [downloaded the ZIP package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions in this page.
 
