@@ -74,7 +74,7 @@ Then reference the input in `devenv.nix`:
 
 </details>
 
-## Manual install from releases
+## Manual installation from releases
 
 Download the appropriate .deb, .rpm, or .apk file from the [GitHub Releases page](https://github.com/shopware/shopware-cli/releases) and install it manually:
 
