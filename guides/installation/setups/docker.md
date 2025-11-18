@@ -182,7 +182,9 @@ curl -H "sw-access-key: YOUR_ACCESS_KEY" \
 
 You can view or regenerate this key later in the Admin under Sales Channels → [Your Channel] → API Access.
 
-**Tip:** The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
+:::info
+The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
+:::
 </details>
 
 If you want to stop the setup, run `make stop`.
