@@ -11,7 +11,7 @@ Once your system meets the [requirements](../requirements.md), you can choose ho
 
 ## Docker setup (recommended)
 
-Docker runs your entire Shopware environment in containers, including PHP, MySQL, Redis, Elasticsearch, and Mailhog. It gives you a **production-like stack** with minimal manual setup.
+Docker runs your entire Shopware environment in containers, including PHP, MySQL, Redis, Elasticsearch, and Mailhog. It gives you a production-like stack with minimal manual setup.
 
 **What to expect**
 
@@ -31,7 +31,7 @@ Docker runs your entire Shopware environment in containers, including PHP, MySQL
 ## Symfony CLI setup
 
 Symfony CLI runs Shopware locally using your host system’s PHP and Composer installation.
-It’s **lightweight, fast, and easy to debug** using your local toolchain.
+It’s lightweight, fast, and easy to debug using your local toolchain.
 
 **What to expect**
 
@@ -51,7 +51,7 @@ It’s **lightweight, fast, and easy to debug** using your local toolchain.
 ## Devenv setup
 
 Devenv uses [Nix](https://nixos.org/) to define a reproducible Shopware development environment.
-It ensures everyone — across macOS, Linux, and CI — gets **the same dependency versions** and behavior.
+It ensures everyone — across macOS, Linux, and CI — gets the same dependency versions and behavior.
 
 **What to expect**
 
@@ -111,27 +111,11 @@ If you prefer a more automated or GUI-friendly way to run Docker environments, D
 
 ## Switching between setups
 
-You can use more than one setup on the same machine, just not at the same time.
-
-| Scenario | Recommended Setup |
-|:----------|:------------------|
-| Quick testing, plugin/theme work | **Symfony CLI** |
-| Team or CI/CD environment | **Docker** |
-| Multi-version core contributions | **Devenv** |
-| Simplified Docker workflow | **DDEV** |
-| Instant Shopware demo/store | **Dockware** |
-
-To switch setups safely:
+You can use more than one setup on the same machine, just not at the same time. To switch setups safely:
 
 1. Stop running services (e.g., `docker compose down`, or `symfony server:stop`).
 2. Use separate directories for each setup.
-3. Reuse the same project template if needed — each setup has its own configuration files.
-
-## Tips for choosing
-
-- New to Shopware? Start with **Docker**: consistent, documented, and closest to production.
-- Need speed and simplicity? Go for **Symfony CLI**.
-- Care about reproducibility and advanced workflows? Pick **Devenv**.
+3. Reuse the same project template if needed. Each setup has its own configuration files.
 
 You can always migrate between setups later. Your Shopware project remains the same.
 
