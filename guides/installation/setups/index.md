@@ -150,3 +150,7 @@ Once your setup is running, you can start developing your **shop**, **app**, **p
 ::: info
 Each setup uses the same Shopware Project Template at its core. Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
 :::
+
+## Installing Shopware CLI
+
+Most developers install the [Shopware CLI](../../products/cli/index.md), a tool for building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups (Docker, Symfony CLI, Devenv, DDEV, Dockware) and is used in most Shopware upgrade, build, and CI workflows.

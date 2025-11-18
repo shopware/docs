@@ -13,14 +13,19 @@ This setup is intended for development. If you want to use Docker for production
 
 Docker is a platform that enables developers to develop, ship, and run applications inside containers. These containers are lightweight, standalone, and executable packages that include everything needed to run an application: code, runtime, system tools, libraries, and settings. To get started with Docker, you can follow the official [Docker installation guide](https://docs.docker.com/get-docker/).
 
+The Docker setup automatically provides all backend services (PHP, MySQL, Elasticsearch, Redis, Mailhog, etc.) so you don’t need to install anything else manually.
+
 In this guide, we will run PHP, Node, and all required services in Docker containers. If you just want to run the services (MySQL/OpenSearch/Redis/...) in Docker, check out the [Docker](./docker.md) guide.
 
 ## Prerequisites
 
+- Git
+- A text editor or IDE (e.g. [PhpStorm](https://www.jetbrains.com/phpstorm/), VS Code)
 - [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) is installed and running. OrbStack is a fast, free (for personal use) alternative to Docker.
-- `make` is installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS)
+- [`make`](https://www.gnu.org/software/make/) installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS)
 - `Docker Compose` is installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 - Enough disk and network capacity to pull images (~500MB+ per image depending on tags)
+If you use the [Docker setup](./setups/docker.md), most dependencies are handled inside containers. You only need to install a few tools on your host system.
 
 ## Pre-pull the image (optional)
 
@@ -119,7 +124,7 @@ This command builds (if needed) and starts all required Docker services (web ser
 
 </details>
 
-💡 **Tip:** You can check container status anytime with:
+**Tip:** You can check container status anytime with:
 
 ```bash
 docker compose ps
@@ -145,7 +150,7 @@ If you connect to the database from your host machine (for example, via Adminer 
 :::
 
 <details>
-<summary>🔑 Access key explained (click to expand)</summary>
+<summary>Access key explained (click to expand)</summary>
 
 During setup, you’ll see an output similar to this:
 
@@ -157,7 +162,7 @@ Access tokens:
 | Access key | `string of capital letters` |
 ```
 
-This **access key** is automatically generated for your default **Sales Channel** (usually *Storefront*). It's used for authenticating requests to the [Store API](../../resources/references/store-api-reference.md)—for example, when fetching product or category data from an external app, headless storefront, or API client.
+This access key is automatically generated for your default Sales Channel (usually *Storefront*). It's used for authenticating requests to the [Store API](../../resources/references/store-api-reference.md)—for example, when fetching product or category data from an external app, headless storefront, or API client.
 
 Example usage:
 
@@ -168,7 +173,7 @@ curl -H "sw-access-key: YOUR_ACCESS_KEY" \
 
 You can view or regenerate this key later in the Admin under Sales Channels → [Your Channel] → API Access.
 
-💡 **Tip:** The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
+**Tip:** The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
 </details>
 
 If you want to stop the setup, run `make stop`.
@@ -200,6 +205,17 @@ id -u
 ```
 
 If it’s not `1000`, you may encounter permission errors when running `make up` or writing to project files.
+
+
+## Connecting to a remote database (optional)
+
+If you want to use a database outside the Docker stack (running on your host or another server, for examples), set `DATABASE_URL` in `.env.local` in the standard form:
+
+```bash
+DATABASE_URL="mysql://user:password@<host>:3306/<database>"
+```
+
+Note: containers cannot always reach services bound only to the host's `localhost`. If `localhost` does not work you can try `host.docker.internal`, your host machine’s LAN IP, or add an `extra_hosts` entry in `compose.yaml`.
 
 ## Development
 
@@ -442,7 +458,7 @@ bin/console asset:install
 bin/console theme:compile
 ```
 
-### Using OrbStack routing (optional)
+## Using OrbStack routing (optional)
 
 If you're using [OrbStack](https://orbstack.dev) on macOS, you can take advantage of its built-in routing feature.
 OrbStack automatically assigns local `.orb.local` URLs to your containers, so you don’t need to manage port mappings manually. This allows running multiple Shopware instances at the same time without port conflicts.

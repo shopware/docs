@@ -9,6 +9,15 @@ nav:
 
 The Shopware project template is a Composer project that can be used as starting point for new Shopware Projects, or if you want to develop extensions or themes for Shopware.
 
+Each official setup option—[Docker](./setups/docker.md), [Symfony CLI](./setups/symfony-cli.md), and [Devenv](./setups/devenv.md)—builds upon this project template, either directly or via a pre-configured environment. If you [downloaded a ready-to-use Shopware ZIP archive](https://www.shopware.com/en/download/), you can follow the same instructions starting from the configuration step. See [Installation Overview](./index.md) for a comparison of setup options.
+
+## Alternative: Using the Downloaded Package
+
+If you [downloaded the ZIP package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions in this page.
+
+This method is equivalent to creating a project using Composer but is suited for environments where Composer is not available (for example, shared hosting or limited enterprise servers).
+
+
 ## Set up a new project
 
 To create a new Shopware project, run the following command:
@@ -21,7 +30,7 @@ composer create-project shopware/production:6.6.10.5 <project-name>
 ```
 
 ::: info
-Composer create-project clones the latest tag from the [Template repository](https://github.com/shopware/template) and installs the dependencies. If you don't have Composer installed, you could also clone the repository itself and run `composer install` in Docker to proceed with the installation.
+Composer `create-project` clones the latest tag from the [Template repository](https://github.com/shopware/template) and installs the dependencies. If you don't have Composer installed, you could also clone the repository itself and run `composer install` in Docker to proceed with the installation.
 :::
 
 This creates a new project in the `<project-name>` directory.
