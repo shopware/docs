@@ -392,14 +392,16 @@ public static function getSubscribedEvents()
 }
 ```
 
-And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
+And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.yaml`
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
-</service>
+```yaml
+// <plugin root>/src/Resources/config/services.yaml
+services:
+  Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber:
+    arguments:
+      - '@Shopware\Core\Framework\Event\BusinessEventCollector'
+    tags:
+      - kernel.event_subscriber
 ```
 
 Well done, you have successfully created your own flow trigger.

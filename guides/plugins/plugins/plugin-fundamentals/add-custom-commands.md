@@ -19,7 +19,7 @@ This guide **does not** explain how to create a new plugin for Shopware 6. Head 
 
 <PageRef page="../plugin-base-guide" />
 
-The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
+The main requirement here is to have a `services.yaml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
 ::: info
 Refer to this video on custom **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -27,35 +27,26 @@ Refer to this video on custom **[Creating a CLI command](https://www.youtube.com
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
+From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.yaml` and specify the `console.command` tag:
 
-```html
-<services>
-   <!-- ... -->
+```yaml
+services:
+  # ...
 
-   <service id="Swag\BasicExample\Command\ExampleCommand">
-       <tag name="console.command"/>
-   </service>
-</services>
-<!-- ... -->
+  Swag\BasicExample\Command\ExampleCommand:
+    tags:
+      - console.command
+  # ...
 ```
 
-Here's a full example `services.xml` which registers your custom command:
+Here's a full example `services.yaml` which registers your custom command:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Command\ExampleCommand">
-            <tag name="console.command"/>
-        </service>
-    </services>
-</container>
+```yaml
+// <plugin root>/src/Resources/config/services.yaml
+services:
+  Swag\BasicExample\Command\ExampleCommand:
+    tags:
+      - console.command
 ```
 
 Your command's class should extend from the `Symfony\Component\Console\Command\Command` class, here's an example:
@@ -72,15 +63,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 // Command name
-#[AsCommand(name: 'swag-commands:example')]
+#[AsCommand(name: 'swag-commands:example', description: 'Does something very special.')]
 class ExampleCommand extends Command
 {
-    // Provides a description, printed out in bin/console
-    protected function configure(): void
-    {
-        $this->setDescription('Does something very special.');
-    }
-
     // Actual code executed in the command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
