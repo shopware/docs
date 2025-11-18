@@ -23,7 +23,7 @@ Every setup begins with the Project Template. It creates a new Composer project 
 - Customize configurations and services
 - Align the environment with your development goals
 
-If you [downloaded the ZIP package](https://www.shopware.com/en/download/) instead of using Composer, follow the same steps in the [Project Template guide](https://developer.shopware.com/docs/guides/installation/template.html).
+If you [downloaded the PHAR package](https://www.shopware.com/en/download/) instead of using Composer, follow the same steps in the [Project Template guide](https://developer.shopware.com/docs/guides/installation/template.html).
 
 ## Supported Setups
 
