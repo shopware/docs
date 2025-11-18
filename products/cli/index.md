@@ -30,7 +30,7 @@ Select your environment to install or try out the CLI:
 brew install --cask shopware/tap/shopware-cli
 ```
 
-</TabItem> 
+</TabItem>
 
 <TabItem value="debian" label="Debian / Ubuntu (APT)">
 
@@ -41,7 +41,7 @@ curl -1sLf \
 sudo apt install shopware-cli
 ```
 
-</TabItem> 
+</TabItem>
 
 <TabItem value="dockerfile" label="Dockerfile">
 
