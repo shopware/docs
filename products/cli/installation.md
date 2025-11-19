@@ -26,7 +26,7 @@ sudo dnf install shopware-cli
 
 </details>
 
-<details> 
+<details>
 <summary><strong>Arch Linux (AUR)</strong></summary>
 
 ```bash
@@ -46,7 +46,7 @@ nix profile install github:FriendsOfShopware/nur-packages#shopware-cli
 
 </details>
 
-<details> 
+<details>
 <summary><strong>Devenv (Nix-based)</strong></summary>
 
 Update `devenv.yaml` with:
@@ -107,7 +107,7 @@ These options let you use the CLI automatically in hosted environments. The [mai
 }
 ```
 
-</details> 
+</details>
 
 <details> <summary><strong>GitLab CI</strong></summary>
 
@@ -121,7 +121,7 @@ build:
     - shopware-cli --version
 ```
 
-</details> 
+</details>
 
 <details> <summary><strong>ddev integration</strong></summary>
 
