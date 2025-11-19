@@ -20,7 +20,7 @@ In this guide, we will run PHP, Node, and all required services in Docker contai
 ## Prerequisites
 
 - Git
-- A text editor or IDE (e.g. [PhpStorm](https://www.jetbrains.com/phpstorm/), VS Code)
+- A text editor or IDE (e.g. [PHPStorm](https://www.jetbrains.com/phpstorm/), VS Code)
 - [Docker](https://docs.docker.com/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) (macOS) is installed and running. OrbStack is a fast, free (for personal use) alternative to Docker.
 - [`make`](https://www.gnu.org/software/make/) installed on your machine.
 
