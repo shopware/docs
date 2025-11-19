@@ -28,9 +28,35 @@ Before jumping in and adjusting the HTTP-Caching, please familiarize yourself wi
 
 There are several entry points to manipulate the cache key.
 
+* `Shopware\Core\Framework\Adapter\Cache\Http\Extension\CacheHashRequiredExtension`: used to determine whether the cache hash should be calculated or if the request in running in the default state, and therefore no cache-hash is needed.
 * `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheCookieEvent`: used to calculate the cache hash based on the application state, supports both reverse proxy caches and the default symfony HTTP-cache component.
 * `Shopware\Core\Framework\Adapter\Cache\Http\Extension\ResolveCacheRelevantRuleIdsExtension`: used to determine which rule ids are relevant for the cache hash.
 * `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheKeyEvent`: used to calculate the exact cache key based on the response, only for symfony's default HTTP-cache component.
+
+#### Modifying when the cache hash is calculated
+
+By default, the cache hash is only calculated when the request is not in the default state, which is: no logged in customer, default currency, and an empty cart.
+The reason is that the very first request to the application from a client should always be cached in the best case, the state that the application is in then is the "default state", which does not require a cache hash.
+You can overwrite the default behaviour and add more conditions where the cache hash needs to be applied, e.g., when you shop needs to be more dynamic e.g. based on campaign query parameters:
+
+```php
+class RequireCacheHash implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            CacheHashRequiredExtension::NAME . '.post' => 'onRequireCacheHash',,
+        ];
+    }
+
+    public function onRequireCacheHash(CacheHashRequiredExtension $extension): void
+    {
+        if ($extension->request->query->has('campaignId')) {
+            $extension->result = true;
+        }
+    }
+}
+```
 
 #### Modifying the cache hash
 
@@ -41,7 +67,7 @@ It is stored alongside the response as a cookie and thus also provided with all 
 As the cache hash will be carried over to the next request, the computed cache hash can be used inside reverse proxy caches as well as the default symfony HTTP-cache component.
 
 :::info
-The cache hash is only computed on every response as soon as the application state differs from the default state, which is: no logged in customer, default currency and an empty cart.
+The cache hash is only computed on every response as soon as the application state differs from the default state, which is: no logged in customer, default currency, and an empty cart.
 :::
 
 By default, the cache hash will consist of the following parts:
