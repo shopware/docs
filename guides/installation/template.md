@@ -13,7 +13,7 @@ Each official setup option—[Docker](./setups/docker.md), [Symfony CLI](./setup
 
 ## Alternative: Using the Installer Package
 
-If you [downloaded the ZIP package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions in this page.
+If you have downloaded the [shopware-installer.phar package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions from the [Project Template](https://developer.shopware.com/docs/guides/installation/template.html) guide.
 
 This method is equivalent to creating a project using Composer but is suited for environments where Composer is not available (for example, shared hosting or limited enterprise servers).
 
