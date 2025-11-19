@@ -15,7 +15,7 @@ Welcome to the Shopware 6 Developer Installation Guide, which will help you set 
 
 You can choose from three supported setup options, each designed for specific use cases and development workflows. All setups start from the [Shopware Project Template](./template.md).
 
-## Shopware Project Template
+## Shopware project template
 
 Every setup begins with the Project Template. It creates a new Composer project that includes Shopware as a dependency, allowing you to:
 
@@ -25,7 +25,7 @@ Every setup begins with the Project Template. It creates a new Composer project 
 
 If you have downloaded the [shopware-installer.phar package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions from the [Project Template](https://developer.shopware.com/docs/guides/installation/template.html) guide.
 
-## Supported Setups
+## Supported setups
 
 | Setup | Description | Recommended For |
 |:------|:-------------|:----------------|

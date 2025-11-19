@@ -45,7 +45,7 @@ During project creation, Symfony Flex asks whether you want to use Docker. Choos
 
 For more details, see the [Shopware Production template documentation](https://developer.shopware.com/docs/guides/installation/production.html).
 
-## Configure Database Connection
+## Configure database connection
 
 After creating the project, define your database settings in a `.env.local` file in the project root:
 
@@ -57,7 +57,7 @@ You can define other environment settings (like `APP_URL`, `MAILER_DSN`, or `SHO
 
 Git ignores `.env.local`, so you can safely define machine-specific settings here without affecting your team’s shared configuration.
 
-### Using Docker for the Database (optional)
+### Using Docker for the database (optional)
 
 Running the database in a Docker container helps keep your local system clean and ensures version consistency with production environments. If you prefer this instead of installing MySQL or MariaDB locally, start Docker with:
 
@@ -95,7 +95,7 @@ The `--basic-setup` flag initializes Shopware with sensible defaults. It automat
 
 If you encounter file-permission issues when installing or rebuilding caches, run `symfony console cache:clear` or check directory ownership.
 
-### Default Administration Credentials
+### Default Administration credentials
 
 Shopware creates a default Administration user during installation:
 
@@ -105,7 +105,7 @@ Shopware creates a default Administration user during installation:
 
 **Tip**: Change these credentials after installation for security.
 
-## Start the Web Server
+## Start the webserver
 
 The Symfony local web server automatically uses the correct PHP version, reads your `.env` configuration, and exposes HTTPS by default. This makes it more reliable than the built-in PHP server for local development.
 
@@ -135,7 +135,7 @@ symfony server:stop
 
 **Tip**: If port 8000 is already in use, start the server on a different port: `symfony server:start --port=8080`
 
-## Set the PHP Version (Optional, Recommended)
+## Set the PHP version (optional, recommended)
 
 Specify a PHP version to ensure consistent environments across team members.
 
@@ -153,7 +153,7 @@ To verify which PHP version is active, run:
 symfony php -v
 ```
 
-## Adjust PHP Configuration (Optional)
+## Adjust PHP configuration (Optional)
 
 Adjusting PHP settings like `memory_limit` or `max_execution_time` can prevent build or cache warm-up processes from failing, especially during large Administration builds or when working on plugins.
 
