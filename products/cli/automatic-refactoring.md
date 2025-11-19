@@ -7,7 +7,7 @@ nav:
 
 # Automatic refactoring
 
-Shopware CLI includes a built-in automatic refactoring tool that helps you automatically update and clean up code in your Shopware projects and extensions. 
+Shopware CLI includes a built-in automatic refactoring tool that helps you automatically update and clean up code in your Shopware projects and extensions.
 
 Use this tool to modernize your codebase when upgrading to a new Shopware version or to apply best-practice changes automatically.
 
