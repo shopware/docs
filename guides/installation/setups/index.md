@@ -137,4 +137,4 @@ Each setup uses the same Shopware Project Template at its core. Only the runtime
 
 ## Installing Shopware CLI
 
-Most developers install the [Shopware CLI](../../products/cli/index.md), a tool for building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups (Docker, Symfony CLI, Devenv, DDEV, Dockware) and is used in most Shopware upgrade, build, and CI workflows.
+Most developers install the [Shopware CLI](../../products/cli/index.md), which helps with building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups (Docker, Symfony CLI, Devenv, DDEV, Dockware) and is used in most Shopware upgrade, build, and CI workflows. If you're using the Docker setup, the CLI comes preinstalled and is available in the container shell.
