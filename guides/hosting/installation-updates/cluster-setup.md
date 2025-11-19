@@ -41,7 +41,12 @@ The following folders are available in the production template:
 
 ## Third-party sources
 
-Most big-scale projects have a development team assigned. It is responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be useful but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including necessary plugins as Composer packages instead of user-managed plugins.
+Most big-scale projects have a development team assigned. It is responsible for the stability and performance of the system. The integration of external sources via apps or plugins can be useful but should always be viewed with a critical eye. By including those sources, the development team relinquishes control over parts of the system. We recommend including the necessary plugins as Composer packages instead of user-managed plugins.
+
+## Composer plugin loader
+
+Shopware loads by default all plugins via the database and allows enabling / disabling plugins at runtime. This needs to be fixed in a multi-app server environment. Therefore, we recommend using the Composer plugin loader. The Composer plugin loader loads the plugin state from Composer, so when a plugin is installed using Composer, we assume that it is enabled.
+That allows you to deploy plugins to all app servers by deploying with installing them using Composer. The plugins must be installed while deployment using `bin/console plugin:install --activate <name>`, so they are ready to use after the deployment. To use the composer plugin loader, add the environment variable `COMPOSER_PLUGIN_LOADER=1` to your `.env` file.
 
 ## Redis
 
@@ -51,7 +56,7 @@ We recommend setting up at least five Redis servers for the following resources:
 2. [cache.object](../performance/caches#example-replace-some-cache-with-redis)
 3. [Lock](../performance/lock-store) + [Increment storage](../performance/increment)
 4. [Number Ranges](../performance/number-ranges)
-5. [Message Queue](../infrastructure/message-queue#transport-redis-example)  
+5. [Message Queue](../infrastructure/message-queue#transport-redis-example)
    Instead of setting up a Redis server for `messenger`, you can also work directly with [RabbitMQ](../infrastructure/message-queue#transport-rabbitmq-example)
 
 The PHP Redis extension provides persistent Redis connections. Persistent connections can help in high load scenarios as each request doesn't have to open and close connections. Using non-persistent Redis connections can also hit the system's maximum open sockets. Because of these limitations, the Redis extension is preferred over Predis.
