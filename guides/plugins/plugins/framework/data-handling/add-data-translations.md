@@ -297,3 +297,4 @@ class ExampleDefinition extends EntityDefinition
         ]);
     }
 }
+```

@@ -83,8 +83,8 @@ Require valid-user
 
 An alternative way could be to use an Application Proxy before the staging environment like:
 
-- [Cloudflare Access](https://www.cloudflare.com/teams/access/)
-- [Azure Application Gateway](https://azure.microsoft.com/en-us/services/application-gateway/)
+- [Cloudflare Access](https://www.cloudflare.com/zero-trust/products/access/)
+- [Azure Application Gateway](https://azure.microsoft.com/en-us/products/application-gateway/)
 - [Generic oauth2 proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
 
 ## Staging mode

@@ -48,6 +48,18 @@ These URLs will point to the external CDN service, which should handle generatin
 
 Please note that the external service needs to be able to handle the URL pattern and generate the appropriate thumbnails based on the provided parameters.
 
+## Invalidating Thumbnails with Fastly
+
+If you are using Fastly as your CDN, you can let Shopware invalidate the cached thumbnails when the media is updated.
+To do this, you need to configure your Fastly API key in your `config/packages/shopware.yaml`:
+
+```yaml
+shopware:
+  cdn:
+    fastly:
+      api_key: YOUR_FASTLY_API_KEY
+```
+
 ## Conclusion
 
 By using remote thumbnails, you can offload the task of thumbnail generation to an external service, potentially improving the performance and scalability of your Shopware installation.

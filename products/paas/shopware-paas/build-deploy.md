@@ -61,7 +61,7 @@ Make sure to replace `%place your key here%` with your actual token. You can fin
 
 ## Extending Shopware - plugins and apps
 
-The PaaS recipe uses the Composer plugin loader, which expects all extension being installed via Composer.
+The PaaS recipe uses the [Composer plugin loader](../../../guides/hosting/installation-updates/cluster-setup#composer-plugin-loader), which expects all extensions being installed via Composer.
 
 ## Manually trigger rebuilds
 

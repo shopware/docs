@@ -54,7 +54,7 @@ After the successful installation of your app, the context gateway is ready to b
 
 ## Context Gateway Endpoint
 
-To trigger the context gateway, your integration can call the additional Store API route: <nobr>`store-api.context.gateway`</nobr>.  
+To trigger the context gateway, your integration can call the additional Store API route: <nobr>`store-api.context.gateway`</nobr>.
 This endpoint will forward the request to your app server’s context gateway endpoint, which must be [configured in your app's manifest](#manifest-configuration).
 
 To allow the shop to identify your app, the request must include the `appName`, which is defined in your [app’s `manifest.xml`](../../app-base-guide.md#manifest-file).
@@ -95,24 +95,24 @@ Here is an example JavaScript plugin that triggers the context gateway when a bu
 
 ```javascript [context-gateway.js]
 import Plugin from 'src/plugin-system/plugin.class';
-import ContextGatewayClient from 'src/service/context-gateway.service';
+import ContextGatewayClient from 'src/service/context-gateway-client.service';
 
 export default class MyPlugin extends Plugin {
   init() {
     this._registerEvents();
   }
-  
+
   _registerEvents() {
     this.el.addEventListener('click', this._onClick.bind(this));
   }
-  
+
   async _onClick() {
     // create client with your app name
     const gatewayClient = new ContextGatewayClient('myAppName');
-    
+
     // call the gateway with optional custom data
     const tokenResponse = await gatewayClient.call({ some: 'data', someMore: 'data' });
-    
+
     // either: you can work with the new token or redirect URL
     // this means you have to handle the navigation yourself, e.g. reloading the page or redirecting to the URL
     const token = tokenResponse.token;
@@ -131,8 +131,8 @@ export default class MyPlugin extends Plugin {
 
 The `customTarget` parameter allows you to optionally control the redirect path used by the `navigate` method.
 
-- If `customTarget` is an **absolute path** (starts with `/`), it completely replaces the path portion of the `redirectUrl`.  
-  This can be used to override sales channel subpaths in the `redirectUrl`.  
+- If `customTarget` is an **absolute path** (starts with `/`), it completely replaces the path portion of the `redirectUrl`.
+  This can be used to override sales channel subpaths in the `redirectUrl`.
   _Example:_ `https://example.com/en` → `https://example.com/custom/target/path`
 
 - If `customTarget` is a **relative path**, it is appended to the existing path of the `redirectUrl`.
@@ -153,7 +153,7 @@ The Shopware shop will wait for a response for 5 seconds.
 Be sure that your context gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
 :::
 
-Your app server can respond with a list of commands to modify the current sales channel context.  
+Your app server can respond with a list of commands to modify the current sales channel context.
 These commands can be used to perform actions such as:
 
 - Changing aspects of the customer context, like:
@@ -240,9 +240,9 @@ function gatewayController(RequestInterface $request): ResponseInterface
     $shopResolver = new ShopResolver($repository);
     $contextResolver = new ContextResolver();
     $signer = new ResponseSigner();
-    
+
     $shop = $shopResolver->resolveShop($request);
-    
+
     /** @var Shopware\App\SDK\Context\Gateway\Context\ContextGatewayAction $action */
     $action = $contextResolver->assembleContextGatewayRequest($request, $shop);
 

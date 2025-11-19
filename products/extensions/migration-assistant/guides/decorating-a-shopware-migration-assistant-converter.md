@@ -317,4 +317,4 @@ With this, you have decorated your first Shopware migration converter.
 
 ## Source
 
-Check out this [GitHub repository](https://github.com/shopware/swag-docs-decorate-shopware-migration-converter) containing a full example source.
+Check out this [GitHub repository](https://github.com/shopwareArchive/swag-docs-decorate-shopware-migration-converter) containing a full example source.

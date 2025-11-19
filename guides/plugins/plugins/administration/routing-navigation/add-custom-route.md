@@ -15,7 +15,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Configuring the route
 
-So lets start with configuring our own route. In order to add routes to a module you simply add the `routes` property, which expects an object containing multiple route configuration objects. Each route configuration object needs to have a `name`, which is set using the configuration object's key. Furthermore, we need to set a component and a path: A route points to a [component](https://vuejs.org/v2/guide/components.html) using the key `component`, which targets the component to be shown when this route is requested. The key `path` represents the actual path, that's going to be used for this route. Do not get confused just because it is equal to the route name in the first route.
+So lets start with configuring our own route. In order to add routes to a module you simply add the `routes` property, which expects an object containing multiple route configuration objects. Each route configuration object needs to have a `name`, which is set using the configuration object's key. Furthermore, we need to set a component and a path: A route points to a [component](https://vuejs.org/guide/essentials/component-basics.html) using the key `component`, which targets the component to be shown when this route is requested. The key `path` represents the actual path, that's going to be used for this route. Do not get confused just because it is equal to the route name in the first route.
 
 Now, our route should look like this:
 

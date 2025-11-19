@@ -134,7 +134,7 @@ Additionally, you can use also the [Deployment Helper environment variables](./d
 ## Possible Mounts
 
 ::: info
-Our recommendation is to store all files in an external storage provider to not mount any volumes. Refer to [official Shopware docs for setup](https://developer.shopware.com/docs/guides/hosting/infrastructure/filesystem).
+Our recommendation is to store all files in an external storage provider to not mount any volumes. Refer to [official Shopware docs for setup](https://developer.shopware.com/docs/guides/hosting/infrastructure/filesystem.html).
 :::
 
 In a very basic setup when all files are stored locally you need 5 volumes:

@@ -31,7 +31,7 @@ expect(product.coverId).toBeDefined();
 
 To work on the test suite and execute tests from within this repository, you must run a corresponding Docker image for the specific Shopware version.
 
-We publish pre-built images at the [GitHub container registry](https://github.com/orgs/shopware/packages/container/package/acceptance-test-suite%2Ftest-image). The images are built daily; check to see which versions are available.
+We publish pre-built images at the [GitHub container registry](https://github.com/shopware/acceptance-test-suite/pkgs/container/acceptance-test-suite%2Ftest-image). The images are built daily; check to see which versions are available.
 
 To select an image, export the corresponding tag as `SHOPWARE_VERSION` and start the containers:
 
