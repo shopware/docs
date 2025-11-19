@@ -226,4 +226,4 @@ With that, you have implemented your first plugin migration via API.
 
 ## Source
 
-Check out this [GitHub repository](https://github.com/shopware/swag-docs-extending-shopware-migration-connector) containing a full example source.
+Check out this [GitHub repository](https://github.com/shopwareArchive/swag-docs-extending-shopware-migration-connector) containing a full example source.

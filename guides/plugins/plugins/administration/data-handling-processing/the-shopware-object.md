@@ -60,8 +60,8 @@ We now have discussed the most commonly used parts of the `Shopware` object, but
 | Component  | A registry for VueJS `components`                                                           |
 | Context    | A set of contexts for the `app` and the `api`                                               |
 | Defaults   | A collection of default values                                                              |
-| Directive  | A registry for [VueJS `directives`](https://vuejs.org/v2/guide/custom-directive.html)       |
-| Filter     | A registry for [VueJS template `filters`](https://vuejs.org/v2/guide/filters.html)          |
+| Directive  | A registry for [VueJS `directives`](https://vuejs.org/guide/reusability/custom-directives.html)       |
+| Filter     | A registry for [VueJS template `filters`](https://v2.vuejs.org/v2/guide/filters.html?redirect=true)          |
 | Helper     | A collection of helpers, e.g. the `DeviceHelper` where you can listen on the `resize` event |
 | Locale     | A registry for `locales`                                                                    |
 | Mixin      | A registry for `mixins`                                                                     |

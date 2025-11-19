@@ -131,8 +131,41 @@ Add a file `.ddev/web-build/Dockerfile.shopware-cli`
 # .ddev/web-build/Dockerfile.shopware-cli
 COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
-
+  
 </details>
+
+### Docker image
+
+To copy the binary in your Docker image, add the following line:
+
+```Dockerfile
+# Dockerfile
+COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
+```
+
+## Add binary manually
+
+Download the pre-compiled binaries from the [releases](https://github.com/shopware/shopware-cli/releases) page and copy them to the desired location.
+
+## Running with Docker
+
+You can also use it within a Docker container. To do that, you will need to execute something more or less like the examples below.
+
+Registries:
+
+- [ghcr.io/shopware/shopware-cli](https://github.com/shopware/shopware-cli/pkgs/container/shopware-cli)
+
+Example usage: Build assets of an extension
+
+```bash
+docker run \
+    --rm \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    -u $(id -u) \
+    ghcr.io/shopware/shopware-cli \
+    extension build FroshPlatformAdminer
+```
 
 ## Building from source
 

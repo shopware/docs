@@ -7,13 +7,13 @@ nav:
 
 # Automatic refactoring
 
-Shopware CLI includes a built-in automatic refactoring tool that helps you automatically update and clean up code in your Shopware projects and extensions. It can refactor:
-
-- PHP, using [Rector](https://getrector.org/)
-- JavaScript, using [ESLint](https://eslint.org/)
-- Admin Twig templates, using custom Shopware rules
+Shopware CLI includes a built-in automatic refactoring tool that helps you automatically update and clean up code in your Shopware projects and extensions. 
 
 Use this tool to modernize your codebase when upgrading to a new Shopware version or to apply best-practice changes automatically.
+
+- [Rector](https://getrector.com/) for PHP
+- [ESLint](https://eslint.org/) for JavaScript
+- Custom rules for Admin Twig files
 
 ## Refactoring an extension
 
