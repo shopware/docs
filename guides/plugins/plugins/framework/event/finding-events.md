@@ -106,7 +106,7 @@ The [next section](#Specifically searching for events) will cover how to find th
 
 If you're really looking for a fitting event for your purpose, you might want to directly search for them.
 This can be done by searching through the `<shopware root>/platform/src` or the `<shopware root>/vendor/shopware/shopware/src` directory,
-depending on whether you are using the [development](https://github.com/shopware/development) or the [production template](https://github.com/shopware/production).
+depending on whether you are using the [development](https://github.com/shopwareArchive/development) or the [production template](https://github.com/shopware/template).
 Use one of the following search terms:
 
 - `extends NestedEvent`: This way you will find the events themselves.
@@ -290,14 +290,14 @@ this.$emitter.subscribe('someEvent', (additionalData) => {
 ### Searching for javascript events
 
 Searching for the said javascript events is done by searching for the following term in either the `<shopware root>/platform/src/Storefront/Resources/app/storefront/src` directory for
-the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/shopware/src/Storefront/Resources/app/storefront/src` directory
-for the [production template](https://github.com/shopware/production):
+the [development template](https://github.com/shopwareArchive/development) or the `<shopware root>/vendor/shopware/shopware/src/Storefront/Resources/app/storefront/src` directory
+for the [production template](https://github.com/shopware/template):
 `$emitter.publish`.
 This way, you'll find all occurrences of plugins actually firing a custom event.
 
 ## Administration events
 
-In the Administration, most events you can find and deal with are default vue events, which you can learn about [here](https://vuejs.org/v2/guide/events.html).
+In the Administration, most events you can find and deal with are default vue events, which you can learn about [here](https://vuejs.org/guide/essentials/event-handling.html).
 
 However, for the sake of the two-way data-binding, we're sometimes firing events, which looks like this:
 
@@ -306,8 +306,8 @@ this.$emit('some-event', additionalData);
 ```
 
 Therefore you can also find those occurrences by searching for `$emit` in the `<shopware root>/platform/src/Administration/Resources/app/administration/src` directory for
-the [development template](https://github.com/shopware/development) or the `<shopware root>/vendor/shopware/shopware/src/Administration/Resources/app/administration/src` directory
-for the [production template](https://github.com/shopware/production).
+the [development template](https://github.com/shopwareArchive/development) or the `<shopware root>/vendor/shopware/shopware/src/Administration/Resources/app/administration/src` directory
+for the [production template](https://github.com/shopware/template).
 
 ### Vue extension
 

@@ -176,7 +176,7 @@ framework:
             my.messenger.bus:
 ```
 
-For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger/multiple_buses.html).
+For more information on this check the [Symfony docs](https://symfony.com/doc/current/messenger.html).
 
 ### Transport
 

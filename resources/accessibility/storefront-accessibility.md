@@ -102,7 +102,6 @@ If the block `component_list_items` is being extended, the new accessibility cha
 
 ::: info
 With accessibility iteration 1 we have addressed the most critical accessibility problems and implemented multiple improvements.
-You can find an overview of the accessibility iteration 1 epic in the following ticket: [NEXT-37039](https://issues.shopware.com/issues/NEXT-37039)
 :::
 
 ### Continuous efforts to ensure accessibility
@@ -175,53 +174,53 @@ bin/console theme:compile
 Now you can:
 
 * Preview upcoming a11y improvements before they become mandatory.
-* Identify potential breaking changes in your theme or extension.  
+* Identify potential breaking changes in your theme or extension.
 * Ensure your UI remains functional with new [accessibility enhancements](./accessibility-checklist.md).
 
 ### 2. Testing for accessibility compliance
 
 #### Automated testing tools
 
-Use automated tools to **detect common accessibility issues** in your extension:  
+Use automated tools to **detect common accessibility issues** in your extension:
 
 * **[Google Lighthouse](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps/#lighthouse-a-b-testing)** – Run audits in Chrome DevTools.
 * **AXE DevTools** – More detailed accessibility testing.
-* **WAVE (WebAIM Tool)** – Identifies HTML structure and ARIA misuses.  
+* **WAVE (WebAIM Tool)** – Identifies HTML structure and ARIA misuses.
 
 #### Manual Testing
 
-While automation helps, **manual checks** ensure real-world usability:  
+While automation helps, **manual checks** ensure real-world usability:
 
-✔ **Keyboard Navigation** – Ensure users can navigate your store using `Tab`, `Enter`, and `Esc`.  
-✔ **Screen Readers** – Test with **NVDA (Windows)** or **VoiceOver (Mac/iOS)**.  
-✔ **Color Contrast Checks** – Use [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to verify readability.  
+✔ **Keyboard Navigation** – Ensure users can navigate your store using `Tab`, `Enter`, and `Esc`.
+✔ **Screen Readers** – Test with **NVDA (Windows)** or **VoiceOver (Mac/iOS)**.
+✔ **Color Contrast Checks** – Use [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to verify readability.
 
 ### 3. Validating accessibility in extensions
 
 #### Common a11y issues to fix before release
 
-* Misuse of **HTML & ARIA roles** (Ensure correct semantic structure).  
-* Missing **form labels & alt text** for images/icons.  
-* Improper **focus management** in modals, dropdowns, and popups.  
-* **Dynamic content updates** not announced to screen readers.  
+* Misuse of **HTML & ARIA roles** (Ensure correct semantic structure).
+* Missing **form labels & alt text** for images/icons.
+* Improper **focus management** in modals, dropdowns, and popups.
+* **Dynamic content updates** not announced to screen readers.
 
 #### Shopware QA and self-certification
 
-* Developers can **self-certify** an extension as a11y-compliant.  
-* Shopware **QA verification** may be required for listing in the store.  
+* Developers can **self-certify** an extension as a11y-compliant.
+* Shopware **QA verification** may be required for listing in the store.
 
 ### 4. Accessibility support in Shopware versions
 
-| **Shopware version** | **Accessibility support** |  
-|---------------------|------------------------|  
-| **6.7+** | Full A11y improvements available for testing |  
-| **6.6+** | Accessibility features introduced (use `ACCESSIBILITY_TWEAKS` feature flag) |  
-| **Shopware 5** | 🚫 **No accessibility support** |  
+| **Shopware version** | **Accessibility support** |
+|---------------------|------------------------|
+| **6.7+** | Full A11y improvements available for testing |
+| **6.6+** | Accessibility features introduced (use `ACCESSIBILITY_TWEAKS` feature flag) |
+| **Shopware 5** | 🚫 **No accessibility support** |
 
 ### 5. Getting help with accessibility
 
-* Work with **Shopware-certified agencies** for A11y audits.  
-* Stay updated with Shopware's **developer guidelines**.  
+* Work with **Shopware-certified agencies** for A11y audits.
+* Stay updated with Shopware's **developer guidelines**.
 * Discuss A11y best practices with other developers in the **Shopware community**.
 
 ## Conclusion
