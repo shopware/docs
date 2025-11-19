@@ -120,4 +120,4 @@ Test your extension or project thoroughly.
 
 Commit the accepted changes and discard any unwanted ones.
 
-You can combine automatic refactoring with Shopware CLI’s other commands (e.g., `project build` or `extension validate`) as part of your upgrade workflow.
+You can combine automatic refactoring with other Shopware CLI commands (e.g., `project build` or `extension validate`) as part of your upgrade workflow.
