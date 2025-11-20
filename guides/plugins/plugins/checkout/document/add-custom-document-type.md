@@ -341,14 +341,34 @@ Here's what the function does:
 
 Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
 `DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., .pdf, .html). It delegates the rendering of documents to the appropriate renderer implementation.
-Therefore, for each registered service that extends the `AbstractDocumentTypeRenderer`, the content of the document can be generated. New types of `AbstractDocumentTypeRenderer` services can be added with `document_type.renderer` as the tag name and the file extension as a key.
 
-```xml
-<service id="Shopware\Core\Checkout\Document\Service\PdfRenderer">
-    ...
-    <tag name="document_type.renderer" key="pdf"/>
-</service>
+### Registering the renderer in the service container
+
+Now we need to register our custom `ExampleDocumentRenderer` in the service container. Create or update your `services.xml` file:
+
+::: code-group
+
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer">
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
+            <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
+            <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
+            <tag name="document.renderer"/>
+        </service>
+    </services>
+</container>
 ```
+
+:::
+
+Note that we're using the tag `document.renderer` to register our custom document renderer. The tag name matches what was mentioned earlier - your renderer has to be registered using the tag `document.renderer`.
 
 ### Adding a document type template
 
