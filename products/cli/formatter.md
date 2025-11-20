@@ -7,13 +7,27 @@ nav:
 
 # Formatter
 
-Shopware-CLI comes with a built-in formatter for PHP, JavaScript, CSS, SCSS, and Admin Twig files.
+Shopware CLI includes a built-in code formatter for PHP, JavaScript, CSS, SCSS, and Admin Twig files. Use it to apply the Shopware [Coding Standard](https://developer.shopware.com/docs/resources/guidelines/code/) automatically and keep your project consistent. You can format individual extensions or entire projects.  
 
-To run the formatter, you can use the following command:
+A `--dry-run` mode is also available to preview changes without modifying files.
 
 ## Formatting an extension
 
 <Tabs>
+
+<Tab title="With Docker (recommended)">
+
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension format /ext
+```
+
+Dry run (preview changes without editing files):
+
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension format /ext --dry-run
+```
+
+</Tab>
 
 <Tab title="Without Docker">
 
@@ -21,24 +35,10 @@ To run the formatter, you can use the following command:
 shopware-cli extension format /path/to/your/extension
 ```
 
-You can also run it in dry mode to just show the changes instead of editing the files.
+Dry run (preview changes without editing files):
 
 ```shell
 shopware-cli extension format /path/to/your/extension --dry-run
-```
-
-</Tab>
-
-<Tab title="Docker">
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension format /ext
-```
-
-You can also run it in dry mode to just show the changes instead of editing the files.
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension format /ext --dry-run
 ```
 
 </Tab>
@@ -49,13 +49,27 @@ docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension format /e
 
 <Tabs>
 
+<Tab title="With Docker (recommended)">
+
+```shell
+docker run --rm -v "$(pwd)":/project ghcr.io/shopware/shopware-cli project format /project
+```
+
+Dry run (preview changes without editing files):
+
+```shell
+docker run --rm -v "$(pwd)":/project ghcr.io/shopware/shopware-cli project format /project --dry-run
+```
+
+</Tab>
+
 <Tab title="Without Docker">
 
 ```shell
 shopware-cli project format /path/to/your/project
 ```
 
-You can also run it in dry mode to just show the changes instead of editing the files.
+Dry run (preview changes without editing files):
 
 ```shell
 shopware-cli project format /path/to/your/project --dry-run
@@ -63,20 +77,8 @@ shopware-cli project format /path/to/your/project --dry-run
 
 </Tab>
 
-<Tab title="Docker">
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli project format /ext
-```
-
-You can also run it in dry mode to just show the changes instead of editing the files.
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli project format /ext --dry-run
-```
-
-</Tab>
-
 </Tabs>
+
+## Configuration
 
 By default, the formatting is done by Shopware Coding Standard. You can configure the formatting by creating a `.php-cs-fixer.dist.php` in your extension root or a `.prettierrc` file for JavaScript, CSS, and SCSS files.

@@ -258,6 +258,7 @@ DDL
 DESC
 DIC
 DIC EntityRepository
+DNF
 DNS
 DOM
 DOMPurify
@@ -576,6 +577,7 @@ MyPlugin
 MyTestClass
 MyTestInterface
 NPM
+NUR
 NVDA
 NameAware
 NameOfYourShippingMethodApp
@@ -758,6 +760,7 @@ QuillJS
 RDB
 RDBMS
 README
+RHEL
 RSA
 RabbitMQ
 RabbitMq
@@ -1579,6 +1582,7 @@ onwards
 oop
 opcache
 openInitialPage
+openSUSE
 openUserActionMenu
 opensearch
 openssl

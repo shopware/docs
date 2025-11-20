@@ -9,6 +9,14 @@ nav:
 
 The Shopware project template is a Composer project that can be used as starting point for new Shopware Projects, or if you want to develop extensions or themes for Shopware.
 
+Each official setup option—[Docker](./setups/docker.md), [Symfony CLI](./setups/symfony-cli.md), and [Devenv](./setups/devenv.md)—builds upon this project template, either directly or via a pre-configured environment. See [Installation Overview](./index.md) for a comparison of setup options.
+
+## Alternative: Using the installer package
+
+If you have downloaded the [shopware-installer.phar package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions from the [Project Template](https://developer.shopware.com/docs/guides/installation/template.html) guide.
+
+This method is equivalent to creating a project using Composer but is suited for environments where Composer is not available (for example, shared hosting or limited enterprise servers).
+
 ## Set up a new project
 
 To create a new Shopware project, run the following command:
@@ -21,7 +29,7 @@ composer create-project shopware/production:6.6.10.5 <project-name>
 ```
 
 ::: info
-Composer create-project clones the latest tag from the [Template repository](https://github.com/shopware/template) and installs the dependencies. If you don't have Composer installed, you could also clone the repository itself and run `composer install` in Docker to proceed with the installation.
+Composer `create-project` clones the latest tag from the [Template repository](https://github.com/shopware/template) and installs the dependencies. If you don't have Composer installed, you could also clone the repository itself and run `composer install` in Docker to proceed with the installation.
 :::
 
 This creates a new project in the `<project-name>` directory.
@@ -80,7 +88,7 @@ composer require fastly
 
 Using Shopware Packagist, you can manage all your Shopware Store plugins directly in the `composer.json`. Refer to ["Using Composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) blog post for detailed information.
 
-## Building/Watching Administration and Storefront
+## Building/watching Administration and Storefront
 
 The created project contains Bash scripts in `bin/` folder to build and watch the Administration and Storefront. You can run the following commands:
 
@@ -101,7 +109,7 @@ There are two ways to update Shopware:
 
 * To force-update all config files, run `composer recipes:update`.
 
-## Migrate from old zip installation to new Project Template
+## Migrate from old zip installation to new project template
 
 Before Shopware 6.5, we provided a zip file for installation. The zip file contained all dependencies required to run Shopware. This method has been deprecated and replaced with a Composer project template. The Composer project template is way more flexible and allows you to manage extensions together with Shopware itself using Composer.
 
