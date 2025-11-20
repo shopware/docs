@@ -43,7 +43,7 @@ composer create-project shopware/production:6.6.10.0 <project-name>
 
 During project creation, Symfony Flex asks whether you want to use Docker. Choose **Yes** if you want to run the database in a container, or **No** to use a local MySQL/MariaDB server.
 
-For more details, see the [Shopware Production template documentation](https://developer.shopware.com/docs/guides/installation/production.html).
+For more details, see the [Shopware Production template documentation](../template).
 
 ## Configure database connection
 
