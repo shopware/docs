@@ -258,6 +258,7 @@ DDL
 DESC
 DIC
 DIC EntityRepository
+DNF
 DNS
 DOM
 DOMPurify
@@ -317,7 +318,6 @@ Dockware
 DomainException
 DomainExceptions
 DynamoDB
-DNF
 ECDSA
 ENUM
 ENUMS
@@ -577,6 +577,7 @@ MyPlugin
 MyTestClass
 MyTestInterface
 NPM
+NUR
 NVDA
 NameAware
 NameOfYourShippingMethodApp
@@ -597,7 +598,6 @@ NotRule
 NullObject
 Nullsafe
 Nuxt
-NUR
 Nvidia
 OAuth
 OPENSEARCH
@@ -760,6 +760,7 @@ QuillJS
 RDB
 RDBMS
 README
+RHEL
 RSA
 RabbitMQ
 RabbitMq
@@ -794,7 +795,6 @@ ReverseInherited
 ReviewFormDataAware
 ReviewFormDataStorer
 Reviewdog
-RHEL
 Roadmap
 RouteResponse
 RuleConditionService
