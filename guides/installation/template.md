@@ -7,7 +7,7 @@ nav:
 
 # Project Template
 
-The Shopware project template is a Composer project that can be used as starting point for new Shopware Projects, or if you want to develop extensions or themes for Shopware.
+The Shopware project template is a Composer project that can be used as a starting point for new Shopware Projects, or if you want to develop extensions or themes for Shopware.
 
 Each official setup option—[Docker](./setups/docker.md), [Symfony CLI](./setups/symfony-cli.md), and [Devenv](./setups/devenv.md)—builds upon this project template, either directly or via a pre-configured environment. See [Installation Overview](./index.md) for a comparison of setup options.
 
@@ -109,7 +109,7 @@ There are two ways to update Shopware:
 
 * To force-update all config files, run `composer recipes:update`.
 
-## Migrate from old zip installation to new project template
+## Migrate from the old zip installation to a new project template
 
 Before Shopware 6.5, we provided a zip file for installation. The zip file contained all dependencies required to run Shopware. This method has been deprecated and replaced with a Composer project template. The Composer project template is way more flexible and allows you to manage extensions together with Shopware itself using Composer.
 
@@ -117,7 +117,7 @@ To migrate from the old zip installation to the new Composer project template, y
 
 ### 1. Backup
 
-Start with a clean git state, stash everything or make a backup of your files.
+Start with a clean git state, stash everything, or make a backup of your files.
 
 ### 2. Adjust root composer.json
 
