@@ -30,7 +30,7 @@ There are several entry points to manipulate the cache key.
 
 * `Shopware\Core\Framework\Adapter\Cache\Http\Extension\CacheHashRequiredExtension`: used to determine whether the cache hash should be calculated or if the request in running in the default state, and therefore no cache-hash is needed.
 * `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheCookieEvent`: used to calculate the cache hash based on the application state, supports both reverse proxy caches and the default symfony HTTP-cache component.
-* `Shopware\Core\Framework\Adapter\Cache\Http\Extension\ResolveCacheRelevantRuleIdsExtension`: used to determine which rule ids are relevant for the cache hash.
+* `Shopware\Core\Framework\Adapter\Cache\Http\Extension\ResolveCacheRelevantRuleIdsExtension`: used to determine which rule IDs are relevant for the cache hash.
 * `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheKeyEvent`: used to calculate the exact cache key based on the response, only for symfony's default HTTP-cache component.
 
 #### Modifying when the cache hash is calculated
@@ -72,9 +72,9 @@ The cache hash is only computed on every response as soon as the application sta
 
 By default, the cache hash will consist of the following parts:
 
-* `rule-ids`: The matched rule ids, to reduce possible cache permutations starting with v6.8.0.0, this will only include the rule ids in `rule areas` that are cache relevant. See the next chapter how to extend this.
+* `rule-ids`: The matched rule IDs, to reduce possible cache permutations starting with v6.8.0.0, this will only include the rule IDs in `rule areas` that are cache relevant. See the next chapter how to extend this.
 * `version-id`: The context version used to load versioned DAL entities.
-* `currency-id`: The currency id of the context.
+* `currency-id`: The currency ID of the context.
 * `tax-state`: The tax state of the context (gross/net).
 * `logged-in`: Whether a customer is logged in in the current state or not.
 
@@ -101,7 +101,7 @@ class HttpCacheCookieListener implements EventSubscriberInterface
     {
         // you can add custom parts to the cache hash
         // keep in mind that every possible value will increase the number of possible cache permutations
-        // and therefore directly impact cache hit rates
+        // and therefore directly impact cache hit rates, which in turn decreases performance
         $event->add('customer-group', $event->context->getCustomerId());
 
         // disable cache for filled carts
@@ -116,7 +116,7 @@ class HttpCacheCookieListener implements EventSubscriberInterface
 
 #### Marking rule areas as cache relevant
 
-Starting with v6.8.0.0, the cache hash will only include the rule ids in `rule areas` that are cache relevant.
+Starting with v6.8.0.0, the cache hash will only include the rule IDs in `rule areas` that are cache relevant.
 The reason is that a lot of rules are not relevant for the cache, e.g., rules that only affect pricing or shipping methods.
 This greatly reduces the number of possible cache permutations, which in turn improves the cache hit rate.
 
@@ -213,7 +213,7 @@ Also, with an external reverse proxy, the cache key might be generated on the pr
 One problem with caching is that you not only need to retrieve the correct data, but also need to have a performant way to invalidate the cache when the data changes.
 Only invalidating the caches based on the unique cache key is often not that helpful, because you don't know which cache keys are affected by the change of a specific data set.
 Therefore, a tagging system is used alongside the cache keys to make cache invalidations easier and more performant. Every cache entry can be tagged with multiple tags, thus we can invalidate the cache based on the tags.
-For example, all pages that contain product data are tagged with product ids of all products they contain. So if a product is changed, we can invalidate all cache entries that are tagged with the product id of the changed product.
+For example, all pages that contain product data are tagged with product IDs of all products they contain. So if a product is changed, we can invalidate all cache entries that are tagged with the product ID of the changed product.
 
 To add your own cache tags to the HTTP-Cache, you can use the `CacheTagCollector` service.
 
