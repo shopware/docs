@@ -63,7 +63,7 @@ To allow reverse proxies to cache based on the application state, the informatio
 #### sw-cache-hash
 
 This cookie contains the hash of all cache-relevant information (e.g. is the user logged-in, what tax state and what currency do they use, which cache-relevant rules have matched).
-This is the cookie that stores the `cache-hash`mentioned above.
+This is the cookie that stores the `cache-hash` mentioned above.
 This cookie will be set as soon as the application state differs from the default, which is: no logged in customer, the default currency and an empty cart.
 
 If you want to know how to manipulate and control the `cache-hash`, you can refer to the [Plugin caching guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache).
