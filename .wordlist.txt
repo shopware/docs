@@ -317,6 +317,7 @@ Dockware
 DomainException
 DomainExceptions
 DynamoDB
+DNF
 ECDSA
 ENUM
 ENUMS
@@ -596,6 +597,7 @@ NotRule
 NullObject
 Nullsafe
 Nuxt
+NUR
 Nvidia
 OAuth
 OPENSEARCH
@@ -792,6 +794,7 @@ ReverseInherited
 ReviewFormDataAware
 ReviewFormDataStorer
 Reviewdog
+RHEL
 Roadmap
 RouteResponse
 RuleConditionService
@@ -1579,6 +1582,7 @@ onwards
 oop
 opcache
 openInitialPage
+openSUSE
 openUserActionMenu
 opensearch
 openssl
