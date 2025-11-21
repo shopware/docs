@@ -278,3 +278,7 @@ make up
 ```
 
 This command restarts the containers so that the updated environment variable takes effect.
+
+## Production environments
+
+If you're preparing to run Shopware in production using Docker, [this page](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.

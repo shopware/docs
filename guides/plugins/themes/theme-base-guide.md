@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Theme base guide
+  title: Theme Base Guide
   position: 10
 
 ---

@@ -26,7 +26,7 @@ Docker runs your entire Shopware environment in containers, including PHP, MySQL
 - You collaborate with others or use CI/CD pipelines.
 - You need full service parity (e.g. caching, queues, search).
 
-**Start here:** [Docker setup guide →](./docker.md)
+[Docker setup guide →](./docker.md)
 
 ## Symfony CLI setup
 
@@ -46,7 +46,7 @@ It’s lightweight, fast, and easy to debug using your local toolchain.
 - You prefer editing and debugging locally.
 - You’re on a resource-limited machine.
 
-**Start here:** [Symfony CLI setup guide →](./symfony-cli.md)
+[Symfony CLI setup guide →](./symfony-cli.md)
 
 ## Devenv setup
 
@@ -66,7 +66,7 @@ It ensures everyone — across macOS, Linux, and CI — gets the same dependency
 - You want reproducibility between developers and CI.
 - You value a declarative, version-controlled environment.
 
-**Start here:** [Devenv setup guide →](./devenv.md)
+[Devenv setup guide →](./devenv.md)
 
 ## Community and alternative Docker tooling
 
@@ -88,7 +88,7 @@ If you prefer a more automated or GUI-friendly way to run Docker environments, D
 - You want a pre-configured, easy-to-use Docker experience.
 - You prefer to focus on code, not container details.
 
-[Shopware + DDEV example on GitHub](https://github.com/ddev/ddev-shopware6)
+[DDEV with Shopware example →](https://github.com/ddev/test-shopware6)
 
 ### Dockware setup
 
@@ -111,7 +111,9 @@ If you prefer a more automated or GUI-friendly way to run Docker environments, D
 
 ## Switching between setups
 
-You can use more than one setup on the same machine, just not at the same time. To switch setups safely:
+All setups share the same Shopware [Project Template](./project-template/). Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
+
+To switch setups:
 
 1. Stop running services (e.g., `docker compose down`, or `symfony server:stop`).
 2. Use separate directories for each setup.
@@ -121,19 +123,7 @@ You can always migrate between setups later. Your Shopware project remains the s
 
 ## Next step
 
-Choose your preferred setup and follow its related guide:
-
-- [Docker Setup](./docker.md)
-- [Symfony CLI Setup](./symfony-cli.md)
-- [Devenv Setup](./devenv.md)
-- [DDEV Documentation](https://ddev.readthedocs.io/en/stable/)
-- [Dockware Documentation](https://docs.dockware.io/)
-
-Once your setup is running, you can start developing your **shop**, **app**, **plugin**, or **theme**.
-
-::: info
-Each setup uses the same Shopware Project Template at its core. Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
-:::
+Choose your preferred setup and follow its related guide. Once your setup is running, you can start developing your shop, app, plugin, or theme.
 
 ## Installing Shopware CLI
 
