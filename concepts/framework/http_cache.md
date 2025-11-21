@@ -47,20 +47,36 @@ Set the defaults value of the `_httpCache` key to `true`. Examples for this can 
 public function index(SalesChannelContext $context, Request $request): Response
 ```
 
-### Cache Cookies
+### Determining the cache key
 
-Shopware uses several client cookies to differentiate the requests. This allows us to save the cache differentiated between clients, e.g., different customer groups or different active rules.
+Determining the cache key is one of the most important tasks of the HTTP cache. The cache key is used to identify a request and its corresponding response. If the same request comes in again, the cache key will be used to look up the corresponding response in the cache storage.
+For a dynamic system like Shopware, the cache key needs to take the application state into account, as the response to the same request might differ e.g., based on the tax state of the currently logged-in customer.
+At the same time, it needs to be possible to generate the cache key directly from the request to support reverse proxy caches, where the caching is handled by a standalone application that has no access to Shopware's internal application state.
+Shopware generates a `cache-hash` that encodes the application state and this hash is passed alongside every request and response, the caching component will then generate the exact cache key based on the `cache-hash`.
 
-#### sw-currency
-
-This cookie will be set when the non-logged-in customer with an empty cart changes the current currency. Why does Shopware need a separate cookie for currency? It allows us to maximize the cache hits for non-logged-in customers as we separate the cache as less as possible.
+Concretely Shopware uses Cookies to store the `cache-hash` as part of the request/response structure. The `cache-hash` describes the current state of the customer "session", every parameter that leads to different responses being generated (e.g. tax-states, matched rules) should be taken into account for the `cache-hash` to ensure that every user sees the correct page.
+However, it is equally important to keep the number of different cache entries/permutations as low as possible to maximize the cache hits.
+The reason the `cache-hash` is stored as a cookie is that it needs to be sent with every request and can change on any response sent from shopware.
+The client needs to send the latest value back to shopware on every request to ensure the correct cache entry is used. This is needed as the cache is resolved before the request is handled by shopware itself.
+To allow reverse proxies to cache based on the application state, the information needs to be present on every request. The reverse proxies (e.g. Fastly or Varnish) or the symfony cache component use the provided `cache-hash` as part of the cache key they generate for every request, thus they can differentiate the cache entries for the same request based on the application state.
 
 #### sw-cache-hash
 
-This cookie replaces the `sw-currency` cookie and contains the active rules and active currency. This cookie will be set when the active rules do not match the default anymore \(e.g., customer login/items in cart\).
+This cookie contains the hash of all cache-relevant information (e.g. is the user logged-in, what tax state and what currency do they use, which cache-relevant rules have matched).
+This is the cookie that stores the `cache-hash` mentioned above.
+This cookie will be set as soon as the application state differs from the default, which is: no logged in customer, the default currency and an empty cart.
+
+If you want to know how to manipulate and control the `cache-hash`, you can refer to the [Plugin caching guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache).
+
+#### sw-currency
+
+**Note:** The currency cookie is deprecated and will be removed in v6.8.0.0, as the currency information is already part of the `sw-cache-hash` cookie.
+This cookie will be set when the non-logged-in customer with an empty cart changes the current currency. Why does Shopware need a separate cookie for currency? It allows us to maximize the cache hits for non-logged-in customers as we separate the cache as less as possible.
 
 #### sw-states
 
+**Note:** The states cookie is deprecated and will be removed in v6.8.0.0, as the state information is already part of the `sw-cache-hash` cookie and different caches are used for the different states.
+If you want to disable the cache in certain circumstances, you can do so via the `sw-cache-hash` cookie as well.
 This cookie describes the current session in simple tags like `cart-filled` and `logged-in`. When the client tags fit the response `sw-invalidation-states` header, the cache will be skipped.
 
 An example of usage for this feature is to save the cache for logged-in customers only.
