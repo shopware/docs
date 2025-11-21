@@ -7,7 +7,7 @@ nav:
 
 # Themes
 
-Basically a theme can be an app/plugin that aims at changing the visual appearance of the Storefront.
+A Shopware theme is an extension (plugin or app) that enables you to customize and modify the appearance and design of your online storefront. You can change the layout, styling, typography, colors, images, and other visual elements to match your brand identity and desired user experience.
 
 ```text
 Extensions
@@ -17,6 +17,17 @@ Extensions
     └── can include a Theme (Cloud-ready)
 ```
 
-A Shopware theme plugin/app allows businesses to customize and modify the appearance and design of their online store. It provides the ability to change the layout, styling, and visual elements, such as fonts, colors, and images, to match your brand identity and desired user experience. Businesses can easily manage and apply their custom themes, switch between them, and ensure consistent branding across their store.
+Tasks that themes enable include:
 
-To better understand the difference among [Plugins and Apps vs Themes](./differences-plugins-and-apps-vs-themes.md), refer to the corresponding article.
+* template overrides
+* custom styles
+* configuration interfaces
+* control the order in which styles and templates are loaded
+
+::: info
+Note that a plugin can also override templates.
+:::
+
+To get started with your first theme, follow our [Theme Base Guide](themes/theme-base-guide).
+
+For more on how themes relate to plugins and apps, see [Plugins and Apps vs Themes](./differences-plugins-and-apps-vs-themes.md).
