@@ -7,7 +7,7 @@ nav:
 
 # Apps
 
-Apps are the extension mechanism designed for Shopware’s [Cloud environment](../../concepts/extensions/cloud/). Unlike [plugins](../../guides/plugins/), they don't run code directly inside the shop system. Instead, they work in an event-driven way and communicate with external services through [APIs](../../resources/). This makes them less intrusive while still highly flexible.
+Apps are the extension mechanism designed for Shopware’s [Cloud environment](../../../concepts/extensions/cloud/). Unlike [plugins](../../../guides/plugins/), they don't run code directly inside the shop system. Instead, they work in an event-driven way and communicate with external services through [APIs](../../../resources/). This makes them less intrusive while still highly flexible.
 
 Apps are well-suited for use cases such as:
 
@@ -19,9 +19,9 @@ Apps are well-suited for use cases such as:
 - Customizing the Storefront or Administration; creating custom themes, adding custom blocks or Storefront elements, or modifying the appearance and layout of the Administration panel
 - Facilitating integration with external systems to allow seamless data synchronization, order and product management, and cross-platform workflows
 
-You can develop apps using the Shopware [App SDK](../apps/app-sdk/), [App Scripts](../apps/app-scripts/), and external services via the [App API](../../resources/api-reference/app/). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
+You can develop apps using the Shopware [App SDK](app-sdks), [App Scripts](app-scripts), and external services via the [App API](../../../resources/references/app-reference). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
 
-Follow our [App Base Guide](../apps/app-base-guide/) and [App Starter Guide](../apps/starter/) to learn how to develop an app.
+Follow our [App Base Guide](app-base-guide) and [App Starter Guide](starter) to learn how to develop an app.
 
 ::: info
 Apps also provide theme support, so everything you can do with a theme plugin is also possible in an app. This makes them the preferred option for customizing design in Cloud shops.
