@@ -28,6 +28,6 @@ Tasks that themes enable include:
 Note that a plugin can also override templates.
 :::
 
-To get started with your first theme, follow our [Theme Base Guide](themes/theme-base-guide).
+To get started with your first theme, follow our [Theme Base Guide](theme-base-guide).
 
 For more on how themes relate to plugins and apps, see [Plugins and Apps vs Themes](./differences-plugins-and-apps-vs-themes.md).
