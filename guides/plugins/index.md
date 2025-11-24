@@ -30,7 +30,7 @@ This comparison table aims to help you decide which Shopware extension type best
 | Modify database structure | ✅ | ❌ | ❌ |  |
 | Integrate payment providers | ✅ | ❌ | ✅ |  |
 | Publish in the Shopware Store | ✅ | ✅ | ✅ |  |
-| Install in Shopware 6 Cloud Shops | ❌ | ❌ (unless delivered via App) | ✅ | While theme plugins can’t be installed in Cloud, Apps can include themes and provide the same functionality.|
+| Install in Shopware 6 Cloud Shops | ❌ | ❌ (unless delivered via App) | ✅ | While theme plugins can’t be installed in Cloud, Apps can include themes and provide the same functionality. |
 | Install in Shopware 6 self-hosted Shops | ✅ | ✅ | ✅ | Apps can be installed and used since Shopware 6.4.0.0. |
 | Add custom logic/routes/commands | ✅ | ❌ | ✅ | Apps extract functionalities/logic into separate services, so technically, they can add custom logic. |
 | Control order of style/template inheritance | ❌ | ✅ | ✅ |  |
