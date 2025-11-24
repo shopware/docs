@@ -7,7 +7,7 @@ nav:
 
 # Apps
 
-Apps are the extension mechanism designed for Shopware’s [Cloud environment](../../../products/saas.html). Unlike [plugins](../plugins/plugins/), they don't run code directly inside the shop system. Instead, they work in an event-driven way and communicate with external services through APIs. This makes them less intrusive while still highly flexible.
+Apps are the extension mechanism designed for Shopware’s [Cloud environment](../../../products/saas.md). Unlike [plugins](../plugins/index.md), they don't run code directly inside the shop system. Instead, they work in an event-driven way and communicate with external services through APIs. This makes them less intrusive while still highly flexible.
 
 Apps are well-suited for use cases such as:
 
