@@ -17,7 +17,7 @@ Unlike Docker or virtual machines, Devenv does not use containerization or virtu
 
 ## Required on your host
 
-Devenv provides project-local PHP, Node, Composer and services via Nix, so you don't need to install those runtimes globally for a project that uses Devenv.
+Devenv provides project-local PHP, Node, Composer, and services via Nix, so you don't need to install those runtimes globally for a project that uses Devenv.
 
 On the host you only need a minimal toolchain:
 
@@ -319,13 +319,13 @@ See the official [Automatic Shell Activation guide](https://devenv.sh/automatic-
 
 When you start Devenv with `devenv up`, Shopware automatically provides several core services. You can access them using the following addresses:
 
-| Service | Default address | Description |
-|----------|-----------------|--------------|
-| MySQL | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware. |
-| Mailhog (SMTP) | `smtp://127.0.0.1:1025` | Local mail capture for testing email. |
-| Redis (TCP) | `tcp://127.0.0.1:6379` | Used for caching and sessions. |
-| Caddy | `http://127.0.0.1:8000` | Web server. |
-| Adminer | `http://127.0.0.1:9080` | Database management tool. |
+| Service        | Default address                            | Description                           |
+|----------------|--------------------------------------------|---------------------------------------|
+| MySQL          | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware.        |
+| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                    | Local mail capture for testing email. |
+| Redis (TCP)    | `tcp://127.0.0.1:6379`                     | Used for caching and sessions.        |
+| Caddy          | `http://127.0.0.1:8000`                    | Web server.                           |
+| Adminer        | `http://127.0.0.1:9080`                    | Database management tool.             |
 
 ::: tip
 The MySQL service listens on port `3306` and stores its data in `<PROJECT_ROOT>/.devenv/state/mysql`. Use `127.0.0.1` instead of `localhost` when connecting to MySQL.
@@ -365,7 +365,7 @@ You can customize the predefined Devenv services to match your local needs—for
 To override or extend the defaults, create a `devenv.local.nix` file in your project root.
 This file lets you disable built-in services, adjust configuration, or add new ones that your project requires.
 
-After editing `devenv.local.nix`, [reload your environment](#manually-reloading-devenv) to apply the changes.
+After editing `devenv.local.nix`, reload your environment to apply the changes.
 
 Example:
 
@@ -398,7 +398,7 @@ Example:
 
 For a full list of all available services and their configuration options, refer to the official [Devenv documentation](https://devenv.sh/reference/options/).
 
-If you're not using [Direnv](#direnv), remember to reload the environment manually after changing any `*.nix` file:
+If you're not using [Direnv](#direnv-optional), remember to reload the environment manually after changing any `*.nix` file:
 
 ```bash
 exit
