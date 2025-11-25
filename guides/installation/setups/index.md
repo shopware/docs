@@ -111,7 +111,7 @@ If you prefer a more automated or GUI-friendly way to run Docker environments, D
 
 ## Switching between setups
 
-All setups share the same Shopware [Project Template](./project-template/). Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
+All setups share the same Shopware [Project Template](../template). Only the runtime environment differs. You can safely switch between setups as long as you keep separate environment configurations.
 
 To switch setups:
 
@@ -127,4 +127,4 @@ Choose your preferred setup and follow its related guide. Once your setup is run
 
 ## Installing Shopware CLI
 
-Most developers install the [Shopware CLI](../../products/cli/index.md), which helps with building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups (Docker, Symfony CLI, Devenv, DDEV, Dockware) and is used in most Shopware upgrade, build, and CI workflows. If you're using the Docker setup, the CLI comes preinstalled and is available in the container shell.
+Most developers install the [Shopware CLI](../../../products/cli/index.md), which helps with building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups (Docker, Symfony CLI, Devenv, DDEV, Dockware) and is used in most Shopware upgrade, build, and CI workflows. If you're using the Docker setup, the CLI comes preinstalled and is available in the container shell.

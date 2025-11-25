@@ -159,7 +159,7 @@ Access tokens:
 | Access key | `string of capital letters` |
 ```
 
-This access key is automatically generated for your default Sales Channel (usually *Storefront*). It's used for authenticating requests to the [Store API](../../resources/references/store-api-reference.md)—for example, when fetching product or category data from an external app, headless storefront, or API client.
+This access key is automatically generated for your default Sales Channel (usually *Storefront*). It's used for authenticating requests to the [Store API](../../../concepts/api/store-api)—for example, when fetching product or category data from an external app, headless storefront, or API client.
 
 Example usage:
 
