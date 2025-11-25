@@ -14,7 +14,7 @@ Apps are well-suited for use cases such as:
 - Integrating with third-party services (e.g., ERP, CRM, marketing tools)
 - Providing payment methods and forwarding to external payment providers
 - Adding storefront customizations, including themes
-- Handling data or processes outside of the shop system (e.g., product synchronization, advanced shipping logic, analytics workflows)
+- Handling data or processes outside the shop system (e.g., product synchronization, advanced shipping logic, analytics workflows)
 - Extending or modifying core functionality such as checkout behavior, pricing and discount logic, payment flows, product catalog management, or search behavior
 - Customizing the Storefront or Administration; creating custom themes, adding custom blocks or Storefront elements, or modifying the appearance and layout of the Administration panel
 - Facilitating integration with external systems to allow seamless data synchronization, order and product management, and cross-platform workflows
