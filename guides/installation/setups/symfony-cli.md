@@ -1,7 +1,7 @@
 ---
 nav:
   title: Symfony CLI
-  position: 10
+  position: 30
 
 ---
 
@@ -99,9 +99,9 @@ If you encounter file-permission issues when installing or rebuilding caches, ru
 
 Shopware creates a default Administration user during installation:
 
-| Username | Password |
-|:----------|:----------|
-| `admin` | `shopware` |
+| Username | Password   |
+|:---------|:-----------|
+| `admin`  | `shopware` |
 
 **Tip**: Change these credentials after installation for security.
 
@@ -171,7 +171,7 @@ symfony php -i
 
 By keeping your `php.ini` in version control, you ensure consistent behavior across development environments and CI pipelines.
 
-Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../resources/references/config-reference/server/nginx.md).
+Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../../resources/references/config-reference/server/nginx.md).
 
 ## Build and Watch the Administration and Storefront (Optional)
 

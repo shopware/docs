@@ -1,7 +1,7 @@
 ---
 nav:
   title: Additional Docker Options
-  position: 7
+  position: 40
 
 ---
 
@@ -112,8 +112,8 @@ services:
       timeout: 20s
       retries: 3
     ports:
-      - 9000:9000
-      - 9001:9001
+      - "9000:9000"
+      - "9001:9001"
     volumes:
       - minio-data:/data
 

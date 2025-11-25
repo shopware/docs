@@ -1,7 +1,7 @@
 ---
 nav:
   title: Docker
-  position: 5
+  position: 10
 
 ---
 
@@ -159,7 +159,7 @@ Access tokens:
 | Access key | `string of capital letters` |
 ```
 
-This access key is automatically generated for your default Sales Channel (usually *Storefront*). It's used for authenticating requests to the [Store API](../../resources/references/store-api-reference.md)—for example, when fetching product or category data from an external app, headless storefront, or API client.
+This access key is automatically generated for your default Sales Channel (usually *Storefront*). It's used for authenticating requests to the [Store API](../../../concepts/api/store-api)—for example, when fetching product or category data from an external app, headless storefront, or API client.
 
 Example usage:
 
@@ -278,3 +278,11 @@ make up
 ```
 
 This command restarts the containers so that the updated environment variable takes effect.
+
+## Production environments
+
+If you're preparing to run Shopware in production using Docker, [this page](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.
+
+## Detailed configurations
+
+You can find more detailed configurations for your docker setup in the [Additional Docker Options](docker-options) article.

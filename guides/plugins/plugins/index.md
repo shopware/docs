@@ -7,40 +7,37 @@ nav:
 
 # Plugins
 
-Shopware plugins are extensions that enhance the functionality and features of the Shopware e-commerce platform. Plugins are designed to extend the core capabilities of Shopware and offer additional functionalities that are not available out of the box. While apps and themes are also extensions but they differ from plugins. To better understand the differences, take a look at the [Overview](../../../guides/plugins/overview) article.
+Plugins are Shopware's server-side extension type, giving you deep integration with the e-commerce platform. They allow you to extend, overwrite, and modify Shopware’s core capabilities. Unlike apps and themes, plugins run directly inside the shop environment and can interact tightly with the system.
 
-## Feature Comparison
+You will likely create a plugin when you need to make profound changes or require complex functionalities such as:
 
-::: tip
+- Custom price calculation
+- Product imports
+- Custom content/product logic
+- Integrating third-party identity providers
+- Dynamic validations
+- Customer tracking or behavioral logic
 
-For customizing projects, it is recommended to use bundles instead of plugins.
-As bundles are not managed via Administration and don't have a lifecycle they offer full control over the project.
+Refer to our [Plugin Base Guide](plugin-base-guide) and [Plugin Fundamentals](plugin-fundamentals) for guidance on plugin development.
 
+::: info
+If your extension focuses only on design changes, a simple template adjustment—typically done through a theme plugin—may be the best choice.
 :::
-
-| Feature                                       | Plugin             | Static Plugin           | Shopware Bundle                 | Symfony Bundle                  |
-| --------------------------------------------- | ------------------ | ----------------------- | ------------------------------- | ------------------------------- |
-| Installation                                  | Via Shopware Admin | Via Composer            | Via Composer                    | Via Composer                    |
-| Repository Location                           | `custom/plugins`   | `custom/static-plugins` | `vendor` or inside `src` folder | `vendor` or inside `src` folder |
-| Lifecycle Events (install, update, uninstall) | Yes                | Yes                     | No                              | No                              |
-| Can be managed in Administration              | Yes                | No                      | No                              | No                              |
-| Can be a Theme                                | Yes                | Yes                     | Yes                             | No                              |
-| Can modify Admin / Storefront with JS/CSS     | Yes                | Yes                     | Yes                             | No                              |
 
 ## Types of plugins
 
-There are different types of plugins in terms of their folder structure and functionality.
+Shopware plugins differ in their folder structure and functionality.
 
 ### Plugins
 
-`<shopware project root>/custom/plugins` contains all plugins from the shopware store. The plugins are installed and managed via the Shopware administration.
+`<shopware project root>/custom/plugins` contains all plugins from the Shopware store. You install and manage these plugins via the Shopware Administration.
 
 ### Static plugins
 
-`<shopware project root>/custom/static-plugins` contains all plugins that are project-specific and are typically committed to the git repository.
+`<shopware project root>/custom/static-plugins` contains all project-specific plugins that are typically committed to the Git repository.
 
 :::info
-The detection of static plugins is not done via the Shopware administration. They have to be required by the project via composer to be installable.
+The Shopware Administration does not detect static plugins. The project must require them via Composer for them to be installable.
 :::
 
 ```bash
@@ -48,10 +45,26 @@ The detection of static plugins is not done via the Shopware administration. The
 composer req <vendor>/<plugin-name>
 ```
 
-### Symfony Bundle / Shopware Bundle
+### Symfony bundle / Shopware bundle
 
-It's also possible to use Shopware/Symfony bundles instead of plugins.
-This is useful if you don't want to have the lifecycle of plugins and don't want it manageable via the Shopware administration.
-The bundles are typically installed via composer and are not managed by the Shopware administration.
+You can also use Shopware/Symfony bundles instead of plugins.
+Bundles are a good choice when you want to avoid plugin lifecycle handling or Administration management.
+You install bundles via Composer. They are not managed by the Shopware Administration.
 
-<PageRef page="./bundle.html" title="Bundle" />
+## Feature comparison
+
+::: tip
+
+For customizing projects, we recommend using [bundles](https://developer.shopware.com/docs/guides/plugins/plugins/bundle.html) instead of plugins.
+As bundles are not managed via Administration and don't have a lifecycle, they offer full control over the project.
+
+:::
+
+| Feature                                       | Plugin             | Static Plugin           | Shopware Bundle                 | Symfony Bundle                  |
+|-----------------------------------------------|--------------------|-------------------------|---------------------------------|---------------------------------|
+| Installation                                  | Via Shopware Admin | Via Composer            | Via Composer                    | Via Composer                    |
+| Repository Location                           | `custom/plugins`   | `custom/static-plugins` | `vendor` or inside `src` folder | `vendor` or inside `src` folder |
+| Lifecycle Events (install, update, uninstall) | Yes                | Yes                     | No                              | No                              |
+| Can be managed in Administration              | Yes                | No                      | No                              | No                              |
+| Can be a Theme                                | Yes                | Yes                     | Yes                             | No                              |
+| Can modify Admin / Storefront with JS/CSS     | Yes                | Yes                     | Yes                             | No                              |

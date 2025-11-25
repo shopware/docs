@@ -10,7 +10,7 @@ nav:
 Shopware provides a Docker image to run Shopware 6 in a containerized environment for production intent. The Docker image is based on the official PHP image and includes the required PHP extensions and configurations to run Shopware 6. But it does not contain Shopware itself.
 It's intended to be used together with your existing Shopware project, copy the project into the image, build it, and run it.
 
-If you don't have yet a Shopware project, you can create a new one with:
+If you don't have a Shopware project yet, you can create a new one with:
 
 ::: info
 You can create a Project with a specific Shopware version by specifying the version like: `composer create-project shopware/production:6.6.7.0 <folder>`
@@ -157,13 +157,13 @@ Additionally, Redis is required for the session storage and the cache, so the Br
 
 ## Typical Setup
 
-The docker image starts in entry point PHP-FPM / Caddy. So you will need to start a extra container to run maintenance tasks like to install Shopware, install plugins, or run the update. This can be done by installing the [Deployment Helper](./deployments/deployment-helper.md) and creating one container and running as entry point `/setup`
+The docker image starts in the entry point PHP-FPM / Caddy. So you will need to start a extra container to run maintenance tasks like to install Shopware, install plugins, or run the update. This can be done by installing the [Deployment Helper](./deployments/deployment-helper.md) and creating one container and running as entry point `/setup`
 
-Here we have an example of a `compose.yaml`, how the services could look like:
+Here we have an example of a `compose.yaml`, what the services could look like:
 
 ::: info
 
-This is just an example compose file to demonstrate how the services could look like. It's not a ready to use compose file. You need to adjust it to your needs.
+This is just an example compose file to demonstrate what the services could look like. It's not a ready to use compose file. You need to adjust it to your needs.
 
 :::
 
@@ -224,16 +224,16 @@ services:
 ## Best Practices
 
 - Pin the docker image using a sha256 digest to ensure you always use the same image
-     - Setup Dependabot / Renovate to keep the image up-to-date
-- Use a external storage provider for all files, to keep all state out of the container
+     - Set up Dependabot / Renovate to keep the image up to date
+- Use an external storage provider for all files to keep all state out of the container
 - Use Redis/Valkey for Cache and Session storage so all instances share the same cache and session
 - Use Nginx Variant instead of Caddy as it's more battle tested
 
 ## Adding custom PHP extensions
 
-The Docker image is contains the [docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer) which allows you to install PHP extensions with the `install-php-extensions` command.
+The Docker image contains the [docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer) which allows you to install PHP extensions with the `install-php-extensions` command.
 
-To install a PHP extension you need to add the following to your Dockerfile:
+To install a PHP extension, you need to add the following to your Dockerfile:
 
 ```dockerfile
 # ...
@@ -275,4 +275,4 @@ USER www-data
 
 ### No transport supports the given Messenger DSN for Redis
 
-When you are stuck with the error `No transport supports the given Messenger DSN`, you need to install the required package. When the package is already installed, it's mostly a dependency resolving issue. Make sure that you have also the PHP Redis Extension locally installed.
+When you are stuck with the error `No transport supports the given Messenger DSN`, you need to install the required package. When the package is already installed, it's mostly a dependency-resolving issue. Make sure that you have also the PHP Redis Extension locally installed.

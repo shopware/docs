@@ -27,11 +27,11 @@ If you have downloaded the [shopware-installer.phar package](https://www.shopwar
 
 ## Supported setups
 
-| Setup | Description | Recommended For |
-|:------|:-------------|:----------------|
-| [Docker Setup](./setups/docker.md) | A complete, containerized environment including all required services (database, search engine, cache, etc.). | Most developers — provides production-like conditions, consistent across teams and CI/CD. |
-| [Symfony CLI Setup](./setups/symfony-cli.md) | Runs directly on your host system using local PHP and Composer. Lightweight and fast to start. | Quick plugin or theme development, or environments where Docker isn’t available. |
-| [Devenv Setup](./setups/devenv.md) | A reproducible, Nix-based setup offering deterministic builds and cross-platform consistency. | Core contributors and advanced users managing multiple Shopware versions. |
+| Setup                                        | Description                                                                                                   | Recommended For                                                                           |
+|:---------------------------------------------|:--------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------|
+| [Docker Setup](./setups/docker.md)           | A complete, containerized environment including all required services (database, search engine, cache, etc.). | Most developers — provides production-like conditions, consistent across teams and CI/CD. |
+| [Symfony CLI Setup](./setups/symfony-cli.md) | Runs directly on your host system using local PHP and Composer. Lightweight and fast to start.                | Quick plugin or theme development, or environments where Docker isn’t available.          |
+| [Devenv Setup](./setups/devenv.md)           | A reproducible, Nix-based setup offering deterministic builds and cross-platform consistency.                 | Core contributors and advanced users managing multiple Shopware versions.                 |
 
 ::: info
 If you’re unsure which setup to choose, start with the Docker setup — it provides the smoothest onboarding experience.
