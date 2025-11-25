@@ -1,7 +1,7 @@
 ---
 nav:
   title: Symfony CLI
-  position: 10
+  position: 30
 
 ---
 

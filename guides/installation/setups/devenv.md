@@ -1,7 +1,7 @@
 ---
 nav:
   title: Devenv
-  position: 30
+  position: 20
 
 ---
 
@@ -414,3 +414,7 @@ This comes in handy if you want to configure interpreters in your IDE.
 ::: warning
 Do not commit service tokens or credentials to version control. Store secrets in `.env` or a secret manager.
 :::
+
+## Detailed configurations
+
+You can find more detailed configurations for your devenv setup in the [Additional Devenv Options](devenv-options) article.

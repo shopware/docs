@@ -1,7 +1,7 @@
 ---
 nav:
   title: Docker
-  position: 5
+  position: 10
 
 ---
 
@@ -282,3 +282,7 @@ This command restarts the containers so that the updated environment variable ta
 ## Production environments
 
 If you're preparing to run Shopware in production using Docker, [this page](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.
+
+## Detailed configurations
+
+You can find more detailed configurations for your docker setup in the [Additional Docker Options](docker-options) article.

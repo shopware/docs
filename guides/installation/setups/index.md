@@ -1,7 +1,7 @@
 ---
 nav:
   title: Setups
-  position: 3000
+  position: 10
 
 ---
 
