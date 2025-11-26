@@ -24,9 +24,9 @@ Here is a checklist of requirements you should always consider when committing n
 
 * A pull request to the Shopware core always has to be made to the [main shopware](https://github.com/shopware/shopware) repository.
 * Fill out the [pull request info template](https://github.com/shopware/shopware/blob/trunk/.github/PULL_REQUEST_TEMPLATE.md) as detailed as possible.
-* Create a changelog file with documentation of your changes.
+* If your change is relevant for the broader community document it in the `RELEASE_INFO` file, if you introduce a breaking change document it also in the `UPGRADE` file.
 
-  Refer to [Changelog](https://github.com/shopware/shopware/blob/trunk/adr/2025-10-28-changelog-release-info-process.md) section for more detailed information about writing changelog.
+  Refer to the [release documentation guide](https://github.com/shopware/shopware/blob/trunk/delivery-process/documenting-a-release.md) for more detailed information about documenting your changes.
 
 * Check if your pull request addresses the correct Shopware branch.
   It should always target the `trunk` branch.
