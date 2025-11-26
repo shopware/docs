@@ -9,9 +9,9 @@ nav:
 
 [Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It's a standalone developer tool that you [install](installation.md) and configure separately from your Shopware instance. Once set up, it helps you automate and speed up common tasks such as:
 
-- managing and configuring Shopware projects  
-- building, validating, and packaging extensions  
-- uploading and maintaining extensions in the Shopware Store  
+- managing and configuring Shopware projects
+- building, validating, and packaging extensions
+- uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
 
 Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [General Requirements](../guides/requirements.md).
@@ -22,17 +22,17 @@ Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements
 
 Select your environment to install or try out the CLI:
 
-<Tabs groupId="os">
+<Tabs>
 
-<TabItem value="macOS" label="macOS / Linux (Homebrew)">
+<Tab title="macOS / Linux (Homebrew)">
 
 ```bash
 brew install --cask shopware/tap/shopware-cli
 ```
 
-</TabItem>
+</Tab>
 
-<TabItem value="debian" label="Debian / Ubuntu (APT)">
+<Tab title="Debian / Ubuntu (APT)">
 
 ```bash
 curl -1sLf \
@@ -41,9 +41,9 @@ curl -1sLf \
 sudo apt install shopware-cli
 ```
 
-</TabItem>
+</Tab>
 
-<TabItem value="dockerfile" label="Dockerfile">
+<Tab title="Dockerfile">
 
 Add the following line to your Docker image to copy the binary into your image:
 
@@ -52,16 +52,16 @@ Add the following line to your Docker image to copy the binary into your image:
 COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
 
-</TabItem>
+</Tab>
 
-<TabItem value="GitHub" label="GitHub Actions">
+<Tab title="GitHub Actions">
 
 ```yaml
 - name: Install shopware-cli
   uses: shopware/shopware-cli-action@v1
 ```
 
-</TabItem>
+</Tab>
 
 </Tabs>
 
@@ -79,8 +79,8 @@ Shopware CLI is organized into three main command scopes that cover the most com
 
 Shopware CLI also includes an automatic refactoring tool for PHP, JavaScript, and Admin Twig files. It uses:
 
-- [Rector](https://getrector.org/) for PHP  
-- [ESLint](https://eslint.org/) for JavaScript  
+- [Rector](https://getrector.org/) for PHP
+- [ESLint](https://eslint.org/) for JavaScript
 - Custom rules for Admin Twig
 
 You can run it on an extension or a full project:
