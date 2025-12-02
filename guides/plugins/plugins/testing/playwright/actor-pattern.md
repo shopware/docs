@@ -23,7 +23,7 @@ The Actor class is a lightweight solution to simplify the execution of reusable 
 - `name`: The human-readable name of the actor.
 - `page`: A Playwright page context that the actor is navigating.
 
-## Primary Methods
+## Primary methods
 
 - `goesTo`: Accepts a URL of a page the actor should navigate to.
 - `attemptsTo`: Accepts a "task" function with reusable test logic that the actor should perform.
@@ -37,7 +37,7 @@ These methods lead to the following pattern:
 
 Translated into test code, this pattern can look like this:
 
-```TypeScript
+```typescript
 import { test } from './../BaseTestFile';
 
 test('Product detail test scenario', async ({
@@ -61,7 +61,7 @@ The test suite offers two different actors by default:
 - `ShopCustomer`: A user that is navigating the Storefront.
 - `ShopAdmin`: A user who manages Shopware via the Administration.
 
-## Accessibility Methods
+## Accessibility methods
 
 - `a11y_checks`: Accepts a locator and verifies if the desired locator is both focused and displays a visible focus indicator. This is automatically called via `presses`, `fillsIn`, and `selectsRadioButton`.
 - `presses`: An extension of the Playwright `press` method to include `a11y_checks` as well as automatically apply a keyboard key press per default browser keyboard mappings (which can also be overridden). A keyboard focused alternative to the Playwright `click` method.
@@ -78,7 +78,7 @@ Tasks are small chunks of reusable test logic that can be passed to the `attempt
 
 **Example**
 
-```TypeScript
+```typescript
 import { test as base } from '@playwright/test';
 import type { Task } from '../../../types/Task';
 import type { FixtureTypes} from '../../../types/FixtureTypes';
@@ -108,7 +108,7 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
 
 This fixture is the "Login" task and performs a simple Storefront login of the default customer via keyboard navigation (automatically includes `a11y_checks` assertions). Every time we need a logged-in shop customer, we can simply reuse this logic in our test.
 
-```TypeScript
+```typescript
 import { test } from './../BaseTestFile';
 
 test('Customer login test scenario', async ({ ShopCustomer, Login }) => {
@@ -119,7 +119,7 @@ test('Customer login test scenario', async ({ ShopCustomer, Login }) => {
 
 **Example**
 
-```Typescript
+```typescript
 import type { Page, Locator } from 'playwright-core';
 import type { PageObject } from '../../types/PageObject';
 import { translate } from '../../services/LanguageHelper';
@@ -147,7 +147,7 @@ export class CheckoutConfirm implements PageObject {
 
 This page object defines the payment method radio group locator.
 
-```Typescript
+```typescript
 import { test as base } from '@playwright/test';
 import type { Task } from '../../../types/Task';
 import type { FixtureTypes} from '../../../types/FixtureTypes';
@@ -171,7 +171,7 @@ export const SelectPaymentMethod = base.extend<{ SelectPaymentMethod: Task }, Fi
 
 This fixture is the "SelectPaymentMethod" task, which selects the desired payment method radio button via keyboard navigation (automatically includes `a11y_checks` assertions).
 
-```Typescript
+```typescript
 import { test } from './../BaseTestFile';
 
 test('Customer successfully orders product', async ({ ShopCustomer, TestDataService, Login, StorefrontProductDetail, AddProductToCart, ProceedFromProductToCheckout, SelectPaymentMethod, ConfirmOrder}) => {
@@ -194,7 +194,7 @@ To keep tests easily readable, use names for your tasks so that in the test itse
 
 **Example**
 
-```TypeScript
+```typescript
 // Bad example
 await ShopCustomer.attemptsTo(ProductCart);
 
