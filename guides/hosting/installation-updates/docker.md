@@ -60,7 +60,7 @@ Instead of copying the Dockerfile to your project, rather run `composer req shop
 ## Available Tags / Versioning
 
 ::: info
-We recommend to use FrankenPHP over Caddy or Nginx, as it does automatic resource allocation and requires just one process to run PHP, which is better suited for containerized environments.
+We recommend to use FrankenPHP over Caddy or Nginx, as it does automatic resource allocation and requires just one process to run PHP, which is better suited for containerized environments. However keep in mind that tracing (especially via blackfire) is currently not supported in FrankenPHP, if you want to use tracing we recommend using Caddy.
 :::
 
 The Docker image is versioned by the PHP Version and the PHP Patch version. The Docker Image is updated daily and contains the latest security patches.
