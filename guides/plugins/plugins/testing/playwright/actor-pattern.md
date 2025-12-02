@@ -181,7 +181,7 @@ test('Customer successfully orders product', async ({ ShopCustomer, TestDataServ
     await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
     await ShopCustomer.attemptsTo(AddProductToCart(product));
     await ShopCustomer.attemptsTo(ProceedFromProductToCheckout());
-    await ShopCustomer.attemptsTo(SelectPaymentOption('Invoice'));
+    await ShopCustomer.attemptsTo(SelectPaymentMethod('Invoice'));
     await ShopCustomer.attemptsTo(ConfirmOrder());
 });
 ```
