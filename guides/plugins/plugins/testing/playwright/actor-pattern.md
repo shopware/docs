@@ -136,6 +136,7 @@ export class CheckoutConfirm implements PageObject {
         this.page = page;
         this.paymentMethodRadioGroup = page.locator('.checkout-card', { hasText: 'Payment Method' });
         this.shippingMethodRadioGroup = page.locator('.checkout-card', { hasText: 'Shipping Method' });
+    }
 
     url() {
         return 'checkout/confirm';
