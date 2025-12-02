@@ -140,6 +140,7 @@ export class CheckoutConfirm implements PageObject {
     url() {
         return 'checkout/confirm';
     }
+    }
 }
 ```
 
