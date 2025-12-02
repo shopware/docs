@@ -38,19 +38,20 @@ These methods lead to the following pattern:
 Translated into test code, this pattern can look like this:
 
 ```typescript
-import { test } from './../BaseTestFile';
+import { test } from "./../BaseTestFile";
 
-test('Product detail test scenario', async ({
-    ShopCustomer,
-    StorefrontProductDetail,
-    TestDataService,
+test("Product detail test scenario", async ({
+  ShopCustomer,
+  StorefrontProductDetail,
+  TestDataService,
 }) => {
+  const product = await TestDataService.createBasicProduct();
 
-    const product = await TestDataService.createBasicProduct();
-
-    await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
-    await ShopCustomer.attemptsTo(AddProductToCart(product));
-    await ShopCustomer.expects(StorefrontProductDetail.offCanvasSummaryTotalPrice).toHaveText('€99.99*');
+  await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
+  await ShopCustomer.attemptsTo(AddProductToCart(product));
+  await ShopCustomer.expects(
+    StorefrontProductDetail.offCanvasSummaryTotalPrice
+  ).toHaveText("€99.99*");
 });
 ```
 
@@ -66,9 +67,9 @@ The test suite offers two different actors by default:
 - `a11y_checks`: Accepts a locator and verifies if the desired locator is both focused and displays a visible focus indicator. This is automatically called via `presses`, `fillsIn`, and `selectsRadioButton`.
 - `presses`: An extension of the Playwright `press` method to include `a11y_checks` as well as automatically apply a keyboard key press per default browser keyboard mappings (which can also be overridden). A keyboard focused alternative to the Playwright `click` method.
 - `fillsIn`: An extension of the Playwright `fill` method to include `a11y_checks`.
-- `selectsRadioButton`: Selects radio buttons using keyboard navigation (ala `presses`) in addition to verifying visible focus (ala `a11y_checks`).
+- `selectsRadioButton`: Selects radio buttons using keyboard navigation in addition to verifying visible focus (via `presses`).
 
-These methods serve as a way to enforce better accessibility practices through keyboard navigation and checking for visible focus indicators (both of which are WCAG requirements). They can be used both in tests and tasks.
+These methods serve as a way to enforce better accessibility practices by using keyboard navigation and checking for visible focus indicators (both of which are WCAG requirements). They can be used both in tests and tasks.
 
 **Note**: Be aware that the Playwright `click` method automatically includes a number of [actionability checks](https://playwright.dev/docs/actionability) to combat flakiness. When utilizing the Actor accessibility methods, you may need to adjust your tests to individually assert some of these actionability checks for certain locators, yourself.
 
@@ -79,114 +80,145 @@ Tasks are small chunks of reusable test logic that can be passed to the `attempt
 **Example**
 
 ```typescript
-import { test as base } from '@playwright/test';
-import type { Task } from '../../../types/Task';
-import type { FixtureTypes} from '../../../types/FixtureTypes';
-import type { Customer } from '../../../types/ShopwareTypes';
+import { test as base } from "@playwright/test";
+import type { Task } from "../../../types/Task";
+import type { FixtureTypes } from "../../../types/FixtureTypes";
+import type { Customer } from "../../../types/ShopwareTypes";
 
 export const Login = base.extend<{ Login: Task }, FixtureTypes>({
-    Login: async ({ ShopCustomer, DefaultSalesChannel, StorefrontAccountLogin, StorefrontAccount }, use) => {
-        const task = (customCustomer?: Customer) => {
-            return async function Login() {
-
-                const customer = customCustomer ? customCustomer : DefaultSalesChannel.customer;
-
-                await ShopCustomer.goesTo(StorefrontAccountLogin.url());
-
-                await ShopCustomer.fillsIn(StorefrontAccountLogin.emailInput, customer.email);
-                await ShopCustomer.fillsIn(StorefrontAccountLogin.passwordInput, customer.password);
-                await ShopCustomer.presses(StorefrontAccountLogin.loginButton);
-
-                await ShopCustomer.expects(StorefrontAccount.personalDataCardTitle).toBeVisible();
-            }
-        };
-
-        await use(task);
+  Login: async (
+    {
+      ShopCustomer,
+      DefaultSalesChannel,
+      StorefrontAccountLogin,
+      StorefrontAccount,
     },
+    use
+  ) => {
+    const task = (customCustomer?: Customer) => {
+      return async function Login() {
+        const customer = customCustomer
+          ? customCustomer
+          : DefaultSalesChannel.customer;
+
+        await ShopCustomer.goesTo(StorefrontAccountLogin.url());
+
+        await ShopCustomer.fillsIn(
+          StorefrontAccountLogin.emailInput,
+          customer.email
+        );
+        await ShopCustomer.fillsIn(
+          StorefrontAccountLogin.passwordInput,
+          customer.password
+        );
+        await ShopCustomer.presses(StorefrontAccountLogin.loginButton);
+
+        await ShopCustomer.expects(
+          StorefrontAccount.personalDataCardTitle
+        ).toBeVisible();
+      };
+    };
+
+    await use(task);
+  },
 });
 ```
 
 This fixture is the "Login" task and performs a simple Storefront login of the default customer via keyboard navigation (automatically includes `a11y_checks` assertions). Every time we need a logged-in shop customer, we can simply reuse this logic in our test.
 
 ```typescript
-import { test } from './../BaseTestFile';
+import { test } from "./../BaseTestFile";
 
-test('Customer login test scenario', async ({ ShopCustomer, Login }) => {
-
-    await ShopCustomer.attemptsTo(Login());
+test("Customer login test scenario", async ({ ShopCustomer, Login }) => {
+  await ShopCustomer.attemptsTo(Login());
 });
 ```
 
 **Example**
 
 ```typescript
-import type { Page, Locator } from 'playwright-core';
-import type { PageObject } from '../../types/PageObject';
-import { translate } from '../../services/LanguageHelper';
+import type { Page, Locator } from "playwright-core";
+import type { PageObject } from "../../types/PageObject";
 
 export class CheckoutConfirm implements PageObject {
-    /**
-     * Payment and Shipping options
-     */
-    public readonly paymentMethodRadioGroup: Locator;
-    public readonly shippingMethodRadioGroup: Locator;
-    public readonly page: Page;
+  public readonly paymentMethodRadioGroup: Locator;
+  public readonly page: Page;
 
-    constructor(page: Page) {
-        this.page = page;
-        this.paymentMethodRadioGroup = page.locator('.checkout-card', { hasText: 'Payment Method' });
-        this.shippingMethodRadioGroup = page.locator('.checkout-card', { hasText: 'Shipping Method' });
-    }
+  constructor(page: Page) {
+    this.page = page;
+    this.paymentMethodRadioGroup = page.locator(".checkout-card", {
+      hasText: "Payment Method",
+    });
+  }
 
-    url() {
-        return 'checkout/confirm';
-    }
-    }
+  url() {
+    return "checkout/confirm";
+  }
 }
 ```
 
 This page object defines the payment method radio group locator.
 
 ```typescript
-import { test as base } from '@playwright/test';
-import type { Task } from '../../../types/Task';
-import type { FixtureTypes} from '../../../types/FixtureTypes';
+import { test as base } from "@playwright/test";
+import type { Task } from "../../../types/Task";
+import type { FixtureTypes } from "../../../types/FixtureTypes";
 
-export const SelectPaymentMethod = base.extend<{ SelectPaymentMethod: Task }, FixtureTypes>({
-    SelectPaymentMethod: async ({ ShopCustomer, StorefrontCheckoutConfirm }, use)=> {
-        const task = (paymentOptionName: string) => {
-            return async function SelectPaymentMethod() {
-                const paymentMethods = StorefrontCheckoutConfirm.paymentMethodRadioGroup;
-                const paymentOptionRadioButton = paymentMethods.getByRole('radio', { name: paymentOptionName });
+export const SelectPaymentMethod = base.extend<
+  { SelectPaymentMethod: Task },
+  FixtureTypes
+>({
+  SelectPaymentMethod: async (
+    { ShopCustomer, StorefrontCheckoutConfirm },
+    use
+  ) => {
+    const task = (paymentOptionName: string) => {
+      return async function SelectPaymentMethod() {
+        const paymentMethods =
+          StorefrontCheckoutConfirm.paymentMethodRadioGroup;
+        const paymentOptionRadioButton = paymentMethods.getByRole("radio", {
+          name: paymentOptionName,
+        });
 
-                await ShopCustomer.selectsRadioButton(paymentMethods, paymentOptionName);
-                await ShopCustomer.expects(paymentOptionRadioButton).toBeChecked();
-            }
-        };
+        await ShopCustomer.selectsRadioButton(
+          paymentMethods,
+          paymentOptionName
+        );
+        await ShopCustomer.expects(paymentOptionRadioButton).toBeChecked();
+      };
+    };
 
-        await use(task);
-    },
+    await use(task);
+  },
 });
 ```
 
-This fixture is the "SelectPaymentMethod" task, which selects the desired payment method radio button via keyboard navigation (automatically includes `a11y_checks` assertions).
+This fixture is the "SelectPaymentMethod" task, which selects the desired payment method radio button using keyboard navigation (automatically includes `a11y_checks` assertions).
 
 ```typescript
-import { test } from './../BaseTestFile';
+import { test } from "./../BaseTestFile";
 
-test('Customer successfully orders product', async ({ ShopCustomer, TestDataService, Login, StorefrontProductDetail, AddProductToCart, ProceedFromProductToCheckout, SelectPaymentMethod, ConfirmOrder}) => {
-
-    const product = await TestDataService.createBasicProduct();
-    await ShopCustomer.attemptsTo(Login());
-    await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
-    await ShopCustomer.attemptsTo(AddProductToCart(product));
-    await ShopCustomer.attemptsTo(ProceedFromProductToCheckout());
-    await ShopCustomer.attemptsTo(SelectPaymentMethod('Invoice'));
-    await ShopCustomer.attemptsTo(ConfirmOrder());
+test("Customer successfully orders product", async ({
+  ShopCustomer,
+  TestDataService,
+  Login,
+  StorefrontProductDetail,
+  AddProductToCart,
+  ProceedFromProductToCheckout,
+  SelectPaymentMethod,
+  ConfirmOrder,
+}) => {
+  const product = await TestDataService.createBasicProduct();
+  await ShopCustomer.attemptsTo(Login());
+  await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
+  await ShopCustomer.attemptsTo(AddProductToCart(product));
+  await ShopCustomer.attemptsTo(ProceedFromProductToCheckout());
+  await ShopCustomer.attemptsTo(SelectPaymentMethod("Invoice"));
+  await ShopCustomer.attemptsTo(ConfirmOrder());
 });
 ```
 
-To use the SelectPaymentMethod in a test, you simply pass the name of the desired payment option. Here is a sample scenario for a successful checkout that shows how you can combine multiple tasks to build your test scenarios.
+To use "SelectPaymentMethod" in a test, you simply pass the name of the desired payment option. Here is a sample scenario for a successful checkout that shows how you can combine multiple tasks to build your test scenarios.
 
 You can create your tasks in the same way to make them available for the actor pattern. Every task is just a simple Playwright fixture containing a function call with the corresponding test logic. Make sure to merge your task fixtures with other fixtures you created in your base test file. You can use the `mergeTests` method of Playwright to combine several fixtures into one test extension. Use `/src/tasks/shop-customer-tasks.ts` or `/src/tasks/shop-admin-tasks.ts` for that.
 
