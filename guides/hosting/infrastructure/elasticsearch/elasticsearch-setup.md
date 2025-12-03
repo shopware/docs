@@ -100,7 +100,7 @@ The `SHOPWARE_ES_INDEXING_ENABLED` and `SHOPWARE_ES_ENABLED` can seem as a dupli
 
 ## Read-Only
 
-`SHOPWARE_ES_ENABLED=1` + `SHOPWARE_ES_INDEXING_ENABLED=0` - Search enabled, indexing disabled. Could be useful in bigger setups where some appservers can only read the index but not update it.
+`SHOPWARE_ES_ENABLED=1` + `SHOPWARE_ES_INDEXING_ENABLED=0` - Search enabled, indexing disabled. Could be useful in bigger setups where some AppServers can only read the index but not update it.
 
 :::
 
