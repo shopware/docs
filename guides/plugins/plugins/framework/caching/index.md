@@ -116,14 +116,16 @@ class HttpCacheCookieListener implements EventSubscriberInterface
 
 Additionally, you can modify the cache hash from the frontend client directly by adding separate cookies with the relevant value.
 You can configure custom cookies that are relevant for the cache hash in the `shopware.http_cache.cookies` option:
+
 ```yaml
 shopware:
     http_cache:
         cookies:
             - 'my-custom-cookie'
 ```
+
 As soon as the cookie is set, that value will be included in the cache hash.
-Essentially, it saves you the effort to implement a custom cache cookie listener as shown above. 
+Essentially, it saves you the effort to implement a custom cache cookie listener as shown above.
 This makes it especially suited for headless projects where the frontend implementation is more decoupled from the backend.
 
 ##### Marking rule areas as cache relevant
