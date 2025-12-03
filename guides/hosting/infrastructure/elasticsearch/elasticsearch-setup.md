@@ -91,6 +91,17 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 | `SHOPWARE_ES_INDEX_PREFIX`     | `sw_myshop`      | This variable defines the prefix for the Elasticsearch indices                                                                                                                                                                   |
 | `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable activates the debug mode for Elasticsearch. Without this variable as = 0 you will get a fallback to mysql without any error message if Elasticsearch is not working                                                |
 
+:::info
+The `SHOPWARE_ES_INDEXING_ENABLED` and `SHOPWARE_ES_ENABLED` can seem as a duplicate setting, but has it's purpose. Here are two use cases for setting these differently:
+
+## Full Support
+`SHOPWARE_ES_ENABLED=1` + `SHOPWARE_ES_INDEXING_ENABLED=1` - Both search and indexing enabled.
+
+## Read-Only
+`SHOPWARE_ES_ENABLED=1` + `SHOPWARE_ES_INDEXING_ENABLED=0` - Search enabled, indexing disabled. Could be useful in bigger setups where some appservers can only read the index but not update it.
+
+:::
+
 ### Example file for productive environments
 
 ```bash
