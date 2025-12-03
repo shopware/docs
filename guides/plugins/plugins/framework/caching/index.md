@@ -33,7 +33,7 @@ There are several entry points to manipulate the cache key.
 * `Shopware\Core\Framework\Adapter\Cache\Http\Extension\ResolveCacheRelevantRuleIdsExtension`: used to determine which rule IDs are relevant for the cache hash.
 * `Shopware\Core\Framework\Adapter\Cache\Event\HttpCacheKeyEvent`: used to calculate the exact cache key based on the response, only for symfony's default HTTP-cache component.
 
-#### Modifying when the cache hash is calculated
+##### Modifying when the cache hash is calculated
 
 By default, the cache hash is only calculated when the request is not in the default state, which is: no logged in customer, default currency, and an empty cart.
 The reason is that the very first request to the application from a client should always be cached in the best case, the state that the application is in then is the "default state", which does not require a cache hash.
@@ -58,7 +58,7 @@ class RequireCacheHash implements EventSubscriberInterface
 }
 ```
 
-#### Modifying the cache hash
+##### Modifying the cache hash
 
 The cache hash is used as the basis for the cache key.
 It is calculated based on the application state, which includes the current user, the current language, and so on.
@@ -114,7 +114,19 @@ class HttpCacheCookieListener implements EventSubscriberInterface
 }
 ```
 
-#### Marking rule areas as cache relevant
+Additionally, you can modify the cache hash from the frontend client directly by adding separate cookies with the relevant value.
+You can configure custom cookies that are relevant for the cache hash in the `shopware.http_cache.cookies` option:
+```yaml
+shopware:
+    http_cache:
+        cookies:
+            - 'my-custom-cookie'
+```
+As soon as the cookie is set, that value will be included in the cache hash.
+Essentially, it saves you the effort to implement a custom cache cookie listener as shown above. 
+This makes it especially suited for headless projects where the frontend implementation is more decoupled from the backend.
+
+##### Marking rule areas as cache relevant
 
 Starting with v6.8.0.0, the cache hash will only include the rule IDs in `rule areas` that are cache relevant.
 The reason is that a lot of rules are not relevant for the cache, e.g., rules that only affect pricing or shipping methods.
@@ -173,7 +185,7 @@ class RuleExtension extends EntityExtension
 
 For details on how to extend core definitions refer to the [DAL Guide](../../framework/data-handling/add-complex-data-to-existing-entities.md).
 
-#### Modifying the cache keys
+##### Modifying the cache keys
 
 You can also modify the exact cache key used to store the response in the [symfony HTTP-Cache](https://symfony.com/doc/current/http_cache.html).
 If possible, you should manipulate the cache hash (as already explained above) instead, as that is also used in reverse proxy caches.
