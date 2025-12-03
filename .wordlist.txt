@@ -846,6 +846,7 @@ SearchPage
 SearchRanking
 SearchWidget
 SecretKey
+SelectPaymentMethod
 Sendfile
 SeoUrlRoute
 SeoUrlTemplate
@@ -1057,6 +1058,7 @@ YamlFileLoader
 ZSH
 accel
 acl
+actionability
 activateShopwareTheme
 adr
 afterSort
