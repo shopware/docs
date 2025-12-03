@@ -71,7 +71,9 @@ The test suite offers two different actors by default:
 
 These methods serve as a way to enforce better accessibility practices by using keyboard navigation and checking for visible focus indicators (both of which are WCAG requirements). They can be used both in tests and tasks.
 
-**Note**: Be aware that the Playwright `click` method automatically includes a number of [actionability checks](https://playwright.dev/docs/actionability) to combat flakiness. When utilizing the Actor accessibility methods, you may need to adjust your tests to individually assert some of these actionability checks for certain locators, yourself.
+:::info
+Be aware that the Playwright `click` method automatically includes a number of [actionability checks](https://playwright.dev/docs/actionability) to combat flakiness. When utilizing the Actor accessibility methods, you may need to adjust your tests to individually assert some of these actionability checks for certain locators yourself.
+:::
 
 ## Tasks
 
