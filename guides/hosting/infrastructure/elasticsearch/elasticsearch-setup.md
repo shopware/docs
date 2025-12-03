@@ -95,9 +95,11 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 The `SHOPWARE_ES_INDEXING_ENABLED` and `SHOPWARE_ES_ENABLED` can seem as a duplicate setting, but has it's purpose. Here are two use cases for setting these differently:
 
 ## Full Support
+
 `SHOPWARE_ES_ENABLED=1` + `SHOPWARE_ES_INDEXING_ENABLED=1` - Both search and indexing enabled.
 
 ## Read-Only
+
 `SHOPWARE_ES_ENABLED=1` + `SHOPWARE_ES_INDEXING_ENABLED=0` - Search enabled, indexing disabled. Could be useful in bigger setups where some appservers can only read the index but not update it.
 
 :::
