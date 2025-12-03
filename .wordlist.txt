@@ -357,6 +357,8 @@ Enums
 EqualsAny
 ErrorsFacade
 EventListener
+EventListeners
+EventSubscriber
 EventSubscriberInterface
 Everytime
 ExampleAppWithCookies
@@ -427,6 +429,7 @@ GuestWishlistPage
 GuestWishlistPagelet
 HMAC
 HMR
+Hacktober
 HeaderPagelet
 Homebrew
 Hono
@@ -1870,6 +1873,7 @@ triggerDeprecated
 truthy
 tsx
 twigjs
+txt
 typeAndCheck
 typeAndCheckSearchField
 typeLegacySelectAndCheck
