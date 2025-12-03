@@ -258,6 +258,7 @@ DDL
 DESC
 DIC
 DIC EntityRepository
+DNF
 DNS
 DOM
 DOMPurify
@@ -356,6 +357,8 @@ Enums
 EqualsAny
 ErrorsFacade
 EventListener
+EventListeners
+EventSubscriber
 EventSubscriberInterface
 Everytime
 ExampleAppWithCookies
@@ -426,6 +429,7 @@ GuestWishlistPage
 GuestWishlistPagelet
 HMAC
 HMR
+Hacktober
 HeaderPagelet
 Homebrew
 Hono
@@ -576,6 +580,7 @@ MyPlugin
 MyTestClass
 MyTestInterface
 NPM
+NUR
 NVDA
 NameAware
 NameOfYourShippingMethodApp
@@ -758,6 +763,7 @@ QuillJS
 RDB
 RDBMS
 README
+RHEL
 RSA
 RabbitMQ
 RabbitMq
@@ -840,6 +846,7 @@ SearchPage
 SearchRanking
 SearchWidget
 SecretKey
+SelectPaymentMethod
 Sendfile
 SeoUrlRoute
 SeoUrlTemplate
@@ -1051,6 +1058,7 @@ YamlFileLoader
 ZSH
 accel
 acl
+actionability
 activateShopwareTheme
 adr
 afterSort
@@ -1579,6 +1587,7 @@ onwards
 oop
 opcache
 openInitialPage
+openSUSE
 openUserActionMenu
 opensearch
 openssl
@@ -1864,6 +1873,7 @@ triggerDeprecated
 truthy
 tsx
 twigjs
+txt
 typeAndCheck
 typeAndCheckSearchField
 typeLegacySelectAndCheck

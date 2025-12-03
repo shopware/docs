@@ -1,7 +1,7 @@
 ---
 nav:
   title: Docker
-  position: 5
+  position: 10
 
 ---
 
@@ -12,6 +12,8 @@ This setup is intended for development. If you want to use Docker for production
 :::
 
 Docker is a platform that enables developers to develop, ship, and run applications inside containers. These containers are lightweight, standalone, and executable packages that include everything needed to run an application: code, runtime, system tools, libraries, and settings. To get started with Docker, you can follow the official [Docker installation guide](https://docs.docker.com/get-started/get-docker/).
+
+The Docker setup automatically provides all backend services (PHP, MySQL, Elasticsearch, Redis, Mailhog, etc.) so you don’t need to install anything else manually.
 
 In this guide, we will run PHP, Node, and all required services in Docker containers. If you just want to run the services (MySQL/OpenSearch/Redis/...) in Docker, check out the [Docker](./docker.md) guide.
 
@@ -119,7 +121,7 @@ This command builds (if needed) and starts all required Docker services (web ser
 
 </details>
 
-💡 **Tip:** You can check container status anytime with:
+**Tip:** You can check container status anytime with:
 
 ```bash
 docker compose ps
@@ -145,7 +147,7 @@ If you connect to the database from your host machine (for example, via Adminer 
 :::
 
 <details>
-<summary>🔑 Access key explained (click to expand)</summary>
+<summary>Access key explained (click to expand)</summary>
 
 During setup, you’ll see an output similar to this:
 
@@ -157,7 +159,7 @@ Access tokens:
 | Access key | `string of capital letters` |
 ```
 
-This **access key** is automatically generated for your default **Sales Channel** (usually *Storefront*). It's used for authenticating requests to the [Store API](../../resources/references/store-api-reference.md)—for example, when fetching product or category data from an external app, headless storefront, or API client.
+This access key is automatically generated for your default Sales Channel (usually *Storefront*). It's used for authenticating requests to the [Store API](../../../concepts/api/store-api)—for example, when fetching product or category data from an external app, headless storefront, or API client.
 
 Example usage:
 
@@ -168,7 +170,9 @@ curl -H "sw-access-key: YOUR_ACCESS_KEY" \
 
 You can view or regenerate this key later in the Admin under Sales Channels → [Your Channel] → API Access.
 
-💡 **Tip:** The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
+:::info
+The access key is not for logging in to the Admin. It’s for programmatic access to your storefront’s data via the Store API.
+:::
 </details>
 
 If you want to stop the setup, run `make stop`.
@@ -257,13 +261,13 @@ As a developer, you can skip the wizard and use the Admin to:
 
 With Shopware running, here are the services in your local stack and how to access them. Understanding what each one does helps you troubleshoot issues and connect external tools if needed:
 
-- **Web service (Caddy + PHP-FPM by default, or Nginx + PHP-FPM)** — serves both the storefront and the admin interface. The default image uses Caddy; you can choose Nginx in image variations.
+- **Web service (Caddy + PHP-FPM by default, or Nginx + PHP-FPM)**: serves both the storefront and the admin interface. The default image uses Caddy; you can choose Nginx in image variations.
 - Storefront: [http://localhost:8000](http://localhost:8000)
 - Admin: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
 
-- **Database (MariaDB)** — runs on port **3306** inside Docker. The internal hostname is `database`. You can connect from your host using `localhost:3306` if you want to inspect the database directly.
+- **Database (MariaDB)**: runs on port **3306** inside Docker. The internal hostname is `database`. You can connect from your host using `localhost:3306` if you want to inspect the database directly.
 
-- **Mailpit** — local mail testing tool, available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
+- **Mailpit**: local mail testing tool, available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
 
 ### Changing environment variables
 
@@ -275,235 +279,10 @@ make up
 
 This command restarts the containers so that the updated environment variable takes effect.
 
-### Enable profiler/debugging for PHP (optional, recommended)
+## Production environments
 
-Once your Shopware environment is running, you may want to enable PHP debugging or profiling to inspect code execution, set breakpoints, or measure performance. The default setup doesn’t include these tools, but you can enable them using Docker overrides.
+If you're preparing to run Shopware in production using Docker, [this page](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.
 
-#### Enable Xdebug
+## Detailed configurations
 
-To enable [Xdebug](https://xdebug.org/) inside the web container, create a `compose.override.yaml` in your project root with the following configuration:
-
-```yaml
-services:
-    web:
-        environment:
-            - XDEBUG_MODE=debug
-            - XDEBUG_CONFIG=client_host=host.docker.internal
-            - PHP_PROFILER=xdebug
-```
-
-After saving the file, apply the changes:
-
-```bash
-docker compose up -d
-```
-
-This restarts the containers with Xdebug enabled. You can now attach your IDE (for example, PHPStorm or VS Code) to the remote debugger on the default Xdebug port `9003`.
-
-Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
-
-```yaml
-services:
-    web:
-        environment:
-            - PHP_PROFILER=blackfire
-    blackfire:
-        image: blackfire/blackfire:2
-        environment:
-            BLACKFIRE_SERVER_ID: XXXX
-            BLACKFIRE_SERVER_TOKEN: XXXX
-```
-
-## Image variations (reference; rarely requires changes)
-
-The Shopware Docker image is available in several variations, allowing you to match your local setup to your project’s PHP version, Node version, and preferred web server. Use the following pattern to select the right image tag:
-
-`ghcr.io/shopware/docker-dev:php(PHP_VERSION)-node(NODE_VERSION)-(WEBSERVER)`
-
-Here’s the version matrix:
-
-PHP versions:
-
-- `8.4` - PHP 8.4
-- `8.3` - PHP 8.3
-- `8.2` - PHP 8.2
-
-Node versions:
-
-- `node24` - Node 24
-- `node22` - Node 22
-
-Web server:
-
-- `caddy` - Caddy as web server
-- `nginx` - Nginx as web server
-
-Example:
-
-- `ghcr.io/shopware/docker-dev:php8.4-node24-caddy` - PHP 8.4, Node 24, Caddy as web server
-- `ghcr.io/shopware/docker-dev:php8.3-node24-caddy` - PHP 8.3, Node 24, Caddy as web server
-- `ghcr.io/shopware/docker-dev:php8.4-node22-nginx` - PHP 8.4, Node 22, Nginx as web server
-- `ghcr.io/shopware/docker-dev:php8.3-node22-nginx` - PHP 8.3, Node 22, Nginx as web server
-
-## Adding Minio for local S3 storage (optional)
-
-Some projects use Amazon S3 for file storage in production. If you want to mimic that behavior locally—for example, to test uploads or CDN-like delivery—you can add [Minio](https://www.min.io/), an open-source S3-compatible storage server.
-
-### 1. Add the Minio service
-
-Include a `minio` service in your `compose.yaml`:
-
-```yaml
-services:
-  # ....
-  minio:
-    image: minio/minio
-    command: server /data --console-address ":9001"
-    environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin
-    healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
-      start_period: 20s
-      start_interval: 10s
-      interval: 1m
-      timeout: 20s
-      retries: 3
-    ports:
-      - 9000:9000
-      - 9001:9001
-    volumes:
-      - minio-data:/data
-
-  minio-setup:
-    image: minio/mc
-    depends_on:
-      minio:
-        condition: service_healthy
-    entrypoint: >
-      /bin/sh -c "
-        set -e;
-        mc alias set local http://minio:9000 minioadmin minioadmin;
-        mc mb local/shopware-public local/shopware-private --ignore-existing;
-        mc anonymous set download local/shopware-public;
-        "
-    restart: no
-  # ...
-
-volumes:
-  # ...
-  minio-data:
-```
-
-### 2. Configure Shopware to use Minio
-
-Create a new YAML file at `config/packages/minio.yaml` with the following content:
-
-```yaml
-# yaml-language-server: $schema=https://raw.githubusercontent.com/shopware/shopware/refs/heads/trunk/config-schema.json
-
-shopware:
-  filesystem:
-    public: &s3_public
-      type: "amazon-s3"
-      url: "http://localhost:9000/shopware-public"
-      config:
-        bucket: shopware-public
-        endpoint: http://minio:9000
-        use_path_style_endpoint: true
-        region: us-east-1
-        credentials:
-          key: minioadmin
-          secret: minioadmin
-    theme: *s3_public
-    sitemap: *s3_public
-    private:
-      type: "amazon-s3"
-      config:
-        bucket: shopware-private
-        endpoint: http://minio:9000
-        use_path_style_endpoint: true
-        region: us-east-1
-        credentials:
-          key: minioadmin
-          secret: minioadmin
-
-```
-
-After adding the Minio service to your `compose.yaml` and creating the configuration file, this will configure Shopware to use Minio as the S3 storage for public and private files.
-
-Run `docker compose up -d` to start the Minio containers. You can access the Minio console at <http://localhost:9001> with the username `minioadmin` and password `minioadmin`.
-
-Finally, regenerate the assets to upload them to S3:
-
-```bash
-make shell
-bin/console asset:install
-bin/console theme:compile
-```
-
-### Using OrbStack routing (optional)
-
-If you're using [OrbStack](https://orbstack.dev) on macOS, you can take advantage of its built-in routing feature.
-OrbStack automatically assigns local `.orb.local` URLs to your containers, so you don’t need to manage port mappings manually. This allows running multiple Shopware instances at the same time without port conflicts.
-
-To enable it, create a `compose.override.yaml` in your project root with the following content:
-
-```yaml
-services:
-  web:
-      ports: !override []
-      environment:
-          APP_URL: https://web.sw.orb.local
-          SYMFONY_TRUSTED_PROXIES: REMOTE_ADDR
-
-###> symfony/mailer ###
-  mailer:
-    image: axllent/mailpit
-    environment:
-      MP_SMTP_AUTH_ACCEPT_ANY: 1
-      MP_SMTP_AUTH_ALLOW_INSECURE: 1
-###< symfony/mailer ###
-
-```
-
-The APP_URL environment variable follows this pattern: `web.<project-name>.orb.local`. The `<project-folder-name>` comes from your local directory name. For example: a project called `shopware` will have the URL `https://web.shopware.orb.local`. A project called `shopware-6` will have the URL `https://web.shopware-6.orb.local`.
-
-You can also open `https://orb.local` in your browser to view all running containers and their assigned URLs.
-
-## Proxy production images (optional)
-
-When you import a production database into your local environment, image URLs in the data may still point to production servers. As a result, your local store might show broken or missing images. You can fix this in two ways:
-
-- **download all production images** and import them locally, or
-- **set up a lightweight proxy service** that serves those images directly from the production server (recommended for quick testing).
-
-### 1. Add the image proxy service
-
-Add a `imageproxy` service to your `compose.override.yaml`:
-
-```yaml
-services:
-    imageproxy:
-        image: ghcr.io/shopwarelabs/devcontainer/image-proxy
-        ports:
-          - "8050:80"
-        environment:
-          # Your production URL.
-          REMOTE_SERVER_HOST: shopware.com
-```
-
-This starts a proxy server that fetches images from the production environment and caches them locally. For example, a request to `http://localhost:8050/assets/images.png` will be served from `https://[REMOTE_SERVER_HOST]/assets/images.png` and then stored in the local cache for faster reuse.
-
-### 2. Point Shopware to the proxy
-
-Next, we need to configure Shopware to use the proxy server. To do this, create a new YAML file `config/packages/media-proxy.yaml`
-
-```yaml
-shopware:
-  filesystem:
-    public:
-      url: "http://localhost:8050"
-```
-
-This tells Shopware to use the proxy server URL for all images.
+You can find more detailed configurations for your docker setup in the [Additional Docker Options](docker-options) article.

@@ -15,9 +15,9 @@ Shopware CLI has an integrated Standalone Admin Watcher. This is useful if the r
 
 Therefore, the Watcher starts in few milliseconds and is very fast. Additionally, it can be targeted to an external Shopware 6 Instance to debug JavaScript or CSS changes with the external data.
 
-## Starting the Standalone Admin Watcher
+## Starting the standalone Admin Watcher
 
-To start the Standalone Admin Watcher, you can use the following command:
+To start the standalone Admin Watcher, you can use the following command:
 
 ```bash
 shopware-cli extension admin-watch <path-to-extension> <url-to-shopware>

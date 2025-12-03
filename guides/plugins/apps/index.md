@@ -7,17 +7,24 @@ nav:
 
 # Apps
 
-In Shopware, apps are custom-developed extensions that provide additional functionality and customization options to the e-commerce platform. These apps can be created using the Shopware app SDK, plugin system, or App scripts.
-Apps are built to serve various purposes.
+Apps are the extension mechanism designed for Shopware’s [Cloud environment](../../../products/saas.md). Unlike [plugins](../plugins/index.md), they don't run code directly inside the shop system. Instead, they work in an event-driven way and communicate with external services through APIs. This makes them less intrusive while still highly flexible.
 
-* **Extending functionality:** Apps can add new features and capabilities to the Shopware platform. This includes creating custom payment gateways, implementing advanced shipping methods, or enhancing product catalog management.
+Apps are well-suited for use cases such as:
 
-* **Modifying existing functionality:** Apps can modify or enhance existing functionalities within Shopware. This can involve altering the checkout process, implementing custom pricing rules, customizing the customer management system, or the search functionality.
+- Integrating with third-party services (e.g., ERP, CRM, marketing tools)
+- Providing payment methods and forwarding to external payment providers
+- Adding storefront customizations, including themes
+- Handling data or processes outside the shop system (e.g., product synchronization, advanced shipping logic, analytics workflows)
+- Extending or modifying core functionality such as checkout behavior, pricing and discount logic, payment flows, product catalog management, or search behavior
+- Customizing the Storefront or Administration; creating custom themes, adding custom blocks or Storefront elements, or modifying the appearance and layout of the Administration panel
+- Facilitating integration with external systems to allow seamless data synchronization, order and product management, and cross-platform workflows
 
-* **Customizing the user interface:** Apps can customize the Storefront and Administration panel of Shopware to provide a unique and tailored experience. This includes creating custom themes, adding custom blocks or elements to the Storefront, or modifying the appearance and layout of the Administration panel.
+You can develop apps using the Shopware [App SDK](app-sdks), [App Scripts](app-scripts), and external services via the [App API](../../../resources/references/app-reference). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
 
-* **Integrating with external systems:** Apps can facilitate integration with external systems to allow seamless data synchronization, order management, and cross-platform interactions.
+Follow our [App Base Guide](app-base-guide) and [App Starter Guide](starter) to learn how to develop an app.
 
-Shopware apps provide a flexible and modular approach to extend and customize the platform according to specific business requirements.
+::: info
+Apps also provide theme support, so everything you can do with a theme plugin is also possible in an app. This makes them the preferred option for customizing design in Cloud shops.
+:::
 
-While plugins and themes are also extensions but they differ from apps. To better understand the differences, take a look at the [Overview](../../../guides/plugins/overview) article.
+To understand how apps differ from other extension types, see the [Overview table](../../../guides/plugins/index).

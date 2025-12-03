@@ -59,7 +59,7 @@ If your extension is not a plugin but itself a bundle, make sure your composer t
 Now you can use `shopware-cli extension build <path>` to build the assets and distribute them together with your bundle.
 Also `shopware-cli project ci` detects know automatically this bundle and builds the assets for it.
 
-## Using esbuild for JavaScript Bundling
+## Using `esbuild` for JavaScript bundling
 
 ::: warning
 Building with esbuild works completely standalone without the Shopware codebase. This means if you import files from Shopware, you have to copy it to your extension.
@@ -120,7 +120,7 @@ build:
           - <path>
 ```
 
-### JavaScript Build optimization
+### JavaScript build optimization
 
 If you bring additional NPM packages, make sure that you added only runtime dependencies to `dependencies` inside `package.json` and tooling to `devDependencies` and enabled `npm_strict` in the configuration:
 

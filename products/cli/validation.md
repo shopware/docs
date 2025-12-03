@@ -15,18 +15,18 @@ To validate an extension, you can use the following command:
 
 <Tabs>
 
-<Tab title="Without Docker">
+<Tab title="With Docker (recommended)">
 
 ```shell
-shopware-cli extension validate /path/to/your/extension
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate /ext
 ```
 
 </Tab>
 
-<Tab title="Docker">
+<Tab title="Without Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate /ext
+shopware-cli extension validate /path/to/your/extension
 ```
 
 </Tab>
@@ -62,18 +62,19 @@ These versions don't need to be installed locally; they are downloaded on demand
 By default, only a few tools are run, but you can run all tools by using the `--full` option. This will run all available tools and check your extension against the latest Shopware version.
 
 <Tabs>
-<Tab title="Without Docker">
+
+<Tab title="With Docker (recommended)">
 
 ```shell
-shopware-cli extension validate --full /path/to/your/extension
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext
 ```
 
 </Tab>
 
-<Tab title="Docker">
+<Tab title="Without Docker">
 
 ```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext
+shopware-cli extension validate --full /path/to/your/extension
 ```
 
 </Tab>
@@ -84,20 +85,20 @@ By default, it will check against the latest allowed Shopware version according 
 
 <Tabs>
 
+<Tab title="With Docker (recommended)">
+
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against lowest
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against highest
+```
+
+</Tab>
+
 <Tab title="Without Docker">
 
 ```shell
 shopware-cli extension validate --full /ext --check-against lowest
 shopware-cli extension validate --full /ext --check-against highest
-```
-
-</Tab>
-
-<Tab title="Docker">
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against lowest
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against highest
 ```
 
 </Tab>
@@ -133,6 +134,20 @@ You can run a single tool:
 
 <Tabs>
 
+<Tab title="With Docker (recommended)">
+
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only phpstan
+```
+
+Or run multiple tools by separating them with commas:
+
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
+```
+
+</Tab>
+
 <Tab title="Without Docker">
 
 ```shell
@@ -143,20 +158,6 @@ Or run multiple tools by separating them with commas:
 
 ```shell
 shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
-```
-
-</Tab>
-
-<Tab title="Docker">
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only phpstan
-```
-
-Or run multiple tools by separating them with commas:
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
 ```
 
 </Tab>

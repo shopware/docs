@@ -1,36 +1,21 @@
 ---
 nav:
-  title: Installation
+  title: Other Installation Options
   position: 1
 
 ---
 
-# Installation
+# Other Installation Options
 
-You can install the pre-compiled binary (in several different ways), use Docker or compile it from the source.
+If you haven’t already, see the [Shopware CLI overview](index.md) for a quick start and the most common installation methods (Homebrew, APT, and Docker). This page covers additional or advanced options for other package managers, CI/CD environments, or building from source.
 
-Below you can find the steps for each of them.
+## Package-manager installs
 
-## Install the pre-compiled binary
+Shopware CLI is available through several community and distribution channels.
 
-Shopware CLI is published in various package managers. You can install it using the following commands.
+<details>
 
-### Homebrew
-
-```bash
-brew install --cask shopware/tap/shopware-cli
-```
-
-### Debian/Ubuntu — APT based Linux
-
-```bash
-curl -1sLf \
-  'https://dl.cloudsmith.io/public/friendsofshopware/stable/setup.deb.sh' \
-  | sudo -E bash
-sudo apt install shopware-cli
-```
-
-### Fedora/CentOS/SUSE/RedHat — YUM based Linux
+<summary><strong>Fedora, CentOS, openSUSE, RHEL (YUM/DNF)</strong></summary>
 
 ```bash
 curl -1sLf \
@@ -39,39 +24,32 @@ curl -1sLf \
 sudo dnf install shopware-cli
 ```
 
-### Archlinux User Repository (AUR)
+</details>
+
+<details>
+<summary><strong>Arch Linux (AUR)</strong></summary>
 
 ```bash
 yay -S shopware-cli-bin
 ```
 
-### Manually: deb,rpm apt packages
+</details>
 
-Download the `.deb`, `.rpm` or `.apk` packages from the [releases](https://github.com/shopware/shopware-cli/releases/) page and install them with the appropriate tools.
+<details>
+<summary><strong>Nix / NUR packages</strong></summary>
 
-```shell
-sudo dpkg -i shopware-cli_0.5.2_linux_amd64.deb # for .deb
-sudo rpm -i shopware-cli_0.5.2_linux_arm64.rpm # for .rpm
-sudo apk add shopware-cli-0.5.2.apk # for .apk
-```
-
-### Nix
-
-Install **Nix** package from here:
-
-```shell
+```bash
 nix profile install nixpkgs#shopware-cli
-```
-
-or directly from the **FriendsOfShopware** repository (more up to date)
-
-```shell
+# or latest from FriendsOfShopware
 nix profile install github:FriendsOfShopware/nur-packages#shopware-cli
 ```
 
-### Devenv
+</details>
 
-Update `devenv.yaml` with a new input:
+<details>
+<summary><strong>Devenv (Nix-based)</strong></summary>
+
+Update `devenv.yaml` with:
 
 ```yaml
 inputs:
@@ -84,7 +62,7 @@ inputs:
         follows: "nixpkgs"
 ```
 
-Then you can use the new input in the `devenv.nix` file. Don't forget to add the `inputs` argument, to the first line.
+Then reference the input in `devenv.nix`:
 
 ```nix
 { pkgs, inputs, ... }: {
@@ -94,7 +72,31 @@ Then you can use the new input in the `devenv.nix` file. Don't forget to add the
 }
 ```
 
-### GitHub Codespaces
+</details>
+
+## Manual installation from releases
+
+Download the appropriate .deb, .rpm, or .apk file from the [GitHub Releases page](https://github.com/shopware/shopware-cli/releases) and install it manually:
+
+```bash
+sudo dpkg -i shopware-cli_<version>_linux_amd64.deb   # Debian/Ubuntu
+sudo rpm -i shopware-cli_<version>_linux_arm64.rpm    # Fedora/RHEL
+sudo apk add shopware-cli-<version>.apk               # Alpine
+```
+
+Alternatively, download the binary and move it into your `$PATH`:
+
+```bash
+curl -L -o shopware-cli https://github.com/shopware/shopware-cli/releases/latest/download/shopware-cli-linux-amd64
+chmod +x shopware-cli
+sudo mv shopware-cli /usr/local/bin/
+```
+
+## CI/CD and development environments
+
+These options let you use the CLI automatically in hosted environments. The [main page](index.md) lists Docker and GitHub Actions, which are popular.
+
+<details> <summary><strong>GitHub Codespaces</strong></summary>
 
 ```json
 {
@@ -105,16 +107,9 @@ Then you can use the new input in the `devenv.nix` file. Don't forget to add the
 }
 ```
 
-### GitHub Action
+</details>
 
-Using Shopware CLI Action :
-
-```yaml
-- name: Install shopware-cli
-  uses: shopware/shopware-cli-action@v1
-```
-
-### Gitlab CI
+<details> <summary><strong>GitLab CI</strong></summary>
 
 ```yaml
 build:
@@ -126,7 +121,9 @@ build:
     - shopware-cli --version
 ```
 
-### ddev
+</details>
+
+<details> <summary><strong>ddev integration</strong></summary>
 
 Add a file `.ddev/web-build/Dockerfile.shopware-cli`
 
@@ -134,10 +131,12 @@ Add a file `.ddev/web-build/Dockerfile.shopware-cli`
 # .ddev/web-build/Dockerfile.shopware-cli
 COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
+  
+</details>
 
-### Docker Image
+### Docker image
 
-Add the following line to your docker image to copy the binary into your image.
+To copy the binary in your Docker image, add the following line:
 
 ```Dockerfile
 # Dockerfile
@@ -156,9 +155,7 @@ Registries:
 
 - [ghcr.io/shopware/shopware-cli](https://github.com/shopware/shopware-cli/pkgs/container/shopware-cli)
 
-Example usage:
-
-Builds assets of an extension
+Example usage: Build assets of an extension
 
 ```bash
 docker run \
@@ -170,9 +167,9 @@ docker run \
     extension build FroshPlatformAdminer
 ```
 
-## Compiling from source
+## Building from source
 
-If you just want to build from source for whatever reason, follow these steps:
+If you prefer to compile the CLI yourself (requires Go 1.20+ and Git):
 
 ```bash
 git clone https://github.com/shopware/shopware-cli
