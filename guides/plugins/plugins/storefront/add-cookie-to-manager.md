@@ -123,8 +123,8 @@ And that's basically it already. After loading your Storefront, you should now s
 
 For a complete list of available parameters and their types, refer to the source code:
 
-* [`CookieEntry`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Cookie/CookieEntry.php) - Individual cookie definition
-* [`CookieGroup`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/Cookie/CookieGroup.php) - Cookie group definition
+* [`CookieEntry`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Cookie/Struct/CookieEntry.php) - Individual cookie definition
+* [`CookieGroup`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Cookie/Struct/CookieGroup.php) - Cookie group definition
 
 ::: info
 Cookie groups should not have the `cookie`, `value`, `expiration`, or `isRequired` parameters. These only apply to individual `CookieEntry` objects within the group's `entries`.
