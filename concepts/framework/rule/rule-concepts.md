@@ -90,10 +90,10 @@ A rule defines which operators are valid for its comparison. For example, numeri
 
 ### Field definitions
 
-A rule describes each configurable field:
+A rule describes each configurable field by:
 
 - **Name**: identifier of the field (for example `amount` or `customerGroupId`).
-- **Type**: how the field is represented in the UI (for example `number`, `text`, `date` or a enttiy select type).
+- **Type**: how the field is represented in the UI (for example `number`, `text`, `date`).
 - **Additinal config**: extra information the UI needs. (for example, available options for select fields, a unit for number fields, or a placeholder for text fields.)
 
 ## Rule constraints
