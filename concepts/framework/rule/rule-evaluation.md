@@ -1,5 +1,7 @@
 ---
 nav:
-  title: Rule Builder Evaluation
+  title: Rule evaluation
   position: 40
 ---
+
+# Rule evaluation

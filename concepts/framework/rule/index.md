@@ -29,13 +29,10 @@ The Rule Builder UI allows business users to create and modify rules. The core r
 The rule system is cross-domain and used in multiple parts of Shopware, including among others:
 
 - **Checkout and cart**
-  
   Controlling availiability and behavior of shipping methods, payment methods and product prices based on the current cart and customer.
 
-- **Promotions**
-
+- **Promotions
   Applying or restructing promotions depending on the cusomter, cart content or ther critieria.
 
-- **Flow Builder**
-
+- **Flow Builder
   Defining rule conditions, controlling flow behavior and outcome, based on order, checkout, customer or product context.>
