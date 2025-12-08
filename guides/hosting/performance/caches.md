@@ -15,14 +15,92 @@ The HTTP Cache is a *must-have* for every production system. With an enabled cac
 
 ### How to configure the HTTP cache
 
-The HTTP cache configuration takes place completely in the `.env.local` file. The following configurations are available here:
+Basic HTTP cache configuration takes place in the `.env.local` file.
 
 | Name                          | Description                    |
 |:------------------------------|:-------------------------------|
 | `SHOPWARE_HTTP_CACHE_ENABLED` | Enables the HTTP cache         |
 | `SHOPWARE_HTTP_DEFAULT_TTL`   | Defines the default cache time |
 
-The storage used for HTTP Cache is always the [App Cache](#app-cache), see below how to configure it. If you want to move this out of the application cache, you should use an external reverse proxy cache like [Varnish](https://varnish-cache.org/) or [Fastly](https://www.fastly.com/). For more [see here](../infrastructure//reverse-http-cache.md).
+`SHOPWARE_HTTP_DEFAULT_TTL` is deprecated and will be removed in Shopware v6.8.0.0. Use [HTTP Caching Policies](#http-caching-policies) instead to define default cache times.
+
+To provide more detailed control over the HTTP cache behavior, use the [HTTP Caching Policies](#http-caching-policies) feature.
+
+The storage used for HTTP Cache is always the [App Cache](#app-cache), see below how to configure it. If you want to move this out of the application cache, you should use an external reverse proxy cache like [Varnish](https://varnish-cache.org/) or [Fastly](https://www.fastly.com/). For more [see here](../infrastructure/reverse-http-cache.md).
+
+### HTTP Caching Policies
+
+> **Note:** This feature is experimental and subject to change. It will be the default behavior in Shopware v6.8.0.0.
+> To use it now, enable the `CACHE_REWORK` feature flag.
+
+Caching policies allow you to define HTTP cache behavior per area (storefront, store_api) and per route via configuration. Shopware comes with reasonable defaults, but you can customize them.
+
+#### Configuration
+
+##### Defining a policy
+
+By default, Shopware ships with `storefront.cacheable`, `store_api.cacheable` and `no_cache_private` policies.
+You can define your own policies:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+  http_cache:
+    policies:
+      custom_policy:
+        headers:
+          cache_control:
+            public: true
+            max_age: 600  # browser ttl
+            s_maxage: 3600  # reverse proxy ttl
+```
+
+Supported `cache_control` directives: `public`, `private`, `no_cache`, `no_store`, `no_transform`, `must_revalidate`, `proxy_revalidate`, `immutable`, `max_age`, `s_maxage`, `stale_while_revalidate`, `stale_if_error`.
+
+You can redefine existing policies. Note that policy definitions are not merged; redefining an existing policy overrides it completely.
+
+Currently, you can only configure the `cache_control` header.
+
+##### Setting default policies
+
+You can change default `cacheable` and `uncacheable` policies per area (`storefront`, `store_api`):
+
+```yaml
+shopware:
+  http_cache:
+    default_policies:
+      store_api: # the area name
+        cacheable: custom_policy # policy to use for cacheable responses
+```
+
+##### Fine-tuning per route or app hook
+
+You can override default policies per route:
+
+```yaml
+shopware:
+  http_cache:
+    route_policies:
+      store-api.product.search: custom_policy
+```
+
+App developers can override TTLs from the default policies via script configuration. See [custom endpoints](../../plugins/apps/app-scripts/custom-endpoints.md#set-the-max-age-of-the-cache-item) for details.
+You can override this by configuring hook-specific policies using the `route#hook` pattern:
+
+```yaml
+shopware:
+  http_cache:
+    route_policies:
+      frontend.script_endpoint#storefront-acme-feature: storefront.my_custom_policy # storefront-acme-feature is the normalized hook name
+```
+
+##### Policy precedence
+
+Shopware resolves policies in the following order (highest to lowest priority):
+
+1. `route_policies[route#hook]` - most specific, for script endpoints with hooks (e.g., `frontend.script_endpoint#acme-app-hook`).
+2. `route_policies[route]` - route-level override.
+3. `default_policies[area].{cacheable|uncacheable}` - area defaults; TTLs (max-age, s-maxage) can be overridden by values from the request attribute or script configuration.
 
 ## How to change the cache storage
 

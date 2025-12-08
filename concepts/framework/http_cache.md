@@ -41,6 +41,7 @@ The Shopware HTTP cache has a variety of mechanisms to answer these questions.
 ## When will the page be cached?
 
 Set the defaults value of the `_httpCache` key to `true`. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/trunk/src/Storefront/Controller/ProductController.php#L62).
+Only `GET` requests are considered cacheable.
 
 ```php
 #[Route(path: '/detail/{productId}', name: 'frontend.detail.page', methods: ['GET'], defaults: ['_httpCache' => true])]
@@ -80,6 +81,10 @@ If you want to disable the cache in certain circumstances, you can do so via the
 This cookie describes the current session in simple tags like `cart-filled` and `logged-in`. When the client tags fit the response `sw-invalidation-states` header, the cache will be skipped.
 
 An example of usage for this feature is to save the cache for logged-in customers only.
+
+### Determining TTL and other cache parameters
+
+The TTL and other cache parameters are determined via [caching policies](../../guides/hosting/performance/caches.md#http-caching-policies). The feature is experimental and will become the default behavior in Shopware v6.8.0.0.
 
 ## Cache invalidation
 
