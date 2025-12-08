@@ -100,7 +100,7 @@ Shopware resolves policies in the following order (highest to lowest priority):
 
 1. `route_policies[route#hook]` - most specific, for script endpoints with hooks (e.g., `frontend.script_endpoint#acme-app-hook`).
 2. `route_policies[route]` - route-level override.
-3. `default_policies[area].{cacheable|uncacheable}` - area defaults; TTLs (max-age, s-maxage) can be overridden by values from the request attribute or script configuration.
+3. `default_policies[area].{cacheable|uncacheable}` - area defaults; TTLs (`max-age`, `s-maxage`) can be overridden by values from the request attribute or script configuration.
 
 ## How to change the cache storage
 

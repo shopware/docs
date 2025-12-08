@@ -921,6 +921,7 @@ Synopsys
 TCP
 TLS
 TTL
+TTLs
 TaxFreeConfigField
 TaxProvider
 TaxProviderStruct
