@@ -141,7 +141,7 @@ This could be a possible solution for that:
 <?php declare(strict_types=1);
 
 // ...
-    
+
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
         $config = $slot->getFieldConfig();
@@ -161,3 +161,68 @@ This could be a possible solution for that:
 ```
 
 :::
+
+### Event-based extensibility
+
+In Shopware’s CMS flow, CMS Elements are not “live bound” to the original entity (e.g. a product).
+Instead, during the slot-resolution, resolvers copy values from the entity into internal CMS structs
+(for example, `ProductNameCmsElementResolver` takes the string `name` from the `product` entity and writes it into the CMS text element).
+Once that copy is done, the storefront rendering reads from the CMS structs — not from the original entity.
+Therefore: if you wait until a “page loaded” event (e.g. `ProductPageLoadedEvent`) after the copying happened, changing the underlying entity has no effect on what is displayed in the CMS output.
+To make modifications effective (e.g. change product name, adjust a field, override some data), you must intervene before or after the resolver runs — i.e. at a point in the CMS resolution pipeline where the entity is still used for populating the CMS slots.
+
+#### Available Extensions / Events
+
+Shopware exposes three CMS extension classes under `Shopware\Core\Content\Cms\Extension`.
+These extension classes follow the common Extension-Point pattern in Shopware and publish named hooks that you can subscribe to (the classes usually expose a `NAME` constant used as the event identifier).
+All three extension points are dispatched with lifecycle suffixes such as `.pre` and `.post`, so you will typically see event names like `cms-slots-data.resolve.pre` or `cms-slots-data.resolve.post`.
+Using the `.pre` hook lets you intervene before the respective phase runs; `.post` runs after the phase finished.
+
+##### CmsSlotsDataCollectExtension
+
+This event (`cms-slots-data.collect` + suffix) allows interception of the collection process, where a criteria list is populated using the respective CMS resolver.
+The resulting criteria list is then used to load CMS elements during the CMS page resolution process.
+
+##### CmsSlotsDataEnrichExtension
+
+This event (`cms-slots-data.enrich` + suffix) allows interception of the enrichment process, during which CMS slots used in a rendered CMS page are populated with data loaded by the respective CMS resolver from the search results.
+
+##### CmsSlotsDataResolveExtension
+
+This event (`cms-slots-data.resolve` + suffix) enables interception of the resolution process, allowing the collection of CMS slot data and enrichment of slots by their respective CMS resolvers
+
+#### Example Workflow: Modifying Product Data Before CMS Rendering
+
+Here is a rough outline of how you would implement a subscriber to change some product properties before they end up in CMS elements:
+
+1. Create an event subscriber for the CMS slot resolution event.
+2. In the listener method, inspect the ResolverContext (or event payload) and check whether the entity is an instance of the type you care about (e.g. `ProductEntity`).
+3. Modify the entity (e.g. `$entity->setName(...)`, set custom fields, translations, etc.).
+4. Let execution continue so the built-in resolvers pick up your modified entity and fill CMS elements accordingly.
+5. Test frontend — changes should be visible.
+
+#### PHP example (simplified)
+
+```php
+class CmsPreResolveSubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            'cms-slots-data.resolve.pre' => 'onCmsSlotsResolvePre',
+        ];
+    }
+
+    public function onCmsSlotsResolvePre($event): void
+    {
+        $resolverContext = $event->getResolverContext();
+        $entity = $resolverContext->getEntity();
+
+        if ($entity instanceof ProductEntity) {
+            // modify e.g. the name
+            $entity->setName('New custom name');
+            // optionally modify other fields
+        }
+    }
+}
+```
