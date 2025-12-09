@@ -174,36 +174,36 @@ To make modifications effective (e.g. change product name, adjust a field, overr
 #### Available Extensions / Events
 
 Shopware exposes three CMS extension classes under `Shopware\Core\Content\Cms\Extension`.
-These extension classes follow the common Extension-Point pattern in Shopware and publish named hooks that you can subscribe to (the classes usually expose a `NAME` constant used as the event identifier).
+These extension classes follow the common Extension Point Pattern in Shopware and publish named hooks that you can subscribe to (the classes usually expose a `NAME` constant used as the event identifier).
 All three extension points are dispatched with lifecycle suffixes such as `.pre` and `.post`, so you will typically see event names like `cms-slots-data.resolve.pre` or `cms-slots-data.resolve.post`.
 Using the `.pre` hook lets you intervene before the respective phase runs; `.post` runs after the phase finished.
 
-##### CmsSlotsDataCollectExtension
-
-This event (`cms-slots-data.collect` + suffix) allows interception of the collection process, where a criteria list is populated using the respective CMS resolver.
+- `CmsSlotsDataCollectExtension` - This event (`cms-slots-data.collect` + suffix) allows interception of the collection process, where a criteria list is populated using the respective CMS resolver.
 The resulting criteria list is then used to load CMS elements during the CMS page resolution process.
 
-##### CmsSlotsDataEnrichExtension
+- `CmsSlotsDataEnrichExtension` - This event (`cms-slots-data.enrich` + suffix) allows interception of the enrichment process, during which CMS slots used in a rendered CMS page are populated with data loaded by the respective CMS resolver from the search results.
 
-This event (`cms-slots-data.enrich` + suffix) allows interception of the enrichment process, during which CMS slots used in a rendered CMS page are populated with data loaded by the respective CMS resolver from the search results.
-
-##### CmsSlotsDataResolveExtension
-
-This event (`cms-slots-data.resolve` + suffix) enables interception of the resolution process, allowing the collection of CMS slot data and enrichment of slots by their respective CMS resolvers
+- `CmsSlotsDataResolveExtension` - This event (`cms-slots-data.resolve` + suffix) enables interception of the resolution process, allowing the collection of CMS slot data and enrichment of slots by their respective CMS resolvers.
 
 #### Example Workflow: Modifying Product Data Before CMS Rendering
 
 Here is a rough outline of how you would implement a subscriber to change some product properties before they end up in CMS elements:
 
 1. Create an event subscriber for the CMS slot resolution event.
-2. In the listener method, inspect the ResolverContext (or event payload) and check whether the entity is an instance of the type you care about (e.g. `ProductEntity`).
+2. In the listener method, inspect the `ResolverContext` (or event payload) and check whether the entity is an instance of the type you care about (e.g. `ProductEntity`).
 3. Modify the entity (e.g. `$entity->setName(...)`, set custom fields, translations, etc.).
-4. Let execution continue so the built-in resolvers pick up your modified entity and fill CMS elements accordingly.
+4. Let execution continue, so the built-in resolvers pick up your modified entity and fill CMS elements accordingly.
 5. Test frontend — changes should be visible.
 
 #### PHP example (simplified)
 
-```php
+```PHP
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Subscriber;
+
+// ...
+
 class CmsPreResolveSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
@@ -213,7 +213,7 @@ class CmsPreResolveSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onCmsSlotsResolvePre($event): void
+    public function onCmsSlotsResolvePre(CmsSlotsDataResolveExtension $event): void
     {
         $resolverContext = $event->getResolverContext();
         $entity = $resolverContext->getEntity();
@@ -225,4 +225,6 @@ class CmsPreResolveSubscriber implements EventSubscriberInterface
         }
     }
 }
+
+// ...
 ```
