@@ -228,7 +228,6 @@ $ bin/console [command] [parameters]
 
 Generating the skeletons and essential files needed to create and structure a Shopware plugin.
 
-
  | Command                             | Description                                    |
  |:------------------------------------|:-----------------------------------------------|
  | `make:plugin:admin-module`          | Generate an administration module skeleton     |
