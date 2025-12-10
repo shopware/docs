@@ -1,0 +1,49 @@
+# Documentation Analysis Ignore File
+# Files and directories listed here will be excluded from:
+# - Similarity search results
+# - Affected documentation lists
+# - Documentation update PRs
+# - PR comment mentions
+
+# Ignore README files at any level
+README.md
+*/README.md
+**/README.md
+
+# Ignore specific directories
+.github/
+.github/**
+node_modules/
+node_modules/**
+dist/
+dist/**
+build/
+build/**
+
+# Ignore specific file patterns
+*.log
+*.tmp
+*.backup
+.wordlist.txt
+*.wordlist.txt
+
+# Ignore changelog and release notes (usually maintained separately)
+CHANGELOG.md
+CHANGES.md
+RELEASES.md
+HISTORY.md
+
+# Ignore license files
+LICENSE
+LICENSE.md
+LICENSE.txt
+
+# Ignore editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore ADR files
+resources/references/adr/
+resources/guidelines/
