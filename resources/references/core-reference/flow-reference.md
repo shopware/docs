@@ -11,76 +11,91 @@ nav:
   This functionality is available starting with Shopware 6.4.6.0
 :::
 
-| Event                                                  | Description                                                                                       | Actions                                                        |
-|--------------------------------------------------------|---------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| checkout.customer.before.login                         | Triggers as soon as a customer logs in                                                            | No action                                                      |
-| checkout.customer.login                                | Triggers as soon as a customer logs in                                                            | Add/remove tag                                                 |
-| checkout.customer.logout                               | Triggers when a customer logs out                                                                 | Add/remove tag                                                 |
-| checkout.customer.deleted                              | Triggers if a customer gets deleted                                                               | Add/remove tag, send mail                                      |
-| user.recovery.request                                  | Triggers when a user created a password recovery request at admin                                 | Send mail                                                      |
-| checkout.customer.changed-payment-method               | Triggers when a customer changes his payment method in the checkout process                       | Add/remove tag                                                 |
-| checkout.order.placed                                  | Triggers when an order is placed                                                                  | Add/remove tag, send mail, generate document, set order status |
-| checkout.order.payment_method.changed                  | Triggers when a user changed payment method during checkout process                               | No action                                                      |
-| customer.recovery.request                              | Triggers when a customer recovers his password                                                    | Add/remove tag, send mail                                      |
-| checkout.customer.double_opt_in_registration           | Triggers when a customer commits to his registration via double opt in                            | Add/remove tag, send mail                                      |
-| customer.group.registration.accepted                   | Triggers when admin accepted a user who register to join a customer group                         | Add/remove tag, send mail                                      |
-| customer.group.registration.declined<                  | Triggers when admin declined a user who register to join a customer group                         | Add/remove tag, send mail                                      |
-| checkout.customer.register                             | Triggers when a new customer was registered                                                       | Add/remove tag, send mail                                      |
-| checkout.customer.double_opt_in_guest_order            | Triggers as soon as double opt-in is accepted in a guest order                                    | Add/remove tag, send mail                                      |
-| checkout.customer.guest_register                       | Triggers when a new guest customer was registered                                                 | Add/remove tag, send mail                                      |
-| contact_form.send                                      | Triggers when a contact form is send                                                              | Send mail                                                      |
-| mail.after.create.message                              | Triggers when a mail message/ content is created                                                  | No action                                                      |
-| mail.before.send                                       | Triggers before a mail is send                                                                    | No action                                                      |
-| mail.sent                                              | Triggers when a mail is send from Shopware                                                        | No action                                                      |
-| newsletter.confirm                                     | Triggers when newsletter was confirmed by a user                                                  | Send mail                                                      |
-| newsletter.register                                    | Triggers when user registered to subscribe to a sales channel newsletter                          | Send mail                                                      |
-| newsletter.unsubscribe                                 | Triggers when user unsubscribe from a sales channel newsletter                                    | Send mail                                                      |
-| newsletter.update                                      | Deprecated in 6.5.0                                                                               | Send mail                                                      |
-| product_export.log                                     | Triggers when product export is executed                                                          | No action                                                      |
-| state_enter.order_transaction.state.open               | Triggers when an order payment enters status "Open"                                               | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.open               | Triggers when an order payment leaves status "Open"                                               | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.paid               | Triggers when an order payment enters status "Paid"                                               | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.paid               | Triggers when an order payment leaves status "Paid"                                               | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.refunded_partially | Triggers when an order payment enters status "Refunded partially"                                 | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.refunded_partially | Triggers when an order payment leaves status "Refund partially"                                   | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.chargeback         | Triggers when an order payment enters status "Chargeback"                                        | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.chargeback         | Triggers when an order payment leaves status "Chargeback"                                         | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.paid_partially     | Triggers when an order payment enters status "Paid partially"                                     | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.paid_partially     | Triggers when an order payment leaves status "Paid partially"                                     |                                                                |
-| state_enter.order_transaction.state.failed             | Triggers when an order payment enters status "Failed"                                             | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.failed             | Triggers when an order payment leaves status "Failed"                                             | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.reminded           | Triggers when an order payment enters status "Reminded"                                           | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.reminded<          | Triggers when an order payment leaves status "Reminded"                                           | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.authorized         | Triggers when an order payment enters status "Authorized"                                         | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.authorized         | Triggers when an order payment leaves status "Authorized"                                         | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.cancelled          | Triggers when an order payment enters status "Cancelled"                                          | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.cancelled          | Triggers when an order payment leaves status "Cancelled"                                          | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.refunded           | Triggers when an order payment enters status "Refunded"                                           | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.refunded           | Triggers when an order payment leaves status "Refunded"                                           | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.in_progress        | Triggers when an order payment enters status "In progress"                                        | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.in_progress        | Triggers when an order payment leaves status "In progress"                                        | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_delivery.state.returned_partially    | Triggers when an order delivery enters status "Return partially"                                  | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_delivery.state.returned_partially    | Triggers when an order delivery leaves status "Return partially"                                  | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_delivery.state.returned              | Triggers when an order delivery enters status "Returned"                                          | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_delivery.state.returned              | Triggers when an order delivery leaves status "Returned"                                          | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_delivery.state.cancelled             | Triggers when an order delivery enters status "Cancelled"                                         | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_delivery.state.cancelled             | Triggers when an order delivery leaves status "Cancelled"                                         | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_delivery.state.open                  | Triggers when an order delivery enters status "Open"                                              | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_delivery.state.open                  | Triggers when an order delivery leaves status "Open"                                              | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_delivery.state.shipped               | Triggers when an order delivery enters status "Shipped"                                           | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_delivery.state.shipped               | Triggers when an order delivery leaves status "Shipped"                                           | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_delivery.state.shipped_partially     | Triggers when an order delivery enters status "Shipped partially"                                 | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_delivery.state.shipped_partially     | Triggers when an order delivery status is changed from "Shipped partially" to from another status | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order.state.in_progress                    | Triggers when an order enters status "In progress"                                                | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order.state.in_progress                    | Triggers when an order leaves status "In progress"                                                | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order.state.completed                      | Triggers when an order enters status "Completed"                                                  | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order.state.completed                      | Triggers when an order leaves status "Completed"                                                  | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order.state.open                           | Triggers when an order enters status "Open"                                                       | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order.state.open                           | Triggers when an order leaves status "Open"                                                       | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order.state.cancelled                      | Triggers when an order enters status "Cancelled"                                                  | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order.state.cancelled                      | Triggers when an order leaves status "Cancelled"                                                  | Add/remove tag, send mail, generate document, set order status |
-| state_enter.order_transaction.state.unconfirmed        | Triggers when an order payment enters status "Unconfirmed"                                        | Add/remove tag, send mail, generate document, set order status |
-| state_leave.order_transaction.state.unconfirmed        | Triggers when an order payment leaves status "Unconfirmed"                                        | Add/remove tag, send mail, generate document, set order status |
+| Event | Description |
+|-------|-------------|
+| checkout.customer.before.login | Triggers as soon as a customer logs in |
+| checkout.customer.deleted | Triggers if a customer gets deleted |
+| checkout.customer.double_opt_in_guest_order | Triggers as soon as double opt-in is accepted in a guest order |
+| checkout.customer.double_opt_in_registration | Triggers when a customer commits to his registration via double opt in |
+| checkout.customer.guest_register | Triggers when a new guest customer was registered |
+| checkout.customer.login | Triggers as soon as a customer logs in |
+| checkout.customer.logout | Triggers when a customer logs out |
+| checkout.customer.register | Triggers when a new customer was registered |
+| checkout.order.payment_method.changed | Triggers when a user changed payment method during checkout process |
+| checkout.order.placed | Triggers when an order is placed |
+| contact_form.send | Triggers when a contact form is send |
+| customer.group.registration.accepted | Triggers when admin accepted a user who register to join a customer group |
+| customer.group.registration.declined | Triggers when admin declined a user who register to join a customer group |
+| customer.recovery.request | Triggers when a customer recovers his password |
+| mail.after.create.message | Triggers when a mail message/ content is created |
+| mail.before.send | Triggers before a mail is send |
+| mail.sent | Triggers when a mail is send from Shopware |
+| newsletter.confirm | Triggers when newsletter was confirmed by a user |
+| newsletter.register | Triggers when user registered to subscribe to a sales channel newsletter |
+| newsletter.unsubscribe | Triggers when user unsubscribe from a sales channel newsletter |
+| product_export.log | Triggers when product export is executed |
+| review_form.send | Triggers when a product review form is submitted by a customer |
+| state_enter.order.state.cancelled | Triggers when an order enters status "Cancelled" |
+| state_enter.order.state.completed | Triggers when an order enters status "Completed" |
+| state_enter.order.state.in_progress | Triggers when an order enters status "In progress" |
+| state_enter.order.state.open | Triggers when an order enters status "Open" |
+| state_enter.order_delivery.state.cancelled | Triggers when an order delivery enters status "Cancelled" |
+| state_enter.order_delivery.state.open | Triggers when an order delivery enters status "Open" |
+| state_enter.order_delivery.state.returned | Triggers when an order delivery enters status "Returned" |
+| state_enter.order_delivery.state.returned_partially | Triggers when an order delivery enters status "Return partially" |
+| state_enter.order_delivery.state.shipped | Triggers when an order delivery enters status "Shipped" |
+| state_enter.order_delivery.state.shipped_partially | Triggers when an order delivery enters status "Shipped partially" |
+| state_enter.order_transaction.state.authorized | Triggers when an order payment enters status "Authorized" |
+| state_enter.order_transaction.state.cancelled | Triggers when an order payment enters status "Cancelled" |
+| state_enter.order_transaction.state.chargeback | Triggers when an order payment enters status "Chargeback" |
+| state_enter.order_transaction.state.failed | Triggers when an order payment enters status "Failed" |
+| state_enter.order_transaction.state.in_progress | Triggers when an order payment enters status "In progress" |
+| state_enter.order_transaction.state.open | Triggers when an order payment enters status "Open" |
+| state_enter.order_transaction.state.paid | Triggers when an order payment enters status "Paid" |
+| state_enter.order_transaction.state.paid_partially | Triggers when an order payment enters status "Paid partially" |
+| state_enter.order_transaction.state.refunded | Triggers when an order payment enters status "Refunded" |
+| state_enter.order_transaction.state.refunded_partially | Triggers when an order payment enters status "Refunded partially" |
+| state_enter.order_transaction.state.reminded | Triggers when an order payment enters status "Reminded" |
+| state_enter.order_transaction.state.unconfirmed | Triggers when an order payment enters status "Unconfirmed" |
+| state_enter.order_transaction_capture.state.completed | Triggers when a payment capture is fully completed |
+| state_enter.order_transaction_capture.state.failed | Triggers when a payment capture attempt fails |
+| state_enter.order_transaction_capture.state.pending | Triggers when a payment capture is initiated and waiting for completion |
+| state_enter.order_transaction_capture_refund.state.cancelled | Triggers when a capture refund request is cancelled |
+| state_enter.order_transaction_capture_refund.state.completed | Triggers when a capture refund is completed |
+| state_enter.order_transaction_capture_refund.state.failed | Triggers when a capture refund fails |
+| state_enter.order_transaction_capture_refund.state.in_progress | Triggers when a capture refund is currently being processed |
+| state_enter.order_transaction_capture_refund.state.open | Triggers when a capture refund enters status "Open" |
+| state_leave.order.state.cancelled | Triggers when an order leaves status "Cancelled" |
+| state_leave.order.state.completed | Triggers when an order leaves status "Completed" |
+| state_leave.order.state.in_progress | Triggers when an order leaves status "In progress" |
+| state_leave.order.state.open | Triggers when an order leaves status "Open" |
+| state_leave.order_delivery.state.cancelled | Triggers when an order delivery leaves status "Cancelled" |
+| state_leave.order_delivery.state.open | Triggers when an order delivery leaves status "Open" |
+| state_leave.order_delivery.state.returned | Triggers when an order delivery leaves status "Returned" |
+| state_leave.order_delivery.state.returned_partially | Triggers when an order delivery leaves status "Return partially" |
+| state_leave.order_delivery.state.shipped | Triggers when an order delivery leaves status "Shipped" |
+| state_leave.order_delivery.state.shipped_partially | Triggers when an order delivery status is changed from “Shipped partially” |
+| state_leave.order_transaction.state.authorized | Triggers when an order payment leaves status "Authorized" |
+| state_leave.order_transaction.state.cancelled | Triggers when an order payment leaves status "Cancelled" |
+| state_leave.order_transaction.state.chargeback | Triggers when an order payment leaves status "Chargeback" |
+| state_leave.order_transaction.state.failed | Triggers when an order payment leaves status "Failed" |
+| state_leave.order_transaction.state.in_progress | Triggers when an order payment leaves status "In progress" |
+| state_leave.order_transaction.state.open | Triggers when an order payment leaves status "Open" |
+| state_leave.order_transaction.state.paid | Triggers when an order payment leaves status "Paid" |
+| state_leave.order_transaction.state.paid_partially | Triggers when an order payment leaves status "Paid partially" |
+| state_leave.order_transaction.state.refunded | Triggers when an order payment leaves status "Refunded" |
+| state_leave.order_transaction.state.refunded_partially | Triggers when an order payment leaves status "Refunded partially" |
+| state_leave.order_transaction.state.reminded | Triggers when an order payment leaves status "Reminded" |
+| state_leave.order_transaction.state.unconfirmed | Triggers when an order payment leaves status "Unconfirmed" |
+| state_leave.order_transaction_capture.state.completed | Triggers when a payment capture leaves status "Completed" |
+| state_leave.order_transaction_capture.state.failed | Triggers when a payment capture leaves status "Failed" |
+| state_leave.order_transaction_capture.state.pending | Triggers when a payment capture leaves "Pending" status |
+| state_leave.order_transaction_capture_refund.state.cancelled | Triggers when a capture refund leaves status "Cancelled" |
+| state_leave.order_transaction_capture_refund.state.completed | Triggers when a capture refund leaves status "Completed" |
+| state_leave.order_transaction_capture_refund.state.failed | Triggers when a capture refund leaves status "Failed" |
+| state_leave.order_transaction_capture_refund.state.in_progress | Triggers when a capture refund leaves "In progress" status |
+| state_leave.order_transaction_capture_refund.state.open | Triggers when a capture refund leaves status "Open" |
+| user.recovery.request | Triggers when a user created a password recovery request at admin |
 
 ## B2B
 
