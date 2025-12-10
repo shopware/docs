@@ -6,33 +6,39 @@ nav:
 
 # Rule
 
-Shopware provides a generic **rule system** that allows you to describe business conditions as composable rules. These rules are evaluated against a specific context, such as a cart, an order or a customer and are used accross multiple domains like checkout, promotions and flows.
+Shopware provides a generic **rule system** that allows you to describe business conditions as composable rules. These rules are evaluated against a specific context, such as a cart, an order or a customer and are used across multiple domains like checkout, promotions and flows.
 
-On top if this rule system the **Rule Builder** is the Administration feature that lets users configure and combine rule conditions visually.
+On top of this rule system, the **Rule Builder** is the Administration feature that lets users configure and combine rule conditions visually.
 
-## Key Capabilities
+## Example scenario
 
-### Composable rule trees
+The power of the rule system can be illustrated with a simple scenario:
 
-Rules can be combined into trees using logical containers (AND, OR, NOT, etc.). This mirrors how conditions are structured in the Rule Builder UI.
+**"If a customer orders a car, a pair of sunglasses will be free in the same order."**
 
-### Context-aware evaluation
+This relies on multiple different data points:
 
-Rules are evaulated against a specific context (a *rule scope*). The scope defines which data is availabe to the rule, such as cart content, customer information or order details.
+- A product called "car"
+- A product called "sunglasses"
 
-### UI configurable behavior via Rule Builder
+Both are independent, separately buyable, and stored in the database.
 
-The Rule Builder UI allows business users to create and modify rules. The core rule framework provides config metadata so that the Rule Builder can offer the correct fields and operators for each rule condition type.
+- The whole state of a single cart
+- The quantity of a line item
 
-## Where Rules are used
+This is a runtime concept in memory, resulting in the adjustment of a single line item's price, which in turn changes the whole calculation of the cart.
+
+The rule system sits right in the middle of this scenario, providing the necessary mapping information to get from point A (`car` is in the cart) to point B (`sunglasses` are free), without hardcoding this logic into the cart itself.
+
+## Where rules are used
 
 The rule system is cross-domain and used in multiple parts of Shopware, including among others:
 
-- **Checkout and cart**
-  Controlling availiability and behavior of shipping methods, payment methods and product prices based on the current cart and customer.
+- **Checkout and cart:**
+  Controlling availability and behavior of shipping methods, payment methods and product prices based on the current cart and customer.
 
-- **Promotions
-  Applying or restructing promotions depending on the cusomter, cart content or ther critieria.
+- **Promotions:**
+  Applying or restricting promotions depending on the customer, cart content or other criteria.
 
-- **Flow Builder
-  Defining rule conditions, controlling flow behavior and outcome, based on order, checkout, customer or product context.>
+- **Flow Builder:**
+  Defining rule conditions, controlling flow behavior and outcome, based on order, checkout, customer or product context.
