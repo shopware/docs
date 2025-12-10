@@ -16,7 +16,7 @@ nav:
 | checkout.customer.before.login | Triggers as soon as a customer logs in |
 | checkout.customer.deleted | Triggers if a customer gets deleted |
 | checkout.customer.double_opt_in_guest_order | Triggers as soon as double opt-in is accepted in a guest order |
-| checkout.customer.double_opt_in_registration | Triggers when a customer commits to his registration via double opt in |
+| checkout.customer.double_opt_in_registration | Triggers when a customer commits to his registration via double opt-in |
 | checkout.customer.guest_register | Triggers when a new guest customer was registered |
 | checkout.customer.login | Triggers as soon as a customer logs in |
 | checkout.customer.logout | Triggers when a customer logs out |
