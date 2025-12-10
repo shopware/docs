@@ -28,7 +28,7 @@ Both are independent, separately buyable, and stored in the database.
 
 This is a runtime concept in memory, resulting in the adjustment of a single line item's price, which in turn changes the whole calculation of the cart.
 
-The rule system sits right in the middle of this scenario, providing the necessary mapping information to get from point A (`car` is in the cart) to point B (`sunglasses` are free), without hardcoding this logic into the cart itself.
+The rule system sits right in the middle of this scenario, providing the necessary mapping information to get from point A (`car` is in the cart) to point B (`sunglasses` are free), without embedding this logic directly into the cart.
 
 ## Where rules are used
 

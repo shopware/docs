@@ -11,7 +11,7 @@ The lifecycle of rule evaluation from UI to decision making can be summarized as
 1. The Rule Builder lets a user create a rule tree (containers and conditions).
 2. The rule system validates each condition against the corresponding rule class from the registry.
 3. Valid rule and rule condition records are stored in the database.
-4. At runtime, a domain builds an appropriate rule scope and, if needed, precomputes matching rules for that scope.
+4. At runtime, a domain builds an appropriate rule scope and, if needed, computes matching rules for that scope in advance.
 5. Features either filter by rule IDs exposed on the context or evaluate a specific rule tree directly by calling it.
 
 ```mermaid
@@ -72,7 +72,7 @@ The important point is: rules themselves are pure functions that depend only on 
 
 ## 3. Matching rules
 
-For some domains (checkout), the system precomputes which rules currently match and exposes their IDs in the context so features can filter by them.
+For some domains (checkout), the system evaluates all rules upfront and exposes the IDs of matching rules in the context so features can filter by them.
 
 ### 3.1. Candidate loading
 

@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-In this guide, you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rules). Custom conditions can be defined with fields to be rendered in the Administration and with their own logic, using the same approach as [App Scripts](../app-scripts/).
+In this guide, you'll learn how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rule/index.md). Custom conditions can be defined with fields to be rendered in the Administration and with their own logic, using the same approach as [App Scripts](../app-scripts/).
 
 ::: info
 Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not supported in previous versions.
@@ -23,7 +23,7 @@ If you're not familiar with the app system, please take a look at the concept fi
 
 You should also be familiar with the general concept of the Rule Builder.
 
-<PageRef page="../../../../concepts/framework/rules" />
+<PageRef page="../../../../concepts/framework/rule" />
 
 For the attached logic of your custom conditions, you'll use [twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
 
