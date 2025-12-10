@@ -257,6 +257,7 @@ $this->customFieldSetRepository->create([
             [
                 'name' => 'swag_example_size',
                 'type' => CustomFieldTypes::INT,
+                'searchable' => true,
                 'config' => [
                     'label' => [
                         'en-GB' => 'English custom field label',
@@ -276,6 +277,14 @@ This will now create a custom field set with the name `swag_example_set` and the
 The translated labels are added to both the field and the set, which are going to be displayed in the Administration. Also, the fallback language can be defined in case the system language is not guaranteed to be either en_GB or de_DE.
   
 If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
+
+::: info
+  Available starting with Shopware 6.7.6.0.
+:::
+
+By default, custom fields are **not searchable**. To make a custom field searchable, you need to set the `searchable` property to `true` when creating the custom field. Only custom fields explicitly marked as searchable are available in search configurations. This helps optimize index storage size and improve search performance, especially for stores with many custom fields.
+
+If you enable searchability for an existing product custom field, you must rebuild the search index or update the products manually to include the custom field data in search results.
 
 ::: info
 If you want the custom field set to be deletable and editable in the administration, you need to set global to false
