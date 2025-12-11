@@ -23,7 +23,7 @@ If you're not familiar with the app system, please take a look at the concept fi
 
 You should also be familiar with the general concept of the Rule Builder.
 
-<PageRef page="../../../../concepts/framework/rule" />
+<PageRef page="../../../../concepts/framework/rule/index.md" />
 
 For the attached logic of your custom conditions, you'll use [twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
 
