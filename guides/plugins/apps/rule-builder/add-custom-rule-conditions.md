@@ -69,7 +69,7 @@ The corresponding scripts to the defined conditions within `manifest.xml` need t
 
 Scripts for rule conditions are [twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. They offer the same extended syntax and debugging options as [App Scripts](../app-scripts/).
 
-Within the script you will have access to the `scope` variable which is an instance of `RuleScope` as described in the [Rule Builder concept](../../../../concepts/framework/rules). The scope instance provides you with the current `SalesChannelContext` and, given the right scope, the current cart. Further available variables depend on the existence of constraints within the definition of your conditions.
+Within the script you will have access to the `scope` variable which is an instance of `RuleScope` as described in the [Rule Builder concept](../../../../concepts/framework/rule). The scope instance provides you with the current `SalesChannelContext` and, given the right scope, the current cart. Further available variables depend on the existence of constraints within the definition of your conditions.
 
 A script _must_ return a boolean value, stating whether the condition is true or false. Anything but a boolean returned as value may lead to unexpected behavior.
 
