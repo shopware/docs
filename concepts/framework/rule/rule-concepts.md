@@ -10,7 +10,7 @@ nav:
 
 A **rule** represents a single condition that can be evaluated to either `true` or `false`.
 
-Rules can represent very different things (customer attributes, cart content, dates, tags and more), but they follow the same contract: they evaluate against a given scope and return a boolean.
+Rules can represent very different things (customer attributes, cart content, dates, tags, and more), but they follow the same contract: they evaluate against a given scope and return a boolean.
 
 ![Rule scope](../../../assets/framework-rules-rulesScope.svg)
 
@@ -24,7 +24,7 @@ A rule does not fetch the data needed for the evaluation on its own. Instead, it
 
 ### Output
 
-A rule always returns a boolean result and has no side effects. It does not modify the cart, orders or any other state.
+A rule always returns a boolean result and has no side effects. It does not modify the cart, orders, or any other state.
 
 ## Rule scopes
 
@@ -32,7 +32,7 @@ A **rule scope** defines the context in which a rule is evaluated and provides t
 
 ### Context carrier
 
-The scope provides access to the technical context (`Context`, `SalesChannelContext`) and, depending on the use case, domain-specific data, such as the current cart, customer, order or products.
+The scope provides access to the technical context (`Context`, `SalesChannelContext`) and, depending on the use case, domain-specific data, such as the current cart, customer, order, or products.
 
 ### Specialization
 
@@ -104,7 +104,7 @@ Common operators include:
 
 ### Consistent semantics
 
-Rules that compare similar types of values (numbers, strings, dates, IDs) share consistent comparison semantics (`RuleComparison`). This makes behavior predictable across different rules, contexts and domains.
+Rules that compare similar types of values (numbers, strings, dates, IDs) share consistent comparison semantics (`RuleComparison`). This makes behavior predictable across different rules, contexts, and domains.
 
 ## Rule configuration
 

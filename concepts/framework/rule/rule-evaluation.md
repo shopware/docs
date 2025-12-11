@@ -6,7 +6,7 @@ nav:
 
 # Rule evaluation
 
-The lifecycle of rule evaluation from UI to decision making can be summarized as follows:
+The lifecycle of rule evaluation from UI to decision-making can be summarized as follows:
 
 1. The Rule Builder lets a user create a rule tree (containers and conditions).
 2. The rule system validates each condition against the corresponding rule class from the registry.
@@ -68,7 +68,7 @@ Different parts of the system are responsible for constructing scopes:
 
 - **Line items:** Classes like `AnyRuleLineItemMatcher` construct `LineItemScope` when they need to test rules against individual line items.
 
-The important point is: rules themselves are pure functions that depend only on the scope they receive. They do not depend on global state.
+The important point is: rules themselves are pure functions that depend only on the scope they receive. They do not depend on a global state.
 
 ## 3. Matching rules
 

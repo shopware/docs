@@ -6,7 +6,7 @@ nav:
 
 # Rule
 
-Shopware provides a generic **rule system** that allows you to describe business conditions as composable rules. These rules are evaluated against a specific context, such as a cart, an order or a customer and are used across multiple domains like checkout, promotions and flows.
+Shopware provides a generic **rule system** that allows you to describe business conditions as composable rules. These rules are evaluated against a specific context, such as a cart, an order, or a customer and are used across multiple domains like checkout, promotions, and flows.
 
 On top of this rule system, the **Rule Builder** is the Administration feature that lets users configure and combine rule conditions visually.
 
@@ -35,10 +35,10 @@ The rule system sits right in the middle of this scenario, providing the necessa
 The rule system is cross-domain and used in multiple parts of Shopware, including among others:
 
 - **Checkout and cart:**
-  Controlling availability and behavior of shipping methods, payment methods and product prices based on the current cart and customer.
+  Controlling availability and behavior of shipping methods, payment methods, and product prices based on the current cart and customer.
 
 - **Promotions:**
-  Applying or restricting promotions depending on the customer, cart content or other criteria.
+  Applying or restricting promotions depending on the customer, cart content, or other criteria.
 
 - **Flow Builder:**
   Defining rule conditions, controlling flow behavior and outcome, based on order, checkout, customer or product context.
