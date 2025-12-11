@@ -28,11 +28,12 @@ Once logged in to Grafana:
 ## Tips
 
 In the Explore view, you can refine results using the search box:
-- Line contains — matches the exact string.
-- Line contains case insensitive — recommended, as it matches the string regardless of letter case.
 
-A predefined dashboard named Logs Dashboard is available.
-It displays log ingestion volume and includes a built-in case-insensitive search box.
+- Line contains — matches the exact string.
+- Line contains case-insensitive — recommended, as it matches the string regardless of the letter case.
+
+A predefined dashboard named `Logs Dashboard` is available.
+It displays the log ingestion volume and includes a built-in case-insensitive search box.
 
 ## Log retention
 
