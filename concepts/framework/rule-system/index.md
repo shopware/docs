@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Rule
+  title: Rule System
   position: 10
 ---
 
-# Rule
+# Rule System
 
 Shopware provides a generic **rule system** that allows you to describe business conditions as composable rules. These rules are evaluated against a specific context, such as a cart, an order, or a customer and are used across multiple domains like checkout, promotions, and flows.
 
