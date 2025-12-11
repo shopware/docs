@@ -284,7 +284,7 @@ The API is basically the same as for adding errors.
 
 ## Rule based cart scripts
 
-The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rules) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
+The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rule) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
 For example, you can add an entity-single-select field to your [app's config](../configuration) to allow the merchant to choose a rule that needs to match your app script taking effect.
 
 ```xml

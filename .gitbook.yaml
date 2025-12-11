@@ -86,3 +86,4 @@ redirects:
     resources/guidelines/trouble-shoting.html: resources/guidelines/troubleshooting.html
     products/extensions/subscriptions/guides/event.html: products/extensions/subscriptions/guides/separate-checkout.html
     products/extensions/subscriptions/guides/request-scoping.html: products/extensions/subscriptions/guides/separate-checkout.html
+    concepts/framework/rules.html: concepts/framework/rule/index.html
