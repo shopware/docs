@@ -117,6 +117,8 @@ Include several screenshots and descriptive images from the Storefront and backe
 They must show the app "in action", its configuration options, and how to use it.
 We recommend uploading screenshots showing the mobile and desktop-view.
 
+Only images that represent or show the function of the extension may be used. Advertising for other extensions or services is not permitted. 
+
 Link: [How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 
 ### Link to demoshop
