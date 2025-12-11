@@ -525,6 +525,7 @@ LongText
 LongTextField
 Lychee
 MACOSX
+MDN
 MJML
 MRs
 MVC
@@ -1526,7 +1527,6 @@ matthiasnoback
 maxPurchase
 mbstring
 md
-MDN
 mediaId
 mediaService
 meiner
