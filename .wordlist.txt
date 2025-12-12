@@ -1416,6 +1416,7 @@ hono
 hosters
 hostname
 hotspots
+hreflang
 html
 http
 httpCache

@@ -7,33 +7,65 @@ nav:
 
 # Sales Channels
 
-Sales channels allow you to operate multiple separate stores from a single Shopware instance.
+Sales channels define how your catalog is exposed to a concrete audience (storefront, headless client, feed, or app). Each channel carries defaults for language, currency, taxes, payment/shipping, domains, and navigation entry points so one Shopware instance can serve multiple “stores” without duplicating data.
 
-These stores can have different configurations based on:
+## What a sales channel controls
 
-* Channel type \(Storefront, API consumer, feed export, social channels\)
-* Appearance \([Themes](../../../guides/plugins/themes/theme-base-guide) for [Storefront](../../../concepts/framework/architecture/storefront-concept) sales channels\)
-* [Payment methods](../checkout-concept/payments)
-* Languages
-* Currencies
-* Domains
-* Prices
-* [Products](products) and [Categories](categories)
+- Channel type: Storefront, headless Store API, product feed, or custom type.
+- Audience defaults: language, currency, country, tax calculation mode, customer group, default payment/shipping methods.
+- Navigation roots: `navigation`, `footer`, and `service` entry categories that drive storefront menus and listings.
+- Presentation: home CMS page (`homeCmsPageId` with slot config) and storefront theme config for Storefront channels.
+- Availability: which domains, payment/shipping methods, languages, currencies, and countries are allowed and which products are visible.
 
-## Store separation
+## Core model and relations
 
-By using sales channels, you can achieve a logical separation of stores facing customers. They are technically not separated within your store's backend. Any admin user can still see orders, products, prices, etc., from every sales channel.
+```mermaid
+erDiagram
+    SALES_CHANNEL ||--o{ SALES_CHANNEL_DOMAIN : domains
+    SALES_CHANNEL ||--o{ SALES_CHANNEL_TRANSLATION : translations
+    SALES_CHANNEL }o--|| CATEGORY : navigation_root
+    SALES_CHANNEL }o--|| CATEGORY : footer_root
+    SALES_CHANNEL }o--|| CATEGORY : service_root
+    SALES_CHANNEL }o--|| CMS_PAGE : home_cms_page
+    SALES_CHANNEL ||--o{ PRODUCT_VISIBILITY : product_visibilities
+    SALES_CHANNEL ||--o{ SALES_CHANNEL_PAYMENT_METHOD : payment_methods
+    SALES_CHANNEL ||--o{ SALES_CHANNEL_SHIPPING_METHOD : shipping_methods
+    SALES_CHANNEL ||--o{ SALES_CHANNEL_CURRENCY : currencies
+    SALES_CHANNEL ||--o{ SALES_CHANNEL_LANGUAGE : languages
+```
 
-Usually, sales channels are identified by their URL; however, some clients don't have any URLs, like mobile applications or integrations to other distribution channels, e.g., social media platforms. These integration points can use an *access key* when they [use the API](../../../guides/integrations-api/) to identify the right sales channel.
+- `sales_channel`: Holds defaults (language, currency, country, payment/shipping, tax calculation), navigation roots, home CMS page, access key, maintenance flags, hreflang config.
+- `sales_channel_domain`: URL + language + currency + snippet set. Matched by host/path to build the sales channel context.
+- `sales_channel_translation`: Localized channel names and home page fields.
+- `product_visibility`: Per-channel visibility level for products. Required for products to appear.
+- `sales_channel_*` mappings: Allow additional currencies, languages, countries, payment, and shipping methods beyond the defaults.
+- `cms_page`: Optional home page layout with channel-specific slot configuration.
 
-## Domains
+## Domains and localization
 
-A sales channel can have multiple associated domain configurations. These domains are used to resolve pre-configurations for currencies, snippet sets, and languages based on routes. This way, you can configure various domains such as:
-<!-- markdown-link-check-disable -->
-* [https://example.com/](https://example.com/)
-  * Locale en-GB, British English, Pounds
-* [https://example.com/de](https://example.com/de)
-  * Locale de-DE, German, Euro
-* [https://example.es/](https://example.es/)
-  * Locale es-ES, Spanish, Euro
-<!-- markdown-link-check-enable -->
+Configure multiple domains per sales channel. Each domain pins language, currency, and snippet set (translations). Example:
+
+- `https://example.com/` → en-GB, GBP
+- `https://example.com/de` → de-DE, EUR
+- `https://example.es/` → es-ES, EUR
+
+`hreflangActive` and `hreflangDefaultDomainId` control hreflang links across these domains.
+
+## Navigation entry categories
+
+Every sales channel defines three category entry points: `navigation`, `footer`, and `service`. Storefront menus are built from the children of those entries. Category listings under these roots merge explicit product assignments and, if configured, dynamic product streams.
+
+## Product availability per channel
+
+Products must have a `product_visibility` row for each sales channel. Visibility values decide whether a product is searchable and/or directly accessible. A canonical category (`main_category`) can be set per product and sales channel for SEO-friendly URLs.
+
+## Context creation and Store API
+
+Incoming requests resolve a sales channel by access key or matched domain. `SalesChannelContextService` builds a `SalesChannelContext` with the defaults above plus token, customer, rule-based pricing, and permissions. Store API routes such as `/store-api/context`, `/store-api/navigation/{activeId}/{rootId}`, and `/store-api/category/{navigationId}` use that context to filter data to the channel.
+
+## Extension points and events
+
+- `SalesChannelContextCreatedEvent`: context built; use to enrich the context or persist session data.
+- `SalesChannelContextSwitchEvent`: fired when `/store-api/context` switches currency, language, payment, shipping, or addresses.
+- `SalesChannelContextRestoredEvent`: emitted when a stored context token is restored.
+- Entity extensions: add custom fields or associations on `sales_channel` or mapping entities and expose them through Store API responses as needed.
