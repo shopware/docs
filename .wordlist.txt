@@ -1134,6 +1134,7 @@ bugfixes
 bundler
 buyable
 cacheKey
+cacheability
 cacheable
 cacheinvalidatorfacade
 cachix

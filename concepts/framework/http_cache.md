@@ -100,9 +100,9 @@ This is because all data loaded in a Storefront controller, is loaded in the cor
 
 When a response is generated and about to be sent to the client, the `CacheResponseSubscriber` executes the following logic to determine caching behavior:
 
-*   **Header application:** The system applies `sw-language-id` and `sw-currency-id` headers. The `Vary` header is expanded to include these IDs and the `sw-context-hash`, ensuring proxies store separate cache entries for different contexts.
-*   **Early exits:** Basic checks are performed (e.g., is HTTP cache enabled?) to potentially skip further processing.
-*   **Context hash calculation:** The `sw-context-hash` is calculated based on the current state (cart, customer, rules, etc.). Extensions can hook into this process to add their own parameters (see [Plugin Caching Guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache)).
-*   **Cacheability assessment:** The request is evaluated for cacheability. It must be a `GET` request and the route must be marked with the `_httpCache` attribute.
-*   **Validation:** The system compares the client's `sw-context-hash` with the server-calculated hash. If they mismatch, a no-cache policy is applied to prevent cache poisoning. The `sw-dynamic-cache-bypass` header is added to hint proxies to apply a shorter TTLs for ["hit-for-pass"](https://info.varnish-software.com/blog/hit-for-pass-varnish-cache) objects (custom configuration needed).
-*   **Policy application:** The appropriate [caching policy](../../guides/hosting/performance/caches.md#http-caching-policies) is resolved for the route and applied to the response, setting the correct `Cache-Control` headers.
+* Header application: The system applies `sw-language-id` and `sw-currency-id` headers. The `Vary` header is expanded to include these IDs and the `sw-context-hash`, ensuring proxies store separate cache entries for different contexts.
+* Early exits: Basic checks are performed (e.g., is HTTP cache enabled?) to potentially skip further processing.
+* Context hash calculation: The `sw-context-hash` is calculated based on the current state (cart, customer, rules, etc.). Extensions can hook into this process to add their own parameters (see [Plugin Caching Guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache)).
+* Cacheability assessment: The request is evaluated if it can be cached. It must be a `GET` request and the route must be marked with the `_httpCache` attribute.
+* Validation: The system compares the client's `sw-context-hash` with the server-calculated hash. If they mismatch, a no-cache policy is applied to prevent cache poisoning. The `sw-dynamic-cache-bypass` header is added to hint proxies to apply a shorter TTLs for ["hit-for-pass"](https://info.varnish-software.com/blog/hit-for-pass-varnish-cache) objects (custom configuration needed).
+* Policy application: The appropriate [caching policy](../../guides/hosting/performance/caches.md#http-caching-policies) is resolved for the route and applied to the response, setting the correct `Cache-Control` headers.
