@@ -40,9 +40,9 @@ use Shopware\Core\Migration\Traits\Translations;
 class Migration1616677952AddDocumentType extends MigrationStep
 {
     use ImportTranslationsTrait;
-    
+
     final public const TYPE = 'example';
-    
+
     public function getCreationTimestamp(): int
     {
         return 1616677952;
@@ -88,7 +88,7 @@ class Migration1616677952AddDocumentType extends MigrationStep
             $connection
         );
     }
-    
+
     private function addDocumentBaseConfig(Connection $connection, string $documentTypeId): void
     {
         $defaultConfig = [
@@ -176,10 +176,10 @@ Let's have a look at an example renderer:
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Core/Checkout/Document/Render/ExampleDocumentRenderer.php]
+```php [PLUGIN_ROOT/src/Core/Checkout/Document/Renderer/ExampleDocumentRenderer.php]
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Core\Checkout\Document\Render;
+namespace Swag\BasicExample\Core\Checkout\Document\Renderer;
 
 use Shopware\Core\Checkout\Document\Renderer\AbstractDocumentRenderer;
 use Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig;
@@ -339,6 +339,20 @@ Here's what the function does:
 * If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
 * The `RendererResult` object is returned.
 
+The service definition for our custom renderer would look like this:
+
+```xml
+<service id="Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer">
+    <argument type="service" id="order.repository"/>
+    <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
+    <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
+    <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
+    <tag name="document.renderer"/>
+</service>
+```
+
+### Adding a file type renderer
+
 Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
 `DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., .pdf, .html). It delegates the rendering of documents to the appropriate renderer implementation.
 Therefore, for each registered service that extends the `AbstractDocumentTypeRenderer`, the content of the document can be generated. New types of `AbstractDocumentTypeRenderer` services can be added with `document_type.renderer` as the tag name and the file extension as a key.
@@ -358,7 +372,7 @@ In there, you should extend from the default document base template:
 
 :::code-group
 
-```twig [PLUGIN_ROOT/src/Resources/views/documents/example\_document.html.twig]
+```twig [PLUGIN_ROOT/src/Resources/views/documents/example_document.html.twig]
 {% sw_extends '@Framework/documents/base.html.twig' %}
 ```
 
