@@ -18,7 +18,7 @@ Categories in Shopware organize products, drive storefront navigation, and defin
   - `active` determines whether the category participates in navigation and listings.
   - `visible` and `hideInNavigation` control menu rendering without disabling the category entirely.
 - Types:
-  - `page`: regular, visitable category (listing or landing page).
+  - `page`: regular category (listing or landing page).
   - `folder`: structuring element; not rendered as a page and typically used to group children.
   - `link`: redirects to an external URL or internal static link.
 
@@ -67,7 +67,7 @@ Both assignment types are merged for a category listing. `ProductListingRoute` b
 
 ## CMS layout integration
 
-Categories can reference a [CMS layout](../content/shopping-experiences-cms.md). Layout selection is inherited: if `cmsPageId` is missing, the parent layout is used. Category-specific slot configuration is stored on the category and merged at runtime so one layout can serve many categories with different media and copy. `folder` categories ignore layouts; `link` categories redirect immediately.
+Categories can reference a [CMS layout](../content/shopping-experiences-cms.md). Layout selection is inherited: if `cmsPageId` is missing, the parent layout is used. Category-specific slot configuration is stored on the category and merged at runtime, so one layout can serve many categories with different media and copy. `folder` categories ignore layouts; `link` categories redirect immediately.
 
 ## SEO and URLs
 
@@ -81,7 +81,7 @@ Per-category SEO fields include `metaTitle`, `metaDescription`, `keywords`, `seo
 
 - `NavigationLoadedEvent`: navigation tree loaded; enrich or adjust nodes.
 - `SalesChannelCategoryIdsFetchedEvent`: category IDs resolved for a sales channel.
-- `CategoryIndexerEvent`: keep denormalized data or external search indices in sync.
+- `CategoryIndexerEvent`: keep de-normalized data or external search indices in sync.
 - `ProductListingCriteriaEvent`: customize listing filters, sorting, and aggregations for category pages.
 - `SeoUrlUpdateEvent`: observe or react to SEO URL regeneration.
 
