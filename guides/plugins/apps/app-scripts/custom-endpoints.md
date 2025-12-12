@@ -200,14 +200,19 @@ You can opt out of the caching by calling `cache.disable()`. This means that the
 
 You can specify for how long a response should be cached by calling the `cache.maxAge()` method and passing the number of seconds after which the cache item should expire.
 
+> **Note:** `cache.maxAge()` is deprecated and will be removed in v6.8.0.0. Starting with v6.7.6.0, you can use `sharedMaxAge()` (corresponds to `s-maxage` in the `Cache-Control` header).
+> When the `CACHE_REWORK` feature flag is enabled, you can also use `clientMaxAge()` (corresponds to `max-age` in the `Cache-Control` header).
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
-{% do response.cache.maxAge(120) %}
+{% do response.cache.sharedMaxAge(120) %}
 
 {% do hook.setResponse(response) %}
 ```
 
 #### Invalidate cache items for specific states
+
+> **Note:** The cache states feature is deprecated and will be removed in v6.8.0.0. It also does not work when the `CACHE_REWORK` feature flag is enabled.
 
 You can specify that the cached response is not valid if one of the given states is present.
 For more detailed information on the invalidation states, refer to the [HTTP-cache docs](../../../../concepts/framework/http_cache#sw-states).

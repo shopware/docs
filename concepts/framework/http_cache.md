@@ -41,6 +41,7 @@ The Shopware HTTP cache has a variety of mechanisms to answer these questions.
 ## When will the page be cached?
 
 Set the defaults value of the `_httpCache` key to `true`. Examples for this can be found in the [ProductController](https://github.com/shopware/shopware/blob/trunk/src/Storefront/Controller/ProductController.php#L62).
+Only `GET` requests are considered cacheable.
 
 ```php
 #[Route(path: '/detail/{productId}', name: 'frontend.detail.page', methods: ['GET'], defaults: ['_httpCache' => true])]
@@ -81,6 +82,10 @@ This cookie describes the current session in simple tags like `cart-filled` and 
 
 An example of usage for this feature is to save the cache for logged-in customers only.
 
+### Determining TTL and other cache parameters
+
+The TTL and other cache parameters are determined via [caching policies](../../guides/hosting/performance/caches.md#http-caching-policies). The feature is experimental and will become the default behavior in Shopware v6.8.0.0.
+
 ## Cache invalidation
 
 As soon as a response has been defined as cacheable and the response is written to the cache, it is tagged accordingly. For this purpose, the core uses all cache tags generated during the request or loaded from existing cache entries. The cache invalidation of a Storefront controller route is controlled by the cache invalidation of the Store API routes.
@@ -88,3 +93,16 @@ As soon as a response has been defined as cacheable and the response is written 
 For more information about Store API cache invalidation, you can refer to the [Caching Guide](../../guides/plugins/plugins/framework/caching/index.md).
 
 This is because all data loaded in a Storefront controller, is loaded in the core via the corresponding Store API routes and provided with corresponding cache tags. So the tags of the HTTP cache entries we have in the core consist of the sum of all Store API tags generated or loaded during the request. Therefore, the invalidation of a controller route is controlled over the Store API cache invalidation.
+
+## HTTP Cache workflow
+
+**Note:** Workflow described here applies since v6.8.0.0 or since 6.7.6.0 when the `CACHE_REWORK` feature flag is enabled.
+
+When a response is generated and about to be sent to the client, the `CacheResponseSubscriber` executes the following logic to determine caching behavior:
+
+* Header application: The system applies `sw-language-id` and `sw-currency-id` headers. The `Vary` header is expanded to include these IDs and the `sw-context-hash`, ensuring proxies store separate cache entries for different contexts.
+* Early exits: Basic checks are performed (e.g., is HTTP cache enabled?) to potentially skip further processing.
+* Context hash calculation: The `sw-context-hash` is calculated based on the current state (cart, customer, rules, etc.). Extensions can hook into this process to add their own parameters (see [Plugin Caching Guide](../../guides/plugins/plugins/framework/caching/index.md#http-cache)).
+* Cacheability assessment: The request is evaluated if it can be cached. It must be a `GET` request and the route must be marked with the `_httpCache` attribute.
+* Validation: The system compares the client's `sw-context-hash` with the server-calculated hash. If they mismatch, a no-cache policy is applied to prevent cache poisoning. The `sw-dynamic-cache-bypass` header is added to hint proxies to apply a shorter TTLs for ["hit-for-pass"](https://info.varnish-software.com/blog/hit-for-pass-varnish-cache) objects (custom configuration needed).
+* Policy application: The appropriate [caching policy](../../guides/hosting/performance/caches.md#http-caching-policies) is resolved for the route and applied to the response, setting the correct `Cache-Control` headers.
