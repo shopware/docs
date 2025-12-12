@@ -52,7 +52,7 @@ Store API endpoints:
 - `/store-api/navigation/{activeId}/{rootId}` for hierarchical menus.
 - `/store-api/category/{navigationId}` for category details including assigned CMS layout data.
 
-Navigation responses are cached; adjust cache identity or tags via `NavigationRouteCacheKeyEvent` and `NavigationRouteCacheTagsEvent`. Use `NavigationLoadedEvent` to enrich or modify the tree before it is returned.
+Navigation responses are cached. Adjust cache identity or tags via `NavigationRouteCacheKeyEvent` and `NavigationRouteCacheTagsEvent`. Use `NavigationLoadedEvent` to enrich or modify the tree before it is returned.
 
 ::: info
 Categories can be hidden from navigation via the hide-in-navigation flag while remaining reachable by direct URL if they are still `active`.
