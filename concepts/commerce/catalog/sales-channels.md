@@ -15,7 +15,7 @@ Sales channels define how your catalog is exposed to a concrete audience (storef
 - Audience defaults: language, currency, country, tax calculation mode, customer group, default payment/shipping methods.
 - Navigation roots: `navigation`, `footer`, and `service` entry categories that drive storefront menus and listings.
 - Presentation: home CMS page (`homeCmsPageId` with slot config) and storefront theme config for Storefront channels.
-- Availability: which domains, payment/shipping methods, languages, currencies, and countries are allowed; which products are visible.
+- Availability: which domains, payment/shipping methods, languages, currencies, and countries are allowed and which products are visible.
 
 ## Core model and relations
 
