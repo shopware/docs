@@ -34,12 +34,12 @@ erDiagram
     SALES_CHANNEL ||--o{ SALES_CHANNEL_LANGUAGE : languages
 ```
 
-- `sales_channel`: holds defaults (language, currency, country, payment/shipping, tax calculation), navigation roots, home CMS page, access key, maintenance flags, hreflang config.
-- `sales_channel_domain`: URL + language + currency + snippet set; matched by host/path to build the sales channel context.
-- `sales_channel_translation`: localized channel names and home page fields.
-- `product_visibility`: per-channel visibility level for products; required for products to appear.
-- `sales_channel_*` mappings: allow additional currencies, languages, countries, payment, and shipping methods beyond the defaults.
-- `cms_page`: optional home page layout with channel-specific slot configuration.
+- `sales_channel`: Holds defaults (language, currency, country, payment/shipping, tax calculation), navigation roots, home CMS page, access key, maintenance flags, hreflang config.
+- `sales_channel_domain`: URL + language + currency + snippet set. Matched by host/path to build the sales channel context.
+- `sales_channel_translation`: Localized channel names and home page fields.
+- `product_visibility`: Per-channel visibility level for products. Required for products to appear.
+- `sales_channel_*` mappings: Allow additional currencies, languages, countries, payment, and shipping methods beyond the defaults.
+- `cms_page`: Optional home page layout with channel-specific slot configuration.
 
 ## Domains and localization
 
