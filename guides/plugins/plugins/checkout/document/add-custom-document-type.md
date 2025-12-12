@@ -176,10 +176,10 @@ Let's have a look at an example renderer:
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Core/Checkout/Document/Render/ExampleDocumentRenderer.php]
+```php [PLUGIN_ROOT/src/Core/Checkout/Document/Renderer/ExampleDocumentRenderer.php]
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Core\Checkout\Document\Render;
+namespace Swag\BasicExample\Core\Checkout\Document\Renderer;
 
 use Shopware\Core\Checkout\Document\Renderer\AbstractDocumentRenderer;
 use Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig;
@@ -339,17 +339,6 @@ Here's what the function does:
 * If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
 * The `RendererResult` object is returned.
 
-Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
-`DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., .pdf, .html). It delegates the rendering of documents to the appropriate renderer implementation.
-Therefore, for each registered service that extends the `AbstractDocumentTypeRenderer`, the content of the document can be generated. New types of `AbstractDocumentTypeRenderer` services can be added with `document.renderer` as the tag name and the file extension as a key.
-
-```xml
-<service id="Shopware\Core\Checkout\Document\Service\PdfRenderer">
-    ...
-    <tag name="document.renderer" key="pdf"/>
-</service>
-```
-
 The service definition for our custom renderer would look like this:
 
 ```xml
@@ -358,7 +347,20 @@ The service definition for our custom renderer would look like this:
     <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
     <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
     <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
-    <tag name="document.renderer" key="pdf"/>
+    <tag name="document.renderer"/>
+</service>
+```
+
+### Adding a file type renderer
+
+Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
+`DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., .pdf, .html). It delegates the rendering of documents to the appropriate renderer implementation.
+Therefore, for each registered service that extends the `AbstractDocumentTypeRenderer`, the content of the document can be generated. New types of `AbstractDocumentTypeRenderer` services can be added with `document.renderer` as the tag name and the file extension as a key.
+
+```xml
+<service id="Shopware\Core\Checkout\Document\Service\PdfRenderer">
+    ...
+    <tag name="document_type.renderer" key="pdf"/>
 </service>
 ```
 
