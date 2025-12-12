@@ -7,7 +7,7 @@ nav:
 
 # Categories
 
-Categories in Shopware organize products, drive storefront navigation, and define SEO-relevant URLs. The entire catalog lives in one category tree, and every sales channel chooses entry points inside that tree. For how to use the Admin UI, see the [user documentation on categories](https://docs.shopware.com/en/shopware-6-en/catalogues/categories) and [Dynamic Product Groups](https://docs.shopware.com/en/shopware-6-de/Catalogues/Dynamicproductgroups); this page focuses on developer details.
+Categories in Shopware organize products, drive storefront navigation, and define SEO-relevant URLs. The entire catalog lives in one category tree, and every sales channel chooses entry points inside that tree. For how to use the Admin UI, see the [user documentation on categories](https://docs.shopware.com/en/shopware-6-en/catalogues/categories) and [Dynamic Product Groups](https://docs.shopware.com/en/shopware-6-de/Catalogues/Dynamicproductgroups). This page focuses on developer details.
 
 ![category](../../../assets/concept-categories.png)
 
