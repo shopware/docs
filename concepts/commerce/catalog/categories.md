@@ -22,6 +22,27 @@ Categories in Shopware organize products, drive storefront navigation, and defin
   - `folder`: structuring element; not rendered as a page and typically used to group children.
   - `link`: redirects to an external URL or internal static link.
 
+## Entity associations and database schema
+
+```mermaid
+erDiagram
+    CATEGORY ||--o{ CATEGORY_TRANSLATION : translations
+    CATEGORY }o--|| CMS_PAGE : cms_page
+    CATEGORY }o--|| PRODUCT_STREAM : product_stream
+    CATEGORY ||--o{ PRODUCT_CATEGORY : products
+    PRODUCT ||--o{ PRODUCT_CATEGORY : categories
+    SALES_CHANNEL }o--|| CATEGORY : navigation_roots
+    CATEGORY ||--o{ SEO_URL : seo_urls
+```
+
+- `category`: tree structure plus `cmsPageId` for layout inheritance; `productAssignmentType` controls explicit vs. stream-based listings.
+- `category_translation`: localized names, breadcrumbs, links, and SEO text.
+- `product_category`: explicit product links used for listings when not driven by a product stream.
+- `product_stream`: dynamic filters attached to a category when assignments are stream-based.
+- `cms_page`: CMS layout referenced by categories (inherited when missing).
+- `sales_channel`: entry categories (`navigation`, `footer`, `service`) anchoring storefront menus.
+- `seo_url`: generated URLs per category and sales channel domain, rebuilt by the SEO indexer.
+
 ## Sales channel entry points and navigation
 
 Every [Sales Channel](sales-channels) defines `navigation`, `footer`, and `service` entry categories. The storefront builds menus from the children of those entry points, inheriting explicit assignments from lower levels.
