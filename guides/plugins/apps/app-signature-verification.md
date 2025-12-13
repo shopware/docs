@@ -134,10 +134,10 @@ $body = $response->getBody()->getContents();
 $response->getBody()->rewind();
 
 // calculate the signature
-$signature = hash_hmac('sha256', $body, $appSecret);
+$signature = hash_hmac('sha256', $body, $shopSecret);
 
 // add the signature to the response
-$response = $response->withHeader('shopware-shop-signature', $signature);
+$response = $response->withHeader('shopware-app-signature', $signature);
 ```
 
 </Tab>
