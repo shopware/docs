@@ -25,6 +25,8 @@ Once logged in to Grafana:
 3. Filter logs by setting the `component` label to the service you want to inspect.
 4. Run the query to view the logs for that component.
 
+![Alt](paas-monitoring-log-search.png "PaaS monitoring log search")
+
 ## Tips
 
 In the Explore view, you can refine results using the search box:
@@ -34,6 +36,8 @@ In the Explore view, you can refine results using the search box:
 
 A predefined dashboard named `Logs Dashboard` is available.
 It displays the log ingestion volume and includes a built-in case-insensitive search box.
+
+![Alt](paas-monitoring-log-filter.png "PaaS monitoring log filter")
 
 ## Log retention
 
