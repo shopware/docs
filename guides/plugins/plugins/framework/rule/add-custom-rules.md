@@ -19,7 +19,7 @@ In order to add your own custom rules for your plugin, you first need a plugin a
 
 You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom rule.
 
-It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rules) as well.
+It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rule) as well.
 
 ## Create custom rule
 
@@ -81,7 +81,7 @@ class FirstMondayOfTheMonthRule extends Rule
     {
         $date = new \DateTime($dateString);
         $dayOfWeek = (int) $date->format('w');
-        
+
         // Check if it's Monday (1 is Monday)
         if ($dayOfWeek !== 1) {
             return false;
@@ -114,7 +114,7 @@ Never execute database queries or any other time-consuming operations within the
 :::
 
 ```php
-// Scope usage: Check if the customer is logged in 
+// Scope usage: Check if the customer is logged in
 $customer = $scope->getSalesChannelContext()->getCustomer();
 $loggedIn = $customer !== null;
 ```
@@ -183,7 +183,7 @@ The rule will now be added to the list of rules in the admin. It might be useful
         id: 'days_of_the_month',
         name: 'Days of the month',
       });
-  
+
       return ruleConditionService;
   });
 ```
