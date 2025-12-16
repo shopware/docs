@@ -20,10 +20,24 @@ This command will provide you with the Grafana URL, username, and password.
 
 Once logged in to Grafana:
 
-1. Go to the **Explore** tab.
+1. Open the **Explore** tab.
 2. Select **Loki** as the data source.
-3. Filter logs by setting the label `service` to the value `shopware`.
-4. Run the query to view your application logs.
+3. Filter logs by setting the `component` label to the service you want to inspect.
+4. Run the query to view the logs for that component.
+
+![PaaS log search in Grafana](paas-monitoring-log-search.png "PaaS monitoring log search")
+
+## Tips
+
+In the Explore view, you can refine results using the search box:
+
+- Line contains — matches the exact string.
+- Line contains case-insensitive — recommended, as it matches the string regardless of the letter case.
+
+A predefined dashboard named `Logs Dashboard` is available.
+It displays the log ingestion volume and includes a built-in case-insensitive search box.
+
+![PaaS log filter in Grafana](paas-monitoring-log-filter.png "PaaS monitoring log filter")
 
 ## Log retention
 
