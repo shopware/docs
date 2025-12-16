@@ -318,6 +318,7 @@ Dockerfile
 Dockware
 DomainException
 DomainExceptions
+Dotenv
 DynamoDB
 ECDSA
 ENUM
@@ -1285,6 +1286,7 @@ dom
 don'ts
 dont
 dont's
+dotenv
 dr
 dragTo
 dropdown
