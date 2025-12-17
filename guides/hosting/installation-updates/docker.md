@@ -189,7 +189,7 @@ services:
         <<: *shopware
         entrypoint: /setup
         depends_on:
-            db:
+            database:
                 condition: service_started
             init-perm:
                 condition: service_completed_successfully
