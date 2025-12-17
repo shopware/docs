@@ -185,6 +185,17 @@ services:
     database:
         image: mariadb:11.4
 
+    init-perm:
+        <<: *shopware
+        user: "root"
+        entrypoint: >
+          chown 82:82
+          /var/www/html/files
+          /var/www/html/public/theme
+          /var/www/html/public/media
+          /var/www/html/public/thumbnail
+          /var/www/html/public/sitemap
+
     init:
         <<: *shopware
         entrypoint: /setup
