@@ -216,6 +216,13 @@ services:
             init:
                 condition: service_completed_successfully
         entrypoint: [ "php", "bin/console", "scheduled-task:run" ]
+
+volumes:
+    files:
+    theme:
+    media:
+    thumbnail:
+    sitemap:
 ```
 
 <PageRef page="https://github.com/shopwareLabs/example-docker-repository/" title="Example Repository with fully working setup" target="_blank" />
