@@ -72,6 +72,7 @@ All fetched data will be deleted after finishing or aborting a migration run, bu
 ## The migration procedure
 
 The following diagram visualizes how the migration process is executed in the message queue from a high level:
+
 ```mermaid
 sequenceDiagram
 
