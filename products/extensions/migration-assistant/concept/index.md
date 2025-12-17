@@ -15,7 +15,7 @@ We will provide you with a basic introduction to the concepts and structure righ
 
 ## Profile and connections
 
-Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers can create their own profiles from scratch, connect to different source systems, or just build and extend existing ones.
+Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers can create their own profiles from scratch, connect to different source systems, or just extend existing ones.
 
 For more details, look at [Profile and Connection](profile-and-connection).
 
@@ -71,19 +71,74 @@ All fetched data will be deleted after finishing or aborting a migration run, bu
 
 ## The migration procedure
 
-The following bullet points will give you a general overview of what happens during a common migration.
+The following diagram visualizes how the migration process is executed in the message queue from a high level:
+```mermaid
+sequenceDiagram
+
+  Browser->>+Server: start migration
+  Server->>+MQ: submit migration process message
+  Server-->>-Browser: process started
+
+  MQ-->>+Server: process message
+  Server->>-MQ: dispatch next message
+
+  Browser->>+Server: get migration state
+  Server-->>-Browser: state: fetching, offset: 100, total: 500, entity: product
+
+  MQ-->>+Server: process message
+  Server->>-MQ: dispatch next message
+
+  Browser->>+Server: get migration state
+  Server-->>-Browser: state: writing, offset: 300, total: 500, entity: product
+
+  MQ-->>+Server: process message
+  deactivate Server
+
+  Browser->>+Server: get migration state
+  Server-->>-Browser: state: waitingForApprove
+
+  Note right of Browser: User confirmation required
+  Browser->>+Server: approve & finish
+  Server-->>-Browser: migration completed
+```
+
+Inside this process it can run through these states:
+
+```mermaid
+stateDiagram-v2
+
+%% happy case
+  [*] --> Fetching
+  Fetching --> Writing
+  Writing --> MediaProcessing
+  MediaProcessing --> Cleanup
+  Cleanup --> Indexing
+  Indexing --> WaitingForApprove
+  WaitingForApprove --> Finished
+  Finished --> [*]
+
+%% abort case
+  Fetching --> Aborting
+  Writing --> Aborting
+  MediaProcessing --> Aborting
+  Aborting --> Cleanup
+  Indexing --> Aborted
+  Aborted --> [*]
+```
+
+The following bullet points will give you a general overview of what happens in what classes during a common migration.
 
 1. The user selects/creates a connection \(with a profile and gateway specified\).
 2. The user selects some of the available data \(`DataSelections`\).
 3. Premapping check/execution: The user maps data from the source system to the current system \(these decisions are stored with the connection\).
 4. Fetch data for every `DataSet` in every selected `DataSelection` \(mapping is used to store/use the identifiers from the source system\).
-  4.1 The corresponding `Reader` reads the data.
-  4.2 The corresponding `Converter` converts the data.
+    1. The corresponding `Reader` reads the data.
+    2. The corresponding `Converter` converts the data.
 5. Write data for every `DataSet` in every selected `DataSelection` .
-  5.1 The corresponding `Writer` writes the data.
+    1. The corresponding `Writer` writes the data.
 6. Process media, if necessary, for example, to download/copy images .
-  6.1 Data in the `swag_migration_media_file` table will be downloaded/copied.
-  6.2 Files are assigned to media objects in Shopware 6.
+    1. Data in the `swag_migration_media_file` table will be downloaded/copied.
+    2. Files are assigned to media objects in Shopware 6.
 7. Finish migration to clean up.
 
 These steps can be done multiple times. Each migration is called a `Run`/`MigrationRun` and will be saved to inform the users about any errors that occurred \(in the form of a detailed history\).
