@@ -44,7 +44,7 @@ bin/console es:index // Creates only the index for ES
 `es:create:alias`  will create an alias linking to the index after `es:index` is done. Normally this is done automatically. In the older version, this has to be done.
 
 ```bash
-bin/console es:create:alias 
+bin/console es:create:alias
 ```
 
 **> No Output**
@@ -205,9 +205,9 @@ curl -X DELETE 'elasticsearch:9200/_all'
 Returns the status of your indexing:
 
 ```sql
-select * from message_queue_stats mqs ; 
-select count(*) from enqueue e ; 
-select count(*) from dead_message dm ; 
+select * from message_queue_stats mqs ;
+select count(*) from enqueue e ;
+select count(*) from dead_message dm ;
 ```
 
 The number of entries in the enqueue should match the sum of the size values in the `message_queue_stats`. As long as there are entries in your `enqueue`, the indexing is in process and your message consumer has to work those messages.
@@ -218,7 +218,7 @@ Sometimes you want to reset the indexing in your database because your indexing 
 If the database queue is used, third-party services will differ. You can do so with the following queries.
 
 ```sql
-truncate enqueue ; 
+truncate enqueue ;
 truncate dead_message ;
 truncate message_queue_stats ;
 update scheduled_task set status = 'scheduled' where status = 'queued';
@@ -230,7 +230,7 @@ This is mainly for debugging purposes and is only meant for testing and staging 
 First, execute the database reset (only working for the database queue):
 
 ```sql
-truncate enqueue ; 
+truncate enqueue ;
 truncate dead_message ;
 truncate message_queue_stats ;
 update scheduled_task set status = 'scheduled' where status = 'queued';
