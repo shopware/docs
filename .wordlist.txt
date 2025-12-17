@@ -527,6 +527,7 @@ LongText
 LongTextField
 Lychee
 MACOSX
+MDN
 MJML
 MRs
 MVC
@@ -923,6 +924,7 @@ Synopsys
 TCP
 TLS
 TTL
+TTLs
 TaxFreeConfigField
 TaxProvider
 TaxProviderStruct
@@ -1134,6 +1136,7 @@ bugfixes
 bundler
 buyable
 cacheKey
+cacheability
 cacheable
 cacheinvalidatorfacade
 cachix

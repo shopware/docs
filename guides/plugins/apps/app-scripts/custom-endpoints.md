@@ -132,7 +132,7 @@ For a complete overview of the available data and services, refer to the [refere
 
 Scripts available for the Storefront should be stored in a folder prefixed with `storefront-`, so the folder name would be `storefront-{hook-name}`.
 The execution of those scripts is possible over the `/storefront/script/{hook-name}` endpoint.
-Custom Storefront endpoints can be called by a normal browser request or from javascript via ajax.
+Custom Storefront endpoints can be called by a normal browser request or from JavaScript via ajax.
 
 This endpoint allows `POST` and `GET` requests.
 
@@ -165,7 +165,7 @@ For a complete overview of the available data and services, refer to the [refere
 
 ## Caching
 
-To improve the end-user experience and provide a scalable system, the customer-facing APIs (i.e., `store-api` and `storefront`) offer caching mechanism to cache the response to specific requests and return the response from the cache on further requests instead of computing it again and again on each request.
+To improve the end-user experience and provide a scalable system, the customer-facing APIs (i.e., `store-api` and `storefront`) offer a caching mechanism to cache the response to specific requests and return the response from the cache on further requests instead of computing it again and again on each request.
 
 By default, caching is enabled for custom endpoints, but for `store-api` endpoints you have to generate the cache key in the script.
 For `storefront` requests, however, shopware takes care of it so that responses get automatically cached (if the [HTTP-Cache](../../../../concepts/framework/http_cache) is enabled).
@@ -200,14 +200,19 @@ You can opt out of the caching by calling `cache.disable()`. This means that the
 
 You can specify for how long a response should be cached by calling the `cache.maxAge()` method and passing the number of seconds after which the cache item should expire.
 
+> **Note:** `cache.maxAge()` is deprecated and will be removed in v6.8.0.0. Starting with v6.7.6.0, you can use `sharedMaxAge()` (corresponds to `s-maxage` in the `Cache-Control` header).
+> When the `CACHE_REWORK` feature flag is enabled, you can also use `clientMaxAge()` (corresponds to `max-age` in the `Cache-Control` header).
+
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
-{% do response.cache.maxAge(120) %}
+{% do response.cache.sharedMaxAge(120) %}
 
 {% do hook.setResponse(response) %}
 ```
 
 #### Invalidate cache items for specific states
+
+> **Note:** The cache states feature is deprecated and will be removed in v6.8.0.0. It also does not work when the `CACHE_REWORK` feature flag is enabled.
 
 You can specify that the cached response is not valid if one of the given states is present.
 For more detailed information on the invalidation states, refer to the [HTTP-cache docs](../../../../concepts/framework/http_cache#sw-states).
@@ -259,7 +264,7 @@ Note that you can also chain the filter operations:
 {% endif %}
 ```
 
-You can then use the filtered down list of ids to invalidate entity specific tags:
+You can then use the filtered-down list of ids to invalidate entity-specific tags:
 
 ```twig
 {% set tags = [] %}
