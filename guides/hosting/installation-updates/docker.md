@@ -169,7 +169,6 @@ This is just an example compose file to demonstrate what the services could look
 
 ```yaml
 x-environment: &shopware
-  image: local
   build:
     context: .
   environment:
