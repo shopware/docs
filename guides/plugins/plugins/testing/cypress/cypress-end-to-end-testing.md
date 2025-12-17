@@ -27,7 +27,7 @@ This guide also won't teach you how to write Cypress tests in general. Please ta
 
 ### Using our testsuite
 
-The [E2E platform testsuite package](https://github.com/shopwareArchive/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference).
+The [E2E platform testsuite package](https://github.com/shopwareArchive/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included as well. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference/).
 
 This test suite is built on top of [Cypress](https://www.cypress.io/) as well as the following Cypress plugins:
 
@@ -45,7 +45,7 @@ Please have a look on our [cypress.json](https://github.com/shopwareArchive/e2e-
 
 When you use our [Development template](https://github.com/shopwareArchive/development), we provide you some tooling scripts located in `dev-ops/e2e/actions`, to use E2E tests more comfortably.
 
-The`composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing#executing-e2e-tests).
+The`composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](end-to-end-testing/#executing-e2e-tests).
 
 <Tabs>
 <Tab title="Plugin setup">
@@ -210,7 +210,7 @@ or
 composer e2e:cypress -- run --spec="cypress/e2e/storefront/**/*.cy.js"
 ```
 
-To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../../resources/references/testing-reference/e2e-commands).
+To see a complete overview on all psh scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../../resources/references/testing-reference/e2e-commands/).
 </Tab>
 </Tabs>
 
@@ -326,7 +326,7 @@ it('test something', () => {
 
 You can chain commands by passing its return value to the next one. These commands may contain extra steps to take, e.g. a `click` or `type` operation.
 
-Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../../resources/references/testing-reference/e2e-custom-commands) specially for Shopware.
+Cypress provides a lot of commands to represent a variety of steps a user could do. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../../resources/references/testing-reference/e2e-custom-commands/) specially for Shopware.
 
 ### Assertions
 

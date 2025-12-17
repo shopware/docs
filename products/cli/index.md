@@ -7,14 +7,14 @@ nav:
 
 # Shopware CLI
 
-[Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It's a standalone developer tool that you [install](installation.md) and configure separately from your Shopware instance. Once set up, it helps you automate and speed up common tasks such as:
+[Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It's a standalone developer tool that you [install](installation/) and configure separately from your Shopware instance. Once set up, it helps you automate and speed up common tasks such as:
 
 - managing and configuring Shopware projects
 - building, validating, and packaging extensions
 - uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
 
-Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [General Requirements](../guides/requirements.md).
+Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [General Requirements](../guides/requirements/).
 
 **Supported platforms (short):** macOS (Homebrew), Debian/Ubuntu (APT), other Linux via RPM or manual installation, and Docker. Windows users should use WSL 2 or Docker. (See full [installation](installation.md) page for Windows details.)
 
@@ -93,11 +93,11 @@ shopware-cli extension fix /path/to/your/extension
 shopware-cli project fix /path/to/your/project
 ```
 
-Always back up or version your code before running refactoring commands, as they will modify files in place. [Learn more here](automatic-refactoring.md).
+Always back up or version your code before running refactoring commands, as they will modify files in place. [Learn more here](automatic-refactoring/).
 
 ### Project commands
 
-Work directly with your [Shopware project](deployment.md) to automate setup and maintenance tasks. Available commands include:
+Work directly with your [Shopware project](deployment/) to automate setup and maintenance tasks. Available commands include:
 
 ```bash
 shopware-cli project create         # Create a new Shopware 6 project
@@ -107,7 +107,7 @@ shopware-cli project ci          # Build Shopware in the CI
 
 ### Extension commands
 
-Create, build, and validate Shopware [extensions](plugins.md) and prepare them for the [Store](https://store.shopware.com/de/) or distribution. Available commands include:
+Create, build, and validate Shopware [extensions](plugins/) and prepare them for the [Store](https://store.shopware.com/de/) or distribution. Available commands include:
 
 ```bash
 shopware-cli extension fix   # Fix an extension
@@ -120,7 +120,7 @@ shopware-cli extension validate         # Validate an extension
 Publish and manage your extensions in the [Store](https://store.shopware.com/de/), with commands such as:
 
 ```bash
-shopware-cli store login # Login to Shopware Store portal. store
+shopware-cli store login # Login to Shopware Store portal.store
 shopware-cli token: Manage tokens for Store authentication
 ```
 
