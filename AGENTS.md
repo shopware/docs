@@ -139,7 +139,7 @@ Check the current branch against main. There should be two files to be moved. Cr
 
 ### Do's
 
-- **Follow repository conventions**: Adhere to the existing documentation structure, markdown style rules, and asset naming conventions.
+- **Follow repository conventions**: Adhere to the existing documentation structure, markdown style rules, and asset naming conventions as covered in the [documentation guidelines](https://developer.shopware.com/docs/resources/guidelines/documentation-guidelines/)
 - **Respect synced content**: When changes are needed in synced areas (`/resources/references/adr/`, `/assets/adr/`, `/resources/guidelines/code/core/`), propose edits against the `shopware/shopware` repository instead of changing them here.
 - **Keep redirects consistent**: When pages are moved or removed, compare your branch against `main`, identify changed paths, and add redirects to `.gitbook.yaml` following the existing patterns.
 - **Use quality checks when appropriate**: Run `make lint`, `make fix`, or the configured spellcheck tasks when you make non-trivial documentation changes, especially if CI feedback suggests issues.
