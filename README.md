@@ -21,6 +21,17 @@ Refer to its [structure](./index.md) to understand better. Contributions to impr
 
 ![Developer docs](./assets/developer-docs.png)
 
+## Redirects
+
+Redirects from old URLs to new ones are managed via the [`.gitbook.yaml`](./.gitbook.yaml) file. This ensures that users can still find the correct content after structural changes in the documentation.
+
+When deleting, moving or renaming pages, compare your branch against `main`, identify the moved files, and add corresponding redirects to `.gitbook.yaml` following the existing patterns.
+
+```yaml
+# Example redirect FROM concepts/framework/rules.html TO concepts/framework/rule/index.html
+concepts/framework/rules.html: concepts/framework/rule/index.html
+```
+
 ## Workflows
 
 They are defined in the [`.github/workflows`](./.github/workflows/) folder and help the DX team to maintain the documentation. The workflows are triggered by events like `push`, `pull_request`, `schedule` and `workflow_dispatch`. The workflows are used to build, test, and deploy the documentation. If a PR pipeline fails, the PR will be marked as failed, and it won't be possible to merge it. In this case, check the below-mentioned workflows to see what went wrong and where to fix it.
