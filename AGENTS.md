@@ -6,10 +6,11 @@ This file provides guidance to coding agents like CursorAI or Claude Code.
 
 This is the **Shopware Developer Documentation** repository (`shopware/docs`) that contains comprehensive developer documentation for Shopware 6, served at [developer.shopware.com/docs](https://developer.shopware.com/docs/). The documentation is integrated with the main [developer portal](https://github.com/shopware/developer-portal) repository.
 
-> **Note:**  
+:::info
 > This documentation covers **Shopware 6** and is intended for use with the [shopware/shopware](https://github.com/shopware/shopware) open-source e-commerce framework.  
 >  
 > For contributing to or understanding Shopware core, see the [shopware/shopware GitHub repository](https://github.com/shopware/shopware) for source code and core platform issues.
+:::
 
 ## Documentation Structure
 
