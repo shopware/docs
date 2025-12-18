@@ -253,6 +253,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+CursorAI
 DAL
 DBAL
 DDL
@@ -414,6 +415,7 @@ FroshTools
 Fullstack
 GBP
 GDPR
+Gitbook
 GIFs
 GenericPage
 GenericPageLoader
@@ -655,6 +657,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+PageRef
 PCOV
 PEM
 PHPStan
@@ -1013,6 +1016,7 @@ VersionDataPayloadField
 VersionField
 VirtualHosts
 Vite
+VitePress
 Vitepress
 Vitest
 VoiceOver
@@ -1676,6 +1680,7 @@ profilers
 programmatically
 pseudocode
 psh
+pyspelling
 pwa
 px
 py
@@ -1945,6 +1950,7 @@ whitespaces
 whoami
 wil
 wishlist
+wordlist
 www
 xasjkyld
 xhost's
