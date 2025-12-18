@@ -57,13 +57,13 @@ For more information, have a look at the [Logging](logging) section.
 
 The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here; you don't need to worry about error handling because the migration assistant takes care of it.
 
-To learn more about them, take a look at [Writer](writer) section.
+To learn more about them, take a look at the [Writer](writer) section.
 
 ## Media processing
 
 During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem.
 
-You can look at [Media Processing](media-processing) article for more details.
+You can look at the [Media Processing](media-processing) article for more details.
 
 ## After migration
 
@@ -137,7 +137,7 @@ The following bullet points will give you a general overview of what happens in 
     2. The corresponding `Converter` converts the data.
 5. Write data for every `DataSet` in every selected `DataSelection` .
     1. The corresponding `Writer` writes the data.
-6. Process media, if necessary, for example, to download/copy images .
+6. Process media, if necessary, for example, to download/copy images.
     1. Data in the `swag_migration_media_file` table will be downloaded/copied.
     2. Files are assigned to media objects in Shopware 6.
 7. Finish migration to clean up.
