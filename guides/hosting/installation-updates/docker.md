@@ -169,7 +169,6 @@ This is just an example compose file to demonstrate what the services could look
 
 ```yaml
 x-environment: &shopware
-  image: local
   build:
     context: .
   environment:
@@ -186,11 +185,22 @@ services:
     database:
         image: mariadb:11.4
 
+    init-perm:
+        <<: *shopware
+        user: "root"
+        entrypoint: >
+          chown 82:82
+          /var/www/html/files
+          /var/www/html/public/theme
+          /var/www/html/public/media
+          /var/www/html/public/thumbnail
+          /var/www/html/public/sitemap
+
     init:
         <<: *shopware
         entrypoint: /setup
         depends_on:
-            db:
+            database:
                 condition: service_started
             init-perm:
                 condition: service_completed_successfully
@@ -217,6 +227,13 @@ services:
             init:
                 condition: service_completed_successfully
         entrypoint: [ "php", "bin/console", "scheduled-task:run" ]
+
+volumes:
+    files:
+    theme:
+    media:
+    thumbnail:
+    sitemap:
 ```
 
 <PageRef page="https://github.com/shopwareLabs/example-docker-repository/" title="Example Repository with fully working setup" target="_blank" />
