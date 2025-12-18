@@ -127,7 +127,7 @@ The repository has extensive automated quality control:
 
 ## Redirects
 
-.gitbook.yaml is used to manage redirects from old URLs to new ones, ensuring users find the correct content even after structural changes.
+`.gitbook.yaml` is used to manage redirects from old URLs to new ones, ensuring users find the correct content even after structural changes.
 
 This can be done by the following prompt:
 
