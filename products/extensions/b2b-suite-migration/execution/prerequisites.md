@@ -18,3 +18,7 @@ If you are using B2B Commercial and already have data in it, you should back up 
 ## Queue Worker
 
 Ensure the message queue worker is running to process migration tasks.
+
+## Extension version
+
+Ensure your B2B Suite version is `4.9.3` or above.

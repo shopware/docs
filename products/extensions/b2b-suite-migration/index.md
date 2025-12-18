@@ -16,3 +16,7 @@ This section provides a comprehensive guide for developers to migrate data from 
 ::: warning
 B2B Suite will no longer be supported starting Shopware 6.8. Plan your migration promptly to avoid disruptions.
 :::
+
+## Prerequisites
+
+Please refer to the [B2B Suite Migration Prerequisites](./execution/prerequisites) section.
