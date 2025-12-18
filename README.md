@@ -23,7 +23,7 @@ Refer to its [structure](./index.md) to understand better. Contributions to impr
 
 ## Redirects
 
-Redirects from old URLs to new ones are managed via the [`.gitbook.yaml`](./.gitbook.yaml) file. This ensures that users can still find the correct content after structural changes in the documentation.
+Redirects from old URLs to new ones are managed via the [`.gitbook.yaml`](./.gitbook.yaml) file. This ensures continued access to content after pages are renamed or relocated.
 
 When deleting, moving or renaming pages, compare your branch against `main`, identify the moved files, and add corresponding redirects to `.gitbook.yaml` following the existing patterns.
 
