@@ -135,9 +135,9 @@ This can be done by the following prompt:
 Check the current branch against main. There should be two files to be moved. Create a redirect in the `.gitbook.yaml` in the pattern that already exists.
 ```
 
-## Dos and Don'ts for AI agents
+## Do's and Don'ts for AI agents
 
-### Do
+### Do's
 
 - **Follow repository conventions**: Adhere to the existing documentation structure, markdown style rules, and asset naming conventions.
 - **Respect synced content**: When changes are needed in synced areas (`/resources/references/adr/`, `/assets/adr/`, `/resources/guidelines/code/core/`), propose edits against the `shopware/shopware` repository instead of changing them here.
