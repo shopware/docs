@@ -87,3 +87,5 @@ redirects:
     products/extensions/subscriptions/guides/event.html: products/extensions/subscriptions/guides/separate-checkout.html
     products/extensions/subscriptions/guides/request-scoping.html: products/extensions/subscriptions/guides/separate-checkout.html
     concepts/framework/rules.html: concepts/framework/rule/index.html
+    products/extensions/migration-assistant/concept.html: products/extensions/migration-assistant/concept/index.html
+    products/extensions/migration-assistant/guides.html: products/extensions/migration-assistant/guides/index.html
