@@ -236,6 +236,7 @@ CrossSellingDataSet
 Crowdin
 Ctrl
 CurrencyRule
+CursorAI
 CustomAppAware
 CustomAppEvent
 CustomAppStorer
@@ -253,7 +254,6 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
-CursorAI
 DAL
 DBAL
 DDL
@@ -415,11 +415,11 @@ FroshTools
 Fullstack
 GBP
 GDPR
-Gitbook
 GIFs
 GenericPage
 GenericPageLoader
 GitLab
+Gitbook
 Github
 GlobFileLoader
 GmbH
@@ -657,7 +657,6 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
-PageRef
 PCOV
 PEM
 PHPStan
@@ -681,6 +680,7 @@ PageLoadedEvent
 PageLoadedEvents
 PageLoader
 PageLoader structs
+PageRef
 PageType
 Pagelet
 PageletLoader
@@ -1680,10 +1680,10 @@ profilers
 programmatically
 pseudocode
 psh
-pyspelling
 pwa
 px
 py
+pyspelling
 qa
 qa@shopware.com
 qty's
