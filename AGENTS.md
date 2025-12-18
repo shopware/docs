@@ -132,7 +132,7 @@ The repository has extensive automated quality control:
 This can be done by the following prompt:
 
 ```shell
-Check the current branch against main. There should be two files be moved. Create a redirect in the .gitbook.yaml in the pattern that already exists.
+Check the current branch against main. There should be two files to be moved. Create a redirect in the `.gitbook.yaml` in the pattern that already exists.
 ```
 
 ## Dos and Don'ts for AI agents
