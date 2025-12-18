@@ -18,7 +18,7 @@ You will likely create a plugin when you need to make profound changes or requir
 - Dynamic validations
 - Customer tracking or behavioral logic
 
-Refer to our [Plugin Base Guide](plugin-base-guide) and [Plugin Fundamentals](plugin-fundamentals) for guidance on plugin development.
+Refer to our [Plugin Base Guide](plugin-base-guide/) and [Plugin Fundamentals](plugin-fundamentals/) for guidance on plugin development.
 
 ::: info
 If your extension focuses only on design changes, a simple template adjustment—typically done through a theme plugin—may be the best choice.

@@ -9,7 +9,7 @@ nav:
 
 Products are sellable entities (physical and digital products) within your shop.
 
-Depending on your setup, Shopware can easily handle thousands of products. However, an upsurge in the product quantity (in millions) needs some tweaks for robust running of the environment as it depends on factors like the number of [categories](../../../concepts/commerce/catalog/categories), [sales channels](../../../concepts/commerce/catalog/sales-channels), [product properties](../../../concepts/commerce/catalog/products#property-groups--options), etc. Every product added to your shop can be made available on one or more [sales channels](../../../concepts/commerce/catalog/sales-channels).
+Depending on your setup, Shopware can easily handle thousands of products. However, an upsurge in the product quantity (in millions) needs some tweaks for robust running of the environment as it depends on factors like the number of [categories](../../../concepts/commerce/catalog/categories), [sales channels](../../../concepts/commerce/catalog/sales-channels), [product properties](../../../concepts/commerce/catalog/products), etc. Every product added to your shop can be made available on one or more [sales channels](../../../concepts/commerce/catalog/sales-channels).
 
 Let's delve into a more detailed understanding of products using the example of garments:
 
@@ -52,8 +52,8 @@ erDiagram
         uuid product_id
     }
     ProductCategory {
-        uuid product_id 
-        uuid category_id 
+        uuid product_id
+        uuid category_id
     }
     Category {
         uuid category_id

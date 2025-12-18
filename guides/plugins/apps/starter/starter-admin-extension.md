@@ -161,4 +161,4 @@ This example showed end-to-end how to create a local dev environment and connect
 
 * Did you know, you can add [new sections](/resources/admin-extension-sdk/api-reference/ui/component-section) to the UI or even [entire modules](/resources/admin-extension-sdk/api-reference/ui/mainModule)?
 * The Meteor Admin SDK also offers [TypeScript support](/resources/admin-extension-sdk/getting-started/installation#using-npm-require-bundling) (including autocompletion)
-* Don't want to extend the admin panel? Have a look at [App Scripts](/docs/guides/plugins/apps/app-scripts/index.md)
+* Don't want to extend the admin panel? Have a look at [App Scripts](../../../../guides/plugins/apps/app-scripts/index.md)
