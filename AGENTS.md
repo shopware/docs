@@ -11,7 +11,6 @@ This is the **Shopware Developer Documentation** repository (`shopware/docs`) th
 >  
 > For contributing to or understanding Shopware core, see the [shopware/shopware GitHub repository](https://github.com/shopware/shopware) for source code and core platform issues.
 
-
 ## Documentation Structure
 
 The repository follows a 4-tier hierarchical organization:
