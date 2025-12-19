@@ -6,11 +6,10 @@ This file provides guidance to coding agents like CursorAI or Claude Code.
 
 This is the **Shopware Developer Documentation** repository (`shopware/docs`) that contains comprehensive developer documentation for Shopware 6, served at [developer.shopware.com/docs](https://developer.shopware.com/docs/). The documentation is integrated with the main [developer portal](https://github.com/shopware/developer-portal) repository.
 
-:::info
-> This documentation covers **Shopware 6** and is intended for use with the [shopware/shopware](https://github.com/shopware/shopware) open-source e-commerce framework.  
->  
+> **Note:**
+> This documentation covers **Shopware 6** and is intended for use with the [shopware/shopware](https://github.com/shopware/shopware) open-source e-commerce framework.
+>
 > For contributing to or understanding Shopware core, see the [shopware/shopware GitHub repository](https://github.com/shopware/shopware) for source code and core platform issues.
-:::
 
 ## Documentation Structure
 
@@ -56,7 +55,7 @@ LC_ALL=C sort .wordlist.txt -o .wordlist.txt
 
 ### Dual Repository System
 
-- **Content Repository**: `shopware/docs` (this repo) - contains all markdown content
+- **Content Repository**: `shopware/docs` (this repo) - contains all Markdown content
 - **Presentation Layer**: `shopware/developer-portal` - handles building and serving
 - **Integration**: Content is linked via symlinks using `docs-cli.cjs`
 
@@ -83,13 +82,13 @@ The repository has extensive automated quality control:
 - **Grammar checking**: Reviewdog integration for language validation
 - **External link validation**: Lychee tool checks for broken links
 - **Asset naming validation**: Enforces strict naming conventions
-- **PageRef validation**: Custom Deno script checks internal cross-references
+- **PageRef validation**: A custom Deno script checks internal cross-references
 
 ## Development Environment
 
 - **Node.js**: 18.x with pnpm package manager
 - **Nix**: Uses `devenv.nix` for consistent development environments
-- **Build System**: VitePress managed through developer portal
+- **Build System**: VitePress managed through the developer portal
 - **CI/CD**: 11+ GitHub Actions workflows for quality control and synchronization
 
 ## File Conventions
@@ -103,7 +102,7 @@ The repository has extensive automated quality control:
 ### Asset Management
 
 - All assets in `/assets/` directory
-- Strict naming conventions enforced
+- Strict naming conventions are enforced
 - Images, diagrams, and media files (40,000+ characters worth)
 - Extensive use of Mermaid diagrams, SVGs, and screenshots
 
@@ -140,8 +139,8 @@ Check the current branch against main. There should be two files to be moved. Cr
 
 ### Do's
 
-- **Follow repository conventions**: Adhere to the existing documentation structure, markdown style rules, and asset naming conventions as covered in the [documentation guidelines](https://developer.shopware.com/docs/resources/guidelines/documentation-guidelines/)
-- **Maintain synced content**: When changes are needed in synced areas (`/resources/references/adr/`, `/assets/adr/`, `/resources/guidelines/code/core/`), propose edits against the `shopware/shopware` repository instead of changing them here.
+- **Follow repository conventions**: Adhere to the existing documentation structure, markdown style rules, and asset naming conventions.
+- **Respect synced content**: When changes are needed in synced areas (`/resources/references/adr/`, `/assets/adr/`, `/resources/guidelines/code/core/`), propose edits against the `shopware/shopware` repository instead of changing them here.
 - **Keep redirects consistent**: When pages are moved or removed, compare your branch against `main`, identify changed paths, and add redirects to `.gitbook.yaml` following the existing patterns.
 - **Use quality checks when appropriate**: Run `make lint`, `make fix`, or the configured spellcheck tasks when you make non-trivial documentation changes, especially if CI feedback suggests issues.
 - **Prefer incremental, focused changes**: Keep pull requests small and well-scoped so they are easy to review and reason about.
@@ -150,6 +149,6 @@ Check the current branch against main. There should be two files to be moved. Cr
 
 - **Don't edit synced files directly**: Avoid modifying files that are automatically synchronized from `shopware/shopware`, as those changes will be overwritten.
 - **Don't break existing URLs**: Avoid renaming or moving pages without adding a corresponding redirect entry in `.gitbook.yaml`.
-- **Don't bypass style and spelling rules**: Do not introduce markdown formatting that conflicts with `markdown-style-config.yml`, or ignore repeated spelling issues that should be added to `.wordlist.txt`.
+- **Don't bypass style and spelling rules**: Do not introduce Markdown formatting that conflicts with `markdown-style-config.yml`, or ignore repeated spelling issues that should be added to `.wordlist.txt`.
 - **Don't change repository tooling lightly**: Avoid editing CI workflows, configuration files, or build tooling unless explicitly requested, and always keep changes minimal and well-documented.
 - **Don't mix unrelated changes**: Do not bundle large, unrelated modifications (for example, structural moves plus extensive content rewrites) into a single change set.
