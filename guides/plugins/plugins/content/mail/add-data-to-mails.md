@@ -137,3 +137,27 @@ class MyMailSubscriber implements EventSubscriberInterface
 ```
 
 :::
+
+### Register your event subscriber
+
+You have to register the subscriber to the service container as well.
+
+Here's the respective example `services.xml`:
+
+::: code-group
+
+```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Swag\BasicExample\Subscriber\MyMailSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>
+```
+
+:::
