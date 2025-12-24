@@ -257,7 +257,7 @@ $this->customFieldSetRepository->create([
             [
                 'name' => 'swag_example_size',
                 'type' => CustomFieldTypes::INT,
-                'searchable' => true,
+                'includeInSearch' => true,
                 'config' => [
                     'label' => [
                         'en-GB' => 'English custom field label',
@@ -282,7 +282,7 @@ If you have several custom fields and want to order them within a specific order
   Available starting with Shopware 6.7.6.0.
 :::
 
-By default, custom fields are **not searchable**. To make a custom field searchable, you need to set the `searchable` property to `true` when creating the custom field. Only custom fields explicitly marked as searchable are available in search configurations. This helps optimize index storage size and improve search performance, especially for stores with many custom fields.
+By default, custom fields are **not searchable**. To make a custom field searchable, you need to set the `includeInSearch` property to `true` when creating the custom field. Only custom fields explicitly marked as searchable are available in search configurations. This helps optimize index storage size and improve search performance, especially for stores with many custom fields.
 
 If you enable searchability for an existing product custom field, you must rebuild the search index or update the products manually to include the custom field data in search results.
 
