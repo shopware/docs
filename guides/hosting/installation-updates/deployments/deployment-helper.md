@@ -199,12 +199,12 @@ deployment:
       script: |
         mysqldump database > backup.sql
       when: first  # Runs early in deployment
-    
+
     - id: clear-cache
       script: |
         ./bin/console cache:clear
       # Defaults to 'last' (backward compatible)
-    
+
     - id: notify-team
       script: |
         curl -X POST https://webhook.example.com
