@@ -102,6 +102,10 @@ deployment:
 
 ### Configuration Options
 
+:::info
+Hooks support placeholders like `%php.bin%` which is replaced with the path to the PHP binary. This ensures the correct PHP version is used when multiple PHP versions are available on the server.
+:::
+
 ```yaml
 deployment:
   hooks:
@@ -178,6 +182,10 @@ Additionally, you can configure the Shopware installation using the following en
 ## One Time Tasks
 
 One time tasks are tasks that should be executed only once during the deployment, like a migration script.
+
+:::info
+One-time task scripts support placeholders like `%php.bin%` which is replaced with the path to the PHP binary. This ensures the correct PHP version is used when multiple PHP versions are available on the server.
+:::
 
 You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` which tasks were executed and when.
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
