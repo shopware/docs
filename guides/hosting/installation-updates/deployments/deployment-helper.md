@@ -46,11 +46,12 @@ graph TD
     B -- Yes --> E[Execute pre-update hooks];
     B -- No --> N[Execute pre-install hooks];
 
-    E --> F[Enable maintenance mode];
+    E --> E1["Execute one-time tasks (when: first)"];
+    E1 --> F[Enable maintenance mode];
     F --> G[Run system:update:finish];
     G --> H["Manage Plugins & Apps (install, update, deactivate, remove)"];
     H --> I["Manage Themes (refresh, compile)"];
-    I --> J[Execute one-time tasks];
+    I --> J["Execute one-time tasks (when: last)"];
     J --> K[Execute post-update hooks];
     K --> L[Disable maintenance mode];
     L --> M(Dispatch PostDeploy event);
@@ -79,6 +80,27 @@ graph TD
 
 The Deployment Helper can be configured via a `.shopware-project.yml` file in the root of your project.
 The following configuration options are available:
+
+### Placeholders
+
+Hooks and one-time task scripts support placeholders that are replaced at runtime:
+
+- `%php.bin%`: Replaced with the path to the PHP binary (PHP_BINARY). This ensures the correct PHP version is used when multiple PHP versions are available on the server.
+
+Example usage:
+
+```yaml
+deployment:
+  hooks:
+    pre: |
+      %php.bin% -v
+  one-time-tasks:
+    - id: run-migration
+      script: |
+        %php.bin% bin/console database:migrate
+```
+
+### Configuration Options
 
 ```yaml
 deployment:
@@ -130,6 +152,9 @@ deployment:
       script: |
         # runs one time in deployment, then never again
         ./bin/console --version
+      # Optional: specify when the task should run (default: last)
+      # Options: first (runs early, after pre-update hook) or last (runs late, before post-update hook)
+      when: last
 
   store:
     license-domain: 'example.com'
@@ -157,6 +182,34 @@ One time tasks are tasks that should be executed only once during the deployment
 You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` which tasks were executed and when.
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
 To manually mark a task as run you can use `./vendor/bin/shopware-deployment-helper one-time-task:mark <id>`.
+
+### Controlling Task Execution Timing
+
+You can control when one-time tasks are executed using the `when` field:
+
+- `first`: Executes the task early in the deployment process, after the pre-update hook
+- `last`: Executes the task late in the deployment process, before the post-update hook (default)
+
+This is useful for tasks that need to run before or after specific deployment steps. For example, database backups should run early (`first`), while cleanup tasks or notifications should run at the end (`last`).
+
+```yaml
+deployment:
+  one-time-tasks:
+    - id: backup-db
+      script: |
+        mysqldump database > backup.sql
+      when: first  # Runs early in deployment
+    
+    - id: clear-cache
+      script: |
+        ./bin/console cache:clear
+      # Defaults to 'last' (backward compatible)
+    
+    - id: notify-team
+      script: |
+        curl -X POST https://webhook.example.com
+      when: last  # Runs at end of deployment
+```
 
 ## Fastly Integration
 
