@@ -59,6 +59,16 @@ To control the number of records processed in each batch, you can specify a batc
 This command utilizes the message queue system to process the migration in the background. Even after the command execution completes, the migration may still be ongoing. To monitor the migration status in real-time, run the `bin/console b2b:migrate:progress` command in a separate terminal window.
 :::
 
+## Component-Specific Notes
+
+### Budget Management
+
+::: warning
+The Organization Unit of the budget will be empty after migration. This is expected behavior and you will need to manually assign budgets to organization units in B2B Commercial after the migration is complete.
+
+**Note**: Budget Management feature is available from Commercial 7.6.0 and above.
+:::
+
 ### Check Migration Status
 
 This command provides real-time insights into the migration process, displaying progress and statistics in a table format.
