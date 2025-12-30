@@ -236,6 +236,7 @@ CrossSellingDataSet
 Crowdin
 Ctrl
 CurrencyRule
+CursorAI
 CustomAppAware
 CustomAppEvent
 CustomAppStorer
@@ -418,6 +419,7 @@ GIFs
 GenericPage
 GenericPageLoader
 GitLab
+Gitbook
 Github
 GlobFileLoader
 GmbH
@@ -678,6 +680,7 @@ PageLoadedEvent
 PageLoadedEvents
 PageLoader
 PageLoader structs
+PageRef
 PageType
 Pagelet
 PageletLoader
@@ -1013,6 +1016,7 @@ VersionDataPayloadField
 VersionField
 VirtualHosts
 Vite
+VitePress
 Vitepress
 Vitest
 VoiceOver
@@ -1679,6 +1683,7 @@ psh
 pwa
 px
 py
+pyspelling
 qa
 qa@shopware.com
 qty's
@@ -1946,6 +1951,7 @@ whitespaces
 whoami
 wil
 wishlist
+wordlist
 www
 xasjkyld
 xhost's
