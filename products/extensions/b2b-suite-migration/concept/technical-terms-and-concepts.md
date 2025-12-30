@@ -11,7 +11,7 @@ This section defines key technical terms and concepts used in the migration proc
 
 ## Component
 
-A **component** is a distinct module within the B2B Commercial system, such as `B2B Commercial Employee Management`, `B2B Commercial Quote Management`, or `B2B Commercial Shopping List`. Each component encapsulates a specific set of functionalities and associated data structures.
+A **component** is a distinct module within the B2B Commercial system, such as `B2B Commercial Employee Management`, `B2B Commercial Budget Management`, `B2B Commercial Quote Management`, or `B2B Commercial Shopping List`. Each component encapsulates a specific set of functionalities and associated data structures.
 
 :::info
 Components organize related entities and their migrations, ensuring modularity and maintainability.
