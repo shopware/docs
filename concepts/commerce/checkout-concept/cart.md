@@ -116,7 +116,7 @@ stateDiagram-v2
 Enrichment secures the *Independence_ and _Adaptability* of Shopware 6. As shown in the below code snippet, the cart can create and contain line items that are initially empty and will only be loaded \(enriched\) during the calculation.
 
 ```php
-<?php 
+<?php
 
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;
@@ -145,7 +145,7 @@ A default set of collectors is implemented in Shopware 6, which has a set call o
 title: Enrichment
 ---
 sequenceDiagram
-Enrichment->>Enrichment : 
+Enrichment->>Enrichment :
 box
     participant Enrichment
     participant ProductCartProcessor
@@ -160,7 +160,7 @@ box
     Enrichment->>ProductCartProcessor: enrich
     Enrichment->>CartPromotionsCollector: enrich
     Enrichment->>CartDiscountCollector: enrich
-    Enrichment->>Enrichment : 
+    Enrichment->>Enrichment :
 ```
 
 ## Cart processors - price calculation and validation
@@ -195,7 +195,7 @@ As you can see in the diagram above, the cart is modified during the enrichment 
 
 ## Cart storage
 
-Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](/docs/concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
+Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](./../../../concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
 
 ## Cart control
 

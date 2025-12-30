@@ -75,7 +75,7 @@ When loading translations, the system follows a defined priority order to resolv
    look at its documentation.
 3. Country-agnostic translations (`en` and `de`) – These are shipped with Shopware and its plugins. They ensure that the
    system always has a reliable fallback language and provide a consistent developer experience without requiring you
-   to wait until your translations are accepted at [translate.shopware.com](https://crowdin.com/project/shopware6). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](/concepts/translations/fallback-language-selection.md).
+   to wait until your translations are accepted at [translate.shopware.com](https://crowdin.com/project/shopware6). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](./../../concepts/translations/fallback-language-selection).
 4. Built-in translation system – Finally, the translations installed via the built-in translation system are applied.
 
 ## Built-in translation system and Flysystem
@@ -102,35 +102,35 @@ You can find the configuration file at `src/Core/System/Resources/translation.ya
 
 #### `repository-url`
 
-**Type:** `string`  
+**Type:** `string`
 **Example:**
 
 ```yaml
 repository-url: https://raw.githubusercontent.com/shopware/translations/main/translations
 ```
 
-**Description:**  
+**Description:**
 The base URL of the translation repository. Translation files for different languages and plugins are fetched from here.
 
 ---
 
 #### `metadata-url`
 
-**Type:** `string`  
+**Type:** `string`
 **Example:**
 
 ```yaml
 metadata-url: https://raw.githubusercontent.com/shopware/translations/main/crowdin-metadata.json
 ```
 
-**Description:**  
+**Description:**
 The URL for [metadata information](#how-does-the-system-recognize-new-updates) about the translations.
 
 ---
 
 #### `plugins`
 
-**Type:** `array[string]`  
+**Type:** `array[string]`
 **Example:**
 
 ```yaml
@@ -141,21 +141,21 @@ plugins: [
 ]
 ```
 
-**Description:**  
+**Description:**
 A list of supported plugins for which translations are available.
 
 ---
 
 #### `excluded-locales`
 
-**Type:** `array[string]`  
+**Type:** `array[string]`
 **Example:**
 
 ```yaml
 excluded-locales: [ 'de-DE', 'en-GB' ]
 ```
 
-**Description:**  
+**Description:**
 A list of language locales to be excluded from translation processing. German (Germany) and English (UK) are excluded by
 default since they are shipped with Shopware. The exclusion applies to plugins too.
 
@@ -163,7 +163,7 @@ default since they are shipped with Shopware. The exclusion applies to plugins t
 
 #### `plugin-mapping`
 
-**Type:** `array[object]`  
+**Type:** `array[object]`
 **Example:**
 
 ```yaml
@@ -177,14 +177,14 @@ plugin-mapping:
 - `plugin` (`string`): The internal plugin identifier (e.g., directory or code name).
 - `name` (`string`): The corresponding plugin name in the translation repository.
 
-**Description:**  
+**Description:**
 Allows mapping between internal plugin identifiers and repository names in case they differ.
 
 ---
 
 #### `languages`
 
-**Type:** `array[object]`  
+**Type:** `array[object]`
 **Example:**
 
 ```yaml
@@ -199,7 +199,7 @@ languages:
 - `locale` (`string`): Language code according to [IETF BCP 47](https://www.rfc-editor.org/info/bcp47), restricted to [ISO 639-1 (2-letter) language codes](https://en.wikipedia.org/wiki/ISO_639-1), used by
   Shopware for translations.
 
-**Description:**  
+**Description:**
 Defines the set of supported languages for which translations should be retrieved. Each entry specifies a display name
 and a locale code.
 

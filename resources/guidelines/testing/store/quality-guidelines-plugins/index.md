@@ -411,7 +411,7 @@ The following statements will be blocked as of 1st Oct. 2022:
 There are Cypress tests for Shopware 6 on GitHub.
 The project is driven by the *Friends of Shopware* group. You can contribute at any time:
 
-* Link: [Developer Documentation Cypress Tests for Shopware 6](../../../../../guides/plugins/plugins/testing/end-to-end-testing)
+* Link: [Developer Documentation Cypress Tests for Shopware 6](../../../../../guides/plugins/plugins/testing/end-to-end-testing/)
 * Link: [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources)
 
 ### Useful tool for plugin development and extension management

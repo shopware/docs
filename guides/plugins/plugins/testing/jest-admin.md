@@ -604,6 +604,6 @@ Do you want to see these examples in practice? Head over to our [video tutorial]
 
 Furthermore, you might want to have a look at one of the following guides as well:
 
-* [Jest tests for the storefront](jest-storefront)
-* [PHPUnit tests](php-unit)
-* [End-to-end tests](end-to-end-testing)
+* [Jest tests for the storefront](jest-storefront/)
+* [PHPUnit tests](php-unit/)
+* [End-to-end tests](end-to-end-testing/)
