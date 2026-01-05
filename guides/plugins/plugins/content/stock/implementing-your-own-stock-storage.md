@@ -77,21 +77,15 @@ class StockStorageDecorator extends AbstractStockStorage
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.yaml">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\Example\Service\StockStorageDecorator" decorates="Shopware\Core\Content\Product\Stock\StockStorage">
-            <argument type="service" id="Swag\Example\Service\StockStorageDecorator.inner" />
-        </service>
-    </services>
-</container>
+```yaml
+// <plugin root>/src/Resources/config/services.yaml
+services:
+  Swag\Example\Service\StockStorageDecorator:
+    decorates: Shopware\Core\Content\Product\Stock\StockStorage
+    arguments:
+      - '@Swag\Example\Service\StockStorageDecorator.inner'
 ```
 
 </Tab>

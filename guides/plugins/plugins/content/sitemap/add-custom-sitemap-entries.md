@@ -168,25 +168,18 @@ class CustomUrlProvider extends AbstractUrlProvider
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.yaml">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider" >
-            <argument type="service" id="swag_example.repository" />
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <argument type="service" id="router"/>
-
-            <tag name="shopware.sitemap_url_provider" />
-        </service>
-    </services>
-</container>
+```yaml
+// <plugin root>/src/Resources/config/services.yaml
+services:
+  Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider:
+    arguments:
+      - '@swag_example.repository'
+      - '@Doctrine\DBAL\Connection'
+      - '@router'
+    tags:
+      - shopware.sitemap_url_provider
 ```
 
 </Tab>
