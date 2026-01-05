@@ -64,7 +64,7 @@ This command utilizes the message queue system to process the migration in the b
 ### Budget Management
 
 ::: warning
-The Organization Unit of the budget will be empty after migration. This is expected behavior and you will need to manually assign budgets to organization units in B2B Commercial after the migration is complete.
+The Organization Unit of the budget will be empty after migration. This is expected behavior and you will need to manually assign each budget to organization units in B2B Commercial after the migration is complete.
 
 **Note**: Budget Management feature is available from Commercial 7.6.0 and above.
 :::
