@@ -159,7 +159,7 @@ The Storefront template defines how your element appears on the actual storefron
 * **Technical name**: `image-text-reversed` (The `name` property in Step 2)
 * **Extension**: `.html.twig`
 
-**Shopware is expecting the prefix as part of the full filename in `src/Storefront/Resources/views/storefront/block/cms-block-block-container.html.twig`.**
+**Shopware is expecting the prefix as part of the full filename in `src/Storefront/Resources/views/storefront/block/cms-block-container.html.twig`.**
 
 Full example: `cms-block-image-text-reversed.html.twig`
 
