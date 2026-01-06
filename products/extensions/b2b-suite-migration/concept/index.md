@@ -16,8 +16,8 @@ The whole migration is executed in a message queue, allowing for scalable proces
 ## Key Features
 
 - **Message Queue**: Utilizes a message queue to process large volumes of data, ensuring scalability.
-- **Sequential Migration**: Components (e.g., Employee, Budget, Quote, Shopping List) are migrated sequentially to respect entity relationships (e.g., employee records before quotes).
-- **Entity-Level Sequencing**: Within each component, entities (e.g., business partners, employees, roles, budgets) are migrated in the correct order.
+- **Sequential Migration**: Components (e.g., Employee, Budget, Quote, Shopping List) are migrated sequentially to respect entity relationships (e.g., employee records before budget).
+- **Entity-Level Sequencing**: Within each component, entities (e.g., business partners, employees, roles) are migrated in the correct order.
 
 ::: info
 Proper sequencing is critical to avoid dependency issues. Verify the migration order for your dataset.
