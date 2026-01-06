@@ -62,6 +62,12 @@ Choose one of the following commands based on your needs:
 pnpm dev
 ```
 
+### Build code for Production
+
+```shell
+pnpm build
+```
+
 ## Connect App to Shopware Instance
 
 * Build zip
