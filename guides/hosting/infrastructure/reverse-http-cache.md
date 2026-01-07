@@ -82,11 +82,18 @@ Varnish XKey is a cache key module that allows you to use Varnish with surrogate
 
 Checkout the official Varnish installation guide [here](https://github.com/varnish/varnish-modules#installation).
 
-And also needs to be enabled in the `config/packages/shopware.yml` file:
+And also needs to be enabled in the `config/packages/varnish.yaml` file:
 
 ```yaml
 # Be aware that the configuration key changed from storefront.reverse_proxy to shopware.http_cache.reverse_proxy starting with Shopware 6.6
 shopware:
+  # Cache tagging must be disabled with xkey config
+  cache:
+    tagging:
+      each_config: false
+      each_snippet: false
+      each_theme_config: false
+
   http_cache:
       reverse_proxy:
         enabled: true
