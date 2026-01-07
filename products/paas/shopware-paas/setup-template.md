@@ -133,67 +133,67 @@ Shopware PaaS automatically sets environment variables based on the services con
 
 These variables are set automatically for every deployment:
 
-| Variable | Example Value |
-|---|---|
-| `APP_SECRET` | `a3c45d78e91f2b3c4d5e6f7a8b9c0d1e` |
-| `APP_ENV` | `prod` |
-| `APP_URL` | `https://main-abc123.eu-5.platformsh.site` |
-| `MAILER_DSN` | `smtp://localhost:25` |
+| Variable     | Example Value                              |
+|--------------|--------------------------------------------|
+| `APP_SECRET` | `a3c45d78e91f2b3c4d5e6f7a8b9c0d1e`         |
+| `APP_ENV`    | `prod`                                     |
+| `APP_URL`    | `https://main-abc123.eu-5.platformsh.site` |
+| `MAILER_DSN` | `smtp://localhost:25`                      |
 
 ### Database (`database`)
 
-| Variable | Example Value |
-|---|---|
+| Variable       | Example Value                                       |
+|----------------|-----------------------------------------------------|
 | `DATABASE_URL` | `mysql://user:password@database.internal:3306/main` |
 
 ### Database Replica (`database-replica`)
 
-| Variable | Example Value |
-|---|---|
+| Variable                 | Example Value                                               |
+|--------------------------|-------------------------------------------------------------|
 | `DATABASE_REPLICA_0_URL` | `mysql://user:password@database-replica.internal:3306/main` |
 
 ### RabbitMQ (`rabbitmqqueue`)
 
-| Variable | Example Value |
-|---|---|
-| `MESSENGER_TRANSPORT_DSN` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/messages` |
-| `MESSENGER_TRANSPORT_DSN_PREFIX` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/` |
+| Variable                         | Example Value                                            |
+|----------------------------------|----------------------------------------------------------|
+| `MESSENGER_TRANSPORT_DSN`        | `amqp://guest:guest@rabbitmq.internal:5672/%2f/messages` |
+| `MESSENGER_TRANSPORT_DSN_PREFIX` | `amqp://guest:guest@rabbitmq.internal:5672/%2f/`         |
 
 ### Redis Cache (`rediscache`)
 
-| Variable | Example Value |
-|---|---|
+| Variable    | Example Value                      |
+|-------------|------------------------------------|
 | `CACHE_DSN` | `redis://rediscache.internal:6379` |
 | `CACHE_URL` | `redis://rediscache.internal:6379` |
 
 ### Redis Session (`redissession`)
 
-| Variable | Example Value |
-|---|---|
-| `SESSION_REDIS_HOST` | `redissession.internal` |
-| `SESSION_REDIS_PORT` | `6379` |
-| `SESSION_REDIS_URL` | `redis://redissession.internal:6379` |
+| Variable             | Example Value                        |
+|----------------------|--------------------------------------|
+| `SESSION_REDIS_HOST` | `redissession.internal`              |
+| `SESSION_REDIS_PORT` | `6379`                               |
+| `SESSION_REDIS_URL`  | `redis://redissession.internal:6379` |
 
 ### OpenSearch (`opensearch`)
 
-| Variable | Example Value |
-|---|---|
-| `OPENSEARCH_URL` | `http://opensearch.internal:9200` |
+| Variable               | Example Value                     |
+|------------------------|-----------------------------------|
+| `OPENSEARCH_URL`       | `http://opensearch.internal:9200` |
 | `ADMIN_OPENSEARCH_URL` | `http://opensearch.internal:9200` |
 
 ### Elasticsearch (`elasticsearch`)
 
-| Variable | Example Value |
-|---|---|
-| `ELASTICSEARCH_HOST` | `elasticsearch.internal` |
-| `ELASTICSEARCH_PORT` | `9200` |
-| `ELASTICSEARCH_URL` | `http://elasticsearch.internal:9200` |
+| Variable             | Example Value                        |
+|----------------------|--------------------------------------|
+| `ELASTICSEARCH_HOST` | `elasticsearch.internal`             |
+| `ELASTICSEARCH_PORT` | `9200`                               |
+| `ELASTICSEARCH_URL`  | `http://elasticsearch.internal:9200` |
 
 ### MongoDB (`mongodatabase`)
 
-| Variable | Example Value |
-|---|---|
-| `MONGODB_SERVER` | `mongodb.internal:27017` |
-| `MONGODB_DB` | `main` |
-| `MONGODB_USERNAME` | `user` |
-| `MONGODB_PASSWORD` | `password` |
+| Variable           | Example Value            |
+|--------------------|--------------------------|
+| `MONGODB_SERVER`   | `mongodb.internal:27017` |
+| `MONGODB_DB`       | `main`                   |
+| `MONGODB_USERNAME` | `user`                   |
+| `MONGODB_PASSWORD` | `password`               |
