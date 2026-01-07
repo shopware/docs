@@ -51,6 +51,7 @@ This section guides developers on adding a new component to the migration proces
     - `EmployeeManagementMigrationConfigurator` has a priority of `9000`.
     - `QuoteB2BMigrationConfigurator` has a priority of `8000`.
     - `ShoppingListMigrationConfigurator` has a priority of `7000`.
+    - `BudgetManagementMigrationConfigurator` has a priority of `5000`.
     :::
   
 ## Create XML Mapping File

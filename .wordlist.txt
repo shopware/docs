@@ -1194,6 +1194,7 @@ config
 configComponent
 configs
 configurator
+configurators
 confirmUrl
 const
 const's
