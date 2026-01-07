@@ -80,6 +80,10 @@ graph TD
 The Deployment Helper can be configured via a `.shopware-project.yml` file in the root of your project.
 The following configuration options are available:
 
+::::info
+If you have multiple PHP versions locally or on your server, make sure to use `%php.bin%` instead of directly `php` in your custom scripts to use the same PHP version as the Deployment Helper.
+::::
+
 ```yaml
 deployment:
   hooks:
@@ -127,6 +131,8 @@ deployment:
 
   one-time-tasks:
     - id: foo
+      # Runs as last step in deployment. Other options is: first (to run before anything else)
+      when: last # defaults to last
       script: |
         # runs one time in deployment, then never again
         ./bin/console --version
