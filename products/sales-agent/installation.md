@@ -1,8 +1,7 @@
 ---
 nav:
-   title: Local installation
-   position: 20
-
+  title: Local installation
+  position: 20
 ---
 
 # Local installation
@@ -11,9 +10,9 @@ nav:
 
 Obtain all the credentials to connect to the following services:
 
-* Database (MySQL).
+- Database (MySQL).
 
-* Cache layer (Redis).
+- Cache layer (Redis).
 
 ## Setup App Server
 
@@ -26,7 +25,7 @@ cd swagsalesagent
 
 ### Create a `.env` File
 
-* Use the provided `.env.template` file as an example.
+- Use the provided `.env.template` file as an example.
 
 ```shell
 cp .env.template .env
@@ -44,13 +43,13 @@ pnpm install --frozen-lockfile --prefer-offline
 
 Choose one of the following commands based on your needs:
 
-* Execute existing migrations without creating new files:
+- Execute existing migrations without creating new files:
 
 ```bash
   pnpm db:migration:deploy
 ```
 
-* Execute & create new migration files if there are schema changes:
+- Execute & create new migration files if there are schema changes:
 
 ```bash
   pnpm db:migration:dev
@@ -70,14 +69,14 @@ pnpm build
 
 ## Connect App to Shopware Instance
 
-* Build zip
+- Build zip
 
 ```bash
 pnpm app:build
 ```
 
-* Upload zip from `bundle/swagsalesagent.zip` into Shopware Extensions.
+- Upload zip from `bundle/swagsalesagent.zip` into Shopware Extensions.
 
-* Verify the Installed App: after installation, you should see the Sales Agent menu item appear in the Settings.
+- Verify the Installed App: after installation, you should see the Sales Agent menu item appear in the Settings.
 
 ![ ](../../assets/sales-agent-item.png)

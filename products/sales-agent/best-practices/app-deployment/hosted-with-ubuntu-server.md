@@ -1,8 +1,7 @@
 ---
 nav:
-   title: Ubuntu Server with PM2
-   position: 10
-
+  title: Ubuntu Server with PM2
+  position: 10
 ---
 
 # Deploy with Ubuntu Server with PM2
@@ -11,25 +10,25 @@ This guide will walk you through the steps to deploy Sales Agent frontend web ap
 
 ## Prerequisites
 
-* **Ubuntu Server**: This guide assumes you have an Ubuntu server running, and you can access it via SSH.
-* **Node.js & npm**: Make sure Node.js and npm (Node package manager) are installed on your server.
-* **PM2**: PM2 should be installed globally.
+- **Ubuntu Server**: This guide assumes you have an Ubuntu server running, and you can access it via SSH.
+- **Node.js & npm**: Make sure Node.js and npm (Node package manager) are installed on your server.
+- **PM2**: PM2 should be installed globally.
 
 ```bash
 npm install -g pm2
 ```
 
-* **pnpm**
+- **pnpm**
 
 ```bash
 npm install -g pnpm
 ```
 
-* **Frontend Application**: Clone the frontend source code and push to your GitHub repository.
+- **Frontend Application**: Clone the frontend source code and push to your GitHub repository.
 
 ## Build code
 
-* Please follow instructions here to [build code for production](../../installation.md#setup-app-server)
+- Please follow instructions here to [set up all necessary things and build the code](../../installation.md#setup-app-server)
 
 ## Start the Application with PM2
 
@@ -39,14 +38,14 @@ Now that your app is built, create a file named `ecosystem.config.cjs` in the ro
 module.exports = {
   apps: [
     {
-      name: 'DSRNuxtApp',
-      port: '3000',
-      exec_mode: 'cluster',
-      instances: 'max',
-      script: './.output/server/index.mjs'
-    }
-  ]
-}
+      name: "DSRNuxtApp",
+      port: "3000",
+      exec_mode: "cluster",
+      instances: "max",
+      script: "./.output/server/index.mjs",
+    },
+  ],
+};
 ```
 
 Once saved, you can start the app with:

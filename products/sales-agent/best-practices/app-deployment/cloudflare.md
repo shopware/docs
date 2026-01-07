@@ -1,8 +1,7 @@
 ---
 nav:
-   title: Cloudflare
-   position: 30
-
+  title: Cloudflare
+  position: 30
 ---
 
 # Deploy with Cloudflare
@@ -11,32 +10,32 @@ In this chapter you will learn how to deploy the frontend source code to [Cloudf
 
 ## Prerequisites
 
-* Register a Cloudflare account.
-* Clone the frontend source code and push to your GitHub repository.
+- Register a Cloudflare account.
+- Clone the frontend source code and push to your GitHub repository.
 
 ## Deploy from local machine
 
-* Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has
+- Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has
 
 ```bash
 shamefully-hoist=true
 strict-peer-dependencies=false
 ```
 
-* Install Wrangler
+- Install Wrangler
 
 ```bash
 pnpm install wrangler --save-dev
 ```
 
-* Make sure the Frontend app has already [generated .env file](../../installation.md#create-a-env-file)
-* Build your project for Cloudflare Pages:
+- Make sure the Frontend app has already [generated .env file](../../installation.md#create-a-env-file)
+- Build your project for Cloudflare Pages:
 
 ```bash
 npx nuxi build --preset=cloudflare_pages
 ```
 
-* Then deploy. However, for the first time, it will ask you to create a project:
+- Then deploy. However, for the first time, it will ask you to create a project:
 
 ```bash
 wrangler pages deploy dist/
@@ -46,16 +45,16 @@ wrangler pages deploy dist/
 
 ### Setup GitHub Secrets & variables
 
-* In GitHub Secrets, add `CLOUDFLARE_API_TOKEN` with API token value.
-  * [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) in the Cloudflare dashboard with the "Cloudflare Pages — Edit" permission.
-* In GitHub environment variables, create new environment named `production` and fill it with all environment variables in `.env.template`.
-  * Besides `production`, we can add new values for the same variable names in multiple environments such as `development`, `staging`.
+- In GitHub Secrets, add `CLOUDFLARE_API_TOKEN` with API token value.
+  - [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) in the Cloudflare dashboard with the "Cloudflare Pages — Edit" permission.
+- In GitHub environment variables, create new environment named `production` and fill it with all environment variables in `.env.template`.
+  - Besides `production`, we can add new values for the same variable names in multiple environments such as `development`, `staging`.
 
 ### Setup pipeline
 
 To trigger the deployment automatically, we can attach the GitHub Actions.
 
-* Create a `.github/workflows/publish.yml` file in your repository with below sample content.
+- Create a `.github/workflows/publish.yml` file in your repository with below sample content.
 
 ::: warning
 Please note that this pipeline is just a sample. There are some points need to update for specific purpose
@@ -64,8 +63,8 @@ Please note that this pipeline is just a sample. There are some points need to u
 ```yml
 on:
   push:
-   # Specify the pipeline trigger
-   branches:
+    # Specify the pipeline trigger
+    branches:
       - main
 
 jobs:
@@ -101,10 +100,9 @@ jobs:
           echo REDIS_PORT=${{ vars.REDIS_PORT }} >> .env
           echo REDIS_PASSWORD=${{ vars.REDIS_PASSWORD }} >> .env
           echo REDIS_TLS=${{ vars.REDIS_TLS }} >> .env
-          echo APP_NAME=${{ vars.REDIS_TLS }} >> .env
-          echo APP_SECRET=${{ vars.REDIS_TLS }} >> .env
-          echo DATABASE_URL=${{ vars.REDIS_TLS }} >> .env
-          cat .env
+          echo APP_NAME=${{ vars.APP_NAME }} >> .env
+          echo APP_SECRET=${{ vars.APP_SECRET }} >> .env
+          echo DATABASE_URL=${{ vars.DATABASE_URL }} >> .env
 
       - name: Build code
         run: |
@@ -117,11 +115,11 @@ jobs:
           accountId: YOUR_ACCOUNT_ID
           projectName: YOUR_PROJECT_NAME
           directory: dist
-          wranglerVersion: '3'
+          wranglerVersion: "3"
 ```
 
-* Replace `YOUR_ACCOUNT_ID` with your account ID. Get it from the dashboard URL. E.g: `https://dash.cloudflare.com/<ACCOUNT_ID>/pages`.
-* Replace `YOUR_PROJECT_NAME` with the appropriate value.
+- Replace `YOUR_ACCOUNT_ID` with your account ID. Get it from the dashboard URL. E.g: `https://dash.cloudflare.com/<ACCOUNT_ID>/pages`.
+- Replace `YOUR_PROJECT_NAME` with the appropriate value.
 
 ## Custom domain
 

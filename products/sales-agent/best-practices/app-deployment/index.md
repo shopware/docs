@@ -2,7 +2,6 @@
 nav:
   title: Frontend App Deployment
   position: 10
-
 ---
 
 # Frontend App Deployment
@@ -11,4 +10,4 @@ According to [Shopware Frontends deployment document](https://frontends.shopware
 
 You may find the different approaches as described in [Nuxt instruction](https://nuxt.com/deploy).
 
-Alternatively, we will show some best practices of *Sales Agent* frontend app deployment.
+Alternatively, we will show some best practices of _Sales Agent_ frontend app deployment.
