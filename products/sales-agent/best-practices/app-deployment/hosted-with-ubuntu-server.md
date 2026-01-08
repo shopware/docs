@@ -38,7 +38,7 @@ Now that your app is built, create a file named `ecosystem.config.cjs` in the ro
 module.exports = {
   apps: [
     {
-      name: "DSRNuxtApp",
+      name: "SalesAgentApp",
       port: "3000",
       exec_mode: "cluster",
       instances: "max",
