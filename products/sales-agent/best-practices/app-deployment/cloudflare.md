@@ -13,9 +13,9 @@ In this chapter you will learn how to deploy the frontend source code to [Cloudf
 - Register a Cloudflare account.
 - Clone the frontend source code and push to your GitHub repository.
 
-## Deploy from local machine
+## Deploy from a local machine
 
-- Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has
+- Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has the following content:
 
 ```bash
 shamefully-hoist=true
@@ -28,7 +28,7 @@ strict-peer-dependencies=false
 pnpm install wrangler --save-dev
 ```
 
-- Make sure the Frontend app has already [generated .env file](../../installation.md#create-a-env-file)
+- Make sure the Frontend app has already [generated an .env file](../../installation.md#create-a-env-file)
 - Build your project for Cloudflare Pages:
 
 ```bash
@@ -54,10 +54,10 @@ wrangler pages deploy dist/
 
 To trigger the deployment automatically, we can attach the GitHub Actions.
 
-- Create a `.github/workflows/publish.yml` file in your repository with below sample content.
+- Create a `.github/workflows/publish.yml` file in your repository with the below sample content.
 
 ::: warning
-Please note that this pipeline is just a sample. There are some points need to update for specific purpose
+Please note that this pipeline is just a sample. There are some points need to update for a specific purpose
 :::
 
 ```yml
