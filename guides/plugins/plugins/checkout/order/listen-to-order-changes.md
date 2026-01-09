@@ -96,8 +96,8 @@ class ListenToOrderChanges implements EventSubscriberInterface
             if (!$command instanceof ChangeSetAware) {
                 continue;
             }
-
-            if ($command->getDefinition()->getEntityName() !== OrderDefinition::ENTITY_NAME) {
+            // $command->getDefinition()->getEntityName() before Shopware 6.6.3.0
+            if ($command->getEntityName() !== OrderDefinition::ENTITY_NAME) {
                 continue;
             }
 
