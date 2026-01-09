@@ -94,6 +94,8 @@ For more information about Store API cache invalidation, you can refer to the [C
 
 This is because all data loaded in a Storefront controller is loaded in the core via the corresponding Store API routes and provided with corresponding cache tags. So the tags of the HTTP cache entries we have in the core consist of the sum of all Store API tags generated or loaded during the request. Therefore, the invalidation of a controller route is controlled over the Store API cache invalidation.
 
+Cache invalidations are logged at the info level to improve observability.
+
 ## HTTP Cache workflow
 
 **Note:** Workflow described here applies since v6.8.0.0 or since 6.7.6.0 when the `CACHE_REWORK` feature flag is enabled.
