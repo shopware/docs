@@ -26,6 +26,55 @@ npm install -g pnpm
 
 - **Frontend Application**: Clone the frontend source code and push to your GitHub repository.
 
+## Setup Redis
+
+Redis is required for caching. You can either install Redis locally on your Ubuntu server or use a managed Redis service.
+
+### Option 1: Install Redis locally
+
+Install Redis using the package manager:
+
+```bash
+sudo apt update
+sudo apt install redis-server
+```
+
+Configure Redis for production by editing the configuration file:
+
+```bash
+sudo nano /etc/redis/redis.conf
+```
+
+Key settings to consider:
+
+- Set `supervised systemd` to integrate with systemd.
+- Configure `bind` to restrict access (e.g., `bind 127.0.0.1` for local only).
+- Set a password with `requirepass your_secure_password`.
+
+Enable and start the Redis service:
+
+```bash
+sudo systemctl enable redis
+sudo systemctl start redis
+```
+
+Verify Redis is running:
+
+```bash
+redis-cli ping
+```
+
+You should see `PONG` as a response.
+
+### Option 2: Use a managed Redis service
+
+Alternatively, you can use managed Redis services such as:
+
+- [Upstash](https://upstash.com/) - Serverless Redis with pay-per-request pricing.
+- [Redis Cloud](https://redis.com/cloud/overview/) - Managed Redis by Redis Ltd.
+
+These services provide connection details (host, port, password) that you configure in your `.env` file.
+
 ## Build code
 
 - Please follow instructions here to [set up all necessary things and build the code](../../installation.md#setup-app-server)
