@@ -94,6 +94,8 @@ For more information about Store API cache invalidation, you can refer to the [C
 
 This is because all data loaded in a Storefront controller is loaded in the core via the corresponding Store API routes and provided with corresponding cache tags. So the tags of the HTTP cache entries we have in the core consist of the sum of all Store API tags generated or loaded during the request. Therefore, the invalidation of a controller route is controlled over the Store API cache invalidation.
 
+For performance and stability reasons, list-type routes are not tagged with all entities returned in the response. This applies to Store API endpoints such as product listings or search results, category listings, or SEO URL listings. These routes instead rely on their TTL as defined by the active HTTP Caching Policy. If the default TTLs are not appropriate for your use case, configure a [custom caching policy](../../guides/hosting/performance/caches.md#fine-tuning-per-route-or-app-hook) for those routes.
+
 ## HTTP Cache workflow
 
 **Note:** Workflow described here applies since v6.8.0.0 or since 6.7.6.0 when the `CACHE_REWORK` feature flag is enabled.
