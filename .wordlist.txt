@@ -859,8 +859,8 @@ Sendfile
 SeoUrlRoute
 SeoUrlTemplate
 SerializedField
-SetNullOnDelete
 Serverless
+SetNullOnDelete
 ShippingCountryRule
 ShippingMethodPriceCollector
 ShippingMethodRoute
@@ -1778,13 +1778,13 @@ seperate
 seperated
 serializable
 serializer
+serverless
 setFlags
 setLocaleToEnGb
 setProductFixtureVisibility
 setSalesChannelDomain
 setToInitialState
 settingsItem
-serverless
 sha
 shakable
 shallowMount
