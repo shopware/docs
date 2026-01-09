@@ -40,6 +40,20 @@ For easier integration with serverless deployments like AWS Amplify, consider us
 
 These providers offer public endpoints that work seamlessly with AWS Amplify without VPC configuration.
 
+### Configure Redis environment variables
+
+After setting up Redis (ElastiCache or a serverless provider), configure these environment variables in AWS Amplify:
+
+```bash
+REDIS_CACHE=true
+REDIS_HOST=your-redis-endpoint.cache.amazonaws.com  # Or your provider's endpoint
+REDIS_PORT=6379
+REDIS_PASSWORD=your_redis_password
+REDIS_TLS=true  # Recommended for production
+```
+
+Add these variables in the AWS Amplify Console under "Environment variables" in your app settings, or include them in your `.env.template` file.
+
 ## Deploy
 
 - Login to the AWS Amplify Hosting Console.

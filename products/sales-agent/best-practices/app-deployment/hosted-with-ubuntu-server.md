@@ -54,13 +54,17 @@ Key settings to consider:
 Enable and start the Redis service:
 
 ```bash
-sudo systemctl enable redis
-sudo systemctl start redis
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
 ```
 
 Verify Redis is running:
 
 ```bash
+# If you configured a password with requirepass
+redis-cli -a your_secure_password ping
+
+# If no password is set
 redis-cli ping
 ```
 
@@ -74,6 +78,20 @@ Alternatively, you can use managed Redis services such as:
 - [Redis Cloud](https://redis.com/cloud/overview/) - Managed Redis by Redis Ltd.
 
 These services provide connection details (host, port, password) that you configure in your `.env` file.
+
+### Configure Redis environment variables
+
+Add these Redis environment variables to your `.env` file:
+
+```bash
+REDIS_CACHE=true
+REDIS_HOST=127.0.0.1  # For local installation, or your managed service endpoint
+REDIS_PORT=6379
+REDIS_PASSWORD=your_secure_password  # If configured with requirepass
+REDIS_TLS=false  # Set to true for managed services that require TLS
+```
+
+For managed Redis services like Upstash, use the connection details provided by the service (host, port, password, and set `REDIS_TLS=true` for secure connections).
 
 ## Build code
 
