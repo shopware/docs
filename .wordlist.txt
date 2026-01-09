@@ -331,6 +331,7 @@ ESLint
 ESlint
 EcmaScript
 Eine
+ElastiCache
 ElasticSearch
 ElasticsearchDefinition
 ElasticsearchEntityAggregator
@@ -611,6 +612,7 @@ OAuth
 OPENSEARCH
 ORM
 ORMs
+OSS
 OTEL
 OTLP
 ObjectField
@@ -858,6 +860,7 @@ SeoUrlRoute
 SeoUrlTemplate
 SerializedField
 SetNullOnDelete
+Serverless
 ShippingCountryRule
 ShippingMethodPriceCollector
 ShippingMethodRoute
@@ -994,6 +997,7 @@ UpdatedBy
 UpdatedByField
 UpperCamelCase
 Upserting
+Upstash
 Upsun
 UrlAware
 UrlStorer
@@ -1006,6 +1010,7 @@ VARCHAR
 VCL
 VCS
 VM
+VPC
 VSCode
 Validator
 Valkey
@@ -1779,6 +1784,7 @@ setProductFixtureVisibility
 setSalesChannelDomain
 setToInitialState
 settingsItem
+serverless
 sha
 shakable
 shallowMount
