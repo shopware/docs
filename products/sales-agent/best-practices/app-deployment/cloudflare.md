@@ -13,6 +13,42 @@ In this chapter you will learn how to deploy the frontend source code to [Cloudf
 - Register a Cloudflare account.
 - Clone the frontend source code and push to your GitHub repository.
 
+## Setup Redis with Upstash
+
+Cloudflare Pages/Workers do not include a built-in Redis service. [Upstash](https://upstash.com/) is the recommended serverless Redis provider that integrates natively with Cloudflare.
+
+### Create an Upstash Redis database
+
+1. Sign up at [Upstash Console](https://console.upstash.com/).
+2. Click "Create Database" and select a region close to your users.
+3. Once created, navigate to the database details page.
+4. Copy the connection details:
+   - **REDIS_HOST**: The endpoint URL (e.g., `xxx.upstash.io`)
+   - **REDIS_PORT**: Usually `6379` or the TLS port `6380`
+   - **REDIS_PASSWORD**: The password from the database details
+   - **REDIS_TLS**: Set to `true` for secure connections
+
+### Configure environment variables
+
+Add these Redis environment variables to your `.env` file:
+
+```bash
+REDIS_CACHE=true
+REDIS_HOST=your-database.upstash.io
+REDIS_PORT=6379
+REDIS_PASSWORD=your_upstash_password
+REDIS_TLS=true
+```
+
+### Cloudflare integration (optional)
+
+You can also set up the Upstash integration directly in Cloudflare:
+
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com/) → Workers & Pages → Your project.
+2. Navigate to Settings → Integrations.
+3. Find and add the Upstash integration.
+4. Follow the prompts to connect your Upstash account.
+
 ## Deploy from a local machine
 
 - Due to this [issue](https://github.com/nuxt/nuxt/issues/28248), just make sure your `.npmrc` file has the following content:
