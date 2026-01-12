@@ -96,6 +96,8 @@ This is because all data loaded in a Storefront controller is loaded in the core
 
 List-type routes are not tagged with all entities returned in the response. This applies to Store API endpoints such as product listings or search results, category listings, or SEO URL listings. These routes instead rely on their TTL as defined by the active HTTP Caching Policy. If the default TTLs are not appropriate for your use case, configure a [custom caching policy](../../guides/hosting/performance/caches.md#fine-tuning-per-route-or-app-hook) for those routes. The reason is that, while it would be technically possible to try to invalidate all affected listings when a single entity changes, doing this at scale is very costly in terms of performance and resources. One entity can appear in many different listings (with different filters, sorting, pagination, etc.). It is also not possible to catch all cases where a change would cause an entity to newly appear in or disappear from a cached listing. Because of this, listing pages cannot guarantee strict, immediate consistency under caching; instead, we accept a small amount of staleness in exchange for predictable performance and stability.
 
+Cache invalidations are logged at the info level to improve observability.
+
 ## HTTP Cache workflow
 
 **Note:** Workflow described here applies since v6.8.0.0 or since 6.7.6.0 when the `CACHE_REWORK` feature flag is enabled.
