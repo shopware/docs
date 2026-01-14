@@ -41,7 +41,8 @@ Shopware 6 stores and processes a wide variety of files. This goes from product 
 
 Shopware offers a convenience feature to allow media file uploads by directly providing a URL pointing to a third party location containing that file.
 By default, Shopware validates the URL to ensure that it points to a publicly accessible resource; this prevents attacks where internal networking information might be leaked. You can disable this validation by toggling the `shopware.media.enable_url_validation` to false.
-However, there is still some security risk in this approach, as your shopware server does make a request to the external URL and therefore discloses some information about itself (e.g. IP address or user agent). If this is a concern to you, you can disable the whole URL upload feature by setting `shopware.media.enable_url_upload_feature = false`.
+However, there is still some security risk in this approach, as your Shopware server makes a request to the external URL and therefore discloses some information about itself (e.g. IP address or user agent).
+If this is a concern to you, you can disable the whole URL upload feature by setting `shopware.media.enable_url_upload_feature = false`.
 
 ## GDPR compliance
 
