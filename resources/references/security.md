@@ -37,6 +37,13 @@ The default policies are configured over the `shopware.security.csp_templates` s
 
 Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely, and backups should be generated regularly. For more information, refer to [File system](../../guides/hosting/infrastructure/filesystem)
 
+## Media upload by URL
+
+Shopware offers a convenience feature to allow media file uploads by directly providing a URL pointing to a third party location containing that file.
+By default, Shopware validates the URL to ensure that it points to a publicly accessible resource; this prevents attacks where internal networking information might be leaked. You can disable this validation by toggling the `shopware.media.enable_url_validation` to false.
+However, there is still some security risk in this approach, as your Shopware server makes a request to the external URL and therefore discloses some information about itself (e.g. IP address or user agent).
+If this is a concern to you, you can disable the whole URL upload feature by setting `shopware.media.enable_url_upload_feature = false`.
+
 ## GDPR compliance
 
 General Data Protection Regulation (GDPR) is a comprehensive European Union (EU) regulation that enhances individuals' privacy rights by imposing strict rules on how organizations collect, process, and protect personal data. For more information, refer to [GDPR](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/gdpr) guide.
