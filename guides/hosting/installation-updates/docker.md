@@ -65,21 +65,14 @@ We recommend using FrankenPHP over Caddy or Nginx, as it does automatic resource
 
 The Docker image is versioned by the PHP Version and the PHP Patch version. The Docker Image is updated daily and contains the latest security patches.
 
-The following tags are available with FrankenPHP:
+The following tags are available with our recommended FrankenPHP image:
 
 - `ghcr.io/shopware/docker-base:8.3-frankenphp` - PHP 8.3 with FrankenPHP
 - `ghcr.io/shopware/docker-base:8.3.12-frankenphp` - PHP 8.3.12 with FrankenPHP (same as above, but much more explicit)
 - `ghcr.io/shopware/docker-base:8.3-frankenphp-otel` - PHP 8.3 with FrankenPHP and OpenTelemetry
 - `ghcr.io/shopware/docker-base:8.3.12-frankenphp-otel` - PHP 8.3.12 with FrankenPHP and OpenTelemetry (same as above, but much more explicit)
 
-The following tags are available with Caddy:
-
-- `ghcr.io/shopware/docker-base:8.3` - PHP 8.3 with Caddy
-- `ghcr.io/shopware/docker-base:8.3-caddy` - PHP 8.3 with Caddy (same as above, but more explicit)
-- `ghcr.io/shopware/docker-base:8.3.12-caddy` - PHP 8.3.12 with Caddy (same as above, but much more explicit)
-- `ghcr.io/shopware/docker-base:8.3-caddy-otel` - PHP 8.3 with Caddy and OpenTelemetry
-
-The images are available at Docker Hub and GitHub Container Registry (ghcr.io) with the same names and tags.
+All images (FrankenPHP, Caddy, Nginx, FPM only) are available at Docker Hub and GitHub Container Registry ([ghcr.io](https://github.com/shopware/docker/pkgs/container/docker-base)) with the same names and tags.
 
 ## Default installed PHP Extensions
 
@@ -231,7 +224,6 @@ volumes:
      - Set up Dependabot / Renovate to keep the image up to date
 - Use an external storage provider for all files to keep all state out of the container
 - Use Redis/Valkey for Cache and Session storage so all instances share the same cache and session
-- Use Nginx Variant instead of Caddy as it's more battle tested
 
 ## Adding custom PHP extensions
 
