@@ -157,7 +157,7 @@ The cookie consent system itself uses special cookies:
 | Cookie | Purpose | Lifetime |
 |--------|---------|----------|
 | `cookie-preference` | Stores user's consent choices | 30 days |
-| `cookie-config-hash` | Tracks configuration changes per language (stores an object where language ID is the key and hash is the value, e.g., `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`) | 30 days |
+| `cookie-config-hash` | Tracks configuration changes per language | 30 days |
 
 ### Protected Cookies
 
