@@ -97,7 +97,7 @@ class ListenToOrderChanges implements EventSubscriberInterface
                 continue;
             }
 
-            if ($command->getDefinition()->getEntityName() !== OrderDefinition::ENTITY_NAME) {
+            if ($command->getEntityName() !== OrderDefinition::ENTITY_NAME) {
                 continue;
             }
 
