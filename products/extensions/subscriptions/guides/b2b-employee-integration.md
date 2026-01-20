@@ -22,7 +22,7 @@ The B2B Employee Integration extends subscription functionality to support emplo
 This integration is relevant when you have:
 
 - A B2B store with employee management enabled
-- Subscriptions that should be managed by employees on behalf of their organization
+- Subscriptions that employees should manage on behalf of their organization
 - Requirements for permission-based access control to subscription data
 - Need for tracking which employee initiated subscriptions
 

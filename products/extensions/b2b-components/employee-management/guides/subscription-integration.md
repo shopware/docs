@@ -32,11 +32,11 @@ This integration enables:
 
 Employees can view subscriptions based on their assigned permissions:
 
-| Permission | Access Level |
-|------------|--------------|
-| `subscription.read.all` | View all subscriptions in the system |
+| Permission                            | Access Level                                                           |
+|---------------------------------------|------------------------------------------------------------------------|
+| `subscription.read.all`               | View all subscriptions in the system                                   |
 | `organization_unit.subscription.read` | View subscriptions from assigned organization unit + own subscriptions |
-| (no permission) | View only own subscriptions |
+| (no permission)                       | View only own subscriptions                                            |
 
 These permissions are checked when employees access subscription lists, ensuring data isolation and security in B2B contexts.
 
@@ -52,8 +52,8 @@ Subscriptions track which employee created them through the `b2b_components_subs
 
 Organization data is preserved throughout the subscription lifecycle:
 
-- **Initial orders** - Organization data is added when subscription is created during checkout
-- **Renewal orders** - Organization data is maintained in subsequent automated orders
+- **Initial orders** - Organization data is added when a subscription is created during checkout
+- **Renewal orders** - Organization data is maintained in later automated orders
 - **Context preservation** - Organization information flows through all subscription-related processes
 
 ## Architecture
@@ -125,13 +125,13 @@ new OneToOneAssociationField(
 
 This table links subscriptions to the employees who created them:
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | BINARY(16) | Primary key |
-| `subscription_id` | BINARY(16) | Foreign key to `subscription` (UNIQUE) |
-| `employee_id` | BINARY(16) | Foreign key to `b2b_employee` |
-| `created_at` | DATETIME(3) | Creation timestamp |
-| `updated_at` | DATETIME(3) | Update timestamp |
+| Column            | Type        | Description                            |
+|-------------------|-------------|----------------------------------------|
+| `id`              | BINARY(16)  | Primary key                            |
+| `subscription_id` | BINARY(16)  | Foreign key to `subscription` (UNIQUE) |
+| `employee_id`     | BINARY(16)  | Foreign key to `b2b_employee`          |
+| `created_at`      | DATETIME(3) | Creation timestamp                     |
+| `updated_at`      | DATETIME(3) | Update timestamp                       |
 
 **Key characteristics:**
 
@@ -185,18 +185,18 @@ flowchart TD
     Start --> Decorator[SubscriptionRouteDecorator]
     Decorator --> Filter[SubscriptionEmployeeFilter]
     Filter --> CheckAll{Has subscription.read.all?}
-    
+
     CheckAll -->|Yes| NoFilter[No filter applied]
     NoFilter --> ResultAll[View ALL subscriptions]
-    
+
     CheckAll -->|No| CheckOrg{Has organization_unit<br/>.subscription.read?}
-    
+
     CheckOrg -->|Yes| OrgFilter[Apply OR filter]
     OrgFilter --> OwnSubs[Own subscriptions]
     OrgFilter --> OrgSubs[Organization subscriptions]
     OrgSubs --> ResultOrg[View own + org subscriptions]
     OwnSubs --> ResultOrg
-    
+
     CheckOrg -->|No| EmpFilter[Filter by employeeId]
     EmpFilter --> ResultOwn[View ONLY own subscriptions]
 ```
@@ -204,7 +204,7 @@ flowchart TD
 **Permission Logic:**
 
 - **No filter** (`subscription.read.all`) - Employee sees all subscriptions
-- **OR filter** (`organization_unit.subscription.read`) - Employee sees own subscriptions OR subscriptions from their organization unit
+- **OR filter** (`organization_unit.subscription.read`) - Employee sees their own subscriptions or subscriptions from their organization unit
 - **Default filter** - Employee sees only subscriptions they created
 
 ## Developer Integration Points
@@ -236,13 +236,13 @@ Employee data is stored in order extensions:
 // For initial or renewal orders
 $order = $orderRepository->search($criteria, $context)->first();
 
-// Check if order has employee context
+// Check if the order has employee context
 $orderEmployee = $order->getExtension('orderEmployee');
 if ($orderEmployee) {
     $employeeId = $orderEmployee->getEmployeeId();
 }
 
-// Check if order has organization context
+// Check if the order has organization context
 $organization = $order->getExtension('organization');
 if ($organization) {
     $organizationId = $organization->getId();
@@ -257,7 +257,7 @@ The integration provides several event subscribers you can use as reference:
 
 Listens to: `SubscriptionTransformedEvent`
 
-Use case: Add custom data when subscription is created from cart
+Use case: Add custom data when a subscription is created from a cart
 
 **SubscriptionCartConvertedSubscriber** - Priority: 0
 
@@ -301,10 +301,10 @@ class CustomSubscriptionServiceDecorator extends AbstractSubscriptionService
     {
         // Your custom logic before
         $this->customService->doSomething($context);
-        
+
         // Call decorated service
         $this->decorated->someMethod($context);
-        
+
         // Your custom logic after
     }
 }
