@@ -41,7 +41,7 @@ After all, you still can make use of tools like blackfire.io to find the root ca
 
 ### Session Deadlocks with file-based sessions
 
-If you experience request timeouts or hanging requests in environments using file-based sessions (common in shared hosting), you might be encountering a session deadlock. This occurs when two concurrent processes create a circular lock dependency: one process holds the session file lock while trying to acquire the cache lock, another holds the cache lock while trying to acquire the session lock (ABBA deadlock pattern).
+If you experience request timeouts or hanging requests in environments using file-based sessions (common in shared hosting), you might be encountering a session deadlock. This occurs when two concurrent processes create a circular lock dependency: one process holds the session file lock while trying to acquire the cache lock, another holds the cache lock while trying to acquire the session lock.
 
 Symptoms include:
 
