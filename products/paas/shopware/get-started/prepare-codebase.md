@@ -75,7 +75,6 @@ app:
   php:
     version: "8.3"
   environment_variables: []
-  hooks: {}
 services:
   mysql:
     version: "8.0"
@@ -91,8 +90,11 @@ app:
     - name: INSTALL_LOCALE
       value: fr-FR
       scope: RUN # Supports RUN or BUILD
-  hooks: {}
 services:
   mysql:
     version: "8.0"
 ```
+
+## Hooks Configuration
+
+Shopware PaaS Native uses the deployment helper to execute custom hooks for your application. To see how these hooks are configured, refer to the [Deployment Helper documentation](../../../../guides/hosting/installation-updates/deployments/deployment-helper.html#configuration).
