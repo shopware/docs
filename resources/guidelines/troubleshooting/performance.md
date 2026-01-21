@@ -38,3 +38,24 @@ Also consider changing the `indexing-behavior` to your needs if you need to sync
 Another reason for high memory usage might be the logging within the application.
 See the logging section in the [performance guide](../../../guides/hosting/performance/performance-tweaks#logging) for more information.
 After all, you still can make use of tools like blackfire.io to find the root cause of the memory usage.
+
+### Session Deadlocks with file-based sessions
+
+If you experience request timeouts or hanging requests in environments using file-based sessions (common in shared hosting), you might be encountering a session deadlock. This occurs when two concurrent processes create a circular lock dependency: one process holds the session file lock while trying to acquire the cache lock, another holds the cache lock while trying to acquire the session lock (ABBA deadlock pattern).
+
+Symptoms include:
+
+* Requests randomly timing out under load
+* PHP processes stuck in "waiting" state
+* Issues appearing only under concurrent requests
+
+The recommended solution is to [use Redis for sessions](../../../guides/hosting/performance/session), which eliminates the file-based locking conflict.
+If Redis is not available in your environment, you can work around the issue by disabling cache stampede protection (option available since Shopware 6.7.7.0).
+
+```yaml
+shopware:
+  cache:
+    disable_stampede_protection: true
+```
+
+This option only takes effect when file-based sessions are detected. Be aware that disabling stampede protection may increase backend load when multiple requests simultaneously try to regenerate the same expired cache entry. For most shops, this trade-off is acceptable compared to deadlock issues.
