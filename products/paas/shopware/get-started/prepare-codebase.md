@@ -97,4 +97,4 @@ services:
 
 ## Hooks Configuration
 
-Shopware PaaS Native uses the deployment helper to execute custom hooks for your application. To see how these hooks are configured, refer to the [Deployment Helper documentation](../../../../guides/hosting/installation-updates/deployments/deployment-helper.html#configuration).
+Shopware PaaS Native uses the deployment helper to execute custom hooks for your application. To see how these hooks are configured, refer to the [Deployment Helper documentation](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).
