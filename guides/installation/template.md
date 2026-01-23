@@ -103,11 +103,9 @@ Use these scripts to build the Administration and Storefront. The `watch` comman
 
 ## Update Shopware
 
-There are two ways to update Shopware:
+For detailed instructions on performing Shopware updates, including preparation steps, the update process, and post-update verification, refer to the dedicated guide:
 
-* Initially run `bin/console system:update:prepare` to enable the maintenance mode and then update all Composer packages using `composer update --no-scripts`. The `--no-scripts` flag instructs composer to not run any scripts that may reference Shopware CLI commands. They will only be functional after updating the recipes. To disable the maintenance mode, run `bin/console system:update:finish`.
-
-* To force-update all config files, run `composer recipes:update`.
+<PageRef page="../hosting/installation-updates/performing-updates" title="Performing Shopware Updates" />
 
 ## Migrate from the old zip installation to a new project template
 
