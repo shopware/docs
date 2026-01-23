@@ -122,8 +122,6 @@ The Shopware PaaS Vault contains both system-managed and user-managed secrets. U
 | `STOREFRONT_PROXY_KEY` | Storefront proxy authentication | System | No | **Do not delete** - Required for routing |
 | `SSH_PRIVATE_KEY` | Deploy SSH key for repository access | User | Yes | See [SSH key workflow](#example-workflow-using-ssh-keys) |
 | `SHOPWARE_PACKAGES_TOKEN` | Token for accessing Shopware packages | User | Yes | Check for legacy typos (e.g., `SHOPWAREPACKAGES_TOKEN`) |
-| Custom `env` secrets | Application-specific environment variables | User | Yes | Created via `sw-paas vault create --type env` |
-| Custom `buildenv` secrets | Build-time environment variables | User | Yes | Created via `sw-paas vault create --type buildenv` |
 
 ::: info
 System-managed secrets use the same retrieval mechanism as user-managed secrets, which is why they appear in your vault list. This is intentional to provide transparency into the credentials your environment is using.
