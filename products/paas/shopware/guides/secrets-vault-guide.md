@@ -303,4 +303,3 @@ If you encounter issues that cannot be resolved with the above troubleshooting s
 2. **Check system status**: Verify there are no ongoing PaaS incidents
 
 3. **Contact Shopware PaaS support** with the gathered information
-
