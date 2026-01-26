@@ -191,6 +191,7 @@ Over time, your Vault may accumulate outdated or incorrectly-named secrets. Comm
 ### Recommended Cleanup Process
 
 1. **Audit your secrets**:
+
    ```sh
    sw-paas vault list --application-id YOUR-APP-ID
    ```
@@ -198,11 +199,13 @@ Over time, your Vault may accumulate outdated or incorrectly-named secrets. Comm
 2. **Identify unused secrets**: Review each secret and confirm whether it's actively used by your application
 
 3. **Back up before deletion**:
+
    ```sh
    sw-paas vault get --secret-id SECRET-ID > backup-SECRET-NAME.txt
    ```
 
 4. **Delete unused secrets**:
+
    ```sh
    sw-paas vault delete --secret-id SECRET-ID
    ```
@@ -216,6 +219,7 @@ If you discover a secret with a typo in its name, you have two options:
 **Option 1: Edit the existing secret (faster)**
 
 1. Edit the secret to correct its name or value:
+
    ```sh
    sw-paas vault edit
    ```
@@ -229,11 +233,13 @@ If you discover a secret with a typo in its name, you have two options:
 **Option 2: Create a new secret and delete the old one**
 
 1. Back up the typo secret's value:
+
    ```sh
    sw-paas vault get --secret-id TYPO-SECRET-ID > backup-typo-SECRET-NAME.txt
    ```
 
 2. Create a correctly-named secret:
+
    ```sh
    sw-paas vault create
    ```
@@ -243,6 +249,7 @@ If you discover a secret with a typo in its name, you have two options:
 4. Test thoroughly to ensure it works
 
 5. Delete the typo secret:
+
    ```sh
    sw-paas vault delete --secret-id TYPO-SECRET-ID
    ```
@@ -259,6 +266,7 @@ Establish a periodic review process:
 ### Best Practices
 
 1. **Always back up before deletion**:
+
    ```sh
    sw-paas vault get --secret-id SECRET-ID > $(date +%Y%m%d)-SECRET-NAME-backup.txt
    ```
