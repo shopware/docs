@@ -914,6 +914,9 @@ Subcommands
 SubjectAware
 SubjectStorer
 Subprocessor
+SubscriptionCartConvertedSubscriber
+SubscriptionOrderPlacedSubscriber
+SubscriptionTransformedSubscriber
 SuggestPage
 SwagAdvDevBundle
 SwagB
