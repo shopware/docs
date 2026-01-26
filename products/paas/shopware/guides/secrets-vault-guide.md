@@ -121,7 +121,7 @@ The Shopware PaaS Vault contains both system-managed and user-managed secrets. U
 | `NATS_USER_CREDENTIALS` | NATS messaging user credentials | System | No | **Do not delete** - Required for internal messaging |
 | `STOREFRONT_PROXY_KEY` | Storefront proxy authentication | System | No | **Do not delete** - Required for routing |
 | `SSH_PRIVATE_KEY` | Deploy SSH key for repository access | User | Yes | See [SSH key workflow](#example-workflow-using-ssh-keys) |
-| `SHOPWARE_PACKAGES_TOKEN` | Token for accessing Shopware packages | User | Yes | Check for legacy typos (e.g., `SHOPWAREPACKAGES_TOKEN`) |
+| `SHOPWARE_PACKAGES_TOKEN` | Token for accessing Shopware packages | User | Yes | Watch for typo variants (e.g. missing underscore: `SHOPWAREPACKAGES_TOKEN`) |
 
 ::: info
 System-managed secrets use the same retrieval mechanism as user-managed secrets, which is why they appear in your vault list. This is intentional to provide transparency into the credentials your environment is using.
@@ -175,7 +175,7 @@ Always back up critical secret values locally before making changes:
 
 ```sh
 # Retrieve and save a secret locally before modifying
-sw-paas vault get --secret-id SECRET-ID > backup-secret.txt
+sw-paas vault get --secret-id SECRET-ID > backup-SECRET-NAME.txt
 ```
 
 ## Housekeeping & Legacy Secrets
@@ -230,7 +230,7 @@ If you discover a secret with a typo in its name, you have two options:
 
 1. Back up the typo secret's value:
    ```sh
-   sw-paas vault get --secret-id TYPO-SECRET-ID > backup-typo-secret.txt
+   sw-paas vault get --secret-id TYPO-SECRET-ID > backup-typo-SECRET-NAME.txt
    ```
 
 2. Create a correctly-named secret:

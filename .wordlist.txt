@@ -585,6 +585,7 @@ MyExtension
 MyPlugin
 MyTestClass
 MyTestInterface
+NATS
 NPM
 NUR
 NVDA
