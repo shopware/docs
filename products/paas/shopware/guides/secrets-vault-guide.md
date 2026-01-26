@@ -247,7 +247,6 @@ If you discover a secret with a typo in its name, you have two options:
    sw-paas vault delete --secret-id TYPO-SECRET-ID
    ```
 
-
 ### Regular Maintenance
 
 Establish a periodic review process:
