@@ -59,19 +59,19 @@ $ bin/console [command] [parameters]
 
 ### Cache
 
-| Command                      | Description                                                                                     |
-|:-----------------------------|:------------------------------------------------------------------------------------------------|
-| `cache:clear`                | Clears the cache                                                                                |
-| `cache:clear:all`            | Clear all caches/pools, invalidates expired tags, removes old system and twig cache directories |
-| `cache:clear:delayed`        | Invalidates the delayed cache keys/tags                                                         |
-| `cache:clear:http`           | Clear only the HTTP cache                                                                       |
-| `cache:pool:clear`           | Clears cache pools                                                                              |
-| `cache:pool:delete`          | Deletes an item from a cache pool                                                               |
-| `cache:pool:invalidate-tags` | Invalidate cache tags for all or a specific pool                                                |
-| `cache:pool:list`            | Lists available cache pools                                                                     |
-| `cache:pool:prune`           | Prunes cache pools                                                                              |
-| `cache:warmup`               | Warms up an empty cache                                                                         |
-| `cache:watch:delayed`        | Watches the delayed cache keys/tags                                                             |
+| Command                      | Description                                                                                                                      |
+|:-----------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| `cache:clear`                | Clears the cache                                                                                                                 |
+| `cache:clear:all`            | Clears all caches/pools, invalidates expired tags, removes old kernel cache directories. Requires confirmation or `--force` flag |
+| `cache:clear:delayed`        | Invalidates the delayed cache keys/tags                                                                                          |
+| `cache:clear:http`           | Clear only the HTTP cache                                                                                                        |
+| `cache:pool:clear`           | Clears cache pools                                                                                                               |
+| `cache:pool:delete`          | Deletes an item from a cache pool                                                                                                |
+| `cache:pool:invalidate-tags` | Invalidate cache tags for all or a specific pool                                                                                 |
+| `cache:pool:list`            | Lists available cache pools                                                                                                      |
+| `cache:pool:prune`           | Prunes cache pools                                                                                                               |
+| `cache:warmup`               | Warms up an empty cache                                                                                                          |
+| `cache:watch:delayed`        | Watches the delayed cache keys/tags                                                                                              |
 
 ### Cart
 
