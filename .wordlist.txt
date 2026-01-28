@@ -129,6 +129,7 @@ CSP
 CSPs
 CSRF
 CSV
+CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
 CachedProductListingRouteTest
@@ -585,6 +586,7 @@ MyExtension
 MyPlugin
 MyTestClass
 MyTestInterface
+NFS
 NPM
 NUR
 NVDA
