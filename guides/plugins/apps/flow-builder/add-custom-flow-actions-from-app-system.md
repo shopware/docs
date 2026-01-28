@@ -43,17 +43,13 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     └── plugins
 ```
 
-::: info
-From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml` will be removed from 6.6.0.0.
-:::
-
-| File name            | Description                                                                                                                  |
-|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------|
-| FlowBuilderActionApp | Your app's technical name                                                                                                    |
-| app-icon.png         | The app's icon                                                                                                               |
-| slack-icon.png       | Your action icon will be defined for each action in the `flow.xml` file. (optional, icons will default to a fallback) |
-| flow.xml             | Place to define your new actions                                                                                             |
-| manifest.xml         | Base information about your app                                                                                              |
+| File name            | Description                                                                                                            |
+|:---------------------|:-----------------------------------------------------------------------------------------------------------------------|
+| FlowBuilderActionApp | Your app's technical name                                                                                              |
+| app-icon.png         | The app's icon                                                                                                         |
+| slack-icon.png       | Your action icon will be defined for each action in the `flow.xml` file. (optional, icons will default to a fallback)  |
+| flow.xml             | Place to define your new actions                                                                                       |
+| manifest.xml         | Base information about your app                                                                                        |
 
 ### Manifest file
 
@@ -108,25 +104,6 @@ To create a flow action, you must define a `<flow-actions>` block within a file 
 </flow-extensions>
 ```
 
-:::
-
-::: info
-Before 6.5.2.0, flow actions were defined in `flow-action.xml` using a `<flow-actions>` root element:
-
-```xml [Resources/flow-action.xml]
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
-    <flow-action>
-        ... # The first action
-    </flow-action>
-    <flow-action>
-        ... # The second action
-    </flow-action>
-    <flow-action>
-        ... # The third action
-    </flow-action>
-    ...
-</flow-actions>
-```
 :::
 
 A single flow action would look like this:
