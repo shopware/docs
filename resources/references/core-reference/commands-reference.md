@@ -386,7 +386,6 @@ Generating the skeletons and essential files needed to create and structure a Sh
 | `system:config:set`          | Sets a config value                                                                |
 | `system:configure-shop`      | Configures the shop                                                                |
 | `system:generate-app-secret` | Generates a new app secret                                                         |
-| `system:generate-jwt-secret` | Generates a new JWT secret                                                         |
 | `system:install`             | Installs the Shopware 6 system                                                     |
 | `system:is-installed`        | Checks if the system is installed and returns exit code 0 if Shopware is installed |
 | `system:setup`               | Setup the system                                                                   |
