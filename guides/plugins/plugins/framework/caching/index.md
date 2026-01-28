@@ -415,6 +415,10 @@ To clear all caches, you can execute the `cache:clear:all` command, which clears
 The `cache:clear` command on the other hand will only clear the object caches, but won't invalidate the HTTP-Cache.
 On the other hand, the `cache:clear:http` command will clear the complete HTTP-Cache, but won't invalidate the object caches.
 
+::: warning
+`cache:clear` only clears the cache directory matching the current kernel's configuration. If you run `bin/console cache:clear` but web requests still use stale cache, the CLI and web server may be using different cache directories. This can happen when plugins are in different states (e.g., installed via Composer but not yet activated in the database). Use `cache:clear:all` to clear all cache variants.
+:::
+
 ::: details How cache:clear works internally
 The Symfony `cache:clear` command uses an atomic directory swap to ensure the application always has a valid cache. It first removes any leftover temporary directories, then creates and warms up the new cache in `var/cache/{env}_new/`. Once ready, it renames the current cache directory to a backup and moves the new one into place. Finally, it removes the backup.
 
