@@ -201,7 +201,7 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | type                                       | Type of parameter, only support `string` type.                                                                                                                         |
 | name                                       | The body key for your URL.                                                                                                                                             |
 | value                                      | The content message for your URL; free to design your content message here.                                                                                            |
-| <code v-pre>{{ message }}</code>           | The variable from your `<input-field>` defined in `flow.xml`.                                                                                                   |
+| <code v-pre>{{ message }}</code>           | The variable from your `<input-field>` defined in `flow.xml`.                                                                                                          |
 | <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
 
 With the parameters configured as described above, an exemplary call of your Webhook Action could look like this:
