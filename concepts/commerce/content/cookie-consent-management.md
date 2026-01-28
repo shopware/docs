@@ -42,14 +42,14 @@ sequenceDiagram
     StoreAPI->>CookieProvider: getCookieGroups()
     CookieProvider-->>StoreAPI: Cookie groups + hash
     StoreAPI-->>Storefront: Cookie configuration
-    Storefront->>Storefront: Compare stored hash
-    alt Hash changed
+    Storefront->>Storefront: Compare stored hash for current language
+    alt Hash changed for language
         Storefront->>User: Show consent banner
-    else Hash matches
+    else Hash matches for language
         Storefront->>User: Apply stored preferences
     end
     User->>Storefront: Make choices
-    Storefront->>Storefront: Store preferences + hash
+    Storefront->>Storefront: Store preferences + hash (with language ID)
 ```
 
 ## Cookie Categories
@@ -107,9 +107,13 @@ The configuration hash is an important feature that helps support GDPR complianc
 ### Mechanism Details
 
 1. **Hash Generation**: A hash is calculated from all cookie configurations (names, descriptions, expiration times)
-2. **Hash Storage**: The hash is stored in the browser as `cookie-config-hash`
-3. **Change Detection**: On each visit, the current hash is compared with the stored hash
-4. **Re-Consent Trigger**: If hashes differ, all non-essential cookies are removed and consent is requested again
+2. **Hash Storage**: The hash is stored in the browser as `cookie-config-hash`. The stored value is an object where the language ID is the key and the cookie hash is the value, for example: `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`
+3. **Change Detection**: On each visit, the current hash is compared with the stored hash for the current language
+4. **Re-Consent Trigger**: If hashes differ for the current language, all non-essential cookies are removed and consent is requested again
+
+::: info
+**Domain and Language Handling**: Since cookies are stored per domain by the browser, installations using different domains for different languages don't encounter tracking conflicts. The domain itself serves as the primary separator. The language ID within the hash object is specifically designed to address scenarios where multiple languages are served from the same domain, ensuring proper per-language consent tracking.
+:::
 
 ### When Hash Changes
 
@@ -153,7 +157,7 @@ The cookie consent system itself uses special cookies:
 | Cookie | Purpose | Lifetime |
 |--------|---------|----------|
 | `cookie-preference` | Stores user's consent choices | 30 days |
-| `cookie-config-hash` | Tracks configuration changes | 30 days |
+| `cookie-config-hash` | Tracks configuration changes per language | 30 days |
 
 ### Protected Cookies
 
@@ -181,7 +185,7 @@ The cookie consent system exposes its configuration through the Store API endpoi
 
 **Endpoint:** `GET /store-api/cookie/groups`
 
-This endpoint enables headless implementations, custom frontends, and third-party integrations to retrieve cookie configuration and the configuration hash.
+This endpoint enables headless implementations, custom frontends, and third-party integrations to retrieve cookie configuration, the configuration hash, and the language ID. The hash is provided as a string, and the language ID is also returned by the endpoint. When stored in the browser's `cookie-config-hash` cookie, both values should be stored as an object where the language ID is the key and the hash is the value, for example: `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`
 
 For full API documentation, see the [Store API - Fetch all cookie groups](https://shopware.stoplight.io/docs/store-api/f9c70be044a15-fetch-all-cookie-groups) reference.
 
