@@ -36,7 +36,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     ├── apps
     │   └── FlowBuilderActionApp
     │       └── Resources
-    │           └── flow-action.xml
+    │           └── flow.xml
     │           └── app-icon.png
     │           └── discord-icon.png
     │       └── manifest.xml
@@ -51,8 +51,8 @@ From 6.5.2.0, you can define the flow action in `flow.xml`. The `flow-action.xml
 |:---------------------|:-----------------------------------------------------------------------------------------------------------------------------|
 | FlowBuilderActionApp | Your app's technical name                                                                                                    |
 | app-icon.png         | The app's icon                                                                                                               |
-| slack-icon.png       | Your action icon will be defined for each action in the `flow-action.xml` file. (optional, icons will default to a fallback) |
-| flow-action.xml      | Place to define your new actions                                                                                             |
+| slack-icon.png       | Your action icon will be defined for each action in the `flow.xml` file. (optional, icons will default to a fallback) |
+| flow.xml             | Place to define your new actions                                                                                             |
 | manifest.xml         | Base information about your app                                                                                              |
 
 ### Manifest file
@@ -87,30 +87,11 @@ The name of your app that you provide in the manifest file needs to match the fo
 
 ## Define the flow action
 
-To create a flow action, you need to define a `<flow-action>` block within a file called `flow-action.xml`. Each `<flow-action>` represents one action and you can define an arbitrary number of actions.
+To create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.
 
 ::: code-group
 
-```xml [Resources/flow-action.xml]
-<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
-    <flow-action>
-        ... # The first action
-    </flow-action>
-    <flow-action>
-        ... # The second action
-    </flow-action>
-    <flow-action>
-        ... # The third action
-    </flow-action>
-    ...
-</flow-actions>
-```
-
-:::
-
-From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block within a file called `flow.xml`. Each `<flow-action>` in `<flow-actions>` represents one action, and you can define an arbitrary number of actions.
-
-```xml
+```xml [Resources/flow.xml]
 <flow-extensions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
     <flow-actions>
         <flow-action>
@@ -126,6 +107,27 @@ From 6.5.2.0, to create a flow action, you must define a `<flow-actions>` block 
     ...
 </flow-extensions>
 ```
+
+:::
+
+::: info
+Before 6.5.2.0, flow actions were defined in `flow-action.xml` using a `<flow-actions>` root element:
+
+```xml [Resources/flow-action.xml]
+<flow-actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd">
+    <flow-action>
+        ... # The first action
+    </flow-action>
+    <flow-action>
+        ... # The second action
+    </flow-action>
+    <flow-action>
+        ... # The third action
+    </flow-action>
+    ...
+</flow-actions>
+```
+:::
 
 A single flow action would look like this:
 
@@ -222,7 +224,7 @@ Define the `parameter` for the URL body based on your URL webhook services.
 | type                                       | Type of parameter, only support `string` type.                                                                                                                         |
 | name                                       | The body key for your URL.                                                                                                                                             |
 | value                                      | The content message for your URL; free to design your content message here.                                                                                            |
-| <code v-pre>{{ message }}</code>           | The variable from your `<input-field>` defined in `flow-action.xml`.                                                                                                   |
+| <code v-pre>{{ message }}</code>           | The variable from your `<input-field>` defined in `flow.xml`.                                                                                                   |
 | <code v-pre>{{ order.orderNumber }}</code> | For each trigger event, the action will have the variables suitable. [Read more variables here](../../../../resources/references/app-reference/flow-action-reference). |
 
 With the parameters configured as described above, an exemplary call of your Webhook Action could look like this:
