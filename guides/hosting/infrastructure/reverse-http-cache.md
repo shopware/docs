@@ -214,7 +214,7 @@ So, when a product is invalidated, the object cache and the HTTP cache will also
 There are a few different cache clearing commands:
 
 1. `bin/console cache:clear` - Clears and warms up the application cache (In versions before 6.7 this command also cleared the HTTP cache)
-2. `bin/console cache:clear:all` - Clears everything, including application cache, cache pools and the HTTP cache (Since version 6.6.8)
+2. `bin/console cache:clear:all` - Clears everything, including application cache, cache pools, HTTP cache, and other kernel cache directories. Prompts for confirmation in interactive mode; use `--force` to skip (Since version 6.6.8)
 3. `bin/console cache:clear:http` - Clears the reverse proxy cache if enabled, if not it clears the `http` cache pool (Since version 6.6.10)
 4. `bin/console cache:pool:clear --all` - Clears only the object cache (Useful for when you don't want to clear the http cache, pre version 6.6.10)
 

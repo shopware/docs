@@ -409,6 +409,16 @@ sw-force-cache-invalidate: 1
 ## Manual cache clear
 
 You can also manually clear the caches when you performed some actions that made a cache invalidation necessary, but where it was not triggered automatically.
-To clear all caches, you can execute the `cache:clear:all` command, which clears the HTTP-Cache, the object caches as well as any other caches that are registered in the system.
+
+To clear all caches, you can execute the `cache:clear:all` command, which clears the HTTP-Cache, the object caches as well as removes other kernel cache directories. In interactive terminals, this command prompts for confirmation; use `--force` to skip the prompt.
+
 The `cache:clear` command on the other hand will only clear the object caches, but won't invalidate the HTTP-Cache.
 On the other hand, the `cache:clear:http` command will clear the complete HTTP-Cache, but won't invalidate the object caches.
+
+::: details How cache:clear works internally
+The Symfony `cache:clear` command uses an atomic directory swap to ensure the application always has a valid cache. It first removes any leftover temporary directories, then creates and warms up the new cache in `var/cache/{env}_new/`. Once ready, it renames the current cache directory to a backup and moves the new one into place. Finally, it removes the backup.
+
+This approach ensures zero downtime because the application always has a working cache directory. The swap uses filesystem rename operations which are atomic on most systems. On NFS filesystems, directories are deleted instead of renamed due to limitations with atomic operations.
+
+For more details, see the [Symfony CacheClearCommand source](https://github.com/symfony/symfony/blob/7.4/src/Symfony/Bundle/FrameworkBundle/Command/CacheClearCommand.php).
+:::
