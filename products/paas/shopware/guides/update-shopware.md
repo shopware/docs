@@ -4,7 +4,7 @@ nav:
   position: 40
 ---
 
-# Guide: Using the Shopware PaaS Vault
+# Guide: Update Shopware version
 
 This guide explains how to update Shopware in the PaaS Native context.
 
