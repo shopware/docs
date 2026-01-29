@@ -56,7 +56,7 @@ You should proceed as follow:
 Now your code is updated, but it needs to be deployed.
 
 ### Update the running application
-Before updating the application you should run then following Shopware command, to prepare the update.
+Before updating the application you should run the following Shopware command, to prepare the update.
 Open an exec session: `sw-paas exec --new`. Once you're in the session, run the following command: `bin/console system:update:prepare`. 
 
 Once this command is done, you can update the application, do the following: `sw-paas application update`.
