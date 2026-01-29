@@ -47,7 +47,7 @@ Wait until the snapshot is done.
 ### Update the code base
 You should proceed as follow:
 - Create a new branch: `git checkout -b my-new-branch`
-- In `composer.json` udpate `shopware/core` to the new version
+- In `composer.json` update `shopware/core` to the new version
 - Run `composer update --no-scripts`
 - Run `composer recipes:update`
 - Commit your changes: `git add . && git commit -m "Updating Shopware to version X.Y.Z"` (keep the commit SHA at hand)
