@@ -50,7 +50,7 @@ test("Product detail test scenario", async ({
   await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
   await ShopCustomer.attemptsTo(AddProductToCart(product));
   await ShopCustomer.expects(
-    StorefrontProductDetail.offCanvasSummaryTotalPrice,
+    StorefrontProductDetail.offCanvasSummaryTotalPrice
   ).toHaveText("€99.99*");
 });
 ```
@@ -95,7 +95,7 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
       StorefrontAccountLogin,
       StorefrontAccount,
     },
-    use,
+    use
   ) => {
     const task = (customCustomer?: Customer) => {
       return async function Login() {
@@ -107,16 +107,16 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
 
         await ShopCustomer.fillsIn(
           StorefrontAccountLogin.emailInput,
-          customer.email,
+          customer.email
         );
         await ShopCustomer.fillsIn(
           StorefrontAccountLogin.passwordInput,
-          customer.password,
+          customer.password
         );
         await ShopCustomer.presses(StorefrontAccountLogin.loginButton);
 
         await ShopCustomer.expects(
-          StorefrontAccount.personalDataCardTitle,
+          StorefrontAccount.personalDataCardTitle
         ).toBeVisible();
       };
     };
@@ -182,7 +182,7 @@ export const SelectPaymentMethod = base.extend<
 >({
   SelectPaymentMethod: async (
     { ShopCustomer, StorefrontCheckoutConfirm },
-    use,
+    use
   ) => {
     const task = (paymentOptionName: string) => {
       return async function SelectPaymentMethod() {
@@ -194,7 +194,7 @@ export const SelectPaymentMethod = base.extend<
 
         await ShopCustomer.selectsRadioButton(
           paymentMethods,
-          paymentOptionName,
+          paymentOptionName
         );
         await ShopCustomer.expects(paymentOptionRadioButton).toBeChecked();
       };
