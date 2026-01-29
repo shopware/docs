@@ -50,7 +50,7 @@ test("Product detail test scenario", async ({
   await ShopCustomer.goesTo(StorefrontProductDetail.url(product));
   await ShopCustomer.attemptsTo(AddProductToCart(product));
   await ShopCustomer.expects(
-    StorefrontProductDetail.offCanvasSummaryTotalPrice
+    StorefrontProductDetail.offCanvasSummaryTotalPrice,
   ).toHaveText("€99.99*");
 });
 ```
@@ -79,7 +79,7 @@ Be aware that the Playwright `click` method automatically includes a number of [
 
 Tasks are small chunks of reusable test logic that can be passed to the `attemptsTo` method of an actor. They are created via Playwright fixtures and have access to the same dependencies. Every executed task will automatically be wrapped in a test step of Playwright, so you get nicely structured reports of your tests.
 
-**Example**
+**Basic Example**
 
 ```typescript
 import { test as base } from "@playwright/test";
@@ -95,7 +95,7 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
       StorefrontAccountLogin,
       StorefrontAccount,
     },
-    use
+    use,
   ) => {
     const task = (customCustomer?: Customer) => {
       return async function Login() {
@@ -107,16 +107,16 @@ export const Login = base.extend<{ Login: Task }, FixtureTypes>({
 
         await ShopCustomer.fillsIn(
           StorefrontAccountLogin.emailInput,
-          customer.email
+          customer.email,
         );
         await ShopCustomer.fillsIn(
           StorefrontAccountLogin.passwordInput,
-          customer.password
+          customer.password,
         );
         await ShopCustomer.presses(StorefrontAccountLogin.loginButton);
 
         await ShopCustomer.expects(
-          StorefrontAccount.personalDataCardTitle
+          StorefrontAccount.personalDataCardTitle,
         ).toBeVisible();
       };
     };
@@ -136,7 +136,17 @@ test("Customer login test scenario", async ({ ShopCustomer, Login }) => {
 });
 ```
 
-**Example**
+To keep tests easily readable, use names for your tasks so that in the test itself, the code line resembles the `Actor.attemptsTo(doSomething)` pattern as closely as possible.
+
+```typescript
+// Bad example
+await ShopCustomer.attemptsTo(ProductCart);
+
+// Better example
+await ShopCustomer.attemptsTo(PutProductIntoCart);
+```
+
+**Page Object Model Example**
 
 ```typescript
 import type { Page, Locator } from "playwright-core";
@@ -172,7 +182,7 @@ export const SelectPaymentMethod = base.extend<
 >({
   SelectPaymentMethod: async (
     { ShopCustomer, StorefrontCheckoutConfirm },
-    use
+    use,
   ) => {
     const task = (paymentOptionName: string) => {
       return async function SelectPaymentMethod() {
@@ -184,7 +194,7 @@ export const SelectPaymentMethod = base.extend<
 
         await ShopCustomer.selectsRadioButton(
           paymentMethods,
-          paymentOptionName
+          paymentOptionName,
         );
         await ShopCustomer.expects(paymentOptionRadioButton).toBeChecked();
       };
@@ -195,7 +205,9 @@ export const SelectPaymentMethod = base.extend<
 });
 ```
 
-This fixture is the "SelectPaymentMethod" task, which selects the desired payment method radio button using keyboard navigation (automatically includes `a11y_checks` assertions).
+This fixture is the "SelectPaymentMethod" task, which selects the desired radio button in the `paymentMethodRadioGroup` defined in the page object using keyboard navigation (automatically includes `a11y_checks` assertions).
+
+To use "SelectPaymentMethod" in a test, you simply pass the name of the desired payment option. Here is a sample scenario for a successful checkout that shows how you can combine multiple tasks to build your test scenarios.
 
 ```typescript
 import { test } from "./../BaseTestFile";
@@ -220,18 +232,4 @@ test("Customer successfully orders product", async ({
 });
 ```
 
-To use "SelectPaymentMethod" in a test, you simply pass the name of the desired payment option. Here is a sample scenario for a successful checkout that shows how you can combine multiple tasks to build your test scenarios.
-
 You can create your tasks in the same way to make them available for the actor pattern. Every task is just a simple Playwright fixture containing a function call with the corresponding test logic. Make sure to merge your task fixtures with other fixtures you created in your base test file. You can use the `mergeTests` method of Playwright to combine several fixtures into one test extension. Use `/src/tasks/shop-customer-tasks.ts` or `/src/tasks/shop-admin-tasks.ts` for that.
-
-To keep tests easily readable, use names for your tasks so that in the test itself, the code line resembles the `Actor.attemptsTo(doSomething)` pattern as closely as possible.
-
-**Example**
-
-```typescript
-// Bad example
-await ShopCustomer.attemptsTo(ProductCart);
-
-// Better example
-await ShopCustomer.attemptsTo(PutProductIntoCart);
-```
