@@ -64,4 +64,4 @@ You can track the progress of the deployment using `sw-paas app deploy list` and
 
 ### Post update task
 
-Once the application is successfully updated you tell the system that the update is finished, open a new exec session: `sw-paas exec --new`, then run the following command: `bin/console system:update:finish`. 
+Once the application is successfully updated you can tell the system that the update is finished, open a new exec session: `sw-paas exec --new`, then run the following command: `bin/console system:update:finish`. 
