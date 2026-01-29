@@ -31,7 +31,7 @@ Found one application: demo-shop
 ╰────────────────────────────────────┴────────────────────────────────────┴───────────────────────┴────────────────────────────────────┴───────────────────┴───────────────────╯
 ```
 
-If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** initiate a Shopware update, fix the deployment before trying to anything.
+If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** initiate a Shopware update, fix the deployment before trying to do anything.
 
 ## Update
 
