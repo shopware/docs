@@ -1,0 +1,38 @@
+---
+nav:
+  title: How to set up Opensearch
+  position: 60
+---
+
+## Enable Opensearch
+To be able to use Opensearch with your Shopware instance, you need to do the following, update your `application.yaml` file with:
+```yaml
+...
+services:
+  ...
+  opensearch:
+    enabled: true 
+```
+
+A complete example would look like this:
+```yaml
+app:
+  php:
+    version: "8.3"
+  environment_variables:
+    - name: INSTALL_LOCALE
+      value: fr-FR
+      scope: RUN # Supports RUN or BUILD
+services:
+  mysql:
+    version: "8.0"
+  opensearch:
+    enabled: true
+```
+
+Once that is done, commit this change and push it to your git repository. Now you need to update your application, see [here](../fundamentals/applications.md#update-your-application).
+
+## Action post enablement
+When you enable Opensearch, after your application was updated you need to index your application, this can be done like this:
+- Open an interactive session: `sw-paas exec --new`
+- Once the exec session is ready, run the following command: `bin/console dal:refresh:index --use-queue`
