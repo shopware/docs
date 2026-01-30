@@ -5,7 +5,7 @@ nav:
 ---
 
 ## Enable Opensearch
-To be able to use Opensearch with your Shopware instance, you need to do the following, update your `application.yaml` file with:
+To use Opensearch with your Shopware instance, update your `application.yaml` file as follows:
 ```yaml
 ...
 services:
