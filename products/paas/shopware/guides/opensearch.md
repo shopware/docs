@@ -11,7 +11,7 @@ To be able to use Opensearch with your Shopware instance, you need to do the fol
 services:
   ...
   opensearch:
-    enabled: true 
+    enabled: true
 ```
 
 A complete example would look like this:
