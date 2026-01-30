@@ -32,7 +32,7 @@ services:
 
 Once that is done, commit this change and push it to your git repository. Now you need to update your application, see [here](../fundamentals/applications.md#update-your-application).
 
-## Action post enablement
-When you enable Opensearch, after your application was updated you need to index your application, this can be done like this:
+## Post-enablement actions
+After you enable Opensearch and update your application, you need to index your application. You can do this as follows:
 - Open an interactive session: `sw-paas exec --new`
 - Once the exec session is ready, run the following command: `bin/console dal:refresh:index --use-queue`
