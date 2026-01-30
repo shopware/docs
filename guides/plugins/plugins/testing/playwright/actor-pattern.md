@@ -207,7 +207,7 @@ export const SelectPaymentMethod = base.extend<
 
 This fixture is the "SelectPaymentMethod" task, which selects the desired radio button in the `paymentMethodRadioGroup` defined in the page object using keyboard navigation (automatically includes `a11y_checks` assertions).
 
-To use "SelectPaymentMethod" in a test, you simply pass the name of the desired payment option. Here is a sample scenario for a successful checkout that shows how you can combine multiple tasks to build your test scenarios.
+To use "SelectPaymentMethod" in a test, you simply pass the name of the desired payment option. Here is a sample scenario for a successful checkout that demonstrates how to combine multiple tasks to build your test scenarios.
 
 ```typescript
 import { test } from "./../BaseTestFile";
