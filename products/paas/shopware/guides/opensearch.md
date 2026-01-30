@@ -1,11 +1,12 @@
 ---
 nav:
-  title: How to set up Opensearch
+  title: How to set up OpenSearch
   position: 60
 ---
 
 ## Enable Opensearch
 To use Opensearch with your Shopware instance, update your `application.yaml` file as follows:
+
 ```yaml
 ...
 services:
