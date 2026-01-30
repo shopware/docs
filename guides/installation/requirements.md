@@ -141,6 +141,10 @@ brew install mariadb
 
 ### JavaScript
 
+::: info
+JavaScript/Node.js is optional and only required for local development on your developer machine.
+:::
+
 * Node.js
 
   * Recommended version: 24.0.0 or higher
@@ -164,7 +168,7 @@ sudo apt-get install -y nodejs
 <Tab title="macOS">
 
 ```bash
-brew install node@22
+brew install node@24
 ```
 
 </Tab>
@@ -192,10 +196,9 @@ To run Shopware in a development context, the [Symfony CLI](https://symfony.com/
 
 We recommend the following stack:
 
-* Webserver: Caddy
+* Webserver: FrankenPHP (Caddy)
 * PHP: 8.4
 * SQL: MariaDB 11.8
-* Node: 24
 * Search: OpenSearch 2.17.1
 * Queue: RabbitMQ
 * Cache: Valkey 8.0
