@@ -85,11 +85,13 @@ If the changes are still not visible, try:
 bin/console cache:clear:http
 ```
 
-or
+or for a complete cache reset:
 
 ```bash
-bin/console cache:clear:all
+bin/console cache:clear:all --force
 ```
+
+The `--force` flag skips the confirmation prompt that appears in interactive terminals.
 
 By default, your app files will be [validated](app-base-guide#validation) before installation.
 To skip the validation, you may use the `--no-validate` flag.
