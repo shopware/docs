@@ -1,18 +1,20 @@
 ---
 nav:
-  title: Update Shopware version
+  title: Update Shopware in PaaS Native
   position: 40
 ---
 
-# Guide: Update Shopware version
+# Guide: Update Shopware version in PaaS Native
 
 This guide explains how to update Shopware in the PaaS Native context.
 
 ## Pre-requisite
-The update should only be started if the latest deploy is successful (state: `DEPLOYING_STORE_SUCCESS`).
+
+The update should only be started if the latest deployment is successful (state: `DEPLOYING_STORE_SUCCESS`).
 
 This can be checked with the following command `sw-paas app deploy list`:
-```
+
+```shell
 sw-paas app deploy list
 Selected: shopware
 Selected: demo-shop
@@ -36,16 +38,19 @@ If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** initiate a Shopware
 ## Update
 
 ### Preliminary task
+
 It's recommended to do a backup (called `snapshot`) of your application data (database and Shopware filesystem), you can do it with the following command:
-```
+
+```shell
 sw-paas snapshot create
 ```
 
 Wait until the snapshot is done.
 
-
 ### Update the code base
-You should proceed as follow:
+
+You should proceed as follows:
+
 - Create a new branch: `git checkout -b my-new-branch`
 - In `composer.json` update `shopware/core` to the new version
 - Run `composer update --no-scripts`
@@ -56,12 +61,13 @@ You should proceed as follow:
 Now your code is updated, but it needs to be deployed.
 
 ### Update the running application
-Before updating the application you should run the following Shopware command, to prepare the update.
-Open an exec session: `sw-paas exec --new`. Once you're in the session, run the following command: `bin/console system:update:prepare`. 
+
+Before updating the application, you should run the following Shopware command to prepare the update.
+Open an exec session: `sw-paas exec --new`. Once you're in the session, run the following command: `bin/console system:update:prepare`.
 
 Once this command is done, you can update the application, do the following: `sw-paas application update`.
 You can track the progress of the deployment using `sw-paas app deploy list` and/or `sw-paas app deploy get`.
 
 ### Post update task
 
-Once the application is successfully updated you can tell the system that the update is finished, open a new exec session: `sw-paas exec --new`, then run the following command: `bin/console system:update:finish`. 
+Once the application is successfully updated you can tell the system that the update is finished, open a new exec session: `sw-paas exec --new`, then run the following command: `bin/console system:update:finish`.
