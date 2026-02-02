@@ -4,9 +4,9 @@ nav:
   position: 60
 ---
 
-## Enable Opensearch
+## Enable OpenSearch
 
-To use Opensearch with your Shopware instance, add the opensearch service to your `application.yaml` file as follows:
+To use OpenSearch with your Shopware instance, add the `opensearch` service to your `application.yaml` file as follows:
 
 ```yaml
 services:
@@ -35,7 +35,7 @@ Once that is done, commit this change and push it to your git repository. Now yo
 
 ## Post-enablement actions
 
-After you enable Opensearch and update your application, you need to index your application. You can do this as follows:
+After you enable OpenSearch and update your application, you need to index your application. You can do this as follows:
 
 - Open an interactive session: `sw-paas exec --new`
 - Once the exec session is ready, run the following command: `bin/console dal:refresh:index --use-queue`
