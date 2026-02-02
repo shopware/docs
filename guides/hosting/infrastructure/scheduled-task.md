@@ -80,4 +80,4 @@ bin/console messenger:consume scheduler_shopware
 On startup of this command reads the `scheduled_task` database table and applies the stored intervals, an entry in this table is optional.  In the event that these intervals are modified in the database, it is necessary to restart the command for the updated intervals to take effect.
 To deactivate tasks, set status to `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskDefinition::STATUS_INACTIVE` in this table, and restart the `consume` command.
 
-<!--@include: @/docs/snippets/guide/debugging_scheduled_tasks.md-->
+<!--@include: ../../../snippets/guide/debugging_scheduled_tasks.md-->
