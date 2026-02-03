@@ -230,7 +230,6 @@ include:
       php_version: "8.4"
 ```
 
-
 ### .github/workflows/deploy.yml
 
 ```yaml
