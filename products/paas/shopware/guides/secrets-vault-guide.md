@@ -127,22 +127,13 @@ The Shopware PaaS Vault contains both system-managed and user-managed secrets. U
 System-managed secrets use the same retrieval mechanism as user-managed secrets, which is why they appear in your vault list. This is intentional to provide transparency into the credentials your environment is using.
 :::
 
-### Filtering Secrets by Application
+### Understanding Organization-wide Secrets
 
-By default, `sw-paas vault list` shows secrets across all applications in your organization, which can lead to duplicate entries if multiple apps use the same secret names.
+The `sw-paas vault list` command shows all secrets stored in your organization’s Vault. Because secrets are organization-global and reusable, the same secret values can be referenced by multiple applications using the same secret name.
 
-To view secrets for a specific application:
+If multiple applications in your organization use a secret with the same name, they are all referring to the same underlying Vault secret, not separate per-application copies.
 
-```sh
-sw-paas vault list --application-id YOUR-APP-ID
-```
-
-To find your application ID:
-
-```sh
-sw-paas application list
-```
-
+This means you manage each secret once at the organization level, and then reference it from the applications that need it.
 ## Permissions & Behavior
 
 ::: danger
