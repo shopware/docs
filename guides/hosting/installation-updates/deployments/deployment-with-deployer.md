@@ -222,39 +222,14 @@ The GitHub Action used above is [shopware/github-actions/project-deployer](https
 
 ```yaml
 stages:
-  - check
   - deploy
 
 include:
-  - component: gitlab.com/shopware/ci-components/project-validate@main
-    inputs:
-      php_version: "8.4"
-  - component: gitlab.com/shopware/ci-components/project-deploy@main
+  - component: gitlab.com/shopware/ci-components/project-deployer@main
     inputs:
       php_version: "8.4"
 ```
 
-### .github/workflows/check.yml
-
-```yaml
-name: Check
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Project Validate
-        uses: shopware/github-actions/project-validate@main
-        with:
-          phpVersion: '8.4'
-```
 
 ### .github/workflows/deploy.yml
 
