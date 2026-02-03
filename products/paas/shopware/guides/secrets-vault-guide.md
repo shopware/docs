@@ -167,8 +167,8 @@ If you believe a system-managed secret is incorrect or causing issues:
 
 ### Secret History & Rollback
 
-::: warning Important
-Shopware PaaS does not maintain version history for secrets. Once a secret is modified or deleted, the previous value cannot be recovered through the platform.
+::: warning
+**Important:** Shopware PaaS does not maintain version history for secrets. Once a secret is modified or deleted, the previous value cannot be recovered through the platform.
 :::
 
 Always back up critical secret values locally before making changes:
