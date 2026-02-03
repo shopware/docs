@@ -10,7 +10,7 @@ This guide explains how to update Shopware in the PaaS Native context.
 
 ## Pre-requisite
 
-The update should only be started if the latest deployment is successful (state: `DEPLOYING_STORE_SUCCESS`).
+The update should only be started if the latest deployment was successful (state: `DEPLOYING_STORE_SUCCESS`).
 
 This can be checked with the following command `sw-paas app deploy list`:
 
