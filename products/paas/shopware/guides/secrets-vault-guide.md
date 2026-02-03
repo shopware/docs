@@ -134,6 +134,7 @@ The `sw-paas vault list` command shows all secrets stored in your organizationâ€
 If multiple applications in your organization use a secret with the same name, they are all referring to the same underlying Vault secret, not separate per-application copies.
 
 This means you manage each secret once at the organization level, and then reference it from the applications that need it.
+
 ## Permissions & Behavior
 
 ::: danger
