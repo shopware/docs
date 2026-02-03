@@ -151,7 +151,7 @@ sw-paas application list
 
 ### System-Managed Secret Restrictions
 
-System-managed secrets are read-only and should not be modified or deleted. They are essential for:
+System-managed secrets must be treated as read-only and must not be modified or deleted. The platform does not technically prevent you from changing or removing these secrets, but doing so is unsupported and will break critical platform functionality. They are essential for:
 
 - Storefront operations and routing
 - Monitoring and observability (Grafana)
