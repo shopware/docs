@@ -133,7 +133,7 @@ The `sw-paas vault list` command shows all secrets stored in your organizationâ€
 
 If multiple applications in your organization use a secret with the same name, they are all referring to the same underlying Vault secret, not separate per-application copies.
 
-This means you manage each secret once at the organization level, and then reference it from the applications that need it.
+This means you manage each secret once at the organization level and then reference it from the applications that need it.
 
 ## Permissions & Behavior
 
@@ -174,7 +174,7 @@ sw-paas vault get --secret-id SECRET-ID > backup-SECRET-NAME.txt
 
 ### Identifying Legacy or Typo Secrets
 
-Over time, your Vault may accumulate outdated or incorrectly-named secrets. Common issues include:
+Over time, your Vault may accumulate outdated or incorrectly named secrets. Common issues include:
 
 - **Typo secrets**: e.g. `SHOPWAREPACKAGES_TOKEN` instead of `SHOPWARE_PACKAGES_TOKEN`
 - **Deprecated secrets**: No longer used by current application versions
@@ -230,7 +230,7 @@ If you discover a secret with a typo in its name, you have two options:
    sw-paas vault get --secret-id TYPO-SECRET-ID > backup-typo-SECRET-NAME.txt
    ```
 
-2. Create a correctly-named secret:
+2. Create a correctly named secret:
 
    ```sh
    sw-paas vault create
