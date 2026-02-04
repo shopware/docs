@@ -66,3 +66,11 @@ Yes, you can connect to your PaaS instance — but not via traditional SSH. Inst
 ## Where can I see the status of my PaaS application update?
 
 You can see the status of your PaaS application by running `sw-paas application list`. This command shows the current status of your application, including whether the update was successful or if it's still in progress. To monitor all real-time events associated with the project and its applications run `sw-paas watch` this provides a live stream of events and is especially useful for tracking the progress of an ongoing update.
+
+## Why do I see “Runtime extension management is disabled” when trying to purchase extensions in the admin?
+
+When trying to purchase an extension via the in-app store, the admin shows the error “Runtime extension management is disabled.” Even after setting runtime_extension_management: true in `config/packages/z-shopware.yaml` and deploying, the error will persist.
+
+This behavior is intentional. Runtime extension management is deliberately disabled in the Shopware Admin UI when using PaaS due to its ephemeral nature and cannot be enabled by changing the runtime_extension_management configuration.
+
+To use the in-app extension store, the `SwagExtensionStore` plugin must be installed via Composer. Once this extension is installed, the Shopware Admin can connect to the extension store and allow in-app purchases.
