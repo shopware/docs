@@ -48,7 +48,7 @@ When you override the existing fields, they will automatically replace the exist
 
 ## Overriding Bootstrap default Breakpoints
 
-Because Shopware uses the default values of Bootstrap for breakpoints in CSS, you won't find any configuration in the default theme of Shopware. However, you can change those in your custom theme. 
+Because Shopware uses the default values of Bootstrap for breakpoints in CSS, you won't find any configuration in the default theme of Shopware. However, you can change those in your custom theme.
 
 For detailed information about the configuration of breakpoints in Bootstrap you can refer to the [official documentation](https://getbootstrap.com/docs/5.3/layout/breakpoints/).
 
