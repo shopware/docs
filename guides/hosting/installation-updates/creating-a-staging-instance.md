@@ -20,7 +20,7 @@ Creating a staging environment allows you to test changes, updates, and new feat
 
 ## Creating the staging instance
 
-### Setting up the seperate Shopware installation
+### Setting up the separate Shopware installation
 
 The recommended way to create a staging instance is to deploy from your Git repository to the new environment. This ensures the codebase matches your live environment exactly.
 
