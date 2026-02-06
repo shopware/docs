@@ -15,7 +15,9 @@ Since Shopware 6.7.8.0 you have six new theme config fields available to overrid
 
 **Example:**
 
-```JSON
+::: code-group
+
+```json [PLUGIN_ROOT/src/Resources/theme.json]
 {
   "name": "My custom theme",
   "config": {
@@ -41,8 +43,9 @@ Since Shopware 6.7.8.0 you have six new theme config fields available to overrid
     }
   }
 }
-
 ```
+
+:::
 
 When you override the existing fields, they will automatically replace the existing values in Twig and JS. You can also access those values in your code the same way as other theme variables. If you also want these values to be used in SCSS to override the default Bootstrap configuration, you have to do this separately.
 
@@ -54,7 +57,9 @@ For detailed information about the configuration of breakpoints in Bootstrap, yo
 
 The theme config values are also available in SCSS, and you can reuse them to apply the same configuration in SCSS. This way you have a single point of truth for defining the breakpoints for your theme.
 
-```SCSS
+::: code-group
+
+```scss [PLUGIN_ROOT/src/Resources/app/storefront/src/scss/overrides.scss]
 $grid-breakpoints: (
     xs: $sw-breakpoint-xs,
     sm: $sw-breakpoint-sm,
@@ -64,3 +69,5 @@ $grid-breakpoints: (
     xxl: $sw-breakpoint-xxl
 );
 ```
+
+:::
