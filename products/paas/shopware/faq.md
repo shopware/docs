@@ -71,6 +71,6 @@ You can see the status of your PaaS application by running `sw-paas application 
 
 When trying to purchase an extension via the in-app store, the admin shows the error “Runtime extension management is disabled.” Even after setting runtime_extension_management: true in `config/packages/z-shopware.yaml` and deploying, the error will persist.
 
-This behavior is intentional. Runtime extension management is deliberately disabled in the Shopware Admin UI when using PaaS due to its ephemeral nature and cannot be enabled by changing the runtime_extension_management configuration.
+This behavior is intentional. Runtime extension management is deliberately disabled in the Shopware Admin UI when using PaaS due to its ephemeral nature, and cannot be enabled by changing the runtime_extension_management configuration.
 
 To use the in-app extension store, the `SwagExtensionStore` plugin must be installed via Composer. Once this extension is installed, the Shopware Admin can connect to the extension store and allow in-app purchases.
