@@ -1,19 +1,19 @@
 ---
 nav:
-  title: Override Responsive Breakpoints in a Theme
+  title: Override responsive breakpoints in a Theme
   position: 65
 
 ---
 
-# Override Responsive Breakpoints in a Theme
+# Override responsive breakpoints in a Theme
 
 Shopware uses the default breakpoint configuration of Bootstrap for responsive layout adjustments. However, these breakpoints are also passed to Twig and JS. If you want to override these breakpoints with your custom configuration, you can do so by overriding the corresponding theme config fields.
 
 ## Setting custom breakpoint values
 
-Since Shopware 6.7.8.0 you have 6 new theme config fields available to override specific breakpoint settings. These fields are hidden for users in the adminisration of Shopware and only serve as a developer feature. You can use these fields in the theme.json of your theme to set specific values for each breakpoint.
+Since Shopware 6.7.8.0 you have six new theme config fields available to override specific breakpoint settings. These fields are hidden for users in the administration of Shopware and only serve as a developer feature. You can use these fields in the theme.json of your theme to set specific values for each breakpoint.
 
-**Example:**  
+**Example:**
 
 ```JSON
 {
@@ -50,9 +50,9 @@ When you override the existing fields, they will automatically replace the exist
 
 Because Shopware uses the default values of Bootstrap for breakpoints in CSS, you won't find any configuration in the default theme of Shopware. However, you can change those in your custom theme.
 
-For detailed information about the configuration of breakpoints in Bootstrap you can refer to the [official documentation](https://getbootstrap.com/docs/5.3/layout/breakpoints/).
+For detailed information about the configuration of breakpoints in Bootstrap, you can refer to the [official documentation](https://getbootstrap.com/docs/5.3/layout/breakpoints/).
 
-The theme config values are also available in SCSS and you can reuse them to apply the same configuration in SCSS. This way you have a single point of truth for defining the breakpoints for your theme.
+The theme config values are also available in SCSS, and you can reuse them to apply the same configuration in SCSS. This way you have a single point of truth for defining the breakpoints for your theme.
 
 ```SCSS
 $grid-breakpoints: (
