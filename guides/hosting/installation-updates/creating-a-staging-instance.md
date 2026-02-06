@@ -82,7 +82,7 @@ After the database is imported and configured, activate staging mode:
 
 This command modifies the database for staging use. Pass `--no-interaction --force` to avoid interactive questions.
 
-### What staging mode does
+### What the staging mode does
 
 The staging command makes the following changes to your instance:
 
@@ -93,7 +93,7 @@ The staging command makes the following changes to your instance:
 - Verifies that ElasticSearch/OpenSearch indices do not exist
 - Displays a banner in the administration and storefront to indicate staging mode
 
-### What staging mode does not do
+### What the staging mode does not do
 
 - Does not duplicate the current installation
 - Does not copy the database or files
