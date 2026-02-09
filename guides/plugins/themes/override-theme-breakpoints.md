@@ -23,22 +23,22 @@ Since Shopware 6.7.8.0 you have six new theme config fields available to overrid
   "config": {
     "fields": {
       "sw-breakpoint-xs": {
-        "value": 0,
+        "value": 0
       },
       "sw-breakpoint-sm": {
-        "value": 576,
+        "value": 576
       },
       "sw-breakpoint-md": {
-        "value": 768,
+        "value": 768
       },
       "sw-breakpoint-lg": {
-        "value": 992,
+        "value": 992
       },
       "sw-breakpoint-xl": {
-        "value": 1200,
+        "value": 1200
       },
       "sw-breakpoint-xxl": {
-        "value": 1400,
+        "value": 1400
       }
     }
   }
