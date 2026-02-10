@@ -78,7 +78,8 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ## Common problems and troubleshooting
 
-::: tip Can't remove Language Pack: a foreign key constraint fails (\`shopware\`.\`sales_channel_domain\`…
+::: tip
+Can't remove Language Pack: a foreign key constraint fails (\`shopware\`.\`sales_channel_domain\`…
 Starting with **Shopware 6.7.7.0** and **Language Pack 5.37.1** the migration process was improved. If you encounter this issue,
 please update Shopware to >= 6.7.7.0, Language Pack to >= 5.37.1, remove the translation files created from running the
 command and run the command again. Or follow the updated migration guide.
