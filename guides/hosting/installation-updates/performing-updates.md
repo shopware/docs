@@ -139,7 +139,7 @@ bin/console system:update:finish
 bin/console sales-channel:maintenance:disable --all
 ```
 
-::: warning
+:::warning
 Only run these commands on the production server after the updated code has been deployed. The migrations must match the deployed code version.
 :::
 
