@@ -7,7 +7,7 @@ nav:
 
 # Add Custom CLI Commands
 
-Shopware CLI commands are based on Symfony Console. This means that creating custom commands in Shopware plugins follows the standard Symfony approach. 
+Shopware CLI commands are based on Symfony Console. This means that creating custom commands in Shopware plugins follows the standard Symfony approach.
 
 See the [official Symfony documentation](https://symfony.com/doc/current/console.html) for the full guide.
 
