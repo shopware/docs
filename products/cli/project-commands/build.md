@@ -105,6 +105,8 @@ MJML compilation requires the `mjml` package to be installed via NPM in your bui
 You can configure the build process with a `.shopware-project.yml` file. The following options are available:
 
 ```yaml
+compatibility_date: '2026-02-11'
+
 build:
   # Browserlist configuration for Storefront
   browserslist: 'defaults'
@@ -133,6 +135,20 @@ build:
       - custom/plugins
       - custom/static-plugins
 ```
+
+## compatibility_date
+
+You can define a `compatibility_date` in `.shopware-project.yml`:
+
+```yaml
+compatibility_date: '2026-02-11'
+```
+
+The `compatibility_date` lets Shopware CLI introduce behavior changes without breaking existing projects by default. New or potentially breaking changes are activated only for configurations that opt in with a date at or after the feature's rollout date.
+
+- Format: `YYYY-MM-DD`
+- If the field is missing, Shopware CLI uses `2026-02-11` as fallback
+- When missing, Shopware CLI logs a warning during config loading
 
 ## Supporting bundles
 
