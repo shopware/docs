@@ -55,7 +55,7 @@ bin/console sales-channel:maintenance:enable --all
 For major updates, consider the following additional preparations:
 
 - **Update PHP version**: Update the PHP version to the minimum required version for the new Shopware version *before* updating Shopware. Shopware versions always support an overlapping PHP version, so this is safe to do beforehand. You can find the minimum required PHP version in the [System Requirements](../../installation/requirements.md).
-- **Check the UPGRADE.md**: Review the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown) for all breaking changes and migration instructions.
+- **Check upgrade changes**: Review the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown) for all breaking changes and migration instructions.
 - **Update extensions first**: Update all extensions to their latest versions before updating Shopware to ensure a smooth transition. After updating Shopware, update all extensions again to get versions compatible with the new Shopware version.
 
 ## Performing the update via CLI (recommended)
