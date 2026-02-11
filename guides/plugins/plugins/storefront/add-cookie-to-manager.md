@@ -143,6 +143,10 @@ Since Shopware 6.7.3.0, cookie configurations include a hash that tracks changes
 This helps maintain transparency by re-prompting users when cookie handling changes, supporting GDPR compliance requirements. The hash is automatically calculated from all cookie configurations provided by the `CookieProvider`.
 
 ::: info
+**Hash Storage Format**: The configuration hash is stored in the browser's `cookie-config-hash` cookie as an object where the language ID is the key and the cookie hash is the value, for example: `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`. This enables per-language consent tracking. Since cookies are stored per domain by the browser, installations using different domains for different languages don't encounter tracking conflicts. The language ID is specifically used when multiple languages are served from the same domain.
+:::
+
+::: info
 While this feature helps with GDPR compliance, shop owners are responsible for ensuring their overall cookie usage, privacy policies, and data handling practices comply with GDPR and other applicable regulations.
 :::
 
@@ -150,8 +154,8 @@ While this feature helps with GDPR compliance, shop owners are responsible for e
 
 1. Your plugin adds/modifies cookies via the `CookieGroupsCollectEvent`
 2. Shopware calculates a hash of the entire cookie configuration
-3. The hash is stored in the user's browser
-4. On the next visit, if the hash differs, the consent banner appears again
+3. The hash is stored in the user's browser as an object where the language ID is the key and the hash is the value (e.g., `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`)
+4. On the next visit, if the hash differs for the current language, the consent banner appears again
 5. Users are informed about changes and can make new choices
 
 This automatic re-consent mechanism helps shop owners maintain transparency about cookie changes.
