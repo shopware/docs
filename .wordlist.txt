@@ -585,6 +585,7 @@ MyExtension
 MyPlugin
 MyTestClass
 MyTestInterface
+NATS
 NPM
 NUR
 NVDA
@@ -913,6 +914,9 @@ Subcommands
 SubjectAware
 SubjectStorer
 Subprocessor
+SubscriptionCartConvertedSubscriber
+SubscriptionOrderPlacedSubscriber
+SubscriptionTransformedSubscriber
 SuggestPage
 SwagAdvDevBundle
 SwagB
@@ -1138,6 +1142,7 @@ bottleJS
 bottleJs
 bourgau
 brainer
+breakpoint
 browserslist
 bruteforce
 bugfix
@@ -1313,6 +1318,7 @@ editorconfig
 eg
 elasticsearch
 employeeId
+enablement
 english
 enqueue
 entityIds
