@@ -16,7 +16,7 @@ The Docker setup installs Shopware with development dependencies (`require-dev`)
 - [`shopware/dev-tools`](https://github.com/shopware/dev-tools)
 - Symfony profiler
 - [Demo data](https://github.com/shopware/SwagPlatformDemoData)
-- Linters and testing tools
+- Linting and testing tools
 
 Your local project is ready for debugging, profiling, and extension development out of the box.
 
