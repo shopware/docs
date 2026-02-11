@@ -41,3 +41,7 @@ npx playwright test --ui
 
 This will launch the Playwright Test Runner UI, where you can select and run specific tests.
 By following these steps, you can work locally with the ATS and test your changes in your Shopware instance.
+
+:::info
+When running your tests, the Acceptance Test Suite operates under the assumption that any themes are compiled beforehand and the "Shopware default theme" is being used for Storefront. Custom themes may require some adjustments for certain locators to work properly.
+:::

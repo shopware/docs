@@ -355,7 +355,7 @@ describe('HelloWorldPlugin tests', () => {
 });
 ```
 
-Afterwards, we can add more tests as we want to. To give an example, it's useful to rest if our plugin returns the "Hello World" test as expected:
+Afterwards, we can add more tests as we want to. To give an example, it's useful to test if our plugin returns the "Hello World" test as expected:
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/test/plugin/hello-world/hello-world.plugin.test.js
