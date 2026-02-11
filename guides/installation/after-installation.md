@@ -231,7 +231,7 @@ For advanced topics like:
 - image variants
 - Minio (S3)
 - OrbStack routing
-- production image proxying
+- production image proxy configuration
 - service internals
 
 see [Advanced Options](advanced-options.md)
