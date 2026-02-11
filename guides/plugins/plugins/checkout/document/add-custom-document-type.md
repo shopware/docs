@@ -170,7 +170,7 @@ Your custom document renderer has to implement the `Shopware\Core\Checkout\Docum
 * `supports`: Has to return a string of the document type it supports. We named our document type "**example**", so our renderer has to return "**example**".
 * `render`: This needs to return the instance `Shopware\Core\Checkout\Document\Renderer\RendererResult`, which will contain the instance of `Shopware\Core\Checkout\Document\Renderer\RenderedDocument` based on each `orderId`. You will have access to the array of `DocumentGenerateOperation` which contains all respective orderIds, the context and the instance of `Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig` (additional configuration).
 
-Furthermore, your renderer has to be registered to the [service container](../../plugin-fundamentals/dependency-injection) using the tag `document.renderer`.
+With `autoconfigure` enabled, the renderer is automatically registered because it extends `AbstractDocumentRenderer` — no additional configuration or attributes are needed.
 
 Let's have a look at an example renderer:
 
@@ -339,50 +339,16 @@ Here's what the function does:
 * If an error occurs, the exception is caught and the error message is added to the `RendererResult` object as an error.
 * The `RendererResult` object is returned.
 
-The service definition for our custom renderer would look like this:
-
-```xml
-<service id="Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer">
-    <argument type="service" id="order.repository"/>
-    <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
-    <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
-    <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
-    <tag name="document.renderer"/>
-</service>
-```
+With autowire enabled, all constructor dependencies are injected automatically.
 
 ### Adding a file type renderer
 
 Depending on the file type we either get the content with `$this->fileRendererRegistry->render()` or we need to create the content on our own.
 `DocumentFileRendererRegistry` acts as a central registry for document file renderers based on file extensions (e.g., .pdf, .html). It delegates the rendering of documents to the appropriate renderer implementation.
 
-### Registering the renderer in the service container
+### Registering the renderer
 
-Now we need to register our custom `ExampleDocumentRenderer` in the service container. Create or update your `services.xml` file:
-
-::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer">
-            <argument type="service" id="order.repository"/>
-            <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
-            <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
-            <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
-            <tag name="document.renderer"/>
-        </service>
-    </services>
-</container>
-```
-
-:::
-
-Note that we're using the tag `document.renderer` to register our custom document renderer. The tag name matches what was mentioned earlier - your renderer has to be registered using the tag `document.renderer`.
+With `autoconfigure` enabled, the renderer is automatically registered because it extends `AbstractDocumentRenderer`. Combined with autowire, all constructor dependencies are injected automatically. No explicit service configuration is needed.
 
 ### Adding a document type template
 

@@ -32,8 +32,11 @@ use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[AsDecorator(decorates: ExampleRoute::class)]
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 class ExampleRouteDecorator extends AbstractExampleRoute
 {
@@ -41,7 +44,7 @@ class ExampleRouteDecorator extends AbstractExampleRoute
 
     private AbstractExampleRoute $decorated;
 
-    public function __construct(EntityRepository $exampleRepository, AbstractExampleRoute $exampleRoute)
+    public function __construct(EntityRepository $exampleRepository, #[AutowireDecorated] AbstractExampleRoute $exampleRoute)
     {
         $this->exampleRepository = $exampleRepository;
         $this->decorated = $exampleRoute;
@@ -70,23 +73,4 @@ As you can see, our decorated route has to extend from the `AbstractExampleRoute
 
 ## Registering route
 
-Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        ...
-
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator" decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" public="true">
-            <argument type="service" id="swag_example.repository"/>
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator.inner"/>
-        </service>
-    </services>
-</container>
-```
+With autowiring enabled, the `#[AsDecorator]` attribute on the class is sufficient to register the decorator. No explicit service configuration is needed. The `#[AsDecorator(decorates: ExampleRoute::class)]` attribute tells Symfony to automatically decorate the `ExampleRoute` service with `ExampleRouteDecorator`.

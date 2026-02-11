@@ -42,9 +42,6 @@ The `RobotsDirectiveParsingEvent` is dispatched after `robots.txt` content is pa
 
 This example shows how to dynamically add restrictions for AI crawlers:
 
-<Tabs>
-<Tab title="RobotsExtensionListener.php">
-
 ```PHP
 <?php declare(strict_types=1);
 
@@ -56,8 +53,10 @@ use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirective;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsUserAgentBlock;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[Package('storefront')]
+#[AsEventListener(event: RobotsDirectiveParsingEvent::class)]
 class RobotsExtensionListener
 {
     public function __construct(
@@ -89,34 +88,11 @@ class RobotsExtensionListener
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```XML
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\Example\Listener\RobotsExtensionListener">
-            <argument type="service" id="logger"/>
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+The `#[AsEventListener]` attribute registers this class as an event listener automatically, so no manual service registration is needed. The `LoggerInterface` dependency is resolved through autowiring.
 
 ## Handling custom directives
 
 The `RobotsUnknownDirectiveEvent` is dispatched when an unknown directive is encountered. Use this to support vendor-specific directives or prevent warnings for known non-standard directives:
-
-<Tabs>
-<Tab title="CustomDirectiveListener.php">
 
 ```PHP
 <?php declare(strict_types=1);
@@ -125,8 +101,10 @@ namespace Swag\Example\Listener;
 
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[Package('storefront')]
+#[AsEventListener(event: RobotsUnknownDirectiveEvent::class)]
 class CustomDirectiveListener
 {
     public function __invoke(RobotsUnknownDirectiveEvent $event): void
@@ -141,33 +119,11 @@ class CustomDirectiveListener
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```XML
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\Example\Listener\CustomDirectiveListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+The `#[AsEventListener]` attribute registers this class as an event listener automatically, so no manual service registration is needed.
 
 ## Validation and parse issues
 
 You can add validation warnings or errors during parsing using the `ParseIssue` class. This example shows common validation scenarios:
-
-<Tabs>
-<Tab title="RobotsValidationListener.php">
 
 ```PHP
 <?php declare(strict_types=1);
@@ -179,8 +135,10 @@ use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
 use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 #[Package('storefront')]
+#[AsEventListener(event: RobotsDirectiveParsingEvent::class)]
 class RobotsValidationListener
 {
     public function __invoke(RobotsDirectiveParsingEvent $event): void
@@ -241,25 +199,6 @@ class RobotsValidationListener
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```XML
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\Example\Listener\RobotsValidationListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+The `#[AsEventListener]` attribute registers this class as an event listener automatically, so no manual service registration is needed.
 
 Issues are automatically logged when the `robots.txt` configuration is saved in the Administration. Use `WARNING` for recommendations and `ERROR` for critical problems that prevent proper generation.

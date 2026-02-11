@@ -54,26 +54,9 @@ As you might have seen, this controller isn't too different from the controller 
 The route attribute has an added `defaults: ['XmlHttpRequest' => true]` to allow XmlHttpRequest, and it returns a `JsonResponse` instead of a normal `Response`.
 Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
 
-The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyway:
+The controller is automatically registered via autowiring. The `routes.xml` is identical as in the before mentioned article, but here it is for reference anyway:
 
 ::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="SwagBasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
-</container>
-```
 
 ```xml [PLUGIN_ROOT/src/Resources/config/routes.xml]
 <?xml version="1.0" encoding="UTF-8" ?>

@@ -35,9 +35,12 @@ So let's do that, here's an example of a decorated mail service:
 namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Content\Mail\Service\AbstractMailService;
+use Shopware\Core\Content\Mail\Service\MailService;
 use Shopware\Core\Framework\Context;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 use Symfony\Component\Mime\Email;
 
+#[AsDecorator(decorates: MailService::class)]
 class AddDataToMails extends AbstractMailService
 {
     /**
@@ -74,29 +77,9 @@ In this example, we're adding `myCustomData` to the `$templateData`, so that one
 
 If we add <code v-pre>{{ myCustomData }}</code> to any mail template, it should then print "Example data". You can use any kind of data here, e.g. an array of data.
 
-### Register your decorator
+### Registration via attribute
 
-Of course you still have to register the decoration to the service container. Beware of the `decorates` attribute of our service.
-
-Here's the respective example `services.xml`:
-
-::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\AddDataToMails" decorates="Shopware\Core\Content\Mail\Service\MailService">
-            <argument type="service" id="Swag\BasicExample\Service\AddDataToMails.inner" />
-        </service>
-    </services>
-</container>
-```
-
-:::
+With the `#[AsDecorator]` attribute on the class and autowire enabled, the decoration is configured automatically — no explicit service configuration is needed.
 
 ## Adding data via subscriber
 
@@ -138,26 +121,6 @@ class MyMailSubscriber implements EventSubscriberInterface
 
 :::
 
-### Register your event subscriber
+### Automatic registration
 
-You have to register the subscriber to the service container as well.
-
-Here's the respective example `services.xml`:
-
-::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MyMailSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
-
-:::
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed.

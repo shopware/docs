@@ -41,10 +41,8 @@ $sass-plugin-header-bg-color: #ffcc00 !default;
 
 You can add a new subscriber according to the [Listening to events](../plugin-fundamentals/listening-to-events) guide. In this example we name the subscriber `ThemeVariableSubscriber`. The subscriber listens to the `ThemeCompilerEnrichScssVariablesEvent`.
 
-<Tabs>
-<Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
-
 ```php
+// <plugin root>/src/Subscriber/ThemeVariableSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -69,27 +67,7 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-</Tab>
-
-<Tab title="<plugin root>/src/Resources/config/services.xml">
-
-```xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed.
 
 The `ThemeCompilerEnrichScssVariablesEvent` provides the `addVariable()` method which takes the following parameters:
 
@@ -144,10 +122,8 @@ As you can see in the example, we add an input field of the type colorpicker for
 
 In order to be able to read this config, you have to inject the `SystemConfigService` to your subscriber:
 
-<Tabs>
-<Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
-
 ```php
+// <plugin root>/src/Subscriber/ThemeVariableSubscriber.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -186,29 +162,7 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 }
 ```
 
-</Tab>
-
-<Tab title="<plugin root>/src/Resources/config/services.xml">
-
-```xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
-            <!-- add argument `SystemConfigService` -->
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed. The `SystemConfigService` argument is injected automatically via `autowire`.
 
 * The `SystemConfigService` provides a `get()` method where you can access the configuration structure in the first parameter with a dot notation syntax like `SwagBasicExample.config.fieldName`. The second parameter is the sales channel `id`. With this `id` the config fields can be accessed for each sales channel.
 * You can get the sales channel id through the getter `getSalesChannelId()` of the `ThemeCompilerEnrichScssVariablesEvent`.

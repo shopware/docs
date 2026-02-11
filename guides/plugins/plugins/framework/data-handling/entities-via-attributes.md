@@ -46,13 +46,17 @@ For example, you can add the `Field` attribute to a property to define the type 
 
 ## Register the entity
 
-To register the entity, you have to add this class to the DI container in the `services.xml` file.
-This is done by adding the `shopware.entity` tag to the service definition.
+To register the entity, you need to tag the class with `shopware.entity`. This is done by adding the `#[AutoconfigureTag]` PHP attribute directly to the entity class:
 
-```xml
-<service id="Examples\ExampleEntity">
-    <tag name="shopware.entity"/>
-</service>
+```php
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+
+#[AutoconfigureTag('shopware.entity')]
+#[EntityAttribute('example_entity', collectionClass: ExampleEntityCollection::class)]
+class ExampleEntity extends Entity
+{
+    // ...
+}
 ```
 
 That's it.

@@ -27,22 +27,9 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`, so let's do this.
 
-```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+With `autowire` enabled in your `services.php`, the repository is automatically injected into the constructor — no additional configuration is needed.
 
-    <services>
-        <service id="Swag\BasicExample\Service\ReadingData" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
-</container>
-```
-
-And here's the respective class including its constructor:
+Here's the service class including its constructor:
 
 ```php
 // SwagBasicExample/src/Service/ReadingData.php
@@ -63,7 +50,7 @@ class ReadingData
 }
 ```
 
-So we registered a custom service called `ReadingData` and applied the repository as a constructor parameter. If you want to fetch data for another entity, just switch the `id` in the `services.xml` to whatever repository you need, e.g. `order.repository` for orders.
+So we registered a custom service called `ReadingData` and applied the repository as a constructor parameter. If you want to fetch data for another entity, just change the type-hint in the constructor to the repository you need. The repository naming convention is `entity_name.repository`, e.g. `order.repository` for orders.
 
 ### Using the repository
 

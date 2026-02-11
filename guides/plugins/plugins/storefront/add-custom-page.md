@@ -56,7 +56,7 @@ class ExampleController extends StorefrontController
 It has a method `examplePage`, which is accessible via the route `example-page`.
 This method will be responsible for loading your page later on, but we'll leave it like that for now.
 
-Don't forget to [register your controller via the DI](add-custom-controller#services-xml-example).
+Don't forget to [register your controller via the DI](add-custom-controller#services-php-example).
 
 ### Creating the pageloader
 
@@ -144,18 +144,9 @@ It will be called `ExamplePageLoadedEvent`.
 
 The last thing to do in this method is to return your new page instance.
 
-Remember to register your new page loader in the DI container:
+### Registering the page loader
 
-::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
-    <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
-    <argument type="service" id="event_dispatcher"/>
-</service>
-```
-
-:::
+With autowire enabled, the `ExamplePageLoader` is automatically registered — its constructor dependencies (`GenericPageLoaderInterface` and `EventDispatcherInterface`) are injected automatically. No explicit service configuration is needed for the page loader.
 
 #### Adjusting the controller
 
@@ -197,19 +188,30 @@ class ExampleController extends StorefrontController
 
 Note, that we've added the page to the template variables.
 
-#### Adjusting the services.xml
+#### Registering the controller
 
-In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
+The controller still needs explicit registration because it must be public and have the container injected. The `ExamplePageLoader` is injected via autowire automatically.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-    <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
-    <call method="setContainer">
-        <argument type="service" id="service_container"/>
-    </call>
-</service>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services()
+        ->defaults()
+            ->autowire()
+            ->autoconfigure();
+
+    $services->load('Swag\\BasicExample\\', '../../../')
+        ->exclude('../../../{Resources,Migration}');
+
+    $services->set(\Swag\BasicExample\Storefront\Controller\ExampleController::class)
+        ->public()
+        ->call('setContainer', [service('service_container')]);
+};
 ```
 
 :::

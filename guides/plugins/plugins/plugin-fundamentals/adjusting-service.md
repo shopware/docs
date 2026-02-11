@@ -21,27 +21,7 @@ Refer to this video on **[Decorating services](https://www.youtube.com/watch?v=R
 
 ## Decorating the service
 
-First of all we have to create a new service for this example which gets decorated in the next step. Then we have to add a new service to our `services.xml` with the attribute `decorates` pointing to our service we want to decorate. Next we have to add our service decorator as argument, but we append an `.inner` to the end of the service to keep the old one as reference.
-
-Here's our example `services.xml`:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService" />
-
-        <service id="Swag\BasicExample\Service\ExampleServiceDecorator" decorates="Swag\BasicExample\Service\ExampleService">
-            <argument type="service" id="Swag\BasicExample\Service\ExampleServiceDecorator.inner" />
-        </service>
-    </services>
-</container>
-```
+First of all we have to create a new service for this example which gets decorated in the next step. With `autowire` and `autoconfigure` enabled, you can use the `#[AsDecorator]` attribute on your decorator class to define the decoration — no `services.php` configuration is needed.
 
 Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
 
@@ -59,7 +39,7 @@ namespace Swag\BasicExample\Service;
 
 abstract class AbstractExampleService
 {
-    abstract public function getDecorated(): AbstractExampleService; 
+    abstract public function getDecorated(): AbstractExampleService;
 
     abstract public function doSomething(): string;
 }
@@ -93,7 +73,7 @@ class ExampleService extends AbstractExampleService
 
 The last step is creating our decorated service called `ExampleServiceDecorator` in this example. Our decorated service has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated service passed into the constructor.
 
-Your service could then look like below:
+The `#[AsDecorator]` attribute replaces the need for any XML or PHP service configuration for the decoration:
 
 ```php
 // <plugin root>/src/Service/ExampleServiceDecorator.php
@@ -101,6 +81,9 @@ Your service could then look like below:
 
 namespace Swag\BasicExample\Service;
 
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+
+#[AsDecorator(decorates: ExampleService::class)]
 class ExampleServiceDecorator extends AbstractExampleService
 {
     private AbstractExampleService $decoratedService;
@@ -138,7 +121,7 @@ namespace Swag\BasicExample\Service;
 
 abstract class AbstractExampleService
 {
-    abstract public function getDecorated(): AbstractExampleService; 
+    abstract public function getDecorated(): AbstractExampleService;
 
     abstract public function doSomething(): string;
 

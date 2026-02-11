@@ -98,22 +98,7 @@ If you now call the route `/cartAdd`, it should add the product with the ID `myE
 
 Sometimes you really want to have a custom line item handler, e.g. for your own new entity, such as a bundle entity or alike. For that case, you can create your own line item handler, which will then be available in the `LineItemFactoryRegistry` as a valid `type` option.
 
-You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleHandler">
-            <tag name="shopware.cart.line_item.factory" />
-        </service>
-    </services>
-</container>
-```
+You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface`. With `autoconfigure` enabled, the class is automatically tagged with `shopware.cart.line_item.factory` because it implements `LineItemFactoryInterface` — no additional configuration or attributes are needed.
 
 Let's first have a look at an example handler:
 
@@ -166,7 +151,7 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
   Here you can define which properties of your line item may actually be updated. E.g. if you really want property X to contain "Y", you can do so here.
 
-Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
+Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. While `CartProcessorInterface` is autoconfigured, we use `#[AutoconfigureTag]` here to set a custom `priority`. A simple processor for our ExampleHandler could look like this:
 
 ```php
 // <plugin root>/Core/Checkout/Cart/ExampleProcessor.php
@@ -180,7 +165,9 @@ use Shopware\Core\Checkout\Cart\CartBehavior;
 use Shopware\Core\Checkout\Cart\CartProcessorInterface;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\Checkout\Cart\LineItem\CartDataCollection;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
+#[AutoconfigureTag('shopware.cart.processor', ['priority' => 4800])]
 class ExampleProcessor implements CartProcessorInterface
 {
 
@@ -198,19 +185,6 @@ class ExampleProcessor implements CartProcessorInterface
 As you can see, this processor takes an "original cart" as an input and adds all instances of our example type to a second cart, which will actually be persisted.
 
 Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector).
-
-Now register this processor in your `services.xml` like this:
-
-```html
-// <plugin root>/Resources/config/services.xml
-...
-<services>
-    ...
-    <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
-        <tag name="shopware.cart.processor" priority="4800"/>
-    </service>
-</services>
-```
 
 And that's it. You should now be able to create line items of type `example`.
 

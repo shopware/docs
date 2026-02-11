@@ -50,23 +50,7 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 
-For this subscriber to work we need to register it in the service container via the `services.xml` file:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed.
 
 Now our `ProductSubscriber` should be called every time a product is loaded, so we can resolve the custom field `custom_linked_product`.
 
@@ -116,24 +100,7 @@ Inside the `onProductLoaded` method we can get access to the loaded product enti
 
 But, how we can load the linked product by its `id` if the custom field was set? We have to inject the product repository to achieve it.
 
-First we update the `services.xml` and inject the product repository.
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <argument type="service" id="product.repository"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
+With `autowire` enabled in your `services.php`, the product repository is automatically injected into the constructor. Combined with `autoconfigure`, the `kernel.event_subscriber` tag is applied automatically because the class implements `EventSubscriberInterface` — no additional configuration is needed.
 
 Now we can use the product repository in our subscriber.
 

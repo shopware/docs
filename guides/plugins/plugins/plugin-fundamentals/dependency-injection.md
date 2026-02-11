@@ -28,8 +28,8 @@ It is also available on our free online training ["Shopware 6 Backend Developmen
 ## Injecting another service
 
 This example will be about injecting the `SystemConfigService` into our `ExampleService`.
-First, we are preparing the `ExampleService` PHP class.
-Add the `SystemConfigService` as parameter to the constructor of the service class.
+
+With autowire enabled in your `services.php`, constructor injection works automatically. Simply add the service as a parameter to your constructor — Symfony will resolve and inject it for you.
 
 ::: code-group
 
@@ -57,30 +57,4 @@ class ExampleService
 
 :::
 
-### Using autowire and autoconfigure
-
-If you previously declared `autowire` and `autoconfigure` in your `services.xml` file, you do not need to do anything else.
-The `SystemConfigService` will be injected into the `ExampleService` automatically.
-
-### Explicit declaration
-
-If you declared the service explicitly, you need to add the `SystemConfigService` as argument to the service.
-
-::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-        </service>
-    </services>
-</container>
-```
-
-:::
+No additional configuration in `services.php` is required — autowire handles the injection automatically.

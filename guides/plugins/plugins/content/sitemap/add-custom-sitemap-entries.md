@@ -51,8 +51,7 @@ So let's get started.
 Adding custom URLs to the sitemap is done by adding a so-called "URL provider" to the system.
 
 This is done by adding a new class, which is extending from `Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider`.
-It then has to be registered to the [service container][dependency-injection] using the tag
-`shopware.sitemap_url_provider`.
+With `autoconfigure` enabled, the class is automatically tagged with `shopware.sitemap_url_provider` because it extends `AbstractUrlProvider` — no additional configuration or attributes are needed.
 
 It has to provide three methods:
 
@@ -63,9 +62,6 @@ a class via decoration. Learn more about this [here][adjusting-services].
 containing an array of all URLs to be added.
 
 Let's have a look at the example class:
-
-<Tabs>
-<Tab title="CustomUrlProvider.php">
 
 ```php
 // <plugin root>/src/Core/Content/Sitemap/Provider/CustomUrlProvider.php
@@ -165,32 +161,6 @@ class CustomUrlProvider extends AbstractUrlProvider
     }
 }
 ```
-
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider" >
-            <argument type="service" id="swag_example.repository" />
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <argument type="service" id="router"/>
-
-            <tag name="shopware.sitemap_url_provider" />
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
 
 Let's go through this step by step.
 Start by creating a new class `CustomUrlProvider`, which is extending from the `AbstractUrlProvider`.

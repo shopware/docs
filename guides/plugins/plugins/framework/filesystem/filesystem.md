@@ -78,27 +78,42 @@ class ExampleFilesystemService
 }
 ```
 
-This service makes use of the private und public filesystem. As you already know, this php class has to be registered as a service in the dependency injection container. This is also the place where we define which filesystem will be handed over to the constructor. To make use of the plugin private and public files, the service definition could look like this:
+This service makes use of the private and public filesystem. Since both constructor arguments are of the same type (`FilesystemOperator`), autowiring alone cannot determine which filesystem to inject. You can use the `#[Autowire]` attribute to specify the service IDs explicitly:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Service/ExampleFilesystemService.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleFilesystemService">
-            <argument type="service" id="swag_basic_example.filesystem.public"/>
-            <argument type="service" id="swag_basic_example.filesystem.private"/>
-            <!--
-            There are also predefined file system services
-            <argument type="service" id="shopware.filesystem.private"/>
-            <argument type="service" id="shopware.filesystem.public"/>
-            -->
-        </service>
-    </services>
-</container>
+namespace Swag\BasicExample\Service;
+
+use League\Flysystem\FilesystemOperator;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+
+class ExampleFilesystemService
+{
+    public function __construct(
+        #[Autowire(service: 'swag_basic_example.filesystem.public')]
+        private FilesystemOperator $fileSystemPublic,
+        #[Autowire(service: 'swag_basic_example.filesystem.private')]
+        private FilesystemOperator $fileSystemPrivate
+        // There are also predefined file system services:
+        // #[Autowire(service: 'shopware.filesystem.private')]
+        // #[Autowire(service: 'shopware.filesystem.public')]
+    ) {
+    }
+
+    public function readPrivateFile(string $filename) {
+        return $this->fileSystemPrivate->read($filename);
+    }
+
+    public function writePrivateFile(string $filename, string $content) {
+        $this->fileSystemPrivate->write($filename, $content);
+    }
+
+    public function listPublicFiles(): array {
+        return $this->fileSystemPublic->listContents();
+    }
+}
 ```
 
 Now, this service can be used to read or write files to the private plugin filesystem or to list all files in the public plugin filesystem. You should visit the [Flysystem API documentation](https://flysystem.thephpleague.com/docs/usage/filesystem-api/) for more information.

@@ -68,24 +68,9 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed. Likewise, `autowire` takes care of injecting the `SystemConfigService` constructor argument automatically.
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MySubscriber">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
-
-Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
+Now create a new field in your subscriber and pass in the `SystemConfigService`:
 
 ```php
 // <plugin root>/src/Subscriber/MySubscriber.php

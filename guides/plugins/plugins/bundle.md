@@ -33,7 +33,7 @@ project-root/
 │       │   └── Migration1234567890YourMigration.php
 │       └── Resources/
 │           ├── config/
-│           │   ├── services.xml
+│           │   ├── services.php
 │           │   └── routes.xml
 │           ├── views/
 │           │   └── storefront/
@@ -92,7 +92,7 @@ App\YourBundleName\YourBundleName::class => ['all' => true],
 ## Adding services, twig templates, routes, theme, etc
 
 You can add services, twig templates, routes, etc. to your bundle like you would do in a plugin.
-Just create `Resources/config/services.xml` and `Resources/config/routes.xml` files or `Resources/views` for twig templates.
+Just create `Resources/config/services.php` and `Resources/config/routes.xml` files or `Resources/views` for twig templates.
 The bundle will be automatically detected and the files will be loaded.
 
 To mark your bundle as a theme, it's enough to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.

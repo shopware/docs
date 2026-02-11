@@ -23,9 +23,6 @@ First, to communicate stock alterations to a third-party service, you will have 
 * the old quantity and
 * the new quantity.
 
-<Tabs>
-<Tab title="StockStorageDecorator.php">
-
 ```php
 // <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
@@ -36,14 +33,20 @@ use Shopware\Core\Content\Product\Stock\AbstractStockStorage;
 use Shopware\Core\Content\Product\Stock\StockData;
 use Shopware\Core\Content\Product\Stock\StockDataCollection;
 use Shopware\Core\Content\Product\Stock\StockLoadRequest;
+use Shopware\Core\Content\Product\Stock\StockStorage;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\Content\Product\Stock\StockAlteration;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 
+#[AsDecorator(decorates: StockStorage::class)]
 class StockStorageDecorator extends AbstractStockStorage
 {
-    public function __construct(private AbstractStockStorage $decorated, private MyStockApi $stockApi)
-    {
+    public function __construct(
+        #[AutowireDecorated] private AbstractStockStorage $decorated,
+        private MyStockApi $stockApi,
+    ) {
     }
 
     public function getDecorated(): AbstractStockStorage
@@ -75,27 +78,7 @@ class StockStorageDecorator extends AbstractStockStorage
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\Example\Service\StockStorageDecorator" decorates="Shopware\Core\Content\Product\Stock\StockStorage">
-            <argument type="service" id="Swag\Example\Service\StockStorageDecorator.inner" />
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With autowiring enabled, the `#[AsDecorator]` attribute on the class is sufficient to register the decorator. No additional service configuration is needed.
 
 The alter method will be called when the stock of a product should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
 
