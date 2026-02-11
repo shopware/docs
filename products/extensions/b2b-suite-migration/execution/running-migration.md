@@ -32,31 +32,41 @@ This command initiates the migration process, transferring all components and en
 
 You could also specify which component to migrate. This is useful for testing or when you want to migrate specific components without affecting others. The name of the component should match the technical name defined in the [configurator](../concept/technical-terms-and-concepts.md#configurator).
 
-   ```bash
-   bin/console b2b:migrate:commercial component_name_1 component_name_2
-   ```
+ ```bash
+ bin/console b2b:migrate:commercial component_name_1 component_name_2
+ ```
 
-    **Example**: To migrate only the `shopping_list` and `quote_management` components:
+**Example**: To migrate only the `shopping_list` and `quote_management` components:
 
-     ```bash
-     bin/console b2b:migrate:commercial quote_management shopping_list
-     ```
+ ```bash
+ bin/console b2b:migrate:commercial quote_management shopping_list
+ ```
 
-    **Note**: The `employee_management` component is a prerequisite for all other B2B components and is migrated first by default, regardless of the specified order. For instance, executing `bin/console b2b:migrate:commercial quote_management shopping_list` will migrate `employee_management` first, followed by `quote_management`, and then `shopping_list`. The order of components
-    listed in the command does not affect the migration sequence. The order of migration is determined by the priority of the configurators, which is defined in the service definition file. The configurator with the highest priority will be executed first.
+**Note**: The `employee_management` component is a prerequisite for all other B2B components and is migrated first by default, regardless of the specified order. For instance, executing `bin/console b2b:migrate:commercial quote_management shopping_list` will migrate `employee_management` first, followed by `quote_management`, and then `shopping_list`. The order of components
+listed in the command does not affect the migration sequence. The order of migration is determined by the priority of the configurators, which is defined in the service definition file. The configurator with the highest priority will be executed first.
 
 #### 3. How to run the migration command with a specific batch size
 
 To control the number of records processed in each batch, you can specify a batch size using the `--batch-size` option. This is useful for managing memory usage and performance during migration.
 
-   ```bash
-   bin/console b2b:migrate:commercial --batch-size=100
-   ```
+ ```bash
+ bin/console b2b:migrate:commercial --batch-size=100
+ ```
 
-   **Note**: Adjust the batch size according to your system's capabilities and the size of the data being migrated.
+ **Note**: Adjust the batch size according to your system's capabilities and the size of the data being migrated.
 
 ::: info
 This command utilizes the message queue system to process the migration in the background. Even after the command execution completes, the migration may still be ongoing. To monitor the migration status in real-time, run the `bin/console b2b:migrate:progress` command in a separate terminal window.
+:::
+
+## Component-Specific Notes
+
+### Budget Management
+
+::: warning
+The Organization Unit of the budget will be empty after migration. This is expected behavior and you will need to manually assign each budget to organization units in B2B Commercial after the migration is complete.
+
+**Note**: Budget Management feature is available from Commercial 7.6.0 and above.
 :::
 
 ### Check Migration Status

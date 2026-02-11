@@ -32,7 +32,7 @@ You may want to pin the Docker image to a specific sha256 digest to ensure you a
 #syntax=docker/dockerfile:1.4
 
 ARG PHP_VERSION=8.3
-FROM ghcr.io/shopware/docker-base:$PHP_VERSION-caddy AS base-image
+FROM ghcr.io/shopware/docker-base:$PHP_VERSION-frankenphp AS base-image
 FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 
 FROM shopware-cli AS build
@@ -60,39 +60,19 @@ Instead of copying the Dockerfile to your project, rather run `composer req shop
 ## Available Tags / Versioning
 
 ::: info
-We recommend using FrankenPHP over Caddy or Nginx, as it does automatic resource allocation and requires just one process to run PHP, which is better suited for containerized environments. However, note that tracing (especially via Blackfire) is currently not supported in FrankenPHP. If you want to use tracing, we recommend using Caddy.
+We recommend using FrankenPHP over Caddy or Nginx, as it does automatic resource allocation and requires just one process to run PHP, which is better suited for containerized environments.
 :::
 
 The Docker image is versioned by the PHP Version and the PHP Patch version. The Docker Image is updated daily and contains the latest security patches.
 
-The following tags are available with Caddy:
+The following tags are available with our recommended FrankenPHP image:
 
-- `shopware/docker-base:8.3` - PHP 8.3 with Caddy
-- `shopware/docker-base:8.3-caddy` - PHP 8.3 with Caddy (same as above, but more explicit)
-- `shopware/docker-base:8.3.12-caddy` - PHP 8.3.12 with Caddy (same as above, but much more explicit)
-- `shopware/docker-base:8.3-caddy-otel` - PHP 8.3 with Caddy and OpenTelemetry
+- `ghcr.io/shopware/docker-base:8.3-frankenphp` - PHP 8.3 with FrankenPHP
+- `ghcr.io/shopware/docker-base:8.3.12-frankenphp` - PHP 8.3.12 with FrankenPHP (same as above, but much more explicit)
+- `ghcr.io/shopware/docker-base:8.3-frankenphp-otel` - PHP 8.3 with FrankenPHP and OpenTelemetry
+- `ghcr.io/shopware/docker-base:8.3.12-frankenphp-otel` - PHP 8.3.12 with FrankenPHP and OpenTelemetry (same as above, but much more explicit)
 
-The following tags are available with FrankenPHP:
-
-- `shopware/docker-base:8.3-frankenphp` - PHP 8.3 with FrankenPHP
-- `shopware/docker-base:8.3.12-frankenphp` - PHP 8.3.12 with FrankenPHP (same as above, but much more explicit)
-- `shopware/docker-base:8.3-frankenphp-otel` - PHP 8.3 with FrankenPHP and OpenTelemetry
-- `shopware/docker-base:8.3.12-frankenphp-otel` - PHP 8.3.12 with FrankenPHP and OpenTelemetry (same as above, but much more explicit)
-
-We also have Nginx images available:
-
-- `shopware/docker-base:8.3-nginx` - PHP 8.3 with Nginx (same as above, but more explicit)
-- `shopware/docker-base:8.3.12-nginx` - PHP 8.3.12 with Nginx (same as above, but much more explicit)
-- `shopware/docker-base:8.3-nginx-otel` - PHP 8.3 with Nginx and OpenTelemetry
-
-Additionally we have also FPM only images available:
-
-- `shopware/docker-base:8.3-fpm` - PHP 8.3 with FPM
-- `shopware/docker-base:8.3.12-fpm` - PHP 8.3.12 with FPM (same as above, but much more explicit)
-- `shopware/docker-base:8.3-fpm-otel` - PHP 8.3 with FPM and OpenTelemetry
-- `shopware/docker-base:8.3.12-fpm-otel` - PHP 8.3.12 with FPM and OpenTelemetry (same as above, but much more explicit)
-
-The images are available at Docker Hub and GitHub Container Registry (ghcr.io) with the same names and tags.
+All images (FrankenPHP, Caddy, Nginx, FPM only) are available at Docker Hub and GitHub Container Registry ([ghcr.io](https://github.com/shopware/docker/pkgs/container/docker-base)) with the same names and tags.
 
 ## Default installed PHP Extensions
 
@@ -169,7 +149,6 @@ This is just an example compose file to demonstrate what the services could look
 
 ```yaml
 x-environment: &shopware
-  image: local
   build:
     context: .
   environment:
@@ -186,11 +165,22 @@ services:
     database:
         image: mariadb:11.4
 
+    init-perm:
+        <<: *shopware
+        user: "root"
+        entrypoint: >
+          chown 82:82
+          /var/www/html/files
+          /var/www/html/public/theme
+          /var/www/html/public/media
+          /var/www/html/public/thumbnail
+          /var/www/html/public/sitemap
+
     init:
         <<: *shopware
-        entrypoint: /setup
+        entrypoint: [ "php", "vendor/bin/shopware-deployment-helper", "run" ]
         depends_on:
-            db:
+            database:
                 condition: service_started
             init-perm:
                 condition: service_completed_successfully
@@ -217,6 +207,13 @@ services:
             init:
                 condition: service_completed_successfully
         entrypoint: [ "php", "bin/console", "scheduled-task:run" ]
+
+volumes:
+    files:
+    theme:
+    media:
+    thumbnail:
+    sitemap:
 ```
 
 <PageRef page="https://github.com/shopwareLabs/example-docker-repository/" title="Example Repository with fully working setup" target="_blank" />
@@ -227,7 +224,6 @@ services:
      - Set up Dependabot / Renovate to keep the image up to date
 - Use an external storage provider for all files to keep all state out of the container
 - Use Redis/Valkey for Cache and Session storage so all instances share the same cache and session
-- Use Nginx Variant instead of Caddy as it's more battle tested
 
 ## Adding custom PHP extensions
 

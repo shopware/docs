@@ -331,6 +331,7 @@ ESLint
 ESlint
 EcmaScript
 Eine
+ElastiCache
 ElasticSearch
 ElasticsearchDefinition
 ElasticsearchEntityAggregator
@@ -584,6 +585,7 @@ MyExtension
 MyPlugin
 MyTestClass
 MyTestInterface
+NATS
 NPM
 NUR
 NVDA
@@ -611,6 +613,7 @@ OAuth
 OPENSEARCH
 ORM
 ORMs
+OSS
 OTEL
 OTLP
 ObjectField
@@ -857,6 +860,7 @@ Sendfile
 SeoUrlRoute
 SeoUrlTemplate
 SerializedField
+Serverless
 SetNullOnDelete
 ShippingCountryRule
 ShippingMethodPriceCollector
@@ -910,6 +914,9 @@ Subcommands
 SubjectAware
 SubjectStorer
 Subprocessor
+SubscriptionCartConvertedSubscriber
+SubscriptionOrderPlacedSubscriber
+SubscriptionTransformedSubscriber
 SuggestPage
 SwagAdvDevBundle
 SwagB
@@ -994,6 +1001,7 @@ UpdatedBy
 UpdatedByField
 UpperCamelCase
 Upserting
+Upstash
 Upsun
 UrlAware
 UrlStorer
@@ -1006,6 +1014,7 @@ VARCHAR
 VCL
 VCS
 VM
+VPC
 VSCode
 Validator
 Valkey
@@ -1133,6 +1142,7 @@ bottleJS
 bottleJs
 bourgau
 brainer
+breakpoint
 browserslist
 bruteforce
 bugfix
@@ -1194,6 +1204,7 @@ config
 configComponent
 configs
 configurator
+configurators
 confirmUrl
 const
 const's
@@ -1307,6 +1318,7 @@ editorconfig
 eg
 elasticsearch
 employeeId
+enablement
 english
 enqueue
 entityIds
@@ -1772,6 +1784,7 @@ seperate
 seperated
 serializable
 serializer
+serverless
 setFlags
 setLocaleToEnGb
 setProductFixtureVisibility

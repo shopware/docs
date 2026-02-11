@@ -89,3 +89,5 @@ redirects:
     concepts/framework/rules.html: concepts/framework/rule/index.html
     products/extensions/migration-assistant/concept.html: products/extensions/migration-assistant/concept/index.html
     products/extensions/migration-assistant/guides.html: products/extensions/migration-assistant/guides/index.html
+    products/cli/project-commands/project-config-sync.html: resources/tooling/fixture-bundle/index.html
+    products/sales-agent/deployment.html: products/sales-agent/best-practices/app-deployment/hosted-with-ubuntu-server.html
