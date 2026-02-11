@@ -1,95 +1,50 @@
 ---
 nav:
-  title: Additional Docker Options
-  position: 40
+  title: Advanced Options
+  position: 6
 
 ---
 
-# Additional Docker Options
+# Advanced options
 
-## Connecting to a remote database
+This page covers optional and advanced Docker configuration for Shopware projects. You can refer to information here once your local environment is running and you want to customize your environment, mirror production more closely, or support advanced workflows.
 
-If you want to use a database outside the Docker stack (running on your host or another server, for examples), set `DATABASE_URL` in `.env.local` in the standard form:
+## Customizing the runtime environment
 
-```bash
-DATABASE_URL="mysql://user:password@<host>:3306/<database>"
-```
+### Image variations
 
-Note: containers cannot always reach services bound only to the host's `localhost`. If `localhost` does not work you can try `host.docker.internal`, your host machine’s LAN IP, or add an `extra_hosts` entry in `compose.yaml`.
+Shopware provides multiple Docker image variants so you can match your local setup to your project's PHP version, Node version, and preferred web server. The image tag format is `ghcr.io/shopware/docker-dev:php(PHP_VERSION)-node(NODE_VERSION)-(WEBSERVER)`.
 
-## Enable profiler/debugging for PHP
+Version matrix:
 
-Once your Shopware environment is running, you may want to enable PHP debugging or profiling to inspect code execution, set breakpoints, or measure performance. The default setup doesn’t include these tools, but you can enable them using Docker overrides.
-
-### Enable Xdebug
-
-To enable [Xdebug](https://xdebug.org/) inside the web container, create a `compose.override.yaml` in your project root with the following configuration:
-
-```yaml
-services:
-    web:
-        environment:
-            - XDEBUG_MODE=debug
-            - XDEBUG_CONFIG=client_host=host.docker.internal
-            - PHP_PROFILER=xdebug
-```
-
-After saving the file, apply the changes:
-
-```bash
-docker compose up -d
-```
-
-This restarts the containers with Xdebug enabled. You can now attach your IDE (for example, PHPStorm or VS Code) to the remote debugger on the default Xdebug port `9003`.
-
-Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
-
-```yaml
-services:
-    web:
-        environment:
-            - PHP_PROFILER=blackfire
-    blackfire:
-        image: blackfire/blackfire:2
-        environment:
-            BLACKFIRE_SERVER_ID: XXXX
-            BLACKFIRE_SERVER_TOKEN: XXXX
-```
-
-## Image variations
-
-The Shopware Docker image is available in several variations, allowing you to match your local setup to your project’s PHP version, Node version, and preferred web server. Use the following pattern to select the right image tag:
-
-`ghcr.io/shopware/docker-dev:php(PHP_VERSION)-node(NODE_VERSION)-(WEBSERVER)`
-
-Here’s the version matrix:
-
-PHP versions:
+PHP versions
 
 - `8.4` - PHP 8.4
 - `8.3` - PHP 8.3
 - `8.2` - PHP 8.2
 
-Node versions:
+Node versions
 
 - `node24` - Node 24
 - `node22` - Node 22
 
-Web server:
+Web server
 
 - `caddy` - Caddy as web server
 - `nginx` - Nginx as web server
 
-Example:
+Examples
 
 - `ghcr.io/shopware/docker-dev:php8.4-node24-caddy` - PHP 8.4, Node 24, Caddy as web server
 - `ghcr.io/shopware/docker-dev:php8.3-node24-caddy` - PHP 8.3, Node 24, Caddy as web server
 - `ghcr.io/shopware/docker-dev:php8.4-node22-nginx` - PHP 8.4, Node 22, Nginx as web server
 - `ghcr.io/shopware/docker-dev:php8.3-node22-nginx` - PHP 8.3, Node 22, Nginx as web server
 
-## Adding Minio for local S3 storage
+Choose the variant that best matches your production stack.
 
-Some projects use Amazon S3 for file storage in production. If you want to mimic that behavior locally—for example, to test uploads or CDN-like delivery—you can add [Minio](https://www.min.io/), an open-source S3-compatible storage server.
+## Adding S3-compatible storage (Minio)
+
+Some projects use Amazon S3 for file storage in production. If you want to mimic that behavior locally—for example, to test uploads or CDN-like delivery—you can add [Minio](https://www.min.io/), which is an open-source, S3-compatible storage server.
 
 ### 1. Add the Minio service
 
@@ -139,7 +94,7 @@ volumes:
 
 ### 2. Configure Shopware to use Minio
 
-Create a new YAML file at `config/packages/minio.yaml` with the following content:
+Create a `config/packages/minio.yaml`:
 
 ```yaml
 # yaml-language-server: $schema=https://raw.githubusercontent.com/shopware/shopware/refs/heads/trunk/config-schema.json
@@ -186,8 +141,7 @@ bin/console theme:compile
 
 ## Using OrbStack routing
 
-If you're using [OrbStack](https://orbstack.dev) on macOS, you can take advantage of its built-in routing feature.
-OrbStack automatically assigns local `.orb.local` URLs to your containers, so you don’t need to manage port mappings manually. This allows running multiple Shopware instances at the same time without port conflicts.
+If you're using [OrbStack](https://orbstack.dev) on macOS, you can avoid manual port management by using its built-in routing feature. OrbStack automatically assigns local `.orb.local` URLs to your containers, which allows running multiple Shopware instances at the same time without port conflicts.
 
 To enable it, create a `compose.override.yaml` in your project root with the following content:
 
@@ -213,16 +167,11 @@ The APP_URL environment variable follows this pattern: `web.<project-name>.orb.l
 
 You can also open `https://orb.local` in your browser to view all running containers and their assigned URLs.
 
-## Proxy production images
+## Working with production data locally
 
-When you import a production database into your local environment, image URLs in the data may still point to production servers. As a result, your local store might show broken or missing images. You can fix this in two ways:
+When importing production databases into your local environment, image URLs in the data may still point to production servers—leading to broken or missing images in your local store. You can proxy those images locally instead of downloading everything.
 
-- **download all production images** and import them locally, or
-- **set up a lightweight proxy service** that serves those images directly from the production server (recommended for quick testing).
-
-### 1. Add the image proxy service
-
-Add a `imageproxy` service to your `compose.override.yaml`:
+Add the `imageproxy` service to your `compose.override.yaml`:
 
 ```yaml
 services:
@@ -237,9 +186,7 @@ services:
 
 This starts a proxy server that fetches images from the production environment and caches them locally. For example, a request to `http://localhost:8050/assets/images.png` will be served from `https://[REMOTE_SERVER_HOST]/assets/images.png` and then stored in the local cache for faster reuse.
 
-### 2. Point Shopware to the proxy
-
-Next, we need to configure Shopware to use the proxy server. To do this, create a new YAML file `config/packages/media-proxy.yaml`
+Next, configure Shopware to use the proxy server. Create a new YAML file `config/packages/media-proxy.yaml`:
 
 ```yaml
 shopware:
@@ -248,4 +195,4 @@ shopware:
       url: "http://localhost:8050"
 ```
 
-This tells Shopware to use the proxy server URL for all images.
+Images are fetched from production on demand and cached locally.

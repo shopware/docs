@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Devenv
+  title: Setting up Shopware with Devenv
   position: 20
 
 ---
 
-# Devenv
+# Setting up Shopware with Devenv
 
 [Devenv](https://devenv.sh) is a Nix-based tool for defining and managing fully reproducible development environments for local workstations or continuous integration (CI) systems. It works like a dependency manager for your entire development stack.
 
