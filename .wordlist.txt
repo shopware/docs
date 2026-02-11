@@ -586,6 +586,7 @@ MyExtension
 MyPlugin
 MyTestClass
 MyTestInterface
+NATS
 NFS
 NPM
 NUR
@@ -1143,6 +1144,7 @@ bottleJS
 bottleJs
 bourgau
 brainer
+breakpoint
 browserslist
 bruteforce
 bugfix
@@ -1318,6 +1320,7 @@ editorconfig
 eg
 elasticsearch
 employeeId
+enablement
 english
 enqueue
 entityIds

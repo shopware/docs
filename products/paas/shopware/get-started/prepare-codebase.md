@@ -78,6 +78,8 @@ app:
 services:
   mysql:
     version: "8.0"
+  opensearch:
+    enabled: false
 ```
 
 #### Advanced Example (with Custom Environment Variables)
@@ -93,6 +95,8 @@ app:
 services:
   mysql:
     version: "8.0"
+  opensearch:
+    enabled: false
 ```
 
 ## Hooks Configuration
