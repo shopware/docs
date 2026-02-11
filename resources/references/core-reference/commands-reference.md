@@ -62,7 +62,7 @@ $ bin/console [command] [parameters]
 | Command                      | Description                                                                                                                      |
 |:-----------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
 | `cache:clear`                | Clears the cache                                                                                                                 |
-| `cache:clear:all`            | Clears all caches/pools, invalidates expired tags, removes old kernel cache directories. Requires confirmation or `--force` flag |
+| `cache:clear:all`            | Clears all caches/pools, invalidates expired tags, removes old kernel cache directories |
 | `cache:clear:delayed`        | Invalidates the delayed cache keys/tags                                                                                          |
 | `cache:clear:http`           | Clear only the HTTP cache                                                                                                        |
 | `cache:pool:clear`           | Clears cache pools                                                                                                               |

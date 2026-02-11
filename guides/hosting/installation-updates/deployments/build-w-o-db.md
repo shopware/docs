@@ -1387,4 +1387,4 @@ This means:
 - Production web requests use a hash based on actual database plugin state
 - If any plugin is deactivated in the database, web requests create a new cache directory
 
-To ensure cache is properly cleared across all configurations, use `cache:clear:all` instead of `cache:clear` in deployment scripts. In interactive terminals, this command prompts for confirmation; use `--force` to skip the prompt in CI/CD pipelines.
+To ensure cache is properly cleared across all configurations, use `cache:clear:all` instead of `cache:clear` in deployment scripts.
