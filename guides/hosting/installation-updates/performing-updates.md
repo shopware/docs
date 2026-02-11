@@ -147,7 +147,7 @@ Only run these commands on the production server after the updated code has been
 
 Shopware also provides a web-based updater in the Administration panel. This method handles the entire update process through the browser.
 
-::: warning
+:::warning
 The web updater is only recommended for small instances. Since the update runs in the browser, you may encounter timeout problems, memory limits, or other resource issues on larger shops. For production environments, use the CLI method described above.
 :::
 
