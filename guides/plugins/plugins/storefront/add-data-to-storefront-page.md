@@ -68,15 +68,9 @@ class AddDataToPage implements EventSubscriberInterface
 }
 ```
 
-The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
+The subscriber is automatically registered by autoconfigure:
 
-```xml
-// Resources/config/services.xml
-<?xml version="1.0" ?>
-<service id="Swag\BasicExample\Service\AddDataToPage" >
-    <tag name="kernel.event_subscriber" />
-</service>
-```
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed.
 
 ### Adding data to the page
 
@@ -170,19 +164,7 @@ class ProductCountRoute extends AbstractProductCountRoute
 
 ### Register route class
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
-</container>
-```
+With autowire enabled in your `services.php`, the `ProductCountRoute` is registered automatically. Its `product.repository` dependency is injected via constructor autowiring.
 
 The routes.xml according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
 
@@ -272,26 +254,11 @@ Completely new should only be the last line: `$event->getPagelet()->addExtension
 Basically what you're doing here, is to fetch the actual pagelet instance from the event and add the data to the template.
 This data will then be available via the name `product_count`, but we'll get to that in the next section.
 
-Now you only have to adjust your service definition to inject the productCountRoute:
+Both services are configured automatically via autowire and autoconfigure:
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" public="true">
-            <argument type="service" id="product.repository"/>
-        </service>
-        
-        <service id="Swag\BasicExample\Service\AddDataToPage" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"/>
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
-</container>
-```
+With autowire and autoconfigure enabled, both services are registered automatically:
+- `ProductCountRoute` receives `product.repository` via autowire
+- `AddDataToPage` is tagged as an event subscriber via autoconfigure (because it implements `EventSubscriberInterface`), and the `ProductCountRoute` dependency is injected via autowire
 
 ### Displaying the data in the Storefront
 

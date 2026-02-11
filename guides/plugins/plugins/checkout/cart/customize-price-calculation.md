@@ -34,9 +34,13 @@ Here's an example decorated calculator:
 namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Content\Product\SalesChannel\Price\AbstractProductPriceCalculator;
+use Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator;
 use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 
+#[AsDecorator(decorates: ProductPriceCalculator::class)]
 class CustomProductPriceCalculator extends AbstractProductPriceCalculator
 {
     /**
@@ -44,7 +48,7 @@ class CustomProductPriceCalculator extends AbstractProductPriceCalculator
      */
     private AbstractProductPriceCalculator $productPriceCalculator;
 
-    public function __construct(AbstractProductPriceCalculator $productPriceCalculator)
+    public function __construct(#[AutowireDecorated] AbstractProductPriceCalculator $productPriceCalculator)
     {
         $this->productPriceCalculator = $productPriceCalculator;
     }
@@ -79,22 +83,7 @@ Most likely you also want to narrow down which product's prices you want to edit
 
 ### Registering the decorator
 
-Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\CustomProductPriceCalculator" decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator">
-            <argument type="service" id="Swag\BasicExample\Service\CustomProductPriceCalculator.inner" />
-        </service>
-    </services>
-</container>
-```
+With autowiring enabled, the `#[AsDecorator]` attribute on the class is sufficient to register the decorator. No explicit service configuration is needed. The `#[AsDecorator(decorates: ProductPriceCalculator::class)]` attribute tells Symfony to automatically decorate the `ProductPriceCalculator` service with `CustomProductPriceCalculator`.
 
 ## Next steps
 

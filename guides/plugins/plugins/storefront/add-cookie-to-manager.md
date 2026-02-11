@@ -27,31 +27,11 @@ Adding custom cookies requires you to listen to the `CookieGroupsCollectEvent` a
 It is recommended to use an event listener if you're listening to a single event. If you need to react to multiple events, an event subscriber is the better choice.
 :::
 
-### Registering your event listener
-
-Start with creating the `services.xml` and registering your event listener.
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="PluginName\Listener\CookieListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent"/>
-        </service>
-    </services>
-</container>
-```
-
-In the next step we'll create the actual listener class.
-
 ### Creating the listener
 
 We need to create a class called `CookieListener` with an `__invoke` method. This method will be executed once the `CookieGroupsCollectEvent` is dispatched.
+
+The `#[AsEventListener]` attribute registers this class as an event listener automatically, so no manual service registration is needed.
 
 The event object that is passed to our listener method contains the cookie groups collection, which we can use to add our custom cookies.
 
@@ -70,7 +50,9 @@ namespace PluginName\Listener;
 use Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent;
 use Shopware\Core\Framework\Cookie\CookieEntry;
 use Shopware\Core\Framework\Cookie\CookieGroup;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
+#[AsEventListener(event: CookieGroupsCollectEvent::class)]
 class CookieListener
 {
     public function __invoke(CookieGroupsCollectEvent $event): void

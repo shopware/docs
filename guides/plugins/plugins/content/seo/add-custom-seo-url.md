@@ -176,9 +176,6 @@ For this scenario, you can make use of the Shopware built-in `SeoUrlRoute` class
 
 Let's first have a look at such an example class:
 
-<Tabs>
-<Tab title="ExamplePageSeoUrlRoute.php">
-
 ```php
 // <plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php
 <?php declare(strict_types=1);
@@ -239,29 +236,7 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute\ExamplePageSeoUrlRoute">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\ExampleDefinition"/>
-
-            <tag name="shopware.seo_url.route"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With `autoconfigure` enabled, the class is automatically registered because it implements `SeoUrlRouteInterface` — no additional configuration or attributes are needed. The `ExampleDefinition` dependency is resolved through autowiring.
 
 Okay, so let's look through this step by step.
 
@@ -287,7 +262,7 @@ Your custom "SeoUrlRoute" class has to implement the `SeoUrlRouteInterface`, whi
 
 Make sure to check which kind of entity has been applied to the `getMapping` method, since you don't want to provide mappings for other entities than your custom one.
 
-It then has to be registered to the container using the tag `shopware.seo_url.route`.
+With `autoconfigure` enabled, the class is automatically tagged with `shopware.seo_url.route` because it implements `SeoUrlRouteInterface`.
 
 Now that you've set up this class, there are two more things to be done, which are covered in the next sections.
 
@@ -296,9 +271,6 @@ Now that you've set up this class, there are two more things to be done, which a
 Every time your entity is written now, you have to let Shopware know, that you want to generate the SEO URLs for those entities now. This is done by reacting to the [DAL events](../../framework/data-handling/using-database-events) of your custom entity, to be specific we're going to use the `written` event. Everytime your entity is written, you then have to execute the `update` method of the `Shopware\Core\Content\Seo\SeoUrlUpdater` class.
 
 Once again, let's have a look at an example subscriber here:
-
-<Tabs>
-<Tab title="DynamicSeoUrlPageSubscriber.php">
 
 ```php
 // <plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php
@@ -333,30 +305,7 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <!-- ... -->
-        <service id="Swag\BasicExample\Service\DynamicSeoUrlPageSubscriber" >
-            <argument type="service" id="Shopware\Core\Content\Seo\SeoUrlUpdater" />
-
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+Since `DynamicSeoUrlPageSubscriber` implements `EventSubscriberInterface`, it is automatically recognized as an event subscriber through autoconfiguration. The `SeoUrlUpdater` dependency is resolved through autowiring. No manual service registration is needed.
 
 As already said, we're using the `written` event of our custom entity by providing the entities' technical name with the `.written` suffix. Everytime it is executed, we're just using the said `update` method of the `SeoUrlUpdater`. Here you'll have to provide the technical route name and the IDs of the entities, that need to be updated. And that's it for the subscriber.
 

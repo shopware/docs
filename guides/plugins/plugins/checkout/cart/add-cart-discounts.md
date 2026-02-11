@@ -39,7 +39,9 @@ use Shopware\Core\Checkout\Cart\Price\PercentagePriceCalculator;
 use Shopware\Core\Checkout\Cart\Price\Struct\PercentagePriceDefinition;
 use Shopware\Core\Checkout\Cart\Rule\LineItemRule;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
+#[AutoconfigureTag('shopware.cart.processor', ['priority' => 4500])]
 class ExampleProcessor implements CartProcessorInterface
 {
     private PercentagePriceCalculator $calculator;
@@ -120,4 +122,14 @@ Shopware comes with a called `LineItemRule`, which requires two parameters:
 
 After adding the definition to the line item, we have to calculate the current price of the discount. Therefore we can use the `PercentagePriceCalculator` of the core. The last step is to add the discount to the new cart which is provided as `Cart $toCalculate`.
 
-That's it for the main code of our custom `CartProcessor`. Now we only have to register it in our `services.xml` using the tag `shopware.cart.processor` and priority `4500`, which is used to get access to the calculation after the [product processor](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/DependencyInjection/cart.xml#L223-L231) handled the products.
+That's it for the main code of our custom `CartProcessor`. Now we only have to tag it with `shopware.cart.processor` and priority `4500`, which is used to get access to the calculation after the [product processor](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/DependencyInjection/cart.xml#L223-L231) handled the products. This is done by adding the `#[AutoconfigureTag]` PHP attribute directly to the class:
+
+```php
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+
+#[AutoconfigureTag('shopware.cart.processor', ['priority' => 4500])]
+class ExampleProcessor implements CartProcessorInterface
+{
+    // ...
+}
+```

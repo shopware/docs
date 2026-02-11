@@ -232,19 +232,11 @@ class CustomProductFilterSubscriber implements EventSubscriberInterface
 
 ### 4. Register Services
 
-```xml
-<!-- services.xml -->
-<service id="MyPlugin\Service\CustomProductService">
-    <argument type="service" id="Shopware\Core\Framework\Extensions\ExtensionDispatcher"/>
-    <argument type="service" id="product.repository"/>
-</service>
+With autowire and autoconfigure enabled in your `services.php`, both services are registered automatically:
+- `CustomProductService` receives its dependencies via constructor autowiring
+- `CustomProductFilterSubscriber` is tagged as `kernel.event_subscriber` automatically because it implements `EventSubscriberInterface`
 
-<service id="MyPlugin\Subscriber\CustomProductFilterSubscriber">
-    <argument type="service" id="MyPlugin\Service\ExternalApiService"/>
-    <argument type="service" id="MyPlugin\Service\ProductFilterService"/>
-    <tag name="kernel.event_subscriber"/>
-</service>
-```
+No explicit service configuration is needed.
 
 ## Advanced Extension Patterns
 

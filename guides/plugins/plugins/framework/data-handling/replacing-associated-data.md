@@ -53,25 +53,9 @@ The product categories are a `ManyToMany` association and thus come with a mappi
 
 In order to delete it, we once again need its repository. The name for the entity can be found in the definition, to be precise inside of the `getEntityName` method.
 
-So let's inject this repository into our class called `ReplacingData`:
+So let's inject this repository into our class called `ReplacingData`. With `autowire` enabled in your `services.php`, the repositories are automatically injected into the constructor — no additional configuration is needed.
 
-```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\ReplacingData" >
-            <argument type="service" id="product.repository"/>
-            <argument type="service" id="product_category.repository"/>
-        </service>
-    </services>
-</container>
-```
-
-Afterwards, you can just use the `delete` method on the repository, just like you did before in the [Writing data](writing-data) guide.
+You can then use the `delete` method on the repository, just like you did before in the [Writing data](writing-data) guide.
 
 ```php
 public function replaceData(Context $context): void

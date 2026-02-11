@@ -55,25 +55,7 @@ class CustomExtension extends EntityExtension
 }
 ```
 
-Now we have to register our extension via the DI-container. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection).
-
-Here's our `services.xml`:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
-    </services>
-</container>
-```
+Since `CustomExtension` extends `EntityExtension`, it is automatically detected and registered by Symfony's `autoconfigure` feature in your `services.php` — no explicit service registration or tagging is needed. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection).
 
 ### Adding a field with a database
 
@@ -177,27 +159,7 @@ The last field is the inverse side of the `OneToOneAssociationField`. The first 
 
 The fourth parameter is the class of the associated definition, the `ProductDefinition` in this case. The last parameter, once again, defines the autoloading. In this example, the product definition will **not** be loaded, when you're just trying to load this extension entity. Yet, the extension entity will always automatically be loaded when the product entity is loaded, just like we defined earlier.
 
-Of course, this new definition also needs to be registered to the DI container:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
-
-        <service id="Swag\BasicExample\Extension\Content\Product\ExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example_extension" />
-        </service>
-    </services>
-</container>
-```
+With `autoconfigure` enabled in your `services.php`, both `CustomExtension` (extending `EntityExtension`) and `ExampleExtensionDefinition` (extending `EntityDefinition`) are automatically detected and registered — no explicit service registration or tagging is needed.
 
 #### Adding the new database table
 
@@ -305,23 +267,7 @@ We're registering to the `ProductEvents::PRODUCT_LOADED_EVENT` event, which is f
 
 Please note that its second parameter, the actual value, has to be a struct and not just a string or other kind of scalar value.
 
-After we've created our subscriber, we have to adjust our `services.xml` to register it. Below you can find our `services.xml`.
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
+After we've created our subscriber, it needs to be registered. With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed.
 
 ## Entity extension vs. Custom fields
 
@@ -361,10 +307,4 @@ class MyBulkExtension extends BulkEntityExtension
 
 Each yield defines the entity name which should be extended and the array value defines the fields which should be added. In this example, the `product` and `category` entities are extended.
 
-You must also register the extension in your `services.xml` file and tag it with `shopware.bulk.entity.extension`.
-
-```xml
-<service id="Examples\MyBulkExtension">
-   <tag name="shopware.bulk.entity.extension"/>
-</service>
-```
+Since `MyBulkExtension` extends `BulkEntityExtension`, it is automatically detected and registered by Symfony's `autoconfigure` feature in your `services.php` — no explicit service registration or tagging is needed.

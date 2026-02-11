@@ -7,7 +7,7 @@ nav:
 
 # Add Custom CLI Commands
 
-To ease development tasks, Shopware contains the Symfony commands functionality. This allows \(plugin-\) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
+To ease development tasks, Shopware contains the Symfony commands functionality. This allows (plugin-) developers to define new commands executable via the Symfony console at `bin/console`. The best thing about commands is, that they're more than just simple standalone PHP scripts - they integrate into Symfony and Shopware, so you've got access to all the functionality offered by both of them.
 
 Creating a command for Shopware 6 via a plugin works exactly like you would add a command to Symfony. Make sure to have a look at the Symfony commands guide:
 
@@ -19,7 +19,7 @@ This guide **does not** explain how to create a new plugin for Shopware 6. Head 
 
 <PageRef page="../plugin-base-guide" />
 
-The main requirement here is to have a `services.xml` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
+The main requirement here is to have a `services.php` file loaded in your plugin. This can be achieved by placing the file into a `Resources/config` directory relative to your plugin's base class location.
 
 ::: info
 Refer to this video on custom **[Creating a CLI command](https://www.youtube.com/watch?v=OL_qNVLLyaI)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -27,36 +27,7 @@ Refer to this video on custom **[Creating a CLI command](https://www.youtube.com
 
 ## Registering your command
 
-From here on, everything works exactly like in Symfony itself. Commands are recognised by Shopware, once they're tagged with the `console.command` tag in the [dependency injection](dependency-injection) container. So to register a new command, just add it to your plugin's `services.xml` and specify the `console.command` tag:
-
-```html
-<services>
-   <!-- ... -->
-
-   <service id="Swag\BasicExample\Command\ExampleCommand">
-       <tag name="console.command"/>
-   </service>
-</services>
-<!-- ... -->
-```
-
-Here's a full example `services.xml` which registers your custom command:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Command\ExampleCommand">
-            <tag name="console.command"/>
-        </service>
-    </services>
-</container>
-```
+With `autoconfigure` enabled in your `services.php`, commands are automatically recognised by Shopware. Any class extending `Command` with the `#[AsCommand]` attribute will be registered automatically — no additional configuration is needed.
 
 Your command's class should extend from the `Symfony\Component\Console\Command\Command` class, here's an example:
 
@@ -126,7 +97,7 @@ Available commands:
  feature
   feature:dump                            Creating json file with feature config for js testing and hot reloading capabilities.
  assets
-  assets:install                          
+  assets:install
  bundle
   bundle:dump                             Creates a json file with the configuration for each active Shopware bundle.
  cache

@@ -135,32 +135,35 @@ class ExampleController extends StorefrontController
 
 :::
 
-### Services.xml example
+### Services.php example
 
-Next, we need to register our controller in the DI-container and make it public.
+Next, we need to register our controller in the DI-container and make it public. Controllers need explicit configuration because they must be public and have the container injected.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services()
+        ->defaults()
+            ->autowire()
+            ->autoconfigure();
+
+    $services->load('Swag\\BasicExample\\', '../../../')
+        ->exclude('../../../{Resources,Migration}');
+
+    $services->set(\Swag\BasicExample\Storefront\Controller\ExampleController::class)
+        ->public()
+        ->call('setContainer', [service('service_container')]);
+};
 ```
 
 :::
 
-Please also note the `call` tag, which is necessary in order to set the DI container to the controller.
+Please also note the `setContainer` call, which is necessary in order to set the DI container to the controller.
 
 ### Routes.xml example
 

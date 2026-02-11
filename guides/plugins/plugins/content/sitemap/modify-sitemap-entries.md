@@ -30,9 +30,6 @@ the respective `UrlProvider`, e.g. the `Shopware\Core\Content\Sitemap\Provider\P
 Hence, let's start with creating the basic decorated class for the `ProductUrlProvider`. We'll call
 this class `DecoratedProductUrlProvider`:
 
-<Tabs>
-<Tab title="DecoratedProductUrlProvider.php">
-
 ```php
 // <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 <?php declare(strict_types=1);
@@ -41,15 +38,19 @@ namespace Swag\BasicExample\Core\Content\Sitemap\Provider;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider;
+use Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider;
 use Shopware\Core\Content\Sitemap\Struct\UrlResult;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 
+#[AsDecorator(decorates: ProductUrlProvider::class)]
 class DecoratedProductUrlProvider extends AbstractUrlProvider
 {
     private AbstractUrlProvider $decoratedUrlProvider;
 
-    public function __construct(AbstractUrlProvider $abstractUrlProvider)
+    public function __construct(#[AutowireDecorated] AbstractUrlProvider $abstractUrlProvider)
     {
         $this->decoratedUrlProvider = $abstractUrlProvider;
     }
@@ -71,27 +72,7 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider" decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider.inner" />
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With autowiring enabled, the `#[AsDecorator]` attribute on the class is sufficient to register the decorator. No additional service configuration is needed.
 
 Now let's get on to the two possible ways and its benefits.
 

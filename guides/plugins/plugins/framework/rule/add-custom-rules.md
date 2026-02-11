@@ -17,7 +17,7 @@ This example will introduce a new rule, which checks if it is the first monday o
 
 In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom rule.
+You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to configure your services.
 
 It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rule) as well.
 
@@ -106,7 +106,7 @@ As you can see, several methods are already implemented:
 * `match`: This checks whether the rule applies. Accordingly, a boolean is returned whether the rule applies or not.
 * `getConstraints`: This method returns an array of the possible fields and its types. You could also return the `NotBlank` class here, to require this field.
 
-After we've created our rule class, we have to register it in our `services.xml` and tag it as `shopware.rule.definition`.
+With `autoconfigure` enabled in your `services.php`, any class extending `Rule` is automatically tagged as `shopware.rule.definition` — no explicit service registration is needed.
 Please keep in mind: The variables to be used in the rule have to be 'protected' and not 'private', otherwise they won't work properly.
 
 ::: warning

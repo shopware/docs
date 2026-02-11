@@ -163,25 +163,9 @@ Another thing to note is the `addFlags` call on the `IdField`. Those flags are l
 
 If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags).
 
-All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
+All that's left to do now, is to introduce your `ExampleDefinition` to Shopware. Since the class extends `EntityDefinition`, it is automatically detected and registered by Symfony's `autoconfigure` feature in your `services.php` — no explicit service registration or tagging is needed. If your plugin does not have a `services.php` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
 
-Here's the `services.xml` as it should look like:
-
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\ExampleDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example" />
-        </service>
-    </services>
-</container>
-```
-
-Please note the tag for your definition and the respective `entity` attribute, which has to contain the technical name of your entity, which you provided in your entity definition. In this case this must be `swag_example`.
+The entity name used for the repository service ID (e.g., `swag_example.repository`) is derived from the `getEntityName()` method of your definition class.
 
 And basically that's it already for your definition class. Theoretically you could start using your entity now by injecting the `swag_example.repository` service to other services and start working with the repository, e.g. to [read data](reading-data) or to [write data](writing-data).
 

@@ -72,24 +72,7 @@ Important to note is the `return` statement afterwards. If you wouldn't return h
 
 #### Registering the validator
 
-One more thing to do is to register your new validator to the [dependency injection container](../../plugin-fundamentals/dependency-injection).
-
-Your validator has to be registered using the tag `shopware.cart.validator`:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator">
-            <tag name="shopware.cart.validator"/>
-        </service>
-    </services>
-</container>
-```
+With `autoconfigure` enabled, the validator is automatically registered because it implements `CartValidatorInterface` — no additional configuration or attributes are needed.
 
 ### Adding the custom cart error
 

@@ -70,7 +70,9 @@ use Shopware\Core\Content\Flow\Dispatching\StorableFlow;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Swag\CreateTagAction\Core\Framework\Event\TagAware;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
+#[AutoconfigureTag('flow.action', ['priority' => 600, 'key' => 'action.create.tag'])]
 class CreateTagAction extends FlowAction
 {
     private EntityRepository $tagRepository;
@@ -138,15 +140,7 @@ As you can see, several methods are already implemented:
     - Use `$flow->getStore($key)` if you want to get the data from aware interfaces. E.g: `tag_id` in `TagAware`, `customer_id` from `CustomerAware` and so on.
     - Use `$flow->getData($key)` if you want to get the data from original events or additional data. E.g: `tag`, `customer`, `contactFormData` and so on.
 
-You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
-
-```XML
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction">
-    <argument type="service" id="tag.repository" />
-    <tag name="flow.action" priority="600" key="action.create.tag"/>
-</service>
-```
+The `#[AutoconfigureTag('flow.action', ['priority' => 600, 'key' => 'action.create.tag'])]` attribute on the class, as shown above, ensures that your action is registered in the DI container and included in the response of the *`/api/_info/flow-actions.json`* API. The `priority` determines the order of the action in the API response. The `tag.repository` argument is automatically injected via autowiring.
 
 Great, your own action is created completely. Let's go to the next step.
 
@@ -311,14 +305,7 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 }
 ```
 
-And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`.
-
-```xml
-<service id="Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
-</service>
-```
+Since the `BusinessEventCollectorSubscriber` class implements `EventSubscriberInterface`, Symfony's autoconfigure feature automatically registers it as an event subscriber. The `BusinessEventCollector` argument is automatically injected via autowiring. No additional service configuration is needed.
 
 - Define the Event snippet
 

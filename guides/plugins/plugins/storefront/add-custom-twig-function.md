@@ -24,11 +24,7 @@ Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Creating twig function
 
-In the following sections, we will create and expand all necessary files for the twig function to work.
-There are two such files:
-
-* PHP file with the twig functions itself and
-* Services.xml
+In the following section, we will create the PHP file for the twig function.
 
 ### Creating the twig function
 
@@ -65,17 +61,7 @@ class SwagCreateMd5Hash extends AbstractExtension
 
 :::
 
-Of course, you can do everything in the `createMd5Hash` function that PHP can do, but the `service.xml` handles registration of the service in the DI container.
-
-::: code-group
-
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-    <services>
-        <service id="SwagBasicExample\Twig\SwagCreateMd5Hash" public="true">
-            <tag name="twig.extension"/> <!--Required-->
-        </service>
-    </services>
-```
+Of course, you can do everything in the `createMd5Hash` function that PHP can do. Since the class extends `AbstractExtension`, Symfony's autoconfigure feature automatically recognizes it as a Twig extension and registers it in the DI container. No additional service configuration is needed.
 
 Once done, you can access this `TwigFunction` within your plugin.
 

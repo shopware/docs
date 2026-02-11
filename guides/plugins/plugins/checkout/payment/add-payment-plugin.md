@@ -35,23 +35,20 @@ Shopware provides you with a handy `Shopware\Core\Checkout\Payment\Cart\PaymentH
 ### Registering the service
 
 Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container.
-Please make sure to add the `shopware.payment.method` tag to your service definition, otherwise Shopware won't recognize your service as a payment handler.
+Use the `#[AutoconfigureTag('shopware.payment.method')]` attribute on your handler class, otherwise Shopware won't recognize it as a payment handler.
 
 We'll use a class called `MyCustomPaymentHandler` here.
 
-```xml [<plugin root>/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+Use the `#[AutoconfigureTag]` attribute directly on your handler class to register it as a payment method:
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <tag name="shopware.payment.method"/>
-        </service>
-    </services>
-</container>
+#[AutoconfigureTag('shopware.payment.method')]
+class MyCustomPaymentHandler extends AbstractPaymentHandler
+{
+    // ...
+}
 ```
 
 Now, let's start with the actual examples.
@@ -82,9 +79,11 @@ use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\PaymentHandlerType;
 use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AutoconfigureTag('shopware.payment.method')]
 class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
     public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
@@ -114,22 +113,6 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
         return null;
     }
 }
-```
-
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <tag name="shopware.payment.method"/>
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-        </service>
-    </services>
-</container>
 ```
 
 :::
@@ -163,9 +146,11 @@ use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AutoconfigureTag('shopware.payment.method')]
 class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
     public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
@@ -227,22 +212,6 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 }
 ```
 
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <tag name="shopware.payment.method"/>
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-        </service>
-    </services>
-</container>
-```
-
 :::
 
 Let's start with the `pay` method. You'll have to start by letting your external payment provider know where he should redirect your customer in return when the payment is done.
@@ -292,9 +261,11 @@ use Shopware\Core\Framework\Struct\ArrayStruct;
 use Shopware\Core\Framework\Struct\Struct;
 use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AutoconfigureTag('shopware.payment.method')]
 class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
     public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
@@ -350,29 +321,13 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 
         // In here you should probably call your payment provider to precess the payment
         // $this->myPaymentProvider->processPayment($transaction);
-        
+
         // afterward you should update the transaction with the new state
         $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
 
         return null;
     }
 }
-```
-
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <tag name="shopware.payment.method"/>
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-        </service>
-    </services>
-</container>
 ```
 
 :::
@@ -406,9 +361,11 @@ use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AutoconfigureTag('shopware.payment.method')]
 class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
     public function __construct(
@@ -489,24 +446,6 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 
 ```
 
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <tag name="shopware.payment.method"/>
-            <argument type="service" id="order_transaction_capture_refund.repository"/>
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransactionCapture\OrderTransactionCaptureStateHandler"/>
-        </service>
-    </services>
-</container>
-```
-
 :::
 
 As you can see, you have complete control over handling the refund request and which positions to refund.
@@ -540,9 +479,11 @@ use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
 use Shopware\Core\Checkout\Payment\PaymentException;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Struct\Struct;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AutoconfigureTag('shopware.payment.method')]
 class MyCustomPaymentHandler extends AbstractPaymentHandler
 {
     public function __construct(private readonly OrderTransactionStateHandler $transactionStateHandler)
@@ -567,16 +508,16 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
             // In here you should probably call your payment provider to create a billing agreement
             // $this->myPaymentProvider->createBillingAgreement($transaction);
         }
-        
+
         // Don't forget to capture the initial payment as well
         // $this->myPaymentProvider->processPayment($transaction);
-        
+
         // afterward you should update the transaction with the new state
         $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
 
         return null;
     }
-    
+
     /**
      * call your PSP here for capturing a recurring payment
      * a valid billing agreement between the customer and the PSP should usually already be in place
@@ -600,22 +541,6 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
     }
 }
 
-```
-
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <tag name="shopware.payment.method"/>
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-        </service>
-    </services>
-</container>
 ```
 
 :::
@@ -776,38 +701,19 @@ extend the `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHa
 | `RecurringPaymentHandlerInterface`    | `recurring`                                                                                               | `PaymentHandlerType::RECURRING` |
 | `RefundPaymentHandlerInterface`       | `refund`                                                                                                  | `PaymentHandlerType::REFUND`    |
 
-### New single tag for payment handlers
+### New single attribute for payment handlers
 
-Your payment handler should now have a single tag in the service definition: `shopware.payment.method`.
-Remove any other occurrences of the following tags:
-`shopware.payment.method.sync`, `shopware.payment.method.async`, `shopware.payment.method.prepared`, `shopware.payment.method.recurring`, `shopware.payment.method.refund`.
+Your payment handler should now have the `#[AutoconfigureTag('shopware.payment.method')]` attribute.
 
-::: code-group
+```php
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\PaymentPlugin\Service\MyCustomPaymentHandler">
-            <!-- this is the new tag for payment handlers -->
-            <tag name="shopware.payment.method"/>
-
-            <!-- remove any of these other tags -->
-            <tag name="shopware.payment.method.sync"/>
-            <tag name="shopware.payment.method.async"/>
-            <tag name="shopware.payment.method.prepared"/>
-            <tag name="shopware.payment.method.recurring"/>
-            <tag name="shopware.payment.method.refund"/>
-        </service>
-    </services>
-</container>
+#[AutoconfigureTag('shopware.payment.method')]
+class MyCustomPaymentHandler extends AbstractPaymentHandler
+{
+    // Remove any other payment handler tags - only the single shopware.payment.method attribute is needed
+}
 ```
-
-:::
 
 ### Prepared payments
 

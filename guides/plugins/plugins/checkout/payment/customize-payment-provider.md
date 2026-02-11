@@ -24,11 +24,10 @@ First, we create a new class that extends from the provider we want to customise
 In this example we customise the class `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`.
 The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally an instance of `DebitPayment` that we want to decorate.
 
-After we've created our customized payment provider class, we have to register it to the DI-container via the `services.xml`.
+With autowiring enabled, the `#[AsDecorator]` attribute on the class is sufficient to register the decorator. No explicit service configuration is needed.
 
-::: code-group
-
-```php [ExampleDebitPayment.php]
+```php
+// <plugin root>/src/Service/ExampleDebitPayment.php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -40,13 +39,16 @@ use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Struct\Struct;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 use Symfony\Component\HttpFoundation\Request;
 
+#[AsDecorator(decorates: DebitPayment::class)]
 class ExampleDebitPayment extends DebitPayment
 {
     private DebitPayment $decorated;
 
-    public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
+    public function __construct(OrderTransactionStateHandler $transactionStateHandler, #[AutowireDecorated] DebitPayment $decorated)
     {
         parent::__construct($transactionStateHandler);
         $this->decorated = $decorated;
@@ -65,21 +67,3 @@ class ExampleDebitPayment extends DebitPayment
     }
 }
 ```
-
-```xml [services.xml]
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleDebitPayment" decorates="Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment">
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <argument type="service" id="Swag\BasicExample\Service\ExampleDebitPayment.inner"/>
-        </service>
-    </services>
-</container>
-```
-
-:::

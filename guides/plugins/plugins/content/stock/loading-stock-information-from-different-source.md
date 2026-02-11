@@ -19,9 +19,6 @@ Here again, you will be decorating a service; therefore, it will be helpful to f
 
 For example, to load stock from a third-party API, you need to decorate `\Shopware\Core\Content\Product\Stock\AbstractStockStorage` and implement the `load` method. When products are loaded in Shopware the `load` method will be invoked with the loaded product IDs.
 
-<Tabs>
-<Tab title="StockStorageDecorator.php">
-
 ```php
 // <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
@@ -32,12 +29,16 @@ use Shopware\Core\Content\Product\Stock\AbstractStockStorage;
 use Shopware\Core\Content\Product\Stock\StockData;
 use Shopware\Core\Content\Product\Stock\StockDataCollection;
 use Shopware\Core\Content\Product\Stock\StockLoadRequest;
+use Shopware\Core\Content\Product\Stock\StockStorage;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 
+#[AsDecorator(decorates: StockStorage::class)]
 class StockStorageDecorator extends AbstractStockStorage
 {
-    public function __construct(private AbstractStockStorage $decorated)
+    public function __construct(#[AutowireDecorated] private AbstractStockStorage $decorated)
     {
     }
 
@@ -73,27 +74,7 @@ class StockStorageDecorator extends AbstractStockStorage
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\Example\Service\StockStorageDecorator" decorates="Shopware\Core\Content\Product\Stock\StockStorage">
-            <argument type="service" id="Swag\Example\Service\StockStorageDecorator.inner" />
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With autowiring enabled, the `#[AsDecorator]` attribute on the class is sufficient to register the decorator. No additional service configuration is needed.
 
 In your `load` method, you can access the product IDs from the `StockLoadRequest` instance and perform a request to your system to retrieve the data.
 

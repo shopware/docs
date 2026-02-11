@@ -13,7 +13,7 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide), but that one is not mandatory. Knowing how the `services.xml` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](dependency-injection) and [Creating a service](add-custom-service). It is shortly explained here as well though, so no worries!
+This guide is built upon our [plugin base guide](../plugin-base-guide), but that one is not mandatory. Knowing how the `services.php` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](dependency-injection) and [Creating a service](add-custom-service). It is shortly explained here as well though, so no worries!
 
 ::: info
 Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -21,36 +21,13 @@ Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?
 
 ## Registering scheduled task in the DI container
 
-A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a plugin's `services.xml`. For it to be found by Shopware 6 automatically, you need to place the `services.xml` file in a `Resources/config/` directory, relative to the location of your plugin's base class. The path could look like this: `<plugin root>/src/Resources/config/services.xml`.
+With `autoconfigure` enabled in your `services.php`, both `ScheduledTask` and `ScheduledTaskHandler` classes are automatically detected and registered. The `ScheduledTask` is automatically tagged with `shopware.scheduled.task`, and the `#[AsMessageHandler]` attribute on the handler takes care of message handler registration.
 
-Here's an example `services.xml` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTask">
-            <tag name="shopware.scheduled.task" />
-        </service>
-        <service id="Swag\BasicExample\Service\ScheduledTask\ExampleTaskHandler">
-            <argument type="service" id="scheduled_task.repository" />
-            <argument type="service" id="logger"/>
-            <tag name="messenger.message_handler" />
-        </service>
-    </services>
-</container>
-```
-
-Note the tags required for both the task and its respective handler, `shopware.scheduled.task` and `messenger.message_handler`. Your custom task will now be saved into the database once your plugin is activated.
+No explicit service configuration is required — simply create your classes and they will be picked up automatically.
 
 ## ScheduledTask and its handler
 
-As you might have noticed, the `services.xml` file tries to find both the task itself as well as the new task handler in a directory called `Service/ScheduledTask`. This naming is up to you, Shopware 6 decided to use this name though.
-
-Here's the an example `ScheduledTask`:
+Here's an example `ScheduledTask`:
 
 ```php
 // <plugin root>/src/Service/ScheduledTask/ExampleTask.php
@@ -102,7 +79,7 @@ class ExampleTaskHandler extends ScheduledTaskHandler
 }
 ```
 
-The task handler, `ExampleTaskHandler` as defined previously in your `services.xml`, will be annotated with `AsMessageHandler` handling the `ExampleTask` class. In addition, the `ScheduledTaskHandler` has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with one method that you need to implement first:
+The task handler, `ExampleTaskHandler`, is annotated with `#[AsMessageHandler]` handling the `ExampleTask` class. In addition, the `ScheduledTaskHandler` has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with one method that you need to implement first:
 
 * `run`: This method is executed once your scheduled task is executed. Do everything, that your task is supposed to do here. In this example, it will just create a new file.
 

@@ -80,9 +80,6 @@ about it.
 What we'll be doing now, is to add a custom `TypeDetector` class which returns an `ImageType` if the extension of the file to be checked matches our type detector.
 Have a look at the following example:
 
-<Tabs>
-<Tab title="CustomImageTypeDetector.php">
-
 ```php
 // <plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php
 <?php declare(strict_types=1);
@@ -93,7 +90,9 @@ use Shopware\Core\Content\Media\File\MediaFile;
 use Shopware\Core\Content\Media\MediaType\ImageType;
 use Shopware\Core\Content\Media\MediaType\MediaType;
 use Shopware\Core\Content\Media\TypeDetector\TypeDetectorInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
+#[AutoconfigureTag('shopware.media_type.detector', ['priority' => 10])]
 class CustomImageTypeDetector implements TypeDetectorInterface
 {
     protected const SUPPORTED_FILE_EXTENSIONS = [
@@ -118,28 +117,6 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 }
 ```
 
-</Tab>
-
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Media\TypeDetector\CustomImageTypeDetector">
-            <tag name="shopware.media_type.detector" priority="10"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
-
 You will have to create a new class which implements from the interface `TypeDetectorInterface`.
 This will come with the requirement of having a `detect` method, which will return the respective media type.
 
@@ -154,7 +131,6 @@ Make sure to add flags to your media type, e.g. the `transparent` flag, or if it
 You can find all available flags in their respective media type classes,
 e.g. [here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
 
-Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
-by using the tag `shopware.media_type.detector`.
+The `#[AutoconfigureTag('shopware.media_type.detector', ['priority' => 10])]` attribute on the class, as shown above, registers your type detector in the [Dependency injection container](../../plugin-fundamentals/dependency-injection). No additional service configuration is needed.
 
 Shopware will now recognise your new image extension and handle your new file like an image.

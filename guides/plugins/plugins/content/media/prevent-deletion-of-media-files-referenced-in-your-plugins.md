@@ -117,26 +117,4 @@ We check if there are any references to the Media IDs from the event, in the `sl
 
 Finally, we return all the IDs of Media which are used in the slider config so that they are not deleted.
 
-Make sure to register your event subscriber to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
-by using the tag `kernel.event_subscriber`.
-
-<Tabs>
-<Tab title="services.xml">
-
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <services>
-        <service id="Swag\BasicExample\Subscriber\UnusedMediaSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
-```
-
-</Tab>
-</Tabs>
+With `autoconfigure` enabled in your `services.php`, the subscriber is automatically registered because it implements `EventSubscriberInterface` — no additional configuration is needed.
