@@ -13,7 +13,7 @@ Shopware recommends [Docker](../installation/docker-setup.md) as the default set
 
 ## Prerequisites
 
-Before you begin, make sure your system meets the [Shopware 6 requirements](../installation/hardware-requirements.md). 
+Before you begin, make sure your system meets the [Shopware 6 requirements](../installation/hardware-requirements.md).
 
 You’ll need the following software installed on your host machine:
 
@@ -180,4 +180,3 @@ Symfony CLI uses PHP’s built-in web server by default. For better performance,
 You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
 
 <PageRef page="../installation/after-installation#frontend-and-administration-development" />
-
