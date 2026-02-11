@@ -17,7 +17,7 @@ Generally speaking, the maintenance effort is the same whether you wait a long p
 
 There are two Shopware update types:
 
-- **Minor/Patch updates**: These updates contain new features, bug fixes and security patches. They are released every month for the active supported versions. They don't require special attention if your extensions are not using internal/experimental APIs. You can find the Backwards Compatibility Promise [here](../../../resources/guidelines/code/backward-compatibility.md).
+- **Minor/Patch updates**: These updates contain new features, bug fixes and security patches. They are released every month for the active supported versions. They don't require special attention if your extensions are not using internal/experimental APIs. You can find more details in the [Backwards Compatibility Promise](../../../resources/guidelines/code/backward-compatibility.md).
 - **Major updates**: These updates clean up the codebase and introduce breaking changes. They are released once a year. They require special attention, as extensions, themes or system configurations might not be compatible with the new version.
 
 ## Preparations
