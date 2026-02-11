@@ -57,7 +57,7 @@ docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-nod
 This step creates your Shopware project using PHP and Composer inside the Docker image. It generates a ready-to-use setup including `compose.yaml` and a `Makefile`, so you don’t need to locally install PHP or Composer yourself.
 
 :::info
-The Docker setup installs development dependencies (`require-dev`) and [`shopware/dev-tools`](https://github.com/shopware/dev-tools). This enables the Symfony profiler, [demo data](https://github.com/shopware/SwagPlatformDemoData), linters, and test tooling.
+The Docker setup installs development dependencies (`require-dev`) and [`shopware/dev-tools`](https://github.com/shopware/dev-tools). This enables the Symfony profiler, [demo data](https://github.com/shopware/SwagPlatformDemoData), linting tools, and test tooling.
 :::
 
 Project creation takes a few minutes to complete. In your terminal, this prompt will eventually appear:
