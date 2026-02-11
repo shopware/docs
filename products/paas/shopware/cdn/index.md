@@ -57,10 +57,24 @@ Configure a `A` with your custom domain's DNS to point to:
 151.101.195.52
 ```
 
+and `AAAA` records to point to:
+
+```dns
+2a04:4e42::820
+2a04:4e42:200::820
+2a04:4e42:400::820
+2a04:4e42:600::820
+```
+
 This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
 
 #### Managing Custom Domains
 
-Custom domain management is handled through the `sw-paas` CLI domain command. You can attach multiple domains to a single shop. Following domain creation, you must update the application using `sw-paas application update`. You may use the same commit to trigger a deployment. This process will be automated in future releases.
+Custom domain management is handled through the `sw-paas` CLI domain command. You can attach multiple domains to a single shop. Following domain creation, you must create an application deployment using `sw-paas application update` or just `sw-paas application deploy create`. You may use the same commit to trigger a deployment.
 
 Subsequently, you can configure the domain within Shopware and associate it with a storefront. Status update functionality is currently under development.
+
+If you encounter an error during the domain creation process, a possible solution is to check the domain's DNS configuration.
+Ensure that the DNS records are correctly set up according to the guidelines provided above.
+Additionally, verify that there are no typos in the domain name and that the ***DNS changes have propagated successfully***.
+If issues persist, consider reaching out to support for further assistance.
