@@ -64,7 +64,7 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
    - If you're on Language Pack **5.37.0** or earlier, open each sales channel, scroll down to the domains and change the
      snippet set from `LanguagePack` to `BASE`, e.g.: `LanguagePack en-US` to `BASE en-US`.
 6. It is recommended to uninstall and remove the Language Pack plugin after `translation:install` succeeded for all locales.
-   Your **custom snippets** created in the Snippet module remain intact since they are saved in the database.
+   Your **custom snippets** created in the snippet module remain intact since they are saved in the database.
 
 ## New installations
 
@@ -78,12 +78,11 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ## Common problems and troubleshooting
 
-::: tip
-Can't remove Language Pack: a foreign key constraint fails (\`shopware\`.\`sales_channel_domain\`…
-Starting with **Shopware 6.7.7.0** and **Language Pack 5.37.1** the migration process was improved. If you encounter this issue,
+### Can't remove Language Pack: a foreign key constraint fails (\`shopware\`.\`sales_channel_domain\`…
+
+Starting with **Shopware 6.7.7.0** and **Language Pack 5.37.1**, the migration process was improved. If you encounter this issue,
 please update Shopware to >= 6.7.7.0, Language Pack to >= 5.37.1, remove the translation files created from running the
 command and run the command again. Or follow the updated migration guide.
-:::
 
 [translation-system]: ../../../../../concepts/translations/built-in-translation-system.md
 [language-pack-plugin]: https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html
