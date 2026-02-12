@@ -35,7 +35,7 @@ You can check the deployment status with the following command:
 sw-paas app deploy list
 ```
 
-If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** proceed with cloning. Fix the deployment issues first or proceed with an earlier deployment that was succesful.
+If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** proceed with cloning. Fix the deployment issues first or proceed with an earlier deployment that was successful.
 
 ## Clone Process
 
@@ -53,7 +53,7 @@ The interactive mode will prompt you to select:
    - Organization (if you have access to multiple)
    - Project within the organization
    - Application within the project
-   - Deployment 
+   - Deployment
 
 2. **Target application selection**:
    - Project within the same organization (only projects from the selected organization will be shown)
@@ -64,7 +64,6 @@ This interactive mode is recommended if you're unsure about the specific IDs or 
 ### Manual Mode
 
 If you know the specific IDs, you can provide them directly as command-line flags:
-
 
 ```shell
 sw-paas application clone \
@@ -108,5 +107,3 @@ After the clone is successfully completed, you may need to:
 2. **Configure domains**: Set up custom domains for the cloned application if needed
 3. **Update secrets**: Ensure all necessary secrets and environment variables are configured for the new application
 4. **Test the cloned application**: Verify that the cloned application is working correctly before using it in production
-
-
