@@ -52,17 +52,26 @@ If you're working with an already created Shopware project, simply navigate into
 cd <your-project-folder>
 ```
 
-Ensure the required Kubernetes metadata package is installed to enable compatibility with the [Shopware Operator](https://github.com/shopware/shopware-operator):
+Install the `shopware/k8s-meta` package that prepares your project for PaaS Native. Use the version that matches your Shopware installation:
+
+| Shopware version | k8s-meta version |
+|------------------|------------------|
+| 6.6              | `^1.0`           |
+| 6.7              | `^2.0`           |
 
 ```sh
-composer require shopware/k8s-meta --ignore-platform-reqs
+# For Shopware 6.6
+composer require shopware/k8s-meta:^1.0 --ignore-platform-reqs
+
+# For Shopware 6.7
+composer require shopware/k8s-meta:^2.0 --ignore-platform-reqs
 ```
 
 :::info
 The `--ignore-platform-reqs` flag ensures that all necessary recipes are installed, even if your local PHP version differs from the required platform version.
 :::
 
-This package installs essential configuration files, including those required for deploying your shop via the Shopware Operator. After installation, verify that the file `config/packages/operator.yaml` has been created.
+After installation, verify that the file `config/packages/operator.yaml` has been created. For details on what this package installs and how to override its configuration, see the [K8s Meta Package](../fundamentals/k8s-meta.md) page.
 
 ### Create the `application.yaml` File
 
