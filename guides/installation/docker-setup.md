@@ -46,7 +46,7 @@ Create an empty directory for your project and navigate into it:
 mkdir my-project && cd my-project
 ``
 
-Now create a new project:
+Create a new project:
 
 ```bash
 docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup
