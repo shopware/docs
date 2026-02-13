@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Symfony CLI
+  title: Setting up Shopware with Symfony CLI
   position: 30
 
 ---
 
-# Symfony CLI Setup
+# Setting up Shopware with Symfony CLI
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
@@ -172,9 +172,3 @@ symfony php -i
 By keeping your `php.ini` in version control, you ensure consistent behavior across development environments and CI pipelines.
 
 Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../../resources/references/config-reference/server/nginx.md).
-
-## Build and Watch the Administration and Storefront (Optional)
-
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
-
-<PageRef page="../template#building-watching-administration-and-storefront" />
