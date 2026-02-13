@@ -15,12 +15,16 @@ For information about using Docker in production, see [Docker for production](..
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-started/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start) is installed and running. OrbStack is a fast, free (for personal use) Docker-compatible replacement on macOS.
-  - Ensure Docker has permission to bind to local ports (typically:80 or:8080) and is not already bound to conflicting ports
-- `make` is installed on your machine (`apt install make` on Ubuntu, `brew install make` on macOS)
-- `Docker Compose` is installed on your machine. Docker Desktop provides it automatically. If you're using OrbStack or something else, you can follow the official [Docker Compose installation guide](https://docs.docker.com/compose/install/).
-- Enough disk and network capacity to pull images (~500MB+ per image depending on tags)
-- [Git](https://git-scm.com/) installed and available in your `PATH`
+- Install and run either [Docker](https://docs.docker.com/get-started/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start). OrbStack is a fast, Docker-compatible alternative for macOS (free for personal use).
+- Ensure Docker has permission to bind to local ports (typically `:80` or `:8080`) and that no conflicting services are already using these ports.
+- Install `make`:
+
+```bash
+# Ubuntu
+apt install make
+
+# macOS
+brew install make
 
 This setup comes preinstalled with the [Shopware CLI](../../../products/cli/index.md), which helps with building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
