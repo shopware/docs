@@ -96,16 +96,18 @@ Once the containers are running, install Shopware with this command:
 make setup
 ```
 
+:::info
 What happens during `make setup`:
 
 - The Makefile runs the Shopware installer inside the web container
 - Shopware is installed automatically (no browser wizard required)
 - A MariaDB database is created
 - An admin user is created, with username `admin` and password `shopware`
-- Required services (database, search, mail, etc.) are running inside Docker and already configured
+- Required services (database, search, mail, etc.) are preconfigured and runs inside the Docker
 - The Shopware project is configured to connect to the database via the Docker service name `database`
 - Database credentials are defined in the `compose.yaml`
 - If search was enabled during project creation, an Elasticsearch-compatible search service runs as part of the Docker stack
+:::
 
 You verify the installation succeeded by opening <http://localhost:8000>.
 
