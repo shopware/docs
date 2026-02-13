@@ -39,7 +39,7 @@ For a DDEV-based Shopware example, see [DDEV with Shopware](https://github.com/d
 - Great for testing specific versions or quick evaluation.
 - Can be used standalone or integrated into CI pipelines.
 
-[Dockware documentation →](https://docs.dockware.io/)
+Refer to [Dockware documentation](https://docs.dockware.io/) for more info.
 
 :::info
 Looking for older installation methods that are no longer recommended? See our [Legacy Installation Guides](./legacy-setups/).
