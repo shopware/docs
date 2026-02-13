@@ -21,7 +21,7 @@ The pages that follow assume that you're using Docker itself. That said, the Sho
 
 ## DDEV
 
-[DDEV](https://ddev.com/) is a developer-friendly wrapper around Docker that automates environment setup using simple CLI commands. Community members enjoy these features:
+[DDEV](https://ddev.com/) is a developer-friendly wrapper around Docker that automates environment setup using simple CLI commands. Key features include:
 
 - Simplifies Docker configuration: no manual `docker-compose.yml` needed.
 - One command (`ddev start`) to start your Shopware environment.
