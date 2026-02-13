@@ -1847,7 +1847,6 @@ subdirectories
 subdirectory
 subfolder
 suboptimal
-subpaths
 subprocessor
 subprocessors
 supervisord
