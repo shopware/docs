@@ -109,8 +109,16 @@ What happens during `make setup`:
 - If search was enabled during project creation, an Elasticsearch-compatible search service runs as part of the Docker stack
 :::
 
-You verify the installation succeeded by opening <http://localhost:8000>.
+Verify that the installation completed successfully by opening <http://localhost:8000>.
 
-Use `make up` and `make down` to start or stop your environment. Use `docker compose down -v` to fully reset it. The `-v` flag deletes the containers, networks, and volumes, meaning all stored data will be lost.
+Use the following commands to manage the development environment:
 
-On the next page, we'll help you to start developing.
+```bash
+# Start the environment
+make up
+
+# Stop the environment
+make down
+
+# Fully reset the environment ( "-v" flag removes containers, networks, and volumes - all stored data will be lost)
+docker compose down -v
