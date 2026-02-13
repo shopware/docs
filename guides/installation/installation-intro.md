@@ -32,7 +32,7 @@ For a DDEV-based Shopware example, see [DDEV with Shopware](https://github.com/d
 
 ## Dockware
 
-[Dockware](https://www.dockware.io/) provides ready-to-run Docker images for quickly spinning up demo stores or full local environments in seconds. It emphasizes minimal setup over full customization. Community members enjoy these features:
+[Dockware](https://www.dockware.io/) provides ready-to-run Docker images for quickly spinning up demo stores or full local environments in seconds. It emphasizes minimal setup over full customization. Key features include:
 
 - Pre-built images for Shopware 5, 6, and nightly builds.
 - Includes all key services: PHP, DB, Elasticsearch, Mailhog, Adminer, etc.
