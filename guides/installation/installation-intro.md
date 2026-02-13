@@ -17,7 +17,9 @@ The Shopware 6 development environment is primarily supported and recommended to
 
 The [Docker-based setup](./docker-setup.md) aims to provide a smooth onboarding experience aligned with modern development practices. It runs your entire Shopware environment in containers, including all backend services (PHP, MySQL, Node, an Elasticsearch-compatible search engine, Redis, Mailhog, etc.). No manual installation is required.
 
-The pages that follow assume that you're using Docker itself. That said, the Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: DDEV and Dockware. Both are **community-maintained** and not officially supported by Shopware.
+The pages that follow assume that you're using Docker itself.
+
+The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](#DDEV) and Dockware(#Dockware setup). Both are **community-maintained** and not officially supported by Shopware.
 
 ## DDEV
 
