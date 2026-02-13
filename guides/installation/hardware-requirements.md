@@ -26,7 +26,7 @@ Before setting up the Shopware 6 development environment, ensure your system mee
 ## Permissions and networking
 
 - Allow your system’s firewall to let containers or local web servers communicate internally.
-- On Linux, you may need to add your user to the `docker` group:
+- On Linux, you may need to add your user to the `docker` group using the below command:
 
 ```bash
 sudo usermod -aG docker $USER
