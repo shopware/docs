@@ -1375,7 +1375,7 @@ index.json
 
 ### Partially compiling the Storefront
 
-You can also build just the Javascript bundle using `CI=1 SHOPWARE_SKIP_THEME_COMPILE=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true bin/build-storefront.sh` (without the need for the above loader) in your CI. After that, run `bin/console theme:dump` on your production system when the database is available. This will happen automatically if theme variables are changed via the admin panel.
+You can also build just the JavaScript bundle using `CI=1 SHOPWARE_SKIP_THEME_COMPILE=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true bin/build-storefront.sh` (without the need for the above loader) in your CI. After that, run `bin/console theme:dump` on your production system when the database is available. This will happen automatically if theme variables are changed via the admin panel.
 
 ## Cache directory and hash implications
 
@@ -1384,7 +1384,7 @@ When using `bin/ci` or `ComposerPluginLoader`, the cache directory name includes
 This means:
 
 - Cache warmed with `bin/ci` uses a hash based on all Composer-installed plugins being active
-- Production web requests use a hash based on actual database plugin state
+- Production web requests use a hash based on the actual database plugin state
 - If any plugin is deactivated in the database, web requests create a new cache directory
 
 To ensure cache is properly cleared across all configurations, use `cache:clear:all` instead of `cache:clear` in deployment scripts.

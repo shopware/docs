@@ -109,8 +109,8 @@ This process is called setup.
 :::
 
 ::: warning
-Suppose your app makes use of the Admin Module, Payment Method, Tax providers or Webhook app system features.
-In that case, you need to implement the registration, to exchange a secret key; that is later used to authenticate the shops.
+Suppose your app makes use of the Admin Module, Payment Method, Tax providers, or Webhook app system features.
+In that case, you need to implement the registration to exchange a secret key; that is later used to authenticate the shops.
 :::
 
 During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
