@@ -26,7 +26,7 @@ apt install make
 # macOS
 brew install make
 
-This setup comes preinstalled with the [Shopware CLI](../../../products/cli/index.md), which helps with building, refactoring, validating, and managing Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
+This Docker setup includes the [Shopware CLI](../../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
 ## Pre-pull the image (optional)
 
