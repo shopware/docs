@@ -44,3 +44,5 @@ Refer to [Dockware documentation](https://docs.dockware.io/) for more info.
 :::info
 Looking for older installation methods that are no longer recommended? See our [Legacy Installation Guides](./legacy-setups/).
 :::
+
+Next, check the [hardware requirements](./hardware-requirements.md) to prepare your system.
