@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Docker setup
+# Docker Setup
 
 This guide is for developing Shopware stores and extensions. By the end of this page, you'll have a running empty Shopware instance and can immediately start working in the [Administration](https://developer.shopware.com/docs/concepts/framework/architecture/administration-concept.html).
 
