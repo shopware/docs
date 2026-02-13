@@ -46,8 +46,10 @@ erDiagram
 Configure multiple domains per sales channel. Each domain pins language, currency, and snippet set (translations). Example:
 
 - `https://example.com/` → en-GB, GBP
-- `https://example.com/de` → de-DE, EUR
+- `https://de.example.com` → de-DE, EUR
 - `https://example.es/` → es-ES, EUR
+
+Use subdomains (e.g. de.example.com) rather than subpaths (e.g. example.com/de) for fully isolated sales channels. Combining the root domain with subpath-based channels means cookies are not fully isolated between channels, which can cause session conflicts.
 
 `hreflangActive` and `hreflangDefaultDomainId` control hreflang links across these domains.
 
