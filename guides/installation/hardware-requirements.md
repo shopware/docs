@@ -9,10 +9,10 @@ nav:
 
 Before setting up the Shopware 6 development environment, ensure your system meets the following basic requirements.
 
-- You’re using a Unix-based system (macOS or Linux), or Windows with WSL 2 or Docker for full compatibility
-- You have admin/root privileges (if required in your organization)
-- You have at least 8 GB RAM (16 GB recommended) and 10 GB free disk space
-- You have a reliable Internet connection for dependency downloads
+- Unix-based system (macOS or Linux), or Windows with WSL 2 or Docker for full compatibility
+- Administrative/root privileges (if required within the organization)
+- At least 8 GB RAM (16 GB recommended) and 10 GB free disk space
+- Reliable internet connection for dependency downloads
 
 These recommendations ensure smooth local development regardless of your setup:
 
