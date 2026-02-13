@@ -7,7 +7,7 @@ nav:
 
 # Hardware Requirements
 
-Before setting up your Shopware 6 development environment, make sure your system is ready. Check these basics before installation:
+Before setting up the Shopware 6 development environment, ensure your system meets the following basic requirements.
 
 - You’re using a Unix-based system (macOS or Linux), or Windows with WSL 2 or Docker for full compatibility
 - You have admin/root privileges (if required in your organization)
