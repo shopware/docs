@@ -12,6 +12,8 @@ Many configurations can be changed using a `.shopware-extension.yml` file in the
 Here is an example of a `.shopware-extension.yml` file:
 
 ```yaml
+compatibility_date: '2026-02-11'
+
 build:
   extraBundles:
     - path: src/Foo
@@ -41,6 +43,20 @@ validation:
 ```
 
 When you edit that file in an editor, you will get autocompletion and hints for the available options.
+
+## compatibility_date
+
+You can define a `compatibility_date` in `.shopware-extension.yml`:
+
+```yaml
+compatibility_date: '2026-02-11'
+```
+
+The `compatibility_date` lets Shopware CLI introduce behavior changes without breaking existing projects by default. New or potentially breaking changes are activated only for configurations that opt in with a date at or after the feature's rollout date.
+
+- Format: `YYYY-MM-DD`
+- If the field is missing, Shopware CLI uses `2026-02-11` as fallback
+- When missing, Shopware CLI logs a warning during config loading
 
 ## Environment variables
 
