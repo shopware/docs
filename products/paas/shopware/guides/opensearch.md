@@ -6,27 +6,10 @@ nav:
 
 ## Enable OpenSearch
 
-To use OpenSearch with your Shopware instance, add the `opensearch` service to your `application.yaml` file as follows:
+To use OpenSearch with your Shopware instance, set `services.opensearch.enabled` to `true` in your [`application.yaml`](../fundamentals/application_yaml.md) file:
 
 ```yaml
 services:
-  opensearch:
-    enabled: true
-```
-
-A complete example would look like this:
-
-```yaml
-app:
-  php:
-    version: "8.3"
-  environment_variables:
-    - name: INSTALL_LOCALE
-      value: fr-FR
-      scope: RUN # Supports RUN or BUILD
-services:
-  mysql:
-    version: "8.0"
   opensearch:
     enabled: true
 ```
