@@ -37,6 +37,8 @@ The context is saved as `context-production.yaml` and stored alongside the main 
 
 The `token` command manages personal access tokens, enabling secure authentication for both API and CLI operations without exposing your main account credentials. Personal access tokens are especially useful for automating workflows, such as authenticating in CI/CD pipelines or integrating with external systems.
 
+A token inherits all permissions of the user who created it, except the ability to create new tokens. This means any action the user can perform, the token can perform as well.
+
 ### Creating a Token
 
 Generate a new access token:
