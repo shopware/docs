@@ -14,7 +14,7 @@ Before setting up the Shopware 6 development environment, ensure your system mee
 - At least 8 GB RAM (16 GB recommended) and 10 GB free disk space
 - Reliable internet connection for dependency downloads
 
-These recommendations ensure smooth local development regardless of your setup:
+## System requirements
 
 | Component            | Recommended                                                  |
 |:---------------------|:-------------------------------------------------------------|
