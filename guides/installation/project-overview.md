@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Overview: Understanding your Shopware project
+# Understanding your Shopware project
 
 You’ve just installed Shopware. But what exactly did you get? This page is an explainer to guide you through fundamentals you'll use through the rest of your development workflow.
 
