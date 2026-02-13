@@ -40,7 +40,7 @@ If you skip this step, Docker will automatically download the image during proje
 
 ## Create a new Shopware project
 
-Create an empty directory for your project and navigate into it:
+Create an empty directory for your project and navigate to it:
 
 ```bash
 mkdir my-project && cd my-project
