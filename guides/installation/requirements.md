@@ -7,24 +7,29 @@ nav:
 
 # Requirements
 
-This page lists the system requirements and supported software versions for developing Shopware 6. Find installation steps for each setup method on their respective pages:
+This page describes the **software requirements** needed to run Shopware 6.
 
-- [Docker setup](./setups/docker.md); recommended for most users
-- [Devenv setup](./setups/devenv.md)
-- [Symfony CLI](./setups/symfony-cli.md)
+The goal of this page is to clearly outline the technical prerequisites required by Shopware itself, independent of how or where it is hosted (local development, self-hosted servers, or managed environments).
 
-## Requirements for all setups
+If you are looking for installation instructions or environment setup guides, please refer to the dedicated [setup documentation](./setups/) (Docker, Devenv, Symfony CLI, etc.).
+
+## General prerequisites
 
 Before setting up your Shopware 6 development environment, make sure your system is ready. Check these basics before installation:
 
-- You’re using a Unix-based system (macOS or Linux), or Windows with WSL 2 or Docker for full compatibility
-- You have admin/root privileges (if required in your organization)
+- A Unix-based system (macOS or Linux) is recommended. Windows users should use WSL 2 or Docker for best compatibility.
+- Administrative privileges may be required depending on your installation method (e.g., when installing system packages locally).
 - [Git](https://git-scm.com/) installed and available in your `PATH`
-- You have at least 8 GB RAM (16 GB recommended) and 10 GB free disk space
+- Have at least 8 GB RAM (16 GB recommended) and 10 GB free disk space
 - Docker Desktop, PHP, or Nix are not already bound to conflicting ports
 - You have a reliable Internet connection for dependency downloads
 
-## Hardware recommendations
+## Hardware recommendations (local development guidance)
+
+:::info
+The below recommendations are intended only as **general guidance** for local development setups.
+Production hosting requirements vary significantly depending on catalog size, traffic, extensions, and infrastructure design.
+:::
 
 These recommendations ensure smooth local development regardless of setup:
 
@@ -35,9 +40,13 @@ These recommendations ensure smooth local development regardless of setup:
 | **Disk space**       | ~10 GB free for Shopware + services                          |
 | **Operating system** | macOS 13+, Windows 10/11 (Pro with WSL 2), or Linux (64-bit) |
 
-## Permissions and networking
+## Permissions and networking considerations
 
-- Ensure Docker or Symfony CLI has permission to bind to local ports (typically:80 or:8080).
+:::info
+Depending on your setup method, administrative privileges may/may not be required during installation.
+:::
+
+- Ensure Docker or Symfony CLI has permission to bind to local ports (typically :80 or :8080).
 - Allow your system’s firewall to let containers or local web servers communicate internally.
 - On Linux, you may need to add your user to the `docker` group:
 
@@ -45,9 +54,14 @@ These recommendations ensure smooth local development regardless of setup:
 sudo usermod -aG docker $USER
 ```
 
+:::info
+The above command is intended for local setup scenarios and may vary depending on your operating system or environment.
+:::
+
 ## Recommended stack and supported versions
 
-The following versions and configurations are officially supported for Shopware 6 development:
+The following table lists officially supported versions for Shopware development:
+
 
 | Component            | Install                                                                                                                                                                                                                                                                                                                            | Minimum Version                                                                                                                      | Recommended              | Required / Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
