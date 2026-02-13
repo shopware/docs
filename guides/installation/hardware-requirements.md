@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Hardware requirements
+# Hardware Requirements
 
 Before setting up your Shopware 6 development environment, make sure your system is ready. Check these basics before installation:
 
