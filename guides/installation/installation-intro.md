@@ -28,7 +28,7 @@ The pages that follow assume that you're using Docker itself. That said, the Sho
 - Easy to switch PHP/MySQL/Node versions per project.
 - Integrates well with VS Code and PHPStorm.
 
-[DDEV with Shopware example →](https://github.com/ddev/test-shopware6)
+For a DDEV-based Shopware example, see [DDEV with Shopware](https://github.com/ddev/test-shopware6)
 
 ### Dockware setup
 
