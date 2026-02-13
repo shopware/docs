@@ -21,7 +21,7 @@ This guide is built upon the [Plugin base guide](../plugin-base-guide), so take 
 
 ## Extend the cookie consent manager
 
-Adding custom cookies requires you to listen to the `CookieGroupsCollectEvent` and add your custom cookies to the collection.
+Adding custom cookies requires you to listen to the `CookieGroupCollectEvent` and add your custom cookies to the collection.
 
 ::: tip
 It is recommended to use an event listener if you're listening to a single event. If you need to react to multiple events, an event subscriber is the better choice.
@@ -41,7 +41,7 @@ Start with creating the `services.xml` and registering your event listener.
 
     <services>
         <service id="PluginName\Listener\CookieListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent"/>
+            <tag name="kernel.event_listener" event="Shopware\Core\Content\Cookie\Event\CookieGroupCollectEvent"/>
         </service>
     </services>
 </container>
@@ -51,7 +51,7 @@ In the next step we'll create the actual listener class.
 
 ### Creating the listener
 
-We need to create a class called `CookieListener` with an `__invoke` method. This method will be executed once the `CookieGroupsCollectEvent` is dispatched.
+We need to create a class called `CookieListener` with an `__invoke` method. This method will be executed once the `CookieGroupCollectEvent` is dispatched.
 
 The event object that is passed to our listener method contains the cookie groups collection, which we can use to add our custom cookies.
 
@@ -67,57 +67,39 @@ Let's have a look at an example:
 
 namespace PluginName\Listener;
 
-use Shopware\Storefront\Framework\Cookie\CookieGroupsCollectEvent;
-use Shopware\Core\Framework\Cookie\CookieEntry;
-use Shopware\Core\Framework\Cookie\CookieGroup;
+use Shopware\Core\Content\Cookie\Event\CookieGroupCollectEvent;
+use Shopware\Core\Content\Cookie\Service\CookieProvider;
+use Shopware\Core\Content\Cookie\Struct\CookieEntry;
+use Shopware\Core\Content\Cookie\Struct\CookieEntryCollection;
 
 class CookieListener
 {
-    public function __invoke(CookieGroupsCollectEvent $event): void
+    public function __invoke(CookieGroupCollectEvent $event): void
     {
-        $cookieGroups = $event->getCookieGroups();
+        $comfortFeaturesCookieGroup = $event->cookieGroupCollection->get(CookieProvider::SNIPPET_NAME_COOKIE_GROUP_COMFORT_FEATURES);
+        if (!$comfortFeaturesCookieGroup) {
+            return;
+        }
 
-        // Create a single cookie
-        $singleCookie = new CookieEntry(
-            'cookie.name',
-            'cookie-key',
-            'cookie value',
-            30,
-            'cookie.description'
-        );
+        $entries = $comfortFeaturesCookieGroup->getEntries();
+        if ($entries === null) {
+            $entries = new CookieEntryCollection();
+            $comfortFeaturesCookieGroup->setEntries($entries);
+        }
 
-        // Create entries collection for cookie group
-        $groupEntries = [
-            new CookieEntry(
-                'cookie.first_child_name',
-                'cookie-key-1',
-                'cookie value',
-                30
-            ),
-            new CookieEntry(
-                'cookie.second_child_name',
-                'cookie-key-2',
-                'cookie value',
-                60
-            )
-        ];
+        $cookieEntry = new CookieEntry('my-cookie-key');
+        $cookieEntry->name = 'cookie.myCookieName';
+        $cookieEntry->value = '1';
+        $cookieEntry->expiration = 30;
 
-        // Create a cookie group with multiple cookies
-        $cookieGroup = new CookieGroup(
-            'cookie.group_name',
-            $groupEntries,
-            'cookie.group_description'
-        );
-
-        $cookieGroups->add($cookieGroup);
-        $cookieGroups->add($singleCookie);
+        $entries->add($cookieEntry);
     }
 }
 ```
 
-This will eventually lead to a new group being created, containing two new cookies, as well as a new cookie without a group.
+This will add your cookie to the existing "Comfort Features" group in the cookie consent manager.
 
-And that's basically it already. After loading your Storefront, you should now see your new cookies and the cookie-group.
+And that's basically it already. After loading your Storefront, you should now see your new cookie in the cookie consent manager.
 
 ## Parameter Reference
 
@@ -132,7 +114,7 @@ Cookie groups should not have the `cookie`, `value`, `expiration`, or `isRequire
 
 ## Migrating from CookieProviderInterface (Shopware 6.7.2 and earlier)
 
-If you are upgrading from an older version, you might have used the `CookieProviderInterface` to add custom cookies. This interface is now deprecated and should be replaced with the `CookieGroupsCollectEvent`.
+If you are upgrading from an older version, you might have used the `CookieProviderInterface` to add custom cookies. This interface is now deprecated and should be replaced with the `CookieGroupCollectEvent`.
 
 For backward compatibility, you can still use the `CookieProviderInterface` to provide cookies in the old array syntax. However, it is highly recommended to use the new event-based system to provide the new object structure.
 
@@ -152,7 +134,7 @@ While this feature helps with GDPR compliance, shop owners are responsible for e
 
 ### How it works
 
-1. Your plugin adds/modifies cookies via the `CookieGroupsCollectEvent`
+1. Your plugin adds/modifies cookies via the `CookieGroupCollectEvent`
 2. Shopware calculates a hash of the entire cookie configuration
 3. The hash is stored in the user's browser as an object where the language ID is the key and the hash is the value (e.g., `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`)
 4. On the next visit, if the hash differs for the current language, the consent banner appears again
