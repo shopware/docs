@@ -60,7 +60,7 @@ This step creates your Shopware project using PHP and Composer inside the Docker
 The Docker setup installs development dependencies (`require-dev`) and [`shopware/dev-tools`](https://github.com/shopware/dev-tools). This enables the Symfony profiler, [demo data](https://github.com/shopware/SwagPlatformDemoData), linting tools, and test tooling.
 :::
 
-Project creation takes a few minutes to complete. In your terminal, this prompt will eventually appear:
+Project creation takes a few minutes to complete. When prompted in the terminal, you will see:
 
 `Do you want to use Elasticsearch? (y/N)`
 
