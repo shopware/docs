@@ -82,7 +82,9 @@ make up
 
 This command starts Shopware and all required services (web server, database, search, Mailpit, etc.) in the background. Docker images already include all required PHP extensions and services, so the system-check step of the installer is always fulfilled.
 
-**Tip:** You can check container status anytime with:
+:::info
+You can check the container status anytime with the below command:
+:::
 
 ```bash
 docker compose ps
