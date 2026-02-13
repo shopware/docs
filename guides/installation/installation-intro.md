@@ -30,7 +30,7 @@ The pages that follow assume that you're using Docker itself. That said, the Sho
 
 For a DDEV-based Shopware example, see [DDEV with Shopware](https://github.com/ddev/test-shopware6)
 
-### Dockware setup
+## Dockware
 
 [Dockware](https://www.dockware.io/) provides ready-to-run Docker images for quickly spinning up demo stores or full local environments in seconds. It emphasizes minimal setup over full customization. Community members enjoy these features:
 
