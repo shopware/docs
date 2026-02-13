@@ -13,7 +13,7 @@ Welcome to the Shopware 6 Developer Installation Guide, which will help you set 
 - developing a plugin, app, or theme
 - contributing to the Shopware core
 
-Our setup is based on [Docker](https://www.docker.com/), a platform that enables developers to develop, ship, and run applications inside containers: lightweight, standalone, and executable packages. Docker enables production-like conditions consistent across teams and CI/CD, and makes it easy to reset or rebuild environments (`docker compose down -v`). When you need you need full service parity (e.g. caching, queues, search), Docker shines.
+The Shopware 6 development environment is primarily supported and recommended to be used with [Docker](https://www.docker.com/). This platform enables developers to develop, ship, and run applications inside containers: lightweight, standalone, and executable packages. Docker enables production-like conditions consistent across teams and CI/CD, and makes it easy to reset or rebuild environments. Docker is especially useful when full service parity is required (e.g., caching, queues, search).
 
 Our [Docker setup](./docker-setup.md) aims to provide a smooth onboarding experience aligned with modern development practices. It runs your entire Shopware environment in containers, including all backend services (PHP, MySQL, Node, an Elasticsearch-compatible search engine, Redis, Mailhog, etc.). No manual installation required.
 
