@@ -10,7 +10,7 @@ nav:
 This guide is for developing Shopware stores and extensions. By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
 
 :::info
-[Go here](../../hosting/installation-updates/docker.md) for information about using Docker for production. To contribute to the Shopware platform itself, visit our [Contributing.md guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
+For information about using Docker in production, see [Docker for production](../../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contributing.md guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
 :::
 
 ## Prerequisites
