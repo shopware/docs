@@ -100,6 +100,54 @@ When MJML compilation is enabled:
 
 MJML compilation requires the `mjml` package to be installed via NPM in your build environment. The CLI uses local compilation to convert MJML templates to HTML.
 
+## Build Hooks
+
+Build hooks allow you to execute custom shell commands at specific stages of the CI build process. This is useful for tasks like generating configuration files, running custom build steps, or integrating with external tools.
+
+### Available hooks
+
+| Hook | Execution point |
+|---|---|
+| `pre` | Before the build process starts |
+| `pre-composer` | Before `composer install` is executed |
+| `post-composer` | After `composer install` completes |
+| `pre-assets` | Before asset building begins |
+| `post-assets` | After asset building completes |
+| `post` | After the entire build process finishes |
+
+### Configuration
+
+Define hooks in your `.shopware-project.yml` file:
+
+```yaml
+build:
+  hooks:
+    pre:
+      - 'echo "Starting build"'
+    pre-composer:
+      - 'cp .env.ci .env'
+    post-composer:
+      - 'bin/console secrets:decrypt-to-local --force'
+    pre-assets:
+      - 'npm install --prefix custom/plugins/MyPlugin'
+    post-assets:
+      - 'rm -rf node_modules'
+    post:
+      - 'echo "Build complete"'
+```
+
+Each hook accepts an array of shell commands. Commands are executed sequentially using `sh -c`, and the build fails immediately if any hook command exits with a non-zero status.
+
+### Environment variables
+
+The following environment variable is available in all hooks:
+
+| Variable | Description |
+|---|---|
+| `PROJECT_ROOT` | Absolute path to the project root directory |
+
+All existing environment variables from the parent process are also inherited, so any CI/CD variables (e.g., `SHOPWARE_PACKAGES_TOKEN`) are accessible within hooks.
+
 ## Configuration options
 
 You can configure the build process with a `.shopware-project.yml` file. The following options are available:
@@ -132,6 +180,14 @@ build:
     searchPaths:
       - custom/plugins
       - custom/static-plugins
+  # Build hooks (see the Build Hooks section above for details)
+  hooks:
+    pre: []
+    post: []
+    pre-composer: []
+    post-composer: []
+    pre-assets: []
+    post-assets: []
 ```
 
 ## Supporting bundles
