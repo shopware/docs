@@ -410,7 +410,7 @@ sw-force-cache-invalidate: 1
 
 You can also manually clear the caches when you performed some actions that made a cache invalidation necessary, but where it was not triggered automatically.
 
-To clear all caches, you can execute the `cache:clear:all` command, which clears the HTTP-Cache, the object caches as well as removes other kernel cache directories.
+To clear all caches, you can execute the `cache:clear:all` command, which clears the HTTP-Cache and the object caches, and removes other kernel cache directories.
 
 The `cache:clear` command on the other hand will only clear the object caches, but won't invalidate the HTTP-Cache.
 On the other hand, the `cache:clear:http` command will clear the complete HTTP-Cache, but won't invalidate the object caches.
