@@ -6,6 +6,7 @@ nav:
 ---
 
 # CI
+
 CI should, at minimum, run static analysis and coding standards checks alongside the project or extension build to keep artifacts reproducible. Add sanity checks such as smoke tests and lightweight integration tests to catch regressions early. Automated tests—from unit to integration and e2e where feasible—make refactors, upgrades, and dependency changes safer.
 
 ## Cross-cutting practices

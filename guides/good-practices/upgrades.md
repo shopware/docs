@@ -15,7 +15,6 @@ Upgrade plans should protect customer data and keep extensions compatible. Rehea
 - Keep database backups and a recovery plan; practice on staging with production-like data.
 - Track deprecations early and use official tooling (e.g. Rector/Admin codemods referenced in [Performing updates](../hosting/installation-updates/performing-updates.md)) to reduce manual work.
 
-
 ## Custom projects
 
 - Follow the update guide ([Performing updates](../hosting/installation-updates/performing-updates.md)) to stage, test, and execute upgrades in order.
