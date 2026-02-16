@@ -23,13 +23,17 @@ Before setting up the Shopware 6 development environment, ensure your system mee
 | **Disk space**       | ~10 GB free for Shopware + services                          |
 | **Operating system** | macOS 13+, Windows 10/11 (Pro with WSL 2), or Linux (64-bit) |
 
-## Permissions and networking
+## Permissions and networking requirements
 
-- Allow your system’s firewall to let containers or local web servers communicate internally.
+- Allow your system’s firewall to let containers or local web servers communicate internally
 - On Linux, you may need to add your user to the `docker` group using the below command:
 
 ```bash
 sudo usermod -aG docker $USER
 ```
 
-Once your environment meets these requirements, proceed to [setup](./docker-setup.md).
+Once your environment meets these requirements, proceed to [Docker setup](./docker-setup.md). 
+
+:::info
+For other modes of setup, refer to documentation on [legacy setups](../legacy-setups) that we no longer recommend.
+:::

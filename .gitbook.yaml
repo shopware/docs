@@ -91,3 +91,10 @@ redirects:
     products/extensions/migration-assistant/guides.html: products/extensions/migration-assistant/guides/index.html
     products/cli/project-commands/project-config-sync.html: resources/tooling/fixture-bundle/index.html
     products/sales-agent/deployment.html: products/sales-agent/best-practices/app-deployment/hosted-with-ubuntu-server.html
+    guides/installation/hardware-requirements.html: guides/installation/requirements.html
+    guides/installation/docker-setup.html: guides/installation/setups/docker.html
+    guides/installation/project-overview.html: guides/installation/template.html
+    guides/installation/advanced-options.html: guides/installation/setups/docker-options.html
+    guides/legacy-setups/devenv-setup.html: guides/installation/setups/devenv.html
+    guides/legacy-setups/symfony-cli-setup.html: guides/installation/setups/symfony-cli.html
+    guides/legacy-setups/devenv-options.html: guides/installation/setups/devenv-options.html

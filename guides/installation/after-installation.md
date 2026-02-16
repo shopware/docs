@@ -5,24 +5,23 @@ nav:
 
 ---
 
-# After installation
+# After Installation - Start Development
 
-You now have a running Shopware instance. This page explains what you typically do next, in the order most developers need it.
+You now have a running Shopware instance. This section outlines the typical next steps for development.
 
-## Start developing
 
-### Administration & Storefront
+## Access administration and storefront
 
 - Storefront: [http://localhost:8000](http://localhost:8000)
 - Administration: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
 
-Most day-to-day work happens in:
+Common development areas:
 
 - `custom/`: your plugins and themes
 - `bin/console`: application CLI (Symfony console)
 - the Administration UI
 
-### Using the Shopware CLI
+## Using the Shopware CLI
 
 To run CLI commands, open a shell inside the web container:
 
@@ -46,17 +45,19 @@ Development and automation tasks are handled in the CLI, including:
 - adjusting system configuration
 - developing plugins and themes
 
-**Tip**: Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
+:::info
+Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
+:::
 
-Please note that some setup tasks are done in the Administration UI, including:
+## Administration setup tasks
 
-- Opening the **Admin** at <http://localhost:8000/admin>
-- Signing in or creating a Shopware account; necessary when you want to install Store extensions.
-- Connecting to the **Shopware Store**
-- Installing plugins or themes from the Store
-- Connecting payment methods; not necessary for local development
+- Open the **Admin** at `http://localhost:8000/admin`
+- Sign in or create a Shopware account; necessary when you want to install Store extensions.
+- Connect to the **Shopware Store**
+- Install plugins or themes from the Store
+- Configure payment methods; not necessary for local development
 
-Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **Settings > Shop > Basic information**.
+Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **`Settings > Shop > Basic information`**.
 
 ## Frontend and Administration development
 
@@ -76,20 +77,24 @@ make watch-admin
 make watch-storefront
 ```
 
-These will become part of your everyday development workflow. Watchers are typically used during active UI development.
+These commands become part of everyday development workflow. Watchers are typically used during active UI development.
 
 ## Inspecting and debugging locally
 
-If you connect to the database from your host machine—for example, via Adminer or a local MySQL client—use `127.0.0.1` or `localhost` and the exposed port shown in `docker compose ps`.
+To connect to the database from your host machine (for example, via Adminer or a local MySQL client), use:
+
+- Host: `127.0.0.1` or `localhost`
+- And the exposed port shown in 
+
+```bash
+docker compose ps
+```
 
 ## Local services overview
 
-With Shopware running, your local setup includes a web service that serves both the storefront and the Administration. By default this uses Caddy with PHP-FPM, but you may use Nginx instead. Knowing which service does what helps when debugging or connecting external tools.
+With Shopware running, your local setup includes 
 
-### Accessing services
-
-Your local stack includes:
-
+- A web service (serves both the storefront and the administration)
 - Database (MariaDB): runs on port 3306 inside Docker.
   - Internal hostname: `database`
   - Host access: `localhost:3306`, if you want to inspect the database directly.
@@ -102,7 +107,7 @@ Inspect ports and services with:
 docker compose ps
 ```
 
-### Enable profiler/debugging for PHP
+## Enable profiler/debugging for PHP
 
 Once your Shopware environment is running, you may want to enable PHP debugging or profiling to inspect code execution, set breakpoints, or measure performance. The default setup doesn’t include these tools, but you can enable them using Docker overrides.
 
@@ -160,7 +165,7 @@ Use `compose.override.yaml` to:
 
 This keeps your changes local and out of version control.
 
-## Working with data & external systems
+## Working with data and external systems
 
 ### Store API access key
 
@@ -174,16 +179,18 @@ Access tokens:
 | Access key | `string of capital letters` |
 ```
 
-The access key for authenticating requests to the [Store API](../../../concepts/api/store-api)—for example, when fetching product or category data from an external app, headless storefront, or API client. Example usage:
+The access key for authenticating requests to the [Store API](../../../concepts/api/store-api) - for example, when fetching product or category data from an external app, headless storefront, or API client. Example usage:
 
 ```bash
 curl -H "sw-access-key: YOUR_ACCESS_KEY" \
      http://localhost:8000/store-api/product
 ```
 
-You can view or regenerate this key in the Admin under Sales Channels → [Your Channel] → API Access.
+You can view or regenerate this key in the Admin under **`Sales Channels > [Your Channel] > API Access`**.
 
-## Connecting to a remote database
+## Environment configuration
+
+### Connecting to a remote database
 
 If you want to use a database outside the Docker stack, set `DATABASE_URL` in `.env.local` in the standard form:
 
@@ -207,13 +214,13 @@ Other IDs may cause permission errors when running `make up` or writing to proje
 
 ## Preparing for production
 
-If you're preparing to run Shopware in production using Docker, [this page](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.
+If you're preparing to run [Shopware in production using Docker](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.
 
-## Build and Watch the Administration and Storefront
+## Build and watch the administration and Storefront
 
 You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
 
-The created project contains Bash scripts in the `bin/` folder to build and watch the Administration and Storefront. Run the following commands:
+The created project contains bash scripts in the `bin/` folder to build and watch the Administration and Storefront. Run the following commands:
 
 ```bash
 ./bin/build-administration.sh
@@ -226,12 +233,10 @@ Use these scripts to build the Administration and Storefront. The `watch` comman
 
 ## Advanced Docker configuration
 
-For advanced topics like:
+For advanced below topics, see [Advanced Options](advanced-options.md)
 
 - image variants
 - Minio (S3)
 - OrbStack routing
 - production image proxy configuration
 - service internals
-
-see [Advanced Options](advanced-options.md)

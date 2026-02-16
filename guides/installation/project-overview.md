@@ -7,7 +7,7 @@ nav:
 
 # Understanding your Shopware project
 
-You’ve just installed Shopware. But what exactly did you get? This page is an explainer to guide you through fundamentals you'll use through the rest of your development workflow.
+You’ve just installed Shopware. But what exactly did you get? This section guides you through fundamentals you'll use through the rest of your development workflow.
 
 ## Development tooling included
 
@@ -26,17 +26,19 @@ In day-to-day development, you’ll mostly interact with:
 - **custom/**: where you build your own plugins and themes
 - **bin/console**: the application CLI that ships with Shopware (Symfony console). It's used for tasks like running migrations, installing plugins, clearing caches, or managing configuration inside your project.
 
-Note: `bin/console` is different from the standalone [Shopware CLI](https://github.com/shopware/shopware-cli) tool used for extension builds and CI workflows. The Docker setup already includes the standalone Shopware CLI inside the container.
+:::info
+`bin/console` is different from the standalone [Shopware CLI](https://github.com/shopware/shopware-cli) tool used for extension builds and CI workflows. The Docker setup already includes the standalone Shopware CLI inside the container.
+:::
 
 Most other files in the project either configure the environment or support these core layers.
 
 ## Project template
 
-All setups start from the Shopware Project Template: a Composer-based project that installs Shopware as a dependency. It serves as the foundation for new Shopware projects as well as for developing plugins, apps, or themes. This allows you to:
+All setups start from the Shopware Project Template - a Composer-based project that installs Shopware as a dependency. It serves as the foundation for new Shopware projects as well as for developing plugins, apps, or themes. This allows you to:
 
-- extend the project with plugins, apps, or themes
-- customize configuration and services
-- tailor the environment to your development needs
+- Extend the project with plugins, apps, or themes
+- Customize configuration and services
+- Tailor the environment to your development needs
 
 ### Components explained
 
@@ -51,7 +53,32 @@ The following table explains the Docker-level components created when you start 
 | **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at [http://localhost:8000](http://localhost:8000).                |
 | **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at [http://localhost:8080](http://localhost:8080). |
 
-### Project structure explained
+### Project structure
+
+After installation, your Shopware project contains the following root-level directories and files:
+
+```text
+project-root/
+├── bin/
+├── config/
+├── custom/
+│   ├── plugins/
+│   ├── apps/
+│   └── static-plugins/
+├── files/
+├── public/
+├── src/
+├── var/
+├── vendor/
+├── compose.yaml
+├── compose.override.yaml
+├── composer.json
+├── composer.lock
+├── symfony.lock
+├── Makefile
+├── .env
+└── README.md
+```
 
 This table outlines the key directories and files in your Shopware project and what they are used for.
 
@@ -71,3 +98,5 @@ This table outlines the key directories and files in your Shopware project and w
 | **symfony.lock**          | Symfony dependency snapshot | Records Symfony recipes applied during setup.                                              | Used internally by Symfony Flex; no manual editing.                                               |
 | **var/**                  | Runtime data                | Cache, logs, temporary files.                                                              | Can safely be deleted (Shopware rebuilds it).                                                     |
 | **vendor/**               | Dependency code             | All installed PHP libraries from Composer.                                                 | Analogous to `node_modules/`.                                                                     |
+
+With this understanding move to the next section to make changes.

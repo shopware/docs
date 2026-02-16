@@ -25,6 +25,7 @@ apt install make
 
 # macOS
 brew install make
+```
 
 This Docker setup includes the [Shopware CLI](../../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
@@ -44,7 +45,7 @@ Create an empty directory for your project and navigate to it:
 
 ```bash
 mkdir my-project && cd my-project
-``
+```
 
 Create a new project:
 
@@ -128,3 +129,6 @@ make down
 
 # Fully reset the environment ( "-v" flag removes containers, networks, and volumes - all stored data will be lost)
 docker compose down -v
+```
+
+Next, you can start implementing your changes. However, get a [project overview](./project-overview.md) before that.

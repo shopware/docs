@@ -27,7 +27,9 @@ On the host you only need a minimal toolchain:
 
 See the [Shopware 6 requirements](../requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
 
-> **Note:** If you previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts. Removing `/nix` deletes the global Nix store and may require elevated privileges. Use `sudo` if appropriate and double-check before running destructive commands.
+:::info
+If you previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts. Removing `/nix` deletes the global Nix store and may require elevated privileges. Use `sudo` if appropriate and double-check before running destructive commands.
+:::
 
 ## Installation
 

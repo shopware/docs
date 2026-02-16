@@ -7,7 +7,7 @@ nav:
 
 # Advanced options
 
-This page covers optional and advanced Docker configuration for Shopware projects. You can refer to information here once your local environment is running and you want to customize your environment, mirror production more closely, or support advanced workflows.
+This page covers optional and advanced Docker configuration for Shopware projects. You can refer to this section, once your local environment is running and you want to customize your environment, mirror production more closely, or support advanced workflows.
 
 ## Customizing the runtime environment
 
