@@ -29,7 +29,7 @@ brew install make
 
 This Docker setup includes the [Shopware CLI](../../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
-## Pre-pull the image (optional)
+## Preload Docker image (optional)
 
 If you haven’t yet downloaded the Shopware Docker image, pull it now:
 
