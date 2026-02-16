@@ -1977,9 +1977,9 @@ webpack
 webpackMerge
 webserver
 wednesday
+whatsmydns
 whitespace
 whitespaces
-whatsmydns
 whoami
 wil
 wishlist
