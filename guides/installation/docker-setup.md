@@ -37,7 +37,7 @@ If you haven’t yet downloaded the Shopware Docker image, pull it now:
 docker pull ghcr.io/shopware/docker-dev:php8.3-node24-caddy
 ```
 
-If you skip this step, Docker will automatically download the image during project creation. That’s normal, but pre-pulling makes the process cleaner and enables you to avoid waiting for large image downloads.
+If this step is skipped, Docker automatically downloads the image during project creation. Pre-pulling can make the process cleaner and help avoid waiting for large image downloads.
 
 ## Create a new Shopware project
 
