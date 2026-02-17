@@ -392,7 +392,7 @@ For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagM
 
 ### Ensure cross-domain messages are sent to the intended domain
 
-["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819)
+When using `postMessage()` or similar cross-window messaging APIs, verify the message origin (e.g. `event.origin`) and restrict target domains to trusted URLs instead of `'*'`. This prevents malicious sites from sending or receiving messages inappropriately.
 
 ### Class Shopware\Storefront\* not found
 
