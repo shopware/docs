@@ -32,7 +32,7 @@ Before setting up the Shopware 6 development environment, ensure your system mee
 sudo usermod -aG docker $USER
 ```
 
-Once your environment meets these requirements, proceed to [Docker setup](./docker-setup.md). 
+Once your environment meets these requirements, proceed to [Docker setup](./docker-setup.md).
 
 :::info
 For other modes of setup, refer to documentation on [legacy setups](../legacy-setups) that we no longer recommend.

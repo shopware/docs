@@ -9,7 +9,6 @@ nav:
 
 You now have a running Shopware instance. This section outlines the typical next steps for development.
 
-
 ## Access administration and storefront
 
 - Storefront: [http://localhost:8000](http://localhost:8000)
@@ -84,7 +83,7 @@ These commands become part of everyday development workflow. Watchers are typica
 To connect to the database from your host machine (for example, via Adminer or a local MySQL client), use:
 
 - Host: `127.0.0.1` or `localhost`
-- And the exposed port shown in 
+- And the exposed port shown in
 
 ```bash
 docker compose ps
@@ -92,7 +91,7 @@ docker compose ps
 
 ## Local services overview
 
-With Shopware running, your local setup includes 
+With Shopware running, your local setup includes
 
 - A web service (serves both the storefront and the administration)
 - Database (MariaDB): runs on port 3306 inside Docker.
