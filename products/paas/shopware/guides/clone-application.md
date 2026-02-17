@@ -20,7 +20,7 @@ Common scenarios for cloning applications include:
 - **Disaster recovery**: Create backups by cloning applications to different projects
 - **Development environments**: Clone production data to development environments for realistic testing
 
-## Pre-requisite
+## Prerequisites
 
 Before cloning an application, ensure that:
 
