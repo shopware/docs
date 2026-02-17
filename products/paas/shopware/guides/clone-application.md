@@ -147,4 +147,3 @@ The cloned application will have the same domain configuration as the source app
 2. From the left hand side menu pick the sales channel you want to update
 3. Scroll to the **Domains** section
 4. Update the domain to match the cloned application's domain (e.g., the `shopware.shop` domain assigned to the cloned application, or your custom domain if configured)
-
