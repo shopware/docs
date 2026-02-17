@@ -101,9 +101,50 @@ The clone operation may take some time depending on the size of the application 
 
 ## Post-Clone Tasks
 
-After the clone is successfully completed, you may need to:
+After the clone is successfully completed, you must perform the following tasks:
 
-1. **Update application configuration**: Review and adjust any environment-specific settings in the cloned application
-2. **Configure domains**: Set up custom domains for the cloned application if needed
-3. **Update secrets**: Ensure all necessary secrets and environment variables are configured for the new application
-4. **Test the cloned application**: Verify that the cloned application is working correctly before using it in production
+### Update Admin Password
+
+For clarity, we'll refer to the source application as **App A** and the cloned (target) application as **App B**.
+
+App B will have the same admin password as App A. For security reasons, you should update the admin password in App B.
+
+To access the Shopware Administration and retrieve the admin credentials for App B, use and the select the correct App from the interactive menu:
+
+```shell
+sw-paas open admin
+```
+
+To log in to the Admin dashboard the first time after cloning, you can use the password from App A. Just rerun the `sw-paas open admin` command for App A to fetch the admin password.
+
+You can update the admin password through the UI:
+
+1. Log in to the Shopware Administration of App B using the credentials shown by the `sw-paas open admin` command for App A
+2. Navigate to your user profile (click on your username in the bottom left corner)
+3. Go to **Your profile** and scroll to the **Password** section
+4. Enter the password for App B show by the `sw-paas open admin` command for App B as a new password
+5. In the verification modal that is going to open up use the password for App A
+
+Alternatively, you can update the admin password using the Shopware console command. Open an exec session:
+
+```shell
+sw-paas exec --new
+```
+
+Once you're in the session, run the following command to update the admin password:
+
+```shell
+bin/console user:change-password admin
+```
+
+Follow the prompts to set a new password for the admin user.
+
+### Update Domain in Sales Channel
+
+The cloned application will have the same domain configuration as the source application. You need to update the domain in the sales channel to match the cloned application's domain.
+
+1. Access the Shopware Administration of the cloned application
+2. From the left hand side menu pick the sales channel you want to update
+3. Scroll to the **Domains** section
+4. Update the domain to match the cloned application's domain (e.g., the `shopware.shop` domain assigned to the cloned application, or your custom domain if configured)
+
