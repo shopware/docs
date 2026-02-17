@@ -33,14 +33,14 @@ The `--ignore-platform-reqs` flag ensures that all necessary recipes are install
 
 The metapackage pulls in the following dependencies:
 
-| Package                              | Purpose                                            |
-|--------------------------------------|----------------------------------------------------|
-| `league/flysystem-async-aws-s3`      | S3-compatible filesystem for media and assets       |
-| `open-telemetry/exporter-otlp`       | OpenTelemetry tracing export                        |
-| `open-telemetry/transport-grpc`      | gRPC transport for OpenTelemetry                    |
-| `shopware/opentelemetry`             | Shopware OpenTelemetry integration                  |
-| `shopware/docker`                    | Docker and deployment helper tooling                |
-| `symfony/redis-messenger`            | Redis-based message queue transport                 |
+| Package                         | Purpose                                       |
+|---------------------------------|-----------------------------------------------|
+| `league/flysystem-async-aws-s3` | S3-compatible filesystem for media and assets |
+| `open-telemetry/exporter-otlp`  | OpenTelemetry tracing export                  |
+| `open-telemetry/transport-grpc` | gRPC transport for OpenTelemetry              |
+| `shopware/opentelemetry`        | Shopware OpenTelemetry integration            |
+| `shopware/docker`               | Docker and deployment helper tooling          |
+| `symfony/redis-messenger`       | Redis-based message queue transport           |
 
 ### Configuration files
 
@@ -57,11 +57,11 @@ This file configures Shopware for the PaaS Native infrastructure:
 
 Additionally, files in `config/packages/prod/` configure production-specific behavior:
 
-| File                  | Purpose                                          |
-|-----------------------|--------------------------------------------------|
-| `fastly.yaml`        | Fastly CDN reverse proxy and cache purging        |
-| `monolog.yaml`       | Error-level logging to stderr in JSON format      |
-| `opentelemetry.yaml` | OpenTelemetry profiler integration                |
+| File                 | Purpose                                      |
+|----------------------|----------------------------------------------|
+| `fastly.yaml`        | Fastly CDN reverse proxy and cache purging   |
+| `monolog.yaml`       | Error-level logging to stderr in JSON format |
+| `opentelemetry.yaml` | OpenTelemetry profiler integration           |
 
 ## Overriding configuration
 
@@ -73,12 +73,15 @@ You can override any value from `operator.yaml` using the standard Symfony confi
 
 For example, to enable soft purge with stale cache serving, create or edit a file in `config/packages/prod/`:
 
-```yaml
-# config/packages/prod/shopware.yaml
+::: code-group
+
+```yaml [config/packages/prod/shopware.yaml]
 shopware:
     http_cache:
         stale_while_revalidate: 300
         stale_if_error: 3600
 ```
+
+:::
 
 For more details on how Symfony merges configuration files, refer to the [Symfony configuration documentation](https://symfony.com/doc/current/configuration.html#configuration-environments).
