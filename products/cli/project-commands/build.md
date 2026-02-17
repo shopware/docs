@@ -33,7 +33,7 @@ For other private Composer repositories, you can use the `auth.json` file in the
 
 For more information, see the [Composer documentation](https://getcomposer.org/doc/articles/authentication-for-private-packages.md).
 
-## Reducing JavaScript in Storefront
+## Reducing JavaScript in the Storefront
 
 Shopware's default `browserlist` still supports older browsers like Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the `browserlist` configuration in the `.shopware-project.yml` file.
 
@@ -106,14 +106,14 @@ Build hooks allow you to execute custom shell commands at specific stages of the
 
 ### Available hooks
 
-| Hook | Execution point |
-|---|---|
-| `pre` | Before the build process starts |
-| `pre-composer` | Before `composer install` is executed |
-| `post-composer` | After `composer install` completes |
-| `pre-assets` | Before asset building begins |
-| `post-assets` | After asset building completes |
-| `post` | After the entire build process finishes |
+| Hook            | Execution point                         |
+|-----------------|-----------------------------------------|
+| `pre`           | Before the build process starts         |
+| `pre-composer`  | Before `composer install` is executed   |
+| `post-composer` | After `composer install` completes      |
+| `pre-assets`    | Before asset building begins            |
+| `post-assets`   | After asset building completes          |
+| `post`          | After the entire build process finishes |
 
 ### Configuration
 
@@ -142,8 +142,8 @@ Each hook accepts an array of shell commands. Commands are executed sequentially
 
 The following environment variable is available in all hooks:
 
-| Variable | Description |
-|---|---|
+| Variable       | Description                                 |
+|----------------|---------------------------------------------|
 | `PROJECT_ROOT` | Absolute path to the project root directory |
 
 All existing environment variables from the parent process are also inherited, so any CI/CD variables (e.g., `SHOPWARE_PACKAGES_TOKEN`) are accessible within hooks.
@@ -168,10 +168,10 @@ build:
   keep_extension_source: false
   # Keep the source maps of the compiled assets
   keep_source_maps: false
-  # Delete after bin/console asset:install all assets in the extensions, so only live in public folder.
-  # This only works when the assets are served directly from the public folder.
+  # After bin/console asset:install, remove all asset files from the extension directories so that assets only exist in the public folder.
+  # Note: This option should only be enabled if assets are served directly from the public folder.
   remove_extension_assets: false
-  # Allows to force building an extension even when the assets existing. A use-case could be if you used composer patches for a specific extension.
+  # Allows force building an extension even when the assets exist. A use-case could be if you used composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
   # MJML compilation configuration (see the MJML section above for details)
@@ -195,7 +195,7 @@ build:
 Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
 Therefore, you need to add the path of the custom bundle to your project `composer.json`:
 
-```json
+```json5
 {
     "extra": {
         "shopware-bundles": {
