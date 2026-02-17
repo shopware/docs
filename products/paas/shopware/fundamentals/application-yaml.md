@@ -18,10 +18,10 @@ sw-paas application update
 
 The file consists of two main sections:
 
-| Section    | Description                                                  |
-|------------|--------------------------------------------------------------|
+| Section    | Description                                                        |
+|------------|--------------------------------------------------------------------|
 | `app`      | Application settings such as PHP version and environment variables |
-| `services` | Infrastructure services like MySQL and OpenSearch             |
+| `services` | Infrastructure services like MySQL and OpenSearch                  |
 
 ## Minimal example
 
@@ -71,7 +71,7 @@ app:
 
 ### `app.environment_variables`
 
-A list of environment variables passed to the application. Each entry requires:
+A list of environment variables is passed to the application. Each entry requires:
 
 | Field   | Description                          | Values         |
 |---------|--------------------------------------|----------------|

@@ -6,7 +6,7 @@ nav:
 
 ## Enable OpenSearch
 
-To use OpenSearch with your Shopware instance, set `services.opensearch.enabled` to `true` in your [`application.yaml`](../fundamentals/application_yaml.md) file:
+To use OpenSearch with your Shopware instance, set `services.opensearch.enabled` to `true` in your [`application.yaml`](../fundamentals/application-yaml.md) file:
 
 ```yaml
 services:

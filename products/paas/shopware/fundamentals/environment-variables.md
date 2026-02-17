@@ -12,11 +12,11 @@ This page explains how to configure environment variables in Shopware PaaS Nativ
 
 There are three ways to define environment variables, listed here from lowest to highest priority:
 
-| Source                                          | Description                                      |
-|-------------------------------------------------|--------------------------------------------------|
-| `.env` file                                     | Committed to your repository, lowest priority    |
-| [`application.yaml`](./application_yaml.md)     | Defined in `app.environment_variables`            |
-| [Vault secrets](./secrets.md)                   | Created via `sw-paas vault create`, highest priority |
+| Source                                      | Description                                          |
+|---------------------------------------------|------------------------------------------------------|
+| `.env` file                                 | Committed to your repository, lowest priority        |
+| [`application.yaml`](application-yaml.md) | Defined in `app.environment_variables`               |
+| [Vault secrets](./secrets.md)               | Created via `sw-paas vault create`, highest priority |
 
 When the same variable is defined in multiple sources, the higher-priority source wins. For example, a variable set in `application.yaml` overwrites the same variable from `.env`, and a vault secret overwrites both.
 
@@ -24,7 +24,7 @@ Use the `.env` file for defaults, `application.yaml` for non-sensitive per-envir
 
 ## Configure environment variables
 
-Environment variables are defined in the `app.environment_variables` array of your [`application.yaml`](./application_yaml.md) file.
+Environment variables are defined in the `app.environment_variables` array of your [`application.yaml`](application-yaml.md) file.
 
 Each variable needs a `name`, `value`, and `scope`:
 

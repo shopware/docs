@@ -80,7 +80,7 @@ services:
     enabled: false
 ```
 
-For the full configuration reference, see the [Application YAML Configuration](../fundamentals/application_yaml.md) page.
+For the full configuration reference, see the [Application YAML Configuration](../fundamentals/application-yaml.md) page.
 
 ## Hooks Configuration
 
