@@ -88,18 +88,19 @@ class SwagMigrationConnectionDefinition extends EntityDefinition
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
-             (new IdField('id', 'id'))->setFlags(new PrimaryKey(), new Required()),
-             (new StringField('name', 'name'))->setFlags(new Required()),
-             (new JsonField('credential_fields', 'credentialFields'))->setFlags(new WriteProtected(MigrationContext::SOURCE_CONTEXT)),
-             new JsonField('premapping', 'premapping'),
-             (new StringField('profile_name', 'profileName'))->setFlags(new Required()),
-             (new StringField('gateway_name', 'gatewayName'))->setFlags(new Required()),
-             new CreatedAtField(),
-             new UpdatedAtField(),
-             new OneToManyAssociationField('runs', SwagMigrationRunDefinition::class, 'connection_id'),
-             new OneToManyAssociationField('mappings', SwagMigrationMappingDefinition::class, 'connection_id'),
-             new OneToManyAssociationField('settings', GeneralSettingDefinition::class, 'selected_connection_id'),
+            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new Required()),
+            (new StringField('name', 'name'))->addFlags(new Required()),
+            (new JsonField('credential_fields', 'credentialFields'))->addFlags(new WriteProtected(MigrationContext::SOURCE_CONTEXT)),
+            new PremappingField('premapping', 'premapping'),
+            (new StringField('profile_name', 'profileName'))->addFlags(new Required()),
+            (new StringField('gateway_name', 'gatewayName'))->addFlags(new Required()),
+            new StringField('source_system_fingerprint', 'sourceSystemFingerprint'),
+            new CreatedAtField(),
+            new UpdatedAtField(),
+            new OneToManyAssociationField('runs', SwagMigrationRunDefinition::class, 'connection_id'),
+            new OneToManyAssociationField('mappings', SwagMigrationMappingDefinition::class, 'connection_id'),
+            new OneToManyAssociationField('settings', GeneralSettingDefinition::class, 'selected_connection_id'),
         ]);
-    }
+    } 
 }
 ```

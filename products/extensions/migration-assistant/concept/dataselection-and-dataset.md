@@ -85,6 +85,7 @@ class ProductDataSelection implements DataSelectionInterface
             new ProductPropertyRelationDataSet(),
             new TranslationDataSet(),
             new CrossSellingDataSet(),
+            new MainVariantRelationDataSet(),
         ];
     }
 

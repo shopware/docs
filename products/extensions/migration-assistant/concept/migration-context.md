@@ -32,12 +32,40 @@ class MigrationContext extends Struct implements MigrationContextInterface
 
     public function getProfile(): ProfileInterface
     {
+        if ($this->profile === null) {
+            throw MigrationException::migrationContextPropertyMissing('profile');
+        }
+
         return $this->profile;
     }
 
-    public function getConnection(): ?SwagMigrationConnectionEntity
+    public function setProfile(ProfileInterface $profile): void
+    {
+        $this->profile = $profile;
+    }
+
+    public function getGateway(): GatewayInterface
+    {
+        if ($this->gateway === null) {
+            throw MigrationException::migrationContextPropertyMissing('gateway');
+        }
+
+        return $this->gateway;
+    }
+
+    public function setGateway(GatewayInterface $gateway): void
+    {
+        $this->gateway = $gateway;
+    }
+
+    public function getConnection(): SwagMigrationConnectionEntity
     {
         return $this->connection;
+    }
+
+    public function setConnection(SwagMigrationConnectionEntity $connection): void
+    {
+        $this->connection = $connection;
     }
 
     public function getRunUuid(): string
@@ -60,19 +88,19 @@ class MigrationContext extends Struct implements MigrationContextInterface
         return $this->offset;
     }
 
+    public function setOffset(int $offset): void
+    {
+        $this->offset = $offset;
+    }
+
     public function getLimit(): int
     {
         return $this->limit;
     }
 
-    public function getGateway(): GatewayInterface
+    public function setLimit(int $limit): void
     {
-        return $this->gateway;
-    }
-
-    public function setGateway(GatewayInterface $gateway): void
-    {
-        $this->gateway = $gateway;
+        $this->limit = $limit;
     }
 }
 ```
