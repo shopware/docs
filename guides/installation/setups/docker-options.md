@@ -42,6 +42,17 @@ docker compose up -d
 
 This restarts the containers with Xdebug enabled. You can now attach your IDE (for example, PHPStorm or VS Code) to the remote debugger on the default Xdebug port `9003`.
 
+## Xdebug on Linux
+
+To enable Xdebug connectivity on Linux, you must manually map the host.docker.internal hostname to the Docker host gateway. Add the following configuration to your `compose.override.yaml`:
+
+```yaml
+services:
+    web:
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+```
+
 Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
 
 ```yaml
