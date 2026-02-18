@@ -62,7 +62,7 @@ For more information, have a look at the [Logging](logging) section.
 
 The Migration Assistant provides users with the possibility to resolve errors that occurred during migration. The user can see details of an error and decide how to proceed. For example, if a product could not be migrated because of a missing tax, the user can create a new tax and assign it to the product. After that, the user can mark the error as resolved, and the Migration Assistant will try to migrate the product.
 
-Error Resolution is part of the standard migration workflow in Administration.
+For more details, see the [Error Resolution](error-resolution) article.
 
 ## Writer
 

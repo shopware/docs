@@ -12,13 +12,13 @@ data integrity during migration.
 
 ## Key Components
 
-| Component | Namespace | Purpose                                                                  |
-|-----------|-----------|--------------------------------------------------------------------------|
-| `MigrationEntityValidationService` | `Migration\Validation` | Validates entire converted entities including nested associations        |
-| `MigrationFieldValidationService` | `Migration\Validation` | Validates individual field values using DAL field serializers            |
-| `MigrationErrorResolutionService` | `Migration\ErrorResolution` | Loads and applies fixes from database to migration data                  |
+| Component | Namespace | Purpose |
+|-----------|-----------|---------|
+| `MigrationEntityValidationService` | `Migration\Validation` | Validates entire converted entities including nested associations |
+| `MigrationFieldValidationService` | `Migration\Validation` | Validates individual field values using DAL field serializers |
+| `MigrationErrorResolutionService` | `Migration\ErrorResolution` | Loads and applies fixes from database to migration data |
 | `MigrationFix` | `Migration\ErrorResolution` | Value object representing a single fix with path-based application logic |
-| `ErrorResolutionController` | `Controller` | API controller providing validation and example value endpoints          |
+| `ErrorResolutionController` | `Controller` | API controller providing validation and example value endpoints |
 
 ## Migration Flow Integration
 
@@ -46,6 +46,7 @@ enum MigrationStep: string
 ```
 
 The Error Resolution step is defined as a manual step, meaning:
+
 - The migration process pauses at this step
 - Users can review validation errors in the Administration UI
 - Users can create fixes for fixable errors
@@ -100,12 +101,12 @@ for association fields. It provides detailed error information for each invalid 
 
 | Log Class | User Fixable | Description |
 |-----------|--------------|-------------|
-| `MigrationValidationRequiredFieldMissingLog` | Yes          | Required field is missing from converted data |
-| `MigrationValidationRequiredFieldValueInvalidLog` | Yes          | Required field has invalid value |
-| `MigrationValidationOptionalFieldValueInvalidLog` | Yes          | Optional field has invalid value |
-| `MigrationValidationAssociationInvalidLog` | Yes          | Association structure is invalid |
-| `MigrationValidationRequiredTranslationInvalidLog` | No           | Translation structure is invalid |
-| `MigrationValidationExceptionLog` | No           | Generic validation exception |
+| `MigrationValidationRequiredFieldMissingLog` | Yes | Required field is missing from converted data |
+| `MigrationValidationRequiredFieldValueInvalidLog` | Yes | Required field has invalid value |
+| `MigrationValidationOptionalFieldValueInvalidLog` | Yes | Optional field has invalid value |
+| `MigrationValidationAssociationInvalidLog` | Yes | Association structure is invalid |
+| `MigrationValidationRequiredTranslationInvalidLog` | No | Translation structure is invalid |
+| `MigrationValidationExceptionLog` | No | Generic validation exception |
 
 ## Fix creation and storage
 
@@ -147,7 +148,7 @@ class SwagMigrationFixDefinition extends EntityDefinition
 | `entityId` | UUID | ID of the entity being fixed |
 | `entityName` | String | Name of the entity being fixed |
 
-### MigrationFix Value Object
+### Migration Fix Value Object
 
 The `MigrationFix` value object encapsulates the fix data and provides methods to apply the fix to the converted
 data based on the specified path.
@@ -183,7 +184,7 @@ The `MigrationErrorResolutionService` is responsible for loading fixes from the 
 converted data before it is written to Shopware. It uses the `MigrationFix` value object to apply fixes based on
 their defined paths.
 
-#### Path Examples
+### Path Examples
 
 The `MigrationFix::apply()` method uses dot-notation paths to apply fixes to nested data structures:
 
@@ -239,7 +240,7 @@ class MigrationDataWriter implements MigrationDataWriterInterface
 
 ### Context Objects
 
-#### MigrationValidationContext
+#### Validation Context
 
 ```php
 // SwagMigrationAssistant\Migration\Validation\MigrationValidationContext
@@ -255,7 +256,7 @@ readonly class MigrationValidationContext
 }
 ```
 
-#### MigrationErrorResolutionContext
+#### Resolution Context
 
 ```php
 // SwagMigrationAssistant\Migration\ErrorResolution\MigrationErrorResolutionContext

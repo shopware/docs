@@ -85,7 +85,7 @@ To ensure clarity and uniqueness, use the following naming convention for the co
 `SWAG_MIGRATION_{Category}{Description}{Outcome}Log`
 
 - Category should clearly relate to the migration step, e.g., Fetch, Convert, Write, Media, etc.
-- Description should briefly describe the context, e.g., "SourceData", "MimeType", etc.
+- Description should briefly describe the context, e.g., SourceData, MimeType, etc.
 - Outcome should indicate the result or issue, e.g., Incomplete, Invalid, Missing, etc.
 
 The `isUserFixable()` method indicates whether the log entry can be resolved by the user in Administration. If it returns `true`, it will be possible for the user to create a fix during the Error Resolution process. Have in mind that this is only the first step to enable user fixes. The actual fix creation must be implemented separately in the administration.
