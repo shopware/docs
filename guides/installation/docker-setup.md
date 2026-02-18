@@ -95,7 +95,7 @@ You can check the container status anytime with the below command:
 docker compose ps
 ```
 
-“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [healthchecks](https://docs.docker.com/reference/dockerfile#healthcheck) and the [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
+“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and the [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
 
 Once the containers are running, install Shopware with this command:
 
