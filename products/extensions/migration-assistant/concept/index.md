@@ -61,13 +61,13 @@ For more information, have a look at the [Logging](logging) section.
 
 ## Error Resolution
 
-The migration assistant provides the user with the possibility to resolve errors that occurred during the migration. The user can see the details of the error and decide how to proceed. For example, if a product could not be migrated because of a missing tax, the user can create a new tax and assign it to the product. After that, the user can mark the error as resolved, and the migration assistant will try to migrate the product.
+The Migration Assistant provides users with the possibility to resolve errors that occurred during migration. The user can see details of an error and decide how to proceed. For example, if a product could not be migrated because of a missing tax, the user can create a new tax and assign it to the product. After that, the user can mark the error as resolved, and the Migration Assistant will try to migrate the product.
 
 Error Resolution is part of the standard migration workflow in Administration.
 
 ## Writer
 
-The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here; you don't need to worry about error handling because the migration assistant takes care of it.
+The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here; you do not need to worry about error handling because the Migration Assistant takes care of it.
 
 To learn more about them, take a look at the [Writer](writer) section.
 
@@ -85,7 +85,7 @@ All fetched data will be deleted after finishing or aborting a migration run, bu
 
 The recommended way to migrate plugin data from a source system is to extend that profile by a new `DataSelection`. It is also possible to create a new profile in case a migration from a different shop/source system is sought.
 
-Take a look at the following HowTos for your scenario to get a step-by-step tutorial:
+Take a look at the following guides for your scenario:
 
 * [Extending a Shopware Migration Profile](../guides/extending-a-shopware-migration-profile): Migrating your first basic plugin data \(via local gateway\).
 * [Extending the Migration Connector](../guides/extending-the-migration-connector): Add API support for your migration.

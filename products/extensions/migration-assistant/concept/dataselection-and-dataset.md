@@ -24,7 +24,7 @@ These are the fundamental data structures for defining what to migrate. Each `Da
   * MediaFolderDataSet
   * MediaDataSet
 
-The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount` method returns an array of all DataSets. Its count should be displayed in the Administration.
+The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount` method returns an array of all `DataSets`. Its count should be displayed in the Administration.
 
 Please take a look at the `DataSelection` example:
 
@@ -100,7 +100,7 @@ class ProductDataSet extends DataSet
 }
 ```
 
-The `dataSelections` are registered the following way:
+The `DataSelections` are registered the following way:
 
 ```html
 <service id="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
@@ -111,7 +111,7 @@ The `dataSelections` are registered the following way:
 It is also possible to specify the same `DataSets` in multiple `DataSelections` \(this should only be done if no other options are available\). Have a look at the `ProductReviewDataSelection`:
 
 ::: info
-There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
+There are duplicate `DataSets` from `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, these `DataSets` are only migrated once \(with their first occurrence\).
 :::
 
 ```php

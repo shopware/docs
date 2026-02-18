@@ -9,7 +9,7 @@ nav:
 
 The central data structure of Shopware Migration Assistant is the migration context. The migration context contains the following information:
 
-1. The current connection of migration which holds the credentials
+1. The current migration connection, which holds the credentials
 2. Current Profile and Gateway instances
 3. Identifier of the current run
 4. Information on the current processing \([DataSet](dataselection-and-dataset)\)

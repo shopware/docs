@@ -84,7 +84,7 @@ stateDiagram-v2
 
 The following steps will give you a general overview of what happens in what classes during a common migration.
 
-These steps can be done multiple times. Each migration is called a `Run`/`MigrationRun` and will be saved to inform the users about any errors that occurred \(in the form of a detailed history\).
+These steps can be done multiple times. Each migration is called a "run" or "migration run" and will be saved to inform the users about any errors that occurred \(in the form of a detailed history\).
 
 ### 1. Create or Select a Connection
 

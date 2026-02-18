@@ -71,7 +71,7 @@ Here is an example of how the final `PremappingStruct` looks like in the `genera
 }
 ```
 
-The `destinationUuid` in the `mapping` array sets the destination for that entity. It will be saved along with the [Connection](profile-and-connection#connection), so the user does not have to make these decisions repeatedly. For more details on how the mapping process works and even more information on automatic assignment, look up more in the `SalutationReader` class.
+The `destinationUuid` in the `mapping` array sets the destination for that entity. It will be saved along with the [Connection](profile-and-connection#connection), so the user does not have to make these decisions repeatedly. For more details on how the mapping process works and on automatic assignment, look at the `SalutationReader` class.
 
 To get the associated new identifier, you can make use of the `MappingService` similar to the `CustomerConverter`:
 

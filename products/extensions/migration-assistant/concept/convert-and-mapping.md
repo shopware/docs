@@ -53,7 +53,9 @@ abstract class ProductConverter extends ShopwareConverter
 }
 ```
 
-As shown above, the `convert` method receives source data, creates mappings, and returns a `ConvertStruct`. In a complete implementation, converters do not validate for required or invalid fields but should early return a `ConvertedStruct` without a `converted` if it does not make sense to convert the data (e.g. because of a unknown type). The validation of the converted data is the responsibility of the Error Resolution process and it's services `MigrationEntityValidationService` and `MigrationFieldValidationService`.
+As shown above, the `convert()` method accepts the source data, builds the necessary mappings, and returns a `ConvertStruct`. In a full implementation, converters do not perform validation of required or invalid fields. However, they should return early with a `ConvertStruct` that does not contain a converted entity if the data cannot reasonably be converted (for example, due to an unknown type).
+
+Validation of the converted data is handled separately by the Error Resolution process, specifically through the `MigrationEntityValidationService` and the `MigrationFieldValidationService`.
 
 Also, every `Converter` needs to implement the `getSourceIdentifier` method like the below:
 
