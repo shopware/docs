@@ -7,152 +7,190 @@ nav:
 
 # Media Processing
 
-Two steps are necessary to import files to Shopware 6 using the migration. First // todo10 , create a media file object  \(`MediaDefinition` / `media` table, for more details, take a look at the `MediaConverter`\) and create an entry in the `SwagMigrationMediaFileDefinition` / `swag_migration_media_file` table.
+Media migration runs in two phases:
 
-Every entry in the `swag_migration_media_file` table of the associated migration run will get processed by an implementation of `MediaFileProcessorInterface`. For the `api` gateway, the `HttpMediaDownloadService` is used and will download the files via HTTP.
+1. During conversion, create the media mapping and queue file metadata in `swag_migration_media_file`.
+2. During the media-processing step, a gateway-specific processor imports the files into Shopware 6.
 
-To add a file to the table, you can do something like this in your `Converter` class \(this example is from the `MediaConverter`\):
+## Queue Media Files During Conversion
+
+The converter writes the media mapping and queues one media file record for later processing.
 
 ```php
-<?php declare(strict_types=1);
+// SwagMigrationAssistant\Profile\Shopware\Converter\MediaConverter
 
 abstract class MediaConverter extends ShopwareConverter
 {
-    /* ... */
+    // ...
 
-    public function convert(
-        array $data,
-        Context $context,
-        MigrationContextInterface $migrationContext
-    ): ConvertStruct {
+    public function convert(array $data, Context $context, MigrationContextInterface $migrationContext): ConvertStruct
+    {
         $this->generateChecksum($data);
-        $this->context = $context;
-        $this->locale = $data['_locale'];
-        unset($data['_locale']);
 
-        $connection = $migrationContext->getConnection();
-        $this->connectionId = '';
-        if ($connection !== null) {
-            $this->connectionId = $connection->getId();
-        }
+        // ...
 
-        $converted = [];
         $this->mainMapping = $this->mappingService->getOrCreateMapping(
-            $this->connectionId,
+            $migrationContext->getConnection()->getId(),
             DefaultEntities::MEDIA,
             $data['id'],
             $context,
             $this->checksum
         );
-        $converted['id'] = $this->mainMapping['entityUuid'];
 
-        if (!isset($data['name'])) {
-            $data['name'] = $converted['id'];
-        }
+        $converted['id'] = $this->mainMapping['entityId'];
 
-        $this->mediaFileService->saveMediaFile(
-            [
-                'runId' => $migrationContext->getRunUuid(),
-                'entity' => MediaDataSet::getEntity(), // important to distinguish between private and public files
-                'uri' => $data['uri'] ?? $data['path'],
-                'fileName' => $data['name'], // uri or path to the file (because of the different implementations of the gateways)
-                'fileSize' => (int) $data['file_size'],
-                'mediaId' => $converted['id'], // uuid of the media object in Shopware 6
-            ]
-        );
-        unset($data['uri'], $data['file_size']);
+        // ...
 
-        $this->getMediaTranslation($converted, $data);
-        $this->convertValue($converted, 'title', $data, 'name');
-        $this->convertValue($converted, 'alt', $data, 'description');
+        $this->mediaFileService->saveMediaFile([
+            'runId' => $migrationContext->getRunUuid(),
+            'entity' => MediaDataSet::getEntity(),
+            'uri' => $data['uri'] ?? $data['path'],
+            'fileName' => $data['name'] ?? $converted['id'],
+            'fileSize' => (int) $data['file_size'],
+            'mediaId' => $converted['id'],
+        ]);
 
-        $albumMapping = $this->mappingService->getMapping(
-            $this->connectionId,
-            DefaultEntities::MEDIA_FOLDER,
-            $data['albumID'],
-            $this->context
-        );
+        // ...
 
-        if ($albumMapping !== null) {
-            $converted['mediaFolderId'] = $albumMapping['entityUuid'];
-            $this->mappingIds[] = $albumMapping['id'];
-        }
-
-        unset(
-            $data['id'],
-            $data['albumID'],
-
-            // Legacy data that don't need mapping or there is no equivalent field
-            $data['path'],
-            $data['type'],
-            $data['extension'],
-            $data['file_size'],
-            $data['width'],
-            $data['height'],
-            $data['userID'],
-            $data['created']
-        );
-
-        $returnData = $data;
-        if (empty($returnData)) {
-            $returnData = null;
-        }
         $this->updateMainMapping($migrationContext, $context);
 
-        // The MediaWriter will write this Shopware 6 media object
-        return new ConvertStruct($converted, $returnData, $this->mainMapping['id']);
+        return new ConvertStruct($converted, $data, $this->mainMapping['id']);
     }
-
-    /* ... */
 }
 ```
 
-`swag_migration_media_files` are processed by the right processor service. This service is different for documents and normal media, but it still is gateway dependent. For example, the `HttpMediaDownloadService` works like this:
+`MediaFileService` persists these records and marks them as `written` once the related entity write completed.
+
+## Processor Selection
+
+The media processing step resolves one processor via `supports(...)` for the current migration context.
 
 ```php
-<?php declare(strict_types=1);
+// SwagMigrationAssistant\Migration\Media\MediaFileProcessorRegistry
 
-namespace SwagMigrationAssistant\Profile\Shopware55\Media;
-
-/* ... */
-
-class HttpMediaDownloadService implements MediaFileProcessorInterface
+class MediaFileProcessorRegistry implements MediaFileProcessorRegistryInterface
 {
-    /* ... */
+    // ...
+
+    public function getProcessor(MigrationContextInterface $migrationContext): MediaFileProcessorInterface
+    {
+        foreach ($this->processors as $processor) {
+            if ($processor->supports($migrationContext)) {
+                return $processor;
+            }
+        }
+
+        $connection = $migrationContext->getConnection();
+
+        throw MigrationException::processorNotFound(
+            $connection->getProfileName(),
+            $connection->getGatewayName()
+        );
+    }
+}
+```
+
+## API Gateway Processing
+
+For API migrations, `HttpMediaDownloadService` uses the shared `HttpDownloadServiceBase` workflow.
+
+```php
+// SwagMigrationAssistant\Profile\Shopware\Media\HttpMediaDownloadService
+
+class HttpMediaDownloadService extends HttpDownloadServiceBase
+{
+    // ...
 
     public function supports(MigrationContextInterface $migrationContext): bool
     {
         return $migrationContext->getProfile() instanceof ShopwareProfileInterface
             && $migrationContext->getGateway()->getName() === ShopwareApiGateway::GATEWAY_NAME
-            && $migrationContext->getDataSet()::getEntity() === MediaDataSet::getEntity();
+            && $this->getDataSetEntity($migrationContext) === MediaDataSet::getEntity();
     }
 
-    public function process(MigrationContextInterface $migrationContext, Context $context, array $workload, int $fileChunkByteSize): array
+    protected function getMediaEntity(): string
     {
-        /* ... */
+        return DefaultEntities::MEDIA;
+    }
 
-        //Fetch media from the database
-        $media = $this->getMediaFiles($mediaIds, $runId, $context);
-
-        $client = new Client([
-            'verify' => false,
-        ]);
-
-        //Do download requests and store the promises
-        $promises = $this->doMediaDownloadRequests($media, $mappedWorkload, $client);
-
-        // Wait for the requests to complete, even if some of them fail
-        /** @var array $results */
-        $results = Promise\settle($promises)->wait();
-
-        /* ... handle responses ... */
-
-        $this->setProcessedFlag($runId, $context, $finishedUuids, $failureUuids);
-        $this->loggingService->saveLogging($context);
-
-        return array_values($mappedWorkload);
+    protected function getHttpClient(MigrationContextInterface $migrationContext): ?HttpClientInterface
+    {
+        return new HttpSimpleClient();
     }
 }
 ```
 
-First, the service fetches all media files associated with the given media IDs and downloads these media files from the source system. After this, it handles the response, saves the media files in a temporary folder and copies them to Shopware 6 filesystem. In the end, the service sets a `processed` status to these media files, saves all warnings that may have occurred and returns the status of the processed files.
+```php
+// SwagMigrationAssistant\Migration\Media\Processor\HttpDownloadServiceBase
+
+abstract class HttpDownloadServiceBase extends BaseMediaService implements MediaFileProcessorInterface
+{
+public function process(MigrationContextInterface $migrationContext, Context $context, array $workload): array
+{
+    $mappedWorkload = [];
+
+    foreach ($workload as $work) {
+        $mappedWorkload[$work->getMediaId()] = $work;
+    }
+
+    // ...
+
+    $media = $this->getMediaFiles(array_keys($mappedWorkload), $migrationContext->getRunUuid());
+    $client = $this->getHttpClient($migrationContext);
+
+    // ...
+
+    $promises = $this->doMediaDownloadRequests($migrationContext, $media, $mappedWorkload, $client);
+    $results = Utils::settle($promises)->wait();
+
+    $finishedUuids = [];
+    $failureUuids = [];
+
+    // ...
+
+    $this->setProcessedFlag($migrationContext->getRunUuid(), $context, $finishedUuids, $failureUuids);
+
+    return array_values($mappedWorkload);
+}
+```
+
+## Local Gateway Processing
+
+For local migrations, `LocalMediaProcessor` resolves local file paths and copies files into Shopware media storage.
+
+```php
+// SwagMigrationAssistant\Profile\Shopware\Media\LocalMediaProcessor
+
+class LocalMediaProcessor extends BaseMediaService implements MediaFileProcessorInterface
+{
+    // ...
+
+    public function supports(MigrationContextInterface $migrationContext): bool
+    {
+        return $migrationContext->getProfile() instanceof ShopwareProfileInterface
+            && $migrationContext->getGateway()->getName() === ShopwareLocalGateway::GATEWAY_NAME
+            && $this->getDataSetEntity($migrationContext) === MediaDataSet::getEntity();
+    }
+
+    public function process(MigrationContextInterface $migrationContext, Context $context, array $workload): array
+    {
+        $mappedWorkload = [];
+        foreach ($workload as $work) {
+            $mappedWorkload[$work->getMediaId()] = $work;
+        }
+
+        $media = $this->getMediaFiles(\array_keys($mappedWorkload), $migrationContext->getRunUuid());
+        $mappedWorkload = $this->getMediaPathMapping($media, $mappedWorkload, $migrationContext);
+
+        return $this->copyMediaFiles($media, $mappedWorkload, $migrationContext, $context);
+    }
+}
+```
+
+## Media File Status Flags
+
+`swag_migration_media_file` tracks processing state with these fields:
+
+- `written`: the related entity write finished.
+- `processed`: the media file import succeeded.
+- `processFailure` (`process_failure` column): media processing failed for this record.

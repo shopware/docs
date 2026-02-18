@@ -7,12 +7,11 @@ nav:
 
 # Premapping
 
-The premapping will use the normal [Mapping](convert-and-mapping#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered like this:
+The premapping will use the normal [Mapping](convert-and-mapping#mapping) to store the old identifier with the equivalent new one. All premapping readers provide the information for the mapping choices and are registered in the container:
 
 ```html
 <service id="SwagMigrationAssistant\Profile\Shopware\Premapping\SalutationReader">
-    <argument type="service" id="salutation.repository" />
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\GatewayRegistry"/>
+    <!-- ... -->
     <tag name="shopware.migration.pre_mapping_reader"/>
 </service>
 ```
@@ -77,36 +76,39 @@ The `destinationUuid` in the `mapping` array sets the destination for that entit
 To get the associated new identifier, you can make use of the `MappingService` similar to the `CustomerConverter`:
 
 ```php
-<?php declare(strict_types=1);
+// SwagMigrationAssistant\Profile\Shopware\Converter\CustomerConverter
 
-/* ... */
-
-protected function getSalutation(string $salutation): ?string
+abstract class CustomerConverter extends ShopwareConverter
 {
-    $mapping = $this->mappingService->getMapping(
-        $this->connectionId,
-        SalutationReader::getMappingName(),
-        $salutation,
-        $this->context
-    );
+    // ...
 
-    if ($mapping === null) {
-        $this->loggingService->addLogEntry(new UnknownEntityLog(
-            $this->runId,
-            DefaultEntities::SALUTATION,
+    protected function getSalutation(string $salutation): ?string
+    {
+        $mapping = $this->mappingService->getMapping(
+            $this->connectionId,
+            SalutationReader::getMappingName(),
             $salutation,
-            DefaultEntities::CUSTOMER,
-            $this->oldCustomerId
-        ));
+            $this->context
+        );
 
-        return null;
+        if ($mapping === null) {
+            $this->loggingService->log(
+                MigrationLogBuilder::fromMigrationContext($this->migrationContext)
+                    ->withEntityName(CustomerDefinition::ENTITY_NAME)
+                    ->withFieldName('salutationId')
+                    ->withFieldSourcePath('salutation')
+                    ->withSourceData(['salutation' => $salutation])
+                    ->build(ConvertEntityUnknownLog::class)
+            );
+
+            return null;
+        }
+
+        $this->mappingIds[] = $mapping['id'];
+
+        return $mapping['entityId'];
     }
-    $this->mappingIds[] = $mapping['id'];
-
-    return $mapping['entityUuid'];
 }
-
-/* ... */
 ```
 
-The `getMapping` method used in the mapping service looks up the `swag_migration_mapping` table for the combination of the old identifier and entity name stored in the current connection. Then it returns the mapping object containing the new Shopware 6 identifier. This identifier makes it possible to map your converted entity to your premapping choice. If `getMapping` returns null, then no valid mapping is available, and you have to log this with [LoggingService](logging). The mapping object has two keys: `id` and `entityUuid`. The `id` key is the identifier of the `swag_migration_mapping` entry and has to be inserted in the `mappingIds`, if the mapping should be preloaded. The `entityUuid` key is the UUID of the mapped entity.
+The `getMapping` method used in the mapping service looks up the `swag_migration_mapping` table for the combination of the old identifier and entity name stored in the current connection. Then it returns the mapping object containing the new Shopware 6 identifier. This identifier makes it possible to map your converted entity to your premapping choice. If `getMapping` returns null, then no valid mapping is available, and you should log this with [LoggingService](logging). The mapping object has keys such as `id`, `entityId`, and depending on the mapping type, optional `entityValue` and `additionalData`.

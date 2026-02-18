@@ -7,137 +7,84 @@ nav:
 
 # Logging
 
-Logging is essential for anyone using the Shopware Migration Assistant. In case of failure, it enables users to find out why part of their data might be missing. Most of the logging takes place in the `Converter` classes each time they detect missing required values. Also, every exception will create a log entry automatically.
+Logging is essential for migration runs. It explains why data could not be converted or written and provides the basis for Error Resolution in Administration.
 
-We use `LogEntry` objects for our logging, so it's easier to group logs/errors of the same type and get the corresponding amount. Here is an example of how the logging works in the `CustomerConverter`:
+Logging is based on `MigrationLogEntry` objects created through `MigrationLogBuilder`.
 
 ```php
-<?php declare(strict_types=1);
+// SwagMigrationAssistant\Profile\Shopware\Converter\CustomerConverter
 
 abstract class CustomerConverter extends ShopwareConverter
 {
-    /* ... */
+    // ...
 
     public function convert(
-            array $data,
-            Context $context,
-            MigrationContextInterface $migrationContext
-        ): ConvertStruct
-    {
-        $this->generateChecksum($data);
-        $oldData = $data;
-        $this->runId = $migrationContext->getRunUuid();
+        array $data,
+        Context $context,
+        MigrationContextInterface $migrationContext
+    ): ConvertStruct {
+        if (!isset($data['_locale']) || $data['_locale'] === '') {
+            $this->loggingService->log(
+                MigrationLogBuilder::fromMigrationContext($migrationContext)
+                    ->withEntityName(CustomerDefinition::ENTITY_NAME)
+                    ->withFieldSourcePath('_locale')
+                    ->withSourceData($data)
+                    ->build(ConvertSourceDataIncompleteLog::class)
+            );
 
-        $fields = $this->checkForEmptyRequiredDataFields($data, $this->requiredDataFieldKeys);
-
-        if (!empty($fields)) {
-            $this->loggingService->addLogEntry(new EmptyNecessaryFieldRunLog(
-                $this->runId,
-                DefaultEntities::CUSTOMER,
-                $data['id'],
-                implode(',', $fields)
-            ));
-
-            return new ConvertStruct(null, $oldData);
+            return new ConvertStruct(null, $data);
         }
 
-        /* ... */
+        // ...
     }
-
-    /* ... */
 }
 ```
 
-You can get the `LoggingService` from the service container. Use the `addLogEntry` method with a compatible instance of `LogEntryInterface` and save the logging later with `saveLogging`:
+The logging service interface uses `log()` and `flush()`. The `log()` method will and your log to the service buffer and `flush()` will write every log entry in the buffer to the database. This allows you to log entries during the conversion process and decide when to write them to the database. Additionally, the logging service will flush automatically after a threshold of `50` entries is reached to prevent missing logs.
 
 ```php
-<?php declare(strict_types=1);
+// SwagMigrationAssistant\Migration\Logging\LoggingServiceInterface
 
 interface LoggingServiceInterface
 {
-    public function addLogEntry(LogEntryInterface $logEntry): void;
+    // ...
 
-    public function saveLogging(Context $context): void;
+    public function log(MigrationLogEntry $logEntry): self;
+
+    public function flush(): void;
 }
 ```
 
-Look at the already existing classes, which implement the `LogEntryInterface` to find one that fits your needs, just like the `EmptyNecessaryFieldRunLog` in the `CustomerConverter` example above. All the general LogEntry classes are located under the following namespace `SwagMigrationAssistant\Migration\Logging\Log`.
-
-To create a custom LogEntry make sure you at least implement the `LogEntryInterface` or, if your log happens during a running migration, you can also extend your LogEntry by the `BaseRunLogEntry`.
+To create a custom log entry, extend `AbstractMigrationLogEntry` and define static metadata:
 
 ```php
-<?php declare(strict_types=1);
+// SwagMigrationAssistant\Migration\Logging\Log\ConvertSourceDataIncompleteLog
 
-namespace SwagMigrationAssistant\Migration\Logging\Log;
-
-class EmptyNecessaryFieldRunLog extends BaseRunLogEntry
+readonly class ConvertSourceDataIncompleteLog extends AbstractMigrationLogEntry
 {
-    private string $emptyField;
-
-    public function __construct(string $runId, string $entity, string $sourceId, string $emptyField)
+    public static function isUserFixable(): bool
     {
-        parent::__construct($runId, $entity, $sourceId);
-        $this->emptyField = $emptyField;
+        return false;
     }
 
-    public function getCode(): string
-    {
-        $entity = $this->getEntity();
-        if ($entity === null) {
-            return 'SWAG_MIGRATION_EMPTY_NECESSARY_FIELD';
-        }
-
-        return sprintf('SWAG_MIGRATION_EMPTY_NECESSARY_FIELD_%s', mb_strtoupper($entity));
-    }
-
-    public function getLevel(): string
+    public static function getLevel(): string
     {
         return self::LOG_LEVEL_WARNING;
     }
 
-    public function getTitle(): string
+    public static function getCode(): string
     {
-        $entity = $this->getEntity();
-        if ($entity === null) {
-            return 'The entity has one or more empty necessary fields';
-        }
-
-        return sprintf('The %s entity has one or more empty necessary fields', $entity);
-    }
-
-    public function getParameters(): array
-    {
-        return [
-            'entity' => $this->getEntity(),
-            'sourceId' => $this->getSourceId(),
-            'emptyField' => $this->emptyField,
-        ];
-    }
-
-    public function getDescription(): string
-    {
-        $args = $this->getParameters();
-
-        return sprintf(
-            'The %s entity with the source id %s does not have the necessary data for the field(s): %s',
-            $args['entity'],
-            $args['sourceId'],
-            $args['emptyField']
-        );
-    }
-
-    public function getTitleSnippet(): string
-    {
-        return sprintf('%s.%s.title', $this->getSnippetRoot(), 'SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS');
-    }
-
-    public function getDescriptionSnippet(): string
-    {
-        return sprintf('%s.%s.description', $this->getSnippetRoot(), 'SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS');
+        return 'SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE';
     }
 }
 ```
 
-The important part here is the `getCode` method. It should not contain any details, otherwise, grouping won't work properly. Also, keep in mind to specify the English title and description in the respective `getTitle` and `getDescription` methods. Create corresponding snippets with the same content for both the `getTitleSnippet` and `getDescriptionSnippet` methods.
+Key element is `getCode()`: it must remain stable and generic so that log entries can be grouped reliably.
+To ensure clarity and uniqueness, use the following naming convention for the code:
+`SWAG_MIGRATION_{Category}{Description}{Outcome}Log`
 
-The English text is used in the international log file. Instead, snippets are used all over in the Administration to inform or guide the user. Parameters for the description should be returned by the `getParameters` method so the English description and snippets can both use them.
+- Category should clearly relate to the migration step, e.g., Fetch, Convert, Write, Media, etc.
+- Description should briefly describe the context, e.g., SourceData, MimeType, etc.
+- Outcome should indicate the result or issue, e.g., Incomplete, Invalid, Missing, etc.
+
+The `isUserFixable()` method indicates whether the log entry can be resolved by the user in Administration. If it returns `true`, it will be possible for the user to create a fix during the Error Resolution process. Have in mind that this is only the first step to enable user fixes. The actual fix, creation must be implemented separately in the administration.

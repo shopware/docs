@@ -16,19 +16,22 @@ The central data structure of Shopware Migration Assistant is the migration cont
 5. Offset and limit of the current call
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Migration;
-
-use Shopware\Core\Framework\Struct\Struct;
-use SwagMigrationAssistant\Migration\Connection\SwagMigrationConnectionEntity;
-use SwagMigrationAssistant\Migration\DataSelection\DataSet\DataSet;
-use SwagMigrationAssistant\Migration\Gateway\GatewayInterface;
-use SwagMigrationAssistant\Migration\Profile\ProfileInterface;
+// SwagMigrationAssistant\Migration\MigrationContext
 
 class MigrationContext extends Struct implements MigrationContextInterface
 {
-    /* ... */
+    final public const SOURCE_CONTEXT = 'MIGRATION_CONNECTION_CHECK_FOR_RUNNING_MIGRATION';
+
+    public function __construct(
+        private SwagMigrationConnectionEntity $connection,
+        private ?ProfileInterface $profile = null,
+        private ?GatewayInterface $gateway = null,
+        private ?DataSet $dataSet = null,
+        private readonly string $runUuid = '',
+        private int $offset = 0,
+        private int $limit = 0
+    ) {
+    }
 
     public function getProfile(): ProfileInterface
     {

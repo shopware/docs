@@ -14,8 +14,7 @@ When creating a writer, register it in a manner resembling the following:
 ```html
 <service id="SwagMigrationAssistant\Migration\Writer\ProductWriter"
          parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
-    <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>
-    <argument type="service" id="Shopware\Core\Content\Product\ProductDefinition"/>
+    <!-- ... -->
     <tag name="shopware.migration.writer"/>
 </service>
 ```
@@ -23,11 +22,7 @@ When creating a writer, register it in a manner resembling the following:
 In most cases, you should extend by the `AbstractWriter`, which does most things. You only need to specify the `supports` method.
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Migration\Writer;
-
-use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
+// SwagMigrationAssistant\Migration\Writer\ProductWriter
 
 class ProductWriter extends AbstractWriter
 {

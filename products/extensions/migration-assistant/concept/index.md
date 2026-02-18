@@ -13,13 +13,19 @@ nav:
 
 We will provide you with a basic introduction to the concepts and structure right here in this chapter. Take a look at the last headline \(Extension points\) to find out more about the various ways to extend this plugin.
 
+## Migration process
+
+The migration procedure, states, and full step-by-step workflow are documented on a dedicated page.
+
+For details, see [Migration Process](migration-process).
+
 ## Profile and connections
 
 Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers can create their own profiles from scratch, connect to different source systems, or just extend existing ones.
 
 For more details, look at [Profile and Connection](profile-and-connection).
 
-## DataSelection and dataSet
+## DataSelection and DataSet
 
 These are the fundamental data structures for defining what to migrate. Each `DataSet` represents an entity, for example, a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more information, refer to the articles on [DataSelection and DataSet](dataselection-and-dataset).
 
@@ -35,7 +41,7 @@ You can look at [Premapping](premapping) section for more details.
 
 ## Gateway and reader
 
-Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
+Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via HTTP/S with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
 
 To use the `ShopwareApiGateway`, you must download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5.
 
@@ -53,11 +59,11 @@ During any migration, especially during the data conversion, there will possibly
 
 For more information, have a look at the [Logging](logging) section.
 
-## Error resolution
+## Error Resolution
 
 The migration assistant provides the user with the possibility to resolve errors that occurred during the migration. The user can see the details of the error and decide how to proceed. For example, if a product could not be migrated because of a missing tax, the user can create a new tax and assign it to the product. After that, the user can mark the error as resolved, and the migration assistant will try to migrate the product.
 
-For more details, look at the [Error Resolution](error-resolution) section.
+Error Resolution is part of the standard migration workflow in Administration.
 
 ## Writer
 
@@ -67,175 +73,13 @@ To learn more about them, take a look at the [Writer](writer) section.
 
 ## Media processing
 
-During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem.
+During a typical migration, media is handled in a dedicated processing step after writing. Gateway-specific processors import files either via HTTP (`api` gateway) or local filesystem (`local` gateway).
 
 You can look at the [Media Processing](media-processing) article for more details.
 
 ## After migration
 
 All fetched data will be deleted after finishing or aborting a migration run, but the mapping of the identifiers will stay.
-
-## The migration procedure
-
-The following diagram visualizes how the migration process is executed in the message queue from a high level:
-
-```mermaid
-sequenceDiagram
-  participant Browser
-  participant Server
-  participant MQ
-
-  Browser->>+Server: POST /migration/start-migration
-  Server->>+MQ: dispatch MigrationProcessMessage
-  Server-->>-Browser: 204 No Content
-
-  loop Async processor steps
-    MQ-->>+Server: MigrationProcessMessage
-    Server->>MQ: process + dispatch next message (if step needs processor)
-    Server-->>-MQ: ack
-
-    Browser->>+Server: GET /migration/get-state
-    Server-->>-Browser: state: fetching | writing | media-processing | cleanup | indexing
-  end
-
-  Browser->>+Server: GET /migration/get-state
-  Server-->>-Browser: state: error-resolution
-
-  Note right of Browser: User reviews unresolved logs and applies fixes
-
-  Browser->>+Server: POST /migration/resume-after-fixes
-  Server->>+MQ: dispatch MigrationProcessMessage
-  Server-->>-Browser: 204 No Content
-
-  loop Continue async steps
-    MQ-->>+Server: MigrationProcessMessage
-    Server->>MQ: process + dispatch next message
-    Server-->>-MQ: ack
-  end
-
-  Browser->>+Server: GET /migration/get-state
-  Server-->>-Browser: state: waiting-for-approve
-
-  Note right of Browser: User confirmation required
-
-  Browser->>+Server: POST /migration/approve-finished
-  Server-->>-Browser: 204 No Content
-
-  Browser->>+Server: GET /migration/get-state
-  Server-->>-Browser: state: idle
-```
-
-Inside this process it can run through these states:
-
-```mermaid
-stateDiagram-v2
-  [*] --> Fetching
-  Fetching --> ErrorResolution
-  ErrorResolution --> Writing
-  Writing --> MediaProcessing
-  MediaProcessing --> Cleanup
-  Cleanup --> Indexing
-  Indexing --> WaitingForApprove
-  WaitingForApprove --> Finished
-  Finished --> [*]
-
-  Fetching --> Aborting
-  ErrorResolution --> Aborting
-  Writing --> Aborting
-  MediaProcessing --> Aborting
-  Aborting --> Cleanup
-  Indexing --> Aborted
-  Aborted --> [*]
-```
-
-### Migration Process Overview
-
-The following steps will give you a general overview of what happens in what classes during a common migration.
-
-These steps can be done multiple times. Each migration is called a `Run`/`MigrationRun` and will be saved to inform the users about any errors that occurred \(in the form of a detailed history\).
-
-#### 1. Create or Select a Connection
-
-The user selects or creates a connection (including profile and gateway).
-
-- `StatusController::checkConnection()`
-  - Reads environment information
-  - Stores a **source fingerprint**
-  - Prevents duplicates via `MigrationFingerprintService`
-
-#### 2. Select Data to Migrate
-
-The user selects the data to migrate (`DataSelections`).
-
-#### 3. Generate and Configure Premapping
-
-Premapping is generated for the selected connection.
-
-- The user maps data from the source system to the target system.
-- Mapping decisions are stored with the connection.
-
-#### 4. Start Migration Run
-
-The user starts a migration run.
-
-#### 5. Fetching Step
-
-For each `DataSet` in the selected `DataSelections`, source data is read and converted.
-
-1. The corresponding **Reader**
-   - Reads source data.
-
-2. The corresponding **Converter**
-   - Converts the data
-   - Stores converted data in `swag_migration_data`
-   - Stores mapping information (`old identifier`, `new identifier`, `checksum`) in the mapping table
-
-#### 6. Validation During Conversion
-
-Converted data is validated during the conversion process (including nested required fields and associations).
-
-- `MigrationEntityValidationService`
-- `MigrationFieldValidationService`
-
-Validation issues are written to the migration logs.
-
-#### 7. Error Resolution
-
-Users inspect grouped logs and define fixes.
-
-- Field validation issues can be resolved via `ErrorResolutionController`
-- Fixes are stored in `swag_migration_fix`
-
-#### 8. Resume Migration
-
-After resolving errors, the user can resume the migration.
-
-- Fixes are applied.
-- The system attempts to write the data again.
-
-#### 9. Writing Step
-
-For every `DataSet` in every selected `DataSelection`, data is written to the system.
-
-- The corresponding **Writer** writes the data.
-
-#### 10. Media Processing
-
-Pending media records from `swag_migration_media_file` are processed and assigned.
-
-1. Data from `swag_migration_media_file` is downloaded or copied.
-2. Files are assigned to media objects in Shopware 6.
-
-
-#### 11. Cleanup and Indexing
-
-Cleanup and indexing steps are executed.
-
-- The migration run enters the state: `WAITING_FOR_APPROVE`.
-
-#### 12. Approval
-
-The user approves the completion of the migration.
 
 ## Extension points
 
