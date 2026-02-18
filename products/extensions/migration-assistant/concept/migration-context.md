@@ -2,7 +2,6 @@
 nav:
   title: Migration Context
   position: 30
-
 ---
 
 # Migration Context

@@ -2,7 +2,6 @@
 nav:
   title: Writer
   position: 80
-
 ---
 
 # Writer

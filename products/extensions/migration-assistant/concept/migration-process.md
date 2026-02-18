@@ -2,7 +2,6 @@
 nav:
   title: Migration Process
   position: 5
-
 ---
 
 # Migration Process
@@ -166,3 +165,7 @@ Cleanup and indexing steps are executed.
 ### 12. Approval
 
 The user approves the completion of the migration.
+
+## After migration
+
+All fetched data will be deleted after finishing or aborting a migration run, but the mapping of the identifiers will stay.

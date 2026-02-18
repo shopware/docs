@@ -2,7 +2,6 @@
 nav:
   title: Concept
   position: 10
-
 ---
 
 # Concept
@@ -76,10 +75,6 @@ To learn more about them, take a look at the [Writer](writer) section.
 During a typical migration, media is handled in a dedicated processing step after writing. Gateway-specific processors import files either via HTTP (`api` gateway) or local filesystem (`local` gateway).
 
 You can look at the [Media Processing](media-processing) article for more details.
-
-## After migration
-
-All fetched data will be deleted after finishing or aborting a migration run, but the mapping of the identifiers will stay.
 
 ## Extension points
 

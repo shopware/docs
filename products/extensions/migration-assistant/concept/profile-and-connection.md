@@ -2,7 +2,6 @@
 nav:
   title: Profile and Connection
   position: 10
-
 ---
 
 # Profile and Connection

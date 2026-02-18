@@ -2,7 +2,6 @@
 nav:
   title: Gateway and Reader
   position: 50
-
 ---
 
 # Gateway and Reader
