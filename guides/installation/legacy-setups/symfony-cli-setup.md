@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Setting up Shopware with Symfony CLI
+  title: Install with Symfony CLI
   position: 30
 
 ---
@@ -9,11 +9,11 @@ nav:
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
-Shopware recommends [Docker](../installation/docker-setup.md) as the default setup for most users because it mirrors production and includes all services out of the box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
+Shopware recommends [Docker](../docker-setup.md) as the default setup for most users because it mirrors production and includes all services out-of-the-box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
 
 ## Prerequisites
 
-Before you begin, make sure your system meets the [Shopware 6 requirements](../installation/hardware-requirements.md).
+Before you begin, make sure your system meets the [Shopware 6 requirements](../system-requirements.md).
 
 You’ll need the following software installed on your host machine:
 
@@ -25,9 +25,11 @@ You’ll need the following software installed on your host machine:
 
 You’ll also need a working web server. The Symfony CLI can provide one automatically for development.
 
-> **macOS note:** If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
+:::info
+If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
+:::
 
-Optional tools:
+### Optional tools
 
 - [Elasticsearch 8](https://www.elastic.co/elasticsearch/) for product search and indexing
 - Docker (for running only the database while keeping PHP local)
@@ -75,10 +77,14 @@ To stop and remove the containers, while preserving the database data, run:
 docker compose down
 ```
 
-Run `docker compose down -v` to remove the containers and delete all stored data volumes.
+Run the below command to remove the containers and delete all stored data volumes:
+
+```bash
+docker compose down -v
+```
 
 ::: info
-Tip - Use the `-v` flag only if you want to completely reset the database.
+Use the `-v` flag only if you want to completely reset the database.
 :::
 
 ## Install Shopware
@@ -95,7 +101,11 @@ symfony console system:install --basic-setup
 
 The `--basic-setup` flag initializes Shopware with sensible defaults. It automatically creates a database schema, an admin user, and a default sales channel for the specified `APP_URL` so you can start testing immediately without manual configuration. Optional: Add the `--create-database` flag if your database doesn’t already exist.
 
-If you encounter file-permission issues when installing or rebuilding caches, run `symfony console cache:clear` or check directory ownership.
+If you encounter file-permission issues when installing or rebuilding caches, run the below command or check directory ownership.
+
+```bash
+symfony console cache:clear
+```
 
 ### Default Administration credentials
 
@@ -105,7 +115,9 @@ Shopware creates a default Administration user during installation:
 |:---------|:-----------|
 | `admin`  | `shopware` |
 
-**Tip**: Change these credentials after installation for security.
+:::warning
+Change these credentials after installation for security.
+:::
 
 ## Start the webserver
 
@@ -177,6 +189,4 @@ Symfony CLI uses PHP’s built-in web server by default. For better performance,
 
 ## Build and Watch the Administration and Storefront (Optional)
 
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
-
-<PageRef page="../installation/after-installation#frontend-and-administration-development" />
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Fontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.

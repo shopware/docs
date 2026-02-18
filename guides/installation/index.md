@@ -8,7 +8,7 @@ nav:
 # Overview of Shopware 6 Installation
 
 :::info
-The installation workflow has been streamlined to focus on a Docker-based setup as the primary approach. Previous installation methods are available in the [Legacy Setups](./legacy-setups) section.
+The installation workflow has been streamlined to focus on a Docker-based setup as the primary approach. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
 :::
 
 Welcome to the Shopware 6 Developer Installation Guide, which will help you set up a local Shopware 6 development environment whether you’re:
@@ -23,13 +23,13 @@ The [Docker-based setup](./docker-setup.md) aims to provide a smooth onboarding 
 
 The pages that follow assume that you're using Docker itself.
 
-The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](#DDEV) and Dockware(#Dockware setup). Both are **community-maintained** and not officially supported by Shopware.
+The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](./index.md#ddev) and [Dockwar](./index.md#dockware). Both are **community-maintained** and not officially supported by Shopware.
 
 ## DDEV
 
 [DDEV](https://ddev.com/) is a developer-friendly wrapper around Docker that automates environment setup using simple CLI commands. Key features include:
 
-- Simplifies Docker configuration: no manual `docker-compose.yml` needed.
+- Simplifies Docker configuration - no manual `docker-compose.yml` needed.
 - One command (`ddev start`) to start your Shopware environment.
 - Easy to switch PHP/MySQL/Node versions per project.
 - Integrates well with VS Code and PHPStorm.
@@ -41,8 +41,8 @@ For a DDEV-based Shopware example, see [DDEV with Shopware](https://github.com/d
 [Dockware](https://www.dockware.io/) provides ready-to-run Docker images for quickly spinning up demo stores or full local environments in seconds. It emphasizes minimal setup over full customization. Key features include:
 
 - Pre-built images for Shopware 5, Shopware 6, and nightly builds.
-- Includes all key services: PHP, DB, Elasticsearch, Mailhog, Adminer, etc.
+- Includes all key services - PHP, DB, Elasticsearch, Mailhog, Adminer, etc.
 - Great for testing specific versions or quick evaluation.
 - Can be used standalone or integrated into CI pipelines.
 
-Next, check the [hardware requirements](./hardware-requirements.md) to prepare your system.
+Next, check the [hardware requirements](./system-requirements.md) to prepare your system for installation.

@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Setting up Shopware with Devenv
+  title: Install with Devenv
   position: 20
 
 ---
 
-# Setting up Shopware with Devenv
+# Install Shopware with Devenv
 
 [Devenv](https://devenv.sh) is a Nix-based tool for defining and managing fully reproducible development environments for local workstations or continuous integration (CI) systems. It works like a dependency manager for your entire development stack.
 
@@ -23,9 +23,9 @@ On the host you only need a minimal toolchain:
 
 - [Nix package manager](https://nixos.org/download.html)
 - Git
-- Optional: Docker Engine, only if you plan to run additional containerized services alongside Devenv
+- Docker Engine, only if you plan to run additional containerized services alongside Devenv (Optional)
 
-See the [Shopware 6 requirements](../requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
+See the [Shopware 6 requirements](../system-requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
 
 :::info
 If you previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts. Removing `/nix` deletes the global Nix store and may require elevated privileges. Use `sudo` if appropriate and double-check before running destructive commands.
@@ -35,7 +35,7 @@ If you previously installed Nix using an older single-user script or via a packa
 
 ### Nix
 
-Devenv is built on top of [Nix](https://nixos.org/), so you need to [install it](https://nixos.org/download.html) first. The Nix community recommends using the cross-platform [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer), which provides a fast, consistent setup across macOS, Linux, and WSL2 that requires no manual configuration:
+Devenv is built on top of Nix, so you need to install it first. The Nix community recommends using the cross-platform [Determinate Systems installer](https://determinate.systems/posts/determinate-nix-installer), which provides a fast, consistent setup across macOS, Linux, and WSL2 that requires no manual configuration:
 
 ```bash
 curl -L https://install.determinate.systems/nix | sh -s -- install
@@ -189,7 +189,7 @@ Start Devenv in the project directory:
 devenv up
 ```
 
-Then open a *new terminal* and enter the Devenv shell, which provides PHP, Composer, Node.js, npm, etc.:
+Then open a *new terminal* and enter the Devenv shell, which provides PHP, Composer, Node.js, npm, etc:
 
 ```bash
 devenv shell
@@ -292,7 +292,11 @@ direnv hook fish | source
 </Tab>
 
 <Tab title="Other shells">
+
+```text
 See Direnv's [official documentation](https://direnv.net/docs/hook.html) for installation instructions for other shells.
+```
+
 </Tab>
 
 </Tabs>
@@ -337,7 +341,7 @@ The MySQL service listens on port `3306` and stores its data in `<PROJECT_ROOT>/
 
 Redis is used for caching and sessions and runs on `tcp://127.0.0.1:6379`.
 
-If Redis fails to start with an error such as `Failed to configure LOCALE for invalid locale name`, set a valid locale before starting Devenv:
+If Redis fails to start with an error, `Failed to configure LOCALE for invalid locale name`, set a valid locale before starting Devenv:
 
 ```bash
 export LANG=en_US.UTF-8
@@ -362,7 +366,7 @@ Default credentials:
 
 ## Customize your setup
 
-You can customize the predefined Devenv services to match your local needs—for example, changing virtual hosts, database names, or environment variables. You can override defaults to match your local dev setup, e.g., to free ports or change domains.
+You can customize the predefined Devenv services to match your local needs - for example, changing virtual hosts, database names, or environment variables. You can override defaults to match your local dev setup, e.g., to free ports or change domains.
 
 To override or extend the defaults, create a `devenv.local.nix` file in your project root.
 This file lets you disable built-in services, adjust configuration, or add new ones that your project requires.

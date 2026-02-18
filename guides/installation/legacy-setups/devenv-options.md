@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Additional Devenv Options
+  title: Additional Devenv Config
   position: 50
 
 ---

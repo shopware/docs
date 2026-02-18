@@ -1,30 +1,30 @@
 ---
 nav:
-  title: Project overview
+  title: Project Structure Overview
   position: 4
 
 ---
 
 # Understanding your Shopware project
 
-You’ve just installed Shopware. But what exactly did you get? This section guides you through fundamentals you'll use through the rest of your development workflow.
+You have just installed Shopware and this section guides you through fundamentals you will use through the rest of your development workflow.
 
-## Development tooling included
+## Development tooling
 
-The Docker setup installs Shopware with development dependencies (`require-dev`) enabled, including:
+The Docker setup installs Shopware with development dependencies (`require-dev`), including:
 
 - [`shopware/dev-tools`](https://github.com/shopware/dev-tools)
 - Symfony profiler
 - [Demo data](https://github.com/shopware/SwagPlatformDemoData)
 - Linting and testing tools
 
-Your local project is ready for debugging, profiling, and extension development out of the box.
+Your local project is ready for debugging, profiling, and extension development out-of-the-box.
 
 In day-to-day development, you’ll mostly interact with:
 
 - **Makefile**: shortcuts for Docker and Shopware commands (`make up`, `make setup`, etc.)
 - **custom/**: where you build your own plugins and themes
-- **bin/console**: the application CLI that ships with Shopware (Symfony console). It's used for tasks like running migrations, installing plugins, clearing caches, or managing configuration inside your project.
+- **bin/console**: the application CLI that ships with Shopware (Symfony console). It is used for tasks like running migrations, installing plugins, clearing caches, or managing configuration inside your project.
 
 :::info
 `bin/console` is different from the standalone [Shopware CLI](https://github.com/shopware/shopware-cli) tool used for extension builds and CI workflows. The Docker setup already includes the standalone Shopware CLI inside the container.
@@ -40,7 +40,7 @@ All setups start from the Shopware Project Template - a Composer-based project t
 - Customize configuration and services
 - Tailor the environment to your development needs
 
-### Components explained
+### Components
 
 The following table explains the Docker-level components created when you start the project. Container names depend on your project folder name.
 
@@ -99,4 +99,4 @@ This table outlines the key directories and files in your Shopware project and w
 | **var/**                  | Runtime data                | Cache, logs, temporary files.                                                              | Can safely be deleted (Shopware rebuilds it).                                                     |
 | **vendor/**               | Dependency code             | All installed PHP libraries from Composer.                                                 | Analogous to `node_modules/`.                                                                     |
 
-With this understanding move to the next section to make changes.
+Now continue to the next section to start implementing your changes.

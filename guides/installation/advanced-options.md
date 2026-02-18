@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Advanced Options
+  title: Advanced Docker Config
   position: 6
 
 ---
 
 # Advanced options
 
-This page covers optional and advanced Docker configuration for Shopware projects. You can refer to this section, once your local environment is running and you want to customize your environment, mirror production more closely, or support advanced workflows.
+This section covers optional and advanced Docker configuration for Shopware projects. Refer to it once your local environment is running and you want to customize your setup, mirror production more closely, or support advanced workflows.
 
 ## Customizing the runtime environment
 
@@ -44,7 +44,7 @@ Choose the variant that best matches your production stack.
 
 ## Adding S3-compatible storage (Minio)
 
-Some projects use Amazon S3 for file storage in production. If you want to mimic that behavior locally—for example, to test uploads or CDN-like delivery—you can add [Minio](https://www.min.io/), which is an open-source, S3-compatible storage server.
+Some projects use Amazon S3 for file storage in production. If you want to mimic that behavior locally - for example, to test uploads or CDN-like delivery, you can add [Minio](https://www.min.io/), an open-source, S3-compatible storage server.
 
 ### 1. Add the Minio service
 
@@ -129,7 +129,15 @@ shopware:
 
 After adding the Minio service to your `compose.yaml` and creating the configuration file, this will configure Shopware to use Minio as the S3 storage for public and private files.
 
-Run `docker compose up -d` to start the Minio containers. You can access the Minio console at <http://localhost:9001> with the username `minioadmin` and password `minioadmin`.
+### 3. Run Minio containers
+
+Run the below command to start the Minio containers:
+
+```bash
+docker compose up -d
+```
+
+You can access the Minio console at <http://localhost:9001> with the username `minioadmin` and password `minioadmin`.
 
 Finally, regenerate the assets to upload them to S3:
 
@@ -163,13 +171,13 @@ services:
 
 ```
 
-The APP_URL environment variable follows this pattern: `web.<project-name>.orb.local`. The `<project-folder-name>` comes from your local directory name. For example: a project called `shopware` will have the URL `https://web.shopware.orb.local`. A project called `shopware-6` will have the URL `https://web.shopware-6.orb.local`.
+The `APP_URL` environment variable follows this pattern: `web.<project-name>.orb.local`, where`<project-name>` comes from your local project directory name. For example, a project folder named `shopware` results in the URL `https://web.shopware.orb.local`, while a folder named `shopware-6` results in `https://web.shopware-6.orb.local`.
 
 You can also open `https://orb.local` in your browser to view all running containers and their assigned URLs.
 
 ## Working with production data locally
 
-When importing production databases into your local environment, image URLs in the data may still point to production servers—leading to broken or missing images in your local store. You can proxy those images locally instead of downloading everything.
+When importing production databases into your local environment, image URLs in the data may still point to production servers - leading to broken or missing images in your local store. You can proxy those images locally instead of downloading everything.
 
 Add the `imageproxy` service to your `compose.override.yaml`:
 

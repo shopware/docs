@@ -1,15 +1,15 @@
 ---
 nav:
-  title: After installation
+  title: Start Development
   position: 5
 
 ---
 
 # After Installation - Start Development
 
-You now have a running Shopware instance. This section outlines the typical next steps for development.
+This section outlines the typical next steps for development in your running Shopware instance. 
 
-## Access administration and storefront
+## Access Administration and Storefront
 
 - Storefront: [http://localhost:8000](http://localhost:8000)
 - Administration: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
@@ -38,11 +38,11 @@ bin/console
 
 Development and automation tasks are handled in the CLI, including:
 
-- installing and activating plugins
-- clearing caches
-- running migrations
-- adjusting system configuration
-- developing plugins and themes
+- Installing and activating plugins
+- Clearing caches
+- Running migrations
+- Adjusting system configuration
+- Developing plugins and themes
 
 :::info
 Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
@@ -60,7 +60,7 @@ Basic shop settings such as shop name, default language, and currency can be cha
 
 ## Frontend and Administration development
 
-When you modify Storefront or Administration code, or develop plugins that affect the UI, you’ll use these Makefile commands:
+When modifying Storefront or Administration code, or developing plugins that affect the UI, use the following Makefile commands:
 
 ```bash
 # Build the administration (admin panel)
@@ -83,7 +83,7 @@ These commands become part of everyday development workflow. Watchers are typica
 To connect to the database from your host machine (for example, via Adminer or a local MySQL client), use:
 
 - Host: `127.0.0.1` or `localhost`
-- And the exposed port shown in
+- And the exposed port is shown in :
 
 ```bash
 docker compose ps
@@ -91,14 +91,14 @@ docker compose ps
 
 ## Local services overview
 
-With Shopware running, your local setup includes
+With Shopware running, your local setup includes:
 
 - A web service (serves both the storefront and the administration)
-- Database (MariaDB): runs on port 3306 inside Docker.
+- Database (MariaDB) runs on port 3306 inside Docker.
   - Internal hostname: `database`
   - Host access: `localhost:3306`, if you want to inspect the database directly.
-- Mailpit local mail testing tool: available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
-- Adminer (database UI): Lightweight web interface for viewing and editing your database, available at [http://localhost:8080](http://localhost:8080).
+- Mailpit local mail testing tool available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
+- Adminer (database UI), lightweight web interface for viewing and editing your database available at [http://localhost:8080](http://localhost:8080).
 
 Inspect ports and services with:
 
@@ -127,7 +127,7 @@ Save the file and apply the changes:
 docker compose up -d
 ```
 
-This restarts the containers with Xdebug enabled. You can now attach your IDE (for example, PHPStorm or VS Code) to the remote debugger on the default Xdebug port `9003`.
+This restarts the containers with `Xdebug` enabled. You can now attach your IDE (for example, PHPStorm or VS Code) to the remote debugger on the default Xdebug port `9003`.
 
 Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
 
@@ -157,10 +157,10 @@ make up
 
 Use `compose.override.yaml` to:
 
-- change ports
-- add services
-- enable debugging
-- adjust networking
+- Change ports
+- Add services
+- Enable debugging
+- Adjust networking
 
 This keeps your changes local and out of version control.
 
@@ -173,12 +173,12 @@ During setup, an access key is automatically generated for your default Sales Ch
 ```bash
 Access tokens:
 +------------+----------------------------+
-| Key | Value |
+| Key        | Value                       |
 +------------+----------------------------+
 | Access key | `string of capital letters` |
 ```
 
-The access key for authenticating requests to the [Store API](../../../concepts/api/store-api) - for example, when fetching product or category data from an external app, headless storefront, or API client. Example usage:
+The access key for authenticating requests to the [Store API](../../concepts/api/store-api.md) - for example, when fetching product or category data from an external app, headless storefront, or API client. Example usage:
 
 ```bash
 curl -H "sw-access-key: YOUR_ACCESS_KEY" \
@@ -213,9 +213,9 @@ Other IDs may cause permission errors when running `make up` or writing to proje
 
 ## Preparing for production
 
-If you're preparing to run [Shopware in production using Docker](../../hosting/installation-updates/docker.md) covers production images, environment configuration, and deployment workflows.
+If you're preparing to run Shopware in production using Docker, refer to [Docker](../hosting/installation-updates/docker.md) guide for details on production images, environment configuration, and deployment workflows.
 
-## Build and watch the administration and Storefront
+## Build and watch the Administration and Storefront
 
 You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
 
@@ -230,12 +230,9 @@ The created project contains bash scripts in the `bin/` folder to build and watc
 
 Use these scripts to build the Administration and Storefront. The `watch` commands will watch for changes in the Administration and Storefront and rebuild them automatically.
 
-## Advanced Docker configuration
-
-For advanced below topics, see [Advanced Options](advanced-options.md)
-
-- image variants
+For below advanced Docker configurations, see [Advanced Docker Config](./advanced-options.md) section.
+- Image variants
 - Minio (S3)
 - OrbStack routing
-- production image proxy configuration
-- service internals
+- Production image proxy configuration
+- Service internals

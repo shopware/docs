@@ -1,16 +1,16 @@
 ---
 nav:
-  title: Docker Setup
+  title: Install with Docker
   position: 3
 
 ---
 
 # Docker Setup
 
-This guide is for developing Shopware stores and extensions. By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
+By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
 
 :::info
-For information about using Docker in production, see [Docker for production](../../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contributing.md guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
+For information about using Docker in production, see [Docker for production](../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
 :::
 
 ## Prerequisites
@@ -27,7 +27,7 @@ apt install make
 brew install make
 ```
 
-This Docker setup includes the [Shopware CLI](../../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
+This Docker setup includes the [Shopware CLI](../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
 ## Pre-pull Docker image (optional)
 
@@ -47,7 +47,7 @@ Create an empty directory for your project and navigate to it:
 mkdir my-project && cd my-project
 ```
 
-Create a new project:
+Create a new Shopware project in your current directory:
 
 ```bash
 docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup
@@ -67,7 +67,7 @@ The Docker setup installs development dependencies (`require-dev`) and [`shopwar
 
 Project creation takes a few minutes to complete. When prompted in the terminal, you will see:
 
-`Do you want to use Elasticsearch? (y/N)`
+"Do you want to use Elasticsearch? (y/N)"
 
 Shopware supports an Elasticsearch-compatible search engine for improved performance with large catalogs and advanced search features.
 
@@ -75,9 +75,9 @@ If you choose `y`, the Docker setup starts an Elasticsearch-compatible search se
 
 If you choose `N`, Shopware will use MariaDB for search, which is sufficient for local testing or small datasets.
 
-## Initial setup
+## Install Shopware
 
-After creating your project, you must install Shopware inside your containers. Run the setup commands below to initialize the database, generate configuration files, and create the default admin user.
+After creating your project, you must install Shopware inside your containers. Run the below setup commands to initialize the database, generate configuration files, and create the default admin user.
 
 First, start the containers:
 
@@ -87,17 +87,15 @@ make up
 
 This command starts Shopware and all required services (web server, database, search, Mailpit, etc.) in the background. Docker images already include all required PHP extensions and services, so the system-check step of the installer is always fulfilled.
 
-:::info
 You can check the container status anytime with the below command:
-:::
 
 ```bash
 docker compose ps
 ```
 
-“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and the [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
+“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
 
-Once the containers are running, install Shopware with this command:
+Once the containers are running, install Shopware with the below command:
 
 ```bash
 make setup
@@ -131,4 +129,4 @@ make down
 docker compose down -v
 ```
 
-Next, you can start implementing your changes. However, get a [project overview](./project-overview.md) before that.
+You now have a running, empty Shopware instance. Before proceeding with development, [review the project](./project-overview.md) to understand the its structure.
