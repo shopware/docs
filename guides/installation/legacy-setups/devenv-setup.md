@@ -317,9 +317,7 @@ If you change the Devenv configuration or your `.envrc` file after running `dire
 direnv reload
 ```
 
-Direnv will now automatically activate the Devenv environment whenever you enter the directory.
-
-See the official [Automatic Shell Activation guide](https://devenv.sh/automatic-shell-activation/) for more details.
+Direnv will now automatically activate the Devenv environment whenever you enter the directory. See the official [Direnv documentation](https://devenv.sh/integrations/direnv/) for more details.
 
 ## Default services
 
