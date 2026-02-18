@@ -149,7 +149,7 @@ symfony server:stop
 
 **Tip**: If port 8000 is already in use, start the server on a different port: `symfony server:start --port=8080`
 
-## Set the PHP version (optional, recommended)
+## Set the PHP version (recommended)
 
 Specify a PHP version to ensure consistent environments across team members.
 
@@ -167,7 +167,7 @@ To verify which PHP version is active, run:
 symfony php -v
 ```
 
-## Adjust PHP configuration (Optional)
+## Adjust PHP configuration (recommended)
 
 Adjusting PHP settings like `memory_limit` or `max_execution_time` can prevent build or cache warm-up processes from failing, especially during large Administration builds or when working on plugins.
 
@@ -187,6 +187,6 @@ By keeping your `php.ini` in version control, you ensure consistent behavior acr
 
 Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../../resources/references/config-reference/server/nginx.md).
 
-## Build and Watch the Administration and Storefront (Optional)
+## Build and Watch the Administration and Storefront (optional)
 
 You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Fontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.
