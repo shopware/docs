@@ -39,7 +39,7 @@ If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** proceed with clonin
 
 ## Clone Process
 
-### Interactive Mode
+### Interactive mode
 
 If you run the clone command without any parameters, the CLI will guide you through an interactive selection process:
 
