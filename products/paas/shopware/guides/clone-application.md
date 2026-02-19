@@ -103,7 +103,7 @@ The clone operation may take some time, depending on the size of the application
 
 After the clone is successfully completed, you must perform the following tasks:
 
-### Update Admin Password
+### Update admin password
 
 For clarity, we'll refer to the source application as **App A** and the cloned (target) application as **App B**.
 
