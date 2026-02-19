@@ -139,7 +139,7 @@ bin/console user:change-password admin
 
 Follow the prompts to set a new password for the admin user.
 
-### Update Domain in Sales Channel
+### Update domain in sales channel
 
 The cloned application will have the same domain configuration as the source application. You need to update the domain in the sales channel to match the cloned application's domain.
 
