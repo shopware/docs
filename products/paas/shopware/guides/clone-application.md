@@ -12,7 +12,7 @@ This guide explains how to clone an application in Shopware PaaS Native. Cloning
 
 The cloning process works by creating a snapshot of the source application and then restoring that snapshot to the target application.
 
-## Use Cases
+## Use cases
 
 Common scenarios for cloning applications include:
 
