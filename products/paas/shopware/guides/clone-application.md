@@ -61,7 +61,7 @@ The interactive mode will prompt you to select:
 
 This interactive mode is recommended if you're unsure about the specific IDs or prefer a guided experience.
 
-### Manual Mode
+### Manual mode
 
 If you know the specific IDs, you can provide them directly as command-line flags:
 
