@@ -83,7 +83,7 @@ The cloning process happens in two stages:
 
 This ensures that the target application receives an exact copy of the source application's state at the time of the selected deployment.
 
-### Monitor Clone Progress
+### Monitor clone progress
 
 After initiating the clone, you can monitor the progress using:
 
