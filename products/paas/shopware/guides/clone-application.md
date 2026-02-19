@@ -97,7 +97,7 @@ Or get detailed information about a specific deployment:
 sw-paas app deploy get
 ```
 
-The clone operation may take some time depending on the size of the application data. Wait until the deployment status shows `DEPLOYING_STORE_SUCCESS` before considering the clone complete.
+The clone operation may take some time, depending on the size of the application data. Wait until the deployment status shows `DEPLOYING_STORE_SUCCESS` before considering the clone to be complete.
 
 ## Post-Clone Tasks
 
