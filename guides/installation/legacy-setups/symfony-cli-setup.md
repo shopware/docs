@@ -185,7 +185,7 @@ symfony php -i
 
 By keeping your `php.ini` in version control, you ensure consistent behavior across development environments and CI pipelines.
 
-Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](/docs/resources/references/config-reference/server/nginx.md).
+Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use [Nginx](https://developer.shopware.com/docs/resources/references/config-reference/server/nginx.html) or [Caddy](https://developer.shopware.com/docs/resources/references/config-reference/server/caddy.html).
 
 ## Build and Watch the Administration and Storefront (optional)
 
