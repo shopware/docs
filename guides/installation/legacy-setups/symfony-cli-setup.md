@@ -185,8 +185,8 @@ symfony php -i
 
 By keeping your `php.ini` in version control, you ensure consistent behavior across development environments and CI pipelines.
 
-(Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](/docs/resources/references/config-reference/server/nginx.md).
+Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](/docs/resources/references/config-reference/server/nginx.md).
 
 ## Build and Watch the Administration and Storefront (optional)
 
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Fontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Frontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.

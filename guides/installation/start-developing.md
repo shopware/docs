@@ -7,7 +7,7 @@ nav:
 
 # After Installation - Start Development
 
-This section outlines the typical next steps for development in your running Shopware instance. 
+This section outlines the typical next steps for development in your running Shopware instance.
 
 ## Access Administration and Storefront
 
@@ -231,6 +231,7 @@ The created project contains bash scripts in the `bin/` folder to build and watc
 Use these scripts to build the Administration and Storefront. The `watch` commands will watch for changes in the Administration and Storefront and rebuild them automatically.
 
 For below advanced Docker configurations, see [Advanced Docker Config](./advanced-options.md) section.
+
 - Image variants
 - Minio (S3)
 - OrbStack routing

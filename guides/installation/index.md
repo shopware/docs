@@ -23,7 +23,7 @@ The [Docker-based setup](./docker-setup.md) aims to provide a smooth onboarding 
 
 The pages that follow assume that you're using Docker itself.
 
-The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](./index.md#ddev) and [Dockwar](./index.md#dockware). Both are **community-maintained** and not officially supported by Shopware.
+The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](./index.md#ddev) and [Dockware](./index.md#dockware). Both are **community-maintained** and not officially supported by Shopware.
 
 ## DDEV
 
