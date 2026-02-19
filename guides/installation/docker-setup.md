@@ -16,7 +16,7 @@ For information about using Docker in production, see [Docker for production](..
 ## Prerequisites
 
 - Install and run either [Docker](https://docs.docker.com/get-started/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start). OrbStack is a fast, Docker-compatible alternative for macOS (free for personal use).
-- Ensure Docker has permission to bind to local ports (typically `:80` or `:8080`) and that no conflicting services are already using these ports. (Mac/Linux example: `lsof -iTCP:80 -sTCP:LISTEN`; Windows example: `-ano | findstr :80`)  
+- Ensure Docker has permission to bind to local ports (typically `:80` or `:8080`) and that no conflicting services are already using these ports. (Mac/Linux example: `lsof -iTCP:80 -sTCP:LISTEN`; Windows example: `-aon | findstr :80`)  
 - Install `make`:
 
 ```bash
