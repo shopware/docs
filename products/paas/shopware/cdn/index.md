@@ -79,7 +79,7 @@ shop.example.com.  IN  CNAME  cdn.shopware.shop.
 
 If your custom domain is an apex/root domain (e.g., `example.com`), you need to configure multiple record types:
 
-**1. IPv4 routing** - Create four `A` records:
+**1. IPv4 routing** - Create all `A` records:
 
 ```dns
 151.101.3.52
@@ -88,7 +88,7 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 151.101.195.52
 ```
 
-**2. IPv6 routing** - Create four `AAAA` records:
+**2. IPv6 routing** - Create all `AAAA` records:
 
 ```dns
 2a04:4e42::820
