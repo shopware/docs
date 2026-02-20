@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Docker Setup
+# Install Shopware with Docker
 
 By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
 
@@ -59,17 +59,17 @@ To use a specific version of Shopware (optional), run:
 docker run --rm -it -v $PWD:/var/www/html ghcr.io/shopware/docker-dev:php8.3-node24-caddy new-shopware-setup 6.6.10.0
 ```
 
-This step creates your Shopware project using PHP and Composer inside the Docker image. It generates a ready-to-use setup including `compose.yaml` and a `Makefile`, so you don’t need to locally install PHP or Composer yourself.
+This step creates your Shopware project using PHP and Composer inside the Docker image. It generates a ready-to-use setup including `compose.yaml` and a `Makefile`, so you don’t need to install PHP or Composer yourself locally.
 
 :::info
 The Docker setup installs development dependencies (`require-dev`) and [`shopware/dev-tools`](https://github.com/shopware/dev-tools). This enables the Symfony profiler, [demo data](https://github.com/shopware/SwagPlatformDemoData), linting tools, and test tooling.
 :::
 
-Project creation takes a few minutes to complete. When prompted in the terminal, you will see:
+Project creation takes a few minutes. When prompted in the terminal, you will see:
 
 "Do you want to use Elasticsearch? (y/N)"
 
-Shopware supports an Elasticsearch-compatible search engine for improved performance with large catalogs and advanced search features.
+Shopware supports an Elasticsearch-compatible search engine to improve performance for extensive catalogs and advanced search features.
 
 If you choose `y`, the Docker setup starts an Elasticsearch-compatible search service (OpenSearch) as part of your stack.
 
@@ -77,7 +77,7 @@ If you choose `N`, Shopware will use MariaDB for search, which is sufficient for
 
 ## Install Shopware
 
-After creating your project, you must install Shopware inside your containers. Run the below setup commands to initialize the database, generate configuration files, and create the default admin user.
+After creating your project, you must install Shopware inside your containers. Run the commands below to initialize the database, generate configuration files, and create the default admin user.
 
 First, start the containers:
 
@@ -87,7 +87,7 @@ make up
 
 This command starts Shopware and all required services (web server, database, search, Mailpit, etc.) in the background. Docker images already include all required PHP extensions and services, so the system-check step of the installer is always fulfilled.
 
-You can check the container status anytime with the below command:
+You can check the container status anytime with the following command:
 
 ```bash
 docker compose ps
@@ -95,7 +95,7 @@ docker compose ps
 
 “Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
 
-Once the containers are running, install Shopware with the below command:
+Once the containers are running, install Shopware with the following command:
 
 ```bash
 make setup
@@ -108,7 +108,7 @@ What happens during `make setup`:
 - Shopware is installed automatically (no browser wizard required)
 - A MariaDB database is created
 - An admin user is created, with username `admin` and password `shopware`
-- Required services (database, search, mail, etc.) are preconfigured and runs inside the Docker
+- Required services (database, search, mail, etc.) are preconfigured and run inside the Docker
 - The Shopware project is configured to connect to the database via the Docker service name `database`
 - Database credentials are defined in the `compose.yaml`
 - If search was enabled during project creation, an Elasticsearch-compatible search service runs as part of the Docker stack
@@ -129,4 +129,4 @@ make down
 docker compose down -v
 ```
 
-You now have a running, empty Shopware instance. Before proceeding with development, [review the project](./project-overview.md) to understand the its structure.
+You now have a running, empty Shopware instance. Before proceeding with development, [review the project](./project-overview.md) to understand its structure.

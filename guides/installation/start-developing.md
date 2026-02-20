@@ -51,7 +51,7 @@ Inside the container, you only need `bin/console …`. But if you prefer to run 
 ## Administration setup tasks
 
 - Open the **Admin** at `http://localhost:8000/admin`
-- Sign in or create a Shopware account; necessary when you want to install Store extensions.
+- Sign in or create a Shopware account; this is necessary when you want to install Store extensions.
 - Connect to the **Shopware Store**
 - Install plugins or themes from the Store
 - Configure payment methods; not necessary for local development
@@ -76,7 +76,7 @@ make watch-admin
 make watch-storefront
 ```
 
-These commands become part of everyday development workflow. Watchers are typically used during active UI development.
+These commands become part of the everyday development workflow. Watchers are typically used during active UI development.
 
 ## Inspecting and debugging locally
 
@@ -98,7 +98,7 @@ With Shopware running, your local setup includes:
   - Internal hostname: `database`
   - Host access: `localhost:3306`, if you want to inspect the database directly.
 - Mailpit local mail testing tool available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
-- Adminer (database UI), lightweight web interface for viewing and editing your database available at [http://localhost:8080](http://localhost:8080).
+- Adminer (database UI), a lightweight web interface for viewing and editing your database available at [http://localhost:8080](http://localhost:8080).
 
 Inspect ports and services with:
 
@@ -135,7 +135,7 @@ Shopware’s Docker setup also supports other profilers, like [Blackfire](https:
 services:
     web:
         environment:
-            - PHP_PROFILER=blackfire
+ - PHP_PROFILER=blackfire
     blackfire:
         image: blackfire/blackfire:2
         environment:
@@ -147,7 +147,7 @@ services:
 
 ### Environment variables
 
-You can create a `.env` file in the project root to override default environment variables. Most changes take effect automatically without restarting containers. Changes to `APP_ENV` require a restart:
+You can create a `.env` file in the project root to override default environment variables. Most changes take effect automatically without requiring container restarts. Changes to `APP_ENV` require a restart:
 
 ```bash
 make up
@@ -173,7 +173,7 @@ During setup, an access key is automatically generated for your default Sales Ch
 ```bash
 Access tokens:
 +------------+----------------------------+
-| Key        | Value                       |
+| Key | Value |
 +------------+----------------------------+
 | Access key | `string of capital letters` |
 ```
@@ -182,7 +182,7 @@ The access key for authenticating requests to the [Store API](../../concepts/api
 
 ```bash
 curl -H "sw-access-key: YOUR_ACCESS_KEY" \
-     http://localhost:8000/store-api/product
+ http://localhost:8000/store-api/product
 ```
 
 You can view or regenerate this key in the Admin under **`Sales Channels > [Your Channel] > API Access`**.
@@ -228,9 +228,9 @@ The created project contains bash scripts in the `bin/` folder to build and watc
 ./bin/watch-storefront.sh
 ```
 
-Use these scripts to build the Administration and Storefront. The `watch` commands will watch for changes in the Administration and Storefront and rebuild them automatically.
+Use these scripts to build the Administration and Storefront. The `watch` commands monitor changes to the Administration and Storefront and automatically rebuild them.
 
-For below advanced Docker configurations, see [Advanced Docker Config](./advanced-options.md) section.
+For the advanced Docker configurations below, see [Advanced Docker Config](./advanced-options.md) section.
 
 - Image variants
 - Minio (S3)

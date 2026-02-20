@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Setting up Shopware with Symfony CLI
+# Install Shopware with Symfony CLI
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 

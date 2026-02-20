@@ -11,7 +11,7 @@ nav:
 
 Instead of manually installing and configuring PHP, Node.js, MySQL, Redis, or other services, you describe your setup once in a `devenv.nix` file. Devenv then installs and runs the exact versions you specify, ensuring consistency across every developer’s machine.
 
-Devenv lets you choose specific versions of binaries (e.g., PHP, Node, or npm) and configure and run services like MySQL, Redis, or OpenSearch. All binaries and service states are stored on a per-project basis, providing an isolated yet native development environment.
+Devenv lets you choose specific versions of binaries (e.g., PHP, Node, or npm) and configure and run services like MySQL, Redis, or OpenSearch. All binaries and service states are stored per-project, providing an isolated yet native development environment.
 
 Unlike Docker or virtual machines, Devenv does not use containerization or virtualization. Instead, all services and binaries run natively on your host system. This makes it an appealing choice for Shopware core contributors or advanced users who want consistent local and CI builds.
 
@@ -19,7 +19,7 @@ Unlike Docker or virtual machines, Devenv does not use containerization or virtu
 
 Devenv provides project-local PHP, Node, Composer, and services via Nix, so you don't need to install those runtimes globally for a project that uses Devenv.
 
-On the host you only need a minimal toolchain:
+On the host, you only need a minimal toolchain:
 
 - [Nix package manager](https://nixos.org/download.html)
 - Git
@@ -28,7 +28,7 @@ On the host you only need a minimal toolchain:
 See the [Shopware 6 requirements](../system-requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
 
 :::info
-If you previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts. Removing `/nix` deletes the global Nix store and may require elevated privileges. Use `sudo` if appropriate and double-check before running destructive commands.
+If you previously installed Nix using an older single-user script or a package manager (e.g., `brew install nix`), remove it first to avoid permission or path conflicts. Removing `/nix` deletes the global Nix store and may require elevated privileges. Use `sudo` if appropriate and double-check before running destructive commands.
 :::
 
 ## Installation
@@ -53,7 +53,7 @@ After installation, restart your terminal to load Nix’s environment variables 
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 ```
 
-The Determinate Systems installer also handles shell integration, including Zsh and [Oh My Zsh](https://ohmyz.sh/), so you don't need to manually copy Nix configuration lines into your shell startup files.
+The Determinate Systems installer also handles shell integration, including Zsh and [Oh My Zsh](https://ohmyz.sh/), so you don't need to copy Nix configuration lines into your shell startup files manually.
 
 ::: warning
 If you have previously installed Nix using an older single-user script or via a package manager (for example, `brew install nix`), remove it first to prevent permission or path conflicts:
@@ -63,7 +63,7 @@ rm -rf ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.local/state/nix
 rm -rf /nix
 ```
 
-Removing `/nix` deletes the global Nix store and may require elevated privileges. Only run these commands if you intend to completely remove previous Nix installations.
+Removing `/nix` deletes the global Nix store and may require elevated privileges. Only run these commands if you intend to remove previous Nix installations completely.
 :::
 
 If Nix commands aren’t available after installation, restart your terminal or run `source ~/.zshrc`.
@@ -76,7 +76,7 @@ Once Nix is installed, install or update Devenv with the Nix profile command:
 nix profile install github:cachix/devenv/latest
 ```
 
-You can find the full installation guide and advanced options in the [official Devenv documentation](https://devenv.sh/getting-started/).
+You can find the complete installation guide and advanced options in the [official Devenv documentation](https://devenv.sh/getting-started/).
 
 ## Quick checks (verify host & Devenv)
 
@@ -96,7 +96,7 @@ direnv --version || echo "direnv not installed"
 # Basic sanity: list Devenv commands
 devenv help
 
-# Check few common ports (macOS / Linux examples)
+# Check a few common ports (macOS / Linux examples)
 lsof -i :8000 -i :3306 -i :6379 || ss -tulpn | grep ':8000\|:3306\|:6379'
 ```
 
@@ -212,7 +212,7 @@ The default credentials are:
 On Windows with WSL2, change the default sales channel domain to `http://localhost:8000`. Use *http*, not https.
 :::
 
-To create a full test setup with demo data, run:
+To create a complete test setup with demo data, run:
 
 ```bash
 composer setup && APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
@@ -326,10 +326,10 @@ When you start Devenv with `devenv up`, Shopware automatically provides several 
 | Service        | Default address                            | Description                           |
 |----------------|--------------------------------------------|---------------------------------------|
 | MySQL          | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware.        |
-| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                    | Local mail capture for testing email. |
-| Redis (TCP)    | `tcp://127.0.0.1:6379`                     | Used for caching and sessions.        |
-| Caddy          | `http://127.0.0.1:8000`                    | Web server.                           |
-| Adminer        | `http://127.0.0.1:9080`                    | Database management tool.             |
+| Mailhog (SMTP) | `smtp://127.0.0.1:1025` | Local mail capture for testing email. |
+| Redis (TCP)    | `tcp://127.0.0.1:6379` | Used for caching and sessions.        |
+| Caddy          | `http://127.0.0.1:8000` | Web server.                           |
+| Adminer        | `http://127.0.0.1:9080` | Database management tool.             |
 
 ::: tip
 The MySQL service listens on port `3306` and stores its data in `<PROJECT_ROOT>/.devenv/state/mysql`. Use `127.0.0.1` instead of `localhost` when connecting to MySQL.
@@ -347,7 +347,7 @@ export LANG=en_US.UTF-8
 
 ### Caddy
 
-[Caddy](https://caddyserver.com/) is an open-source web server written in Go with automatic HTTPS. It serves your local Shopware instance by default at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+[Caddy](https://caddyserver.com/) is an open source web server written in Go with automatic HTTPS. It serves your local Shopware instance by default at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 ### Adminer
 
@@ -367,7 +367,7 @@ Default credentials:
 You can customize the predefined Devenv services to match your local needs - for example, changing virtual hosts, database names, or environment variables. You can override defaults to match your local dev setup, e.g., to free ports or change domains.
 
 To override or extend the defaults, create a `devenv.local.nix` file in your project root.
-This file lets you disable built-in services, adjust configuration, or add new ones that your project requires.
+This file lets you disable built-in services, adjust configuration settings, or add new services your project requires.
 
 After editing `devenv.local.nix`, reload your environment to apply the changes.
 
@@ -400,7 +400,7 @@ Example:
 }
 ```
 
-For a full list of all available services and their configuration options, refer to the official [Devenv documentation](https://devenv.sh/reference/options/).
+For a complete list of all available services and their configuration options, refer to the official [Devenv documentation](https://devenv.sh/reference/options/).
 
 If you're not using [Direnv](#direnv-optional), remember to reload the environment manually after changing any `*.nix` file:
 

@@ -30,8 +30,8 @@ Node versions
 
 Web server
 
-- `caddy` - Caddy as web server
-- `nginx` - Nginx as web server
+- `caddy` - Caddy as a web server
+- `nginx` - Nginx as a web server
 
 Examples
 
@@ -44,7 +44,7 @@ Choose the variant that best matches your production stack.
 
 ## Adding S3-compatible storage (Minio)
 
-Some projects use Amazon S3 for file storage in production. If you want to mimic that behavior locally - for example, to test uploads or CDN-like delivery, you can add [Minio](https://www.min.io/), an open-source, S3-compatible storage server.
+Some projects use Amazon S3 for production file storage. If you want to mimic that behavior locally - for example, to test uploads or CDN-like delivery, you can add [Minio](https://www.min.io/), an open source, S3-compatible storage server.
 
 ### 1. Add the Minio service
 
@@ -67,10 +67,10 @@ services:
       timeout: 20s
       retries: 3
     ports:
-      - "9000:9000"
-      - "9001:9001"
+ - "9000:9000"
+ - "9001:9001"
     volumes:
-      - minio-data:/data
+ - minio-data:/data
 
   minio-setup:
     image: minio/mc
@@ -78,12 +78,12 @@ services:
       minio:
         condition: service_healthy
     entrypoint: >
-      /bin/sh -c "
-        set -e;
-        mc alias set local http://minio:9000 minioadmin minioadmin;
-        mc mb local/shopware-public local/shopware-private --ignore-existing;
-        mc anonymous set download local/shopware-public;
-        "
+ /bin/sh -c "
+ set -e;
+ mc alias set local http://minio:9000 minioadmin minioadmin;
+ mc mb local/shopware-public local/shopware-private --ignore-existing;
+ mc anonymous set download local/shopware-public;
+ "
     restart: no
   # ...
 
@@ -127,7 +127,7 @@ shopware:
 
 ```
 
-After adding the Minio service to your `compose.yaml` and creating the configuration file, this will configure Shopware to use Minio as the S3 storage for public and private files.
+After adding the Minio service to your `compose.yaml` and creating the configuration file, Shopware will use Minio as the S3 storage for public and private files.
 
 ### 3. Run Minio containers
 
@@ -149,7 +149,7 @@ bin/console theme:compile
 
 ## Using OrbStack routing
 
-If you're using [OrbStack](https://orbstack.dev) on macOS, you can avoid manual port management by using its built-in routing feature. OrbStack automatically assigns local `.orb.local` URLs to your containers, which allows running multiple Shopware instances at the same time without port conflicts.
+If you're using [OrbStack](https://orbstack.dev) on macOS, you can avoid manual port management by using its built-in routing feature. OrbStack automatically assigns local `.orb.local` URLs to your containers, allowing you to run multiple Shopware instances at the same time without port conflicts.
 
 To enable it, create a `compose.override.yaml` in your project root with the following content:
 
@@ -186,7 +186,7 @@ services:
     imageproxy:
         image: ghcr.io/shopwarelabs/devcontainer/image-proxy
         ports:
-          - "8050:80"
+ - "8050:80"
         environment:
           # Your production URL.
           REMOTE_SERVER_HOST: shopware.com
