@@ -115,7 +115,7 @@ For clarity, we'll refer to the source application as **App A** and the cloned (
 
 App B will have the same admin password as App A. For security reasons, you should update the admin password in App B.
 
-To access the Shopware Administration and retrieve the admin credentials for App B, use and the select the correct App from the interactive menu:
+To access the Shopware Administration and retrieve the admin credentials for App B, select the correct App, in this case App A, from the interactive menu:
 
 ```shell
 sw-paas open admin
