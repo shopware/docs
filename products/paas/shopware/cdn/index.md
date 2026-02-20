@@ -231,7 +231,7 @@ The domain should now serve traffic through the Fastly CDN.
 
 1. **Verify deployment completed**
    - Check that Step 4 deployment finished successfully
-   - Run `sw-paas application info` to check application status
+   - Run `sw-paas application deploy get` to check application status
 
 2. **Check Shopware configuration**
    - Ensure domain is associated with a storefront in Shopware admin (Step 5)
