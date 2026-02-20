@@ -11,7 +11,7 @@ You have just installed Shopware and this section guides you through fundamental
 
 ## Development tooling
 
-The Docker setup provisions Shopware for development. Development tools such as: 
+The Docker setup provisions Shopware for development. Development tools such as:
 
 - [`shopware/dev-tools`](https://github.com/shopware/dev-tools)
 - [Symfony profiler]( https://symfony.com/doc/current/profiler.html) (**only in development mode**)
