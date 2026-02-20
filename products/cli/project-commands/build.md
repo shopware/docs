@@ -33,7 +33,7 @@ For other private Composer repositories, you can use the `auth.json` file in the
 
 For more information, see the [Composer documentation](https://getcomposer.org/doc/articles/authentication-for-private-packages.md).
 
-## Reducing JavaScript in Storefront
+## Reducing JavaScript in the Storefront
 
 Shopware's default `browserlist` still supports older browsers like Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the `browserlist` configuration in the `.shopware-project.yml` file.
 
@@ -100,6 +100,54 @@ When MJML compilation is enabled:
 
 MJML compilation requires the `mjml` package to be installed via NPM in your build environment. The CLI uses local compilation to convert MJML templates to HTML.
 
+## Build Hooks
+
+Build hooks allow you to execute custom shell commands at specific stages of the CI build process. This is useful for tasks like generating configuration files, running custom build steps, or integrating with external tools.
+
+### Available hooks
+
+| Hook            | Execution point                         |
+|-----------------|-----------------------------------------|
+| `pre`           | Before the build process starts         |
+| `pre-composer`  | Before `composer install` is executed   |
+| `post-composer` | After `composer install` completes      |
+| `pre-assets`    | Before asset building begins            |
+| `post-assets`   | After asset building completes          |
+| `post`          | After the entire build process finishes |
+
+### Configuration
+
+Define hooks in your `.shopware-project.yml` file:
+
+```yaml
+build:
+  hooks:
+    pre:
+      - 'echo "Starting build"'
+    pre-composer:
+      - 'cp .env.ci .env'
+    post-composer:
+      - 'bin/console secrets:decrypt-to-local --force'
+    pre-assets:
+      - 'npm install --prefix custom/plugins/MyPlugin'
+    post-assets:
+      - 'rm -rf node_modules'
+    post:
+      - 'echo "Build complete"'
+```
+
+Each hook accepts an array of shell commands. Commands are executed sequentially using `sh -c`, and the build fails immediately if any hook command exits with a non-zero status.
+
+### Environment variables
+
+The following environment variable is available in all hooks:
+
+| Variable       | Description                                 |
+|----------------|---------------------------------------------|
+| `PROJECT_ROOT` | Absolute path to the project root directory |
+
+All existing environment variables from the parent process are also inherited, so any CI/CD variables (e.g., `SHOPWARE_PACKAGES_TOKEN`) are accessible within hooks.
+
 ## Configuration options
 
 You can configure the build process with a `.shopware-project.yml` file. The following options are available:
@@ -120,10 +168,10 @@ build:
   keep_extension_source: false
   # Keep the source maps of the compiled assets
   keep_source_maps: false
-  # Delete after bin/console asset:install all assets in the extensions, so only live in public folder.
-  # This only works when the assets are served directly from the public folder.
+  # After bin/console asset:install, remove all asset files from the extension directories so that assets only exist in the public folder.
+  # Note: This option should only be enabled if assets are served directly from the public folder.
   remove_extension_assets: false
-  # Allows to force building an extension even when the assets existing. A use-case could be if you used composer patches for a specific extension.
+  # Allows force building an extension even when the assets exist. A use-case could be if you used composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
   # MJML compilation configuration (see the MJML section above for details)
@@ -132,6 +180,14 @@ build:
     searchPaths:
       - custom/plugins
       - custom/static-plugins
+  # Build hooks (see the Build Hooks section above for details)
+  hooks:
+    pre: []
+    post: []
+    pre-composer: []
+    post-composer: []
+    pre-assets: []
+    post-assets: []
 ```
 
 ## Supporting bundles
@@ -139,7 +195,7 @@ build:
 Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
 Therefore, you need to add the path of the custom bundle to your project `composer.json`:
 
-```json
+```json5
 {
     "extra": {
         "shopware-bundles": {
