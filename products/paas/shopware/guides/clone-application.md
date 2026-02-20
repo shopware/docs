@@ -37,7 +37,9 @@ You can check the deployment status with the following command:
 sw-paas app deploy list
 ```
 
+:::warning
 If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** proceed with cloning. Fix the deployment issues first or proceed with an earlier deployment that was successful.
+:::
 
 ## Clone Process
 
