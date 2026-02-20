@@ -21,7 +21,7 @@ The base of Shopware Migration Assistant is the profile, which enables you to mi
 </service>
 ```
 
-In order to identify itself, the profile has to implement getter functions like `getName`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
+In order to identify itself, the profile has to implement getter functions like `getName()`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
 
 ```php
 // SwagMigrationAssistant\Profile\Shopware55\Shopware55Profile

@@ -28,7 +28,7 @@ The gateway defines how to communicate from Shopware 6 with your source system, 
 
 To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware Migration Connector](https://github.com/shopware/SwagMigrationConnector) first.
 
-This tag is used by `GatewayRegistry`. This registry loads all tagged gateways, filters them by profile support, and selects the active gateway from the connection's profile/gateway combination:
+This tag is used by `GatewayRegistry`. This registry loads all tagged gateways, filters them by profile support and selects the active gateway from the connection's profile/gateway combination:
 
 ```php
 // SwagMigrationAssistant\Migration\Gateway\GatewayRegistry
@@ -110,27 +110,56 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
 
     public function read(MigrationContextInterface $migrationContext): array
     {
-      // ...
+        $reader = $this->readerRegistry->getReader($migrationContext);
+
+        return $reader->read($migrationContext);
     }
 
     public function readEnvironmentInformation(MigrationContextInterface $migrationContext, Context $context): EnvironmentInformation
     {
-      // ...
+        // ...
+
+        $environmentData = $this->localEnvironmentReader->read($migrationContext);
+
+        $targetSystemCurrency = $this->currencyRepository->search(new Criteria([Defaults::CURRENCY]), $context)->get(Defaults::CURRENCY);
+
+        // ...
+
+        $totals = $this->readTotals($migrationContext);
+
+        return new EnvironmentInformation(
+          // ...
+        );
     }
 
     public function readTotals(MigrationContextInterface $migrationContext): array
     {
-      // ...
+        $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
+
+        $totals = [];
+        foreach ($readers as $reader) {
+            $total = $reader->readTotal($migrationContext);
+
+            if ($total === null) {
+                continue;
+            }
+
+            $totals[$total->getEntityName()] = $total;
+        }
+
+        return $totals;
     }
 
     public function readTable(MigrationContextInterface $migrationContext, string $tableName, array $filter = []): array
     {
-      // ...
+        return $this->localTableReader->read($migrationContext, $tableName, $filter);
     }
 
     private function generateFingerprint(array $environmentData): ?string
     {
-      // ...
+        // ...
+
+        return Hasher::hash($config['esdKey'] . $config['installationDate']);
     }
 }
 ```

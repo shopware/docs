@@ -132,7 +132,7 @@ Validation issues are written to the migration logs.
 
 Users inspect grouped logs and define fixes.
 
-- Field validation issues can be resolved by providing a new value.
+- Field validation issues can be resolved by providing a new value
 - Fixes are stored in `swag_migration_fix`
 
 ### 8. Resume Migration

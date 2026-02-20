@@ -62,7 +62,7 @@ abstract class MediaConverter extends ShopwareConverter
 
 ## Processor Selection
 
-The media processing step resolves one processor via `supports(...)` for the current migration context.
+The media processing step resolves one processor via `supports()` for the current migration context.
 
 ```php
 // SwagMigrationAssistant\Migration\Media\MediaFileProcessorRegistry
@@ -190,6 +190,6 @@ class LocalMediaProcessor extends BaseMediaService implements MediaFileProcessor
 
 `swag_migration_media_file` tracks processing state with these fields:
 
-- `written`: the related entity write finished.
-- `processed`: the media file import succeeded.
-- `processFailure` (`process_failure` column): media processing failed for this record.
+- `written`: the related entity write finished
+- `processed`: the media file import succeeded
+- `processFailure` (`process_failure` column): media processing failed for this record
