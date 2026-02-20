@@ -128,8 +128,8 @@ You can update the admin password through the UI:
 1. Log in to the Shopware Administration of App B using the credentials shown by the `sw-paas open admin` command for App A
 2. Navigate to your user profile (click on your username in the bottom left corner)
 3. Go to **Your profile** and scroll to the **Password** section
-4. Enter the password for App B show by the `sw-paas open admin` command for App B as a new password
-5. In the verification modal that is going to open up use the password for App A
+4. Enter the password displayed by the `sw-paas open admin` command for App B as the new password
+5. Next, in the verification modal that opens, use the password for App A
 
 Alternatively, you can update the admin password using the Shopware console command. Open an exec session:
 
