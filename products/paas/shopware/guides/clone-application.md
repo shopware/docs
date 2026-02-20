@@ -8,7 +8,9 @@ nav:
 
 This guide explains how to clone an application in Shopware PaaS Native. Cloning creates a copy of an existing application, including its codebase and data, to a new application within the same organization.
 
-**Important**: Cloning can only take place between applications within the same organization. You cannot clone applications across different organizations.
+:::info
+Cloning can only take place between applications within the same organization. You cannot clone applications across different organizations.
+:::
 
 The cloning process works by creating a snapshot of the source application and then restoring that snapshot to the target application.
 
