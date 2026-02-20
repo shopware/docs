@@ -41,7 +41,9 @@ sw-paas app deploy list
 If the state is `DEPLOYING_STORE_FAILED`, you should **NOT** proceed with cloning. Fix the deployment issues first or proceed with an earlier deployment that was successful.
 :::
 
-## Clone Process
+## Clone an application
+
+You can clone an application using either interactive mode or manual mode
 
 ### Interactive mode
 
