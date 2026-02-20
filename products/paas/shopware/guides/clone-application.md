@@ -80,7 +80,7 @@ sw-paas application clone \
   --target-project-id <target-project-id>
 ```
 
-### How Cloning Works
+## Clone process
 
 The cloning process happens in two stages:
 
