@@ -26,7 +26,7 @@ Before setting up the Shopware 6 development environment, ensure your system mee
 | Linux | 64-bit distribution |
 | Windows | Windows 10/11 Pro using WSL 2 or Docker Desktop |
 
-Only Unix-based setups are supported.
+Only Unix-based systems are supported.
 
 ## Permissions and networking
 
