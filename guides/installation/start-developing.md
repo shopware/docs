@@ -116,9 +116,9 @@ As an example, enable [Xdebug](https://xdebug.org/) inside the web container by 
 services:
     web:
         environment:
-            - XDEBUG_MODE=debug
-            - XDEBUG_CONFIG=client_host=host.docker.internal
-            - PHP_PROFILER=xdebug
+            XDEBUG_MODE: debug
+            XDEBUG_CONFIG: client_host=host.docker.internal
+            PHP_PROFILER: xdebug
 ```
 
 Save the file and apply the changes:
