@@ -166,7 +166,7 @@ readonly class MigrationFix
         public string $path,
     ) {}
 
-    public static function fromDatabaseQuery(array $data): self;
+    public static function fromDatabaseQuery(array $data): self
     {
         // ...
     }
