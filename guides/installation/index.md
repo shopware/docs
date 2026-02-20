@@ -23,26 +23,6 @@ The [Docker-based setup](./docker-setup.md) aims to provide a smooth onboarding 
 
 The pages that follow assume that you're using Docker itself.
 
-The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](./index.md#ddev) and [Dockware](./index.md#dockware). Both are **community-maintained** and not officially supported by Shopware.
-
-## DDEV
-
-[DDEV](https://ddev.com/) is a developer-friendly wrapper around Docker that automates environment setup using simple CLI commands. Key features include:
-
-- Simplifies Docker configuration - no manual `docker-compose.yml` needed.
-- One command (`ddev start`) to start your Shopware environment.
-- Easy to switch PHP/MySQL/Node versions per project.
-- Integrates well with VS Code and PHPStorm.
-
-For a DDEV-based Shopware example, see [DDEV with Shopware](https://github.com/ddev/test-shopware6)
-
-## Dockware
-
-[Dockware](https://www.dockware.io/) provides ready-to-run Docker images for quickly spinning up demo stores or full local environments in seconds. It emphasizes minimal setup over full customization. Key features include:
-
-- Pre-built images for Shopware 5, Shopware 6, and nightly builds.
-- Includes all key services - PHP, DB, Elasticsearch, Mailhog, Adminer, etc.
-- Great for testing specific versions or quick evaluation.
-- Can be used standalone or integrated into CI pipelines.
+The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](https://ddev.com/) and [Dockware](https://www.dockware.io/). Both are **community-maintained** and not officially supported by Shopware.
 
 Next, check the [hardware requirements](./system-requirements.md) to prepare your system for installation.
