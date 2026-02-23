@@ -190,8 +190,15 @@ CircleCI
 ClientInterface
 Cloudflare
 Cmd
+CmsElementResolverInterface
 CmsPage
+CmsPageLoadedEvent
+CmsPageLoaderCriteriaEvent
+CmsSlotEntity
+CmsSlotsDataCollectExtension
 CmsSlotsDataEnrichExtension
+CmsSlotsDataResolveExtension
+CmsSlotsDataResolver
 Codemods
 Codespaces
 Codestyle
@@ -228,6 +235,7 @@ CreatedBy
 CreatedByField
 CredentialsBuilder
 CredentialsEntity
+CriteriaCollection
 CriteriaEvent
 CriteriaParser
 CriteriaTest
@@ -338,6 +346,7 @@ ElasticsearchDefinition
 ElasticsearchEntityAggregator
 ElasticsearchEntitySearcher
 ElasticsearchProductDefinition
+ElementDataCollection
 EmailAware
 EmailField
 EmailStorer
@@ -802,6 +811,7 @@ RepositoryIterator
 ResetUrlAware
 ResetUrlStorer
 ResolveListingExtension
+ResolverContext
 RestAPI
 RestrictDelete
 Reusability
@@ -839,6 +849,7 @@ Sales Rooms
 SalesAgent
 SalesChannel
 SalesChannelAware
+SalesChannelCmsPageLoader
 SalesChannelContext
 SalesChannelContextCreatedEvent
 SalesChannelContextResolvedEvent
@@ -1370,6 +1381,7 @@ frankdejonge
 frontend
 frontends
 frontmatter
+fullwidth
 func
 für
 gRPC
@@ -1509,6 +1521,7 @@ jwks
 jwt
 kebabCase
 keyframes
+landingpage
 lang
 lazysizes
 libxml
@@ -1811,6 +1824,7 @@ simplexml
 skipOnFeature
 skipTestIfInActive
 sku
+slotConfig
 slowlog
 sm
 smartbar
