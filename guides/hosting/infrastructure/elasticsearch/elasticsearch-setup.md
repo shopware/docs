@@ -17,11 +17,8 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 
 ## Requirements
 
-* A supported OpenSearch (or Elasticsearch) server
-
-<PageRef page="../../../hosting/index.md#recommended-stack-and-supported-versions" />
-
-* [Running message queue workers in the background](../message-queue)
+- [A supported OpenSearch (or Elasticsearch) server](../../../hosting/index.md#recommended-stack-and-supported-versions)
+- [Running message queue workers in the background](../message-queue)
 
 ## Server basics
 
