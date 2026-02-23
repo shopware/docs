@@ -1629,6 +1629,7 @@ openSUSE
 openUserActionMenu
 opensearch
 openssl
+orchestrator
 orderAware
 orderIds
 orderTransaction
@@ -1756,6 +1757,7 @@ requestAdminApi
 requestfacade
 resetUrl
 resolvers
+resolver's
 resubmittable
 rethrown
 returnUrl
