@@ -1756,8 +1756,8 @@ reproducibility
 requestAdminApi
 requestfacade
 resetUrl
-resolvers
 resolver's
+resolvers
 resubmittable
 rethrown
 returnUrl
