@@ -10,25 +10,31 @@ nav:
 ## Overview
 
 You might have had a look at our guide about [adding custom sitemap entries](add-custom-sitemap-entries),
-e.g. for a custom entity.
+for example for a custom entity.
 However, you might not want to add new URLs, but rather modify already existing ones.
-This guide will cover modifying e.g. the product URLs for the sitemap.
+This guide covers how to modify existing sitemap URLs (for example product URLs) in a plugin.
 
 ## Prerequisites
 
 This guide is built upon the [Plugin base guide](../../plugin-base-guide), like most guides.
 
-Modifying the sitemap entries is done via decoration, so should know how that's done as well.
-Also, knowing how the URL providers work, like it's explained in our guide about [adding custom sitemap entries](add-custom-sitemap-entries),
-will come in handy.
+Knowing [service decoration](../../plugin-fundamentals/adjusting-service) and the sitemap URL provider system from
+[adding custom sitemap entries](add-custom-sitemap-entries) will be helpful.
 
-## Modifying the sitemap
+## Ways to modify sitemap entries
 
-There's two ways of actually modifying the sitemap entries, but both ways are done by decorating
-the respective `UrlProvider`, e.g. the `Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider` for products.
+There are two common ways to modify existing sitemap entries.
 
-Hence, let's start with creating the basic decorated class for the `ProductUrlProvider`. We'll call
-this class `DecoratedProductUrlProvider`:
+1. Decorate a URL provider and adjust the returned `UrlResult`
+2. Modify the provider query with `SitemapQueryEvent` (recommended when filtering by entity data)
+
+### Decorate a URL provider and adjust the `UrlResult`
+
+This approach is useful when you only need to adjust sitemap metadata (`priority`, `changefreq`, `lastmod`) or drop
+entries by identifier.
+
+Start by decorating the corresponding URL provider, for example
+`Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider`.
 
 <Tabs>
 <Tab title="DecoratedProductUrlProvider.php">
@@ -39,34 +45,49 @@ this class `DecoratedProductUrlProvider`:
 
 namespace Swag\BasicExample\Core\Content\Sitemap\Provider;
 
-use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider;
+use Shopware\Core\Content\Sitemap\Struct\Url;
 use Shopware\Core\Content\Sitemap\Struct\UrlResult;
-use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class DecoratedProductUrlProvider extends AbstractUrlProvider
 {
-    private AbstractUrlProvider $decoratedUrlProvider;
-
-    public function __construct(AbstractUrlProvider $abstractUrlProvider)
-    {
-        $this->decoratedUrlProvider = $abstractUrlProvider;
+    public function __construct(
+        private readonly AbstractUrlProvider $inner
+    ) {
     }
 
     public function getDecorated(): AbstractUrlProvider
     {
-        return $this->decoratedUrlProvider;
+        return $this->inner;
     }
 
     public function getName(): string
     {
-        return $this->getDecorated()->getName();
+        return $this->inner->getName();
     }
 
     public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
     {
-        return $this->getDecorated()->getUrls($context, $limit, $offset);
+        $urlResult = $this->inner->getUrls($context, $limit, $offset);
+        $urls = [];
+
+        foreach ($urlResult->getUrls() as $url) {
+            \assert($url instanceof Url);
+
+            // Example: drop one specific entry by its technical identifier.
+            if ($url->getIdentifier() === 'd20e4d60e35e4afdb795c767eee08fec') {
+                continue;
+            }
+
+            // Example: adjust metadata.
+            $url->setPriority(0.7);
+            $url->setChangefreq('daily');
+
+            $urls[] = $url;
+        }
+
+        return new UrlResult($urls, $urlResult->getNextOffset());
     }
 }
 ```
@@ -83,7 +104,8 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider" decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
+        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider"
+                 decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
             <argument type="service" id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider.inner" />
         </service>
     </services>
@@ -93,76 +115,92 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 </Tab>
 </Tabs>
 
-Now let's get on to the two possible ways and its benefits.
+Downside of this approach:
+You only have sitemap `Url` structs at this point.
+If you need to filter by entity fields (for example product name, manufacturer, custom fields), this is usually too late.
 
-### Adjusting the getUrls method
+### Modify the provider query via `SitemapQueryEvent` (recommended)
 
-By adjusting the `getUrls` method, you can execute the parent's `getUrls` method and modify its return value, which
-is an instance of the `UrlResult`.
-On this instance, you can use the method `getUrls` to actually get the `Url` instances and make adjustments to them - or even remove them.
+Core sitemap providers dispatch `SitemapQueryEvent` before executing their database query.
+For products, the event contains the technical name `sitemap.query.product`.
+
+This is the recommended extension point when you need to:
+
+- filter entities before URLs are generated
+- add SQL `JOIN`s for entity-based conditions
+- keep your extension more update-compatible than copying provider internals
+
+<Tabs>
+<Tab title="ProductSitemapQuerySubscriber.php">
 
 ```php
-// <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
-public function getUrls(SalesChannelContext $context, int $limit, ?int $offset = null): UrlResult
+// <plugin root>/src/Core/Content/Sitemap/ProductSitemapQuerySubscriber.php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Core\Content\Sitemap;
+
+use Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider;
+use Shopware\Core\Content\Sitemap\Event\SitemapQueryEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class ProductSitemapQuerySubscriber implements EventSubscriberInterface
 {
-    $urlResult = $this->getDecorated()->getUrls($context, $limit, $offset);
-    $urls = $urlResult->getUrls();
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            SitemapQueryEvent::class => 'onProductSitemapQuery',
+        ];
+    }
 
-    /* Change $urls, e.g. removing entries or updating them by iterating over them. */
+    public function onProductSitemapQuery(SitemapQueryEvent $event): void
+    {
+        if ($event->getName() !== ProductUrlProvider::QUERY_EVENT_NAME) {
+            return;
+        }
 
-    return new UrlResult($urls, $urlResult->getNextOffset());
+        $query = $event->query;
+
+        // Example: exclude products with product numbers starting with "TEST-".
+        $query->andWhere('`product`.product_number NOT LIKE :blockedProductNumberPrefix');
+        $query->setParameter('blockedProductNumberPrefix', 'TEST-%');
+    }
 }
 ```
 
-You could iterate over the `$urls` array and modify each entry - or even create a new array with less entries,
-if you want to fully remove some.
+</Tab>
 
-There is one main downside to this way:
-You don't have access to a lot of information about the entity itself, that was used for this `Url` instance.
-E.g. if you'd like to filter all products with a given name, you can't do that here, since the name itself isn't available.
-The only reliable information you have here, is the ID of the entity by using the method `getIdentifier` on the `Url` instance.
+<Tab title="services.xml">
 
-Also, it's not the best way in terms of performance to read all SEO URLs from the database, only to filter them afterwards.
+```xml
+// <plugin root>/src/Resources/config/services.xml
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-### Overriding the getSeoUrls method
-
-The available SEO URLs are read in the protected method `getSeoUrls` of the `AbstractUrlProvider`.
-Since it's a protected method, you can override it and create a custom SQL in order to only read the data you really want.
-
-For this you'll most likely want to copy the original method's code and paste it into your overridden method.
-You can then add new lines to the SQL statement in order to do the necessary filtering or customising.
-
-```php
-// <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
-protected function getSeoUrls(array $ids, string $routeName, SalesChannelContext $context, Connection $connection): array
-{
-    /* Make adjustments to this SQL */
-    $sql = 'SELECT LOWER(HEX(foreign_key)) as foreign_key, seo_path_info
-                FROM seo_url WHERE foreign_key IN (:ids)
-                 AND `seo_url`.`route_name` =:routeName
-                 AND `seo_url`.`is_canonical` = 1
-                 AND `seo_url`.`is_deleted` = 0
-                 AND `seo_url`.`language_id` =:languageId
-                 AND (`seo_url`.`sales_channel_id` =:salesChannelId OR seo_url.sales_channel_id IS NULL)';
-
-    return $connection->fetchAll(
-        $sql,
-        [
-            'routeName' => $routeName,
-            'languageId' => Uuid::fromHexToBytes($context->getSalesChannel()->getLanguageId()),
-            'salesChannelId' => Uuid::fromHexToBytes($context->getSalesChannelId()),
-            'ids' => Uuid::fromHexToBytesList(array_values($ids)),
-        ],
-        [
-            'ids' => Connection::PARAM_STR_ARRAY,
-        ]
-    );
-}
+    <services>
+        <service id="Swag\BasicExample\Core\Content\Sitemap\ProductSitemapQuerySubscriber">
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>
 ```
 
-Now you could adjust the SQL statement to fit your needs, e.g. by adding a `JOIN` to the respective entities' table.
+</Tab>
+</Tabs>
 
-However, there is a downside here as well:
-Overriding the method like this is not really update-compatible. If the original method is changed in a future
-update, those changes will not apply for your modification, hence you might not receive a performance update or a bugfix
-for those few lines of code.
+## Important note about `getSeoUrls`
+
+`getSeoUrls` is a protected method on `AbstractUrlProvider`.
+If you only decorate a provider and forward `getUrls()` to the inner service, overriding `getSeoUrls` in your decorator
+has no effect.
+
+If you really need to change SEO URL lookup internals, you have to implement the provider logic in your own service.
+This is possible, but less update-compatible because you copy core internals.
+
+## Related configuration options
+
+Depending on your use case, configuration might already solve your requirement:
+
+- [Remove sitemap entries](remove-sitemap-entries) via `shopware.sitemap.excluded_urls`
+- product visibility behavior in core via `core.sitemap.excludeLinkedProducts`
