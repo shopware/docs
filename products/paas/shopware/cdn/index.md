@@ -50,12 +50,12 @@ Custom domains allow you to serve your Shopware shop through your own branded do
 
 ### Quick Reference: DNS Records
 
-| Record Type | For Apex Domains | For Non-Apex Domains | Target | Count | Purpose |
-|------------|:----------------:|:--------------------:|--------|:-----:|---------|
-| `CNAME` | No | **Yes** | `cdn.shopware.shop` | 1 | Routes subdomain traffic to Fastly CDN |
-| `A` | **Yes** | No | Fastly IPv4 addresses | 4 | Routes apex domain traffic (IPv4) |
-| `AAAA` | **Yes** | No | Fastly IPv6 addresses | 4 | Routes apex domain traffic (IPv6) |
-| `TXT` | **Yes** | No | Domain ownership proof | 1 | Validates domain ownership |
+| Record Type | For Apex Domains | For Non-Apex Domains | Target                 | Count | Purpose                                |
+|-------------|:----------------:|:--------------------:|------------------------|:-----:|----------------------------------------|
+| `CNAME`     |        No        |       **Yes**        | `cdn.shopware.shop`    |   1   | Routes subdomain traffic to Fastly CDN |
+| `A`         |     **Yes**      |          No          | Fastly IPv4 addresses  |   4   | Routes apex domain traffic (IPv4)      |
+| `AAAA`      |     **Yes**      |          No          | Fastly IPv6 addresses  |   4   | Routes apex domain traffic (IPv6)      |
+| `TXT`       |     **Yes**      |          No          | Domain ownership proof |   1   | Validates domain ownership             |
 
 ### Step 1: Configure DNS Records
 
@@ -216,14 +216,14 @@ The domain should now serve traffic through the Fastly CDN.
    - Ensure the TXT record value exactly matches: `shopware-challenge=<your-org-id>`
 
 5. **Check for typos**
-   - Verify domain name is spelled correctly
+   - Verify the domain name is spelled correctly
    - Ensure no extra spaces or characters in DNS records
 
 #### Domain Created But Not Serving Traffic
 
 **Symptoms:**
 
-- Domain creation succeeded but site is not accessible
+- Domain creation succeeded, but the site is not accessible
 - SSL/TLS certificate errors
 - Connection timeouts
 
@@ -257,4 +257,4 @@ If issues persist after trying the above solutions, contact Shopware support wit
 - Timeline of actions taken and when errors occurred
 - Screenshots of DNS configuration from your provider
 
-This information will help support diagnose and resolve the issue quickly.
+This information will help the support to diagnose and resolve the issue quickly.
