@@ -50,7 +50,7 @@ To enable Xdebug connectivity on Linux, you must manually map the host.docker.in
 services:
     web:
         extra_hosts:
-        - "host.docker.internal:host-gateway"
+            - "host.docker.internal:host-gateway"
 ```
 
 Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
