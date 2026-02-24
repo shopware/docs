@@ -29,7 +29,7 @@ Most Storefront customizations follow this sequence:
 
 Start with the `/controllers` folder and move downward as needed.
 
-## Section Structure
+## Section structure
 
 ### Controllers
 
@@ -57,7 +57,7 @@ Extend or override frontend behavior.
 * [Fetch data dynamically](javascript/fetching-data-with-javascript.md)
 * [Add JavaScript as script tag](javascript/add-javascript-as-script-tag.md)
 
-### Styling & Assets
+### Styling and assets
 
 Control appearance and resources.
 
@@ -77,7 +77,7 @@ Infrastructure and optimization topics.
 * [Remove unnecessary JS plugin](advanced/remove-unnecessary-js-plugin.md)
 * [Add cookie to manager](advanced/add-cookie-to-manager.md)
 
-## Howto
+## How-to
 
 Feature-specific examples and focused use-cases.
 
@@ -90,10 +90,10 @@ Feature-specific examples and focused use-cases.
 * [Use media thumbnails](howto/use-media-thumbnails.md)
 * [Using the datepicker plugin](howto/using-the-datepicker-plugin.md)
 
-## Build & Watch
+## Build and watch
 
 After modifying Storefront code, [rebuild your assets](using-watchers.html).
 
-## Headless Storefront
+## Headless storefront
 
 [Visit these pages](https://developer.shopware.com/frontends/) if you are building a headless frontend instead of extending the default Storefront.
