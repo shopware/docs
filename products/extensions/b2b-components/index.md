@@ -17,6 +17,8 @@ In the world of digital B2B commerce, where businesses engage with other compani
 
 * **Order Approval** allows for a more controlled buying process by introducing an approval workflow.
 
+* **Individual Pricing** enables store administrators to define catalog-wide discounts and special pricing based on flexible conditions for B2B scenarios, including volume pricing and company-specific pricing agreements.
+
 * **Quick Order and Shopping List** takes care of distinctive B2B buying behaviors.
 
 * **Organization Unit** allows for the configuration of more differentiated and specific access rights to meet the needs of businesses with complex structures.
