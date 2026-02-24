@@ -77,7 +77,7 @@ class ApiController
   }
 }
 ```
-Putting the old behaviuor inside the if block makes it easier to remove the feature flag later on.
+Putting the old behavior inside the if block makes it easier to remove the feature flag later on.
 
 And you can use it simply to throw exceptions:
 
