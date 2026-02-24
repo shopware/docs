@@ -24,7 +24,7 @@ All development scenarios share common foundations:
 * Configuration
 * Debugging
 
-To build a custom Shopware project without creating a distributable extension, start here.
+To build a custom Shopware project without creating an extension for distribution, start here.
 
 ## Extension development
 
