@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Additional Devenv Options
+  title: Additional Devenv Config
   position: 50
 
 ---
@@ -150,7 +150,7 @@ You can integrate [Varnish](https://varnish-cache.org/) into your local Shopware
  services.caddy = {
  enable = true;
 
- # all traffic to localhost is redirected to varnish
+ # all traffic to localhost is redirected to Varnish
  virtualHosts."http://localhost" = {
  extraConfig = ''
  reverse_proxy 127.0.0.1:6081 {
@@ -203,7 +203,7 @@ You can integrate [Varnish](https://varnish-cache.org/) into your local Shopware
  .port = "80";
  }
  # ...
- # ACL for purgers IP. (This needs to contain app server ips)
+ # ACL for purgers IP. (This needs to contain app server IPs)
  acl purgers {
  "sw.localhost";
  "127.0.0.1";
@@ -224,7 +224,7 @@ devenv reload
 
 ## Use an older package version
 
-Sometimes, you may want to pin a service to an older version to, for example, ensure compatibility with legacy components or reproduce a previous environment state.
+Sometimes, you may want to pin a service to an older version, for example, to ensure compatibility with legacy components or reproduce a previous environment state.
 
 Here are examples showing how to use older versions of MySQL and RabbitMQ in your `devenv.local.nix` configuration:
 
@@ -235,9 +235,9 @@ Here are examples showing how to use older versions of MySQL and RabbitMQ in you
  services.mysql = let
  mysql8033 = pkgs.mysql80.overrideAttrs (oldAttrs: {
  version = "8.0.33";
- # the final url would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
- # make sure the url exists.
- # alternatively you could use that url directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
+ # the final URL would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
+ # make sure the URL exists.
+ # alternatively, you could use that URL directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
  # for reference see the [different fetchers](https://ryantm.github.io/nixpkgs/builders/fetchers/#chap-pkgs-fetchers)
  src = pkgs.fetchFromGitHub {
  owner = "mysql";
@@ -282,7 +282,7 @@ Pinning versions may increase build time; use only when necessary.
 
 Run `devenv gc` periodically to remove unused packages, services, and caches. This helps free disk space and keeps your environment clean.
 
-Use `devenv down` to stop services first. If processes remain, as a last resort terminate them manually:
+Use `devenv down` to stop services first. If processes remain, as a last resort, terminate them manually:
 
 ```bash
 kill $(ps -ax | grep /nix/store | grep -v "grep" | awk '{print $1}')
