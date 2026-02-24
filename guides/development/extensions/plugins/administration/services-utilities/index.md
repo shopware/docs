@@ -13,7 +13,7 @@ These guides covers how to create, extend, and use services and utility helpers 
 * Extend or decorate existing services
 * Make API requests from the Administration
 * Create and use filters
-* Work with utility helpers and sanitization
+* Work with utility helpers and data validation
 
 * <PageRef page="./add-custom-service" />
 * <PageRef page="./injecting-services" />
