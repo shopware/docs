@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Vue 3 upgrade
+# Vue 3 Upgrade
 
 ## Introduction
 
