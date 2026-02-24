@@ -132,7 +132,7 @@ export default class MyPlugin extends Plugin {
 The `customTarget` parameter allows you to optionally control the redirect path used by the `navigate` method.
 
 - If `customTarget` is an **absolute path** (starts with `/`), it completely replaces the path portion of the `redirectUrl`.
-  This can be used to override sales channel subpaths in the `redirectUrl`.
+  This can be used to override sales channel sub-paths in the `redirectUrl`.
   _Example:_ `https://example.com/en` → `https://example.com/custom/target/path`
 
 - If `customTarget` is a **relative path**, it is appended to the existing path of the `redirectUrl`.
