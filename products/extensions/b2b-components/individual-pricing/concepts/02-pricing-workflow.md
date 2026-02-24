@@ -75,7 +75,7 @@ sequenceDiagram
 
 The pricing resolution follows these steps:
 
-1. **Context identification**: Determine customer's company, groups, tags, and organization units
+1. **Context identification**: Determine the customer's company, groups, tags, and organization units
 2. **Cache lookup**: Query the computed cache for applicable pricing rules
 3. **Rule filtering**: Filter rules by:
    - Active status
@@ -273,12 +273,12 @@ The hybrid caching approach ensures optimal performance:
 
 Individual Pricing's HTTP caching behavior depends on the customer type:
 
-| Customer Type | Cacheable | Reason |
-|---------------|-----------|---------|
-| Tag-based customers | Yes (shared) | Responses shared by customers with same tags |
-| Organization unit employees | Yes (shared) | Responses shared within departments/teams |
-| Business partner accounts | No | Customer-specific pricing, ensures confidentiality |
-| Employees without org unit | No | Individual pricing cannot be shared |
+| Customer Type               | Cacheable    | Reason                                             |
+|-----------------------------|--------------|----------------------------------------------------|
+| Tag-based customers         | Yes (shared) | Responses shared by customers with same tags       |
+| Organization unit employees | Yes (shared) | Responses shared within departments/teams          |
+| Business partner accounts   | No           | Customer-specific pricing, ensures confidentiality |
+| Employees without org unit  | No           | Individual pricing cannot be shared                |
 
 The system prioritizes cacheability by checking for tags first, then organization units, falling back to non-cacheable for customer-specific pricing. This balances performance with price accuracy and confidentiality.
 
