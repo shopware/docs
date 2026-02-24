@@ -53,7 +53,7 @@ When targeting a new Shopware version:
 
 * Follow the ([Performing updates guide](../hosting/installation-updates/performing-updates.md)) to stage, test, and execute upgrades in order.
 * Review changelogs/UPGRADE files per release.
-* Script data migrations and cache warmups.
+* Script data migrations and cache warm-ups.
 * Use feature toggles or maintenance mode to decouple risky changes from the deploy moment.
 
 ### Custom plugins
