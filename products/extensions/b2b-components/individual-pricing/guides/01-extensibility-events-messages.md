@@ -23,8 +23,8 @@ Extensions allow you to hook into specific moments during the pricing workflow. 
 
 ### Available Extensions
 
-| Name | Description | Purpose | Available Data |
-|------|-------------|---------|----------------|
+| Name                              | Description                                                | Purpose                                                                     | Available Data                                                 |
+|-----------------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------------|
 | `IndividualPricingApplyExtension` | Intercepts when individual pricing is applied to a product | Validation, conditional prevention, modifications, logging, or side effects | Product entity, computed pricing entity, sales channel context |
 
 ### Extension Details
@@ -54,11 +54,11 @@ Events allow you to subscribe to specific moments in the pricing workflow and mo
 
 ### Available Events
 
-| Name | Description | Purpose | When Dispatched |
-|------|-------------|---------|-----------------|
-| `IndividualPricingIndexerEvent` | Dispatched with individual pricing IDs that need to be indexed | React to indexing requests, invalidate related caches | When individual pricing rules need indexing |
-| `IndividualPricingLookupCriteriaEvent` | Modify criteria for single product pricing lookup | Add custom filters/conditions to pricing resolution | Before querying cache for single product |
-| `IndividualPricingLookupBatchCriteriaEvent` | Modify criteria for batch product pricing lookup | Add custom filters/conditions for multiple products | Before querying cache for product batch |
+| Name                                        | Description                                                    | Purpose                                               | When Dispatched                             |
+|---------------------------------------------|----------------------------------------------------------------|-------------------------------------------------------|---------------------------------------------|
+| `IndividualPricingIndexerEvent`             | Dispatched with individual pricing IDs that need to be indexed | React to indexing requests, invalidate related caches | When individual pricing rules need indexing |
+| `IndividualPricingLookupCriteriaEvent`      | Modify criteria for single product pricing lookup              | Add custom filters/conditions to pricing resolution   | Before querying cache for single product    |
+| `IndividualPricingLookupBatchCriteriaEvent` | Modify criteria for batch product pricing lookup               | Add custom filters/conditions for multiple products   | Before querying cache for product batch     |
 
 ### Event Details
 
@@ -121,10 +121,10 @@ Messages are dispatched to the message bus for asynchronous processing. They han
 
 ### Available Messages
 
-| Name | Description | Purpose | When Dispatched |
-|------|-------------|---------|-----------------|
-| `IndividualPricingCacheEntryUpdaterMessage` | Handles rule-level cache rebuilding | Process custom logic when rules change | Rule create/update/delete operations |
-| `IndividualPricingBuildCacheSingleRuleMessage` | Handles cache building when indexing a specific rule | Process custom logic during rule indexing | When indexing a single pricing rule |
+| Name                                           | Description                                          | Purpose                                   | When Dispatched                      |
+|------------------------------------------------|------------------------------------------------------|-------------------------------------------|--------------------------------------|
+| `IndividualPricingCacheEntryUpdaterMessage`    | Handles rule-level cache rebuilding                  | Process custom logic when rules change    | Rule create/update/delete operations |
+| `IndividualPricingBuildCacheSingleRuleMessage` | Handles cache building when indexing a specific rule | Process custom logic during rule indexing | When indexing a single pricing rule  |
 
 ### Message Details
 
