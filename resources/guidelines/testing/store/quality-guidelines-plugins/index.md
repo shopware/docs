@@ -433,7 +433,7 @@ Link: [Example of a valid composer.json](https://github.com/FriendsOfShopware/Fr
 
 ### Ensure cross-domain messages are sent to the intended domain
 
-When using `postMessage()` or similar cross-window messaging APIs, verify the message origin (e.g. `event.origin`) and restrict target domains to trusted URLs instead of `'*'`. This prevents malicious sites from sending or receiving messages inappropriately.
+When using `postMessage()` or similar cross-window messaging APIs, verify the message origin (e.g. `event.origin`) and restrict target domains to trusted URLs instead of `'*'`. This prevents malicious sites from sending or receiving unauthorized messages.
 
 ### No bootstrapping file found. Expecting bootstrapping in
 
