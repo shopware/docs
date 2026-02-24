@@ -13,7 +13,7 @@ Shopware provides official tools that support the full lifecycle of a Shopware p
 
 [Shopware CLI](/docs/guides/development/tooling/cli/): The central command-line tool for working with Shopware projects and extensions, including scaffolding, builds, validation, packaging, Store interaction, CI support, and development workflows such as watchers and [formatting](/docs/guides/development/tooling/cli/formatter/).
 
-[Admin Extension SDK](/resources/admin-extension-sdk/): JavaScript SDK for building Admininstration extensions (Apps) and integrating with the Shopware Administration.
+[Admin Extension SDK](/resources/admin-extension-sdk/): JavaScript SDK for building Administration extensions (Apps) and integrating with the Shopware Administration.
 
 [Fixture Bundle](/docs/resources/tooling/fixture-bundle/): Seed development environments with demo and test data.
 
