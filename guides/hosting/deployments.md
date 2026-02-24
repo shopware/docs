@@ -22,7 +22,7 @@ Deploy with the same artifacts you built in [CI](../../development/testing/ci.md
 
 ## Custom/Store plugins
 
-* Ship plugins as versioned ZIPs from CI, using the ([Extension build command](../../products/cli/extension-commands/build.md)). Install/activate via CLI or deployment automation.
+* Ship plugins as versioned ZIP files from CI, using the ([Extension build command](../../products/cli/extension-commands/build.md)). Install/activate via CLI or deployment automation.
 * Apply plugin migrations during deploy and keep update steps idempotent so retries are safe.
 * For Store plugins, avoid post-deploy manual tweaks.
 
