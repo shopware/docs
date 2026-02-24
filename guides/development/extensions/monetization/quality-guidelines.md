@@ -155,7 +155,7 @@ All extensions must:
 
 * Work without 500 errors.
 * Avoid 400 errors unless they are related to an API call.
-* Be installable, uninstallable, and reinstallable without issues.
+* Be installable and uninstallable without issues.
 * During uninstall, users must be able to choose in the Extension Manager whether to "completely delete or "keep the app data, text snippets, media folder including own media and table adjustments." The free [Adminer](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) extension from Friends of Shopware enables you to do this via your provided test environment.
 * Avoid extending or overwriting the Extension Manager.
 * Properly register cookies in the [Cookie Consent Manager](../../../../../guides/plugins/plugins/storefront/add-cookie-to-manager).
@@ -176,7 +176,7 @@ These apply only to plugins:
 * Deliver uncompiled (readable) JavaScript in addition to compiled assets. Uncompiled sources must be included in a separate folder to allow code review.
   * Build `main.js` and create the minified code according to our documentation: [Loading the JS files](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration).
 * Only production files may be included in archive.
-* ULogs must be written to `/var/log/`.
+* Unified logs must be written to `/var/log/`.
 * No forbidden PHP statements like `die`, `exit`, or `var_dump` are allowed. See [List of blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt)
 * Shopware must have access to the unminified source code of the extension at all times.
 
@@ -240,7 +240,7 @@ If the extension includes Composer dependencies:
 * No 400/500 errors during install/uninstall are allowed.
 * Users must be able to choose whether to delete or keep extension data.
 * Special PHP requirements must be validated during installation.
-* If validation fails, a growl message must appear in the dministration.
+* If validation fails, a growl message must appear in the Administration.
 * Extensions must not modify or overwrite the Extension Manager.
 * Apps must not reload or load external files during installation.
 
