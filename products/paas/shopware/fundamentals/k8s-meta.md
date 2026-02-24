@@ -33,16 +33,7 @@ The `--ignore-platform-reqs` flag ensures that all necessary recipes are install
 
 ### Dependencies
 
-The metapackage pulls in the following dependencies:
-
-| Package                         | Purpose                                       |
-|---------------------------------|-----------------------------------------------|
-| `league/flysystem-async-aws-s3` | S3-compatible filesystem for media and assets |
-| `open-telemetry/exporter-otlp`  | OpenTelemetry tracing export                  |
-| `open-telemetry/transport-grpc` | gRPC transport for OpenTelemetry              |
-| `shopware/opentelemetry`        | Shopware OpenTelemetry integration            |
-| `shopware/docker`               | Docker and deployment helper tooling          |
-| `symfony/redis-messenger`       | Redis-based message queue transport           |
+For the full list of dependencies, refer to the [`shopware/k8s-meta` repository](https://github.com/shopware/k8s-meta).
 
 ### Configuration files
 
