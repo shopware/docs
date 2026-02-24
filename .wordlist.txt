@@ -1573,6 +1573,7 @@ memoization
 memoized
 mercure
 mergeWith
+metapackage
 middleware
 middlewares
 minPurchase
@@ -1845,6 +1846,7 @@ stateId
 stateMachineState
 statesfacade
 statusCode
+stderr
 stdin
 stdout
 stemmer
