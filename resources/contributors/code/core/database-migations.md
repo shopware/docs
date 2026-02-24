@@ -187,7 +187,7 @@ For that use the `MigrationTestTrait` trait, which encapsulates your migration t
 
 Unfortunately, database transactions won't work with DDL commands.
 DDL commands will fire an implicit commit and end an active transaction.
-> https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
+> [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html)
 
 All DDL commands **must** be done outside of transactions.
 Therefore, you **must** undo your DDL commands manually after the test and it is best to handle the transaction start and rollback manually in your test and not rely on the `MigrationTestTrait`.
