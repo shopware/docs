@@ -66,9 +66,7 @@ This package installs essential configuration files, including those required fo
 
 ### Create the `application.yaml` File
 
-At the root of your project, create a file named `application.yaml`. This file defines key deployment parameters, such as the PHP version and any environment-specific configuration needed for your shop.
-
-#### Basic Example
+At the root of your project, create a file named `application.yaml`. This file defines key deployment parameters such as the PHP version, environment variables, and services for your shop.
 
 ```yaml
 app:
@@ -82,22 +80,7 @@ services:
     enabled: false
 ```
 
-#### Advanced Example (with Custom Environment Variables)
-
-```yaml
-app:
-  php:
-    version: "8.3"
-  environment_variables:
-    - name: INSTALL_LOCALE
-      value: fr-FR
-      scope: RUN # Supports RUN or BUILD
-services:
-  mysql:
-    version: "8.0"
-  opensearch:
-    enabled: false
-```
+For the full configuration reference, see the [Application YAML Configuration](../fundamentals/application-yaml.md) page.
 
 ## Hooks Configuration
 
