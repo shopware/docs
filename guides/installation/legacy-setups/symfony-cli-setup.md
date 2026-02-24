@@ -1,31 +1,35 @@
 ---
 nav:
-  title: Symfony CLI
+  title: Install with Symfony CLI
   position: 30
 
 ---
 
-# Symfony CLI Setup
+# Install Shopware with Symfony CLI
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
-Shopware recommends [Docker](./docker.md) as the default setup for most users because it mirrors production and includes all services out of the box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
+Shopware recommends [Docker](../docker-setup.md) as the default setup for most users because it mirrors production and includes all services out-of-the-box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
 
 ## Prerequisites
 
-Before you begin, make sure your system meets the [Shopware 6 requirements](../requirements.md). You’ll need the following tools installed on your host machine:
+Before you begin, make sure your system meets the [Shopware 6 requirements](../system-requirements.md).
+
+You’ll need the following software installed on your host machine:
 
 - [Symfony CLI](https://symfony.com/download)
-- PHP 8.2 or higher with the required extensions; see the [Requirements page](../requirements.md) for the complete list
+- PHP 8.2 or higher with the required extensions; see our [recommended stack and supported versions](../hosting/index.md#recommended-stack-and-supported-versions) for the complete list
 - [Composer 2.x](https://getcomposer.org/)
 - [Node.js 20+](https://nodejs.org/en/download) and npm
 - A running MySQL 8 or MariaDB 11 database (local or remote)
 
 You’ll also need a working web server. The Symfony CLI can provide one automatically for development.
 
-> **macOS note:** If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
+:::info
+If you installed PHP via Homebrew, make sure the `intl` extension is enabled: `brew install php-intl` then verify with `php -m | grep intl`.
+:::
 
-Optional tools:
+### Optional tools
 
 - [Elasticsearch 8](https://www.elastic.co/elasticsearch/) for product search and indexing
 - Docker (for running only the database while keeping PHP local)
@@ -43,7 +47,7 @@ composer create-project shopware/production:6.6.10.0 <project-name>
 
 During project creation, Symfony Flex asks whether you want to use Docker. Choose **Yes** if you want to run the database in a container, or **No** to use a local MySQL/MariaDB server.
 
-For more details, see the [Shopware Production template documentation](../template).
+For more details about the Composer-based project template, see the [Shopware Production template](https://github.com/shopware/production).
 
 ## Configure database connection
 
@@ -73,10 +77,14 @@ To stop and remove the containers, while preserving the database data, run:
 docker compose down
 ```
 
-Run `docker compose down -v` to remove the containers and delete all stored data volumes.
+Run the below command to remove the containers and delete all stored data volumes:
+
+```bash
+docker compose down -v
+```
 
 ::: info
-Tip - Use the `-v` flag only if you want to completely reset the database.
+Use the `-v` flag only if you want to completely reset the database.
 :::
 
 ## Install Shopware
@@ -93,7 +101,11 @@ symfony console system:install --basic-setup
 
 The `--basic-setup` flag initializes Shopware with sensible defaults. It automatically creates a database schema, an admin user, and a default sales channel for the specified `APP_URL` so you can start testing immediately without manual configuration. Optional: Add the `--create-database` flag if your database doesn’t already exist.
 
-If you encounter file-permission issues when installing or rebuilding caches, run `symfony console cache:clear` or check directory ownership.
+If you encounter file-permission issues when installing or rebuilding caches, run the below command or check directory ownership.
+
+```bash
+symfony console cache:clear
+```
 
 ### Default Administration credentials
 
@@ -103,7 +115,9 @@ Shopware creates a default Administration user during installation:
 |:---------|:-----------|
 | `admin`  | `shopware` |
 
-**Tip**: Change these credentials after installation for security.
+:::warning
+Change these credentials after installation for security.
+:::
 
 ## Start the webserver
 
@@ -135,7 +149,7 @@ symfony server:stop
 
 **Tip**: If port 8000 is already in use, start the server on a different port: `symfony server:start --port=8080`
 
-## Set the PHP version (optional, recommended)
+## Set the PHP version (recommended)
 
 Specify a PHP version to ensure consistent environments across team members.
 
@@ -153,7 +167,7 @@ To verify which PHP version is active, run:
 symfony php -v
 ```
 
-## Adjust PHP configuration (Optional)
+## Adjust PHP configuration (recommended)
 
 Adjusting PHP settings like `memory_limit` or `max_execution_time` can prevent build or cache warm-up processes from failing, especially during large Administration builds or when working on plugins.
 
@@ -171,10 +185,8 @@ symfony php -i
 
 By keeping your `php.ini` in version control, you ensure consistent behavior across development environments and CI pipelines.
 
-Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use Nginx or Caddy: see the [web server reference](../../../resources/references/config-reference/server/nginx.md).
+Symfony CLI uses PHP’s built-in web server by default. For better performance, you can configure it to use [Nginx](../../../resources/references/config-reference/server/nginx.md) or [Caddy](../../../resources/references/config-reference/server/caddy.md).
 
-## Build and Watch the Administration and Storefront (Optional)
+## Build and Watch the Administration and Storefront (optional)
 
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately.
-
-<PageRef page="../template#building-watching-administration-and-storefront" />
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Frontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.
