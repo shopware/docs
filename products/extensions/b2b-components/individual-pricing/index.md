@@ -77,7 +77,6 @@ When a customer browses products or adds items to their cart:
 ## Performance optimization
 
 Individual Pricing uses a hybrid caching strategy: pre-computed cache entries for specific products (instant lookup) and runtime-evaluated entries if the rule is applied to all products. The cache is automatically maintained through background indexing and incremental updates.
-x
 This approach ensures fast pricing lookups even with thousands of products while keeping storage requirements minimal.
 
 ## Extensibility
