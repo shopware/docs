@@ -15,6 +15,6 @@ The code section lays out the coding standards. This helps anyone understand and
 
 The document section details you on the language style, grammar, markdown syntax, and documentation process.
 
-<PageRef page="./documentation-guidelines/" />
+<PageRef page="./documentation-guidelines" />
 
 this document serves as a comprehensive resource for both readers and contributors, offering essential coding, testing, and documentation guidelines to maintain consistency, promote best practices, and facilitate effective collaboration.
