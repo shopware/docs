@@ -86,7 +86,7 @@ The transformation will be stretched over multiple major versions to offer enoug
 
 Vue has no native support for blocks like in Twig.js. Vue has slots, but slots don't work like blocks.
 
-Implementing blocks with native Vue components allows using SFC and keeping the extendability of Twig.js. This lowerins the learning curve, as the Twig.js syntax is especially unfamiliar to Vue developers.
+Implementing blocks with native Vue components allows using SFC and keeping the extendability of Twig.js. This lowers the learning curve, as the Twig.js syntax is especially unfamiliar to Vue developers.
 
 Standard tooling like VSCode, ESLint, and Prettier will work out of the box.
 
