@@ -24,7 +24,7 @@ composer require shopware/k8s-meta --ignore-platform-reqs
 ```
 
 :::info
-You do not need to specify a version. Composer automatically selects the correct `shopware/k8s-meta` version based on the `shopware/core` version already installed in your project — `^1.0` for Shopware 6.6 and `^2.0` for Shopware 6.7 or higher.
+You do not need to specify a version. Composer automatically selects the correct `shopware/k8s-meta` version based on the `shopware/core` version already installed in your project — `^1.0` for Shopware 6.6 and `^2.0` for Shopware 6.7 or higher. This is enforced via [`shopware/conflicts`](https://github.com/shopware/conflicts).
 
 The `--ignore-platform-reqs` flag ensures that all necessary recipes are installed, even if your local PHP version differs from the required platform version.
 :::
@@ -33,16 +33,7 @@ The `--ignore-platform-reqs` flag ensures that all necessary recipes are install
 
 ### Dependencies
 
-The metapackage pulls in the following dependencies:
-
-| Package                         | Purpose                                       |
-|---------------------------------|-----------------------------------------------|
-| `league/flysystem-async-aws-s3` | S3-compatible filesystem for media and assets |
-| `open-telemetry/exporter-otlp`  | OpenTelemetry tracing export                  |
-| `open-telemetry/transport-grpc` | gRPC transport for OpenTelemetry              |
-| `shopware/opentelemetry`        | Shopware OpenTelemetry integration            |
-| `shopware/docker`               | Docker and deployment helper tooling          |
-| `symfony/redis-messenger`       | Redis-based message queue transport           |
+For the full list of dependencies, refer to the [`shopware/k8s-meta` repository](https://github.com/shopware/k8s-meta).
 
 ### Configuration files
 
