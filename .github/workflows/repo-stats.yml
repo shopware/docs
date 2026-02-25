@@ -1,0 +1,133 @@
+name: Repository stats (PRs & Issues)
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Number of days to look back"
+        required: false
+        default: 7
+        type: number
+      post_to_slack:
+        description: "Post report to Slack"
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    # Weekly on Monday at 09:00 UTC
+    - cron: "0 9 * * 1"
+
+jobs:
+  gather-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+    steps:
+      - name: Gather PR and issue stats
+        id: stats
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_SERVER: ${{ github.server_url }}
+          DAYS_RAW: ${{ github.event.inputs.days || 7 }}
+        run: |
+          # Clamp days to 1–365 to avoid abuse or invalid date math (schedule uses 7)
+          DAYS=$DAYS_RAW
+          if ! [[ "$DAYS" =~ ^[0-9]+$ ]] || [[ "$DAYS" -lt 1 ]]; then DAYS=7; fi
+          if [[ "$DAYS" -gt 365 ]]; then DAYS=365; fi
+
+          START=$(date -u -d "${DAYS} days ago" +%Y-%m-%d)
+          END=$(date -u +%Y-%m-%d)
+
+          echo "start_date=$START" >> $GITHUB_OUTPUT
+          echo "end_date=$END" >> $GITHUB_OUTPUT
+
+          # Markdown report
+          echo "## Repository activity: $START → $END" > report.md
+          echo "" >> report.md
+
+          echo "### Pull requests created" >> report.md
+          echo "" >> report.md
+          gh pr list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,state,createdAt --jq '.[] | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (created: \(.createdAt[:10]))"' >> report.md 2>/dev/null || echo "- No PRs in this period" >> report.md
+          echo "" >> report.md
+
+          echo "### Pull requests merged" >> report.md
+          echo "" >> report.md
+          gh pr list --state merged --search "merged:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,mergedAt --jq '.[] | "- #\(.number) \(.title) (merged: \(.mergedAt[:10]))"' >> report.md 2>/dev/null || echo "- No merged PRs in this period" >> report.md
+          echo "" >> report.md
+
+          echo "### Issues opened" >> report.md
+          echo "" >> report.md
+          gh issue list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,state,createdAt --jq '.[] | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (opened: \(.createdAt[:10]))"' >> report.md 2>/dev/null || echo "- No issues in this period" >> report.md
+          echo "" >> report.md
+
+          echo "### Issues closed" >> report.md
+          echo "" >> report.md
+          gh issue list --state closed --search "closed:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,closedAt --jq '.[] | "- #\(.number) \(.title) (closed: \(.closedAt[:10]))"' >> report.md 2>/dev/null || echo "- No closed issues in this period" >> report.md
+
+          # Slack-friendly report (mrkdwn): full URLs for links, max ~2800 chars per block
+          BASE="$GH_SERVER/$GH_REPO"
+          echo "*:chart_with_upwards_trend: Repository stats — $START → $END*" > slack_report.txt
+          echo "" >> slack_report.txt
+
+          echo "*Pull requests created*" >> slack_report.txt
+          gh pr list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,state,createdAt --jq --arg base "$BASE" '.[] | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.createdAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          echo "" >> slack_report.txt
+
+          echo "*Pull requests merged*" >> slack_report.txt
+          gh pr list --state merged --search "merged:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,mergedAt --jq --arg base "$BASE" '.[] | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (merged \(.mergedAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          echo "" >> slack_report.txt
+
+          echo "*Issues opened*" >> slack_report.txt
+          gh issue list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,state,createdAt --jq --arg base "$BASE" '.[] | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.createdAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          echo "" >> slack_report.txt
+
+          echo "*Issues closed*" >> slack_report.txt
+          gh issue list --state closed --search "closed:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,closedAt --jq --arg base "$BASE" '.[] | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (closed \(.closedAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+
+          echo "" >> slack_report.txt
+          echo "<$BASE/actions/runs/${{ github.run_id }}|View workflow run>" >> slack_report.txt
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: repo-stats-report
+          path: report.md
+
+      - name: Print report
+        run: cat report.md
+
+      - name: Prepare Slack payload
+        id: slack_payload
+        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.post_to_slack == 'true') || (github.event_name == 'schedule')
+        env:
+          START_DATE: ${{ steps.stats.outputs.start_date }}
+          END_DATE: ${{ steps.stats.outputs.end_date }}
+          GH_SERVER: ${{ github.server_url }}
+          GH_REPO: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          jq -n --rawfile body slack_report.txt \
+            --arg start "$START_DATE" --arg end "$END_DATE" \
+            --arg link "$GH_SERVER/$GH_REPO/actions/runs/$GITHUB_RUN_ID" \
+            '{
+              blocks: [
+                { type: "header", text: { type: "plain_text", text: "📊 Repository stats", emoji: true } },
+                { type: "context", elements: [{ type: "mrkdwn", text: ("📅 " + $start + " → " + $end + "  |  <" + $link + "|View run>") }] },
+                { type: "divider" },
+                { type: "section", text: { type: "mrkdwn", text: $body } }
+              ]
+            }' > payload.json
+          echo "payload<<EOF" >> $GITHUB_OUTPUT
+          cat payload.json >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Post to Slack
+        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.post_to_slack == 'true') || (github.event_name == 'schedule')
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: ${{ steps.slack_payload.outputs.payload }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
