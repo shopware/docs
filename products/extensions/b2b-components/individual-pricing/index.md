@@ -31,7 +31,7 @@ This component is particularly powerful in B2B contexts where:
 Individual Pricing supports two target types:
 
 - **Companies**: Apply pricing to specific companies or organization units or employees
-- **Tags**: Apply pricing to customers or products with specific tags
+- **Tags**: Apply pricing to customers with specific tags
 
 ### Volume pricing (Tiers)
 
