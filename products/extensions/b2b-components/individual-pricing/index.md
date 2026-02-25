@@ -15,7 +15,7 @@ This feature is available since Shopware 6.7.8.0
 
 ## Basic idea
 
-Individual Pricing allows merchants to create sophisticated pricing strategies for their B2B customers. Instead of manually managing prices for each product and customer combination, merchants can define pricing rules that automatically apply discounts or custom prices based on various conditions such as customer company, product tags, and purchase quantities.
+Individual Pricing allows merchants to create sophisticated pricing strategies for their B2B customers. Instead of manually managing prices for each product and customer combination, merchants can define pricing rules that automatically apply discounts or custom prices based on various conditions (the same as for product streaming rules).
 
 This component is particularly powerful in B2B contexts where:
 
