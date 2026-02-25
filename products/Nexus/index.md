@@ -16,14 +16,14 @@ Shopware Nexus is a unified platform for **event-driven automation and integrati
 
 It empowers merchants to orchestrate systems visually using low-code simplicity, creating scalable workflows that connect Shopware with ERPs, CRMs, and other business systems.
 
-## What Nexus Does
+## Key capabilities
 
 - Automates repetitive tasks triggered by Shopware events
 - Syncs data bidirectionally between Shopware and external systems
 - Enables conditional logic and data transformation without coding
 - Provides real-time execution monitoring
 
-## Beta Scope - what’s included
+## Available in beta
 
 | Feature | Status | Description |
 |----------|--------|------------|
@@ -37,6 +37,16 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | Data Transformation | ✅ Available | Map and filter data |
 | Execution Monitoring | ✅ Available | Track runs & metrics |
 
+## Limitations in beta
+
+The following capabilities are **not available during the beta phase**:
+
+- SLA guarantees  
+- 24/7 support  
+- Multi-region deployment (EU only)  
+- On-premise/self-hosted deployment  
+- Workflow marketplace  
+
 ## Coming after beta
 
 | Feature | Planned For | Description |
@@ -47,11 +57,3 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | Workflow Versioning UI | GA | Rollback support |
 | Additional ERP Connectors | Post-GA | SAP, Oracle, etc. |
 | Custom Node Development | Post-GA | Custom workflow nodes |
-
-## Not supported in beta
-
-- SLA guarantees  
-- 24/7 support  
-- Multi-region deployment (EU only)  
-- On-premise/self-hosted deployment  
-- Workflow marketplace  
