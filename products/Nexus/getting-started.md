@@ -1,6 +1,6 @@
 ---
 nav:
-    title: Nexus
+    title: Getting Started
     position: 2
 ---
 
@@ -10,38 +10,39 @@ nav:
 
 - Shopware 6.7 or newer  
 - Active Shopware subscription  
-- Beta access granted by Shopware  
+- Beta access granted by Shopware 
+- Nexus service activated
 
 ## Accessing Nexus
 
-1. Log in via Shopware SSO (Ory / OIDC)
-2. After authentication, Nexus redirects to a demo workflow
-3. The workflow becomes functional once your shop is connected
+- Log in via Shopware SSO (Ory / OIDC)
+- After authentication, Nexus redirects to a demo workflow
+- The workflow becomes functional once your shop is connected
 
 ## Connecting Your Shopware Shop
 
 Your shops are pulled from the Shopware Business Platform.
 
 :::warning
-Beta Limitation - Only the first company linked to your user account is used.
+Beta Limitation - Only the first company linked to your user account is used. As such, only shops linked to that first company will be available in Nexus.
 :::
 
-## Creating Your First Workflow
+## Creating your first workflow
 
-### Step 1 – Create Workflow
+### Step 1 – Create workflow
 
 - Click **New Workflow**
 - Enter name and description
 - Click **Create**
 
-### Step 2 – Add Trigger
+### Step 2 – Add trigger
 
 - Drag **Shopware Event Trigger**
 - Select shop
 - Choose event (e.g. `checkout.order.placed`)
 - Click **Save**
 
-### Step 3 – Add Action
+### Step 3 – Add action
 
 - Drag **Send Slack Message**
 - Connect trigger to action

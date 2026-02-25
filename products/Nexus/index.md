@@ -19,23 +19,24 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 ## Key capabilities
 
 - Automates repetitive tasks triggered by Shopware events
-- Syncs data bidirectionally between Shopware and external systems
+- Syncs data bidirectionally between Shopware and external systems (e.g., Microsoft Dynamics Business Central)
 - Enables conditional logic and data transformation without coding
 - Provides real-time execution monitoring
 
 ## Available in beta
 
-| Feature | Status | Description |
-|----------|--------|------------|
-| Visual Workflow Builder | ✅ Available | Drag-and-drop interface |
-| Shopware Event Triggers | ✅ Available | React to entity events |
-| Schedule Triggers | ✅ Available | Cron-based execution |
-| Business Central Integration | ✅ Available | CRUD for 300+ entities |
-| Shopware API Actions | ✅ Available | Call any endpoint |
-| Slack Notifications | ✅ Available | Send Slack messages |
-| Conditional Logic | ✅ Available | If/else branching |
-| Data Transformation | ✅ Available | Map and filter data |
-| Execution Monitoring | ✅ Available | Track runs & metrics |
+| Feature | Description |
+|----------|------------|
+| Visual Workflow Builder | Drag-and-drop interface |
+| Shopware Event Triggers | React to entity events |
+| Schedule Triggers | Cron-based execution |
+| Business Central Integration | CRUD for 300+ entities |
+| Shopware API Actions | Call any endpoint |
+| Slack Notifications | Send Slack messages |
+| Conditional Logic | If/else branching |
+| Data Transformation | Map and filter data |
+| Expression Placeholders | Placeholders to insert event data into templates |
+| Execution Monitoring | Track runs & metrics |
 
 ## Limitations in beta
 
