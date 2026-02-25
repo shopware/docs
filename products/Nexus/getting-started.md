@@ -12,6 +12,10 @@ nav:
 - Active Shopware subscription  
 - Beta access granted by Shopware 
 - Nexus service activated
+- Active Shopware services
+  - Accept Shopware Service T&C's
+  - Activate Nexus service
+  - Register shop in SBP if not already done
 
 ## Accessing Nexus
 
