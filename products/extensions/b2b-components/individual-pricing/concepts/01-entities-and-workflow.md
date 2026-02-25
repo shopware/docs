@@ -66,9 +66,9 @@ This entity links pricing rules to specific business partner companies or organi
 
 **Scopes:**
 
-- `WHOLE_COMPANY`: Applies to all employees of the business partner
-- `ALL_ORG_UNITS`: Applies to all organization units within the company
-- `SPECIFIC_UNITS`: Applies only to specific organization units (requires organizationUnitIds)
+- `whole_company`: Applies to all employees of the business partner
+- `all_org_units`: Applies to all organization units within the company
+- `specific_units`: Applies only to specific organization units (requires organizationUnitIds)
 
 ### Individual Pricing Computed Cache
 
