@@ -31,14 +31,14 @@ The Individual Pricing entity is the main configuration entity that defines a pr
 
 **Action Types:**
 
-- `BY_PERCENT`: Reduce price by a percentage (e.g., 10% off)
-- `BY_FIXED`: Reduce price by a fixed amount (e.g., $5 off)
-- `TO_FIXED`: Set price to a specific amount (e.g., $99.99)
-- `VOLUME_PRICING`: Use tiered pricing based on quantity
+- `by_percent`: Reduce price by a percentage (e.g., 10% off)
+- `by_fixed`: Reduce price by a fixed amount (e.g., 5$ off)
+- `to_fixed`: Set price to a specific amount (e.g., 99.99$)
+- `volume_pricing`: Use tiered pricing based on quantity
 
 ### Individual Pricing Tier
 
-The tier entity defines volume-based pricing tiers for quantity discounts. Multiple tiers can be associated with a single Individual Pricing rule when the action type is set to `VOLUME_PRICING`.
+The tier entity defines volume-based pricing tiers for quantity discounts. Multiple tiers can be associated with a single Individual Pricing rule when the action type is set to `volume_pricing`.
 
 **Key properties:**
 
@@ -49,9 +49,9 @@ The tier entity defines volume-based pricing tiers for quantity discounts. Multi
 
 **Example tiers:**
 
-- Tier 1: 1-9 units @ $10.00 each
-- Tier 2: 10-49 units @ $9.00 each
-- Tier 3: 50+ units @ $8.00 each
+- Tier 1: 1-9 units @ 10$ each
+- Tier 2: 10-49 units @ 9$ each
+- Tier 3: 50+ units @ 8$ each
 
 ### Individual Pricing Company Assignment
 

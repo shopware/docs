@@ -181,7 +181,6 @@ Hook into the extension to log pricing changes:
 namespace MyPlugin\Subscriber;
 
 use Shopware\Commercial\B2B\IndividualPricing\Extension\IndividualPricingApplyExtension;
-use Shopware\Core\Framework\Struct\Extension\ExtensionRegistry;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Psr\Log\LoggerInterface;
 
