@@ -236,7 +236,7 @@ Individual Pricing modifies product prices **at runtime after products are loade
 
 #### Why This Happens
 
-Individual Pricing's runtime modification approach provides flexibility and performance benefits but is incompatible with persistent storage operations:
+The runtime modification approach of Individual Pricing provides flexibility and performance benefits but is incompatible with persistent storage operations:
 
 - **Runtime modification**: Allows dynamic pricing based on customer context
 - **Pre-computed caching**: Ensures fast price lookups without database queries
