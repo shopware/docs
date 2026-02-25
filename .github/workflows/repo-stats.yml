@@ -43,48 +43,64 @@ jobs:
           echo "start_date=$START" >> $GITHUB_OUTPUT
           echo "end_date=$END" >> $GITHUB_OUTPUT
 
-          # Markdown report
+          # Fetch then filter by date (GitHub search qualifiers like merged:>= can be delayed/unreliable)
           echo "## Repository activity: $START → $END" > report.md
           echo "" >> report.md
 
           echo "### Pull requests created" >> report.md
           echo "" >> report.md
-          gh pr list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,state,createdAt --jq '.[] | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (created: \(.createdAt[:10]))"' >> report.md 2>/dev/null || echo "- No PRs in this period" >> report.md
+          gh pr list --state all --repo "$GH_REPO" --limit 200 --json number,title,state,createdAt \
+            --jq --arg start "$START" '.[] | select(.createdAt[:10] >= $start) | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (created: \(.createdAt[:10]))"' > /tmp/pr_created.txt 2>/dev/null || true
+          [ -s /tmp/pr_created.txt ] && cat /tmp/pr_created.txt >> report.md || echo "- No PRs in this period" >> report.md
           echo "" >> report.md
 
           echo "### Pull requests merged" >> report.md
           echo "" >> report.md
-          gh pr list --state merged --search "merged:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,mergedAt --jq '.[] | "- #\(.number) \(.title) (merged: \(.mergedAt[:10]))"' >> report.md 2>/dev/null || echo "- No merged PRs in this period" >> report.md
+          gh pr list --state merged --repo "$GH_REPO" --limit 200 --json number,title,mergedAt \
+            --jq --arg start "$START" '.[] | select(.mergedAt != null and (.mergedAt[:10] >= $start)) | "- #\(.number) \(.title) (merged: \(.mergedAt[:10]))"' > /tmp/pr_merged.txt 2>/dev/null || true
+          [ -s /tmp/pr_merged.txt ] && cat /tmp/pr_merged.txt >> report.md || echo "- No merged PRs in this period" >> report.md
           echo "" >> report.md
 
           echo "### Issues opened" >> report.md
           echo "" >> report.md
-          gh issue list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,state,createdAt --jq '.[] | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (opened: \(.createdAt[:10]))"' >> report.md 2>/dev/null || echo "- No issues in this period" >> report.md
+          gh issue list --state all --repo "$GH_REPO" --limit 200 --json number,title,state,createdAt \
+            --jq --arg start "$START" '.[] | select(.createdAt[:10] >= $start) | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (opened: \(.createdAt[:10]))"' > /tmp/issue_opened.txt 2>/dev/null || true
+          [ -s /tmp/issue_opened.txt ] && cat /tmp/issue_opened.txt >> report.md || echo "- No issues in this period" >> report.md
           echo "" >> report.md
 
           echo "### Issues closed" >> report.md
           echo "" >> report.md
-          gh issue list --state closed --search "closed:>=$START" --repo "$GH_REPO" --limit 100 --json number,title,closedAt --jq '.[] | "- #\(.number) \(.title) (closed: \(.closedAt[:10]))"' >> report.md 2>/dev/null || echo "- No closed issues in this period" >> report.md
+          gh issue list --state closed --repo "$GH_REPO" --limit 200 --json number,title,closedAt \
+            --jq --arg start "$START" '.[] | select(.closedAt != null and (.closedAt[:10] >= $start)) | "- #\(.number) \(.title) (closed: \(.closedAt[:10]))"' > /tmp/issue_closed.txt 2>/dev/null || true
+          [ -s /tmp/issue_closed.txt ] && cat /tmp/issue_closed.txt >> report.md || echo "- No closed issues in this period" >> report.md
 
-          # Slack-friendly report (mrkdwn): full URLs for links, max ~2800 chars per block
+          # Slack-friendly report (mrkdwn): reuse filtered data
           BASE="$GH_SERVER/$GH_REPO"
           echo "*:chart_with_upwards_trend: Repository stats — $START → $END*" > slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Pull requests created*" >> slack_report.txt
-          gh pr list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,state,createdAt --jq --arg base "$BASE" '.[] | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.createdAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          gh pr list --state all --repo "$GH_REPO" --limit 200 --json number,title,state,createdAt \
+            --jq --arg start "$START" --arg base "$BASE" '.[] | select(.createdAt[:10] >= $start) | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.createdAt[:10]))"' > /tmp/slack_pr_created.txt 2>/dev/null || true
+          [ -s /tmp/slack_pr_created.txt ] && cat /tmp/slack_pr_created.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Pull requests merged*" >> slack_report.txt
-          gh pr list --state merged --search "merged:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,mergedAt --jq --arg base "$BASE" '.[] | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (merged \(.mergedAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          gh pr list --state merged --repo "$GH_REPO" --limit 200 --json number,title,mergedAt \
+            --jq --arg start "$START" --arg base "$BASE" '.[] | select(.mergedAt != null and (.mergedAt[:10] >= $start)) | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (merged \(.mergedAt[:10]))"' > /tmp/slack_pr_merged.txt 2>/dev/null || true
+          [ -s /tmp/slack_pr_merged.txt ] && cat /tmp/slack_pr_merged.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Issues opened*" >> slack_report.txt
-          gh issue list --state all --search "created:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,state,createdAt --jq --arg base "$BASE" '.[] | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.createdAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          gh issue list --state all --repo "$GH_REPO" --limit 200 --json number,title,state,createdAt \
+            --jq --arg start "$START" --arg base "$BASE" '.[] | select(.createdAt[:10] >= $start) | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.createdAt[:10]))"' > /tmp/slack_issue_opened.txt 2>/dev/null || true
+          [ -s /tmp/slack_issue_opened.txt ] && cat /tmp/slack_issue_opened.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Issues closed*" >> slack_report.txt
-          gh issue list --state closed --search "closed:>=$START" --repo "$GH_REPO" --limit 15 --json number,title,closedAt --jq --arg base "$BASE" '.[] | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (closed \(.closedAt[:10]))"' >> slack_report.txt 2>/dev/null || echo "• _None_" >> slack_report.txt
+          gh issue list --state closed --repo "$GH_REPO" --limit 200 --json number,title,closedAt \
+            --jq --arg start "$START" --arg base "$BASE" '.[] | select(.closedAt != null and (.closedAt[:10] >= $start)) | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (closed \(.closedAt[:10]))"' > /tmp/slack_issue_closed.txt 2>/dev/null || true
+          [ -s /tmp/slack_issue_closed.txt ] && cat /tmp/slack_issue_closed.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
 
           echo "" >> slack_report.txt
           echo "<$BASE/actions/runs/${{ github.run_id }}|View workflow run>" >> slack_report.txt
