@@ -31,6 +31,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
           GH_SERVER: ${{ github.server_url }}
           DAYS_RAW: ${{ github.event.inputs.days || 7 }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Clamp days to 1–365
           DAYS=$DAYS_RAW
@@ -51,15 +52,21 @@ jobs:
           echo "::group::Debug: API request and response"
           echo "Repo: $GH_REPO  |  START: $START  |  END: $END"
           echo "API base: $API"
-          PULLS_RESP=$(curl -sS -w "\n%{http_code}" -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" "${API}/pulls?state=closed&per_page=5")
+          PULLS_RESP=$(curl -sS -w "\n%{http_code}" -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" "${API}/pulls?state=closed&per_page=5")
           PULLS_BODY=$(echo "$PULLS_RESP" | head -n -1)
           PULLS_CODE=$(echo "$PULLS_RESP" | tail -n1)
           echo "GET /pulls?state=closed&per_page=5  →  HTTP $PULLS_CODE"
+          if [[ "$PULLS_CODE" != "200" ]]; then
+            echo "⚠️  Non-200 response. Common cause: workflow run from a *fork* (GITHUB_TOKEN cannot read the main repo)."
+            echo "    Fix: Ensure the workflow runs from the main repo (shopware/docs), not a fork."
+          fi
           echo "$PULLS_BODY" > /tmp/debug_pulls.json
-          if echo "$PULLS_BODY" | jq -e . >/dev/null 2>&1; then
-            echo "Response is valid JSON. Array length: $(echo "$PULLS_BODY" | jq 'length')"
-            echo "First item keys: $(echo "$PULLS_BODY" | jq -r '.[0] | keys | join(", ")')"
-            echo "First item merged_at: $(echo "$PULLS_BODY" | jq -r '.[0].merged_at // "null"')"
+          if echo "$PULLS_BODY" | jq -e 'type == "array"' >/dev/null 2>&1; then
+            echo "Response is JSON array. Length: $(echo "$PULLS_BODY" | jq 'length')"
+            if [[ "$(echo "$PULLS_BODY" | jq 'length')" -gt 0 ]]; then
+              echo "First item keys: $(echo "$PULLS_BODY" | jq -r '.[0] | keys | join(", ")')"
+              echo "First item merged_at: $(echo "$PULLS_BODY" | jq -r '.[0].merged_at // "null"')"
+            fi
             echo "First 800 chars of response:"
             echo "$PULLS_BODY" | head -c 800
             echo ""
@@ -75,7 +82,7 @@ jobs:
           # Pull requests created (REST: created_at)
           echo "### Pull requests created" >> report.md
           echo "" >> report.md
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/pulls?state=all&sort=created&direction=desc&per_page=100" | \
             jq -r --arg start "$START" '.[] | select(.created_at[:10] >= $start) | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (created: \(.created_at[:10]))"' > /tmp/pr_created.txt 2>/dev/null || true
           [ -s /tmp/pr_created.txt ] && cat /tmp/pr_created.txt >> report.md || echo "- No PRs in this period" >> report.md
@@ -84,7 +91,7 @@ jobs:
           # Pull requests merged (need to fetch closed PRs and filter by merged_at; REST /pulls only returns open+closed, merged_at is on each)
           echo "### Pull requests merged" >> report.md
           echo "" >> report.md
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/pulls?state=closed&sort=updated&direction=desc&per_page=100" | \
             jq -r --arg start "$START" '.[] | select(.merged_at != null and (.merged_at[:10] >= $start)) | "- #\(.number) \(.title) (merged: \(.merged_at[:10]))"' > /tmp/pr_merged.txt 2>/dev/null || true
           [ -s /tmp/pr_merged.txt ] && cat /tmp/pr_merged.txt >> report.md || echo "- No merged PRs in this period" >> report.md
@@ -93,7 +100,7 @@ jobs:
           # Issues opened (REST: created_at)
           echo "### Issues opened" >> report.md
           echo "" >> report.md
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/issues?state=all&sort=created&direction=desc&per_page=100" | \
             jq -r --arg start "$START" '.[] | select(.pull_request == null and .created_at[:10] >= $start) | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (opened: \(.created_at[:10]))"' > /tmp/issue_opened.txt 2>/dev/null || true
           [ -s /tmp/issue_opened.txt ] && cat /tmp/issue_opened.txt >> report.md || echo "- No issues in this period" >> report.md
@@ -102,7 +109,7 @@ jobs:
           # Issues closed (REST: closed_at)
           echo "### Issues closed" >> report.md
           echo "" >> report.md
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/issues?state=closed&sort=updated&direction=desc&per_page=100" | \
             jq -r --arg start "$START" '.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start)) | "- #\(.number) \(.title) (closed: \(.closed_at[:10]))"' > /tmp/issue_closed.txt 2>/dev/null || true
           [ -s /tmp/issue_closed.txt ] && cat /tmp/issue_closed.txt >> report.md || echo "- No closed issues in this period" >> report.md
@@ -113,28 +120,28 @@ jobs:
           echo "" >> slack_report.txt
 
           echo "*Pull requests created*" >> slack_report.txt
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/pulls?state=all&sort=created&direction=desc&per_page=100" | \
             jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.created_at[:10] >= $start) | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.created_at[:10]))"' > /tmp/slack_pr_created.txt 2>/dev/null || true
           [ -s /tmp/slack_pr_created.txt ] && cat /tmp/slack_pr_created.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Pull requests merged*" >> slack_report.txt
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/pulls?state=closed&sort=updated&direction=desc&per_page=100" | \
             jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.merged_at != null and (.merged_at[:10] >= $start)) | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (merged \(.merged_at[:10]))"' > /tmp/slack_pr_merged.txt 2>/dev/null || true
           [ -s /tmp/slack_pr_merged.txt ] && cat /tmp/slack_pr_merged.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Issues opened*" >> slack_report.txt
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/issues?state=all&sort=created&direction=desc&per_page=100" | \
             jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .created_at[:10] >= $start) | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.created_at[:10]))"' > /tmp/slack_issue_opened.txt 2>/dev/null || true
           [ -s /tmp/slack_issue_opened.txt ] && cat /tmp/slack_issue_opened.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
           echo "" >> slack_report.txt
 
           echo "*Issues closed*" >> slack_report.txt
-          curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/issues?state=closed&sort=updated&direction=desc&per_page=100" | \
             jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start)) | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (closed \(.closed_at[:10]))"' > /tmp/slack_issue_closed.txt 2>/dev/null || true
           [ -s /tmp/slack_issue_closed.txt ] && cat /tmp/slack_issue_closed.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
