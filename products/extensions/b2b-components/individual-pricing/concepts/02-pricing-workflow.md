@@ -271,7 +271,7 @@ The hybrid caching approach ensures optimal performance:
 
 ### HTTP Cache Strategy
 
-Individual Pricing's HTTP caching behavior depends on the customer type:
+The HTTP caching behavior of Individual Pricing depends on the customer type:
 
 | Customer Type               | Cacheable    | Reason                                             |
 |-----------------------------|--------------|----------------------------------------------------|
