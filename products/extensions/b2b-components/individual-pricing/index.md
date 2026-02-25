@@ -67,7 +67,7 @@ When a customer browses products or adds items to their cart:
 1. The system identifies all active individual pricing rules that could apply based on the customer's context (company, tags)
 2. Only rules at the highest priority level are considered
 3. All rules at this priority level are evaluated together
-4. Determine which products qualify for each rule
+4. Products that qualify for each rule are determined
 5. If multiple rules match, the one producing the lowest price is selected
 6. If no rules match at the highest priority, standard catalog pricing is used
 7. If volume pricing is configured, the appropriate tier is selected based on quantity
