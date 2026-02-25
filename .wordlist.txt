@@ -738,7 +738,6 @@ PriceDefinitionField
 PriceFacade
 PriceField
 PriceFieldSerializer
-Pricing's
 PrimaryKey
 Prisma
 ProductAttributeDataSet
