@@ -99,3 +99,4 @@ redirects:
     guides/installation/setups/symfony-cli.html: guides/installation/legacy-setups/symfony-cli-setup.html
     guides/installation/setups/devenv-options.html: guides/installation/legacy-setups/devenv-options.html
     guides/installation/setups/index.html: guides/installation/index.html
+    guides/installation/setups/: guides/installation/
