@@ -47,6 +47,28 @@ jobs:
           REPO="${GH_REPO#*/}"
           API="https://api.github.com/repos/${OWNER}/${REPO}"
 
+          # Debug: inspect API response (expand "Debug: API request and response" in the log to fix issues without merge cycles)
+          echo "::group::Debug: API request and response"
+          echo "Repo: $GH_REPO  |  START: $START  |  END: $END"
+          echo "API base: $API"
+          PULLS_RESP=$(curl -sS -w "\n%{http_code}" -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" "${API}/pulls?state=closed&per_page=5")
+          PULLS_BODY=$(echo "$PULLS_RESP" | head -n -1)
+          PULLS_CODE=$(echo "$PULLS_RESP" | tail -n1)
+          echo "GET /pulls?state=closed&per_page=5  →  HTTP $PULLS_CODE"
+          echo "$PULLS_BODY" > /tmp/debug_pulls.json
+          if echo "$PULLS_BODY" | jq -e . >/dev/null 2>&1; then
+            echo "Response is valid JSON. Array length: $(echo "$PULLS_BODY" | jq 'length')"
+            echo "First item keys: $(echo "$PULLS_BODY" | jq -r '.[0] | keys | join(", ")')"
+            echo "First item merged_at: $(echo "$PULLS_BODY" | jq -r '.[0].merged_at // "null"')"
+            echo "First 800 chars of response:"
+            echo "$PULLS_BODY" | head -c 800
+            echo ""
+          else
+            echo "Response (first 500 chars):"
+            echo "$PULLS_BODY" | head -c 500
+          fi
+          echo "::endgroup::"
+
           echo "## Repository activity: $START → $END" > report.md
           echo "" >> report.md
 
