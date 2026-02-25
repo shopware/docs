@@ -106,7 +106,7 @@ flowchart TD
 
 ## Volume pricing calculation
 
-When the action type is `VOLUME_PRICING`, the system evaluates tiers based on quantity:
+When the action type is `volume_pricing`, the system evaluates tiers based on quantity:
 
 ```mermaid
 flowchart TD
