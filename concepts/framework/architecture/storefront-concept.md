@@ -34,7 +34,7 @@ Contrary to API calls that result in single resource data, a whole page in the S
 
 To obtain information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront makes use of the [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) routes to enrich the Page with additional information, e.g., a list of orders, which is being fetched through the order route.
 
-![Data and logic flow in Shopware 6 \(top to bottom and vice versa\)](../../assets/concepts-api-storeApiLogic.svg)
+![Data and logic flow in Shopware 6 \(top to bottom and vice versa\)](../../../assets/concepts-api-storeApiLogic.svg)
 
 Once all needed information is added to the Page, the corresponding page loader returns the Page to a Storefront controller.
 
