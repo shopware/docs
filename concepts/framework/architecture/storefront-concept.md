@@ -38,12 +38,6 @@ To obtain information from a specific resource, the Storefront's second concern 
 
 Once all needed information is added to the Page, the corresponding page loader returns the Page to a Storefront controller.
 
-### Store API and the traditional TWIG storefront
-
-In the traditional server-side rendered Twig storefront, the Store API is not called directly by the browser. Instead, custom storefront controllers internally use the Store API to fetch data from the Core.
-
-The Store API is stateless and expects authentication information via request headers (for example the `sw-context-token`). In contrast, the traditional storefront relies on session-based authentication, so authentication does not need to be handled manually on every request.
-
 ### Store API and the traditional Twig storefront
 
 In the traditional server-side rendered Twig storefront, the Store API is not called directly by the browser. Instead, custom storefront controllers internally use the Store API to fetch data from the Core.
