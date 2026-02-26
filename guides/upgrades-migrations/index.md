@@ -75,4 +75,4 @@ When targeting a new Shopware version:
 
 ## Next steps
 
-For the operational update procedure, continue with [Upgrade Shopware](./upgrade-shopware).
+For the operational update procedure, continue with [Upgrade Shopware](./upgrade-shopware.md).
