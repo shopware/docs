@@ -43,8 +43,6 @@ These integrations typically involve structured data exchange, synchronization, 
 
 The Admin API provides CRUD operations for every entity within Shopware and is used to build integrations with external systems.
 
-Authoritative endpoint documentation:
+For details on endpoints, authentication methods, schemas, and request formats, always refer to the Admin API documentation.
 
 <PageRef page="https://shopware.stoplight.io/docs/admin-api/8d53c59b2e6bc-shopware-admin-api" title="Admin API – Stoplight Reference" target="_blank" />
-
-For details on endpoints, authentication methods (including token-based authentication and OAuth 2.0), schemas, and request formats, always refer to the Stoplight documentation.
