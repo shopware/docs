@@ -29,11 +29,11 @@ The Store API represents the customer-facing surface of Shopware. It is designed
 
 The Store API acts as a normalized interface layer between customer-facing applications and the Shopware Core. It enables headless frontends (such as SPAs or native apps) to consume Shopware functionality via JSON over HTTP. Core business logic is exposed through HTTP routes, ensuring that the Storefront and API consumers rely on the same underlying services.
 
-Authoritative endpoint documentation:
-
+For details on endpoints, authentication methods, schemas, and request formats, always refer to the Store API documentation.
 <PageRef page="https://shopware.stoplight.io/docs/store-api/7b972a75a8d8d-shopware-store-api" title="Store API – Stoplight Reference" target="_blank" />
 
-* An interesting project based on the Store API is [Composable Frontends](../../../frontends/).
+Shopware provides [Composable Frontends](https://frontends.shopware.com/)
+ as a headless frontend implementation based on the Store API.
 
 ## Admin API
 
