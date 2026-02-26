@@ -23,7 +23,7 @@ Typical structure:
 4. **Conditions** (branch logic)
 5. **Outputs** (store results)
 
-## Workflow Builder Interface
+## Workflow builder interface
 
 | Element | Description |
 |--------|-------------|
@@ -33,75 +33,7 @@ Typical structure:
 | Toolbar | Save, Publish, Execute, Undeploy |
 | Execution Tab | Run history and metrics |
 
-## Workflow States
-
-| State | Description | Available Actions |
-|-------|------------|------------------|
-| Draft | Editing | Save, Publish |
-| Published | Built | Execute |
-| Active | Running | Undeploy |
-| Deploying | Creating | Wait |
-
-## Node Types
-
-### Trigger Nodes
-
-| Node | Description | Configuration |
-|------|------------|--------------|
-| Shopware Event Trigger | React to entity events | Shop, event |
-| Schedule Trigger | Time-based execution | Cron, timezone |
-
-### Action Nodes
-
-| Node | Description | Configuration |
-|------|------------|--------------|
-| Business Central | CRUD on BC entities | Entity, operation |
-| Shopware API Call | Call any Shopware API | Method, endpoint |
-| Send Slack Message | Slack notification | Channel, template |
-| API Request | Generic HTTP | URL, headers |
-| Send Shopware Email | Email via Shopware | Recipient, content |
-
-### Transform Nodes
-
-| Node | Description |
-|------|------------|
-| Filter | Filter array items |
-
-### Condition Nodes
-
-| Node | Description |
-|------|------------|
-| If | Conditional branching |
-
-### Output Nodes
-
-| Node | Description |
-|------|------------|
-| S3 Storage | Store payload |
-
-## Expression Syntax
-
-Expressions use `{{ }}` syntax in templates and mappings.
-
-### Examples
-
-```text
-{{payload.order.orderNumber}}
-{{bc_customers_response.value[0].id}}
-{{customer.firstName}} {{customer.lastName}}
-````
-
-### Common Usage
-
-* **Slack templates:** build readable notification messages
-* **Mapping data:** pass values from trigger payload into action parameters
-* **Branching:** drive `If` conditions based on payload values
-
-```
-
----
-
-## Workflow States
+## Workflow states
 
 | State | Description | Available Actions |
 |-------|------------|------------------|
@@ -112,37 +44,75 @@ Expressions use `{{ }}` syntax in templates and mappings.
 
 Workflows move through these states from creation to active execution.
 
-## Common Use Cases
+### Execution Metrics
 
-### Order Sync: Shopware → Business Central
+- Status (Success / Failed / Running)
+- Execution duration
+- Messages processed per node
+- Error counts and latency
 
-Typical flow:
+## Current Monitoring Limitations
 
-1. Trigger: `checkout.order.placed`
-2. Get Business Central customer by email
-3. If customer exists → use it
-4. Else → create customer
-5. Create sales order in Business Central
-6. Update Shopware order with BC reference
-7. Send Slack notification
+- No per-node execution logs
+- Limited payload inspection
+- Manual refresh required
 
-This ensures orders are synchronized and traceable across systems.
+## Node types
 
-### Low Stock Alert
+### Trigger nodes
 
-#### Approach 1 – Scheduled
+| Node | Description | Configuration |
+|------|------------|--------------|
+| Shopware Event Trigger | React to entity events | Shop, event |
+| Schedule Trigger | Time-based execution | Cron, timezone |
 
-1. Schedule trigger (daily at 9 AM)
-2. Fetch Business Central items where inventory < 10
-3. If items returned → send Slack message
+### Action nodes
 
-#### Approach 2 – Event-Based
+| Node | Description | Configuration |
+|------|------------|--------------|
+| Business Central | CRUD on BC entities | Entity, operation |
+| Shopware API Call | Call any Shopware API | Method, endpoint |
+| Send Slack Message | Slack notification | Channel, template |
+| API Request | Generic HTTP | URL, headers |
+| Send Shopware Email | Email via Shopware | Recipient, content |
 
-1. Listen to `checkout.order.placed`
-2. Fetch Business Central items where inventory < 10
-3. If items returned → send Slack message
+### Transform nodes
 
-**Difference:**
+| Node | Description |
+|------|------------|
+| Filter | Filter array items |
 
-- Schedule-based → daily check  
-- Event-based → immediate reaction  
+### Condition nodes
+
+| Node | Description |
+|------|------------|
+| If | Conditional branching |
+
+### Output nodes
+
+| Node | Description |
+|------|------------|
+| S3 Storage | Store payload |
+
+## Expression syntax
+
+Expressions use `{{ }}` syntax in templates and mappings.
+
+### Examples
+
+```text
+{{payload.order.orderNumber}}
+{{bc_customers_response.value[0].id}}
+{{customer.firstName}} {{customer.lastName}}
+```
+
+### Common usage
+
+* **Slack templates:** build readable notification messages
+* **Mapping data:** pass values from trigger payload into action parameters
+* **Branching:** drive `If` conditions based on payload values
+
+Refer to user docs for [common use cases](https://docs.shopware.com/en/shopware-6-en/shopware-services/shopware-nexus?category=shopware-6-en/insider-previews#common-use-cases)
+
+
+

@@ -1,6 +1,6 @@
 ---
 nav:
-    title: Nexus
+    title: Security and Troubleshooting
     position: 6
 ---
 
@@ -10,7 +10,6 @@ nav:
 - AES-256-GCM encryption using AWS KMS
 - Tenant-isolated storage
 - EU-based infrastructure (eu-central-1)
-
 
 ## Troubleshooting
 

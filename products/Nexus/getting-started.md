@@ -31,33 +31,9 @@ Your shops are pulled from the Shopware Business Platform.
 Beta Limitation - Only the first company linked to your user account is used. As such, only shops linked to that first company will be available in Nexus.
 :::
 
-## Creating your first workflow
+## Create workflow
 
-### Step 1 – Create workflow
-
-- Click **New Workflow**
-- Enter name and description
-- Click **Create**
-
-### Step 2 – Add trigger
-
-- Drag **Shopware Event Trigger**
-- Select shop
-- Choose event (e.g. `checkout.order.placed`)
-- Click **Save**
-
-### Step 3 – Add action
-
-- Drag **Send Slack Message**
-- Connect trigger to action
-- Configure channel & template using `{{expression}}`
-- Click **Save**
-
-### Step 4 – Publish
-
-- Click **Save Workflow**
-- Click **Publish**
-- Click **Execute**
+To create a workflow, follow the instructions in the [user documentation](https://docs.shopware.com/en/shopware-6-en/shopware-services/shopware-nexus?category=shopware-6-en/insider-previews).
 
 ## Known Limitations - Beta-Specific
 

@@ -1,14 +1,12 @@
 ---
 nav:
-    title: Nexus
+    title: Integration
     position: 4
 ---
 
 # Business Central Integration
 
 The Business Central integration allows workflows to perform CRUD operations on supported entities via the Business Central API.
-
----
 
 ## Supported Entities
 
@@ -20,8 +18,6 @@ The Business Central integration allows workflows to perform CRUD operations on 
 | Sales Invoices | Get |
 | Vendors | Get, Create, Update |
 | Purchase Orders | Get, Create |
-
----
 
 ## OData Filter Examples
 
