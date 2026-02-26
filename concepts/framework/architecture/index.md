@@ -60,7 +60,7 @@ flowchart TB
       API[Sales Channel API + Store API]
       PLUG[Plugin System + Events]
       SCHED[Scheduled Tasks]
-      MESS[Symfony Messenger (Async)]
+      MESSAGE[Symfony Messenger (Async)]
     end
 
     subgraph ADMIN[Administration]
@@ -85,8 +85,8 @@ flowchart TB
     API --> DAL
     BL --> DAL
     PLUG --> BL
-    SCHED --> MESS
-    BL --> MESS
+    SCHED --> MESSAGE
+    BL --> MESSAGE
   end
 
   %% Infrastructure dependencies
@@ -96,8 +96,8 @@ flowchart TB
   FS[(Media Storage: Local FS / NFS / S3)] <--> SW
 
   %% Async processing
-  MQ[(Async Transport: Redis / RabbitMQ / DB)] <--> MESS
-  MESS --> W[Workers / Consumers]
+  MQ[(Async Transport: Redis / RabbitMQ / DB)] <--> MESSAGE
+  MESSAGE --> W[Workers / Consumers]
   W --> DB
   W --> SEARCH
   W --> FS
