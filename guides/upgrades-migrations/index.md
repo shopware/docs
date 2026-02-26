@@ -33,8 +33,6 @@ To reduce long-term upgrade cost:
 * Keep database migrations idempotent
 * Track deprecations continuously—do not batch them
 
-For general development best practices that reduce upgrade friction, see the [Development guide](../development/index.md).
-
 ## Typical upgrade workflow
 
 When targeting a new Shopware version:
