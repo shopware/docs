@@ -8,7 +8,7 @@ nav:
 
 This guide explains how to update an existing Shopware installation using Composer.
 
-For maintaining custom plugins or apps, review the [Upgrades and Migrations](../upgrades-and-migrations/index.md) guide before performing updates.
+For maintaining custom plugins or apps, review the [Upgrades and Migrations](../upgrades-migrations/index.md) guide before performing updates.
 
 ## Standard update process
 
