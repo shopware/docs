@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Update Shopware
+  title: Upgrade Shopware
   position: 10
 ---
 
-# Update Shopware
+# Upgrade Shopware
 
 This guide explains how to update an existing Shopware installation using Composer.
 
