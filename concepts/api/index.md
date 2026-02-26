@@ -14,7 +14,7 @@ Two functional APIs are available, each representing a different integration sur
 * **Store API**: customer-facing interactions
 * **Admin API**: administrative and system-level operations
 
-Both APIs use HTTP, exchange structured JSON payloads, and require authenticated access. While they serve different purposes within the platform, they share some underlying design principles and structural patterns:
+Both APIs use HTTP and exchange JSON payloads. The Administration API requires OAuth 2.0 authentication, whereas the Store API is publicly accessible and only requires contextual headers, with authentication needed for customer-specific endpoints. While they serve different purposes within the platform, they share some underlying design principles and structural patterns:
 
 * Search criteria abstraction for filtering, sorting, and pagination
 * Structured JSON request/response bodies
