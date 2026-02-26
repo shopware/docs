@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# APIs
+# API
 
 Shopware exposes HTTP-based APIs that allow external systems and custom applications to interact with the platform.
 

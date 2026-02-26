@@ -99,3 +99,11 @@ redirects:
     guides/installation/setups/symfony-cli.html: guides/installation/legacy-setups/symfony-cli-setup.html
     guides/installation/setups/devenv-options.html: guides/installation/legacy-setups/devenv-options.html
     guides/installation/setups/: guides/installation/
+    guides/plugins/plugins/administration/system-updates/meteor-components.html: guides/upgrades-migrations/administration/meteor-components.html
+    guides/plugins/plugins/administration/system-updates/pinia.html: guides/upgrades-migrations/administration/pinia.html
+    guides/plugins/plugins/administration/system-updates/vue3.html: guides/upgrades-migrations/administration/vue3.html
+    guides/plugins/plugins/administration/system-updates/vite.html: guides/upgrades-migrations/administration/vite.html
+    guides/plugins/plugins/administration/system-updates/vue-migration-build.html: guides/upgrades-migrations/administration/vue-migration-build.html
+    guides/plugins/plugins/administration/system-updates/vue-native.html: guides/upgrades-migrations/administration/vue-native.html
+    guides/plugins/plugins/administration/system-updates/extension-translation.html: guides/upgrades-migrations/extension-translation.html
+    guides/plugins/plugins/administration/system-updates/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
