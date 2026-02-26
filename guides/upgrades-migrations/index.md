@@ -19,7 +19,7 @@ Upgrades typically fall into one of these categories:
 * **Extensions**: Version compatibility and required refactorings.
 
 :::info
-Administration upgrades (Vue, Pinia, Vite, Meteor) may require major plugin version bumps.
+Administration framework upgrades (Vue, Pinia, Vite, Meteor) may introduce breaking changes requiring major version updates for affected plugins.
 :::
 
 ## Upgrade strategy for extension developers
