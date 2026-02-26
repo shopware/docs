@@ -1,7 +1,7 @@
 ---
 nav:
   title: Storefront
-  position: 10
+  position: 15
 
 ---
 
