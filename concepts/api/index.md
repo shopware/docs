@@ -18,7 +18,6 @@ Both APIs use HTTP and exchange JSON payloads. The Administration API requires O
 
 * Search criteria abstraction for filtering, sorting, and pagination
 * Structured JSON request/response bodies
-* Versioned endpoints
 * Header-based contextual behavior
 
 These patterns form the foundation of integration development.
