@@ -38,7 +38,7 @@ To reduce long-term upgrade cost:
 When targeting a new Shopware version:
 
 1. Review [release notes](https://www.shopware.com/de/changelog/) and UPGRADE files
-2. Check breaking changes per layer (Core / Admin / Translations)
+2. Check breaking changes per layer (Core / Admin / Storefront / API)
 3. Validate extension compatibility
 4. Apply required migrations
 5. Rebuild Admin/Storefront assets if needed
