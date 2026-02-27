@@ -18,7 +18,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           fail: false
-          args: --retry-wait-time 10 --max-retries 3 --timeout 30 --accept=200,403,429,408 -s "https"  "**/*.html" "**/*.md" "**/*.txt" "**/*.json" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200"
+          args: --retry-wait-time 10 --max-retries 3 --timeout 30 --accept=200,403,429,408 -s "https"  "**/*.html" "**/*.md" "**/*.txt" "**/*.json" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --exclude "^/resources/admin-extension-sdk" --exclude "^/resources/guidelines/code/core" --exclude "^/resources/references/adr"
 
       - name: Find Link Checker Issue
         uses: micalevisk/last-issue-action@v2
