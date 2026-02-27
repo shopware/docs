@@ -12,7 +12,7 @@ For maintaining custom plugins or apps, review the [Upgrades and Migrations](../
 
 ## Standard update process
 
-Shopware updates must be executed via Composer.
+Shopware updates can be executed via Composer or with the web-based updater in the Administration panel.
 
 ### 1. Enable maintenance mode
 
