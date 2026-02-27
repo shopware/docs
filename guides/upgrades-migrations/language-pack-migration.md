@@ -13,7 +13,7 @@ Starting with Shopware **6.7.3.0**, translations are managed directly in Shopwar
 
 - **From Shopware 6.7.3.0 onward**
 
-  - Translations can be installed via Shopware itself, the [Language Pack plugin][language-pack-plugin] is not required to fetch the
+  - Translations can be installed via Shopware itself. The [Language Pack plugin][language-pack-plugin] is not required to fetch the
     newest [Shopware translations][shopware-translations].
   - A new CLI command is available:
 
@@ -22,7 +22,7 @@ Starting with Shopware **6.7.3.0**, translations are managed directly in Shopwar
 ```
 
 - The [Language Pack plugin][language-pack-plugin] still works but is not recommended.
-- Languages now have an active flag which can be toggled in the Administration under `Settings → Languages`
+- Languages now have an active flag which can be toggled in the Administration under `Settings → Languages`.
 - Languages installed/managed from other sources do not need to register their locales in the admin anymore.
 - **Other translation plugins or snippets in themes are not affected and can still be used alongside the integrated handling.**
 
@@ -47,7 +47,7 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ### 2. You are **currently using the Language Pack plugin**
 
-1. Run the translation command and install every language you are using in your shop
+1. Run the translation command and install every language you are using in your shop:
 
     ```bash
       bin/console translation:install --locales <locale-code>,<locale-code>
@@ -55,10 +55,16 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 2. The command uses the **same source ([translate.shopware.com][shopware-translations])** as the [Language Pack plugin][language-pack-plugin] but is
    updated more frequently. So it's essentially identical – or even more up to date!
-3. You can safely uninstall and remove the Language Pack plugin. Your **custom snippets** created in the Snippet module
-   remain intact since they are saved in the database.
-4. Make sure that all languages you need are **active** in the Administration:
-   `Settings → Languages`
+3. Make sure that all languages you need are **active** in the Administration: `Settings → Languages`
+4. Create base snippet sets for used languages
+   - If you're on Shopware **6.7.7.0** or later, this is done automatically.
+   - If you're on Shopware **6.7.6.0** or earlier, for each language in use, create a base snippet, e.g. `BASE en-US` for English (US).
+5. Change all sales channel domains to use the base snippet sets.
+   - If you're on Language Pack **5.37.1** or later, this is done automatically.
+   - If you're on Language Pack **5.37.0** or earlier, open each sales channel, scroll down to the domains and change the
+     snippet set from `LanguagePack` to `BASE`, e.g.: `LanguagePack en-US` to `BASE en-US`.
+6. It is recommended to uninstall and remove the Language Pack plugin after `translation:install` succeeded for all locales.
+   Your **custom snippets** created in the snippet module remain intact since they are saved in the database.
 
 ## New installations
 
@@ -69,6 +75,14 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 ## More information
 
 - Additional details about the new translation handling are available in the [integrated language handling][translation-system] guide.
+
+## Common problems and troubleshooting
+
+### Can't remove Language Pack: a foreign key constraint fails (\`shopware\`.\`sales_channel_domain\`…
+
+Starting with **Shopware 6.7.7.0** and **Language Pack 5.37.1**, the migration process was improved. If you encounter this issue,
+please update Shopware to >= 6.7.7.0, Language Pack to >= 5.37.1, remove the translation files created from running the
+command and run the command again. Or follow the updated migration guide.
 
 [translation-system]: ../../../../../concepts/translations/built-in-translation-system.md
 [language-pack-plugin]: https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html
