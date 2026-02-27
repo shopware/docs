@@ -16,17 +16,17 @@ Shopware updates can be executed via Composer or with the web-based updater in t
 
 ### 1. Enable maintenance mode
 
-Prepare the system for update:
-
 ```bash
-bin/console system:update:prepare
+bin/console sales-channel:maintenance:enable --all
 ```
-
-This enables maintenance mode and prepares the update process.
 
 ### 2. Update Composer dependencies
 
-Update all Composer packages without executing scripts:
+Before running the update, adjust the required Shopware version in `composer.json` to the version to be installed. When using the Commercial plugin, update the `shopware/commercial` requirement to a compatible version as well.
+
+Failure to change these version constraints means that running the update command will resolve to the currently installed Shopware version and no actual upgrade will happen.
+
+After adjusting the version constraints, update all Composer packages without executing scripts:
 
 ```bash
 composer update --no-scripts
@@ -46,10 +46,18 @@ Review changes carefully before committing them.
 
 ### 4. Finalize the update
 
-Disable maintenance mode and complete the update:
+Complete the update by running:
 
 ```bash
 bin/console system:update:finish
+```
+
+This command applies all required update routines for the newly installed Shopware version, including running database migrations, and recompiling themes with the latest code.
+
+After the update process has finished successfully, disable maintenance mode separately:
+
+```bash
+bin/console sales-channel:maintenance:disable --all
 ```
 
 ## Operational best practices
