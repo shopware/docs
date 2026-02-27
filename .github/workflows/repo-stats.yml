@@ -48,115 +48,91 @@ jobs:
           REPO="${GH_REPO#*/}"
           API="https://api.github.com/repos/${OWNER}/${REPO}"
 
-          # Debug: inspect API response (expand "Debug: API request and response" in the log to fix issues without merge cycles)
-          echo "::group::Debug: API request and response"
-          echo "Repo: $GH_REPO  |  START: $START  |  END: $END"
-          echo "API base: $API"
-          PULLS_RESP=$(curl -sS -w "\n%{http_code}" -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" "${API}/pulls?state=closed&per_page=5")
-          PULLS_BODY=$(echo "$PULLS_RESP" | head -n -1)
-          PULLS_CODE=$(echo "$PULLS_RESP" | tail -n1)
-          echo "GET /pulls?state=closed&per_page=5  →  HTTP $PULLS_CODE"
-          if [[ "$PULLS_CODE" != "200" ]]; then
-            echo "⚠️  Non-200 response. Common cause: workflow run from a *fork* (GITHUB_TOKEN cannot read the main repo)."
-            echo "    Fix: Ensure the workflow runs from the main repo (shopware/docs), not a fork."
-          fi
-          echo "$PULLS_BODY" > /tmp/debug_pulls.json
-          if echo "$PULLS_BODY" | jq -e 'type == "array"' >/dev/null 2>&1; then
-            echo "Response is JSON array. Length: $(echo "$PULLS_BODY" | jq 'length')"
-            if [[ "$(echo "$PULLS_BODY" | jq 'length')" -gt 0 ]]; then
-              echo "First item keys: $(echo "$PULLS_BODY" | jq -r '.[0] | keys | join(", ")')"
-              echo "First item merged_at: $(echo "$PULLS_BODY" | jq -r '.[0].merged_at // "null"')"
-            fi
-            echo "First 800 chars of response:"
-            echo "$PULLS_BODY" | head -c 800
-            echo ""
-          else
-            echo "Response (first 500 chars):"
-            echo "$PULLS_BODY" | head -c 500
-          fi
-          echo "::endgroup::"
-
-          echo "## Repository activity: $START → $END" > report.md
-          echo "" >> report.md
-
-          # Pull requests created (REST: created_at)
-          echo "### Pull requests created" >> report.md
-          echo "" >> report.md
+          # Fetch all data
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/pulls?state=all&sort=created&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" '.[] | select(.created_at[:10] >= $start) | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (created: \(.created_at[:10]))"' > /tmp/pr_created.txt 2>/dev/null || true
-          [ -s /tmp/pr_created.txt ] && cat /tmp/pr_created.txt >> report.md || echo "- No PRs in this period" >> report.md
-          echo "" >> report.md
-
-          # Pull requests merged (need to fetch closed PRs and filter by merged_at; REST /pulls only returns open+closed, merged_at is on each)
-          echo "### Pull requests merged" >> report.md
-          echo "" >> report.md
+            "${API}/pulls?state=all&sort=created&direction=desc&per_page=100" > /tmp/pulls_all.json
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/pulls?state=closed&sort=updated&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" '.[] | select(.merged_at != null and (.merged_at[:10] >= $start)) | "- #\(.number) \(.title) (merged: \(.merged_at[:10]))"' > /tmp/pr_merged.txt 2>/dev/null || true
-          [ -s /tmp/pr_merged.txt ] && cat /tmp/pr_merged.txt >> report.md || echo "- No merged PRs in this period" >> report.md
-          echo "" >> report.md
-
-          # Issues opened (REST: created_at)
-          echo "### Issues opened" >> report.md
-          echo "" >> report.md
+            "${API}/pulls?state=closed&sort=updated&direction=desc&per_page=100" > /tmp/pulls_closed.json
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/issues?state=all&sort=created&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" '.[] | select(.pull_request == null and .created_at[:10] >= $start) | "- [\(.state | ascii_upcase)] #\(.number) \(.title) (opened: \(.created_at[:10]))"' > /tmp/issue_opened.txt 2>/dev/null || true
-          [ -s /tmp/issue_opened.txt ] && cat /tmp/issue_opened.txt >> report.md || echo "- No issues in this period" >> report.md
-          echo "" >> report.md
-
-          # Issues closed (REST: closed_at)
-          echo "### Issues closed" >> report.md
-          echo "" >> report.md
+            "${API}/issues?state=all&sort=created&direction=desc&per_page=100" > /tmp/issues_all.json
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/issues?state=closed&sort=updated&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" '.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start)) | "- #\(.number) \(.title) (closed: \(.closed_at[:10]))"' > /tmp/issue_closed.txt 2>/dev/null || true
-          [ -s /tmp/issue_closed.txt ] && cat /tmp/issue_closed.txt >> report.md || echo "- No closed issues in this period" >> report.md
+            "${API}/issues?state=closed&sort=updated&direction=desc&per_page=100" > /tmp/issues_closed.json
 
-          # Slack report
+          # Counts for the period
+          PR_OPENED=$(jq -r --arg start "$START" '[.[] | select(.created_at[:10] >= $start)] | length' /tmp/pulls_all.json)
+          PR_MERGED=$(jq -r --arg start "$START" '[.[] | select(.merged_at != null and (.merged_at[:10] >= $start))] | length' /tmp/pulls_closed.json)
+          PR_CLOSED=$(jq -r --arg start "$START" '[.[] | select(.merged_at == null and .closed_at != null and (.closed_at[:10] >= $start))] | length' /tmp/pulls_closed.json)
+          ISSUES_OPENED=$(jq -r --arg start "$START" '[.[] | select(.pull_request == null and .created_at[:10] >= $start)] | length' /tmp/issues_all.json)
+          ISSUES_CLOSED=$(jq -r --arg start "$START" '[.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start))] | length' /tmp/issues_closed.json)
+
           BASE="$GH_SERVER/$GH_REPO"
-          echo "*:chart_with_upwards_trend: Repository stats — $START → $END*" > slack_report.txt
-          echo "" >> slack_report.txt
 
-          echo "*Pull requests created*" >> slack_report.txt
-          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/pulls?state=all&sort=created&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.created_at[:10] >= $start) | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.created_at[:10]))"' > /tmp/slack_pr_created.txt 2>/dev/null || true
-          [ -s /tmp/slack_pr_created.txt ] && cat /tmp/slack_pr_created.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
-          echo "" >> slack_report.txt
+          # --- detail.md: full overview with counts in headings ---
+          echo "## Detailed repository activity: $START → $END" > detail.md
+          echo "" >> detail.md
 
-          echo "*Pull requests merged*" >> slack_report.txt
-          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/pulls?state=closed&sort=updated&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.merged_at != null and (.merged_at[:10] >= $start)) | "• <\($base)/pull/\(.number)|#\(.number)> \(.title) (merged \(.merged_at[:10]))"' > /tmp/slack_pr_merged.txt 2>/dev/null || true
-          [ -s /tmp/slack_pr_merged.txt ] && cat /tmp/slack_pr_merged.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
-          echo "" >> slack_report.txt
+          echo "### Pull requests created ($PR_OPENED)" >> detail.md
+          echo "" >> detail.md
+          jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.created_at[:10] >= $start) | "- [\(.state | ascii_upcase)] [#\(.number) \(.title) (created: \(.created_at[:10]))](\($base)/pull/\(.number))"' /tmp/pulls_all.json > /tmp/pr_created.txt 2>/dev/null || true
+          [ -s /tmp/pr_created.txt ] && cat /tmp/pr_created.txt >> detail.md || echo "- No PRs in this period" >> detail.md
+          echo "" >> detail.md
 
-          echo "*Issues opened*" >> slack_report.txt
-          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/issues?state=all&sort=created&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .created_at[:10] >= $start) | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (_\(.state)_ \(.created_at[:10]))"' > /tmp/slack_issue_opened.txt 2>/dev/null || true
-          [ -s /tmp/slack_issue_opened.txt ] && cat /tmp/slack_issue_opened.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
-          echo "" >> slack_report.txt
+          echo "### Pull requests merged ($PR_MERGED)" >> detail.md
+          echo "" >> detail.md
+          jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.merged_at != null and (.merged_at[:10] >= $start)) | "- [#\(.number) \(.title) (merged: \(.merged_at[:10]))](\($base)/pull/\(.number))"' /tmp/pulls_closed.json > /tmp/pr_merged.txt 2>/dev/null || true
+          [ -s /tmp/pr_merged.txt ] && cat /tmp/pr_merged.txt >> detail.md || echo "- No merged PRs in this period" >> detail.md
+          echo "" >> detail.md
 
-          echo "*Issues closed*" >> slack_report.txt
-          curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
-            "${API}/issues?state=closed&sort=updated&direction=desc&per_page=100" | \
-            jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start)) | "• <\($base)/issues/\(.number)|#\(.number)> \(.title) (closed \(.closed_at[:10]))"' > /tmp/slack_issue_closed.txt 2>/dev/null || true
-          [ -s /tmp/slack_issue_closed.txt ] && cat /tmp/slack_issue_closed.txt >> slack_report.txt || echo "• _None_" >> slack_report.txt
+          echo "### Pull requests closed ($PR_CLOSED)" >> detail.md
+          echo "" >> detail.md
+          jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.merged_at == null and .closed_at != null and (.closed_at[:10] >= $start)) | "- [#\(.number) \(.title) (closed: \(.closed_at[:10]))](\($base)/pull/\(.number))"' /tmp/pulls_closed.json > /tmp/pr_closed.txt 2>/dev/null || true
+          [ -s /tmp/pr_closed.txt ] && cat /tmp/pr_closed.txt >> detail.md || echo "- No closed (unmerged) PRs in this period" >> detail.md
+          echo "" >> detail.md
 
-          echo "" >> slack_report.txt
-          echo "<$BASE/actions/runs/${{ github.run_id }}|View workflow run>" >> slack_report.txt
+          echo "### Issues opened ($ISSUES_OPENED)" >> detail.md
+          echo "" >> detail.md
+          jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .created_at[:10] >= $start) | "- [\(.state | ascii_upcase)] [#\(.number) \(.title) (opened: \(.created_at[:10]))](\($base)/issues/\(.number))"' /tmp/issues_all.json > /tmp/issue_opened.txt 2>/dev/null || true
+          [ -s /tmp/issue_opened.txt ] && cat /tmp/issue_opened.txt >> detail.md || echo "- No issues in this period" >> detail.md
+          echo "" >> detail.md
+
+          echo "### Issues closed ($ISSUES_CLOSED)" >> detail.md
+          echo "" >> detail.md
+          jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start)) | "- [#\(.number) \(.title) (closed: \(.closed_at[:10]))](\($base)/issues/\(.number))"' /tmp/issues_closed.json > /tmp/issue_closed.txt 2>/dev/null || true
+          [ -s /tmp/issue_closed.txt ] && cat /tmp/issue_closed.txt >> detail.md || echo "- No closed issues in this period" >> detail.md
+
+          # --- slack.md + slack_report.txt: Slack summary (PRs opened/closed/merged, Issues opened/closed) ---
+          {
+            echo ":books: *Weekly Docs Update (Git Repository)*"
+            echo ""
+            echo "*Dev Docs*"
+            echo ""
+            echo "*PRs*"
+            echo ":inbox_tray: $PR_OPENED PRs opened"
+            echo ":white_check_mark: $PR_MERGED PRs merged"
+            echo ":lock: $PR_CLOSED PRs closed"
+            echo ""
+            echo "*Issues*"
+            echo ":inbox_tray: $ISSUES_OPENED issues opened"
+            echo ":ladybug: $ISSUES_CLOSED issues closed"
+            echo ""
+            echo "View workflow run: $BASE/actions/runs/${{ github.run_id }}"
+          } > slack.md
+          echo "" >> slack.md
+          echo '```' >> slack.md
+          cat detail.md >> slack.md
+          echo '```' >> slack.md
+          cp slack.md slack_report.txt
 
       - name: Upload report
         uses: actions/upload-artifact@v4
         with:
           name: repo-stats-report
-          path: report.md
+          path: |
+            detail.md
+            slack.md
 
-      - name: Print report
-        run: cat report.md
+      - name: Print detail report
+        run: cat detail.md
 
       - name: Prepare Slack payload
         id: slack_payload
@@ -173,8 +149,8 @@ jobs:
             --arg link "$GH_SERVER/$GH_REPO/actions/runs/$GITHUB_RUN_ID" \
             '{
               blocks: [
-                { type: "header", text: { type: "plain_text", text: "📊 Repository stats", emoji: true } },
-                { type: "context", elements: [{ type: "mrkdwn", text: ("📅 " + $start + " → " + $end + "  |  <" + $link + "|View run>") }] },
+                { type: "header", text: { type: "plain_text", text: "📚 Weekly Docs Update (Git Repository)", emoji: true } },
+                { type: "context", elements: [{ type: "mrkdwn", text: ($start + " → " + $end + "  |  <" + $link + "|View run>") }] },
                 { type: "divider" },
                 { type: "section", text: { type: "mrkdwn", text: $body } }
               ]
