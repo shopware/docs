@@ -1,12 +1,10 @@
 ---
 nav:
   title: Upgrading to Pinia
-  position: 261
+  position: 12
 ---
 
 # Migration from Vuex in Shopware to Pinia
-
-## Introduction
 
 With the release of Shopware 6.7, we will replace Vuex with [Pinia](https://pinia.vuejs.org/) as the state management library for the administration.
 

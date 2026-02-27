@@ -7,8 +7,6 @@ nav:
 
 # Vue 3 Upgrade
 
-## Introduction
-
 The Shopware administration uses Vue.js `2`, which will reach its end of life (EOL) **on December 31st 2023**. To deliver up-to-date and maintainable software, the administration will use Vue.js `3` from Shopware version `6.6` and upwards. If you are unfamiliar with the changes from Vue.js `2` to Vue.js `3`, please refer to this [official guide](https://v3-migration.vuejs.org/).
 
 ## FAQ

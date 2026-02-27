@@ -1,15 +1,15 @@
 ---
 nav:
   title: Removing Vue Migration Build
-  position: 260
+  position: 14
 ---
 
 # Future Development Roadmap: Removing Vue Migration Build
 
-> **Note:** The information provided in this article, including timelines and specific implementations, is subject to change.
-> This document serves as a general guideline for our development direction.
-
-## Introduction
+:::info
+The information provided in this article, including timelines and specific implementations, is subject to change.
+This document serves as a general guideline for our development direction.
+:::
 
 Prior to Shopware 6.7, we utilized the Vue migration build to facilitate the transition from Vue 2 to Vue 3 for plugin developers. This approach allowed most public APIs to behave similarly to Vue 2 while enabling gradual migration.
 

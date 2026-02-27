@@ -105,5 +105,7 @@ redirects:
     guides/plugins/plugins/administration/system-updates/vite.html: guides/upgrades-migrations/administration/vite.html
     guides/plugins/plugins/administration/system-updates/vue-migration-build.html: guides/upgrades-migrations/administration/vue-migration-build.html
     guides/plugins/plugins/administration/system-updates/vue-native.html: guides/upgrades-migrations/administration/vue-native.html
-    guides/plugins/plugins/administration/system-updates/extension-translation.html: guides/upgrades-migrations/extension-translation.html
-    guides/plugins/plugins/administration/system-updates/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
+    resources/references/upgrades/core/translation/extension-translation.html: guides/upgrades-migrations/extension-translation.html
+    resources/references/upgrades/core/translation/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
+    resources/references/upgrades/administration/: guides/upgrades-migrations/administration/
+    resources/references/upgrades/: guides/upgrades-migrations/
