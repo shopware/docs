@@ -115,4 +115,4 @@ console.log(payload); // Contains list of purchased IAP identifiers
 ## Event
 
 Apps are also able to manipulate the available In-App Purchases as described in
-<PageRef page="./gateways/in-app-purchase/in-app-purchase-gateway" title="In App purchase gateway" />
+<PageRef page="../../plugins/apps/gateways/in-app-purchase/in-app-purchase-gateway" title="In App purchase gateway" />
