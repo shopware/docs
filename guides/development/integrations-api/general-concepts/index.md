@@ -26,11 +26,3 @@ There are some additional instructions that can be specified using **request hea
 Here you find a common approach regarding the way that Shopware provides endpoint references for its APIs:
 
 <PageRef page="generated-reference" />
-
-## API versioning
-
-Starting with Shopware version 6.4.0.0, we changed our API versioning strategy. The following article will cover what has been done and changed, how it used to be and how the version strategy looks like now.
-
-<PageRef page="api-versioning" />
-
-These topics provide essential foundations for effective API development and usage in Shopware.
