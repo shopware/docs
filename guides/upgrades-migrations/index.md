@@ -69,7 +69,6 @@ When targeting a new Shopware version:
 
 * Version manifests carefully. Broaden compatibility only after testing, and narrow it when deprecations apply.
 * Keep webhook/action handlers tolerant to new fields and events. Avoid hard coupling to specific core patch behavior.
-* Document required scopes/permissions per version and avoid removing scopes without a migration path.
 
 ## Next steps
 
