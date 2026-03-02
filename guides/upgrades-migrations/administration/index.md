@@ -7,7 +7,7 @@ nav:
 
 # Administration
 
-These guides cover upcoming architectural changes and migration paths affecting Administration extensions. Use them to prepare plugins for major system transitions:
+These guides cover architectural changes and migration paths affecting Administration extensions, helping you prepare plugins for major system transitions. Depending on the version, some changes—for example, Vue 3, Pinia, and Vite—may have already been completed:
 
 * [Vue 3 migration](./vue3)
 * [Meteor components](./meteor-components)
