@@ -2,7 +2,6 @@
 nav:
   title: Start Development
   position: 5
-
 ---
 
 # After Installation - Start Development
@@ -11,8 +10,8 @@ This section outlines the typical next steps for development in your running Sho
 
 ## Access Administration and Storefront
 
-- Storefront: [http://localhost:8000](http://localhost:8000)
-- Administration: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
+- Storefront: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- Administration: [http://localhost:8000/admin](http://localhost:8000/admin) _(default credentials: `admin` / `shopware`)_
 
 Common development areas:
 
@@ -114,11 +113,11 @@ As an example, enable [Xdebug](https://xdebug.org/) inside the web container by 
 
 ```yaml
 services:
-    web:
-        environment:
-            XDEBUG_MODE: debug
-            XDEBUG_CONFIG: client_host=host.docker.internal
-            PHP_PROFILER: xdebug
+  web:
+    environment:
+      XDEBUG_MODE: debug
+      XDEBUG_CONFIG: client_host=host.docker.internal
+      PHP_PROFILER: xdebug
 ```
 
 Save the file and apply the changes:
@@ -135,23 +134,23 @@ To enable Xdebug connectivity on Linux, you must manually map the host.docker.in
 
 ```yaml
 services:
-    web:
-        extra_hosts:
-            - "host.docker.internal:host-gateway"
+  web:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 ```
 
 Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
 
 ```yaml
 services:
-    web:
-        environment:
-            - PHP_PROFILER=blackfire
-    blackfire:
-        image: blackfire/blackfire:2
-        environment:
-            BLACKFIRE_SERVER_ID: XXXX
-            BLACKFIRE_SERVER_TOKEN: XXXX
+  web:
+    environment:
+      - PHP_PROFILER=blackfire
+  blackfire:
+    image: blackfire/blackfire:2
+    environment:
+      BLACKFIRE_SERVER_ID: XXXX
+      BLACKFIRE_SERVER_TOKEN: XXXX
 ```
 
 ## Adjusting your local environment
