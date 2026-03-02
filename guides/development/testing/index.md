@@ -60,5 +60,4 @@ It focuses on how your extension is functionally tested before approval.
 
 For the official publication requirements, legal conditions, and compliance rules, see:
 
-../../../resources/guidelines/testing/store/quality-guidelines-plugins/
 <PageRef page="../../../resources/guidelines/testing/store/quality-guidelines-plugins/index.md" />
