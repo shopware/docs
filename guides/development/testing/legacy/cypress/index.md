@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Cypress End-to-end testing
+  title: Cypress
   position: 11
 
 ---
 
-# Cypress End-to-End Testing
+# Cypress
 
 ## Overview
 

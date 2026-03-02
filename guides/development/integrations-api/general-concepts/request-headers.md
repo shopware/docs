@@ -7,7 +7,9 @@ nav:
 
 # Request Headers
 
-## sw-language-id
+## Common headers
+
+### sw-language-id
 
 By default, the API delivers the entities via the system language. This can be changed by specifying a language id using the `sw-language-id` header.
 
