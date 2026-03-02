@@ -19,14 +19,14 @@ Follow the [Deployment guide](../../hosting/deployments.md) for information abou
 
 * Fail fast on coding standards and static analysis before slower E2E tests.
 * Use the ([Shopware CLI formatter](../../products/cli/formatter.md)) to keep code style consistent and run the bundled validation tools in CI using ([Shopware CLI validation tools](../../products/cli/validation.md)).
-* Produce artifacts once per commit (ZIP for plugins, deployable image/package for apps, built assets for projects) and promote the same artifact through stages.
+* Produce artifacts once per commit (ZIP for plugins, deployment-ready image/package for apps, built assets for projects) and promote the same artifact through stages.
 
 ## Custom projects
 
 * Reuse the ([Project build command](../../products/cli/project-commands/build.md)) to compile Storefront and Administration assets and warm caches. Run it in CI so deployments do not rebuild.
 * Use environment-specific config only in deployment, not in CI. See [setup patterns](../installation/setups/index.md) you can mirror in pipelines.
 * Add smoke tests against the HTTP layer plus DAL-level integration tests for custom entities.
-* Cache Composer/NPM dependencies but keep lockfiles committed for deterministic builds.
+* Cache Composer/NPM dependencies but keep lock files committed for deterministic builds.
 
 ## Custom/Store plugins
 
