@@ -13,10 +13,12 @@ This section covers version-based upgrades and required migration effort for Sho
 
 Upgrades typically fall into one of these categories:
 
+* **APIs**: HTTP/API contract changes.
 * **Core**: Framework-level changes, data abstraction layer (DAL) updates, APIs, feature removals, and backend behavior.
 * **[Administration](administration/index.md)**: frontend framework upgrades, Vue upgrades, breaking changes.
-* **Translations**: [Extension translation](extension-translation), [Language pack migration](./language-pack-migration).
-* **Extensions**: Version compatibility and required refactorings.
+* **Storefront**: breaking changes related to Twig templates and JavaScript plugins.
+* **App System**: changes that affect the app framework (e.g. manifest, webhooks, etc.).
+* **Hosting & Configuration**: for infrastructure-related changes.
 
 :::info
 Administration framework upgrades (Vue, Pinia, Vite, Meteor) may introduce breaking changes requiring major version updates for affected plugins.
