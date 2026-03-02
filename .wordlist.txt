@@ -1812,6 +1812,7 @@ setProductFixtureVisibility
 setSalesChannelDomain
 setToInitialState
 settingsItem
+SFCs
 sha
 shakable
 shallowMount
@@ -1970,6 +1971,7 @@ viewport
 viewportHeight
 viewports
 vimeo
+Vite's
 vscode
 vue
 vuex
