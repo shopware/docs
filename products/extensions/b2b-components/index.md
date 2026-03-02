@@ -17,6 +17,8 @@ In the world of digital B2B commerce, where businesses engage with other compani
 
 * **Order Approval** allows for a more controlled buying process by introducing an approval workflow.
 
+* **Individual Pricing** enables merchants to define catalog-wide discounts and special pricing based on flexible conditions for B2B scenarios, including volume pricing and company-specific pricing agreements.
+
 * **Quick Order and Shopping List** takes care of distinctive B2B buying behaviors.
 
 * **Organization Unit** allows for the configuration of more differentiated and specific access rights to meet the needs of businesses with complex structures.
@@ -84,7 +86,7 @@ We will place this check before every route, controller or API as follows:
 
 ```php
 use Shopware\Commercial\B2B\QuickOrder\Domain\CustomerSpecificFeature\CustomerSpecificFeatureService;
- 
+
 class ApiController
 {
     public function __construct(private readonly CustomerSpecificFeatureService $customerSpecificFeatureService)
@@ -131,11 +133,11 @@ class CustomerSpecificFeatureTwigExtension extends AbstractExtension
         if (\array_key_exists('context', $twigContext) && $twigContext['context'] instanceof SalesChannelContext) {
             $customerId = $twigContext['context']->getCustomerId();
         }
-        
+
         if (!$customerId) {
             return false;
         }
-        
+
         return $this->customerSpecificFeatureService->isAllowed($customerId, $feature);
     }
 }
