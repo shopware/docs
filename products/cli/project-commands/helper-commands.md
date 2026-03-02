@@ -92,16 +92,6 @@ Similar to `clear-cache`, there is also a general shortcut for `bin/console`:
 shopware-cli project console <command>
 ```
 
-## Generate JWT secret
-
-To generate a new JWT secret, you can use the following command:
-
-```bash
-shopware-cli project generate-jwt
-```
-
-It is similar to `bin/console system:generate-jwt-secret`, but requires no Shopware project to be present or PHP to be installed.
-
 ## Admin API
 
 If you want to make requests against the Shopware-API using curl, you need to get a JWT token and add it as a header. Shopware CLI has a helper command for that:
