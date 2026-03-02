@@ -109,3 +109,11 @@ redirects:
     resources/references/upgrades/core/translation/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
     resources/references/upgrades/administration/: guides/upgrades-migrations/administration/
     resources/references/upgrades/: guides/upgrades-migrations/
+    guides/development/testing/unit-testing/php-unit.md: guides/development/testing/unit/php-unit.html
+    guides/development/testing/unit-testing/jest-storefront.md: guides/development/testing/unit/jest-storefront.html
+    guides/development/testing/unit-testing/jest-admin.md: guides/development/testing/unit/jest-admin.html
+    guides/development/testing/ci.md: guides/development/testing/index.html
+    guides/development/integrations-api/general-concepts/api-versioning.md: guides/integrations-api/general-concepts/api-versioning.html
+    resources/references/core-reference/dal-reference/filters-reference.md: guides/resources/references/core-reference/dal-reference/filters-reference.html
+    resources/references/core-reference/dal-reference/aggregations-reference.md: guides/resources/references/core-reference/dal-reference/aggregations-reference.html
+    guides/plugins/apps/app-scripts/data-loading.md: guides/integrations-api/general-concepts/search-criteria.html
