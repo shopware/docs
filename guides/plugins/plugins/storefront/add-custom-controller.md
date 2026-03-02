@@ -170,15 +170,14 @@ Have a look at the official [Symfony documentation](https://symfony.com/doc/curr
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/routes.xml]
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php [PLUGIN_ROOT/src/Resources/config/routes.php]
+<?php declare(strict_types=1);
 
-    <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Storefront/Controller/*Controller.php', 'attribute');
+};
 ```
 
 :::
