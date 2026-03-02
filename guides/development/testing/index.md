@@ -30,17 +30,17 @@ Shopware supports both PHP backend logic and JavaScript components (for Storefro
 
 Use PHPUnit to write and run backend unit tests for your PHP code.
   
-<PageRef page="./unit-testing/php-unit.md" />
+<PageRef page="./unit/php-unit.md" />
 
 ### JavaScript (Jest)
 
 Use Jest to test Storefront JS and Vue components following modern best practices.
 
-<PageRef page="./unit-testing/jest-storefront.md" />
+<PageRef page="./unit/jest-storefront.md" />
 
 Test custom Administration panel modules and components using Jest with the Shopware admin setup.
 
-<PageRef page="./unit-testing/jest-admin.md" />
+<PageRef page="./unit/jest-admin.md" />
 
 ## Continuous Integration (CI)
 
