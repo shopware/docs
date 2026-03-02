@@ -241,23 +241,27 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute\ExamplePageSeoUrlRoute">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\ExampleDefinition"/>
+use Swag\BasicExample\Core\Content\Example\ExampleDefinition;
+use Swag\BasicExample\Storefront\Framework\Seo\SeoUrlRoute\ExamplePageSeoUrlRoute;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-            <tag name="shopware.seo_url.route"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExamplePageSeoUrlRoute::class)
+        ->args([
+            service(ExampleDefinition::class),
+        ])
+        ->tag('shopware.seo_url.route');
+};
 ```
 
 </Tab>
@@ -335,24 +339,27 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <!-- ... -->
-        <service id="Swag\BasicExample\Service\DynamicSeoUrlPageSubscriber" >
-            <argument type="service" id="Shopware\Core\Content\Seo\SeoUrlUpdater" />
+use Shopware\Core\Content\Seo\SeoUrlUpdater;
+use Swag\BasicExample\Service\DynamicSeoUrlPageSubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(DynamicSeoUrlPageSubscriber::class)
+        ->args([
+            service(SeoUrlUpdater::class),
+        ])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 </Tab>

@@ -167,18 +167,18 @@ All that's left to do now, is to introduce your `ExampleDefinition` to Shopware 
 
 Here's the `services.xml` as it should look like:
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\ExampleDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example" />
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Content\Example\ExampleDefinition;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDefinition::class)
+        ->tag('shopware.entity.definition', ['entity' => 'swag_example']);
+};
 ```
 
 Please note the tag for your definition and the respective `entity` attribute, which has to contain the technical name of your entity, which you provided in your entity definition. In this case this must be `swag_example`.

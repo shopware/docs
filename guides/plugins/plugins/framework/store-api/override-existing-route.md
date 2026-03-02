@@ -72,21 +72,27 @@ As you can see, our decorated route has to extend from the `AbstractExampleRoute
 
 Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute;
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        ...
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator" decorates="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" public="true">
-            <argument type="service" id="swag_example.repository"/>
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteDecorator.inner"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    // ...
+
+    $services->set(ExampleRouteDecorator::class)
+        ->decorate(ExampleRoute::class)
+        ->public()
+        ->args([
+            service('swag_example.repository'),
+            service('.inner'),
+        ]);
+};
 ```

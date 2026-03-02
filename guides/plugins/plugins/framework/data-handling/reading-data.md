@@ -27,19 +27,21 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`, so let's do this.
 
-```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// SwagBasicExample/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\ReadingData" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Service\ReadingData;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ReadingData::class)
+        ->args([service('product.repository')]);
+};
 ```
 
 And here's the respective class including its constructor:

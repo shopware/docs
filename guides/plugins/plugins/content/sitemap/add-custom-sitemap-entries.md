@@ -168,25 +168,29 @@ class CustomUrlProvider extends AbstractUrlProvider
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider" >
-            <argument type="service" id="swag_example.repository" />
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <argument type="service" id="router"/>
+use Doctrine\DBAL\Connection;
+use Swag\BasicExample\Core\Content\Sitemap\Provider\CustomUrlProvider;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-            <tag name="shopware.sitemap_url_provider" />
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomUrlProvider::class)
+        ->args([
+            service('swag_example.repository'),
+            service(Connection::class),
+            service('router'),
+        ])
+        ->tag('shopware.sitemap_url_provider');
+};
 ```
 
 </Tab>
