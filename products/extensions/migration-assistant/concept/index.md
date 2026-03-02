@@ -2,7 +2,6 @@
 nav:
   title: Concept
   position: 10
-
 ---
 
 # Concept
@@ -13,13 +12,19 @@ nav:
 
 We will provide you with a basic introduction to the concepts and structure right here in this chapter. Take a look at the last headline \(Extension points\) to find out more about the various ways to extend this plugin.
 
+## Migration process
+
+The migration procedure, states, and full step-by-step workflow are documented on a dedicated page.
+
+For details, see [Migration Process](migration-process).
+
 ## Profile and connections
 
 Users of the plugin can create connections to different source systems. A connection is used to allow multiple migrations from the same source and update the right data \(mapping\). Connections require a specific profile indicating the type of source system. Users can, for example, create a connection to a Shopware shop using the Shopware 5.5 profile. Developers can create their own profiles from scratch, connect to different source systems, or just extend existing ones.
 
 For more details, look at [Profile and Connection](profile-and-connection).
 
-## DataSelection and dataSet
+## DataSelection and DataSet
 
 These are the fundamental data structures for defining what to migrate. Each `DataSet` represents an entity, for example, a database table. Each `DataSelection` represents an orderly group of `DataSets`. For more information, refer to the articles on [DataSelection and DataSet](dataselection-and-dataset).
 
@@ -35,7 +40,7 @@ You can look at [Premapping](premapping) section for more details.
 
 ## Gateway and reader
 
-Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
+Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via HTTP/S with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
 
 To use the `ShopwareApiGateway`, you must download the [Shopware Connector](https://github.com/shopware/SwagMigrationConnector) plugin for your Shopware 5.
 
@@ -53,102 +58,29 @@ During any migration, especially during the data conversion, there will possibly
 
 For more information, have a look at the [Logging](logging) section.
 
+## Error Resolution
+
+The Migration Assistant provides users with the possibility to resolve errors that occurred during migration. The user can see details of an error and decide how to proceed. For example, if a product could not be migrated because of a missing tax, the user can create a new tax and assign it to the product. After that, the user can mark the error as resolved, and the Migration Assistant will try to migrate the product.
+
+For more details, see the [Error Resolution](error-resolution) article.
+
 ## Writer
 
-The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here; you don't need to worry about error handling because the migration assistant takes care of it.
+The `Writer` objects will receive the converted data and write it to Shopware 6. There is no special magic here; you do not need to worry about error handling because the Migration Assistant takes care of it.
 
 To learn more about them, take a look at the [Writer](writer) section.
 
 ## Media processing
 
-During a typical migration, we download the media files from the source system to Shopware 6. This is the last processing step in the migration and may be done differently for other gateways. For example, the `local` gateway will copy and rename the files directly in the local filesystem.
+During a typical migration, media is handled in a dedicated processing step after writing. Gateway-specific processors import files either via HTTP (`api` gateway) or local filesystem (`local` gateway).
 
 You can look at the [Media Processing](media-processing) article for more details.
-
-## After migration
-
-All fetched data will be deleted after finishing or aborting a migration run, but the mapping of the identifiers will stay.
-
-## The migration procedure
-
-The following diagram visualizes how the migration process is executed in the message queue from a high level:
-
-```mermaid
-sequenceDiagram
-
-  Browser->>+Server: start migration
-  Server->>+MQ: submit migration process message
-  Server-->>-Browser: process started
-
-  MQ-->>+Server: process message
-  Server->>-MQ: dispatch next message
-
-  Browser->>+Server: get migration state
-  Server-->>-Browser: state: fetching, offset: 100, total: 500, entity: product
-
-  MQ-->>+Server: process message
-  Server->>-MQ: dispatch next message
-
-  Browser->>+Server: get migration state
-  Server-->>-Browser: state: writing, offset: 300, total: 500, entity: product
-
-  MQ-->>+Server: process message
-  deactivate Server
-
-  Browser->>+Server: get migration state
-  Server-->>-Browser: state: waitingForApprove
-
-  Note right of Browser: User confirmation required
-  Browser->>+Server: approve & finish
-  Server-->>-Browser: migration completed
-```
-
-Inside this process it can run through these states:
-
-```mermaid
-stateDiagram-v2
-
-%% happy case
-  [*] --> Fetching
-  Fetching --> Writing
-  Writing --> MediaProcessing
-  MediaProcessing --> Cleanup
-  Cleanup --> Indexing
-  Indexing --> WaitingForApprove
-  WaitingForApprove --> Finished
-  Finished --> [*]
-
-%% abort case
-  Fetching --> Aborting
-  Writing --> Aborting
-  MediaProcessing --> Aborting
-  Aborting --> Cleanup
-  Indexing --> Aborted
-  Aborted --> [*]
-```
-
-The following bullet points will give you a general overview of what happens in what classes during a common migration.
-
-1. The user selects/creates a connection \(with a profile and gateway specified\).
-2. The user selects some of the available data \(`DataSelections`\).
-3. Premapping check/execution: The user maps data from the source system to the current system \(these decisions are stored with the connection\).
-4. Fetch data for every `DataSet` in every selected `DataSelection` \(mapping is used to store/use the identifiers from the source system\).
-    1. The corresponding `Reader` reads the data.
-    2. The corresponding `Converter` converts the data.
-5. Write data for every `DataSet` in every selected `DataSelection` .
-    1. The corresponding `Writer` writes the data.
-6. Process media, if necessary, for example, to download/copy images.
-    1. Data in the `swag_migration_media_file` table will be downloaded/copied.
-    2. Files are assigned to media objects in Shopware 6.
-7. Finish migration to clean up.
-
-These steps can be done multiple times. Each migration is called a `Run`/`MigrationRun` and will be saved to inform the users about any errors that occurred \(in the form of a detailed history\).
 
 ## Extension points
 
 The recommended way to migrate plugin data from a source system is to extend that profile by a new `DataSelection`. It is also possible to create a new profile in case a migration from a different shop/source system is sought.
 
-Take a look at the following HowTos for your scenario to get a step-by-step tutorial:
+Take a look at the following guides for your scenario:
 
 * [Extending a Shopware Migration Profile](../guides/extending-a-shopware-migration-profile): Migrating your first basic plugin data \(via local gateway\).
 * [Extending the Migration Connector](../guides/extending-the-migration-connector): Add API support for your migration.

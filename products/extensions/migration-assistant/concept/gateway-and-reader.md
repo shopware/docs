@@ -2,78 +2,50 @@
 nav:
   title: Gateway and Reader
   position: 50
-
 ---
 
 # Gateway and Reader
 
 ## Overview
 
-Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via http/s with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
+Users will have to specify a gateway for the connection. The gateway defines the way of communicating with the source system. Behind the user interface, we use `Reader` objects to read the data from the source system. For the `shopware55` profile, we have the `api` gateway, which communicates via HTTP/S with the source system, and the `local` gateway, which communicates directly with the source system's database. Thus both systems must be on the same server to successfully use the `local` gateway.
 
 ## Gateway
 
-The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service xml using the `shopware.migration.gateway` tag:
+The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service.xml using the `shopware.migration.gateway` tag:
 
 ```html
-<!-- Shopware Profile Gateways -->
 <service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ShopwareLocalGateway">
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ReaderRegistry" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\EnvironmentReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\TableReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory" />
-    <argument type="service" id="currency.repository"/>
-    <tag name="shopware.migration.gateway" />
+  <!-- ... -->
+  <tag name="shopware.migration.gateway" />
 </service>
 
 <service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\ShopwareApiGateway">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\EnvironmentReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\TableReader" />
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\TableCountReader" />
-    <argument type="service" id="currency.repository"/>
-    <tag name="shopware.migration.gateway" />
+  <!-- ... -->
+  <tag name="shopware.migration.gateway"/>
 </service>
 ```
 
-To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware migration connector](https://github.com/shopware/SwagMigrationConnector) first.
+To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware Migration Connector](https://github.com/shopware/SwagMigrationConnector) first.
 
-This tag is used by `GatwayRegistry`. This registry loads all tagged gateways and chooses a suitable gateway based on the migration's context and a unique identifier composed of a combination of profile and gateway name:
+This tag is used by `GatewayRegistry`. This registry loads all tagged gateways, filters them by profile support and selects the active gateway from the connection's profile/gateway combination:
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Migration\Gateway;
-
-use SwagMigrationAssistant\Exception\MigrationContextPropertyMissingException;
-use SwagMigrationAssistant\Exception\GatewayNotFoundException;
-use SwagMigrationAssistant\Migration\MigrationContextInterface;
+// SwagMigrationAssistant\Migration\Gateway\GatewayRegistry
 
 class GatewayRegistry implements GatewayRegistryInterface
 {
-    /**
-     * @var GatewayInterface[]
-     */
-    private iterable $gateways;
-
-    /**
-     * @param GatewayInterface[] $gateways
-    */
-    public function __construct(iterable $gateways)
+    public function __construct(private readonly iterable $gateways)
     {
-        $this->gateways = $gateways;
     }
 
-    /**
-     * @throws GatewayNotFoundException
-     *
-     * @return GatewayInterface[]
-     */
     public function getGateways(MigrationContextInterface $migrationContext): array
     {
+        $profile = $migrationContext->getProfile();
+
         $gateways = [];
         foreach ($this->gateways as $gateway) {
-            if ($gateway->supports($migrationContext)) {
+            if ($gateway->supports($profile)) {
                 $gateways[] = $gateway;
             }
         }
@@ -81,26 +53,19 @@ class GatewayRegistry implements GatewayRegistryInterface
         return $gateways;
     }
 
-    /**
-     * @throws GatewayNotFoundException
-     */
     public function getGateway(MigrationContextInterface $migrationContext): GatewayInterface
     {
         $connection = $migrationContext->getConnection();
-        if ($connection === null) {
-            throw new MigrationContextPropertyMissingException('Connection');
-        }
-
         $profileName = $connection->getProfileName();
         $gatewayName = $connection->getGatewayName();
 
         foreach ($this->gateways as $gateway) {
-            if ($gateway->supports($migrationContext) && $gateway->getName() === $gatewayName) {
+            if ($gateway->supports($migrationContext->getProfile()) && $gateway->getName() === $gatewayName) {
                 return $gateway;
             }
         }
 
-        throw new GatewayNotFoundException($profileName . '-' . $gatewayName);
+        throw MigrationException::gatewayNotFound($profileName, $gatewayName);
     }
 }
 ```
@@ -108,52 +73,24 @@ class GatewayRegistry implements GatewayRegistryInterface
 The gateway class has to implement the `GatewayInterface` to support all required methods. As you can see below, the gateway uses the right readers, which internally open a connection to the source system to receive the entity data:
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Profile\Shopware\Gateway\Local;
-
-use Shopware\Core\Defaults;
-use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\System\Currency\CurrencyEntity;
-use SwagMigrationAssistant\Migration\EnvironmentInformation;
-use SwagMigrationAssistant\Migration\Gateway\Reader\EnvironmentReaderInterface;
-use SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry;
-use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Migration\RequestStatusStruct;
-use SwagMigrationAssistant\Profile\Shopware\Exception\DatabaseConnectionException;
-use SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactoryInterface;
-use SwagMigrationAssistant\Profile\Shopware\Gateway\ShopwareGatewayInterface;
-use SwagMigrationAssistant\Profile\Shopware\Gateway\TableReaderInterface;
-use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
+// SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ShopwareLocalGateway
 
 class ShopwareLocalGateway implements ShopwareGatewayInterface
 {
-    public const GATEWAY_NAME = 'local';
+    final public const GATEWAY_NAME = 'local';
 
-    private ReaderRegistry $readerRegistry;
-
-    private EnvironmentReaderInterface $localEnvironmentReader;
-
-    private TableReaderInterface $localTableReader;
-
-    private ConnectionFactoryInterface $connectionFactory;
-
-    private EntityRepository $currencyRepository;
-
+    /**
+     * @param EntityRepository<CurrencyCollection> $currencyRepository
+     * @param EntityRepository<LanguageCollection> $languageRepository
+     */
     public function __construct(
-        ReaderRegistry $readerRegistry,
-        EnvironmentReaderInterface $localEnvironmentReader,
-        TableReaderInterface $localTableReader,
-        ConnectionFactoryInterface $connectionFactory,
-        EntityRepository $currencyRepository
+        private readonly ReaderRegistry $readerRegistry,
+        private readonly EnvironmentReaderInterface $localEnvironmentReader,
+        private readonly TableReaderInterface $localTableReader,
+        private readonly ConnectionFactoryInterface $connectionFactory,
+        private readonly EntityRepository $currencyRepository,
+        private readonly EntityRepository $languageRepository,
     ) {
-        $this->readerRegistry = $readerRegistry;
-        $this->localEnvironmentReader = $localEnvironmentReader;
-        $this->localTableReader = $localTableReader;
-        $this->connectionFactory = $connectionFactory;
-        $this->currencyRepository = $currencyRepository;
     }
 
     public function getName(): string
@@ -166,9 +103,9 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
         return 'swag-migration.wizard.pages.connectionCreate.gateways.shopwareLocal';
     }
 
-    public function supports(MigrationContextInterface $migrationContext): bool
+    public function supports(ProfileInterface $profile): bool
     {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
+        return $profile instanceof ShopwareProfileInterface;
     }
 
     public function read(MigrationContextInterface $migrationContext): array
@@ -180,62 +117,22 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
 
     public function readEnvironmentInformation(MigrationContextInterface $migrationContext, Context $context): EnvironmentInformation
     {
-        $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);
-        $profile = $migrationContext->getProfile();
+        // ...
 
-        if ($connection === null) {
-            $error = new DatabaseConnectionException();
-
-            return new EnvironmentInformation(
-                $profile->getSourceSystemName(),
-                $profile->getVersion(),
-                '-',
-                [],
-                [],
-                new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
-            );
-        }
-
-        try {
-            $connection->connect();
-        } catch (\Exception $e) {
-            $error = new DatabaseConnectionException();
-
-            return new EnvironmentInformation(
-                $profile->getSourceSystemName(),
-                $profile->getVersion(),
-                '-',
-                [],
-                [],
-                new RequestStatusStruct($error->getErrorCode(), $error->getMessage())
-            );
-        }
-        $connection->close();
         $environmentData = $this->localEnvironmentReader->read($migrationContext);
 
-        /** @var CurrencyEntity $targetSystemCurrency */
         $targetSystemCurrency = $this->currencyRepository->search(new Criteria([Defaults::CURRENCY]), $context)->get(Defaults::CURRENCY);
-        if (!isset($environmentData['defaultCurrency'])) {
-            $environmentData['defaultCurrency'] = $targetSystemCurrency->getIsoCode();
-        }
 
-        $totals = $this->readTotals($migrationContext, $context);
+        // ...
+
+        $totals = $this->readTotals($migrationContext);
 
         return new EnvironmentInformation(
-            $profile->getSourceSystemName(),
-            $profile->getVersion(),
-            $environmentData['host'],
-            $totals,
-            $environmentData['additionalData'],
-            new RequestStatusStruct(),
-            false,
-            [],
-            $targetSystemCurrency->getIsoCode(),
-            $environmentData['defaultCurrency']
+          // ...
         );
     }
 
-    public function readTotals(MigrationContextInterface $migrationContext, Context $context): array
+    public function readTotals(MigrationContextInterface $migrationContext): array
     {
         $readers = $this->readerRegistry->getReaderForTotal($migrationContext);
 
@@ -256,6 +153,13 @@ class ShopwareLocalGateway implements ShopwareGatewayInterface
     public function readTable(MigrationContextInterface $migrationContext, string $tableName, array $filter = []): array
     {
         return $this->localTableReader->read($migrationContext, $tableName, $filter);
+    }
+
+    private function generateFingerprint(array $environmentData): ?string
+    {
+        // ...
+
+        return Hasher::hash($config['esdKey'] . $config['installationDate']);
     }
 }
 ```
