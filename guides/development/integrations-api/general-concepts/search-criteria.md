@@ -181,7 +181,7 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 The `filter` parameter allows you to filter the result and aggregations using many filters and parameters. The filter types are equivalent to the filters available for the DAL.
 
-<PageRef page="../../../resources/references/core-reference/dal-reference/filters-reference" />
+<PageRef page="../../../../resources/references/core-reference/dal-reference/filters-reference" />
 
 ::: info
 When you are filtering for nested values - for example, you are filtering orders by their transaction state \(`order.transactions.stateMachineState`\) - make sure to fetch those in your `associations` field before.
@@ -413,7 +413,7 @@ The `aggregations` parameter can determine metadata for a search query. There ar
 
 The aggregation types are equivalent to the aggregations available in the DAL:
 
-<PageRef page="../../../resources/references/core-reference/dal-reference/aggregations-reference" />
+<PageRef page="../../../../resources/references/core-reference/dal-reference/aggregations-reference" />
 
 ```json
 {
