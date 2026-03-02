@@ -20,7 +20,7 @@ $ bin/console [command] [parameters]
 | Command      | Description                                    |
 |:-------------|:-----------------------------------------------|
 | `about`      | Displays information about the current project |
-| `completion` | Dump the shell completion script               |
+| `completion` | Dumps the shell completion script              |
 | `help`       | Displays help for a command                    |
 | `list`       | Lists commands                                 |
 
@@ -59,19 +59,19 @@ $ bin/console [command] [parameters]
 
 ### Cache
 
-| Command                      | Description                                                                                     |
-|:-----------------------------|:------------------------------------------------------------------------------------------------|
-| `cache:clear`                | Clears the cache                                                                                |
-| `cache:clear:all`            | Clear all caches/pools, invalidates expired tags, removes old system and twig cache directories |
-| `cache:clear:delayed`        | Invalidates the delayed cache keys/tags                                                         |
-| `cache:clear:http`           | Clear only the HTTP cache                                                                       |
-| `cache:pool:clear`           | Clears cache pools                                                                              |
-| `cache:pool:delete`          | Deletes an item from a cache pool                                                               |
-| `cache:pool:invalidate-tags` | Invalidate cache tags for all or a specific pool                                                |
-| `cache:pool:list`            | Lists available cache pools                                                                     |
-| `cache:pool:prune`           | Prunes cache pools                                                                              |
-| `cache:warmup`               | Warms up an empty cache                                                                         |
-| `cache:watch:delayed`        | Watches the delayed cache keys/tags                                                             |
+| Command                      | Description                                                                             |
+|:-----------------------------|:----------------------------------------------------------------------------------------|
+| `cache:clear`                | Clears the cache                                                                        |
+| `cache:clear:all`            | Clears all caches/pools, invalidates expired tags, removes old kernel cache directories |
+| `cache:clear:delayed`        | Invalidates the delayed cache keys/tags                                                 |
+| `cache:clear:http`           | Clears only the HTTP cache                                                              |
+| `cache:pool:clear`           | Clears cache pools                                                                      |
+| `cache:pool:delete`          | Deletes an item from a cache pool                                                       |
+| `cache:pool:invalidate-tags` | Invalidates cache tags for all or a specific pool                                       |
+| `cache:pool:list`            | Lists available cache pools                                                             |
+| `cache:pool:prune`           | Prunes cache pools                                                                      |
+| `cache:warmup`               | Warms up an empty cache                                                                 |
+| `cache:watch:delayed`        | Watches the delayed cache keys/tags                                                     |
 
 ### Cart
 
@@ -141,23 +141,23 @@ $ bin/console [command] [parameters]
 
 ### Dotenv
 
-| Command       | Description                                 |
-|:--------------|:--------------------------------------------|
-| `dotenv:dump` | Compile .env files to .env.local.php        |
+| Command       | Description                           |
+|:--------------|:--------------------------------------|
+| `dotenv:dump` | Compiles .env files to .env.local.php |
 
 ### Error
 
-| Command      | Description                                                                      |
-|:-------------|:---------------------------------------------------------------------------------|
-| `error:dump` | Dump error pages to plain HTML files that can be directly served by a web server |
+| Command      | Description                                                                       |
+|:-------------|:----------------------------------------------------------------------------------|
+| `error:dump` | Dumps error pages to plain HTML files that can be directly served by a web server |
 
 ### Es
 
 | Command                   | Description                                    |
 |:--------------------------|:-----------------------------------------------|
 | `es:admin:index`          | Indexes the elasticsearch for the admin search |
-| `es:admin:mapping:update` | Update the Elasticsearch indices mapping       |
-| `es:admin:reset`          | Reset Admin Elasticsearch indexing             |
+| `es:admin:mapping:update` | Updates the Elasticsearch indices mapping      |
+| `es:admin:reset`          | Resets Admin Elasticsearch indexing            |
 | `es:admin:test`           | Allows you to test the admin search index      |
 | `es:create:alias`         | Creates the elasticsearch alias                |
 | `es:index`                | Reindexes all entities to elasticsearch        |
@@ -171,10 +171,10 @@ $ bin/console [command] [parameters]
 
 | Command           | Description                                                                                                            |
 |:------------------|:-----------------------------------------------------------------------------------------------------------------------|
-| `feature:disable` | Disable feature flags                                                                                                  |
+| `feature:disable` | Disables feature flags                                                                                                 |
 | `feature:dump`    | \[administration:dump:features\] Creates a JSON file with feature config for JS testing and hot reloading capabilities |
-| `feature:enable`  | Enable feature flags                                                                                                   |
-| `feature:list`    | List all registered features                                                                                           |
+| `feature:enable`  | Enables feature flags                                                                                                  |
+| `feature:list`    | Lists all registered features                                                                                          |
 
 ### Framework
 
@@ -204,16 +204,16 @@ $ bin/console [command] [parameters]
 
 ### Integration
 
-| Command              | Description                                       |
-|:---------------------|:--------------------------------------------------|
-| `integration:create` | Create an integration and dump the key and secret |
+| Command              | Description                                        |
+|:---------------------|:---------------------------------------------------|
+| `integration:create` | Creates an integration and dump the key and secret |
 
 ### Lint
 
 | Command             | Description                                                           |
 |:--------------------|:----------------------------------------------------------------------|
 | `lint:container`    | Ensures that arguments injected into services match type declarations |
-| `lint:translations` | Lint translations files syntax and outputs encountered errors         |
+| `lint:translations` | Lints translations files syntax and outputs encountered errors        |
 | `lint:twig`         | Lints a Twig template and outputs encountered errors                  |
 | `lint:xliff`        | Lints a XLIFF file and outputs encountered errors                     |
 | `lint:yaml`         | Lints a YAML file and outputs encountered errors                      |
@@ -228,21 +228,21 @@ $ bin/console [command] [parameters]
 
 Generating the skeletons and essential files needed to create and structure a Shopware plugin.
 
- | Command                             | Description                                    |
- |:------------------------------------|:-----------------------------------------------|
- | `make:plugin:admin-module`          | Generate an administration module skeleton     |
- | `make:plugin:command`               | Generate a plugin CLI command skeleton         |
- | `make:plugin:composer`              | Generate a composer configuration for a plugin |
- | `make:plugin:config`                | Generate a plugin system config skeleton       |
- | `make:plugin:custom-fieldset`       | Generate a custom field set for a plugin       |
- | `make:plugin:entity`                | Generate entity scaffolding for a plugin       |
- | `make:plugin:event-subscriber`      | Generate an event subscriber skeleton          |
- | `make:plugin:javascript-plugin`     | Generate a JavaScript plugin skeleton          |
- | `make:plugin:plugin-class`          | Generate the base plugin class                 |
- | `make:plugin:scheduled-task`        | Generate a scheduled task skeleton             |
- | `make:plugin:store-api-route`       | Generate a Store API route skeleton            |
- | `make:plugin:storefront-controller` | Generate a Storefront controller skeleton      |
- | `make:plugin:tests`                 | Generate a plugin tests skeleton               |
+ | Command                             | Description                                     |
+ |:------------------------------------|:------------------------------------------------|
+ | `make:plugin:admin-module`          | Generates an administration module skeleton     |
+ | `make:plugin:command`               | Generates a plugin CLI command skeleton         |
+ | `make:plugin:composer`              | Generates a composer configuration for a plugin |
+ | `make:plugin:config`                | Generates a plugin system config skeleton       |
+ | `make:plugin:custom-fieldset`       | Generates a custom field set for a plugin       |
+ | `make:plugin:entity`                | Generates entity scaffolding for a plugin       |
+ | `make:plugin:event-subscriber`      | Generates an event subscriber skeleton          |
+ | `make:plugin:javascript-plugin`     | Generates a JavaScript plugin skeleton          |
+ | `make:plugin:plugin-class`          | Generates the base plugin class                 |
+ | `make:plugin:scheduled-task`        | Generates a scheduled task skeleton             |
+ | `make:plugin:store-api-route`       | Generates a Store API route skeleton            |
+ | `make:plugin:storefront-controller` | Generates a Storefront controller skeleton      |
+ | `make:plugin:tests`                 | Generates a plugin tests skeleton               |
 
 ### Media
 
@@ -336,21 +336,21 @@ Generating the skeletons and essential files needed to create and structure a Sh
 | `secrets:generate-keys`      | Generates new encryption keys                           |
 | `secrets:list`               | Lists all secrets                                       |
 | `secrets:remove`             | Removes a secret from the vault                         |
-| `secrets:reveal`             | Reveal the value of a secret                            |
+| `secrets:reveal`             | Reveals the value of a secret                           |
 | `secrets:set`                | Sets a secret in the vault                              |
 
 ### Server
 
-| Command       | Description                                                            |
-|:--------------|:-----------------------------------------------------------------------|
-| `server:dump` | Start a dump server that collects and displays dumps in a single place |
-| `server:log`  | Start a log server that displays logs in real time                     |
+| Command       | Description                                                             |
+|:--------------|:------------------------------------------------------------------------|
+| `server:dump` | Starts a dump server that collects and displays dumps in a single place |
+| `server:log`  | Starts a log server that displays logs in real time                     |
 
 ### Services
 
 | Command            | Description           |
 |:-------------------|:----------------------|
-| `services:install` | Install all services  |
+| `services:install` | Installs all services |
 
 ### Sitemap
 
@@ -381,14 +381,14 @@ Generating the skeletons and essential files needed to create and structure a Sh
 
 | Command                      | Description                                                                        |
 |:-----------------------------|:-----------------------------------------------------------------------------------|
-| `system:check`               | Check the shopware application system health                                       |
+| `system:check`               | Checks the shopware application system health                                      |
 | `system:config:get`          | Gets a config value                                                                |
 | `system:config:set`          | Sets a config value                                                                |
 | `system:configure-shop`      | Configures the shop                                                                |
 | `system:generate-app-secret` | Generates a new app secret                                                         |
 | `system:install`             | Installs the Shopware 6 system                                                     |
 | `system:is-installed`        | Checks if the system is installed and returns exit code 0 if Shopware is installed |
-| `system:setup`               | Setup the system                                                                   |
+| `system:setup`               | Starts system setup                                                                |
 | `system:setup:staging`       | Installs the Shopware 6 system in staging mode                                     |
 | `system:update:finish`       | Finishes the update process                                                        |
 | `system:update:prepare`      | Prepares the update process                                                        |
@@ -408,10 +408,10 @@ Generating the skeletons and essential files needed to create and structure a Sh
 
 | Command               | Description                                                                                                                    |
 |:----------------------|:-------------------------------------------------------------------------------------------------------------------------------|
-| `translation:extract` | Extract missing translations keys from code to translation files                                                               |
+| `translation:extract` | Extracts missing translations keys from code to translation files                                                              |
 | `translation:install` | Downloads and installs translations from the translations GitHub repository for the specified locales or all available locales |
-| `translation:pull`    | Pull translations from a given provider.                                                                                       |
-| `translation:push`    | Push translations to a given provider.                                                                                         |
+| `translation:pull`    | Pulls translations from a given provider.                                                                                      |
+| `translation:push`    | Pushes translations to a given provider.                                                                                       |
 
 ### User
 
@@ -419,4 +419,4 @@ Generating the skeletons and essential files needed to create and structure a Sh
 |:-----------------------|:-------------------------------|
 | `user:change-password` | Changes the password of a user |
 | `user:create`          | Creates a new user             |
-| `user:list`            | List current users             |
+| `user:list`            | Lists current users            |
