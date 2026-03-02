@@ -76,7 +76,7 @@ All those methods can be used in the same way. First, you pass the entity name t
 ### Search criteria
 
 The search criteria define how the search is performed and what data is included.
-The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../integrations-api/general-concepts/search-criteria).
+The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../../integrations-api/general-concepts/search-criteria).
 
 So please refer to that documentation to get an overview of what features can be used inside a criteria object.
 
