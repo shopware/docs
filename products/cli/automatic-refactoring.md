@@ -69,49 +69,6 @@ The CLI runs Rector and ESLint automatically. After completion, review all chang
 
 Make sure the `shopware/core` requirement in your `composer.json` file reflects the version you're targeting. Shopware CLI determines which upgrade rules to apply based on that version constraint.
 
-## Experimental Twig upgrade using Large Language Models (LLMs)
-
-Shopware CLI also includes an experimental AI-powered Twig upgrade tool. It can help migrate Twig templates between Shopware versions by using Large Language Models (LLMs) to propose code adjustments.
-
-Because it's experimental, only run this feature on version-controlled (in Git or similar) code. It may generate changes that need manual review.
-
-Run the upgrade:
-
-<Tabs>
-
-<Tab title="With Docker (recommended)">
-
-```shell
-docker run --rm -v $(pwd):/ext ghcr.io/shopware/shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro
-```
-
-</Tab>
-
-<Tab title="Without Docker">
-
-```shell
-shopware-cli extension ai twig-upgrade /ext 6.6.0.0 6.7.0.0-rc1 --provider gemini --model gemini-2.5-pro
-```
-
-</Tab>
-
-</Tabs>
-
-### Supported providers
-
-The Twig upgrade tool currently supports multiple providers:
-
-| Provider     | Description                                            | Required environment variable |
-|--------------|--------------------------------------------------------|-------------------------------|
-| `gemini`     | [Google Gemini](https://ai.google.dev/) LLM            | `GEMINI_API_KEY`              |
-| `openrouter` | [OpenRouter API](https://openrouter.ai/)               | `OPENROUTER_API_KEY`          |
-| `ollama`     | Local [Ollama](https://ollama.com/) instance           | `OLLAMA_HOST` (optional)      |
-
-Recommendations:
-
-- For the most accurate Twig upgrades, use Google Gemini 2.5 Pro (`--provider gemini --model gemini-2.5-pro`).
-- If you prefer a fully local setup, use Ollama, but ensure you have pulled a compatible model (e.g., `ollama pull llama3`).
-
 ## After running refactoring
 
 Use Git or your diff tool to review the changes.
