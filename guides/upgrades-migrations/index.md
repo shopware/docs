@@ -22,17 +22,7 @@ Upgrades typically fall into one of these categories:
 Administration framework upgrades (Vue, Pinia, Vite, Meteor) may introduce breaking changes requiring major version updates for affected plugins.
 :::
 
-## Upgrade strategy for extension developers
-
-To reduce long-term upgrade cost:
-
-* Avoid internal APIs and undocumented features
-* Keep dependencies aligned with Shopware core
-* Maintain automated test coverage
-* Keep database migrations idempotent
-* Track deprecations continuously—do not batch them
-
-## Typical upgrade workflow
+## Typical Shopware upgrade workflow
 
 When targeting a new Shopware version:
 
@@ -44,13 +34,21 @@ When targeting a new Shopware version:
 6. Test critical flows
 7. Update extension versions if required
 
-## Extension responsibilities
-
 ### Custom projects
 
 * Follow the ([Performing updates guide](../hosting/installation-updates/performing-updates.md)) to stage, test, and execute upgrades in order.
 * Review [RELEASE_INFO](https://github.com/shopware/shopware/blob/trunk/RELEASE_INFO-6.7.md) and UPGRADE files ([example](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md)) per release.
 * Use feature toggles to decouple risky changes from the deployment.
+
+## Upgrade strategy for extension developers
+
+To reduce long-term upgrade cost:
+
+* Avoid internal APIs and undocumented features
+* Keep dependencies aligned with Shopware core
+* Maintain automated test coverage
+* Keep database migrations idempotent
+* Track deprecations continuously—do not batch them
 
 ### Custom plugins
 
