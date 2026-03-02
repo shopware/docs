@@ -1,15 +1,15 @@
 ---
 nav:
   title: Upgrading to Meteor Components
-  position: 260
+  position: 11
 ---
 
 # Future Development Roadmap: Upgrading to Meteor Components
 
-> **Note:** The information provided in this article, including timelines and specific implementations, is subject to change.
-> This document serves as a general guideline for our development direction.
-
-## Introduction
+:::info
+The information provided in this article, including timelines and specific implementations, is subject to change.
+This document serves as a general guideline for our development direction.
+:::
 
 With the release of Shopware 6.7, we will replace several current administration components with components from the [Meteor Component Library](https://meteor-component-library.vercel.app/).
 

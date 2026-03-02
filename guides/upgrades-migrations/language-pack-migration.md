@@ -13,7 +13,7 @@ Starting with Shopware **6.7.3.0**, translations are managed directly in Shopwar
 
 - **From Shopware 6.7.3.0 onward**
 
-  - Translations can be installed via Shopware itself, the [Language Pack plugin][language-pack-plugin] is not required to fetch the
+  - Translations can be installed via Shopware itself. The [Language Pack plugin][language-pack-plugin] is not required to fetch the
     newest [Shopware translations][shopware-translations].
   - A new CLI command is available:
 
@@ -22,7 +22,7 @@ Starting with Shopware **6.7.3.0**, translations are managed directly in Shopwar
 ```
 
 - The [Language Pack plugin][language-pack-plugin] still works but is not recommended.
-- Languages now have an active flag which can be toggled in the Administration under `Settings → Languages`
+- Languages now have an active flag which can be toggled in the Administration under `Settings → Languages`.
 - Languages installed/managed from other sources do not need to register their locales in the admin anymore.
 - **Other translation plugins or snippets in themes are not affected and can still be used alongside the integrated handling.**
 
@@ -39,7 +39,7 @@ Starting with Shopware **6.7.3.0**, translations are managed directly in Shopwar
 - Nothing changes.
 - To install additional languages, use the CLI command:
 
-```bash
+```bash  
   bin/console translation:install --locales <locale-code>
 ```
 
@@ -47,7 +47,7 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ### 2. You are **currently using the Language Pack plugin**
 
-1. Run the translation command and install every language you are using in your shop
+1. Run the translation command and install every language you are using in your shop:
 
     ```bash
       bin/console translation:install --locales <locale-code>,<locale-code>

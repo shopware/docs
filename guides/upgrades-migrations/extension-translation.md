@@ -23,10 +23,10 @@ The snippet loading system now follows this resolution order:
 
 When a translation key is requested, Shopware will:
 
-- First check the specific country variant (e.g., `es-AR`)
-- If not found, check the base language (e.g., `es`)
-- If not found, the legacy fallback will be checked (`en-GB`)
-- Finally, fall back to `en` if still not found
+* First check the specific country variant (e.g., `es-AR`)
+* If not found, check the base language (e.g., `es`)
+* If not found, the legacy fallback will be checked (`en-GB`)
+* Finally, fall back to `en` if still not found
 
 **Result**: ~90% reduction in duplicate translations while maintaining full functionality.
 

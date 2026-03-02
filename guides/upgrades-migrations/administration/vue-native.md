@@ -1,13 +1,15 @@
 ---
 nav:
   title: Native Vue
-  position: 260
+  position: 15
 ---
 
 # Future Development Roadmap: Moving Towards Vue Native
 
-> **Note:** The information provided in this article, including timelines and specific implementations, is subject to change.
-> This document serves as a general guideline for our development direction.
+:::info
+The information provided in this article, including timelines and specific implementations, is subject to change.
+This document serves as a general guideline for our development direction.
+:::
 
 ## Introduction
 

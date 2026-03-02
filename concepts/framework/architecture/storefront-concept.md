@@ -1,7 +1,7 @@
 ---
 nav:
   title: Storefront
-  position: 10
+  position: 15
 
 ---
 
@@ -32,11 +32,21 @@ The main concerns that the Storefront component has are listed below. Furthermor
 
 Contrary to API calls that result in single resource data, a whole page in the Storefront displays multiple different data sets on a single page. Think of partials, which lead to a single page being displayed. Imagine a page that displays the order overview in the customer account environment. There are partials that are generic and will be displayed on almost every Page. These partials include - for example, Header and Footer information wrapped into a `GenericPage` as `Pagelets` \(`HeaderPagelet`, `FooterPagelet`\). This very generic Page will later be enriched with the specific information you want to display through a separate loader \(e.g. a list of orders\).
 
-To achieve getting information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront makes use of the [Store API](../../api/store-api) routes to enrich the Page with additional information, e.g., a list of orders, which is being fetched through the order route. Once all needed information is added to the Page, the corresponding page loader returns the Page to a Storefront controller.
+To obtain information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront makes use of the [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) routes to enrich the Page with additional information, e.g., a list of orders, which is being fetched through the order route.
+
+![Data and logic flow in Shopware 6 \(top to bottom and vice versa\)](../../../assets/concepts-api-storeApiLogic.svg)
+
+Once all needed information is added to the Page, the corresponding page loader returns the Page to a Storefront controller.
+
+### Store API and the traditional Twig storefront
+
+In the traditional server-side rendered Twig storefront, the Store API is not called directly by the browser. Instead, custom storefront controllers internally use the Store API to fetch data from the Core.
+
+The Store API is stateless and expects authentication information via request headers (for example the `sw-context-token`). In contrast, the traditional storefront relies on session-based authentication, so authentication does not need to be handled manually on every request.
 
 Contrary to the Core, which can almost completely omit templating in favor of JSON responses, the Storefront contains a rich set of Twig templates to display a fully functional shop. Another concern of the Storefront is to provide templating with Twig. The page object, which was enriched beforehand, will later be passed to a specific Twig page template throughout a controller. A more detailed look into an example can be found in [Composite data handling](storefront-concept#composite-data-handling).
 
-Last but not least, the Storefront not only contains static templates but also includes a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins](storefront-concept).
+Last but not least, the Storefront not only contains static templates but also includes a theming engine to modify the rendered templates or change the default layout programmatically with your own [Themes](../../../guides/plugins/themes/) or [Plugins](../../../guides/plugins/plugins/).
 
 ## Structure
 

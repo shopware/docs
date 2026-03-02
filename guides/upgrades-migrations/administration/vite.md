@@ -1,15 +1,15 @@
 ---
 nav:
   title: Changing from Webpack to Vite
-  position: 260
+  position: 13
 ---
 
 # Future Development Roadmap: Changing from Webpack to Vite
 
-> **Note:** The information provided in this article, including timelines and specific implementations, is subject to change.
-> This document serves as a general guideline for our development direction.
-
-## Introduction
+:::info
+The information provided in this article, including timelines and specific implementations, is subject to change.
+This document serves as a general guideline for our development direction.
+:::
 
 We are planning substantial changes to the way we build our Vue.js application.
 The current Webpack build system has been in place for quite some time now, but like everything in tech, it becomes outdated sooner than later. Additionally to Webpack being slow and outdated, we identified a security risk for the future of our application. Many Webpack maintainers have moved on to other projects. Therefore, the Webpack project no longer receives significant updates. The same applies to the Webpack loaders we currently use.
