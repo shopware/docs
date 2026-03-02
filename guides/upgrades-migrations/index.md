@@ -50,7 +50,7 @@ When targeting a new Shopware version:
 
 * Follow the ([Performing updates guide](../hosting/installation-updates/performing-updates.md)) to stage, test, and execute upgrades in order.
 * Review [RELEASE_INFO](https://github.com/shopware/shopware/blob/trunk/RELEASE_INFO-6.7.md) and UPGRADE files ([example](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md)) per release.
-* Use feature toggles or maintenance mode to decouple risky changes from the deployment.
+* Use feature toggles to decouple risky changes from the deployment.
 
 ### Custom plugins
 
