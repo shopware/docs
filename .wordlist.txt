@@ -834,6 +834,7 @@ SDKs
 SEO
 SEOs
 SFC
+SFCs
 SFTP
 SHA
 SKEs
@@ -1041,6 +1042,7 @@ VersionDataPayloadField
 VersionField
 VirtualHosts
 Vite
+Vite's
 VitePress
 Vitepress
 Vitest
@@ -1812,7 +1814,6 @@ setProductFixtureVisibility
 setSalesChannelDomain
 setToInitialState
 settingsItem
-SFCs
 sha
 shakable
 shallowMount
@@ -1971,7 +1972,6 @@ viewport
 viewportHeight
 viewports
 vimeo
-Vite's
 vscode
 vue
 vuex
