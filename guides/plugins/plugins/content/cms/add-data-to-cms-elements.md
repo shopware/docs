@@ -60,23 +60,22 @@ In the previous [example](add-cms-element) we added a CMS element with the name 
 As you can see the `getType` method of our custom resolver reflects that name by returning the `dailymotion` string.
 This resolver is called every time for an element of the type `dailymotion`.
 
-To register our custom resolver to the service container, we have to register it in the `services.xml` file in our plugin.
+To register our custom resolver to the service container, we have to register it in the `services.php` file in our plugin.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\DataResolver\DailyMotionCmsElementResolver;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\DataResolver\DailyMotionCmsElementResolver">
-            <tag name="shopware.cms.data_resolver" />
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(DailyMotionCmsElementResolver::class)
+        ->tag('shopware.cms.data_resolver');
+};
 ```
 
 :::

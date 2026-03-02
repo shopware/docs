@@ -94,22 +94,27 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider"
-                 decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
-            <argument type="service" id="Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider.inner" />
-        </service>
-    </services>
-</container>
+use Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider;
+use Swag\BasicExample\Core\Content\Sitemap\Provider\DecoratedProductUrlProvider;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(DecoratedProductUrlProvider::class)
+        ->decorate(ProductUrlProvider::class)
+        ->args([
+            service('.inner'),
+        ]);
+};
 ```
 
 </Tab>
@@ -169,21 +174,21 @@ class ProductSitemapQuerySubscriber implements EventSubscriberInterface
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Sitemap\ProductSitemapQuerySubscriber">
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Content\Sitemap\ProductSitemapQuerySubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ProductSitemapQuerySubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 </Tab>

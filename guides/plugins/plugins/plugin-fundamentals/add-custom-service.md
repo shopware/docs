@@ -18,21 +18,19 @@ Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Adding service
 
-For adding a custom service, you need to provide a `services.xml` file in your plugin.
-Place a file with name `services.xml` into a directory called `src/Resources/config/`.
+For adding a custom service, you need to provide a `services.php` file in your plugin.
+Place a file with name `services.php` into a directory called `src/Resources/config/`.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+};
 ```
 
 :::
@@ -41,24 +39,26 @@ Now you have two possibilities to add a service to your plugin.
 
 ### Using autowire and autoconfigure
 
-Set `autowire` and `autoconfigure` to `true` in your `services.xml` file.
+Set `autowire` and `autoconfigure` to `true` in your `services.php` file.
 Symfony will then automatically register your service.
 Read more about it in the [Symfony docs](https://symfony.com/doc/current/service_container.html#creating-configuring-services-in-the-container).
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <defaults autowire="true" autoconfigure="true"/>
-        <prototype namespace="Swag\BasicExample\" resource="../../" exclude="../../{Resources,Migration,*.php}"/>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services()
+        ->defaults()
+            ->autowire()
+            ->autoconfigure();
+
+    $services->load('Swag\\BasicExample\\', '../../')
+        ->exclude('../../{Resources,Migration,*.php}');
+};
 ```
 
 :::
@@ -73,17 +73,17 @@ Use this option if you want to have more control over your service.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Service\ExampleService;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService"/>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleService::class);
+};
 ```
 
 :::
@@ -115,10 +115,10 @@ By default, all services in Shopware 6 are marked as _private_.
 Read more about [private and public services](https://symfony.com/doc/current/service_container.html#public-versus-private-services).
 :::
 
-## Alternatives to XML
+## Alternatives to PHP configuration
 
-Symfony offers two other file formats to define your services: YAML and PHP.
-In Shopware, it is also possible to use one of these.
+Symfony supports two other file formats to define your services: YAML and XML.
+However, starting with Symfony 7.4, XML service configuration has been deprecated, and it will no longer be supported in Symfony 8.0.
 Choose the one that suits you best.
 
 ## Next steps

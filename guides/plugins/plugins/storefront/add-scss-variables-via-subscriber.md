@@ -71,21 +71,20 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 </Tab>
 
-<Tab title="<plugin root>/src/Resources/config/services.xml">
+<Tab title="<plugin root>/src/Resources/config/services.php">
 
-```xml
-<?xml version="1.0" ?>
+```php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Subscriber\ThemeVariableSubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ThemeVariableSubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 </Tab>
@@ -188,23 +187,25 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 </Tab>
 
-<Tab title="<plugin root>/src/Resources/config/services.xml">
+<Tab title="<plugin root>/src/Resources/config/services.php">
 
-```xml
-<?xml version="1.0" ?>
+```php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Swag\BasicExample\Subscriber\ThemeVariableSubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ThemeVariableSubscriber">
-            <!-- add argument `SystemConfigService` -->
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ThemeVariableSubscriber::class)
+        // add argument SystemConfigService
+        ->args([service(SystemConfigService::class)])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 </Tab>

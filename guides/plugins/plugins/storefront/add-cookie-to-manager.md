@@ -29,22 +29,21 @@ It is recommended to use an event listener if you're listening to a single event
 
 ### Registering your event listener
 
-Start with creating the `services.xml` and registering your event listener.
+Start with creating the `services.php` and registering your event listener.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use PluginName\Listener\CookieListener;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="PluginName\Listener\CookieListener">
-            <tag name="kernel.event_listener" event="Shopware\Core\Content\Cookie\Event\CookieGroupCollectEvent"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CookieListener::class)
+        ->tag('kernel.event_listener', ['event' => 'Shopware\Core\Content\Cookie\Event\CookieGroupCollectEvent']);
+};
 ```
 
 In the next step we'll create the actual listener class.

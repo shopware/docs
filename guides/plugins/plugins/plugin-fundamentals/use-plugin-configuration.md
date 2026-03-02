@@ -68,21 +68,23 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Swag\BasicExample\Subscriber\MySubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MySubscriber">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MySubscriber::class)
+        ->args([service(SystemConfigService::class)])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:

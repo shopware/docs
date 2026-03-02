@@ -55,20 +55,24 @@ In order to delete it, we once again need its repository. The name for the entit
 
 So let's inject this repository into our class called `ReplacingData`:
 
-```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// SwagBasicExample/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\ReplacingData" >
-            <argument type="service" id="product.repository"/>
-            <argument type="service" id="product_category.repository"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Service\ReplacingData;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ReplacingData::class)
+        ->args([
+            service('product.repository'),
+            service('product_category.repository'),
+        ]);
+};
 ```
 
 Afterwards, you can just use the `delete` method on the repository, just like you did before in the [Writing data](writing-data) guide.

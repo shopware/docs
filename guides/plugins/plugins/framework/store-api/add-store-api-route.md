@@ -95,18 +95,20 @@ The `_entity` in the defaults of the `Route` attribute just marks the entity tha
 
 ### Register route class
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
-            <argument type="service" id="swag_example.repository"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleRoute::class)
+        ->args([service('swag_example.repository')]);
+};
 ```
 
 ### Route response
@@ -336,25 +338,25 @@ Additionally, we also use the `'XmlHttpRequest' => true` config option on the ro
 
 ### Register the Controller
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute" >
-            <argument type="service" id="swag_example.repository"/>
-        </service>
-    
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute;
+use Swag\BasicExample\Storefront\Controller\ExampleController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleRoute::class)
+        ->args([service('swag_example.repository')]);
+
+    $services->set(ExampleController::class)
+        ->args([service(ExampleRoute::class)])
+        ->call('setContainer', [service('service_container')]);
+};
 ```
 
 ### Register Storefront api-route

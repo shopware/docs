@@ -24,8 +24,8 @@ Also available on our free online training ["Shopware 6 Backend Development"](ht
 
 ### Plugin base class
 
-Registering a custom subscriber requires to load a `services.xml` file with your plugin.
-This is done by either placing a file with name `services.xml` into a directory called `src/Resources/config/`.
+Registering a custom subscriber requires to load a `services.php` file with your plugin.
+This is done by either placing a file with name `services.php` into a directory called `src/Resources/config/`.
 
 Basically, that's it already if you're familiar with [Symfony subscribers](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber).
 Don't worry, we got you covered here as well.
@@ -103,28 +103,27 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 
-Unfortunately, your subscriber is not even loaded yet - this will be done in the previously registered `services.xml` file.
+Unfortunately, your subscriber is not even loaded yet - this will be done in the previously registered `services.php` file.
 
-### Registering your subscriber via services.xml
+### Registering your subscriber via services.php
 
 Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
-You're simply registering your \(subscriber\) service by mentioning it in the `services.xml`.
+You're simply registering your \(subscriber\) service by mentioning it in the `services.php`.
 The only difference to a normal service is that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
 
 ```php
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Subscriber\MySubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MySubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MySubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 That's it, your subscriber service is now automatically loaded at runtime, and it should start listening to the mentioned events to be dispatched.

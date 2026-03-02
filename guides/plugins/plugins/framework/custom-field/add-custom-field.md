@@ -67,7 +67,7 @@ Now follows the important part. For this to work, you have to add the Data Abstr
 
 ```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
-use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
+use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;
 
 [...]
 class ExampleDefinition extends EntityDefinition
@@ -130,7 +130,7 @@ Make sure to understand entity translations in general first, which is explained
 
 ```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
-use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;                                                               
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
 
 [...]
 
@@ -158,7 +158,7 @@ In your translated entity definition, you then add the `CustomFields` field inst
 
 ```php
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
-use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;                                                                    
+use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;
 
 [...]
 class ExampleTranslationDefinition extends EntityTranslationDefinition
@@ -216,19 +216,21 @@ So now you've already filled the custom fields of one of your entity instances v
 
 Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository.
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\CustomFieldClass">
-          <argument type="service" id="custom_field_set.repository"/>
-          ...
-        </service>
-    </services>
-</container>
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Swag\BasicExample\CustomFieldClass;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomFieldClass::class)
+        ->args([service('custom_field_set.repository')]);
+};
 ```
 
 If you need to learn how that is done in full, head to our guide regarding [Writing data](../data-handling/writing-data).
@@ -275,7 +277,7 @@ $this->customFieldSetRepository->create([
 This will now create a custom field set with the name `swag_example_set` and the field, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
 
 The translated labels are added to both the field and the set, which are going to be displayed in the Administration. Also, the fallback language can be defined in case the system language is not guaranteed to be either en_GB or de_DE.
-  
+
 If you have several custom fields and want to order them within a specific order, you can do so with the `customFieldPosition` property.
 
 ::: info
