@@ -7,7 +7,9 @@ nav:
 
 # CI
 
-CI should, at minimum, run static analysis and coding standards checks alongside the project or extension build to keep artifacts reproducible. Add sanity checks such as smoke tests and lightweight integration tests to catch regressions early. Automated tests—from unit to integration and E2E, where feasible—make refactors, upgrades, and dependency changes safer.
+CI should, at minimum, run static analysis and coding standards checks alongside the project or extension build to keep artifacts reproducible. Add sanity checks such as smoke tests and lightweight integration tests to catch regressions early. 
+
+Automated tests — unit, integration, and E2E where feasible — make refactors, upgrades, and dependency changes safer.
 
 :::info
 Follow the [Deployment guide](../../hosting/deployments.md) for information about promotion and release.
@@ -31,3 +33,4 @@ Follow the [Deployment guide](../../hosting/deployments.md) for information abou
 * Build and validate with `shopware-cli extension build` ([Extension build command](../../products/cli/extension-commands/build.md)) to ensure the ZIP is reproducible.
 * Run unit/integration tests with the Shopware test environment; keep fixtures inside the plugin to avoid coupling to project data.
 * For Store plugins, add the Shopware Store validations early (linting, metadata, PHPStan) to catch review issues before submission ([Store submission via CLI](../../products/cli/shopware-account-commands/releasing-extension-to-shopware-store.md)).
+
