@@ -49,12 +49,12 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 * Run the translation command and install every language you are using in your shop:
 
- ```bash
-     bin/console translation:install --locales <locale-code>,<locale-code>
- ```
+    ```bash
+        bin/console translation:install --locales <locale-code>,<locale-code>
+    ```
 
 * The command uses the **same source ([translate.shopware.com][shopware-translations])** as the [Language Pack plugin][language-pack-plugin] but is
-   updated more frequently. So it's essentially identical – or even more up to date!
+updated more frequently. So it's essentially identical – or even more up to date!
 * Make sure that all languages you need are **active** in the Administration: `Settings → Languages`
 * Create base snippet sets for used languages
    - If you're on Shopware **6.7.7.0** or later, this is done automatically.
@@ -63,7 +63,7 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
    - If you're on Language Pack **5.37.1** or later, this is done automatically.
    - If you're on Language Pack **5.37.0** or earlier, open each sales channel, scroll down to the domains and change the
      snippet set from `LanguagePack` to `BASE`, e.g.: `LanguagePack en-US` to `BASE en-US`.
-*x It is recommended to uninstall and remove the Language Pack plugin after `translation:install` succeeded for all locales.
+* It is recommended to uninstall and remove the Language Pack plugin after `translation:install` succeeded for all locales.
    Your **custom snippets** created in the snippet module remain intact since they are saved in the database.
 
 ## New installations
