@@ -140,18 +140,17 @@ class ExampleRouteResponse extends StoreApiResponse
 
 ## Register route
 
-The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
-```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/routes.php
+<?php declare(strict_types=1);
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Core/**/*Route.php', 'attribute');
+};
 ```
 
 ## Check route via Symfony debugger
@@ -361,19 +360,18 @@ return static function (ContainerConfigurator $configurator): void {
 
 ### Register Storefront api-route
 
-We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.xml` to also include all Storefront controllers.
+We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.php` to also include all Storefront controllers.
 
-```xml
-// <plugin root>/src/Resources/config/routes.xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/routes.php
+<?php declare(strict_types=1);
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
-    <import resource="../../Storefront/**/*Controller.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Core/**/*Route.php', 'attribute');
+    $routes->import('../../Storefront/**/*Controller.php', 'attribute');
+};
 ```
 
 ### Requesting your route from the Storefront

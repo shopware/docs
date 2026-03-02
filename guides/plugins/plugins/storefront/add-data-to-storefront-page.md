@@ -184,17 +184,17 @@ return static function (ContainerConfigurator $configurator): void {
 };
 ```
 
-The routes.xml according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
+The routes.php according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/routes.php
+<?php declare(strict_types=1);
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Core/**/*Route.php', 'attribute');
+};
 ```
 
 ### ProductCountRouteResponse
