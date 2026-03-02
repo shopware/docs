@@ -27,7 +27,6 @@ Administration framework upgrades (Vue, Pinia, Vite, Meteor) may introduce break
 To reduce long-term upgrade cost:
 
 * Avoid internal APIs and undocumented features
-* Avoid unstable Admin patterns (`this.$parent`, prop mutation, Vue internals)
 * Keep dependencies aligned with Shopware core
 * Maintain automated test coverage
 * Keep database migrations idempotent
