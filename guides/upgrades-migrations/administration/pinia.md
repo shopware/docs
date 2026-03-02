@@ -10,11 +10,11 @@ With the release of Shopware 6.7, we will replace Vuex with [Pinia](https://pini
 
 ## Why Pinia?
 
-Migrating to Pinia simplifies state management with an intuitive API, no need for mutations, better TypeScript support, and seamless integration with Vue 3 Composition API. It’s lightweight, modular, and offers modern features like devtools support, making it a more efficient alternative to Vuex.
+Migrating to Pinia simplifies state management with an intuitive API, eliminates the need for mutations, provides better TypeScript support, and enables seamless integration with Vue 3 Composition API. It’s lightweight, modular, and offers modern features like devtools support, making it a more efficient alternative to Vuex.
 
 ## Migration Guide
 
-To migrate a Vuex store to Pinia, you need to make some changes to the store definition and how you access it in components.
+To migrate a Vuex store to Pinia, you need to update the store definition and how you access it in components.
 
 - First, register it with `Shopware.Store.register` and define the store with `state`, `getters`, and `actions` properties:
 
@@ -26,17 +26,17 @@ export default {
 
     state: {
       // Initial state
-      ...
-    },
+ ...
+ },
     mutations: {
-      ...
-    },
+ ...
+ },
     getters: {
-       ...
-    },
+ ...
+ },
     actions: {
-       ...
-    },
+ ...
+ },
 }
 ```
 
@@ -46,14 +46,14 @@ export default {
 const store = Shopware.Store.register('<storeName>', {
     state: () => ({
         // Initial state
-        ...
-    }),
+ ...
+ }),
     getters: {
-       ...
-    },
+ ...
+ },
     actions: {
-       ...
-    },
+ ...
+ },
 });
 export default store;
 ```
@@ -65,13 +65,13 @@ const store = Shopware.Store.register({
     id: '<storeName>',
     state: () => ({
         // Initial state
-    }),
+ }),
     getters: {
        // ...
-    },
+ },
     actions: {
        // ...
-    },
+ },
 });
 ```
 
@@ -101,7 +101,7 @@ import './state/products.state';
 
 #### State
 
-In Pinia, `state` must be a function returning the initial state instead of a static object.
+In Pinia, `state` must be a function that returns the initial state rather than a static object.
 
  ```javascript
  state: () => ({
@@ -111,13 +111,13 @@ In Pinia, `state` must be a function returning the initial state instead of a st
 
 #### Mutations
 
-Vuex `mutations` are no longer needed in Pinia, since you can modify state directly in actions or compute it dynamically.
+Vuex `mutations` are no longer needed in Pinia, since you can modify the state directly in actions or compute it dynamically.
 
 ```javascript
 actions: {
     updateProductName(newName) {
         this.productName = newName; // Directly update state
-    },
+ },
 },
 ```
 
@@ -133,7 +133,7 @@ We recommend migrating JavaScript stores to TypeScript for stricter typing, bett
 ```typescript
 const store = Shopware.Store.register({
   id: 'myStore',
-  ...
+ ...
 });
 
 export type StoreType = ReturnType<typeof store>;
@@ -147,13 +147,13 @@ import type { StoreType } from './store/myStore';
 declare global {
     interface PiniaRootState {
         myStore: StoreType;
-    }
+ }
 }
 ```
 
 ### Composables as a Store
 
-With Pinia, you can use reactive properties inside a store and define it like a composable. Keep in mind that only variables and functions returned from the store will be tracked by Pinia in devtools.
+With Pinia, you can use reactive properties in a store and define them as composable. Keep in mind that Pinia will track only variables and functions returned from the store in devtools.
 
 ```typescript
 const store = Shopware.Store.register('<storeName>', function() {
@@ -163,11 +163,11 @@ const store = Shopware.Store.register('<storeName>', function() {
 
   function increment() {
     count.value++;
-  }
+ }
 
   function decrement() {
     count.value--;
-  }
+ }
 
   return { count, doubled, increment, decrement };
 });
@@ -184,11 +184,11 @@ export function useMyComposable() {
 
   function increment() {
     count.value++;
-  }
+ }
 
   function decrement() {
     count.value--;
-  }
+ }
 
   return { count, doubled, increment, decrement };
 }
@@ -227,11 +227,11 @@ describe('my store', () => {
 
   beforeEach(() => {
     store.$reset();
-  });
+ });
 
   it('has initial state', () => {
     expect(store.count).toBe(0);
-  });
+ });
 });
 ```
 
@@ -245,7 +245,7 @@ const pinia = createPinia();
 describe('my component', () => {
   beforeEach(() => {
     setActivePinia(pinia);
-  });
+ });
 
   it('is a component', async () => {
     const wrapper = mount(await wrapTestComponent('myComponent', { sync: true }), {
@@ -253,11 +253,11 @@ describe('my component', () => {
         plugins: [pinia],
         stubs: {
           // ...
-        },
-      },
-    });
+ },
+ },
+ });
 
     expect(wrapper.exists()).toBe(true);
-  });
+ });
 });
 ```

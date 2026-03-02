@@ -7,7 +7,7 @@ nav:
 
 # Version Upgrades and Migrations
 
-This section covers version-based upgrades and required migration effort for Shopware core and extensions. When upgrading to a new minor or major Shopware version, review it to understand breaking changes, required adjustments, and compatibility requirements.
+This section covers version-based upgrades and the required migration effort for Shopware core and extensions. When upgrading to a new minor or major Shopware version, review it to understand breaking changes, required adjustments, and compatibility requirements.
 
 ## Scope of this section
 

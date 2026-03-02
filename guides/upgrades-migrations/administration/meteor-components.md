@@ -63,7 +63,7 @@ To support extension developers and ensure compatibility between Shopware 6.6 an
 - **Default Value**: `false` (uses the new Meteor Components by default)
 - **Purpose**:
   - When `deprecated` is set to `true`, the component will render the old (deprecated) version instead of the new Meteor Component.
-  - This allows extension developers to maintain a single codebase compatible with both Shopware 6.6 and 6.7 without being forced to immediately migrate to Meteor Components.
+  - This allows extension developers to maintain a single codebase compatible with both Shopware 6.6 and 6.7 without being forced to migrate to Meteor Components immediately.
 
 Example:
 
@@ -80,4 +80,6 @@ Example:
 </template>
 ```
 
-> **Important:** Although the old components can still be used with the `deprecated` prop, we highly recommend migrating to Meteor Components whenever possible to align with future Shopware development.
+:::warning
+Although the old components can still be used with the `deprecated` prop, we highly recommend migrating to Meteor Components whenever possible to align with future Shopware development.
+:::

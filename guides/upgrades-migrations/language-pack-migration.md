@@ -49,9 +49,9 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 1. Run the translation command and install every language you are using in your shop:
 
-    ```bash
-      bin/console translation:install --locales <locale-code>,<locale-code>
-    ```
+ ```bash
+     bin/console translation:install --locales <locale-code>,<locale-code>
+ ```
 
 2. The command uses the **same source ([translate.shopware.com][shopware-translations])** as the [Language Pack plugin][language-pack-plugin] but is
    updated more frequently. So it's essentially identical – or even more up to date!
@@ -68,8 +68,8 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ## New installations
 
-- During a fresh Shopware installation, you can select desired languages directly in the installer. They will be
-  downloaded and installed automatically.
+- During a fresh Shopware installation, you can select the desired languages directly in the installer. They will be
+ downloaded and installed automatically.
 - No additional language plugin is required.
 
 ## More information
