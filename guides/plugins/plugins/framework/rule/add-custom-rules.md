@@ -29,7 +29,7 @@ To create a custom rule, we have to implement both backend \(PHP\) code and a us
 
 First of all, we need a new Rule class. In this example, we name it as `FirstMondayOfTheMonthRule`. It will be placed in the directory `<plugin root>/src/Core/Rule`. Our new class has to extend from the abstract class `Shopware\Core\Framework\Rule\Rule`. Below you can find an example implementation.
 
-```php
+```PHP
 // <plugin root>/src/Core/Rule/FirstMondayOfTheMonthRule.php
 <?php declare(strict_types=1);
 
@@ -113,7 +113,7 @@ Please keep in mind: The variables to be used in the rule have to be 'protected'
 Never execute database queries or any other time-consuming operations within the `match()` method of your rule, as it will drastically impact the performance of your store. Stick to the rule scope when evaluating whether your rule matches or not.
 :::
 
-```php
+```PHP
 // Scope usage: Check if the customer is logged in
 $customer = $scope->getSalesChannelContext()->getCustomer();
 $loggedIn = $customer !== null;
@@ -121,7 +121,7 @@ $loggedIn = $customer !== null;
 
 It is possible to add config to our rule. This makes it possible to skip the [Custom rule component](#custom-rule-component) and the [Custom rule Administration template](#custom-rule-administration-template) parts.
 
-```php
+```PHP
     public function getConfig(): RuleConfig
     {
         return (new RuleConfig())->booleanField('isFirstMondayOfTheMonth');
@@ -134,7 +134,7 @@ when [Showing rule in the Administration](#showing-rule-in-the-administration) w
 
 You can access all active rules by using the `getRuleIds` method of the context.
 
-```php
+```PHP
 $context->getRuleIds();
 ```
 

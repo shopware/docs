@@ -17,7 +17,7 @@ In order to add a plugin configuration, you sure need to provide your plugin fir
 
 The plugin in this example already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
@@ -45,7 +45,7 @@ class MySubscriber implements EventSubscriberInterface
 
 For this guide, a very small plugin configuration file is available as well:
 
-```xml
+```XML
 // <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -68,7 +68,7 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -89,7 +89,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
@@ -123,7 +123,7 @@ But what would happen, if there were more plugins providing the same technical n
 
 That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>`. Thus, it would be `SwagBasicExample.config.example` here.
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
@@ -155,21 +155,21 @@ To access your plugin's configuration from JavaScript in the Administration, you
 
 #### Using injection in Vue components
 
-```javascript
+```JAVASCRIPT
 // Example: Reading plugin configuration in Administration Vue component
 export default Shopware.Component.wrapComponentConfig({
     inject: ['systemConfigApiService'],
-    
+
     async created() {
         await this.loadPluginConfig();
     },
-    
+
     methods: {
         async loadPluginConfig() {
             try {
                 const config = await this.systemConfigApiService.getValues('SwagBasicExample.config');
                 const exampleValue = config['SwagBasicExample.config.example'];
-                
+
                 console.log('Plugin configuration value:', exampleValue);
                 return exampleValue;
             } catch (error) {
@@ -182,14 +182,14 @@ export default Shopware.Component.wrapComponentConfig({
 
 #### Using direct service access
 
-```javascript
+```JAVASCRIPT
 // Example: Reading plugin configuration using direct service access
 async function getPluginConfig() {
     try {
         const systemConfigApiService = Shopware.ApiService.getByName('systemConfigApiService');
         const config = await systemConfigApiService.getValues('SwagBasicExample.config');
         const exampleValue = config['SwagBasicExample.config.example'];
-        
+
         console.log('Plugin configuration value:', exampleValue);
         return exampleValue;
     } catch (error) {
@@ -206,7 +206,7 @@ Your plugin needs the `system_config:read` permission to access this API endpoin
 
 In Storefront templates, you can use the `config()` twig function to access plugin configuration values directly without making API calls:
 
-```twig
+```TWIG
 {# Example: Reading plugin configuration in Storefront templates #}
 {% set exampleValue = config('SwagBasicExample.config.example') %}
 
@@ -219,7 +219,7 @@ In Storefront templates, you can use the `config()` twig function to access plug
 
 For Storefront JavaScript plugins, you can pass configuration values from Twig templates to your JavaScript code:
 
-```twig
+```TWIG
 {# In your Storefront template #}
 <script>
     window.pluginConfig = {
@@ -228,7 +228,7 @@ For Storefront JavaScript plugins, you can pass configuration values from Twig t
 </script>
 ```
 
-```javascript
+```JAVASCRIPT
 // In your Storefront JavaScript plugin
 const { PluginBaseClass } = window;
 
@@ -236,7 +236,7 @@ export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // Access the configuration value passed from Twig
         const exampleConfig = window.pluginConfig?.example;
-        
+
         if (exampleConfig) {
             console.log('Plugin configuration:', exampleConfig);
             // Use the configuration value in your plugin logic

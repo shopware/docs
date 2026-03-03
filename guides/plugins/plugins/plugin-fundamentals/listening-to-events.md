@@ -37,7 +37,7 @@ As mentioned above, such a subscriber for Shopware 6 looks exactly the same as i
 
 Therefore, this is how your subscriber could then look like:
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
@@ -73,7 +73,7 @@ Some entities, like orders or products, are versioned.
 This means that some events are dispatched multiple times for different versions, but they belong to the same entity.
 Therefore, you can check the version of the context to make sure you're only reacting to the live version.
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/MySubscriber.php
 <?php declare(strict_types=1);
 
@@ -111,7 +111,7 @@ Registering your subscriber to Shopware 6 is also as simple as it is in Symfony.
 You're simply registering your \(subscriber\) service by mentioning it in the `services.php`.
 The only difference to a normal service is that you need to add the `kernel.event_subscriber` tag to your subscriber for it to be recognized as such.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

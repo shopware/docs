@@ -37,7 +37,7 @@ The `SystemChecker` class makes sure the system is working correctly by running 
 
 All the system checks in Shopware are tagged with `shopware.system_check`, so you can also fetch all the checks using the Symfony service locator. and run them in your custom flow.
 
-```php
+```PHP
 class CustomSystemChecker
 {
    public function __construct(private readonly iterable $checks)
@@ -51,7 +51,7 @@ class CustomSystemChecker
 }
 ```
 
-```php
+```PHP
 $services->set(YourNamepace\CustomSystemChecker::class)
     ->args([tagged_iterator('shopware.system_check')]);
 ```
@@ -60,7 +60,7 @@ $services->set(YourNamepace\CustomSystemChecker::class)
 
 For customized triggers, you can also inject the `Shopware\Core\Framework\SystemCheck\SystemChecker` service into your service and trigger the checks programmatically.
 
-```php
+```PHP
 $results = $systemChecker->check(SystemCheckExecutionContext::WEB);
 # or also use any custom logic you might have...
 $customChecker->check();

@@ -11,7 +11,7 @@ Shopware CLI commands are based on [Symfony Console](https://symfony.com/doc/cur
 
 To add a custom command in a Shopware plugin, you must register it as a service in your plugin's `src/Resources/config/services.php` and tag it with `console.command`:
 
-```php
+```PHP
 $services->set(Swag\BasicExample\Command\ExampleCommand::class)
     ->tag('console.command');
 ```

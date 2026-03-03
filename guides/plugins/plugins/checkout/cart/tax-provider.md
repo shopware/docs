@@ -23,7 +23,7 @@ Firstly you need to create a class which handles the tax calculation or calls yo
 
 You may then call a tax provider, which will calculate the taxes for you. For example, we simply apply a hefty 50% tax rate for all line-items in the cart.
 
-```php
+```PHP
 // <plugin root>/src/Checkout/Cart/Tax/TaxProvider.php
 <?php declare(strict_types=1);
 
@@ -85,7 +85,7 @@ class TaxProvider extends AbstractTaxProvider
 
 After you have created your tax provider, you need to register it in the DI container. To do so, you need to create a new service in the `services.php` file and tag the service as `shopware.tax.provider`.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -108,7 +108,7 @@ To let Shopware know of your new tax provider, you will have to persist it to th
 
 You may want to have a look at the [migration guide](../../plugin-fundamentals/database-migrations) to learn more about migrations.
 
-```php
+```PHP
 // <plugin root>/src/Migration/MigrationTaxProvider.php
 <?php declare(strict_types=1);
 
@@ -161,7 +161,7 @@ A good place for persisting your tax provider to the database would be the `inst
 
 If you do not know of plugin lifecycle methods yet, please refer to our [plugin lifecycle guide](../../plugin-fundamentals/plugin-lifecycle).
 
-```php
+```PHP
 // <plugin root>/src/BasicExample.php
 <?php declare(strict_types=1);
 

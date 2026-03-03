@@ -43,7 +43,7 @@ In this example, we're going to extend the [FooterPagelet](https://github.com/sh
 All pages or pagelets throw `Loaded` events and this is the right event to subscribe to if you want to add data to the page or pagelet.
 In our case we want to add data to the `FooterPagelet` so we need to subscribe to the `FooterPageletLoadedEvent`.
 
-```php
+```PHP
 // SwagBasicExample/src/Service/AddDataToPage.php
 <?php declare(strict_types=1);
 
@@ -70,7 +70,7 @@ class AddDataToPage implements EventSubscriberInterface
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
-```php
+```PHP
 // Resources/config/services.php
 $services->set(\Swag\BasicExample\Service\AddDataToPage::class)
     ->tag('kernel.event_subscriber');
@@ -93,7 +93,7 @@ First you should read our guide for [adding store-api routes](../framework/store
 
 Our new Route should look like this:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -113,7 +113,7 @@ abstract class AbstractProductCountRoute
 }
 ```
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -168,7 +168,7 @@ class ProductCountRoute extends AbstractProductCountRoute
 
 ### Register route class
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute;
@@ -186,7 +186,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 The routes.php according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/routes.php
 <?php declare(strict_types=1);
 
@@ -201,7 +201,7 @@ return static function (RoutingConfigurator $routes): void {
 
 The RouteResponse according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -231,7 +231,7 @@ Make sure to also understand the usage of aggregations, since this is what is do
 The only main difference you might notice is, that we're using the `aggregate()` method instead of the `search()` method.
 This will not actually search for any products and return the whole products dataset, but rather just the aggregated data, nothing else.
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Service;
@@ -274,7 +274,7 @@ This data will then be available via the name `product_count`, but we'll get to 
 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute;

@@ -31,7 +31,7 @@ This is of course done via a [subscriber](../../plugin-fundamentals/listening-to
 
 Have a look at the following code example:
 
-```php
+```PHP
 // <plugin root>/src/Service/Subscriber.php
 <?php declare(strict_types=1);
 
@@ -83,7 +83,7 @@ Have a look at the following example:
 <Tabs>
 <Tab title="CustomImageTypeDetector.php">
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Media/TypeDetector/CustomImageTypeDetector.php
 <?php declare(strict_types=1);
 
@@ -122,7 +122,7 @@ class CustomImageTypeDetector implements TypeDetectorInterface
 
 <Tab title="services.php">
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

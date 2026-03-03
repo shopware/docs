@@ -25,7 +25,7 @@ A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a 
 
 Here's an example `services.php` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -58,7 +58,7 @@ As you might have noticed, the `services.php` file tries to find both the task i
 
 Here's the an example `ScheduledTask`:
 
-```php
+```PHP
 // <plugin root>/src/Service/ScheduledTask/ExampleTask.php
 <?php declare(strict_types=1);
 
@@ -89,7 +89,7 @@ And that's it for the `ExampleTask` class.
 
 Following will be the respective task handler:
 
-```php
+```PHP
 // <plugin root>/src/Service/ScheduledTask/ExampleTaskHandler.php
 <?php declare(strict_types=1);
 

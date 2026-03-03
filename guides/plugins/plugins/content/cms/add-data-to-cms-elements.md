@@ -23,7 +23,7 @@ so head over to the official guide about [Adding a custom CMS element](add-cms-e
 To manipulate the data of these elements during the loading of the configuration,
 we create a `DailyMotionCmsElementResolver` resolver in our plugin.
 
-```php
+```PHP
 // <plugin root>/src/DataResolver/DailyMotionCmsElementResolver.php
 <?php declare(strict_types=1);
 

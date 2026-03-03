@@ -36,7 +36,7 @@ You can use this event to capture state, perform actions, and sync data after an
 
 Below is an example subscriber listening to the generic entity write event and logging the ID's of the written entities.
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/EntityWriteSubscriber.php
 <?php declare(strict_types=1);
 
@@ -102,7 +102,7 @@ You can use this event to capture state and perform actions after an entity is r
 
 Below is an example subscriber listening to the generic entity delete event, filtering for CMS page deletions, and then performing a different action based on whether the delete was successful or not.
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/DeleteSubscriber.php
 <?php declare(strict_types=1);
 
@@ -212,7 +212,7 @@ All of stock entities come with their own event class. To keep the example of th
 
 The example below shows you how to use the constants in your event subscriber:
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
@@ -248,7 +248,7 @@ After creating the event subscriber, you have to register it. If you don't know 
 
 Here's our `services.php`:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

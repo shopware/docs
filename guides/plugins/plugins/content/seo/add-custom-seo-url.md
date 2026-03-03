@@ -40,7 +40,7 @@ For this example, the controller from the [Add custom controller guide](../../st
 
 Let's now have a look at our example controller:
 
-```php
+```PHP
 // <plugin root>/src/Storefront/Controller/ExampleController.php
 <?php declare(strict_types=1);
 
@@ -79,7 +79,7 @@ Don't be confused here, we'll just treat the `seo_url` table like a translation 
 
 Let's have a look at an example:
 
-```php
+```PHP
 // <plugin root>/src/Migration/Migration1619094740AddStaticSeoUrl.php
 <?php declare(strict_types=1);
 
@@ -179,7 +179,7 @@ Let's first have a look at such an example class:
 <Tabs>
 <Tab title="ExamplePageSeoUrlRoute.php">
 
-```php
+```PHP
 // <plugin root>/src/Storefront/Framework/Seo/SeoUrlRoute/ExamplePageSeoUrlRoute.php
 <?php declare(strict_types=1);
 
@@ -243,7 +243,7 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
 
 <Tab title="services.php">
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -304,7 +304,7 @@ Once again, let's have a look at an example subscriber here:
 <Tabs>
 <Tab title="DynamicSeoUrlPageSubscriber.php">
 
-```php
+```PHP
 // <plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php
 <?php declare(strict_types=1);
 
@@ -341,7 +341,7 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 
 <Tab title="services.php">
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -381,7 +381,7 @@ The most important values you'll have to set in the migration are:
 
 Now here is the said example migration:
 
-```php
+```PHP
 // <plugin root>/src/Migration/Migration1619514731AddExampleSeoUrlTemplate.php
 <?php declare(strict_types=1);
 
@@ -430,7 +430,7 @@ If your entity is deleted, you want the SEO URL to be updated as well. In detail
 
 This can be achieved by using the DAL event `.deleted` and then executing the `update` method again.
 
-```php
+```PHP
 // <plugin root>/src/Service/DynamicSeoUrlPageSubscriber.php
 <?php declare(strict_types=1);
 
@@ -477,7 +477,7 @@ This method will then use the `SeoUrlPersister` and its method `updateSeoUrls` i
 
 Here's an example of such a class:
 
-```php
+```PHP
 // <plugin root>/src/Service/DynamicSeoUrlsService.php
 <?php declare(strict_types=1);
 
@@ -565,7 +565,7 @@ It will then use the built array and all of the other information like the conte
 
 If your custom dynamic content is deleted, you have to set the column `is_deleted` to `1` of the respective `seo_url` entry. This can be achieved with a new method, in this example we'll call it `deleteSeoEntries`. It will receive an array of IDs to be deleted. Those IDs have to match the value of the column `foreign_key` in the `seo_url` table. Also it needs the current context. It will take care of setting the generated SEO URLs to `deleted`. It will **not** delete an entry from the table `seo_url`.
 
-```php
+```PHP
 public function deleteSeoEntries(array $ids, Context $context): void
 {
     $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, $ids, []);
@@ -578,7 +578,7 @@ This way the respective SEO URLs will be marked as `is_deleted` for the system. 
 
 In the example mentioned above, we're just using a `Context` instance, for whichever language that is. You can be more specific here though, in order to properly define the language ID yourself here and therefore ensuring it is written for the right language.
 
-```php
+```PHP
 $context = new Context(
     $event->getContext()->getSource(),
     $event->getContext()->getRuleIds(),

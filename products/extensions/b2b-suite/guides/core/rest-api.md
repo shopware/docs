@@ -24,7 +24,7 @@ A REST-API Controller is just a plain old PHP-Class, registered to the DIC.
 An action is a public method suffixed with `Action`.
 It always gets called with the request implementation derived from Shopware default `Shopware\B2B\Common\MvcExtension\Request` as a parameter.
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace My\Namespace;
@@ -49,7 +49,7 @@ To register your own routes, you must add a `RouteProvider` to the routing servi
 First, we create the routing provider containing all routing information.
 Routes themselves are defined as simple arrays, just like this:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace My\Namespace\DependencyInjection;
@@ -74,7 +74,7 @@ class MyApiRouteProvider implements RouteProvider
 
 Now the route provider and the controller are registered to the DIC.
 
-```php
+```PHP
 $services->set('my.controller', My\Namespace\MyApiController::class);
 
 $services->set('my.api_route_provider', My\Namespace\DependencyInjection\MyApiRouteProvider::class)
@@ -91,7 +91,7 @@ Refer to this linked documentation to learn more about placeholders and placehol
 
 If you want to use parameters, you have to define an order in which the parameters should be passed to the action:
 
-```php
+```PHP
 [
     'GET', // the HTTP method
     '/my/hello/{name}', // the sub-route will be concatenated to http://my-shop.de/api/b2b/my/hello/world
@@ -103,7 +103,7 @@ If you want to use parameters, you have to define an order in which the paramete
 
 And now, you can use the placeholders value as a parameter:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 public function helloAction(string $name, Request $request)
