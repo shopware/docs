@@ -11,7 +11,7 @@ This section covers automated testing strategies and quality requirements for Sh
 
 ## End-to-End testing
 
-For simulating real user journeys and integration scenarios, Shopware recommends end-to-end (E2E) testing. Playwright is the officially supported tool for automating entire workflows across the application. 
+For simulating real user journeys and integration scenarios, Shopware recommends end-to-end (E2E) testing. Playwright is the officially supported tool for automating entire workflows across the application.
 
 Playwright provides:
 
