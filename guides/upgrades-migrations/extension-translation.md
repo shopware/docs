@@ -23,10 +23,10 @@ The snippet loading system now follows this resolution order:
 
 When a translation key is requested, Shopware will:
 
-- First check the specific country variant (e.g., `es-AR`)
-- If not found, check the base language (e.g., `es`)
-- If not found, the legacy fallback will be checked (`en-GB`)
-- Finally, fall back to `en` if still not found
+* First check the specific country variant (e.g., `es-AR`)
+* If not found, check the base language (e.g., `es`)
+* If not found, the legacy fallback will be checked (`en-GB`)
+* Finally, fall back to `en` if still not found
 
 **Result**: ~90% reduction in duplicate translations while maintaining full functionality.
 
@@ -41,7 +41,7 @@ check the translation files, or use the `--fix` parameter to even automate the m
 
 #### Step 1: Rename your existing files
 
-Rename your existing files from country-specific naming to the language base layer naming.
+Rename your existing files from country-specific naming to language-based layer naming.
 
 ```Generic
 ├── messages.en-GB.base.json ⇒ messages.en.base.json
@@ -65,7 +65,7 @@ Re-create empty files with the former names of the country-specific naming.
 
 Check for duplicate translations across country-specific files and remove them from the country-specific layer.
 
-Here are some example locales that are a dialect to the generic base layer.
+Here are some example locales that are dialects of the generic base layer.
 
 ```Generic
 ├── messages.en-US.base.json (dialect of en-GB with the en base layer)
@@ -88,7 +88,7 @@ country-specific terms being replaced.
 
 ### 1. Maintain Backward Compatibility
 
-Keep existing country-specific files during transition to ensure compatibility with older Shopware versions that don't
+Keep existing country-specific files during the transition to ensure compatibility with older Shopware versions that don't
 support the base layer.
 
 ## Troubleshooting
