@@ -1,15 +1,17 @@
 ---
 nav:
-  title: Creating a Staging Instance
+  title: Creating Staging Instance
   position: 30
 
 ---
 
-# Creating a Staging Instance
+# Staging
 
-This guide covers the complete workflow of creating a staging installation.
+Since Shopware 6.6.1.0, Shopware has an integrated staging mode. This mode prepares the shop to be used in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
 
-## Overview
+## The workflow
+
+The staging mode is designed to modify data only inside the Shopware instance. This means the staging mode does not duplicate the current installation, copy the database, or copy the files. It only changes the data inside the Shopware instance.
 
 Creating a staging environment allows you to test changes, updates, and new features without affecting your live shop. This process involves:
 
@@ -20,7 +22,7 @@ Creating a staging environment allows you to test changes, updates, and new feat
 
 ## Creating the staging instance
 
-### Setting up the separate Shopware installation
+### 1. Setting up the separate Shopware installation
 
 The recommended way to create a staging instance is to deploy from your Git repository to the new environment. This ensures the codebase matches your live environment exactly.
 
@@ -29,12 +31,12 @@ Alternatively, you can copy the files from the live environment to the staging e
 It's highly recommended to use a separate Domain or Subdomain for the staging instance to avoid conflicts with the live environment. After changing the domain, make sure you have updated `APP_URL` in the `.env` file to reflect the new URL.
 
 ::: info
-You should still use your **live domain** in Shopware Account > License Domain to avoid licensing issues.
+You should still use your **live domain** in `Shopware Account > License Domain` to avoid licensing issues.
 :::
 
-### Copying the database
+### 2.Duplicating the database from live environment
 
-To make your staging environment similar to the live environment, duplicate the database.
+To make your staging environment similar to the live environment, duplicate the database. You can use the `mysqldump` command to export the database and import it into the staging environment.
 
 ::: info
 Ensure that the `mysqldump` and `mysql` binaries are from the same major version and vendor. If you use `mysqldump` from MariaDB, use `mysql` from MariaDB. The same applies to MySQL.
@@ -56,7 +58,7 @@ shopware-cli project dump --clean --anonymize --host localhost --username db_use
 
 Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../../products/cli/project-commands/mysql-dump) for details.
 
-## Configuring the staging instance
+### 3.Configuring the staging instance
 
 ::: info
 Do not share resources like MySQL, Redis, or ElasticSearch/OpenSearch between live and staging environments. This can lead to data corruption and performance issues for your live environment.
@@ -68,11 +70,9 @@ After importing the database, modify the `.env` file to use the staging database
 If you don't use the included Staging Mode, make sure to disable email sending in the staging environment to avoid sending test emails to real customers and that you reset the app system by deleting "core.app.shopId" from the `system_config` table to avoid leaks of data between live and staging environments.
 :::
 
-## Setting up staging mode
-
 Staging mode prepares the Shopware instance for safe testing by modifying the database to prevent unintended operations on the live environment.
 
-### Activating staging mode
+### 4.Activating staging mode to prepare the environment for testing
 
 After the database is imported and configured, activate staging mode:
 
@@ -82,22 +82,19 @@ After the database is imported and configured, activate staging mode:
 
 This command modifies the database for staging use. Pass `--no-interaction --force` to avoid interactive questions.
 
-### What the staging mode does
+## Staging mode: ccope and limitations
 
-The staging command makes the following changes to your instance:
-
-- Deletes all apps with active connections to external services and their integrations
-- Resets the instance ID used for app registration
-- Disables email sending
-- Rewrites URLs to the staging domain (if configured)
-- Verifies that ElasticSearch/OpenSearch indices do not exist
-- Displays a banner in the administration and storefront to indicate staging mode
-
-### What the staging mode does not do
-
-- Does not duplicate the current installation
-- Does not copy the database or files
-- Does not modify the live environment
+| Category | Behavior |
+|----------|----------|
+| **What the staging mode does** | Deletes all apps with active connections to external services and their integrations |
+|  | Resets the instance ID used for app registration |
+|  | Disables email sending |
+|  | Rewrites URLs to the staging domain (if configured) |
+|  | Verifies that ElasticSearch/OpenSearch indices do not exist |
+|  | Displays a banner in the administration and storefront to indicate staging mode |
+| **What the staging mode does not do** | Does not duplicate the current installation |
+|  | Does not copy the database or files |
+|  | Does not modify the live environment |
 
 ### Configuring staging mode
 
@@ -176,7 +173,7 @@ shopware:
 
 Uses regular expressions for advanced URL rewriting. In this example, `https://my-live-store.com` becomes `http://my-live-store.local`.
 
-### App handling
+## App handling
 
 The staging command deletes all apps with active external connections to prevent data corruption or leaks in the live environment. Since the staging instance is a copy of the live environment, apps would retain their original connections. After executing the command, reinstall apps to create new instance IDs, making the app installation completely isolated from the live environment.
 
