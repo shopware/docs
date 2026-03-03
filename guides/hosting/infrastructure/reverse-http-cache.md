@@ -37,7 +37,7 @@ It contains the Shopware default VCL (Varnish Configuration Language). The conta
 
 :::warning
 From version v6.6.x onwards, this method is deprecated and will be removed in v6.7.0.
-Utilising Varnish with Redis involves LUA scripts to determine URLs for the BAN request.
+Using Varnish with Redis involves LUA scripts to determine URLs for the BAN request.
 This can cause problems depending on the setup or network.
 Furthermore, Redis clusters are not supported.
 Therefore, it is advisable to opt for the [Varnish with `XKey`](#configure-varnish) integration instead.
@@ -76,17 +76,17 @@ Make sure to create a Symfony configuration to make it configurable again, as sh
 :::
 
 For the most part, using Symfony and Varnish doesn't cause any problem.
-But, when a request passes through a proxy, certain request information is sent using either the *standard Forwarded* header or *X-Forwarded* headers.
+But when a request passes through a proxy, certain request information is sent using either the *standard Forwarded* header or *X-Forwarded* headers.
 For example, instead of reading the `REMOTE_ADDR` header (which will now be the IP address of your reverse proxy), the user's true IP will be stored in a standard Forwarded: for="..." header or an *X-Forwarded-For* header.
 
 If you don't configure Symfony to look for these headers, you will get incorrect information about the client's IP address.
 Whether or not the client connects via HTTPS, the client's port and the hostname are requested.
 
-Go through [Proxies](https://symfony.com/doc/current/deployment/proxies.html) section for more information.
+Go through [the Proxies](https://symfony.com/doc/current/deployment/proxies.html) section for more information.
 
 ### Varnish Docker Image
 
-Shopware offers a Varnish Docker image that is pre-configured to work with Shopware.
+Shopware offers a Varnish Docker image pre-configured to work with Shopware.
 Find the [image](https://github.com/shopware/varnish-shopware) here.
 The image is based on the official Varnish image and contains the Shopware default VCL with few configurations as environment variables.
 
@@ -96,7 +96,7 @@ Varnish `XKey` is a cache key module that allows you to use Varnish with surroga
 It is a module not included in the default Varnish installation.
 It is available for Varnish 6.0 or higher.
 
-Checkout the official Varnish installation guide [here](https://github.com/varnish/varnish-modules#installation).
+Check out the official Varnish installation guide [here](https://github.com/varnish/varnish-modules#installation).
 
 And also needs to be enabled in the `config/packages/shopware.yml` file:
 
@@ -120,7 +120,7 @@ Make sure to replace the `__XXX__` placeholders with your actual values.
 The default configuration Varnish uses hard purges, so when you update a product, the page will be removed from the cache and the next request takes longer because the cache is empty.
 To avoid this, you can use soft purges.
 Soft purge keeps the old page in case and serves it still to the clients and refreshes the cache in the background.
-This way the client gets **always** a cached page and the cache is updated in the background.
+This way the client gets **always** a cached page, and the cache is updated in the background.
 
 To enable soft purge, you need to change the varnish configuration.
 
@@ -177,7 +177,7 @@ shopware:
 This feature has been introduced with Shopware version 6.4.15.0
 :::
 
-By default, the cache will be immediately purged and the next requesting user will get a slow response as the cache has been deleted.
+By default, the cache will be immediately purged, and the next requesting user will get a slow response as the cache has been deleted.
 On soft purge, the user still gets the cached response after the purge, but in the configured time interval, the cache will be refreshed.
 This makes sure that the client gets the fastest response possible.
 
@@ -185,9 +185,9 @@ This makes sure that the client gets the fastest response possible.
 # Be aware that the configuration key changed from `storefront.reverse_proxy` to `shopware.http_cache.reverse_proxy` starting with Shopware 6.6
 shopware:
   http_cache:
-    # Allow to serve the out-dated cache for 300 seconds
+    # Allow to serve the outdated cache for 300 seconds
     stale_while_revalidate: 300
-    # Allow to serve the out-dated cache for an hour if the origin server is offline
+    # Allow to serve the outdated cache for an hour if the origin server is offline
     stale_if_error: 3600
     reverse_proxy:
         enabled: true
@@ -214,9 +214,9 @@ So, when a product is invalidated, the object cache and the HTTP cache will also
 There are a few different cache clearing commands:
 
 1. `bin/console cache:clear` - Clears and warms up the application cache (In versions before 6.7 this command also cleared the HTTP cache)
-2. `bin/console cache:clear:all` - Clears everything, including application cache, cache pools and the HTTP cache (Since version 6.6.8)
+2. `bin/console cache:clear:all` - Clears everything, including application cache, cache pools, HTTP cache, and other kernel cache directories (Since version 6.6.8)
 3. `bin/console cache:clear:http` - Clears the reverse proxy cache if enabled, if not it clears the `http` cache pool (Since version 6.6.10)
-4. `bin/console cache:pool:clear --all` - Clears only the object cache (Useful for when you don't want to clear the http cache, pre version 6.6.10)
+4. `bin/console cache:pool:clear --all` - Clears only the object cache (Useful for when you don't want to clear the http cache, pre-version 6.6.10)
 
 If you only want to clear the http cache, use `bin/console cache:clear:http`
 

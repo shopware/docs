@@ -7,8 +7,17 @@ nav:
 
 # API
 
-The Shopware API allows developers to interact with and integrate Shopware with other systems and applications. It provides a set of services that enable developers to perform various operations, such as managing products, customers, orders, and shopping carts.The API supports both read and write operations, allowing developers to retrieve information from Shopware and make modifications or additions to the e-commerce platform. By leveraging the Shopware API, developers can extend the functionality of Shopware, integrate it with external systems, and create seamless experiences for managing and operating online stores.
+Shopware exposes HTTP-based APIs that allow external systems and custom applications to interact with the platform.
 
-Shopware supports two major functional APIs: the Store API and the Admin API. These APIs serve different purposes. The Store API is designed to interact with the front-end or storefront of a Shopware online store while the Admin API is intended for administrative operations related to managing the back-end of the Shopware platform.
+Two functional APIs are available, each representing a different integration surface:
 
-The API documentation provides details on the available endpoints, request/response formats, authentication mechanisms, and data structures. It supports different authentication methods, including token-based authentication and OAuth 2.0, to ensure secure communication between the API client and the Shopware platform.
+* **Store API**: customer-facing interactions
+* **Admin API**: administrative and system-level operations
+
+Both APIs use HTTP and exchange JSON payloads. The Administration API requires OAuth 2.0 authentication, whereas the Store API is publicly accessible and only requires contextual headers, with authentication needed for customer-specific endpoints. While they serve different purposes within the platform, they share some underlying design principles and structural patterns:
+
+* Search criteria abstraction for filtering, sorting, and pagination
+* Structured JSON request/response bodies
+* Header-based contextual behavior
+
+These patterns form the foundation of integration development.

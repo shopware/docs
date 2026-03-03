@@ -17,11 +17,8 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 
 ## Requirements
 
-* A supported OpenSearch (or Elasticsearch) server
-
-<PageRef page="../../../installation/requirements#recommended-stack-and-supported-versions" />
-
-* [Running message queue workers in the background](../message-queue)
+- [A supported OpenSearch (or Elasticsearch) server](../../../hosting/index.md#recommended-stack-and-supported-versions)
+- [Running message queue workers in the background](../message-queue)
 
 ## Server basics
 
@@ -69,8 +66,8 @@ Data nodes are very resource-intensive, so you definitely want to monitor the re
 
 A shard is a worker unit that holds the data of the index and can be assigned to a node. There are two types of shards:
 
-* **Primary**: A primary shard contains the original data.
-* **Replica**: A replica is a copy of a primary shard.
+- **Primary**: A primary shard contains the original data.
+- **Replica**: A replica is a copy of a primary shard.
 
 The number of replica shards is up to you and the reliability you need in your cluster. The more replica shards you have, the more nodes can fail before the data in the shard becomes unavailable.
 But reliability is not the only usage of a replica shard. Queries like search can be performed on a primary or replica. So if you have replicas of your shards, you can better scale your data and cluster resources.

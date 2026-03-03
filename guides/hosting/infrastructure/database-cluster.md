@@ -8,7 +8,7 @@ nav:
 # Database Cluster
 
 ::: info
-This functionality is available starting with Shopware 6.4.12.0.
+We recommend the usage of [ProxySQL](https://proxysql.com/) as a proxy for the database cluster instead of configuring the application to connect to different database servers directly. ProxySQL allows you to manage the database cluster more efficiently and provides additional features like query caching, connection pooling, load balancing, and failover.
 :::
 
 To scale Shopware even further, we recommend using a database cluster. A database cluster consists of multiple read-only servers managed by a single primary instance.
@@ -49,10 +49,6 @@ For a detailed explanation refer to the cart storage docs:
 <PageRef page="../performance/cart-storage" />
 
 ## Configure the database cluster
-
-::: info
-We recommend the usage of [ProxySQL](https://proxysql.com/) as a proxy for the database cluster instead of configuring the application to connect to different database servers directly. ProxySQL allows you to manage the database cluster more efficiently and provides additional features like query caching, load balancing, and failover.
-:::
 
 To use the MySQL cluster, you have to configure the following in the `.env` file:
 

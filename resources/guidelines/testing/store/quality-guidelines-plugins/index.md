@@ -433,7 +433,7 @@ Link: [Example of a valid composer.json](https://github.com/FriendsOfShopware/Fr
 
 ### Ensure cross-domain messages are sent to the intended domain
 
-Link: ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819)
+When using `postMessage()` or similar cross-window messaging APIs, verify the message origin (e.g. `event.origin`) and restrict target domains to trusted URLs instead of `'*'`. This prevents malicious sites from sending or receiving unauthorized messages.
 
 ### No bootstrapping file found. Expecting bootstrapping in
 

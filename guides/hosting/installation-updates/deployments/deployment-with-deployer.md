@@ -93,7 +93,7 @@ host('SSH-HOSTNAME')
     ])
     ->setRemoteUser('www-data')
     ->set('deploy_path', '/var/www/shopware') // This is the path, where deployer will create its directory structure
-    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with 
+    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
     ->set('writable_mode', 'chmod');
 ```
 
@@ -162,7 +162,7 @@ This task is defined in the `deploy:symlink` default job in the [`deploy.php`](d
 This is the output of `dep deploy env=prod`:
 
 ```text
-$ dep deploy env=prod               
+$ dep deploy env=prod
 
 ✔ Executing task deploy:prepare
 ✔ Executing task deploy:lock
@@ -216,7 +216,7 @@ It will be used in the above-mentioned GitLab CI/CD pipeline or GitHub Actions.
 
 Have a look at the following files. All steps are provided with helpful comments.
 
-The GitHub Action used above is [shopware/github-actions/project-deployer](https://github.com/shopware/github-actions/tree/main/project-deployer), and the GitLab CI component is [shopware/ci-components/project-deployer](https://gitlab.com/shopware/ci-components/project-deployer).
+The GitHub Action used above is [shopware/github-actions/project-deployer](https://github.com/shopware/github-actions/tree/main/project-deployer), and the GitLab CI component is [shopware/ci-components/project-deployer](https://gitlab.com/shopware/ci-components/-/blob/main/templates/project-deployer.yml).
 
 ### .gitlab-ci.yml
 
@@ -277,7 +277,7 @@ host('SSH-HOSTNAME')
     ->set('deploy_path', '/var/www/shopware')
     ->set('http_user', 'www-data') // Not needed, if the `user` is the same, the webserver is running with
     ->set('writable_mode', 'chmod')
-    ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
+    ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed)
 
 // These files are shared among all releases.
 set('shared_files', [

@@ -1,38 +1,28 @@
 ---
 nav:
-  title: Installation
-  position: 10
+  title: Shopware 6 Installation
+  position: 1
 
 ---
 
-# Overview — Shopware 6 Installation
+# Overview of Shopware 6 Installation
 
-Welcome to the Shopware 6 Developer Installation Guide, which will help you set up a local Shopware 6 development environment whether you’re:
-
-- building a custom shop project
-- developing a plugin, app, or theme
-- contributing to the Shopware core
-
-You can choose from three supported setup options, each designed for specific use cases and development workflows. All setups start from the [Shopware Project Template](./template.md).
-
-## Shopware project template
-
-Every setup begins with the Project Template. It creates a new Composer project that includes Shopware as a dependency, allowing you to:
-
-- Extend the project with plugins, apps, or themes
-- Customize configurations and services
-- Align the environment with your development goals
-
-If you have downloaded the [shopware-installer.phar package](https://www.shopware.com/en/download/) instead of using Composer, skip the `composer create-project` step and follow the remaining instructions from the [Project Template](https://developer.shopware.com/docs/guides/installation/template.html) guide.
-
-## Supported setups
-
-| Setup                                        | Description                                                                                                   | Recommended For                                                                           |
-|:---------------------------------------------|:--------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------|
-| [Docker Setup](./setups/docker.md)           | A complete, containerized environment including all required services (database, search engine, cache, etc.). | Most developers — provides production-like conditions, consistent across teams and CI/CD. |
-| [Symfony CLI Setup](./setups/symfony-cli.md) | Runs directly on your host system using local PHP and Composer. Lightweight and fast to start.                | Quick plugin or theme development, or environments where Docker isn’t available.          |
-| [Devenv Setup](./setups/devenv.md)           | A reproducible, Nix-based setup offering deterministic builds and cross-platform consistency.                 | Core contributors and advanced users managing multiple Shopware versions.                 |
-
-::: info
-If you’re unsure which setup to choose, start with the Docker setup — it provides the smoothest onboarding experience.
+:::info
+The installation workflow has been streamlined to focus on a Docker-based setup as the primary approach. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
 :::
+
+Welcome to the Shopware 6 Developer Installation Guide, which will help you set up a local Shopware 6 development environment, whether you’re:
+
+- Building a custom shop project
+- Developing a plugin, app, or theme
+- Contributing to the Shopware core
+
+The Shopware 6 development environment is primarily supported and recommended for use with [Docker](https://www.docker.com/). This platform enables developers to develop, ship, and run applications inside containers: lightweight, standalone, and executable packages. Docker enables production-like conditions consistent across teams and CI/CD, and makes it easy to reset or rebuild environments. Docker is beneficial when full service parity is required (e.g., caching, queues, search).
+
+The [Docker-based setup](./docker-setup.md) aims to provide a smooth onboarding experience aligned with modern development practices. It runs your entire Shopware environment in containers, including all backend services (PHP, MySQL, Node, an Elasticsearch-compatible search engine, Redis, Mailhog, etc.). No manual installation is required.
+
+The pages that follow assume that you're using Docker itself.
+
+The Shopware community has produced some related tooling for developers who prefer more automated or GUI-friendly ways to run Docker environments: [DDEV](https://ddev.com/) and [Dockware](https://www.dockware.io/). Both are **community-maintained** and not officially supported by Shopware.
+
+Next, check the [hardware requirements](./system-requirements.md) to prepare your system for installation.

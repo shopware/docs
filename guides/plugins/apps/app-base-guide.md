@@ -85,7 +85,7 @@ If the changes are still not visible, try:
 bin/console cache:clear:http
 ```
 
-or
+or for a complete cache reset:
 
 ```bash
 bin/console cache:clear:all
@@ -109,8 +109,8 @@ This process is called setup.
 :::
 
 ::: warning
-Suppose your app makes use of the Admin Module, Payment Method, Tax providers or Webhook app system features.
-In that case, you need to implement the registration, to exchange a secret key; that is later used to authenticate the shops.
+Suppose your app makes use of the Admin Module, Payment Method, Tax providers, or Webhook app system features.
+In that case, you need to implement the registration to exchange a secret key; that is later used to authenticate the shops.
 :::
 
 During the setup, it is verified that Shopware connects to the right backend server and keys are exchanged to secure all further communications.
@@ -161,7 +161,7 @@ shopware-app-signature: a8830aface4ac4a21be94844426e62c77078ca9a10f694737b75ca15
 sw-version: 6.4.5.0
 ```
 
-Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.  
+Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.
 The secret used to generate this signature is the `app secret`, which is unique per app and will be provided by the Shopware Account if you upload your app to the store.
 This secret won't leave the Shopware Account, so it won't even be leaked to the shops installing your app.
 
@@ -317,7 +317,7 @@ Starting from Shopware version 6.4.1.0, the current Shopware version will be sen
 Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 :::
 
-The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide#registration-response) and the signature can be found in the `shopware-shop-signature` header.  
+The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide#registration-response) and the signature can be found in the `shopware-shop-signature` header.
 You need to recalculate that signature and check that it matches the provided one to make sure that the request is really sent from the shop with that shopId.
 
 You can use the following code snippet to generate the signature:

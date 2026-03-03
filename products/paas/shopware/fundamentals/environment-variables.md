@@ -8,56 +8,43 @@ nav:
 
 This page explains how to configure environment variables in Shopware PaaS Native.
 
-Please only use this to configure non-sensitive environment variables. For sensitive variables, please use [secrets](./secrets.md). There is a detailed guide [here](../guides/secrets-vault-guide.md).
+## Sources
+
+There are three ways to define environment variables, listed here from lowest to highest priority:
+
+| Source                                      | Description                                          |
+|---------------------------------------------|------------------------------------------------------|
+| `.env` file                                 | Committed to your repository, lowest priority        |
+| [`application.yaml`](application-yaml.md) | Defined in `app.environment_variables`               |
+| [Vault secrets](./secrets.md)               | Created via `sw-paas vault create`, highest priority |
+
+When the same variable is defined in multiple sources, the higher-priority source wins. For example, a variable set in `application.yaml` overwrites the same variable from `.env`, and a vault secret overwrites both.
+
+Use the `.env` file for defaults, `application.yaml` for non-sensitive per-environment configuration, and vault secrets for sensitive values like passwords or API tokens. There is a detailed guide for secrets [here](../guides/secrets-vault-guide.md).
 
 ## Configure environment variables
 
-Environment variables are defined in the `application.yaml` file, in the following array `app.environment_variables`.
+Environment variables are defined in the `app.environment_variables` array of your [`application.yaml`](application-yaml.md) file.
 
-Environment variables need to be scoped, they can be configured either for `RUN` or `BUILD`
+Each variable needs a `name`, `value`, and `scope`:
 
 | Scope      | Description                                           |
 |------------|-------------------------------------------------------|
 | `RUN`      | The value is passed to Shopware application (runtime) |
 | `BUILD`    | Build-time environment variables                      |
 
-Once the `application.yaml` is updated as usual, run the following:
+You can define the same variable name with different scopes to use different values at build-time and runtime.
+
+Once the `application.yaml` is updated, apply the changes:
 
 ```sh
 sw-paas application update
 ```
 
-## Configure an environment variable for runtime
-
-Update the `application.yaml` file like this:
+## Example
 
 ```yaml
 app:
-  environment_variables:
-    - name: MY_RUNTIME_VARIABLE
-      value: my-value
-      scope: RUN
-```
-
-## Configure an environment variable for build-time
-
-Update the `application.yaml` file like this:
-
-```yaml
-app:
-  environment_variables:
-    - name: MY_BUILDTIME_VARIABLE
-      value: my-value
-      scope: BUILD
-```
-
-## Complete example
-
-Here is a full example of environment variables. They can be used for both build-time and runtime, and you can have multiple variables with the same name but different scopes.
-
-```yaml
-app:
-  # ... Other application settings
   environment_variables:
     - name: MY_BUILDTIME_VARIABLE
       value: bar
@@ -65,10 +52,4 @@ app:
     - name: MY_RUNTIME_VARIABLE
       value: foo
       scope: RUN
-    - name: MY_VARIABLE_WITH_THE_SAME_NAME
-      value: my-value
-      scope: RUN
-    - name: MY_VARIABLE_WITH_THE_SAME_NAME
-      value: my-value
-      scope: BUILD
 ```
