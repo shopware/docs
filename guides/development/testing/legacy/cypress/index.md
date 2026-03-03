@@ -43,7 +43,7 @@ Please have a look at our [cypress.json](https://github.com/shopwareArchive/e2e-
 
 When you use our [Development template](https://github.com/shopwareArchive/development), we provide you with some tooling scripts in `dev-ops/e2e/actions` to run E2E tests more comfortably.
 
-The `composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the paragraph [Executing e2e tests](testing/legacy/cypress/index.md#executing-e2e-tests).
+The `composer` scripts to run our E2E tests in CLI or in Cypress' test runner are explained in the "Executing E2E Tests" section below.
 
 <Tabs>
 <Tab title="Plugin setup">
