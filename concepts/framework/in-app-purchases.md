@@ -5,13 +5,13 @@ nav:
 
 ---
 
-# In-App purchases (IAP)
+# In-App Purchases (IAP)
 
 ::: info
 In-App Purchase is available since Shopware version 6.6.9.0
 :::
 
-In-App Purchases are a way to lock certain features behind a paywall within the same extension.
+In-App Purchases allow you to lock certain features behind a paywall within the same extension.
 This is useful for developers who want to offer a free version of their extension with limited features and a paid version with more features.
 
 ## Creation
@@ -25,7 +25,7 @@ This JWT ensures that purchase data cannot be tampered with or spoofed and allow
 All bought In-App Purchases are part of the JWT claims.
 
 To verify the JWT signature, you can use the JSON Web Key Set (JWKS) available at [`https://api.shopware.com/inappfeatures/jwks`](https://api.shopware.com/inappfeatures/jwks)
-Shopware automatically verifies the signature for the use within the Core and Admin.
+Shopware automatically verifies the signature for use within the Core and Admin.
 
 Tokens are retrieved when a new purchase is made and during periodic updates.
 You can also manually trigger an update by running the command `bin/console scheduled-task:run-single in-app-purchase.update` or by calling the `/api/_action/in-app-purchases/refresh` endpoint.
@@ -37,12 +37,12 @@ In-app purchases are optimized for use with app servers.
 Whenever Shopware sends a request to the app server, it includes the [IAP JWT](#token).
 The app server can use this token to validate active purchases and unlock related features accordingly.
 
-Plugins are inherently less secure, as their open nature makes them more vulnerable to spoofing or tampering.
+Plugins are inherently less secure because their open nature makes them more vulnerable to spoofing and tampering.
 
 <PageRef page="../../guides/development/monetization/in-app-purchases" title="In-App purchases for Apps" />
 <PageRef page="../../guides/plugins/plugins/in-app-purchases" title="In-App purchases for Plugins" />
 
-## Checkout Process
+## Checkout process
 
 When integrating In-App Purchases, Shopware handles the entire checkout process for you—including payment processing and subscription management.
 

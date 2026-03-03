@@ -59,7 +59,7 @@ An example error might look like `Class Shopware\Storefront\* not found`. To fix
 
 * Declare required packages correctly and explicitly in `composer.json`: e.g., `"require": {"shopware/frontend": "*"}`.
 * Avoid "*" version constraints. Using "*" may resolve to Early Access (EA) versions, causing review failures.
-* Use proper version ranges (e.g. `~6.1.0`).
+* Use proper version ranges (e.g., `~6.1.0`).
 * If needed, set `"minimum-stability": "RC"`.
 
 This example shows the correct format:
@@ -67,9 +67,9 @@ This example shows the correct format:
 ```xml
 <pre>"require": {
 
-    "shopware/core": "~6.1.0",
+ "shopware/core": "~6.1.0",
 
-    "shopware/storefront": "~6.1.0"
+ "shopware/storefront": "~6.1.0"
 
 },
 
@@ -78,7 +78,7 @@ This example shows the correct format:
 
 ### Class Not Found (EA Version Issue)
 
-In the Shopware 6 Early Access (EA) version,`Class Shopware\Core\System\Snippet\Files\SnippetFileInterface` is not found and could not be autoloaded, causing the code review to fail.
+In the Shopware 6 Early Access (EA) version,`Class Shopware\Core\System\Snippet\Files\SnippetFileInterface` is not found and cannot be autoloaded, causing the code review to fail.
 
 **Cause**: Composer resolved an Early Access version due to wildcard constraints.
 
@@ -96,7 +96,7 @@ Blocked:
 
 ### Invalid method usage
 
-You might see `Call to static method *jsonEncode() on an unknown class*`. Shopware always uses `json_encode()` exclusively - there is no other fallback.
+You might see `Call to static method *jsonEncode() on an unknown class*`. Shopware always uses `json_encode()` exclusively; there is no fallback.
 
 ### Remove dead code
 

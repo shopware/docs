@@ -109,11 +109,33 @@ redirects:
     resources/references/upgrades/core/translation/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
     resources/references/upgrades/administration/: guides/upgrades-migrations/administration/
     resources/references/upgrades/: guides/upgrades-migrations/
-    guides/development/testing/unit/php-unit.md: guides/development/testing/unit/php-unit.html
-    guides/development/testing/unit/jest-storefront.md: guides/development/testing/unit/jest-storefront.html
-    guides/development/testing/unit/jest-admin.md: guides/development/testing/unit/jest-admin.html
-    guides/development/testing/ci.md: guides/development/testing/index.html
-    guides/development/integrations-api/general-concepts/api-versioning.md: guides/integrations-api/general-concepts/api-versioning.html
-    resources/references/core-reference/dal-reference/filters-reference.md: guides/resources/references/core-reference/dal-reference/filters-reference.html
-    resources/references/core-reference/dal-reference/aggregations-reference.md: guides/resources/references/core-reference/dal-reference/aggregations-reference.html
-    guides/plugins/apps/app-scripts/data-loading.md: guides/integrations-api/general-concepts/search-criteria.html
+    guides/plugins/plugins/testing/php-unit.html: guides/development/testing/unit/php-unit.html
+    guides/plugins/plugins/testing/jest-storefront.html: guides/development/testing/unit/jest-storefront.html
+    guides/plugins/plugins/testing/jest-admin.html: guides/development/testing/unit/jest-admin.html
+    guides/development/testing/ci.html: guides/development/testing/index.html
+    resources/guidelines/testing/store/: guides/development/testing/testing-guidelines/
+    guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
+    guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
+    guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/general-concepts/request-headers.html  
+    guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/general-concepts/search-criteria.html
+    guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/general-concepts/partial-data-loading.html
+    guides/integrations-api/general-concepts/generated-reference.html: guides/development/integrations-api/general-concepts/generated-reference.html
+    resources/references/core-reference/dal-reference/filters-reference.html: guides/resources/references/core-reference/dal-reference/filters-reference.html
+    resources/references/core-reference/dal-reference/aggregations-reference.html: guides/resources/references/core-reference/dal-reference/aggregations-reference.html
+    guides/plugins/apps/app-scripts/data-loading.html: guides/integrations-api/general-concepts/search-criteria.html
+    resources/accessibility/accessibility-checklist.html: guides/development/accessibility/accessibility-checklist.html
+    resources/accessibility/storefront-accessibility.html: guides/development/accessibility/storefront-accessibility.html
+    guides/plugins/apps/in-app-purchases.html: guides/development/monetization/in-app-purchases.html
+    guides/plugins/plugins/testing/playwright/actor-pattern.html: guides/development/testing/e2e-playwright/actor-pattern.html
+    guides/plugins/plugins/testing/playwright/best-practices.html: guides/development/testing/e2e-playwright/best-practices.html
+    guides/plugins/plugins/testing/playwright/deployment.html: guides/development/testing/e2e-playwright/deployment.html
+    guides/plugins/plugins/testing/playwright/fixtures.html: guides/development/testing/e2e-playwright/fixtures.html
+    guides/plugins/plugins/testing/playwright/install-configure.html: guides/development/testing/e2e-playwright/install-configure.html
+    guides/plugins/plugins/testing/playwright/language-agnostic-testing.html: guides/development/testing/e2e-playwright/language-agnostic-testing.html
+    guides/plugins/plugins/testing/playwright/local-development.html: guides/development/testing/e2e-playwright/local-development.html
+    guides/plugins/plugins/testing/playwright/page-object.html: guides/development/testing/e2e-playwright/page-object.html
+    guides/plugins/plugins/testing/playwright/test-data-service.html: guides/development/testing/e2e-playwright/test-data-service.html
+    guides/plugins/plugins/testing/playwright/test-suite-types.html: guides/development/testing/e2e-playwright/test-suite-types.html
+    guides/plugins/plugins/testing/playwright/test.html: guides/development/testing/e2e-playwright/test.html
+    guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/e2e-cypress/cypress-best-practises.html
+    guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/

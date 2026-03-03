@@ -9,7 +9,7 @@ nav:
 
 ## sw-language-id
 
-By default, the API delivers the entities via the system language. This can be changed by specifying a language id using the `sw-language-id` header.
+By default, the API returns entities in the system language. This can be changed by specifying a language ID using the `sw-language-id` header.
 
 ```bash
 POST /api/search/product
@@ -17,14 +17,14 @@ POST /api/search/product
 ```
 
 ::: info
-Shopware only populates a translatable field if there is an explicit translation for that field. Instead, the `translated` object always contains values, if necessary fallbacks.
+Shopware only populates a translatable field if there is an explicit translation for that field. Instead, the `translated` object always contains values, with fallbacks if necessary.
 
-**Example:** You instruct Shopware to fetch the french translation of a product using the `sw-language-id` header, but there's no french translation for the products name. The resulting field `product.name` will be `null`. When you're building applications, always use `product.translated.[value]`to access translated values, to make sure you will always get a valid translation or fallback value.
+**Example:** You instruct Shopware to fetch the French translation of a product using the `sw-language-id` header, but there's no French translation for the product's name. The resulting field `product.name` will be `null`. When building applications, always use `product.translated.[value]` to access translated values, ensuring you always get a valid translation or a fallback value.
 :::
 
 ## sw-version-id
 
-Shopware 6 allows developers to create multiple versions of an entity. This has been used, for example, for orders. This allows relations, like documents, to pin a specific state of the entity it relates to. However, the API initially only delivers the data of the most recent record. To tell the API that a specific version should be returned, the header `sw-version-id` must be sent along with the request.
+Shopware 6 allows developers to create multiple versions of an entity. This has been used, for example, for orders. This allows relations, like documents, to pin a specific state of the entity they relate to. However, the API initially returns only the data for the most recent record. To tell the API which version to return, the header `sw-version-id` must be included with the request.
 
 ```bash
 POST /api/search/order
@@ -33,7 +33,7 @@ POST /api/search/order
 
 ## sw-inheritance
 
-Shopware 6 allows developers to define inheritance \(parent-child\) relationships between entities of the same type. This has been used, for example, for products and their variants. Certain fields of a variant can therefore inherit the data from the parent product or define \(i.e. override\) them themselves. However, the API initially only delivers the data of its own record, without considering parent-child inheritance. To tell the API that the inheritance should be considered, the header `sw-inheritance` must be sent along with the request.
+Shopware 6 allows developers to define inheritance \(parent-child\) relationships between entities of the same type. This has been used, for example, for products and their variants. Specific fields of a variant can therefore inherit the data from the parent product or define \(i.e., override\) them themselves. However, the API initially only returns data for its own record, without considering parent-child inheritance. To tell the API that the inheritance should be considered, the header `sw-inheritance` must be sent along with the request.
 
 ```bash
 POST /api/search/product
@@ -42,7 +42,7 @@ POST /api/search/product
 
 ## sw-skip-trigger-flow
 
-Flows are an essential part of Shopware and are triggered by events like the creation of a customer. When migrating from another e-commerce platform to shopware, you might import hundreds of thousands of customers via the sync API. In that case, you don't want to trigger the `send email on customer creation` flow. To avoid this behavior, you can pass the `sw-skip-trigger-flow` header.
+Flows are an essential part of Shopware and are triggered by events such as customer creation. When migrating from another ecommerce platform to shopware, you might import hundreds of thousands of customers via the sync API. In that case, you don't want to trigger the `send email on customer creation` flow. To avoid this behavior, you can pass the `sw-skip-trigger-flow` header.
 
 ```bash
 POST /api/_action/sync
@@ -51,7 +51,7 @@ POST /api/_action/sync
 
 ## sw-access-token
 
-Any request to the Store API needs an Authentication with a `sw-access-token`. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this.
+Any request to the Store API requires authentication with a `sw-access-token`. Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this.
 
 ## sw-context-token
 
@@ -59,7 +59,7 @@ The `sw-context-token` is used to recognize your customers in the context of the
 
 ## sw-currency-id
 
-When calling the API, a client can include the `sw-currency-id` header to indicate the currency in which it wants to receive prices. For example, if the header is set to "USD," the API might respond with prices converted to U.S. dollars. This header is associated with the currency settings in the admin panel. It allows clients to dynamically switch between different currencies based on their preferences.
+When calling the API, a client can include the `sw-currency-id` header to indicate the currency in which it wants to receive prices. For example, if the header is set to "USD," the API might respond with prices converted to U.S. dollars. This header is associated with the currency settings in the admin panel. It allows clients to switch between currencies based on their preferences dynamically.
 
 ```bash
 POST /api/search/order
@@ -68,7 +68,7 @@ POST /api/search/order
 
 ## sw-include-seo-urls
 
-This header indicates whether SEO-friendly URLs for products or categories should be included in the API response. If an API request is made and the `sw-include-seo-urls` header is set, the API response will include all the configured SEO URLs for the specified product. This can provide additional information to the client about the various SEO-friendly paths associated with the product, allowing for better SEO management or customization.
+This header indicates whether SEO-friendly URLs for products or categories should be included in the API response. If an API request is made and the `sw-include-seo-urls` header is set, the API response will include all the configured SEO URLs for the specified product. This can provide the client with additional information about the various SEO-friendly paths associated with the product, enabling better SEO management or customization.
 
 ```bash
 POST /api/search/product
@@ -77,7 +77,7 @@ POST /api/search/product
 
 ## sw-app-integration-id
 
-The `sw-app-integration-id` enables seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Meteor Admin SDK for the [Repository Data Handling](/resources/admin-extension-sdk/api-reference/data/repository). But the developer itself doesn’t need to care about it because it is handled automatically by the admin.
+The `sw-app-integration-id` enables seamless connection and data exchange between different software components. This header is required for correct permission checks performed by the backend when fetching or manipulating data. It overrides the default behavior and uses the privileges provided by the app. This is used in the Meteor Admin SDK for the [Repository Data Handling](/resources/admin-extension-sdk/api-reference/data/repository). But the developer itself doesn’t need to worry about it, since it is handled automatically by the admin.
 
 ## sw-app-user-id
 

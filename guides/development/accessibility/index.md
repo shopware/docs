@@ -6,7 +6,7 @@ nav:
 
 # Accessibility
 
-Shopware is committed to creating inclusive and barrier-free shopping experiences. Accessibility affects both the core Storefront and all custom themes and extensions. Developers are responsible for ensuring that their implementations follow accessibility standards such as WCAG 2.1 AA.
+Shopware is committed to creating inclusive and barrier-free shopping experiences. Accessibility affects both the core Storefront and all custom themes and extensions. Developers are responsible for ensuring their implementations comply with accessibility standards, such as WCAG 2.1 Level AA.
 
 ## In this section
 

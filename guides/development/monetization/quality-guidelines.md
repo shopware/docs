@@ -21,7 +21,7 @@ Unless stated otherwise, requirements apply to all extensions.
 
 All extensions are:
 
-1. Automatically [code-reviewed](https://github.com/shopwareLabs/store-plugin-codereview) (PHPStan, SonarQube), Due to our quality assurance, with special attention on impacts to the Administration and Storefront.
+1. Automatically [code-reviewed](https://github.com/shopwareLabs/store-plugin-codereview) (PHPStan, SonarQube), due to our quality assurance, with special attention on impacts to the Administration and Storefront.
 2. Manually reviewed for security, coding standards, user experience, and functionality.
 3. Tested on the latest stable [Shopware 6](https://www.shopware.com/de/download/#shopware-6) CE version.
 
@@ -30,7 +30,7 @@ Always test against the highest supported Shopware 6 version (e.g., `shopware/te
 For apps, we additionally test:
 
 * `config.xml` per sales channel
-* Install / uninstall behavior
+* Install/uninstall behavior
 * Styling and viewport issues
 
 Before publishing an extension, review the full test process to ensure fast approval.
@@ -59,7 +59,7 @@ These tags are allowed:
 <a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>
 ```
 
-### Fallback language / translations
+### Fallback language/translations
 
 Extensions must work independently of the system language.
 
@@ -97,7 +97,7 @@ The license selected in your Shopware Account must match the license defined in 
 ## Preview requirements
 
 * A preview image must be available in the Extension Manager.
-* Store a valid favicon named `plugin.png` (112x112px) under `src/Resources/config/`. This favicon will help you identify your extension in the Extension Manager module in the Administration.
+* Store a valid favicon named `plugin.png` (112x112px) under `src/Resources/config/`. This favicon will help you identify your extension in the `Administration > Extension Manager` module.
 * [Themes](../../../../../guides/plugins/themes/) require a preview image in the Theme Manager.
 * [Shopping World elements](../../../../../concepts/commerce/content/shopping-experiences-cms.md#elements) must include an element icon.
 
@@ -122,7 +122,7 @@ The source code's descriptions, profiles, and instructions do not allow iframes,
 :::
 
 ::: info
-You can no longer advertise Shopware certificates within a extension's description, images, or your manufacturer profile.
+You can no longer advertise Shopware certificates within an extension's description, images, or your manufacturer profile.
 Manufacturer/partner certificates are dynamically loaded at the end of each extension description and published by Shopware.
 :::
 
@@ -156,13 +156,13 @@ All extensions must:
 * Work without 500 errors.
 * Avoid 400 errors unless they are related to an API call.
 * Be installable and uninstallable without issues.
-* During uninstall, users must be able to choose in the Extension Manager whether to "completely delete or "keep the app data, text snippets, media folder including own media and table adjustments." The free [Adminer](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) extension from Friends of Shopware enables you to do this via your provided test environment.
+* During uninstall, users must be able to choose in the Extension Manager whether to "completely delete or "keep the app data, text snippets, media folder, including own media and table adjustments." The free [Adminer](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) extension from Friends of Shopware enables you to do this via your provided test environment.
 * Avoid extending or overwriting the Extension Manager.
 * Properly register cookies in the [Cookie Consent Manager](../../../../../guides/plugins/plugins/storefront/add-cookie-to-manager).
   * Every cookie set from the store URL should be optional and not technically required for running Shopware. We differentiate between "Technically required", "Marketing," and "Comfort features."
   * All cookies must appear (unchecked) in the cookie configuration box in the frontend.
-* Not introduce severe performance regressions.
-* Not break Storefront SEO, structured data, or canonical logic.
+* Do not introduce severe performance regressions.
+* Do not break Storefront SEO, structured data, or canonical logic.
 * If the extension publishes messages to the message queue, each message must not exceed 262,144 bytes (256 KB). This limitation is set by common message queue workers.
 * After uninstalling the extension, Shopping Experiences must continue to work in the frontend.
 
@@ -175,7 +175,7 @@ These apply only to plugins:
 * `composer.lock` must not be included in the archive.
 * Deliver uncompiled (readable) JavaScript in addition to compiled assets. Uncompiled sources must be included in a separate folder to allow code review.
   * Build `main.js` and create the minified code according to our documentation: [Loading the JS files](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration).
-* Only production files may be included in archive.
+* Only production files may be included in the archive.
 * Unified logs must be written to `/var/log/`.
 * No forbidden PHP statements like `die`, `exit`, or `var_dump` are allowed. See [List of blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt)
 * Shopware must have access to the unminified source code of the extension at all times.
@@ -186,7 +186,7 @@ These apply only to apps:
 
 * Per-sales-channel configuration required if using `config.xml``.
 * No loading external files during installation.
-* API integrations must include API test button.
+* API integrations must include an API test button.
 * Must not modify Extension Manager.
 * STP agreement required for commission-based integrations.
 * Apps that appear in the Storefront and use a `config.xml` must be able to be configured separately for each sales channel.
@@ -194,7 +194,7 @@ These apply only to apps:
 ## Code and security requirements
 
 * Pass automated code reviews (PHPStan, SonarQube).
-* Not include development files or unused resources in the binary.
+* Do not include development files or unused resources in the binary.
 * Include only necessary dependencies.
 * Use secure cookie settings.
 
@@ -236,7 +236,7 @@ If the extension includes Composer dependencies:
 ### Installation and lifecycle
 
 * The Extension Manager (Debug Console) controls installation, uninstallation, reinstallation, and deletion.
-* Install, uninstall, reinstall must work without exceptions.
+* Install, uninstall, and reinstall must work without exceptions.
 * No 400/500 errors during install/uninstall are allowed.
 * Users must be able to choose whether to delete or keep extension data.
 * Special PHP requirements must be validated during installation.
@@ -248,7 +248,7 @@ If the extension includes Composer dependencies:
 
 * Error or informational messages can only be recorded in the event log of Shopware's log folder, `/var/log/`.
 * Do not write to Shopware’s default logs or outside the system log directory. This ensures that the log file can never be accessed via the URL.
-* Log files must follow naming pattern: `MyExtension-Year-Month-Day.log`.
+* Log files must follow the naming pattern: `MyExtension-Year-Month-Day.log`.
 * Payment apps must use the "plugin logger" service.
 * If storing logs in a database, avoid using custom log tables. Otherwise, you have to implement scheduled cleanup (max retention six months).
 
@@ -258,8 +258,8 @@ If external APIs are used:
 
 * API test button required.
 * Credentials must be validated on save.
-* Success/failure must display status message in Administration.
-* Errors must be logged in `/var/log/` or database.
+* Success/failure must display a status message in Administration.
+* Errors must be logged in `/var/log/` or the database.
 
 ## Commercial and external integrations
 
@@ -270,20 +270,20 @@ Commission-based integrations must report usage data according to the STP contra
 Every external technology extension needs to track its commission. Below is an example of implementing the tracking logic:
 
 ```json
-    {
+ {
       "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
       "reportDate": "2005-08-15T15:52:01",
       "instanceId": "alur24esfaw3ghk",
       "shopwareVersion": "6.3.1",
       "reportDataKeys": [
-        {
+ {
           "customer": 3
-        },
-        {
+ },
+ {
           "turnover": 440
-        }
-      ]
-    }
+ }
+ ]
+ }
 ```
 
 `// POST /shopwarepartners/reports/technology` allows partners to send Shopware the info based on the STP contract.
@@ -306,13 +306,13 @@ Significant regressions in performance, accessibility, best practices, or SEO ar
 
 ### schema.org/rich snippets A/B-testing checklist
 
-A/B testing can ensure structured data is valid and rich results behave correctly across page types.
+A/B testing can ensure that structured data is valid and that rich results behave correctly across page types.
 
-Use Scheme.org's [Schema Markup Validator](https://validator.schema.org/) and Google's [Rich Result Tester](https://search.google.com/test/rich-results) to check the homepage, categories, and product detail pages — including available products, unavailable products, products with no review, single review, reviews with varied ratings, out-of-stock products, products for future release, and/or any other product configuration and product types (including EAN, MPN, width, length, height, and weight). Also check for duplicate entries and any new bugs.
+Use Scheme.org's [Schema Markup Validator](https://validator.schema.org/) and Google's [Rich Result Tester](https://search.google.com/test/rich-results) to check the homepage, categories, and product detail pages — including available products, unavailable products, products with no review, single review, reviews with varied ratings, out-of-stock products, products for future release, and/or any other product configuration and product types (including EAN, MPN, width, length, height, and weight). Also, check for duplicate entries and any new bugs.
 
 ## Tools
 
-Use the [Shopware CLI](/development/tooling/cli) to build, validate, and upload Shopware 6 plugin releases to the Community Store. It also supports managing store descriptions and plugin images efficiently.
+Use the [Shopware CLI](/development/tooling/cli) to build, validate, and upload Shopware 6 plugin releases to the Community Store. It also supports efficiently managing store descriptions and plugin images.
 
 ## Final notes
 
@@ -324,4 +324,4 @@ An extension may be rejected if:
 * It breaks storefront behavior.
 * It misrepresents functionality in the store description.
 
-Ensure full compliance before submission to avoid delays in publication.
+Ensure full compliance before submission to avoid publication delays.

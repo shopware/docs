@@ -16,7 +16,7 @@ These APIs serve different purposes but share common principles and infrastructu
 
 ## Admin API
 
-Primarily for backend and administrative functions, the Admin API enables structured data exchanges, bulk operations, data synchronization, and import-export tasks.
+Primarily for backend and administrative functions, the Admin API enables structured data exchange, bulk operations, data synchronization, and import/export.
 
 Use it when:
 
@@ -25,7 +25,7 @@ Use it when:
 * Performing bulk operations
 * Building admin-side applications
 
-Full endpoint documentation (local instance required): `/api/_info/stoplightio.html`.
+Complete endpoint documentation (local instance required): `/api/_info/stoplightio.html`.
 
 Search endpoints use: `POST /api/search/{entity}`
 
@@ -40,7 +40,7 @@ Use it when:
 * Building headless storefronts
 * Serving anonymous or authenticated customers
 
-Full endpoint documentation (local instance required): `/store-api/_info/stoplightio.html`
+Complete endpoint documentation (local instance required): `/store-api/_info/stoplightio.html`
 
 ## Shared API mechanics
 
@@ -58,7 +58,7 @@ For architectural background, see the [API overview](apis).
 
 ### OpenAPI schema
 
-Shopware exposes OpenAPI schemas for both Admin API and Store API. These schemas are generated via PHP annotations using [swagger-php](https://github.com/zircote/swagger-php). If you build custom endpoints, you can leverage these annotations to generate standardized documentation for your custom endpoints.
+Shopware exposes OpenAPI schemas for both Admin API and Store API. These schemas are generated via PHP annotations using [swagger-php](https://github.com/zircote/swagger-php). If you build custom endpoints, you can leverage these annotations to generate standardized documentation for them.
 
 ::: warning
 Due to security restrictions, your **`APP_ENV`** environment variable must be set to **`dev`** to access the specifications described below.
