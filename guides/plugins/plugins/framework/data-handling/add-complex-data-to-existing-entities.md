@@ -88,6 +88,7 @@ Let's start with the `CustomExtension` class by adding a new field in the `exten
 namespace Swag\BasicExample\Extension\Content\Product;
 use Shopware\Core\Content\Product\ProductDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\CascadeDelete;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
@@ -96,7 +97,7 @@ class CustomExtension extends EntityExtension
     public function extendFields(FieldCollection $collection): void
     {
         $collection->add(
-            new OneToOneAssociationField('exampleExtension', 'id', 'product_id', ExampleExtensionDefinition::class, true)
+            (new OneToOneAssociationField('exampleExtension', 'id', 'product_id', ExampleExtensionDefinition::class, true))->addFlags(new CascadeDelete())
         );
     }
 
@@ -114,6 +115,9 @@ As you can see, we're adding a new `OneToOneAssociationField`. Its parameters ar
 * `referenceField`: In the `storageName` you defined one of the two connected columns, `id`. The name of the other column in the database, which you want to connect via this association, belongs into this parameter. In that case, it will be a column called `product_id`, which we will define in the `ExampleExtensionDefinition`.
 * `referenceClass`: The class name of the definition that we want to connect via the association.
 * `autoload`: As the name suggests, this parameter defines if this association should always be loaded by default when the product is loaded. In this case, we definitely want that.
+
+Associations marked with the `CascadeDelete` flag are are considered in the clone process ([see here](https://developer.shopware.com/docs/resources/references/adr/2020-07-02-control-clone-behavior.html)).
+If the associated entity should not be cloned when cloning a product having it, change it to `CascadeDelete(false)` or remove the flag.
 
 #### Creating ExampleExtensionDefinition
 
