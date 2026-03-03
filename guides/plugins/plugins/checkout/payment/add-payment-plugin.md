@@ -39,7 +39,7 @@ Please make sure to add the `shopware.payment.method` tag to your service defini
 
 We'll use a class called `MyCustomPaymentHandler` here.
 
-```php [<plugin root>/src/Resources/config/services.php]
+```PHP [<plugin root>/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -117,7 +117,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 }
 ```
 
-```php [services.php]
+```PHP [services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
@@ -232,7 +232,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 }
 ```
 
-```php [services.php]
+```PHP [services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
@@ -368,7 +368,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 }
 ```
 
-```php [services.php]
+```PHP [services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
@@ -502,7 +502,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 
 ```
 
-```php [services.php]
+```PHP [services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
@@ -620,7 +620,7 @@ class MyCustomPaymentHandler extends AbstractPaymentHandler
 
 ```
 
-```php [services.php]
+```PHP [services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
@@ -806,7 +806,7 @@ Remove any other occurrences of the following tags:
 
 ::: code-group
 
-```php [services.php]
+```PHP [services.php]
 <?php declare(strict_types=1);
 
 use Swag\PaymentPlugin\Service\MyCustomPaymentHandler;

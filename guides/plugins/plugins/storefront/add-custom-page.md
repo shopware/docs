@@ -148,7 +148,7 @@ Remember to register your new page loader in the DI container:
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/services.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
 $services->set(ExamplePageLoader::class)
     ->public()
     ->args([
@@ -205,7 +205,7 @@ In addition, it is necessary to pass the argument with the ID of the `ExamplePag
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/services.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Storefront\Controller\ExampleController;

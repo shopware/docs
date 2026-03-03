@@ -64,7 +64,7 @@ To register our custom resolver to the service container, we have to register it
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/services.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\DataResolver\DailyMotionCmsElementResolver;

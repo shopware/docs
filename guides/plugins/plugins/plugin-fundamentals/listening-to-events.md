@@ -24,7 +24,7 @@ Also available on our free online training ["Shopware 6 Backend Development"](ht
 
 ### Plugin base class
 
-Registering a custom subscriber requires to load a `services.php` file with your plugin.
+Registering a custom subscriber requires loading a `services.php` file with your plugin.
 This is done by either placing a file with name `services.php` into a directory called `src/Resources/config/`.
 
 Basically, that's it already if you're familiar with [Symfony subscribers](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber).

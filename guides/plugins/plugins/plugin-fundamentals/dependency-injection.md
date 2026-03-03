@@ -68,7 +68,7 @@ If you declared the service explicitly, you need to add the `SystemConfigService
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/services.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\System\SystemConfig\SystemConfigService;

@@ -368,7 +368,7 @@ Now we need to register our custom `ExampleDocumentRenderer` in the service cont
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/services.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;

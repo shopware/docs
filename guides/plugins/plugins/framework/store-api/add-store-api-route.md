@@ -140,7 +140,7 @@ class ExampleRouteResponse extends StoreApiResponse
 
 ## Register route
 
-The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location. Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location. Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ```PHP
 // <plugin root>/src/Resources/config/routes.php

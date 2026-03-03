@@ -15,7 +15,7 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
 1. Inject `Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider` and retrieve connections by name:
 
-    ```php
+    ```PHP
     $services->set(MyCustomService::class)
         ->args([
             service(Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider::class),
@@ -43,7 +43,7 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
 2. Use `Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider` as factory to define custom services:
 
-    ```php
+    ```PHP
     $services->set('my.custom.redis_connection', \Redis::class)
         ->factory([service(Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider::class), 'getConnection'])
         ->args(['%myservice.redis_connection_name%']);
@@ -70,7 +70,7 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
 3. Inject connection directly by name:
 
-    ```php
+    ```PHP
     $services->set(MyCustomService::class)
         ->args([service('shopware.redis.connection.connection_name')]);
     ```
