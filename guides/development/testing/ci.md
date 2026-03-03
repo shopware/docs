@@ -12,7 +12,7 @@ CI should, at a minimum, run static analysis and coding standards checks alongsi
 Automated tests — unit, integration, and E2E where feasible — make refactors, upgrades, and dependency changes safer.
 
 :::info
-Follow the [Deployment guide](../../hosting/deployments.md) for information about promotion and release.
+Follow the [Deployment guide](../../hosting/installation-updates/deployments/index.md) for information about promotion and release.
 :::
 
 ## Cross-cutting practices
