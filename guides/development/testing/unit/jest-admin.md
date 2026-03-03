@@ -597,9 +597,3 @@ beforeAll(() => {
 ## Next steps
 
 Do you want to see these examples in practice? Head over to our [video tutorial](https://youtu.be/nWUBK3fjwVg) on how to write component tests in Jest for the Shopware Administration.
-
-Furthermore, you might want to have a look at one of the following guides as well:
-
-* [Jest tests for the storefront](jest-storefront/)
-* [PHPUnit tests](php-unit/)
-* [End-to-end tests](end-to-end-testing/)

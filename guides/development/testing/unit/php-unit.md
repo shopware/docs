@@ -11,9 +11,9 @@ This guide covers creating PHPUnit tests in Shopware 6. Refer to the [official P
 
 ## Prerequisites
 
-To create tests for a plugin, you need a plugin as a base. Refer to the [Plugin Base Guide](../plugin-base-guide) for more information.
+To create tests for a plugin, you need a plugin as a base. Refer to the [Plugin Base Guide](../../../plugins/plugins/plugin-base-guide.md) for more information.
 
-Furthermore, have a look at our [Execute database queries/migrations](../plugin-fundamentals/database-migrations) guide, since this guide will show you how to create a migration test for these examples.
+Furthermore, refer to [migrations](../../../plugins/plugins/plugin-fundamentals/database-migrations.md) guide to create a migration test for these examples.
 
 ## PHPUnit configuration
 
@@ -210,10 +210,3 @@ To run PHPunit tests install the flex template [dev-tools](../../../../guides/in
 ```shell
 composer require --dev dev-tools
 ```
-
-## Next steps
-
-Running unit tests with javascript code is explained in the following two articles:
-
-* [Jest unit tests in Shopware's Administration](jest-admin)
-* [Jest unit tests in Shopware's Storefront](jest-storefront)

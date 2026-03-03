@@ -13,7 +13,7 @@ With good test coverage, you gain the confidence to deploy stable software witho
 
 We are using JestJS as our testing framework as it's a solid foundation and widely used by many developers.
 
-<PageRef page="https://jestjs.io" title="Jest · 🃏 Delightful JavaScript Testing" target="_blank" />
+<PageRef page="https://jestjs.io" title="Jest Delightful JavaScript Testing" target="_blank" />
 
 ## Prerequisites
 
@@ -407,8 +407,3 @@ describe('HelloWorldPlugin tests', () => {
  });
 });
 ```
-
-## More interesting topics
-
-* [PHPUnit tests](php-unit/)
-* [End-to-end tests](end-to-end-testing/)

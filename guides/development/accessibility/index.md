@@ -10,8 +10,8 @@ Shopware is committed to creating inclusive and barrier-free shopping experience
 
 ## In this section
 
-* <PageRef page="./storefront-accessibility" />
-* <PageRef page="./accessibility-checklist" />
+<PageRef page="./storefront-accessibility" />
+<PageRef page="./accessibility-checklist" />
 
 ## Why accessibility matters
 

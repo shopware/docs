@@ -54,8 +54,7 @@ Whenever Shopware sends you a request, you'll receive a [JWT](../../../concepts/
 ### Symfony or PHP app servers
 
 You can use the `shopware/app-php-sdk` for plain PHP or the `shopware/app-bundle` for Symfony to validate and decode the JWT.
-An example for plain PHP is available [here](https://github.com/shopware/app-php-sdk/blob/main/examples/index.php).
-For Symfony applications, use the appropriate action argument for your route.
+Refer to an [example for plain PHP](https://github.com/shopware/app-php-sdk/blob/main/examples/index.php). For Symfony applications, use the appropriate action argument for your route.
 
 #### Admin
 

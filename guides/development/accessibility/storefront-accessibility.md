@@ -13,7 +13,7 @@ At Shopware, we are committed to creating inclusive and barrier-free shopping ex
 * Shopware is committed to fulfilling the [WCAG 2.1 AA](https://www.w3.org/TR/WCAG21/) accessibility guidelines and Barrier-Free Information Technology Regulation (BITV 2.0) in the Storefront.
     * You can find more information on [shopware.design](https://shopware.design/foundations/accessibility.html) and [in our blog post](https://www.shopware.com/en/news/accessible-online-store-by-2025/).
 * The Storefront is using [Bootstrap components](https://getbootstrap.com/docs/5.3/getting-started/accessibility/) that already consider good accessibility practices, for example, using aria roles.
-* Much of the HTML structure and CSS styling already fulfill accessibility guidelines. However, there are still [open accessibility issues](#Overview-of-known-accessibility-issues) that will be addressed.
+* Much of the HTML structure and CSS styling already fulfill accessibility guidelines. However, there are still [open accessibility issues](https://github.com/shopware/shopware/issues?q=state%3Aopen%20label%3Aarea%2Faccessibility) that will be addressed.
 * Automated [E2E testing with playwright](https://github.com/shopware/shopware/tree/trunk/tests/acceptance) and axe reporter are used to ensure future accessibility.
 
 ## How are core accessibility improvements released?

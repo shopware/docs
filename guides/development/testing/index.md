@@ -20,7 +20,8 @@ Playwright provides:
 * API clients
 * Test data helpers
 
-<PageRef page="./e2e-playwright/index.md" />
+<PageRef page="../testing/e2e-playwright/index.md" title="E2E playwright" target="_blank" />
+
 
 ## Unit testing
 
@@ -30,17 +31,17 @@ Shopware supports both PHP backend logic and JavaScript components (for Storefro
 
 Use PHPUnit to write and run backend unit tests for your PHP code.
   
-<PageRef page="./unit/php-unit.md" />
+<PageRef page="../testing/unit/php-unit.md" />
 
 ### JavaScript (Jest)
 
 Use Jest to test Storefront JS and Vue components following modern best practices.
 
-<PageRef page="./unit/jest-storefront.md" />
+<PageRef page="../testing/unit/jest-storefront.md" />
 
 Test custom Administration panel modules and components using Jest with the Shopware admin setup.
 
-<PageRef page="./unit/jest-admin.md" />
+<PageRef page="../testing/unit/jest-admin.md" />
 
 ## Continuous Integration (CI)
 
@@ -48,16 +49,16 @@ Automate quality checks, builds, and artifact creation in your CI pipeline to ke
 
 Learn how to structure CI for projects and plugins, including static analysis, test execution, and artifact promotion:
 
-<PageRef page="./ci.md" />
+<PageRef page="../testing/ci.md" />
 
 ## Testing guidelines for extensions
 
 To publish your extension in the Shopware Store, follow the testing criteria used during the Store review process.
 
-<PageRef page="./testing-guidelines.md" />
+<PageRef page="../testing/testing-guidelines.md" />
 
 It focuses on how your extension is functionally tested before approval.
 
 For the official publication requirements, legal conditions, and compliance rules, see:
 
-<PageRef page="../monetization/quality-guidelines" />
+<PageRef page="../monetization/quality-guidelines.md" />

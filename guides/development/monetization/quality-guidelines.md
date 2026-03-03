@@ -90,7 +90,7 @@ The license selected in your Shopware Account must match the license defined in 
 * Ensure that screenshots show the extension's functionality in action in the Storefront and administration, as well as configuration options and how-to-use details.
 * We recommend screenshots showing mobile and desktop views.
 
-:::Info
+:::info
 [How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 :::
 
@@ -98,8 +98,8 @@ The license selected in your Shopware Account must match the license defined in 
 
 * A preview image must be available in the Extension Manager.
 * Store a valid favicon named `plugin.png` (112x112px) under `src/Resources/config/`. This favicon will help you identify your extension in the `Administration > Extension Manager` module.
-* [Themes](../../../../../guides/plugins/themes/) require a preview image in the Theme Manager.
-* [Shopping World elements](../../../../../concepts/commerce/content/shopping-experiences-cms.md#elements) must include an element icon.
+* [Themes](../../plugins/themes/index.md) require a preview image in the Theme Manager.
+* [Shopping World elements](../../../concepts/commerce/content/shopping-experiences-cms.md#elements) must include an element icon.
 
 Read our [How to request a preview](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview) guide for additional help.
 
@@ -158,7 +158,7 @@ All extensions must:
 * Be installable and uninstallable without issues.
 * During uninstall, users must be able to choose in the Extension Manager whether to "completely delete or "keep the app data, text snippets, media folder, including own media and table adjustments." The free [Adminer](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) extension from Friends of Shopware enables you to do this via your provided test environment.
 * Avoid extending or overwriting the Extension Manager.
-* Properly register cookies in the [Cookie Consent Manager](../../../../../guides/plugins/plugins/storefront/add-cookie-to-manager).
+* Properly register cookies in the [Cookie Consent Manager](../../../guides/plugins/plugins/storefront/add-cookie-to-manager).
   * Every cookie set from the store URL should be optional and not technically required for running Shopware. We differentiate between "Technically required", "Marketing," and "Comfort features."
   * All cookies must appear (unchecked) in the cookie configuration box in the frontend.
 * Do not introduce severe performance regressions.
@@ -170,11 +170,11 @@ All extensions must:
 
 These apply only to plugins:
 
-* [Composer dependencies](../../../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies) must be declared in `composer.json` so they are traceable.
+* [Composer dependencies](../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies) must be declared in `composer.json` so they are traceable.
   * If `executeComposerCommands() === true` is used, dependencies are installed dynamically and do not need to be bundled.
 * `composer.lock` must not be included in the archive.
 * Deliver uncompiled (readable) JavaScript in addition to compiled assets. Uncompiled sources must be included in a separate folder to allow code review.
-  * Build `main.js` and create the minified code according to our documentation: [Loading the JS files](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration).
+  * Build `main.js` and create the minified code according to our documentation: [Loading the JS files](../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration).
 * Only production files may be included in the archive.
 * Unified logs must be written to `/var/log/`.
 * No forbidden PHP statements like `die`, `exit`, or `var_dump` are allowed. See [List of blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt)
@@ -207,7 +207,7 @@ If the extension includes Composer dependencies:
 
 ## Storefront guidelines
 
-* No inline CSS allowed in storefront templates. Use your own classes and let your CSS be compiled by the plugin. See [Add SCSS variables](../../../../../guides/plugins/plugins/storefront/add-scss-variables.md#add-scss-variables).
+* No inline CSS allowed in storefront templates. Use your own classes and let your CSS be compiled by the plugin. See [Add SCSS variables](../../../guides/plugins/plugins/storefront/add-scss-variables.md#add-scss-variables).
 * Avoid using the `!important` rule unless unavoidable.
 * All images must include meaningful `alt` tags, or original `alt` tags from the media manager.
 * All links must include meaningful `title` tags.

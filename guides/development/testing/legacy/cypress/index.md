@@ -25,7 +25,7 @@ This guide also won't teach you how to write Cypress tests in general. Please re
 
 ### Using our testsuite
 
-The [E2E platform testsuite package](https://github.com/shopwareArchive/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included. More on that here: [Command reference](../../../../resources/references/core-reference/commands-reference/).
+The [E2E platform testsuite package](https://github.com/shopwareArchive/e2e-testsuite-platform) contains commands and helpers supporting you while building E2E tests for Shopware 6. On top of that, test data management and custom commands are included. More on that here: [Command reference](../../../../../resources/references/core-reference/commands-reference.md).
 
 This test suite is built on top of [Cypress](https://www.cypress.io/) as well as the following Cypress plugins:
 
@@ -316,7 +316,7 @@ it('test something', () => {
 
 You can chain commands by passing their return value to the next one. These commands may include additional steps, e.g., a `click` or `type` operation.
 
-Cypress provides many commands to represent a variety of steps a user could take. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../../resources/references/testing-reference/e2e-custom-commands/) specially for Shopware.
+Cypress provides many commands to represent a variety of steps a user could take. On top of that, our E2E testsuite contains a couple of [custom commands](../../../../../resources/references/testing-reference/e2e-custom-commands.md) specially for Shopware.
 
 ### Assertions
 
@@ -543,6 +543,6 @@ Below you will find some best practices and tricks we explored to help you with 
 
 ## More interesting topics
 
-* [Unit testing with PHPUnit](../php-unit)
-* [Jest unit tests in Shopware's administration](../jest-admin)
-* [Jest unit tests in Shopware's storefront](../jest-storefront)
+* [Unit testing with PHPUnit](../../unit/php-unit.md)
+* [Jest unit tests in Shopware's administration](../../unit/jest-admin.md)
+* [Jest unit tests in Shopware's storefront](../../unit/jest-storefront.md)
