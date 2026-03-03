@@ -87,17 +87,9 @@ The Administration is part of the runtime environment and will be used throughou
 
 * `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](resources/references/core-reference/commands-reference.html).
 * The standalone [Shopware CLI](https://developer.shopware.com/docs/products/cli/installation.html) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](products/cli/project-commands/helper-commands.html).
-* IDE support: Shopware provides a [PhpStorm plugin](shopware-toolbox.md) and [VS Code extension](../development/tooling/vscode.md).
+* IDE support: Shopware provides a [PHPStorm plugin](shopware-toolbox.md) and [VS Code extension](../development/tooling/vscode.md).
 *[Deployment Helper](guides/hosting/deployment-helper/):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
 
 ### Troubleshooting
 
 The [troubleshooting](/troubleshooting) guides provide reference information about the data abstraction layer (DAL), flow, and rules.
-
-## Next steps
-
-Continue with the guide related to the development goal:
-
-* [Extensions](extensions/index.md): Build Plugins, Apps, or plugin-based Themes
-* [APIs](apis/index.md): Work with Admin API, Store API, and data access
-* [Testing](testing/index.md): Unit testing, E2E testing, and CI practices to prevent upgrade regressions
