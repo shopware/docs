@@ -24,7 +24,7 @@ Follow the [Deployment guide](../../hosting/installation-updates/deployments/ind
 ## Custom projects
 
 * Reuse the ([Project build command](../../../products/cli/project-commands/build.md)) to compile Storefront and Administration assets and warm caches. Run it in CI so deployments do not rebuild.
-* Use environment-specific config only in deployment, not in CI. See [setup patterns](../installation/setups/index.md), you can mirror in pipelines.
+* Use environment-specific config only in deployment, not in CI. See [setup patterns](../../installation/index.md) you can mirror in pipelines.
 * Add smoke tests against the HTTP layer plus DAL-level integration tests for custom entities.
 * Cache Composer/NPM dependencies but keep lock files committed for deterministic builds.
 
