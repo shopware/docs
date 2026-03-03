@@ -44,7 +44,7 @@ Also, you may want to add translatable custom fields, which is also covered in v
 
 Let's assume you already got a working and running entity definition. If you want to support custom fields with your custom entity, you may add the `EntityCustomFieldsTrait` to your entity class, so the methods `getCustomFields()` and `setCustomFields()` can be used.
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/ExampleEntity.php
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
@@ -65,7 +65,7 @@ class ExampleEntity extends Entity
 
 Now follows the important part. For this to work, you have to add the Data Abstraction Layer \(DAL\) field `CustomFields` to your entity definition.
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;
 
@@ -97,7 +97,7 @@ Once again, this example is built upon the [Add custom complex data](../data-han
 
 If you want to support custom fields now, you have to add a new column `custom_fields` of type `JSON` to your migration.
 
-```php
+```PHP
 // <plugin root>/src/Migration/Migration1611664789Example.php
 public function update(Connection $connection): void
 {
@@ -128,7 +128,7 @@ Note the new `custom_fields` column here. It has to be a JSON field and should d
 
 Make sure to understand entity translations in general first, which is explained here [Add data translations](../data-handling/add-data-translations). If you want your custom fields to be translatable, you can simply work with a `TranslatedField` here as well.
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
 
@@ -156,7 +156,7 @@ Just add the `TranslatedField` and apply `customFields` as a parameter.
 
 In your translated entity definition, you then add the `CustomFields` field instead.
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;
 
@@ -190,7 +190,7 @@ So let's assume you've got your own `example` entity up and running, and now you
 
 In that case, you can use your entities' repository and start creating or updating entities with custom fields. If you don't understand what's going on here, head over to our guide about [Writing data](../data-handling/writing-data) first.
 
-```php
+```PHP
 $this->swagExampleRepository->upsert([[
     'id' => '<your ID here>',
     'customFields' => ['swag_example_size' => 15]
@@ -201,7 +201,7 @@ This will execute perfectly fine, and you just saved a custom field with name `s
 
 As already mentioned, you do not have to define a custom field first before saving it. That's because there is no validation happening here yet, you can write whatever valid JSON you want to that column, so the following example would also execute without any issues:
 
-```php
+```PHP
 $this->swagExampleRepository->upsert([[
     'id' => '<your ID here>',
     'customFields' => [ 'foo' => 'bar', 'baz' => [] ]
@@ -216,7 +216,7 @@ So now you've already filled the custom fields of one of your entity instances v
 
 Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -238,7 +238,7 @@ If you need to learn how that is done in full, head to our guide regarding [Writ
 Now use the `create` method of the repository to create a new custom field set.
 Plugin lifecycle events are perfect for this as the container can provide the `custom_field_set.repository` service and can be used to set up on installation and remove the set on removal.
 
-```php
+```PHP
 use Shopware\Core\System\CustomField\CustomFieldTypes;
 use \Shopware\Core\Defaults;
 
@@ -301,7 +301,7 @@ While theoretically your custom field is now properly defined for the Administra
 On uninstallation of your plugin, you should remove your custom field definition.
 To update or delete a `custom_field_set`, you can use the standard repository methods like `update`, `upsert`, or `delete`:
 
-```php
+```PHP
 $setId = $this->customFieldSetRepository->searchIds((new Criteria())->addFilter(new EqualsFilter('name', 'swag_example_set')), $context)->firstId();
 $this->customFieldSetRepository->delete([['id' => $setId]], $context);
 ```
@@ -316,7 +316,7 @@ UPDATE swag_example SET custom_fields = JSON_REMOVE(custom_fields, '$.swag_examp
 If you have a table with a lot of data, like orders or products, you should not approach it carelessly to avoid overwhelming the database with too many changes at once.
 This can look like this instead:
 
-```php
+```PHP
 $updateLimit = 1000;
 
 do {

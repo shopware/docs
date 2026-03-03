@@ -295,13 +295,16 @@ Therefore, all events it listens to are configured over the service configuratio
 
 :::code-group
 
-```php [PLUGIN_ROOT/src/Core/Framework/DependencyInjection/cache.php]
-$services->set(Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber::class)
-    ->tag('kernel.event_listener', ['event' => 'Shopware\Core\Content\Category\Event\CategoryIndexerEvent', 'method' => 'invalidateCategoryRouteByCategoryIds', 'priority' => 2000])
-    ->tag('kernel.event_listener', ['event' => 'Shopware\Core\Content\Category\Event\CategoryIndexerEvent', 'method' => 'invalidateListingRouteByCategoryIds', 'priority' => 2001])
-    ->tag('kernel.event_listener', ['event' => 'Shopware\Core\Content\LandingPage\Event\LandingPageIndexerEvent', 'method' => 'invalidateIndexedLandingPages', 'priority' => 2000])
-    // ...
-;
+```xml [PLUGIN_ROOT/src/Core/Framework/DependencyInjection/cache.xml]
+<service id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidationSubscriber">
+    <tag name="kernel.event_listener" event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent" method="invalidateCategoryRouteByCategoryIds" priority="2000" />
+
+    <tag name="kernel.event_listener" event="Shopware\Core\Content\Category\Event\CategoryIndexerEvent" method="invalidateListingRouteByCategoryIds" priority="2001" />
+
+    <tag name="kernel.event_listener" event="Shopware\Core\Content\LandingPage\Event\LandingPageIndexerEvent" method="invalidateIndexedLandingPages" priority="2000" />
+    
+    <!-- ... -->
+</service>
 ```
 
 :::
