@@ -580,6 +580,7 @@ Methodize
 Middleware
 MigrationCollection
 MigrationStep
+MimeType
 Minio
 Mixin
 Mixins
@@ -901,6 +902,7 @@ SnippetFileInterface
 SomeCoreClassTest
 SonarQube
 Sonarcube
+SourceData
 StackHero
 StackOverflow
 Stackhero
@@ -1807,6 +1809,7 @@ seperate
 seperated
 serializable
 serializer
+serializers
 serverless
 setFlags
 setLocaleToEnGb
