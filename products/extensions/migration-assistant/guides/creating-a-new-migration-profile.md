@@ -13,7 +13,7 @@ If you want to migrate your data from a different source system than Shopware, c
 
 First, it is required that you already have installed the [Migration Assistant](https://github.com/shopware/SwagMigrationAssistant) plugin in Shopware 6 and have created a demo source system database with a `product` table. To create the table, use this SQL statement:
 
-```sql
+```SQL
 CREATE TABLE product
 (
   id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ This table should simulate a simple third-party source system, which should be m
 
 In the first step, you have to create a new profile for your source system:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample;
@@ -77,19 +77,18 @@ class OwnProfile implements ProfileInterface
 }
 ```
 
-The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `service.xml` with `shopware.migration.profile`:
+The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `services.php` with `shopware.migration.profile`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile">
-    <tag name="shopware.migration.profile"/>
-</service>
+```PHP
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile::class)
+    ->tag('shopware.migration.profile');
 ```
 
 ## Creating a gateway
 
 Next, you have to create a new gateway which supports your profile:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway;
@@ -200,21 +199,24 @@ class OwnLocaleGateway implements GatewayInterface
 }
 ```
 
-As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
+As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `services.php` and tag it with `shopware.migration.gateway`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
-    <tag name="shopware.migration.gateway"/>
-</service>
+```PHP
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway::class)
+    ->args([
+        service(SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry::class),
+        service(SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory::class),
+    ])
+    ->tag('shopware.migration.gateway');
 ```
 
 ## Creating a credentials page
 
 If you want to try your current progress in the Administration, you can select the profile and gateway in the migration wizard. If you try to go to the next page, there will be an error message because no credentials page was found. To create a new credentials page, you have to add an `index.js` for your new component into `Resources/app/administration/src/own-profile/profile`:
 
-```javascript
+```JAVASCRIPT
 import { Component } from 'src/core/shopware';
 import template from './swag-migration-profile-ownProfile-local-credential-form.html.twig';
 
@@ -296,7 +298,7 @@ Component.register('swag-migration-profile-ownProfile-local-credential-form', {
 
 As you can see above, currently, the template does not exist and you have to create this file: `swag-migration-profile-ownProfile-local-credential-form.html.twig`
 
-```html
+```HTML
 {% block own_profile_page_credentials %}
     <div class="swag-migration-wizard swag-migration-wizard-page-credentials"
          @keypress.enter="onKeyPressEnter">
@@ -374,7 +376,7 @@ Note that the component name isn't random and consists of:
 
 To see your credentials page, you have to register this component in your `main.js`:
 
-```javascript
+```JAVASCRIPT
 import './own-profile/profile';
 ```
 
@@ -382,7 +384,7 @@ import './own-profile/profile';
 
 Now the credential page is loaded in the Administration and the connection check will succeed. But there is no data selection if you open the data selection table. To add an entry to this table, you have to create a `ProductDataSet` first:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet;
@@ -413,7 +415,7 @@ class ProductDataSet extends DataSet
 
 Now you have to use this `ProductDataSet` in the new `ProductDataSelection`:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection;
@@ -475,23 +477,21 @@ class ProductDataSelection implements DataSelectionInterface
 The order in the `getDataSets` array is important as it determines the order in which the entities are processed. Because of that, the manufacturers, for example, have to be positioned before the products so that the products can use those later on.
 :::
 
-To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
+To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.php` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection">
-    <tag name="shopware.migration.data_selection"/>
-</service>
+```PHP
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection::class)
+    ->tag('shopware.migration.data_selection');
 
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet\ProductDataSet">
-    <tag name="shopware.migration.data_set"/>
-</service>
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet\ProductDataSet::class)
+    ->tag('shopware.migration.data_set');
 ```
 
 ## Creating a product gateway reader
 
 Currently, you can see the `DataSelection` in the Administration, but if you select it and start a migration, no product will be migrated. That is because the gateway `read` function isn't implemented yet. But before you can implement this function, you have to create a new `ProductReader` first:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader;
@@ -568,19 +568,20 @@ class ProductReader extends AbstractReader
 }
 ```
 
-Then you have to register this in `services.xml` and tag it with `shopware.migration.reader`:
+Then you have to register this in `services.php` and tag it with `shopware.migration.reader`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader"
-    parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
-    <tag name="shopware.migration.reader"/>
-</service>
+```PHP
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader::class)
+    ->parent(SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader::class)
+    ->args([
+        service(SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory::class),
+    ])
+    ->tag('shopware.migration.reader');
 ```
 
 Once the `ProductReader` is created and registered, you can use it in the `read` method of the `OwnLocaleGateway`:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway;
@@ -693,7 +694,7 @@ class OwnLocaleGateway implements GatewayInterface
 
 By using the gateway reader, you fetch all products but don't use this data yet. In this step, you implement the logic of the converter:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter;
@@ -838,19 +839,20 @@ class ProductConverter extends ShopwareConverter
 
 If you don't know which properties or requirements your entity has in Shopware 6, you may check the corresponding `EntityDefinition`. For this example, look at the `ProductEntityDefinition` to know how to convert the data exactly.
 
-To use this converter, you must register it in the `services.xml`:
+To use this converter, you must register it in the `services.php`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <tag name="shopware.migration.converter"/>
-</service>
+```PHP
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter::class)
+    ->args([
+        service(SwagMigrationAssistant\Migration\Mapping\MappingService::class),
+        service(SwagMigrationAssistant\Migration\Logging\LoggingService::class),
+    ])
+    ->tag('shopware.migration.converter');
 ```
 
 To write new entities, you have to create a new writer class, but for the product entity, you can use the `ProductWriter`:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationAssistant\Migration\Writer;
