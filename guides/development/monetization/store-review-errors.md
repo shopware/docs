@@ -106,7 +106,7 @@ Remove out-commented code from your source code. Ensure there are no unused clas
 
 Ensure that cross-document messages are sent to the intended domain. Unrestricted messaging will be rejected.
 
-Link: ["Cross-document messaging domains should be carefully restricted"](https://rules.sonarsource.com/javascript/RSPEC-2819)
+Link: [OWASP's Web Security Testing Guide](https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/11-Client-side_Testing/11-Testing_Web_Messaging.md)
 
 ## Cookie and security issues
 
