@@ -1,15 +1,15 @@
 ---
 nav:
   title: Removing Vue Migration Build
-  position: 260
+  position: 14
 ---
 
 # Future Development Roadmap: Removing Vue Migration Build
 
-> **Note:** The information provided in this article, including timelines and specific implementations, is subject to change.
-> This document serves as a general guideline for our development direction.
-
-## Introduction
+:::info
+The information provided in this article, including timelines and specific implementations, is subject to change.
+This document serves as a general guideline for our development direction.
+:::
 
 Prior to Shopware 6.7, we utilized the Vue migration build to facilitate the transition from Vue 2 to Vue 3 for plugin developers. This approach allowed most public APIs to behave similarly to Vue 2 while enabling gradual migration.
 
@@ -35,7 +35,7 @@ Before (Vue 2):
 
 ```vue
 <template>
-    <sw-button v-on="$listeners">Click me</sw-button>
+ <sw-button v-on="$listeners">Click me</sw-button>
 </template>
 ```
 
@@ -43,7 +43,7 @@ After (Vue 3):
 
 ```vue
 <template>
-    <sw-button v-bind="$attrs">Click me</sw-button>
+ <sw-button v-bind="$attrs">Click me</sw-button>
 </template>
 ```
 
@@ -69,7 +69,7 @@ More detailed guide about [`$slots` unification breaking changes](https://v3-mig
 
 #### `$children` removed
 
-Vue 2 allowed access to child components using `$children`. In Vue 3, this is no longer supported, and you should use template refs instead.
+Vue 2 allowed access to child components using `$children`. In Vue 3, this is no longer supported; use template refs instead.
 
 Before (Vue 2):
 
@@ -89,11 +89,11 @@ More detailed guide about [`$children` breaking changes](https://v3-migration.vu
 
 #### Some Events API removed
 
-The methods `$on`, `$off` and `$once` are removed in Vue 3 without a replacement. You can still use `$emit` to trigger event handlers declaratively attached by a parent component.
+The methods `$on`, `$off`, and `$once` are removed in Vue 3, with no replacement. You can still use `$emit` to trigger event handlers declaratively attached by a parent component.
 
-Alternatively you can use inject/provide to pass down event handlers using a registration pattern.
+Alternatively, you can use inject/provide to pass down event handlers using a registration pattern.
 
-It is not possible to give a general guide for this change. You need to adjust your code based on your specific use case. Here is an example how you could adjust your code:
+It is not possible to give a general guide for this change. You need to adjust your code based on your specific use case. Here is an example of how you could adjust your code:
 
 Before (Vue 2):
 
@@ -144,4 +144,4 @@ delete this.myObject.key;
 
 ## Conclusion
 
-With Shopware 6.7, the Vue migration build will be fully removed. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.
+In Shopware 6.7, the Vue migration build will be removed entirely. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.

@@ -114,7 +114,7 @@ What happens during `make setup`:
 - If search was enabled during project creation, an Elasticsearch-compatible search service runs as part of the Docker stack
 :::
 
-Verify that the installation completed successfully by opening <http://localhost:8000>.
+Verify that the installation completed successfully by opening <http://127.0.0.1:8000>.
 
 Use the following commands to manage the development environment:
 
