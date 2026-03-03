@@ -182,7 +182,7 @@ export default class HelloWorldPlugin extends Plugin {
 }
 ```
 
-Of course, you need to make sure your plugin is registered. For more details, see the guide on [Javascript plugins](../storefront/add-custom-javascript/).
+Of course, you need to make sure your plugin is registered. For more details, see the guide on [Javascript plugins](../../../plugins/plugins/storefront/add-custom-javascript.md).
 
 In the beginning, writing plugin tests is still similar to other Jest unit tests: You import your plugin's class and use the familiar test structure:
 
