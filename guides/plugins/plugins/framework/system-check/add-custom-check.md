@@ -17,7 +17,7 @@ First, you need to add a new `LocalDiskSpaceCheck` class that extends the `Shopw
 
 Each check contains a set of categorization methods that help to classify the check, and determine when and where it should be executed.
 
-```php
+```PHP
 class LocalDiskSpaceCheck extends BaseCheck
 {
     public function category(): Category
@@ -42,7 +42,7 @@ class LocalDiskSpaceCheck extends BaseCheck
 
 The next step is to implement the actual check logic. We will check if the disk space is below a certain threshold and return the appropriate result.
 
-```php
+```PHP
 class LocalDiskSpaceCheck extends BaseCheck
 {
     public function __construct(
@@ -86,7 +86,7 @@ class LocalDiskSpaceCheck extends BaseCheck
 
 Finally, you need to register the custom check as a service resource.
 
-```php
+```PHP
 $services->set(YourNameSpace\LocalDiskSpaceCheck::class)
     ->args([
         '%shopware.filesystem.public.type%',

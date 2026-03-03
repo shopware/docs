@@ -51,14 +51,14 @@ To use one of these handlers, you must create a new service in the dependency in
 
 Example service definition:
 
-```php
+```PHP
 $services->set('session.db', Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler::class)
     ->args([/* ... */]);
 ```
 
 Example session configuration:
 
-```yaml
+```YAML
 # config/packages/redis.yml
 framework:
     session:

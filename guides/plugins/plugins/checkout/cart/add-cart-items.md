@@ -27,7 +27,7 @@ So let's add an example product to the cart using code. For that case, you'll ne
 
 Let's have a look at an example.
 
-```php
+```PHP
 // <plugin root>/src/Service/ExampleController.php
 <?php declare(strict_types=1);
 
@@ -100,7 +100,7 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -117,7 +117,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Let's first have a look at an example handler:
 
-```php
+```PHP
 // <plugin root>/src/Service/ExampleHandler.php
 <?php declare(strict_types=1);
 
@@ -168,7 +168,7 @@ Implementing the `LineItemFactoryInterface` will force you to also implement thr
 
 Now you'll need to add a processor for your type. Otherwise your item won't be persisted in the cart. A simple processor for our ExampleHandler could look like this:
 
-```php
+```PHP
 // <plugin root>/Core/Checkout/Cart/ExampleProcessor.php
 <?php declare(strict_types=1);
 
@@ -201,7 +201,7 @@ Of course you can use processors to do much more than this. Have a look at [addi
 
 Now register this processor in your `services.php` like this:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

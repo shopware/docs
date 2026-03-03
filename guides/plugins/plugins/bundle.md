@@ -67,7 +67,7 @@ If you don't need these features, you can use the Symfony bundle class instead.
 
 By default, The namespace `App\` is registered to the `src` folder in any Shopware project to be used for customizations. We recommend using this namespace, if you like to change the project structure, you can change the `App\` namespace in the `composer.json` file of your project.
 
-```php
+```PHP
 // <project root>/src/YourBundleName.php
 <?php declare(strict_types=1);
 
@@ -82,7 +82,7 @@ class YourBundleName extends Bundle
 
 The bundle class needs to be registered in the `config/bundles.php` file of your project.
 
-```php
+```PHP
 // <project root>/config/bundles.php
 //...
 App\YourBundleName\YourBundleName::class => ['all' => true],
@@ -104,7 +104,7 @@ You can also add a `theme.json` file to define the theme configuration like [des
 Migrations are not automatically detected in bundles.
 To enable migrations, you need to overwrite the `build` method in your bundle class like this:
 
-```php
+```PHP
 // <project root>/src/YourBundleName.php
 <?php declare(strict_types=1);
 
@@ -126,13 +126,13 @@ class YourBundleName extends Bundle
 As Bundles don't have a lifecycle, the migrations are not automatically executed.
 You need to execute them manually via the console command:
 
-```bash
+```BASH
 bin/console database:migrate <BundleName> --all
 ```
 
 If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md), you can add it to the `.shopware-project.yaml` file like this:
 
-```yaml
+```YAML
 deployment:
     hooks:
         pre-update: |
@@ -145,7 +145,7 @@ Shopware-CLI cannot detect bundles automatically, therefore the assets of the bu
 You will need to adjust the `composer.json` file of your project to specify the path to the bundle.
 This is done by adding the `extra` section to the `composer.json` file:
 
-```json
+```JSON
 {
     "extra": {
         "shopware-bundles": {

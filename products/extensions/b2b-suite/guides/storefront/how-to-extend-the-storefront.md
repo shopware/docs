@@ -13,7 +13,7 @@ In order to be able to extend the templates of the B2B Suite with another plugin
 
 Register the `TemplateNamespaceHierarchyBuilder` by tagging it in the `services.php` file of your plugin.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -34,7 +34,7 @@ The really important part here is the priority. `750` should work fine for most 
 
 The `TemplateNamespaceHierarchyBuilder` looks like this. Please replace `MyPlugin` with the name of your plugin.
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace MyPlugin\Framework\Adapter\Twig\NamespaceHierarchy;

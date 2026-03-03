@@ -23,7 +23,7 @@ To add a discount to the cart, you should use the processor pattern. For this yo
 
 Let's start with the actual example code:
 
-```php
+```PHP
 // <plugin root>/src/Core/Checkout/ExampleProcessor.php
 <?php declare(strict_types=1);
 

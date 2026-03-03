@@ -52,7 +52,7 @@ In this example, we will name it ExampleEvent to some actions related to custome
 
 Below you can find an example implementation:
 
-```php
+```PHP
 // <plugin root>/src/Core/Checkout/Customer/Event/ExampleEvent.php
 <?php declare(strict_types=1);
 
@@ -137,7 +137,7 @@ You could read here more about the [Storer](../../../../../concepts/framework/fl
 | Shopware\Core\Framework\Event\ProductAware | Shopware\Core\Content\Flow\Dispatching\Storer\ProductStorer |
 | Shopware\Core\Framework\Event\UserAware | Shopware\Core\Content\Flow\Dispatching\Storer\UserStorer |
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\ExamplePlugin\Core\Checkout\Customer\Event;
@@ -184,7 +184,7 @@ class ExampleEvent extends Event implements CustomerAware, ShopNameAware
 
 In the example above, to get the `customerId` and `shopName` data events, you need to store these data via `CustomerStorer` and `ShopNameStorer`.
 
-```php
+```PHP
 class CustomerStorer extends FlowStorer
 {
 	public function store(FlowEventAware $event, array $stored): array
@@ -216,7 +216,7 @@ class CustomerStorer extends FlowStorer
 }
 ```
 
-```php
+```PHP
 class ShopNameStorer extends FlowStorer
 {
     public function store(FlowEventAware $event, array $stored): array
@@ -243,7 +243,7 @@ class ShopNameStorer extends FlowStorer
 
 We already have Aware interfaces, but if you want to use the custom data that is not available, you can define a new Aware interface and a Storer respectively.
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Swag\ExamplePlugin\Core\Checkout\Customer\Event;
@@ -282,7 +282,7 @@ class ExampleEvent extends Event implements CustomExampleDataAware
 
 Aware:
 
-```php
+```PHP
 #[IsFlowEventAware]
 interface CustomExampleDataAware extends FlowEventAware
 {
@@ -294,7 +294,7 @@ interface CustomExampleDataAware extends FlowEventAware
 
 Storer respective:
 
-```php
+```PHP
 class CustomExampleDataStorer extends FlowStorer
 {
     public function store(FlowEventAware $event, array $stored): array
@@ -321,7 +321,7 @@ class CustomExampleDataStorer extends FlowStorer
 
 In Flow Actions, you can get the data easily via `getStore` and `getData`.
 
-```php
+```PHP
 class SendMailAction
 {
 	public function handleFlow(StorableFlow $flow)
@@ -339,7 +339,7 @@ Take a look at the [Add Flow Builder Action](../../../../../guides/plugins/plugi
 
 At this step, you need to add your new event to the flow trigger list, let us see the code below:
 
-```php
+```PHP
 // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
@@ -382,7 +382,7 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 
 Please note that your subscriber has to have a higher priority point to ensure your event is added before any subscriber `BusinessEventCollectorEvent` to prevent missing awareness or action. I set 1000 for `onAddExampleEvent` action:
 
-```php
+```PHP
 // <plugin root>/src/Core/Checkout/Customer/Subscriber/BusinessEventCollectorSubscriber.php
 public static function getSubscribedEvents()
 {
@@ -394,7 +394,7 @@ public static function getSubscribedEvents()
 
 And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.php`
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 $services->set(Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber::class)
     ->args([service(Shopware\Core\Framework\Event\BusinessEventCollector::class)])

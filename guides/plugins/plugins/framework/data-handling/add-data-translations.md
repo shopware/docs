@@ -44,7 +44,7 @@ The translation table's columns should be the following:
 
 This is how your migration could look like:
 
-```php
+```PHP
 // <plugin root>/src/Migration/Migration1612863838ExampleTranslation.php
 <?php declare(strict_types=1);
 
@@ -96,7 +96,7 @@ The translation is an aggregation to the `ExampleEntity`. Therefore, you should 
 
 Now we can start creating our `ExampleTranslationDefinition` which extends from `Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition`. Special for entity translation is, that we have to override a method called `getParentDefinitionClass` which returns the definition class of our entity we want to translate. In this case it's `ExampleDefinition`.
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 <?php declare(strict_types=1);
 
@@ -137,7 +137,7 @@ All that's left to do now, is to introduce your `ExampleTranslationDefinition` t
 
 Here's the `services.php` as it should look like:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -162,7 +162,7 @@ So far we introduced our definition, we can create our `ExampleTranslationEntity
 
 Here's our `ExampleTranslationEntity`:
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationEntity.php
 <?php declare(strict_types=1);
 
@@ -213,7 +213,7 @@ class ExampleTranslationEntity extends TranslationEntity
 
 Now we need our translation definition to know its custom entity class. This is done by overriding the method `getEntityClass` in our `ExampleTranslationDefinition`.
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationDefinition.php
 class ExampleTranslationDefinition extends EntityTranslationDefinition
 {
@@ -232,7 +232,7 @@ As we already know, we should create an `EntityCollection` for our `Entity` too.
 
 Our collection class could then look like this:
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/Aggregate/ExampleTranslation/ExampleTranslationCollection.php
 <?php declare(strict_types=1);
 
@@ -265,7 +265,7 @@ The main entity class, that is the class with the field(s) we are going to trans
 * a `TranslatedField` for the “name” field
 * a `TranslationsAssociationField`, with a reference to the ExampleTranslationDefinition
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 

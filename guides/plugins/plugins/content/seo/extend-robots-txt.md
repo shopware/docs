@@ -93,7 +93,7 @@ class RobotsExtensionListener
 
 <Tab title="services.php">
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
@@ -150,7 +150,7 @@ class CustomDirectiveListener
 
 <Tab title="services.php">
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 use Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent;
@@ -251,7 +251,7 @@ class RobotsValidationListener
 
 <Tab title="services.php">
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;

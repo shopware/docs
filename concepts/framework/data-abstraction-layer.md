@@ -35,7 +35,7 @@ This is the recommended way for developers to interface with the DAL or the data
 Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection).
 This is done with [Constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepository:
 
-```php
+```PHP
 // <plugin root>/src/Service/DalExampleService.php
 public function __construct (EntityRepository $productRepository)
 {
@@ -47,7 +47,7 @@ If you are using [Service autowiring](https://symfony.com/doc/current/service_co
 
 Alternatively, configure the `product.repository` service to be injected explicitly:
 
-```php
+```PHP
 // <plugin root>src/Resources/config/services.php
 $services->set(Swag\ExamplePlugin\Service\DalExampleService::class)
     ->args([service('product.repository')]);

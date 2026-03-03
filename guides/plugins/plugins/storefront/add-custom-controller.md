@@ -304,7 +304,7 @@ class SwagBasicExample extends Plugin
 
 Now you can use the route name `swag.test.foo-bar` in your controller without the need for a prefix.
 
-```php
+```PHP
 #[Route(path: '/example', name: 'swag.test.foo-bar', methods: ['GET'])]
 public function showExample(Request $request, SalesChannelContext $context): Response
 {

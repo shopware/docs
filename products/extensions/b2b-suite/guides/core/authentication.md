@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `b2b_my` (
 This modifier column allows you to store the context owner independent of the actual source table of the context owner.
 You can access the current context owner always through the identity.
 
-```php
+```PHP
 [...]
 
 /** @var AuthenticationService $authenticationService */
@@ -75,7 +75,7 @@ echo 'The context owner id ' . $ownershipContext->contextOwnerId . '\n';
 
 You can even load the whole identity through the `AuthenticationService`.
 
-```php
+```PHP
 [...]
 
 $ownerIdentity = $authenticationService->getIdentityByAuthId($contextOwnerId);
@@ -87,7 +87,7 @@ $ownerIdentity = $authenticationService->getIdentityByAuthId($contextOwnerId);
 
 Sometimes you want to flag records to be owned by certain identities.
 
-```sql
+```SQL
 CREATE TABLE IF NOT EXISTS `b2b_my` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `auth_id` INT(11) NULL DEFAULT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `b2b_my` (
 
 To fill this column, we again access the current identity, but instead of the `contextOwnerId`, we access the `authId`.
 
-```php
+```PHP
 [...]
 
 $ownershipContext = $authenticationService
@@ -119,7 +119,7 @@ The B2B Suite views the context owner as some kind of admin that, from the persp
 
 Therefore, commonly used queries are:
 
-```php
+```PHP
 /** @var Connection $connection */
 $connection = $this->container->get('dbal_connection');
 /** @var Identity $identity */
@@ -174,11 +174,11 @@ Example implementations are either: `Shopware\B2B\Debtor\Framework\DebtorIdentit
 
 In the *CredentialsBuilder*, you create the *CredentialsEntity*, which is used for logging in the B2B Suite.
 
-```php
+```PHP
     public function createCredentials(array $parameters): AbstractCredentialsEntity
     {
         $entity = new CredentialsEntity();
-    
+
         $entity->email = $parameters['email'];
         $entity->salesChannelId = IdValue::create($this->contextProvider->getSalesChannelContext()->getSalesChannel()->getId());
         $entity->customerScope = $this->systemConfigService->get('core.systemWideLoginRegistration.isCustomerBoundToSalesChannel');
@@ -196,23 +196,23 @@ Next, you have to provide the means to register your identity on login. This is 
 The *LoginContextService* is passed as an argument to help you retrieve and create the appropriate auth and
 context owner ids. Notice that the interface is designed to be chained to create dependent auth ids on the fly.
 
-```php
+```PHP
 [...]
     public function fetchIdentityByCredentials(CredentialsEntity $credentialsEntity, LoginContextService $contextService, bool $isApi = false): Identity
     {
         if (!$credentialsEntity->email) {
             throw new NotFoundException('Unable to handle context');
         }
-        
+
         $entity = $this->yourEntityRepository->fetchOneByEmail($email);
 
         /** @var DebtorIdentity $debtorIdentity */
         $debtorIdentity = $this->debtorRepository->fetchIdentityById($entity->debtor->id, $contextService);
-        
+
         $authId = $contextService->getAuthId(YourEntityRepository::class, $entity->id, $debtorIdentity->getAuthId());
-        
+
         $this->yourEntityRepository->setAuthId($entity->id, $authId);
-        
+
         return new YourEntityIdentity($authId, (int) $entity->id, YourEntityRepository::TABLE_NAME, $entity, $debtorIdentity);
     }
 [...]
@@ -220,7 +220,7 @@ context owner ids. Notice that the interface is designed to be chained to create
 
 Finally, you register your authentication provider (in our case a repository) as a tagged service through the DIC.
 
-```php
+```PHP
 $services->set('b2b_my.contact_authentication_identity_loader', Shopware\B2B\My\AuthenticationIdentityLoader::class)
     // [...]
     ->tag('b2b_front_auth.authentication_repository');

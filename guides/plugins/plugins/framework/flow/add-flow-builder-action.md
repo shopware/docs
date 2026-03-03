@@ -33,7 +33,7 @@ To create a custom flow action, firstly you have to make a plugin and install it
 
  First of all, we need to define an aware interface for your own action. I intended to create the `CreateTagAction`, so I need to create a related aware named `TagAware`, will be placed in directory `<plugin root>/src/Core/Framework/Event`. Our new interface has to extend from interfaces `Shopware\Core\Framework\Event\FLowEventAware`:
 
-```php
+```PHP
 // <plugin root>/src/Core/Framework/Event/TagAware.php
 <?php declare(strict_types=1);
 namespace Swag\ExamplePlugin\Core\Framework\Event;
@@ -59,7 +59,7 @@ interface TagAware extends FlowEventAware
 
 In this example, we will name it `CreateTagAction`. It will be placed in the directory `<plugin root>/src/Core/Content/Flow/Dispatching/Action`. Below you can find an example implementation:
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
 <?php declare(strict_types=1);
 
@@ -140,7 +140,7 @@ As you can see, several methods are already implemented:
 
 You also need to register this action in the container as a service. Make sure to define a tag `flow.action` with `priority: 600` at `<plugin root>/src/Resources/config/services.php`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 $services->set(Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction::class)
     ->args([service('tag.repository')])
@@ -162,7 +162,7 @@ There are three scopes for the `CreateTagAction`:
 
 - Just define the empty array in `CreateTagAction::requirements`
 
-```php
+```PHP
     // plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -184,7 +184,7 @@ Here, the action name is empty as the action name snippet is not yet defined.
 
 Make the `CreateTagAction` available for all events related to Order and Customer.
 
-```php
+```PHP
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -202,7 +202,7 @@ Make the `CreateTagAction` available for all events related to Order and Custome
 
 - Event must implement the `TagAware`
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Flow/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 
@@ -255,7 +255,7 @@ class BasicExampleEvent extends Event implements TagAware
 
 - Define the `TagAware` in `CreateTagAction::requirements`
 
-```php
+```PHP
     // <plugin root>/src/Core/Content/Flow/Dispatching/Action/CreateTagAction.php
     ...
 
@@ -269,7 +269,7 @@ class BasicExampleEvent extends Event implements TagAware
 
 - To show the new event in Flow Builder Triggers list
 
-```php
+```PHP
 // <plugin root>/src/Core/Content/Subscriber/BusinessEventCollectorSubscriber.php
 <?php declare(strict_types=1);
 namespace Swag\CreateTagAction\Core\Content\Subscriber;
@@ -312,7 +312,7 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 
 And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.php`.
 
-```php
+```PHP
 
 $services->set(Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber::class)
     ->args([service(Shopware\Core\Framework\Event\BusinessEventCollector::class)])
@@ -321,7 +321,7 @@ $services->set(Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollect
 
 - Define the Event snippet
 
-```json
+```JSON
 // <plugin root>/src/Resources/app/administration/src/module/sw-flow/snippet/en-GB.json
 {
   "sw-flow": {

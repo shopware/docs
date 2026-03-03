@@ -22,7 +22,7 @@ For example, to load stock from a third-party API, you need to decorate `\Shopwa
 <Tabs>
 <Tab title="StockStorageDecorator.php">
 
-```php
+```PHP
 // <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
 
@@ -77,7 +77,7 @@ class StockStorageDecorator extends AbstractStockStorage
 
 <Tab title="services.php">
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -120,7 +120,7 @@ There are several required values and some optional values.
 
 For example:
 
-```php
+```PHP
 $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
     'productId' => 'product-1',
     'stock' => 5,
@@ -133,7 +133,7 @@ $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
 
 It is also possible to provide arbitrary data via extensions:
 
-```php
+```PHP
 $stockData = \Shopware\Core\Content\Product\Stock\StockData::fromArray([
     'productId' => 'product-1',
     'stock' => 5,
@@ -145,6 +145,6 @@ $stockData->addArrayExtension('extraData', ['foo' => 'bar']);
 
 The values in the `StockData` instance will be used to update the loaded product instance. Furthermore, fetching the `StockData` instance from the product via the `stock_data` extension is possible. For example:
 
-```php
+```PHP
 $stockData = $product->getExtension('stock_data');
 ```

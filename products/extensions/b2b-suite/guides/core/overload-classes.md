@@ -17,7 +17,7 @@ To add new functionality or overload existing classes to change functionality, t
 
 In the release package, our services.php looks like this:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -48,7 +48,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 For development (GitHub), it looks like this:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -100,7 +100,7 @@ You only have to change the parameter or overload the service id.
 
 Your service file could look like this:
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -124,7 +124,7 @@ After that, add your own arguments or override ours.
 
 An example of your class could look like this:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 [...]

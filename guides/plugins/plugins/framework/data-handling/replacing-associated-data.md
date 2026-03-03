@@ -25,7 +25,7 @@ So let's start with the main issue going on here. Let's imagine you've created a
 
 The following example will show you how **not** to do it. It's assuming that you've previously assigned the category `Old category` with the ID `oldId` to the product.
 
-```php
+```PHP
 public function replaceData(Context $context): void
 {
     $this->productRepository->update([
@@ -55,7 +55,7 @@ In order to delete it, we once again need its repository. The name for the entit
 
 So let's inject this repository into our class called `ReplacingData`:
 
-```php
+```PHP
 // SwagBasicExample/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -77,7 +77,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Afterwards, you can just use the `delete` method on the repository, just like you did before in the [Writing data](writing-data) guide.
 
-```php
+```PHP
 public function replaceData(Context $context): void
 {
     $this->productCategoryRepository->delete([
@@ -91,7 +91,7 @@ public function replaceData(Context $context): void
 
 Now the association to the old category was removed and you can now use the code above to add the new category instead.
 
-```php
+```PHP
 public function replaceData(Context $context): void
 {
     $productId = 'myProductId';
@@ -122,7 +122,7 @@ And that's it, you've successfully deleted one association and then replaced it 
 
 Replacing `OneToOne` or `ManyToOne` associations works just like expected via an `update` call, e.g. for the tax of a product:
 
-```php
+```PHP
 public function replaceData(Context $context): void
 {
     $this->productRepository->update([

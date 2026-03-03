@@ -47,7 +47,7 @@ In this section, we're going to register a subscriber for the `\Shopware\Core\Co
 
 Have a look at the following code example:
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/UnusedMediaSubscriber.php
 <?php declare(strict_types=1);
 
@@ -92,7 +92,7 @@ If your storage is a relational database such as MySQL, you should, when possibl
 
 Imagine an extension that provides an image slider feature. An implementation of `getUsedMediaIds` might look something like the following:
 
-```php
+```PHP
 // <plugin root>/src/Subscriber/UnusedMediaSubscriber.php
 private function getUsedMediaIds(array $idsToBeDeleted): array
 {
@@ -128,7 +128,7 @@ by using the tag `kernel.event_subscriber`.
 <Tabs>
 <Tab title="services.php">
 
-```php
+```PHP
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
