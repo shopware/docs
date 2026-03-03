@@ -22,7 +22,6 @@ Playwright provides:
 
 <PageRef page="../testing/e2e-playwright/index.md" title="E2E playwright" target="_blank" />
 
-
 ## Unit testing
 
 Shopware supports both PHP backend logic and JavaScript components (for Storefront and Administration). Unit tests validate isolated logic in your extension.
