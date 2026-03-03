@@ -51,7 +51,7 @@ All extensions must:
 * Avoid the words “plugin” and “shopware” in the display name.
 * Avoid blank spaces as filler text.
 * Include clear, complete setup and configuration instructions.
-* Use clean HTML source code. Inline styles will be stripped. 
+* Use clean HTML source code. Inline styles will be stripped.
 
 These tags are allowed:
 
@@ -225,7 +225,7 @@ If the extension includes Composer dependencies:
 ## Administration guidelines
 
 * Do not add new main menu entries in the Administration, to preserve look and feel consistency.
-* Create a dedicated media folder with correct thumbnail settings or use an existing one (except for uploads defined in `config.xml`). 
+* Create a dedicated media folder with correct thumbnail settings or use an existing one (except for uploads defined in `config.xml`).
 * Custom media folders and their contents must be removed during uninstall.
 * All links must include meaningful `title` tags.
 * All images must include meaningful `alt` tags, or original `alt` tags from the media manager.
