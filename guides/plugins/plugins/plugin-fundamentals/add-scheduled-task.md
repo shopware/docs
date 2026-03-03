@@ -54,7 +54,7 @@ Note the tags required for both the task and its respective handler, `shopware.s
 
 ## ScheduledTask and its handler
 
-As you might have noticed, the `services.php` file tries to find both the task itself as well as the new task handler in a directory called `Service/ScheduledTask`. This naming is up to you, Shopware 6 decided to use this name though.
+As you might have noticed, the `services.php` file tries to find both the task itself and the new task handler in a directory called `Service/ScheduledTask`. This naming is up to you, Shopware 6 decided to use this name though.
 
 Here's the an example `ScheduledTask`:
 

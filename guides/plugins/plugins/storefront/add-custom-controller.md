@@ -141,7 +141,7 @@ Next, we need to register our controller in the DI-container and make it public.
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/services.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Storefront\Controller\ExampleController;
@@ -166,11 +166,11 @@ Please also note the `call` method, which is necessary in order to set the DI co
 
 Once we've registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin.
 This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location.
-Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ::: code-group
 
-```php [PLUGIN_ROOT/src/Resources/config/routes.php]
+```PHP [PLUGIN_ROOT/src/Resources/config/routes.php]
 <?php declare(strict_types=1);
 
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;

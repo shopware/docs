@@ -18,7 +18,7 @@ This section explains how to add new fields to an existing entity or introduce n
 
   **Example**:
 
-  ```php
+  ```PHP
   $services->set(MigrationExtension\B2BMigration\B2BExtensionMigrationConfigurator::class)
       ->tag('b2b.migration.configurator.extension');
   ```
