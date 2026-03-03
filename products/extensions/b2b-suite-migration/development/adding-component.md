@@ -17,10 +17,9 @@ This section guides developers on adding a new component to the migration proces
 - Tag the class with `b2b.migration.configurator`.
    **Example**:
 
-   ```XML
-   <service id="Shopware\Commercial\B2B\B2BSuiteMigration\Components\EmployeeManagement\EmployeeManagementMigrationConfigurator">
-      <tag name="b2b.migration.configurator" priority="9000"/>
-   </service>
+   ```php
+   $services->set(Shopware\Commercial\B2B\B2BSuiteMigration\Components\EmployeeManagement\EmployeeManagementMigrationConfigurator::class)
+       ->tag('b2b.migration.configurator', ['priority' => 9000]);
    ```
 
   ```PHP

@@ -54,7 +54,7 @@ As you might have seen, this controller isn't too different from the controller 
 The route attribute has an added `defaults: ['XmlHttpRequest' => true]` to allow XmlHttpRequest, and it returns a `JsonResponse` instead of a normal `Response`.
 Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
 
-The following `services.php` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyway:
+The following `services.php` and `routes.php` are identical as in the before mentioned article, but here they are for reference anyway:
 
 ::: code-group
 

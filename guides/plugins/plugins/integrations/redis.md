@@ -15,16 +15,17 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
 1. Inject `Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider` and retrieve connections by name:
 
-    ```xml
-      <service id="MyCustomService">
-          <argument type="service" id="Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider" />
-          <argument>%myservice.redis_connection_name%</argument>
-      </service>
+    ```php
+      $services->set(MyCustomService::class)
+          ->args([
+              service(Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider::class),
+              '%myservice.redis_connection_name%',
+          ]);
     ```
 
     ```php
       class MyCustomService
-      { 
+      {
           public function __construct (
               private RedisConnectionProvider $redisConnectionProvider,
               string $connectionName,
@@ -42,20 +43,18 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
 2. Use `Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider` as a factory to define custom services:
 
-    ```xml
-      <service id="my.custom.redis_connection" class="Redis">
-          <factory service="Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider" method="getConnection" />
-          <argument>%myservice.redis_connection_name%</argument>
-      </service>
+    ```php
+    $services->set('my.custom.redis_connection', \Redis::class)
+        ->factory([service(Shopware\Core\Framework\Adapter\Redis\RedisConnectionProvider::class), 'getConnection'])
+        ->args(['%myservice.redis_connection_name%']);
 
-      <service id="MyCustomService">
-          <argument type="service" id="my.custom.redis_connection" />
-      </service>
+    $services->set(MyCustomService::class)
+        ->args([service('my.custom.redis_connection')]);
     ```
 
     ```php
       class MyCustomService
-      { 
+      {
           public function __construct (
               private object $redisConnection,
           ) { }
@@ -71,10 +70,9 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
 
 3. Inject connection directly by name:
 
-    ```xml
-      <service id="MyCustomService">
-          <argument type="service" id="shopware.redis.connection.connection_name" />
-      </service>
+    ```php
+    $services->set(MyCustomService::class)
+        ->args([service('shopware.redis.connection.connection_name')]);
     ```
 
     Be cautious with this approach! If you change the Redis connection names in your configuration, it will cause container build errors.

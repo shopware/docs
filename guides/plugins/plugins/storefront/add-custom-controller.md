@@ -162,10 +162,10 @@ return static function (ContainerConfigurator $configurator): void {
 
 Please also note the `call` method, which is necessary in order to set the DI container to the controller.
 
-### Routes.xml example
+### Routes.php example
 
 Once we've registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin.
-This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location.
+This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location.
 Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ::: code-group

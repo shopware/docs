@@ -65,7 +65,7 @@ class ReadingData
 }
 ```
 
-So we registered a custom service called `ReadingData` and applied the repository as a constructor parameter. If you want to fetch data for another entity, just switch the `id` in the `services.xml` to whatever repository you need, e.g. `order.repository` for orders.
+So we registered a custom service called `ReadingData` and applied the repository as a constructor parameter. If you want to fetch data for another entity, just switch the `id` in the `services.php` to whatever repository you need, e.g. `order.repository` for orders.
 
 ### Using the repository
 
