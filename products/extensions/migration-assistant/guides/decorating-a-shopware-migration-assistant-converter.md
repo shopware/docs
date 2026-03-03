@@ -23,7 +23,7 @@ Instead of creating a new plugin for the migration, you might want to add migrat
 
 In this example, the user should be able to map the manufacturer while no new manufacturer will be created. You have to create a new premapping reader to achieve this:
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace SwagMigrationExtendConverterExample\Profile\Shopware\Premapping;
@@ -182,7 +182,7 @@ The created premapping reader fetches all manufacturers of the source system, ge
 
 Currently, the premapping card has no snippets at all, so you have to create a new snippet file for the title:
 
-```json
+```JSON
 {
      "swag-migration": {
          "index": {
@@ -198,7 +198,7 @@ Currently, the premapping card has no snippets at all, so you have to create a n
 
 This file has to be located in `Resources\administration\snippet` and registered in `Resources\administration\main.js` of the plugin like this:
 
-```javascript
+```JAVASCRIPT
 import enGBSnippets from './snippet/en-GB.json';
 
 const { Application } = Shopware;
@@ -216,7 +216,7 @@ Now your new premapping card has a correct title.
 
 After creating your premapping reader, you have a new premapping card, but this premapping is currently not in use. To map the product manufacturers of the source system to your premapping values, you have to decorate one of the Shopware product migration converters. In this example, only the `Shopware55ProductConverter` is decorated, but if you want to decorate all Shopware migration converters, you have to do the same:
 
-```php
+```PHP
  <?php declare(strict_types=1);
 
  namespace SwagMigrationExtendConverterExample\Profile\Shopware\Converter;
@@ -301,16 +301,17 @@ After creating your premapping reader, you have a new premapping card, but this 
 
 Your new decorated product migration converter checks if a manufacturer is set and searches for the premapping via the `MappingService`. If a premapping is found, the migration converter uses the converted value of the original converter, adds the manufacturer uuid, and returns the new `ConvertStruct`.
 
-In the end, you have to register your decorated converter in your `services.xml`:
+In the end, you have to register your decorated converter in your `services.php`:
 
-```html
-<service id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
-          decorates="SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter">
-    <argument type="service" id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter.inner"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Media\MediaFileService"/>
-</service>
+```PHP
+$services->set(SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter::class)
+    ->decorate(SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter::class)
+    ->args([
+        service('.inner'),
+        service(SwagMigrationAssistant\Migration\Mapping\MappingService::class),
+        service(SwagMigrationAssistant\Migration\Logging\LoggingService::class),
+        service(SwagMigrationAssistant\Migration\Media\MediaFileService::class),
+    ]);
 ```
 
 With this, you have decorated your first Shopware migration converter.
