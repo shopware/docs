@@ -23,7 +23,7 @@ Before you read this guide, make sure you understand the basics of unit testing 
 
 In addition, you need a running Shopware 6 installation. Your repository for that should be based on the development template, as we will use some scripts provided by it.
 
-For one example, we use a Javascript plugin. To follow this example, you need to know how to build a Javascript plugin in the first place. You can learn about it in the corresponding [guide](../storefront/add-custom-javascript/).
+For one example, we use a Javascript plugin. To follow this example, you need to know how to build a Javascript plugin in the first place. You can learn about it in the corresponding [guide](../../../plugins/plugins/storefront/add-custom-javascript.md).
 
 ## Test structure
 
