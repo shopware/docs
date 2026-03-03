@@ -163,9 +163,9 @@ Another thing to note is the `addFlags` call on the `IdField`. Those flags are l
 
 If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags).
 
-All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.xml` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
+All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.php` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.php` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
 
-Here's the `services.xml` as it should look like:
+Here's the `services.php` as it should look like:
 
 ```php
 <?php declare(strict_types=1);

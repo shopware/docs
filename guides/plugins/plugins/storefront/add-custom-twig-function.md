@@ -65,16 +65,14 @@ class SwagCreateMd5Hash extends AbstractExtension
 
 :::
 
-Of course, you can do everything in the `createMd5Hash` function that PHP can do, but the `service.xml` handles registration of the service in the DI container.
+Of course, you can do everything in the `createMd5Hash` function that PHP can do, but the `services.php` handles registration of the service in the DI container.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-    <services>
-        <service id="SwagBasicExample\Twig\SwagCreateMd5Hash" public="true">
-            <tag name="twig.extension"/> <!--Required-->
-        </service>
-    </services>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+$services->set(SwagCreateMd5Hash::class)
+        ->public()
+        ->tag('twig.extension'); // Required
 ```
 
 Once done, you can access this `TwigFunction` within your plugin.

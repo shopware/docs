@@ -148,11 +148,13 @@ Remember to register your new page loader in the DI container:
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<service id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" public="true">
-    <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
-    <argument type="service" id="event_dispatcher"/>
-</service>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+$services->set(ExamplePageLoader::class)
+    ->public()
+    ->args([
+        service('Shopware\Storefront\Page\GenericPageLoader'),
+        service('event_dispatcher'),
+    ]);
 ```
 
 :::
@@ -197,19 +199,29 @@ class ExampleController extends StorefrontController
 
 Note, that we've added the page to the template variables.
 
-#### Adjusting the services.xml
+#### Adjusting the services.php
 
-In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.xml`.
+In addition, it is necessary to pass the argument with the ID of the `ExamplePageLoader` class to the [configuration](add-custom-controller#services-xml-example) of the controller service in the `services.php`.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-    <argument type="service" id="Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader" />
-    <call method="setContainer">
-        <argument type="service" id="service_container"/>
-    </call>
-</service>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
+
+use Swag\BasicExample\Storefront\Controller\ExampleController;
+use Swag\BasicExample\Storefront\Page\Example\ExamplePageLoader;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleController::class)
+        ->public()
+        ->args([service(ExamplePageLoader::class)])
+        ->call('setContainer', [service('service_container')]);
+};
 ```
 
 :::
