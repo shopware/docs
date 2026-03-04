@@ -631,6 +631,7 @@ ORMs
 OSS
 OTEL
 OTLP
+OWASP
 ObjectField
 ObjectType
 OffCanvas
@@ -675,7 +676,6 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
-OWASP
 PCOV
 PEM
 PHPStan
