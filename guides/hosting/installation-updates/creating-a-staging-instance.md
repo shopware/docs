@@ -7,7 +7,7 @@ nav:
 
 # Staging
 
-Since Shopware 6.6.1.0, Shopware has an integrated staging mode. This mode prepares the shop to be used in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
+Since Shopware 6.6.1.0, Shopware has an integrated staging mode. This mode prepares the shop for use in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
 
 ## The workflow
 
@@ -34,7 +34,7 @@ It's highly recommended to use a separate Domain or Subdomain for the staging in
 You should still use your **live domain** in `Shopware Account > License Domain` to avoid licensing issues.
 :::
 
-### 2.Duplicating the database from live environment
+### 2.Duplicating the database from the live environment
 
 To make your staging environment similar to the live environment, duplicate the database. You can use the `mysqldump` command to export the database and import it into the staging environment.
 
@@ -42,10 +42,10 @@ To make your staging environment similar to the live environment, duplicate the 
 Ensure that the `mysqldump` and `mysql` binaries are from the same major version and vendor. If you use `mysqldump` from MariaDB, use `mysql` from MariaDB. The same applies to MySQL.
 :::
 
-We recommend using `shopware-cli project dump` to create a database dump and import it with the regular mysql command. The CLI also includes an anonymization flag to ensure no personal data is in the staging environment.
+We recommend using `shopware-cli project dump` to create a database dump, then importing it with the regular MySQL command. The CLI also includes an anonymization flag to ensure no personal data is in the staging environment.
 
 ::: info
-`shopware-cli` is a separate Go command line application with many useful commands for Shopware. [Learn how to install it](../../../../products/cli/installation).
+`shopware-cli` is a separate Go command-line application with many useful commands for Shopware. [Learn how to install it](../../../../docs/products/cli/installation.md).
 :::
 
 ```bash
@@ -56,7 +56,7 @@ shopware-cli project dump --clean --host localhost --username db_user --password
 shopware-cli project dump --clean --anonymize --host localhost --username db_user --password db_pass --output shop.sql shopware
 ```
 
-Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../../products/cli/project-commands/mysql-dump) for details.
+Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../../docs/products/cli/project-commands/mysql-dump.md) for details.
 
 ### 3.Configuring the staging instance
 
@@ -67,7 +67,7 @@ Do not share resources like MySQL, Redis, or ElasticSearch/OpenSearch between li
 After importing the database, modify the `.env` file to use the staging database. If you use ElasticSearch/OpenSearch, set a `SHOPWARE_ES_INDEX_PREFIX` to avoid conflicts with the live environment.
 
 ::: warning
-If you don't use the included Staging Mode, make sure to disable email sending in the staging environment to avoid sending test emails to real customers and that you reset the app system by deleting "core.app.shopId" from the `system_config` table to avoid leaks of data between live and staging environments.
+If you don't use the included Staging Mode, make sure to disable email sending in the staging environment to avoid sending test emails to real customers, and that you reset the app system by deleting "core.app.shopId" from the `system_config` table to avoid leaks of data between live and staging environments.
 :::
 
 Staging mode prepares the Shopware instance for safe testing by modifying the database to prevent unintended operations on the live environment.
@@ -133,10 +133,10 @@ shopware:
     staging:
         sales_channel:
             domain_rewrite:
-                - type: equal
+ - type: equal
                   match: https://my-live-store.com
                   replace: https://my-staging-store.com
-                - # ... second rule
+ - # ... second rule
 ```
 
 Compares Sales Channel URLs. When equal to `https://my-live-store.com`, it's replaced with `https://my-staging-store.com`.
@@ -149,10 +149,10 @@ shopware:
     staging:
         sales_channel:
             domain_rewrite:
-                - type: prefix
+ - type: prefix
                   match: https://my-live-store.com
                   replace: https://my-staging-store.com
-                - # ... second rule
+ - # ... second rule
 ```
 
 Replaces URLs starting with `https://my-live-store.com`. For example, `https://my-live-store.com/en` becomes `https://my-staging-store.com/en`.
@@ -165,10 +165,10 @@ shopware:
     staging:
         sales_channel:
             domain_rewrite:
-                - type: regex
+ - type: regex
                   match: '/https?:\/\/(\w+)\.(\w+)$/m'
                   replace: 'http://$1-$2.local'
-                - # ... second rule
+ - # ... second rule
 ```
 
 Uses regular expressions for advanced URL rewriting. In this example, `https://my-live-store.com` becomes `http://my-live-store.local`.
@@ -181,7 +181,7 @@ The staging command deletes all apps with active external connections to prevent
 
 Protect your staging environment from unauthorized access using password protection, IP restriction, or OAuth authentication.
 
-The simplest method uses `.htaccess` for Apache or `auth_basic` for Nginx. You can also use a firewall to restrict access based on IP addresses.
+The simplest method uses `.htaccess` for Apache or `auth_basic` for Nginx. You can also use a firewall to restrict access by IP address.
 
 **Apache example:**
 
@@ -217,15 +217,15 @@ use Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent;
 class StagingSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
-    {
+ {
         return [
             SetupStagingEvent::class => 'onSetupStaging'
-        ];
-    }
+ ];
+ }
 
     public function onSetupStaging(SetupStagingEvent $event): void
-    {
+ {
         // modify the database to turn on the test mode
-    }
+ }
 }
 ```
