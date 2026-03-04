@@ -138,5 +138,5 @@ redirects:
     guides/plugins/plugins/testing/playwright/test-data-service.html: guides/development/testing/e2e-playwright/test-data-service.html
     guides/plugins/plugins/testing/playwright/test-suite-types.html: guides/development/testing/e2e-playwright/test-suite-types.html
     guides/plugins/plugins/testing/playwright/test.html: guides/development/testing/e2e-playwright/test.html
-    guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/e2e-cypress/cypress-best-practises.html
+    guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
     guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/

@@ -7,7 +7,7 @@ nav:
 
 # Search Criteria
 
-Generally, we refer to the endpoints that use the `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../plugins/plugins/framework/data-handling/reading-data#filtering). Some endpoints require additional parameters beyond those specified here. However, these differ from one endpoint to another, so we don't specify them here.
+Generally, we refer to the endpoints that use the `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../../plugins/plugins/framework/data-handling/reading-data#filtering). Some endpoints require additional parameters beyond those specified here. However, these differ from one endpoint to another, so we don't specify them here.
 
 A typical **search criteria** looks like this:
 
