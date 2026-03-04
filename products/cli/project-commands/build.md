@@ -198,7 +198,7 @@ build:
 ## Supporting bundles
 
 Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
-You can declare bundles in either your `.shopware-project.yml` or the project `composer.json`.
+Use .shopware-project.yml to declare bundles. The alternative declaration in the project's composer.json is deprecated and no longer recommended.
 
 ### Declaring bundles in `.shopware-project.yml`
 
@@ -214,7 +214,9 @@ build:
 
 The `path` is relative to the project root. The `name` field is optional and when omitted, the bundle name defaults to the directory basename.
 
-### Declaring bundles in `composer.json`
+### Declaring bundles in `composer.json` (deprecated)
+
+> **Deprecated:** Declaring bundles via `composer.json` is deprecated and will be removed in a future version. Please migrate to the `.shopware-project.yml` approach described above. Shopware CLI will emit a deprecation warning when bundles are configured this way.
 
 Alternatively, you can add the bundle path to the `extra` section of your `composer.json`:
 

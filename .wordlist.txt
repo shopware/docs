@@ -89,6 +89,7 @@ BITV
 BackedEnum
 Backend
 BaseContext
+basename
 BasicExample
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
