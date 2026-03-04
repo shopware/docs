@@ -82,7 +82,7 @@ After the database is imported and configured, activate staging mode:
 
 This command modifies the database for staging use. Pass `--no-interaction --force` to avoid interactive questions.
 
-## Staging mode: ccope and limitations
+## Staging mode: scope and limitations
 
 | Category | Behavior |
 |----------|----------|
