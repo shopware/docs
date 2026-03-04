@@ -2,7 +2,6 @@
 nav:
   title: Profile and Connection
   position: 10
-
 ---
 
 # Profile and Connection
@@ -22,26 +21,22 @@ The base of Shopware Migration Assistant is the profile, which enables you to mi
 </service>
 ```
 
-In order to identify itself, the profile has to implement getter functions like `getName`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
+In order to identify itself, the profile has to implement getter functions like `getName()`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Profile\Shopware55;
-
-use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
+// SwagMigrationAssistant\Profile\Shopware55\Shopware55Profile
 
 class Shopware55Profile implements ShopwareProfileInterface
 {
-    public const PROFILE_NAME = 'shopware55';
+    final public const PROFILE_NAME = 'shopware55';
 
-    public const SOURCE_SYSTEM_NAME = 'Shopware';
+    final public const SOURCE_SYSTEM_NAME = 'Shopware';
 
-    public const SOURCE_SYSTEM_VERSION = '5.5';
+    final public const SOURCE_SYSTEM_VERSION = '5.5';
 
-    public const AUTHOR_NAME = 'shopware AG';
+    final public const AUTHOR_NAME = 'shopware AG';
 
-    public const ICON_PATH = '/swagmigrationassistant/static/img/migration-assistant-plugin.svg';
+    final public const ICON_PATH = '/swagmigrationassistant/administration/static/img/migration-assistant-plugin.svg';
 
     public function getName(): string
     {
@@ -75,30 +70,29 @@ class Shopware55Profile implements ShopwareProfileInterface
 To connect Shopware 6 to your source system \(e.g., Shopware 5\), you will need a connection entity. The connection includes all the important information for your migration run. It contains the credentials for the API or database access, the actual [Premapping](premapping) and the profile, [Gateway](gateway-and-reader) combination which is used for your migration:
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Migration\Connection;
-
-/*...*/
+// SwagMigrationAssistant\Migration\Connection\SwagMigrationConnectionDefinition
 
 class SwagMigrationConnectionDefinition extends EntityDefinition
 {
-    /*...*/
+    final public const ENTITY_NAME = 'swag_migration_connection';
+
+    // ...
 
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
-             (new IdField('id', 'id'))->setFlags(new PrimaryKey(), new Required()),
-             (new StringField('name', 'name'))->setFlags(new Required()),
-             (new JsonField('credential_fields', 'credentialFields'))->setFlags(new WriteProtected(MigrationContext::SOURCE_CONTEXT)),
-             new JsonField('premapping', 'premapping'),
-             (new StringField('profile_name', 'profileName'))->setFlags(new Required()),
-             (new StringField('gateway_name', 'gatewayName'))->setFlags(new Required()),
-             new CreatedAtField(),
-             new UpdatedAtField(),
-             new OneToManyAssociationField('runs', SwagMigrationRunDefinition::class, 'connection_id'),
-             new OneToManyAssociationField('mappings', SwagMigrationMappingDefinition::class, 'connection_id'),
-             new OneToManyAssociationField('settings', GeneralSettingDefinition::class, 'selected_connection_id'),
+            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new Required()),
+            (new StringField('name', 'name'))->addFlags(new Required()),
+            (new JsonField('credential_fields', 'credentialFields'))->addFlags(new WriteProtected(MigrationContext::SOURCE_CONTEXT)),
+            new PremappingField('premapping', 'premapping'),
+            (new StringField('profile_name', 'profileName'))->addFlags(new Required()),
+            (new StringField('gateway_name', 'gatewayName'))->addFlags(new Required()),
+            new StringField('source_system_fingerprint', 'sourceSystemFingerprint'),
+            new CreatedAtField(),
+            new UpdatedAtField(),
+            new OneToManyAssociationField('runs', SwagMigrationRunDefinition::class, 'connection_id'),
+            new OneToManyAssociationField('mappings', SwagMigrationMappingDefinition::class, 'connection_id'),
+            new OneToManyAssociationField('settings', GeneralSettingDefinition::class, 'selected_connection_id'),
         ]);
     }
 }
