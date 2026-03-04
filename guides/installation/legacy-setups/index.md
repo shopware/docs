@@ -1,7 +1,7 @@
 ---
 nav:
   title: Legacy Setups
-  position: 15
+  position: 10000
 
 ---
 
