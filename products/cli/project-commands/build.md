@@ -216,7 +216,9 @@ The `path` is relative to the project root. The `name` field is optional and whe
 
 ### Declaring bundles in `composer.json` (deprecated)
 
-> **Deprecated:** Declaring bundles via `composer.json` is deprecated and will be removed in a future version. Please migrate to the `.shopware-project.yml` approach described above. Shopware CLI will emit a deprecation warning when bundles are configured this way.
+:::danger
+**Deprecated:** Declaring bundles via `composer.json` is deprecated and will be removed in a future version. Please migrate to the `.shopware-project.yml` approach described above. Shopware CLI will emit a deprecation warning when bundles are configured this way.
+:::
 
 Alternatively, you can add the bundle path to the `extra` section of your `composer.json`:
 
