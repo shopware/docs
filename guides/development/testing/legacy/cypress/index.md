@@ -253,7 +253,7 @@ These two configuration files are essential to mention as well:
 
  [Cypress configuration docs](https://docs.cypress.io/app/references/configuration).
 
-If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the paragraph [Setup](cypress-end-to-end-testing#setup-steps).
+If you need to use this structure in a plugin, it is just the path to the `e2e` folder, which is slightly different. You can find the folder structure in the "Setup Steps" section below.
 
 If you want to contribute to the Shopware platform's tests, please ensure to place your test in one of those folders:
 
