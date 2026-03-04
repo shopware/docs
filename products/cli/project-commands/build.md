@@ -192,7 +192,7 @@ build:
     post-assets: []
 ```
 
-## compatibility_date
+## Compatibility date
 
 You can define a `compatibility_date` in `.shopware-project.yml`:
 
