@@ -116,7 +116,7 @@ As you can see, we're adding a new `OneToOneAssociationField`. Its parameters ar
 * `referenceClass`: The class name of the definition that we want to connect via the association.
 * `autoload`: As the name suggests, this parameter defines if this association should always be loaded by default when the product is loaded. In this case, we definitely want that.
 
-Associations marked with the `CascadeDelete` flag are considered in the clone process ([see here](https://developer.shopware.com/docs/resources/references/adr/2020-07-02-control-clone-behavior.html)).
+Associations marked with the `CascadeDelete` flag are considered in the clone process. Take a look at the [clone behaviour](../../../../../resources/references/adr/2020-07-02-control-clone-behavior.md)
 If the associated entity should not be cloned when cloning a product having it, change it to `CascadeDelete(false)` or remove the flag.
 
 #### Creating ExampleExtensionDefinition
