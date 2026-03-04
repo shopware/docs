@@ -675,6 +675,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+OWASP
 PCOV
 PEM
 PHPStan
