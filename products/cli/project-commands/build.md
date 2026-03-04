@@ -176,7 +176,7 @@ build:
   # Allows force building an extension even when the assets exist. A use-case could be if you used composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
-  # Shopware bundles to include in the build (alternative to composer.json extra.shopware-bundles)
+  # Shopware bundles to include in the build
   bundles:
     - path: src/MyBundle
     - path: src/MyFancyBundle
