@@ -44,7 +44,7 @@ validation:
 
 When you edit that file in an editor, you will get autocompletion and hints for the available options.
 
-## compatibility_date
+## Compatibility date
 
 You can define a `compatibility_date` in `.shopware-extension.yml`:
 
