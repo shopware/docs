@@ -302,7 +302,7 @@ Disabling the Product Stream Indexer has the following disadvantages:
 
 To disable the Product Stream Indexer, you can set the following configuration:
 
-<<< @/docs/snippets/config/product_stream.yaml
+<<< ../../../../snippets/config/product_stream.yaml
 
 ## Enable the Speculation Rules API
 
