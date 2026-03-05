@@ -161,6 +161,7 @@ jobs:
           ' slack_report.txt
 
           NUM_CHUNKS=$(cat /tmp/sw_chunk_count.txt)
+          if ! [[ "$NUM_CHUNKS" =~ ^[0-9]+$ ]] || [[ "$NUM_CHUNKS" -lt 1 ]]; then NUM_CHUNKS=1; fi
           RAWFILE_ARGS=()
           SECTION_EXPRS=()
           for i in $(seq 0 $((NUM_CHUNKS - 1))); do
