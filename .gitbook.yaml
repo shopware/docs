@@ -114,7 +114,9 @@ redirects:
     guides/plugins/plugins/testing/jest-storefront.html: guides/development/testing/unit/jest-storefront.html
     guides/plugins/plugins/testing/jest-admin.html: guides/development/testing/unit/jest-admin.html
     guides/development/testing/ci.html: guides/development/testing/index.html
-    resources/guidelines/testing/store/: guides/development/testing/testing-guidelines/
+    resources/guidelines/testing/store/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins.html: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-apps.html: guides/development/testing/testing-guidelines.html
     guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
     guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
     guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/general-concepts/request-headers.html  

@@ -5,13 +5,6 @@ nav:
 
 ---
 
----
-nav:
-  title: Extensions
-  position: 20
-
----
-
 # Extensions
 
 As a Shopware developer, your primary focus is developing extensions that enhance or modify Shopware's functionality.

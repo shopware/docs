@@ -1,8 +1,7 @@
 ---
 nav:
   title: Hosting
-  position: 30
-
+  position: 60
 ---
 
 # Hosting
