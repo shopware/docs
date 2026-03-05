@@ -112,17 +112,17 @@ class ProductDataSelection implements DataSelectionInterface
 
 To insert the bundle entity to this `DataSelection`, you have to add this entity to the entities array of the returning `DataSelectionStruct` of the `getData` function.
 
-Both classes have to be registered in the `migration_assistant_extension.xml`:
+Both classes have to be registered in the `migration_assistant_extension.php`:
 
-```html
-<service id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection"
-         decorates="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
-    <argument type="service" id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection.inner"/>
-</service>
+```PHP
+$services->set(SwagMigrationBundleExample\Profile\Shopware\DataSelection\ProductDataSelection::class)
+    ->decorate(SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection::class)
+    ->args([
+        service('.inner'),
+    ]);
 
-<service id="SwagMigrationBundleExample\Profile\Shopware\DataSelection\DataSet\BundleDataSet">
-    <tag name="shopware.migration.data_set"/>
-</service>
+$services->set(SwagMigrationBundleExample\Profile\Shopware\DataSelection\DataSet\BundleDataSet::class)
+    ->tag('shopware.migration.data_set');
 ```
 
 All `DataSets` have to be tagged with `shopware.migration.data_set`. The `DataSetRegistry` fetches all these classes and searches for the correct `DataSet` with the `supports` method.
@@ -224,7 +224,7 @@ class LocalBundleReader extends AbstractReader
         // Fetch the ids of the given table with the given offset and limit
         $ids = $this->fetchIdentifiers('s_bundles', $migrationContext->getOffset(), $migrationContext->getLimit());
 
-        // Strip the table prefix 'bundles' out of the bundles array 
+        // Strip the table prefix 'bundles' out of the bundles array
         $bundles = $this->mapData($this->fetchBundles($ids), [], ['bundles']);
         $bundleProducts = $this->fetchBundleProducts($ids);
 
@@ -273,13 +273,12 @@ class LocalBundleReader extends AbstractReader
 }
 ```
 
-In this local reader, you fetch all bundles with associated products and return this in the `read` method. Like the `DataSelection` and `DataSet`, you must register the local reader and tag it with `shopware.migration.reader` in your `migration_assistant_extension.xml`. Also, you have to set the parent property of your local reader to `AbstractReader` to inherit from this class:
+In this local reader, you fetch all bundles with associated products and return this in the `read` method. Like the `DataSelection` and `DataSet`, you must register the local reader and tag it with `shopware.migration.reader` in your `migration_assistant_extension.php`. Also, you have to set the parent property of your local reader to `AbstractReader` to inherit from this class:
 
-```html
-<service id="SwagMigrationBundleExample\Profile\Shopware\Gateway\Local\Reader\LocalBundleReader"
-         parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
-    <tag name="shopware.migration.reader"/>
-</service>
+```PHP
+$services->set(SwagMigrationBundleExample\Profile\Shopware\Gateway\Local\Reader\LocalBundleReader::class)
+    ->parent(SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader::class)
+    ->tag('shopware.migration.reader');
 ```
 
 ## Creating a converter
@@ -357,8 +356,8 @@ class BundleConverter extends ShopwareConverter
         return new ConvertStruct($converted, $data, $this->mainMapping['id']);
     }
 
-    /** 
-     * Get converted products 
+    /**
+     * Get converted products
     */
     private function getProducts(Context $context, MigrationContextInterface $migrationContext, array $data): array
     {
@@ -386,7 +385,7 @@ class BundleConverter extends ShopwareConverter
         return $products;
     }
 
-    /** 
+    /**
      * Called to write the created mapping to the mapping table
     */
     public function writeMapping(Context $context): void
@@ -448,14 +447,15 @@ class BundleDefinition extends EntityDefinition
 }
 ```
 
-In the `BundleDefinition`, you can see which fields the entity has and which are required. \(Hint: Always use the property name of the field.\) At the end of this step, you have to register your new converter in the `migration_assistant_extension.xml` and tag it with `shopware.migration.converter`:
+In the `BundleDefinition`, you can see which fields the entity has and which are required. \(Hint: Always use the property name of the field.\) At the end of this step, you have to register your new converter in the `migration_assistant_extension.php` and tag it with `shopware.migration.converter`:
 
-```html
-<service id="SwagMigrationBundleExample\Profile\Shopware\Converter\BundleConverter">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <tag name="shopware.migration.converter"/>
-</service>
+```PHP
+$services->set(SwagMigrationBundleExample\Profile\Shopware\Converter\BundleConverter::class)
+    ->args([
+        service(SwagMigrationAssistant\Migration\Mapping\MappingService::class),
+        service(SwagMigrationAssistant\Migration\Logging\LoggingService::class),
+    ])
+    ->tag('shopware.migration.converter');
 ```
 
 For more general information on converter, mapping, and deltas concept, refer to [Converter and Mapping](../concept/convert-and-mapping) section of the guide.
@@ -479,16 +479,17 @@ class BundleWriter extends AbstractWriter
 }
 ```
 
-```html
-<service id="SwagMigrationBundleExample\Migration\Writer\BundleWriter"
-         parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
-    <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter"/>
-    <argument type="service" id="Swag\BundleExample\Core\Content\Bundle\BundleDefinition"/>
-    <tag name="shopware.migration.writer"/>
-</service>
+```PHP
+$services->set(SwagMigrationBundleExample\Migration\Writer\BundleWriter::class)
+    ->parent(SwagMigrationAssistant\Migration\Writer\AbstractWriter::class)
+    ->args([
+        service(Shopware\Core\Framework\DataAbstractionLayer\Write\EntityWriter::class),
+        service(Swag\BundleExample\Core\Content\Bundle\BundleDefinition::class),
+    ])
+    ->tag('shopware.migration.writer');
 ```
 
-You only need to implement the `supports` method and specify the right `Definition` in `migration_assistant_extension.xml`. The logic to write the data is defined in the `AbstractWriter` class and should almost always be the same. Look at [writer concept](../concept/writer) for more information.
+You only need to implement the `supports` method and specify the right `Definition` in `migration_assistant_extension.php`. The logic to write the data is defined in the `AbstractWriter` class and should almost always be the same. Look at [writer concept](../concept/writer) for more information.
 
 With that have implemented your first plugin migration. Install your plugin, clear the cache and build the Administration again to see the migration of your bundle entities.
 
