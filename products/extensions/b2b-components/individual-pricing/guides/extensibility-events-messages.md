@@ -9,8 +9,6 @@ nav:
 
 This guide explains how external developers can extend Individual Pricing functionality by subscribing to events, handling messages, and using extension points.
 
-## Overview
-
 Individual Pricing provides three main extensibility mechanisms:
 
 1. **Extensions** - Hook into specific moments during pricing application to add custom logic

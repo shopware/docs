@@ -11,7 +11,7 @@ This document describes how Individual Pricing integrates with Shopware's pricin
 
 ## Price Override Flow
 
-Individual prices are applied to products at runtime during the sales channel product loading phase.
+Individual prices are applied to products at runtime during the sales channel's product-loading phase.
 
 ### Phase 1: Context Creation
 
@@ -19,7 +19,7 @@ The system identifies the customer type (business partner, employee, or tag-base
 
 ### Phase 2: Product Loading
 
-When products are loaded via the Store API, `IndividualPricingProductSubscriber` listens to the product loaded event and triggers the pricing application process.
+When products are loaded via the Store API, `IndividualPricingProductSubscriber` listens for the product-loaded event and triggers the pricing application process.
 
 ### Phase 3: Price Resolution
 
@@ -29,8 +29,8 @@ The system queries the computed cache to find applicable pricing rules for each 
 
 Prices are applied differently based on the pricing type:
 
-- **Single pricing**: The product gets one price with optional strike-through of the original price
-- **Volume pricing**: Multiple tier prices are assigned with quantity ranges, allowing different prices based on order quantity
+- **Single pricing**: The product gets one price with an optional strike-through of the original price
+- **Volume pricing**: Multiple-tier prices are assigned with quantity ranges, allowing different prices based on order quantity
 
 If strike-through is enabled, the original price is preserved for display alongside the discounted price.
 
@@ -38,37 +38,37 @@ If strike-through is enabled, the original price is preserved for display alongs
 
 ```mermaid
 sequenceDiagram
-    participant Customer
-    participant Storefront
-    participant CartProcessor
-    participant PricingResolver
-    participant Cache
-    participant PriceCalculator
+ participant Customer
+ participant Storefront
+ participant CartProcessor
+ participant PricingResolver
+ participant Cache
+ participant PriceCalculator
 
-    Customer->>Storefront: Add product to cart
-    Storefront->>CartProcessor: Process cart
-    CartProcessor->>PricingResolver: Resolve pricing for line items
-    PricingResolver->>Cache: Query computed cache
-    Cache-->>PricingResolver: Return applicable pricing rules
-    PricingResolver->>PricingResolver: Filter by priority
-    PricingResolver->>PricingResolver: Evaluate target conditions
-    PricingResolver->>PriceCalculator: Calculate price for matching rule
+ Customer->>Storefront: Add product to cart
+ Storefront->>CartProcessor: Process cart
+ CartProcessor->>PricingResolver: Resolve pricing for line items
+ PricingResolver->>Cache: Query computed cache
+ Cache-->>PricingResolver: Return applicable pricing rules
+ PricingResolver->>PricingResolver: Filter by priority
+ PricingResolver->>PricingResolver: Evaluate target conditions
+ PricingResolver->>PriceCalculator: Calculate price for matching rule
 
-    alt Volume pricing
-        PriceCalculator->>PriceCalculator: Select appropriate tier
-        PriceCalculator->>PriceCalculator: Apply tier price
-    else Percentage discount
-        PriceCalculator->>PriceCalculator: Calculate percentage
-        PriceCalculator->>PriceCalculator: Apply discount
-    else Fixed discount
-        PriceCalculator->>PriceCalculator: Subtract fixed amount
-    else Fixed price
-        PriceCalculator->>PriceCalculator: Set fixed price
-    end
+ alt Volume pricing
+ PriceCalculator->>PriceCalculator: Select appropriate tier
+ PriceCalculator->>PriceCalculator: Apply tier price
+ else Percentage discount
+ PriceCalculator->>PriceCalculator: Calculate percentage
+ PriceCalculator->>PriceCalculator: Apply discount
+ else Fixed discount
+ PriceCalculator->>PriceCalculator: Subtract fixed amount
+ else Fixed price
+ PriceCalculator->>PriceCalculator: Set fixed price
+ end
 
-    PriceCalculator-->>CartProcessor: Return calculated price
-    CartProcessor-->>Storefront: Updated cart
-    Storefront-->>Customer: Display cart with pricing
+ PriceCalculator-->>CartProcessor: Return calculated price
+ CartProcessor-->>Storefront: Updated cart
+ Storefront-->>Customer: Display cart with pricing
 ```
 
 ## Pricing resolution process
@@ -90,18 +90,18 @@ The pricing resolution follows these steps:
 
 ```mermaid
 flowchart TD
-    A[Multiple rules exist] --> B[Sort by priority DESC]
-    B --> C[Get all rules with highest priority]
-    C --> D[Evaluate all rules at this priority]
-    D --> E{Any rules match?}
-    E -->|No| F[Use standard price]
-    E -->|Yes| G{Multiple rules match?}
-    G -->|No| H[Use single matching rule]
-    G -->|Yes| I[Calculate price for each rule]
-    I --> J[Select rule with lowest price]
-    H --> K[Apply selected rule]
-    J --> K
-    K --> L[Calculate final price]
+ A[Multiple rules exist] --> B[Sort by priority DESC]
+ B --> C[Get all rules with highest priority]
+ C --> D[Evaluate all rules at this priority]
+ D --> E{Any rules match?}
+ E -->|No| F[Use standard price]
+ E -->|Yes| G{Multiple rules match?}
+ G -->|No| H[Use single matching rule]
+ G -->|Yes| I[Calculate price for each rule]
+ I --> J[Select rule with lowest price]
+ H --> K[Apply selected rule]
+ J --> K
+ K --> L[Calculate final price]
 ```
 
 ## Volume pricing calculation
@@ -110,19 +110,19 @@ When the action type is `volume_pricing`, the system evaluates tiers based on qu
 
 ```mermaid
 flowchart TD
-    A[Volume pricing rule selected] --> B[Get line item quantity]
-    B --> C[Load pricing tiers]
-    C --> D[Sort tiers by qtyFrom]
-    D --> E[Find matching tier]
-    E --> F{Quantity >= qtyFrom?}
-    F -->|No| G[Check next tier]
-    F -->|Yes| H{Quantity <= qtyTo or qtyTo is null?}
-    H -->|No| G
-    H -->|Yes| I[Select this tier]
-    I --> J[Apply tier price]
-    G --> K{More tiers?}
-    K -->|Yes| F
-    K -->|No| L[Use base price]
+ A[Volume pricing rule selected] --> B[Get line item quantity]
+ B --> C[Load pricing tiers]
+ C --> D[Sort tiers by qtyFrom]
+ D --> E[Find matching tier]
+ E --> F{Quantity >= qtyFrom?}
+ F -->|No| G[Check next tier]
+ F -->|Yes| H{Quantity <= qtyTo or qtyTo is null?}
+ H -->|No| G
+ H -->|Yes| I[Select this tier]
+ I --> J[Apply tier price]
+ G --> K{More tiers?}
+ K -->|Yes| F
+ K -->|No| L[Use base price]
 ```
 
 ## Caching and indexing
@@ -140,13 +140,13 @@ The system maintains cache entries automatically:
 
 ```mermaid
 flowchart LR
-    A[Pricing rule created] --> B[Indexer triggered]
-    B --> C{Apply to all products?}
-    C -->|Yes| D[Create single cache entry with product_id=NULL]
-    C -->|No| E[Match via product stream]
-    E --> F[Create cache entries for matching products]
-    D --> G[Cache ready for lookup]
-    F --> G
+ A[Pricing rule created] --> B[Indexer triggered]
+ B --> C{Apply to all products?}
+ C -->|Yes| D[Create single cache entry with product_id=NULL]
+ C -->|No| E[Match via product stream]
+ E --> F[Create cache entries for matching products]
+ D --> G[Cache ready for lookup]
+ F --> G
 ```
 
 Cache entries are regenerated when rules are updated and removed when rules are deleted.
@@ -160,7 +160,7 @@ Individual Pricing works alongside Shopware's standard pricing system:
 3. **Advanced prices respected**: Product-level advanced prices (graduated prices) are considered if no individual pricing applies
 4. **Rule-based prices**: Shopware's rule-based prices have lower priority than individual pricing
 
-**Priority evaluation:** Only the highest priority level is considered. If multiple rules match at that level, the one producing the lowest price is selected, ensuring customers always get the best available price.
+**Priority evaluation:** Only the highest priority level is considered. If multiple rules match at that level, the rule that produces the lowest price is selected, ensuring customers always get the best available price.
 
 ## Custom Pricing and Individual Pricing
 
@@ -200,7 +200,7 @@ A mass upsert API endpoint is planned for Individual Pricing to support:
 - Efficient creation/update of large pricing rule sets
 - Integration with ERP and pricing management systems
 
-This API will enable merchants to programmatically manage thousands of pricing rules efficiently, supporting large-scale B2B pricing scenarios.
+This API will enable merchants to efficiently manage thousands of pricing rules programmatically, supporting large-scale B2B pricing scenarios.
 
 ## Strike-through pricing
 
@@ -236,7 +236,7 @@ Individual Pricing modifies product prices **at runtime after products are loade
 
 #### Why This Happens
 
-The runtime modification approach of Individual Pricing provides flexibility and performance benefits but is incompatible with persistent storage operations:
+The runtime modification approach of Individual Pricing provides flexibility and performance benefits, but is incompatible with persistent storage operations:
 
 - **Runtime modification**: Allows dynamic pricing based on customer context
 - **Pre-computed caching**: Ensures fast price lookups without database queries
@@ -292,7 +292,7 @@ The system prioritizes cacheability by checking for tags first, then organizatio
 >
 > For rules with "Apply to all products" enabled, prices are available immediately as they use runtime calculation. For rules with specific products, wait for the queue to finish processing before the computed prices become available.
 
-Individual Pricing uses an asynchronous indexing system that pre-computes cache entries via Shopware's message queue. This ensures optimal runtime performance while handling large product catalogs efficiently.
+Individual Pricing uses an asynchronous indexing system that pre-computes cache entries via Shopware's message queue. This ensures optimal runtime performance while efficiently handling large product catalogs.
 
 #### Indexing flows
 
@@ -300,7 +300,7 @@ Individual Pricing maintains the computed cache through 5 indexing flows:
 
 **1. Product Indexing** - When products change, cache entries for those specific products are rebuilt incrementally.
 
-**2. Rule Changes** - When pricing rules are created or updated, `IndividualPricingCacheEntryUpdaterMessage` is dispatched to rebuild cache for all matching products.
+**2. Rule Changes** - When pricing rules are created or updated, `IndividualPricingCacheEntryUpdaterMessage` is dispatched to rebuild the cache for all matching products.
 
 **3. Product Stream Filters** - When stream conditions change (e.g., changing product tags), affected pricing rules are re-indexed to reflect new product matches.
 
@@ -308,4 +308,4 @@ Individual Pricing maintains the computed cache through 5 indexing flows:
 
 **5. Full Re-index** - Manual command to rebuild the entire cache, coordinated by `IndividualPricingIndexingMessage`.
 
-All indexing happens asynchronously via Shopware's message queue in batches of 1,000 products, ensuring that pricing rule updates don't block other operations.
+All indexing is asynchronous via Shopware's message queue, in batches of 1,000 products, ensuring that pricing rule updates don't block other operations.

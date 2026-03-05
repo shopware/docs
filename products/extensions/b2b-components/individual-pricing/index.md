@@ -10,12 +10,12 @@ nav:
 Individual Pricing is a B2B component that enables merchants to define catalog-wide discounts and special pricing based on flexible conditions, specifically tailored for B2B scenarios.
 
 ::: info
-This feature is available since Shopware 6.7.8.0
+This feature has been available since Shopware 6.7.8.0
 :::
 
 ## Basic idea
 
-Individual Pricing allows merchants to create sophisticated pricing strategies for their B2B customers. Instead of manually managing prices for each product and customer combination, merchants can define pricing rules that automatically apply discounts or custom prices based on various conditions (the same as for product streaming rules).
+Individual Pricing allows merchants to create sophisticated pricing strategies for their B2B customers. Instead of manually managing prices for each product-customer combination, merchants can define pricing rules that automatically apply discounts or custom prices based on various conditions (similar to product streaming rules).
 
 This component is particularly powerful in B2B contexts where:
 
@@ -30,7 +30,7 @@ This component is particularly powerful in B2B contexts where:
 
 Individual Pricing supports two target types:
 
-- **Companies**: Apply pricing to specific companies or organization units or employees
+- **Companies**: Apply pricing to specific companies, organization units, or employees
 - **Tags**: Apply pricing to customers with specific tags
 
 ### Volume pricing (Tiers)
@@ -54,7 +54,7 @@ Set time-based validity for pricing rules with optional start and end dates, per
 
 ### Strike-through pricing
 
-Optionally display the original price with a strike-through effect to highlight the discount being applied to the customer.
+Optionally display the original price with a strikethrough effect to highlight the discount being applied to the customer.
 
 ## Requirements
 
@@ -76,7 +76,7 @@ When a customer browses products or adds items to their cart:
 
 ## Performance optimization
 
-Individual Pricing uses a hybrid caching strategy: pre-computed cache entries for specific products (instant lookup) and runtime-evaluated entries if the rule is applied to all products. The cache is automatically maintained through background indexing and incremental updates.
+Individual Pricing uses a hybrid caching strategy: pre-computed cache entries for specific products (instant lookup) and runtime-evaluated entries when the rule applies to all products. The cache is automatically maintained through background indexing and incremental updates.
 This approach ensures fast pricing lookups even with thousands of products while keeping storage requirements minimal.
 
 ## Extensibility
@@ -87,4 +87,4 @@ Individual Pricing provides comprehensive extensibility through:
 - **Events**: Subscribe to events for custom validation and filtering (e.g., `IndividualPricingLookupCriteriaEvent`)
 - **Messages**: Handle asynchronous indexing operations (e.g., `IndividualPricingIndexingMessage`)
 
-For detailed information on all available extensibility points, see [Extensibility - Events, Messages, and Extensions](guides/01-extensibility-events-messages.md).
+For detailed information on all available extensibility points, see [Extensibility - Events, Messages, and Extensions](guides/extensibility-events-messages.md).
