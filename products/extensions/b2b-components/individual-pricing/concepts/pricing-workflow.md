@@ -229,10 +229,10 @@ Individual Pricing modifies product prices **at runtime after products are loade
 **Impact on customers:**
 
 - **Price sorting**: Products may appear in incorrect order based on individual prices
-  - Example: A product with 100$ original price but 80$ individual price sorts by 100$
+  - Example: A product with $100 original price but $80 individual price sorts by $100
 - **Price filtering**: Products may be incorrectly included or excluded from results
-  - Example: Filtering 50$-75$ might miss a 100$ product that costs 60$ with individual pricing
-  - Example: Filtering 50$-75$ might include a 50$ product that costs 85$ with individual pricing
+  - Example: Filtering $50-$75 might miss a $100 product that costs $60 with individual pricing
+  - Example: Filtering $50-$75 might include a $50 product that costs $85 with individual pricing
 
 #### Why This Happens
 
