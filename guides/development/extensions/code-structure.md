@@ -31,7 +31,7 @@ nav:
 * Start from the default plugin skeleton ([plugin base guide](../plugins/plugins/plugin-base-guide.md)); avoid bespoke auto-loaders or custom entrypoints.
 * Keep configuration, migrations, administration, and storefront assets in their default folders; avoid cross-wiring plugins.
 * Encapsulate database schema changes with migrations; ship idempotent install/update code.
-* For Store plugins, avoid hard project assumptions (host names, queues, cron timing, file access); document requirements and provide safe fallbacks.
+* For Store plugins, avoid hard project assumptions (hostnames, queues, cron timing, file access); document requirements and provide safe fallbacks.
 
 ## App structure
 
