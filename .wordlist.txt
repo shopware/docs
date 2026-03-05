@@ -89,7 +89,6 @@ BITV
 BackedEnum
 Backend
 BaseContext
-basename
 BasicExample
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
@@ -1148,6 +1147,7 @@ backoff
 backport
 backported
 balancer
+basename
 benefitting
 binlog
 bitbucket
