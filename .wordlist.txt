@@ -631,6 +631,7 @@ ORMs
 OSS
 OTEL
 OTLP
+OWASP
 ObjectField
 ObjectType
 OffCanvas
@@ -1768,6 +1769,7 @@ resolver's
 resolvers
 resubmittable
 rethrown
+retryability
 returnUrl
 revalidation
 rfc
