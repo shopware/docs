@@ -453,6 +453,8 @@ Homebrew
 Hono
 HookClasses
 HookExecutor
+hostname
+hostnames
 Hotjar
 HowTos
 IDEs
@@ -907,6 +909,7 @@ SourceData
 StackHero
 StackOverflow
 Stackhero
+stateful
 StateMachineRegistry
 StateMachineState
 StateMachineStateEntity
