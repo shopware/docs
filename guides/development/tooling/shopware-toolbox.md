@@ -7,9 +7,9 @@ nav:
 
 # Shopware 6 Toolbox
 
-[Shopware 6 Toolbox](https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox) is a productivity plugin for JetBrains IDEs (e.g., PhpStorm) that enhances the Shopware 6 development experience. It provides live templates and scaffolding for common Shopware tasks.
+[Shopware 6 Toolbox](https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox) is a productivity plugin for JetBrains IDEs (e.g., PHPStorm) that enhances the Shopware 6 development experience. It provides live templates and scaffolding for common Shopware tasks.
 
-Shopware Toolbox is not a standalone application. It runs inside PhpStorm (and other JetBrains IDEs) and provides Shopware-specific development helpers.
+Shopware Toolbox is not a standalone application. It runs inside PHPStorm (and other JetBrains IDEs) and provides Shopware-specific development helpers.
 
 ![Shopware Toolbox Screenshot 1](../../../assets/shopware-toolbox-1.png)
 
