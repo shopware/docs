@@ -5,12 +5,6 @@ nav:
 
 ---
 
----
-nav:
-  title: Extensions
-  position: 20
-
----
 
 # Extensions
 
