@@ -11,7 +11,7 @@ nav:
 In-App Purchase is available since Shopware version 6.6.9.0
 :::
 
-In-App Purchases are a way to lock certain features behind a paywall within the same extension.
+In-App Purchases allow you to lock certain features behind a paywall within the same extension.
 This is useful for developers who want to offer a free version of their extension with limited features and a paid version with more features.
 
 <PageRef page="../../../concepts/framework/in-app-purchases" title="In-App purchases concept" />
@@ -19,32 +19,32 @@ This is useful for developers who want to offer a free version of their extensio
 
 ## Allow users to buy an In-App Purchase
 
-In order to enable others to purchase your In-App Purchase, you must request a checkout for it via the `sw.iap.purchase()` function of the [Meteor Admin SDK](https://github.com/shopware/meteor/tree/main/packages/admin-sdk).
+To enable others to purchase your In-App Purchase, you must request a checkout for it via the `sw.iap.purchase()` function of the [Meteor Admin SDK](https://github.com/shopware/meteor/tree/main/packages/admin-sdk).
 The checkout process itself is provided by Shopware.
 As this is purely functional, it is your responsibility to provide a button and hide it if the IAP cannot be purchased more than once.
 
 ```vue
 <template>
-    <!-- ... -->
-    <p>
-        If you buy this you'll get an incredible useful feature: ...
-    </p>
-    <mt-button @click="onClick">
-        Buy
-    </mt-button>
-    <!-- ... -->
+ <!-- ... -->
+ <p>
+ If you buy this you'll get an incredible useful feature: ...
+ </p>
+ <mt-button @click="onClick">
+ Buy
+ </mt-button>
+ <!-- ... -->
 </template>
 
 <script setup>
 import * as sw from '@shopware/meteor-admin-sdk';
 
 function onClick() {
-    sw.iap.purchase({ identifier: 'my-iap-identifier' });
+ sw.iap.purchase({ identifier: 'my-iap-identifier' });
 }
 </script>
 ```
 
-Alternatively, you can trigger a checkout manually by sending a properly formatted
+Alternatively, you can trigger a checkout manually by sending a properly formatted.
 [post message](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) with an In-App purchase identifier to the Admin.
 
 ## Check active In-App Purchases
@@ -54,8 +54,7 @@ Whenever Shopware sends you a request, you'll receive a [JWT](../../../concepts/
 ### Symfony or PHP app servers
 
 You can use the `shopware/app-php-sdk` for plain PHP or the `shopware/app-bundle` for Symfony to validate and decode the JWT.
-An example for plain PHP is available [here](https://github.com/shopware/app-php-sdk/blob/main/examples/index.php).
-For Symfony applications, use the appropriate action argument for your route.
+Refer to an [example for plain PHP](https://github.com/shopware/app-php-sdk/blob/main/examples/index.php). For Symfony applications, use the appropriate action argument for your route.
 
 #### Admin
 
@@ -69,7 +68,7 @@ Here is an example of retrieving active In-App Purchases in an example `admin.ht
 public function admin(ModuleAction $action): Response {
     return $this->render('admin.html.twig', [
         'inAppPurchases' => $action->inAppPurchases->all(),
-    ]);
+ ]);
 }
 ```
 
@@ -80,10 +79,10 @@ public function admin(ModuleAction $action): Response {
         <script>
             try {
                 window.inAppPurchases = JSON.parse('{{ inAppPurchases | json_encode | raw }}');
-            } catch (e) {
+ } catch (e) {
                 window.inAppPurchases = {};
                 console.error('Unable to decode In-App Purchases', e);
-            }
+ }
         </script>
 
         <!-- ... -->
@@ -115,4 +114,4 @@ console.log(payload); // Contains list of purchased IAP identifiers
 ## Event
 
 Apps are also able to manipulate the available In-App Purchases as described in
-<PageRef page="./gateways/in-app-purchase/in-app-purchase-gateway" title="In App purchase gateway" />
+<PageRef page="../../plugins/apps/gateways/in-app-purchase/in-app-purchase-gateway" title="In App purchase gateway" />

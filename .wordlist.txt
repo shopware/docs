@@ -631,6 +631,7 @@ ORMs
 OSS
 OTEL
 OTLP
+OWASP
 ObjectField
 ObjectType
 OffCanvas
@@ -1147,6 +1148,7 @@ backoff
 backport
 backported
 balancer
+basename
 benefitting
 binlog
 bitbucket
@@ -1768,6 +1770,7 @@ resolver's
 resolvers
 resubmittable
 rethrown
+retryability
 returnUrl
 revalidation
 rfc
