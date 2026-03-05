@@ -176,6 +176,11 @@ build:
   # Allows force building an extension even when the assets exist. A use-case could be if you used composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
+  # Shopware bundles to include in the build
+  bundles:
+    - path: src/MyBundle
+    - path: src/MyFancyBundle
+      name: MyGreatFancyBundle
   # MJML compilation configuration (see the MJML section above for details)
   mjml:
     enabled: false
@@ -209,7 +214,29 @@ The `compatibility_date` lets Shopware CLI introduce behavior changes without br
 ## Supporting bundles
 
 Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
-Therefore, you need to add the path of the custom bundle to your project `composer.json`:
+Use .shopware-project.yml to declare bundles. The alternative declaration in the project's composer.json is deprecated and no longer recommended.
+
+### Declaring bundles in `.shopware-project.yml`
+
+The recommended approach is to declare bundles in the `build` section of your `.shopware-project.yml`:
+
+```yaml
+build:
+  bundles:
+    - path: src/MyBundle
+    - path: src/MyFancyBundle
+      name: MyGreatFancyBundle  # optional: override the bundle name (defaults to the directory name)
+```
+
+The `path` is relative to the project root. The `name` field is optional and when omitted, the bundle name defaults to the directory basename.
+
+### Declaring bundles in `composer.json` (deprecated)
+
+:::danger
+**Deprecated:** Declaring bundles via `composer.json` is deprecated and will be removed in a future version. Please migrate to the `.shopware-project.yml` approach described above. Shopware CLI will emit a deprecation warning when bundles are configured this way.
+:::
+
+Alternatively, you can add the bundle path to the `extra` section of your `composer.json`:
 
 ```json5
 {
@@ -222,7 +249,7 @@ Therefore, you need to add the path of the custom bundle to your project `compos
 }
 ```
 
-If your bundle folder name does not match your bundle name, you can use the `name` key to map the folder to the bundle name.
+If your bundle folder name does not match your bundle name, you can use the `name` key:
 
 ```json
 {
@@ -235,6 +262,8 @@ If your bundle folder name does not match your bundle name, you can use the `nam
     }
 }
 ```
+
+Both sources are merged automatically. If the same bundle path appears in both, it is only processed once.
 
 ### Bundle packaged in own composer package
 
