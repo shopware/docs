@@ -73,3 +73,5 @@ To reduce long-term upgrade cost:
 ## Next steps
 
 For the operational update procedure, continue with [Upgrade Shopware](./upgrade-shopware.md).
+
+For general development best practices that reduce upgrade friction, see the [Development guide](../development/index.md).

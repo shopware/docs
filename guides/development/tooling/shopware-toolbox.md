@@ -1,13 +1,15 @@
 ---
 nav:
   title: Shopware Toolbox
-  position: 10
+  position: 20
 
 ---
 
 # Shopware 6 Toolbox
 
-Shopware 6 Toolbox is a helper plugin and productivity tool for common tasks for Shopware 6 development. It adds some live templates and scaffolding of common Shopware files.
+[Shopware 6 Toolbox](https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox) is a productivity plugin for JetBrains IDEs (e.g., PhpStorm) that enhances the Shopware 6 development experience. It provides live templates and scaffolding for common Shopware tasks.
+
+Shopware Toolbox is not a standalone application. It runs inside PhpStorm (and other JetBrains IDEs) and provides Shopware-specific development helpers.
 
 ![Shopware Toolbox Screenshot 1](../../../assets/shopware-toolbox-1.png)
 
@@ -19,7 +21,7 @@ Shopware 6 Toolbox is a helper plugin and productivity tool for common tasks for
 
 Multiple live templates for development. Use Cmd/Ctrl + J to see all live templates available.
 
-### Generators
+### Code generators
 
 * Vue.js Admin component
 * config.xml
@@ -28,7 +30,7 @@ Multiple live templates for development. Use Cmd/Ctrl + J to see all live templa
 * Scheduled task
 * Changelog
 
-### Static code check
+### Static code checks
 
 Inspection to show an error when abstract class is used incorrectly in the constructor (guideline check).
 
@@ -37,13 +39,16 @@ Inspection to show an error when abstract class is used incorrectly in the const
 * Admin components
 * Snippets in Administration and Storefront
 * Storefront functions `theme_config`, `config`, `seoUrl`, `sw_include` and `sw_extends`
-* Repositories at this.repositoryFactory.create
+* Repository at `this.repositoryFactory.create`
 * Module.register labels
-* Show only admin component auto-completion when the twig file is next to an index.js
+* Context-aware admin component auto-completion (only when Twig file is next to an `index.js`)
 * Feature flags
 
 ## Installation
 
-Either search for `Shopware 6 Toolbox` in the JetBrains Marketplace or get it on the marketplace website.
+Follow these steps:
 
-<PageRef page="https://plugins.jetbrains.com/plugin/17632-shopware-6-toolbox" title="Shopware 6 Toolbox on JetBrains Marketplace" target="_blank" />
+1. Open PHPStorm
+2. Go to Settings → Plugins
+3. Search for “Shopware 6 Toolbox”
+4. Install and restart the IDE

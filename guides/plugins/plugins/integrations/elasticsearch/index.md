@@ -1,7 +1,7 @@
 ---
 nav:
   title: Elasticsearch
-  position: 40
+  position: 10
 
 ---
 
