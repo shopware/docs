@@ -1,8 +1,7 @@
 ---
 nav:
   title: Upgrades and Migrations
-  position: 10
-
+  position: 50
 ---
 
 # Version Upgrades and Migrations
