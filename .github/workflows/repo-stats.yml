@@ -144,17 +144,36 @@ jobs:
           GH_REPO: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
-          jq -n --rawfile body slack_report.txt \
+          # Split slack_report.txt into ≤3000-char chunks at newline boundaries
+          awk '
+            BEGIN { n=0; cur=""; len=0 }
+            {
+              l = length($0) + 1
+              if (len + l > 3000 && len > 0) {
+                printf "%s", cur > ("/tmp/sw_chunk_" n ".txt")
+                n++; cur = $0 "\n"; len = l
+              } else { cur = cur $0 "\n"; len += l }
+            }
+            END {
+              if (len > 0) { printf "%s", cur > ("/tmp/sw_chunk_" n ".txt"); n++ }
+              print n > "/tmp/sw_chunk_count.txt"
+            }
+          ' slack_report.txt
+
+          NUM_CHUNKS=$(cat /tmp/sw_chunk_count.txt)
+          RAWFILE_ARGS=()
+          SECTION_EXPRS=()
+          for i in $(seq 0 $((NUM_CHUNKS - 1))); do
+            RAWFILE_ARGS+=(--rawfile "c${i}" "/tmp/sw_chunk_${i}.txt")
+            SECTION_EXPRS+=("{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\$c${i}}}")
+          done
+          SECTIONS_STR=$(IFS=','; echo "${SECTION_EXPRS[*]}")
+
+          jq -n "${RAWFILE_ARGS[@]}" \
             --arg start "$START_DATE" --arg end "$END_DATE" \
             --arg link "$GH_SERVER/$GH_REPO/actions/runs/$GITHUB_RUN_ID" \
-            '{
-              blocks: [
-                { type: "header", text: { type: "plain_text", text: "📚 Weekly Docs Update (Git Repository)", emoji: true } },
-                { type: "context", elements: [{ type: "mrkdwn", text: ($start + " → " + $end + "  |  <" + $link + "|View run>") }] },
-                { type: "divider" },
-                { type: "section", text: { type: "mrkdwn", text: $body } }
-              ]
-            }' > payload.json
+            '{blocks:([{type:"header",text:{type:"plain_text",text:"📚 Weekly Docs Update (Git Repository)",emoji:true}},{type:"context",elements:[{type:"mrkdwn",text:($start+" → "+$end+"  |  <"+$link+"|View run>")}]},{type:"divider"}]+['"$SECTIONS_STR"'])}' \
+            > payload.json
           echo "payload<<EOF" >> $GITHUB_OUTPUT
           cat payload.json >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
