@@ -1,8 +1,7 @@
 ---
 nav:
   title: Extensions
-  position: 20
-
+  position: 40
 ---
 
 # Extensions
