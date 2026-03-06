@@ -197,6 +197,6 @@ When multiple pricing rules could apply to the same product:
 3. If multiple rules match, the one resulting in the lowest price is selected
 4. If no rules match at the highest priority, standard catalog pricing is used
 
-:::info 
+:::info
 Lower priority rules are never evaluated. This ensures the most important pricing rules take precedence, and that when multiple rules compete at the same level, customers always get the best price.
 :::

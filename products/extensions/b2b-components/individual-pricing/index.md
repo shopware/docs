@@ -54,7 +54,7 @@ Set time-based validity for pricing rules with optional start and end dates, per
 
 ### Strike-through pricing
 
-Optionally display the original price with a strikethrough effect to highlight the discount being applied to the customer.
+Optionally display the original price with a strike-through effect to highlight the discount being applied to the customer.
 
 ## Requirements
 
