@@ -7,8 +7,11 @@ nav:
 
 # Media
 
-Shopware Media offers the ability to add media file extensions and prevent the deletion of media files within the e-commerce platform.
+The media subsystem in Shopware can be extended in several ways with plugins.
+This section contains guides for common media extension points.
 
-With the Media plugin, users can specify and configure new media file extensions. This allows businesses to define different types of media files, such as images, videos, or documents, that can be uploaded and used within the Shopware platform.
+## Guides
 
-Furthermore, the plugin helps prevent the deletion of media files that are not used in your application.
+* [Prevent Deletion of Media Files Referenced in your Plugins](./prevent-deletion-of-media-files-referenced-in-your-plugins.md): Prevent your plugin's media references from being deleted by `media:delete-unused` if they are not represented by foreign keys.
+* [Add Custom Media File Extension](./add-custom-file-extension.md): Allow additional file extensions and map them to the correct media type.
+* [Remote Thumbnail Generation](./remote-thumbnail-generation.md): Use externally generated thumbnails instead of local thumbnail generation.

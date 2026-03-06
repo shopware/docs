@@ -20,7 +20,7 @@ However, this does not cover all the possible cases, even for many internal Shop
 
 In order to fix the case of Media references that cannot be resolved without knowledge of the specific entity and its features, an extension point is provided via an event.
 
-If you are developing an extension which references Media entities, and you cannot use foreign keys, this guide will detail how to prevent shopware deleting the Media entities your extension references.
+If you are developing an extension which references Media entities, and you cannot use foreign keys, this guide explains how to prevent Shopware from deleting the Media entities your extension references.
 
 ## Prerequisites
 
@@ -37,6 +37,9 @@ The event is an instance of `\Shopware\Core\Content\Media\Event\UnusedMediaSearc
 The remaining Media IDs will then be deleted by the `\Shopware\Core\Content\Media\UnusedMediaPurger` service.
 
 Please note that this process is completed in small batches to maintain stability, so the event may be dispatched multiple times when an installation has many unused Media entities.
+
+Before running the command in production, consider using `media:delete-unused --dry-run` to inspect candidates first.
+If you need a machine-readable export, you can use `media:delete-unused --report` instead.
 
 ## Adding a subscriber
 
@@ -79,7 +82,7 @@ class UnusedMediaSubscriber implements EventSubscriberInterface
 }
 ```
 
-You can use the method `getUnusedIds` of the `$event` variable to get the current an array of Media IDs scheduled for removal.
+You can use the method `getUnusedIds` of the `$event` variable to get the current array of Media IDs scheduled for removal.
 
 You can use these IDs to query whatever storage your plugin uses to store references to Media entities, to check if they are currently used.
 
@@ -103,15 +106,17 @@ private function getUsedMediaIds(array $idsToBeDeleted): array
 
     $usedMediaIds = $this->connection->fetchFirstColumn(
         $sql,
-        [$event->getUnusedIds()],
+        [$idsToBeDeleted],
         [ArrayParameterType::STRING]
     );
 
-    return array_map(fn (string $ids) => json_decode($ids, true, \JSON_THROW_ON_ERROR), $usedMediaIds);
+    return array_merge(
+        ...array_map(fn (string $ids) => json_decode($ids, true, \JSON_THROW_ON_ERROR), $usedMediaIds)
+    );
 }
 ```
 
-In the above example, `$this->connection` is an instance of `\Doctrine\DBAL\Connection` which can be injected in to your subscriber.
+In the above example, `$this->connection` is an instance of `\Doctrine\DBAL\Connection` which can be injected into your subscriber.
 We use the MySQL JSON functions to query the table `my_slider_table`.
 We check if there are any references to the Media IDs from the event, in the `slider_config` column which is a JSON blob. The `JSON_EXTRACT` function looks into the `images` key of the data. We use the where condition in combination with the `JSON_OVERLAPS` function to only query rows that have references to the Media IDs we are interested in.
 
