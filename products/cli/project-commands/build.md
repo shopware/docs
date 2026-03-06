@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Build a complete Project
+  title: Build a Complete Project
   position: 3
 
 ---
 
-# Build a complete Project
+# Build a Complete Project
 
 Usually, when you want to deploy your project, you have to run `composer install` and compile the assets of the project. Shopware CLI provides a single command which does all of this for you.
 

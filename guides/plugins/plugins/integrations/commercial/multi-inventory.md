@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Multi Inventory
-  position: 20
+  title: Multi-Inventory
+  position: 30
 
 ---
 

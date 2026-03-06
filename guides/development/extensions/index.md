@@ -17,7 +17,7 @@ Shopware offers two extension types:
 Plugins and apps are installed and activated for the whole Shopware instance.
 
 :::info
-Before choosing an extension type, review the recommended [Code structure](/guides/development/extensions/code-structure). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
+Before choosing an extension type, review the recommended [Code structure](code-structure.md). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
 :::
 
 A storefront theme is *not* a separate extension type, but a stripped-down plugin consisting of a customized storefront UI. In cloud environments, storefront themes are delivered via apps.
@@ -45,15 +45,15 @@ This comparison table aims to help you decide which Shopware extension type best
 | Control style/template inheritance          | ✅                     | ✅   | This capability is specific to theme plugins. |
 
 :::info Version compatibility
-Extensions must explicitly support target Shopware versions. Review the [Upgrades and Migrations](../upgrades-migrations/index.md) section before releasing updates to ensure compatibility with upcoming core changes.
+Extensions must explicitly support target Shopware versions. Review the [Upgrades and Migrations](../upgrades-and-migrations/index.md) section before releasing updates to ensure compatibility with upcoming core changes.
 :::
 
 ## Extension guides
 
 These guides provide essential information on how to create, configure, and extend your store with Shopware extensions:
 
-<PageRef page="plugins/plugin-base-guide" />
+<PageRef page="docs/guides/plugins/plugins/plugin-base-guide.md" />
 
-<PageRef page="apps/app-base-guide" />
+<PageRef page="docs/guides/plugins/apps/app-base-guide.md" />
 
-<PageRef page="themes/theme-base-guide" />
+<PageRef page="docs/guides/plugins/themes/theme-base-guide.md" />

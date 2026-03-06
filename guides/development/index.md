@@ -27,7 +27,7 @@ To build a custom Shopware project without creating an extension for distributio
 
 ## Extension development
 
-To build an extension, first choose the correct type:
+To build an [Extensions](extensions/index.md), first choose the correct type:
 
 * Plugin
 * App
@@ -49,11 +49,9 @@ Most development follows this sequence:
 * Add configuration or database changes (if required)
 * Test and debug
 
-Before beginning implementation, review the recommended [Code structure](extensions/code-structure.md). A consistent architecture prevents long-term maintenance issues and reduces upgrade friction.
+Before beginning implementation, review the recommended [Code structure](extensions/code-structure.md) guide. A consistent architecture prevents long-term maintenance issues and reduces upgrade friction.
 
-:::tip Upgrade awareness
-Before starting new development, review the [Upgrades and Migrations](../upgrades-and-migrations/index.md) section to avoid patterns that are deprecated or scheduled for removal.
-:::
+Before starting new development, review the [Upgrades and Migrations](../upgrades-migrations/index.md) section to avoid patterns that are deprecated or scheduled for removal.
 
 :::info Upgrade impact in real projects
 Upgrade complexity depends on the installation:
@@ -86,9 +84,5 @@ The Administration is part of the runtime environment and will be used throughou
 
 * `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](resources/references/core-reference/commands-reference.html).
 * The standalone [Shopware CLI](https://developer.shopware.com/docs/products/cli/installation.html) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](products/cli/project-commands/helper-commands.html).
-* IDE support: Shopware provides a [PHPStorm plugin](shopware-toolbox.md) and [VS Code extension](../development/tooling/vscode.md).
+* IDE support: Shopware provides a [PHPStorm plugin](/tooling/shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
 *[Deployment Helper](guides/hosting/deployment-helper/):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
-
-### Troubleshooting
-
-The [troubleshooting](/troubleshooting) guides provide reference information about the data abstraction layer (DAL), flow, and rules.

@@ -10,7 +10,7 @@ nav:
 Shopware provides two HTTP APIs:
 
 * [Admin API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide)
-* [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide).
+* [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide)
 
 These APIs serve different purposes but share common principles and infrastructure.
 
@@ -46,9 +46,9 @@ Complete endpoint documentation (local instance required): `/store-api/_info/sto
 
 Both APIs use the same foundational structures:
 
-* [Search Criteria](./general-concepts/search-criteria.md): encapsulates the entire search definition in one generic object
-* [Request Headers](./general-concepts/request-headers.md): additional instructions
-* [Partial Data Loading](./general-concepts/partial-data-loading.md)
+* [Search Criteria](/search-criteria.md): encapsulates the entire search definition in one generic object
+* [Request Headers](/request-headers.md): additional instructions
+* [Partial Data Loading](/partial-data-loading.md)
 
 These define how data is filtered, structured, and versioned.
 

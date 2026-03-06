@@ -1,3 +1,9 @@
+---
+nav:
+  title: Modify Dynamic Product Groups Blacklist
+  position: 20
+---
+
 # Modify dynamic product groups blacklist
 
 ## Overview
