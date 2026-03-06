@@ -80,7 +80,7 @@ In this example we will define a custom CMS block that will extend the default b
 
             <!-- The slots that your block holds which again hold CMS elements. -->
             <slots>
-                <!-- A slot requires a unique name and a type which refers to the CMS element it shows. Right now you can only use the CMS elements provided by Shopware but at a later point you will be able to add custom elements too. -->
+                <!-- A slot requires a unique name and a type which refers to the CMS element it shows. Currently, app CMS blocks can only use CMS elements provided by Shopware. -->
                 <slot name="left" type="text">
                     <!-- The slot requires some basic configuration. The following config-value elements highly depend on which element the slot holds. -->
                     <config>
@@ -203,10 +203,10 @@ The DOM structure of the block in the CMS editor will look like this:
 
 Each slot has a **unique** `name` and a `type` that refers to which element it shows.
 All available elements can be found in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
-At a later point you will also be able to define custom elements but for now you can use the elements shipped by Shopware.
+Currently, app CMS blocks can use the elements shipped by Shopware.
 
 The `config` of a slot is very dynamic as it highly depends on which `type` you have chosen.
-A good starting point to find out which elements require which configuration is each element's `index.js` in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/blocks](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/blocks).
+A good starting point to find out which elements require which configuration is each element's `index.js` in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
 
 ## Registering blocks
 
