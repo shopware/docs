@@ -135,50 +135,49 @@ class ExampleController extends StorefrontController
 
 :::
 
-### Services.xml example
+### Services.php example
 
 Next, we need to register our controller in the DI-container and make it public.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Storefront\Controller\ExampleController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleController::class)
+        ->public()
+        ->call('setContainer', [service('service_container')]);
+};
 ```
 
 :::
 
-Please also note the `call` tag, which is necessary in order to set the DI container to the controller.
+Please also note the `call` method, which is necessary in order to set the DI container to the controller.
 
-### Routes.xml example
+### Routes.php example
 
 Once we've registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin.
-This is done with a `routes.xml` file at `<plugin root>/src/Resources/config/` location.
-Have a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location.
+Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/routes.xml]
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php [PLUGIN_ROOT/src/Resources/config/routes.php]
+<?php declare(strict_types=1);
 
-    <import resource="../../Storefront/Controller/*Controller.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Storefront/Controller/*Controller.php', 'attribute');
+};
 ```
 
 :::
@@ -228,7 +227,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
-{    
+{
     #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
     public function showExample(Request $request, SalesChannelContext $context): Response
     {

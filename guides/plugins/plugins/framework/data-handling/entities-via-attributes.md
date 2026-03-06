@@ -46,13 +46,12 @@ For example, you can add the `Field` attribute to a property to define the type 
 
 ## Register the entity
 
-To register the entity, you have to add this class to the DI container in the `services.xml` file.
+To register the entity, you have to add this class to the DI container in the `services.php` file.
 This is done by adding the `shopware.entity` tag to the service definition.
 
-```xml
-<service id="Examples\ExampleEntity">
-    <tag name="shopware.entity"/>
-</service>
+```php
+$services->set(Examples\ExampleEntity::class)
+    ->tag('shopware.entity');
 ```
 
 That's it.

@@ -13,11 +13,13 @@ In this example, we create a field called `productNumberPrefix` to make it searc
 
 **1. Decorate the ElasticsearchDefinition**
 
-```xml
-<service id="YourPluginNameSpace\ElasticsearchProductDefinitionDecorator" decorates="Shopware\Elasticsearch\Product\ElasticsearchProductDefinition">
-    <argument type="service" id=".inner"/>
-    <argument type="service" id="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic"/>
-</service>
+```php
+$services->set(YourPluginNameSpace\ElasticsearchProductDefinitionDecorator::class)
+    ->decorate(Shopware\Elasticsearch\Product\ElasticsearchProductDefinition::class)
+    ->args([
+        service('.inner'),
+        service(Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic::class),
+    ]);
 ```
 
 ```php

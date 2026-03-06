@@ -263,23 +263,27 @@ One last thing, we need to register our processor and collector to the DI contai
 
 Let's have a look at it:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Cart\OverwritePriceCollector">
-            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+use Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator;
+use Swag\BasicExample\Core\Checkout\Cart\OverwritePriceCollector;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-            <!-- after product collector/processor -->
-            <tag name="shopware.cart.processor" priority="4500" />
-            <tag name="shopware.cart.collector" priority="4500" />
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(OverwritePriceCollector::class)
+        ->args([
+            service(QuantityPriceCalculator::class),
+        ])
+        // after product collector/processor
+        ->tag('shopware.cart.processor', ['priority' => 4500])
+        ->tag('shopware.cart.collector', ['priority' => 4500]);
+};
 ```
 
 And that's it. Your processor / collector should now be working.

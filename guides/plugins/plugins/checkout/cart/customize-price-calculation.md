@@ -81,19 +81,25 @@ Most likely you also want to narrow down which product's prices you want to edit
 
 Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\CustomProductPriceCalculator" decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator">
-            <argument type="service" id="Swag\BasicExample\Service\CustomProductPriceCalculator.inner" />
-        </service>
-    </services>
-</container>
+use Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator;
+use Swag\BasicExample\Service\CustomProductPriceCalculator;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomProductPriceCalculator::class)
+        ->decorate(ProductPriceCalculator::class)
+        ->args([
+            service('.inner'),
+        ]);
+};
 ```
 
 ## Next steps

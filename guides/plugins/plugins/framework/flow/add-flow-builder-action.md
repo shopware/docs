@@ -138,14 +138,13 @@ As you can see, several methods are already implemented:
     - Use `$flow->getStore($key)` if you want to get the data from aware interfaces. E.g: `tag_id` in `TagAware`, `customer_id` from `CustomerAware` and so on.
     - Use `$flow->getData($key)` if you want to get the data from original events or additional data. E.g: `tag`, `customer`, `contactFormData` and so on.
 
-You also need to register this action in the container as a service. Make sure to define a tag `<tag name="flow.action" priority="600">` at `<plugin root>/src/Resources/config/services.xml`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
+You also need to register this action in the container as a service. Make sure to define a tag `flow.action` with `priority: 600` at `<plugin root>/src/Resources/config/services.php`. This tag will ensure that your action is included in the response of the *`/api/_info/flow-actions.json`* API. The priority attribute will determine the order of the action in the API response.
 
-```XML
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction">
-    <argument type="service" id="tag.repository" />
-    <tag name="flow.action" priority="600" key="action.create.tag"/>
-</service>
+```php
+// <plugin root>/src/Resources/config/services.php
+$services->set(Swag\CreateTagAction\Core\Content\Flow\Dispatching\Action\CreateTagAction::class)
+    ->args([service('tag.repository')])
+    ->tag('flow.action', ['priority' => 600, 'key' => 'action.create.tag']);
 ```
 
 Great, your own action is created completely. Let's go to the next step.
@@ -311,13 +310,13 @@ class BusinessEventCollectorSubscriber implements EventSubscriberInterface
 }
 ```
 
-And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`.
+And don't forget to register your subscriber to the container at `<plugin root>/src/Resources/config/services.php`.
 
-```xml
-<service id="Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
-</service>
+```php
+
+$services->set(Swag\CreateTagAction\Core\Content\Subscriber\BusinessEventCollectorSubscriber::class)
+    ->args([service(Shopware\Core\Framework\Event\BusinessEventCollector::class)])
+    ->tag('kernel.event_subscriber');
 ```
 
 - Define the Event snippet
@@ -421,7 +420,7 @@ Component.override('sw-flow-sequence-action', {
             }
             return this.$super('getActionDescriptions', sequence)
         },
-        
+
         getCreateTagDescription(config) {
             const tags = config.tags.join(', ');
 

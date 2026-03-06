@@ -70,10 +70,9 @@ class ConsoleProfiler implements ProfilerInterface
 }
 ```
 
-```XML
-<service id="App\Profiler">
-    <tag name="shopware.profiler" integration="Console"/>
-</service>
+```php
+$services->set(App\Profiler::class)
+    ->tag('shopware.profiler', ['integration' => 'Console']);
 ```
 
 The attribute `integration` is used to identify the profiler backend in the configuration.

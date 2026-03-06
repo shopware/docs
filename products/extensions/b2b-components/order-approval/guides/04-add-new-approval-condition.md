@@ -74,12 +74,12 @@ class CartAmountRule extends Rule
 }
 ```
 
-Then, we have to register it in our `services.xml` and tag it as `shopware.approval_rule.definition`
+Then, we have to register it in our `services.php` and tag it as `shopware.approval_rule.definition`
 
-```xml
- <service id="YourPluginNameSpace\CartAmountRule" public="true">
-    <tag name="shopware.approval_rule.definition"/>
- </service>
+```php
+$services->set(YourPluginNameSpace\CartAmountRule::class)
+    ->public()
+    ->tag('shopware.approval_rule.definition');
 ```
 
 ## App

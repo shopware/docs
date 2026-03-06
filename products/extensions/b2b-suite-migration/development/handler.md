@@ -53,7 +53,7 @@ Handlers allow custom logic to transform data before mapping it to the target fi
      <field handler="b2b.employee.employee_status_transformer">
          <source>currency_factor</source>
          <source>auth_id.b2b_store_front_auth.customer_id.customer.sales_channel_id.sales_channel.language_id</source>
-  
+
          <target>state_id</target>
          <target>expiration_date</target>
      </field>
@@ -76,15 +76,14 @@ Handlers allow custom logic to transform data before mapping it to the target fi
 
 To use a handler, implement a PHP class (e.g., `RolePermissionsTransformer`) that extends `Shopware\Commercial\B2B\B2BSuiteMigration\Core\Domain\DataTransformer\AbstractFieldTransformer` and tag it with `b2b.migration.transformer` in your service configuration.
 
-```XML
-<service id="Shopware\Commercial\B2B\B2BSuiteMigration\Components\QuoteManagement\DataTransformer\QuoteComment\StateTransformer" lazy="true">
-    <argument type="service" id="Shopware\Core\Framework\Extensions\ExtensionDispatcher"/>
-
-    <tag name="b2b.migration.transformer" />
-</service>
+```php
+$services->set(Shopware\Commercial\B2B\B2BSuiteMigration\Components\QuoteManagement\DataTransformer\QuoteComment\StateTransformer::class)
+    ->lazy()
+    ->args([service(Shopware\Core\Framework\Extensions\ExtensionDispatcher::class)])
+    ->tag('b2b.migration.transformer');
 ```
 
-The best practice is to mark this service as `lazy="true"` to improve performance by loading it only when needed.
+The best practice is to mark this service as `lazy` to improve performance by loading it only when needed.
 
 ## Handler Implementation
 
@@ -134,7 +133,7 @@ protected function requiredSourceFields(): array
     ```XML
     <field source="foo" target="permissions" handler="b2b.employee.employee_status_transformer"/>
     ```
-  
+
     ```PHP
     protected function requiredSourceFields(): array
     {
@@ -148,11 +147,11 @@ protected function requiredSourceFields(): array
     <field handler="b2b.employee.employee_status_transformer">
         <source>foo</source>
         <source>bar</source>
-      
+
         <target>permissions</target>
     </field>
     ```
-  
+
     ```PHP
     protected function requiredSourceFields(): array
     {
@@ -180,7 +179,7 @@ protected function _transform(
 - **Return Value**:
   - For a single target field: Return a single value (e.g., string, integer, or JSON-encoded string).
   - For multiple target fields: Return an associative array where keys are target field names and values are the corresponding transformed values.
-  
+
 #### Examples
 
 **_Example 1: Single Source to Single Target_**
@@ -226,7 +225,7 @@ Transform multiple source fields to multiple target fields, such as generating a
     <field handler="b2b.quote_line_item.line_item_price_transformer">
       <source>list_id</source>
       <source>mode</source>
-  
+
       <target>order_id</target>
       <target>order_version_id</target>
     </field>
@@ -241,7 +240,7 @@ public function transform(Field $field, array $sourceRecord): mixed
     if (!isset($field->getSourceElements()['list_id']) || !isset($field->getSourceElements()['mode'])) {
         // Handle missing required source fields
     }
-    
+
     $listId = $sourceRecord['list_id'];
     $mode = $sourceRecord['mode'];
     // Perform transformation logic based on listId and mode

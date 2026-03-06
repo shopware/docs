@@ -341,14 +341,20 @@ Here's what the function does:
 
 The service definition for our custom renderer would look like this:
 
-```xml
-<service id="Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer">
-    <argument type="service" id="order.repository"/>
-    <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
-    <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
-    <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
-    <tag name="document.renderer"/>
-</service>
+```php
+use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;
+use Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry;
+use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface;
+use Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer;
+
+$services->set(ExampleDocumentRenderer::class)
+    ->args([
+        service('order.repository'),
+        service(DocumentConfigLoader::class),
+        service(NumberRangeValueGeneratorInterface::class),
+        service(DocumentFileRendererRegistry::class),
+    ])
+    ->tag('document.renderer');
 ```
 
 ### Adding a file type renderer
@@ -358,26 +364,33 @@ Depending on the file type we either get the content with `$this->fileRendererRe
 
 ### Registering the renderer in the service container
 
-Now we need to register our custom `ExampleDocumentRenderer` in the service container. Create or update your `services.xml` file:
+Now we need to register our custom `ExampleDocumentRenderer` in the service container. Create or update your `services.php` file:
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer">
-            <argument type="service" id="order.repository"/>
-            <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentConfigLoader"/>
-            <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
-            <argument type="service" id="Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry"/>
-            <tag name="document.renderer"/>
-        </service>
-    </services>
-</container>
+use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;
+use Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry;
+use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface;
+use Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDocumentRenderer::class)
+        ->args([
+            service('order.repository'),
+            service(DocumentConfigLoader::class),
+            service(NumberRangeValueGeneratorInterface::class),
+            service(DocumentFileRendererRegistry::class),
+        ])
+        ->tag('document.renderer');
+};
 ```
 
 :::
