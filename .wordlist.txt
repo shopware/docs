@@ -453,8 +453,6 @@ Homebrew
 Hono
 HookClasses
 HookExecutor
-hostname
-hostnames
 Hotjar
 HowTos
 IDEs
@@ -909,7 +907,6 @@ SourceData
 StackHero
 StackOverflow
 Stackhero
-stateful
 StateMachineRegistry
 StateMachineState
 StateMachineStateEntity
@@ -1462,6 +1459,7 @@ hmac
 hono
 hosters
 hostname
+hostnames
 hotspots
 hreflang
 html
@@ -1855,6 +1853,7 @@ stackable
 stacktrace
 stateId
 stateMachineState
+stateful
 statesfacade
 statusCode
 stderr
