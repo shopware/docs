@@ -73,6 +73,8 @@ ArrayFacade
 AssociationField
 AsyncPaymentTransactionStruct
 AsynchronousPaymentHandlerInterface
+AudienceContext
+AudienceContextResolver
 AuditLogValueEntity
 AuthenticationIdentityLoader
 AutoIncrementField
@@ -466,6 +468,15 @@ Iframe
 ImportTranslationsTrait
 Inclusivity
 IndexerService
+IndividualPricingApplyExtension
+IndividualPricingBuildCacheSingleRuleMessage
+IndividualPricingCacheEntryUpdaterMessage
+IndividualPricingComputedCacheEntity
+IndividualPricingIndexerEvent
+IndividualPricingIndexingMessage
+IndividualPricingLookupBatchCriteriaEvent
+IndividualPricingLookupCriteriaEvent
+IndividualPricingProductSubscriber
 Init
 Initialisms
 IntField
@@ -755,6 +766,7 @@ ProductController
 ProductCountRouteResponse
 ProductDataSelection
 ProductDataSet
+ProductEntity
 ProductListRoute
 ProductManufacturerDefinition
 ProductMedia
@@ -1096,6 +1108,8 @@ YamlFileLoader
 ZSH
 accel
 acl
+actionAmount
+actionType
 actionability
 activateShopwareTheme
 adr
@@ -1111,6 +1125,7 @@ api
 apiKey
 apk
 appVersion
+applyToAllProducts
 args
 arrayfacade
 async
@@ -1262,6 +1277,7 @@ customerAware
 customerGroup
 customerGroupAware
 customerHasFeature
+customerId
 customerRecovery
 customizability
 customizable
@@ -1480,6 +1496,7 @@ inclusivity
 incrementer
 incrementing
 indexActions
+individualPricingId
 infoIt
 ini
 init
@@ -1645,6 +1662,7 @@ orderIds
 orderTransaction
 orderTransactionCaptureRefund
 org's
+organizationUnitIds
 otel
 otlp
 overrideComponentSetup
@@ -1711,6 +1729,7 @@ pricefactory
 productCountRoute
 productId
 productNumber
+productStreamId
 productproxy
 productsfacade
 profiler
@@ -1725,6 +1744,8 @@ pyspelling
 qa
 qa@shopware.com
 qty's
+qtyFrom
+qtyTo
 quantityBefore
 quantityDelta
 quickstart
@@ -1833,6 +1854,7 @@ shopware's
 shopwarelabs
 shopwarepartners
 shorthands
+showStrikeThrough
 simples
 simplexml
 skipOnFeature
@@ -1962,11 +1984,14 @@ upsert
 uri
 url
 urls
+useValidityRange
 userAware
 userRecovery
 userland
 utils
 uuid
+validFrom
+validUntil
 validator
 validators
 varchar
