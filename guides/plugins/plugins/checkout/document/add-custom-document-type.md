@@ -341,7 +341,7 @@ Here's what the function does:
 
 The service definition for our custom renderer would look like this:
 
-```PHP
+```php
 use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;
 use Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry;
 use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface;
@@ -368,7 +368,7 @@ Now we need to register our custom `ExampleDocumentRenderer` in the service cont
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;

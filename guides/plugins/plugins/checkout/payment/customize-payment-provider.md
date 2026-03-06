@@ -66,7 +66,7 @@ class ExampleDebitPayment extends DebitPayment
 }
 ```
 
-```PHP [services.php]
+```php [services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;

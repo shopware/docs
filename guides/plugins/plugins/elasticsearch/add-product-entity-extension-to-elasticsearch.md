@@ -25,7 +25,7 @@ Here we show you how this could look like in the end.
 
 The services.php with all needed definitions.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/DependencyInjection/product.php
 <?php declare(strict_types=1);
 
@@ -65,7 +65,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 The product extension `CustomExtension.php` provides the extensions to the product entity.
 
-```PHP
+```php
 // <plugin root>/src/Extension/Content/Product/CustomExtension.php
 <?php declare(strict_types=1);
 
@@ -106,7 +106,7 @@ class CustomExtension extends EntityExtension
 
 The entity definition `OneToManyExampleExtensionDefinition.php`.
 
-```PHP
+```php
 // <plugin root>/src/Extension/Content/Product/OneToManyExampleExtensionDefinition.php
 <?php declare(strict_types=1);
 
@@ -155,7 +155,7 @@ class OneToManyExampleExtensionDefinition extends EntityDefinition
 
 The entity definition `OneToOneExampleExtensionDefinition.php`.
 
-```PHP
+```php
 // <plugin root>/src/Extension/Content/Product/OneToOneExampleExtensionDefinition.php
 <?php declare(strict_types=1);
 
@@ -205,7 +205,7 @@ class OneToOneExampleExtensionDefinition extends EntityDefinition
 Here is a decoration to add a new field named `customString`, an `oneToOneAssociationField` named `oneToOneExampleExtension` and an `oneToManyAssociationField` named `oneToManyExampleExtension` to the index.
 For adding more information from the database you should execute a single query with all document ids `(array_column($documents, 'id'))` and map the values.
 
-```PHP
+```php
 // <plugin root>/src/Elasticsearch/Product/MyProductEsDecorator.php
 <?php
 

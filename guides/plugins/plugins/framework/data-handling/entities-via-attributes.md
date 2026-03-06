@@ -23,7 +23,7 @@ Note: this is only possible since 6.6.9.0
 You have to define a primary key. The primary key is defined by adding the `PrimaryKey` attribute to a property.
 In theory, the primary key can be of any type, but it is recommended to use a `UUID`.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -49,7 +49,7 @@ For example, you can add the `Field` attribute to a property to define the type 
 To register the entity, you have to add this class to the DI container in the `services.php` file.
 This is done by adding the `shopware.entity` tag to the service definition.
 
-```PHP
+```php
 $services->set(Examples\ExampleEntity::class)
     ->tag('shopware.entity');
 ```
@@ -65,7 +65,7 @@ To define more fields, you typically use the `Field` attribute.
 The `Field` attribute requires the `type` parameter, which is the type of the field.
 The type can be any of the `FieldType` constants.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -107,7 +107,7 @@ Use the fully qualified class name reference as value for the `type` parameter.
 This feature is available since Shopware 6.6.9.0.
 :::
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -139,7 +139,7 @@ class ExampleEntity extends Entity
 We also provide a list of special field types, which implement a specific behavior.
 They have their own PHP attribute class, for example the `AutoIncrement` or `ForeignKey` field.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -171,7 +171,7 @@ class ExampleEntity extends Entity
 
 If you want to store JSON data in a field with its own validation and serialization logic, you can use the `Serialized` attribute and define its own serializer class:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -202,7 +202,7 @@ class ExampleEntity extends Entity
 To allow custom fields, you can use the `EntityCustomFieldsTrait`.
 This gives you some helper methods to easily work with custom field values out of the box.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -228,7 +228,7 @@ class ExampleEntity extends Entity
 
 Alternatively you can use the `CustomField` attribute directly, that way you have full control over the custom fields and can add your own helpers.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -261,7 +261,7 @@ class ExampleEntity extends Entity
 By default, each field of an entity is not exposed in the API.
 To expose a field in the API, you must set the `api` parameter of the `Field` attribute to `true` or specify one of the scopes you want to allow.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -304,7 +304,7 @@ This field needs to be nullable, as by default it will not be loaded, but this a
 
 Notice: Properties with the `translated` flag must be nullable.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -341,7 +341,7 @@ However, you can explicitly mark a field as required by adding the `Required` at
 This will automatically add a validation rule to the field.
 This is necessary for fields marked as `translated`, as translated fields must be nullable.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -371,7 +371,7 @@ class ExampleEntity extends Entity
 It is also possible to define associations between entities.
 You can use one of the following four association types: `OneToOne`, `OneToMany`, `ManyToOne` or `ManyToMany`.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;
@@ -436,7 +436,7 @@ Also, you don't have to define any `EntityTranslationDefinition` or `EntityColle
 
 ## Full example
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Examples;

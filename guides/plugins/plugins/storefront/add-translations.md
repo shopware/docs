@@ -98,13 +98,13 @@ Or use injection via [DI container](#using-translation-generally-in-php).
 
 Translation without placeholders:
 
-```PHP
+```php
 $this->trans('header.example');
 ```
 
 Translation with placeholders:
 
-```PHP
+```php
 $this->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```
 
@@ -114,13 +114,13 @@ If we need to use a snippet elsewhere in PHP,
 we can use [Dependency Injection](../plugin-fundamentals/dependency-injection) to inject the `translator` service,
 which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
-```PHP
+```php
 $services->set(Swag\Example\Service\SwagService::class)
     ->public()
     ->args([service('translator')]);
 ```
 
-```PHP
+```php
 private TranslatorInterface $translator;
 
 public function __construct(TranslatorInterface $translator)
@@ -131,6 +131,6 @@ public function __construct(TranslatorInterface $translator)
 
 Then, call the `trans` method, which has the same parameters as the method from controllers.
 
-```PHP
+```php
 $this->translator->trans('soldProducts', ['%count%' => 3, '%country%' => 'Germany']);
 ```

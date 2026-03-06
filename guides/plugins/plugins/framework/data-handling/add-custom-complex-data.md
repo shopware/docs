@@ -27,7 +27,7 @@ In this guide we'll name our table `swag_example`, you'll find this name a few m
 
 As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations), head over to this guide to understand how this example works.
 
-```PHP
+```php
 // <plugin root>/src/Migration/Migration1611664789Example.php
 <?php declare(strict_types=1);
 
@@ -81,7 +81,7 @@ This will also be the case for the `Entity` class itself, as well as the `Entity
 
 Start of with creating a new file named `ExampleDefinition.php` in the directory `<plugin root>/src/Core/Content/Example/ExampleDefinition.php`. Below you can see our example definition, which is explained afterwards:
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 
@@ -117,7 +117,7 @@ The method `defineFields` contains all the fields, that your entity or table con
 
 As you can see in your migration, your table consists of the following fields: You've got an `id` field, a `name` field, a `description` and an `active` field. Other than that, the other two columns `created_at` and `updated_at` don't have to be defined in your definition, since they're included by default. You're asked to return a `Shopware\Core\Framework\DataAbstractionLayer\FieldCollection` instance here, which then has to contain an array of your fields. There's several field classes, e.g. an `Shopware\Core\Framework\DataAbstractionLayer\Field\IdField` or a `Shopware\Core\Framework\DataAbstractionLayer\Field\StringField`, which you have to create and pass into the `FieldCollection`, so let's do that.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 <?php declare(strict_types=1);
 
@@ -167,7 +167,7 @@ All that's left to do now, is to introduce your `ExampleDefinition` to Shopware 
 
 Here's the `services.php` as it should look like:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Core\Content\Example\ExampleDefinition;
@@ -196,7 +196,7 @@ The properties of your entity class have to be at least `protected`, otherwise t
 For the same reason `readonly` properties are not allowed. This holds true not just for `Entity` classes, but for all classes that extend the generic `Struct` class.
 :::
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/ExampleEntity.php
 <?php declare(strict_types=1);
 
@@ -251,7 +251,7 @@ As you can see, it only holds the properties and its respective getters and sett
 
 Now you need your definition to know its custom entity class. This is done by overriding the method `getEntityClass` in your `ExampleDefinition`.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 class ExampleDefinition extends EntityDefinition
 {
@@ -274,7 +274,7 @@ So create a `ExampleCollection` class in the same directory as your `ExampleDefi
 
 This is how your collection class could then look like:
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/ExampleCollection.php
 <?php declare(strict_types=1);
 
@@ -298,7 +298,7 @@ The class documentation is just another helper to have a proper auto-completion 
 
 Now it's time to introduce your custom collection to your `ExampleDefinition` again. This is done by overriding its `getCollectionClass` method.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/ExampleDefinition.php
 class ExampleDefinition extends EntityDefinition
 {

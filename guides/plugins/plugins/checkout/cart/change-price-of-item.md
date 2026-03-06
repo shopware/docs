@@ -39,7 +39,7 @@ Your collector class has to implement the interface `Shopware\Core\Checkout\Cart
 
 Let's have a look at an example:
 
-```PHP
+```php
 // <plugin root>/src/Core/Checkout/Cart/OverwritePriceCollector.php
 <?php declare(strict_types=1);
 
@@ -137,7 +137,7 @@ Your processor has to implement the interface `Shopware\Core\Checkout\Cart\CartP
 
 But once, again, let's have a look at the example:
 
-```PHP
+```php
 // <plugin root>/src/Core/Checkout/Cart/OverwritePriceCollector.php
 <?php declare(strict_types=1);
 
@@ -263,7 +263,7 @@ One last thing, we need to register our processor and collector to the DI contai
 
 Let's have a look at it:
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

@@ -44,7 +44,7 @@ You can add a new subscriber according to the [Listening to events](../plugin-fu
 <Tabs>
 <Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -73,7 +73,7 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 <Tab title="<plugin root>/src/Resources/config/services.php">
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Subscriber\ThemeVariableSubscriber;
@@ -106,7 +106,7 @@ Inside your `ThemeVariableSubscriber` you can also read values from the plugin c
 
 First, lets add a new plugin configuration field according to the [Plugin Configurations](../plugin-fundamentals/add-plugin-configuration):
 
-```XML
+```xml
 // <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -124,7 +124,7 @@ First, lets add a new plugin configuration field according to the [Plugin Config
 
 As you can see in the example, we add an input field of the type colorpicker for our plugin. In the Administration, the component 'sw-colorpicker' will later be displayed for the selection of the value. You also can set a `defaultValue` which will be pre-selected like the following:
 
-```XML
+```xml
 // <plugin root>/src/Resources/config/config.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -146,7 +146,7 @@ In order to be able to read this config, you have to inject the `SystemConfigSer
 <Tabs>
 <Tab title="<plugin root>/src/Subscriber/ThemeVariableSubscriber.php">
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -189,7 +189,7 @@ class ThemeVariableSubscriber implements EventSubscriberInterface
 
 <Tab title="<plugin root>/src/Resources/config/services.php">
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Shopware\Core\System\SystemConfig\SystemConfigService;
@@ -219,7 +219,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Adding config fields via `$event->addVariable()` for every field individually may be a bit cumbersome in some cases. You could also loop over all config fields and call `addVariable()` for each one. However, this depends on your use case.
 
-```PHP
+```php
 // <plugin root>/src/Subscriber/ThemeVariableSubscriber.php
 <?php declare(strict_types=1);
 

@@ -32,7 +32,7 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
 
-```PHP
+```php
 // SwagBasicExample/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -54,7 +54,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 And here's the respective class including its constructor:
 
-```PHP
+```php
 // SwagBasicExample/src/Service/WritingData.php
 <?php declare(strict_types=1);
 
@@ -84,7 +84,7 @@ Now that you've injected the repositories into your service, you can start using
 
 Let's start with creating new data, a new product in this case:
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $this->productRepository->create([
@@ -109,7 +109,7 @@ private function getTaxId(Context $context): string
 
 First of all, for this example you'll need the following new imports:
 
-```PHP
+```php
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -134,7 +134,7 @@ And that's it, this will write and create your first entity, a product. Of cours
 
 In Shopware 6 we're using UUIDs for the ID fields in the entities. This comes with a major advantage: You can define your IDs when creating an entity already and thus do not have to figure out which ID your newly created entity received, e.g. by auto-increment.
 
-```PHP
+```php
 public function writeData(): void
 {
     $context = Context::createDefaultContext();
@@ -168,7 +168,7 @@ So note the `id` field we've provided now - even though you're just creating you
 
 So what if you don't want to create a new entity, but rather update an existing one? For that case, you can use the `update` method on the repository. Let's just update our previously created product and change its name.
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $criteria = new Criteria();
@@ -201,7 +201,7 @@ In order to create data, we've used the `create` method. For updating data, we'v
 
 Here's an example on how to delete the previously created product:
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $criteria = new Criteria();
@@ -229,7 +229,7 @@ If you don't know how to add associations to an entity, maybe to your own entity
 
 Earlier in this guide, you created a product and used an existing tax entity for that case. This is representing a ManyToOne association, but OneToOne associations are handled the same.
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $this->productRepository->create([
@@ -260,7 +260,7 @@ OneToMany and ManyToMany associations are handled the same.
 
 An example in the product context would be assigning a category to a product.
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $criteria = new Criteria();
@@ -292,7 +292,7 @@ Every `ManyToMany` association comes with a mapping entity. It's important to kn
 
 The following example will fail:
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     // This is the product_category.repository service
@@ -313,7 +313,7 @@ Your only way to solve this is by replacing the association. Head over to our gu
 
 So you don't want to assign an existing tax entity when creating a product, but rather you'd like to create a new tax entity in the same step. That is also possible, and this section will show you an example on how to do it.
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $this->productRepository->create([
@@ -334,7 +334,7 @@ In order to create a tax entity while creating the product, you have to provide 
 
 And that's already it - now the tax will be created in the same step when the product is created and will be assigned automatically. This works almost the same for `ToMany` associations.
 
-```PHP
+```php
 public function writeData(Context $context): void
 {
     $this->productRepository->create([

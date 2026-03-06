@@ -23,7 +23,7 @@ Instead of creating a new plugin for the migration, you might want to add migrat
 
 In this example, the user should be able to map the manufacturer while no new manufacturer will be created. You have to create a new premapping reader to achieve this:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace SwagMigrationExtendConverterExample\Profile\Shopware\Premapping;
@@ -182,7 +182,7 @@ The created premapping reader fetches all manufacturers of the source system, ge
 
 Currently, the premapping card has no snippets at all, so you have to create a new snippet file for the title:
 
-```JSON
+```json
 {
      "swag-migration": {
          "index": {
@@ -198,7 +198,7 @@ Currently, the premapping card has no snippets at all, so you have to create a n
 
 This file has to be located in `Resources\administration\snippet` and registered in `Resources\administration\main.js` of the plugin like this:
 
-```JAVASCRIPT
+```javascript
 import enGBSnippets from './snippet/en-GB.json';
 
 const { Application } = Shopware;
@@ -216,7 +216,7 @@ Now your new premapping card has a correct title.
 
 After creating your premapping reader, you have a new premapping card, but this premapping is currently not in use. To map the product manufacturers of the source system to your premapping values, you have to decorate one of the Shopware product migration converters. In this example, only the `Shopware55ProductConverter` is decorated, but if you want to decorate all Shopware migration converters, you have to do the same:
 
-```PHP
+```php
  <?php declare(strict_types=1);
 
  namespace SwagMigrationExtendConverterExample\Profile\Shopware\Converter;
@@ -303,7 +303,7 @@ Your new decorated product migration converter checks if a manufacturer is set a
 
 In the end, you have to register your decorated converter in your `services.php`:
 
-```PHP
+```php
 $services->set(SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter::class)
     ->decorate(SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter::class)
     ->args([

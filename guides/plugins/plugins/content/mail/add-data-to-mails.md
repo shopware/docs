@@ -82,7 +82,7 @@ Here's the respective example `services.php`:
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Content\Mail\Service\MailService;
@@ -152,7 +152,7 @@ Here's the respective example `services.php`:
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Subscriber\MyMailSubscriber;

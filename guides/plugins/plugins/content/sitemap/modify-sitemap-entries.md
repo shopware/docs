@@ -39,7 +39,7 @@ Start by decorating the corresponding URL provider, for example
 <Tabs>
 <Tab title="DecoratedProductUrlProvider.php">
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Sitemap/Provider/DecoratedProductUrlProvider.php
 <?php declare(strict_types=1);
 
@@ -96,7 +96,7 @@ class DecoratedProductUrlProvider extends AbstractUrlProvider
 
 <Tab title="services.php">
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -138,7 +138,7 @@ This is the recommended extension point when you need to:
 <Tabs>
 <Tab title="ProductSitemapQuerySubscriber.php">
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Sitemap/ProductSitemapQuerySubscriber.php
 <?php declare(strict_types=1);
 
@@ -176,7 +176,7 @@ class ProductSitemapQuerySubscriber implements EventSubscriberInterface
 
 <Tab title="services.php">
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

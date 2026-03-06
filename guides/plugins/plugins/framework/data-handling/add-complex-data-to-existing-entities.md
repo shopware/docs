@@ -29,7 +29,7 @@ You add new fields by overriding the method `extendFields` and add your new fiel
 
 Here's an example class called `CustomExtension`:
 
-```PHP
+```php
 // <plugin root>/src/Extension/Content/Product/CustomExtension.php
 <?php declare(strict_types=1);
 
@@ -59,7 +59,7 @@ Now we have to register our extension via the DI-container. If you don't know ho
 
 Here's our `services.php`:
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -80,7 +80,7 @@ In this guide, you're extending the product entity in order to add a new string 
 
 Let's start with the `CustomExtension` class by adding a new field in the `extendFields` method.
 
-```PHP
+```php
 // <plugin root>/src/Extension/Content/Product/CustomExtension.php
 <?php declare(strict_types=1);
 
@@ -122,7 +122,7 @@ Creating a new entity is not explained in this guide, so make sure you know [thi
 
 Our new entity will be located in the same directory as our extension. Let's first have a look at it before going into the explanation:
 
-```PHP
+```php
 // <plugin root>/src/Extension/Content/Product/ExampleExtensionDefinition.php
 <?php declare(strict_types=1);
 
@@ -178,7 +178,7 @@ The fourth parameter is the class of the associated definition, the `ProductDefi
 
 Of course, this new definition also needs to be registered to the DI container:
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -201,7 +201,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Of course, you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations). Look at the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Migration;
@@ -251,7 +251,7 @@ As already mentioned, your new association is automatically loaded every time a 
 
 As with every [write operation](writing-data), this is done via the product repository in this example.
 
-```PHP
+```php
 $this->productRepository->upsert([[
     'id' => '<your product ID here>',
     'exampleExtension' => [
@@ -268,7 +268,7 @@ We can use the DAL event which gets fired every time the product entity is loade
 
 Below, you can find an example implementation where we add our extension when the product gets loaded.
 
-```PHP
+```php
 // <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
@@ -305,7 +305,7 @@ Please note that its second parameter, the actual value, has to be a struct and 
 
 After we've created our subscriber, we have to adjust our `services.php` to register it. Below you can find our `services.php`.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -332,7 +332,7 @@ This feature is available since Shopware 6.6.10.0
 
 In case your project or plugin requires many entity extensions, you can register a `BulkEntityExtension` which allows extending multiple entities at once:
 
-```PHP
+```php
 <?php
 
 namespace Examples;
@@ -360,7 +360,7 @@ Each yield defines the entity name which should be extended and the array value 
 
 You must also register the extension in your `services.php` file and tag it with `shopware.bulk.entity.extension`.
 
-```PHP
+```php
 $services->set(\Examples\MyBulkExtension::class)
     ->tag('shopware.bulk.entity.extension');
 ```

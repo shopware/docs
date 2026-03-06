@@ -31,7 +31,7 @@ It is recommended to use an event listener if you're listening to a single event
 
 Start with creating the `services.php` and registering your event listener.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -60,7 +60,7 @@ Since Shopware 6.7.3.0, cookies use structured objects (`CookieEntry` and `Cooki
 
 Let's have a look at an example:
 
-```PHP
+```php
 // <plugin root>/src/Listener/CookieListener.php
 <?php declare(strict_types=1);
 

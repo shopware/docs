@@ -73,7 +73,7 @@ The address ACL repository can be retrieved through the DIC by the `b2b_address.
 
 The repository then provides the following methods. If you are already familiar with other ACL implementations, most methods will look quite familiar.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Shopware\B2B\Acl\Framework;
@@ -194,7 +194,7 @@ Debtors, for example, are unknown to the ACL, so all debtor identities will trig
 
 A standard use case is to allow records to a user, this simple code snippet can do this:
 
-```PHP
+```php
 $aclAddressRepository = $this->container->get('b2b_address.acl_repository');
 $contactRepository = $this->container->get('b2b_contact.repository');
 
@@ -209,7 +209,7 @@ $aclAddressRepository->allow(
 
 We can then deny the access just by this:
 
-```PHP
+```php
 $aclAdressRepository->deny(
     $contact, // the contact
     22, // the id of the address
@@ -218,7 +218,7 @@ $aclAdressRepository->deny(
 
 or just set it not grantable, by
 
-```PHP
+```php
 $aclAdressRepository->allow(
     $contact, // the contact
     22, // the id of the address
@@ -230,7 +230,7 @@ $aclAdressRepository->allow(
 
 If you want to know whether a certain contact can access an entity, you can call `isAllowed`.
 
-```PHP
+```php
 $aclAdressRepository->isAllowed(
     $contact, // the contact
     22, // the id of the address
@@ -239,7 +239,7 @@ $aclAdressRepository->isAllowed(
 
 Or you just want to check whether an entity can be granted by a contact.
 
-```PHP
+```php
 $aclAdressRepository->isGrantable(
     $contact, // the contact
     22, // the id of the address
@@ -250,7 +250,7 @@ One of the more complex problems you might face is that you want to filter a que
 
 This can be achieved by this snippet:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace My\Namespace;
@@ -294,7 +294,7 @@ So let's take a look at the addresses again.
 You first need to define the relations from role and contact to your entity.
 This is achieved by creating small classes that contain particular information:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace Shopware\B2B\Address\Framework;
@@ -333,7 +333,7 @@ An identical class exists for the `role<->address` relation.
 Now we need to tell the B2B Suite to create the necessary tables. In Shopware, this must be done during the plugin installation process.
 Because the container is not yet set up with the B2B Suite services, we use a static factory method in the following code:
 
-```PHP
+```php
 use Shopware\B2B\Acl\Framework\AclDdlService;
 use Shopware\B2B\Address\Framework\AddressContactTable;
 
@@ -343,14 +343,14 @@ AclDdlService::create()->createTable(new AddressContactTable());
 Now the table exists, but we must still make the table definition accessible through the DIC, so the ACL component can set up appropriate repositories.
 This is achieved through a tag in the service definition:
 
-```PHP
+```php
 $services->set('b2b_address.contact_acl_table', Shopware\B2B\Address\Framework\AddressContactAclTable::class)
     ->tag('b2b_acl.table');
 ```
 
 Finally, we need to register the service in the DIC. This is done by this PHP snippet:
 
-```PHP
+```php
 $services->set('b2b_address.acl_repository', Shopware\B2B\Acl\Framework\AclRepository::class)
     ->factory([service('b2b_acl.repository_factory'), 'createRepository'])
     ->args(['s_user_addresses']);
@@ -365,7 +365,7 @@ other contexts than *contact* and *role*. For this, you have to create a differe
 An `AclContextResolver` is responsible for extracting the primary key out of a given context object and produces a query that joins the main ACL table.
 This is done by implementing `getQuery`, `isMainContext`, and `extractId`.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace My\Namespace;
@@ -395,7 +395,7 @@ class MyContextResolver extends AclContextResolver
 
 A rather generic implementation for `getQuery` that just filters for a given `contextId` look like this:
 
-```PHP
+```php
 public function getQuery(string $aclTableName, int $contextId, QueryBuilder $queryBuilder): AclQuery
 {
     $mainPrefix = $this->getNextPrefix();
@@ -414,7 +414,7 @@ Notice the `getMainPrefix` call. This allows the ACL component to be joined with
 
 An implementation of extract id usually looks like this:
 
-```PHP
+```php
 public function extractId($context): int
 {
     if ($context instanceof ContactIdentity) {

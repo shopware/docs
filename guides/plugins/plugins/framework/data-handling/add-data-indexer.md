@@ -12,7 +12,7 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide), but a
 
 It is possible to add data indexer for your own entities, like the one created in the [Adding custom complex data](./add-custom-complex-data) guide or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](#index-data-using-existing-events) section below. To create a new indexer, just create a new class in your plugin:
 
-```PHP
+```php
 // <plugin root>/src/Core/Framework/DataAbstractionLayer/Indexing/ExampleIndexer.php
 <?php declare(strict_types=1);
 
@@ -117,7 +117,7 @@ class ExampleIndexer extends EntityIndexer
 
 With the corresponding service registration:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Doctrine\DBAL\Connection;
@@ -163,7 +163,7 @@ By default, all messages which are returned by the `public function update()` fu
 
 By default, indexing is also active while working with an indexer, which means, that entities that are written over the DAL also trigger `EntityWrittenContainerEvent` events. So the indexers are triggered again. This can lead to an infinite loop. Therefore, the connection should be used directly to alter data in the database. You can find more information about this in the corresponding ADR [when to use plain SQL or the DAL](../../../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal.md). However, if you want to use the DAL for manipulation data in a data indexer, indexing can be disabled. This can be done by passing adding a flag to the context, as shown in the example below:
 
-```PHP
+```php
 public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage
 {
     $updates = $event->getPrimaryKeys(CustomerDefinition::ENTITY_NAME);
@@ -200,7 +200,7 @@ There are already a bunch of indexers in shopware that you can use. If you take 
 
 For this we need a new subscriber. If you are not familiar with a subscriber, have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events) guide. For this example, we just write a new entry to the `log_entry` database table, indicating that a customer was updated.
 
-```PHP
+```php
 // <plugin root>/src/Service/Subscriber.php
 <?php declare(strict_types=1);
 
@@ -254,7 +254,7 @@ class Subscriber implements EventSubscriberInterface
 
 The service definition for the subscriber would look like this.
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Doctrine\DBAL\Connection;

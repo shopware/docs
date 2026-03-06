@@ -13,7 +13,7 @@ Each index will contain multiple language-based fields; refer to the [ADR](/docs
 
 For instance, to define your custom Elasticsearch definition (this definition will be used for later examples).
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;
@@ -152,7 +152,7 @@ SQL;
 
 And register it in the container with tag `shopware.es.definition` and `advanced_search.supported_definition`
 
-```PHP
+```php
 // YourPluginNameSpace should be changed to your respectively ElasticsearchDefinition and Definition classes
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
