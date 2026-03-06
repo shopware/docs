@@ -42,7 +42,7 @@ Here are some common Extension Point you might encounter:
 
 #### Product Extensions
 
-```PHP
+```php
 // Product price calculation
 src/Core/Content/Product/Extension/ProductPriceCalculationExtension.php
 
@@ -55,7 +55,7 @@ src/Core/Content/Product/Extension/ProductListingCriteriaExtension.php
 
 #### Cart Extensions
 
-```PHP
+```php
 // Checkout place order
 src/Core/Checkout/Cart/Extension/CheckoutPlaceOrderExtension.php
 
@@ -65,7 +65,7 @@ src/Core/Checkout/Cart/Extension/CheckoutCartRuleLoaderExtension.php
 
 #### CMS Extensions
 
-```PHP
+```php
 // CMS slots data enrichment
 src/Core/Content/Cms/Extension/CmsSlotsDataEnrichExtension.php
 
@@ -81,7 +81,7 @@ Extension Points follow a consistent naming pattern:
 
 Extension Points use a `NAME` constant that defines the event name:
 
-```PHP
+```php
 final class ResolveListingExtension extends Extension
 {
     public const NAME = 'listing-loader.resolve';
@@ -104,7 +104,7 @@ Extension Points are dispatched with lifecycle suffixes:
 
 Services that use Extension Points typically inject the `ExtensionDispatcher`:
 
-```PHP
+```php
 $services->set(Some\Service::class)
     ->args([service(Shopware\Core\Framework\Extensions\ExtensionDispatcher::class)]);
 ```
@@ -113,7 +113,7 @@ $services->set(Some\Service::class)
 
 Look for services that inject the `ExtensionDispatcher`:
 
-```PHP
+```php
 public function __construct(
     private readonly ExtensionDispatcher $extensionDispatcher
 ) {
@@ -124,7 +124,7 @@ public function __construct(
 
 Extension Points are typically dispatched using this pattern:
 
-```PHP
+```php
 $extension = new SomeExtension($parameters);
 $result = $this->extensionDispatcher->publish(
     SomeExtension::NAME,
@@ -146,7 +146,7 @@ $result = $this->extensionDispatcher->publish(
 **Event Name**: `product.calculate-prices`
 **Return Type**: `void`
 
-```PHP
+```php
 final class ProductPriceCalculationExtension extends Extension
 {
     public const NAME = 'product.calculate-prices';
@@ -164,7 +164,7 @@ final class ProductPriceCalculationExtension extends Extension
 **Event Name**: `listing-loader.resolve`
 **Return Type**: `EntitySearchResult<ProductCollection>`
 
-```PHP
+```php
 final class ResolveListingExtension extends Extension
 {
     public const NAME = 'listing-loader.resolve';
@@ -184,7 +184,7 @@ final class ResolveListingExtension extends Extension
 **Event Name**: `checkout.place-order`
 **Return Type**: `OrderPlaceResult`
 
-```PHP
+```php
 final class CheckoutPlaceOrderExtension extends Extension
 {
     public const NAME = 'checkout.place-order';
@@ -204,7 +204,7 @@ final class CheckoutPlaceOrderExtension extends Extension
 **Event Name**: `cms.slots.data-enrich`
 **Return Type**: `CmsSlotCollection`
 
-```PHP
+```php
 final class CmsSlotsDataEnrichExtension extends Extension
 {
     public const NAME = 'cms.slots.data-enrich';
@@ -222,7 +222,7 @@ final class CmsSlotsDataEnrichExtension extends Extension
 
 Create an event subscriber to listen for Extension Points:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace MyPlugin\Subscriber;
@@ -252,7 +252,7 @@ class ProductListingSubscriber implements EventSubscriberInterface
 
 Register your subscriber in the service configuration:
 
-```PHP
+```php
 $services->set(MyPlugin\Subscriber\ProductListingSubscriber::class)
     ->tag('kernel.event_subscriber');
 ```
@@ -268,7 +268,7 @@ Extension Points follow a specific lifecycle:
 
 ### Lifecycle Example
 
-```PHP
+```php
 public function handleExtension(SomeExtension $event): void
 {
     // This runs in the .pre phase
@@ -291,7 +291,7 @@ public function handlePostExtension(SomeExtension $event): void
 
 Always use proper type hints for Extension Point parameters:
 
-```PHP
+```php
 public function onResolveListing(ResolveListingExtension $event): void
 {
     // Type-safe access to properties
@@ -304,7 +304,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 
 Check if a result has already been set:
 
-```PHP
+```php
 public function onExtension(SomeExtension $event): void
 {
     if ($event->result !== null) {
@@ -320,7 +320,7 @@ public function onExtension(SomeExtension $event): void
 
 Only stop propagation when you're providing a complete replacement:
 
-```PHP
+```php
 public function onExtension(SomeExtension $event): void
 {
     if ($this->shouldReplaceDefault($event)) {
@@ -335,7 +335,7 @@ public function onExtension(SomeExtension $event): void
 
 Extension Points have built-in error handling, but you can also handle errors gracefully:
 
-```PHP
+```php
 public function onExtension(SomeExtension $event): void
 {
     try {
@@ -358,7 +358,7 @@ The Symfony profiler shows all dispatched Extension Points in the "Events" tab. 
 
 You can log Extension Point calls to understand the flow:
 
-```PHP
+```php
 public function onExtension(SomeExtension $event): void
 {
     $this->logger->debug('Extension called', [

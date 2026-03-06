@@ -27,7 +27,7 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`, so let's do this.
 
-```PHP
+```php
 // SwagBasicExample/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -46,7 +46,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 And here's the respective class including its constructor:
 
-```PHP
+```php
 // SwagBasicExample/src/Service/ReadingData.php
 <?php declare(strict_types=1);
 
@@ -71,14 +71,14 @@ So we registered a custom service called `ReadingData` and applied the repositor
 
 Now that you've injected the repository into your service, you can start using it. First of all, for the following examples you'll need two more imports:
 
-```PHP
+```php
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 ```
 
 Let's start with the most basic read action now:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $products = $this->productRepository->search(new Criteria(), $context);
@@ -97,7 +97,7 @@ Now let's get into actually filtering your search result to get more precise res
 
 Often you have an ID from an entity and you just want to find the whole dataset related to that ID, so here you go:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $product = $this->productRepository->search(new Criteria([$myId]), $context)->first();
@@ -116,7 +116,7 @@ While searching for an ID will do the trick quite often, you might want to searc
 
 In order to do this, you can apply filters to the `Criteria` object, such as an `EqualsFilter`, which accepts a field name and the value to search for. You can find the `EqualsFilter` here: `Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter`
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -138,7 +138,7 @@ For this case, you can combine filters using the `OrFilter` or the `AndFilter`, 
 
 Let's just build the example mentioned above:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -163,7 +163,7 @@ E.g.: Fetch all products, whose name is `Example product`, but also return the t
 
 In that case, you can just use the `addPostFilter` instead of `addFilter`:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -183,7 +183,7 @@ There is more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE
 
 Of course associations to other entities are also possible in Shopware 6. If you, for example, want to load all product-reviews, which is an entity itself, related to the product you have found, you can do so by adding associations to the criteria object.
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -198,7 +198,7 @@ Just like the available entity fields, you can find all possible associations in
 
 Also worth to mention is the fact, that you can chain the association key. E.g. a product-review has another association to the customer, who created that review. If you want access to both the review itself, as well as the customer, you can just write the association like that:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -215,7 +215,7 @@ Yes, this is doable. You can apply filters to an association. E.g. "Add all prod
 
 For this we can use `getAssociation` instead, which basically returns its own `Criteria` object, on which you can apply a filter.
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -233,7 +233,7 @@ Once again: Note, that we used `getAssociation` here now instead of `addAssociat
 
 Another example to clarify what's going on here:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     // This will always return the product with the given name, no matter if it has a review with 4 or more stars.
@@ -260,7 +260,7 @@ Every `ManyToMany` association comes with a mapping entity, such as the `Product
 
 The following example will **not** work:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -276,7 +276,7 @@ Since mapping entities just consist of two primary keys, there is no need to sea
 
 Of course you can also aggregate your data. Just like filters and associations, this can be done by using an `addAggregation` method on the `Criteria` object. Let's create an example aggregation, that returns the average rating for a product:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -300,7 +300,7 @@ There's just a few more things missing: Limiting your result intentionally to e.
 
 Let's start with the limiting of the result:
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -313,7 +313,7 @@ public function readData(Context $context): void
 
 That's quite self-explanatory, isn't it? Just use the `setLimit` method with your desired limit as parameter. Little spoiler: It's the same for the offset!
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -327,7 +327,7 @@ public function readData(Context $context): void
 
 This way you get the 2nd possible product. But since you didn't define a sorting yourself, the result can be quite confusing, so let's add a sorting.
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -352,7 +352,7 @@ Imagine you need to iterate over all products of your shop, which contains more 
 
 Instead, the `RepositoryIterator` will return a batch of data, which size you can define, with each iteration. Just be sure to not use it unnecessarily, since it will create a new database request with each iteration, which is not needed for smaller chunks of data.
 
-```PHP
+```php
 public function readData(Context $context): void
 {
     $criteria = new Criteria();
@@ -376,7 +376,7 @@ Put differently, you must ensure that your sorting means that there's only one c
 
 For example, ordering products by `manufacturerNumber` alone could cause this issue, because several products can have the same `manufacturerNumber`, so there's several correct orderings of those products. On the other hand, because each product is guaranteed to have a unique ID, sorting by ID is an easy way to mitigate this issue:
 
-```PHP
+```php
 $criteria = new Criteria();
 //This sorting alone would result in sorting that is nondeterministic as several products might have the same value for this field:
 $criteria->addSorting(new FieldSorting('manufacturerNumber'));  

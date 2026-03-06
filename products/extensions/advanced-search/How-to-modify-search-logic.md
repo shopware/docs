@@ -19,7 +19,7 @@ This class is the central place to build the Elasticsearch query:
 
 To modify the search logic, you can decorate the search logic class and add your own logic into it:
 
-```PHP
+```php
 $services->set(YourPluginNameSpace\Domain\Search\SearchLogicDecorator::class)
     ->decorate(Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic::class)
     ->args([
@@ -28,7 +28,7 @@ $services->set(YourPluginNameSpace\Domain\Search\SearchLogicDecorator::class)
     ]);
 ```
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;

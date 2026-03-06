@@ -25,7 +25,7 @@ To resolve the `id` and getting access to the product we have linked here, we ca
 
 Lets create a `ProductSubscriber` first which will listen to the `ProductEvents::PRODUCT_LOADED_EVENT`.
 
-```PHP
+```php
 // <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
@@ -52,7 +52,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
 For this subscriber to work we need to register it in the service container via the `services.php` file:
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -69,7 +69,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Now our `ProductSubscriber` should be called every time a product is loaded, so we can resolve the custom field `custom_linked_product`.
 
-```PHP
+```php
 // <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
@@ -117,7 +117,7 @@ But, how we can load the linked product by its `id` if the custom field was set?
 
 First we update the `services.php` and inject the product repository.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -137,7 +137,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 Now we can use the product repository in our subscriber.
 
-```PHP
+```php
 // <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 
@@ -167,7 +167,7 @@ As you can see, the product repository was injected and is now available to the 
 
 Let's have a look at the final implementation of the subscriber.
 
-```PHP
+```php
 // <plugin root>/src/Subscriber/ProductSubscriber.php
 <?php declare(strict_types=1);
 

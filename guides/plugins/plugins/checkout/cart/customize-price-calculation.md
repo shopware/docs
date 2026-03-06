@@ -27,7 +27,7 @@ So let's do that real quick. If you're looking for an in-depth explanation, head
 
 Here's an example decorated calculator:
 
-```PHP
+```php
 // <plugin root>/src/Service/CustomProductPriceCalculator.php
 <?php declare(strict_types=1);
 
@@ -81,7 +81,7 @@ Most likely you also want to narrow down which product's prices you want to edit
 
 Do not forget to actually register your decoration to the service container, otherwise it will not have any effect.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

@@ -58,7 +58,7 @@ The following `services.php` and `routes.php` are identical as in the before men
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use SwagBasicExample\Storefront\Controller\ExampleController;
@@ -75,7 +75,7 @@ return static function (ContainerConfigurator $configurator): void {
 };
 ```
 
-```PHP [PLUGIN_ROOT/src/Resources/config/routes.php]
+```php [PLUGIN_ROOT/src/Resources/config/routes.php]
 <?php declare(strict_types=1);
 
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;

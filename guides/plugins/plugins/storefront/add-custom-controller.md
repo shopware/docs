@@ -141,7 +141,7 @@ Next, we need to register our controller in the DI-container and make it public.
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Storefront\Controller\ExampleController;
@@ -170,7 +170,7 @@ Take a look at the official [Symfony documentation](https://symfony.com/doc/curr
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/routes.php]
+```php [PLUGIN_ROOT/src/Resources/config/routes.php]
 <?php declare(strict_types=1);
 
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -304,7 +304,7 @@ class SwagBasicExample extends Plugin
 
 Now you can use the route name `swag.test.foo-bar` in your controller without the need for a prefix.
 
-```PHP
+```php
 #[Route(path: '/example', name: 'swag.test.foo-bar', methods: ['GET'])]
 public function showExample(Request $request, SalesChannelContext $context): Response
 {

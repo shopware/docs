@@ -76,7 +76,7 @@ Handlers allow custom logic to transform data before mapping it to the target fi
 
 To use a handler, implement a PHP class (e.g., `RolePermissionsTransformer`) that extends `Shopware\Commercial\B2B\B2BSuiteMigration\Core\Domain\DataTransformer\AbstractFieldTransformer` and tag it with `b2b.migration.transformer` in your service configuration.
 
-```PHP
+```php
 $services->set(Shopware\Commercial\B2B\B2BSuiteMigration\Components\QuoteManagement\DataTransformer\QuoteComment\StateTransformer::class)
     ->lazy()
     ->args([service(Shopware\Core\Framework\Extensions\ExtensionDispatcher::class)])

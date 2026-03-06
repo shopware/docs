@@ -33,7 +33,7 @@ Finding those "event classes" can be done by searching for the term `@Event` in 
 
 You can use those events in a [subscriber](../../plugin-fundamentals/listening-to-events) like the following:
 
-```PHP
+```php
 public static function getSubscribedEvents(): array
 {
     return [
@@ -48,7 +48,7 @@ As you can see, you can either use the event class constants, if available, or t
 You'll then have access to several event specific information, e.g. your listener method will have access to an [EntityWrittenEvent](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Framework/DataAbstractionLayer/Event/EntityWrittenEvent.php)
 instance when subscribing to the `written` event.
 
-```PHP
+```php
 public function onCustomEntityWritten(EntityWrittenEvent $event): void
 {
 }
@@ -72,7 +72,7 @@ There are multiple ways to find them:
 You will most likely look into our Core code quite a lot, while trying to understand what's happening and why things are happening.
 On your journey looking through the code, you may stumble upon code looking like this:
 
-```PHP
+```php
 $someEvent = new SomeEvent($parameters, $moreParameters);
 $this->eventDispatcher->dispatch($someEvent, $someEvent->getName());
 ```
@@ -85,7 +85,7 @@ If the second parameter is not applied, the class name will be used as a fallbac
 
 When subscribing to those events, your event listener method will have access to the previously created event instance.
 
-```PHP
+```php
 public static function getSubscribedEvents(): array
 {
     return [
@@ -121,7 +121,7 @@ Every service, that wants to fire an event sooner or later, needs access to the 
 Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 and therefore quickly figure out, which services and classes are having access to the said `event_dispatcher`:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Some\Service;
@@ -144,7 +144,7 @@ Therefore, you could simply search for occurrences of the `event_dispatcher` in 
 
 You can also do this the other way around, by having a look at the service's constructor parameters.
 
-```PHP
+```php
 public function __construct(
     Some\Service $someService,
     EventDispatcherInterface $eventDispatcher
@@ -181,7 +181,7 @@ a `Criteria` instance.
 
 Let's have a look at an [example code](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Product/SalesChannel/Listing/ResolveCriteriaProductListingRoute.php#L55-L59):
 
-```PHP
+```php
 #[Route(path: '/store-api/product-listing/{categoryId}', name: 'store-api.product.listing', methods: ['POST'], defaults: ['_entity' => 'product'])]
 public function load(string $categoryId, Request $request, SalesChannelContext $context, Criteria $criteria): ProductListingRouteResponse
 {
@@ -220,7 +220,7 @@ Therefore, we have added fine-grained route events that are thrown for every rou
 
 To subscribe to a specific event, replace the `{route}` placeholder with the [actual symfony route name](https://symfony.com/doc/current/routing.html), e.g. `store-api.product.listing`.
 
-```PHP
+```php
 public static function getSubscribedEvents(): array
 {
     return [

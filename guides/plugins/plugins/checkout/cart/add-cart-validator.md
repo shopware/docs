@@ -35,7 +35,7 @@ Your validator has to implement the interface `Shopware\Core\Checkout\Cart\CartV
 
 But let's have a look at the example validator first:
 
-```PHP
+```php
 // <plugin root>/src/Core/Checkout/Cart/Custom/CustomCartValidator.php
 <?php declare(strict_types=1);
 
@@ -76,7 +76,7 @@ One more thing to do is to register your new validator to the [dependency inject
 
 Your validator has to be registered using the tag `shopware.cart.validator`:
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -121,7 +121,7 @@ It has to extend from the abstract class `Shopware\Core\Checkout\Cart\Error\Erro
 
 So now let's have a look at the example error class:
 
-```PHP
+```php
 // <plugin root>/src/Core/Checkout/Cart/Custom/Error/CustomCartBlockedError.php
 <?php declare(strict_types=1);
 
@@ -182,7 +182,7 @@ You've defined the error key to be `custom-line-item-blocked` in your custom err
 
 Now let's have a look at an example snippet file:
 
-```JAVASCRIPT
+```javascript
 // <plugin root>/src/Resources/snippet/en\_GB/example.en-GB.json
 {
     "checkout": {

@@ -19,7 +19,7 @@ With this setup, you have the bundle plugin in Shopware 5 and also the bundle pl
 
 To fetch your data via the Shopware 5 API, you have to create a bundle repository first:
 
-```PHP
+```php
 <?php
 
 namespace SwagMigrationBundleApiExample\Repository;
@@ -80,7 +80,7 @@ The repository has to inherit from the `AbstractRepository` of the Migration Con
 
 You have to register the repository in your `services.php` with the parent property like this:
 
-```PHP
+```php
 $services->set('swag_migration_bundle_api_example.bundle_repository', SwagMigrationBundleApiExample\Repository\BundleRepository::class)
     ->parent(SwagMigrationConnector\Repository\AbstractRepository::class);
 ```
@@ -89,7 +89,7 @@ $services->set('swag_migration_bundle_api_example.bundle_repository', SwagMigrat
 
 In the next step, you create a new `BundleService`, which uses your new `BundleRepository` to fetch all bundles and products to map them to one result array:
 
-```PHP
+```php
 <?php
 /**
  * (c) shopware AG <info@shopware.com>
@@ -143,7 +143,7 @@ class BundleService extends AbstractApiService
 
 You have to register the `BundleService` in your `services.php`:
 
-```PHP
+```php
 $services->set('swag_migration_bundle_api_example.bundle_service', SwagMigrationBundleApiExample\Service\BundleService::class)
     ->args([
         service('swag_migration_bundle_api_example.bundle_repository'),
@@ -154,7 +154,7 @@ $services->set('swag_migration_bundle_api_example.bundle_service', SwagMigration
 
 At last, you have to create a new API controller, which uses the `BundleService` to get your bundle data:
 
-```PHP
+```php
 <?php
 /**
  * (c) shopware AG <info@shopware.com>
@@ -185,7 +185,7 @@ class Shopware_Controllers_Api_SwagMigrationBundles extends Shopware_Controllers
 
 Now you have to create the `BundleReader` in the [SwagMigrationBundleExample](extending-a-shopware-migration-profile) plugin, which only contains the Shopware 5 API route:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace SwagMigrationBundleExample\Profile\Shopware\Gateway\Api\Reader;
@@ -214,7 +214,7 @@ class BundleReader extends ApiReader
 
 After this, you have to register the reader in the Symfony container:
 
-```PHP
+```php
 $services->set(SwagMigrationBundleExample\Profile\Shopware\Gateway\Api\BundleReader::class)
     ->parent(SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\ApiReader::class)
     ->tag('shopware.migration.reader');

@@ -17,7 +17,7 @@ While Shopware provides many built-in extension points, you may need to create c
 
 All extension points must extend the base `Extension` class and define a typed result:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace MyPlugin\Extension;
@@ -63,7 +63,7 @@ Let's create a custom extension point for filtering products based on custom bus
 
 ### 1. Define the Extension Class
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace MyPlugin\Extension;
@@ -109,7 +109,7 @@ final class CustomProductFilterExtension extends Extension
 
 ### 2. Create the Service that Dispatches the Extension
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace MyPlugin\Service;
@@ -158,7 +158,7 @@ class CustomProductService
 
 ### 3. Create an Event Subscriber
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace MyPlugin\Subscriber;
@@ -232,7 +232,7 @@ class CustomProductFilterSubscriber implements EventSubscriberInterface
 
 ### 4. Register Services
 
-```PHP
+```php
 // services.php
 $services->set(MyPlugin\Service\CustomProductService::class)
     ->args([
@@ -252,7 +252,7 @@ $services->set(MyPlugin\Subscriber\CustomProductFilterSubscriber::class)
 
 ### 1. Conditional Extension Execution
 
-```PHP
+```php
 public function onExtension(MyExtension $event): void
 {
     // Only execute under certain conditions
@@ -272,7 +272,7 @@ private function shouldExecute(MyExtension $event): bool
 
 ### 2. Extension with Error Handling
 
-```PHP
+```php
 public function onExtension(MyExtension $event): void
 {
     try {
@@ -293,7 +293,7 @@ public function onExtension(MyExtension $event): void
 
 ### 3. Extension with Data Enrichment
 
-```PHP
+```php
 public function onExtension(MyExtension $event): void
 {
     // Don't replace the result, just enrich it
@@ -317,7 +317,7 @@ private function enrichResult($result, MyExtension $event)
 
 ### 4. Multi-Phase Extension
 
-```PHP
+```php
 public static function getSubscribedEvents(): array
 {
     return [
@@ -418,7 +418,7 @@ Use `.error` events to:
 
 Here's a complete example of a plugin that creates and uses a custom extension point:
 
-```PHP
+```php
 // 1. Extension class
 final class ProductRecommendationExtension extends Extension
 {

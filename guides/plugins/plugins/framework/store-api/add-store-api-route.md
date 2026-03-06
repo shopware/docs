@@ -29,7 +29,7 @@ All fields that should be available through the API require the flag `ApiAware` 
 
 First of all, we create an abstract class called `AbstractExampleRoute`. This class has to contain a method `getDecorated` and a method `load` with a `Criteria` and `SalesChannelContext` as parameter. The `load` method has to return an instance of `ExampleRouteResponse`, which we will create later on.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php
 <?php declare(strict_types=1);
 
@@ -50,7 +50,7 @@ abstract class AbstractExampleRoute
 
 Now we can create a new class `ExampleRoute` which uses our previously created `AbstractExampleRoute`.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
 <?php declare(strict_types=1);
 
@@ -95,7 +95,7 @@ The `_entity` in the defaults of the `Route` attribute just marks the entity tha
 
 ### Register route class
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute;
@@ -115,7 +115,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`, consequently inheriting a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The `StoreApiResponse` parent constructor takes accepts one argument `$object` in order to set the value for the `$object` property (currently we provide this parameter our `ExampleRoute`). Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteResponse.php
 <?php declare(strict_types=1);
 
@@ -142,7 +142,7 @@ class ExampleRouteResponse extends StoreApiResponse
 
 The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location. Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/routes.php
 <?php declare(strict_types=1);
 
@@ -166,7 +166,7 @@ $ ./bin/console debug:router store-api.example.search
 
 To add the route to the Stoplight page, a JSON file is needed in a specific [format](https://swagger.io/specification/#paths-object). It contains information about the paths, methods, parameters, and more. You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` so the shopware internal OpenApi3Generator can find it (for Admin API endpoints, use `AdminApi`).
 
-```JAVASCRIPT
+```javascript
 // <plugin root>/src/Resources/Schema/StoreApi/example.json
 {
   "openapi": "3.0.0",
@@ -226,7 +226,7 @@ Your generated request and response could look like this:
 
 #### Request
 
-```JSON
+```json
 {
   "page": 0,
   "limit": 0,
@@ -278,7 +278,7 @@ Your generated request and response could look like this:
 
 #### Response
 
-```JSON
+```json
 {
   "total": 0,
   "aggregations": {},
@@ -299,7 +299,7 @@ Your generated request and response could look like this:
 
 If you want to access the functionality of your route also from the Storefront you need to make it available there by adding a custom [Storefront controller](../../storefront/add-custom-controller) that will wrap your just created route.
 
-```PHP
+```php
 // <plugin root>/src/Storefront/Controller/ExampleController.php
 <?php declare(strict_types=1);
 
@@ -337,7 +337,7 @@ Additionally, we also use the `'XmlHttpRequest' => true` config option on the ro
 
 ### Register the Controller
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute;
@@ -362,7 +362,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 We need to tell Shopware that there is a new API-route for the `storefront` scope by extending the `routes.php` to also include all Storefront controllers.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/routes.php
 <?php declare(strict_types=1);
 
@@ -381,7 +381,7 @@ We expect that you have followed that guide and know how to register your custom
 
 When you want to request your custom route you can use the existing `http-client` service for that.
 
-```JAVASCRIPT
+```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
 const { PluginBaseClass } = window;
 

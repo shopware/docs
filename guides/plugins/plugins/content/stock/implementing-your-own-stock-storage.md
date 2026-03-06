@@ -26,7 +26,7 @@ First, to communicate stock alterations to a third-party service, you will have 
 <Tabs>
 <Tab title="StockStorageDecorator.php">
 
-```PHP
+```php
 // <plugin root>/src/Swag/Example/Service/StockStorageDecorator.php
 <?php declare(strict_types=1);
 
@@ -79,7 +79,7 @@ class StockStorageDecorator extends AbstractStockStorage
 
 <Tab title="services.php">
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

@@ -15,7 +15,7 @@ To add a custom rule, following this document [Add custom rule](../../../../../g
 
 Example:
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;
@@ -76,7 +76,7 @@ class CartAmountRule extends Rule
 
 Then, we have to register it in our `services.php` and tag it as `shopware.approval_rule.definition`
 
-```PHP
+```php
 $services->set(YourPluginNameSpace\CartAmountRule::class)
     ->public()
     ->tag('shopware.approval_rule.definition');

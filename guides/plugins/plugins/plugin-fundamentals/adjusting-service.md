@@ -25,7 +25,7 @@ First of all we have to create a new service for this example which gets decorat
 
 Here's our example `services.php`:
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 
@@ -54,7 +54,7 @@ To avoid misunderstandings: The abstract service class and the implementation of
 
 Therefore, this is how your abstract class could then look like:
 
-```PHP
+```php
 // <plugin root>/src/Service/AbstractExampleService.php
 <?php declare(strict_types=1);
 
@@ -72,7 +72,7 @@ Now we have our abstract class, but no service which uses it. So we create our `
 
 Therefore, your service could then look like this:
 
-```PHP
+```php
 // <plugin root>/src/Service/ExampleService.php
 <?php declare(strict_types=1);
 
@@ -98,7 +98,7 @@ The last step is creating our decorated service called `ExampleServiceDecorator`
 
 Your service could then look like below:
 
-```PHP
+```php
 // <plugin root>/src/Service/ExampleServiceDecorator.php
 <?php declare(strict_types=1);
 
@@ -133,7 +133,7 @@ If you plan to add new functions to your service, it is recommended to add them 
 
 Here's our example abstract class:
 
-```PHP
+```php
 // <plugin root>/src/Service/AbstractExampleService.php
 <?php declare(strict_types=1);
 
@@ -154,7 +154,7 @@ abstract class AbstractExampleService
 
 After we have implemented our new function in the abstract class, we implement it in our service too.
 
-```PHP
+```php
 // <plugin root>/src/Service/ExampleService.php
 <?php declare(strict_types=1);
 

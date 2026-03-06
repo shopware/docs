@@ -21,7 +21,7 @@ Furthermore, you should have a look at our guide about [Adding a Store API route
 
 First, we have to create a new class which extends `AbstractExampleRoute`. In this example we will name it `ExampleRouteDecorator`.
 
-```PHP
+```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRouteDecorator.php
 <?php declare(strict_types=1);
 
@@ -72,7 +72,7 @@ As you can see, our decorated route has to extend from the `AbstractExampleRoute
 
 Last, we have to register the decorated route to the DI-container. The `ExampleRouteDecorator` has to be registered after the `ExampleRoute` with the attribute `decorated` which points to the `ExampleRoute`. For the second argument we have to use the `ExampleRouteDecorator.inner`.
 
-```PHP
+```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
 

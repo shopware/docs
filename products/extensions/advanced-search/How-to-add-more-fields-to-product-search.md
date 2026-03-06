@@ -13,7 +13,7 @@ In this example, we create a field called `productNumberPrefix` to make it searc
 
 **1. Decorate the ElasticsearchDefinition**
 
-```PHP
+```php
 $services->set(YourPluginNameSpace\ElasticsearchProductDefinitionDecorator::class)
     ->decorate(Shopware\Elasticsearch\Product\ElasticsearchProductDefinition::class)
     ->args([
@@ -22,7 +22,7 @@ $services->set(YourPluginNameSpace\ElasticsearchProductDefinitionDecorator::clas
     ]);
 ```
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace;
@@ -89,7 +89,7 @@ class ElasticsearchProductDefinitionDecorator extends AbstractElasticsearchDefin
 
 We need to update these data mapping to the Opensearch's server to make the change effective:
 
-```BASH
+```bash
 // Update the Elasticsearch indices mapping, introduce since 6.5.4.0
 bin/console es:mapping:update
 
@@ -101,11 +101,11 @@ bin/console es:index --no-queue
 
 So now the data is mapped and indexed, we need to make it searchable by adding the new field into the search config. Create a new migration and make sure it is run by reinstalling or updating the plugin:
 
-```BASH
+```bash
 bin/console database:create-migration --name AddNewPrefixProductNumberFieldIntoProductAdvancedSearch --plugin YourPlugin
 ```
 
-```PHP
+```php
 <?php declare(strict_types=1);
 
 namespace YourPluginNameSpace\Migration;

@@ -69,7 +69,7 @@ Of course, you can do everything in the `createMd5Hash` function that PHP can do
 
 ::: code-group
 
-```PHP [PLUGIN_ROOT/src/Resources/config/services.php]
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
 $services->set(SwagCreateMd5Hash::class)
         ->public()
         ->tag('twig.extension'); // Required
