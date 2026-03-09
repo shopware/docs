@@ -59,7 +59,7 @@ class Subscriber implements EventSubscriberInterface
 }
 ```
 
-You can use the method `getWhitelist` of the `$event` variable to get the current whitelist, which is just a plain array of extensions.
+You can use the method `getWhitelist` of the `$event` variable to get the current allowlist, which is just a plain array of extensions.
 Therefore you can add new array entries and then set the array back to the `$event` instance by using the respective setter method
 `setWhitelist`.
 
@@ -161,20 +161,20 @@ Shopware will now recognise your new image extension and handle your new file li
 
 ## Public vs private media
 
-Shopware uses **two separate extension whitelists** depending on whether the media is public or private:
+Shopware uses **two separate extension allowlists** depending on whether the media is public or private:
 
-| Whitelist | Configuration parameter | When used |
+| Allowlist | Configuration parameter | When used |
 |-----------|-------------------------|-----------|
 | **Public** | `shopware.filesystem.allowed_extensions` | Media stored in the public filesystem (product images, CMS assets, etc.). Files are accessible via URL. |
 | **Private** | `shopware.filesystem.private_allowed_extensions` | Media stored in the private filesystem (digital product downloads, documents, etc.). Files are not directly URL-accessible and require authentication to download. |
 
-The `MediaFileExtensionWhitelistEvent` is dispatched with one of these whitelists depending on whether the media being uploaded is marked as private. Your subscriber receives the appropriate whitelist each time.
+The `MediaFileExtensionWhitelistEvent` is dispatched with one of these allowlists depending on whether the media being uploaded is marked as private. Your subscriber receives the appropriate allowlist each time.
 
-If your custom extension should work for both public and private media, add it in your subscriber—the same logic applies to both whitelists, since the event is fired separately for each upload context.
+If your custom extension should work for both public and private media, add it in your subscriber. The same logic applies to both allowlists, since the event is fired separately for each upload context.
 
 ## Media types
 
-When implementing a TypeDetector, you must return the correct `MediaType` for your extension. The following types are available:
+When implementing a `TypeDetector`, you must return the correct `MediaType` for your extension. The following types are available:
 
 | MediaType class | Purpose |
 |-----------------|---------|
