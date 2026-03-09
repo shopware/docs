@@ -7,23 +7,23 @@ nav:
 
 # Customer-specific Pricing
 
-The Customer-specific pricing feature allows massive advances in the pricing model capabilities in the Shopware 6 ecosystem.
+The Customer-specific pricing feature enables significant advances in pricing model capabilities in the Shopware 6 ecosystem.
 
-The API interface exposed by this module allows the user to operate a set of commands which will enable the granular overriding of prices via an external data repository or ERP system. This is achieved by defining a custom relationship between the current price and the Customer entity.
+The API interface exposed by this module allows the user to execute a set of commands that enable granular price overrides via an external data repository or ERP system. This is achieved by defining a custom relationship between the current price and the Customer entity.
 
 ## Pre-requisites and setup
 
-Customer-specific pricing is part of the Commercial plugin, requiring an existing Shopware 6 installation and the activated Shopware 6 Commercial plugin. This Commercial plugin can be installed as per the [install instructions](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin). In addition, the `Custom Prices` feature needs to be activated within the relevant merchant account.
+Customer-specific pricing is part of the Commercial plugin and requires an existing Shopware 6 installation and the activated Shopware 6 Commercial plugin. This Commercial plugin can be installed as per the [install instructions](../../../../../guides/plugins/plugins/plugin-base-guide.md#install-your-plugin). In addition, the `Custom Prices` feature needs to be activated within the relevant merchant account.
 
 ## Working with the API route
 
-To create, alter and/or delete customer-specific prices, you can use the API endpoint `/api/_action/custom-price`. Like with any other admin request in Shopware, you must first authenticate yourself. Therefore, please head over to the
+To create, alter, and/or delete customer-specific prices, you can use the API endpoint `/api/_action/custom-price`. Like with any other admin request in Shopware, you must first authenticate yourself. Therefore, please head over to the
 [authentication guide](https://shopware.stoplight.io/docs/admin-api/authentication) for details.
 
-Otherwise, the Customer-specific Pricing API interface models itself upon the interface of the [sync API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide), so you will be able to package your requests similarly.
+Otherwise, the Customer-specific Pricing API interface models itself on the [sync API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide), so you can package your requests similarly.
 
 ::: info
-You can use the route with single `upsert` and `delete` actions or even combine those in a single request: you can pack several different commands inside one sync API request, and each of them is executed in an independent and isolated way
+You can use the route with a single `upsert` and `delete` action, or combine them in a single request: you can pack several different commands into a single sync API request, and each is executed in an independent, isolated way.
 :::
 
 So, it's not surprising that the request body looks like a familiar sync request. In the payload for the `upsert` action, you pass the following data:
@@ -36,56 +36,56 @@ This way, we come to use a payload as seen in the example below:
 
 ```json
 [
-  {
+ {
     "action": "upsert",
     "payload": [
-      {
+ {
         "productId": "0001e32041ac451386bf9b7351c540f3",
         "customerId": "02a3c82b5ca842c492f8656029b2e63e",
         "price": [
-          {
+ {
             "quantityStart": 1,
             "quantityEnd": null,
             "price": [
-              {
+ {
                 "currencyId": "b7d2554b0ce847cd82f3ac9bd1c0dfca",
                 "gross": 682.0,
                 "net": 682.0,
                 "linked": true
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+ }
+ ]
+ }
+ ]
+ }
+ ]
+ }
 ]
 ```
 
-For the `delete` action, the workflow operation accepts 3 different array of ids: `customerIds`, `productIds`, or `customerGroupIds`. Here, you can specify any combination of these id arrays, with the exception that the API route must have at least one UUID supplied in one of the id arrays (`customerIds`, `productIds`, or `customerGroupIds`)
+For the `delete` action, the workflow operation accepts 3 different arrays of ids: `customerIds`, `productIds`, or `customerGroupIds`. Here, you can specify any combination of these ID arrays, with the exception that the API route must have at least one UUID supplied in one of the ID arrays (`customerIds`, `productIds`, or `customerGroupIds`)
 
 ```json
 [
-  {
+ {
     "action": "delete",
     "payload": [
-      {
+ {
         "productIds": [
           "0001e32041ac451386bf9b7351c540f3",
           "363a6985f6434a7493b1ef3dabeed40f"
-        ],
+ ],
         "customerIds": [
           "53fc38877a510a47b0e0c44f1615f0c5"
-        ],
+ ],
         "customerGroupIds": []
-      }
-    ]
-  }
+ }
+ ]
+ }
 ]
 ```
 
 ::: info
-In case of an error occurs, the response will not return an error code - which is typical for the sync API; instead, any validation errors will be stored within the `errors` key.
+In case an error occurs, the response will not return an error code, which is typical for the sync API; instead, any validation errors will be stored within the `errors` key.
 :::
 
 ::: warning
@@ -98,5 +98,5 @@ When working with custom prices, there are currently some caveats or issues to k
 
 - Price filtering (within the product listing page) will _currently_ not support the overridden prices.
 - ElasticSearch product mapping does not currently support Customer-specific Pricing data.
-- Optional header flags within the core `sync` API are not supported within the provided endpoint (`indexing-behavior, single-operation`). Indexing of any relevant database (product) data is handled on a per-request basis without the need to specify indexing handling.
+- Optional header flags within the core `sync` API are not supported within the provided endpoint (`indexing-behavior, single-operation`). Indexing of any relevant database (product) data is handled on a per-request basis, without the need to specify indexing.
 - The `customerGroupId` parameter within a Customer-specific Pricing API request body is a stub implementation to avoid breaking changes in future versions and is not currently functional. Any data provided for this parameter will not affect the Storefront.

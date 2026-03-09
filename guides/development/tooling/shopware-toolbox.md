@@ -19,7 +19,7 @@ Shopware Toolbox is not a standalone application. It runs inside PHPStorm (and o
 
 ### Live templates
 
-Multiple live templates for development. Use Cmd/Ctrl + J to see all live templates available.
+Multiple live templates for development. Use Cmd/Ctrl + J to view all live templates.
 
 ### Code generators
 
@@ -32,13 +32,13 @@ Multiple live templates for development. Use Cmd/Ctrl + J to see all live templa
 
 ### Static code checks
 
-Inspection to show an error when abstract class is used incorrectly in the constructor (guideline check).
+Inspection to show an error when an abstract class is used incorrectly in the constructor (guideline check).
 
 ### Auto-completion
 
 * Admin components
 * Snippets in Administration and Storefront
-* Storefront functions `theme_config`, `config`, `seoUrl`, `sw_include` and `sw_extends`
+* Storefront functions `theme_config`, `config`, `seoUrl`, `sw_include`, and `sw_extends`
 * Repository at `this.repositoryFactory.create`
 * Module.register labels
 * Context-aware admin component auto-completion (only when Twig file is next to an `index.js`)
