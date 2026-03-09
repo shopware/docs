@@ -126,8 +126,8 @@ redirects:
     guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/general-concepts/search-criteria.html
     guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/general-concepts/partial-data-loading.html
     guides/integrations-api/general-concepts/generated-reference.html: guides/development/integrations-api/general-concepts/generated-reference.html
-    resources/references/core-reference/dal-reference/filters-reference.html: guides/resources/references/core-reference/dal-reference/filters-reference.html
-    resources/references/core-reference/dal-reference/aggregations-reference.html: guides/resources/references/core-reference/dal-reference/aggregations-reference.html
+    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
+    guides/resources/references/core-reference/dal-reference/aggregations-reference.html: resources/references/core-reference/dal-reference/aggregations-reference.html 
     guides/plugins/apps/app-scripts/data-loading.html: guides/integrations-api/general-concepts/search-criteria.html
     resources/accessibility/accessibility-checklist.html: guides/development/accessibility/accessibility-checklist.html
     resources/accessibility/storefront-accessibility.html: guides/development/accessibility/storefront-accessibility.html
@@ -145,4 +145,3 @@ redirects:
     guides/plugins/plugins/testing/playwright/test.html: guides/development/testing/e2e-playwright/test.html
     guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
     guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/
-    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
