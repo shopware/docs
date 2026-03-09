@@ -54,6 +54,7 @@ Aktions
 Algolia
 AllowEmptyString
 AllowHtml
+Allowlist
 AlwaysValidRule
 Analytics
 AndRule
@@ -1110,6 +1111,8 @@ adr
 afterSort
 ag
 ajax
+allowlist
+allowlists
 amqp
 anonymization
 anonymize
