@@ -117,6 +117,9 @@ redirects:
     resources/guidelines/testing/store/: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-plugins.html: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-apps.html: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-apps/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/testing-guidelines.html
     guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
     guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
     guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/general-concepts/request-headers.html  
@@ -142,3 +145,4 @@ redirects:
     guides/plugins/plugins/testing/playwright/test.html: guides/development/testing/e2e-playwright/test.html
     guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
     guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/
+    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
