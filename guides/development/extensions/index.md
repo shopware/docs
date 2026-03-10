@@ -52,8 +52,8 @@ Extensions must explicitly support target Shopware versions. Review the [Upgrade
 
 These guides provide essential information on how to create, configure, and extend your store with Shopware extensions:
 
-<PageRef page="../../../guides/plugins/plugins/plugin-base-guide.md" />
+<PageRef page="../../../guides/plugins/plugins/plugin-base-guide" />
 
-<PageRef page="../../../guides/plugins/apps/app-base-guide.md" />
+<PageRef page="../../../guides/plugins/apps/app-base-guide" />
 
-<PageRef page="../../../guides/plugins/themes/theme-base-guide.md" />
+<PageRef page="../../../guides/plugins/themes/theme-base-guide" />

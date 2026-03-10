@@ -15,7 +15,7 @@ Multi-Inventory is part of the Commercial plugin available along with the Beyond
 
 * Shopware 6 instance
 * [Shopware Beyond](https://docs.shopware.com/en/shopware-6-en/features/shopware-beyond) license
-* Activated Commercial plugin. Refer to [plugin base guide](../../../../guides/plugins/plugins/plugin-base-guide#install-your-plugin) for installation instructions
+* Activated Commercial plugin. Refer to [plugin base guide](../../../plugins/plugin-base-guide.md#install-your-plugin) for installation instructions
 
 ### Admin UI
 

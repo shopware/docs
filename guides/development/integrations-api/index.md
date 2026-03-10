@@ -46,9 +46,9 @@ Complete endpoint documentation (local instance required): `/store-api/_info/sto
 
 Both APIs use the same foundational structures:
 
-* [Search Criteria](/search-criteria.md): encapsulates the entire search definition in one generic object
-* [Request Headers](/request-headers.md): additional instructions
-* [Partial Data Loading](/partial-data-loading.md)
+* [Search Criteria](../integrations-api/search-criteria.md): encapsulates the entire search definition in one generic object
+* [Request Headers](../integrations-api/request-headers.md): additional instructions
+* [Partial Data Loading](../integrations-api/partial-data-loading.md)
 
 These define how data is filtered, structured, and versioned.
 

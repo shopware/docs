@@ -11,11 +11,11 @@ Shopware provides official tools that support the full lifecycle of a Shopware p
 
 - [Admin Extension SDK](/resources/admin-extension-sdk/): an NPM library for Shopware 6 apps and plugins that need an easy way to extend or customize the Administration.
 
-- `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](/resources/references/core-reference/commands-reference.html).
+- `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../../resources/references/core-reference/commands-reference.md).
 
 - [Deployment Helper](/guides/hosting/deployment-helper/):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
 
-- [Fixture Bundle](/resources/tooling/fixture-bundle/): Seed development environments with demo and test data.
+- [Fixture Bundle](../../../guides/development/tooling/fixture-bundle.md): Seed development environments with demo and test data.
 
 - For IDE support, Shopware provides a [PHPStorm plugin](shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
 
