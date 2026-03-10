@@ -77,7 +77,7 @@ Once you've set up your Redis connections as explained in the  [Redis configurat
       </service>
     ```
 
- Be cautious with this approach! If you change the Redis connection names in your configuration, it will cause container build errors.
+  Be cautious with this approach! If you change the Redis connection names in your configuration, it will cause container build errors.
 
 ## Redis usage tips
 
