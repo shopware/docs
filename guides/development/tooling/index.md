@@ -13,7 +13,7 @@ Shopware provides official tools that support the full lifecycle of a Shopware p
 
 - `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../../resources/references/core-reference/commands-reference.md).
 
-- [Deployment Helper](/guides/hosting/deployment-helper/):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
+- [Deployment Helper](/guides/hosting/installation-updates/deployments/deployment-helper.md):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
 
 - [Fixture Bundle](../../../guides/development/tooling/fixture-bundle.md): Seed development environments with demo and test data.
 
