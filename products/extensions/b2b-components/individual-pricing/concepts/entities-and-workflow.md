@@ -156,7 +156,7 @@ flowchart TD
  F -->|No| C
  F -->|Yes| G[Get all rules at highest priority]
  G --> H[Evaluate all rules at this priority]
- H --> I{Any rules match product streams?}
+ H --> I{Any rules matched?}
  I -->|No| C
  I -->|Yes| J{Multiple rules match?}
  J -->|No| K[Use single matching rule]
