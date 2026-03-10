@@ -162,7 +162,3 @@ redirects:
     guides/plugins/plugins/api/customer-specific-pricing.html: guides/plugins/plugins/integrations/commercial/customer-specific-pricing.html
     guides/plugins/plugins/api/multi-inventory.html: guides/plugins/plugins/integrations/commercial/multi-inventory.html
     plugins/plugins/api/index.html: concepts/api/index.html
-    resources/tooling/ide/shopware-toolbox.html: guides/development/tooling/shopware-toolbox.html
-    resources/tooling/cli/index.html: guides/development/tooling/index.html
-    resources/tooling/ide/index.html: guides/development/tooling/index.html
-    resources/tooling/index.html: guides/development/tooling/index.html
