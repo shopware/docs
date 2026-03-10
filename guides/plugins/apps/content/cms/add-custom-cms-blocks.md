@@ -10,7 +10,7 @@ nav:
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
 
-Alternatively, you can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system, however these will not be available in Shopware cloud stores.
+Alternatively, you can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system; however, these will not be available in Shopware cloud stores.
 :::
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
@@ -48,19 +48,19 @@ The basic directory structure looks as follows:
 ```
 
 Each CMS block defined within your `cms.xml` must have a directory matching the block's name in `Resources/cms/blocks/`.
-In those directories you shape your blocks for the CMS module in the Administration by supplying a `preview.html` containing the template used for displaying a preview.
-Styling the preview in the sidebar and the component in the CMS editor is possible from the `styles.css`.
+In those directories, you define your blocks for the CMS module in the Administration by supplying a `preview.html` file containing the template used to display a preview.
+Styling the preview in the sidebar and the component in the CMS editor can be done in `styles.css`.
 
 ::: info
-Due to technical limitations it's not possible to use templating engines \(like Twig\) or preprocessors \(like Sass\) for rendering and styling the preview.
+Due to technical limitations, it's not possible to use templating engines \(like Twig\) or preprocessors \(like Sass\) for rendering and styling the preview.
 :::
 
 The Storefront representations of your blocks reside in `Resources/views/storefront/block/`.
 
 ## Defining blocks
 
-As already mentioned above and similar to an app's `manifest.xml`, CMS blocks also require some definition done in the `cms.xml`.
-In this example we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
+As already mentioned above, and similar to an app's `manifest.xml`, CMS blocks also require a definition in `cms.xml`.
+In this example, we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
 ```xml
 // <app root>/Resources/cms.xml
@@ -68,7 +68,7 @@ In this example we will define a custom CMS block that will extend the default b
 <cms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Cms/Schema/cms-1.0.xsd">
     <blocks>
         <block>
-            <!-- A unique technical name for your block. We recommend to use a shorthand prefix for your company, e.g. "Swag" for shopware AG. -->
+            <!-- A unique technical name for your block. We recommend using a shorthand prefix for your company, e.g., "Swag" for shopware AG. -->
             <name>swag-image-text-reversed</name>
 
             <!-- The category your block is associated with. See the XSD for available categories. -->
@@ -78,7 +78,7 @@ In this example we will define a custom CMS block that will extend the default b
             <label>Two columns, text &amp; boxed image</label>
             <label lang="de-DE">Zwei Spalten, Text &amp; gerahmtes Bild</label>
 
-            <!-- The slots that your block holds which again hold CMS elements. -->
+            <!-- The slots that your block holds, which again hold CMS elements. -->
             <slots>
                 <!-- A slot requires a unique name and a type which refers to the CMS element it shows. Currently, app CMS blocks can only use CMS elements provided by Shopware. -->
                 <slot name="left" type="text">
@@ -97,7 +97,7 @@ In this example we will define a custom CMS block that will extend the default b
                 </slot>
             </slots>
 
-            <!-- Each block comes with a default configuration which is pre-filled and customizable when adding a block to a section in the CMS module in the Administration. -->
+            <!-- Each block comes with a default configuration, which is pre-filled and customizable when adding a block to a section in the CMS module in the Administration. -->
             <default-config>
                 <margin-top>20px</margin-top>
                 <margin-right>20px</margin-right>
@@ -139,13 +139,13 @@ The preview template for `swag-image-text-reversed` looks like this:
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
     </div>
 
-    <!-- Alternatively you might e.g. also use a base64 encoded preview image instead of an external resource. -->
+    <!-- Alternatively, you might e.g. also use a base64 encoded preview image instead of an external resource. -->
     <img src="https://example.com/preview.jpg" alt="Preview image">
 </div>
 ```
 
 ::: info
-For security reasons you can only use pure HTML in the preview template.
+For security reasons, you can only use pure HTML in the preview template.
 The template will be sanitized from possibly malicious tags like `<script>` or attributes like `:src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')"`.
 :::
 
@@ -205,17 +205,17 @@ Each slot has a **unique** `name` and a `type` that refers to which element it s
 All available elements can be found in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
 Currently, app CMS blocks can use the elements shipped by Shopware.
 
-The `config` of a slot is very dynamic as it highly depends on which `type` you have chosen.
-A good starting point to find out which elements require which configuration is each element's `index.js` in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
+The `config` of a slot is highly dynamic, as it depends heavily on the `type` you choose.
+A good starting point for finding out which elements require which configuration is each element's `index.js` file in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
 
 ## Registering blocks
 
-Unlike adding blocks from a plugin, blocks provided from an app will be automatically registered during runtime - so all you need to take care of is to properly define and configure them.
+Unlike adding blocks from a plugin, blocks provided from an app will be automatically registered during runtime - so all you need to take care of is to define and configure them properly.
 
 ## Storefront representation
 
-Providing the Storefront representation of your blocks works very similarly as in the [plugin example](../../../plugins/content/cms/add-cms-block#storefront-representation).
-In `Resources/views/storefront/block/` a Twig template matching the pattern `cms-block-${block.name}-component.html.twig` is expected.
+Providing the Storefront representation of your blocks works very similarly to the [plugin example](../../../plugins/content/cms/add-cms-block#storefront-representation).
+In `Resources/views/storefront/block/`, a Twig template matching the pattern `cms-block-${block.name}-component.html.twig` is expected.
 
 So in this example, it's sufficient to simply extend the existing `image-text` element:
 
