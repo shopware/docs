@@ -6,7 +6,7 @@ nav:
 
 # Using Custom Fields of Type Media
 
-After adding a custom field of type media in the Administration or via plugin, you can assign media objects to different entities.
+After adding a custom field of type media in the Administration or via a plugin, you can assign media objects to different entities.
 This is often used on products to add additional images to the product detail page.
 If you want to learn more about custom fields, take a look at [Adding custom fields](../framework/custom-field/add-custom-field).
 
@@ -28,16 +28,16 @@ Here is an example with a custom field \(`custom_sports_media_id`\) on the produ
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
-    {# simplify ID access #}
-    {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
+ {# simplify ID access #}
+ {% set sportsMediaId = page.product.translated.customFields.custom_sports_media_id %}
 
-    {% if sportsMediaId %}
-        {# fetch media as batch - optimized for performance #}
-        {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
+ {% if sportsMediaId %}
+ {# fetch media as batch - optimized for performance #}
+ {% set mediaCollection = searchMedia([sportsMediaId], context.context) %}
 
-        {# extract single media object #}
-        {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
-    {% endif %}
+ {# extract single media object #}
+ {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+ {% endif %}
 {% endblock %}
 ```
 
@@ -48,38 +48,38 @@ After loading the entity, you can use fields like `sportsMedia.url`, `sportsMedi
 This function performs a database query on every invocation and should therefore not be used inside a loop.
 To resolve multiple IDs at once, pass them as one array.
 
-To read the media objects within the product listing we recommend the following procedure:
+To read the media objects within the product listing, we recommend the following procedure:
 
 ```twig
 // <plugin root>/src/Resources/views/storefront/component/product/listing.html.twig
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}
-    {# initial ID array #}
-    {% set sportsMediaIds = [] %}
+ {# initial ID array #}
+ {% set sportsMediaIds = [] %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+ {% for product in searchResult %}
+ {# simplify ID access #}
+ {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {% if sportsMediaId %}
-            {# merge IDs to a single array #}
-            {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
-        {% endif %}
-    {% endfor %}
+ {% if sportsMediaId %}
+ {# merge IDs to a single array #}
+ {% set sportsMediaIds = sportsMediaIds|merge([sportsMediaId]) %}
+ {% endif %}
+ {% endfor %}
 
-    {# do a single fetch from database #}
-    {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
+ {# do a single fetch from database #}
+ {% set mediaCollection = searchMedia(sportsMediaIds, context.context) %}
 
-    {% for product in searchResult %}
-        {# simplify ID access #}
-        {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
+ {% for product in searchResult %}
+ {# simplify ID access #}
+ {% set sportsMediaId = product.translated.customFields.custom_sports_media_id %}
 
-        {% if sportsMediaId %}
-            {# get access to media of product #}
-            {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
-        {% endif %}
-    {% endfor %}
+ {% if sportsMediaId %}
+ {# get access to media of product #}
+ {% set sportsMedia = mediaCollection.get(sportsMediaId) %}
+ {% endif %}
+ {% endfor %}
 {% endblock %}
 ```
 
@@ -95,6 +95,6 @@ You can also use the `sw_thumbnails` Twig function to load viewport-specific ima
 
 ```twig
 {% sw_thumbnails 'my-sportsMedia-thumbnails' with {
-    media: sportsMedia
+ media: sportsMedia
 } %}
 ```
