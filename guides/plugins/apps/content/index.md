@@ -7,4 +7,5 @@ nav:
 
 # Content
 
-You can assign content to specific categories, create layouts, and control the visibility of content based on various conditions. It provides a flexible and intuitive system for managing and presenting your store's content, helping you deliver a seamless and engaging customer experience.
+With apps, you can assign content to specific categories, create layouts, and control content visibility based on various conditions.
+This provides a flexible, intuitive way to manage and present your store content, helping you deliver a seamless, engaging customer experience.
