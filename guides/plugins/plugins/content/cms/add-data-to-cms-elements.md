@@ -7,8 +7,6 @@ nav:
 
 # Add Data to CMS Element
 
-## Overview
-
 When creating custom CMS elements,
 you sometimes want to use more complex data types than text or boolean values, e.g., other entities such as media or products.
 In those cases you can implement a custom `CmsElementResolver` to resolve the configuration data.
@@ -90,7 +88,7 @@ In this case we read out `myCustomMedia` field which may contain a mediaId.
 If a `mediaId` exists, we create a new `CriteriaCollection` for it.
 Now we are able to use this media object later on.
 If you want to add data from an [attribute entity](../../framework/data-handling/entities-via-attributes), you do not have an explicit definition class.
-Instead, you pass `example_entity.defintion` as second parameter to the `CriteriaCollection::add()` method.
+Instead, you pass `example_entity.definition` as second parameter to the `CriteriaCollection::add()` method.
 
 ::: code-group
 
@@ -99,7 +97,7 @@ Instead, you pass `example_entity.defintion` as second parameter to the `Criteri
 
 // ...
 use Shopware\Core\Content\Media\MediaDefinition;
-use Shopware\Core\Content\Media\MediaEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 // ...
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
