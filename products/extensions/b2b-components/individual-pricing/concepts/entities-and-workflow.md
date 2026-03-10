@@ -162,12 +162,8 @@ flowchart TD
  J -->|No| K[Use single matching rule]
  J -->|Yes| L[Calculate price for each rule]
  L --> M[Select rule with lowest price]
- K --> N{Volume pricing?}
- M --> N
- N -->|Yes| O[Select appropriate tier]
- N -->|No| P[Apply action type]
- O --> Q[Calculate final price]
- P --> Q
+ K --> Q[Calculate final price]
+ M --> Q
  Q --> R{Show strike-through?}
  R -->|Yes| S[Display with original price]
  R -->|No| T[Display discounted price]
