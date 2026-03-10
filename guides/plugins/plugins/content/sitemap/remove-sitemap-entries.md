@@ -6,8 +6,6 @@ nav:
 
 # Remove Sitemap Entries
 
-## Overview
-
 This guide shows how to exclude specific URLs from the sitemap.
 
 ## Using the configuration
@@ -23,8 +21,8 @@ shopware:
                 identifier: 'd20e4d60e35e4afdb795c767eee08fec'
 ```
 
-The `salesChannelId` is the ID of the sales channel in which you want to exclude the URL.
-The `resource` is the fully qualified class name used by the sitemap URL provider, for example `Shopware\Core\Content\Product\ProductEntity`.
+The `salesChannelId` is the ID of the sales channel you want to exclude the URL from.
+The `resource` is the fully qualified class name used by the sitemap URL provider, for example, `Shopware\Core\Content\Product\ProductEntity`.
 The `identifier` is the entity ID of the record you want to exclude.
 
 To find matching values, inspect the provider that generates the sitemap entries for your entity type.
