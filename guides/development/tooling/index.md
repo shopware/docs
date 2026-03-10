@@ -19,4 +19,4 @@ Shopware provides official tools that support the full lifecycle of a Shopware p
 
 - For IDE support, Shopware provides a [PHPStorm plugin](shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
 
-- [Shopware CLI](/guides/development/tooling/cli/): The central command-line tool for working with Shopware projects and extensions, including scaffolding, builds, validation, packaging, Store interaction, CI support, and development workflows such as watchers and [formatting](/guides/development/tooling/cli/formatter/).
+- [Shopware CLI](../../../products/cli/index.md): The central command-line tool for working with Shopware projects and extensions, including scaffolding, builds, validation, packaging, Store interaction, CI support, and development workflows such as watchers and [formatting](../../../products/cli/formatter.md).
