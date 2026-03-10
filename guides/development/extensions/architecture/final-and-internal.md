@@ -16,7 +16,7 @@ We use `@final` and `@internal` annotations to mark classes as final or internal
 
 ## Final
 
-We mark classes as `@final` when developers can use the class but should not extend it. 
+We mark classes as `@final` when developers can use the class but should not extend it.
 
 The following changes to the class are allowed:
 

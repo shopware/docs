@@ -48,4 +48,4 @@ Classes with this annotation may change completely with each release and are the
 
 ## Internal interfaces
 
-We declare interfaces as `@internal` when we want to implement multiple implementations of a feature or adapter, but do not want third-party developers to interfere in this area of the software. A good example of this is the Data Abstraction layer and the Field and FieldSerializer classes. In such areas of the domain, we want to reserve optimizations and breaks within minor versions, but still be able to work with interfaces and abstract classes. 
+We declare interfaces as `@internal` when we want to implement multiple implementations of a feature or adapter, but do not want third-party developers to interfere in this area of the software. A good example of this is the Data Abstraction layer and the Field and FieldSerializer classes. In such areas of the domain, we want to reserve optimizations and breaks within minor versions, but still be able to work with interfaces and abstract classes.

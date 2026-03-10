@@ -38,6 +38,7 @@ When discussing technical requirements, we focus on how we need to design our so
 ## Business requirements
 
 When discussing business requirements, we examine how the above technical requirements are applied across different business cases. These business cases include:
+
 * Marketplace extensions
   * We should build the software so everyone can easily provide new features in certain areas.
   * Ex: There should be a plugin to integrate a CMS Page publishing system
