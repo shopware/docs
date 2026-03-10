@@ -7,8 +7,6 @@ nav:
 
 # Add Data to CMS Element
 
-## Overview
-
 When creating custom CMS elements,
 you sometimes want to use more complex data types than text or boolean values, e.g., other entities such as media or products.
 In those cases you can implement a custom `CmsElementResolver` to resolve the configuration data.
