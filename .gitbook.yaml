@@ -117,14 +117,17 @@ redirects:
     resources/guidelines/testing/store/: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-plugins.html: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-apps.html: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-apps/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/testing-guidelines.html
     guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
     guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
     guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/general-concepts/request-headers.html  
     guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/general-concepts/search-criteria.html
     guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/general-concepts/partial-data-loading.html
     guides/integrations-api/general-concepts/generated-reference.html: guides/development/integrations-api/general-concepts/generated-reference.html
-    resources/references/core-reference/dal-reference/filters-reference.html: guides/resources/references/core-reference/dal-reference/filters-reference.html
-    resources/references/core-reference/dal-reference/aggregations-reference.html: guides/resources/references/core-reference/dal-reference/aggregations-reference.html
+    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
+    guides/resources/references/core-reference/dal-reference/aggregations-reference.html: resources/references/core-reference/dal-reference/aggregations-reference.html 
     guides/plugins/apps/app-scripts/data-loading.html: guides/integrations-api/general-concepts/search-criteria.html
     resources/accessibility/accessibility-checklist.html: guides/development/accessibility/accessibility-checklist.html
     resources/accessibility/storefront-accessibility.html: guides/development/accessibility/storefront-accessibility.html
