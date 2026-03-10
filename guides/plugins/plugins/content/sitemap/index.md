@@ -7,10 +7,11 @@ nav:
 
 # Sitemap
 
-Shopware Sitemap offers the ability to add sitemaps and modify sitemap entries within the e-commerce platform.
+Shopware's sitemap system allows you to add custom sitemap URLs and modify existing sitemap entries.
 
-With the Sitemap plugin, you can create custom sitemaps to provide search engines with a structured overview of the website's content. These sitemaps can be tailored to specific requirements, allowing businesses to include relevant pages, categories, products, or other content sections based on their needs.
+With plugins, you can extend sitemap generation to provide search engines with a structured overview of your storefront content.
+You can include relevant pages, categories, products, or other content types based on your requirements.
 
-Additionally, the plugin enables users to modify sitemap entries. This means they can customize the information included in the sitemap, such as URLs change or overriding SEO URLs.
-		
-With this flexibility, businesses can ensure their website's content is efficiently crawled and indexed by search engines. Custom sitemaps and modified sitemap entries help improve the visibility and discoverability of the website, leading to better search engine rankings and increased traffic.
+You can also adjust existing sitemap entries, for example, by changing metadata, excluding specific URLs, or overriding SEO URL behavior where needed.
+
+This flexibility helps ensure that your content is crawled and indexed efficiently, while keeping your sitemap aligned with your project's SEO strategy.
