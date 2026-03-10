@@ -116,7 +116,6 @@ which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
 ```php
 $services->set(Swag\Example\Service\SwagService::class)
-    ->public()
     ->args([service('translator')]);
 ```
 

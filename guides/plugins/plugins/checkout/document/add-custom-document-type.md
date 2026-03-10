@@ -342,19 +342,27 @@ Here's what the function does:
 The service definition for our custom renderer would look like this:
 
 ```php
+<?php declare(strict_types=1);
+
 use Shopware\Core\Checkout\Document\Service\DocumentConfigLoader;
 use Shopware\Core\Checkout\Document\Service\DocumentFileRendererRegistry;
 use Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface;
 use Swag\BasicExample\Core\Checkout\Document\Render\ExampleDocumentRenderer;
 
-$services->set(ExampleDocumentRenderer::class)
-    ->args([
-        service('order.repository'),
-        service(DocumentConfigLoader::class),
-        service(NumberRangeValueGeneratorInterface::class),
-        service(DocumentFileRendererRegistry::class),
-    ])
-    ->tag('document.renderer');
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDocumentRenderer::class)
+        ->args([
+            service('order.repository'),
+            service(DocumentConfigLoader::class),
+            service(NumberRangeValueGeneratorInterface::class),
+            service(DocumentFileRendererRegistry::class),
+        ])
+      ->tag('document.renderer');
+};
 ```
 
 ### Adding a file type renderer

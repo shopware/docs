@@ -27,6 +27,7 @@ The services.php with all needed definitions.
 // <plugin root>/src/Core/Content/DependencyInjection/product.php
 <?php declare(strict_types=1);
 
+use Doctrine\DBAL\Connection;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Swag\BasicExample\Extension\Content\Product\CustomExtension;
 use Swag\BasicExample\Extension\Content\Product\OneToOneExampleExtensionDefinition;
@@ -56,7 +57,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->decorate(ElasticsearchProductDefinition::class)
         ->args([
             service(MyProductEsDecorator::class . '.inner'),
-            service(\Doctrine\DBAL\Connection::class),
+            service(Connection::class),
         ]);
 };
 ```
