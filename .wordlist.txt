@@ -1486,6 +1486,7 @@ hmac
 hono
 hosters
 hostname
+hostnames
 hotspots
 hreflang
 html
@@ -1886,6 +1887,7 @@ stackable
 stacktrace
 stateId
 stateMachineState
+stateful
 statesfacade
 statusCode
 stderr

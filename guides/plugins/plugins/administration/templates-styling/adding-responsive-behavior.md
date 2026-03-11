@@ -7,17 +7,15 @@ nav:
 
 # Adding responsive behavior
 
-## Overview
-
-The Shopware 6 Administration provides two ways of adding classes to elements based on their size, the device helper and the `v-responsive` directive. Alternatively you can use `css` media queries to make your plugin responsive. Learn how to use `css` here:
+The Shopware 6 Administration provides two ways of adding classes to elements based on their size, the device helper and the `v-responsive` directive. Alternatively, you can use `css` media queries to make your plugin responsive. Learn how to use `css` here:
 
 <PageRef page="../templates-styling/add-custom-styles" />
 
 ## DeviceHelper
 
-The DeviceHelper provides methods to get device and browser information like the current viewport size. The helper methods can be accessed with `this.$device` in every Vue component, since it is bound to the Vue prototype.
+The DeviceHelper provides methods to retrieve device and browser information, such as the current viewport size. The helper methods can be accessed with `this.$device` in every Vue component, since it is bound to the Vue prototype.
 
-It makes it possible to run functions to react to `onResize` events with adding classes or removing them. The example below shows you how to use the `$device.onResize` helper.
+It makes it possible to run functions that respond to `onResize` events by adding or removing classes. The example below shows you how to use the `$device.onResize` helper.
 
 ```javascript
 const listener = function (ev) {
@@ -36,7 +34,7 @@ The code snippet before could be placed in the `mounted` [Vue lifecycle](https:/
 this.$device.removeResizeListener(component);
 ```
 
-It also provides many helper functions e.g. to get the screen dimensions. Although there are many more as seen below:
+It also provides many helper functions, e.g., to get the screen dimensions. Although there are many more, as seen below:
 
 | Function | Description |
 | :--- | :--- |
@@ -49,7 +47,7 @@ It also provides many helper functions e.g. to get the screen dimensions. Althou
 
 ## v-responsive directive
 
-The `v-responsive` directive can be used to dynamically apply classes based on an element's dimensions.
+The `v-responsive` directive can be used to apply classes based on an element's dimensions dynamically.
 
 ```html
 <input v-responsive="{ 'is--compact': el => el.width <= 1620, timeout: 200 }">
@@ -58,4 +56,4 @@ The `v-responsive` directive can be used to dynamically apply classes based on a
 Let's do a small explanation of this directive:
 
 * Apply class \(in this case: `is--compact`\) when the width of the element is smaller than 1620px.
-* `timeout`: Sets the duration on how much the throttle should wait.
+* `timeout`: Sets the duration for how long the throttle should wait.

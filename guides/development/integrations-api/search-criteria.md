@@ -7,7 +7,7 @@ nav:
 
 # Search Criteria
 
-Generally, we refer to the endpoints that use the `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../../plugins/plugins/framework/data-handling/reading-data#filtering). Some endpoints require additional parameters beyond those specified here. However, these differ from one endpoint to another, so we don't specify them here.
+Generally, we refer to the endpoints that use the `POST` method and receive the criteria as a JSON object as **search criteria**. It takes the same arguments as a [DAL criteria](../../../guides/plugins/plugins/framework/data-handling/reading-data.md#filtering). Some endpoints require additional parameters beyond those specified here. However, these differ from one endpoint to another, so we don't specify them here.
 
 A typical **search criteria** looks like this:
 
@@ -177,9 +177,7 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 ### `filter`
 
-The `filter` parameter allows you to filter results and aggregations using multiple filters and parameters. The filter types are equivalent to the filters available for the DAL.
-
-<PageRef page="../../../../resources/references/core-reference/dal-reference/filters-reference" />
+The `filter` parameter allows you to filter results and aggregations using multiple filters and parameters. The filter types are equivalent to the filters available for the DAL. See [Filters Reference](../../../resources/references/core-reference/dal-reference/filters-reference.md)
 
 ::: info
 When you are filtering for nested values - for example, you are filtering orders by their transaction state \(`order.transactions.stateMachineState`\) - make sure to fetch those in your `associations` field before.
@@ -411,8 +409,6 @@ The `aggregations` parameter can determine metadata for a search query. There ar
 
 The aggregation types are equivalent to the aggregations available in the DAL:
 
-<PageRef page="../../../../resources/references/core-reference/dal-reference/aggregations-reference" />
-
 ```json
 {
     "limit": 1,
@@ -428,6 +424,8 @@ The aggregation types are equivalent to the aggregations available in the DAL:
  ]
 }
 ```
+
+See [Aggregations Reference](../../../resources/references/core-reference/dal-reference/aggregations-reference.md)
 
 ## `grouping`
 

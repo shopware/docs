@@ -7,7 +7,7 @@ nav:
 
 # Fixture Bundle
 
-The Fixture Bundle provides a flexible and organized way to load test and demo data into your Shopware 6 application. It's designed to be extensible and easy to use, supporting dependency management, priority-based execution, and group filtering. This guide will walk you through the process of creating and managing data fixtures for your Shopware project.
+The Fixture Bundle provides a flexible and organized way to load test and demo data into your Shopware 6 application. It's designed to be extensible and easy to use, supporting dependency management, priority-based execution, and group filtering. This guide walks you through creating and managing data fixtures for your Shopware project.
 
 ## Installation
 
@@ -38,7 +38,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 class CategoryFixture implements FixtureInterface
 {
     public function __construct(
-        #[Autowire(service: 'category.repository')]
+ #[Autowire(service: 'category.repository')]
         private readonly EntityRepository $categoryRepository,
     ) {
     }
@@ -81,16 +81,16 @@ To execute your fixtures and load data into the database, use the `fixture:load`
 
 * **Load all fixtures:**
 
-    ```bash
+ ```bash
     bin/console fixture:load
-    ```
+ ```
 
 * **Load fixtures from a specific group:**
-    You can also load a subset of fixtures by specifying a group. This is useful for separating test data from demo data, for example.
+ You can also load a subset of fixtures by specifying a group. This is useful for separating test data from demo data, for example.
 
-    ```bash
+ ```bash
     bin/console fixture:load --group=test-data
-    ```
+ ```
 
 ### Listing fixtures
 
@@ -100,7 +100,7 @@ To see a list of all available fixtures, their execution order, and their config
 bin/console fixture:list
 ```
 
-This command provides a clear overview of how your fixtures are prioritized and what their dependencies are.
+This command provides a clear overview of how your fixtures are prioritized and their dependencies.
 
 **Example output:**
 
@@ -124,7 +124,7 @@ This command provides a clear overview of how your fixtures are prioritized and 
 
 ## Execution order
 
-The execution order of fixtures is determined by the following rules:
+The following rules determine the execution order of fixtures:
 
 1. **Dependencies**: If a fixture declares dependencies using `dependsOn`, it will always run after its dependencies have been executed.
 2. **Priority**: Among fixtures without dependency relationships, those with a higher `priority` value are executed first.
@@ -136,7 +136,7 @@ The Fixture Bundle includes several specialized loaders to simplify common data 
 
 ### Theme fixtures
 
-The `ThemeFixtureLoader` provides a convenient, fluent interface for configuring theme settings. It automatically handles theme discovery, recompilation, and only applies changes when necessary.
+The `ThemeFixtureLoader` provides a convenient, fluent interface for configuring theme settings. It automatically handles theme discovery and recompilation and applies changes only when necessary.
 
 ```php
 <?php declare(strict_types=1);
@@ -213,7 +213,7 @@ class CustomFieldFixture implements FixtureInterface
 
 ### Customer fixtures
 
-The `CustomerFixtureLoader` offers a comprehensive way to create customers with addresses, custom fields, and other properties. The loader uses the email address as a unique identifier, updating existing customers if a match is found.
+The `CustomerFixtureLoader` offers a comprehensive way to create customers with addresses, custom fields, and other properties. The loader uses the email address as a unique identifier and updates existing customers if a match is found.
 
 ```php
 <?php declare(strict_types=1);

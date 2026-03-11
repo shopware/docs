@@ -13,7 +13,7 @@ This document serves as a general guideline for our development direction.
 
 Prior to Shopware 6.7, we utilized the Vue migration build to facilitate the transition from Vue 2 to Vue 3 for plugin developers. This approach allowed most public APIs to behave similarly to Vue 2 while enabling gradual migration.
 
-With the release of Shopware 6.7, the Vue migration build will be removed. All plugins must be fully migrated to Vue 3 without relying on the migration build.
+With the release of Shopware 6.7, the Vue migration build was removed. All plugins must be fully migrated to Vue 3 without relying on the migration build.
 
 ## Why remove the Vue migration build?
 
@@ -144,4 +144,4 @@ delete this.myObject.key;
 
 ## Conclusion
 
-In Shopware 6.7, the Vue migration build will be removed entirely. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.
+In Shopware 6.7, the Vue migration build was removed entirely. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.

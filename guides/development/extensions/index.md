@@ -12,19 +12,19 @@ As a Shopware developer, your primary focus is on developing extensions that enh
 Shopware offers two extension types:
 
 - **Plugins**: full system access (self-hosted only)
-- **Apps**: based on an HTTP API and run externally; may require an external server to call Shopware APIs and handle webhooks; cloud-compatible
+- **Apps**: API-based, cloud-compatible
 
 Plugins and apps are installed and activated for the whole Shopware instance.
 
 :::info
-Before choosing an extension type, review the recommended [Code structure](../../guides/development/extensions/code-structure.md). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
+Before choosing an extension type, review the recommended [Code structure](code-structure.md). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
 :::
 
 A storefront theme is *not* a separate extension type, but a stripped-down plugin consisting of a customized storefront UI. In cloud environments, storefront themes are delivered via apps.
 
 ## Monetization
 
-To sell an extension or offer paid features, see the [Monetization guide](../../guides/development/monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
+To sell an extension or offer paid features, see the [Monetization guide](../../development/monetization/) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 
 ## Which type to build?
 
@@ -45,15 +45,15 @@ This comparison table helps you decide which Shopware extension type best fits y
 | Control style/template inheritance          | ✅                     | ✅   | This capability is specific to theme plugins. |
 
 :::info Version compatibility
-Extensions must explicitly support target Shopware versions. Review the [Upgrades and Migrations](../../guides/upgrades-migrations/index.md) section before releasing updates to ensure compatibility with upcoming core changes.
+Extensions must explicitly support target Shopware versions. Review the [Upgrades and Migrations](../../upgrades-migrations/index.md) section before releasing updates to ensure compatibility with upcoming core changes.
 :::
 
 ## Extension guides
 
 These guides provide essential information on how to create, configure, and extend your store with Shopware extensions:
 
-<PageRef page="../plugins/plugins/plugin-base-guide" />
+<PageRef page="../../../guides/plugins/plugins/plugin-base-guide" />
 
-<PageRef page="../plugins/apps/app-base-guide" />
+<PageRef page="../../../guides/plugins/apps/app-base-guide" />
 
-<PageRef page="../plugins/themes/theme-base-guide" />
+<PageRef page="../../../guides/plugins/themes/theme-base-guide" />

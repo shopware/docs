@@ -90,7 +90,7 @@ redirects:
     concepts/framework/rules.html: concepts/framework/rule/index.html
     products/extensions/migration-assistant/concept.html: products/extensions/migration-assistant/concept/index.html
     products/extensions/migration-assistant/guides.html: products/extensions/migration-assistant/guides/index.html
-    products/cli/project-commands/project-config-sync.html: resources/tooling/fixture-bundle/index.html
+    products/cli/project-commands/project-config-sync.html: guides/development/tooling/fixture-bundle.html
     products/sales-agent/deployment.html: products/sales-agent/best-practices/app-deployment/hosted-with-ubuntu-server.html
     guides/installation/requirements.html: guides/installation/system-requirements.html
     guides/installation/setups/docker.html: guides/installation/docker-setup.html
@@ -122,13 +122,12 @@ redirects:
     resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/testing-guidelines.html
     guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
     guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
-    guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/general-concepts/request-headers.html  
-    guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/general-concepts/search-criteria.html
-    guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/general-concepts/partial-data-loading.html
-    guides/integrations-api/general-concepts/generated-reference.html: guides/development/integrations-api/general-concepts/generated-reference.html
-    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
-    guides/resources/references/core-reference/dal-reference/aggregations-reference.html: resources/references/core-reference/dal-reference/aggregations-reference.html 
-    guides/plugins/apps/app-scripts/data-loading.html: guides/integrations-api/general-concepts/search-criteria.html
+    guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/request-headers.html
+    guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/search-criteria.html
+    guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/partial-data-loading.html
+    guides/integrations-api/general-concepts/generated-reference.html: guides/development/integrations-api/generated-reference.html
+    guides/resources/references/core-reference/dal-reference/aggregations-reference.html: resources/references/core-reference/dal-reference/aggregations-reference.html
+    guides/plugins/apps/app-scripts/data-loading.html: guides/development/integrations-api/search-criteria.html
     resources/accessibility/accessibility-checklist.html: guides/development/accessibility/accessibility-checklist.html
     resources/accessibility/storefront-accessibility.html: guides/development/accessibility/storefront-accessibility.html
     guides/plugins/apps/in-app-purchases.html: guides/development/monetization/in-app-purchases.html
@@ -145,3 +144,20 @@ redirects:
     guides/plugins/plugins/testing/playwright/test.html: guides/development/testing/e2e-playwright/test.html
     guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
     guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/
+    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
+    resources/guidelines/code/core/final-and-internal.html: guides/development/extensions/architecture/final-and-internal.html
+    resources/guidelines/code/core/internal.html: guides/development/extensions/architecture/internal.html
+    resources/guidelines/code/core/extendability.html: guides/development/extensions/architecture/extendability.html
+    resources/tooling/fixture-bundle/index.html: guides/development/tooling/fixture-bundle.html
+    resources/tooling/cli/using-watchers.html: guides/development/tooling/using-watchers.html
+    resources/tooling/cli/index.html: guides/development/tooling/index.html
+    resources/tooling/ide/index.html: guides/development/tooling/index.html
+    resources/tooling/ide/shopware-toolbox.html: guides/development/tooling/shopware-toolbox.html
+    resources/tooling/index.html: guides/development/tooling/index.html
+    guides/plugins/plugins/elasticsearch/index.html: guides/plugins/plugins/integrations/elasticsearch/index.html
+    guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch.html: guides/plugins/plugins/integrations/elasticsearch/add-product-entity-extension-to-elasticsearch.html
+    guides/plugins/plugins/redis.html: guides/plugins/plugins/integrations/redis.html
+    guides/plugins/plugins/api/: guides/plugins/plugins/integrations/commercial/
+    guides/plugins/plugins/api/customer-specific-pricing.html: guides/plugins/plugins/integrations/commercial/customer-specific-pricing.html
+    guides/plugins/plugins/api/multi-inventory.html: guides/plugins/plugins/integrations/commercial/multi-inventory.html
+    plugins/plugins/api/index.html: concepts/api/index.html

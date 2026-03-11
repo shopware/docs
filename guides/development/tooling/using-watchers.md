@@ -9,8 +9,7 @@ nav:
 
 ## Building JS and CSS
 
-When developing with Shopware, you will probably notice that changes in JavaScript require commands to build the Administration or
-Storefront, depending on your change using the following commands:
+When developing with Shopware, you will probably notice that changes in JavaScript require commands to build the Administration or Storefront, depending on your change, using the following commands:
 
 <Tabs>
 <Tab title="Build administration (Source code)">
@@ -49,8 +48,8 @@ composer run build:js:storefront
 ## Watchers
 
 This building process is always time-consuming. Alternatively, to speed up the process.
-Shopware's [Production template](https://github.com/shopware/production) and [Source code](https://github.com/shopware/shopware) offers
-commands to enable Hot Module Replacement (HMR) to automatically reload and preview your changes.
+Shopware's [Production template](https://github.com/shopware/production) and [Source code](https://github.com/shopware/shopware) offer
+commands to enable Hot Module Replacement (HMR) to reload and preview your changes automatically.
 
 ::: info
 This procedure doesn't replace the final build process when you finish developing your feature.
