@@ -2,7 +2,6 @@
 nav:
   title: DataSelection and DataSet
   position: 20
-
 ---
 
 # DataSelection and DataSet
@@ -24,29 +23,12 @@ These are the fundamental data structures for defining what to migrate. Each `Da
   * MediaFolderDataSet
   * MediaDataSet
 
-The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount` method returns an array of all DataSets. Its count should be displayed in the Administration.
+The order of the `DataSets` in the `DataSelection` class is important and specifies the processing order. `DataSelection` also holds a position specifying the order applied when migrating \(lower numbers are migrated earlier\). The `getDataSetsRequiredForCount()` method returns an array of all `DataSets`. Its count should be displayed in the Administration.
 
 Please take a look at the `DataSelection` example:
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Profile\Shopware\DataSelection;
-
-use SwagMigrationAssistant\Migration\DataSelection\DataSelectionInterface;
-use SwagMigrationAssistant\Migration\DataSelection\DataSelectionStruct;
-use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\CrossSellingDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ManufacturerAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\MediaFolderDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductOptionRelationDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductPriceAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductPropertyRelationDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\PropertyGroupOptionDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\TranslationDataSet;
-use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
+// SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection
 
 class ProductDataSelection implements DataSelectionInterface
 {
@@ -85,6 +67,7 @@ class ProductDataSelection implements DataSelectionInterface
             new ProductPropertyRelationDataSet(),
             new TranslationDataSet(),
             new CrossSellingDataSet(),
+            new MainVariantRelationDataSet(),
         ];
     }
 
@@ -100,14 +83,7 @@ class ProductDataSelection implements DataSelectionInterface
 Here's a `DataSet` example:
 
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet;
-
-use SwagMigrationAssistant\Migration\DataSelection\DataSet\DataSet;
-use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
-use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
+// SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductDataSet
 
 class ProductDataSet extends DataSet
 {
@@ -123,7 +99,7 @@ class ProductDataSet extends DataSet
 }
 ```
 
-The `dataSelections` are registered the following way:
+The `DataSelections` are registered the following way:
 
 ```html
 <service id="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
@@ -133,53 +109,19 @@ The `dataSelections` are registered the following way:
 
 It is also possible to specify the same `DataSets` in multiple `DataSelections` \(this should only be done if no other options are available\). Have a look at the `ProductReviewDataSelection`:
 
+::: info
+There are duplicate `DataSets` from `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, these `DataSets` are only migrated once \(with their first occurrence\).
+:::
+
 ```php
-<?php declare(strict_types=1);
-
-namespace SwagMigrationAssistant\Profile\Shopware\DataSelection;
-
-use SwagMigrationAssistant\Migration\DataSelection\DataSelectionInterface;
-use SwagMigrationAssistant\Migration\DataSelection\DataSelectionStruct;
-use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\CrossSellingDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\CustomerAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\CustomerDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ManufacturerAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\MediaFolderDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductOptionRelationDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductPriceAttributeDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductPropertyRelationDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\ProductReviewDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\PropertyGroupOptionDataSet;
-use SwagMigrationAssistant\Profile\Shopware\DataSelection\DataSet\TranslationDataSet;
-use SwagMigrationAssistant\Profile\Shopware\ShopwareProfileInterface;
+// SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductReviewDataSelection
 
 class ProductReviewDataSelection implements DataSelectionInterface
 {
     public const IDENTIFIER = 'productReviews';
 
-    public function supports(MigrationContextInterface $migrationContext): bool
-    {
-        return $migrationContext->getProfile() instanceof ShopwareProfileInterface;
-    }
+    // ...
 
-    public function getData(): DataSelectionStruct
-    {
-        return new DataSelectionStruct(
-            self::IDENTIFIER,
-            $this->getDataSets(),
-            $this->getDataSetsRequiredForCount(),
-            'swag-migration.index.selectDataCard.dataSelection.productReviews',
-            250,
-            true
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getDataSets(): array
     {
         return [
@@ -198,16 +140,5 @@ class ProductReviewDataSelection implements DataSelectionInterface
             new ProductReviewDataSet(),
         ];
     }
-
-    public function getDataSetsRequiredForCount(): array
-    {
-        return [
-            new ProductReviewDataSet(),
-        ];
-    }
 }
 ```
-
-::: info
-There are duplicate DataSets from the `ProductDataSelection`, because they are also required if the user does not select the product `DataSelection`. If the user selects both, this `DataSets` will be only migrated once \(with their first occurrence\).
-:::

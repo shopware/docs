@@ -93,7 +93,7 @@ host('SSH-HOSTNAME')
     ])
     ->setRemoteUser('www-data')
     ->set('deploy_path', '/var/www/shopware') // This is the path, where deployer will create its directory structure
-    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with 
+    ->set('http_user', 'www-data') // Not needed, if the `user` is the same user, the webserver is running with
     ->set('writable_mode', 'chmod');
 ```
 
@@ -162,7 +162,7 @@ This task is defined in the `deploy:symlink` default job in the [`deploy.php`](d
 This is the output of `dep deploy env=prod`:
 
 ```text
-$ dep deploy env=prod               
+$ dep deploy env=prod
 
 ✔ Executing task deploy:prepare
 ✔ Executing task deploy:lock
@@ -216,73 +216,37 @@ It will be used in the above-mentioned GitLab CI/CD pipeline or GitHub Actions.
 
 Have a look at the following files. All steps are provided with helpful comments.
 
+The GitHub Action used above is [shopware/github-actions/project-deployer](https://github.com/shopware/github-actions/tree/main/project-deployer), and the GitLab CI component is [shopware/ci-components/project-deployer](https://gitlab.com/shopware/ci-components/-/blob/main/templates/project-deployer.yml).
+
 ### .gitlab-ci.yml
 
 ```yaml
-# This file defines the GitLab CI/CD pipeline.
-# For more information, please visit the GitLab CI/CD docs: https://docs.gitlab.com/ee/ci/README.html
-variables:
-    GIT_STRATEGY: clone
+stages:
+  - deploy
 
-# This variable holds all commands that are needed to be able to connect to the target server via SSH.
-# For this you need to define two variables in the GitLab CI/CD variables:
-#   - SSH_PRIVATE_KEY: The contents of the SSH private key file. The public key must be authorized on the target server.
-#   - DEPLOYMENT_SERVER: Just the hostname of the target server (e.g. shopware.com, don't include schema or paths)
-.configureSSHAgent: &configureSSHAgent |-
-    eval $(ssh-agent -s)
-    echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    mkdir -p ~/.ssh
-    ssh-keyscan $DEPLOYMENT_SERVER >> ~/.ssh/known_hosts
-    chmod 700 ~/.ssh
-
-Deploy:
-    stage: deploy
-    # Tags are useful to only use runners that are safe or meet specific requirements
-    image:
-        name: ghcr.io/shopware/shopware-cli:latest
-        entrypoint: [ "/bin/sh", "-c" ]
-    before_script:
-        # First, we need to execute all commands that are defined in the `configureSSHAgent` variable.
-        - *configureSSHAgent
-    script:
-        # This command installs all dependencies and builds the project.
-        - shopware-cli project ci .
-        # This command starts the workflow that is defined in the `deploy` task in the `deploy.php`.
-        # `production` is the stage that was defined in the `host` in the `deploy.php`
-        - vendor/bin/dep deploy
+include:
+  - component: gitlab.com/shopware/ci-components/project-deployer@main
+    inputs:
+      php_version: "8.4"
 ```
 
 ### .github/workflows/deploy.yml
 
 ```yaml
 name: Deployment
+
 on:
-  push:
-    branches: main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-
-      - name: Install Shopware CLI
-        uses: shopware/shopware-cli-action@v1
-
-      - name: Build
-        run: shopware-cli project ci .
-
       - name: Deploy
-        uses: deployphp/action@v1
+        uses: shopware/github-actions/project-deployer@main
         with:
-          dep: deploy
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          sshPrivateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 ```
 
 ### deploy.php
@@ -313,7 +277,7 @@ host('SSH-HOSTNAME')
     ->set('deploy_path', '/var/www/shopware')
     ->set('http_user', 'www-data') // Not needed, if the `user` is the same, the webserver is running with
     ->set('writable_mode', 'chmod')
-    ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed) 
+    ->set('keep_releases', 3); // Keeps 3 old releases for rollbacks (if no DB migrations were executed)
 
 // These files are shared among all releases.
 set('shared_files', [

@@ -131,8 +131,8 @@ deployment:
 
   one-time-tasks:
     - id: foo
-      # Runs as last step in deployment. Other options is: first (to run before anything else)
-      when: last # defaults to last
+      # "before" runs prior to system:update; "after" runs once the update completes (default).
+      when: after # defaults to after
       script: |
         # runs one time in deployment, then never again
         ./bin/console --version

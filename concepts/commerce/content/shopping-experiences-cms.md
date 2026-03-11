@@ -23,16 +23,21 @@ Every CMS page or layout \(they are really technically the same\) is a hierarchi
 
 ```json
 {
-  cmsPage: {
-      sections: [{
-          blocks: [{
-              slots: [{
-                  slot: "content",
-                  type: "product-listing",
-                  /* ... */
-              }]
-          }, /* ... */]
-      }, /* ... */]
+  "cmsPage": {
+    "sections": [
+      {
+        "blocks": [
+          {
+            "slots": [
+              {
+                "slot": "content",
+                "type": "product-listing"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -43,19 +48,19 @@ Let's go through these structural components in a top-down approach, starting fr
 
 ### Page
 
-A page serves as a wrapper and contains all content information as well as a `type` which denotes whether it serves as a
+A page serves as a wrapper and contains all content information as well as a `type` which denotes its purpose:
 
-* Category/Listing page
-* Shop page
-* Static page
-* Product pages
+* `page` — standard CMS page \(used for shop pages, category pages\)
+* `landingpage` — landing page layouts
+* `product_list` — product listing/category layouts
+* `product_detail` — product detail page layouts
 
 ### Section
 
-Defines a horizontal container segment within your page which can be either:
+Defines a horizontal container segment within your page. The `type` field determines the layout:
 
-* Two-Columns which we refer to as `sidebar` and `content` or
-* A single column
+* `sidebar` — two-column layout with a sidebar and a content area
+* `fullwidth` — single full-width column
 
 A section contains blocks that are usually stacked upon each other.
 
@@ -63,10 +68,16 @@ A section contains blocks that are usually stacked upon each other.
 
 A block represents a unit usually spanning an entire row which can provide custom layout and stylings. For UI purposes, blocks are clustered into categories such as:
 
-* Text
-* Images
-* Commerce
-* Video
+* `text`
+* `image`
+* `video`
+* `text-image`
+* `commerce`
+* `sidebar`
+* `form`
+* `html`
+
+Additional categories like `favorite` \(UI-only\) or `app` \(for app-provided blocks\) may appear dynamically.
 
 Each block can contain none up to multiple slots. A slot has a name and is just a container for one element. To be more precise, take the following block as an example:
 
@@ -117,12 +128,27 @@ Here, we still have the `text-hero` block, but it contains an image. That is due
 
 Elements are the "primitives" in our tree hierarchy of structural components. Elements have no knowledge of their context and usually just contain very little markup. Ultimately and most importantly, elements are rendered inside the slots of their "parent" blocks.
 
-Types of elements comprise:
+Shopware ships with a range of built-in element types, each backed by a dedicated resolver:
 
-* text,
-* image,
-* product-listing,
-* video and more
+* `text`
+* `html`
+* `form`
+* `image`
+* `image-slider`
+* `video`
+* `youtube-video`
+* `vimeo-video`
+* `product-listing`
+* `product-box`
+* `product-slider`
+* `product-name`
+* `manufacturer-logo`
+* `buy-box`
+* `cross-selling`
+* `product-description-reviews`
+* `category-navigation`
+
+You can register additional custom element types via the `CmsElementResolverInterface`.
 
 ### Configuration
 
@@ -145,24 +171,27 @@ The following diagram illustrates how that works using the example of a category
 
 ![Flow of resolving CMS page content](../../../assets/commerce-content-cms.svg)
 
-Let's go through the steps one by one.
+Let's go through the steps one by one. The main orchestrator is `SalesChannelCmsPageLoader::load()`.
 
-1. **Load category**: This can be initiated through an API call or a page request \(e.g., through the Storefront\).
-2. **Load CMS layout**: Shopware will load the CMS layout associated with the category.
-3. **Build resolver context**: This object will be passed on and contains information about the request and the sales channel context.
-4. **Assemble criteria for every element**: Every CMS element within the layout has a `type` configuration which determines the correct page resolver to resolve its content. Together with the **resolver context**, the resolver is able to resolve the correct criteria for the element. All criteria are collected in a criteria collection. Shopware will optimize those criteria \(e.g. by splitting searches from direct lookups or merging duplicate requests\) and execute the resulting queries.
-5. **Override slot configuration**: The resulting configuration determine the ultimate configuration of the slots that will be displayed, so Shopware will use it to override the existing configuration.
-6. **Respond with CMS page**: Since the page data is finally assembled, it can be passed on to the view layer where it will be interpreted and displayed.
+1. **Dispatch `CmsPageLoaderCriteriaEvent`**: Before loading, an event is dispatched that allows listeners to adjust the loading criteria.
+2. **Load CMS layout**: Shopware loads the CMS layout associated with the entity \(e.g., category\) including sections, blocks, slots, and background media.
+3. **Sort by position**: Sections, blocks, and slots are sorted by their `position` field to ensure correct rendering order.
+4. **Build resolver context**: This object contains information about the request, the sales channel context, and optionally the associated entity \(e.g., a category or product\).
+5. **Override slot configuration**: If the associated entity provides a `slotConfig` \(e.g., category-specific overrides\), it is merged into the slot configuration.
+6. **Resolve slot data**: The `CmsSlotsDataResolver` resolves all slot content in two phases:
+    1. **Collect phase**: Each element resolver's `collect()` method builds a `CriteriaCollection` for the data it needs.
+    2. **Optimize**: Shopware merges simple ID-based criteria and separates complex search criteria to minimize database queries.
+    3. **Fetch**: The optimized criteria are executed against the DAL.
+    4. **Enrich phase**: Each element resolver's `enrich()` method populates its slot with the fetched data.
+7. **Dispatch `CmsPageLoadedEvent`**: After resolution, an event is dispatched allowing further post-processing.
+8. **Collect cache tags**: Product IDs and other identifiers are extracted for HTTP cache invalidation.
+9. **Respond with CMS page**: The fully assembled page data is returned to the view layer for rendering.
 
 ### Extensibility
 
-As you can see, the **element resolvers** play a central role in the whole process of getting the configuration \( by extension, content\) of CMS elements.
+The **element resolvers** play a central role in assembling CMS content. Shopware allows you to register custom resolvers by implementing the `CmsElementResolverInterface` with its three methods: `getType()`, `collect()`, and `enrich()`. For a step-by-step guide on creating custom resolvers, see [Add data to CMS elements](../../../guides/plugins/plugins/content/cms/add-data-to-cms-elements).
 
-Shopware allows registering custom resolvers by implementing a corresponding interface, which dictates the following methods:
-
-* `getType() : string` -returns the matching type of elements
-* `collect(CmsSlot, ResolverContext) : CriteriaCollection`- prepares the criteria object
-* `enrich(CmsSlot, ResolverContext, ElemetDataCollection) : void` - performs additional logic on the data that has been resolved
+Since Shopware v6.6.7, you can also intercept the entire CMS resolution pipeline using event-based extensions \(`CmsSlotsDataResolveExtension`, `CmsSlotsDataCollectExtension`, `CmsSlotsDataEnrichExtension`\) without writing a full custom resolver. These are covered in detail in the [event-based extensibility section](../../../guides/plugins/plugins/content/cms/add-data-to-cms-elements#event-based-extensibility) of the same guide.
 
 ## Separation of content and presentation
 
@@ -171,5 +200,5 @@ The CMS is designed in a way that doesn't fix it to a single presentation channe
 By default, Shopware provides the server-side rendered Storefront as a default presentation channel, but [Composable Frontends](../../../../frontends/) also supports CMS pages. Using the CMS through the API, you will have full flexibility in how to display your content.
 
 ::: info
-All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.** For that reason, Shopware PWA has functionality built into the plugin, allowing you to preview content pages in the PWA.
+All this comes at a price: The admin preview of your content is only as representative of your content presentation as your presentation channel resembles it. **A major implication for headless frontends.**
 :::

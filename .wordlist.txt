@@ -1,3 +1,5 @@
+AAAA
+AAC
 ACL
 ACLs
 ADDR
@@ -52,6 +54,7 @@ Aktions
 Algolia
 AllowEmptyString
 AllowHtml
+Allowlist
 AlwaysValidRule
 Analytics
 AndRule
@@ -124,6 +127,7 @@ CHANGELOG
 CKEditor
 CLI
 CMS
+CNAME
 CORS
 CPUs
 CRM
@@ -131,6 +135,7 @@ CSP
 CSPs
 CSRF
 CSV
+CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
 CachedProductListingRouteTest
@@ -191,8 +196,15 @@ CircleCI
 ClientInterface
 Cloudflare
 Cmd
+CmsElementResolverInterface
 CmsPage
+CmsPageLoadedEvent
+CmsPageLoaderCriteriaEvent
+CmsSlotEntity
+CmsSlotsDataCollectExtension
 CmsSlotsDataEnrichExtension
+CmsSlotsDataResolveExtension
+CmsSlotsDataResolver
 Codemods
 Codespaces
 Codestyle
@@ -229,6 +241,7 @@ CreatedBy
 CreatedByField
 CredentialsBuilder
 CredentialsEntity
+CriteriaCollection
 CriteriaEvent
 CriteriaParser
 CriteriaTest
@@ -339,6 +352,7 @@ ElasticsearchDefinition
 ElasticsearchEntityAggregator
 ElasticsearchEntitySearcher
 ElasticsearchProductDefinition
+ElementDataCollection
 EmailAware
 EmailField
 EmailStorer
@@ -382,10 +396,12 @@ ExampleTranslationDefinition
 ExcludeMultiWarehouseStockUpdateFilter
 Extensibility
 ExtensionAPI
+FLAC
 FPM
 FQCN
 FastRoute
 Fastly
+Fastly's
 Fastorder
 FieldCollection
 FieldSerializer
@@ -419,6 +435,7 @@ Fullstack
 GBP
 GDPR
 GIFs
+GLB
 GenericPage
 GenericPageLoader
 GitLab
@@ -543,6 +560,7 @@ Lychee
 MACOSX
 MDN
 MJML
+MOV
 MRs
 MVC
 MailAware
@@ -567,6 +585,7 @@ MapState
 MediaDataSelection
 MediaDataSet
 MediaFolderDataSet
+MediaType
 MemcachedSessionHandler
 MenuOffcanvasPagelet
 Mercure
@@ -578,6 +597,7 @@ Methodize
 Middleware
 MigrationCollection
 MigrationStep
+MimeType
 Minio
 Mixin
 Mixins
@@ -596,6 +616,8 @@ MyExtension
 MyPlugin
 MyTestClass
 MyTestInterface
+NATS
+NFS
 NPM
 NUR
 NVDA
@@ -626,6 +648,7 @@ ORMs
 OSS
 OTEL
 OTLP
+OWASP
 ObjectField
 ObjectType
 OffCanvas
@@ -811,6 +834,7 @@ RepositoryIterator
 ResetUrlAware
 ResetUrlStorer
 ResolveListingExtension
+ResolverContext
 RestAPI
 RestrictDelete
 Reusability
@@ -830,6 +854,7 @@ SDKs
 SEO
 SEOs
 SFC
+SFCs
 SFTP
 SHA
 SKEs
@@ -848,6 +873,7 @@ Sales Rooms
 SalesAgent
 SalesChannel
 SalesChannelAware
+SalesChannelCmsPageLoader
 SalesChannelContext
 SalesChannelContextCreatedEvent
 SalesChannelContextResolvedEvent
@@ -895,6 +921,7 @@ SnippetFileInterface
 SomeCoreClassTest
 SonarQube
 Sonarcube
+SourceData
 StackHero
 StackOverflow
 Stackhero
@@ -983,6 +1010,7 @@ TreePathField
 TreeSelect
 TriggerReload
 TwigJS
+TypeDetector
 TypeError
 TypeError's
 TypeScript
@@ -1036,6 +1064,7 @@ VersionDataPayloadField
 VersionField
 VirtualHosts
 Vite
+Vite's
 VitePress
 Vitepress
 Vitest
@@ -1049,6 +1078,8 @@ Vuei
 Vuex
 WASM
 WCAG
+WMA
+WMV
 WSL
 WarehouseGroup
 WarehouseGroups
@@ -1094,6 +1125,8 @@ adr
 afterSort
 ag
 ajax
+allowlist
+allowlists
 amqp
 anonymization
 anonymize
@@ -1141,6 +1174,7 @@ backoff
 backport
 backported
 balancer
+basename
 benefitting
 binlog
 bitbucket
@@ -1156,6 +1190,7 @@ bottleJS
 bottleJs
 bourgau
 brainer
+breakpoint
 browserslist
 bruteforce
 bugfix
@@ -1332,6 +1367,7 @@ editorconfig
 eg
 elasticsearch
 employeeId
+enablement
 english
 enqueue
 entityIds
@@ -1381,6 +1417,7 @@ frankdejonge
 frontend
 frontends
 frontmatter
+fullwidth
 func
 für
 gRPC
@@ -1512,6 +1549,7 @@ iteratively
 jQuery
 jargons
 javascript
+jpg
 js
 js's
 json
@@ -1521,6 +1559,7 @@ jwks
 jwt
 kebabCase
 keyframes
+landingpage
 lang
 lazysizes
 libxml
@@ -1569,6 +1608,7 @@ memoization
 memoized
 mercure
 mergeWith
+metapackage
 middleware
 middlewares
 minPurchase
@@ -1628,6 +1668,7 @@ openSUSE
 openUserActionMenu
 opensearch
 openssl
+orchestrator
 orderAware
 orderIds
 orderTransaction
@@ -1758,9 +1799,11 @@ reproducibility
 requestAdminApi
 requestfacade
 resetUrl
+resolver's
 resolvers
 resubmittable
 rethrown
+retryability
 returnUrl
 revalidation
 rfc
@@ -1802,6 +1845,7 @@ seperate
 seperated
 serializable
 serializer
+serializers
 serverless
 setFlags
 setLocaleToEnGb
@@ -1828,6 +1872,7 @@ simplexml
 skipOnFeature
 skipTestIfInActive
 sku
+slotConfig
 slowlog
 sm
 smartbar
@@ -1843,6 +1888,7 @@ stateId
 stateMachineState
 statesfacade
 statusCode
+stderr
 stdin
 stdout
 stemmer
@@ -1866,7 +1912,6 @@ subdirectories
 subdirectory
 subfolder
 suboptimal
-subpaths
 subprocessor
 subprocessors
 supervisord
@@ -1974,13 +2019,16 @@ vscode
 vue
 vuex
 walkthrough
+wav
 webhook
 webhooks
 webkit
+webm
 webpack
 webpackMerge
 webserver
 wednesday
+whatsmydns
 whitespace
 whitespaces
 whoami

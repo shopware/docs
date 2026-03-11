@@ -41,4 +41,4 @@ It displays the log ingestion volume and includes a built-in case-insensitive se
 
 ## Log retention
 
-Shopware PaaS Native keeps your latest logs available for review. Logs older than 14 days are automatically removed.
+Shopware PaaS Native keeps your latest logs available for review. Logs older than 45 days are automatically removed.
