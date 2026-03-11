@@ -7,7 +7,7 @@ nav:
 
 # Directives reference
 
-This is an overview of all the directives registered globally to Vue.Directives are the same as normally in Vue.
+This is an overview of all the directives registered globally to Vue. Directives are the same as normally in Vue.
 
 Check out the [Using directives](../mixins-directives/adding-directives.md) guide or refer to the [directives](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/app/directive) folder in the Git repository.
 
