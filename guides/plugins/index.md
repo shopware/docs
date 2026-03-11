@@ -12,7 +12,7 @@ As a Shopware developer, your primary focus is on developing extensions that enh
 Shopware offers two extension types:
 
 - **Plugins**: full system access (self-hosted only)
-- **Apps**: API-based, cloud-compatible
+- **Apps**: based on an HTTP API and run externally (may require an external server); cloud-compatible
 
 Plugins and apps are installed and activated for the whole Shopware instance.
 
