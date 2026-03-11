@@ -35,7 +35,7 @@ To build an [Extensions](extensions/index.md), first choose the correct type:
 
 Each extension guide walks you through the full development flow: creation → lifecycle → implementation → testing.
 
-To sell an extension or offer paid features, see the [Monetization guide](./monetization) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
+To sell an extension or offer paid features, see the [Monetization guide](monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 
 ## Typical development workflow
 
