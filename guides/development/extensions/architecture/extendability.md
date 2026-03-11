@@ -51,19 +51,7 @@ When discussing business requirements, we examine how the above technical requir
 
 ## Approaches
 
-Business cases are realized with the following three conceptual approaches.
-
-### Project templates
-
-Large customers have their own deployments in which they deploy a fork of our production template.
-
-In project templates, local customizations are implemented as a bundle rather than a plugin.
-
-We have a SaaS product that has special configurations for cloud compatibility.
-
-Apps provide minor extensions for our system. The app technology is designed for use in cloud products.
-
-Plugins can provide larger extensions to the system. Plugin technology is designed to replace all areas in Shopware.
+Business cases are realized with the following conceptual approaches.
 
 ## Patterns
 
