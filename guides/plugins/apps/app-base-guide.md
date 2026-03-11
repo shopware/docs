@@ -152,6 +152,7 @@ Additionally, the request has the following headers:
 
 * `shopware-app-signature`: The signature of the query string
 * `sw-version`: The Shopware version of the shop *(since 6.4.1.0)*
+* `shopware-shop-signature`: *(re-registration only)* The signature of the query string, signed with the shop's current `shop-secret`. Present only when a previously registered shop re-registers.
 
 An example request looks like this:
 
@@ -159,6 +160,7 @@ An example request looks like this:
 GET https://my.example.com/registration?shop-id=KIPf0Fz6BUkN&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=159239728
 shopware-app-signature: a8830aface4ac4a21be94844426e62c77078ca9a10f694737b75ca156b950a2d
 sw-version: 6.4.5.0
+shopware-shop-signature: b5f1e2d3c4a5... (re-registration only)
 ```
 
 Additionally, the `shopware-app-signature` header will be provided, which contains a cryptographic signature of the query string.
@@ -198,15 +200,18 @@ $signature = hash_hmac('sha256', $queryString, $appSecret);
 <Tab title="App PHP SDK">
 
 ```php
-$verifier = new \Shopware\App\SDK\Authentication\RequestVerifier();
-$verifier->authenticateRegistrationRequest($request, new AppConfiguration('AppName', 'AppSecret', 'confirm-url'));
+$verifier = new \Shopware\App\SDK\Authentication\DualSignatureRequestVerifier();
+$appConfig = new AppConfiguration('AppName', 'AppSecret', 'confirm-url');
+
+// For new registrations, $shop can be null; for re-registrations, pass the existing shop
+$verifier->authenticateRegistrationRequest($request, $appConfig, $shop);
 ```
 
 </Tab>
 
 <Tab title="Symfony Bundle">
 
-The Symfony Bundle handles all verification automatically.
+The Symfony Bundle handles all verification automatically, including dual signature verification for re-registrations.
 
 </Tab>
 
@@ -250,7 +255,8 @@ $proof = \hash_hmac(
 
 ```php
 $signer = new ResponseSigner();
-$signer->getRegistrationSignature(new AppConfiguration('AppName', 'AppSecret', 'confirm-url'), $shop);
+$proofParameters = ['shop-id' => $shopId, 'shop-url' => $shopUrl];
+$signer->getRegistrationSignature(new AppConfiguration('AppName', 'AppSecret', 'confirm-url'), $proofParameters);
 ```
 
 </Tab>
@@ -320,6 +326,12 @@ Starting from Shopware version 6.4.5.0, the current language id of the Shopware 
 The request is signed with the `shop-secret` that your app provided in the [registration response](app-base-guide#registration-response) and the signature can be found in the `shopware-shop-signature` header.
 You need to recalculate that signature and check that it matches the provided one to make sure that the request is really sent from the shop with that shopId.
 
+During **re-registration**, the confirmation request includes an additional header:
+
+* `shopware-shop-signature-previous`: The signature of the request body, signed with the shop's **previous** `shop-secret` (the secret that was active before this registration). This allows you to verify that the confirmation was initiated by the same Shopware installation that previously completed registration.
+
+For details on handling re-registration and secret rotation, see [Secret rotation and shop-url changes](app-base-guide#secret-rotation-and-shop-url-changes).
+
 You can use the following code snippet to generate the signature:
 
 <Tabs>
@@ -334,6 +346,18 @@ $hmac = \hash_hmac('sha256', $request->getBody()->getContents(), $shopSecret);
 
 </Tab>
 </Tabs>
+
+### Secret rotation and shop-url changes
+
+To rotate the secret or notify your app about a change of the shop's URL, the shop might re-initiate the registration with a shop-id that is already registered.
+
+In that case, the re-registration request will not only be signed with the `app-secret`, but also with the previous `shop-secret` (the signature is added as `shopware-shop-signature` header). Your app **must validate both signatures** to truly authenticate the request is coming from the same shop that registered before.
+
+As this process is also used for secret rotation, your app also **must generate a new secret** that is used to authenticate all further communication from that shop. This will be validated on the shop side. The new secret you generate and a changed shop-url **should** only become effective after your app received a valid confirmation request for that re-registration.
+
+::: warning
+To prevent failure of already in-flight requests parallel to the secret rotation, your app **should accept the old secret in parallel** with the new secret for a short amount of time (e.g., one minute). After that grace period, the signatures based on the old secret **must be** considered invalid.
+:::
 
 ## Permissions
 
@@ -572,6 +596,7 @@ but as a consequence, the data on the app's side that was associated with the ol
 | shop-id*                | string  | The unique identifier of the shop, where the app was installed                            |
 | **Header**              |         |                                                                                           |
 | shopware-app-signature* | string  | The hmac-signature of the query string, signed with the app secret                        |
+| shopware-shop-signature | string  | *(re-registration only)* The hmac-signature of the query string, signed with the current shop secret |
 
 #### Responses
 
@@ -601,6 +626,7 @@ but as a consequence, the data on the app's side that was associated with the ol
 |--------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Header**               |         |                                                                                                                                                                                                                                                                                                                                                                    |
 | shopware-shop-signature* | string  | The hmac-signature of the body content, signed with the shop secret returned from the registration request                                                                                                                                                                                                                                                         |
+| shopware-shop-signature-previous | string  | *(re-registration only)* The hmac-signature of the body content, signed with the shop's previous secret                                                                                                                                                                                                                                                            |
 | sw-version*              | string  | Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header. Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header. |
 | **Body**                 |         |                                                                                                                                                                                                                                                                                                                                                                    |
 | shopId*                  | string  | The unique identifier of the shop                                                                                                                                                                                                                                                                                                                                  |
