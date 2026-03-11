@@ -28,6 +28,21 @@ MyExtension/
 
 The directory and file structure of your component also defines the name of your component. Components from Shopware extensions are also automatically namespaced with the name of the extension (bundle). The shown example will create the component `MyExtension:Button:Primary`.
 
+There is also the option to name the template file `index.html.twig` to just use the directory name as the component name. This can be usefull if you have a larger namespace with several sub-components, or you just want to avoid the nesting but still keep all files of your component in one place.
+
+**Example Structure:**
+```
+MyExtension/
+  src/
+    Resources/
+      views/
+        commponents/
+          Button/
+            index.html.twig
+```
+
+This example will create the component `MyExtension:Button`.
+
 In anonymous components you can define properties for your component right within the template. Properties are configuration options that can be used to pass data to your component. You can define default values for these properties and use the data within your component template as usual Twig variables.
 
 **Component Template:**
@@ -64,7 +79,7 @@ This is just a very basic example of a component and there are a lot of more fea
 ### 2. PHP Class
 The second, more advanced way for creating a component is by PHP class. In Shopware we decided that these PHP classes should be placed right where your component template and other files of your component are located. This provides the epxerience of a real comopnent system and you have all component related files in one place. Therefore you can simply add the PHP class to the described directory structure.
 
-**Note:** As this method requires a PHP file, it is only available for Shopware Plugins, but not for Apps. If you want to create components in your App, use anonymous components instead.
+**Note:** As this method requires a PHP file, it is only available for [Shopware Plugins](https://developer.shopware.com/docs/guides/plugins/#at-a-glance), but not for Apps. If you want to create components in your App, use anonymous components instead.
 
 **Example Structure:**
 ```
@@ -235,12 +250,14 @@ Also, JavaScript files of components are only made available if the theme refere
 Inside your component script file you export a new class that extends the central `ShopwareComponent` class, which is globally available. The name of the component class does not have to follow a particular pattern, but the name of the script file should have the same name as your Twig component and should be located right beside the template file.
 
 ```javascript
-export default class MyComponent extends ShopwareComponent {
+// components/Button/Primary.js
+
+export default class ButtonPrimary extends ShopwareComponent {
 
     // Define default options
     static options = {
-        foo: 'bar',
-        test: false
+        label: 'Click me!',
+        size: 'md'
     };
 
     // Component initialization logic
@@ -271,7 +288,20 @@ Components don't have to be registered manually. If the script file of your comp
 Shopware generates an importmap for all components based on the Twig component tag name. On initialization, Shopware will search for all elements with a `data-component` attribute and will try to load the corresponding script file, if necessary. Just make sure to add the data attribute, including the tag name of your Twig component, to the root element of your component.
 
 ```Twig
-<div data-component="MyComponentNamespace:MyComponent"></div>
+{# components/Button/Primary.html.twig #}
+
+{% props
+    label = 'Click here!',
+    size = 'md',
+%}
+
+<button data-component="MyExtension:Button:Primary">
+
+    {% block content %}
+        {{ label }}
+    {% endblock %}
+
+</button>
 ```
 
 When the script is loaded, Shopware will automatically initialize the component class on all elements matching the selector. This also applies to elements that might be added later. You do not need to do this manually. Shopware will observe the DOM tree and initialize components also on elements that are dynamically added to the document.
@@ -280,14 +310,26 @@ When the script is loaded, Shopware will automatically initialize the component 
 Components can be configured through a data attribute named `data-component-options`. For example, you can pass information form Twig into your component. The options should be passed as a JSON string.
 
 ```Twig
+{# components/Button/Primary.html.twig #}
+
+{% props
+    label = 'Click here!',
+    size = 'md',
+%}
+
 {% set componentOptions = {
-    foo: "bar"
-    test: true
+    size: size
 } %}
 
-<div data-component="MyComponentNamespace:MyComponent"
-     data-component-options="{{ componentOptions|json_encode }}">
-</div>
+<button
+  data-component="MyExtension:Button:Primary"
+  data-component-options="{{ componentOptions|json_encode }}">
+
+    {% block content %}
+        {{ label }}
+    {% endblock %}
+
+</button>
 ```
 
 The passed options are merged with the default options that you define as static properties in your component class.
@@ -295,18 +337,22 @@ The passed options are merged with the default options that you define as static
 If you want to have an even more component-style approach, you can simply pass through the Twig component properties to your JavaScript component.
 
 ```Twig
-{# views/components/MyComponent.html.twig #}
+{# components/Button/Primary.html.twig #}
 
 {% props
-    foo = "bar",
-    custom = true,
+    label = 'Click here!',
+    size = 'md',
 %}
 
-<div data-component="MyNamespace:MyComponent"
-     data-component-options='{{ this.props|json_encode }}'>
+<button
+  data-component="MyExtension:Button:Primary"
+  data-component-options="{{ this.props|json_encode }}">
 
-    {# Some component logic ... #}
-</div>
+    {% block content %}
+        {{ label }}
+    {% endblock %}
+
+</button>
 ```
 
 ### Event System
@@ -315,16 +361,16 @@ To react to actions from other components, there is a new central event system a
 In your component you can emit events to inform others about an action and pass additional data via the event.
 
 ```javascript
-// MyComponent.js
+// components/Button/Primary.js
 
-export default class MyComponent extends ShopwareComponent {
+export default class ButtonPrimary extends ShopwareComponent {
 
     // ...
 
     doSomething() {
         const message = 'Hello World!';
 
-        window.Shopware.emit('MyComponent:DoSomething', message);
+        window.Shopware.emit('ButtomPrimary:DoSomething', message);
     }
 }
 ```
@@ -332,12 +378,12 @@ export default class MyComponent extends ShopwareComponent {
 Other components can then subscribe to this event to react to that.
 
 ```javascript
-// SomeOtherComponent.js
+// components/Some/Other/Component.js
 
 export default class SomeOtherComponent extends ShopwareComponent {
 
     init() {
-        window.Shopware.on('MyComponent:DoSomething', (message) => {
+        window.Shopware.on('ButtomPrimary:DoSomething', (message) => {
             this.el.innerText = message;
         });
     }
@@ -406,13 +452,13 @@ Besides the event system you can also access other component instances directly,
 
 ```javascript
 // Call a method on all instances of a component
-Shopware.callMethod('MyComponentNamespace:MyComponent', 'refresh');
+Shopware.callMethod('MyExtension:Button:Primary', 'doSomething');
 
 // Get all instances of a component
-const instances = Shopware.getComponentInstances('MyComponentNamespace:MyComponent');
+const instances = Shopware.getComponentInstances('MyExtension:Button:Primary');
 
 // Get a specific instance by element
-const instance = Shopware.getComponentInstanceByElement('MyComponentNamespace:MyComponent', element);
+const instance = Shopware.getComponentInstanceByElement('MyExtension:Button:Primary', element);
 ```
 
 ### Mutation Observation
@@ -422,7 +468,8 @@ Components can observe DOM and attribute changes on their elements and children.
 You can call `initializeObserver()` in your component to start the observer and pass the desired observer configuration. If you want to use this, there are two additional lifecycle methods available to react to content and attribute changes.
 
 ```javascript
-class ReactiveComponent extends ShopwareComponent {
+class ButtonPrimary extends ShopwareComponent {
+
     init() {
         // Enable observation for content and attribute changes
         this.initializeObserver({
