@@ -9,7 +9,7 @@ nav:
 
 The following guides outline the core principles and practical steps for deploying Shopware 6 to your infrastructure. They also explain how to build assets for the Administration and Storefront independently of a database, enabling reliable CI/CD pipelines and repeatable releases.
 
-# Deployment best practices
+## Best practices
 
 Successful deployments are predictable, repeatable, and reversible:
 
@@ -49,6 +49,6 @@ Apps introduce an additional operational dimension because they rely on external
 
 - Deploy app backends with the same rigor as any web service.
 - Use blue/green or canary strategies to ensure that webhook handling continues uninterrupted during updates.
-- Keep manifest versions aligned with deployed code. 
+- Keep manifest versions aligned with deployed code.
 - When introducing new events, register webhooks before emitting them to avoid delivery gaps.
 - Externalize credentials and endpoints, and design webhook handlers to be retry-safe and suitable for multi-tenant environments.
