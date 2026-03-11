@@ -69,7 +69,7 @@ Your app server will receive the following payload:
 
 ::: info
 
-Communication between Shopware and your app server is secured via the [app signature verification mechanism](../../app-signature-verification), ensuring that only your app server can respond to context gateway requests.
+Communication between Shopware and your app server is secured via the [app signature verification mechanism](../../app-signature-verification.md), ensuring that only your app server can respond to context gateway requests.
 
 :::
 
