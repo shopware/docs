@@ -32,7 +32,7 @@ MyExtension/
 
 The directory and file structure of your component also defines the name of your component. Components from Shopware extensions are also automatically namespaced with the name of the extension (bundle). The shown example will create the component `MyExtension:Button:Primary`.
 
-There is also the option to name the template file `index.html.twig` to just use the directory name as the component name. This can be usefull if you have a larger namespace with several sub-components, or you just want to avoid the nesting but still keep all files of your component in one place.
+There is also the option to name the template file `index.html.twig` to just use the directory name as the component name. This can be useful if you have a larger namespace with several sub-components, or you just want to avoid the nesting but still keep all files of your component in one place.
 
 **Example Structure:**
 
@@ -85,7 +85,7 @@ This is just a very basic example of a component and there are a lot of more fea
 
 ### 2. PHP Class
 
-The second, more advanced way for creating a component is by PHP class. In Shopware we decided that these PHP classes should be placed right where your component template and other files of your component are located. This provides the epxerience of a real comopnent system and you have all component related files in one place. Therefore you can simply add the PHP class to the described directory structure.
+The second, more advanced way for creating a component is by PHP class. In Shopware we decided that these PHP classes should be placed right where your component template and other files of your component are located. This provides the experience of a real component system, and you have all component-related files in one place. Therefore you can simply add the PHP class to the described directory structure.
 
 **Note:** As this method requires a PHP file, it is only available for [Shopware Plugins](../../guides/plugins/index.md), but not for Apps. If you want to create components in your App, use anonymous components instead.
 
@@ -188,7 +188,7 @@ If you don't want to compile all component styles in your theme, you can referen
 }
 ```
 
-With this method you can add only specific component syles in a defined order to the compiled styles of your theme. As there might be components from different bundles with the same naming pattern, you can also explicitly reference a component from a specific namespace.
+With this method, you can add only specific component styles in a defined order to the compiled styles of your theme. As there might be components from different bundles with the same naming pattern, you can also explicitly reference a component from a specific namespace.
 
 **Example Configuration:**
 
@@ -206,21 +206,21 @@ With this method you can add only specific component syles in a defined order to
 
 ## Adding Component JavaScript
 
-For Twig components that have to implement interactive funcationality via JavaScript, we introduce a corresponding JavaScript component system, which can be seen as the successor of the former JS plugin system. There are some parts which will seem familiar if you aleady know the plugin system, but some parts were changed and improved.
+For Twig components that need to implement interactive functionality via JavaScript, we introduce a corresponding JavaScript component system that can be seen as the successor to the former JS plugin system. Some parts will seem familiar if you already know the plugin system, but others have been changed and improved.
 
 ### Major differences between plugin and component system
 
 1. **Automatic initialization**
-    If the component is implemented properly it will automatically be initialized on the corresponding elements. Even if the DOM tree changes and elements are added or removed, the component will automatically be initiallized on added elements or destroyed for removed elements. No more manual re-initialization of plugins that have to work in conjunction after dynamic DOM changes.
+    If the component is implemented properly it will automatically be initialized on the corresponding elements. Even if the DOM tree changes and elements are added or removed, the component will automatically be initialized on added elements or destroyed for removed elements. No more manual re-initialization of plugins that have to work in conjunction after dynamic DOM changes.
 
 2. **No registration needed**
-    The component system uses native ES module loading that does everyhting for you, if you follow the conventions. The script will automatically be loaded and initialized on corresponding elements just based on the component's name.
+    The component system uses native ES module loading that does everything for you, if you follow the conventions. The script will automatically be loaded and initialized on corresponding elements just based on the component's name.
 
 3. **Better events instead of overrides**
-    The current override technique of the plugin system was not reintroduced to the component system, as it showed some major flaws, as overrides could only happen once which can lead to conflicts between different Shopware exntensions. Instead there is a central event system which is easier to use and offers a more robust public interface. In addtion, it offers special interception events, for example, to manupilate request data before it is send.
+    The current override technique of the plugin system was not reintroduced to the component system because it had major flaws: overrides could occur only once, which can lead to conflicts between different Shopware extensions. Instead, there is a central event system which is easier to use and offers a more robust public interface. In addition, it offers special interception events, for example, to manipulate request data before it is sent.
 
 4. **No imports**
-    We decided to make everything related to the component system available via global scope. This means it is available at the `window` object level and can directly be used in plain JavaScript. No imports or bundling is necessary. You can still use the bundling as it is avialable today or use your own build processes if desired, but the component scripts target for plain JavaScript that don't need to be build in conjuction with our core files.
+    We decided to make everything related to the component system available via global scope. This means it is available at the `window` object level and can directly be used in plain JavaScript. No imports or bundling are necessary. You can still use the bundling as it is available today or use your own build processes if desired, but the component scripts target plain JavaScript that don't need to be built in conjunction with our core files.
 
 ### Component Script Files
 
@@ -309,7 +309,7 @@ export default class ButtonPrimary extends ShopwareComponent {
 
 Components don't have to be registered manually. If the script file of your component follows the rules of the Twig component directory structure, they are automatically loaded via ES module loading.
 
-Shopware generates an importmap for all components based on the Twig component tag name. On initialization, Shopware will search for all elements with a `data-component` attribute and will try to load the corresponding script file, if necessary. Just make sure to add the data attribute, including the tag name of your Twig component, to the root element of your component.
+Shopware generates an import map for all components based on the Twig component tag name. On initialization, Shopware will search for all elements with a `data-component` attribute and will try to load the corresponding script file, if necessary. Just make sure to add the data attribute, including the tag name of your Twig component, to the root element of your component.
 
 ```Twig
 {# components/Button/Primary.html.twig #}
@@ -420,9 +420,9 @@ Of course, you can also register to events from anywhere else, also from outside
 
 ### Event Interception
 
-In addition to the normal asynchronous events, there is a seprate event type which expects a return value that gets further processed within the component. These events make it even easier to extend a components logic and offers a bunch of different use cases, like manipulating request data before it gets send.
+In addition to the normal asynchronous events, there is a separate event type that expects a return value that gets further processed within the component. These events make it even easier to extend a component's logic and offer a bunch of different use cases, like manipulating request data before it gets sent.
 
-For example the BuyButton component offers an event `BuyButton:PreSubmit` which is interceptable, as it is called via `emitInterception()`. It is triggered when a user clicks the buy button of a product.
+For example, the BuyButton component offers an event `BuyButton:PreSubmit`, which is interceptable because it is called via `emitInterception()`. It is triggered when a user clicks the buy button of a product.
 
 ```JavaScript
 // BuyButton.js
