@@ -6,17 +6,21 @@ nav:
 ---
 
 # Storefront Components
+
 Since Shopware 6.7.9.0, the default Storefront includes a new component system based on [Symfony UX Twig Components](https://symfony.com/bundles/ux-twig-component/current/index.html).
 It enables developers to build reusable, atomic component templates in Twig and introduces additional Shopware-specific features for handling SCSS and JavaScript, bringing a more modern, framework-like development experience to the Storefront.
 
 ## Creating Components
+
 Creating a new component is very simple. All you need to do is create the corresponding files for your component in the right directory. All components live in `views/components/` of their specific Symfony bundle, like the Shopware Storefront, or your own extension. There are two different ways to define a component, which will be covered in the following:
 
 ### 1. Anonymous Components
+
 The easiest way to define a new component is via a single template file, which is the common way for our Storefront Components. These are called anonymous components and all information for your component can directly be defined in the Twig template file.
 
 **Example Structure:**
-```
+
+```Plaintext
 MyExtension/
   src/
     Resources/
@@ -31,7 +35,8 @@ The directory and file structure of your component also defines the name of your
 There is also the option to name the template file `index.html.twig` to just use the directory name as the component name. This can be usefull if you have a larger namespace with several sub-components, or you just want to avoid the nesting but still keep all files of your component in one place.
 
 **Example Structure:**
-```
+
+```Plaintext
 MyExtension/
   src/
     Resources/
@@ -46,6 +51,7 @@ This example will create the component `MyExtension:Button`.
 In anonymous components you can define properties for your component right within the template. Properties are configuration options that can be used to pass data to your component. You can define default values for these properties and use the data within your component template as usual Twig variables.
 
 **Component Template:**
+
 ```Twig
 {# components/Button/Primary.html.twig #}
 
@@ -64,6 +70,7 @@ In anonymous components you can define properties for your component right withi
 Your component can then be used in any other template by using the component name. This can be done via a specific Twig call or by using the new HTML syntax of Twig components.
 
 **Component Usage:**
+
 ```Twig
 {# Any other template file #}
 
@@ -77,12 +84,14 @@ Your component can then be used in any other template by using the component nam
 This is just a very basic example of a component and there are a lot of more features available for Twig components. Please refer to the [official documentation](https://symfony.com/bundles/ux-twig-component/current/index.html) for all details.
 
 ### 2. PHP Class
+
 The second, more advanced way for creating a component is by PHP class. In Shopware we decided that these PHP classes should be placed right where your component template and other files of your component are located. This provides the epxerience of a real comopnent system and you have all component related files in one place. Therefore you can simply add the PHP class to the described directory structure.
 
-**Note:** As this method requires a PHP file, it is only available for [Shopware Plugins](https://developer.shopware.com/docs/guides/plugins/#at-a-glance), but not for Apps. If you want to create components in your App, use anonymous components instead.
+**Note:** As this method requires a PHP file, it is only available for [Shopware Plugins](../../guides/plugins/index.md), but not for Apps. If you want to create components in your App, use anonymous components instead.
 
 **Example Structure:**
-```
+
+```Plaintext
 MyPlugin/
   src/
     Resources/
@@ -97,6 +106,7 @@ MyPlugin/
 The loading and template matching is already solved by placing the file in the right directory, so you don't have to define a specific name or template path in your component class.
 
 **Component Class:**
+
 ```PHP
 <?php declare(strict_types=1);
 
@@ -120,10 +130,12 @@ This creates the same component as the example in the anonymous components secti
 To learn what kind of possibilities the PHP implementation of your component offers, you can just refer to the [official documentation](https://symfony.com/bundles/ux-twig-component/current/index.html).
 
 ## Adding Component Styles
+
 By default, there is no corresponding style system in Twig components, but we wanted to provide a seamless component system, like other modern frontend frameworks. Therefore, we added automated style handling to the Storefront Components, which works similarly to other theme styles in Shopware. All you need to do is create a matching SCSS file for your component, which follows the same naming pattern.
 
 **Example Structure:**
-```
+
+```Plaintext
 MyExtension/
   src/
     Resources/
@@ -139,9 +151,11 @@ Within that SCSS file, you can add your component-specific styles and also acces
 For the future we have ideas on how to load component styles more dynamically based on their usage. For now, component styles are not compiled automatically. They must be referenced by a theme to be added to the compiled `all.css` file. This can be done in two different ways.
 
 ### Adding Global Reference
+
 The simplest way to add all relevant component styles to your theme is to reference the global component alias in your theme's style configuration.
 
 **Example Configuration:**
+
 ```JSON
 {
   "name": "MyExtensionTheme",
@@ -157,9 +171,11 @@ The simplest way to add all relevant component styles to your theme is to refere
 By adding the `@Components` global alias to your style configuration, all component styles from all bundles will be added to your theme.
 
 ### Single File Reference
+
 If you don't want to compile all component styles in your theme, you can reference only specific files via a single file reference.
 
 **Example Configuration:**
+
 ```JSON
 {
   "name": "MyExtensionTheme",
@@ -175,6 +191,7 @@ If you don't want to compile all component styles in your theme, you can referen
 With this method you can add only specific component syles in a defined order to the compiled styles of your theme. As there might be components from different bundles with the same naming pattern, you can also explicitly reference a component from a specific namespace.
 
 **Example Configuration:**
+
 ```JSON
 {
   "name": "MyExtensionTheme",
@@ -188,9 +205,10 @@ With this method you can add only specific component syles in a defined order to
 ```
 
 ## Adding Component JavaScript
+
 For Twig components that have to implement interactive funcationality via JavaScript, we introduce a corresponding JavaScript component system, which can be seen as the successor of the former JS plugin system. There are some parts which will seem familiar if you aleady know the plugin system, but some parts were changed and improved.
 
-### Major differences between plugin and component system.
+### Major differences between plugin and component system
 
 1. **Automatic initialization**
     If the component is implemented properly it will automatically be initialized on the corresponding elements. Even if the DOM tree changes and elements are added or removed, the component will automatically be initiallized on added elements or destroyed for removed elements. No more manual re-initialization of plugins that have to work in conjunction after dynamic DOM changes.
@@ -205,10 +223,12 @@ For Twig components that have to implement interactive funcationality via JavaSc
     We decided to make everything related to the component system available via global scope. This means it is available at the `window` object level and can directly be used in plain JavaScript. No imports or bundling is necessary. You can still use the bundling as it is avialable today or use your own build processes if desired, but the component scripts target for plain JavaScript that don't need to be build in conjuction with our core files.
 
 ### Component Script Files
+
 Similar to other component files, you can place the JavaScript file in the directory of your component.
 
 **Example Structure:**
-```
+
+```Plaintext
 MyExtension/
   src/
     Resources/
@@ -223,6 +243,7 @@ MyExtension/
 Also, JavaScript files of components are only made available if the theme references the file in the script configuration. Other then the style files, the script files are not compiled into the main script file of the theme, but are separately loaded via **native ES module loading**. Shopware creates an import map for all referenced component script files and the corresponding files are loaded dynamically, only if the component is rendered on the actual page. But for component script files to be added to the import map, they need to be referenced in the theme script configuration. Again, the global alias or single-file references are possible.
 
 **Global Component Script Reference:**
+
 ```JSON
 {
   "name": "MyExtensionTheme",
@@ -235,6 +256,7 @@ Also, JavaScript files of components are only made available if the theme refere
 ```
 
 **Single File Reference:**
+
 ```JSON
 {
   "name": "MyExtensionTheme",
@@ -247,9 +269,10 @@ Also, JavaScript files of components are only made available if the theme refere
 ```
 
 ### Creating a JavaScript Component
+
 Inside your component script file you export a new class that extends the central `ShopwareComponent` class, which is globally available. The name of the component class does not have to follow a particular pattern, but the name of the script file should have the same name as your Twig component and should be located right beside the template file.
 
-```javascript
+```JavaScript
 // components/Button/Primary.js
 
 export default class ButtonPrimary extends ShopwareComponent {
@@ -283,6 +306,7 @@ export default class ButtonPrimary extends ShopwareComponent {
 ```
 
 ### Automatic Initialization
+
 Components don't have to be registered manually. If the script file of your component follows the rules of the Twig component directory structure, they are automatically loaded via ES module loading.
 
 Shopware generates an importmap for all components based on the Twig component tag name. On initialization, Shopware will search for all elements with a `data-component` attribute and will try to load the corresponding script file, if necessary. Just make sure to add the data attribute, including the tag name of your Twig component, to the root element of your component.
@@ -307,6 +331,7 @@ Shopware generates an importmap for all components based on the Twig component t
 When the script is loaded, Shopware will automatically initialize the component class on all elements matching the selector. This also applies to elements that might be added later. You do not need to do this manually. Shopware will observe the DOM tree and initialize components also on elements that are dynamically added to the document.
 
 ### Component Configuration
+
 Components can be configured through a data attribute named `data-component-options`. For example, you can pass information form Twig into your component. The options should be passed as a JSON string.
 
 ```Twig
@@ -356,11 +381,12 @@ If you want to have an even more component-style approach, you can simply pass t
 ```
 
 ### Event System
+
 To react to actions from other components, there is a new central event system available which can be accessed via the global `window.Shopware` singleton.
 
 In your component you can emit events to inform others about an action and pass additional data via the event.
 
-```javascript
+```JavaScript
 // components/Button/Primary.js
 
 export default class ButtonPrimary extends ShopwareComponent {
@@ -377,7 +403,7 @@ export default class ButtonPrimary extends ShopwareComponent {
 
 Other components can then subscribe to this event to react to that.
 
-```javascript
+```JavaScript
 // components/Some/Other/Component.js
 
 export default class SomeOtherComponent extends ShopwareComponent {
@@ -393,11 +419,12 @@ export default class SomeOtherComponent extends ShopwareComponent {
 Of course, you can also register to events from anywhere else, also from outside of the component system. For example, if you just want to extend the logic of an existing component.
 
 ### Event Interception
+
 In addition to the normal asynchronous events, there is a seprate event type which expects a return value that gets further processed within the component. These events make it even easier to extend a components logic and offers a bunch of different use cases, like manipulating request data before it gets send.
 
 For example the BuyButton component offers an event `BuyButton:PreSubmit` which is interceptable, as it is called via `emitInterception()`. It is triggered when a user clicks the buy button of a product.
 
-```javascript
+```JavaScript
 // BuyButton.js
 
 export default class BuyButton extends ShopwareComponent {
@@ -421,7 +448,7 @@ export default class BuyButton extends ShopwareComponent {
 
 You can see that the event `BuyButton:PreSubmit` offers the opportunity to manipulate the `formData` before it gets sent. From any other script you can intercept this event and work with the arguments send via the event.
 
-```javascript
+```JavaScript
 // Intercept the buy button event
 window.Shopware.intercept('BuyButton:PreSubmit', (data) => {
 
@@ -435,7 +462,7 @@ Don't forget to return the data again, so the component logic can work with it.
 
 There can be multiple subscribers to a single event. They will all be executed in the order as they are registered. You can change the order by passing a priority parameter as an optional third option, when registering an event. By default all subscribers have the priority `0`. The higher the priority the earlier the subscriber is called in the chain. Also negative values are possible to move a subscriber further down the chain.
 
-```javascript
+```JavaScript
 // Another interceptor to the buy button event
 window.Shopware.intercept('BuyButton:PreSubmit', (data) => {
 
@@ -450,7 +477,7 @@ window.Shopware.intercept('BuyButton:PreSubmit', (data) => {
 
 Besides the event system you can also access other component instances directly, or call methods for all active instances of a component.
 
-```javascript
+```JavaScript
 // Call a method on all instances of a component
 Shopware.callMethod('MyExtension:Button:Primary', 'doSomething');
 
@@ -467,7 +494,7 @@ Components can observe DOM and attribute changes on their elements and children.
 
 You can call `initializeObserver()` in your component to start the observer and pass the desired observer configuration. If you want to use this, there are two additional lifecycle methods available to react to content and attribute changes.
 
-```javascript
+```JavaScript
 class ButtonPrimary extends ShopwareComponent {
 
     init() {
@@ -492,10 +519,12 @@ class ButtonPrimary extends ShopwareComponent {
 ```
 
 ## Component Documentation (Experimental)
+
 There is support for a component library based on Storybook. This feature is still experimental and will be improved in the future. If you want to provide component documentation for the library, you can place a story definition in your component directory.
 
 **Example Structure:**
-```
+
+```Plaintext
 MyExtension/
   src/
     Resources/
@@ -511,6 +540,7 @@ MyExtension/
 Within the stories file you can add the Storybook configuration for your component.
 
 **Example Story:**
+
 ```JSON
 {
     "title": "MyExtension/Button/Primary",
@@ -545,7 +575,7 @@ Within the stories file you can add the Storybook configuration for your compone
 
 The component library can be started in your local Shopware development environment with the following command.
 
-```
+```Bash
 composer storefront:storybook
 ```
 
