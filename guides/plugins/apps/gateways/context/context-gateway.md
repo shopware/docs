@@ -62,7 +62,7 @@ Your app server will receive the following payload:
   - The URL of the Shopware shop
   - The Shop ID
   - The app version
-  - Any active [in-app purchase](../../in-app-purchases).
+  - Any active [in-app purchase](../../../../development/monetization/in-app-purchases.md).
 - The current `SalesChannelContext`
 - The current `Cart`
 - Any custom data you include in the request body
