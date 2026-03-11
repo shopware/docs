@@ -99,6 +99,7 @@ Once again, the plugin called [FroshDevelopmentHelper](https://github.com/Friend
 :::
 
 ## Storefront Components
+
 Since Shopware 6.7.9.0, a new component system is available which offers the possibility to build atomic template components which can be reused in a composable way throughout the Storefront.
 
 To learn more about how to use Storefront Components in your app, refer to the main documentation of [Storefront Components](../../../../concepts/framework/storefront-components).
