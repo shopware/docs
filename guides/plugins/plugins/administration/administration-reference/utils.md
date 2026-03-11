@@ -1,13 +1,15 @@
 ---
 nav:
   title: Utils
-  position: 10
+  position: 40
 
 ---
 
 # Utils
 
-This is an overview of all the utility functions bound to the shopware global object. Utility functions provide many useful shortcuts for common tasks, see how to use them in your plugin [here](../../../guides/plugins/plugins/administration/services-utilities/using-utils.md). Or see the code that registers them [here](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/service/util.service.js)
+This guide provides an overview of utility functions bound to the Shopware global object. 
+
+Utility functions provide many useful shortcuts for common tasks. For additional information, review our [usage guide](../services-utilities/using-utils.md) and review the [code that registers them](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/service/util.service.js).
 
 ## General functions
 

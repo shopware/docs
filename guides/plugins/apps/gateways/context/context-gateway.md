@@ -4,6 +4,7 @@
 **Security and privacy**
 
 With the Context Gateway, Shopware allows your app to manipulate the customer context, which includes sensitive information like customer addresses, payment methods, and more.
+
 It is your responsibility to ensure that the commands are valid and do not compromise the security or privacy of customers.
 
 Due to the powerful nature of this feature, it should only be used if your app server is properly secured and the commands it sends are fully trusted and validated.
@@ -12,10 +13,7 @@ Due to the powerful nature of this feature, it should only be used if your app s
 
 ## Context
 
-As of Shopware version 6.7.1.0, the Context Gateway has been introduced.
-
-The Context Gateway is a powerful feature that enables apps to securely access and interact with the customer context — based on the current cart and sales channel — allowing for more informed decision-making on the app server.
-This enhancement empowers app developers to dynamically tailor the shopping experience by manipulating the customer context.
+Introduced in Shopware version 6.7.1.0, the Context Gateway is a powerful feature that enables apps to securely access and interact with the customer context — based on the current cart and sales channel — allowing for more informed decision-making on the app server. This enhancement empowers app developers to dynamically tailor the shopping experience by manipulating the customer context.
 
 It serves as the bridge between your app’s JavaScript and your app server.
 
@@ -25,8 +23,7 @@ You should be familiar with the concept of Apps, their registration flow as well
 
 <PageRef page="../../app-base-guide.md" title="App base guide" />
 
-Your app server must also be accessible to the Shopware server.
-You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
+Your app server must also be accessible to the Shopware server. You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
 
