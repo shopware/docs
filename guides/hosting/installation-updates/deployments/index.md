@@ -26,7 +26,7 @@ Across project types and deployment models, apply the following principles to ma
 - Keep rollbacks minimal, database-aware, and version-pinned, and rehearse them regularly.
 - Enable maintenance mode for schema-changing releases; to validate the system state, add health checks and smoke tests post-deploy before exiting maintenance.
 - Tag releases consistently across source code, build artifacts, and Store metadata.
-- Retain build logs and deploymrny reports for traceability and audits.
+- Retain build logs and deployment reports for traceability and audits.
 
 ## Custom projects
 
@@ -39,7 +39,7 @@ Apply this approach to keep deployments deterministic and reduce environment-spe
 
 Treat plugins as versioned deliverables that integrate cleanly into your deployment workflow:
 
-- Ship plugins as versioned ZIPs from CI using the [Extension build command](../../../../products/cli/extension-commands/build.md). Install and activate them via CLI or deployment automation.
+- Ship plugins as versioned ZIP files from CI using the [Extension build command](../../../../products/cli/extension-commands/build.md). Install and activate them via CLI or deployment automation.
 - Execute plugin migrations as part of deployment and ensure update steps are idempotent so that retries remain safe.
 - For Store plugins in particular, avoid post-deployment manual tweaks.
 
