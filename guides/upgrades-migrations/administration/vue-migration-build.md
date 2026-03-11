@@ -144,4 +144,4 @@ delete this.myObject.key;
 
 ## Conclusion
 
-In Shopware 6.7, the Vue migration build will be removed entirely. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.
+In Shopware 6.7, the Vue migration build was removed entirely. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.
