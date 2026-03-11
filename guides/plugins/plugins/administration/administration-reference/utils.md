@@ -7,7 +7,7 @@ nav:
 
 # Utils
 
-This guide provides an overview of utility functions bound to the Shopware global object. 
+This guide provides an overview of utility functions bound to the Shopware global object.
 
 Utility functions provide many useful shortcuts for common tasks. For additional information, review our [usage guide](../services-utilities/using-utils.md) and review the [code that registers them](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/service/util.service.js).
 
