@@ -11,9 +11,9 @@ Plugins extend the Administration by integrating directly into the Vue-based adm
 
 ## Core Concepts
 
-* [Directives](directives): Globally registered Vue directives.
-* [Mixins](mixins): Shared Vue mixins used across the Administration.
-* [Utils](utils): Global utility functions available on the `Shopware` object.
+* [Directives](directives.md): Globally registered Vue directives.
+* [Mixins](mixins.md): Shared Vue mixins used across the Administration.
+* [Utils](utils.md): Global utility functions available on the `Shopware` object.
 
 Use these guides to:
 
