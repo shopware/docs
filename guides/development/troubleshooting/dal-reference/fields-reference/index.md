@@ -27,7 +27,7 @@ nav:
 | DateIntervalField            | Stores a dateinterval value  | Field                     | x            |
 | DateTimeField                | Stores a datetime value      | Field                     | x            |
 | EmailField                   | Stores a string value        | StringField               |              |
-| [EnumField](enum-field.md)      | Stores a enum value          | Field                     | x            |
+| [EnumField](enum-field.md)   | Stores an enum value         | Field                     | x            |
 | Field                        | Stores a  value              | Struct                    |              |
 | FkField                      | Stores a fk value            | Field                     | x            |
 | FloatField                   | Stores a float value         | Field                     | x            |
