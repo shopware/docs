@@ -132,6 +132,7 @@ CNAME
 CORS
 CPUs
 CRM
+CRMs
 CSP
 CSPs
 CSRF
@@ -342,6 +343,7 @@ ENUM
 ENUMS
 EOL
 ERP
+ERPs
 ESI
 ESLint
 ESlint
@@ -645,6 +647,7 @@ Nullsafe
 Nuxt
 Nvidia
 OAuth
+OIDC
 OPENSEARCH
 ORM
 ORMs
@@ -696,6 +699,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+Ory
 PCOV
 PEM
 PHPStan
@@ -861,6 +865,7 @@ SFCs
 SFTP
 SHA
 SKEs
+SLA
 SMS
 SMTP
 SPA's
@@ -1030,6 +1035,7 @@ UUIDv
 UX
 Unassigning
 Undeploy
+Undeploying
 UninstallApps
 UnitCollection
 UnitEntity
