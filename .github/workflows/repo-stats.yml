@@ -20,6 +20,11 @@ on:
 jobs:
   gather-stats:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo:
+          - shopware/docs
+          - shopware/store-api-reference
     permissions:
       contents: read
       pull-requests: read
@@ -28,7 +33,7 @@ jobs:
       - name: Gather PR and issue stats
         id: stats
         env:
-          GH_REPO: ${{ github.repository }}
+          GH_REPO: ${{ matrix.repo }}
           GH_SERVER: ${{ github.server_url }}
           DAYS_RAW: ${{ github.event.inputs.days || 7 }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,6 +52,7 @@ jobs:
           OWNER="${GH_REPO%%/*}"
           REPO="${GH_REPO#*/}"
           API="https://api.github.com/repos/${OWNER}/${REPO}"
+          REPO_NAME="$GH_REPO"
 
           # Fetch all data
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
@@ -68,7 +74,7 @@ jobs:
           BASE="$GH_SERVER/$GH_REPO"
 
           # --- detail.md: full overview with counts in headings ---
-          echo "## Detailed repository activity: $START → $END" > detail.md
+          echo "## $REPO_NAME activity: $START → $END" > detail.md
           echo "" >> detail.md
 
           echo "### Pull requests created ($PR_OPENED)" >> detail.md
