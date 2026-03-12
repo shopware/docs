@@ -44,6 +44,7 @@ AdminWorker
 Adminer
 AdministrationNewField
 AdministrationNewModule
+AES
 Afile
 AfterLineItemAddedEvent
 AfterLineItemQuantityChangedEvent
@@ -432,6 +433,7 @@ FroshDevelopmentHelper
 FroshPlatformTemplateMail
 FroshTools
 Fullstack
+GCM
 GBP
 GDPR
 GIFs
@@ -502,6 +504,7 @@ Jit
 Jonge
 JsonField
 JsonResponse
+KMS
 KV
 Kibana
 Kubernetes
@@ -944,6 +947,7 @@ StorefrontController
 StorefrontPage
 StorefrontResponse
 Storer
+SSO
 StringField
 StringFields
 Struct
@@ -969,6 +973,7 @@ Symfony's
 SyncApi
 SynchronousPaymentHandlerInterface
 Synopsys
+OData
 TCP
 TLS
 TTL
@@ -1024,6 +1029,7 @@ UUIDs
 UUIDv
 UX
 Unassigning
+Undeploy
 UninstallApps
 UnitCollection
 UnitEntity
@@ -1386,6 +1392,7 @@ esbuild
 eslint
 eslintrc
 et
+eu
 everytime
 evolvability
 exampler

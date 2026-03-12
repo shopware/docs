@@ -7,6 +7,7 @@ nav:
 # Workflow Builder
 
 This page covers the fundamentals of building workflows in Shopware Nexus:
+
 - workflow structure and states
 - available node types
 - expression syntax for mapping and templates
@@ -118,11 +119,8 @@ Expressions use `{{ }}` syntax in templates and mappings.
 
 ### Common usage
 
-* **Slack templates:** build readable notification messages
-* **Mapping data:** pass values from trigger payload into action parameters
-* **Branching:** drive `If` conditions based on payload values
+- **Slack templates:** build readable notification messages
+- **Mapping data:** pass values from trigger payload into action parameters
+- **Branching:** drive `If` conditions based on payload values
 
 Refer to user docs for [common use cases](https://docs.shopware.com/en/shopware-6-en/shopware-services/shopware-nexus?category=shopware-6-en/insider-previews#common-use-cases)
-
-
-
