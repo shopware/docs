@@ -39,11 +39,6 @@ Typical structure:
 |-------|------------|------------------|
 | Draft | Editing | Save, Publish |
 | Published | Built and ready | Execute |
-| Active | Running | Undeploy |
-| State | Description | Available Actions |
-|-------|------------|------------------|
-| Draft | Editing | Save, Publish |
-| Published | Built and ready | Execute |
 | Deploying | Creating deployment | - |
 | Active | Running | Undeploy |
 | Inactive | Deployed but stopped | Execute, Delete |

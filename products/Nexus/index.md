@@ -30,10 +30,11 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | Visual Workflow Builder | Drag-and-drop interface |
 | Shopware Event Triggers | React to entity events |
 | Schedule Triggers | Cron-based execution |
-| Business Central Integration | CRUD for 300+ entities |
-| Shopware API Actions | Call any endpoint |
+| Business Central Integration | CRUD for 3 entities `items`, `customers`, `salesOrders`|
+| Shopware API Actions | Call any endpoint in your store|
+| API requests | Call any external endpoint |
 | Slack Notifications | Send Slack messages |
-| Conditional Logic | If/else branching |
+| Conditional Logic | If/else and switch branching |
 | S3 Storage | Store data on S3 |
 | Data Transformation | Map and filter data |
 | Expression Placeholders | Placeholders to insert event data into templates |
