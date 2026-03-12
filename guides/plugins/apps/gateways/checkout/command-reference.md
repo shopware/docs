@@ -1,3 +1,10 @@
+---
+nav:
+  title: Command Reference
+  position: 11
+
+---
+
 # Checkout Gateway Command Reference
 
 | Command                  | Description                                                                                                                                                  | Payload                                                        | Since   |

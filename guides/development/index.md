@@ -57,7 +57,7 @@ Before starting new development, review the [Upgrades and Migrations](../upgrade
 Upgrade complexity depends on the installation:
 
 * Heavy custom code increases migration effort.
-* No custom code but 60 Store plugins can be equally complex.
+* No custom code, but 60 Store plugins can be equally complex.
 * Most real-world projects fall somewhere in between.
 
 A consistent architecture, centralized CI, and controlled extension strategy help you get ahead of upgrade pain.

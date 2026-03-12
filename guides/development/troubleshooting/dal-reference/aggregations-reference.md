@@ -30,7 +30,7 @@ The DAL knows two types of aggregations:
 
 ## Avg aggregation
 
-The `Avg` aggregation makes it possible to calculate the average value for a field. The following SQL statement is executed in the background: `AVG(price)`.
+The `Avg` aggregation calculates the average value for a field. The following SQL statement is executed in the background: `AVG(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -61,14 +61,14 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {  
+ {  
             "name": "avg-price",
             "type": "avg",
             "field": "price"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -78,18 +78,18 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "avg-price": {
             "avg": 505.73333333333335,
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -98,7 +98,7 @@ Response
 
 ## Count aggregation
 
-The `count` aggregation makes it possible to determine the number of entries for a field that are filled with a value. The following SQL statement is executed in the background: `COUNT(DISTINCT(manufacturerId))`.
+The `count` aggregation allows you to determine the number of entries in a field that contain a value. The following SQL statement is executed in the background: `COUNT(DISTINCT(manufacturerId))`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -129,14 +129,14 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {  
+ {  
             "name": "count-manufacturers",
             "type": "count",
             "field": "manufacturerId"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -146,18 +146,18 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "count-manufacturers": {
             "count": 44,
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -166,7 +166,7 @@ Response
 
 ## Max aggregation
 
-The `max` aggregation allows you to determine the maximum value of a field. The following SQL statement is executed in the background: `MAX(price)`.
+The `max` aggregation returns the maximum value of a field. The following SQL statement is executed in the background: `MAX(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -197,14 +197,14 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {  
+ {  
             "name": "max-price",
             "type": "max",
             "field": "price"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -214,18 +214,18 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "max-price": {
             "max": "979",
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -234,7 +234,7 @@ Response
 
 ## Min aggregation
 
-The `min` aggregation makes it possible to determine the minimum value of a field. The following SQL statement is executed in the background: `MIN(price)`.
+The `min` aggregation returns the minimum value of a field. The following SQL statement is executed in the background: `MIN(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -265,14 +265,14 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {  
+ {  
             "name": "min-price",
             "type": "min",
             "field": "price"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -282,18 +282,18 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "min-price": {
             "min": "5",
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -302,7 +302,7 @@ Response
 
 ## Sum aggregation
 
-The `sum` aggregation makes it possible to determine the total of a field. The following SQL statement is executed in the background: `SUM(price)`.
+The `sum` aggregation allows you to compute the total of a field. The following SQL statement is executed in the background: `SUM(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -333,14 +333,14 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {  
+ {  
             "name": "sum-price",
             "type": "sum",
             "field": "price"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -350,18 +350,18 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "sum-price": {
             "sum": 30344,
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -370,7 +370,7 @@ Response
 
 ## Stats aggregation
 
-The `stats` aggregation makes it possible to calculate several values at once for a field. This includes the previous `max`, `min`, `avg` and `sum` aggregation. The following SQL statement is executed in the background: `SELECT MAX(price), MIN(price), AVG(price), SUM(price)`.
+The `stats` aggregation allows you to calculate multiple values for a field at once. This includes the previous `max`, `min`, `avg`, and `sum` aggregations. The following SQL statement is executed in the background: `SELECT MAX(price), MIN(price), AVG(price), SUM(price)`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -404,14 +404,14 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {  
+ {  
             "name": "stats-price",
             "type": "stats",
             "field": "price"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -421,12 +421,12 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "stats-price": {
             "min": "5",
@@ -434,8 +434,8 @@ Response
             "avg": 505.73333333333335,
             "sum": 30344,
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -444,7 +444,7 @@ Response
 
 ## Terms aggregation
 
-The `terms` aggregation belongs to the bucket aggregations. This allows you to determine the values of a field. The result contains each value once and how often this value occurs in the result. The `terms` aggregation also supports the following parameters:
+The `terms` aggregation belongs to the bucket aggregations. This allows you to determine the values of a field. The result contains each value once, along with how often it occurs. The `terms` aggregation also supports the following parameters:
 
 * `limit` - Defines a maximum number of entries to be returned \(default: zero\)
 * `sort` - Defines the order of the entries. By default, the following is not sorted
@@ -489,16 +489,16 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {
+ {
             "name": "manufacturer-ids",
             "type": "terms",
             "limit": 3,
             "sort": { "field": "manufacturer.name", "order": "DESC" },
             "field": "manufacturerId"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -508,34 +508,34 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "manufacturer-ids": {
             "buckets": [
-                {
+ {
                     "key": "7af1534f96604744a4bc16e713550107",
                     "count": 1,
                     "extensions": []
-                },
-                {
+ },
+ {
                     "key": "32d5c55f960b409ab209fe25c88a6676",
                     "count": 1,
                     "extensions": []
-                },
-                {
+ },
+ {
                     "key": "935ceec182714a8da48227d4772628a4",
                     "count": 1,
                     "extensions": []
-                }
-            ],
+ }
+ ],
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -544,7 +544,7 @@ Response
 
 ## Filter aggregation
 
-The `filter` aggregation belongs to the bucket aggregations. Unlike all other aggregations, this aggregation does not determine any result. It can't be used alone. It is only used to further restrict the result of an aggregation in a criterion. Filters defined inside the `filter` property of this aggregation type are only used when calculating this aggregation. The filters have no effect on other aggregations or on the result of the search.
+The `filter` aggregation belongs to the bucket aggregations. Unlike all other aggregations, this one does not produce a result. It can't be used alone. It is used only further to restrict the result of an aggregation in a criterion. Filters defined inside the `filter` property of this aggregation type are only used when calculating this aggregation. The filters have no effect on other aggregations or on the search results.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -581,25 +581,25 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-       {
+ {
             "name": "active-price-avg",
             "type": "filter",
             "filter": [
-                { 
+ { 
                     "type": "equals", 
                     "field": "active", 
                     "value": true
-                }
-            ],
+ }
+ ],
             "aggregation": {  
                 "name": "avg-price",
                 "type": "avg",
                 "field": "price"
-            }
-        }
-    ]
+ }
+ }
+ ]
 }
 ```
 
@@ -609,18 +609,18 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Awesome Granite HelpingHand",
             "id": "000bba26e2044b98a3ee4a84b03f9551",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "avg-price": {
             "avg": 517.5898195488719,
             "extensions": []
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -629,7 +629,7 @@ Response
 
 ## Entity aggregation
 
-The `entity` aggregation is similar to the `terms` aggregation. It belongs to the bucket aggregations. As with `terms` aggregation, all unique values are determined for a field. The aggregation then uses the determined keys to load the defined entity. The keys are used here as ids.
+The `entity` aggregation is similar to the `terms` aggregation. It belongs to the bucket aggregations. As with `terms` aggregation, all unique values are determined for a field. The aggregation then uses the determined keys to load the defined entity. The keys are used here as IDs.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -664,15 +664,15 @@ Request
     "includes": {
         "product": ["id", "name"],
         "product_manufacturer": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {
+ {
             "name": "manufacturers",
             "type": "entity",
             "definition": "product_manufacturer",
             "field": "manufacturerId"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -682,29 +682,29 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "manufacturers": {
             "entities": [
-                {
+ {
                     "name": "Kris, Thiel and Tillman",
                     "id": "0055fe4c16ac4d34a57b460d225682cb",
                     "apiAlias": "product_manufacturer"
-                },
-                {
+ },
+ {
                     "name": "Beier Group",
                     "id": "073e354c7a854287ac8c084cd70ebf90",
                     "apiAlias": "product_manufacturer"
-                }
-            ],
+ }
+ ],
             "apiAlias": "manufacturers_aggregation"
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -713,7 +713,7 @@ Response
 
 ## Histogram aggregation
 
-The histogram aggregation is used as soon as the data to be determined refers to a date field. With the histogram aggregation, one of the following date intervals can be given: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`, `day`. This interval groups the result and calculates the corresponding count of hits.
+The histogram aggregation is used as soon as the data to be determined refers to a date field. For histogram aggregation, one of the following date intervals can be specified: `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`, `day`. This interval groups the results and calculates the corresponding count of hits.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -751,15 +751,15 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {
+ {
             "name": "release-dates",
             "type": "histogram",
             "field": "releaseDate",
             "interval": "month"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -769,34 +769,34 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "release-dates": {
             "buckets": [
-                {
+ {
                     "key": "2020-04-01 00:00:00",
                     "count": 50,
                     "extensions": []
-                },
-                {
+ },
+ {
                     "key": "2020-03-01 00:00:00",
                     "count": 4,
                     "extensions": []
-                },
-                {
+ },
+ {
                     "key": "2020-04-01 00:00:00",
                     "count": 6,
                     "extensions": []
-                }
-            ],
+ }
+ ],
             "apiAlias": "release-dates_aggregation"
-        }
-    }
+ }
+ }
 }
 ```
 
@@ -805,7 +805,7 @@ Response
 
 ## Range aggregations
 
-Allows to aggregate data on a predefined range of values for more flexibility in the DAL - for example, it provides faceted filters on a predefined range.
+Allows for aggregation of data on a predefined range of values for more flexibility in the DAL - for example, it provides faceted filters on a predefined range.
 
 Bound are computed in SQL as in the Elasticsearch native range aggregation:
 
@@ -852,13 +852,13 @@ Request
             "range": {
                 "field": "products.price",
                     "ranges": [
-                    { "to": 100.0 },
-                    { "from": 100.0, "to": 200.0 },
-                    { "from": 200.0 }
-                ]
-            }
-        }
-    }
+ { "to": 100.0 },
+ { "from": 100.0, "to": 200.0 },
+ { "from": 200.0 }
+ ]
+ }
+ }
+ }
 }
 ```
 
@@ -870,25 +870,25 @@ Response
     "aggregations": {
         "price_ranges": {
             "buckets": [
-                {
+ {
                     "key": "*-100.0",
                     "to": 100.0,
                     "doc_count": 2
-                },
-                {
+ },
+ {
                     "key": "100.0-200.0",
                     "from": 100.0,
                     "to": 200.0,
                     "doc_count": 2
-                },
-                {
+ },
+ {
                     "key": "200.0-*",
                     "from": 200.0,
                     "doc_count": 3
-                }
-            ]
-        }
-    }
+ }
+ ]
+ }
+ }
 }
 ```
 
@@ -897,9 +897,9 @@ Response
 
 ## Nesting aggregations
 
-A metric aggregation calculates the value for a specific field. This can be a total or, for example, a minimum or maximum value of the field. Bucket aggregations are different. This determines how often a value occurs in a search result and returns it together with the count. The special thing about bucket aggregation is that it can contain further aggregations. This allows the API to perform complex queries like, for example:
+A metric aggregation calculates the value for a specific field. This can be a total or, for example, a minimum or maximum value of the field. Bucket aggregations are different. This determines how often a value occurs in a search result and returns the count along with it. The special thing about bucket aggregation is that it can contain further aggregations. This allows the API to perform complex queries, like, for example:
 
-* Calculate the number of manufacturers per category that have a price over 500 Euro. \*
+* Calculate the number of manufacturers per category that have a price over 500 euros. \*
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -914,8 +914,8 @@ $criteria->addAggregation(
         new TermsAggregation(
             'per-category',
             'categories.id',
-            null,
-            null,
+ null,
+ null,
             new TermsAggregation(
                 'manufacturer-ids',
                 'manufacturerId'
@@ -954,20 +954,20 @@ Request
     "limit": 1,
     "includes": {
         "product": ["id", "name"]
-    },
+ },
     "aggregations": [
-        {
+ {
             "name": "my-filter",
             "type": "filter",
             "filter": [
-                { 
+ { 
                     "type": "range", 
                     "field": "price", 
                     "parameters": {
                         "gte": 500
-                    }
-                }
-            ],
+ }
+ }
+ ],
             "aggregation": {  
                 "name": "per-category",
                 "type": "terms",
@@ -976,10 +976,10 @@ Request
                     "name": "manufacturer-ids",
                     "type": "terms", 
                     "field": "manufacturerId"
-                }
-            }
-        }
-    ]
+ }
+ }
+ }
+ ]
 }
 ```
 
@@ -989,54 +989,54 @@ Response
 {
     "total": 1,
     "data": [
-        {
+ {
             "name": "Gorgeous Cotton Magellanic Penguin",
             "id": "0402ca6a746b41458fd000124c308cc8",
             "apiAlias": "product"
-        }
-    ],
+ }
+ ],
     "aggregations": {
         "per-category": {
             "buckets": [
-                {
+ {
                     "key": "25fb912226fa48c2a5c9f4788f1f552d",
                     "count": 1,
                     "extensions": [],
                     "manufacturer-ids": {
                         "buckets": [
-                            {
+ {
                                 "key": "715901f2b5864181a777d1a1b912d9a2",
                                 "count": 1,
                                 "extensions": []
-                            }
-                        ],
+ }
+ ],
                         "extensions": []
-                    }
-                },
-                {
+ }
+ },
+ {
                     "key": "59b38c960597446e8c7bb76593ff7043",
                     "count": 2,
                     "extensions": [],
                     "manufacturer-ids": {
                         "buckets": [
-                            {
+ {
                                 "key": "98e53a711d8549059325da044da2951d",
                                 "count": 1,
                                 "extensions": []
-                            },
-                            {
+ },
+ {
                                 "key": "ee8b37324c5a4c32962367146be4d7b4",
                                 "count": 1,
                                 "extensions": []
-                            }
-                        ],
+ }
+ ],
                         "extensions": []
-                    }
-                }
-            ],
+ }
+ }
+ ],
             "apiAlias": "per-category_aggregation"
-        }
-    }
+ }
+ }
 }
 ```
 

@@ -1,14 +1,20 @@
+---
+nav:
+  title: Context Gateway
+  position: 11
+
+---
+
 # Context Gateway
 
-::: danger
+:::danger
 **Security and privacy**
 
-With the Context Gateway, Shopware allows your app to manipulate the customer context, which includes sensitive information like customer addresses, payment methods, and more.
+With the Context Gateway, Shopware enables your app to manipulate the customer context, including sensitive information such as customer addresses, payment methods, and more.
 
-It is your responsibility to ensure that the commands are valid and do not compromise the security or privacy of customers.
+It is your responsibility to ensure that the commands are valid and do not compromise customer security or privacy.
 
 Due to the powerful nature of this feature, it should only be used if your app server is properly secured and the commands it sends are fully trusted and validated.
-
 :::
 
 ## Context
@@ -19,9 +25,9 @@ It serves as the bridge between your app’s JavaScript and your app server.
 
 ## Prerequisites
 
-You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
+You should be familiar with the concept of Apps, their registration flow, and signing and verifying requests and responses between Shopware and the App backend server.
 
-<PageRef page="../../app-base-guide.md" title="App base guide" />
+<PageRef page="../../app-base-guide" title="App base guide" />
 
 Your app server must also be accessible to the Shopware server. You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
@@ -29,7 +35,7 @@ Your app server must also be accessible to the Shopware server. You can use a tu
 
 To indicate to Shopware that your app uses the context gateway, you must provide a `context` property inside a `gateways` parent property of your app's `manifest.xml`.
 
-Below, you can see an example definition of a working checkout gateway configuration.
+Below is an example definition of a working checkout gateway configuration.
 
 ::: code-group
 
@@ -54,7 +60,7 @@ After the successful installation of your app, the context gateway is ready to b
 To trigger the context gateway, your integration can call the additional Store API route: <nobr>`store-api.context.gateway`</nobr>.
 This endpoint will forward the request to your app server’s context gateway endpoint, which must be [configured in your app's manifest](#manifest-configuration).
 
-To allow the shop to identify your app, the request must include the `appName`, which is defined in your [app’s `manifest.xml`](../../app-base-guide.md#manifest-file).
+To allow the shop to identify your app, the request must include the `appName` field, defined in your [app’s `manifest.xml`](../../app-base-guide.md#manifest-file).
 
 Your app server will receive the following payload:
 
@@ -75,9 +81,9 @@ Communication between Shopware and your app server is secured via the [app signa
 
 ### Storefront Integration
 
-To trigger the context gateway from the Storefront, use the <nobr>`frontend.gateway.context`</nobr> endpoint. This route is automatically registered by Shopware.
+To trigger the context gateway from the Storefront, use the <nobr>`frontend.gateway.context`</nobr> endpoint. Shopware automatically registers this route.
 
-You can include any custom data in the request body - Shopware will forward this data to your app server.
+You can include any custom data in the request body; Shopware will forward it to your app server.
 
 To simplify this integration, Shopware provides the `ContextGatewayClient` service.
 This JavaScript client is intended for use within your app and handles communication with the context gateway endpoint.
@@ -97,11 +103,11 @@ import ContextGatewayClient from 'src/service/context-gateway-client.service';
 export default class MyPlugin extends Plugin {
   init() {
     this._registerEvents();
-  }
+ }
 
   _registerEvents() {
     this.el.addEventListener('click', this._onClick.bind(this));
-  }
+ }
 
   async _onClick() {
     // create client with your app name
@@ -111,13 +117,13 @@ export default class MyPlugin extends Plugin {
     const tokenResponse = await gatewayClient.call({ some: 'data', someMore: 'data' });
 
     // either: you can work with the new token or redirect URL
-    // this means you have to handle the navigation yourself, e.g. reloading the page or redirecting to the URL
+    // this means you have to handle the navigation yourself, e.g., reloading the page or redirecting to the URL
     const token = tokenResponse.token;
     const redirectUrl = tokenResponse.redirectUrl;
 
-    // or: if you want shopware to handle the navigation automatically, even supplying an optional custom target path is possible
+    // or: if you want shopware to handle the navigation automatically, even supplying an optional custom target path is possible,
     await gatewayClient.navigate(tokenResponse, '/custom/target/path');
-  }
+ }
 }
 ```
 
@@ -129,7 +135,7 @@ export default class MyPlugin extends Plugin {
 The `customTarget` parameter allows you to optionally control the redirect path used by the `navigate` method.
 
 - If `customTarget` is an **absolute path** (starts with `/`), it completely replaces the path portion of the `redirectUrl`.
-  This can be used to override sales channel sub-paths in the `redirectUrl`.
+ This can be used to override sales channel sub-paths in the `redirectUrl`.
   _Example:_ `https://example.com/en` → `https://example.com/custom/target/path`
 
 - If `customTarget` is a **relative path**, it is appended to the existing path of the `redirectUrl`.
@@ -175,17 +181,17 @@ Request content is JSON
     "url": "http:\/\/localhost:8000",
     "shopId": "hRCw2xo1EDZnLco4",
     "appVersion": "1.0.0"
-  },
+ },
   "cart": {
     //...
-  },
+ },
   "salesChannelContext": {
     //...
-  },
+ },
   "data": {
     "your": "custom data",
     "appears": "here"
-  }
+ }
 }
 ```
 
@@ -194,19 +200,19 @@ And your response could look like this:
 ```json5
 {
   "commands": [
-    {
+ {
       "command": "context_change-currency",
       "payload": {
         "iso": "GBP"
-      }
-    },
-    {
+ }
+ },
+ {
       "command": "context_change-language",
       "payload": {
         "iso": "en-GB",
-      }
-    }
-  ]
+ }
+ }
+ ]
 }
 ```
 
@@ -233,7 +239,7 @@ use Shopware\App\SDK\Shop\ShopResolver;
 
 function gatewayController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
+    // injected or built by yourself
     $shopResolver = new ShopResolver($repository);
     $contextResolver = new ContextResolver();
     $signer = new ResponseSigner();
@@ -285,7 +291,7 @@ class GatewayController extends AbstractController
     ) {
     }
 
-    #[Route('/context', name: 'context', methods: ['POST'])]
+ #[Route('/context', name: 'context', methods: ['POST'])]
     public function context(ContextGatewayAction $action): Response
     {
         /** @var Collection<ContextGatewayCommand> $commands */
@@ -321,15 +327,15 @@ The following checks are enforced:
 ## Event
 
 Plugins can listen to the `Shopware\Core\Framework\Gateway\Context\Command\Event\ContextGatewayCommandsCollectedEvent`.
-This event is dispatched after all commands have been collected from the app server and allow plugins to modify or add commands based on the same payload the app received.
+This event is dispatched after all commands have been collected from the app server and allows plugins to modify or add commands based on the same payload the app received.
 
 ## Special Considerations
 
 - The `context_login-customer` command allows your app to log in a customer **without requiring their password**.
-  Use this feature with caution to uphold the shop’s security and privacy standards.
+ Use this feature with caution to uphold the shop’s security and privacy standards.
 
 - The `context_register-customer` command will create a new customer account and **automatically log them in**.
-  Make sure to validate the provided data before issuing this command.
-  See the [RegisterCustomerCommand reference](./command-reference.md#available-data-for-registercustomercommand) for the list of accepted fields.
+ Make sure to validate the provided data before issuing this command.
+ See the [RegisterCustomerCommand reference](./command-reference.md#available-data-for-registercustomercommand) for the list of accepted fields.
 
 In both cases, your app must ensure that the customer has **explicitly consented** to be registered or logged in.

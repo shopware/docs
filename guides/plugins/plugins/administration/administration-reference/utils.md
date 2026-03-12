@@ -15,8 +15,8 @@ Utility functions provide many useful shortcuts for common tasks. For additional
 
 | Function | Description | Link |
 | :--- | :--- | :--- |
-| createId | Returns a uuid string in hex format. Generated with [uuid](https://www.npmjs.com/package/uuid) | [link](https://lodash.com/docs/4.17.15#create) |
-| throttle | Creates a `throttled` function that only invokes `func` at most once per every `wait` milliseconds. | [link](https://lodash.com/docs/4.17.15#throttle) |
+| createId | Returns a UUID string in hex format. Generated with [uuid](https://www.npmjs.com/package/uuid) | [link](https://lodash.com/docs/4.17.15#create) |
+| throttle | Creates a `throttled` function that only invokes `func` at most once every `wait` milliseconds. | [link](https://lodash.com/docs/4.17.15#throttle) |
 | debounce | Creates a `debounced` function that delays invoking `func` until after `wait` milliseconds have elapsed since the last time the `debounced` function was invoked. | [link](https://lodash.com/docs/4.17.15#debounce) |
 | flow | Creates a function that returns the result of invoking the given functions with the `this` binding of the created function, where each successive invocation is supplied the return value of the previous. | [link](https://lodash.com/docs/4.17.15#flow) |
 | get | Gets the value at `path` of `object` | [link](https://lodash.com/docs/4.17.15#get) |
@@ -30,8 +30,8 @@ Utility functions provide many useful shortcuts for common tasks. For additional
 | getObjectDiff | Gets a simple recursive diff of two objects. Does not consider an entity schema or entity related logic. |  |
 | getArrayChanges | Check if the compared array has changes. |  |
 | cloneDeep | Creates recursively a clone of value. | [link](https://lodash.com/docs/4.17.15#cloneDeep) |
-| merge | This method is like \_.assign except that it recursively merges own and inherited enumerable string keyed properties of source objects into the destination object. | [link](https://lodash.com/docs/4.17.15#merge) |
-| mergeWith | This method is like \_.merge except that it accepts customizer which is invoked to produce the merged values of the destination and source properties. | [link](https://lodash.com/docs/4.17.15#mergeWith) |
+| merge | This method is like \_.assign except that it recursively merges own and inherited enumerable string-keyed properties of source objects into the destination object. | [link](https://lodash.com/docs/4.17.15#merge) |
+| mergeWith | This method is like \_.merge, except that it accepts a customizer, which is invoked to produce the merged values of the destination and source properties. | [link](https://lodash.com/docs/4.17.15#mergeWith) |
 | deepMergeObject | Deep merge two objects |  |
 | get | Gets the value at `path` of `object` | [link](https://lodash.com/docs/4.17.15#get) |
 | set | Sets the value at `path` of `object` | [link](https://lodash.com/docs/4.17.15#set) |
@@ -41,8 +41,8 @@ Utility functions provide many useful shortcuts for common tasks. For additional
 
 | Function | Description |
 | :--- | :--- |
-| warn | General logging function which provides a unified style of log messages for developers. Please keep the log in mind. Messages will be displayed in the developer console when they're running the application in development mode. |
-| debug | The same as `warn` but instead of `console.warn` it uses `console.error`. |
+| warn | A general logging function that provides a unified style for log messages for developers. Please keep the login in mind. Messages will be displayed in the developer console when the application is running in development mode. |
+| debug | The same as `warn`, but instead of `console.warn` it uses `console.error`. |
 
 ## Format
 
@@ -70,7 +70,7 @@ Utility functions provide many useful shortcuts for common tasks. For additional
 | kebabCase | Converts `string` to kebab case. | [link](https://lodash.com/docs/4.17.15#kebabCase) |
 | snakeCase | Converts `string` to snake case. | [link](https://lodash.com/docs/4.17.15#snakeCase) |
 | md5 | Generates a md5 hash with [md5-es](https://www.npmjs.com/package/md5-es) of a given value. |  |
-| isEmptyOrSpaces | Gets if the content of the string is really empty. This does also removes any whitespaces that might exist in the text. |  |
+| isEmptyOrSpaces | Gets if the content of the string is really empty. This also removes any whitespace in the text. |  |
 | isUrl | Checks if the provided value is a URL |  |
 | isValidIp | Checks if the provided value is an IP with this [Regex](https://regex101.com/r/qHTUIe/1) |  |
 
@@ -114,4 +114,4 @@ Utility functions provide many useful shortcuts for common tasks. For additional
 | flattenDeep | Recursively flattens `array`. | [link](https://lodash.com/docs/4.17.15#flattenDeep) |
 | remove | Removes all elements from `array` that predicate returns truthy for and returns an array of the removed elements | [link](https://lodash.com/docs/4.17.15#remove) |
 | slice | Creates a slice of `array` from `start` up to, but not including, `end`. | [link](https://lodash.com/docs/4.17.15#slice) |
-| uniqBy | This method is like [`_.uniq`](https://lodash.com/docs/4.17.15#uniq) except that it accepts `iteratee` which is invoked for each element in `array` to generate the criterion by which uniqueness is computed. | [link](https://lodash.com/docs/4.17.15#uniqBy) |
+| uniqBy | This method is like [`_.uniq`](https://lodash.com/docs/4.17.15#uniq) except that it accepts `iteratee`, which is invoked for each element in `array` to generate the criterion by which uniqueness is computed. | [link](https://lodash.com/docs/4.17.15#uniqBy) |

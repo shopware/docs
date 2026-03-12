@@ -7,7 +7,7 @@ nav:
 
 # Administration Reference
 
-Plugins extend the Administration by integrating directly into the Vue-based admin framework. Use these guides when building custom admin modules, components, or extending existing ones.
+Plugins extend the Administration by integrating directly into the Vue-based admin framework. Use these guides when building custom admin modules or components, or when extending existing ones.
 
 ## Core Concepts
 

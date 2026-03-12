@@ -1,28 +1,35 @@
+---
+nav:
+  title: Checkout Gateway
+  position: 10
+
+---
+
 # Checkout Gateway
 
 ## Context
 
 As of Shopware version 6.6.3.0, the Checkout Gateway was introduced.
 
-The Checkout Gateway aims to allow a streamlined implementation for making informed decisions during the checkout process, based on both the cart contents and the current sales channel context.
-In particular, the app system benefits from this solution, enabling seamless communication and decision-making on the app server during the checkout.
+The Checkout Gateway aims to enable a streamlined approach to making informed decisions during the checkout process, based on both the cart contents and the current sales channel context.
+In particular, the app system benefits from this solution, enabling seamless communication and decision-making on the app server during checkout.
 
 While this documentation focuses on the app integration of the Checkout Gateway, the design is intended to allow a custom replacement solution via the plugin system."
 
 ## Prerequisites
 
-You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
+You should be familiar with the concept of Apps, their registration flow, and signing and verifying requests and responses between Shopware and the App backend server.
 
-<PageRef page="../../app-base-guide.md" title="App base guide" />
+<PageRef page="../../app-base-guide" title="App base guide" />
 
-Your app server must be also accessible for the Shopware server.
+Your app server must also be accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
 ## Manifest configuration
 
 To indicate to Shopware that your app uses the checkout gateway, you must provide a `checkout` property inside a `gateways` parent property of your app's `manifest.xml`.
 
-Below, you can see an example definition of a working checkout gateway configuration.
+Below is an example definition of a working checkout gateway configuration.
 
 ::: code-group
 
@@ -39,11 +46,11 @@ Below, you can see an example definition of a working checkout gateway configura
 
 :::
 
-After successful installation of your app, the checkout gateway will already be used during checkout.
+After your app is successfully installed, the checkout gateway will be used during checkout.
 
 ## Checkout gateway endpoint
 
-During checkout, Shopware checks for any active checkout gateways and will call the `checkout` url.
+During checkout, Shopware checks for any active checkout gateways and calls the `checkout` URL.
 The app server will receive the current `SalesChannelContext`, `Cart`, and available payment and shipping methods as part of the payload.
 
 ::: warning
@@ -55,7 +62,7 @@ Be sure that your checkout gateway implementation on your app server responds in
 
 Your app server can then respond with a list of commands to manipulate the cart, payment methods, shipping methods, or add cart errors.
 
-You can find a reference of all currently available commands [here](./command-reference.md).
+You can find a reference to all currently [available commands](./command-reference.md).
 
 Let's assume that your payment method is not available for carts with a total price above 1000€.
 
@@ -71,23 +78,23 @@ Request content is JSON
     "url": "http:\/\/localhost:8000",
     "shopId": "hRCw2xo1EDZnLco4",
     "appVersion": "1.0.0"
-  },
+ },
   "cart": {
     //...
-  },
+ },
   "salesChannelContext": {
     //...
-  },
+ },
   "availablePaymentMethods": [
     "payment-method-technical-name-1",
     "payment-method-technical-name-2",
     // ...
-  ],
+ ],
   "availableShippingMethods": [
     "shipping-method-technical-name-1",
     "shipping-method-technical-name-2",
     // ...
-  ]
+ ]
 }
 ```
 
@@ -96,21 +103,21 @@ And your response could look like this:
 ```json5
 {
   "commands": [
-    {
+ {
       "command": "remove-payment-method",
       "payload": {
         "paymentMethodTechnicalName": "payment-myApp-payment-method"
-      }
-    },
-    {
+ }
+ },
+ {
       "command": "add-cart-error",
       "payload": {
         "message": "Payment method 'My App Payment Method' is not available for carts > 1000€.",
         "blocking": false,
         "level": 10,
-      }
-    }
-  ]
+ }
+ }
+ ]
 }
 ```
 
@@ -137,7 +144,7 @@ use Shopware\App\SDK\Shop\ShopResolver;
 
 function gatewayController(RequestInterface $request): ResponseInterface
 {
-    // injected or build by yourself
+    // injected or built by yourself
     $shopResolver = new ShopResolver($repository);
     $contextResolver = new ContextResolver();
     $signer = new ResponseSigner();
@@ -191,7 +198,7 @@ class GatewayController extends AbstractController
     ) {
     }
 
-    #[Route('/checkout', name: 'checkout', methods: ['POST'])]
+ #[Route('/checkout', name: 'checkout', methods: ['POST'])]
     public function checkout(CheckoutGatewayAction $action): Response
     {
         /** @var Collection<CheckoutGatewayCommand> $commands */
@@ -219,4 +226,4 @@ class GatewayController extends AbstractController
 
 Plugins can listen to the `Shopware\Core\Checkout\Gateway\Command\Event\CheckoutGatewayCommandsCollectedEvent`.
 This event is dispatched after the Checkout Gateway has collected all commands from all app servers.
-It allows plugins to manipulate the commands before they are executed, based on the same payload the app servers retrieved.
+It allows plugins to manipulate the commands before they are executed, based on the same payload that the app servers retrieved.
