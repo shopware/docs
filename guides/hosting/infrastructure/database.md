@@ -45,3 +45,27 @@ To use the MySQL cluster, you have to configure the following in the `.env` file
 
 - `DATABASE_URL` is the connection string for the MySQL primary.
 - `DATABASE_REPLICA_x_URL` (e.g `DATABASE_REPLICA_0_URL`, `DATABASE_REPLICA_1_URL`) - is the connection string for the MySQL read-only server.
+
+# Database for long-running environments
+
+When running Shopware in long-lived PHP worker environments such as FrankenPHP worker mode, database connections can stay open long enough to exceed MySQL's `wait_timeout`.
+This can lead to `MySQL server has gone away` errors on later requests.
+
+Shopware does not install a reconnect package by default, but you can enable this behavior yourself with [`facile-it/doctrine-mysql-come-back`](https://github.com/facile-it/doctrine-mysql-come-back):
+
+```bash
+composer require facile-it/doctrine-mysql-come-back
+```
+
+Configure the wrapper class on `DATABASE_URL` with `Facile\DoctrineMySQLComeBack\Doctrine\DBAL\Connection`:
+
+```dotenv
+DATABASE_URL="mysql://username:password@localhost:3306/dbname?wrapperClass=?wrapperClass=Facile\DoctrineMySQLComeBack\Doctrine\DBAL\Connection&driverOptions[x_reconnect_attempts]=3"
+```
+
+If you are using Shopware with read replicas, use `Facile\DoctrineMySQLComeBack\Doctrine\DBAL\Connections\PrimaryReadReplicaConnection` instead:
+
+```dotenv
+DATABASE_URL="mysql://username:password@localhost:3306/dbname?wrapperClass=Facile\DoctrineMySQLComeBack\Doctrine\DBAL\Connections\PrimaryReadReplicaConnection&driverOptions[x_reconnect_attempts]=3"
+DATABASE_REPLICA_0_URL="mysql://username:password@replica:3306/dbname"
+```
