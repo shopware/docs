@@ -37,7 +37,7 @@ Apply this approach to keep deployments deterministic and reduce environment-spe
 
 ## Custom/Store plugins
 
-Treat plugins as versioned deliverables that integrate cleanly into your deployment workflow (for example via the [Deployment helper](deployment-helper.md):
+Treat plugins as versioned deliverables that integrate cleanly into your deployment workflow (for example via the [Deployment helper](deployment-helper.md)):
 
 - Ship plugins as versioned ZIP files from CI using the [Extension build command](../../../../products/cli/extension-commands/build.md). Install and activate them via CLI or deployment automation.
 - Execute plugin migrations as part of deployment and ensure update steps are idempotent so that retries remain safe.
