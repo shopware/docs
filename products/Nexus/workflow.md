@@ -40,7 +40,15 @@ Typical structure:
 | Draft | Editing | Save, Publish |
 | Published | Built and ready | Execute |
 | Active | Running | Undeploy |
-| Deploying | Creating deployment | Wait |
+| State | Description | Available Actions |
+|-------|------------|------------------|
+| Draft | Editing | Save, Publish |
+| Published | Built and ready | Execute |
+| Deploying | Creating deployment | - |
+| Active | Running | Undeploy |
+| Inactive | Deployed but stopped | Execute, Delete |
+| Undeploying | Removing deployment | - |
+| Failed | Deployment or execution failed | Retry, Delete |
 
 Workflows move through these states from creation to active execution.
 
