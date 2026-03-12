@@ -5,7 +5,12 @@ nav:
 
 ---
 
-# Database Cluster
+# Database
+
+This guide explains how to operate Shopware with a reliable database setup.
+It covers cluster-based scaling for read traffic and connection handling for long-running PHP worker environments.
+
+## Cluster Setup
 
 ::: info
 We recommend the usage of [ProxySQL](https://proxysql.com/) as a proxy for the database cluster instead of configuring the application to connect to different database servers directly.
@@ -22,11 +27,11 @@ That way, Shopware can ensure read-write consistency for records within the same
 However, it doesn't take into account that read-only child nodes might not be in sync with the primary node.
 This is left to the database replication process.
 
-## Preparing Shopware
+### Preparing Shopware
 
 We suggest following the steps below to make the splitting the most effective.
 
-### Using the optimal MySQL configuration
+#### Using the optimal MySQL configuration
 
 By default, Shopware does not set specific MySQL configurations that make sure the database is optimized for Shopware usage.
 These variables are set in cluster mode only on the read-only server.
@@ -39,14 +44,14 @@ The following options should be set:
 
 After this change, you can set also `SQL_SET_DEFAULT_SESSION_VARIABLES=0` in the `.env` file so Shopware does not check for those variables at runtime.
 
-## Configure the database cluster
+### Configure the database cluster
 
 To use the MySQL cluster, you have to configure the following in the `.env` file:
 
 - `DATABASE_URL` is the connection string for the MySQL primary.
 - `DATABASE_REPLICA_x_URL` (e.g `DATABASE_REPLICA_0_URL`, `DATABASE_REPLICA_1_URL`) - is the connection string for the MySQL read-only server.
 
-# Database for long-running environments
+## Setup for long-running environments
 
 When running Shopware in long-lived PHP worker environments such as FrankenPHP worker mode, database connections can stay open long enough to exceed MySQL's `wait_timeout`.
 This can lead to `MySQL server has gone away` errors on later requests.
