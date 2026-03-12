@@ -161,3 +161,4 @@ redirects:
     guides/plugins/plugins/api/customer-specific-pricing.html: guides/plugins/plugins/integrations/commercial/customer-specific-pricing.html
     guides/plugins/plugins/api/multi-inventory.html: guides/plugins/plugins/integrations/commercial/multi-inventory.html
     plugins/plugins/api/index.html: concepts/api/index.html
+    guides/hosting/infrastructure/database-cluster.html: guides/hosting/infrastructure/database.html
