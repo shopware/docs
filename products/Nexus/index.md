@@ -39,6 +39,7 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | Data Transformation | Map and filter data |
 | Expression Placeholders | Placeholders to insert event data into templates |
 | Execution Monitoring | Track runs & metrics |
+| Delay Node | Add timed delays between steps |
 
 ## Limitations in beta
 

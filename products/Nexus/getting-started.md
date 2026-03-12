@@ -10,7 +10,7 @@ nav:
 
 - Shopware 6.7 or newer  
 - Active Shopware subscription  
-- Beta access granted by Shopware 
+- Beta access granted by Shopware
 - Nexus service activated
 - Active Shopware services
     - Accept Shopware Service T&C's
