@@ -1,4 +1,5 @@
 redirects:
+    guides/hosting/configurations/shopware/staging.html: guides/hosting/installation-updates/creating-a-staging-instance.html
     developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
     guides/plugins/apps/platform-sh-template.html: guides/plugins/apps/app-base-guide.html
     guides/integrations-api/store-api-guide.html: guides/integrations-api/
@@ -89,12 +90,74 @@ redirects:
     concepts/framework/rules.html: concepts/framework/rule/index.html
     products/extensions/migration-assistant/concept.html: products/extensions/migration-assistant/concept/index.html
     products/extensions/migration-assistant/guides.html: products/extensions/migration-assistant/guides/index.html
-    products/cli/project-commands/project-config-sync.html: resources/tooling/fixture-bundle/index.html
+    products/cli/project-commands/project-config-sync.html: guides/development/tooling/fixture-bundle.html
     products/sales-agent/deployment.html: products/sales-agent/best-practices/app-deployment/hosted-with-ubuntu-server.html
-    guides/installation/system-requirements.md: guides/installation/requirements.html
-    guides/installation/docker-setup.html: guides/installation/setups/docker.html
-    guides/installation/project-overview.html: guides/installation/template.html
-    guides/installation/advanced-options.html: guides/installation/setups/docker-options.html
-    guides/installation/legacy-setups/devenv-setup.md: guides/installation/setups/devenv.html
-    guides/installation/legacy-setups/symfony-cli-setup.md: guides/installation/setups/symfony-cli.html
-    guides/installation/legacy-setups/devenv-options.md: guides/installation/setups/devenv-options.html
+    guides/installation/requirements.html: guides/installation/system-requirements.html
+    guides/installation/setups/docker.html: guides/installation/docker-setup.html
+    guides/installation/template.html: guides/installation/project-overview.html
+    guides/installation/setups/docker-options.html: guides/installation/advanced-options.html
+    guides/installation/setups/devenv.html: guides/installation/legacy-setups/devenv-setup.html
+    guides/installation/setups/symfony-cli.html: guides/installation/legacy-setups/symfony-cli-setup.html
+    guides/installation/setups/devenv-options.html: guides/installation/legacy-setups/devenv-options.html
+    guides/installation/setups/: guides/installation/
+    guides/plugins/plugins/administration/system-updates/meteor-components.html: guides/upgrades-migrations/administration/meteor-components.html
+    guides/plugins/plugins/administration/system-updates/pinia.html: guides/upgrades-migrations/administration/pinia.html
+    guides/plugins/plugins/administration/system-updates/vue3.html: guides/upgrades-migrations/administration/vue3.html
+    guides/plugins/plugins/administration/system-updates/vite.html: guides/upgrades-migrations/administration/vite.html
+    guides/plugins/plugins/administration/system-updates/vue-migration-build.html: guides/upgrades-migrations/administration/vue-migration-build.html
+    guides/plugins/plugins/administration/system-updates/vue-native.html: guides/upgrades-migrations/administration/vue-native.html
+    resources/references/upgrades/core/translation/extension-translation.html: guides/upgrades-migrations/extension-translation.html
+    resources/references/upgrades/core/translation/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
+    resources/references/upgrades/administration/: guides/upgrades-migrations/administration/
+    resources/references/upgrades/: guides/upgrades-migrations/
+    guides/plugins/plugins/testing/php-unit.html: guides/development/testing/unit/php-unit.html
+    guides/plugins/plugins/testing/jest-storefront.html: guides/development/testing/unit/jest-storefront.html
+    guides/plugins/plugins/testing/jest-admin.html: guides/development/testing/unit/jest-admin.html
+    guides/development/testing/ci.html: guides/development/testing/index.html
+    resources/guidelines/testing/store/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins.html: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-apps.html: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-apps/: guides/development/testing/testing-guidelines.html
+    resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/testing-guidelines.html
+    guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
+    guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
+    guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/request-headers.html
+    guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/search-criteria.html
+    guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/partial-data-loading.html
+    guides/integrations-api/general-concepts/generated-reference.html: guides/development/integrations-api/generated-reference.html
+    guides/resources/references/core-reference/dal-reference/aggregations-reference.html: resources/references/core-reference/dal-reference/aggregations-reference.html
+    guides/plugins/apps/app-scripts/data-loading.html: guides/development/integrations-api/search-criteria.html
+    resources/accessibility/accessibility-checklist.html: guides/development/accessibility/accessibility-checklist.html
+    resources/accessibility/storefront-accessibility.html: guides/development/accessibility/storefront-accessibility.html
+    guides/plugins/apps/in-app-purchases.html: guides/development/monetization/in-app-purchases.html
+    guides/plugins/plugins/testing/playwright/actor-pattern.html: guides/development/testing/e2e-playwright/actor-pattern.html
+    guides/plugins/plugins/testing/playwright/best-practices.html: guides/development/testing/e2e-playwright/best-practices.html
+    guides/plugins/plugins/testing/playwright/deployment.html: guides/development/testing/e2e-playwright/deployment.html
+    guides/plugins/plugins/testing/playwright/fixtures.html: guides/development/testing/e2e-playwright/fixtures.html
+    guides/plugins/plugins/testing/playwright/install-configure.html: guides/development/testing/e2e-playwright/install-configure.html
+    guides/plugins/plugins/testing/playwright/language-agnostic-testing.html: guides/development/testing/e2e-playwright/language-agnostic-testing.html
+    guides/plugins/plugins/testing/playwright/local-development.html: guides/development/testing/e2e-playwright/local-development.html
+    guides/plugins/plugins/testing/playwright/page-object.html: guides/development/testing/e2e-playwright/page-object.html
+    guides/plugins/plugins/testing/playwright/test-data-service.html: guides/development/testing/e2e-playwright/test-data-service.html
+    guides/plugins/plugins/testing/playwright/test-suite-types.html: guides/development/testing/e2e-playwright/test-suite-types.html
+    guides/plugins/plugins/testing/playwright/test.html: guides/development/testing/e2e-playwright/test.html
+    guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
+    guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/
+    guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
+    resources/guidelines/code/core/final-and-internal.html: guides/development/extensions/architecture/final-and-internal.html
+    resources/guidelines/code/core/internal.html: guides/development/extensions/architecture/internal.html
+    resources/guidelines/code/core/extendability.html: guides/development/extensions/architecture/extendability.html
+    resources/tooling/fixture-bundle/index.html: guides/development/tooling/fixture-bundle.html
+    resources/tooling/cli/using-watchers.html: guides/development/tooling/using-watchers.html
+    resources/tooling/cli/index.html: guides/development/tooling/index.html
+    resources/tooling/ide/index.html: guides/development/tooling/index.html
+    resources/tooling/ide/shopware-toolbox.html: guides/development/tooling/shopware-toolbox.html
+    resources/tooling/index.html: guides/development/tooling/index.html
+    guides/plugins/plugins/elasticsearch/index.html: guides/plugins/plugins/integrations/elasticsearch/index.html
+    guides/plugins/plugins/elasticsearch/add-product-entity-extension-to-elasticsearch.html: guides/plugins/plugins/integrations/elasticsearch/add-product-entity-extension-to-elasticsearch.html
+    guides/plugins/plugins/redis.html: guides/plugins/plugins/integrations/redis.html
+    guides/plugins/plugins/api/: guides/plugins/plugins/integrations/commercial/
+    guides/plugins/plugins/api/customer-specific-pricing.html: guides/plugins/plugins/integrations/commercial/customer-specific-pricing.html
+    guides/plugins/plugins/api/multi-inventory.html: guides/plugins/plugins/integrations/commercial/multi-inventory.html
+    plugins/plugins/api/index.html: concepts/api/index.html

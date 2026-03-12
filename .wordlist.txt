@@ -1,4 +1,5 @@
 AAAA
+AAC
 ACL
 ACLs
 ADDR
@@ -53,6 +54,7 @@ Aktions
 Algolia
 AllowEmptyString
 AllowHtml
+Allowlist
 AlwaysValidRule
 Analytics
 AndRule
@@ -73,6 +75,8 @@ ArrayFacade
 AssociationField
 AsyncPaymentTransactionStruct
 AsynchronousPaymentHandlerInterface
+AudienceContext
+AudienceContextResolver
 AuditLogValueEntity
 AuthenticationIdentityLoader
 AutoIncrementField
@@ -392,6 +396,7 @@ ExampleTranslationDefinition
 ExcludeMultiWarehouseStockUpdateFilter
 Extensibility
 ExtensionAPI
+FLAC
 FPM
 FQCN
 FastRoute
@@ -430,6 +435,7 @@ Fullstack
 GBP
 GDPR
 GIFs
+GLB
 GenericPage
 GenericPageLoader
 GitLab
@@ -466,6 +472,15 @@ Iframe
 ImportTranslationsTrait
 Inclusivity
 IndexerService
+IndividualPricingApplyExtension
+IndividualPricingBuildCacheSingleRuleMessage
+IndividualPricingCacheEntryUpdaterMessage
+IndividualPricingComputedCacheEntity
+IndividualPricingIndexerEvent
+IndividualPricingIndexingMessage
+IndividualPricingLookupBatchCriteriaEvent
+IndividualPricingLookupCriteriaEvent
+IndividualPricingProductSubscriber
 Init
 Initialisms
 IntField
@@ -545,6 +560,7 @@ Lychee
 MACOSX
 MDN
 MJML
+MOV
 MRs
 MVC
 MailAware
@@ -569,6 +585,7 @@ MapState
 MediaDataSelection
 MediaDataSet
 MediaFolderDataSet
+MediaType
 MemcachedSessionHandler
 MenuOffcanvasPagelet
 Mercure
@@ -580,6 +597,7 @@ Methodize
 Middleware
 MigrationCollection
 MigrationStep
+MimeType
 Minio
 Mixin
 Mixins
@@ -630,6 +648,7 @@ ORMs
 OSS
 OTEL
 OTLP
+OWASP
 ObjectField
 ObjectType
 OffCanvas
@@ -753,6 +772,7 @@ ProductController
 ProductCountRouteResponse
 ProductDataSelection
 ProductDataSet
+ProductEntity
 ProductListRoute
 ProductManufacturerDefinition
 ProductMedia
@@ -834,6 +854,7 @@ SDKs
 SEO
 SEOs
 SFC
+SFCs
 SFTP
 SHA
 SKEs
@@ -900,6 +921,7 @@ SnippetFileInterface
 SomeCoreClassTest
 SonarQube
 Sonarcube
+SourceData
 StackHero
 StackOverflow
 Stackhero
@@ -988,6 +1010,7 @@ TreePathField
 TreeSelect
 TriggerReload
 TwigJS
+TypeDetector
 TypeError
 TypeError's
 TypeScript
@@ -1041,6 +1064,7 @@ VersionDataPayloadField
 VersionField
 VirtualHosts
 Vite
+Vite's
 VitePress
 Vitepress
 Vitest
@@ -1054,6 +1078,8 @@ Vuei
 Vuex
 WASM
 WCAG
+WMA
+WMV
 WSL
 WarehouseGroup
 WarehouseGroups
@@ -1091,12 +1117,16 @@ YamlFileLoader
 ZSH
 accel
 acl
+actionAmount
+actionType
 actionability
 activateShopwareTheme
 adr
 afterSort
 ag
 ajax
+allowlist
+allowlists
 amqp
 anonymization
 anonymize
@@ -1106,6 +1136,7 @@ api
 apiKey
 apk
 appVersion
+applyToAllProducts
 args
 arrayfacade
 async
@@ -1143,6 +1174,7 @@ backoff
 backport
 backported
 balancer
+basename
 benefitting
 binlog
 bitbucket
@@ -1256,6 +1288,7 @@ customerAware
 customerGroup
 customerGroupAware
 customerHasFeature
+customerId
 customerRecovery
 customizability
 customizable
@@ -1453,6 +1486,7 @@ hmac
 hono
 hosters
 hostname
+hostnames
 hotspots
 hreflang
 html
@@ -1474,6 +1508,7 @@ inclusivity
 incrementer
 incrementing
 indexActions
+individualPricingId
 infoIt
 ini
 init
@@ -1515,6 +1550,7 @@ iteratively
 jQuery
 jargons
 javascript
+jpg
 js
 js's
 json
@@ -1639,6 +1675,7 @@ orderIds
 orderTransaction
 orderTransactionCaptureRefund
 org's
+organizationUnitIds
 otel
 otlp
 overrideComponentSetup
@@ -1705,6 +1742,7 @@ pricefactory
 productCountRoute
 productId
 productNumber
+productStreamId
 productproxy
 productsfacade
 profiler
@@ -1719,6 +1757,8 @@ pyspelling
 qa
 qa@shopware.com
 qty's
+qtyFrom
+qtyTo
 quantityBefore
 quantityDelta
 quickstart
@@ -1764,6 +1804,7 @@ resolver's
 resolvers
 resubmittable
 rethrown
+retryability
 returnUrl
 revalidation
 rfc
@@ -1805,6 +1846,7 @@ seperate
 seperated
 serializable
 serializer
+serializers
 serverless
 setFlags
 setLocaleToEnGb
@@ -1825,6 +1867,7 @@ shopware's
 shopwarelabs
 shopwarepartners
 shorthands
+showStrikeThrough
 simples
 simplexml
 skipOnFeature
@@ -1844,6 +1887,7 @@ stackable
 stacktrace
 stateId
 stateMachineState
+stateful
 statesfacade
 statusCode
 stderr
@@ -1954,11 +1998,14 @@ upsert
 uri
 url
 urls
+useValidityRange
 userAware
 userRecovery
 userland
 utils
 uuid
+validFrom
+validUntil
 validator
 validators
 varchar
@@ -1974,9 +2021,11 @@ vscode
 vue
 vuex
 walkthrough
+wav
 webhook
 webhooks
 webkit
+webm
 webpack
 webpackMerge
 webserver

@@ -13,10 +13,6 @@ The code section lays out the coding standards. This helps anyone understand and
 
 <PageRef page="./code/" />
 
-The test section briefs you about best practices for writing end-to-end tests.
-
-<PageRef page="./testing/" />
-
 The document section details you on the language style, grammar, markdown syntax, and documentation process.
 
 <PageRef page="./documentation-guidelines/" />

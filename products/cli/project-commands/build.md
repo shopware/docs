@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Build a complete Project
+  title: Build a Complete Project
   position: 3
 
 ---
 
-# Build a complete Project
+# Build a Complete Project
 
-Usually, when you want to deploy your project, you have to run `composer install` and compile the assets of the project. Shopware CLI provides a single command which does all of this for you.
+Usually, when you want to deploy your project, you have to run `composer install` and compile the project's assets. Shopware CLI provides a single command that does all of this for you.
 
 ::: warning
 This command modifies the given directory and deletes files. Make sure you have committed all your changes before running this command.
@@ -27,15 +27,15 @@ shopware-cli project ci <path>
 
 ## Using private Composer repositories
 
-If you want to use `packages.shopware.com` as a private Composer repository, make sure you have set `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. This can be found in your Shopware Account.
+If you want to use `packages.shopware.com` as a private Composer repository, make sure you have set the `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. This can be found in your Shopware Account.
 
-For other private Composer repositories, you can use the `auth.json` file in the root of your project or set `COMPOSER_AUTH` environment variable with the content of the `auth.json` file.
+For other private Composer repositories, you can use the `auth.json` file in the root of your project or set the `COMPOSER_AUTH` environment variable with the content of the `auth.json` file.
 
 For more information, see the [Composer documentation](https://getcomposer.org/doc/articles/authentication-for-private-packages.md).
 
 ## Reducing JavaScript in the Storefront
 
-Shopware's default `browserlist` still supports older browsers like Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the `browserlist` configuration in the `.shopware-project.yml` file.
+Shopware's default `browserlist` still supports older browsers, such as Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the `browserlist` configuration in the `.shopware-project.yml` file.
 
 ```yaml
 build:
@@ -54,7 +54,7 @@ semantic components that compile to responsive HTML.
 
 ### Prerequisites
 
-This feature is specifically designed for projects using the **FroshPlatformTemplateMail** plugin. The primary purpose of this plugin is to manage email templates as source files in your codebase, rather than storing them in the database. This approach enables:
+This feature is designed specifically for projects that use the **FroshPlatformTemplateMail** plugin. The primary purpose of this plugin is to manage email templates as source files in your codebase, rather than storing them in the database. This approach enables:
 
 - **Version control**: Email templates can be tracked in Git alongside your code
 - **Deployment consistency**: Templates are deployed with your code, ensuring consistency across environments
@@ -102,18 +102,18 @@ MJML compilation requires the `mjml` package to be installed via NPM in your bui
 
 ## Build Hooks
 
-Build hooks allow you to execute custom shell commands at specific stages of the CI build process. This is useful for tasks like generating configuration files, running custom build steps, or integrating with external tools.
+Build hooks let you run custom shell commands at specific stages of the CI build process. This is useful for tasks like generating configuration files, running custom build steps, or integrating with external tools.
 
 ### Available hooks
 
 | Hook            | Execution point                         |
 |-----------------|-----------------------------------------|
-| `pre`           | Before the build process starts         |
-| `pre-composer`  | Before `composer install` is executed   |
+| `pre` | Before the build process starts         |
+| `pre-composer` | Before `composer install` is executed   |
 | `post-composer` | After `composer install` completes      |
-| `pre-assets`    | Before asset building begins            |
-| `post-assets`   | After asset building completes          |
-| `post`          | After the entire build process finishes |
+| `pre-assets` | Before asset building begins            |
+| `post-assets` | After asset building completes          |
+| `post` | After the entire build process finishes |
 
 ### Configuration
 
@@ -153,6 +153,8 @@ All existing environment variables from the parent process are also inherited, s
 You can configure the build process with a `.shopware-project.yml` file. The following options are available:
 
 ```yaml
+compatibility_date: '2026-02-11'
+
 build:
   # Browserlist configuration for Storefront
   browserslist: 'defaults'
@@ -171,9 +173,14 @@ build:
   # After bin/console asset:install, remove all asset files from the extension directories so that assets only exist in the public folder.
   # Note: This option should only be enabled if assets are served directly from the public folder.
   remove_extension_assets: false
-  # Allows force building an extension even when the assets exist. A use-case could be if you used composer patches for a specific extension.
+  # Allows force building an extension even when the assets exist. A use case could be using composer patches for a specific extension.
   force_extension_build:
     - name: 'SomePlugin'
+  # Shopware bundles to include in the build
+  bundles:
+    - path: src/MyBundle
+    - path: src/MyFancyBundle
+      name: MyGreatFancyBundle
   # MJML compilation configuration (see the MJML section above for details)
   mjml:
     enabled: false
@@ -190,23 +197,59 @@ build:
     post-assets: []
 ```
 
+## Compatibility date
+
+You can define a `compatibility_date` in `.shopware-project.yml`:
+
+```yaml
+compatibility_date: '2026-02-11'
+```
+
+The `compatibility_date` lets Shopware CLI introduce behavior changes without breaking existing projects by default. New or potentially breaking changes are activated only for configurations that opt in with a date at or after the feature's rollout date.
+
+- Format: `YYYY-MM-DD`
+- If the field is missing, Shopware CLI uses `2026-02-11` as a fallback
+- When missing, Shopware CLI logs a warning during config loading
+
 ## Supporting bundles
 
-Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
-Therefore, you need to add the path of the custom bundle to your project `composer.json`:
+Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend the bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
+Use .shopware-project.yml to declare bundles. The alternative declaration in the project's composer.json is deprecated and no longer recommended.
+
+### Declaring bundles in `.shopware-project.yml`
+
+The recommended approach is to declare bundles in the `build` section of your `.shopware-project.yml`:
+
+```yaml
+build:
+  bundles:
+    - path: src/MyBundle
+    - path: src/MyFancyBundle
+      name: MyGreatFancyBundle  # optional: override the bundle name (defaults to the directory name)
+```
+
+The `path` is relative to the project root. The `name` field is optional, and when omitted, the bundle name defaults to the directory basename.
+
+### Declaring bundles in `composer.json` (deprecated)
+
+:::danger
+**Deprecated:** Declaring bundles via `composer.json` is deprecated and will be removed in a future version. Please migrate to the `.shopware-project.yml` approach described above. Shopware CLI will emit a deprecation warning when bundles are configured this way.
+:::
+
+Alternatively, you can add the bundle path to the `extra` section of your `composer.json`:
 
 ```json5
 {
     "extra": {
         "shopware-bundles": {
-            // The key is the relative path from project root to the bundle
+            // The key is the relative path from the project root to the bundle
             "src/MyBundle": {}
-        }
-    }
+ }
+ }
 }
 ```
 
-If your bundle folder name does not match your bundle name, you can use the `name` key to map the folder to the bundle name.
+If your bundle folder name does not match your bundle name, you can use the `name` key:
 
 ```json
 {
@@ -214,15 +257,17 @@ If your bundle folder name does not match your bundle name, you can use the `nam
         "shopware-bundles": {
             "src/MyBundle": {
                 "name": "MyFancyBundle"
-            }
-        }
-    }
+ }
+ }
+ }
 }
 ```
 
-### Bundle packaged in own composer package
+Both sources are merged automatically. If the same bundle path appears in both, it is only processed once.
 
-If your bundle is an own composer package, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the extra part of the config like this:
+### Bundle packaged in its own composer package
+
+If your bundle is its own composer package, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the extra part of the config like this:
 
 ```json
 {
@@ -230,11 +275,11 @@ If your bundle is an own composer package, make sure your composer type is `shop
     "type": "shopware-bundle",
     "extra": {
         "shopware-bundle-name": "MyBundle"
-    }
+ }
 }
 ```
 
-With this Composer type, `shopware-cli extension build` also works for your bundle, if you want to distribute compiled assets.
+With this Composer type, `shopware-cli extension build` also works for your bundle if you want to distribute compiled assets.
 
 ## Example Docker Image
 
@@ -257,9 +302,9 @@ ADD . /src
 WORKDIR /src
 
 RUN --mount=type=secret,id=composer_auth,dst=/src/auth.json \
-    --mount=type=cache,target=/root/.composer \
-    --mount=type=cache,target=/root/.npm \
-    /usr/local/bin/entrypoint.sh shopware-cli project ci /src
+ --mount=type=cache,target=/root/.composer \
+ --mount=type=cache,target=/root/.npm \
+ /usr/local/bin/entrypoint.sh shopware-cli project ci /src
 
 FROM base-image
 
