@@ -34,6 +34,7 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | Shopware API Actions | Call any endpoint |
 | Slack Notifications | Send Slack messages |
 | Conditional Logic | If/else branching |
+| S3 Storage | Store data on S3 |
 | Data Transformation | Map and filter data |
 | Expression Placeholders | Placeholders to insert event data into templates |
 | Execution Monitoring | Track runs & metrics |
