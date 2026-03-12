@@ -44,6 +44,7 @@ AdminWorker
 Adminer
 AdministrationNewField
 AdministrationNewModule
+AES
 Afile
 AfterLineItemAddedEvent
 AfterLineItemQuantityChangedEvent
@@ -131,6 +132,7 @@ CNAME
 CORS
 CPUs
 CRM
+CRMs
 CSP
 CSPs
 CSRF
@@ -341,6 +343,7 @@ ENUM
 ENUMS
 EOL
 ERP
+ERPs
 ESI
 ESLint
 ESlint
@@ -432,6 +435,7 @@ FroshDevelopmentHelper
 FroshPlatformTemplateMail
 FroshTools
 Fullstack
+GCM
 GBP
 GDPR
 GIFs
@@ -502,6 +506,7 @@ Jit
 Jonge
 JsonField
 JsonResponse
+KMS
 KV
 Kibana
 Kubernetes
@@ -642,6 +647,7 @@ Nullsafe
 Nuxt
 Nvidia
 OAuth
+OIDC
 OPENSEARCH
 ORM
 ORMs
@@ -693,6 +699,7 @@ OrderTransactionCaptureRefundPositionCollection
 OrderTransactionEntity
 OrderTransactionRefundCollection
 OrderTransactionStorer
+Ory
 PCOV
 PEM
 PHPStan
@@ -858,6 +865,7 @@ SFCs
 SFTP
 SHA
 SKEs
+SLA
 SMS
 SMTP
 SPA's
@@ -944,6 +952,7 @@ StorefrontController
 StorefrontPage
 StorefrontResponse
 Storer
+SSO
 StringField
 StringFields
 Struct
@@ -969,6 +978,7 @@ Symfony's
 SyncApi
 SynchronousPaymentHandlerInterface
 Synopsys
+OData
 TCP
 TLS
 TTL
@@ -1024,6 +1034,8 @@ UUIDs
 UUIDv
 UX
 Unassigning
+Undeploy
+Undeploying
 UninstallApps
 UnitCollection
 UnitEntity
@@ -1386,6 +1398,7 @@ esbuild
 eslint
 eslintrc
 et
+eu
 everytime
 evolvability
 exampler
