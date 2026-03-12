@@ -86,7 +86,14 @@ Workflows move through these states from creation to active execution.
 
 | Node | Description |
 |------|------------|
-| If | Conditional branching |
+| If | True/False Conditional branching |
+| Switch | Complex Conditional branching |
+
+### Control nodes
+
+| Node | Description |
+|------|------------|
+| Delay | Delay before continuing |
 
 ### Output nodes
 
