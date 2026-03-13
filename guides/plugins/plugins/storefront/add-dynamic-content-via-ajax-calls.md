@@ -54,36 +54,35 @@ As you might have seen, this controller isn't too different from the controller 
 The route attribute has an added `defaults: ['XmlHttpRequest' => true]` to allow XmlHttpRequest, and it returns a `JsonResponse` instead of a normal `Response`.
 Using a `JsonResponse` instead of a normal `Response` causes the data structures passed to it to be automatically turned into a `JSON` string.
 
-The following `services.xml` and `routes.xml` are identical as in the before mentioned article, but here they are for reference anyway:
+The following `services.php` and `routes.php` are identical as in the before mentioned article, but here they are for reference anyway:
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services" 
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use SwagBasicExample\Storefront\Controller\ExampleController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="SwagBasicExample\Storefront\Controller\ExampleController" public="true">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleController::class)
+        ->public()
+        ->call('setContainer', [service('service_container')]);
+};
 ```
 
-```xml [PLUGIN_ROOT/src/Resources/config/routes.xml]
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php [PLUGIN_ROOT/src/Resources/config/routes.php]
+<?php declare(strict_types=1);
 
-    <import resource="../../Storefront/Controller/**/*Controller.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Storefront/Controller/**/*Controller.php', 'attribute');
+};
 ```
 
 :::

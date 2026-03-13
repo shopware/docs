@@ -150,7 +150,7 @@ build:
         - <another_path>
 ```
 
-For example, to exclude the `src/Resources/config/services.xml` file from checksum calculation:
+For example, to exclude the `src/Resources/config/services.php` file from checksum calculation:
 
 ```yaml
 # .shopware-extension.yml
@@ -158,7 +158,7 @@ build:
   zip:
     checksum:
       ignore:
-        - src/Resources/config/services.xml
+        - src/Resources/config/services.php
 ```
 
 To verify the checksum of installed extensions, you can use the [FroshTools](https://github.com/FriendsOfShopware/FroshTools#froshextensionchecksumcheck---check-extension-file-integrity) plugin which provides a checksum verification feature for all extensions.

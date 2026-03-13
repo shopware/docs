@@ -76,19 +76,19 @@ One more thing to do is to register your new validator to the [dependency inject
 
 Your validator has to be registered using the tag `shopware.cart.validator`:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator">
-            <tag name="shopware.cart.validator"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Checkout\Cart\Custom\CustomCartValidator;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomCartValidator::class)
+        ->tag('shopware.cart.validator');
+};
 ```
 
 ### Adding the custom cart error
