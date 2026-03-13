@@ -161,6 +161,7 @@ redirects:
     guides/plugins/plugins/api/customer-specific-pricing.html: guides/plugins/plugins/integrations/commercial/customer-specific-pricing.html
     guides/plugins/plugins/api/multi-inventory.html: guides/plugins/plugins/integrations/commercial/multi-inventory.html
     plugins/plugins/api/index.html: concepts/api/index.html
+    guides/hosting/infrastructure/database-cluster.html: guides/hosting/infrastructure/database.html
     resources/guidelines/code/cart-process.html: guides/plugins/plugins/architecture/cart-process.html
     resources/guidelines/code/context-rules-rule-systems.html: guides/plugins/plugins/architecture/context-rules-rule-systems.html
     resources/guidelines/code/dependency-injection-dependency-handling.html: guides/plugins/plugins/architecture/dependency-injection-dependency-handling.html
