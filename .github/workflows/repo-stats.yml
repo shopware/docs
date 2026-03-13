@@ -20,15 +20,23 @@ on:
 jobs:
   gather-stats:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        repo:
+          - shopware/docs
+          - shopware/store-api-reference
+
     permissions:
       contents: read
       pull-requests: read
       issues: read
+
     steps:
       - name: Gather PR and issue stats
         id: stats
         env:
-          GH_REPO: ${{ github.repository }}
+          GH_REPO: ${{ matrix.repo }}
           GH_SERVER: ${{ github.server_url }}
           DAYS_RAW: ${{ github.event.inputs.days || 7 }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -48,7 +56,11 @@ jobs:
           REPO="${GH_REPO#*/}"
           API="https://api.github.com/repos/${OWNER}/${REPO}"
 
-          # Fetch all data
+          # Define clean REPO_NAME for reports/artifacts
+          REPO_NAME="$GH_REPO"
+          REPO_NAME_SAFE="${REPO_NAME//\//-}"  # replaces / with -
+
+          # Fetch data from GitHub API
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
             "${API}/pulls?state=all&sort=created&direction=desc&per_page=100" > /tmp/pulls_all.json
           curl -sS -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
@@ -68,7 +80,7 @@ jobs:
           BASE="$GH_SERVER/$GH_REPO"
 
           # --- detail.md: full overview with counts in headings ---
-          echo "## Detailed repository activity: $START → $END" > detail.md
+          echo "## $REPO_NAME activity: $START → $END" > detail.md
           echo "" >> detail.md
 
           echo "### Pull requests created ($PR_OPENED)" >> detail.md
@@ -100,11 +112,10 @@ jobs:
           jq -r --arg start "$START" --arg base "$BASE" '.[] | select(.pull_request == null and .closed_at != null and (.closed_at[:10] >= $start)) | "- [#\(.number) \(.title) (closed: \(.closed_at[:10]))](\($base)/issues/\(.number))"' /tmp/issues_closed.json > /tmp/issue_closed.txt 2>/dev/null || true
           [ -s /tmp/issue_closed.txt ] && cat /tmp/issue_closed.txt >> detail.md || echo "- No closed issues in this period" >> detail.md
 
-          # --- slack.md + slack_report.txt: Slack summary (PRs opened/closed/merged, Issues opened/closed) ---
+          # --- slack.md + slack_report.txt ---
           {
-            echo ":books: *Weekly Docs Update (Git Repository)*"
-            echo ""
-            echo "*Dev Docs*"
+            echo ":books: *Weekly Repository Update*"
+            echo "*Repository:* $REPO_NAME"
             echo ""
             echo "*PRs*"
             echo ":inbox_tray: $PR_OPENED PRs opened"
@@ -126,7 +137,7 @@ jobs:
       - name: Upload report
         uses: actions/upload-artifact@v4
         with:
-          name: repo-stats-report
+          name: repo-stats-report-${{ env.REPO_NAME//\//- }}
           path: |
             detail.md
             slack.md
@@ -141,10 +152,10 @@ jobs:
           START_DATE: ${{ steps.stats.outputs.start_date }}
           END_DATE: ${{ steps.stats.outputs.end_date }}
           GH_SERVER: ${{ github.server_url }}
-          GH_REPO: ${{ github.repository }}
+          GH_REPO: ${{ matrix.repo }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
-          # Split slack_report.txt into ≤3000-char chunks at newline boundaries
+          # Split slack_report.txt into ≤3000-char chunks
           awk '
             BEGIN { n=0; cur=""; len=0 }
             {
@@ -173,7 +184,7 @@ jobs:
           jq -n "${RAWFILE_ARGS[@]}" \
             --arg start "$START_DATE" --arg end "$END_DATE" \
             --arg link "$GH_SERVER/$GH_REPO/actions/runs/$GITHUB_RUN_ID" \
-            '{blocks:([{type:"header",text:{type:"plain_text",text:"📚 Weekly Docs Update (Git Repository)",emoji:true}},{type:"context",elements:[{type:"mrkdwn",text:($start+" → "+$end+"  |  <"+$link+"|View run>")}]},{type:"divider"}]+['"$SECTIONS_STR"'])}' \
+            '{blocks:([{type:"header",text:{type:"plain_text",text:"📚 Weekly Repository Update",emoji:true}},{type:"context",elements:[{type:"mrkdwn",text:($start+" → "+$end+"  |  <"+$link+"|View run>")}]},{type:"divider"}]+['"$SECTIONS_STR"'])}' \
             > payload.json
           echo "payload<<EOF" >> $GITHUB_OUTPUT
           cat payload.json >> $GITHUB_OUTPUT
