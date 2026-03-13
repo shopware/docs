@@ -170,7 +170,7 @@ redirects:
     resources/references/administration-reference/index.html: guides/plugins/plugins/administration/administration-reference/index.html
     resources/references/administration-reference/mixins.html: guides/plugins/plugins/administration/administration-reference/mixins.html
     resources/references/administration-reference/utils.html: guides/plugins/plugins/administration/administration-reference/utils.html
-    resources/references/api-reference/index.html: guides/development/troubleshooting/index.html
+    resources/references/api-reference/index.html: guides/development/integrations-api/index.html
     resources/references/core-reference/dal-reference/aggregations-reference.html: guides/development/troubleshooting/dal-reference/aggregations-reference.html
     resources/references/core-reference/dal-reference/fields-reference/enum-field.html: guides/development/troubleshooting/dal-reference/fields-reference/enum-field.html
     resources/references/core-reference/dal-reference/fields-reference/index.html: guides/development/troubleshooting/dal-reference/fields-reference/index.html
