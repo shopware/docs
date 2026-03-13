@@ -141,6 +141,66 @@ deployment:
     license-domain: 'example.com'
 ```
 
+## Local Configuration Overrides
+
+You can create a `.shopware-project.local.yml` file alongside your `.shopware-project.yml` to override configuration values for local development without modifying the base config. This file should be added to your `.gitignore`.
+
+The local file is deep-merged on top of the base configuration:
+
+- **Scalar values** (strings, numbers) are replaced by the local value.
+- **Maps** (associative arrays) are deep-merged recursively.
+- **Lists** (indexed arrays) are appended.
+
+```yaml
+# .shopware-project.local.yml
+deployment:
+  hooks:
+    pre: |
+      echo "Local pre hook"
+
+  store:
+    license-domain: local.example.com
+
+  one-time-tasks:
+    - id: local-task
+      script: echo "additional local task"
+```
+
+### YAML Tags for Advanced Merging
+
+The local config file supports custom YAML tags to control how values are merged:
+
+#### `!reset` — Clear and replace a field
+
+Use `!reset` to discard the base value entirely and replace it with the tagged value. This is useful when you want to remove inherited list items or map entries.
+
+```yaml
+# .shopware-project.local.yml
+deployment:
+  extension-management:
+    # Replaces the entire exclude list from the base config
+    exclude: !reset
+      - OnlyThisPlugin
+
+  # Replaces all one-time tasks from the base config
+  one-time-tasks: !reset
+    - id: only-task
+      script: only-script
+```
+
+#### `!override` — Fully replace a section
+
+Use `!override` to replace an entire section without deep-merging. Unlike `!reset`, this is typically used on map values to prevent recursive merging.
+
+```yaml
+# .shopware-project.local.yml
+deployment:
+  # Replaces the entire hooks section — post hook from base config will be removed
+  hooks: !override
+    pre: |
+      echo "Only this hook"
+```
+
 ## Environment Variables
 
 Additionally, you can configure the Shopware installation using the following environment variables:
