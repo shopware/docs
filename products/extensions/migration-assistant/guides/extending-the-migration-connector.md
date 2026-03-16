@@ -78,13 +78,11 @@ class BundleRepository extends AbstractRepository
 
 The repository has to inherit from the `AbstractRepository` of the Migration Connector. This provides helper functions like `addTableSelection`, which sets a prefix to all table columns and adds these to the query builder.
 
-You have to register the repository in your `service.xml` with the parent property like this:
+You have to register the repository in your `services.php` with the parent property like this:
 
-```html
-<service id="swag_migration_bundle_api_example.bundle_repository"
-         class="SwagMigrationBundleApiExample\Repository\BundleRepository"
-         parent="SwagMigrationConnector\Repository\AbstractRepository"
-         />
+```php
+$services->set('swag_migration_bundle_api_example.bundle_repository', SwagMigrationBundleApiExample\Repository\BundleRepository::class)
+    ->parent(SwagMigrationConnector\Repository\AbstractRepository::class);
 ```
 
 ## Creating bundle service
@@ -143,12 +141,13 @@ class BundleService extends AbstractApiService
 }
 ```
 
-You have to register the `BundleService` in your `service.xml`:
+You have to register the `BundleService` in your `services.php`:
 
-```html
-<service class="SwagMigrationBundleApiExample\Service\BundleService" id="swag_migration_bundle_api_example.bundle_service">
-    <argument type="service" id="swag_migration_bundle_api_example.bundle_repository"/>
-</service>
+```php
+$services->set('swag_migration_bundle_api_example.bundle_service', SwagMigrationBundleApiExample\Service\BundleService::class)
+    ->args([
+        service('swag_migration_bundle_api_example.bundle_repository'),
+    ]);
 ```
 
 ## Create a new API controller
@@ -215,11 +214,10 @@ class BundleReader extends ApiReader
 
 After this, you have to register the reader in the Symfony container:
 
-```html
-<service id="SwagMigrationBundleExample\Profile\Shopware\Gateway\Api\BundleReader"
-         parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\ApiReader">
-    <tag name="shopware.migration.reader"/>
-</service>
+```php
+$services->set(SwagMigrationBundleExample\Profile\Shopware\Gateway\Api\BundleReader::class)
+    ->parent(SwagMigrationAssistant\Profile\Shopware\Gateway\Api\Reader\ApiReader::class)
+    ->tag('shopware.migration.reader');
 ```
 
 With that, you have implemented your first plugin migration via API.

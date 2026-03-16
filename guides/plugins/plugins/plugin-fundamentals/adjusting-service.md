@@ -21,26 +21,29 @@ Refer to this video on **[Decorating services](https://www.youtube.com/watch?v=R
 
 ## Decorating the service
 
-First of all we have to create a new service for this example which gets decorated in the next step. Then we have to add a new service to our `services.xml` with the attribute `decorates` pointing to our service we want to decorate. Next we have to add our service decorator as argument, but we append an `.inner` to the end of the service to keep the old one as reference.
+First of all we have to create a new service for this example which gets decorated in the next step. Then we have to add a new service to our `services.php` with the `decorate` method pointing to our service we want to decorate. The `.inner` reference is used to keep the old one as reference.
 
-Here's our example `services.xml`:
+Here's our example `services.php`:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Service\ExampleService;
+use Swag\BasicExample\Service\ExampleServiceDecorator;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService" />
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
-        <service id="Swag\BasicExample\Service\ExampleServiceDecorator" decorates="Swag\BasicExample\Service\ExampleService">
-            <argument type="service" id="Swag\BasicExample\Service\ExampleServiceDecorator.inner" />
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleService::class);
+
+    $services->set(ExampleServiceDecorator::class)
+        ->decorate(ExampleService::class)
+        ->args([service('.inner')]);
+};
 ```
 
 Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.

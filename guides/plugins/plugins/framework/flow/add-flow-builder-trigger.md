@@ -210,7 +210,7 @@ class CustomerStorer extends FlowStorer
 	private function getCustomer(string $customerId): Customer
 	{
 		// load customer via $customerId
-		
+
 		return $customer;
 	}
 }
@@ -392,14 +392,13 @@ public static function getSubscribedEvents()
 }
 ```
 
-And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.xml`
+And remember to register your subscriber to the container at `<plugin root>/src/Resources/config/services.php`
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<service id="Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber">
-    <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-    <tag name="kernel.event_subscriber"/>
-</service>
+```php
+// <plugin root>/src/Resources/config/services.php
+$services->set(Swag\ExamplePlugin\Core\Checkout\Customer\Subscriber\BusinessEventCollectorSubscriber::class)
+    ->args([service(Shopware\Core\Framework\Event\BusinessEventCollector::class)])
+    ->tag('kernel.event_subscriber');
 ```
 
 Well done, you have successfully created your own flow trigger.

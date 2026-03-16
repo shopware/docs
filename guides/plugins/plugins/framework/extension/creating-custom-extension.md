@@ -32,14 +32,14 @@ use Shopware\Core\Framework\Log\Package;
 final class MyCustomExtension extends Extension
 {
     public const NAME = 'my-plugin.custom-extension';
-    
+
     public function __construct(
         /**
          * @public
          * @description Input data for processing
          */
         public readonly array $inputData,
-        
+
         /**
          * @public
          * @description Context for the operation
@@ -83,20 +83,20 @@ use Shopware\Core\System\SalesChannel\SalesChannelContext;
 final class CustomProductFilterExtension extends Extension
 {
     public const NAME = 'my-plugin.product-filter';
-    
+
     public function __construct(
         /**
          * @public
          * @description The search criteria for products
          */
         public readonly Criteria $criteria,
-        
+
         /**
          * @public
          * @description The sales channel context
          */
         public readonly SalesChannelContext $context,
-        
+
         /**
          * @public
          * @description Custom filter parameters
@@ -132,7 +132,7 @@ class CustomProductService
         private readonly EntityRepository $productRepository
     ) {
     }
-    
+
     public function filterProducts(
         Criteria $criteria,
         SalesChannelContext $context,
@@ -143,7 +143,7 @@ class CustomProductService
             $context,
             $filterParams
         );
-        
+
         return $this->extensionDispatcher->publish(
             CustomProductFilterExtension::NAME,
             $extension,
@@ -173,28 +173,28 @@ class CustomProductFilterSubscriber implements EventSubscriberInterface
         private readonly ProductFilterService $filterService
     ) {
     }
-    
+
     public static function getSubscribedEvents(): array
     {
         return [
             'my-plugin.product-filter.pre' => 'onProductFilter',
         ];
     }
-    
+
     public function onProductFilter(CustomProductFilterExtension $event): void
     {
         // Check if we should apply custom filtering
         if (!$this->shouldApplyCustomFilter($event->filterParams)) {
             return;
         }
-        
+
         // Get filtered product IDs from external API
         $filteredIds = $this->apiService->getFilteredProductIds(
             $event->criteria,
             $event->context,
             $event->filterParams
         );
-        
+
         if (empty($filteredIds)) {
             // No products match the filter
             $event->result = new EntitySearchResult(
@@ -208,21 +208,21 @@ class CustomProductFilterSubscriber implements EventSubscriberInterface
             $event->stopPropagation();
             return;
         }
-        
+
         // Create new criteria with filtered IDs
         $newCriteria = clone $event->criteria;
         $newCriteria->setIds($filteredIds);
-        
+
         // Apply additional filtering
         $filteredProducts = $this->filterService->applyBusinessRules(
             $newCriteria,
             $event->context
         );
-        
+
         $event->result = $filteredProducts;
         $event->stopPropagation();
     }
-    
+
     private function shouldApplyCustomFilter(array $filterParams): bool
     {
         return isset($filterParams['custom_filter']) && $filterParams['custom_filter'] === true;
@@ -232,18 +232,20 @@ class CustomProductFilterSubscriber implements EventSubscriberInterface
 
 ### 4. Register Services
 
-```xml
-<!-- services.xml -->
-<service id="MyPlugin\Service\CustomProductService">
-    <argument type="service" id="Shopware\Core\Framework\Extensions\ExtensionDispatcher"/>
-    <argument type="service" id="product.repository"/>
-</service>
+```php
+// services.php
+$services->set(MyPlugin\Service\CustomProductService::class)
+    ->args([
+        service(Shopware\Core\Framework\Extensions\ExtensionDispatcher::class),
+        service('product.repository'),
+    ]);
 
-<service id="MyPlugin\Subscriber\CustomProductFilterSubscriber">
-    <argument type="service" id="MyPlugin\Service\ExternalApiService"/>
-    <argument type="service" id="MyPlugin\Service\ProductFilterService"/>
-    <tag name="kernel.event_subscriber"/>
-</service>
+$services->set(MyPlugin\Subscriber\CustomProductFilterSubscriber::class)
+    ->args([
+        service(MyPlugin\Service\ExternalApiService::class),
+        service(MyPlugin\Service\ProductFilterService::class),
+    ])
+    ->tag('kernel.event_subscriber');
 ```
 
 ## Advanced Extension Patterns
@@ -257,7 +259,7 @@ public function onExtension(MyExtension $event): void
     if (!$this->shouldExecute($event)) {
         return;
     }
-    
+
     $event->result = $this->customImplementation($event);
     $event->stopPropagation();
 }
@@ -282,7 +284,7 @@ public function onExtension(MyExtension $event): void
             'error' => $e->getMessage(),
             'extension' => get_class($event)
         ]);
-        
+
         // The extension system will handle the error
         // and potentially dispatch error events
     }
@@ -308,7 +310,7 @@ private function enrichResult($result, MyExtension $event)
         'processedAt' => new \DateTime(),
         'context' => $event->context->getSalesChannelId()
     ]));
-    
+
     return $result;
 }
 ```
@@ -421,7 +423,7 @@ Here's a complete example of a plugin that creates and uses a custom extension p
 final class ProductRecommendationExtension extends Extension
 {
     public const NAME = 'my-plugin.product-recommendation';
-    
+
     public function __construct(
         public readonly ProductEntity $product,
         public readonly SalesChannelContext $context,
@@ -435,7 +437,7 @@ class ProductRecommendationService
     public function getRecommendations(ProductEntity $product, SalesChannelContext $context): ProductCollection
     {
         $extension = new ProductRecommendationExtension($product, $context);
-        
+
         return $this->extensionDispatcher->publish(
             ProductRecommendationExtension::NAME,
             $extension,
@@ -456,7 +458,7 @@ class ProductRecommendationSubscriber implements EventSubscriberInterface
             'my-plugin.product-recommendation.pre' => 'onGetRecommendations',
         ];
     }
-    
+
     public function onGetRecommendations(ProductRecommendationExtension $event): void
     {
         // Custom AI-powered recommendations
@@ -465,7 +467,7 @@ class ProductRecommendationSubscriber implements EventSubscriberInterface
             $event->context,
             $event->limit
         );
-        
+
         $event->result = $recommendations;
         $event->stopPropagation();
     }

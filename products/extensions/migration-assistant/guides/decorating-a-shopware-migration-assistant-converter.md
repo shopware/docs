@@ -301,16 +301,17 @@ After creating your premapping reader, you have a new premapping card, but this 
 
 Your new decorated product migration converter checks if a manufacturer is set and searches for the premapping via the `MappingService`. If a premapping is found, the migration converter uses the converted value of the original converter, adds the manufacturer uuid, and returns the new `ConvertStruct`.
 
-In the end, you have to register your decorated converter in your `services.xml`:
+In the end, you have to register your decorated converter in your `services.php`:
 
-```html
-<service id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter"
-          decorates="SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter">
-    <argument type="service" id="SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter.inner"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Media\MediaFileService"/>
-</service>
+```php
+$services->set(SwagMigrationExtendConverterExample\Profile\Shopware\Converter\Shopware55DecoratedProductConverter::class)
+    ->decorate(SwagMigrationAssistant\Profile\Shopware55\Converter\Shopware55ProductConverter::class)
+    ->args([
+        service('.inner'),
+        service(SwagMigrationAssistant\Migration\Mapping\MappingService::class),
+        service(SwagMigrationAssistant\Migration\Logging\LoggingService::class),
+        service(SwagMigrationAssistant\Migration\Media\MediaFileService::class),
+    ]);
 ```
 
 With this, you have decorated your first Shopware migration converter.

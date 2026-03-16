@@ -18,10 +18,9 @@ This section explains how to add new fields to an existing entity or introduce n
 
   **Example**:
 
-  ```XML
-  <service id="MigrationExtension\B2BMigration\B2BExtensionMigrationConfigurator">
-      <tag name="b2b.migration.configurator.extension"/>
-  </service>
+  ```php
+  $services->set(MigrationExtension\B2BMigration\B2BExtensionMigrationConfigurator::class)
+      ->tag('b2b.migration.configurator.extension');
   ```
 
   ```PHP

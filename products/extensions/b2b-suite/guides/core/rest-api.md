@@ -74,12 +74,11 @@ class MyApiRouteProvider implements RouteProvider
 
 Now the route provider and the controller are registered to the DIC.
 
-```xml
-<service id="my.controller" class="My\Namespace\MyApiController"/>
+```php
+$services->set('my.controller', My\Namespace\MyApiController::class);
 
-<service id="my.api_route_provider" class="My\Namespace\DependencyInjection\MyApiRouteProvider">
-    <tag name="b2b_common.rest_route_provider"/>
-</service>
+$services->set('my.api_route_provider', My\Namespace\DependencyInjection\MyApiRouteProvider::class)
+    ->tag('b2b_common.rest_route_provider');
 ```
 
 Notice that the route provider is tagged as a `b2b_common.rest_route_provider`.
