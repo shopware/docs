@@ -59,7 +59,7 @@ class ExampleService
 
 ### Using autowire and autoconfigure
 
-If you previously declared `autowire` and `autoconfigure` in your `services.xml` file, you do not need to do anything else.
+If you previously declared `autowire` and `autoconfigure` in your `services.php` file, you do not need to do anything else.
 The `SystemConfigService` will be injected into the `ExampleService` automatically.
 
 ### Explicit declaration
@@ -68,19 +68,21 @@ If you declared the service explicitly, you need to add the `SystemConfigService
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Swag\BasicExample\Service\ExampleService;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleService">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleService::class)
+        ->args([service(SystemConfigService::class)]);
+};
 ```
 
 :::

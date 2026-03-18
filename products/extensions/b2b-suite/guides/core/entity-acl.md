@@ -40,10 +40,10 @@ The ACL is represented as M:N relation tables in the database and always looks l
 ```sql
 CREATE TABLE `b2b_acl_*` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `entity_id` INT(11) NOT NULL, 
+    `entity_id` INT(11) NOT NULL,
     `referenced_entity_id` INT(11) NOT NULL,
     `grantable` TINYINT(4) NOT NULL DEFAULT '0',
-    
+
     [...]
 );
 ```
@@ -88,16 +88,16 @@ class AclRepository
      * @throws AclUnsupportedContextException
      */
     public function allow($context, IdValue $subjectId, bool $grantable = false): void
-    { 
-        [...] 
+    {
+        [...]
     }
 
     /**
      * @throws AclUnsupportedContextException
      */
-    public function allowAll($context, array $subjectIds, bool $grantable = false): void 
-    { 
-        [...] 
+    public function allowAll($context, array $subjectIds, bool $grantable = false): void
+    {
+        [...]
     }
 
     /**
@@ -119,50 +119,50 @@ class AclRepository
     /**
      * @throws AclUnsupportedContextException
      */
-    public function isAllowed($context, IdValue $subjectId): bool 
-    { 
-        [...] 
+    public function isAllowed($context, IdValue $subjectId): bool
+    {
+        [...]
     }
 
     /**
      * @throws AclUnsupportedContextException
      */
-    public function isGrantable($context, IdValue $subjectId): bool 
-    { 
-        [...] 
+    public function isGrantable($context, IdValue $subjectId): bool
+    {
+        [...]
     }
 
     /**
      * @throws AclUnsupportedContextException
      * @return IdValue[]
      */
-    public function getAllAllowedIds($context): array 
-    { 
-        [...] 
-    }
-
-    /**
-     * @throws AclUnsupportedContextException
-     */
-    public function fetchAllGrantableIds($context): array 
+    public function getAllAllowedIds($context): array
     {
-        [...] 
+        [...]
     }
 
     /**
      * @throws AclUnsupportedContextException
      */
-    public function fetchAllDirectlyIds($context): array 
-    { 
-        [...] 
+    public function fetchAllGrantableIds($context): array
+    {
+        [...]
     }
 
     /**
      * @throws AclUnsupportedContextException
      */
-    public function getUnionizedSqlQuery($context): AclQuery 
-    { 
-        [...] 
+    public function fetchAllDirectlyIds($context): array
+    {
+        [...]
+    }
+
+    /**
+     * @throws AclUnsupportedContextException
+     */
+    public function getUnionizedSqlQuery($context): AclQuery
+    {
+        [...]
     }
 }
 ```
@@ -201,7 +201,7 @@ $contactRepository = $this->container->get('b2b_contact.repository');
 $contact = $contactRepository->fetchOneById(1);
 
 $aclAddressRepository->allow(
-    $contact, // the contact 
+    $contact, // the contact
     22, // the id of the address
     true // whether the contact may grant access to other contacts
 );
@@ -211,7 +211,7 @@ We can then deny the access just by this:
 
 ```php
 $aclAdressRepository->deny(
-    $contact, // the contact 
+    $contact, // the contact
     22, // the id of the address
 );
 ```
@@ -220,7 +220,7 @@ or just set it not grantable, by
 
 ```php
 $aclAdressRepository->allow(
-    $contact, // the contact 
+    $contact, // the contact
     22, // the id of the address
     false // whether the contact may grant access to other contacts
 );
@@ -232,7 +232,7 @@ If you want to know whether a certain contact can access an entity, you can call
 
 ```php
 $aclAdressRepository->isAllowed(
-    $contact, // the contact 
+    $contact, // the contact
     22, // the id of the address
 );
 ```
@@ -241,7 +241,7 @@ Or you just want to check whether an entity can be granted by a contact.
 
 ```php
 $aclAdressRepository->isGrantable(
-    $contact, // the contact 
+    $contact, // the contact
     22, // the id of the address
 );
 ```
@@ -343,19 +343,17 @@ AclDdlService::create()->createTable(new AddressContactTable());
 Now the table exists, but we must still make the table definition accessible through the DIC, so the ACL component can set up appropriate repositories.
 This is achieved through a tag in the service definition:
 
-```xml
-<service id="b2b_address.contact_acl_table" class="Shopware\B2B\Address\Framework\AddressContactAclTable">
-    <tag name="b2b_acl.table"/>
-</service>
+```php
+$services->set('b2b_address.contact_acl_table', Shopware\B2B\Address\Framework\AddressContactAclTable::class)
+    ->tag('b2b_acl.table');
 ```
 
-Finally, we need to register the service in the DIC. This is done by this XML snippet:
+Finally, we need to register the service in the DIC. This is done by this PHP snippet:
 
-```xml
-<service id="b2b_address.acl_repository" class="Shopware\B2B\Acl\Framework\AclRepository">
-    <factory service="b2b_acl.repository_factory" method="createRepository"/>
-    <argument type="string">s_user_addresses</argument>
-</service>
+```php
+$services->set('b2b_address.acl_repository', Shopware\B2B\Acl\Framework\AclRepository::class)
+    ->factory([service('b2b_acl.repository_factory'), 'createRepository'])
+    ->args(['s_user_addresses']);
 ```
 
 There we are; the addresses are ACL-ified entities.
@@ -385,12 +383,12 @@ class MyContextResolver extends AclContextResolver
 
     public function extractId($context): int
     {
-        // your implementation here    
+        // your implementation here
     }
 
     public function isMainContext(): bool
     {
-        // your implementation here    
+        // your implementation here
     }
 }
 ```

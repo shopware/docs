@@ -26,7 +26,7 @@ You can also use subdirectories if you prefer, although we recommend keeping a f
 Use `<domain>.<locale>.json` as the naming pattern for the file.
 
 The domain can be freely defined (we recommend your extension name in kebab case), while the locale **must** map to the ISO string of the supported locale in this snippet file — for example: `my-app.de.json`.
-Locales should follow the ISO string of the supported language, such as `de`, `en`, or `es-AR`.  
+Locales should follow the ISO string of the supported language, such as `de`, `en`, or `es-AR`.
 This format follows [IETF BCP 47](https://datatracker.ietf.org/doc/html/bcp47), restricted to [ISO 639-1 (2-letter) language codes](https://en.wikipedia.org/wiki/ISO_639-1) as used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html), but with dashes (`-`) instead of underscores (`_`).
 
 For more information on selecting proper locales, see our documentation on [Fallback language selection](../../../../concepts/translations/fallback-language-selection.md).
@@ -114,10 +114,9 @@ If we need to use a snippet elsewhere in PHP,
 we can use [Dependency Injection](../plugin-fundamentals/dependency-injection) to inject the `translator` service,
 which implements Symfony's `Symfony\Contracts\Translation\TranslatorInterface`:
 
-```xml
-<service id="Swag\Example\Service\SwagService" public="true" >
-    <argument type="service" id="translator" />
-</service>
+```php
+$services->set(Swag\Example\Service\SwagService::class)
+    ->args([service('translator')]);
 ```
 
 ```php

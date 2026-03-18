@@ -47,11 +47,10 @@ If you are using [Service autowiring](https://symfony.com/doc/current/service_co
 
 Alternatively, configure the `product.repository` service to be injected explicitly:
 
-```html
-// <plugin root>src/Resources/config/service.xml
-<service id="Swag\ExamplePlugin\Service\DalExampleService">
-    <argument type="service" id="product.repository"/>
-</service>
+```php
+// <plugin root>src/Resources/config/services.php
+$services->set(Swag\ExamplePlugin\Service\DalExampleService::class)
+    ->args([service('product.repository')]);
 ```
 
 You can read more about dependency injection and service registration in Shopware in the services guides:

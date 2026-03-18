@@ -57,22 +57,21 @@ class CustomExtension extends EntityExtension
 
 Now we have to register our extension via the DI-container. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection).
 
-Here's our `services.xml`:
+Here's our `services.php`:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Extension\Content\Product\CustomExtension;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomExtension::class)
+        ->tag('shopware.entity.extension');
+};
 ```
 
 ### Adding a field with a database
@@ -183,24 +182,23 @@ The fourth parameter is the class of the associated definition, the `ProductDefi
 
 Of course, this new definition also needs to be registered to the DI container:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Extension\Content\Product\CustomExtension;
+use Swag\BasicExample\Extension\Content\Product\ExampleExtensionDefinition;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
 
-        <service id="Swag\BasicExample\Extension\Content\Product\ExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example_extension" />
-        </service>
-    </services>
-</container>
+    $services->set(CustomExtension::class)
+        ->tag('shopware.entity.extension');
+
+    $services->set(ExampleExtensionDefinition::class)
+        ->tag('shopware.entity.definition', ['entity' => 'swag_example_extension']);
+};
 ```
 
 #### Adding the new database table
@@ -309,22 +307,21 @@ We're registering to the `ProductEvents::PRODUCT_LOADED_EVENT` event, which is f
 
 Please note that its second parameter, the actual value, has to be a struct and not just a string or other kind of scalar value.
 
-After we've created our subscriber, we have to adjust our `services.xml` to register it. Below you can find our `services.xml`.
+After we've created our subscriber, we have to adjust our `services.php` to register it. Below you can find our `services.php`.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Subscriber\ProductSubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ProductSubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 ## Entity extension vs. Custom fields
@@ -365,10 +362,9 @@ class MyBulkExtension extends BulkEntityExtension
 
 Each yield defines the entity name which should be extended and the array value defines the fields which should be added. In this example, the `product` and `category` entities are extended.
 
-You must also register the extension in your `services.xml` file and tag it with `shopware.bulk.entity.extension`.
+You must also register the extension in your `services.php` file and tag it with `shopware.bulk.entity.extension`.
 
-```xml
-<service id="Examples\MyBulkExtension">
-   <tag name="shopware.bulk.entity.extension"/>
-</service>
+```php
+$services->set(\Examples\MyBulkExtension::class)
+    ->tag('shopware.bulk.entity.extension');
 ```
