@@ -97,6 +97,14 @@ When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTIO
 This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch.
 In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
 
+If you use Elasticsearch/OpenSearch for Administration as well, you can set `SHOPWARE_ADMIN_ES_THROW_EXCEPTION=1` in local development to debug admin search issues more easily.
+
+To apply OpenSearch globally for supported Admin API searches and listings in Administration, enable `ENABLE_OPENSEARCH_FOR_ADMIN_API=1` and reindex admin indices with `bin/console es:admin:index`.
+
+::: info
+Supported since Shopware `6.7.9.0`. This is an experimental feature. For implementation details and supported entities, refer to the ADR [Apply OpenSearch globally for admin-api](../../../resources/references/adr/2026-01-28-apply-opensearch-in-admin-api.md).
+:::
+
 Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
 ## Prevent mail data updates
