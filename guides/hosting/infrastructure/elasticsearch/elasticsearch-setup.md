@@ -200,8 +200,10 @@ Add the below config variables to set up Elasticsearch for Administration:
 ```bash
 ADMIN_OPENSEARCH_URL=YOUR OPEN SEARCH URL
 SHOPWARE_ADMIN_ES_ENABLED=1
-SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
 SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
+SHOPWARE_ADMIN_ES_INDEXING_BATCH_SIZE=1000
+SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
+SHOPWARE_ADMIN_ES_THROW_EXCEPTION=1
 ```
 
 Also, the CLI commands can be used as below:
@@ -214,4 +216,24 @@ bin/console es:admin:test
 
 ::: info
 Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-simple-query-string-query) for complex search queries.
+:::
+
+### Apply OpenSearch globally in Admin API
+
+To apply OpenSearch globally for supported Admin API searches (for example listings, filtering, and search in administration modules), enable the feature flag below:
+
+```bash
+ENABLE_OPENSEARCH_FOR_ADMIN_API=1
+```
+
+After enabling it, reindex administration indices:
+
+```bash
+bin/console es:admin:index
+```
+
+For technical details, supported entities, fallback behavior, and extension points, refer to the ADR [Apply OpenSearch globally for admin-api](../../../../resources/references/adr/2026-01-28-apply-opensearch-in-admin-api.md).
+
+::: info
+Supported since Shopware `6.7.9.0`. This is an experimental feature.
 :::
