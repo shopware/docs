@@ -149,7 +149,7 @@ The local file is deep-merged on top of the base configuration:
 
 - **Scalar values** (strings, numbers) are replaced by the local value.
 - **Maps** (associative arrays) are deep-merged recursively.
-- **Lists** (indexed arrays) are appended.
+- **Lists** (indexed arrays)**:** for each list-valued key, the list from `.shopware-project.local.yml` is appended to the end of the list from `.shopware-project.yml`. The relative order of items within each list is preserved, nested lists are treated the same way, and no automatic deduplication is performed.
 
 ```yaml
 # .shopware-project.local.yml
@@ -168,21 +168,23 @@ deployment:
 
 ### YAML Tags for Advanced Merging
 
-The local config file supports custom YAML tags to control how values are merged:
+The local config file supports custom YAML tags to control how values are merged. These tags (such as `!reset` and `!override`) are interpreted by the Deployment Helper itself and are not part of the YAML standard.
+
+> Note: Generic YAML parsers or linters that are not configured to allow custom tags may emit errors or warnings when loading `.shopware-project.local.yml`. Ensure your tooling supports custom tags or excludes this file, and use a Deployment Helper version that documents support for `!reset` and `!override` (see the Deployment Helper changelog for the minimum supported version).
 
 #### `!reset` — Clear and replace a field
 
-Use `!reset` to discard the base value entirely and replace it with the tagged value. This is useful when you want to remove inherited list items or map entries.
+Use `!reset` on a single field to ignore the value from the base configuration and use only the tagged value. It can be applied to scalars, lists, or maps, and it affects only that one field: the parent object is still merged as usual, but the value for this key is completely replaced (for lists, all inherited items are dropped; for maps, only the keys you define remain for that field).
 
 ```yaml
 # .shopware-project.local.yml
 deployment:
   extension-management:
-    # Replaces the entire exclude list from the base config
+    # Resets just this exclude field: the base exclude list is discarded and replaced
     exclude: !reset
       - OnlyThisPlugin
 
-  # Replaces all one-time tasks from the base config
+  # Resets the one-time-tasks field: all inherited tasks are removed and only these remain
   one-time-tasks: !reset
     - id: only-task
       script: only-script
@@ -190,12 +192,12 @@ deployment:
 
 #### `!override` — Fully replace a section
 
-Use `!override` to replace an entire section without deep-merging. Unlike `!reset`, this is typically used on map values to prevent recursive merging.
+Use `!override` on a mapping/section to disable deep-merging for that whole mapping. The tagged section completely replaces the corresponding section from the base configuration: nested keys are not merged recursively, and any keys that are not listed in the overriding section are removed.
 
 ```yaml
 # .shopware-project.local.yml
 deployment:
-  # Replaces the entire hooks section — post hook from base config will be removed
+  # Overrides the entire hooks section: all hooks from the base config are removed
   hooks: !override
     pre: |
       echo "Only this hook"
