@@ -126,21 +126,21 @@ Make sure to register your event subscriber to the [Dependency injection contain
 by using the tag `kernel.event_subscriber`.
 
 <Tabs>
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\UnusedMediaSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Subscriber\UnusedMediaSubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(UnusedMediaSubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 </Tab>

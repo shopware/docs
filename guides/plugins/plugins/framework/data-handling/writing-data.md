@@ -32,20 +32,24 @@ Dealing with the Data Abstraction Layer is done by using the automatically gener
 The repository's service name follows this pattern: `entity_name.repository`  
 For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
 
-```xml
-// SwagBasicExample/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// SwagBasicExample/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\WritingData" >
-            <argument type="service" id="product.repository"/>
-            <argument type="service" id="tax.repository"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Service\WritingData;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(WritingData::class)
+        ->args([
+            service('product.repository'),
+            service('tax.repository'),
+        ]);
+};
 ```
 
 And here's the respective class including its constructor:
@@ -72,7 +76,7 @@ class WritingData
 }
 ```
 
-So we registered a custom service called `WritingData` and applied the repositories as a constructor parameter. If you want to fetch data for another entity, just switch the `id` in the `services.xml` to whatever repository you need, e.g. `order.repository` for orders.
+So we registered a custom service called `WritingData` and applied the repositories as a constructor parameter. If you want to fetch data for another entity, just switch the service reference in the `services.php` to whatever repository you need, e.g. `order.repository` for orders.
 
 ### Creating data
 

@@ -100,19 +100,19 @@ Sometimes you really want to have a custom line item handler, e.g. for your own 
 
 You need to create a new class which implements the interface `\Shopware\Core\Checkout\Cart\LineItemFactoryHandler\LineItemFactoryInterface` and it needs to be registered in the DI container with the tag `shopware.cart.line_item.factory`.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleHandler">
-            <tag name="shopware.cart.line_item.factory" />
-        </service>
-    </services>
-</container>
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Swag\BasicExample\Service\ExampleHandler;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleHandler::class)
+        ->tag('shopware.cart.line_item.factory');
+};
 ```
 
 Let's first have a look at an example handler:
@@ -199,17 +199,21 @@ As you can see, this processor takes an "original cart" as an input and adds all
 
 Of course you can use processors to do much more than this. Have a look at [adding cart processors and collectors](./add-cart-processor-collector).
 
-Now register this processor in your `services.xml` like this:
+Now register this processor in your `services.php` like this:
 
-```html
-// <plugin root>/Resources/config/services.xml
-...
-<services>
-    ...
-    <service id="Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor">
-        <tag name="shopware.cart.processor" priority="4800"/>
-    </service>
-</services>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Swag\BasicExample\Core\Checkout\Cart\ExampleProcessor;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleProcessor::class)
+        ->tag('shopware.cart.processor', ['priority' => 4800]);
+};
 ```
 
 And that's it. You should now be able to create line items of type `example`.

@@ -83,21 +83,21 @@ class TaxProvider extends AbstractTaxProvider
 
 ## Registering the tax provider in the DI container
 
-After you have created your tax provider, you need to register it in the DI container. To do so, you need to create a new service in the `services.xml` file and tag the service as `shopware.tax.provider`.
+After you have created your tax provider, you need to register it in the DI container. To do so, you need to create a new service in the `services.php` file and tag the service as `shopware.tax.provider`.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Swag\BasicExample\Checkout\Cart\Tax\TaxProvider;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Checkout\Cart\Tax\TaxProvider">
-            <tag name="shopware.tax.provider" />
-        </service>
-    </services>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(TaxProvider::class)
+        ->tag('shopware.tax.provider');
+};
 ```
 
 ## Migrate your tax provider to the database

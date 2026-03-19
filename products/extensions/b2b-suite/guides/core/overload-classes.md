@@ -13,67 +13,84 @@ nav:
 
 To add new functionality or overload existing classes to change functionality, the B2B Suite uses the [Dependency Injection](../../../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection) as an extension system instead of events and hooks, which Shopware uses.
 
-### How does a services.xml look like
+### How does a services.php look like
 
-In the release package, our service.xml looks like this:
+In the release package, our services.php looks like this:
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <parameters>
-        <parameter key="b2b_role.repository_class">Shopware\B2B\Role\Framework\RoleRepository</parameter>
-        [...]
-    </parameters>
-    <services>
-        <service id="b2b_role.repository_abstract" abstract="true">
-            <argument type="service" id="dbal_connection"/>
-            <argument type="service" id="b2b_common.repository_dbal_helper"/>
-        </service>
-        [...]
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-        <service id="b2b_role.repository" class="%b2b_role.repository_class%" parent="b2b_role.repository_abstract"/>
-        [...]
-    </services>
-</container>
+use Shopware\B2B\Role\Framework\RoleRepository;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+    $parameters = $configurator->parameters();
+
+    $parameters->set('b2b_role.repository_class', RoleRepository::class);
+
+    $services->set('b2b_role.repository_abstract')
+        ->abstract(true)
+        ->args([
+            service('dbal_connection'),
+            service('b2b_common.repository_dbal_helper'),
+        ]);
+    // [...]
+
+    $services->set('b2b_role.repository', '%b2b_role.repository_class%')
+        ->parent('b2b_role.repository_abstract');
+    // [...]
+};
 ```
 
 For development (GitHub), it looks like this:
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="b2b_role.repository" class="Shopware\B2B\Role\Framework\RoleRepository">
-            <argument type="service" id="dbal_connection"/>
-            <argument type="service" id="b2b_common.repository_dbal_helper"/>
-        </service>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-        <service id="b2b_role.grid_helper" class="Shopware\B2B\Common\Controller\GridHelper">
-            <argument type="service" id="b2b_role.repository"/>
-        </service>
+use Shopware\B2B\Role\Framework\RoleRepository;
+use Shopware\B2B\Common\Controller\GridHelper;
+use Shopware\B2B\Role\Framework\RoleCrudService;
+use Shopware\B2B\Role\Framework\RoleValidationService;
+use Shopware\B2B\Role\Framework\AclRouteAclTable;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-        <service id="b2b_role.crud_service" class="Shopware\B2B\Role\Framework\RoleCrudService">
-            <argument type="service" id="b2b_role.repository"/>
-            <argument type="service" id="b2b_role.validation_service"/>
-        </service>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
-        <service id="b2b_role.validation_service" class="Shopware\B2B\Role\Framework\RoleValidationService">
-            <argument type="service" id="b2b_common.validation_builder"/>
-            <argument type="service" id="validator"/>
-        </service>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
 
-        <service id="b2b_role.acl_route_table" class="Shopware\B2B\Role\Framework\AclRouteAclTable">
-            <tag name="b2b_acl.table"/>
-        </service>
-    </services>
-</container>
+    $services->set('b2b_role.repository', RoleRepository::class)
+        ->args([
+            service('dbal_connection'),
+            service('b2b_common.repository_dbal_helper'),
+        ]);
+
+    $services->set('b2b_role.grid_helper', GridHelper::class)
+        ->args([service('b2b_role.repository')]);
+
+    $services->set('b2b_role.crud_service', RoleCrudService::class)
+        ->args([
+            service('b2b_role.repository'),
+            service('b2b_role.validation_service'),
+        ]);
+
+    $services->set('b2b_role.validation_service', RoleValidationService::class)
+        ->args([
+            service('b2b_common.validation_builder'),
+            service('validator'),
+        ]);
+
+    $services->set('b2b_role.acl_route_table', AclRouteAclTable::class)
+        ->tag('b2b_acl.table');
+};
 ```
 
-We generate the new services.xml files for our package automatically.
+We generate the new services.php files for our package automatically.
 
 ### How do I use it
 
@@ -83,18 +100,23 @@ You only have to change the parameter or overload the service id.
 
 Your service file could look like this:
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="b2b_role.repository" class="Your/Class" parent="b2b_role.repository_abstract">
-            <argument id="Your/own/class" type="service"/>
-        </service>
-        [...]
-    </services>
-</container>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Your\Own\YourClass;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set('b2b_role.repository', YourClass::class)
+        ->parent('b2b_role.repository_abstract')
+        ->args([service(YourClass::class)]);
+    // [...]
+};
 ```
 
 Just define a class with the same service id as our normal class and add our abstract class as the parent.
@@ -104,22 +126,22 @@ An example of your class could look like this:
 
 ```php
 <?php declare(strict_types=1);
-    
+
 [...]
-    
+
 class YourRoleRepository extends RoleRepository
 {
     public array $myService;
-        
+
     public function __construct()
     {
         $args = func_get_args();
-        
-        $this->myService = array_pop($args);       
-        
+
+        $this->myService = array_pop($args);
+
         parent::__construct(... $args);
     }
-         
+
     public function updateRole(RoleEntity $role): RoleEntity
     {
         // your stuff

@@ -161,3 +161,23 @@ redirects:
     guides/plugins/plugins/api/customer-specific-pricing.html: guides/plugins/plugins/integrations/commercial/customer-specific-pricing.html
     guides/plugins/plugins/api/multi-inventory.html: guides/plugins/plugins/integrations/commercial/multi-inventory.html
     plugins/plugins/api/index.html: concepts/api/index.html
+    guides/hosting/infrastructure/database-cluster.html: guides/hosting/infrastructure/database.html
+    resources/guidelines/code/cart-process.html: guides/plugins/plugins/architecture/cart-process.html
+    resources/guidelines/code/context-rules-rule-systems.html: guides/plugins/plugins/architecture/context-rules-rule-systems.html
+    resources/guidelines/code/dependency-injection-dependency-handling.html: guides/plugins/plugins/architecture/dependency-injection-dependency-handling.html
+    resources/guidelines/code/events.html: guides/plugins/plugins/architecture/events.html
+    resources/guidelines/code/pageloader.html: guides/plugins/plugins/architecture/pageloader.html
+    resources/references/administration-reference/directives.html: guides/plugins/plugins/administration/administration-reference/directives.html
+    resources/references/administration-reference/index.html: guides/plugins/plugins/administration/administration-reference/index.html
+    resources/references/administration-reference/mixins.html: guides/plugins/plugins/administration/administration-reference/mixins.html
+    resources/references/administration-reference/utils.html: guides/plugins/plugins/administration/administration-reference/utils.html
+    resources/references/api-reference/index.html: guides/development/integrations-api/index.html
+    resources/references/core-reference/dal-reference/aggregations-reference.html: guides/development/troubleshooting/dal-reference/aggregations-reference.html
+    resources/references/core-reference/dal-reference/fields-reference/enum-field.html: guides/development/troubleshooting/dal-reference/fields-reference/enum-field.html
+    resources/references/core-reference/dal-reference/fields-reference/index.html: guides/development/troubleshooting/dal-reference/fields-reference/index.html
+    resources/references/core-reference/dal-reference/filters-reference.html: guides/development/troubleshooting/dal-reference/filters-reference.html
+    resources/references/core-reference/dal-reference/flags-reference.html: guides/development/troubleshooting/dal-reference/flags-reference.html
+    resources/references/core-reference/dal-reference/index.html: guides/development/troubleshooting/dal-reference/index.html
+    resources/references/core-reference/flow-reference.html: guides/development/troubleshooting/flow-reference.html
+    resources/references/core-reference/rules-reference.html: guides/development/troubleshooting/rules-reference.html
+    guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html

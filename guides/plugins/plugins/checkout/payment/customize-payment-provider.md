@@ -24,7 +24,7 @@ First, we create a new class that extends from the provider we want to customise
 In this example we customise the class `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`.
 The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally an instance of `DebitPayment` that we want to decorate.
 
-After we've created our customized payment provider class, we have to register it to the DI-container via the `services.xml`.
+After we've created our customized payment provider class, we have to register it to the DI-container via the `services.php`.
 
 ::: code-group
 
@@ -66,20 +66,26 @@ class ExampleDebitPayment extends DebitPayment
 }
 ```
 
-```xml [services.xml]
-<?xml version="1.0" ?>
+```php [services.php]
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
+use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment;
+use Swag\BasicExample\Service\ExampleDebitPayment;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Service\ExampleDebitPayment" decorates="Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment">
-            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
-            <argument type="service" id="Swag\BasicExample\Service\ExampleDebitPayment.inner"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDebitPayment::class)
+        ->decorate(DebitPayment::class)
+        ->args([
+            service(OrderTransactionStateHandler::class),
+            service('.inner'),
+        ]);
+};
 ```
 
 :::

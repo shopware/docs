@@ -50,22 +50,21 @@ class ProductSubscriber implements EventSubscriberInterface
 }
 ```
 
-For this subscriber to work we need to register it in the service container via the `services.xml` file:
+For this subscriber to work we need to register it in the service container via the `services.php` file:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Swag\BasicExample\Subscriber\ProductSubscriber;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ProductSubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 Now our `ProductSubscriber` should be called every time a product is loaded, so we can resolve the custom field `custom_linked_product`.
@@ -92,7 +91,7 @@ class ProductSubscriber implements EventSubscriberInterface
     public function onProductLoaded(EntityLoadedEvent $event): void
     {
 
-        // loop through all loaded product      
+        // loop through all loaded product
         /** @var ProductEntity $productEntity */
         foreach ($event->getEntities() as $productEntity) {
             $customFields = $productEntity->getCustomFields();
@@ -116,23 +115,24 @@ Inside the `onProductLoaded` method we can get access to the loaded product enti
 
 But, how we can load the linked product by its `id` if the custom field was set? We have to inject the product repository to achieve it.
 
-First we update the `services.xml` and inject the product repository.
+First we update the `services.php` and inject the product repository.
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Swag\BasicExample\Subscriber\ProductSubscriber;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <argument type="service" id="product.repository"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ProductSubscriber::class)
+        ->args([service('product.repository')])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 Now we can use the product repository in our subscriber.
@@ -154,7 +154,7 @@ class ProductSubscriber implements EventSubscriberInterface
 {
     private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository) 
+    public function __construct(EntityRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }
@@ -184,7 +184,7 @@ class ProductSubscriber implements EventSubscriberInterface
 {
     private EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $productRepository) 
+    public function __construct(EntityRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }

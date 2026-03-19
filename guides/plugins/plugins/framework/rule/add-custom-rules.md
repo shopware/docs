@@ -106,7 +106,7 @@ As you can see, several methods are already implemented:
 * `match`: This checks whether the rule applies. Accordingly, a boolean is returned whether the rule applies or not.
 * `getConstraints`: This method returns an array of the possible fields and its types. You could also return the `NotBlank` class here, to require this field.
 
-After we've created our rule class, we have to register it in our `services.xml` and tag it as `shopware.rule.definition`.
+After we've created our rule class, we have to register it in our `services.php` and tag it as `shopware.rule.definition`.
 Please keep in mind: The variables to be used in the rule have to be 'protected' and not 'private', otherwise they won't work properly.
 
 ::: warning

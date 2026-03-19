@@ -133,27 +133,27 @@ class ExampleTranslationDefinition extends EntityTranslationDefinition
 
 As you can see, we've implemented a `StringField` for the `name` column, the other fields like the `language_id` will be automatically added by the `EntityTranslationDefinition` since they are base fields of it.
 
-All that's left to do now, is to introduce your `ExampleTranslationDefinition` to Shopware by registering your class in your `services.xml` file and by using the `shopware.entity.definition` tag, because Shopware 6 is looking for definitions this way. Note, that we have to register the translation after the entity we want to translate.
+All that's left to do now, is to introduce your `ExampleTranslationDefinition` to Shopware by registering your class in your `services.php` file and by using the `shopware.entity.definition` tag, because Shopware 6 is looking for definitions this way. Note, that we have to register the translation after the entity we want to translate.
 
-Here's the `services.xml` as it should look like:
+Here's the `services.php` as it should look like:
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\ExampleDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example" />
-        </service>
+use Swag\BasicExample\Core\Content\Example\ExampleDefinition;
+use Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation\ExampleTranslationDefinition;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-        <service id="Swag\BasicExample\Core\Content\Example\Aggregate\ExampleTranslation\ExampleTranslationDefinition">
-            <tag name="shopware.entity.definition" entity="swag_example_translation" />
-        </service>
-    </services>
-</container>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleDefinition::class)
+        ->tag('shopware.entity.definition', ['entity' => 'swag_example']);
+
+    $services->set(ExampleTranslationDefinition::class)
+        ->tag('shopware.entity.definition', ['entity' => 'swag_example_translation']);
+};
 ```
 
 ### Entity class
