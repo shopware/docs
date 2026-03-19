@@ -5,6 +5,7 @@ ACLs
 ADDR
 ADR
 ADRs
+AES
 AOF
 API's
 APIRequestContext
@@ -44,7 +45,6 @@ AdminWorker
 Adminer
 AdministrationNewField
 AdministrationNewModule
-AES
 Afile
 AfterLineItemAddedEvent
 AfterLineItemQuantityChangedEvent
@@ -435,8 +435,8 @@ FroshDevelopmentHelper
 FroshPlatformTemplateMail
 FroshTools
 Fullstack
-GCM
 GBP
+GCM
 GDPR
 GIFs
 GLB
@@ -647,6 +647,7 @@ Nullsafe
 Nuxt
 Nvidia
 OAuth
+OData
 OIDC
 OPENSEARCH
 ORM
@@ -873,6 +874,7 @@ SPAs
 SQS
 SSHes
 SSL
+SSO
 STP
 SVG
 SVGs
@@ -952,7 +954,6 @@ StorefrontController
 StorefrontPage
 StorefrontResponse
 Storer
-SSO
 StringField
 StringFields
 Struct
@@ -978,7 +979,6 @@ Symfony's
 SyncApi
 SynchronousPaymentHandlerInterface
 Synopsys
-OData
 TCP
 TLS
 TTL
@@ -1327,6 +1327,7 @@ declaratively
 decoratable
 decrementing
 decrypted
+deduplication
 deepCopyObject
 deepMergeObject
 defaultConfig
@@ -1583,6 +1584,7 @@ lifecylce
 lineItem
 lineItemId
 linter
+linters
 linux
 localVue
 localhost
