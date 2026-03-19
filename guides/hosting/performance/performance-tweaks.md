@@ -47,7 +47,7 @@ shopware:
 The HTTP cache will be invalidated in regular intervals, benefitting systems with a high update frequency for the inventory (products, categories).
 Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task.
 Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
-By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
+By default, the scheduled task will run every 5 minutes, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
 
 Information about which tags need to be invalidated is stored in the DB.
 However, especially in systems which have a high number of concurrent write requests, this can become a bottleneck, and at a certain load, deadlocks are inevitable.
