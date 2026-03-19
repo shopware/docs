@@ -134,4 +134,3 @@ This follows the [Console Do Not Track convention](https://consoledonottrack.com
 | **Delay** | None — telemetry runs in the background |
 | **Failure handling** | Silently fails if transmission is not possible |
 | **User identification** | Anonymized random identifiers, not linked to personal data |
-| **Third-party services** | None — data is sent directly to Shopware infrastructure |
