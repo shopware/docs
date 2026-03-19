@@ -35,7 +35,7 @@ All tools use the same telemetry infrastructure and respect the same opt-out mec
 
 ### How is data transmitted?
 
-Data is sent via UDP to `udp.usage.shopware.io:9000` (is operated in Europe Frankfurt). The telemetry logic runs in the background and will not delay command execution. When transmission fails (e.g. no internet connection), it fails quickly and silently.
+Data is sent via UDP to `udp.usage.shopware.io:9000`, which is operated in Frankfurt, Germany (EU). The telemetry logic runs in the background and will not delay command execution. When transmission fails (e.g. no internet connection), it fails quickly and silently.
 
 ## Deployment Helper
 
@@ -102,7 +102,7 @@ Shopware takes your privacy seriously and does **not** collect any sensitive inf
 - Environment variables
 - Stack traces or raw error logs
 - Secret values or API keys
-- Personal identifiable information of any kind
+- Personally identifiable information (PII) of any kind
 
 ## How can I configure telemetry?
 
@@ -122,7 +122,7 @@ Or for a single command:
 DO_NOT_TRACK=1 shopware-cli project create
 ```
 
-This follows the [CONVENTION.md](https://consoledonottrack.com/) standard used by many CLI tools.
+This follows the [Console Do Not Track convention](https://consoledonottrack.com/) standard used by many CLI tools.
 
 ## Data flow summary
 
