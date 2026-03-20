@@ -18,7 +18,7 @@ Creating a new component is very simple. All you need to do is create the corres
 
 The easiest way to define a new component is via a single template file, which is the common way for our Storefront Components. These are called anonymous components and all information for your component can directly be defined in the Twig template file.
 
-**Example Structure:**
+**Example Structure for Plugins:**
 
 ```Plaintext
 MyExtension/
@@ -30,15 +30,37 @@ MyExtension/
             Primary.html.twig
 ```
 
+**Example Structure for Apps:**
+
+```Plaintext
+MyExtension/
+    Resources/
+      views/
+        commponents/
+          Button/
+            Primary.html.twig
+```
+
 The directory and file structure of your component also defines the name of your component. Components from Shopware extensions are also automatically namespaced with the name of the extension (bundle). The shown example will create the component `MyExtension:Button:Primary`.
 
 There is also the option to name the template file `index.html.twig` to just use the directory name as the component name. This can be useful if you have a larger namespace with several sub-components, or you just want to avoid the nesting but still keep all files of your component in one place.
 
-**Example Structure:**
+**Example Structure for Plugins:**
 
 ```Plaintext
 MyExtension/
   src/
+    Resources/
+      views/
+        commponents/
+          Button/
+            index.html.twig
+```
+
+**Example Structure for Apps:**
+
+```Plaintext
+MyExtension/
     Resources/
       views/
         commponents/
@@ -89,7 +111,7 @@ The second, more advanced way for creating a component is by PHP class. In Shopw
 
 **Note:** As this method requires a PHP file, it is only available for [Shopware Plugins](../../guides/plugins/index.md), but not for Apps. If you want to create components in your App, use anonymous components instead.
 
-**Example Structure:**
+**Example Structure for Plugins:**
 
 ```Plaintext
 MyPlugin/
@@ -125,6 +147,21 @@ class Primary
 }
 ```
 
+The component class must be registered as a service in your plugin's `services.xml` with `autoconfigure="true"`. This lets Symfony read the `#[AsTwigComponent]` attribute and wire up everything — including public property exposure — automatically. Without this registration the PHP class is unknown to the container and Twig silently falls back to an anonymous (template-only) component.
+
+```XML
+<!-- src/Resources/config/services.xml -->
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="MyPlugin\Resources\views\components\Button\Primary" autoconfigure="true" />
+    </services>
+</container>
+```
+
 This creates the same component as the example in the anonymous components section, but here the component's properties are defined in the PHP class as public attributes.
 
 To learn what kind of possibilities the PHP implementation of your component offers, you can just refer to the [official documentation](https://symfony.com/bundles/ux-twig-component/current/index.html).
@@ -133,11 +170,23 @@ To learn what kind of possibilities the PHP implementation of your component off
 
 By default, there is no corresponding style system in Twig components, but we wanted to provide a seamless component system, like other modern frontend frameworks. Therefore, we added automated style handling to the Storefront Components, which works similarly to other theme styles in Shopware. All you need to do is create a matching SCSS file for your component, which follows the same naming pattern.
 
-**Example Structure:**
+**Example Structure for Plugins:**
 
 ```Plaintext
 MyExtension/
   src/
+    Resources/
+      views/
+        commponents/
+          Button/
+            Primary.html.twig
+            Primary.scss
+```
+
+**Example Structure for Apps:**
+
+```Plaintext
+MyExtension/
     Resources/
       views/
         commponents/
@@ -206,9 +255,9 @@ With this method, you can add only specific component styles in a defined order 
 
 ## Adding Component JavaScript
 
-For Twig components that need to implement interactive functionality via JavaScript, we introduce a corresponding JavaScript component system that can be seen as the successor to the former JS plugin system. Some parts will seem familiar if you already know the plugin system, but others have been changed and improved.
+For Twig components that need to implement interactive functionality via JavaScript, we introduce a corresponding JavaScript component system that can be seen as the successor to the former JS plugin system. Some parts will seem familiar if you already known the JS plugin system, but others have been changed and improved.
 
-### Major differences between plugin and component system
+### Major differences between JS plugin and component system
 
 1. **Automatic initialization**
     If the component is implemented properly it will automatically be initialized on the corresponding elements. Even if the DOM tree changes and elements are added or removed, the component will automatically be initialized on added elements or destroyed for removed elements. No more manual re-initialization of plugins that have to work in conjunction after dynamic DOM changes.
@@ -226,11 +275,24 @@ For Twig components that need to implement interactive functionality via JavaScr
 
 Similar to other component files, you can place the JavaScript file in the directory of your component.
 
-**Example Structure:**
+**Example Structure for Plugins:**
 
 ```Plaintext
 MyExtension/
   src/
+    Resources/
+      views/
+        commponents/
+          Button/
+            Primary.html.twig
+            Primary.scss
+            Primary.js
+```
+
+**Example Structure for Apps:**
+
+```Plaintext
+MyExtension/
     Resources/
       views/
         commponents/
@@ -522,11 +584,25 @@ class ButtonPrimary extends ShopwareComponent {
 
 There is support for a component library based on Storybook. This feature is still experimental and will be improved in the future. If you want to provide component documentation for the library, you can place a story definition in your component directory.
 
-**Example Structure:**
+**Example Structure for Plugins:**
 
 ```Plaintext
 MyExtension/
   src/
+    Resources/
+      views/
+        commponents/
+          Button/
+            Primary.html.twig
+            Primary.scss
+            Primary.js
+            Primary.stories.json
+```
+
+**Example Structure for Apps:**
+
+```Plaintext
+MyExtension/
     Resources/
       views/
         commponents/
