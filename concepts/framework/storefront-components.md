@@ -107,7 +107,7 @@ This is just a very basic example of a component and there are a lot of more fea
 
 ### 2. PHP Class
 
-The second, more advanced way for creating a component is by PHP class. In Shopware we decided that these PHP classes should be placed right where your component template and other files of your component are located. This provides the experience of a real component system, and you have all component-related files in one place. Therefore you can simply add the PHP class to the described directory structure.
+The second, more advanced way for creating a component is by PHP class. In Shopware, we decided that these PHP classes should be placed right where your component template and other files of your component are located. This provides the experience of a real component system, and you have all component-related files in one place. Therefore, you can simply add the PHP class to the described directory structure.
 
 **Note:** As this method requires a PHP file, it is only available for [Shopware Plugins](../../guides/plugins/index.md), but not for Apps. If you want to create components in your App, use anonymous components instead.
 
@@ -255,7 +255,7 @@ With this method, you can add only specific component styles in a defined order 
 
 ## Adding Component JavaScript
 
-For Twig components that need to implement interactive functionality via JavaScript, we introduce a corresponding JavaScript component system that can be seen as the successor to the former JS plugin system. Some parts will seem familiar if you already known the JS plugin system, but others have been changed and improved.
+For Twig components that need to implement interactive functionality via JavaScript, we introduce a corresponding JavaScript component system that can be seen as the successor to the former JS plugin system. Some parts will seem familiar if you already know the JS plugin system, but others have been changed and improved.
 
 ### Major differences between JS plugin and component system
 
@@ -302,7 +302,7 @@ MyExtension/
             Primary.js
 ```
 
-Also, JavaScript files of components are only made available if the theme references the file in the script configuration. Other then the style files, the script files are not compiled into the main script file of the theme, but are separately loaded via **native ES module loading**. Shopware creates an import map for all referenced component script files and the corresponding files are loaded dynamically, only if the component is rendered on the actual page. But for component script files to be added to the import map, they need to be referenced in the theme script configuration. Again, the global alias or single-file references are possible.
+Also, JavaScript files of components are only made available if the theme references the file in the script configuration. Other than the style files, the script files are not compiled into the main script file of the theme, but are separately loaded via **native ES module loading**. Shopware creates an import map for all referenced component script files and the corresponding files are loaded dynamically, only if the component is rendered on the actual page. But for component script files to be added to the import map, they need to be referenced in the theme script configuration. Again, the global alias or single-file references are possible.
 
 **Global Component Script Reference:**
 
@@ -522,7 +522,7 @@ window.Shopware.intercept('BuyButton:PreSubmit', (data) => {
 
 Don't forget to return the data again, so the component logic can work with it.
 
-There can be multiple subscribers to a single event. They will all be executed in the order as they are registered. You can change the order by passing a priority parameter as an optional third option, when registering an event. By default all subscribers have the priority `0`. The higher the priority the earlier the subscriber is called in the chain. Also negative values are possible to move a subscriber further down the chain.
+There can be multiple subscribers to a single event. They will all be executed in the order as they are registered. You can change the order by passing a priority parameter as an optional third option, when registering an event. By default, all subscribers have the priority `0`. The higher the priority the earlier the subscriber is called in the chain. Also negative values are possible to move a subscriber further down the chain.
 
 ```JavaScript
 // Another interceptor to the buy button event
