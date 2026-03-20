@@ -1,6 +1,6 @@
 # Shopware Tools Telemetry
 
-Shopware gathers non-user identifying telemetry data about usage of its CLI tools to improve product quality and developer experience.
+Shopware gathers limited telemetry about usage of its open-source developer tools to improve product quality and user experience. This telemetry is designed not to include personal data, secrets, file contents, or credentials.
 
 You can [opt out of sharing telemetry data](#how-can-i-configure-telemetry) at any time.
 
@@ -10,7 +10,7 @@ Telemetry allows us to better identify bugs and gain visibility on usage of feat
 
 ## Which tools collect telemetry data?
 
-The following Shopware tools collect anonymous usage data:
+The following Shopware tools collect limited usage data:
 
 - [Shopware CLI](#shopware-cli)
 - [Deployment Helper](#deployment-helper)
@@ -94,7 +94,7 @@ Data is sent via UDP to `udp.usage.shopware.io:9000`. The session-based identifi
 
 ## What happens with sensitive data?
 
-Shopware takes your privacy seriously and does **not** collect any sensitive information including:
+Shopware takes your privacy seriously and has designed telemetry to avoid directly identifying users or collecting sensitive information including:
 
 - Usernames or email addresses
 - File paths or file contents
