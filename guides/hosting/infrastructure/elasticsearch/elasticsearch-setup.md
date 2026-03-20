@@ -198,7 +198,7 @@ Shopware 6.4.19.0 and above supports "AND/OR Search" functionality in Administra
 Add the below config variables to set up Elasticsearch for Administration:
 
 ```bash
-ADMIN_OPENSEARCH_URL=YOUR OPEN SEARCH URL
+ADMIN_OPENSEARCH_URL=YOUR OPENSEARCH URL
 SHOPWARE_ADMIN_ES_ENABLED=1
 SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
 SHOPWARE_ADMIN_ES_INDEXING_BATCH_SIZE=1000
@@ -219,6 +219,10 @@ Advanced admin users can refer to [elasticsearch reference guide](https://www.el
 :::
 
 ### Apply OpenSearch globally in Admin API
+
+::: info
+This feature requires Administration OpenSearch to be configured first. Make sure `ADMIN_OPENSEARCH_URL` is set and `SHOPWARE_ADMIN_ES_ENABLED=1` is enabled before proceeding.
+:::
 
 To apply OpenSearch globally for supported Admin API searches (for example listings, filtering, and search in administration modules), enable the feature flag below:
 

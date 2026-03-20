@@ -88,9 +88,9 @@ Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scen
 
 Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
 
-## Elasticsearch/Opensearch
+## Elasticsearch/OpenSearch
 
-Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server.
+Elasticsearch/OpenSearch is a great tool to reduce the load of the MySQL server.
 Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable.
@@ -99,7 +99,7 @@ In large projects, the failure of Elasticsearch leads to the MySQL server being 
 
 If you use Elasticsearch/OpenSearch for Administration as well, you can set `SHOPWARE_ADMIN_ES_THROW_EXCEPTION=1` in local development to debug admin search issues more easily.
 
-To apply OpenSearch globally for supported Admin API searches and listings in Administration, enable `ENABLE_OPENSEARCH_FOR_ADMIN_API=1` and reindex admin indices with `bin/console es:admin:index`.
+To apply OpenSearch globally for supported Admin API searches and listings in Administration, first ensure that Administration OpenSearch is configured (`ADMIN_OPENSEARCH_URL` is set and `SHOPWARE_ADMIN_ES_ENABLED=1`). Then enable `ENABLE_OPENSEARCH_FOR_ADMIN_API=1` and reindex admin indices with `bin/console es:admin:index`.
 
 ::: info
 Supported since Shopware `6.7.9.0`. This is an experimental feature. For implementation details and supported entities, refer to the ADR [Apply OpenSearch globally for admin-api](../../../resources/references/adr/2026-01-28-apply-opensearch-in-admin-api.md).
