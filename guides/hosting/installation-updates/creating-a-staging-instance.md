@@ -81,7 +81,7 @@ If you don't use the included Staging Mode, make sure to disable email sending i
 
 ### 4. Activating staging mode
 
-After the database is imported and configured, run staging mode on **this** staging instance. It updates the database and related state so the copy is safer to use for testing (see [Staging mode: scope and limitations](#staging-mode-scope-and-limitations)).
+After the database is imported and configured, activate staging mode by running the `system:setup:staging` command on this staging instance. It updates the database and related state so the copy is safer to use for testing (see [Staging mode: scope and limitations](#staging-mode-scope-and-limitations)).
 
 ```bash
 ./bin/console system:setup:staging
