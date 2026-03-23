@@ -11,14 +11,14 @@ Use a staging copy of your shop to test changes, updates, and new features witho
 
 ## Staging environment vs staging mode
 
-- **Staging environment** — A non-production copy of the shop: separate hosting, domain, database, and (where applicable) its own Redis, ElasticSearch/OpenSearch index prefix, and `.env` settings. Building this environment is deployment and operations work on your side.
+- **Staging environment** — A non-production copy of the shop: separate hosting, domain, database, and (where applicable) its own Redis, ElasticSearch/OpenSearch index prefix, and `.env` settings. Building this environment is deployment and operation work on your side.
 - **Staging mode** — A Shopware mechanism you activate with `./bin/console system:setup:staging` (and optional settings in `config/packages/staging.yaml`). It adjusts data and behavior **inside** that instance so it does not email customers, leak app connections to production, keep live sales channel URLs, and so on.
 
 Creating the environment is your deployment work; activating staging mode is a command you run on that environment after the database is in place.
 
 ## Overview
 
-**Phase 1 – Staging environment** (steps 1–3 in [Creating the staging instance](#creating-the-staging-instance)): provision a separate Shopware installation, duplicate the live database into it, and point the instance at staging-specific configuration. Staging mode does not clone servers or databases—this phase is entirely separate from the console command.
+**Phase 1 – Staging environment** (steps 1–3 in [Creating the staging instance](#creating-the-staging-instance)): provision a separate Shopware installation, duplicate the live database into it, and point the instance at a staging-specific configuration. Staging mode does not clone servers or databases—this phase is entirely separate from the console command.
 
 **Phase 2 – Staging mode** (step 4): run `system:setup:staging` on the staging instance. Optionally tune behavior in [`staging.yaml`](#configuring-staging-mode).
 
@@ -81,7 +81,7 @@ If you don't use the included Staging Mode, make sure to disable email sending i
 
 ### 4. Activating staging mode
 
-After the database is imported and configured, activate staging mode by running the `system:setup:staging` command on this staging instance. It updates the database and related state so the copy is safer to use for testing (see [Staging mode: scope and limitations](#staging-mode-scope-and-limitations)).
+After the database is imported and configured, activate staging mode by running the `system:setup:staging` command on this staging instance. It updates the database and related state, so the copy is safer to use for testing (see [Staging mode: scope and limitations](#staging-mode-scope-and-limitations)).
 
 ```bash
 ./bin/console system:setup:staging
@@ -91,17 +91,17 @@ This command modifies the database for staging use. Pass `--no-interaction --for
 
 ## Staging mode: scope and limitations
 
-| Category | Behavior |
-|----------|----------|
-| **What the staging mode does** | Deletes all apps with active connections to external services and their integrations |
-|  | Resets the instance ID used for app registration |
-|  | Disables email sending |
-|  | Rewrites URLs to the staging domain (if configured) |
-|  | Verifies that ElasticSearch/OpenSearch indices do not exist |
-|  | Displays a banner in the administration and storefront to indicate staging mode |
-| **What the staging mode does not do** | Does not duplicate the current installation |
-|  | Does not copy the database or files |
-|  | Does not modify the live environment |
+| Category                              | Behavior                                                                             |
+|---------------------------------------|--------------------------------------------------------------------------------------|
+| **What the staging mode does**        | Deletes all apps with active connections to external services and their integrations |
+|                                       | Resets the instance ID used for app registration                                     |
+|                                       | Disables email sending                                                               |
+|                                       | Rewrites URLs to the staging domain (if configured)                                  |
+|                                       | Verifies that ElasticSearch/OpenSearch indices do not exist                          |
+|                                       | Displays a banner in the administration and storefront to indicate staging mode      |
+| **What the staging mode does not do** | Does not duplicate the current installation                                          |
+|                                       | Does not copy the database or files                                                  |
+|                                       | Does not modify the live environment                                                 |
 
 ### Configuring staging mode
 
