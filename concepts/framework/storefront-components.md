@@ -147,19 +147,22 @@ class Primary
 }
 ```
 
-The component class must be registered as a service in your plugin's `services.xml` with `autoconfigure="true"`. This lets Symfony read the `#[AsTwigComponent]` attribute and wire up everything — including public property exposure — automatically. Without this registration the PHP class is unknown to the container, and Twig silently falls back to an anonymous (template-only) component.
+The component class must be registered as a service in your plugin's service configuration with `autoconfigure`. This lets Symfony read the `#[AsTwigComponent]` attribute and wire up everything — including public property exposure — automatically. Without this registration the PHP class is unknown to the container, and Twig silently falls back to an anonymous (template-only) component.
 
-```XML
-<!-- src/Resources/config/services.xml -->
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```PHP
+// src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="MyPlugin\Resources\views\components\Button\Primary" autoconfigure="true" />
-    </services>
-</container>
+use MyPlugin\Resources\views\components\Button\Primary;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $services = $containerConfigurator->services();
+
+    $services->set(Primary::class)
+        ->autoconfigure(true);
+};
+
 ```
 
 This creates the same component as the example in the anonymous components section, but here the component's properties are defined in the PHP class as public attributes.
