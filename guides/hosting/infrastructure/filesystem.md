@@ -221,6 +221,114 @@ shopware:
 
 If your S3 provider does not use buckets as subdomain like Minio in default configuration, you need to set `use_path_style_endpoint` to `true` inside `config`.
 
+#### Custom HTTP client for S3
+
+By default, the underlying AsyncAws S3 client creates its own HTTP client internally, which includes a `RetryableHttpClient` with an AWS-specific retry strategy. This handles transient errors like throttling (HTTP 429), server errors (HTTP 5xx), and other AWS-specific error codes automatically.
+
+If you need to customize the HTTP behavior for S3 operations (e.g., timeouts, HTTP protocol version, or proxy settings), you can register a service with the ID `shopware.filesystem.s3.client`. When this service exists, Shopware injects it into both the filesystem adapter and pre-signed URL generation.
+
+::: info
+When you provide a custom HTTP client, AsyncAws will **not** wrap it in its own `RetryableHttpClient`. If you need retry behavior, you must configure it yourself as shown below.
+:::
+
+**Simple configuration** (custom timeouts, no retry handling):
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    http_client:
+        scoped_clients:
+            s3.http_client:
+                base_uri: '{your-s3-endpoint}'
+                timeout: 30.0
+                http_version: '1.1'
+```
+
+```php
+// config/services.php
+<?php declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->alias('shopware.filesystem.s3.client', 's3.http_client');
+};
+```
+
+**Recommended configuration** (custom settings with AWS retry support):
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    http_client:
+        scoped_clients:
+            s3.http_client:
+                base_uri: '{your-s3-endpoint}'
+                timeout: 30.0
+                http_version: '1.1'
+```
+
+```php
+// config/services.php
+<?php declare(strict_types=1);
+
+use AsyncAws\Core\HttpClient\AwsRetryStrategy;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\HttpClient\RetryableHttpClient;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(AwsRetryStrategy::class);
+
+    $services->set('shopware.filesystem.s3.client', RetryableHttpClient::class)
+        ->args([
+            service('s3.http_client'),
+            service(AwsRetryStrategy::class),
+            3, // max retries
+        ]);
+};
+```
+
+This wraps your scoped client in a `RetryableHttpClient` with the same `AwsRetryStrategy` that AsyncAws uses by default, preserving retry behavior for AWS-specific transient errors while allowing you to control timeouts, HTTP version, and other transport-level settings.
+
+**Without scoped clients** (standalone service definition with retry support):
+
+```php
+// config/services.php
+<?php declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpClient\RetryableHttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set('s3.http_client', HttpClientInterface::class)
+        ->factory([HttpClient::class, 'create'])
+        ->args([
+            ['timeout' => 30],
+        ]);
+
+    $services->set('shopware.filesystem.s3.client', RetryableHttpClient::class)
+        ->args([
+            service('s3.http_client'),
+            null, // default retry strategy
+            3, // max retries
+        ]);
+};
+```
+
+This creates a plain HTTP client via `HttpClient::create()` with custom options and wraps it in a `RetryableHttpClient` with the default retry strategy.
+
 ### Google Cloud Platform
 
 In order to use the Google Cloud Platform adapter you need to install the `league/flysystem-google-cloud-storage` package.
