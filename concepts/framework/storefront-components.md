@@ -506,7 +506,7 @@ export default class BuyButton extends ShopwareComponent {
 
         window.Shopware.emit('BuyButton:Submit', requestUrl, formData);
 
-        window.Shopware.callPluginMethod('OffCanvasCart', 'openOffCanvas', requestUrl, formData);
+        window.PluginManager.callPluginMethod('OffCanvasCart', 'openOffCanvas', requestUrl, formData);
     }
 }
 ```
