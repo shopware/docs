@@ -21,39 +21,45 @@ We will extend the product extension with an `OneToOneAssociationField` and `One
 To extend the elasticsearch definition we need to extend the product definition first and add the subscriber. This is described in the above mentioned articles.
 Here we show you how this could look like in the end.
 
-The service.xml with all needed definitions.
+The services.php with all needed definitions.
 
-```xml
-// <plugin root>/src/Core/Content/DependencyInjection/product.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Core/Content/DependencyInjection/product.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Doctrine\DBAL\Connection;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Swag\BasicExample\Extension\Content\Product\CustomExtension;
+use Swag\BasicExample\Extension\Content\Product\OneToOneExampleExtensionDefinition;
+use Swag\BasicExample\Extension\Content\Product\OneToManyExampleExtensionDefinition;
+use Swag\BasicExample\Subscriber\ProductSubscriber;
+use Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator;
+use Shopware\Elasticsearch\Product\ElasticsearchProductDefinition;
 
-    <services>
-        <service id="Swag\BasicExample\Extension\Content\Product\CustomExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
-        <service id="Swag\BasicExample\Extension\Content\Product\OneToOneExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="one_to_one_swag_example_extension" />
-        </service>
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
 
-        <service id="Swag\BasicExample\Extension\Content\Product\OneToManyExampleExtensionDefinition">
-            <tag name="shopware.entity.definition" entity="one_to_many_swag_example_extension" />
-        </service>
+    $services->set(CustomExtension::class)
+        ->tag('shopware.entity.extension');
 
-        <service id="Swag\BasicExample\Subscriber\ProductSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
+    $services->set(OneToOneExampleExtensionDefinition::class)
+        ->tag('shopware.entity.definition', ['entity' => 'one_to_one_swag_example_extension']);
 
-        <service id="Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator" decorates="Shopware\Elasticsearch\Product\ElasticsearchProductDefinition">
-            <argument type="service" id="Swag\BasicExample\Elasticsearch\Product\MyProductEsDecorator.inner"/>
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-        </service>
-    </services>
-</container>
+    $services->set(OneToManyExampleExtensionDefinition::class)
+        ->tag('shopware.entity.definition', ['entity' => 'one_to_many_swag_example_extension']);
+
+    $services->set(ProductSubscriber::class)
+        ->tag('kernel.event_subscriber');
+
+    $services->set(MyProductEsDecorator::class)
+        ->decorate(ElasticsearchProductDefinition::class)
+        ->args([
+            service(MyProductEsDecorator::class . '.inner'),
+            service(Connection::class),
+        ]);
+};
 ```
 
 The product extension `CustomExtension.php` provides the extensions to the product entity.

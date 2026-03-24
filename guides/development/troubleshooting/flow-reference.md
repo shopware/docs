@@ -8,7 +8,7 @@ nav:
 # Flow Reference
 
 ::: info
-  This functionality is available starting with Shopware 6.4.6.0
+ This functionality is available starting with Shopware 6.4.6.0
 :::
 
 | Event                                                          | Description                                                                |
@@ -16,25 +16,25 @@ nav:
 | checkout.customer.before.login                                 | Triggers as soon as a customer logs in                                     |
 | checkout.customer.deleted                                      | Triggers if a customer gets deleted                                        |
 | checkout.customer.double_opt_in_guest_order                    | Triggers as soon as double opt-in is accepted in a guest order             |
-| checkout.customer.double_opt_in_registration                   | Triggers when a customer commits to his registration via double opt-in     |
-| checkout.customer.guest_register                               | Triggers when a new guest customer was registered                          |
+| checkout.customer.double_opt_in_registration                   | Triggers when a customer commits to their registration via double opt-in     |
+| checkout.customer.guest_register                               | Triggers when a new guest customer is registered                          |
 | checkout.customer.login                                        | Triggers as soon as a customer logs in                                     |
 | checkout.customer.logout                                       | Triggers when a customer logs out                                          |
 | checkout.customer.register                                     | Triggers when a new customer was registered                                |
-| checkout.order.payment_method.changed                          | Triggers when a user changed payment method during checkout process        |
+| checkout.order.payment_method.changed                          | Triggers when a user changes payment method during checkout process        |
 | checkout.order.placed                                          | Triggers when an order is placed                                           |
-| contact_form.send                                              | Triggers when a contact form is send                                       |
-| customer.group.registration.accepted                           | Triggers when admin accepted a user who register to join a customer group  |
-| customer.group.registration.declined                           | Triggers when admin declined a user who register to join a customer group  |
-| customer.recovery.request                                      | Triggers when a customer recovers his password                             |
+| contact_form.send                                              | Triggers when a contact form is sent |
+| customer.group.registration.accepted                           | Triggers when an admin accepts a user who registers to join a customer group  |
+| customer.group.registration.declined                           | Triggers when an admin declined a user who registered to join a customer group  |
+| customer.recovery.request                                      | Triggers when a customer recovers their password                             |
 | mail.after.create.message                                      | Triggers when a mail message/ content is created                           |
-| mail.before.send                                               | Triggers before a mail is send                                             |
-| mail.sent                                                      | Triggers when a mail is send from Shopware                                 |
-| newsletter.confirm                                             | Triggers when newsletter was confirmed by a user                           |
-| newsletter.register                                            | Triggers when user registered to subscribe to a sales channel newsletter   |
-| newsletter.unsubscribe                                         | Triggers when user unsubscribe from a sales channel newsletter             |
+| mail.before.send                                               | Triggers before a mail is sent |
+| mail.sent                                                      | Triggers when a mail is sent from Shopware                                 |
+| newsletter.confirm                                             | Triggers when a user confirmed the newsletter |
+| newsletter.register                                            | Triggers when a user registers to subscribe to a sales channel newsletter   |
+| newsletter.unsubscribe                                         | Triggers when a user unsubscribes from a sales channel newsletter             |
 | product_export.log                                             | Triggers when product export is executed                                   |
-| review_form.send                                               | Triggers when a product review form is submitted by a customer             |
+| review_form.send                                               | Triggers when a customer submits a product review form |
 | state_enter.order.state.cancelled                              | Triggers when an order enters status "Cancelled"                           |
 | state_enter.order.state.completed                              | Triggers when an order enters status "Completed"                           |
 | state_enter.order.state.in_progress                            | Triggers when an order enters status "In progress"                         |
@@ -95,7 +95,7 @@ nav:
 | state_leave.order_transaction_capture_refund.state.failed      | Triggers when a capture refund leaves status "Failed"                      |
 | state_leave.order_transaction_capture_refund.state.in_progress | Triggers when a capture refund leaves "In progress" status                 |
 | state_leave.order_transaction_capture_refund.state.open        | Triggers when a capture refund leaves status "Open"                        |
-| user.recovery.request                                          | Triggers when a user created a password recovery request at admin          |
+| user.recovery.request                                          | Triggers when a user creates a password recovery request at the admin          |
 
 ## B2B
 

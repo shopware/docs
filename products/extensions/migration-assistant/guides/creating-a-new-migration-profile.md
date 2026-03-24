@@ -77,12 +77,11 @@ class OwnProfile implements ProfileInterface
 }
 ```
 
-The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `service.xml` with `shopware.migration.profile`:
+The profile itself does not contain any logic and is used to bundle the executing classes. To use this profile, you have to register and tag it in the `services.php` with `shopware.migration.profile`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile">
-    <tag name="shopware.migration.profile"/>
-</service>
+```php
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\OwnProfile::class)
+    ->tag('shopware.migration.profile');
 ```
 
 ## Creating a gateway
@@ -200,14 +199,17 @@ class OwnLocaleGateway implements GatewayInterface
 }
 ```
 
-As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `service.xml` and tag it with `shopware.migration.gateway`:
+As you have seen above, the gateway uses the `ConnectionFactory` to test the connection to the source system. You can also implement your own way to check this, but using this factory is the simplest way for a gateway to connect to a local database. Like the profile, you have to register the new gateway in the `services.php` and tag it with `shopware.migration.gateway`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry"/>
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
-    <tag name="shopware.migration.gateway"/>
-</service>
+```php
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\OwnLocaleGateway::class)
+    ->args([
+        service(SwagMigrationAssistant\Migration\Gateway\Reader\ReaderRegistry::class),
+        service(SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory::class),
+    ])
+    ->tag('shopware.migration.gateway');
 ```
 
 ## Creating a credentials page
@@ -475,16 +477,14 @@ class ProductDataSelection implements DataSelectionInterface
 The order in the `getDataSets` array is important as it determines the order in which the entities are processed. Because of that, the manufacturers, for example, have to be positioned before the products so that the products can use those later on.
 :::
 
-To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.xml` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
+To see the created `ProductDataSelection` in the Administration, you have to register it both in the `services.php` and tag them with `shopware.migration.data_selection` and `shopware.migration.data_set`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection">
-    <tag name="shopware.migration.data_selection"/>
-</service>
+```php
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\ProductDataSelection::class)
+    ->tag('shopware.migration.data_selection');
 
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet\ProductDataSet">
-    <tag name="shopware.migration.data_set"/>
-</service>
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\DataSelection\DataSet\ProductDataSet::class)
+    ->tag('shopware.migration.data_set');
 ```
 
 ## Creating a product gateway reader
@@ -568,14 +568,15 @@ class ProductReader extends AbstractReader
 }
 ```
 
-Then you have to register this in `services.xml` and tag it with `shopware.migration.reader`:
+Then you have to register this in `services.php` and tag it with `shopware.migration.reader`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader"
-    parent="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader">
-    <argument type="service" id="SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory"/>
-    <tag name="shopware.migration.reader"/>
-</service>
+```php
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\Gateway\Reader\ProductReader::class)
+    ->parent(SwagMigrationAssistant\Profile\Shopware\Gateway\Local\Reader\AbstractReader::class)
+    ->args([
+        service(SwagMigrationAssistant\Profile\Shopware\Gateway\Connection\ConnectionFactory::class),
+    ])
+    ->tag('shopware.migration.reader');
 ```
 
 Once the `ProductReader` is created and registered, you can use it in the `read` method of the `OwnLocaleGateway`:
@@ -838,14 +839,15 @@ class ProductConverter extends ShopwareConverter
 
 If you don't know which properties or requirements your entity has in Shopware 6, you may check the corresponding `EntityDefinition`. For this example, look at the `ProductEntityDefinition` to know how to convert the data exactly.
 
-To use this converter, you must register it in the `services.xml`:
+To use this converter, you must register it in the `services.php`:
 
-```html
-<service id="SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter">
-    <argument type="service" id="SwagMigrationAssistant\Migration\Mapping\MappingService"/>
-    <argument type="service" id="SwagMigrationAssistant\Migration\Logging\LoggingService"/>
-    <tag name="shopware.migration.converter"/>
-</service>
+```php
+$services->set(SwagMigrationOwnProfileExample\Profile\OwnProfile\Converter\ProductConverter::class)
+    ->args([
+        service(SwagMigrationAssistant\Migration\Mapping\MappingService::class),
+        service(SwagMigrationAssistant\Migration\Logging\LoggingService::class),
+    ])
+    ->tag('shopware.migration.converter');
 ```
 
 To write new entities, you have to create a new writer class, but for the product entity, you can use the `ProductWriter`:

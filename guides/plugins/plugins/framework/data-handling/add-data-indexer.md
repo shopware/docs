@@ -117,21 +117,27 @@ class ExampleIndexer extends EntityIndexer
 
 With the corresponding service registration:
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-                <service id="Swag\BasicExample\Core\Framework\DataAbstractionLayer\Indexing\ExampleIndexer">
-                    <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
-                    <argument type="service" id="customer.repository"/>
-                    <argument type="service" id="Doctrine\DBAL\Connection" />
-                    <tag name="shopware.entity_indexer"/>
-                </service>
-    </services>
-</container>
+use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory;
+use Swag\BasicExample\Core\Framework\DataAbstractionLayer\Indexing\ExampleIndexer;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleIndexer::class)
+        ->args([
+            service(IteratorFactory::class),
+            service('customer.repository'),
+            service(Connection::class),
+        ])
+        ->tag('shopware.entity_indexer');
+};
 ```
 
 The indexer service has to be tagged as `shopware.entity_indexer` in order to work.
@@ -175,7 +181,7 @@ public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessa
 
 ## Index data using existing events
 
-There are already a bunch of indexers in shopware that you can use. If you take a look at the `CustomerIndexer` or `CategoryIndexer` classes for example, you will see that they dispatch an event in the `handle` method. This should be used for indexing data of the main entities. Among others, the following indexers already exist and dispatch events that can be used for indexing data:  
+There are already a bunch of indexers in shopware that you can use. If you take a look at the `CustomerIndexer` or `CategoryIndexer` classes for example, you will see that they dispatch an event in the `handle` method. This should be used for indexing data of the main entities. Among others, the following indexers already exist and dispatch events that can be used for indexing data:
 
 * `CustomerIndexer`
 * `CategoryIndexer`
@@ -248,19 +254,22 @@ class Subscriber implements EventSubscriberInterface
 
 The service definition for the subscriber would look like this.
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\Subscriber" >
-            <argument type="service" id="Doctrine\DBAL\Connection" />
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
-</container>
+use Doctrine\DBAL\Connection;
+use Swag\BasicExample\Service\Subscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(Subscriber::class)
+        ->args([service(Connection::class)])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 It is recommended to work directly with the `Connection` since the event is dispatched in the context of an indexer. If we would use the Data Abstraction Layer \(DAL\) for writing changes to the database, the indexer  would be triggered again, because it listens for `EntityWrittenContainerEvent` events. This would lead to an infinite loop. Using the `Connection` directly prevents the DAL from dispatching entity written events. Also the performance of plain sql is much higher, which is very important for indexers in general.

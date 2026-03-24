@@ -19,11 +19,13 @@ This class is the central place to build the Elasticsearch query:
 
 To modify the search logic, you can decorate the search logic class and add your own logic into it:
 
-```xml
-<service id="YourPluginNameSpace\Domain\Search\SearchLogicDecorator" decorates="Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic">
-    <argument type="service" id=".inner"/>
-    <argument type="service" id="Shopware\Commercial\AdvancedSearch\Domain\Configuration\ConfigurationLoader"/>
-</service>
+```php
+$services->set(YourPluginNameSpace\Domain\Search\SearchLogicDecorator::class)
+    ->decorate(Shopware\Commercial\AdvancedSearch\Domain\Search\SearchLogic::class)
+    ->args([
+        service('.inner'),
+        service(Shopware\Commercial\AdvancedSearch\Domain\Configuration\ConfigurationLoader::class),
+    ]);
 ```
 
 ```php

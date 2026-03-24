@@ -91,21 +91,26 @@ class RobotsExtensionListener
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```XML
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\Example\Listener\RobotsExtensionListener">
-            <argument type="service" id="logger"/>
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent"/>
-        </service>
-    </services>
-</container>
+use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
+use Swag\Example\Listener\RobotsExtensionListener;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(RobotsExtensionListener::class)
+        ->args([
+            service('logger'),
+        ])
+        ->tag('kernel.event_listener', ['event' => RobotsDirectiveParsingEvent::class]);
+};
 ```
 
 </Tab>
@@ -143,20 +148,21 @@ class CustomDirectiveListener
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```XML
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\Example\Listener\CustomDirectiveListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent"/>
-        </service>
-    </services>
-</container>
+use Shopware\Storefront\Page\Robots\Event\RobotsUnknownDirectiveEvent;
+use Swag\Example\Listener\CustomDirectiveListener;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CustomDirectiveListener::class)
+        ->tag('kernel.event_listener', ['event' => RobotsUnknownDirectiveEvent::class]);
+};
 ```
 
 </Tab>
@@ -243,20 +249,21 @@ class RobotsValidationListener
 
 </Tab>
 
-<Tab title="services.xml">
+<Tab title="services.php">
 
-```XML
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\Example\Listener\RobotsValidationListener">
-            <tag name="kernel.event_listener" event="Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent"/>
-        </service>
-    </services>
-</container>
+use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
+use Swag\Example\Listener\RobotsValidationListener;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(RobotsValidationListener::class)
+        ->tag('kernel.event_listener', ['event' => RobotsDirectiveParsingEvent::class]);
+};
 ```
 
 </Tab>

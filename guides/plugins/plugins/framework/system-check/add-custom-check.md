@@ -86,13 +86,14 @@ class LocalDiskSpaceCheck extends BaseCheck
 
 Finally, you need to register the custom check as a service resource.
 
-```xml
-        <service id="%YourNameSpace%\LocalDiskSpaceCheck" >
-            <argument>%shopware.filesystem.public.type%</argument>
-            <argument>%shopware.filesystem.public.config.root%</argument>
-            <argument>%warning_threshold_in_mb%</argument>
-            <tag name="shopware.system_check"/>
-        </service>
+```php
+$services->set(YourNameSpace\LocalDiskSpaceCheck::class)
+    ->args([
+        '%shopware.filesystem.public.type%',
+        '%shopware.filesystem.public.config.root%',
+        '%warning_threshold_in_mb%',
+    ])
+    ->tag('shopware.system_check');
 ```
 
 ### Trigger the check

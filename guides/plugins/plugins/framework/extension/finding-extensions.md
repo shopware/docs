@@ -85,7 +85,7 @@ Extension Points use a `NAME` constant that defines the event name:
 final class ResolveListingExtension extends Extension
 {
     public const NAME = 'listing-loader.resolve';
-    
+
     // ...
 }
 ```
@@ -95,7 +95,7 @@ final class ResolveListingExtension extends Extension
 Extension Points are dispatched with lifecycle suffixes:
 
 - `{name}.pre` - Before the default implementation
-- `{name}.post` - After the default implementation  
+- `{name}.post` - After the default implementation
 - `{name}.error` - When an error occurs
 
 ## Finding Extension Usage
@@ -104,10 +104,9 @@ Extension Points are dispatched with lifecycle suffixes:
 
 Services that use Extension Points typically inject the `ExtensionDispatcher`:
 
-```xml
-<service id="Some\Service">
-    <argument type="service" id="Shopware\Core\Framework\Extensions\ExtensionDispatcher"/>
-</service>
+```php
+$services->set(Some\Service::class)
+    ->args([service(Shopware\Core\Framework\Extensions\ExtensionDispatcher::class)]);
 ```
 
 ### In Constructor Parameters
@@ -151,7 +150,7 @@ $result = $this->extensionDispatcher->publish(
 final class ProductPriceCalculationExtension extends Extension
 {
     public const NAME = 'product.calculate-prices';
-    
+
     public function __construct(
         public readonly iterable $products,
         public readonly SalesChannelContext $context
@@ -169,7 +168,7 @@ final class ProductPriceCalculationExtension extends Extension
 final class ResolveListingExtension extends Extension
 {
     public const NAME = 'listing-loader.resolve';
-    
+
     public function __construct(
         public readonly Criteria $criteria,
         public readonly SalesChannelContext $context
@@ -189,7 +188,7 @@ final class ResolveListingExtension extends Extension
 final class CheckoutPlaceOrderExtension extends Extension
 {
     public const NAME = 'checkout.place-order';
-    
+
     public function __construct(
         public readonly Cart $cart,
         public readonly SalesChannelContext $context
@@ -209,7 +208,7 @@ final class CheckoutPlaceOrderExtension extends Extension
 final class CmsSlotsDataEnrichExtension extends Extension
 {
     public const NAME = 'cms.slots.data-enrich';
-    
+
     public function __construct(
         public readonly CmsSlotCollection $slots,
         public readonly SalesChannelContext $context
@@ -239,7 +238,7 @@ class ProductListingSubscriber implements EventSubscriberInterface
             'listing-loader.resolve.pre' => 'onResolveListing',
         ];
     }
-    
+
     public function onResolveListing(ResolveListingExtension $event): void
     {
         // Custom logic here
@@ -253,10 +252,9 @@ class ProductListingSubscriber implements EventSubscriberInterface
 
 Register your subscriber in the service configuration:
 
-```xml
-<service id="MyPlugin\Subscriber\ProductListingSubscriber">
-    <tag name="kernel.event_subscriber"/>
-</service>
+```php
+$services->set(MyPlugin\Subscriber\ProductListingSubscriber::class)
+    ->tag('kernel.event_subscriber');
 ```
 
 ## Extension Lifecycle
@@ -313,7 +311,7 @@ public function onExtension(SomeExtension $event): void
         // Another extension already provided a result
         return;
     }
-    
+
     $event->result = $this->myImplementation($event);
 }
 ```

@@ -35,7 +35,7 @@ To build an [Extensions](extensions/index.md), first choose the correct type:
 
 Each extension guide walks you through the full development flow: creation → lifecycle → implementation → testing.
 
-To sell an extension or offer paid features, see the [Monetization guide](./monetization) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
+To sell an extension or offer paid features, see the [Monetization guide](monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 
 ## Typical development workflow
 
@@ -57,7 +57,7 @@ Before starting new development, review the [Upgrades and Migrations](../upgrade
 Upgrade complexity depends on the installation:
 
 * Heavy custom code increases migration effort.
-* No custom code but 60 Store plugins can be equally complex.
+* No custom code, but 60 Store plugins can be equally complex.
 * Most real-world projects fall somewhere in between.
 
 A consistent architecture, centralized CI, and controlled extension strategy help you get ahead of upgrade pain.
@@ -82,7 +82,11 @@ The Administration is part of the runtime environment and will be used throughou
 
 ### Development tooling
 
-* `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](resources/references/core-reference/commands-reference.html).
-* The standalone [Shopware CLI](https://developer.shopware.com/docs/products/cli/installation.html) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](products/cli/project-commands/helper-commands.html).
-* IDE support: Shopware provides a [PHPStorm plugin](/tooling/shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
-*[Deployment Helper](guides/hosting/deployment-helper/):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
+* `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../resources/references/core-reference/commands-reference.md).
+* The standalone [Shopware CLI](../../products/cli/installation.md) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](../../products/cli/project-commands/helper-commands.md).
+* IDE support: Shopware provides a [PHPStorm plugin](tooling/shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
+* [Deployment Helper](../hosting/installation-updates/deployments/deployment-helper.md):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
+
+### Troubleshooting
+
+The [troubleshooting](troubleshooting/index.md) guides provide reference information about the data abstraction layer (DAL), flow, and rules.

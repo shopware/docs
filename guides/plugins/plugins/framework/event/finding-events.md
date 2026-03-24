@@ -121,23 +121,26 @@ Every service, that wants to fire an event sooner or later, needs access to the 
 Hence, you can have a look at all the service definitions for the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
 and therefore quickly figure out, which services and classes are having access to the said `event_dispatcher`:
 
-```xml
-<?xml version="1.0" ?>
+```php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Some\Service;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Some\Service">
-            <argument type="service" id="Another/Service"/>
-            <argument type="service" id="event_dispatcher"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(Service::class)
+        ->args([
+            service('Another/Service'),
+            service('event_dispatcher'),
+        ]);
+};
 ```
 
-Therefore, you could simply search for occurrences of the `event_dispatcher` in the respective `.xml` files.
+Therefore, you could simply search for occurrences of the `event_dispatcher` in the respective service definition files.
 
 You can also do this the other way around, by having a look at the service's constructor parameters.
 

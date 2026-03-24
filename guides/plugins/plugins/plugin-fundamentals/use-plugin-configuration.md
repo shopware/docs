@@ -68,21 +68,23 @@ Let's get to the important part. Reading the plugin configuration is based on th
 
 Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
 
-```xml
-// <plugin root>/src/Resources/config/services.xml
-<?xml version="1.0" ?>
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Swag\BasicExample\Subscriber\MySubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MySubscriber">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MySubscriber::class)
+        ->args([service(SystemConfigService::class)])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 Note the new `argument` being provided to your subscriber. Now create a new field in your subscriber and pass in the `SystemConfigService`:
@@ -157,17 +159,17 @@ To access your plugin's configuration from JavaScript in the Administration, you
 // Example: Reading plugin configuration in Administration Vue component
 export default Shopware.Component.wrapComponentConfig({
     inject: ['systemConfigApiService'],
-    
+
     async created() {
         await this.loadPluginConfig();
     },
-    
+
     methods: {
         async loadPluginConfig() {
             try {
                 const config = await this.systemConfigApiService.getValues('SwagBasicExample.config');
                 const exampleValue = config['SwagBasicExample.config.example'];
-                
+
                 console.log('Plugin configuration value:', exampleValue);
                 return exampleValue;
             } catch (error) {
@@ -187,7 +189,7 @@ async function getPluginConfig() {
         const systemConfigApiService = Shopware.ApiService.getByName('systemConfigApiService');
         const config = await systemConfigApiService.getValues('SwagBasicExample.config');
         const exampleValue = config['SwagBasicExample.config.example'];
-        
+
         console.log('Plugin configuration value:', exampleValue);
         return exampleValue;
     } catch (error) {
@@ -234,7 +236,7 @@ export default class ExamplePlugin extends PluginBaseClass {
     init() {
         // Access the configuration value passed from Twig
         const exampleConfig = window.pluginConfig?.example;
-        
+
         if (exampleConfig) {
             console.log('Plugin configuration:', exampleConfig);
             // Use the configuration value in your plugin logic

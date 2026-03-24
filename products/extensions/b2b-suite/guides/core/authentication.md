@@ -178,7 +178,7 @@ In the *CredentialsBuilder*, you create the *CredentialsEntity*, which is used f
     public function createCredentials(array $parameters): AbstractCredentialsEntity
     {
         $entity = new CredentialsEntity();
-    
+
         $entity->email = $parameters['email'];
         $entity->salesChannelId = IdValue::create($this->contextProvider->getSalesChannelContext()->getSalesChannel()->getId());
         $entity->customerScope = $this->systemConfigService->get('core.systemWideLoginRegistration.isCustomerBoundToSalesChannel');
@@ -203,16 +203,16 @@ context owner ids. Notice that the interface is designed to be chained to create
         if (!$credentialsEntity->email) {
             throw new NotFoundException('Unable to handle context');
         }
-        
+
         $entity = $this->yourEntityRepository->fetchOneByEmail($email);
 
         /** @var DebtorIdentity $debtorIdentity */
         $debtorIdentity = $this->debtorRepository->fetchIdentityById($entity->debtor->id, $contextService);
-        
+
         $authId = $contextService->getAuthId(YourEntityRepository::class, $entity->id, $debtorIdentity->getAuthId());
-        
+
         $this->yourEntityRepository->setAuthId($entity->id, $authId);
-        
+
         return new YourEntityIdentity($authId, (int) $entity->id, YourEntityRepository::TABLE_NAME, $entity, $debtorIdentity);
     }
 [...]
@@ -220,12 +220,10 @@ context owner ids. Notice that the interface is designed to be chained to create
 
 Finally, you register your authentication provider (in our case a repository) as a tagged service through the DIC.
 
-```xml
-<service id="b2b_my.contact_authentication_identity_loader" class="Shopware\B2B\My\AuthenticationIdentityLoader">
-    [...]
-
-    <tag name="b2b_front_auth.authentication_repository" />
-</service>
+```php
+$services->set('b2b_my.contact_authentication_identity_loader', Shopware\B2B\My\AuthenticationIdentityLoader::class)
+    // [...]
+    ->tag('b2b_front_auth.authentication_repository');
 ```
 
 ## Sales representative

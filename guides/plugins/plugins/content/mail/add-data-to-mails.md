@@ -78,22 +78,28 @@ If we add <code v-pre>{{ myCustomData }}</code> to any mail template, it should 
 
 Of course you still have to register the decoration to the service container. Beware of the `decorates` attribute of our service.
 
-Here's the respective example `services.xml`:
+Here's the respective example `services.php`:
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Service\AddDataToMails" decorates="Shopware\Core\Content\Mail\Service\MailService">
-            <argument type="service" id="Swag\BasicExample\Service\AddDataToMails.inner" />
-        </service>
-    </services>
-</container>
+use Shopware\Core\Content\Mail\Service\MailService;
+use Swag\BasicExample\Service\AddDataToMails;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(AddDataToMails::class)
+        ->decorate(MailService::class)
+        ->args([
+            service('.inner'),
+        ]);
+};
 ```
 
 :::
@@ -142,22 +148,22 @@ class MyMailSubscriber implements EventSubscriberInterface
 
 You have to register the subscriber to the service container as well.
 
-Here's the respective example `services.xml`:
+Here's the respective example `services.php`:
 
 ::: code-group
 
-```xml [PLUGIN_ROOT/src/Resources/config/services.xml]
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Subscriber\MyMailSubscriber">
-            <tag name="kernel.event_subscriber"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Subscriber\MyMailSubscriber;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MyMailSubscriber::class)
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 :::

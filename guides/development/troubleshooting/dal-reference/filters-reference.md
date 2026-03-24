@@ -37,11 +37,11 @@ $criteria->addFilter(new EqualsFilter('stock', 10));
 ```javascript
  {
     "filter": [
-        { 
+ { 
             "type": "equals", 
             "field": "stock", 
             "value": 10
-        }    
+ }    
     ]
 }
 ```
@@ -70,15 +70,15 @@ $criteria->addFilter(
 ```json
 {
     "filter": [
-        { 
+ { 
             "type": "equalsAny", 
             "field": "productNumber", 
             "value": [
                 "3fed029475fa4d4585f3a119886e0eb1", 
                 "77d26d011d914c3aa2c197c81241a45b"
-            ] 
-        }    
-    ]
+ ] 
+ }    
+ ]
 }
 ```
 
@@ -104,12 +104,12 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 ```json
 {
     "filter": [
-        { 
+ { 
             "type": "contains", 
             "field": "name", 
             "value": "Lightweight"
-        }    
-    ]
+ }    
+ ]
 }
 ```
 
@@ -118,7 +118,7 @@ $criteria->addFilter(new ContainsFilter('name', 'Lightweight'));
 
 ## Range
 
-The `Range` filter allows you to filter a field to a value space. This can work with date or numerical values. Within the `parameter` property the following values are possible:
+The `Range` filter allows you to filter a field to a value space. This can work with date or numerical values. Within the `parameter` property, the following values are possible:
 
 * `gte` =&gt; Greater than equals
 * `lte` =&gt; Less than equals
@@ -147,15 +147,15 @@ $criteria->addFilter(
 ```json
 {
     "filter": [
-        { 
+ { 
             "type": "range", 
             "field": "stock", 
             "parameters": {
                 "gte": 20,      
                 "lte": 30
-            }
-        }    
-    ]
+ }
+ }    
+ ]
 }
 ```
 
@@ -164,7 +164,7 @@ $criteria->addFilter(
 
 ## Not
 
-The `Not` Filter is a container which allows to negate any kind of filter. The `operator` allows you to define the combination of queries within the NOT filter \(`OR` and `AND`\). The following SQL statement is executed in the background: `WHERE !(stock = 1 OR availableStock = 1) AND active = 1`:
+The `Not` filter is a container that allows negating any filter. The `operator` allows you to define the combination of queries within the NOT filter \(`OR` and `AND`\). The following SQL statement is executed in the background: `WHERE !(stock = 1 OR availableStock = 1) AND active = 1`:
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -191,28 +191,28 @@ $criteria->addFilter(
 ```json
 {
     "filter": [
-        { 
+ { 
             "type": "not", 
             "operator": "or",
             "queries": [
-                {
+ {
                     "type": "equals",
                     "field": "stock",
                     "value": 1
-                },
-                {
+ },
+ {
                     "type": "equals",
                     "field": "availableStock",
                     "value": 1
-                }    
-            ]
-        },
-        {
+ }    
+ ]
+ },
+ {
             "type": "equals",
             "field": "active",
             "value": true
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -221,7 +221,7 @@ $criteria->addFilter(
 
 ## Multi
 
-The `Multi` Filter is a container, which allows to set logical links between filters. The `operator` allows you to define the links between the queries within the `Multi` filter \(`OR` and `AND`\). The following SQL statement is executed in the background: `WHERE (stock = 1 OR availableStock = 1) AND active = 1`.
+The `Multi` filter is a container that allows you to set logical links between filters. The `operator` allows you to define the links between the queries within the `Multi` filter \(`OR` and `AND`\). The following SQL statement is executed in the background: `WHERE (stock = 1 OR availableStock = 1) AND active = 1`.
 
 <Tabs>
 <Tab title="PHP Criteria">
@@ -249,27 +249,27 @@ $criteria->addFilter(
 ```javascript
  {
     "filter": [
-        { 
+ { 
             "type": "multi",   
             "operator": "or",
             "queries": [
-                {
+ {
                     "type": "equals",
                     "field": "stock",
                     "value": 1
-                },
-                {
+ },
+ {
                     "type": "equals",
                     "field": "availableStock",
                     "value": 1
-                } 
+ } 
             ]
-        },
-        {
+ },
+ {
             "type": "equals",
             "field": "active",
             "value": true
-        }
+ }
     ]
 }
 ```
@@ -296,12 +296,12 @@ $criteria->addFilter(new PrefixFilter('name', 'Lightweight'));
 ```json
 {
     "filter": [
-        {
+ {
             "type": "prefix",
             "field": "name",
             "value": "Lightweight"
-        }
-    ]
+ }
+ ]
 }
 ```
 
@@ -327,16 +327,16 @@ $criteria->addFilter(new SuffixFilter('name', 'Lightweight'));
 ```json
 {
     "filter": [
-        {
+ {
             "type": "suffix",
             "field": "name",
             "value": "Lightweight"
-        }
-    ]
+ }
+ ]
 }
 ```
 
 </Tab>
 </Tabs>
 
-In general, the storage systems are **case-insensitive**, meaning that when filtering values to search for a string, the casing of the filter values doesn't affect their handling.
+In general, storage systems are **case-insensitive**, meaning that when filtering for a string, the casing of the filter values doesn't affect the search.

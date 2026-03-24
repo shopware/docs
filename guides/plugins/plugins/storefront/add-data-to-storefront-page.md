@@ -70,12 +70,10 @@ class AddDataToPage implements EventSubscriberInterface
 
 The next thing we need to do is register our subscriber in the DI-Container and tag it as an event subscriber:
 
-```xml
-// Resources/config/services.xml
-<?xml version="1.0" ?>
-<service id="Swag\BasicExample\Service\AddDataToPage" >
-    <tag name="kernel.event_subscriber" />
-</service>
+```php
+// Resources/config/services.php
+$services->set(\Swag\BasicExample\Service\AddDataToPage::class)
+    ->tag('kernel.event_subscriber');
 ```
 
 ### Adding data to the page
@@ -162,7 +160,7 @@ class ProductCountRoute extends AbstractProductCountRoute
         $productCountResult = $this->productRepository
             ->aggregate($criteria, $context->getContext())
             ->get('productCount');
-            
+
         return new ProductCountRouteResponse($productCountResult);
     }
 }
@@ -170,31 +168,33 @@ class ProductCountRoute extends AbstractProductCountRoute
 
 ### Register route class
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" >
-            <argument type="service" id="product.repository"/>
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ProductCountRoute::class)
+        ->args([service('product.repository')]);
+};
 ```
 
-The routes.xml according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
+The routes.php according to our guide for [adding store-api routes](../framework/store-api/add-store-api-route) should look like this.
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing
-        https://symfony.com/schema/routing/routing-1.0.xsd">
+```php
+// <plugin root>/src/Resources/config/routes.php
+<?php declare(strict_types=1);
 
-    <import resource="../../Core/**/*Route.php" type="attribute" />
-</routes>
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Core/**/*Route.php', 'attribute');
+};
 ```
 
 ### ProductCountRouteResponse
@@ -274,23 +274,26 @@ This data will then be available via the name `product_count`, but we'll get to 
 
 Now you only have to adjust your service definition to inject the productCountRoute:
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute" public="true">
-            <argument type="service" id="product.repository"/>
-        </service>
-        
-        <service id="Swag\BasicExample\Service\AddDataToPage" >
-            <argument type="service" id="Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute"/>
-            <tag name="kernel.event_subscriber" />
-        </service>
-    </services>
-</container>
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRoute;
+use Swag\BasicExample\Service\AddDataToPage;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ProductCountRoute::class)
+        ->public()
+        ->args([service('product.repository')]);
+
+    $services->set(AddDataToPage::class)
+        ->args([service(ProductCountRoute::class)])
+        ->tag('kernel.event_subscriber');
+};
 ```
 
 ### Displaying the data in the Storefront

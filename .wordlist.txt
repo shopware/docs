@@ -123,6 +123,7 @@ BreadcrumbField
 Browserlist
 BusinessEvent
 BusinessEventCollector
+BuyButton
 CDN
 CDNs
 CHANGELOG
@@ -1026,6 +1027,7 @@ TypeError
 TypeError's
 TypeScript
 TypeScript's
+UDP
 UI
 UID
 UML
@@ -1328,6 +1330,7 @@ declaratively
 decoratable
 decrementing
 decrypted
+deduplication
 deepCopyObject
 deepMergeObject
 defaultConfig
@@ -1532,6 +1535,7 @@ initializers
 installable
 instantiation
 integrations
+interceptable
 intl
 invalidations
 io
@@ -1584,6 +1588,7 @@ lifecylce
 lineItem
 lineItemId
 linter
+linters
 linux
 localVue
 localhost
@@ -1648,6 +1653,7 @@ myPluginLogHandler
 mysql
 mysqldump
 namespace
+namespaced
 namespaces
 natively
 nav
@@ -1994,6 +2000,7 @@ uncomment
 uncommenting
 uncompiled
 und
+unencrypted
 unhandled
 uninstallation
 uniqBy

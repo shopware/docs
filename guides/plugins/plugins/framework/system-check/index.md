@@ -51,10 +51,9 @@ class CustomSystemChecker
 }
 ```
 
-```xml
-<service id="YourNamepace\CustomSystemChecker">
-    <argument type="tagged_iterator" tag="shopware.system_check"/>
-</service>
+```php
+$services->set(YourNamepace\CustomSystemChecker::class)
+    ->args([tagged_iterator('shopware.system_check')]);
 ```
 
 ### Custom triggers
