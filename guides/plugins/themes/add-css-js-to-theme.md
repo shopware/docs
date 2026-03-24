@@ -93,11 +93,11 @@ console.log('SwagBasicExampleTheme JS loaded');
 
 In the end, by running the command `bin/build-storefront.sh` your custom JS plugin is loaded. By default, the compiled JavaScript file is saved as `<plugin root>/src/resources/app/storefront/dist/storefront/js/swag-basic-example-theme/swag-basic-example-theme.js`. It is detected by Shopware automatically and included in the Storefront. So you do not need to embed the JavaScript file yourself.
 
-## Using the hot-proxy \(live reload\)
+## Using the live reload
 
-Of course, the theme compilation with `bin/console theme:compile` will get tedious if you change files a lot and want to check the changes in the browser. So there is a better way while you are developing your theme with the `hot-proxy` option, which will give you the live reload feature.
+Of course, the theme compilation with `bin/console theme:compile` will get tedious if you change files a lot and want to check the changes in the browser. So there is a better way while you are developing your theme with the dev-server, which will give you the live reload feature.
 
-To activate the hot-proxy, run the following command in your terminal.
+To activate the dev-server, run the following command in your terminal.
 
 <Tabs>
 
@@ -111,6 +111,10 @@ To activate the hot-proxy, run the following command in your terminal.
 <Tab title="platform only (contribution setup)">
 
 ```bash
+# Since Shopware 6.7.11.0
+composer run storefront:dev-server
+
+# Before Shopware 6.7.11.0
 composer run watch:storefront
 ```
 
