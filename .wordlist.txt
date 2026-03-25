@@ -5,6 +5,7 @@ ACLs
 ADDR
 ADR
 ADRs
+AES
 AOF
 API's
 APIRequestContext
@@ -44,7 +45,6 @@ AdminWorker
 Adminer
 AdministrationNewField
 AdministrationNewModule
-AES
 Afile
 AfterLineItemAddedEvent
 AfterLineItemQuantityChangedEvent
@@ -74,6 +74,7 @@ AppSystem
 Archlinux
 ArrayFacade
 AssociationField
+AsyncAws
 AsyncPaymentTransactionStruct
 AsynchronousPaymentHandlerInterface
 AudienceContext
@@ -122,6 +123,7 @@ BreadcrumbField
 Browserlist
 BusinessEvent
 BusinessEventCollector
+BuyButton
 CDN
 CDNs
 CHANGELOG
@@ -435,8 +437,8 @@ FroshDevelopmentHelper
 FroshPlatformTemplateMail
 FroshTools
 Fullstack
-GCM
 GBP
+GCM
 GDPR
 GIFs
 GLB
@@ -647,6 +649,7 @@ Nullsafe
 Nuxt
 Nvidia
 OAuth
+OData
 OIDC
 OPENSEARCH
 ORM
@@ -873,6 +876,7 @@ SPAs
 SQS
 SSHes
 SSL
+SSO
 STP
 SVG
 SVGs
@@ -952,7 +956,6 @@ StorefrontController
 StorefrontPage
 StorefrontResponse
 Storer
-SSO
 StringField
 StringFields
 Struct
@@ -978,7 +981,6 @@ Symfony's
 SyncApi
 SynchronousPaymentHandlerInterface
 Synopsys
-OData
 TCP
 TLS
 TTL
@@ -1025,6 +1027,7 @@ TypeError
 TypeError's
 TypeScript
 TypeScript's
+UDP
 UI
 UID
 UML
@@ -1327,6 +1330,7 @@ declaratively
 decoratable
 decrementing
 decrypted
+deduplication
 deepCopyObject
 deepMergeObject
 defaultConfig
@@ -1531,6 +1535,7 @@ initializers
 installable
 instantiation
 integrations
+interceptable
 intl
 invalidations
 io
@@ -1583,6 +1588,7 @@ lifecylce
 lineItem
 lineItemId
 linter
+linters
 linux
 localVue
 localhost
@@ -1647,6 +1653,7 @@ myPluginLogHandler
 mysql
 mysqldump
 namespace
+namespaced
 namespaces
 natively
 nav
@@ -1993,6 +2000,7 @@ uncomment
 uncommenting
 uncompiled
 und
+unencrypted
 unhandled
 uninstallation
 uniqBy

@@ -7,18 +7,27 @@ nav:
 
 # Staging
 
-Since Shopware 6.6.1.0, Shopware has an integrated staging mode. This mode prepares the shop for use in a staging environment. This means the shop is prepared to be used in a test environment, where changes can be made without affecting the live shop.
+Use a staging copy of your shop to test changes, updates, and new features without affecting production. Since Shopware 6.6.1.0, you can enable **staging mode** on that copy. That feature is separate from creating the copy—see [Staging environment vs staging mode](#staging-environment-vs-staging-mode).
 
-## The workflow
+## Staging environment vs staging mode
 
-The staging mode is designed to modify data only inside the Shopware instance. This means the staging mode does not duplicate the current installation, copy the database, or copy the files. It only changes the data inside the Shopware instance.
+- **Staging environment** — A non-production copy of the shop: separate hosting, domain, database, and (where applicable) its own Redis, ElasticSearch/OpenSearch index prefix, and `.env` settings. Building this environment is deployment and operation work on your side.
+- **Staging mode** — A Shopware mechanism you activate with `./bin/console system:setup:staging` (and optional settings in `config/packages/staging.yaml`). It adjusts data and behavior **inside** that instance so it does not email customers, leak app connections to production, keep live sales channel URLs, and so on.
 
-Creating a staging environment allows you to test changes, updates, and new features without affecting your live shop. This process involves:
+Creating the environment is your deployment work; activating staging mode is a command you run on that environment after the database is in place.
+
+## Overview
+
+**Phase 1 – Staging environment** (steps 1–3 in [Creating the staging instance](#creating-the-staging-instance)): provision a separate Shopware installation, duplicate the live database into it, and point the instance at a staging-specific configuration. Staging mode does not clone servers or databases—this phase is entirely separate from the console command.
+
+**Phase 2 – Staging mode** (step 4): run `system:setup:staging` on the staging instance. Optionally tune behavior in [`staging.yaml`](#configuring-staging-mode).
+
+Checklist:
 
 1. Setting up a separate Shopware instance
 2. Duplicating the database from your live environment
 3. Configuring the staging instance
-4. Activating staging mode to prepare the environment for testing
+4. Activating staging mode on that instance
 
 ## Creating the staging instance
 
@@ -34,7 +43,7 @@ It's highly recommended to use a separate Domain or Subdomain for the staging in
 You should still use your **live domain** in `Shopware Account > License Domain` to avoid licensing issues.
 :::
 
-### 2.Duplicating the database from the live environment
+### 2. Duplicating the database from the live environment
 
 To make your staging environment similar to the live environment, duplicate the database. You can use the `mysqldump` command to export the database and import it into the staging environment.
 
@@ -58,7 +67,7 @@ shopware-cli project dump --clean --anonymize --host localhost --username db_use
 
 Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../../docs/products/cli/project-commands/mysql-dump.md) for details.
 
-### 3.Configuring the staging instance
+### 3. Configuring the staging instance
 
 ::: info
 Do not share resources like MySQL, Redis, or ElasticSearch/OpenSearch between live and staging environments. This can lead to data corruption and performance issues for your live environment.
@@ -70,11 +79,9 @@ After importing the database, modify the `.env` file to use the staging database
 If you don't use the included Staging Mode, make sure to disable email sending in the staging environment to avoid sending test emails to real customers, and that you reset the app system by deleting "core.app.shopId" from the `system_config` table to avoid leaks of data between live and staging environments.
 :::
 
-Staging mode prepares the Shopware instance for safe testing by modifying the database to prevent unintended operations on the live environment.
+### 4. Activating staging mode
 
-### 4.Activating staging mode to prepare the environment for testing
-
-After the database is imported and configured, activate staging mode:
+After the database is imported and configured, activate staging mode by running the `system:setup:staging` command on this staging instance. It updates the database and related state, so the copy is safer to use for testing (see [Staging mode: scope and limitations](#staging-mode-scope-and-limitations)).
 
 ```bash
 ./bin/console system:setup:staging
@@ -84,17 +91,17 @@ This command modifies the database for staging use. Pass `--no-interaction --for
 
 ## Staging mode: scope and limitations
 
-| Category | Behavior |
-|----------|----------|
-| **What the staging mode does** | Deletes all apps with active connections to external services and their integrations |
-|  | Resets the instance ID used for app registration |
-|  | Disables email sending |
-|  | Rewrites URLs to the staging domain (if configured) |
-|  | Verifies that ElasticSearch/OpenSearch indices do not exist |
-|  | Displays a banner in the administration and storefront to indicate staging mode |
-| **What the staging mode does not do** | Does not duplicate the current installation |
-|  | Does not copy the database or files |
-|  | Does not modify the live environment |
+| Category                              | Behavior                                                                             |
+|---------------------------------------|--------------------------------------------------------------------------------------|
+| **What the staging mode does**        | Deletes all apps with active connections to external services and their integrations |
+|                                       | Resets the instance ID used for app registration                                     |
+|                                       | Disables email sending                                                               |
+|                                       | Rewrites URLs to the staging domain (if configured)                                  |
+|                                       | Verifies that ElasticSearch/OpenSearch indices do not exist                          |
+|                                       | Displays a banner in the administration and storefront to indicate staging mode      |
+| **What the staging mode does not do** | Does not duplicate the current installation                                          |
+|                                       | Does not copy the database or files                                                  |
+|                                       | Does not modify the live environment                                                 |
 
 ### Configuring staging mode
 
@@ -133,10 +140,10 @@ shopware:
     staging:
         sales_channel:
             domain_rewrite:
- - type: equal
+                - type: equal
                   match: https://my-live-store.com
                   replace: https://my-staging-store.com
- - # ... second rule
+                - # ... second rule
 ```
 
 Compares Sales Channel URLs. When equal to `https://my-live-store.com`, it's replaced with `https://my-staging-store.com`.
@@ -149,10 +156,10 @@ shopware:
     staging:
         sales_channel:
             domain_rewrite:
- - type: prefix
+                - type: prefix
                   match: https://my-live-store.com
                   replace: https://my-staging-store.com
- - # ... second rule
+                - # ... second rule
 ```
 
 Replaces URLs starting with `https://my-live-store.com`. For example, `https://my-live-store.com/en` becomes `https://my-staging-store.com/en`.
@@ -165,10 +172,10 @@ shopware:
     staging:
         sales_channel:
             domain_rewrite:
- - type: regex
+                - type: regex
                   match: '/https?:\/\/(\w+)\.(\w+)$/m'
                   replace: 'http://$1-$2.local'
- - # ... second rule
+                - # ... second rule
 ```
 
 Uses regular expressions for advanced URL rewriting. In this example, `https://my-live-store.com` becomes `http://my-live-store.local`.

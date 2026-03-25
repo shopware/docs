@@ -47,7 +47,7 @@ shopware:
 The HTTP cache will be invalidated in regular intervals, benefitting systems with a high update frequency for the inventory (products, categories).
 Once the instruction to delete the cache entries for a specific product or category occurs, they are not deleted instantly but processed later by a background task.
 Thus, if two processes invalidate the cache in quick succession, the timer for the invalidation of this cache entry will only reset.
-By default, the scheduled task will run every 20 seconds, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
+By default, the scheduled task will run every 5 minutes, but the interval can be adjusted over the `scheduled_taks` DB table, by setting the `run_interval` to the desired value (it is configured in seconds) for the entry with the name `shopware.invalidate_cache`.
 
 Information about which tags need to be invalidated is stored in the DB.
 However, especially in systems which have a high number of concurrent write requests, this can become a bottleneck, and at a certain load, deadlocks are inevitable.
@@ -88,14 +88,22 @@ Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scen
 
 Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
 
-## Elasticsearch/Opensearch
+## Elasticsearch/OpenSearch
 
-Elasticsearch/Opensearch is a great tool to reduce the load of the MySQL server.
+Elasticsearch/OpenSearch is a great tool to reduce the load of the MySQL server.
 Especially for systems with large product assortments, this is a must-have since MySQL simply does not cope well above a certain assortment size.
 
 When using Elasticsearch, it is important to set the `SHOPWARE_ES_THROW_EXCEPTION=1` `.env` variable.
 This ensures that there is no fallback to the MySQL server if an error occurs when querying the data via Elasticsearch.
 In large projects, the failure of Elasticsearch leads to the MySQL server being completely overloaded otherwise.
+
+If you use Elasticsearch/OpenSearch for Administration as well, you can set `SHOPWARE_ADMIN_ES_THROW_EXCEPTION=1` in local development to debug admin search issues more easily.
+
+To apply OpenSearch globally for supported Admin API searches and listings in Administration, first ensure that Administration OpenSearch is configured (`ADMIN_OPENSEARCH_URL` is set and `SHOPWARE_ADMIN_ES_ENABLED=1`). Then enable `ENABLE_OPENSEARCH_FOR_ADMIN_API=1` and reindex admin indices with `bin/console es:admin:index`.
+
+::: info
+Supported since Shopware `6.7.9.0`. This is an experimental feature. For implementation details and supported entities, refer to the ADR [Apply OpenSearch globally for admin-api](../../../resources/references/adr/2026-01-28-apply-opensearch-in-admin-api.md).
+:::
 
 Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
