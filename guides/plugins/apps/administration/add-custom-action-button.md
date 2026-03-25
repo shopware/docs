@@ -126,7 +126,7 @@ class ActionButtonController {
 Starting from Shopware version 6.4.1.0, the current shopware version will be sent as a `sw-version` header.
 :::
 
-Again you can verify the authenticity of the incoming request, like with [webhooks](../webhook.md), by checking the `shopware-shop-signature`. It also contains the SHA256 HMAC of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-registration-setup#setup).
+Again you can verify the authenticity of the incoming request, like with [webhooks](../webhook.md), by checking the `shopware-shop-signature`. It also contains the SHA256 HMAC of the request body, that is signed with the secret your app assigned the shop during the [registration](../app-registration-setup.md#setup).
 
 ## Providing feedback in the Administration
 
