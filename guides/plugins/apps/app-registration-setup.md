@@ -38,8 +38,8 @@ The timeout for the requests against the app server is 5 seconds.
 
 Integrating apps into your application can be a daunting task, but our PHP SDK simplifies the registration flow and other typical tasks.
 
-* [Official PHP SDK](app-sdks/php/01-getting_started)
-* [Official Symfony Bundle](app-sdks/symfony-bundle/index)
+* [Official PHP SDK](./app-sdks/php/index.md)
+* [Official Symfony Bundle](./app-sdks/symfony-bundle/index.md)
 
 If no SDK is available for your language, you can implement the registration process by yourself.
 
