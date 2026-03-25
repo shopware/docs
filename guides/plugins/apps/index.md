@@ -21,7 +21,7 @@ Apps are well-suited for use cases such as:
 
 You can develop apps using the Shopware [App SDKs](../apps/app-sdks/index.md), [App Scripts](./app-scripts/index.md), and external services with the Shopware app system and its [reference documentation](../../../resources/references/app-reference/index.md). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
 
-Some app extension points use a [gateway pattern](../apps/gateways/index.md), where Shopware delegates a specific task to an external app service and continues processing based on the returned result. A prominent example is the [checkout gateway](../apps/gateways/checkout/checkout-gateway.md. 
+Some app extension points use a [gateway pattern](../apps/gateways/index.md), where Shopware delegates a specific task to an external app service and continues processing based on the returned result. A prominent example is the [checkout gateway](../apps/gateways/checkout/checkout-gateway.md). 
 
 For comparison, [App Scripts](./app-scripts/index.md) cover synchronous, sandboxed logic inside the app system, but come with caveats.
 
@@ -44,7 +44,7 @@ If you are new to Shopware apps, begin with the [App Base Guide](../apps/app-bas
 
 After the base setup, continue with the path that fits your app:
 
-- **Administration extensions:** Use [Build an Admin UI App Locally](create-admin-extension.md) if you want to add a custom Administration UI module and develop it locally with the [Admin Extension SDK](../apps/administration/meteor-admin-sdk.md) and [Vite](https://vite.dev/), without setting up an app backend first.
+- **Administration extensions:** Use [Build an Admin UI App Locally](create-admin-extension.md) if you want to add a custom Administration UI module and develop it locally with the [Meteor Admin SDK](../apps/administration/meteor-admin-sdk.md) and [Vite](https://vite.dev/), without setting up an app backend first.
 
 - **Apps with a backend:** Use [App Registration & Backend Setup](app-registration-setup.md) if your app needs registration, authenticated server-to-server communication, webhooks, signing, Admin API credentials, payment methods, tax providers, or other backend-driven features.
 
