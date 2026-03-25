@@ -410,10 +410,10 @@ function webhookController(RequestInterface $request): ResponseInterface
 
 #### App lifecycle events for app scripts
 
-Since Shopware 6.4.9.0, it is also possible to create [App scripts](./app-scripts/) that are executed during the lifecycle of your app.
+Since Shopware 6.4.9.0, it is also possible to create [App scripts](./app-scripts/index.md) that are executed during the lifecycle of your app.
 You get access to the database and can change or create some data, e.g., when your app is activated, without needing an external server.
 
-For a full list of the available hook points and the available services, refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference#app-lifecycle).
+For a full list of the available hook points and the available services, refer to the [reference documentation](../../../resources/references/app-reference/script-reference/script-hooks-reference.md#app-lifecycle).
 
 ## Validation
 
