@@ -19,7 +19,7 @@ The following configurations are all optional.
 
 ## Setup
 
-Can be omitted if no communication between Shopware and your app is needed. For more follow the [app base guide](../../../guides/plugins/apps/app-base-guide#registration-request).
+Can be omitted if no communication between Shopware and your app is needed. For more information, follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup#registration-request).
 
 <<< @/docs/snippets/config/app/setup.xml
 
@@ -31,7 +31,7 @@ Can be omitted if your app template needs higher load priority than other plugin
 
 ## Permissions
 
-_Optional_, can be omitted if your app does not need permissions. For more follow the [app base guide](../../../guides/plugins/apps/app-base-guide).
+_Optional_, can be omitted if your app does not need permissions. For more follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup#permissions).
 
 You can use individual permission elements (`read`, `create`, `update`, `delete`) or the `<crud>` shortcut element which automatically grants all four CRUD permissions for an entity:
 

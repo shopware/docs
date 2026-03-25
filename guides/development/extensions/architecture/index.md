@@ -1,7 +1,7 @@
 ---
 nav:
   title: Extension Architecture
-  position: 1
+  position: 10
 ---
 
 # Extension Architecture

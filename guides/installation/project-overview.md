@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Understanding your Shopware project
+# Understanding Your Shopware Project
 
 You have just installed Shopware, and this section guides you through the fundamentals you will use throughout the rest of your development workflow.
 
@@ -17,8 +17,7 @@ The Docker setup provisions Shopware for development. Development tools such as:
 - [Symfony profiler]( https://symfony.com/doc/current/profiler.html) (**only in development mode**)
 - linting and testing tools
 
-are managed via the Shopware CLI.
-These are installed into the user’s environment and shared across projects and extensions, rather than being added as project-level `require-dev` dependencies.
+are managed via the Shopware CLI. These are installed into the user’s environment and shared across projects and extensions, rather than being added as project-level `require-dev` dependencies.
 
 [Demo data](https://github.com/shopware/SwagPlatformDemoData) is optional and can be installed during the in-browser first-run wizard.
 

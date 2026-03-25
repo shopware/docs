@@ -7,7 +7,11 @@ nav:
 
 # Add Plugin Configuration
 
-The `Shopware plugin system` provides you with the option to create a configuration page for your plugin without any knowledge of templating or the `Shopware Administration`.
+The Shopware plugin system lets you define a configuration screen in the Administration for your plugin using `config.xml` only. No custom Admin templates are required.
+
+::: info Related guide
+See [Use plugin configuration](use-plugin-configuration.md) for more details.
+:::
 
 ## Prerequisites
 
@@ -16,11 +20,7 @@ Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
 
 ## Create your plugin configuration
 
-<YoutubeRef video="XXcmgKBRh-s" title="Backend Development - Adding a plugin configuration - YouTube" target="_blank" />
-
-::: info
-This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
-:::
+Related resources: [Adding a plugin configuration (YouTube)](https://www.youtube.com/watch?v=XXcmgKBRh-s), [Backend Development](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 All you need to do is create a `config.xml` file inside a `Resources/config` directory in your plugin root.
 The content of the `config.xml` will be dynamically rendered in the Administration.
@@ -331,7 +331,10 @@ Therefore, Shopware supports the following components by default (also to be fou
 
 ## Example
 
-Now all that's left to do is to present you a working example `config.xml` and show you the result.
+Full multi-card `config.xml` example (collapse to focus on smaller snippets above):
+
+<details>
+<summary>Full example <code>config.xml</code></summary>
 
 ```xml
 <!--<plugin root>/src/Resources/config/config.xml-->
@@ -389,11 +392,11 @@ Now all that's left to do is to present you a working example `config.xml` and s
 </config>
 ```
 
+</details>
+
 ## Add values to your configuration
 
-After adding your input fields to the `config.xml`, you can add values to your configuration.
-To do so, navigate from the sidebar to the `Extensions` > `My extensions` > `Apps` tab and click `Configure`.
-Now you can see the `Configuration` tab and fill in the values for your input fields.
+After adding your input fields to the `config.xml`, save and refresh the Administration. Then open the `**Extensions → My extensions** → Plugins**` tab, find your plugin, and open **Configure** (or the plugin’s configuration action). Use the **Configuration** tab to enter values for your fields. *(Apps use a separate tab; plugin settings are under **Plugins**.)*
 
 ## Next steps
 

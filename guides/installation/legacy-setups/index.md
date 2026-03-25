@@ -1,17 +1,13 @@
 ---
 nav:
-  title: Legacy Setups
+  title: Legacy Installations and Setups
   position: 10000
 
 ---
 
-# Legacy Setups
+# Legacy Installations and Setups
 
-:::warning
-Legacy local development setups are documented here for reference only and are no longer recommended for new projects. Refer to [Install Shopware with Docker](../docker-setup.md) instead.
-:::
-
-Legacy development environments:
+## Legacy development environments
 
 * [Devenv](./devenv-setup/)
 * [Symfony CLI](./symfony-cli-setup/)
@@ -23,3 +19,9 @@ These setups may still be in use by external development teams for:
 * Migration scenarios
 
 However, they may not receive the same level of updates or optimization as our current recommended setup.
+
+## Legacy installation methods
+
+Docker remains supported and recommended, but this installation method is now largely achievable with the Shopware CLI:
+
+* [Docker](./docker-setup.md)

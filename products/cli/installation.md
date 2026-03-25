@@ -1,13 +1,15 @@
 ---
 nav:
   title: Other Installation Options
-  position: 1
+  position: 20
 
 ---
 
 # Other Installation Options
 
-If you haven’t already, see the [Shopware CLI overview](index.md) for a quick start and the most common installation methods (Homebrew, APT, and Docker). This page covers additional or advanced options for other package managers, CI/CD environments, or building from source.
+If you haven’t already, see the [Shopware CLI overview](index.md) for a quick start and the most common installation methods: Homebrew, APT, and Docker.
+
+This page covers additional options for other package managers, CI/CD environments, or building from source.
 
 ## Package-manager installs
 

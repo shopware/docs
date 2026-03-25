@@ -1,7 +1,7 @@
 ---
 nav:
   title: Payment
-  position: 20
+  position: 90
 
 ---
 

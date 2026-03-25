@@ -1,7 +1,7 @@
 ---
 nav:
   title: Search Criteria
-  position: 10
+  position: 30
 
 ---
 

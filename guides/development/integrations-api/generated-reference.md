@@ -1,7 +1,7 @@
 ---
 nav:
   title: Generated Reference
-  position: 30
+  position: 60
 
 ---
 

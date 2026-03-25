@@ -64,9 +64,14 @@ Just a simple input field with the technical name `example`. This will be necess
 
 ## Reading the configuration
 
-Let's get to the important part. Reading the plugin configuration is based on the `Shopware\Core\System\SystemConfig\SystemConfigService`. This service is responsible for reading all configs from Shopware 6, such as the plugin configurations.
+Use the tabs below depending on where you need the value: **PHP** (services, subscribers), **Administration (JavaScript)** (custom Admin modules), or **Storefront** (Twig / theme JS).
 
-Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
+<Tabs>
+<Tab title="PHP">
+
+Reading in PHP uses `Shopware\Core\System\SystemConfig\SystemConfigService` for all system and plugin config.
+
+Inject this service using the [DI container](https://symfony.com/doc/current/service_container.html).
 
 ```php
 // <plugin root>/src/Resources/config/services.php
@@ -145,13 +150,10 @@ class MySubscriber implements EventSubscriberInterface
 Set the `saleschannelId` to `null` for the plugin configuration to be used by all Sales Channels else set to the corresponding Sales Channel ID.
 :::
 
-## Reading configuration in JavaScript
+</Tab>
+<Tab title="Administration (JS)">
 
-While the above examples show how to read plugin configuration in PHP, you might also need to access these values in JavaScript for Administration extensions or Storefront functionality.
-
-### Administration API access
-
-To access your plugin's configuration from JavaScript in the Administration, you should use the `systemConfigApiService` which wraps the system-config endpoints.
+In the Administration, use `systemConfigApiService` (wraps system-config endpoints).
 
 #### Using injection in Vue components
 
@@ -202,9 +204,12 @@ async function getPluginConfig() {
 Your plugin needs the `system_config:read` permission to access this API endpoint.
 :::
 
-### Storefront template access
+</Tab>
+<Tab title="Storefront">
 
-In Storefront templates, you can use the `config()` twig function to access plugin configuration values directly without making API calls:
+### Twig (`config()`)
+
+In Storefront templates, use the `config()` Twig function:
 
 ```twig
 {# Example: Reading plugin configuration in Storefront templates #}
@@ -244,3 +249,6 @@ export default class ExamplePlugin extends PluginBaseClass {
     }
 }
 ```
+
+</Tab>
+</Tabs>

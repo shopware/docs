@@ -9,7 +9,7 @@ nav:
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
-Shopware recommends [Docker](../docker-setup.md) as the default setup for most users because it mirrors production and includes all services out-of-the-box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
+Shopware recommends [Docker](./docker-setup.md) as the default setup for most users because it mirrors production and includes all services out-of-the-box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
 
 ## Prerequisites
 
@@ -189,4 +189,4 @@ Symfony CLI uses PHP’s built-in web server by default. For better performance,
 
 ## Build and Watch the Administration and Storefront (optional)
 
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Frontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to the [Frontend and Administration development guide](/guides/development/extensions/frontend.md) for more info.

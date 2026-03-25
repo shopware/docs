@@ -1,7 +1,7 @@
 ---
 nav:
   title: Configuration
-  position: 10
+  position: 80
 
 ---
 

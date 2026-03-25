@@ -111,7 +111,7 @@ The `store` service only loads "public" entities. This means that the entities o
 
 One major difference is that when using the `repository` service, your app needs `read` permissions for every entity it reads, whereas you don't need additional permissions for using the `store` service (as that service only searches for "public" data).
 
-Refer to the [App Base Guide](../app-base-guide#permissions) for more information on how permissions work for apps.
+Refer to the [[App registration & backend setup guide](../app-registration-setup#permissions) for more information on how permissions work for apps.
 
 The `repository` service exposes the same data as the CRUD-operations of the [Admin API](../../../integrations-api/#backend-facing-integrations---admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../integrations-api/#customer-facing-interactions---store-api).
 

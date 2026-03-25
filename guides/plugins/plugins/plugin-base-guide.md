@@ -9,15 +9,15 @@ nav:
 
 ## Overview
 
-Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides.  
-A plugin is the main way to extend your Shopware 6 instance programmatically.
+Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides. A plugin is the main way to extend your Shopware 6 instance programmatically.
 
 This section guides you through the basics of creating a plugin from scratch, which can then be installed on your Shopware 6 instance. Refer to the Guide section to know how to [Install Shopware 6](../../installation/).
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line.  
-Of course, you'll have to understand PHP, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+* a running Shopware 6 instance
+* full access to both the files, as well as the command line  
+* PHP knowledge
 
 ## Create your first plugin
 
@@ -45,9 +45,22 @@ bin/console plugin:create SwagBasicExample
 
 You can pass an addition flag `-c` or `--create-config` in the above command which would also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as per your need.
 
-If you want to create the structure manually please follow the instructions below:
+### Generated structure (summary)
 
-For this, please navigate to the directory `custom/plugins`, that you should find in your Shopware 6 installation. Inside the `plugins` directory, create a new directory named after your plugin, so it should look like this: `custom/plugins/SwagBasicExample`
+After `plugin:create`, you typically get:
+
+* `src/<PluginClass>.php`: the plugin base class extending `Shopware\Core\Framework\Plugin`
+* `composer.json`: package metadata such as `type: shopware-platform-plugin` and autoload configuration
+
+Additional files may be added depending on the scaffold and Shopware version. `src/Resources/config/config.xml` is not a guaranteed default output of `plugin:create`; it is an optional file for Administration settings.
+
+### Plugin configuration field types (`config.xml`)
+
+Administration plugin settings are defined in `config.xml`. Supported field types and their options are documented in [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field). Use that page when designing your config UI.
+
+If you want to create the structure manually, please follow the instructions below.
+
+First, navigate to the directory `custom/plugins` in your Shopware 6 installation. Inside the `plugins` directory, create a new directory named after your plugin. It should look like this: `custom/plugins/SwagBasicExample`
 
 By convention, you'll have another directory in there, which is called `src`. This is not required, but recommended. And that's it for the directory structure for now.
 
