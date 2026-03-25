@@ -269,7 +269,7 @@ To prevent failure of already in-flight requests parallel to the secret rotation
 
 ## Permissions
 
-Shopware comes with the possibility to create fine-grained [Access Control Lists](../plugins/administration/permissions-error-handling/add-acl-rules) \(ACLs\).
+Shopware comes with the possibility to create fine-grained [Access Control Lists](../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).
 It means you need to request permissions if your app needs to read or write data over the API or wants to receive webhooks.
 The permissions your app needs are defined in the manifest file and are composed of the privilege \(`read`, `create`, `update`, `delete`\) and the entity.
 Since version 6.4.12.0, your app can also request additional non-CRUD privileges with the `<permission>` element.
@@ -311,7 +311,7 @@ The permissions you request need to be accepted by the user during the installat
 After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-registration-setup.md#confirmation-request) of the [setup workflow](app-registration-setup.md#setup) are limited to those permissions.
 
 ::: warning
-Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](./webhook).
+Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](../apps/webhook.md).
 :::
 
 ### App notification
