@@ -7,7 +7,7 @@ nav:
 
 # Load additional data for the Storefront with App Scripts
 
-If your app needs additional data in your [customized Storefront templates](../../../plugins/plugins/storefront/customize-templates), you can load that data with app scripts and make it available to your template.
+If your app needs additional data in your [customized Storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -15,10 +15,10 @@ Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported 
 
 ## Overview
 
-The app script data loading expands on the general [composite data loading concept](../../../../concepts/framework/architecture/storefront-concept#composite-data-handling) of the storefront.
+The app script data loading expands on the general [composite data loading concept](../../../../concepts/framework/architecture/storefront-concept#composite-data-handling.md) of the storefront.
 For each page that is rendered, a hook is triggered, giving access to the current `page` object. The `page` object gives access to all the available data, lets you add data to it, and will be passed directly to the templates.
 
-For a list of all available script hooks that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference#data-loading).
+For a list of all available script hooks that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading).
 
 ::: info
 Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./#developing--debugging-scripts).
@@ -58,7 +58,7 @@ In your Storefront templates, you can read the data again from the `page` object
 
 ## Loading data
 
-To load data stored inside Shopware, you can use the `read` features of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer).
+To load data stored inside Shopware, you can use the `read` features of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer.md).
 Therefore, in every hook that may be used to load additional data, the `repository` service is available.
 
 The `repository` service provides methods to load exactly the data you need:
@@ -76,7 +76,7 @@ All those methods can be used in the same way. First, you pass the entity name t
 ### Search criteria
 
 The search criteria define how the search is performed and what data is included.
-The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../integrations-api/general-concepts/search-criteria).
+The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../integrations-api/general-concepts/search-criteria.md).
 
 So please refer to that documentation to get an overview of what features can be used inside a criteria object.
 
@@ -111,7 +111,7 @@ The `store` service only loads "public" entities. This means that the entities o
 
 One major difference is that when using the `repository` service, your app needs `read` permissions for every entity it reads, whereas you don't need additional permissions for using the `store` service (as that service only searches for "public" data).
 
-Refer to the [App registration & backend setup guide](../app-registration-setup#permissions) for more information on how permissions work for apps.
+Refer to the [App registration & backend setup guide](../app-registration-setup.md#permissions) for more information on how permissions work for apps.
 
 The `repository` service exposes the same data as the CRUD-operations of the [Admin API](../../../integrations-api/#backend-facing-integrations---admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../integrations-api/#customer-facing-interactions---store-api).
 
