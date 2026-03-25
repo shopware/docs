@@ -9,24 +9,12 @@ nav:
 
 As a Shopware developer, your primary focus is on developing extensions that enhance or modify Shopware's functionality.
 
-## Server-side extension formats: plugins and bundles
+Shopware offers two extension types:
 
-Besides apps (API-based, cloud-compatible), self-hosted projects use several code extension shapes:
+- **Plugins**: full system access (self-hosted only)
+- **Apps**: API-based, cloud-compatible
 
-| Type | Typical use | Merchant can disable in Admin? |
-|------|-------------|----------------------------------|
-| **Plugin** (`custom/plugins`) | Store extensions, distributable features | Yes (Plugin Manager) |
-| **Static plugin** (`custom/static-plugins` + Composer) | Your team’s code in Git; needs Composer dependencies | Yes (lifecycle), not listed like Store plugins—require via Composer |
-| **Shopware bundle** (`src/` or `vendor`) | Project-specific core customizations | **No** — not in Plugin Manager; always loaded |
-| **Symfony bundle** | Same as Shopware bundle, minus Shopware-specific features (themes, migrations, …) | **No** |
-
-When to choose what:
-
-* **Static plugin**: default for private project code you version in Git, especially when the plugin must declare PHP dependencies via Composer.
-* **Store-style plugin**: when you install from the Shopware Store or share a zip; lives under `custom/plugins` and is managed in the Administration.
-* **Shopware / Symfony bundle**: when code must stay active (merchants cannot deactivate it) and you want full control without plugin lifecycle UI. See the [bundle guide](../../plugins/plugins/bundle.md) and the [feature comparison](../../plugins/plugins/index.md#types-of-plugins).
-
-Plugins and apps are installed and activated for the whole Shopware instance (apps from the cloud perspective; plugins on self-hosted).
+Plugins and apps are installed and activated for the whole Shopware instance.
 
 ## Apps and themes
 
