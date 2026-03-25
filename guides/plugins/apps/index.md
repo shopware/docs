@@ -19,7 +19,7 @@ Apps are well-suited for use cases such as:
 - Customizing the Storefront or Administration; creating custom themes, adding custom blocks or Storefront elements, or modifying the appearance and layout of the Administration panel
 - Facilitating integration with external systems to allow seamless data synchronization, order and product management, and cross-platform workflows
 
-You can develop apps using the Shopware [App SDKs](../apps/app-sdks/index.md), [App Scripts](./app-scripts/index.md), and external services via the [App API](../../../resources/references/app-reference/index.md). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
+You can develop apps using the Shopware [App SDKs](../apps/app-sdks/index.md), [App Scripts](./app-scripts/index.md), and external services with the Shopware app system and its [reference documentation](../../../resources/references/app-reference/index.md). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
 
 Some app extension points use a [gateway pattern](../apps/gateways/index.md), where Shopware delegates a specific task to an external app service and continues processing based on the returned result. A prominent example is the [checkout gateway](../apps/gateways/checkout/checkout-gateway.md. 
 
@@ -29,7 +29,7 @@ For comparison, [App Scripts](./app-scripts/index.md) cover synchronous, sandbox
 Apps also provide theme support, so everything you can do with a theme plugin is also possible in an app. This makes them the preferred option for customizing design in Cloud shops.
 :::
 
-To understand how apps differ from other extension types, see the [Overview table](../../../guides/plugins/index/).
+To understand how apps differ from other extension types, see the [Overview table](../../plugins/index.md).
 
 ## Start here
 
