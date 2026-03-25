@@ -7,7 +7,7 @@ nav:
 # Overview of Shopware 6 Installation
 
 :::info
-The installation workflow has been streamlined to focus on a CLI-based installation as the primary approach. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
+The recommended way for developers to build Shopware is with the Docker setup, made simple as of **March 2026** with a [Shopware CLI](./../../products/cli/index.md) installation path. Docker provides a consistent, production-like environment for development. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
 :::
 
 Welcome to the Shopware 6 Developer Installation Guide, which will help you set up a local Shopware 6 development environment, whether you’re:
@@ -19,8 +19,6 @@ Welcome to the Shopware 6 Developer Installation Guide, which will help you set 
 The Shopware 6 development environment is primarily supported and recommended for use with [Docker](https://www.docker.com/). This platform enables developers to develop, ship, and run applications inside containers: lightweight, standalone, and executable packages.
 
 Docker enables production-like conditions consistent across teams and CI/CD, and makes it easy to reset or rebuild environments. Docker is beneficial when full service parity is required (e.g., caching, queues, search).
-
-**As of March 2026**, The recommended way for developers to build Shopware is with the [Shopware CLI](./../../products/cli/index.md), which supports local Docker setup. This provides a consistent, production-like environment for development.
 
 [Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It is installed and configured separately from your Shopware instance.
 
