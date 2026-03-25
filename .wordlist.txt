@@ -74,6 +74,7 @@ AppSystem
 Archlinux
 ArrayFacade
 AssociationField
+AsyncAws
 AsyncPaymentTransactionStruct
 AsynchronousPaymentHandlerInterface
 AudienceContext
