@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Legacy Installations and Setups
+  title: Legacy Setups
   position: 10000
 
 ---
 
-# Legacy Installations and Setups
+# Legacy Setups
 
 :::warning
 Legacy local development setups are documented here for reference only and are no longer recommended for new projects. Refer to [Install Shopware with Docker](../docker-setup.md) instead.
@@ -26,6 +26,4 @@ However, they may not receive the same level of updates or optimization as our c
 
 ## Legacy installation methods
 
-Docker remains supported and recommended, but this installation method is now largely achievable in a simpler way with the Shopware CLI:
-
-* [Docker](./docker-setup.md)
+The [Docker setup](./docker-setup.md) remains recommended, but installation is now largely achievable in a simpler way with the Shopware CLI.
