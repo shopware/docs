@@ -20,9 +20,9 @@ All development scenarios share common foundations:
 * Configuration
 * Debugging
 
-Before beginning implementation, review the recommended [Code structure](extensions/code-structure.md) guide. A consistent architecture prevents long-term maintenance issues and reduces upgrade friction.
+Before starting new development, review the recommended [Code structure](extensions/code-structure.md) guide. A consistent architecture prevents long-term maintenance issues and reduces upgrade friction.
 
-Before starting new development, review the [Upgrades and Migrations](../upgrades-migrations/index.md) section to avoid patterns that are deprecated or scheduled for removal.
+Also review the [Upgrades and Migrations](../upgrades-migrations/index.md) section to avoid patterns that are deprecated or scheduled for removal.
 
 ## Extension development
 
