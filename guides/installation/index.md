@@ -38,7 +38,13 @@ The Shopware community has created related tooling that enables more automated o
 
 ## Use the Shopware CLI to create a shop
 
-This command runs the Shopware CLI and creates a shop. In this example, we'll create `my-shop`:
+This command uses the Shopware CLI and creates a shop. In this example, we create `my-shop`:
+
+```bash
+shopware-cli project create my-shop
+```
+
+Alternatively, you can run the CLI without a separate installation via:
 
 ```bash
 npx @shopware-ag/shopware-cli project create my-shop
