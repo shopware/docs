@@ -7,7 +7,7 @@ nav:
 
 # Load additional data for the Storefront with App Scripts
 
-If your app needs additional data in your [customized Storefront templates](../../../plugins/plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
+If your app needs additional data in your [customized Storefront templates](../../plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -15,13 +15,13 @@ Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported 
 
 ## Overview
 
-The app script data loading expands on the general [composite data loading concept](../../../../concepts/framework/architecture/storefront-concept#composite-data-handling.md) of the storefront.
+The app script data loading expands on the general [composite data loading concept](../../../../concepts/framework/architecture/storefront-concept.md#composite-data-handling) of the storefront.
 For each page that is rendered, a hook is triggered, giving access to the current `page` object. The `page` object gives access to all the available data, lets you add data to it, and will be passed directly to the templates.
 
 For a list of all available script hooks that can be used to load additional data, take a look at the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#data-loading).
 
 ::: info
-Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](./#developing--debugging-scripts).
+Note that all hooks that were triggered during a page rendering are also shown in the [Symfony toolbar](../app-scripts/index.md#developingdebugging-scripts).
 This may come in handy if you are searching for the right hook for your script.
 :::
 
