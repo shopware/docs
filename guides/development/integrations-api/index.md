@@ -123,7 +123,7 @@ curl -X POST "http://127.0.0.1:8000/api/search/product" \
   -d '{}'
 ```
 
-A successful response returns JSON with the search result. If your instance does not contain any products yet, the `data` array may be empty. 
+A successful response returns JSON with the search result. If your instance does not contain any products yet, the `data` array may be empty.
 
 Use `127.0.0.1:8000` consistently in local API examples if that is the URL already configured in your local setup.
 
