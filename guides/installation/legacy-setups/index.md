@@ -11,7 +11,7 @@ nav:
 Legacy local development setups are documented here for reference only and are no longer recommended for new projects. Refer to [Install Shopware with Docker](../docker-setup.md) instead.
 :::
 
-## Legacy development environments
+Legacy development environments:
 
 * [Devenv](./devenv-setup.md)
 * [Symfony CLI](./symfony-cli-setup.md)
