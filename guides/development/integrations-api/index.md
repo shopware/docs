@@ -16,8 +16,8 @@ Shopware provides two HTTP APIs:
 
 For the complete endpoint reference and schemas, use the official Stoplight documentation:
 
-- [Admin API on Stoplight](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide)
-- [Store API on Stoplight](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide)
+- [Admin API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide)
+- [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide)
 
 This page is a practical quick start and does not duplicate the full API reference.
 
