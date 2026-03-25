@@ -54,12 +54,43 @@ Tasks handled in the CLI include:
 * Adjusting system configuration
 * Developing plugins and themes
 
+## Frontend development
+
+Use these commands when developing or customizing the UI (Storefront or Administration), or developing extensions that affect the UI:
+
+```bash
+# Build the administration (admin panel)
+make build-administration
+
+# Build the storefront (shop frontend)
+make build-storefront
+
+# Start a watcher to rebuild the Administration automatically when files change
+make watch-admin
+
+# Start a watcher for Storefront
+make watch-storefront
+```
+
+### Alternative: run build and watch scripts directly
+
+If you prefer not to use `make`, the created project also provides bash scripts in the `bin/` directory to build and watch the Administration and Storefront. Run the following commands:
+
+```bash
+./bin/build-administration.sh
+./bin/build-storefront.sh
+./bin/watch-administration.sh
+./bin/watch-storefront.sh
+```
+
+The `watch` commands monitor changes to the Administration and Storefront and automatically rebuild them.
+
 ## Local environment overview
 
 With Shopware running, your local setup includes:
 
 * A web service (serves both the Storefront and the Administration).
-* Database (MariaDB) runs on port 3306 inside Docker.
+* Database (MariaDB) runs on `port 3306` inside Docker.
   * Internal hostname: `database`.
   * Host access: `localhost:3306`, if you want to inspect the database directly.
 * Mailpit local mail testing tool available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
