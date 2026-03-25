@@ -60,6 +60,21 @@ A consistent architecture, centralized CI, and controlled extension strategy hel
 
 Set up automated testing and [Continuous Integration (CI)](testing/ci.md) early. Static analysis, tests, and reproducible builds help catch breaking changes before they reach production.
 
+## Working in the system
+
+### Administration
+
+Development requires access to the Administration at [http://localhost/admin](http://localhost/admin).
+
+Use the Administration to:
+
+* Install and activate extensions
+* Configure the system
+* Manage entities such as products and customers
+* Verify extension behavior
+
+The Administration is part of the runtime environment and will be used throughout development.
+
 ## Development tooling
 
 * `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../resources/references/core-reference/commands-reference.md).
