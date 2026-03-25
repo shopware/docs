@@ -7,9 +7,7 @@ nav:
 
 # Bundle
 
-Plugins are based on the Symfony bundle concept, but offer additional features like lifecycle events and the ability to be managed in the Shopware Administration.
-
-Shopware and Symfony bundles are not listed in the Plugin Manager. Merchants cannot activate or deactivate them like a plugin. Use bundles when project code must always run and must not be toggled from the Administration. In this case, you can use a Symfony bundle instead of a plugin.
+Plugins are based on the Symfony bundle concept, but offer additional features like lifecycle events and the ability to be managed in the Shopware Administration. This may be undesirable for project-critical customizations that should always be active and not be managed through the Shopware Administration. In such cases, use a Symfony bundle instead of a plugin.
 
 ## Project Structure
 
