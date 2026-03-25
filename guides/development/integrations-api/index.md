@@ -7,7 +7,7 @@ nav:
 
 # APIs
 
-This guide helps you make your first successful API request. Your Shopware instance should already be running and accessible. If it is not, return to the [Installation Guide](../installation/index.md).
+This guide helps you make your first successful API request. Your Shopware instance should already be running and accessible. If it is not, return to the [Installation Guide](../../installation/index.md).
 
 Shopware provides two HTTP APIs:
 
