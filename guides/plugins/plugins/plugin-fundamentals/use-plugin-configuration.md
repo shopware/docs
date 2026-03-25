@@ -155,7 +155,7 @@ Set the `saleschannelId` to `null` for the plugin configuration to be used by al
 
 In the Administration, use `systemConfigApiService` (wraps system-config endpoints).
 
-#### Using injection in Vue components
+## Using injection in Vue components
 
 ```javascript
 // Example: Reading plugin configuration in Administration Vue component
@@ -182,7 +182,7 @@ export default Shopware.Component.wrapComponentConfig({
 });
 ```
 
-#### Using direct service access
+## Using direct service access
 
 ```javascript
 // Example: Reading plugin configuration using direct service access
@@ -207,7 +207,7 @@ Your plugin needs the `system_config:read` permission to access this API endpoin
 </Tab>
 <Tab title="Storefront">
 
-### Twig (`config()`)
+## Twig (`config()`)
 
 In Storefront templates, use the `config()` Twig function:
 
@@ -220,7 +220,7 @@ In Storefront templates, use the `config()` Twig function:
 {% endif %}
 ```
 
-### Storefront JavaScript access
+## Storefront JavaScript access
 
 For Storefront JavaScript plugins, you can pass configuration values from Twig templates to your JavaScript code:
 
