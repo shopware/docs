@@ -211,7 +211,7 @@ Your plugin needs the `system_config:read` permission to access this API endpoin
 
 ## Twig (`config()`)
 
-In Storefront templates, use the `config()` Twig function:
+In Storefront templates, use the `config()` Twig function to access plugin configuration values directly without making API calls:
 
 ```twig
 {# Example: Reading plugin configuration in Storefront templates #}
