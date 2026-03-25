@@ -8,7 +8,7 @@ nav:
 
 # Start Developing
 
-With Shopware installed, familiarize yourself with the core parts of the system as you start your development journey—including the Shopware CLI's use in development, highlighted below.
+With Shopware installed, familiarize yourself with the core parts of the system as you start your development journey—including how to use `bin/console` for development, as highlighted below.
 
 ## Working in the Administration
 
@@ -24,15 +24,15 @@ To begin any development, first access the Administration by opening [http://loc
 Important directories:
 
 * `custom/` → plugins, apps, and themes
-* `bin/console` → application CLI (Symfony console) for development tasks
+* `bin/console` → application CLI for development tasks
 
 :::info
 Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
 :::
 
-## Using the Shopware CLI for development
+## Using `bin/console` for development
 
-To run CLI commands, open a shell inside the web container:
+To run commands, open a shell inside the web container:
 
 ```bash
 make shell
@@ -40,13 +40,13 @@ make shell
 
 This command drops you into the container’s terminal; you’ll see the prompt change.
 
-From inside the container, retrieve a list of CLI commands with:
+From inside the container, retrieve a list of commands with:
 
 ```bash
 bin/console
 ```
 
-Tasks handled in the CLI include:
+Tasks handled in `bin/console` include:
 
 * Installing and activating plugins
 * Clearing caches
@@ -56,7 +56,7 @@ Tasks handled in the CLI include:
 
 ## Frontend development
 
-Use these commands when developing or customizing the UI (Storefront or Administration), or developing extensions that affect the UI:
+Use these commands when developing or customizing the UI, including Storefront, Administration, or extensions that affect either one:
 
 ```bash
 # Build the administration (admin panel)
@@ -90,7 +90,7 @@ The `watch` commands monitor changes to the Administration and Storefront and au
 With Shopware running, your local setup includes:
 
 * A web service (serves both the Storefront and the Administration).
-* Database (MariaDB) runs on `port 3306` inside Docker.
+* Database (MariaDB) runs on port 3306 inside Docker.
   * Internal hostname: `database`.
   * Host access: `localhost:3306`, if you want to inspect the database directly.
 * Mailpit local mail testing tool available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
@@ -135,7 +135,7 @@ This keeps your changes local and out of version control.
 
 ## Generated project structure
 
-CLI-created projects follow the [project template layout](../installation/project-overview.md): `custom/` (plugins, apps, static-plugins), `config/`, `src/`, `bin/console`, `compose.yaml`, and `Makefile` shortcuts. After `plugin:create`, your plugin lives under `custom/plugins/<Name>/` with `src/`, `composer.json`, and the plugin base class—see the [Plugin base guide](../plugins/plugins/plugin-base-guide.md).
+Projects follow the [project template layout](../installation/project-overview.md): `custom/` (plugins, apps, static-plugins), `config/`, `src/`, `bin/console`, `compose.yaml`, and `Makefile` shortcuts. After `plugin:create`, your plugin lives under `custom/plugins/<Name>/` with `src/`, `composer.json`, and the plugin base class—see the [Plugin base guide](../plugins/plugins/plugin-base-guide.md).
 
 ## Shopware account and Composer (private packages)
 
