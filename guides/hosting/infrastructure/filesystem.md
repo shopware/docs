@@ -88,10 +88,10 @@ In this example, the `&s3_config` creates an anchor that can be referenced with 
 
 ### Fallback adapter configuration
 
-By default, the configuration for the theme, asset and sitemap filesystem will use the configuration from the `public` filesystem if they are not specifically configured.
+By default, the configuration for the theme, asset, and sitemap filesystem will use the configuration from the `public` filesystem if they are not specifically configured.
 This means when you want to change the configuration used for the public filesystem, but the others should use the old configuration you have to set them explicitly.
 
-E.g. before you had the following configuration:
+E.g., before you had the following configuration:
 
 ```yaml
 shopware:
@@ -104,7 +104,7 @@ shopware:
 
 ```
 
-Now you want to change the public filesystem to use an S3 adapter, but the theme, asset and sitemap filesystem should still use the local adapter. You have to set them explicitly:
+Now you want to change the public filesystem to use an S3 adapter, but the theme, asset, and sitemap filesystem should still use the local adapter. You have to set them explicitly:
 
 ```yaml
 shopware:
@@ -335,7 +335,7 @@ This creates a plain HTTP client via `HttpClient::create()` with custom options 
 
 ### Google Cloud Platform
 
-In order to use the Google Cloud Platform adapter you need to install the `league/flysystem-google-cloud-storage` package.
+To use the Google Cloud Platform adapter, you need to install the `league/flysystem-google-cloud-storage` package.
 
 ```bash
 composer require league/flysystem-google-cloud-storage
@@ -374,12 +374,12 @@ class MyFlysystemAdapterFactory implements AdapterFactoryInterface
 {
     public function getType(): string
     {
-        return 'my-adapter-prefix'; // This must match with the type in the yaml file
+        return 'my-adapter-prefix'; // This must match with the type in the YAML file
     }
 
     public function create(array $config): AdapterInterface
     {
-        // $config contains the given config from the yaml
+        // $config contains the given config from the YAML
         return new MyFlysystemAdapter($config);
     }
 }
