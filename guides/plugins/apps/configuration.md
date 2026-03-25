@@ -96,6 +96,6 @@ Keep in mind that your app needs the `system_config:read` permission to use the 
 {% set configValue = services.config.get('core.listing.productsPerPage') %}
 ```
 
-For a detailed description about app scripts refer to this [guide](./app-scripts/).
+For a detailed description about app scripts refer to this [guide](./app-scripts/index.md).
 
 For a full description of the `config` service take a look at the [service's reference](../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade).
