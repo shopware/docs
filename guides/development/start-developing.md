@@ -5,26 +5,44 @@ nav:
 
 ---
 
-
 # Start Developing
 
-With Shopware installed, familiarize yourself with the core parts of the system as you start your development journey—including how to use `bin/console` for development, as highlighted below.
+This section outlines the typical next steps for development in your running Shopware instance.
 
-## Working in the Administration
+## Access Administration and Storefront
 
-To begin any development, first access the Administration by opening [http://localhost:8000/admin](http://localhost:8000/admin). The Administration is part of the runtime environment and can be used throughout development for these and other steps:
+- Storefront: [http://localhost:8000](http://localhost:8000)
+- Administration: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
 
-* Installing and activating extensions
-* Configuring the system
-* Managing entities such as products and customers
-* Verifying extension behavior
+Common development areas:
 
-## Project structure
+- `custom/`: your plugins and themes
+- `bin/console`: application CLI (Symfony console)
+- the Administration UI
 
-Important directories:
+## Using `bin/console` for development
 
-* `custom/` → plugins, apps, and themes
-* `bin/console` → application CLI for development tasks
+To run commands, open a shell inside the web container:
+
+```bash
+make shell
+```
+
+This command drops you into the container’s terminal; you’ll see the prompt change.
+
+From inside the container, retrieve a list of commands with:
+
+```bash
+bin/console
+```
+
+Tasks handled in `bin/console` include:
+
+* Installing and activating plugins
+* Clearing caches
+* Running migrations
+* Adjusting system configuration
+* Developing plugins and themes
 
 :::info
 Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
@@ -53,6 +71,16 @@ Tasks handled in `bin/console` include:
 * Running migrations
 * Adjusting system configuration
 * Developing plugins and themes
+
+## Administration setup tasks
+
+- Open the **Admin** at `http://localhost:8000/admin`
+- Sign in or create a Shopware account; this is necessary when you want to install Store extensions.
+- Connect to the **Shopware Store**
+- Install plugins or themes from the Store
+- Configure payment methods; not necessary for local development
+
+Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **`Settings > Shop > Basic information`**.
 
 ## Frontend development
 
