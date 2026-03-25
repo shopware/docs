@@ -19,11 +19,11 @@ You will likely create a plugin when you need deep server-side integration (e.g.
 | React to domain events | [Listening to events](plugin-fundamentals/listening-to-events.md) |
 | Register services & DI | [Dependency injection](plugin-fundamentals/dependency-injection.md) |
 | Database changes | [Database migrations](plugin-fundamentals/database-migrations.md) |
-| Composer dependencies in a plugin | [Using Composer dependencies](plugin-fundamentals/using-composer-dependencies.md) |
+| Composer dependencies in a plugin | [Adding Composer dependencies](plugin-fundamentals/using-composer-dependencies.md) |
 | More topics | [Plugin fundamentals](plugin-fundamentals/index.md) (logging, cache, routes, …) |
 
 ::: info
-If your extension focuses primarily on Storefront design changes, a [theme plugin](../themes/theme-base-guide.md) is often the best choice. For static plugins, Shopware bundles, and Symfony bundles, see [Types of plugins](#types-of-plugins) below and [Bundle](bundle.md).
+If your extension focuses primarily on Storefront design changes, a [theme plugin](../themes/theme-base-guide.md) is often the best choice.
 :::
 
 ## Types of plugins
@@ -49,18 +49,9 @@ composer req <vendor>/<plugin-name>
 
 ### Symfony bundle / Shopware bundle
 
-You can also use Shopware/Symfony bundles instead of plugins.
-Bundles are a good choice when you want to avoid plugin lifecycle handling or Administration management.
-You install bundles via Composer. They are not managed by the Shopware Administration.
+You can also use Shopware/Symfony [bundles](bundle.md) instead of plugins. Bundles are installed bundles with Composer and offer full control over projects. They are not managed by the Shopware Administration, and are a good choice when you want to avoid plugin lifecycle handling or Administration management.
 
 ## Feature comparison
-
-::: tip
-
-For customizing projects, we recommend using [bundles](https://developer.shopware.com/docs/guides/plugins/plugins/bundle.html) instead of plugins.
-As bundles are not managed via Administration and don't have a lifecycle, they offer full control over the project.
-
-:::
 
 | Feature                                       | Plugin             | Static Plugin           | Shopware Bundle                 | Symfony Bundle                  |
 |-----------------------------------------------|--------------------|-------------------------|---------------------------------|---------------------------------|
