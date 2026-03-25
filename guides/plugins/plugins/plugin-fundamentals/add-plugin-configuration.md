@@ -396,7 +396,7 @@ Full multi-card `config.xml` example (collapse to focus on smaller snippets abov
 
 ## Add values to your configuration
 
-After adding your input fields to the `config.xml`, save and refresh the Administration. Then open the `**Extensions → My extensions** → Plugins**` tab, find your plugin, and open **Configure** (or the plugin’s configuration action). Use the **Configuration** tab to enter values for your fields. *(Apps use a separate tab; plugin settings are under **Plugins**.)*
+After adding your input fields to the `config.xml`, save and refresh the Administration. Then open the **Extensions → My extensions → Plugins** tab, find your plugin, and open **Configure** (or the plugin’s configuration action). Use the **Configuration** tab to enter values for your fields. *(Apps use a separate tab; plugin settings are under **Plugins**.)*
 
 ## Next steps
 
