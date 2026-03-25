@@ -6,7 +6,7 @@ nav:
 
 # Troubleshooting
 
-Fix common issues when running Shopware locally.
+Quick, targeted troubleshooting resources for common runtime, data, and integration issues.
 
 ## Database and API issues
 
