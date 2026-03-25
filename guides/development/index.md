@@ -88,4 +88,4 @@ The [troubleshooting](troubleshooting/index.md) guides provide reference informa
 
 ## Next steps
 
-Move on to the [Start developing guide](start-developing.md).
+Move on to the [Start Developing guide](start-developing.md).
