@@ -131,7 +131,7 @@ If the response returns JSON with keys such as `data`, `meta`, and `aggregations
 
 ## Step 4: Access the Store API
 
-The [Store API](../../concepts/api/store-api.md) uses a sales channel access key. Use this key to authenticate Store API requests - for example, when fetching product or category data from an external app, headless storefront, or API client.
+The [Store API](../../../concepts/api/store-api.md) uses a sales channel access key. Use this key to authenticate Store API requests - for example, when fetching product or category data from an external app, headless storefront, or API client.
 
 Open the Administration and go to **Sales Channels → Storefront (or your active sales channel)**. In the **API access** section, copy the **API access key** for that sales channel.
 
