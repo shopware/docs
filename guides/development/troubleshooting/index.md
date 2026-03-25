@@ -10,10 +10,6 @@ Quick, targeted troubleshooting resources for common runtime, data, and integrat
 
 ## Database and API issues
 
-- **Missing DB tables** (e.g. `system_config`, `plugin` not found): the instance may not be installed. Run `bin/console system:install --create-database --basic-setup` inside the web container, or see [Authentication and API requests](../integrations-api/auth-api-requests.md) for recovery steps.
-- **HTTP 401 on `/api/*`**: invalid or expired OAuth token; recreate integration credentials and request a new token ([Authentication and API requests](../integrations-api/auth-api-requests.md)).
-- **HTTP 500 on API or OpenAPI**: often uninitialized DB or plugin errors; check `var/log/` and container logs, verify `APP_ENV=dev` for stack traces.
-
 Sections:
 
 - [DAL Reference](dal-reference/index.md): documents fields, flags, filters, and aggregations for effective data management and querying within the platform.
