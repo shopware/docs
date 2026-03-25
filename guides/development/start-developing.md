@@ -12,7 +12,7 @@ With Shopware installed, familiarize yourself with the core parts of the system 
 
 ## Working in the Administration
 
-To begin any development, first access the Administration by opening [http://localhost/admin](http://localhost/admin). The Administration is part of the runtime environment and can be used throughout development for these and other steps:
+To begin any development, first access the Administration by opening [http://localhost:8000/admin](http://localhost:8000/admin). The Administration is part of the runtime environment and can be used throughout development for these and other steps:
 
 * Installing and activating extensions
 * Configuring the system
