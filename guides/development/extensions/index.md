@@ -43,7 +43,7 @@ A storefront theme is *not* a separate extension type, but a stripped-down plugi
 
 ## Monetization
 
-To sell an extension or offer paid features, see the [Monetization guide](../../development/monetization/) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
+To sell an extension or offer paid features, see the [Monetization guide](../../development/monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 
 ## Which type to build?
 
