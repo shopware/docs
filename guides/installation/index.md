@@ -70,7 +70,7 @@ Before implementing your installation, you'll receive a summary of your installa
 
 If the summary looks good, choose `proceed` to start the process of setting up Shopware and installing dependencies. This process might take a while.
 
-When it finishes, users who did not install with Docker will you'll receive guidance to continue.
+When it finishes, users who did not install with Docker will receive guidance to continue.
 
 ### Finish Docker setup (optional)
 
