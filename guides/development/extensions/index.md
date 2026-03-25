@@ -32,8 +32,8 @@ Plugins and apps are installed and activated for the whole Shopware instance (ap
 
 Shopware also offers:
 
-- **Apps**: API-based, cloud-compatible
-- **Plugins** (above): full system access (self-hosted only)
+* **Apps**: API-based, cloud-compatible
+* **Plugins** (above): full system access (self-hosted only)
 
 :::info
 Before choosing an extension type, review the recommended [Code structure](code-structure.md). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
