@@ -119,4 +119,4 @@ Learn how to structure queries using:
 
 - [Search Criteria](../integrations-api/search-criteria.md): encapsulates the entire search definition in one generic object
 - [Request Headers](../integrations-api/request-headers.md): additional instructions
-- [Partial Data Loading](../integrations-api/partial-data-loading.md)
+- [Partial Data Loading](../integrations-api/partial-data-loading.md): to limit responses to the fields you actually need
