@@ -29,7 +29,7 @@ For comparison, [App Scripts](./app-scripts/index.md) cover synchronous, sandbox
 Apps also provide theme support, so everything you can do with a theme plugin is also possible in an app. This makes them the preferred option for customizing design in Cloud shops.
 :::
 
-To understand how apps differ from other extension types, see the [Overview table](../../plugins/index.md).
+To understand how apps differ from other extension types, see the [Overview table](../../plugins/index.md#which-type-to-build).
 
 ## Start here
 
