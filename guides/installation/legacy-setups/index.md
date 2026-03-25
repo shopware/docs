@@ -9,8 +9,8 @@ nav:
 
 ## Legacy development environments
 
-* [Devenv](./devenv-setup/)
-* [Symfony CLI](./symfony-cli-setup/)
+* [Devenv](./devenv-setup.md)
+* [Symfony CLI](./symfony-cli-setup.md)
 
 These setups may still be in use by external development teams for:
 
