@@ -291,7 +291,7 @@ ActionButtonResponse::modal('https://shopware.com', size: 'medium', expand: true
 
 ## Using Custom Endpoints as target
 
-It is also possible to use [custom endpoints](../app-scripts/custom-endpoints) as target for action buttons.
+It is also possible to use [custom endpoints](../app-scripts/custom-endpoints.md) as target for action buttons.
 
 ::: info
 This feature was added in Shopware 6.4.10.0, previous versions don't support relative target urls for action buttons.
@@ -334,4 +334,4 @@ And then add the corresponding app script that should be executed when the user 
 {% do hook.setResponse(response) %}
 ```
 
-As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).
+As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).
