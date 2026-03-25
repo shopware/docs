@@ -25,13 +25,13 @@ Can be omitted if no communication between Shopware and your app is needed. For 
 
 ## Storefront
 
-Can be omitted if your app template needs higher load priority than other plugins/apps. For more follow the [storefront guide](../../../guides/plugins/apps/storefront/index).
+Can be omitted if your app template needs higher load priority than other plugins/apps. For more details, follow the [storefront guide](../../../guides/plugins/apps/storefront/index).
 
 <<< @/docs/snippets/config/app/storefront.xml
 
 ## Permissions
 
-_Optional_, can be omitted if your app does not need permissions. For more follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup#permissions).
+_Optional_, can be omitted if your app does not need permissions. For more details, follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup#permissions).
 
 You can use individual permission elements (`read`, `create`, `update`, `delete`) or the `<crud>` shortcut element which automatically grants all four CRUD permissions for an entity:
 
@@ -57,52 +57,52 @@ A list of all external endpoints your app communicates with (since `6.4.12.0`)
 
 ## Webhooks
 
-Register webhooks you want to receive, keep in mind that the name needs to be unique. For more follow the [app webhook guide](../../../guides/plugins/apps/webhook).
+Register webhooks you want to receive, keep in mind that the name needs to be unique. details, follow the [app webhook guide](../../../guides/plugins/apps/webhook).
 
 <<< @/docs/snippets/config/app/webhooks.xml
 
 ## Admin extension
 
-Only needed if the Administration should be extended. For more follow the [add custom module guide](../../../guides/plugins/apps/administration/add-custom-modules).
+Only needed if the Administration should be extended. details, follow the [add custom module guide](../../../guides/plugins/apps/administration/add-custom-modules).
 
 <<< @/docs/snippets/config/app/admin.xml
 
 ## Custom fields
 
-Add your custom fields easily via the manifest.xml. For more follow the [custom fields app guide](../../../guides/plugins/apps/custom-data/custom-fields).
+Add your custom fields easily via the manifest.xml. details, follow the [custom fields app guide](../../../guides/plugins/apps/custom-data/custom-fields).
 
 <<< @/docs/snippets/config/app/custom-fields.xml
 
 ## Cookies
 
-Add a single cookie to the consent manager. For more follow the [cookies with apps guide](../../../guides/plugins/apps/storefront/cookies-with-apps).
+Add a single cookie to the consent manager. For more details, the [cookies with apps guide](../../../guides/plugins/apps/storefront/cookies-with-apps).
 
 <<< @/docs/snippets/config/app/cookies.xml
 
-Add a cookie group to the consent manager. For more follow the [cookies with apps guide](../../../guides/plugins/apps/storefront/cookies-with-apps).
+Add a cookie group to the consent manager. For more details, the [cookies with apps guide](../../../guides/plugins/apps/storefront/cookies-with-apps).
 
 <<< @/docs/snippets/config/app/cookies-group.xml
 
 ## Payments
 
-Add your payment methods via payments and handle your synchronous and asynchronous via an external app-server. For more follow the [app payment guide](../../../guides/plugins/apps/payment).
+Add your payment methods via payments and handle your synchronous and asynchronous via an external app-server. For more details, the [app payment guide](../../../guides/plugins/apps/payment).
 
 <<< @/docs/snippets/config/app/payments.xml
 
 ## Shipping methods
 
-Add your shipping methods via shipping-methods and handle your synchronous and asynchronous via an external app-server. For more follow the [shipping methods guide](../../../guides/plugins/apps/shipping-methods).
+Add your shipping methods via shipping-methods and handle your synchronous and asynchronous via an external app-server. For more details, the [shipping methods guide](../../../guides/plugins/apps/shipping-methods).
 
 <<< @/docs/snippets/config/app/shipping-methods.xml
 
 ## Rule conditions
 
-The identifier of the rule condition must be unique should not change. Otherwise a separate rule condition is created, and uses of the old one are lost. For more follow the [rule conditions guide](../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions).
+The identifier of the rule condition must be unique should not change. Otherwise a separate rule condition is created, and uses of the old one are lost. For more details, follow the [rule conditions guide](../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions).
 
 <<< @/docs/snippets/config/app/rule-conditions.xml
 
 ## Tax
 
-Add an external tax provider to your app that is calculating your taxes on the fly for complex tax setups. For more follow the [tax provider guide](../../../guides/plugins/apps/tax-provider).
+Add an external tax provider to your app that is calculating your taxes on the fly for complex tax setups. For more details, follow the [tax provider guide](../../../guides/plugins/apps/tax-provider).
 
 <<< @/docs/snippets/config/app/tax.xml
