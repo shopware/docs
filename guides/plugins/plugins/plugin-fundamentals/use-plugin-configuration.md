@@ -7,11 +7,13 @@ nav:
 
 # Use Plugin Configuration
 
-In our guide on how to [add a plugin configuration](add-plugin-configuration.md), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
+The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins. This guide helps you to use them in your plugin.
 
 ## Prerequisites
 
-In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our [plugin base guide](../plugin-base-guide.md) to create your plugin first. It is also recommended to know how to setup a [plugin configuration](add-plugin-configuration.md) in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](listening-to-events.md) guide will also be helpful.
+- A plugin [Plugin Base Guide](../plugin-base-guide.md)
+- [Plugin configuration](add-plugin-configuration.md) in the first instance
+- Familiarity with the [Listening to events](listening-to-events.md) guide, as in this example the configurations is read inside of a subscriber
 
 ## Overview
 
