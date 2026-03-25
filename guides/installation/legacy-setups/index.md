@@ -22,6 +22,6 @@ However, they may not receive the same level of updates or optimization as our c
 
 ## Legacy installation methods
 
-Docker remains supported and recommended, but this installation method is now largely achievable with the Shopware CLI:
+Docker remains supported and recommended, but this installation method is now largely achievable in a simpler way with the Shopware CLI:
 
 * [Docker](./docker-setup.md)
