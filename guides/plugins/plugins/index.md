@@ -9,7 +9,14 @@ nav:
 
 Plugins are Shopware's server-side extension type, giving you deep integration with the e-commerce platform. They allow you to extend, overwrite, and modify Shopware’s core capabilities. Unlike apps and themes, plugins run directly inside the shop environment and can interact tightly with the system.
 
-You will likely create a plugin when you need deep server-side integration (e.g. custom pricing, imports, or third-party system integrations). Jump to a task:
+You will likely create a plugin when you need deep server-side integration or require complex functionalities such as:
+
+- Custom price calculation
+- Product imports
+- Custom content/product logic
+- Integrating third-party identity providers
+- Dynamic validations
+- Customer tracking or behavioral logic
 
 | Goal | Guide |
 |------|--------|
