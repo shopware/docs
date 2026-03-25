@@ -795,4 +795,4 @@ The following lists are all possible refund state options:
 
 ## API docs
 
-You can further take a look at [Payment references](../../../resources/references/app-reference/payment-reference).
+You can further take a look at [Payment references](../../../resources/references/app-reference/payment-reference.md).
