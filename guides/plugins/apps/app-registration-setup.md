@@ -198,7 +198,7 @@ A sample registration response looks like this:
 
 ### Confirmation request
 
-If the proof you provided in the [registration response](app-registration-setup#registration-response) matches the one generated on the shop side, the registration is completed.
+If the proof you provided in the [registration response](app-registration-setup.md#registration-response) matches the one generated on the shop side, the registration is completed.
 As a result, your app will receive a `POST` request against the URL specified as the `confirmation_url` of the registration with the following parameters send in the request body:
 
 * `apiKey`: The API key used to authenticate against the Shopware Admin API.
@@ -231,14 +231,14 @@ Starting from Shopware version 6.4.1.0, the current Shopware version will be sen
 Starting from Shopware version 6.4.5.0, the current language id of the Shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 :::
 
-The request is signed with the `shop-secret` that your app provided in the [registration response](app-registration-setup#registration-response) and the signature can be found in the `shopware-shop-signature` header.
+The request is signed with the `shop-secret` that your app provided in the [registration response](app-registration-setup.md#registration-response) and the signature can be found in the `shopware-shop-signature` header.
 You need to recalculate that signature and check that it matches the provided one to make sure that the request is really sent from the shop with that shopId.
 
 During **re-registration**, the confirmation request includes an additional header:
 
 * `shopware-shop-signature-previous`: The signature of the request body, signed with the shop's **previous** `shop-secret` (the secret that was active before this registration). This allows you to verify that the confirmation was initiated by the same Shopware installation that previously completed registration.
 
-For details on handling re-registration and secret rotation, see [Secret rotation and shop-url changes](app-registration-setup#secret-rotation-and-shop-url-changes).
+For details on handling re-registration and secret rotation, see [Secret rotation and shop-url changes](app-registration-setup.md#secret-rotation-and-shop-url-changes).
 
 You can use the following code snippet to generate the signature:
 
@@ -308,7 +308,7 @@ Sample permissions using the CRUD shortcut for products, individual permission f
 :::
 
 The permissions you request need to be accepted by the user during the installation of your app.
-After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-registration-setup#confirmation-request) of the [setup workflow](app-registration-setup#setup) are limited to those permissions.
+After that, these permissions are granted for your app and your API access through the credentials from the [confirmation request](app-registration-setup.md#confirmation-request) of the [setup workflow](app-registration-setup.md#setup) are limited to those permissions.
 
 ::: warning
 Keep in mind that read permissions also extend to the data contained in the requests, so your app needs read permissions for the entities contained in the subscribed [webhooks](./webhook).
