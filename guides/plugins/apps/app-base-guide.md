@@ -77,7 +77,6 @@ A typical meta block:
 `<author>` and `<copyright>` are required. If they are missing or empty, `bin/console app:refresh` fails.
 :::
 
-
 ## Install and refresh (CLI)
 
 Run commands from the project root inside the PHP container, for example `/var/www/html`.
