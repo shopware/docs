@@ -20,11 +20,11 @@ The Shopware 6 development environment is primarily supported and recommended fo
 
 Docker enables production-like conditions consistent across teams and CI/CD, and makes it easy to reset or rebuild environments. Docker is beneficial when full service parity is required (e.g., caching, queues, search).
 
-**As of March 2026**, The recommended way for developers to build Shopware is with the [Shopware CLI](./../../products/cli/index.md), which supports local Docker setup. This provides a consistent, production-like environment for development. 
+**As of March 2026**, The recommended way for developers to build Shopware is with the [Shopware CLI](./../../products/cli/index.md), which supports local Docker setup. This provides a consistent, production-like environment for development.
 
 [Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It is installed and configured separately from your Shopware instance.
 
-**The Shopware CLI installation method is in Alpha**. If you try it and experience issues, please let us know by [filing an issue](https://github.com/shopware/shopware-cli/issues). You may also use our [Docker setup guide](/guides/installation/legacy-setups/docker-setup.md) as a fallback.
+**The Shopware CLI installation method is in Alpha**. If you try it and experience issues, please let us know by [filing an issue](https://github.com/shopware/shopware-cli/issues). You may still use our [Docker setup guide](/guides/installation/legacy-setups/docker-setup.md) as a fallback.
 
 ## Prerequisites
 
