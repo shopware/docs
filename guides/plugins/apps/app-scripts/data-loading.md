@@ -76,7 +76,7 @@ All those methods can be used in the same way. First, you pass the entity name t
 ### Search criteria
 
 The search criteria define how the search is performed and what data is included.
-The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../integrations-api/general-concepts/search-criteria.md).
+The criteria object that is used inside the app scripts behaves and looks the same as the [JSON criteria used for the API](../../../development/integrations-api/search-criteria.md).
 
 So please refer to that documentation to get an overview of what features can be used inside a criteria object.
 
@@ -113,9 +113,9 @@ One major difference is that when using the `repository` service, your app needs
 
 Refer to the [App registration & backend setup guide](../app-registration-setup.md#permissions) for more information on how permissions work for apps.
 
-The `repository` service exposes the same data as the CRUD-operations of the [Admin API](../../../integrations-api/#backend-facing-integrations---admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../integrations-api/#customer-facing-interactions---store-api).
+The `repository` service exposes the same data as the CRUD-operations of the [Admin API](../../../development/integrations-api/index.md#admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../development/integrations-api/index.md#store-api).
 
-For a full description of the `repository` and `store` service, take a look at the [services reference](../../../../resources/references/app-reference/script-reference/data-loading-script-services-reference).
+For a full description of the `repository` and `store` service, take a look at the [services reference](../../../../resources/references/app-reference/script-reference/data-loading-script-services-reference.md).
 
 ## Adding data to the page object
 
