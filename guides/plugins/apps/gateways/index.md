@@ -10,7 +10,6 @@ Gateways allow apps to participate in specific Shopware flows by sending request
 
 This section covers the available gateway types and their command references:
 
-- [Checkout Gateway](./checkout-gateway.md)
-- [Context Gateway](./context-gateway.md)
-- [In-App Purchase Gateway](./in-app-purchase-gateway.md)
-- [Checkout Gateway Command Reference](./command-reference.md)
+- [Checkout Gateway](../gateways/checkout/checkout-gateway.md)
+- [Context Gateway](../gateways/context/context-gateway.md)
+- [In-App Purchase Gateway](../gateways/in-app-purchase/in-app-purchase-gateway.md)
