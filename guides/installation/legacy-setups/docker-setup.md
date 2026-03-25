@@ -12,7 +12,7 @@ The Docker-based setup aims to provide a smooth onboarding experience aligned wi
 By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
 
 :::info
-For information about using Docker in production, see [Docker for production](../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
+For information about using Docker in production, see [Docker for production](../../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
 :::
 
 ## Prerequisites
@@ -29,7 +29,7 @@ apt install make
 brew install make
 ```
 
-This Docker setup includes the [Shopware CLI](../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
+This Docker setup includes the [Shopware CLI](../../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
 ## Pre-pull Docker image (optional)
 
@@ -131,4 +131,4 @@ make down
 docker compose down -v
 ```
 
-You now have a running, empty Shopware instance. Before proceeding with development, [review the project](./project-overview.md) to understand its structure.
+You now have a running, empty Shopware instance. Before proceeding with development, [review the project](../project-overview.md) to understand its structure.
