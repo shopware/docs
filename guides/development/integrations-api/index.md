@@ -69,9 +69,9 @@ If both pages load, continue.
 
 If `http://localhost:8000` does not work, open the Administration and go to **Sales Channels → Storefront (or your active channel) → Domains**. Add `http://localhost:8000` as an additional domain for that sales channel, then save your changes.
 
-:::tip
-When running Shopware locally (for example, via Docker), ensure the environment is running in development mode for better error visibility. The default variable is `APP_ENV=dev`. If running the command `docker compose exec web printenv APP_ENV` does not return `dev`, create or update the variable in the `.env.local` file, then restart the container (required) with `make up`.
-:::
+When running Shopware locally (for example, via Docker), ensure the environment is running in development mode for better error visibility. The default variable is `APP_ENV=dev`. 
+
+If running the command `docker compose exec web printenv APP_ENV` does not return `dev`, create or update the variable in the `.env.local` file. Then restart the container (required) with `make up`.
 
 ## Step 2: Get an Admin API access token
 
