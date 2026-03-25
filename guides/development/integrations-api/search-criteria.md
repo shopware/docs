@@ -425,7 +425,7 @@ The aggregation types are equivalent to the aggregations available in the DAL:
 }
 ```
 
-See [Aggregations Reference](../../../resources/references/core-reference/dal-reference/aggregations-reference.md)
+See [Aggregations Reference](../../development/troubleshooting/dal-reference/aggregations-reference.md)
 
 ## `grouping`
 
