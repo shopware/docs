@@ -84,7 +84,7 @@ curl -X GET "http://localhost:8000/api/_info/openapi3.json" \
   -o openapi.json
 ```
 
-This saves the file as openapi.json in your current working directory.
+This saves the file as `openapi.json` in your current working directory.
 
 To verify where it was written and inspect it:
 
