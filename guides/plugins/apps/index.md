@@ -21,7 +21,7 @@ Apps are well-suited for use cases such as:
 
 You can develop apps using the Shopware [App SDKs](../apps/app-sdks/index.md), [App Scripts](./app-scripts/index.md), and external services with the Shopware app system and its [reference documentation](../../../resources/references/app-reference/index.md). Apps offer a modular and scalable way to extend and customize the platform according to specific business requirements.
 
-Some app extension points use a [gateway pattern](../apps/gateways/index.md), where Shopware delegates a specific task to an external app service and continues processing based on the returned result. A prominent example is the [checkout gateway](../apps/gateways/checkout/checkout-gateway.md). 
+Some app extension points use a [gateway pattern](../apps/gateways/index.md), where Shopware delegates a specific task to an external app service and continues processing based on the returned result. A prominent example is the [checkout gateway](../apps/gateways/checkout/checkout-gateway.md).
 
 For comparison, [App Scripts](./app-scripts/index.md) cover synchronous, sandboxed logic inside the app system, but come with caveats.
 
