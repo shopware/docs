@@ -33,27 +33,25 @@ For this example guide we'll use the plugin name **SwagBasicExample.**
 Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).
 :::
 
-### **Create the plugin**
+### Create the plugin with `plugin:create`
 
 Now that you've found your name, it's time to actually create your plugin.
 
-Shopware provides a handy command that you can use to generate the plugin structure. Go to your shopware project's root directory and run the following command:  
+Shopware provides a command that generates the basic plugin structure. Go to your Shopware project root directory and run:
 
 ```bash
 bin/console plugin:create SwagBasicExample
 ```
-
-You can pass an addition flag `-c` or `--create-config` in the above command to also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as needed to match your plugin.
+You can also pass the optional `-c` or `--create-config` flag to create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as needed to match your plugin.
 
 A minimal plugin setup includes:
 
 * `src/<PluginClass>.php`: the plugin base class extending `Shopware\Core\Framework\Plugin`
 * `composer.json`: package metadata such as `type: shopware-platform-plugin` and autoload configuration
-* a demo configuration file in the `Resources` directory, if you used the `-c` or `--create-config` flag; otherwise, `src/Resources/config/config.xml` is optional and can be added later for Administration settings.
 
-### Plugin configuration field types (`config.xml`)
+If you used `-c` or `--create-config` the command also creates a demo configuration file in the Resources directory. Otherwise, `src/Resources/config/config.xml` is optional and can be added later for Administration settings.
 
-Administration plugin settings are defined in `config.xml`. Supported field types and their options are documented in [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
+### Create the plugin structure manually
 
 To create the structure manually, please follow the instructions below.
 
@@ -79,7 +77,11 @@ class SwagBasicExample extends Plugin
 }
 ```
 
-Basically that's it for the PHP part, your basic plugin class is already done.
+At this point, your basic plugin class is ready.
+
+### Plugin configuration field types (`config.xml`)
+
+Administration plugin settings are defined in `config.xml`. Supported field types and their options are documented in [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
 
 ::: info
 Refer to this video on **[Creating a plugin](https://www.youtube.com/watch?v=_Tkoq5W7woI)** that shows how to bootstrap a plugin. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
