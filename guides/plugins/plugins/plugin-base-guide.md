@@ -16,7 +16,7 @@ This section guides you through the basics of creating a plugin from scratch, wh
 ## Prerequisites
 
 * a running Shopware 6 instance
-* full access to both the files, as well as the command line  
+* full access to both the files and the command line  
 * PHP knowledge
 
 ## Create your first plugin
