@@ -70,9 +70,13 @@ Search endpoints support:
 
 ## Download the OpenAPI schema
 
-Shopware exposes OpenAPI schemas for both Admin API and Store API. These schemas are generated via PHP annotations using [swagger-php](https://github.com/zircote/swagger-php). When building custom endpoints, you can leverage these annotations to generate standardized documentation for them.
+Shopware exposes OpenAPI schema endpoints for both Admin API and Store API. These schemas are generated from PHP annotations using [swagger-php](https://github.com/zircote/swagger-php). If you build custom endpoints, you can use the same annotation approach to generate standardized API documentation.
 
-To work with the raw schema instead of the local browser reference, download it directly:
+If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
+
+### OpenAPI specification
+
+Use the OpenAPI spec when you need the full API contract for tooling, client generation, or inspection of available endpoints.
 
 ```bash
 curl -X GET "http://localhost:8000/api/_info/openapi3.json" \
@@ -80,13 +84,24 @@ curl -X GET "http://localhost:8000/api/_info/openapi3.json" \
   -o openapi.json
 ```
 
+### Entity schema
+
+Use the entity schema when you need metadata about entities and their fields:
+
+```bash
+curl -X GET "http://localhost:8000/api/_info/open-api-schema.json" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -o entity-schema.json
+```
+
 ::: warning
 Due to security restrictions, your `APP_ENV` environment variable must be set to `dev` to access the specifications described below.
 :::
 
-Raw schema endpoints: `/(api|store-api)/_info/openapi3.json`.
+Available raw schema endpoints:
 
-Entity schema endpoints: `/(api|store-api)/_info/open-api-schema.json`.
+- OpenAPI spec: `/(api|store-api)/_info/openapi3.json`.
+- Entity schema: `/(api|store-api)/_info/open-api-schema.json`.
 
 ## Troubleshooting local request failures
 
