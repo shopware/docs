@@ -97,7 +97,7 @@ Add your shipping methods via shipping-methods and handle your synchronous and a
 
 ## Rule conditions
 
-The identifier of the rule condition must be unique should not change. Otherwise a separate rule condition is created, and uses of the old one are lost. For more details, follow the [rule conditions guide](../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md).
+The identifier of the rule condition must be unique should not change. Otherwise, a separate rule condition is created, and uses of the old one are lost. For more details, follow the [rule conditions guide](../../../guides/plugins/apps/rule-builder/add-custom-rule-conditions.md).
 
 <<< @/docs/snippets/config/app/rule-conditions.xml
 
