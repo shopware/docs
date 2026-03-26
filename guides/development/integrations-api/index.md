@@ -56,7 +56,7 @@ Local API reference: `/store-api/_info/stoplightio.html`
 Open Storefront:
 
 ```text
-http://localhost:8000
+http://127.0.0.1:8000
 ```
 
 Open Admin:
@@ -67,7 +67,7 @@ http://localhost:8000/admin
 
 If both pages load, continue.
 
-If `http://localhost:8000` does not work, open the Administration and go to **Sales Channels → Storefront (or your active channel) → Domains**. Add `http://localhost:8000` as an additional domain for that sales channel, then save your changes.
+If [http://127.0.0.1:8000](http://127.0.0.1:8000) does not work, open the Administration and go to **Sales Channels → Storefront (or your active channel) → Domains**. Add `http://127.0.0.1:8000` as an additional domain for that sales channel, then save your changes.
 
 When running Shopware locally (for example, via Docker), ensure the environment is running in development mode for better error visibility. The default variable is `APP_ENV=dev`.
 
