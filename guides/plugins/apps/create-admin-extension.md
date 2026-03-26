@@ -122,7 +122,7 @@ npm install @shopware-ag/admin-extension-sdk
 
 ## 5. Start the development server
 
-Start the Vite development server with host binding enabled so the Docker container can reach it:
+Start the Vite development server with host binding enabled, so the Docker container can reach it:
 
 ```bash
 npm run dev -- --host
