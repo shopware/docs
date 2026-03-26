@@ -9,9 +9,9 @@ nav:
 
 ## Overview
 
-Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides. A plugin is the main way to extend your Shopware 6 instance programmatically.
+Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides. A plugin is the main way to extend your Shopware 6 instance programmatically.
 
-This section guides you through the basics of creating a plugin from scratch, which can then be installed on your Shopware 6 instance. Refer to the Guide section to know how to [Install Shopware 6](../../installation/).
+This section guides you through the basics of creating a plugin from scratch, which can then be installed on your Shopware 6 instance. Refer to the [Shopware 6 Installation guide](../../../guides/installation/index.md).
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Shopware uses "Swag" as a prefix for that case.
 For this example guide we'll use the plugin name **SwagBasicExample.**
 
 ::: info
-Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).
+Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Extension Store](https://store.shopware.com/en).
 :::
 
 ### Create the plugin with `plugin:create`
