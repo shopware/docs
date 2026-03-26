@@ -19,7 +19,7 @@ The following configurations are all optional.
 
 ## Setup
 
-Can be omitted if no communication between Shopware and your app is needed. For more information, follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup.md#registration-request).
+Can be omitted if no communication between Shopware and your app is needed. For more information, follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup.md).
 
 <<< @/docs/snippets/config/app/setup.xml
 
