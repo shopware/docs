@@ -13,7 +13,7 @@ The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to
 
 - A plugin [Plugin Base Guide](../plugin-base-guide.md)
 - [Plugin configuration](add-plugin-configuration.md) in the first instance
-- Familiarity with the [Listening to events](listening-to-events.md) guide, as in this example the configurations is read inside of a subscriber
+- Familiarity with the [Listening to events](listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
 
 ## Overview
 
