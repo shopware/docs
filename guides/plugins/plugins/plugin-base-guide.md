@@ -45,15 +45,11 @@ bin/console plugin:create SwagBasicExample
 
 You can pass an addition flag `-c` or `--create-config` in the above command to also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as needed to match your plugin.
 
-### Generated structure
-
 A minimal plugin setup includes:
 
 * `src/<PluginClass>.php`: the plugin base class extending `Shopware\Core\Framework\Plugin`
 * `composer.json`: package metadata such as `type: shopware-platform-plugin` and autoload configuration
 * a demo configuration file in the `Resources` directory, if you used the `-c` or `--create-config` flag; otherwise, `src/Resources/config/config.xml` is optional and can be added later for Administration settings.
-
-### Plugin configuration field types (`config.xml`)
 
 ### Plugin configuration field types (`config.xml`)
 
