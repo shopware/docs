@@ -7,9 +7,7 @@ nav:
 
 # Install Shopware with Docker
 
-The Docker-based setup aims to provide a smooth onboarding experience aligned with modern development practices. It runs your entire Shopware environment in containers, including all backend services (PHP, MySQL, Node, an Elasticsearch-compatible search engine, Redis, Mailhog, etc.). No manual installation is required.
-
-By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
+The Docker-based setup aims to provide a smooth onboarding experience aligned with modern development practices. By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
 
 :::info
 For information about using Docker in production, see [Docker for production](../../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
