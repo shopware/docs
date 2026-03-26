@@ -42,6 +42,7 @@ Shopware provides a command that generates the basic plugin structure. Go to you
 ```bash
 bin/console plugin:create SwagBasicExample
 ```
+
 You can also pass the optional `-c` or `--create-config` flag to create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as needed to match your plugin.
 
 A minimal plugin setup includes:
