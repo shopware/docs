@@ -189,4 +189,4 @@ Symfony CLI uses PHP’s built-in web server by default. For better performance,
 
 ## Build and Watch the Administration and Storefront (optional)
 
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to the [Frontend and Administration development guide](../../development/start-developing.md#frontend-development) for more info.
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets, so your changes are visible immediately. Refer to the [Frontend and Administration development guide](../../development/start-developing.md#frontend-development) for more info.
