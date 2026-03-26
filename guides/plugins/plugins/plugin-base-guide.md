@@ -43,26 +43,27 @@ Shopware provides a handy command that you can use to generate the plugin struct
 bin/console plugin:create SwagBasicExample
 ```
 
-You can pass an addition flag `-c` or `--create-config` in the above command which would also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as per your need.
+You can pass an addition flag `-c` or `--create-config` in the above command to also create a demo configuration file in the `Resources` directory. The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as needed to match your plugin.
 
-### Generated structure (summary)
+### Generated structure
 
-After `plugin:create`, you typically get:
+A minimal plugin setup includes:
 
 * `src/<PluginClass>.php`: the plugin base class extending `Shopware\Core\Framework\Plugin`
 * `composer.json`: package metadata such as `type: shopware-platform-plugin` and autoload configuration
-
-Additional files may be added depending on the scaffold and Shopware version. `src/Resources/config/config.xml` is not a guaranteed default output of `plugin:create`; it is an optional file for Administration settings.
+* a demo configuration file in the `Resources` directory, if you used the `-c` or `--create-config` flag; otherwise, `src/Resources/config/config.xml` is optional and can be added later for Administration settings.
 
 ### Plugin configuration field types (`config.xml`)
 
-Administration plugin settings are defined in `config.xml`. Supported field types and their options are documented in [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field). Use that page when designing your config UI.
+### Plugin configuration field types (`config.xml`)
 
-If you want to create the structure manually, please follow the instructions below.
+Administration plugin settings are defined in `config.xml`. Supported field types and their options are documented in [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
+
+To create the structure manually, please follow the instructions below.
 
 First, navigate to the directory `custom/plugins` in your Shopware 6 installation. Inside the `plugins` directory, create a new directory named after your plugin. It should look like this: `custom/plugins/SwagBasicExample`
 
-By convention, you'll have another directory in there, which is called `src`. This is not required, but recommended. And that's it for the directory structure for now.
+By convention, you'll have another directory called `src`. This is not required, but recommended. And that's it for the directory structure for now.
 
 Inside your `src` directory, create a PHP class named after your plugin, `SwagBasicExample.php`.  
 This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin class, which is `Shopware\Core\Framework\Plugin`.
