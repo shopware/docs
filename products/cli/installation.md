@@ -96,7 +96,7 @@ sudo mv shopware-cli /usr/local/bin/
 
 ## CI/CD and development environments
 
-These options let you use the CLI automatically in hosted environments. The [main page](index.md) lists Docker and GitHub Actions, which are popular.
+These options let you use the CLI automatically in hosted environments. The [Shopware CLI overview](index.md) lists Docker and GitHub Actions, which are popular.
 
 <details> <summary><strong>GitHub Codespaces</strong></summary>
 
