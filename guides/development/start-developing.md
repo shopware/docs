@@ -20,6 +20,8 @@ Common development areas:
 - `bin/console`: application CLI (Symfony console)
 - the Administration UI
 
+Projects follow the [project template layout](../installation/project-overview.md).
+
 ## Using `bin/console` for development
 
 To run commands, open a shell inside the web container:
@@ -136,10 +138,6 @@ Use `compose.override.yaml` to:
 - Adjust networking
 
 This keeps your changes local and out of version control.
-
-## Generated project structure
-
-Projects follow the [project template layout](../installation/project-overview.md): `custom/` (plugins, apps, static-plugins), `config/`, `src/`, `bin/console`, `compose.yaml`, and `Makefile` shortcuts. After `plugin:create`, your plugin lives under `custom/plugins/<Name>/` with `src/`, `composer.json`, and the plugin base class—see the [Plugin base guide](../plugins/plugins/plugin-base-guide.md).
 
 ## Shopware account and Composer (private packages)
 
