@@ -84,6 +84,16 @@ curl -X GET "http://localhost:8000/api/_info/openapi3.json" \
   -o openapi.json
 ```
 
+This saves the file as openapi.json in your current working directory.
+
+To verify where it was written and inspect it:
+
+```bash
+pwd
+ls -lh openapi.json
+head -n 5 openapi.json
+```
+
 ### Entity schema
 
 Use the entity schema when you need metadata about entities and their fields:
@@ -92,6 +102,14 @@ Use the entity schema when you need metadata about entities and their fields:
 curl -X GET "http://localhost:8000/api/_info/open-api-schema.json" \
   -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -o entity-schema.json
+```
+
+To verify the downloaded file:
+
+```bash
+pwd
+ls -lh entity-schema.json
+head -n 5 entity-schema.json
 ```
 
 ::: warning
