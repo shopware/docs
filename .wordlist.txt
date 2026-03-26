@@ -671,6 +671,7 @@ OneToManyAssociationField
 OneToOne
 OneToOneAssociation
 OneToOneAssociationField
+openapi
 OpenAPI
 OpenApi
 OpenRouter
