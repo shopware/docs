@@ -38,39 +38,15 @@ bin/console
 
 Tasks handled in `bin/console` include:
 
-* Installing and activating plugins
-* Clearing caches
-* Running migrations
-* Adjusting system configuration
-* Developing plugins and themes
+- Installing and activating plugins
+- Clearing caches
+- Running migrations
+- Adjusting system configuration
+- Running plugin-related development tasks
 
 :::info
 Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
 :::
-
-## Using `bin/console` for development
-
-To run commands, open a shell inside the web container:
-
-```bash
-make shell
-```
-
-This command drops you into the container’s terminal; you’ll see the prompt change.
-
-From inside the container, retrieve a list of commands with:
-
-```bash
-bin/console
-```
-
-Tasks handled in `bin/console` include:
-
-* Installing and activating plugins
-* Clearing caches
-* Running migrations
-* Adjusting system configuration
-* Developing plugins and themes
 
 ## Administration setup tasks
 
@@ -117,12 +93,12 @@ The `watch` commands monitor changes to the Administration and Storefront and au
 
 With Shopware running, your local setup includes:
 
-* A web service (serves both the Storefront and the Administration).
-* Database (MariaDB) runs on port 3306 inside Docker.
-  * Internal hostname: `database`.
-  * Host access: `localhost:3306`, if you want to inspect the database directly.
-* Mailpit local mail testing tool available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
-* Adminer (database UI), a lightweight web interface for viewing and editing your database available at [http://localhost:8080](http://localhost:8080).
+- A web service (serves both the Storefront and the Administration).
+- Database (MariaDB) runs on port 3306 inside Docker.
+  - Internal hostname: `database`.
+  - Host access: `localhost:3306`, if you want to inspect the database directly.
+- Mailpit local mail testing tool available at [http://localhost:8025](http://localhost:8025). Use this to view emails sent by Shopware (e.g., registration or order confirmations) without needing an external mail server.
+- Adminer (database UI), a lightweight web interface for viewing and editing your database available at [http://localhost:8080](http://localhost:8080).
 
 For Docker setups, inspect ports and services with:
 
@@ -154,10 +130,10 @@ make up
 
 Use `compose.override.yaml` to:
 
-* Change ports
-* Add services
-* Enable debugging
-* Adjust networking
+- Change ports
+- Add services
+- Enable debugging
+- Adjust networking
 
 This keeps your changes local and out of version control.
 
@@ -177,5 +153,5 @@ Use the hostname and flow described in your Shopware account or extension downlo
 
 ## Next steps
 
-* Build extensions: [Extensions](extensions/index.md).
-* Integrate via HTTP: [APIs](integrations-api/index.md).
+- Build extensions: [Extensions](extensions/index.md).
+- Integrate via HTTP: [APIs](integrations-api/index.md).
