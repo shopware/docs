@@ -1,0 +1,56 @@
+Extended principle for security- and legally-critical extensions (Store QA)
+
+Basic rule
+----------
+
+Extensions must not make any direct changes to the existing Shopware structure. This includes in particular:
+
+-   direct manipulation of the database (e.g. executing SQL queries from the admin area),
+
+-   changes to the core table structure,
+
+-   writing, overwriting or deleting files within the Shopware core or the existing directory structure,
+
+-   circumventing designated APIs, DAL, events or services.
+
+**The following are permitted:**
+
+-   extending via the mechanisms provided by Shopware (DAL, migrations, events, decorator pattern, subscribers, services),
+
+-   copying existing structures (e.g. templates, configurations, assets) and adapting the copy without changing the original,
+
+-   creating your own tables, entities, configuration values or directories, provided these are clearly assigned to the extension.
+
+Additional prohibitions (security & law)
+----------------------------------------
+
+In addition, extensions are not permitted that:
+
+-   undermine security-related protection mechanisms (e.g. rights and role concepts, CSRF protection, validations),
+
+-   enable uncontrolled system interventions by the shop operator or end customer (e.g. arbitrary SQL execution, file access or shell commands via the admin UI),
+
+-   circumvent or override legal requirements, such as:
+
+    -   data protection and consent mechanisms,
+
+    -   logging, documentation or verification obligations,
+
+    -   mandatory information or legally prescribed processes.
+
+Explanation for developers (why this is the case)
+-------------------------------------------------
+
+Shopware is deliberately designed to ensure that extensions remain stable, update-proof and legally compliant. Direct interventions in the database or file system may seem pragmatic, but they pose a real risk:
+
+-   **Security risk:** Free SQL or file access opens the door to data leaks, manipulation or escalation of user rights.
+
+-   **Update failure:** Core structures are not a stable contract. What works today may cripple shops after the next update.
+
+-   **Liability risk:** Extensions that undermine legal protection mechanisms not only cause problems for merchants, but also for the ecosystem.
+
+-   **Quality standard:** The store stands for trust. Extensions must behave like good guests -- they are allowed to use the space, but not tear down the load-bearing walls.
+
+**In short:**
+
+If a function is only possible through direct SQL queries, core file manipulation or bypassing intended interfaces, this is a clear sign that the approach might need to be changed -- not that the rules are too strict.
