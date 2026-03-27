@@ -671,7 +671,6 @@ OneToManyAssociationField
 OneToOne
 OneToOneAssociation
 OneToOneAssociationField
-openapi
 OpenAPI
 OpenApi
 OpenRouter
@@ -1688,6 +1687,7 @@ opcache
 openInitialPage
 openSUSE
 openUserActionMenu
+openapi
 opensearch
 openssl
 orchestrator
