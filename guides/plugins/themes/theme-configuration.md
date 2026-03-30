@@ -64,7 +64,7 @@ The theme configuration for a theme is located in the `theme.json` file `<plugin
 If you make changes or additions to the `theme.json` file, you must then execute the `theme:refresh` command to put them into effect. Run `bin/console theme:refresh` in order to update your theme.
 :::
 
-## Basic Information
+Let's have a closer look at each section.
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -81,19 +81,6 @@ If you make changes or additions to the `theme.json` file, you must then execute
 
 Here change the `name` of your theme and the `author`. It is recommended to choose a name in camel case. The `description` section is optional and as you notice it is also translatable.
 
-The `previewMedia` field provides a path `app/storefront/dist/assets/defaultThemePreview.jpg` to an image file that is relative to the root directory of the theme. It serves as a visual preview of the theme. This preview image is typically displayed within the Shopware administration interface or theme marketplace as a thumbnail or preview of the theme's appearance to give users an idea of how the theme will appear on their storefront before they activate it.
-
-```javascript
-// <plugin root>/src/Resources/theme.json
-{
-  ...
-  "previewMedia": "app/storefront/dist/assets/defaultThemePreview.jpg",
-  ...
-}
-```
-
-## Views
-
 The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance) guide.
 
 ```javascript
@@ -109,9 +96,18 @@ The `views` section controls the template inheritance. This will be covered in t
 }
 ```
 
-## Styles
+The `previewMedia` field provides a path `app/storefront/dist/assets/defaultThemePreview.jpg` to an image file that is relative to the root directory of the theme. It serves as a visual preview of the theme. This preview image is typically displayed within the Shopware administration interface or theme marketplace as a thumbnail or preview of the theme's appearance to give users an idea of how the theme will appear on their storefront before they activate it.
 
-The `style` section determines the order of the CSS compilation. In the `<plugin root>/src/Resources/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need. The `<plugin root>/src/Resources/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Bootstrap, you can implement your changes here. Checkout the [Override bootstrap variables in a theme](override-bootstrap-variables-in-a-theme) guide for further information.
+```javascript
+// <plugin root>/src/Resources/theme.json
+{
+  ...
+  "previewMedia": "app/storefront/dist/assets/defaultThemePreview.jpg",
+  ...
+}
+```
+
+The `style` section determines the order of the CSS compilation. In the `<plugin root>/app/storefront/src/scss/base.scss` file you can apply your changes you want to make to the `@Storefront` standard styles or add other styles you need. The `<plugin root>/app/storefront/src/scss/overrides.scss` file is used for a special case. Maybe you need to override some defined `variables` or `functions` defined by Shopware or Bootstrap, you can implement your changes here. Checkout the [Override bootstrap variables in a theme](override-bootstrap-variables-in-a-theme) guide for further information.
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -121,55 +117,6 @@ The `style` section determines the order of the CSS compilation. In the `<plugin
     "app/storefront/src/scss/overrides.scss",
     "@Storefront",
     "app/storefront/src/scss/base.scss"
-  ],
-  ...
-}
-```
-
-You can add a full reference to other namespaces, like the `@Storefront` alias for the default Storefront, or other themes by referencing their technical name, like `@BasicTheme`. If you don't want to import all files from the whole namespace, you can also reference single files from a specific namespace. With this method you can also change the order in which these files are imported.
-
-```javascript
-// <plugin root>/src/Resources/theme.json
-{
-  ...
-  "style": [
-    "app/storefront/src/scss/overrides.scss",
-    "@Storefront",
-    "@BasicTheme/app/storefront/src/scss/custom.scss",
-    "app/storefront/src/scss/base.scss"
-  ],
-  ...
-}
-```
-
-## Script Files
-
-The `script` section configures the order of JavaScript files that should be imported for your theme. Make sure to reference the compiled versions of your script files from the dist directory of your theme.
-
-```javascript
-// <plugin root>/src/Resources/theme.json
-{
-  ...
-  "script": [
-    "@Storefront",
-    "@Plugins",
-    "app/storefront/dist/storefront/js/storefront-test-app-theme/storefront-test-app-theme.js"
-  ],
-  ...
-}
-```
-
-Also for scripts, the namespace alias and single file reference can be used.
-
-```javascript
-// <plugin root>/src/Resources/theme.json
-{
-  ...
-  "script": [
-    "@Storefront",
-    "@Plugins",
-    "@BasicTheme/app/storefront/dist/storefront/custom-plugin.js",
-    "app/storefront/dist/storefront/js/storefront-test-app-theme/storefront-test-app-theme.js"
   ],
   ...
 }
@@ -211,7 +158,7 @@ One of the benefits of creating a theme is that you can overwrite the theme conf
 ```javascript
 // <plugin root>/src/Resources/theme.json
 {
-  ...
+  ... 
   "asset":[
     ...
   ],
@@ -263,8 +210,8 @@ This results in the following key structure:
 - **Tab**: `sw-theme.<technicalName>.<tabName>.label`
 - **Block**: `sw-theme.<technicalName>.<tabName>.<blockName>.label`
 - **Section**: `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.label`
-- **Field**:
-  - `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.label`
+- **Field**:  
+  - `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.label`  
   - `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.helpText`
 - **Option**: `sw-theme.<technicalName>.<tabName>.<blockName>.<sectionName>.<fieldName>.<index>.label`
 
@@ -310,12 +257,12 @@ This would generate the following snippet keys:
 - **Tab**: `sw-theme.justAnotherTheme.default.label`
 - **Block**: `sw-theme.justAnotherTheme.default.exampleBlock.label`
 - **Section**: `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.label`
-- **Field**:
-  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.label`
+- **Field**:  
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.label`  
   - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.helpText`
-- **Option**:
-  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.0.label`
-  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.1.label`
+- **Option**:  
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.0.label`  
+  - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.1.label`  
   - `sw-theme.justAnotherTheme.default.exampleBlock.exampleSection.my-single-select-field.2.label`
 
 ## Field types
@@ -970,7 +917,7 @@ You can extend the config to add translated labels for the tabs, blocks and sect
               "en-GB": "Colours",
               "de-DE": "Farben"
           }
-      }
+      } 
     },
     "fields": {
       "sw-color-brand-primary": {
@@ -995,14 +942,14 @@ You can extend the config to add translated labels for the tabs, blocks and sect
 
 ## Config inheritance
 
-The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration and snippets. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.
+The `configInheritance` option lets you configure additional themes from which your theme will inherit its fields configuration and snippets. Every theme will always inherit the fields from the `Storefront` standard theme. With this option you can add additional other themes. For example, you can have a basic theme for your corporate design and special themes for different sales channels with specific changes only needed for a single sales channel.  
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
 {
   ...
   "configInheritance": [
-     "@Storefront",
+     "@Storefront", 
      "@BasicTheme"
    ]
   ...
