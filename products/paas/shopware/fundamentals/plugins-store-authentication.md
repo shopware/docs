@@ -11,7 +11,7 @@ The build process might needs to authentication against plugins stores (Shopware
 We rely on `composer` to fecth plugin during build time configured with two environment variables: `SHOPWARE_PACKAGES_TOKEN` and `COMPOSER_AUTH`.
 
 ## Shopware plugin store
-Under normal circumstances, during the provisioning of your organisation we automatically create the secret `SHOPWARE_PACKAGES_TOKEN`.
+Under normal circumstances, during the provisioning of your organization we automatically create the secret `SHOPWARE_PACKAGES_TOKEN`.
 This secret contains the token to authenticate against the official Shopware plugin store.
 
 If this secret is not present you can recreate it:
