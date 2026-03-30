@@ -135,15 +135,6 @@ Run:
 docker compose exec web bin/console system:install --create-database --basic-setup
 ```
 
-If issues persist:
-
-```bash
-docker compose down -v
-rm install.lock
-docker compose up -d
-docker compose exec web bin/console system:install --create-database --basic-setup
-```
-
 ## Next steps
 
 Learn how to structure queries using:
