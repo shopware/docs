@@ -71,8 +71,6 @@ If [http://127.0.0.1:8000](http://127.0.0.1:8000) does not work, open the Admini
 
 When running Shopware locally (for example, via Docker), ensure the environment is running in development mode for better error visibility. The default variable is `APP_ENV=dev`.
 
-If running the command `docker compose exec web printenv APP_ENV` does not return `dev`, create or update the variable in the `.env.local` file. Then restart the container (required) with `make up`.
-
 ## Step 2: Get an Admin API access token
 
 The Admin API uses OAuth with integration credentials.
