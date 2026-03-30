@@ -95,7 +95,7 @@ head -n 5 openapi.json
 head -n 5 entity-schema.json
 ```
 
-You can do the same for the Store API later with `store-api/_info/openapi3.json`.
+You can do the same for the Store API later with `/store-api/_info/openapi3.json`.
 
 ## Step 3: Look up the IDs you need before creating products
 
