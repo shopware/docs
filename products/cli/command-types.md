@@ -58,7 +58,7 @@ shopware-cli extension validate         # Validate an extension
 Publish and manage your extensions in the [Store](https://store.shopware.com/de/), with commands such as:
 
 ```bash
-shopware-cli store login # Login to Shopware Store portal.store
+shopware-cli account login # Login to Shopware Store portal.store
 shopware-cli token: Manage tokens for Store authentication
 ```
 
