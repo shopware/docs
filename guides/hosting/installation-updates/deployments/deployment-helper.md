@@ -100,7 +100,7 @@ deployment:
     post-update: |
       echo "After running system:update"
 
-  # Automatically installs and updates all extensions included in custom/plugins, custom/apps and composer.
+  # Automatically installs and updates all extensions included in custom/plugins, custom/apps, and Composer.
   # When enabled, extensions installed at runtime (e.g., via the Store in Administration) may cause
   # conflicts during deployment. See "Extension Management and Store-installed Plugins" section below.
   extension-management:
