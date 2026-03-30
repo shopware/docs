@@ -28,18 +28,18 @@ In this setup:
 - a local Shopware instance
 - access to the Administration at `http://localhost:8000/admin`
 - shell access to the PHP container for `bin/console`
-- Node.js 20 on the host system
+- Node.js 22 on the host system
 
-Use Node 20:
+Use Node 22:
 
 ```bash
-nvm install 20
-nvm use 20
+nvm install 22
+nvm use 22
 node -v
 ```
 
 ::: info
-If you are on a newer Node version, switch to Node 20 before creating the frontend project.
+If you are on a newer Node version, switch to Node 22 before creating the frontend project.
 :::
 
 ## 1. Create the app folder
