@@ -162,7 +162,7 @@ CURRENCY_ID="<example string>"
 STORE_API_ACCESS_KEY="<example string>"
 ```
 
-### Step 4: Create a category with the Admin API
+## Step 4: Create a category with the Admin API
 
 ```bash
 CATEGORY_ID=$(uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '-')
