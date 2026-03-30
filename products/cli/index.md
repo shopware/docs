@@ -34,7 +34,7 @@ brew install --cask shopware/tap/shopware-cli
 
 ```yaml
 - name: Install shopware-cli
-  uses: shopware/shopware-cli-action@v1
+  uses: shopware/shopware-cli-action@v3
 ```
 
 </Tab>
