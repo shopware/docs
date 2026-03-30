@@ -6,7 +6,9 @@ nav:
 
 # Organizations
 
-An organization serves as the top-level container representing a company or an entity in Shopware PaaS Native. It acts as the primary organizational unit that encompasses all resources, projects, and users associated with a particular business entity. By default, the initial admin user is added to an Organization and can further add more users.
+An organization serves as the top-level logical unit representing a company or an entity in Shopware PaaS Native. It acts as the primary organizational unit that encompasses all resources, projects, and users associated with a particular business entity. By default, the initial admin user is added to an Organization and can further add more users.
+
+Organizations are long-lived logical units and do not expire automatically.
 
 To create additional organizations via CLI, run;
 
@@ -17,6 +19,8 @@ sw-paas organization create
 ## Organization Members
 
 Organization members are users who have been granted access to an organization and its resources.
+
+Access control within an organization is managed by organization administrators through role assignments.
 
 ### Roles
 
