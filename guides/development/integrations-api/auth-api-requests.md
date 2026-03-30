@@ -70,9 +70,7 @@ Search endpoints support:
 
 ## Download the OpenAPI schema
 
-Shopware exposes OpenAPI schema endpoints for both Admin API and Store API. These schemas are generated from PHP annotations using [swagger-php](https://github.com/zircote/swagger-php). If you build custom endpoints, you can use the same annotation approach to generate standardized API documentation.
-
-If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
+Shopware exposes OpenAPI schema endpoints for both Admin API and Store API. If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
 
 ### OpenAPI specification
 
