@@ -224,9 +224,9 @@ Additionally, you can configure the Shopware installation using the following en
 
 When `extension-management` is enabled (default), the Deployment Helper automatically manages **all** extensions it finds in `custom/plugins`, `custom/apps`, and via Composer. This means it will install, update, activate, or deactivate extensions based on what is present in your codebase.
 
-::::warning
+:::warning
 If you install plugins later via the Shopware Store (Admin UI) while `extension-management` is enabled, this can cause conflicts during deployment. The Deployment Helper does not know about extensions that were installed at runtime through the Store and may interfere with their state. For example, a Store-installed plugin might be deactivated or behave unexpectedly after the next deployment.
-::::
+:::
 
 You have two options to handle this:
 
