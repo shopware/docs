@@ -1,16 +1,16 @@
 ---
 nav:
-  title: API Walk-Throughs
+  title: API Flows
   position: 10
 
 ---
 
-# API Walk-Throughs
+# API Flows
 
 These guides focus on concrete end-to-end flows where it helps to see API calls together, rather than as isolated endpoint references.
 
-## Available walk-throughs
+## Available flows
 
 - [Create a Product and Complete Checkout](./create-product.md): Create category and product data with the Admin API, read it through the Store API, add it to a cart, register a customer, place an order, and handle payment if needed.
 
-More walk-throughs to be added over time.
+More flows to be added over time.
