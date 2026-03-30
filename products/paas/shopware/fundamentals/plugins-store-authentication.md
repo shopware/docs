@@ -1,4 +1,3 @@
-
 ---
 nav:
   title: Plugin Store Authentication
