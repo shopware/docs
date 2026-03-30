@@ -66,7 +66,7 @@ Search endpoints support:
 - filtering
 - sorting
 - pagination
-- associations
+- loading associations (loading relations of the entity in the same request)
 
 ## Download the OpenAPI schema
 
