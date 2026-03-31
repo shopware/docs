@@ -48,7 +48,7 @@ The possible route scopes are `storefront`, `store-api`, `api` and `administrati
 ## Custom Endpoints
 
 There are specialized script-execution endpoints for the `api`, `store-api` and `storefront` scopes.
-Refer to the [API docs](../../../integrations-api/) for more information on the distinction of those APIs.
+Refer to the [API docs](../../../../guides/development/integrations-api/) for more information on the distinction of those APIs.
 Those endpoints allow you to trigger the execution of your scripts with an HTTP request against those endpoints.
 
 Custom endpoint scripts need to be located in a folder that is prefixed with the name of the api scope (one of `api-`, `store-api-` or `storefront`).

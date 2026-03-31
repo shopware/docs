@@ -177,7 +177,7 @@ The `page` and `limit` parameters can be used to control pagination. The `page` 
 
 ### `filter`
 
-The `filter` parameter allows you to filter results and aggregations using multiple filters and parameters. The filter types are equivalent to the filters available for the DAL. See [Filters Reference](../../../resources/references/core-reference/dal-reference/filters-reference.md)
+The `filter` parameter allows you to filter results and aggregations using multiple filters and parameters. The filter types are equivalent to the filters available for the DAL. See [Reading data](../../../guides/plugins/plugins/framework/data-handling/reading-data.md#filtering)
 
 ::: info
 When you are filtering for nested values - for example, you are filtering orders by their transaction state \(`order.transactions.stateMachineState`\) - make sure to fetch those in your `associations` field before.
@@ -425,7 +425,7 @@ The aggregation types are equivalent to the aggregations available in the DAL:
 }
 ```
 
-See [Aggregations Reference](../../../resources/references/core-reference/dal-reference/aggregations-reference.md)
+See [Reading data](../../../guides/plugins/plugins/framework/data-handling/reading-data.md#aggregations)
 
 ## `grouping`
 

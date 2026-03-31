@@ -23,7 +23,7 @@ Refer to its [structure](./index.md) to understand better. Contributions to impr
 
 ## Redirects
 
-Redirects from old URLs to new ones are managed via the [`.gitbook.yaml`](./.gitbook.yaml) file. This ensures continued access to content after pages are renamed or relocated.
+Redirects from old URLs to new ones are managed via the [`.gitbook.yaml`](https://github.com/shopware/docs/blob/main/.gitbook.yaml) file. This ensures continued access to content after pages are renamed or relocated.
 
 When deleting, moving or renaming pages, compare your branch against `main`, identify the moved files, and add corresponding redirects to `.gitbook.yaml` following the existing patterns.
 
@@ -34,19 +34,19 @@ concepts/framework/rules.html: concepts/framework/rule/index.html
 
 ## Workflows
 
-They are defined in the [`.github/workflows`](./.github/workflows/) folder and help the DX team to maintain the documentation. The workflows are triggered by events like `push`, `pull_request`, `schedule` and `workflow_dispatch`. The workflows are used to build, test, and deploy the documentation. If a PR pipeline fails, the PR will be marked as failed, and it won't be possible to merge it. In this case, check the below-mentioned workflows to see what went wrong and where to fix it.
+They are defined in the [`.github/workflows`](https://github.com/shopware/docs/tree/main/.github/workflows) folder and help the DX team to maintain the documentation. The workflows are triggered by events like `push`, `pull_request`, `schedule` and `workflow_dispatch`. The workflows are used to build, test, and deploy the documentation. If a PR pipeline fails, the PR will be marked as failed, and it won't be possible to merge it. In this case, check the below-mentioned workflows to see what went wrong and where to fix it.
 
 ### Grammar and language check
 
-All changed content is checked with Reviewdog for grammar and language. The configuration for Reviewdog can be found in [`.reviewdog.yml`](./.github/workflows/reviewdog.yml). It will create warnings in the pull request if the language or grammar is not correct. A more in-depth explanation can be found in [Language and Grammar](./resources/guidelines/documentation-guidelines/03-language-and-grammar.md) section.
+All changed content is checked with Reviewdog for grammar and language. The configuration for Reviewdog can be found in [`.reviewdog.yml`](https://github.com/shopware/docs/blob/main/.github/workflows/reviewdog.yml). It will create warnings in the pull request if the language or grammar is not correct. A more in-depth explanation can be found in [Language and Grammar](./resources/guidelines/documentation-guidelines/03-language-and-grammar.md) section.
 
 ### Markdown check
 
-The markdown files are checked with [markdown-lint](https://github.com/avto-dev/markdown-lint) to identify issues such as formatting errors, style inconsistencies, etc. By doing so, it facilitates the creation of well-structured and consistent Markdown documents.. The configuration for markdown-lint can be found in [`markdown-style-check.yml`](./.github/workflows/markdown-style-check.yml).
+The markdown files are checked with [markdown-lint](https://github.com/avto-dev/markdown-lint) to identify issues such as formatting errors, style inconsistencies, etc. By doing so, it facilitates the creation of well-structured and consistent Markdown documents.. The configuration for markdown-lint can be found in [`markdown-style-check.yml`](https://github.com/shopware/docs/blob/main/.github/workflows/markdown-style-check.yml).
 
 ### Spellcheck
 
-The markdown files are checked with [py-spelling](https://facelessuser.github.io/pyspelling/) to rectify spelling errors. The configuration for py-spelling can be found in [`.spellcheck.yml`](./.spellcheck.yml).
+The markdown files are checked with [py-spelling](https://facelessuser.github.io/pyspelling/) to rectify spelling errors. The configuration for py-spelling can be found in [`.spellcheck.yml`](https://github.com/shopware/docs/blob/main/.spellcheck.yml).
 
 #### Via Docker
 
@@ -64,7 +64,7 @@ This will automatically create a virtual environment and install the required de
 
 #### Excluding words
 
-To exclude a word from being spellchecked, add it to the [`.wordlist.txt`](./.wordlist.txt) file.
+To exclude a word from being spellchecked, add it to the [`.wordlist.txt`](https://github.com/shopware/docs/blob/main/.wordlist.txt) file.
 Make sure to add the word at the right position, as the file doesn't automatically sort alphabetically.
 You can use the following command to sort the file:
 
@@ -74,15 +74,15 @@ LC_ALL=C sort .wordlist.txt -o .wordlist.txt
 
 ### Media file format check
 
-The `/docs/assets` folder stores images, videos, and other files linked in markdown. They follow the naming convention outlined in [Methodize Assets](./resources/guidelines/documentation-guidelines/05-methodize-assets.md#visual-diagram-guidelines). The [`file-format-check.yml`](.github/workflows/file-format-check.yml) ensures adherence to these naming guidelines.
+The `/docs/assets` folder stores images, videos, and other files linked in markdown. They follow the naming convention outlined in [Methodize Assets](./resources/guidelines/documentation-guidelines/05-methodize-assets.md#visual-diagram-guidelines). The [`file-format-check.yml`](https://github.com/shopware/docs/blob/main/.github/workflows/file-format-check.yml) ensures adherence to these naming guidelines.
 
 ### External link check
 
-[Lychee](https://github.com/lycheeverse/lychee) is used to check if external links are working properly or broken. The configuration for lychee can be found in [`validate-external-links.yml`](./.github/workflows/validate-external-links.yml).
+[Lychee](https://github.com/lycheeverse/lychee) is used to check if external links are working properly or broken. The configuration for lychee can be found in [`validate-external-links.yml`](https://github.com/shopware/docs/blob/main/.github/workflows/validate-external-links.yml).
 
 ### Synced files
 
-Certain files within the `shopware/shopware` repository are duplicated in the `shopware/docs` repository for reference purposes. Any modifications made to the former files will automatically synchronize with the corresponding files in the latter repository by the [`update-adrs`](./.github/workflows/update-adrs.yml) workflow.
+Certain files within the `shopware/shopware` repository are duplicated in the `shopware/docs` repository for reference purposes. Any modifications made to the former files will automatically synchronize with the corresponding files in the latter repository by the [`update-adrs`](https://github.com/shopware/docs/blob/main/.github/workflows/update-adrs.yml) workflow.
 
 | `shopware/shopware` files | `shopware/docs` files                     |
 |-----------------------|-------------------------------------------|

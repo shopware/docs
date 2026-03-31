@@ -153,7 +153,7 @@ public function readData(Context $context): void
 
 So now you'll find all products, that either have the mentioned `id` OR the mentioned `name`. The `OrFilter` can be found here: `Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\OrFilter`.
 
-You can find an example for each of the available filters in our [DAL reference about filters](../../../../../resources/references/core-reference/dal-reference/filters-reference).
+You can find an example for each of the available filters in our [Search Criteria documentation](../../../../../guides/development/integrations-api/search-criteria#filter).
 
 #### Post filters
 
@@ -177,7 +177,7 @@ This example does not contain any aggregation, since they're only explained late
 
 **Other filters**
 
-There is more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or in our [filters reference](../../../../../resources/references/core-reference/dal-reference/filters-reference) with explanation.
+There is more than just an `EqualsFilter`, which is the SQL equivalent of `WHERE fieldX = valueX`. You can find all other filters either on [GitHub](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Filter) or in our [Search Criteria documentation](../../../../../guides/development/integrations-api/search-criteria#filter) with explanation.
 
 #### Associations
 
@@ -292,7 +292,7 @@ public function readData(Context $context): void
 
 Important to note here is that you have to remove the `first()` call, because we do **not** need the entity itself but the `EntitySearchResult` here instead. The `AvgAggregation` class can be found here: `Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\AvgAggregation`
 
-A list of all available aggregations can be found on [GitHub](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Aggregation) or in the [DAL aggregations reference](../../../../../resources/references/core-reference/dal-reference/aggregations-reference).
+A list of all available aggregations can be found on [GitHub](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/DataAbstractionLayer/Search/Aggregation) or in the [Search Criteria documentation](../../../../../guides/development/integrations-api/search-criteria#aggregations).
 
 #### Limiting, paging and sorting
 
