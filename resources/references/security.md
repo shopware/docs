@@ -19,7 +19,10 @@ If you have found a security vulnerability in Shopware, please report it to us f
 
 The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept#acl-in-the-administration)
 
-## API aware field
+Issues in the ACL permission validation are generally treated as bugs. They are not considered security vulnerabilities by themselves, as long as the missing or incorrect permission check does not result in privilege escalation, unauthorized access to sensitive data, or similar severe consequences.
+This is because, in such cases, malicious actors would already need to be authenticated with access to the Administration (or an authenticated Admin API context).
+
+## API-aware field
 
 The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference).
 
@@ -79,4 +82,9 @@ To enable access even during maintenance mode, IP addresses can be added to [Sto
 
 ## SQL injection
 
-SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. By mainly using our own [Data Abstraction Layer](/docs/concepts/framework/data-abstraction-layer.html), that does not expose SQL directly, most of the SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
+SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. Shopware primarily uses our own [Data Abstraction Layer](../../concepts/framework/data-abstraction-layer.md), which does not expose SQL directly, so most SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
+
+## Exposing underlying technology
+
+Some features intentionally expose the underlying technology upon which they are built. For example, the underlying Twig templating system is exposed when the user provides mail templates, SEO URL templates, or Product Export templates. Similarly, direct CSS access is exposed over the theme configuration.
+If a user has the required ACL permissions for these features, they also gain access to the underlying technology behind them. Because of that, you should only grant these permissions to users who are trusted to work with these capabilities and understand their impact.
