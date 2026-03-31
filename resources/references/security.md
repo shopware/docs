@@ -19,7 +19,7 @@ If you have found a security vulnerability in Shopware, please report it to us f
 
 The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept#acl-in-the-administration)
 
-Issues in the ACL permission validation are generally treated as bugs. They are not considered security vulnerabilities per se, as long as the missing or incorrect permission check does not lead to privilege escalation, unauthorized access to sensitive data, or similarly severe consequences.
+Issues in the ACL permission validation are generally treated as bugs. They are not considered security vulnerabilities per se, as long as the missing or incorrect permission check does not result in privilege escalation, unauthorized access to sensitive data, or similar severe consequences.
 This is because, in such cases, malicious actors would already need to be authenticated with access to the Administration (or an authenticated admin API context).
 
 ## API aware field
