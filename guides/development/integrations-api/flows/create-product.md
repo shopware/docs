@@ -396,7 +396,7 @@ Typical relevant endpoints include:
 
 Rule of thumb:
 
-- Admin API: create and manage test data
+- Admin API: create and manage data
 - Store API: act like a shopper
 
 ## Step 10: Register or log in a customer, then place the order
