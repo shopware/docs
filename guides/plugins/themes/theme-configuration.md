@@ -917,7 +917,7 @@ You can extend the config to add translated labels for the tabs, blocks and sect
               "en-GB": "Colours",
               "de-DE": "Farben"
           }
-      } 
+      }
     },
     "fields": {
       "sw-color-brand-primary": {
