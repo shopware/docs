@@ -79,5 +79,5 @@ SQL injection allows an attacker to execute new or modify existing SQL statement
 
 ## Exposing underlying technology
 
-Some features intentionally expose the underlying technology they are built upon. For example, the underlying Twig templating system is exposed when the user provides mail templates, SEO URL templates, or Product Export templates. Similarly, direct CSS access is exposed over the theme configuration.
+Some features intentionally expose the underlying technology upon which they are built. For example, the underlying Twig templating system is exposed when the user provides mail templates, SEO URL templates, or Product Export templates. Similarly, direct CSS access is exposed over the theme configuration.
 If a user has the required ACL permissions for these features, they also gain access to the underlying technology behind them. Because of that, you should only grant these permissions to users who are trusted to work with these capabilities and understand their impact.
