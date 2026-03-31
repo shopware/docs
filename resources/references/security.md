@@ -75,7 +75,7 @@ To enable access even during maintenance mode, IP addresses can be added to [Sto
 
 ## SQL injection
 
-SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. By mainly using our own [Data Abstraction Layer](../../concepts/framework/data-abstraction-layer.md), that does not expose SQL directly, most of the SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
+SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. Shopware primarily uses our own [Data Abstraction Layer](../../concepts/framework/data-abstraction-layer.md), which does not expose SQL directly, so most SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
 
 ## Exposing underlying technology
 
