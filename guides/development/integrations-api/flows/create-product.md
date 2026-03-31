@@ -229,6 +229,27 @@ curl -s -X POST "http://127.0.0.1:8000/api/product" \
   }"
 ```
 
+### About `visibilities`
+
+Use `visibilities` to assign a product to one or more sales channels and define how visible it should be there.
+
+Each visibility entry contains:
+
+```bash
+{
+  "salesChannelId": "<sales-channel-id>",
+  "visibility": 30
+}
+```
+
+`visibility` is required because product availability is resolved per sales channel. A product is only considered available in a sales-channel context when it has a matching visibility entry for that `salesChannelId`.
+
+Allowed values:
+
+- `10` (`VISIBILITY_LINK`): hide in listings and search
+- `20` (`VISIBILITY_SEARCH`): hide in listings
+- `30` (`VISIBILITY_ALL`): visible everywhere
+
 Verify it:
 
 ```bash
