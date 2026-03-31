@@ -511,6 +511,7 @@ Some payment methods require an extra payment step after order creation:
 ```bash
 curl -s -X POST "http://127.0.0.1:8000/store-api/handle-payment" \
   -H "sw-access-key: $STORE_API_ACCESS_KEY" \
+  -H "sw-context-token: $STORE_CONTEXT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "orderId": "REPLACE_ME",
