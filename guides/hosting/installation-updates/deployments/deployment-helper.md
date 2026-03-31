@@ -100,7 +100,9 @@ deployment:
     post-update: |
       echo "After running system:update"
 
-  # Automatically installs and updates all extensions included in custom/plugins and custom/apps and composer
+  # Automatically installs and updates all extensions included in custom/plugins, custom/apps, and Composer.
+  # When enabled, extensions installed at runtime (e.g., via the Store in Administration) may cause
+  # conflicts during deployment. See "Extension Management and Store-installed Plugins" section below.
   extension-management:
     enabled: true
 
@@ -217,6 +219,41 @@ Additionally, you can configure the Shopware installation using the following en
 - `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
 - `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
 - `SHOPWARE_USAGE_DATA_CONSENT` - Controls Shopware Usage Data sharing (`accepted` or `revoked`), overwrites Administration choice
+
+## Extension Management and Store-installed Plugins
+
+When `extension-management` is enabled (default), the Deployment Helper automatically manages **all** extensions it finds in `custom/plugins`, `custom/apps`, and via Composer. This means it will install, update, activate, or deactivate extensions based on what is present in your codebase.
+
+:::warning
+If you install plugins later via the Shopware Store (Admin UI) while `extension-management` is enabled, this can cause conflicts during deployment. The Deployment Helper does not know about extensions installed at runtime through the Store and may interfere with their state. For example, a Store-installed plugin might be deactivated or behave unexpectedly after the next deployment.
+:::
+
+You have two options to handle this:
+
+### Option 1: Manage all extensions through code (recommended)
+
+Install all extensions via Composer and let the Deployment Helper manage them. Disable runtime extension management in the Administration to prevent ad-hoc installations:
+
+```yaml
+# config/packages/z-shopware.yaml
+shopware:
+    deployment:
+        runtime_extension_management: false
+```
+
+See [Extension Management](../extension-management.md) for details on installing extensions via Composer.
+
+### Option 2: Disable the Deployment Helper's extension management
+
+If you prefer to manage extensions manually through the Store or Administration, disable the extension management in your `.shopware-project.yml`:
+
+```yaml
+deployment:
+  extension-management:
+    enabled: false
+```
+
+With this setting, the Deployment Helper will skip extension installation and updates entirely. You are then responsible for managing extension states yourself (e.g., via `bin/console plugin:install`, `plugin:update`, etc.).
 
 ## One Time Tasks
 
