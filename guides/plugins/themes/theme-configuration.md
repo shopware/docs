@@ -949,7 +949,7 @@ The `configInheritance` option lets you configure additional themes from which y
 {
   ...
   "configInheritance": [
-     "@Storefront", 
+     "@Storefront",
      "@BasicTheme"
    ]
   ...
