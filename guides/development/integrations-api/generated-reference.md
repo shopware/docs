@@ -17,7 +17,7 @@ Due to security restrictions, your **`APP_ENV`** environment variable must be se
 
 ## Stoplight
 
-The easiest way to access the generated schema is Stoplight. [Stoplight](https://docs.stoplight.io/) is a collaborative platform that equips your team with tooling across the API lifecycle to help them build high-quality APIs efficiently. Shopware already ships with these user interfaces. They are accessible at the following endpoint relative to their respective base path:
+The easiest way to access the generated schema is to use Stoplight. [Stoplight](https://docs.stoplight.io/) is a collaborative platform that equips your team with tooling across the API lifecycle to help them build high-quality APIs efficiently. Shopware already ships with these user interfaces. They are accessible at the following endpoint relative to each base path:
 
 ```text
 /(api|store-api)/_info/stoplightio.html
@@ -31,7 +31,7 @@ You will find a list of all generic endpoints (entity endpoints like product, ca
 
 ## OpenAPI schema
 
-If you don't want to bother with the UI but just fetch the schema definition instead, use the following endpoint:
+If you do not need the UI and only want to fetch the schema definition, use the following endpoint:
 
 ```text
 /(api|store-api)/_info/openapi3.json
@@ -39,7 +39,7 @@ If you don't want to bother with the UI but just fetch the schema definition ins
 
 ## Entity schema
 
-If you would like to access the schema definitions of all available entities instead of an endpoint reference, use one of the corresponding schema endpoints instead:
+If you want schema definitions for all available entities rather than an endpoint reference, use one of the following schema endpoints:
 
 ```text
 /(api|store-api)/_info/open-api-schema.json

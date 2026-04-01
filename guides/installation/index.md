@@ -26,7 +26,7 @@ Docker enables production-like conditions consistent across teams and CI/CD, and
 
 ## Prerequisites
 
-- [Hardware requirements](./system-requirements.md) to prepare your system for installation (PHP, DB, memory, etc.) fulfilled
+- [Hardware requirements](./system-requirements.md): Ensure your system meets them (PHP, DB, memory, and so on) before you install
 - [Shopware CLI](./../../products/cli/index.md)
 - Docker installed (recommended)
 
@@ -54,7 +54,7 @@ The latest version will always be the top option. At the bottom of the terminal 
 
 ### Choose Docker or skip
 
-This is a yes/no question about whether to run Shopware locally using Docker, our recommended setup option. Choosing `yes` enables you to decide whether to either pursue other customization options or, for a quick start, conclude the installation immediately.
+This is a yes/no question about whether to run Shopware locally using Docker, our recommended setup option. Choosing `yes` lets you continue with optional customization, or you can complete the installation immediately for a quick start.
 
 :::info
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
@@ -70,7 +70,7 @@ The customization options currently offered by the CLI include:
 - **OpenSearch**: yes/no (`no` is default), choose yes for large product catalogues and advanced search
 - **AMQP**: for queue support for background jobs and messaging (`yes` by default)
 
-Before implementing your installation, you'll receive a summary of your installation choices that you can check for accuracy. At this point, the menu enables you to either restart the installation process or cancel if you need to correct an error.
+Before the installation runs, you will receive a summary of your choices so you can verify them. At this point, the menu lets you restart the installation process or cancel if you need to correct something.
 
 If the summary looks good, choose `proceed` to start the process of setting up Shopware and installing dependencies. This process might take a while.
 
@@ -95,7 +95,7 @@ What happens during `make setup`:
 - Shopware is installed automatically (no browser wizard required)
 - A MariaDB database is created
 - An admin user is created, with username `admin` and password `shopware`
-- Required services (database, search, mail, etc.) are preconfigured and run inside the Docker
+- Required services (database, search, mail, etc.) are preconfigured and run inside Docker
 - The Shopware project is configured to connect to the database via the Docker service name `database`
 - Database credentials are defined in the `compose.yaml`
 - If Elasticsearch was enabled during project creation, a compatible search service runs as part of the Docker stack.
@@ -109,7 +109,7 @@ docker compose ps
 
 ### Accessing the new shop (all setups)
 
-The prompt also provides the links to access the new shop in the browser:
+The prompt also provides links to access the new shop in the browser:
 
 - Storefront: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - Admin: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
@@ -122,11 +122,11 @@ If you're setting up Shopware for the very first time, you may prefer to complet
 - Sign in or create a Shopware account; this is necessary when you want to install Store extensions
 - Connect to the **Shopware Store**
 - Install plugins or themes from the Store
-- Configure payment methods; not necessary for local development
+- Configure payment methods if you need them (not required for local development)
 
 Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **`Settings > Shop > Basic information`**.
 
-However, most developers will wish to continue from the terminal.
+However, most developers will want to continue from the terminal.
 
 ### Next steps
 

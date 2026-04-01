@@ -12,10 +12,10 @@ Quick, targeted troubleshooting resources for common runtime, data, and integrat
 
 Sections:
 
-- [DAL Reference](dal-reference/index.md): documents fields, flags, filters, and aggregations for effective data management and querying within the platform.
-  - [Fields Reference](dal-reference/fields-reference/index.md): field types, flags, enum fields.
-- [Rules Reference](rules-reference.md)
-- [Flow Reference](flow-reference.md)
+- [DAL Reference](dal-reference/index.md): Documents fields, flags, filters, and aggregations for effective data management and querying within the platform.
+  - [Fields Reference](dal-reference/fields-reference/index.md): Covers field types, flags, and enum fields.
+- [Rules Reference](rules-reference.md): Lists rule classes across Shopware 6.
+- [Flow Reference](flow-reference.md): Documents Shopware flow events.
 
 ## Debugging
 
@@ -24,7 +24,7 @@ Sections:
 To connect to the database from your host machine (for example, via Adminer or a local MySQL client), use:
 
 - Host: `127.0.0.1` or `localhost`
-- And the exposed port shown here:
+- Port: the exposed database port from the output of:
 
 ```bash
 docker compose ps
@@ -64,7 +64,7 @@ services:
             - "host.docker.internal:host-gateway"
 ```
 
-Shopware’s Docker setup also supports other profilers, like [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you'll need to run an additional container. For example:
+Shopware’s Docker setup also supports other profilers, such as [Blackfire](https://www.blackfire.io/), [Tideways](https://tideways.com/), and [PCOV](https://github.com/krakjoe/pcov). For Tideways and Blackfire, you will need to run an additional container. For example:
 
 ```yaml
 services:

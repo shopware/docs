@@ -69,7 +69,9 @@ If both pages load, continue.
 
 If [http://127.0.0.1:8000](http://127.0.0.1:8000) does not work, open the Administration and go to **Sales Channels → Storefront (or your active channel) → Domains**. Add `http://127.0.0.1:8000` as an additional domain for that sales channel, then save your changes.
 
-When running Shopware locally (for example, via Docker), ensure the environment is running in development mode for better error visibility. The default variable is `APP_ENV=dev`.
+When running Shopware locally (e.g., via Docker), ensure the environment is in development mode for better error visibility. The default variable is `APP_ENV=dev`.
+
+If running the command `docker compose exec web printenv APP_ENV` does not return `dev`, create or update the variable in the `.env.local` file. Then restart the container with `make up` (this step is required).
 
 ## Step 2: Get an Admin API access token
 
@@ -86,15 +88,15 @@ Use them to request an OAuth access token from your local Shopware instance:
 
 ```bash
 curl -s "http://127.0.0.1:8000/api/oauth/token" \
-  -H "Content-Type: application/json" \
+ -H "Content-Type: application/json" \
   -d '{
-    "grant_type": "client_credentials",
-    "client_id": "YOUR_ACCESS_KEY_ID",
-    "client_secret": "YOUR_SECRET_ACCESS_KEY"
-  }'
+ "grant_type": "client_credentials",
+ "client_id": "YOUR_ACCESS_KEY_ID",
+ "client_secret": "YOUR_SECRET_ACCESS_KEY"
+ }'
 ```
 
-A successful response returns JSON containing an `access_token` for authenticated Admin API requests. It will look like this:
+A successful response returns JSON containing an `access_token` for authenticated Admin API requests. The payload will look like this:
 
 ```json
 {
@@ -116,16 +118,16 @@ Replace `YOUR_ACCESS_TOKEN` with the fresh `access_token` returned in Step 2.
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/api/search/product" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+ -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{}'
+ -d '{}'
 ```
 
 A successful response returns JSON with the search result. If your instance does not contain any products yet, the `data` array may be empty.
 
 Use `127.0.0.1:8000` consistently in local API examples if that is the URL already configured in your local setup.
 
-If the response returns JSON with keys such as `data`, `meta`, and `aggregations`, your request was successful. If `data` is empty, the request still worked, but your instance does not contain any matching products yet.
+If the JSON response includes keys such as `data`, `meta`, and `aggregations`, your request was successful. If `data` is empty, the request still succeeded, but your instance does not yet contain any matching products.
 
 ## Step 4: Access the Store API
 
@@ -139,10 +141,10 @@ Use the access key in the `sw-access-key` header when calling the Store API:
 
 ```bash
 curl -s "http://127.0.0.1:8000/store-api/product" \
-  -H "sw-access-key: YOUR_ACCESS_KEY"
+ -H "sw-access-key: YOUR_ACCESS_KEY"
 ```
 
-If the response returns JSON, the request was successful. An empty `elements` array means the request worked, but no products were found yet.
+If the API returns JSON, the request was successful. An empty `elements` array means the request worked, but no products were found yet.
 
 ## Step 5: Work with data
 
@@ -157,7 +159,7 @@ For architectural background, see the [API overview](./../../../concepts/api/ind
 
 ## Result
 
-At this point you should be able to:
+At this point, you should be able to:
 
 - Authenticate with the Admin API
 - Make authenticated API requests
@@ -165,6 +167,4 @@ At this point you should be able to:
 
 ## Next step
 
-Continue with your first real integration:
-
-→ [Authentication and API Requests](./auth-api-requests.md)
+Continue with your first real integration: [Authentication and API Requests](./auth-api-requests.md)

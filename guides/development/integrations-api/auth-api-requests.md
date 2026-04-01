@@ -52,7 +52,7 @@ curl "http://localhost:8000/api/product" \
   -H "Content-Type: application/json"
 ```
 
-use:
+Use:
 
 ```bash
 curl -X POST "http://localhost:8000/api/search/product" \
@@ -139,6 +139,6 @@ docker compose exec web bin/console system:install --create-database --basic-set
 
 Learn how to structure queries using:
 
-- [Search Criteria](../integrations-api/search-criteria.md): encapsulates the entire search definition in one generic object
-- [Request Headers](../integrations-api/request-headers.md): additional instructions
-- [Partial Data Loading](../integrations-api/partial-data-loading.md): to limit responses to the fields you actually need
+- [Search Criteria](../integrations-api/search-criteria.md): Encapsulates the entire search definition in one generic object.
+- [Request Headers](../integrations-api/request-headers.md): Covers optional headers that customize API requests.
+- [Partial Data Loading](../integrations-api/partial-data-loading.md): Limits responses to the fields you actually need.

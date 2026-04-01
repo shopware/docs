@@ -35,8 +35,8 @@ Extensions must respect these principles to avoid:
 
 When extending Shopware, it is critical to understand what is part of the stable Public API and what is not:
 
-* [Public API and internal Annotation](internal.md)
-* [Final and internal Annotations](final-and-internal.md)
+* [Public API and Internal Annotation](internal.md)
+* [Final and Internal Annotation](final-and-internal.md)
 
 These guides define what extension developers can rely on and what may change without notice.
 

@@ -7,7 +7,7 @@ nav:
 
 # Install Shopware with Docker
 
-The Docker-based setup aims to provide a smooth onboarding experience aligned with modern development practices. By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
+The Docker-based setup aims to provide a smooth onboarding experience aligned with modern development practices. By the end of this section, you will have an empty, *running* Shopware instance and can immediately start developing.
 
 :::info
 For information about using Docker in production, see [Docker for production](../../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
@@ -16,7 +16,7 @@ For information about using Docker in production, see [Docker for production](..
 ## Prerequisites
 
 - Install and run either [Docker](https://docs.docker.com/get-started/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start). OrbStack is a fast, Docker-compatible alternative for macOS (free for personal use).
-- Ensure Docker has permission to bind to local ports (typically `:80` or `:8080`) and that no conflicting services are already using these ports. (Mac/Linux example: `lsof -iTCP:80 -sTCP:LISTEN`; Windows example: `-aon | findstr :80`)  
+- Ensure Docker has permission to bind to local ports (typically `:80` or `:8080`) and that no conflicting services are already using these ports. (Mac/Linux example: `lsof -iTCP:80 -sTCP:LISTEN`; Windows example: `netstat -aon | findstr :80`)  
 - Install `make`:
 
 ```bash
@@ -93,7 +93,7 @@ You can check the container status anytime with the following command:
 docker compose ps
 ```
 
-“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
+“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and the [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
 
 Once the containers are running, install Shopware with the following command:
 
@@ -108,7 +108,7 @@ What happens during `make setup`:
 - Shopware is installed automatically (no browser wizard required)
 - A MariaDB database is created
 - An admin user is created, with username `admin` and password `shopware`
-- Required services (database, search, mail, etc.) are preconfigured and run inside the Docker
+- Required services (database, search, mail, etc.) are preconfigured and run inside Docker
 - The Shopware project is configured to connect to the database via the Docker service name `database`
 - Database credentials are defined in the `compose.yaml`
 - If search was enabled during project creation, an Elasticsearch-compatible search service runs as part of the Docker stack
@@ -125,7 +125,7 @@ make up
 # Stop the environment
 make down
 
-# Fully reset the environment ( "-v" flag removes containers, networks, and volumes - all stored data will be lost)
+# Fully reset the environment ("-v" removes containers, networks, and volumes; all stored data will be lost)
 docker compose down -v
 ```
 

@@ -7,25 +7,25 @@ nav:
 
 # App Bundle
 
-App Bundle integrates the PHP App SDK for Symfony. This can be accessed at [app-bundle-symfony](https://github.com/shopware/app-bundle-symfony).
+The App Bundle integrates the PHP App SDK with Symfony. The source repository is [app-bundle-symfony](https://github.com/shopware/app-bundle-symfony).
 
 ## Installation
 
-### With SQL based storage (Doctrine)
+### With SQL-based storage (Doctrine)
 
 ```bash
 composer require shopware/app-bundle doctrine/orm symfony/doctrine-bridge
 ```
 
-### With NoSQL based storage (DynamoDB)
+### With NoSQL-based storage (DynamoDB)
 
 ```bash
 composer require shopware/app-bundle async-aws/async-aws-bundle async-aws/dynamo-db
 ```
 
-## Quick Start using SQL based storage (Doctrine)
+## Quick Start using SQL-based storage (Doctrine)
 
-### 1. Create a new Symfony Project (skip if existing)
+### 1. Create a new Symfony project (skip if you already have one)
 
 ```bash
 composer create-project symfony/skeleton:"6.2.*" my-app
@@ -45,7 +45,7 @@ composer require logger
 
 ### 3. Create a new App manifest
 
-Here is an example app manifest
+Here is an example app manifest:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -75,8 +75,7 @@ Here is an example app manifest
 </manifest>
 ```
 
-change the app name and the app secret to your needs
-and also adjust the environment variables inside your `.env` file to match them.
+Change the app name and app secret to suit your needs, and adjust the environment variables in your `.env` file to match.
 
 By default, the following routes are registered:
 
@@ -87,13 +86,13 @@ By default, the following routes are registered:
 
 You can change the prefix by editing the `config/routes/shopware_app.yaml` file.
 
-The registration also dispatches events to react to the different lifecycle events. See APP SDK docs for it
+The registration flow also dispatches events for the different lifecycle stages. See the App SDK documentation for details.
 
 ### 4. Connecting Doctrine to a Database
 
 <!--@include: ../../../../../snippets/guide/app_database_setup.md-->
 
-### 5. Implement first ActionButtons, Webhooks, Payment
+### 5. Implement action buttons, webhooks, and payment handling
 
 [Check out the official app documentation to learn more about the different integration points with this SDK](../../app-registration-setup.md#sdk-integration).
 
@@ -101,14 +100,14 @@ You can also check out the [APP SDK](https://github.com/shopware/app-php-sdk) do
 
 ### Optional: Webhook as Symfony Events
 
-The app bundle also registers a generic webhook controller, which dispatches the webhook as a Symfony event.
-To use that, register your Shopware webhooks to the generic webhook, which is by default `/app/webhook`.
+The app bundle also registers a generic webhook controller that dispatches each incoming webhook as a Symfony event.
+To use it, point your Shopware webhooks at the generic webhook URL, which defaults to `/app/webhook`.
 
 ```xml
 <webhook name="productWritten" url="http://localhost:8000/app/webhook" event="product.written"/>
 ```
 
-With that, you can write a Symfony EventListener/Subscriber to listen to and react to the event.
+With this setup, you can write a Symfony event listener or subscriber to handle the event.
 
 ```php
 #[AsEventListener(event: 'webhook.product.written')]
