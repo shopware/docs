@@ -18,7 +18,7 @@ Before you begin, make sure your system meets the [Shopware 6 requirements](../s
 You’ll need the following software installed on your host machine:
 
 - [Symfony CLI](https://symfony.com/download)
-- PHP 8.2 or higher with the required extensions; see our [recommended stack and supported versions](../hosting/index.md#recommended-stack-and-supported-versions) for the complete list
+- PHP 8.2 or higher with the required extensions; see our [recommended stack and supported versions](../../hosting/index.md#recommended-stack-and-supported-versions) for the complete list
 - [Composer 2.x](https://getcomposer.org/)
 - [Node.js 20+](https://nodejs.org/en/download) and npm
 - A running MySQL 8 or MariaDB 11 database (local or remote)

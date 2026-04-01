@@ -6,7 +6,7 @@ nav:
 
 # Development
 
-After [installation](/guides/installation/index.md), use this guide for building, extending, and debugging Shopware during development. The development path depends on what is being built:
+After [installation](../../guides/installation/index.md), use this guide for building, extending, and debugging Shopware during development. The development path depends on what is being built:
 
 * [Build an Extension](/guides/development/extensions/): Plugins, apps, themes, and Admin or Storefront extensions.
 * [Work with APIs](./integrations-api/index.md): Making API requests, integrating ERP and external systems, and building headless storefronts.

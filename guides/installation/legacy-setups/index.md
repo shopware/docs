@@ -8,7 +8,7 @@ nav:
 # Legacy Setups
 
 :::warning
-Legacy local development setups are documented here for reference only and are no longer recommended for new projects. Refer to [Install Shopware with Docker](../docker-setup.md) instead.
+Legacy local development setups are documented here for reference only and are no longer recommended for new projects. Refer to [Install Shopware with Docker](./docker-setup.md) instead.
 :::
 
 Legacy development environments:
