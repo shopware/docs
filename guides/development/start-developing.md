@@ -11,8 +11,8 @@ This section outlines the typical next steps for development in your running Sho
 
 ## Access Administration and Storefront
 
-- Storefront: [http://localhost:8000](http://localhost:8000)
-- Administration: [http://localhost:8000/admin](http://localhost:8000/admin) *(default credentials: `admin` / `shopware`)*
+- Storefront: `http://127.0.0.1:8000`
+- Administration: `http://127.0.0.1:8000/admin` *(default credentials: `admin` / `shopware`)*
 
 Common development areas:
 
@@ -99,8 +99,8 @@ With Shopware running, your local setup includes:
 - **Database (MariaDB):** Runs on port 3306 inside Docker.
   - Internal hostname: `database`.
   - Host access: `localhost:3306`, if you want to inspect the database directly.
-- **Mailpit:** A local mail-testing tool available at [http://localhost:8025](http://localhost:8025). Use it to view emails sent by Shopware (e.g., registration or order confirmations) without an external mail server.
-- **Adminer (database UI):** A lightweight web interface for viewing and editing your database, available at [http://localhost:8080](http://localhost:8080).
+- **Mailpit:** A local mail-testing tool available at `http://localhost:8025`. Use it to view emails sent by Shopware (e.g., registration or order confirmations) without an external mail server.
+- **Adminer (database UI):** A lightweight web interface for viewing and editing your database, available at `http://localhost:8080`.
 
 For Docker setups, inspect ports and services with:
 

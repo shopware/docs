@@ -210,9 +210,9 @@ And that's basically it.
 
 There's many more things to discover when creating your first plugin. Hence, here's a list of important articles, that may be of interest for you.
 
-* [Installing data with your plugin](/guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
-* [Learn more about the plugin lifecycle methods](/guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
-* [Adding a configuration to your plugin](/guides/plugins/plugins/plugin-fundamentals/add-plugin-configuration.md)
-* [Learning about the service container](/guides/plugins/plugins/plugin-fundamentals/dependency-injection.md)
-* [Adding a custom service](/guides/plugins/plugins/plugin-fundamentals/add-custom-service.md)
-* [Start listening to events](/guides/plugins/plugins/plugin-fundamentals/listening-to-events.md)
+* [Installing data with your plugin](../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
+* [Learn more about the plugin lifecycle methods](../../../guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
+* [Adding a configuration to your plugin](../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-configuration.md)
+* [Learning about the service container](../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md)
+* [Adding a custom service](../../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md)
+* [Start listening to events](../../../guides/plugins/plugins/plugin-fundamentals/listening-to-events.md)

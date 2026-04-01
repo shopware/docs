@@ -22,7 +22,7 @@ Docker enables production-like conditions consistent across teams and CI/CD, and
 
 [Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It is installed and configured separately from your Shopware instance.
 
-**The Shopware CLI installation method is in Alpha**. If you try it and experience problems, please let us know by [filing an issue](https://github.com/shopware/shopware-cli/issues). You may still use our [Docker setup guide](/guides/installation/legacy-setups/docker-setup.md) as a fallback.
+**The Shopware CLI installation method is in Alpha**. If you try it and experience problems, please let us know by [filing an issue](https://github.com/shopware/shopware-cli/issues). You may still use our [Docker setup guide](../../guides/installation/legacy-setups/docker-setup.md) as a fallback.
 
 ## Prerequisites
 
@@ -130,4 +130,4 @@ However, most developers will want to continue from the terminal.
 
 ### Next steps
 
-Continue with the [Development guide](../development/index.md)!
+Continue with the [Development guide](../development/index.md).

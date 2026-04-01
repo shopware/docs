@@ -42,7 +42,7 @@ Example command:
 sudo usermod -aG docker $USER
 ```
 
-Once your environment meets these requirements, [installation](/guides/installation/index.md) is possible.
+Once your environment meets these requirements, [installation](../../guides/installation/index.md) is possible.
 
 :::info
 For alternative installation approaches, see the documentation on [legacy setups](./legacy-setups/index.md). These methods are no longer recommended for new projects.

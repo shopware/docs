@@ -2,13 +2,12 @@
 nav:
   title: Development
   position: 1
----
 
 # Development
 
 After [installation](../../guides/installation/index.md), use this guide for building, extending, and debugging Shopware during development. The development path depends on what is being built:
 
-* [Build an Extension](/guides/development/extensions/): Plugins, apps, themes, and Admin or Storefront extensions.
+* [Build an Extension](../../guides/development/extensions/index.md): Plugins, apps, themes, and Admin or Storefront extensions.
 * [Work with APIs](./integrations-api/index.md): Making API requests, integrating ERP and external systems, and building headless storefronts.
 
 All development scenarios share common foundations:
@@ -32,7 +31,7 @@ To build an [Extension](extensions/index.md), first choose the correct type:
 * App
 * Plugin-based theme
 
-Each extension guide walks you through the full development flow: creation → lifecycle → implementation → testing.
+Each extension guide walks you through the full development flow: `creation → lifecycle → implementation → testing`.
 
 To sell an extension or offer paid features, see the [Monetization guide](monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 

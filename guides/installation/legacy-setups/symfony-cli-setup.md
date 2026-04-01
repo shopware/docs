@@ -129,7 +129,7 @@ Start the local web server with:
 symfony server:start
 ```
 
-By default, this starts the server on port `8000`. Access the Shopware Administration at [http://localhost:8000/admin](http://localhost:8000/admin) and the Storefront at [http://localhost:8000](http://localhost:8000).
+By default, this starts the server on port `8000`. Access the Shopware Administration at `http://localhost:8000/admin` and the Storefront at `http://localhost:8000`.
 
 To run the server in the background, add the `-d` flag:
 

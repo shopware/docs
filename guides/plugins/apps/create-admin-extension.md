@@ -140,7 +140,7 @@ Keep the frontend project inside the Shopware project directory if your Docker s
 
 ## 6. Open the app in Administration
 
-Sign in to the Administration at [http://localhost:8000/admin](http://localhost:8000/admin). Then:
+Sign in to the Administration at `http://localhost:8000/admin`. Then:
 
 - go to **Extensions → My Extensions → Apps**
 - make sure `MyAdminTestApp` is active

@@ -55,10 +55,10 @@ Container names depend on the name of your project folder.
 |---------------------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | **Network `my-project_default`**      | Docker network          | A private virtual network so all containers can communicate (for example, the web container connects to the database).        |
 | **Volume `my-project_db-data`**       | Persistent storage      | Stores the MariaDB database files so your data isn’t lost when containers are stopped or rebuilt.                             |
-| **Container `my-project-mailer-1`**   | Mailpit service         | Captures outgoing emails for local testing. View at [http://localhost:8025](http://localhost:8025).                           |
+| **Container `my-project-mailer-1`**   | Mailpit service         | Captures outgoing emails for local testing. View at `http://localhost:8025`.                           |
 | **Container `my-project-database-1`** | MariaDB service         | Runs the Shopware database. Inside the Docker network, its hostname is `database`.                                            |
-| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at [http://localhost:8000](http://localhost:8000).                |
-| **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at [http://localhost:8080](http://localhost:8080). |
+| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at `http://localhost:8000`.                |
+| **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at `http://localhost:8080`. |
 
 ### Project structure
 

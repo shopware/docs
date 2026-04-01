@@ -14,7 +14,7 @@ nav:
 - uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
 
-Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [General Requirements](../../guides/installation/system-requirements.md). Windows users should use WSL 2 or Docker. (See full [installation](/products/cli/installation.md) page for Windows details.)
+Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [General Requirements](../../guides/installation/system-requirements.md). Windows users should use WSL 2 or Docker. (See full [installation](../cli/installation.md) page for Windows details.)
 
 ## Quickstart
 

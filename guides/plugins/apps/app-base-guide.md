@@ -24,7 +24,7 @@ From there, continue with the path that matches your goal:
 ## Prerequisites
 
 - Shopware running locally.
-- Access to the Administration: [http://localhost:8000/admin](http://localhost:8000/admin).
+- Access to the Administration: `http://localhost:8000/admin`.
 - Shell access to the PHP container for `bin/console`.
 
 A Shopware app is defined by a `manifest.xml`, discovered from `custom/apps`, and managed through the CLI and the Administration.
