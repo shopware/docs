@@ -45,7 +45,7 @@ shopware-cli project ci          # Build Shopware in the CI
 
 ### Extension commands
 
-Create, build, and validate Shopware [extensions](../../guides/plugins/index.md) and prepare them for the [Store](https://store.shopware.com/de/) or distribution. Available commands include:
+Create, build, and validate Shopware [extensions](../../guides/plugins/index.md) and prepare them for the [Shopware Store](https://store.shopware.com/de/) or for distribution. Available commands include:
 
 ```bash
 shopware-cli extension fix   # Fix an extension
@@ -58,8 +58,8 @@ shopware-cli extension validate         # Validate an extension
 Publish and manage your extensions in the [Store](https://store.shopware.com/de/), with commands such as:
 
 ```bash
-shopware-cli account login # Login to Shopware Store portal.store
-shopware-cli token: Manage tokens for Store authentication
+shopware-cli account login    # Log in to the Shopware Store (account.shopware.com)
+shopware-cli token            # Manage tokens for Store authentication
 ```
 
-Run any command with `--help` to see its available options.   Example: `shopware-cli extension --help`
+Run any command with `--help` to see its available options. Example: `shopware-cli extension --help`
