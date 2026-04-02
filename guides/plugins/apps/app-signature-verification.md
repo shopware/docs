@@ -1,7 +1,8 @@
 ---
 nav:
   title: Signing & Verification in the App System
-  position: 40
+  position: 50
+  
 ---
 
 # Signing & Verification in the App System

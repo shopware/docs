@@ -1,13 +1,15 @@
 ---
 nav:
   title: Other Installation Options
-  position: 1
+  position: 20
 
 ---
 
 # Other Installation Options
 
-If you haven’t already, see the [Shopware CLI overview](index.md) for a quick start and the most common installation methods (Homebrew, APT, and Docker). This page covers additional or advanced options for other package managers, CI/CD environments, or building from source.
+If you haven’t already, see the [Shopware CLI overview](index.md) for a quick start and the most common installation methods: Homebrew, APT, and Docker.
+
+This page covers additional options for other package managers, CI/CD environments, or building from source.
 
 ## Package-manager installs
 
@@ -94,7 +96,7 @@ sudo mv shopware-cli /usr/local/bin/
 
 ## CI/CD and development environments
 
-These options let you use the CLI automatically in hosted environments. The [main page](index.md) lists Docker and GitHub Actions, which are popular.
+These options let you use the CLI automatically in hosted environments. The [Shopware CLI overview](index.md) lists Docker and GitHub Actions, which are popular.
 
 <details> <summary><strong>GitHub Codespaces</strong></summary>
 

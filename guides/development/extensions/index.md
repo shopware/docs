@@ -20,11 +20,11 @@ Plugins and apps are installed and activated for the whole Shopware instance.
 Before choosing an extension type, review the recommended [Code structure](code-structure.md). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
 :::
 
-A storefront theme is *not* a separate extension type, but a stripped-down plugin consisting of a customized storefront UI. In cloud environments, storefront themes are delivered via apps.
+A storefront theme is *not* a separate extension type, but a stripped-down plugin consisting of a customized storefront UI. In Cloud environments, storefront themes are delivered via apps.
 
 ## Monetization
 
-To sell an extension or offer paid features, see the [Monetization guide](../../development/monetization/) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
+To sell an extension or offer paid features, see the [Monetization guide](../../development/monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 
 ## Which type to build?
 
@@ -40,7 +40,7 @@ This comparison table helps you decide which Shopware extension type best fits y
 | Integrate payment providers                 | ✅                     | ✅   | — |
 | Publish in the Shopware Store               | ✅                     | ✅   | — |
 | Install in Shopware 6 Cloud shops                | ❌                     | ✅   | Plugins (including theme plugins) cannot run in Cloud. |
-| Install in Shopware 6 self-hosted shops     | ✅                     | ✅   | Apps can be installed and used since Shopware 6.4.0.0. |
+| Install in Shopware 6 self-hosted shops     | ✅                     | ✅   | Since Shopware 6.4.0.0, apps can be installed and used in self-hosted shops. |
 | Add custom logic/routes/commands            | ✅                     | ⚠️   | Apps implement logic externally via services and webhooks; they cannot add internal Symfony routes or CLI commands. |
 | Control style/template inheritance          | ✅                     | ✅   | This capability is specific to theme plugins. |
 

@@ -35,6 +35,16 @@ When targeting a new Shopware version:
 6. Test critical flows
 7. Update extension versions if required
 
+:::info Upgrade impact in real projects
+Upgrade complexity depends on the installation:
+
+* Heavy custom code increases migration effort.
+* No custom code but 60 Store plugins can be equally complex.
+* Most real-world projects fall somewhere in between.
+
+A consistent architecture, centralized CI, and controlled extension strategy help you get ahead of upgrade pain.
+:::
+
 ### Custom projects
 
 * Follow the ([Performing updates guide](../hosting/installation-updates/performing-updates.md)) to stage, test, and execute upgrades in order.

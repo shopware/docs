@@ -7,16 +7,16 @@ nav:
 
 # Install Shopware with Docker
 
-By the end of this section, you will have an empty *running* Shopware instance and can immediately start developing.
+The Docker-based setup aims to provide a smooth onboarding experience aligned with modern development practices. By the end of this section, you will have an empty, *running* Shopware instance and can immediately start developing.
 
 :::info
-For information about using Docker in production, see [Docker for production](../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
+For information about using Docker in production, see [Docker for production](../../hosting/installation-updates/docker.md). To contribute to the Shopware platform itself, visit the [Contribution guide](https://github.com/shopware/shopware/blob/trunk/CONTRIBUTING.md).
 :::
 
 ## Prerequisites
 
 - Install and run either [Docker](https://docs.docker.com/get-started/get-docker/) or [OrbStack](https://docs.orbstack.dev/quick-start). OrbStack is a fast, Docker-compatible alternative for macOS (free for personal use).
-- Ensure Docker has permission to bind to local ports (typically `:80` or `:8080`) and that no conflicting services are already using these ports. (Mac/Linux example: `lsof -iTCP:80 -sTCP:LISTEN`; Windows example: `-aon | findstr :80`)  
+- - Ensure Docker has permission to bind to local ports (typically `80` or `8080`) and that no conflicting services are already using these ports. On macOS/Linux, you can check with `lsof -iTCP:80 -sTCP:LISTEN`. On Windows, you can check with `netstat -aon | findstr LISTENING | findstr :80` ([`netstat` docs](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat), [`findstr` docs](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr)). For background on identifying which process is listening on a TCP port, see Microsoft’s guide: [Determine which program uses or blocks specific TCP ports](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/determine-which-program-use-block-tcp-ports).  
 - Install `make`:
 
 ```bash
@@ -27,7 +27,7 @@ apt install make
 brew install make
 ```
 
-This Docker setup includes the [Shopware CLI](../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
+This Docker setup includes the [Shopware CLI](../../../products/cli/index.md), which helps build, refactor, validate, and manage Shopware projects and extensions. It works with all setups and is used in most Shopware upgrade, build, and CI workflows. The CLI is available in the container shell.
 
 ## Pre-pull Docker image (optional)
 
@@ -93,7 +93,7 @@ You can check the container status anytime with the following command:
 docker compose ps
 ```
 
-“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
+“Healthy” means the service passed its internal health check and is ready to use. If the check doesn't pass, troubleshoot by consulting Docker documentation on [health checks](https://docs.docker.com/reference/dockerfile#healthcheck) and the [`inspect`](https://docs.docker.com/reference/cli/docker/inspect/) command.
 
 Once the containers are running, install Shopware with the following command:
 
@@ -108,13 +108,13 @@ What happens during `make setup`:
 - Shopware is installed automatically (no browser wizard required)
 - A MariaDB database is created
 - An admin user is created, with username `admin` and password `shopware`
-- Required services (database, search, mail, etc.) are preconfigured and run inside the Docker
+- Required services (database, search, mail, etc.) are preconfigured and run inside Docker
 - The Shopware project is configured to connect to the database via the Docker service name `database`
 - Database credentials are defined in the `compose.yaml`
 - If search was enabled during project creation, an Elasticsearch-compatible search service runs as part of the Docker stack
 :::
 
-Verify that the installation completed successfully by opening <http://127.0.0.1:8000>.
+Verify that the installation completed successfully by opening `http://localhost:8000`.
 
 Use the following commands to manage the development environment:
 
@@ -125,8 +125,8 @@ make up
 # Stop the environment
 make down
 
-# Fully reset the environment ( "-v" flag removes containers, networks, and volumes - all stored data will be lost)
+# Fully reset the environment ("-v" removes containers, networks, and volumes; all stored data will be lost)
 docker compose down -v
 ```
 
-You now have a running, empty Shopware instance. Before proceeding with development, [review the project](./project-overview.md) to understand its structure.
+You now have a running, empty Shopware instance. Before proceeding with development, [review the project](../project-overview.md) to understand its structure.

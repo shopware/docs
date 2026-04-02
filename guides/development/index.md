@@ -1,18 +1,15 @@
 ---
 nav:
   title: Development
-  position: 30
+  position: 1
 ---
 
 # Development
 
-This guide covers post-installation information for building, extending, and debugging Shopware during development. The development path depends on what is being built:
+After [installation](../../guides/installation/index.md), use this guide for building, extending, and debugging Shopware during development. The development path depends on what is being built:
 
-* Custom project
-* Extension: apps, plugins, or plugin-based themes
-* Storefront customization
-* Administration extension
-* Headless integration
+* [Build an Extension](../../guides/development/extensions/index.md): Plugins, apps, themes, and Admin or Storefront extensions.
+* [Work with APIs](./integrations-api/index.md): Making API requests, integrating ERP and external systems, and building headless storefronts.
 
 All development scenarios share common foundations:
 
@@ -23,17 +20,19 @@ All development scenarios share common foundations:
 * Configuration
 * Debugging
 
-To build a custom Shopware project without creating an extension for distribution, start here.
+Before starting new development, review the recommended [Code structure](extensions/code-structure.md) guide. A consistent architecture prevents long-term maintenance issues and reduces upgrade friction.
+
+Also review the [Upgrades and Migrations](../upgrades-migrations/index.md) section to avoid patterns that are deprecated or scheduled for removal.
 
 ## Extension development
 
-To build an [Extensions](extensions/index.md), first choose the correct type:
+To build an [Extension](extensions/index.md), first choose the correct type:
 
 * Plugin
 * App
 * Plugin-based theme
 
-Each extension guide walks you through the full development flow: creation → lifecycle → implementation → testing.
+Each extension guide walks you through the full development flow: `creation → lifecycle → implementation → testing`.
 
 To sell an extension or offer paid features, see the [Monetization guide](monetization/index.md) for available models such as paid extensions, In-App Purchases, and commission-based integrations.
 
@@ -48,10 +47,6 @@ Most development follows this sequence:
 * Extend Storefront or Administration
 * Add configuration or database changes (if required)
 * Test and debug
-
-Before beginning implementation, review the recommended [Code structure](extensions/code-structure.md) guide. A consistent architecture prevents long-term maintenance issues and reduces upgrade friction.
-
-Before starting new development, review the [Upgrades and Migrations](../upgrades-migrations/index.md) section to avoid patterns that are deprecated or scheduled for removal.
 
 :::info Upgrade impact in real projects
 Upgrade complexity depends on the installation:
@@ -69,7 +64,7 @@ Set up automated testing and [Continuous Integration (CI)](testing/ci.md) early.
 
 ### Administration
 
-To begin any development, first access the Administration by opening [http://localhost/admin](http://localhost/admin).
+Development requires access to the Administration at [http://localhost/admin](http://localhost/admin).
 
 Use the Administration to:
 
@@ -80,13 +75,17 @@ Use the Administration to:
 
 The Administration is part of the runtime environment and will be used throughout development.
 
-### Development tooling
+## Development tooling
 
 * `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../resources/references/core-reference/commands-reference.md).
 * The standalone [Shopware CLI](../../products/cli/installation.md) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](../../products/cli/project-commands/helper-commands.md).
 * IDE support: Shopware provides a [PHPStorm plugin](tooling/shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
-* [Deployment Helper](../hosting/installation-updates/deployments/deployment-helper.md):  Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
+* [Deployment Helper](../hosting/installation-updates/deployments/deployment-helper.md): Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
 
-### Troubleshooting
+## Troubleshooting
 
 The [troubleshooting](troubleshooting/index.md) guides provide reference information about the data abstraction layer (DAL), flow, and rules.
+
+## Next steps
+
+Move on to the [Start Developing guide](start-developing.md).
