@@ -7,6 +7,8 @@ nav:
 
 # Request Headers
 
+These headers let you control how the Shopware API handles language, versioning, inheritance, context, permissions, and other request-specific behavior.
+
 ## sw-language-id
 
 By default, the API returns entities in the system language. This can be changed by specifying a language ID using the `sw-language-id` header.
