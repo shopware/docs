@@ -1277,6 +1277,7 @@ control
 copyToClipboard
 copyable
 cors
+countryId
 createActionResponse
 createCategoryFixture
 createCmsFixture
@@ -1687,6 +1688,7 @@ opcache
 openInitialPage
 openSUSE
 openUserActionMenu
+openapi
 opensearch
 openssl
 orchestrator
@@ -1843,6 +1845,7 @@ salesChannelId
 salesChannelLoaded
 saleschannel
 saleschannelrepositoryfacade
+salutationId
 sandboxed
 sarven
 scalability

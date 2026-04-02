@@ -1,11 +1,13 @@
 ---
 nav:
   title: Request Headers
-  position: 20
+  position: 40
 
 ---
 
 # Request Headers
+
+These headers let you control how the Shopware API handles language, versioning, inheritance, context, permissions, and other request-specific behavior.
 
 ## sw-language-id
 

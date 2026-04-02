@@ -7,11 +7,13 @@ nav:
 
 # Use Plugin Configuration
 
-In our guide on how to [add a plugin configuration](add-plugin-configuration), you can learn how to provide this possibility to use configuration options in your plugins. This guide will aid you on how to then use this configuration in your plugin.
+The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins. This guide helps you to use them in your plugin.
 
 ## Prerequisites
 
-In order to add a plugin configuration, you sure need to provide your plugin first. However, you won't learn to create a plugin in this guide. Head over to our [plugin base guide](../plugin-base-guide) to create your plugin first. It is also recommended to know how to setup a [plugin configuration](add-plugin-configuration) in the first instance. In this example, the configurations will be read inside of a subscriber, so knowing the [Listening to events](listening-to-events) guide will also be helpful.
+- A plugin [Plugin Base Guide](../plugin-base-guide.md)
+- [Plugin configuration](add-plugin-configuration.md) in the first instance
+- Familiarity with the [Listening to events](listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
 
 ## Overview
 
@@ -64,9 +66,14 @@ Just a simple input field with the technical name `example`. This will be necess
 
 ## Reading the configuration
 
-Let's get to the important part. Reading the plugin configuration is based on the `Shopware\Core\System\SystemConfig\SystemConfigService`. This service is responsible for reading all configs from Shopware 6, such as the plugin configurations.
+Use the tabs below depending on where you need the value: **PHP** (services, subscribers), **Administration (JavaScript)** (custom Admin modules), or **Storefront** (Twig / theme JS).
 
-Inject this service into your subscriber using the [DI container](https://symfony.com/doc/current/service_container.html).
+<Tabs>
+<Tab title="PHP">
+
+Reading in PHP uses `Shopware\Core\System\SystemConfig\SystemConfigService` for all system and plugin config.
+
+Inject this service using the [DI container](https://symfony.com/doc/current/service_container.html).
 
 ```php
 // <plugin root>/src/Resources/config/services.php
@@ -145,15 +152,12 @@ class MySubscriber implements EventSubscriberInterface
 Set the `saleschannelId` to `null` for the plugin configuration to be used by all Sales Channels else set to the corresponding Sales Channel ID.
 :::
 
-## Reading configuration in JavaScript
+</Tab>
+<Tab title="Administration (JS)">
 
-While the above examples show how to read plugin configuration in PHP, you might also need to access these values in JavaScript for Administration extensions or Storefront functionality.
+In the Administration, use `systemConfigApiService` (wraps system-config endpoints).
 
-### Administration API access
-
-To access your plugin's configuration from JavaScript in the Administration, you should use the `systemConfigApiService` which wraps the system-config endpoints.
-
-#### Using injection in Vue components
+## Using injection in Vue components
 
 ```javascript
 // Example: Reading plugin configuration in Administration Vue component
@@ -180,7 +184,7 @@ export default Shopware.Component.wrapComponentConfig({
 });
 ```
 
-#### Using direct service access
+## Using direct service access
 
 ```javascript
 // Example: Reading plugin configuration using direct service access
@@ -202,9 +206,12 @@ async function getPluginConfig() {
 Your plugin needs the `system_config:read` permission to access this API endpoint.
 :::
 
-### Storefront template access
+</Tab>
+<Tab title="Storefront">
 
-In Storefront templates, you can use the `config()` twig function to access plugin configuration values directly without making API calls:
+## Twig (`config()`)
+
+In Storefront templates, use the `config()` Twig function to access plugin configuration values directly without making API calls:
 
 ```twig
 {# Example: Reading plugin configuration in Storefront templates #}
@@ -215,7 +222,7 @@ In Storefront templates, you can use the `config()` twig function to access plug
 {% endif %}
 ```
 
-### Storefront JavaScript access
+## Storefront JavaScript access
 
 For Storefront JavaScript plugins, you can pass configuration values from Twig templates to your JavaScript code:
 
@@ -244,3 +251,6 @@ export default class ExamplePlugin extends PluginBaseClass {
     }
 }
 ```
+
+</Tab>
+</Tabs>

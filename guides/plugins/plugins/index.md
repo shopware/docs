@@ -9,7 +9,7 @@ nav:
 
 Plugins are Shopware's server-side extension type, giving you deep integration with the e-commerce platform. They allow you to extend, overwrite, and modify Shopware’s core capabilities. Unlike apps and themes, plugins run directly inside the shop environment and can interact tightly with the system.
 
-You will likely create a plugin when you need to make profound changes or require complex functionalities such as:
+You will likely create a plugin when you need deep server-side integration or require complex functionalities such as:
 
 - Custom price calculation
 - Product imports
@@ -18,10 +18,19 @@ You will likely create a plugin when you need to make profound changes or requir
 - Dynamic validations
 - Customer tracking or behavioral logic
 
-Refer to our [Plugin Base Guide](plugin-base-guide/) and [Plugin Fundamentals](plugin-fundamentals/) for guidance on plugin development.
+| Goal | Guide |
+|------|--------|
+| Create a new plugin from scratch | [Plugin base guide](plugin-base-guide.md) |
+| Add Admin configuration fields (`config.xml`) | [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md) |
+| Read config in PHP, Admin JS, or Storefront | [Use plugin configuration](plugin-fundamentals/use-plugin-configuration.md) |
+| React to domain events | [Listening to events](plugin-fundamentals/listening-to-events.md) |
+| Register services & DI | [Dependency injection](plugin-fundamentals/dependency-injection.md) |
+| Database changes | [Database migrations](plugin-fundamentals/database-migrations.md) |
+| Composer dependencies in a plugin | [Adding Composer dependencies](plugin-fundamentals/using-composer-dependencies.md) |
+| More topics | [Plugin fundamentals](plugin-fundamentals/index.md) (logging, cache, routes, …) |
 
 ::: info
-If your extension focuses only on design changes, a simple template adjustment—typically done through a theme plugin—may be the best choice.
+If your extension focuses primarily on Storefront design changes, a [theme plugin](../themes/theme-base-guide.md) is often the best choice.
 :::
 
 ## Types of plugins
@@ -47,18 +56,9 @@ composer req <vendor>/<plugin-name>
 
 ### Symfony bundle / Shopware bundle
 
-You can also use Shopware/Symfony bundles instead of plugins.
-Bundles are a good choice when you want to avoid plugin lifecycle handling or Administration management.
-You install bundles via Composer. They are not managed by the Shopware Administration.
+You can also use Shopware/Symfony [bundles](bundle.md) instead of plugins. Bundles are installed bundles with Composer and offer full control over projects. They are not managed by the Shopware Administration, and are a good choice when you want to avoid plugin lifecycle handling or Administration management.
 
 ## Feature comparison
-
-::: tip
-
-For customizing projects, we recommend using [bundles](https://developer.shopware.com/docs/guides/plugins/plugins/bundle.html) instead of plugins.
-As bundles are not managed via Administration and don't have a lifecycle, they offer full control over the project.
-
-:::
 
 | Feature                                       | Plugin             | Static Plugin           | Shopware Bundle                 | Symfony Bundle                  |
 |-----------------------------------------------|--------------------|-------------------------|---------------------------------|---------------------------------|
