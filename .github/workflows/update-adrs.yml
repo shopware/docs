@@ -8,7 +8,7 @@ jobs:
   create-adr-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: denoland/setup-deno@v1
         with:
@@ -44,10 +44,11 @@ jobs:
           delete-branch: true
           title: 'Update Architecture Decision Records'
           body: 'Mirrored from: [shopware/shopware](https://github.com/shopware/shopware/tree/trunk)'
+
   create-code-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
 
@@ -81,4 +82,31 @@ jobs:
           branch: code-guidelines-update
           delete-branch: true
           title: 'Update code guidelines from platform'
+          body: 'Mirrored from: [shopware/shopware](https://github.com/shopware/shopware/tree/trunk)'
+
+  create-references-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: "~1.32"
+
+      # sync from shopware/shopware
+      - run: ./.github/scripts/update-script-references.sh
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: |
+            resources/references/app-reference/*.md
+          author: shopwareBot <example@example.com>
+          committer: shopwareBot <example@example.com>
+          assignees: Isengo1989, sushmangupta, bojanrajh, kermie
+          labels: script-references
+          branch: script-references-update
+          delete-branch: true
+          title: 'Update script references from platform'
           body: 'Mirrored from: [shopware/shopware](https://github.com/shopware/shopware/tree/trunk)'

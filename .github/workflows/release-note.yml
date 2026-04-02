@@ -13,7 +13,7 @@ jobs:
         with:
           text: ${{ github.event.release.body }}
       - name: Replace \n with \\n
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - run: |
           echo "${{ github.event.release.tag_name }}"
           echo "${{ steps.slackify.outputs.text }}"
