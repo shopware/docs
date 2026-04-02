@@ -5,7 +5,7 @@ jobs:
   Filenamecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - shell: bash
         run: |
           find assets -maxdepth 1 | grep "\.[A-Z]" && echo "ERROR: Ensure file extensions are in lowercase" && exit 1 || echo ""
