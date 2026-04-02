@@ -17,7 +17,7 @@ This secret contains the token to authenticate against the official Shopware plu
 
 If this secret is not present, you can recreate it:
 
-```
+```sh
 sw-paas vault create --type buildenv --key SHOPWARE_PACKAGES_TOKEN
 ```
 
@@ -28,7 +28,7 @@ Then just put the token provided by Shopware.
 To authenticate against a third-party plugin store or plugin repository, you need to create a secret named `COMPOSER_AUTH`.
 The content needs to be the JSON string required for the `store/repository`. Run the following command:
 
-```
+```sh
 sw-paas vault create --type buildenv --key COMPOSER_AUTH
 ```
 
