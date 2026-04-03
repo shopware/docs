@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/setup-deno@v2.0.3
         with:
           deno-version: "~1.32"
 
@@ -30,7 +30,7 @@ jobs:
 
       - run: rm semicolon_delimited_script || echo "semicolon_delimited_script does not exist anymore"
 
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8.1.0
         with:
           add-paths: |
             resources/references/adr/*.md
@@ -52,7 +52,7 @@ jobs:
         with:
           ref: main
 
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/setup-deno@v2.0.3
         with:
           deno-version: "~1.32"
 
@@ -70,7 +70,7 @@ jobs:
           options: -v ${{ github.workspace }}:/www --name docs-php
           run: cd /www && find ./resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8.1.0
         with:
           add-paths: |
             resources/guidelines/code/core/*.md
@@ -91,14 +91,14 @@ jobs:
         with:
           ref: main
 
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/setup-deno@v2.0.3
         with:
           deno-version: "~1.32"
 
       # sync from shopware/shopware
       - run: ./.github/scripts/update-script-references.sh
 
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8.1.0
         with:
           add-paths: |
             resources/references/app-reference/*.md
