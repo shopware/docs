@@ -9,7 +9,7 @@ nav:
 
 In the previous implementation, the Elasticsearch index was language-based, meaning each system's language would be indexed in a separate index. With the introduction of the multilingual index:
 
-Each index will contain multiple language-based fields; refer to the [ADR](/docs/resources/references/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch) and adjust your custom Elasticsearch definition's configuration mapping to adapt to the new mapping structure.
+Each index will contain multiple language-based fields; refer to the [ADR](/resources/references/adr/2023-04-11-new-language-inheritance-mechanism-for-opensearch) and adjust your custom Elasticsearch definition's configuration mapping to adapt to the new mapping structure.
 
 For instance, to define your custom Elasticsearch definition (this definition will be used for later examples).
 

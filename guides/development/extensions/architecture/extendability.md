@@ -90,7 +90,7 @@ The best-known example is the [`checkout.order.placed`](https://github.com/shopw
 
 #### Hooks
 
-Hooks are another good example of the observer pattern. Hooks are entry points for apps where the so-called [**App scripts**](/docs/guides/plugins/apps/app-scripts/) are enabled. Since apps do not have the permission to execute code on the server directly, hooks are a way to execute more complex business logic within the request without having to address the own app server via HTTP. Hooks are the equivalent of **events**.
+Hooks are another good example of the observer pattern. Hooks are entry points for apps where the so-called [**App scripts**](/guides/plugins/apps/app-scripts/) are enabled. Since apps do not have the permission to execute code on the server directly, hooks are a way to execute more complex business logic within the request without having to address the own app server via HTTP. Hooks are the equivalent of **events**.
 
 One of the best-known hooks is the [`product page loaded hook`](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Storefront/Page/Product/ProductPageLoadedHook.php). This hook allows apps to load additional data on the product detail page. The hook is instantiated and dispatched [at the controller level](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Storefront/Controller/ProductController.php#L100). Each app script registered to the hook is executed.
 

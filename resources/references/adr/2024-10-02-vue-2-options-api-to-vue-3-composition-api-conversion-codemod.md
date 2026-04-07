@@ -14,7 +14,7 @@ You can find the original version [here](https://github.com/shopware/shopware/bl
 
 ## Context
 
-Our Vue.js application currently uses the Options API, which is the traditional way of writing Vue components in Vue 2. With the release of Vue 3, the Composition API was introduced, offering improved code organization, better TypeScript support, and enhanced reusability of component logic. For more detailed information about the reasons for migrating to the Composition API, see the [documentation entry](/docs/guides/plugins/plugins/administration/system-updates/vue-native.html).
+Our Vue.js application currently uses the Options API, which is the traditional way of writing Vue components in Vue 2. With the release of Vue 3, the Composition API was introduced, offering improved code organization, better TypeScript support, and enhanced reusability of component logic. For more detailed information about the reasons for migrating to the Composition API, see the [documentation entry](/guides/upgrades-migrations/administration/vue-native).
 
 To modernize our codebase and take advantage of these benefits, we need to migrate our existing Vue 2 Options API components to use the Vue 3 Composition API. Manual conversion of numerous components would be time-consuming and error-prone. Therefore, we need an automated solution to assist in this migration process.
 
