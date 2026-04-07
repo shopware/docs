@@ -852,6 +852,8 @@ ReverseInherited
 ReviewFormDataAware
 ReviewFormDataStorer
 Reviewdog
+RevocationRequest
+RevocationRequestEvent
 Roadmap
 RouteResponse
 RuleConditionService
@@ -1132,6 +1134,7 @@ YamlFileLoader
 ZSH
 accel
 acl
+aclfacade
 actionAmount
 actionType
 actionability
@@ -1273,6 +1276,7 @@ const
 const's
 contactFormData
 containerfacade
+contextToken
 control
 copyToClipboard
 copyable
@@ -1761,6 +1765,7 @@ previewable
 pricecollectionfacade
 pricefacade
 pricefactory
+primaryKey
 productCountRoute
 productId
 productNumber
@@ -1829,6 +1834,8 @@ rethrown
 retryability
 returnUrl
 revalidation
+reviewFormData
+revocationRequestFormData
 rfc
 roadmap
 rollbacking
@@ -1952,6 +1959,7 @@ systemconfigfacade
 systemd
 tabindex
 teardown
+templateData
 templated
 templating
 testFoo
