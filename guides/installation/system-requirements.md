@@ -1,11 +1,11 @@
 ---
 nav:
   title: System Requirements
-  position: 2
+  position: 3
 
 ---
 
-# System requirements
+# System Requirements
 
 Before setting up the Shopware 6 development environment, ensure your system meets the following requirements.
 
@@ -42,7 +42,7 @@ Example command:
 sudo usermod -aG docker $USER
 ```
 
-Once your environment meets these requirements, proceed to [Docker setup](./docker-setup.md).
+Once your environment meets these requirements, [installation](../../guides/installation/index.md) is possible.
 
 :::info
 For alternative installation approaches, see the documentation on [legacy setups](./legacy-setups/index.md). These methods are no longer recommended for new projects.

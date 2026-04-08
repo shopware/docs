@@ -9,7 +9,7 @@ nav:
 
 Symfony CLI lets you run Shopware 6 locally without Docker. It's a lightweight option that uses your system’s PHP, Composer, and Node.js installations.
 
-Shopware recommends [Docker](../docker-setup.md) as the default setup for most users because it mirrors production and includes all services out-of-the-box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
+Shopware recommends [Docker](./docker-setup.md) as the default setup for most users because it mirrors production and includes all services out-of-the-box. However, if you already have PHP and a database installed locally, or want a faster, low-overhead workflow, Symfony CLI is a solid alternative.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Before you begin, make sure your system meets the [Shopware 6 requirements](../s
 You’ll need the following software installed on your host machine:
 
 - [Symfony CLI](https://symfony.com/download)
-- PHP 8.2 or higher with the required extensions; see our [recommended stack and supported versions](../hosting/index.md#recommended-stack-and-supported-versions) for the complete list
+- PHP 8.2 or higher with the required extensions; see our [recommended stack and supported versions](../../hosting/index.md#recommended-stack-and-supported-versions) for the complete list
 - [Composer 2.x](https://getcomposer.org/)
 - [Node.js 20+](https://nodejs.org/en/download) and npm
 - A running MySQL 8 or MariaDB 11 database (local or remote)
@@ -129,7 +129,7 @@ Start the local web server with:
 symfony server:start
 ```
 
-By default, this starts the server on port `8000`. Access the Shopware Administration at [http://localhost:8000/admin](http://localhost:8000/admin) and the Storefront at [http://localhost:8000](http://localhost:8000).
+By default, this starts the server on port `8000`. Access the Shopware Administration at `http://localhost:8000/admin` and the Storefront at `http://localhost:8000`.
 
 To run the server in the background, add the `-d` flag:
 
@@ -189,4 +189,4 @@ Symfony CLI uses PHP’s built-in web server by default. For better performance,
 
 ## Build and Watch the Administration and Storefront (optional)
 
-You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets so your changes are visible immediately. Refer to [Frontend and Administration development](../start-developing.md#frontend-and-administration-development) section for more info.
+You only need to run this step if you’re developing or customizing the frontend (Administration or Storefront). It compiles JavaScript and CSS assets, so your changes are visible immediately. Refer to the [Frontend and Administration development guide](../../development/start-developing.md#frontend-development) for more info.

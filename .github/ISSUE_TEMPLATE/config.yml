@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Developer portal rendering issue
+    url: https://github.com/shopware/developer-portal/issues
+    about: Use this when the issue is with the portal application, layout, or page rendering instead of the documentation content itself.
+  - name: Shopware product issue
+    url: https://github.com/shopware/shopware/issues
+    about: Use this when you found a Shopware product, API, or platform bug rather than a documentation issue.

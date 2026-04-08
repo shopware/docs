@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Shipping methods
-  position: 25
+  title: Shipping Methods
+  position: 100
 
 ---
 
-# Shipping methods
+# Shipping Methods
 
 Starting with version 6.5.7.0 as **experimental feature**. Shopware has introduced experimental functionality for adding shipping methods via the App Manifest to a shop. **The entire functionality and API are subject to change during the development process.**
 

@@ -851,6 +851,8 @@ ReverseInherited
 ReviewFormDataAware
 ReviewFormDataStorer
 Reviewdog
+RevocationRequest
+RevocationRequestEvent
 Roadmap
 RouteResponse
 RuleConditionService
@@ -1131,6 +1133,7 @@ YamlFileLoader
 ZSH
 accel
 acl
+aclfacade
 actionAmount
 actionType
 actionability
@@ -1272,10 +1275,12 @@ const
 const's
 contactFormData
 containerfacade
+contextToken
 control
 copyToClipboard
 copyable
 cors
+countryId
 createActionResponse
 createCategoryFixture
 createCmsFixture
@@ -1684,6 +1689,7 @@ opcache
 openInitialPage
 openSUSE
 openUserActionMenu
+openapi
 opensearch
 openssl
 orchestrator
@@ -1756,6 +1762,7 @@ previewable
 pricecollectionfacade
 pricefacade
 pricefactory
+primaryKey
 productCountRoute
 productId
 productNumber
@@ -1824,6 +1831,8 @@ rethrown
 retryability
 returnUrl
 revalidation
+reviewFormData
+revocationRequestFormData
 rfc
 roadmap
 rollbacking
@@ -1840,6 +1849,7 @@ salesChannelId
 salesChannelLoaded
 saleschannel
 saleschannelrepositoryfacade
+salutationId
 sandboxed
 sarven
 scalability
@@ -1946,6 +1956,7 @@ systemconfigfacade
 systemd
 tabindex
 teardown
+templateData
 templated
 templating
 testFoo

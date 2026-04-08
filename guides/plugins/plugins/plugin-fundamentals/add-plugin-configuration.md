@@ -7,20 +7,20 @@ nav:
 
 # Add Plugin Configuration
 
-The `Shopware plugin system` provides you with the option to create a configuration page for your plugin without any knowledge of templating or the `Shopware Administration`.
+The Shopware plugin system lets you define a configuration screen in the Administration for your plugin using `config.xml` only. No custom Admin templates are required.
+
+::: info Related guide
+See [Use plugin configuration](use-plugin-configuration.md) for more details.
+:::
 
 ## Prerequisites
 
 To build your own configuration page for your plugin, you first need a plugin as base.
-Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
+Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ## Create your plugin configuration
 
-<YoutubeRef video="XXcmgKBRh-s" title="Backend Development - Adding a plugin configuration - YouTube" target="_blank" />
-
-::: info
-This video is part of the online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma) available on Shopware Academy for **free**.
-:::
+Related resources: [Adding a plugin configuration (YouTube)](https://www.youtube.com/watch?v=XXcmgKBRh-s), [Backend Development](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 
 All you need to do is create a `config.xml` file inside a `Resources/config` directory in your plugin root.
 The content of the `config.xml` will be dynamically rendered in the Administration.
@@ -94,21 +94,21 @@ Below you'll find a list of all available `<input-field type="?">`.
 
 | Type          | Configuration settings                                                                                                                                                              | Renders           | Default value example                   |
 |:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
-| text          | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text), [length](add-plugin-configuration#text-length-restrictions) | Text field        | Some text                               |
-| textarea      | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text)                                                              | Text area         | Some more text                          |
-| text-editor   | [placeholder](add-plugin-configuration#label-placeholder-and-help-text)                                                                                                             | HTML editor       | Some text with HTML `<div>`tags`</div>` |
-| url           | [copyable](add-plugin-configuration#copyable), [placeholder](add-plugin-configuration#label-placeholder-and-help-text), [length](add-plugin-configuration#text-length-restrictions) | URL field         | <https://example.com>                     |
-| password      | [placeholder](add-plugin-configuration#label-placeholder-and-help-text), [length](add-plugin-configuration#text-length-restrictions)                                                | Password field    | ********                                |
-| int           | [length](add-plugin-configuration#number-length-restrictions)                                                                                                                       | Number field      | 42                                      |
-| float         | [length](add-plugin-configuration#number-length-restrictions)                                                                                                                       | Number field      | 42.42                                   |
+| text          | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | Text field        | Some text                               |
+| textarea      | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                              | Text area         | Some more text                          |
+| text-editor   | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                                                             | HTML editor       | Some text with HTML `<div>`tags`</div>` |
+| url           | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | URL field         | <https://example.com>                     |
+| password      | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions)                                                | Password field    | ********                                |
+| int           | [length](add-plugin-configuration.md#number-length-restrictions)                                                                                                                       | Number field      | 42                                      |
+| float         | [length](add-plugin-configuration.md#number-length-restrictions)                                                                                                                       | Number field      | 42.42                                   |
 | bool          |                                                                                                                                                                                     | Switch            | `true` or `false`                       |
 | checkbox      |                                                                                                                                                                                     | Checkbox          | `true` or `false`                       |
 | datetime      |                                                                                                                                                                                     | Date-time picker  | 2024-04-04T12:00:00.000Z                |
 | date          |                                                                                                                                                                                     | Date picker       | 2024-04-05T00:00:00                     |
 | time          |                                                                                                                                                                                     | Time picker       | 11:00:00                                |
 | colorpicker   |                                                                                                                                                                                     | Color picker      | #189EFF                                 |
-| single-select | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text)                                                                | Single-Select box | option_id                               |
-| multi-select  | [options](add-plugin-configuration#options), [placeholder](add-plugin-configuration#label-placeholder-and-help-text)                                                                | Multi-Select box  | [option_id1, option_id2]                |
+| single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                | Single-Select box | option_id                               |
+| multi-select  | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                | Multi-Select box  | [option_id1, option_id2]                |
 
 ### Input field settings
 
@@ -116,11 +116,11 @@ These settings are used to configure your `<input-field>`.
 **Every `<input-field>` has to start with the `<name>` element.**
 After the `<name>` element you can configure any of the other settings mentioned above.
 Beside these settings, they have the following in common:
-[label](add-plugin-configuration#label-placeholder-and-help-text),
-[helpText](add-plugin-configuration#label-placeholder-and-help-text),
-[defaultValue](add-plugin-configuration#defaultvalue),
-[disabled](add-plugin-configuration#disabled),
-and [required](add-plugin-configuration#required).
+[label](add-plugin-configuration.md#label-placeholder-and-help-text),
+[helpText](add-plugin-configuration.md#label-placeholder-and-help-text),
+[defaultValue](add-plugin-configuration.md#defaultvalue),
+[disabled](add-plugin-configuration.md#disabled),
+and [required](add-plugin-configuration.md#required).
 
 #### Label, placeholder and help text
 
@@ -257,7 +257,7 @@ It is also possible to render your own admin component which you could deliver w
 The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`.
 The component also needs a `<name>` element first.
 All other elements within the component element will be passed to the rendered admin component as properties.
-For some components you could also use [`label` and `placeholder`](add-plugin-configuration#label-placeholder-and-help-text).
+For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
 
 Here are some examples:
 
@@ -331,7 +331,10 @@ Therefore, Shopware supports the following components by default (also to be fou
 
 ## Example
 
-Now all that's left to do is to present you a working example `config.xml` and show you the result.
+Full multi-card `config.xml` example (collapse to focus on smaller snippets above):
+
+<details>
+<summary>Full example <code>config.xml</code></summary>
 
 ```xml
 <!--<plugin root>/src/Resources/config/config.xml-->
@@ -389,14 +392,14 @@ Now all that's left to do is to present you a working example `config.xml` and s
 </config>
 ```
 
+</details>
+
 ## Add values to your configuration
 
-After adding your input fields to the `config.xml`, you can add values to your configuration.
-To do so, navigate from the sidebar to the `Extensions` > `My extensions` > `Apps` tab and click `Configure`.
-Now you can see the `Configuration` tab and fill in the values for your input fields.
+After adding your input fields to the `config.xml`, save and refresh the Administration. Then open the **Extensions → My extensions → Plugins** tab, find your plugin, and open **Configure** (or the plugin’s configuration action). Use the **Configuration** tab to enter values for your fields. *(Apps use a separate tab; plugin settings are under **Plugins**.)*
 
 ## Next steps
 
 Now you've added your own plugin configuration.
 But how do you actually read which configurations the shop owner used?
-This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration).
+This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration.md).

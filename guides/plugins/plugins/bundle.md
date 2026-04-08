@@ -7,9 +7,7 @@ nav:
 
 # Bundle
 
-Plugins are based on the Symfony bundle concept, but offer additional features like lifecycle events and the ability to be managed in the Shopware administration.
-This is maybe unwanted in some cases, like project critical customizations which should not be managed via the Shopware administration.
-In this case, you can use a Symfony bundle instead of a plugin.
+Plugins are based on the Symfony bundle concept, but offer additional features like lifecycle events and the ability to be managed in the Shopware Administration. This may be undesirable for project-critical customizations that should always be active and not be managed through the Shopware Administration. In such cases, use a Symfony bundle instead of a plugin.
 
 ## Project Structure
 
@@ -89,7 +87,7 @@ App\YourBundleName\YourBundleName::class => ['all' => true],
 //...
 ```
 
-## Adding services, twig templates, routes, theme, etc
+## Adding services, Twig templates, routes, theme, etc
 
 You can add services, twig templates, routes, etc. to your bundle like you would do in a plugin.
 Just create `Resources/config/services.php` and `Resources/config/routes.php` files or `Resources/views` for twig templates.
@@ -139,9 +137,9 @@ deployment:
             bin/console database:migrate <BundleName> --all
 ```
 
-## Integration into Shopware-CLI
+## Integration into Shopware CLI
 
-Shopware-CLI cannot detect bundles automatically, therefore the assets of the bundles are not built automatically.
+Shopware CLI cannot detect bundles automatically, therefore the assets of the bundles are not built automatically.
 You will need to adjust the `composer.json` file of your project to specify the path to the bundle.
 This is done by adding the `extra` section to the `composer.json` file:
 
@@ -157,4 +155,4 @@ This is done by adding the `extra` section to the `composer.json` file:
 }
 ```
 
-This will tell Shopware-CLI where the bundle is located and what the name of the bundle is.
+This will tell Shopware CLI where the bundle is located and what the name of the bundle is.

@@ -93,7 +93,7 @@ redirects:
     products/cli/project-commands/project-config-sync.html: guides/development/tooling/fixture-bundle.html
     products/sales-agent/deployment.html: products/sales-agent/best-practices/app-deployment/hosted-with-ubuntu-server.html
     guides/installation/requirements.html: guides/installation/system-requirements.html
-    guides/installation/setups/docker.html: guides/installation/docker-setup.html
+    guides/installation/setups/docker.html: guides/installation/legacy-setups/docker-setup.html
     guides/installation/template.html: guides/installation/project-overview.html
     guides/installation/setups/docker-options.html: guides/installation/advanced-options.html
     guides/installation/setups/devenv.html: guides/installation/legacy-setups/devenv-setup.html
@@ -181,3 +181,5 @@ redirects:
     resources/references/core-reference/flow-reference.html: guides/development/troubleshooting/flow-reference.html
     resources/references/core-reference/rules-reference.html: guides/development/troubleshooting/rules-reference.html
     guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html
+    guides/installation/start-developing.html: guides/development/start-developing.html
+    
