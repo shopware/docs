@@ -145,6 +145,20 @@ bin/console user:change-password admin
 
 Follow the prompts to set a new password for the admin user.
 
+### Reindex OpenSearch
+
+If your shop has OpenSearch enabled, you will need to reindex after cloning. Open an exec session:
+
+```shell
+sw-paas exec --new
+```
+
+Once you're in the session, run the following command to reindex:
+
+```shell
+bin/console dal:refresh:index --use-queue
+```
+
 ### Update domain in sales channel
 
 The cloned application will have the same domain configuration as the source application. You need to update the domain in the sales channel to match the cloned application's domain.
