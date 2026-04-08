@@ -36,6 +36,7 @@ In the following, you can find a list of the default limiters:
 - `reset_password`: Storefront / Store-API customer password reset.
 - `user_recovery`: Administration user password recovery.
 - `contact_form`: Storefront / Store-API contact form.
+
 ```yaml
 // <shop root>/config/packages/shopware.yaml
 shopware:
