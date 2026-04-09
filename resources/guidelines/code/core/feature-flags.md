@@ -7,7 +7,7 @@ You can find the original version [here](https://github.com/shopware/shopware/bl
 
 ## Introduction
 Feature flags enable the developer to create new code which is hidden behind the flag and merge it into the trunk branch, even when the code is not finalized.
-We use this functionality to merge breaks into the trunk early, without them already being switched active. To learn more about breaking changes and backward compability take a look to our [Backward Compatibility Guide](/resources/guidelines/code/backward-compatibility)
+We use this functionality to merge breaks into the trunk early, without them already being switched active. To learn more about breaking changes and backward compability take a look to our [Backward Compatibility Guide](/docs/resources/guidelines/code/backward-compatibility.html)
 
 ### Activating the flag
 To switch flags on and off you can use the ***.env*** to configure each feature flag. Using dots inside an env variable are not allowed, so we use underscore instead:
