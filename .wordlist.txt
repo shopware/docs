@@ -123,7 +123,6 @@ BreadcrumbField
 Browserlist
 BusinessEvent
 BusinessEventCollector
-BuyButton
 CDN
 CDNs
 CHANGELOG
@@ -1540,7 +1539,6 @@ initializers
 installable
 instantiation
 integrations
-interceptable
 intl
 invalidations
 io
@@ -1658,7 +1656,6 @@ myPluginLogHandler
 mysql
 mysqldump
 namespace
-namespaced
 namespaces
 natively
 nav
