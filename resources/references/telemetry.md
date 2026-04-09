@@ -122,7 +122,7 @@ Or for a single command:
 DO_NOT_TRACK=1 shopware-cli project create
 ```
 
-This follows the `Console Do Not Track convention standard` used by many CLI tools.
+This follows the `Console Do Not Track` convention used by many CLI tools.
 
 ## Data flow summary
 
