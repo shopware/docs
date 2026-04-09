@@ -312,7 +312,7 @@ Use Scheme.org's [Schema Markup Validator](https://validator.schema.org/) and Go
 
 ## Tools
 
-Use the [Shopware CLI](/products/cli/) to build, validate, and upload Shopware 6 plugin releases to the Community Store. It also supports efficiently managing store descriptions and plugin images.
+Use the [Shopware CLI](../../../products/cli/) to build, validate, and upload Shopware 6 plugin releases to the Community Store. It also supports efficiently managing store descriptions and plugin images.
 
 ## Final notes
 
