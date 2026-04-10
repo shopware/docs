@@ -271,6 +271,8 @@ Here are some examples:
 </component>
 ```
 
+Stores the ID of the selected mail template into the system config.
+
 ### Entity single select for mail templates
 
 ```html
