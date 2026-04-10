@@ -284,7 +284,7 @@ Stores the ID of the selected product into the system config.
 </component>
 ```
 
-Stores the ID of the selected mail template into the system config. Displays the mail templates description in the administration.
+Stores the ID of the selected mail template into the system config. Displays the mail template description in the Administration.
 
 ### Entity multi ID select for products
 
