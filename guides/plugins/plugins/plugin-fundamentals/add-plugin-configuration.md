@@ -271,7 +271,18 @@ Here are some examples:
 </component>
 ```
 
-Stores the ID of the selected product into the system config.
+### Entity single select for mail templates
+
+```html
+<component name="sw-entity-single-select">
+    <name>exampleMailTemplate</name>
+    <entity>mail_template</entity>
+    <label-property>description</label-property>
+    <label>Choose a mail template for the plugin configuration</label>
+</component>
+```
+
+Stores the ID of the selected mail template into the system config. Displays the mail templates description in the administration.
 
 ### Entity multi ID select for products
 
