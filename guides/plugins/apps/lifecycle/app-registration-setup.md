@@ -268,7 +268,7 @@ To prevent failure of in-flight requests during the secret rotation, your app **
 
 ## Requirements
 
-Apps can declare requirements in their manifest that must be met for the app to function properly. Shopware validates these during installation and updates in `prod` environments. If a requirement is not met, the installation is rejected with a descriptive error before the app attempts registration.
+Apps can declare requirements in their manifest that must be met for the app to function properly. For example, an app that communicates with the shop via the Admin API will fail if the shop is not publicly accessible — declaring that upfront avoids a registration attempt that is guaranteed to fail. Shopware validates requirements during installation and updates in `prod` environments. If a requirement is not met, the installation is rejected with a descriptive error before the app attempts registration.
 
 Add a `<requirements>` element to your `manifest.xml`. Each requirement is an empty child element — its presence enables it:
 
@@ -290,6 +290,7 @@ Add a `<requirements>` element to your `manifest.xml`. Each requirement is an em
 
 ::: info
 Requirements are available since Shopware 6.7.10.0. For the full list of available requirements, see the [manifest reference](../../../resources/references/app-reference/manifest-reference.md#requirements).
+The requirement feature is extensible, we encourage you to contribute new requirements to the Shopware core to allow all app developers to use them.
 :::
 
 ::: warning

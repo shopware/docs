@@ -33,7 +33,7 @@ _Optional_, declare requirements that must be met for your app to function prope
 
 #### `public-access` (since 6.7.10.0)
 
-Validates that the Shopware instance is publicly reachable, which is necessary for apps that rely on webhooks or server-to-server communication. The validator checks that:
+Validates that the Shopware instance is publicly reachable, which is necessary for apps that rely on webhooks or server-to-server communication. This is a best-effort check — a temporary network issue could cause it to fail, and a passing check does not guarantee the condition will hold indefinitely. The validator checks that:
 
 - `APP_URL` is configured and uses HTTPS
 - The host is not `localhost`, an IP address, or a reserved domain (`.local`, `.test`, `.example`, etc.)
