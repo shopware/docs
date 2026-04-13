@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: reviewdog/action-languagetool@v1
+      - uses: reviewdog/action-languagetool@v1.23.0
         with:
           level: warning
           language: en-US

@@ -1,0 +1,110 @@
+name: Documentation issue
+description: Report documentation content that is outdated, missing, unclear, or otherwise needs improvement.
+title: "[Docs]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for documentation content in `shopware/docs`.
+
+        Quick guidance:
+        - Link the affected page if you have one.
+        - Add a Shopware version only when it matters.
+        - Use `shopware/developer-portal` for site rendering or portal application issues.
+        - Use `shopware/shopware` for product, API, or platform bugs.
+
+  - type: dropdown
+    id: report_type
+    attributes:
+      label: Report type
+      description: Choose the option that best matches your report.
+      options:
+        - Outdated content
+        - New content request
+        - Improvement to existing content
+        - General issue
+    validations:
+      required: true
+
+  - type: input
+    id: affected_page
+    attributes:
+      label: Affected page URL or Markdown path
+      description: Link the page or add the repository path if this concerns existing documentation.
+      placeholder: https://developer.shopware.com/docs/... or guides/example/index.md
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or request
+      description: Describe what is wrong, missing, unclear, or requested.
+      placeholder: Explain the documentation problem or what new documentation is needed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_improvement
+    attributes:
+      label: Suggested improvement
+      description: If you have one, describe what the documentation should say, include, or change.
+      placeholder: Add a suggested fix, outline, wording change, or missing topic.
+
+  - type: input
+    id: shopware_version
+    attributes:
+      label: Shopware version or version range
+      description: Add the relevant version if the documentation issue depends on a specific Shopware release.
+      placeholder: 6.6.10.0, 6.7.x, not version-specific
+    validations:
+      required: false
+
+  - type: dropdown
+    id: context
+    attributes:
+      label: Context or environment
+      description: Choose the documentation context if it helps explain the issue.
+      options:
+        - Self-hosted project
+        - PaaS project
+        - Extension, plugin, or app development
+        - Documentation site only
+        - Unknown / Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and supporting details
+      description: Add examples, screenshots, broken links, references, or related issues and pull requests.
+      placeholder: Include any details that help confirm the report quickly.
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction or discovery steps
+      description: Add steps if the issue is observable, for example for broken links, navigation, or inconsistent docs behavior.
+      placeholder: 1. Go to ... 2. Open ... 3. Notice ...
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        Helpful examples:
+        - For outdated content, explain what is outdated and what should be correct now.
+        - For new content requests, explain the missing topic, audience, or use case.
+        - For improvements, explain what was unclear or incomplete and what you expected.
+
+  - type: checkboxes
+    id: routing_confirmation
+    attributes:
+      label: Repository routing confirmation
+      description: Confirm that this report belongs in `shopware/docs`.
+      options:
+        - label: This issue is about documentation content or documentation behavior, not a Shopware product or platform bug.
+          required: true
