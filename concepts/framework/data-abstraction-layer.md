@@ -32,7 +32,7 @@ This is the recommended way for developers to interface with the DAL or the data
 
 ### Provisioning code to use the repositories
 
-Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/plugin-fundamentals/dependency-injection).
+Before using the repositories, you will need to get them from the [Dependency Injection Container (DIC)](../../guides/plugins/plugins/services/dependency-injection.md).
 This is done with [Constructor injection](https://symfony.com/doc/current/service_container/injection_types.html#constructor-injection), so you will need to extend your services constructor by expecting an EntityRepository:
 
 ```php
@@ -55,7 +55,7 @@ $services->set(Swag\ExamplePlugin\Service\DalExampleService::class)
 
 You can read more about dependency injection and service registration in Shopware in the services guides:
 
-<PageRef page="../../guides/plugins/plugins/plugin-fundamentals/add-custom-service" />
+<PageRef page="../../guides/plugins/plugins/services/add-custom-service.md" />
 
 ### Translations
 

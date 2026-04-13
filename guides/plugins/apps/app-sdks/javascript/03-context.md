@@ -7,7 +7,10 @@ nav:
 
 # Context
 
-The ContextResolver helps you to validate the Request, resolve the Shop and provide types for the Context.
+The `ContextResolver` validates incoming requests, resolves the corresponding shop, and returns a typed context for further processing.
+
+- `fromBrowser()` resolves requests coming from browser-based app modules, such as iframes.
+- `fromAPI()` resolves requests coming from Shopware server-to-server calls, such as webhooks or action buttons.
 
 ## Usage
 
@@ -23,7 +26,7 @@ app.contextResolver.fromBrowser(/** Request */);
 app.contextResolver.fromAPI(/** Request */);
 ```
 
-Both methods accepts a Type to specify the context type.
+Both methods accept a generic type parameter to define the expected context payload.
 
 ```ts
 import { BrowserAppModuleRequest } from '@shopware-ag/app-server-sdk/types'
@@ -34,9 +37,9 @@ const ctx = await app.contextResolver.fromBrowser<BrowserAppModuleRequest>(/** R
 console.log(ctx.payload['sw-version']);
 ```
 
-You can checkout the [types.ts](https://github.com/shopware/app-sdk-js/blob/main/src/types.ts) to see all available types.
+See the [types.ts](https://github.com/shopware/app-sdk-js/blob/main/src/types.ts) for the available built-in types.
 
-If you miss a type, feel free to open a PR or an issue. Otherwise you can also specify the type also in your project.
+If a type is missing, either file an issue on the SDK repository or define your own in your project.
 
 ```ts
 type MyCustomWebHook = {
@@ -48,4 +51,4 @@ const ctx = await app.contextResolver.fromBrowser<MyCustomWebHook>(/** Request *
 ctx.payload.foo; // This is now typed and the IDE will help you
 ```
 
-Next, we will look into the [Signing of responses](./04-signing).
+Next, we will look into [Signing Responses](./04-signing).

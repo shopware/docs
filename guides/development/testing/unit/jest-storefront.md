@@ -23,7 +23,7 @@ Before you read this guide, make sure you understand the basics of unit testing 
 
 In addition, you need a running Shopware 6 installation. Your repository for that should be based on the development template, as we will use some scripts provided by it.
 
-For one example, we use a Javascript plugin. To follow this example, you need to know how to build a Javascript plugin in the first place. You can learn about it in the corresponding [guide](../../../plugins/plugins/storefront/add-custom-javascript.md).
+For one example, we use a Javascript plugin. To follow this example, you need to know how to build a Javascript plugin in the first place. You can learn about it in the corresponding [guide](../../../plugins/plugins/storefront/javascript/add-custom-javascript.md).
 
 ## Test structure
 
@@ -182,7 +182,7 @@ export default class HelloWorldPlugin extends Plugin {
 }
 ```
 
-Of course, you need to make sure your plugin is registered. For more details, see the guide on [Javascript plugins](../../../plugins/plugins/storefront/add-custom-javascript.md).
+Of course, you need to make sure your plugin is registered. For more details, see the guide on [Javascript plugins](../../../plugins/plugins/storefront/javascript/add-custom-javascript.md).
 
 In the beginning, writing plugin tests is still similar to other Jest unit tests: You import your plugin's class and use the familiar test structure:
 

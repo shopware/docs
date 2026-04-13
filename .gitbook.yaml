@@ -19,6 +19,37 @@ redirects:
     resources/references/api-reference/admin-api-reference.html: guides/integrations-api/
     concepts/extensions/elasticsearch-concept.html: concepts/framework/elasticsearch.html
     guides/plugins/plugins/storefront/use-csrf-protection.html: guides/hosting/configurations/framework/samesite-protection.html
+    guides/plugins/plugins/storefront/add-caching-to-custom-controller.html: guides/plugins/plugins/storefront/advanced/add-caching-to-custom-controller.html
+    guides/plugins/plugins/storefront/add-cookie-to-manager.html: guides/plugins/plugins/storefront/advanced/add-cookie-to-manager.html
+    guides/plugins/plugins/storefront/add-custom-assets.html: guides/plugins/plugins/storefront/styling/add-custom-assets.html
+    guides/plugins/plugins/storefront/add-custom-captcha.html: guides/plugins/plugins/storefront/howto/add-custom-captcha.html
+    guides/plugins/plugins/storefront/add-custom-controller.html: guides/plugins/plugins/storefront/controllers/add-custom-controller.html
+    guides/plugins/plugins/storefront/add-custom-javascript.html: guides/plugins/plugins/storefront/javascript/add-custom-javascript.html
+    guides/plugins/plugins/storefront/add-custom-page.html: guides/plugins/plugins/storefront/controllers/add-custom-page.html
+    guides/plugins/plugins/storefront/add-custom-pagelet.html: guides/plugins/plugins/storefront/controllers/add-custom-pagelet.html
+    guides/plugins/plugins/storefront/add-custom-sorting-product-listing.html: guides/plugins/plugins/storefront/howto/add-custom-sorting-product-listing.html
+    guides/plugins/plugins/storefront/add-custom-styling.html: guides/plugins/plugins/storefront/styling/add-custom-styling.html
+    guides/plugins/plugins/storefront/add-custom-twig-function.html: guides/plugins/plugins/storefront/templates/add-custom-twig-function.html
+    guides/plugins/plugins/storefront/add-data-to-storefront-page.html: guides/plugins/plugins/storefront/controllers/add-data-to-storefront-page.html
+    guides/plugins/plugins/storefront/add-dynamic-content-via-ajax-calls.html: guides/plugins/plugins/storefront/controllers/add-dynamic-content-via-ajax-calls.html
+    guides/plugins/plugins/storefront/add-icons.html: guides/plugins/plugins/storefront/styling/add-icons.html
+    guides/plugins/plugins/storefront/add-javascript-as-script-tag.html: guides/plugins/plugins/storefront/javascript/add-javascript-as-script-tag.html
+    guides/plugins/plugins/storefront/add-listing-filters.html: guides/plugins/plugins/storefront/howto/add-listing-filters.html
+    guides/plugins/plugins/storefront/add-scss-variables-via-subscriber.html: guides/plugins/plugins/storefront/styling/add-scss-variables-via-subscriber.html
+    guides/plugins/plugins/storefront/add-scss-variables.html: guides/plugins/plugins/storefront/styling/add-scss-variables.html
+    guides/plugins/plugins/storefront/add-translations.html: guides/plugins/plugins/storefront/styling/add-translations.html
+    guides/plugins/plugins/storefront/customize-header-footer.html: guides/plugins/plugins/storefront/templates/customize-header-footer.html
+    guides/plugins/plugins/storefront/customize-templates.html: guides/plugins/plugins/storefront/templates/customize-templates.html
+    guides/plugins/plugins/storefront/fetching-data-with-javascript.html: guides/plugins/plugins/storefront/javascript/fetching-data-with-javascript.html
+    guides/plugins/plugins/storefront/override-existing-javascript.html: guides/plugins/plugins/storefront/javascript/override-existing-javascript.html
+    guides/plugins/plugins/storefront/reacting-to-cookie-consent-changes.html: guides/plugins/plugins/storefront/advanced/reacting-to-cookie-consent-changes.html
+    guides/plugins/plugins/storefront/reacting-to-javascript-events.html: guides/plugins/plugins/storefront/javascript/reacting-to-javascript-events.html
+    guides/plugins/plugins/storefront/remove-unnecessary-js-plugin.html: guides/plugins/plugins/storefront/advanced/remove-unnecessary-js-plugin.html
+    guides/plugins/plugins/storefront/use-media-thumbnails.html: guides/plugins/plugins/storefront/howto/use-media-thumbnails.html
+    guides/plugins/plugins/storefront/use-nested-line-items.html: guides/plugins/plugins/storefront/howto/use-nested-line-items.html
+    guides/plugins/plugins/storefront/using-a-modal-window.html: guides/plugins/plugins/storefront/howto/using-a-modal-window.html
+    guides/plugins/plugins/storefront/using-custom-fields-storefront.html: guides/plugins/plugins/storefront/howto/using-custom-fields-storefront.html
+    guides/plugins/plugins/storefront/using-the-datepicker-plugin.html: guides/plugins/plugins/storefront/howto/using-the-datepicker-plugin.html
     products/extensions/b2b-suite/*: products/extensions/b2b/b2b-suite/*
     products/extensions/b2b-components/*: products/extensions/b2b/b2b-components/*
     guides/plugins/plugins/administration/add-shortcuts.html: guides/plugins/plugins/administration/advanced-configuration/add-shortcuts.html
@@ -68,6 +99,27 @@ redirects:
     products/paas/fastly.html: products/paas/shopware-paas/fastly.html
     products/paas/blackfire.html: products/paas/shopware-paas/blackfire.html
     guides/plugins/apps/in-app-purchase/: guides/plugins/apps/in-app-purchases.html
+    guides/plugins/apps/app-registration-setup.html: guides/plugins/apps/lifecycle/app-registration-setup.html
+    guides/plugins/apps/app-signature-verification.html: guides/plugins/apps/lifecycle/app-signature-verification.html
+    guides/plugins/apps/clientside-to-app-backend.html: guides/plugins/apps/lifecycle/clientside-to-app-backend.html
+    guides/plugins/apps/configuration.html: guides/plugins/apps/lifecycle/configuration.html
+    guides/plugins/apps/payment.html: guides/plugins/apps/checkout/payment.html
+    guides/plugins/apps/shipping-methods.html: guides/plugins/apps/checkout/shipping-methods.html
+    guides/plugins/apps/starter/add-api-endpoint.html: guides/plugins/apps/app-scripts/add-api-endpoint.html
+    guides/plugins/apps/starter/index.html: guides/plugins/apps/index.html
+    guides/plugins/apps/starter/product-translator.html: guides/plugins/apps/lifecycle/product-translator.html
+    guides/plugins/apps/starter/starter-admin-extension.html: guides/plugins/apps/administration/starter-admin-extension.html
+    guides/plugins/apps/tax-provider.html: guides/plugins/apps/checkout/tax-provider.html
+    guides/plugins/apps/webhook.html: guides/plugins/apps/lifecycle/webhook.html
+    guides/plugins/plugins/plugin-fundamentals/add-custom-service.html: guides/plugins/plugins/services/add-custom-service.html
+    guides/plugins/plugins/plugin-fundamentals/add-plugin-dependencies.html: guides/plugins/plugins/dependencies/add-plugin-dependencies.html
+    guides/plugins/plugins/plugin-fundamentals/adjusting-service.html: guides/plugins/plugins/services/adjusting-service.html
+    guides/plugins/plugins/plugin-fundamentals/custom-fields-of-type-media.html: guides/plugins/plugins/database/custom-fields-of-type-media.html
+    guides/plugins/plugins/plugin-fundamentals/database-migrations.html: guides/plugins/plugins/database/database-migrations.html
+    guides/plugins/plugins/plugin-fundamentals/dependency-injection.html: guides/plugins/plugins/services/dependency-injection.html
+    guides/plugins/plugins/plugin-fundamentals/listening-to-events.html: guides/plugins/plugins/framework/event/listening-to-events.html
+    guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies.html: guides/plugins/plugins/dependencies/using-composer-dependencies.html
+    guides/plugins/plugins/plugin-fundamentals/using-npm-dependencies.html: guides/plugins/plugins/dependencies/using-npm-dependencies.html
     guides/plugins/plugins/in-app-purchase/: guides/plugins/plugins/in-app-purchases.html
     products/paas/shopware/CLI/account.html: products/paas/shopware/fundamentals/account.html
     products/paas/shopware/CLI/applications.html: products/paas/shopware/fundamentals/applications.html
@@ -110,6 +162,8 @@ redirects:
     resources/references/upgrades/core/translation/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
     resources/references/upgrades/administration/: guides/upgrades-migrations/administration/
     resources/references/upgrades/: guides/upgrades-migrations/
+    resources/references/storefront-reference/plugin-reference.html: guides/plugins/plugins/storefront/javascript/plugin-reference.html
+    resources/references/storefront-reference/twig-function-reference.html: guides/plugins/plugins/storefront/templates/twig-function-reference.html
     guides/plugins/plugins/testing/php-unit.html: guides/development/testing/unit/php-unit.html
     guides/plugins/plugins/testing/jest-storefront.html: guides/development/testing/unit/jest-storefront.html
     guides/plugins/plugins/testing/jest-admin.html: guides/development/testing/unit/jest-admin.html
@@ -145,6 +199,7 @@ redirects:
     guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
     guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/
     guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
+    resources/guidelines/code/core/database-migations.html: resources/guidelines/code/core/database-migrations.html
     resources/guidelines/code/core/final-and-internal.html: guides/development/extensions/architecture/final-and-internal.html
     resources/guidelines/code/core/internal.html: guides/development/extensions/architecture/internal.html
     resources/guidelines/code/core/extendability.html: guides/development/extensions/architecture/extendability.html

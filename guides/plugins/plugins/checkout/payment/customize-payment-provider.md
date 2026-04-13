@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Customize payment provider
+  title: Customize Payment Provider
   position: 20
 
 ---
@@ -9,14 +9,11 @@ nav:
 
 ## Overview
 
-In this guide you'll learn how to customize an existing payment provider.
-In this example we are customizing a synchronous payment flow, but the procedure also applies to an asynchronous approach.
+This guide covers how to customize an existing payment provider. In this example we are customizing a synchronous payment flow, but the procedure also applies to an asynchronous approach.
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that.
-It is helpful to have looked at the guide about [adding a custom payment method](add-payment-plugin) beforehand.
-Furthermore, decorating a service is also not explained here, but it's covered in our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service), so having this open in another tab won't hurt.
+Review the [Plugin base guide](../../plugin-base-guide). The guides for [adding a custom payment method](add-payment-plugin) and [adjusting a service](../../services/adjusting-service.md), which provides information about decorating services, are also helpful.
 
 ## Customize the payment provider
 

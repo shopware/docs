@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Listen to order changes
+  title: Listen to Order Changes
   position: 20
 
 ---
@@ -14,7 +14,7 @@ This guide will teach you how to react to order changes, e.g. changes to the ord
 ## Prerequisites
 
 This guide is built upon our [plugin base guide](../../plugin-base-guide) and uses the same namespaces as the said plugin.
-Also, since we're trying to listen to an event in this guide, you need to know about [subscribers](../../plugin-fundamentals/listening-to-events).
+Also, since we're trying to listen to an event in this guide, you need to know about [subscribers](../../framework/event/listening-to-events.md).
 
 ## Listening to the event
 

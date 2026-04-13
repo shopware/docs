@@ -1,21 +1,15 @@
 ---
 nav:
-  title: Add cookies to the consent manager
+  title: Add Cookies to the Consent Manager
   position: 20
 
 ---
 
-# Add cookies to the consent manager
+# Add Cookies to the Consent Manager
 
-## Prerequisites
+Before proceeding, review the [app-base-guide](../app-base-guide.md).
 
-You should be familiar with the concept of apps.
-
-<PageRef page="../app-base-guide" />
-
-::: info
-For a comprehensive understanding of Shopware's cookie consent system, see the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management).
-:::
+The [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management) provides a comprehensive guide to Shopware's cookie consent system.
 
 ## Create a single cookie
 
@@ -89,7 +83,7 @@ A `group` element consists of three child elements to configure the cookie group
 * `entries` (required): Contains the grouped cookies. It is a collection of `cookie` elements described in the previous section.
 * `snippet-description` (optional): A string that represents the description of the cookie group in the cookie consent manager. To provide translations this should be the key of a Storefront snippet.
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
+The [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md) provides comprehensive information about manifest file structure.
 
 ## Assigning Cookies to Standard Cookie Groups
 
@@ -136,9 +130,9 @@ The following example shows how to assign cookies to the **Marketing group**:
 
 As already mentioned in the previous sections, both the `cookie` and the `group` elements can contain `snippet-name` and `snippet-description` child elements. Although their values can be strings that will be displayed in the Storefront, the preferred way to set up cookie names and descriptions is to provide Storefront snippets. It gives you and the shop owner the possibility to add translations for your cookie's name and description.
 
-If you are not familiar with setting up Storefront snippets, please refer to our snippet guide.
+To learn how to set up Storefront snippets, refer to the snippet guide.
 
-<PageRef page="../../plugins/storefront/add-translations" />
+<PageRef page="../../plugins/storefront/styling/add-translations.md" />
 
 ## Automatic Configuration Change Detection
 
@@ -148,4 +142,4 @@ This process is handled by a configuration hash mechanism, which is explained in
 
 ## Reacting to cookie consent changes
 
-As described in the previous section, `cookie` elements without a `value` element will not be set automatically. Instead, you have to react to cookie consent changes within your JavaScript. Find out how to [respond to cookie consent changes](../../../plugins/plugins/storefront/reacting-to-cookie-consent-changes).
+As described in the previous section, `cookie` elements without a `value` element will not be set automatically. Instead, you have to react to cookie consent changes within your JavaScript. Find out how to [respond to cookie consent changes](../../../plugins/plugins/storefront/advanced/reacting-to-cookie-consent-changes.md).
