@@ -123,7 +123,6 @@ BreadcrumbField
 Browserlist
 BusinessEvent
 BusinessEventCollector
-BuyButton
 CDN
 CDNs
 CHANGELOG
@@ -467,6 +466,7 @@ HookClasses
 HookExecutor
 Hotjar
 HowTos
+IANA
 IDEs
 IETF
 IPV
@@ -852,6 +852,8 @@ ReverseInherited
 ReviewFormDataAware
 ReviewFormDataStorer
 Reviewdog
+RevocationRequest
+RevocationRequestEvent
 Roadmap
 RouteResponse
 RuleConditionService
@@ -998,6 +1000,7 @@ TestSecret
 TestStockUpdateFilter
 TimeRangeRule
 TimeZoneField
+Timezones
 TinyMCE
 TipTap
 TipTap's
@@ -1132,6 +1135,7 @@ YamlFileLoader
 ZSH
 accel
 acl
+aclfacade
 actionAmount
 actionType
 actionability
@@ -1273,6 +1277,7 @@ const
 const's
 contactFormData
 containerfacade
+contextToken
 control
 copyToClipboard
 copyable
@@ -1536,7 +1541,6 @@ initializers
 installable
 instantiation
 integrations
-interceptable
 intl
 invalidations
 io
@@ -1654,7 +1658,6 @@ myPluginLogHandler
 mysql
 mysqldump
 namespace
-namespaced
 namespaces
 natively
 nav
@@ -1761,6 +1764,7 @@ previewable
 pricecollectionfacade
 pricefacade
 pricefactory
+primaryKey
 productCountRoute
 productId
 productNumber
@@ -1829,6 +1833,8 @@ rethrown
 retryability
 returnUrl
 revalidation
+reviewFormData
+revocationRequestFormData
 rfc
 roadmap
 rollbacking
@@ -1952,6 +1958,7 @@ systemconfigfacade
 systemd
 tabindex
 teardown
+templateData
 templated
 templating
 testFoo

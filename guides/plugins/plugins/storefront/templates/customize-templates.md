@@ -111,12 +111,6 @@ This `dump()` call will print out all variables available on this page.
 Once again, the plugin called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler, when opening a request and its details. This might help here as well.
 :::
 
-## Storefront Components
-
-Since Shopware 6.7.9.0, a new component system is available which offers the possibility to build atomic template components which can be reused in a composable way throughout the Storefront.
-
-To learn more about how to use Storefront Components in your plugin, refer to the main documentation of [Storefront Components](../../../../../concepts/framework/storefront-components.md).
-
 ## Next steps
 
 You are able to customize templates now, which is a good start.

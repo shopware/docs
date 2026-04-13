@@ -11,7 +11,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: lychee Link Checker
         id: lychee
@@ -30,7 +30,7 @@ jobs:
 
       - name: Create Issue From File
         if: steps.lychee.outputs.exit_code != 0 && steps.known-issue.outputs.has-found != 'true'
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@v6.0.0
         with:
           issue-number: "${{ steps.known-issue.outputs.issue-number }}"
           title: Link Checker Report

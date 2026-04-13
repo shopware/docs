@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Markdown Converter
-        uses: LoveToKnow/slackify-markdown-action@v1.0.2
+        uses: LoveToKnow/slackify-markdown-action@v1.1.1
         id: slackify
         with:
           text: ${{ github.event.release.body }}
       - name: Replace \n with \\n
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - run: |
           echo "${{ github.event.release.tag_name }}"
           echo "${{ steps.slackify.outputs.text }}"
