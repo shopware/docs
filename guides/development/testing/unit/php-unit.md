@@ -173,7 +173,7 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
 
 ## Mocking services
 
-In some cases, a service should behave differently in a test run. Such a case could be where a service deletes a file or makes a critical api call. To avoid this in a test run, you can create a `<plugin root>/Resources/config/services_test.{xml|yml}` file that overrides your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.
+In some cases, a service should behave differently in a test run. Such a case could be where a service deletes a file or makes a critical API call. To avoid this in a test run, you can create a `<plugin root>/Resources/config/services_test.{xml|yml}` file that overrides your `<plugin root>/Resources/config/services.{xml|yml}`. But only for the test environment.
 
 In this test-only service config, you can override arguments, aliases, or parameters to change what the service container injects into services during a test run.
 
