@@ -29,8 +29,20 @@ If you are unsure of how to create SSH keys, please follow [this tutorial](https
 
 ## Authenticate
 
-Next, you need to authenticate your PaaS CLI. This can be done through your browser. Just run the following command and follow the instructions:
+Next, you need to authenticate your PaaS CLI. This can be done through your browser. Run the following command and follow the instructions:
 
 ```sh
-shopware
+sw-paas auth
 ```
+
+## Access management
+
+After authentication, you can inspect your current access and manage users or service accounts with the account commands.
+
+See [Account](account) for:
+
+* `sw-paas account whoami`
+* `sw-paas account context`
+* user memberships on organization, project, and application level
+* membership requests and approvals
+* service accounts, grants, and tokens
