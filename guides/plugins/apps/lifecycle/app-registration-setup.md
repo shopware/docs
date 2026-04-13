@@ -13,7 +13,7 @@ This page documents app setup (registration), permissions, validation, and chang
 
 ::: info
 Registration is necessary only when your app backend and Shopware need to communicate. It is performed during the installation of your app.
-This process is called setup.
+This process is called setup. Apps can also declare [requirements](../../../resources/references/app-reference/manifest-reference.md#requirements) that are validated before registration begins.
 :::
 
 ::: warning
@@ -264,6 +264,36 @@ As this process is also used for secret rotation, your app **must generate a new
 
 ::: warning
 To prevent failure of in-flight requests during the secret rotation, your app **should accept the old secret in parallel** with the new secret for a short period (e.g., 1 minute). After that grace period, the signatures based on the old secret **must be** considered invalid.
+:::
+
+## Requirements
+
+Apps can declare requirements in their manifest that must be met for the app to function properly. Shopware validates these during installation and updates in `prod` environments. If a requirement is not met, the installation is rejected with a descriptive error before the app attempts registration.
+
+Add a `<requirements>` element to your `manifest.xml`. Each requirement is an empty child element — its presence enables it:
+
+::: code-group
+
+```xml [manifest.xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
+    <meta>
+ ...
+    </meta>
+    <requirements>
+        <public-access/>
+    </requirements>
+</manifest>
+```
+
+:::
+
+::: info
+Requirements are available since Shopware 6.7.10.0. For the full list of available requirements, see the [manifest reference](../../../resources/references/app-reference/manifest-reference.md#requirements).
+:::
+
+::: warning
+Validation is skipped in `dev` and `test` environments so that local development and CI are not blocked by infrastructure checks.
 :::
 
 ## Permissions
