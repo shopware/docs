@@ -67,7 +67,7 @@ Custom applications and decoupled storefront hosting will be evaluated based on 
    - `exec`: Best for debugging, maintenance, and interactive work
    - `command`: Best for automation, CI/CD, and scheduled tasks
 
-## Can I connect to my PaaS instance via SSH
+## Can I connect to my PaaS instance via SSH?
 
 Yes, you can connect to your PaaS instance — but not via traditional SSH. Instead, we provide a remote terminal session through the `sw-paas exec` CLI command. This command allows you to execute shell commands inside your PaaS environment remotely, effectively giving you SSH-like access for troubleshooting, deployments, or interactive sessions.
 
@@ -81,11 +81,11 @@ Yes. Deployments are designed to be zero downtime and use Kubernetes rolling upd
 
 ## In what order do deployment steps run?
 
-Database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../guides/hosting/installation-updates/deployments/deployment-helper.html#execution-flow).
+Database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../guides/hosting/installation-updates/deployments/deployment-helper#execution-flow).
 
 ## Can I configure pre-deployment and post-deployment hooks?
 
-Yes. Use the [deployment helper](../../../guides/hosting/installation-updates/deployments/deployment-helper.html#configuration) to define deployment hooks.
+Yes. Use the [deployment helper](../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration) to define deployment hooks.
 
 ## Can I automate deployments from CI/CD?
 
@@ -131,6 +131,6 @@ Infrastructure change requests and support requests are handled through the stan
 
 When trying to purchase an extension via the in-app store, the admin shows the error “Runtime extension management is disabled.” Even after setting runtime_extension_management: true in `config/packages/z-shopware.yaml` and deploying, the error will persist.
 
-This behavior is intentional. Runtime extension management is deliberately disabled in the Shopware Admin UI when using PaaS due to its ephemeral nature, and cannot be enabled by changing the runtime_extension_management configuration.
+This behavior is intentional. Runtime extension management is deliberately disabled in the Shopware Admin UI when using PaaS due to its ephemeral nature and cannot be enabled by changing the runtime_extension_management configuration.
 
 To use the in-app extension store, the `SwagExtensionStore` plugin must be installed via Composer. Once this extension is installed, the Shopware Admin can connect to the extension store and allow in-app purchases.

@@ -68,11 +68,11 @@ This command initiates the build process, waits until it's done, and runs the de
 
 Deployments are designed to be zero downtime and use Kubernetes rolling updates.
 
-During deployment, database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper.html#execution-flow).
+During deployment, database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper#execution-flow).
 
 This works well for regular Shopware deployments because breaking database changes are expected only during major Shopware upgrades. When upgrading across major versions, make sure your deployment remains backward compatible throughout the rollout.
 
-Pre-deployment and post-deployment hooks are supported through the [deployment helper configuration](../../../../guides/hosting/installation-updates/deployments/deployment-helper.html#configuration).
+Pre-deployment and post-deployment hooks are supported through the [deployment helper configuration](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).
 
 Automated deployments from CI/CD are supported. The CLI can run in non-interactive mode and supports machine-to-machine authentication with tokens.
 
@@ -103,7 +103,7 @@ sw-paas application deploy get
 
 ## Plugin Management
 
-Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-managment#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
+Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-management#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
 
 In such setups, local changes aren't feasible, as all instances must remain identical and stateless. This ensures consistency across all deployments.
 
