@@ -290,7 +290,7 @@ Add a `<requirements>` element to your `manifest.xml`. Each requirement is an em
 
 ::: info
 Requirements are available since Shopware 6.7.10.0. For the full list of available requirements, see the [manifest reference](../../../resources/references/app-reference/manifest-reference.md#requirements).
-The requirement feature is extensible, we encourage you to contribute new requirements to the Shopware core to allow all app developers to use them.
+The requirement feature is extensible. We encourage you to contribute new requirements to the Shopware core to allow all app developers to use them.
 :::
 
 ::: warning
@@ -299,7 +299,7 @@ Validation is skipped in `dev` and `test` environments so that local development
 
 ## Permissions
 
-Shopware comes with the possibility to create fine-grained [Access Control Lists](../administration/../../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).
+Shopware allows creating fine-grained [Access Control Lists](../administration/../../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).
 This means you need to request permissions if your app needs to read or write data via the API or receive webhooks.
 The permissions your app needs are defined in the manifest file and combine a privilege (`read`, `create`, `update`, or `delete`) with an entity.
 Since version 6.4.12.0, your app can also request additional non-CRUD privileges with the `<permission>` element.
