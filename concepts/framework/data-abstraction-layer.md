@@ -55,7 +55,7 @@ $services->set(Swag\ExamplePlugin\Service\DalExampleService::class)
 
 You can read more about dependency injection and service registration in Shopware in the services guides:
 
-<PageRef page="../../guides/plugins/plugins/services/add-custom-service.md" />
+<PageRef page="../../guides/plugins/plugins/services/add-custom-service" />
 
 ### Translations
 

@@ -17,15 +17,15 @@ Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not 
 
 If you're not familiar with the app system, please take a look at the concept first.
 
-<PageRef page="../../../../concepts/extensions/apps-concept.md" />
+<PageRef page="../../../../concepts/extensions/apps-concept" />
 
 You should also be familiar with the general concept of the Rule Builder.
 
-<PageRef page="../../../../concepts/framework/rule-system/index.md" />
+<PageRef page="../../../../concepts/framework/rule-system/index" />
 
 For the attached logic of your custom conditions, you'll use [Twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
 
-<PageRef page="../app-scripts/index.md" />
+<PageRef page="../app-scripts/index" />
 
 ## Definition
 

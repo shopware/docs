@@ -13,13 +13,13 @@ In an online shop, filters are an important feature. So you might use filters in
 
 Before you start reading this guide, make sure you got an own plugin installed to work with. If you need a starting point for that, see this guide:
 
-<PageRef page="../../plugin-base-guide.md" />
+<PageRef page="../../plugin-base-guide" />
 
 ## Create new Filter
 
 At first, you need to create a subscriber. In this example, we will call it `ExampleListingSubscriber`. If you are not sure on working with subscribers, please refer to the guide on working with events in Shopware:
 
-<PageRef page="../../framework/event/listening-to-events.md" />
+<PageRef page="../../framework/event/listening-to-events" />
 
 As usual, we will start by creating this new class in the same path as you're seeing in Shopware's core - `/src/Subscriber/ExampleListingSubscriber.php`.
 
@@ -123,7 +123,7 @@ Well, fine - you successfully created a filter via subscriber. However, you want
 
 In this template, the existing filters are contained in the block `component_filter_panel_items`. We are going to extend this block with our new filter. If you're not sure on how to customize templates in the Storefront, we got you covered with another guide:
 
-<PageRef page="../templates/customize-templates.md" />
+<PageRef page="../templates/customize-templates" />
 
 ::: info
 The block `component_filter_panel_items` is available from Shopware Version 6.4.8.0

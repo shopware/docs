@@ -19,11 +19,11 @@ if you need more information about the date picker configuration itself.
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create
 your first plugin:
 
-<PageRef page="../../plugin-base-guide.md" />
+<PageRef page="../../plugin-base-guide" />
 
 You should also know how to customize templates:
 
-<PageRef page="../templates/customize-templates.md" />
+<PageRef page="../templates/customize-templates" />
 
 ## Setup a datepicker input field
 

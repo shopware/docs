@@ -16,7 +16,7 @@ The requests and responses of all of your endpoints will be signed and feature J
 
 You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
 
-<PageRef page="../app-base-guide.md" />
+<PageRef page="../app-base-guide" />
 
 Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.

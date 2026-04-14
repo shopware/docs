@@ -15,7 +15,7 @@ You will need a plugin as a base. Refer to the [plugin base guide](../../plugin-
 
 Displaying custom images is often done by using custom fields. To take full advantage of this guide, read the corresponding guide on using custom fields:
 
-<PageRef page="../../administration/module-component-management/add-custom-component.md" />
+<PageRef page="../../administration/module-component-management/add-custom-component" />
 
 ## Using searchMedia function
 

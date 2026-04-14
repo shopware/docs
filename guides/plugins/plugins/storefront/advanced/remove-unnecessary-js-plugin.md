@@ -15,11 +15,11 @@ When you develop your own plugin, you might want to exclude JavaScript plugins a
 
 While this is not mandatory, having read the guide about adding custom JavaScript plugins beforehand might help you understand this guide a bit further:
 
-<PageRef page="../javascript/add-custom-javascript.md" />
+<PageRef page="../javascript/add-custom-javascript" />
 
 Other than that, this guide just requires you to have a running plugin installed, e.g. our plugin from the plugin base guide:
 
-<PageRef page="../../plugin-base-guide.md" />
+<PageRef page="../../plugin-base-guide" />
 
 ## Unregistering JavaScript Plugin
 

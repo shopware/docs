@@ -13,7 +13,7 @@ With webhooks, you can subscribe to events occurring in Shopware. Whenever such 
 
 You should be familiar with the concept of Apps, especially their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server, as that is required to authenticate the webhooks coming from the shops and showing the correct content in your modules.
 
-<PageRef page="../app-base-guide.md" />
+<PageRef page="../app-base-guide" />
 
 ## Webhook configuration
 

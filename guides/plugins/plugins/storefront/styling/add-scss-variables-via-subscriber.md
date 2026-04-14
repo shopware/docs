@@ -15,11 +15,11 @@ We recommend to use the declaration of [SCSS variables](add-scss-variables.md) v
 
 You won't learn how to create a plugin in this guide, head over to our Plugin base guide to create your first plugin:
 
-<PageRef page="../../plugin-base-guide.md" />
+<PageRef page="../../plugin-base-guide" />
 
 You should also know how to listen to events:
 
-<PageRef page="../../framework/event/listening-to-events.md" />
+<PageRef page="../../framework/event/listening-to-events" />
 
 ## Set up a default value for a custom SCSS variable
 

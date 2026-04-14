@@ -19,4 +19,4 @@ Each migration filename follows a specific pattern. To ease plugin development, 
 
 Each migration can have two methods. The `update` and `updateDestructive`. The `update` method must contain only non-destructive changes which can be rolled back at any time. The `updateDestructive` method can contain destructive changes, like dropping columns or tables, which cannot be reversed. For examples of database migrations, refer to the below guide:
 
-<PageRef page="../../guides/plugins/plugins/database/database-migrations.md" title="Database migration" />
+<PageRef page="../../guides/plugins/plugins/database/database-migrations" title="Database migration" />

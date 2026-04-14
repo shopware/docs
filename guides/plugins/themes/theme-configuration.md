@@ -19,7 +19,7 @@ This guide shows you how the theme configuration works and explains the possibil
 
 This guide is built upon the guide on creating a first theme:
 
-<PageRef page="../themes/create-a-theme.md" />
+<PageRef page="../themes/create-a-theme" />
 
 ## Structure of theme configuration
 

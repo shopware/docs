@@ -80,7 +80,7 @@ You see, we can use our custom assets by using the asset path provided by the `b
 
 Of course, you're able to use custom assets in themes as well. In this context there's another way on integration custom assets into your theme. Please take a look on the guide about adding assets to a theme for further detail:
 
-<PageRef page="../../../themes/add-assets-to-theme.md" />
+<PageRef page="../../../themes/add-assets-to-theme" />
 
 ## Next steps
 

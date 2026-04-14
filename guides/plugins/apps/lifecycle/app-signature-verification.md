@@ -27,7 +27,7 @@ If you are not using these tools, ensure that you base signature generation on a
 
 You should be familiar with the concept of Apps and their registration flow.
 
-<PageRef page="../app-base-guide.md" />
+<PageRef page="../app-base-guide" />
 
 Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.

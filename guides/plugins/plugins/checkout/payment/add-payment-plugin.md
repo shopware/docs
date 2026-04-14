@@ -20,7 +20,7 @@ That's why Shopware 6 offers an easy platform on which you can build payment plu
 
 The examples mentioned in this guide are built upon our plugin base guide.
 
-<PageRef page="../../plugin-base-guide.md" title="Plugin base guide"/>
+<PageRef page="../../plugin-base-guide" title="Plugin base guide"/>
 
 If you want to understand the payment process in detail, head to our Payment Concept.
 

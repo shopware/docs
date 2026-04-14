@@ -57,7 +57,7 @@ Next, run the command `bin/console theme:compile`. The assets from the path defi
 
 This way of adding custom assets refers to the default way of dealing with assets. For more details, please check out the article that specifically addresses this topic:
 
-<PageRef page="../plugins/storefront/styling/add-custom-assets.md" />
+<PageRef page="../plugins/storefront/styling/add-custom-assets" />
 
 ## Linking to assets
 

@@ -197,7 +197,7 @@ The cookie consent system can be extended in multiple ways:
 
 Use an event listener to add custom cookies.
 
-<PageRef page="../../../guides/plugins/plugins/storefront/advanced/add-cookie-to-manager.md" />
+<PageRef page="../../../guides/plugins/plugins/storefront/advanced/add-cookie-to-manager" />
 
 ### For Apps
 
@@ -209,7 +209,7 @@ Define cookies in your `manifest.xml` file.
 
 React to user consent changes in your custom JavaScript.
 
-<PageRef page="../../../guides/plugins/plugins/storefront/advanced/reacting-to-cookie-consent-changes.md" />
+<PageRef page="../../../guides/plugins/plugins/storefront/advanced/reacting-to-cookie-consent-changes" />
 
 ## Best Practices
 

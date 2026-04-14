@@ -132,7 +132,7 @@ As already mentioned in the previous sections, both the `cookie` and the `group`
 
 To learn how to set up Storefront snippets, refer to the snippet guide.
 
-<PageRef page="../../plugins/storefront/styling/add-translations.md" />
+<PageRef page="../../plugins/storefront/styling/add-translations" />
 
 ## Automatic Configuration Change Detection
 
