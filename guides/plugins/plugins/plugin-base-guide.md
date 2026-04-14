@@ -9,14 +9,14 @@ nav:
 
 ## Overview
 
-Plugins in Shopware are essentially an extension of [Symfony bundles](plugins-for-symfony-developers.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides. A plugin is the main way to extend your Shopware 6 instance programmatically.
+Plugins in Shopware are essentially an extension of [Symfony bundles](../plugins/bundle.md). Such bundles and plugins can provide their own resources like assets, controllers, services or tests, which you'll learn in the next guides. A plugin is the main way to extend your Shopware 6 instance programmatically.
 
 This section guides you through the basics of creating a plugin from scratch, which can then be installed on your Shopware 6 instance. Refer to the [Shopware 6 Installation guide](../../../guides/installation/index.md).
 
 ## Prerequisites
 
 * a running Shopware 6 instance
-* full access to both the files and the command line  
+* full access to both the files and the command line
 * PHP knowledge
 
 ## Create your first plugin
@@ -25,9 +25,7 @@ Let's get started with creating your plugin by finding a proper name for it.
 
 ### Name your plugin
 
-First, you need to find a name for your plugin. We're talking about a technical name here, so it needs to describe your plugins functionality as short as possible, written in UpperCamelCase. To prevent issues with duplicated plugin names, you should add a shorthand prefix for your company.  
-Shopware uses "Swag" as a prefix for that case.  
-For this example guide we'll use the plugin name **SwagBasicExample.**
+First, you need to find a name for your plugin. We're talking about a technical name here, so it needs to describe your plugins functionality as short as possible, written in UpperCamelCase. To prevent issues with duplicated plugin names, you should add a shorthand prefix for your company. Shopware uses "Swag" as a prefix for that case. For this example guide we'll use the plugin name **SwagBasicExample.**
 
 ::: info
 Using a prefix for your plugin name is not just a convention we'd recommend, but a hard requirement if you want to publish your plugin in the [Shopware Extension Store](https://store.shopware.com/en).
@@ -60,10 +58,9 @@ First, navigate to the directory `custom/plugins` in your Shopware 6 installatio
 
 By convention, you'll have another directory called `src`. This is not required, but recommended. And that's it for the directory structure for now.
 
-Inside your `src` directory, create a PHP class named after your plugin, `SwagBasicExample.php`.  
-This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin class, which is `Shopware\Core\Framework\Plugin`.
+Inside your `src` directory, create a PHP class named after your plugin, `SwagBasicExample.php`. This new class `SwagBasicExample` has to extend from Shopware's abstract Plugin class, which is `Shopware\Core\Framework\Plugin`.
 
-Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name, so in this `guide` this would be: `Swag\BasicExample`
+Apart from this, only the namespace is missing. You can freely define it, but we'd recommend using a combination of your manufacturer prefix and the technical name. In this `guide` this would be `Swag\BasicExample`:
 
 ```php
 // <plugin root>/src/SwagBasicExample.php
@@ -90,10 +87,9 @@ Refer to this video on **[Creating a plugin](https://www.youtube.com/watch?v=_Tk
 
 #### The composer.json file
 
-You've created the necessary plugin structure and the plugin base class. The only thing missing for your plugin to be fully functional, is a `composer.json` file inside your plugin's root directory.  
-`custom/plugins/SwagBasicExample/composer.json`
+You've created the necessary plugin structure and the plugin base class. The only thing missing for your plugin to be fully functional is a `composer.json` file inside your plugin's root directory: `custom/plugins/SwagBasicExample/composer.json`.
 
-This file consists of basic information, that Shopware needs to know about your plugin, such as:
+This file consists of basic information that Shopware needs to know about your plugin:
 
 * The technical name
 * The description
@@ -103,9 +99,7 @@ This file consists of basic information, that Shopware needs to know about your 
 * The required dependencies
 * ... and a few more
 
-This file can also be read by [Composer](https://getcomposer.org/), but that's not part of this guide.  
-Further information you'll have to add in there: The `type` has to be `shopware-platform-plugin`, so Shopware can safely recognize your plugin as such
-and the `require` field must include at least `shopware/core`, to check for compatibility.
+This file can also be read by [Composer](https://getcomposer.org/), but that's not part of this guide. Further information you'll have to add in there: The `type` has to be `shopware-platform-plugin`, so Shopware can safely recognize your plugin. The `require` field must include at least `shopware/core` to check for compatibility.
 
 Here's an example `composer.json` for this guide, which will do the trick:
 
@@ -171,8 +165,7 @@ Once inside there, you need to refresh the list of plugins, that Shopware knows 
 php bin/console plugin:refresh
 ```
 
-There might be a warning appearing regarding the `version` of the `composer.json` file, but you can safely ignore that.  
-You should end up with a list like the following:
+There might be a warning appearing regarding the `version` of the `composer.json` file, but you can safely ignore that. You should end up with a list like the following:
 
 ```bash
 Shopware Plugin Service
@@ -203,16 +196,15 @@ Shopware Plugin Lifecycle Service
  Plugin "SwagBasicExample" has been installed and activated successfully.
 ```
 
-And that's basically it.  
-**You've just successfully created your Shopware 6 plugin!**
+And that's basically it. **You've just successfully created your Shopware 6 plugin!**
 
 ## Next steps
 
-There's many more things to discover when creating your first plugin. Hence, here's a list of important articles, that may be of interest for you.
+These guides may be of interest when creating your first plugin:
 
-* [Installing data with your plugin](../../../guides/plugins/plugins/plugin-fundamentals/database-migrations.md)
+* [Installing data with your plugin](../../../guides/plugins/plugins/database/database-migrations.md)
 * [Learn more about the plugin lifecycle methods](../../../guides/plugins/plugins/plugin-fundamentals/plugin-lifecycle.md)
 * [Adding a configuration to your plugin](../../../guides/plugins/plugins/plugin-fundamentals/add-plugin-configuration.md)
-* [Learning about the service container](../../../guides/plugins/plugins/plugin-fundamentals/dependency-injection.md)
-* [Adding a custom service](../../../guides/plugins/plugins/plugin-fundamentals/add-custom-service.md)
-* [Start listening to events](../../../guides/plugins/plugins/plugin-fundamentals/listening-to-events.md)
+* [Learning about the service container](../../../guides/plugins/plugins/services/dependency-injection.md)
+* [Adding a custom service](../../../guides/plugins/plugins/services/add-custom-service.md)
+* [Start listening to events](../../../guides/plugins/plugins/framework/event/listening-to-events.md)

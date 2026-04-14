@@ -1,13 +1,11 @@
 ---
 nav:
-  title: Using flags
-  position: 100
+  title: Using Flags
+  position: 130
 
 ---
 
 # Using Flags
-
-## Overview
 
 In this guide you'll learn how to use flags of the DAL but this guide will not explain all flags and its purpose.
 

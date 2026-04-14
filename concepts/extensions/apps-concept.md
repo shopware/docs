@@ -22,7 +22,7 @@ Shopware communicates with your app exclusively via HTTP requests. Therefore, yo
 
 ![Communication between Shopware and your app](../../assets/extensions-apps-shopwareCommunication.svg)
 
-To secure this communication, a registration handshake is performed during the installation of your app. During this registration, it is verified that Shopware talks to the right app backend server, and your app gets credentials used to authenticate against the API. See [App registration & backend setup](../../guides/plugins/apps/app-registration-setup.md).
+To secure this communication, a registration handshake is performed during the installation of your app. During this registration, it is verified that Shopware talks to the right app backend server, and your app gets credentials used to authenticate against the API. See [App registration & backend setup](../../guides/plugins/apps/lifecycle/app-registration-setup.md).
 
 ::: info
 Note that this is optional if Shopware and your app don't need to communicate, e.g., because your app provides a [Theme](../../guides/plugins/themes/index.md).
@@ -38,7 +38,7 @@ Your app can modify the Storefront's appearance by shipping your Storefront asse
 This functionality is available starting with Shopware 6.4.1.0.
 :::
 
-Shopware provides functionality that allows your app to integrate payment providers. You can use synchronous payments with providers that do not require user interaction; in that case, approval can be requested with a simple background request. You can use asynchronous payments if you want to redirect the user to a payment provider. Your app then provides a URL for redirection. After the user returns to the shop, Shopware will verify the payment status with your app. Find out more about providing payment endpoints in the [App payment guide](../../guides/plugins/apps/payment.md).
+Shopware provides functionality that allows your app to integrate payment providers. You can use synchronous payments with providers that do not require user interaction; in that case, approval can be requested with a simple background request. You can use asynchronous payments if you want to redirect the user to a payment provider. Your app then provides a URL for redirection. After the user returns to the shop, Shopware will verify the payment status with your app. Find out more about providing payment endpoints in the [App payment guide](../../guides/plugins/apps/checkout/payment.md).
 
 ## Execute business logic inside Shopware with App Scripts
 

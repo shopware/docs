@@ -1,15 +1,13 @@
 ---
 nav:
-  title: Using database events
-  position: 90
+  title: Using Database Events
+  position: 120
 
 ---
 
 # Using Database Events
 
-## Overview
-
-Events are the easiest way to extend the DataAbstractionLayer. Every entity comes with a set of events which will be dispatched in various situations.
+Events are the easiest way to extend the Data Abstraction Layer (DAL). Every entity comes with a set of events which will be dispatched in various situations.
 
 All events are nested into one container event so that your subscriber should only get called once for e.g. a search request instead of dispatching the event 30 times.
 
@@ -17,11 +15,11 @@ All events are nested into one container event so that your subscriber should on
 
 This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
-Furthermore you should have a look at our [Listening to events](../../plugin-fundamentals/listening-to-events) guide since we are subscribing to events in this guide.
+Furthermore you should have a look at our [Listening to Events](../../framework/event/listening-to-events.md) guide since we are subscribing to events in this guide.
 
 ## General event overview
 
-The events below are dispatched during certain DAL operations, they are not necessarily associated with a particular entity, rather they are triggered with batches of commands.
+The events below are dispatched during certain DAL operations. They are not necessarily associated with a particular entity, but are triggered with batches of commands.
 
 | Event                                                                   | Description                                                                                        |
 |:------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
@@ -92,7 +90,7 @@ class EntityWriteSubscriber implements EventSubscriberInterface
 }
 ```
 
-After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
+After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../framework/event/listening-to-events.md) guide.
 
 ### `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent`
 
@@ -140,7 +138,7 @@ class DeleteSubscriber implements EventSubscriberInterface
 }
 ```
 
-After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
+After creating the event subscriber, you have to register it. If you don't know how it is done, then refer to the [Listening to events](../../framework/event/listening-to-events.md) guide.
 
 ## Entity event overview
 
@@ -244,7 +242,7 @@ class ProductSubscriber implements EventSubscriberInterface
     }
 ```
 
-After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../plugin-fundamentals/listening-to-events).
+After creating the event subscriber, you have to register it. If you don't know how that's done, head over to our guide about [Listening to events](../../framework/event/listening-to-events.md).
 
 Here's our `services.php`:
 

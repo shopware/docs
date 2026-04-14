@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Using the state machine
+  title: Using the State Machine
   position: 10
 
 ---
@@ -23,7 +23,7 @@ Each of those states can be changed using the [StateMachineRegistry](https://git
 
 This section will cover an example for each kind of order state, for the order itself, the transaction \(aka payment\) and delivery.
 
-For each example you have to inject the `Shopware\Core\System\StateMachine\StateMachineRegistry` into your service using the [Dependency Injection container](../../plugin-fundamentals/dependency-injection).
+For each example you have to inject the `Shopware\Core\System\StateMachine\StateMachineRegistry` into your service using the [Dependency Injection container](../../services/dependency-injection.md).
 
 You then execute the method `transition` on the said `StateMachineRegistry`. It expects two parameters:
 
@@ -129,7 +129,7 @@ Let's have a look at an example:
 $transitions = $this->stateMachineRegistry->getAvailableTransitions(
     OrderDefinition::ENTITY_NAME,
     '<Order ID here>',
-    'stateId', 
+    'stateId',
     $context
 );
 ```
@@ -157,7 +157,7 @@ public function setOrderDeliveryToShipped(string $orderId, $context): void
 }
 ```
 
-So this example is making use of the repository for the `order_delivery` entity. It was injected previous using the [Dependency injection container](../../plugin-fundamentals/dependency-injection) and its respective ID `order_delivery.repository`.
+So this example is making use of the repository for the `order_delivery` entity. It was injected previous using the [Dependency injection container](../../services/dependency-injection.md) and its respective ID `order_delivery.repository`.
 
 Then it's creating a new `Criteria` object and adds a filter in order to only search for `order_delivery` entities, whose order ID equals our given order ID.
 

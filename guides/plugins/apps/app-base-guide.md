@@ -18,7 +18,7 @@ There are multiple ways to begin building a Shopware app, but not all of them fi
 
 From there, continue with the path that matches your goal:
 
-- **Apps requiring a backend:** apps that need registration, authenticated server-to-server communication, webhooks, signing, Admin API credentials and permissions, payment methods, tax providers, or other backend-driven features. See [App registration & backend setup](app-registration-setup.md) after you have a valid manifest.
+- **Apps requiring a backend:** apps that need registration, authenticated server-to-server communication, webhooks, signing, Admin API credentials and permissions, payment methods, tax providers, or other backend-driven features. See [App registration & backend setup](../apps/lifecycle/app-registration-setup.md) after you have a valid manifest.
 - **Admin UI apps:** apps whose immediate goal is to add an Administration UI and iterate locally first with Vite and [Admin Extension SDK](https://www.npmjs.com/package/@shopware-ag/admin-extension-sdk). No app backend is required to see a module in the Administration. Continue with [Build an Admin UI app](create-admin-extension.md).
 
 ## Prerequisites
@@ -115,4 +115,4 @@ bin/console cache:clear
 
 If needed, also run `bin/console cache:clear:http` or `bin/console cache:clear:all`.
 
-Apps are [validated](app-registration-setup.md#validation) during installation. To skip validation only while debugging, use `--no-validate` with `app:install`. Run `bin/console app:validate` to identify configuration issues.
+Apps are [validated](./lifecycle/app-registration-setup.md#validation) during installation. To skip validation only while debugging, use `--no-validate` with `app:install`. Run `bin/console app:validate` to identify configuration issues.

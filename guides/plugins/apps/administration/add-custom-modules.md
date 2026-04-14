@@ -77,7 +77,7 @@ A sample request may look like this:
 https://example.com/promotion/view/promotion-config?shop-id=HKTOOpH9nUQ2&shop-url=http%3A%2F%2Fmy.shop.com&timestamp=1592406102&shopware-shop-signature=3621fffa80187f6d43ce6cb25760340ab9ba2ea2f601e6a78a002e601579f415
 ```
 
-In this case the `shopware-shop-signature` parameter contains an SHA256 HMAC of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../app-registration-setup.md#setup). The signature can be used to verify the authenticity of the request.
+In this case the `shopware-shop-signature` parameter contains an SHA256 HMAC of the rest of the query string, signed again with the secret your app assigned the shop during the [registration](../lifecycle/app-registration-setup.md#setup). The signature can be used to verify the authenticity of the request.
 
 </Tab>
 

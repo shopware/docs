@@ -23,7 +23,7 @@ You can develop apps using the Shopware [App SDKs](../apps/app-sdks/index.md), [
 
 Some app extension points use a [gateway pattern](../apps/gateways/index.md), where Shopware delegates a specific task to an external app service and continues processing based on the returned result. A prominent example is the [checkout gateway](../apps/gateways/checkout/checkout-gateway.md).
 
-For comparison, [App Scripts](./app-scripts/index.md) cover synchronous, sandboxed logic inside the app system, but come with caveats.
+For comparison, [App Scripts](../apps/app-scripts/index.md) cover synchronous, sandboxed logic inside the app system, but come with caveats.
 
 ::: info
 Apps also provide theme support, so everything you can do with a theme plugin is also possible in an app. This makes them the preferred option for customizing design in Cloud shops.
@@ -46,10 +46,10 @@ After the base setup, continue with the path that fits your app:
 
 - **Administration extensions:** Use [Build an Admin UI App Locally](create-admin-extension.md) if you want to add a custom Administration UI module and develop it locally with the [Meteor Admin SDK](../apps/administration/meteor-admin-sdk.md) and [Vite](https://vite.dev/), without setting up an app backend first.
 
-- **Apps with a backend:** Use [App Registration & Backend Setup](app-registration-setup.md) if your app needs registration, authenticated server-to-server communication, webhooks, signing, Admin API credentials, payment methods, tax providers, or other backend-driven features.
+- **Apps with a backend:** Use [App Registration & Backend Setup](../apps/lifecycle/app-registration-setup.md) if your app needs registration, authenticated server-to-server communication, webhooks, signing, Admin API credentials, payment methods, tax providers, or other backend-driven features.
 
-- **Request signing and verification:** See [Signing & Verification in the App System](app-signature-verification.md) for secure request validation and response signing.
+- **Request signing and verification:** See [Signing & Verification in the App System](../apps/lifecycle/app-signature-verification.md) for secure request validation and response signing.
 
-- **Event-based integrations:** See [Webhook](webhook.md) to react to Shopware events asynchronously.
+- **Event-based integrations:** See [Webhook](../apps/lifecycle/webhook.md) to react to Shopware events asynchronously.
 
-- **Feature-specific integrations:** Continue with the dedicated guides for [Payment](payment.md), [Shipping methods](shipping-methods.md), [Tax provider](tax-provider.md), or [Configuration](configuration.md), depending on your app’s capabilities.
+- **Feature-specific integrations:** Continue with the dedicated guides for [Payment](../apps/checkout/payment.md), [Shipping methods](../apps/checkout/shipping-methods.md), [Tax provider](../apps/checkout/tax-provider.md), or [Configuration](../apps/lifecycle/configuration.md), depending on your app’s capabilities.

@@ -36,7 +36,7 @@ For apps, we additionally test:
 Before publishing an extension, review the full test process to ensure fast approval.
 
 ::: info
-[Test your app for the Shopware Store (DE):](https://www.youtube.com/watch?v=gLb5CmOdi4g); EN version is coming soon.  
+[Test your app for the Shopware Store (DE):](https://www.youtube.com/watch?v=gLb5CmOdi4g); EN version is coming soon.
 :::
 
 ## Store listing requirements
@@ -158,7 +158,7 @@ All extensions must:
 * Be installable and uninstallable without issues.
 * During uninstall, users must be able to choose in the Extension Manager whether to "completely delete or "keep the app data, text snippets, media folder, including own media and table adjustments." The free [Adminer](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) extension from Friends of Shopware enables you to do this via your provided test environment.
 * Avoid extending or overwriting the Extension Manager.
-* Properly register cookies in the [Cookie Consent Manager](../../../guides/plugins/plugins/storefront/add-cookie-to-manager).
+* Properly register cookies in the [Cookie Consent Manager](../../../guides/plugins/plugins/storefront/advanced/add-cookie-to-manager.md).
   * Every cookie set from the store URL should be optional and not technically required for running Shopware. We differentiate between "Technically required", "Marketing," and "Comfort features."
   * All cookies must appear (unchecked) in the cookie configuration box in the frontend.
 * Do not introduce severe performance regressions.
@@ -170,7 +170,7 @@ All extensions must:
 
 These apply only to plugins:
 
-* [Composer dependencies](../../../guides/plugins/plugins/plugin-fundamentals/using-composer-dependencies) must be declared in `composer.json` so they are traceable.
+* [Composer dependencies](../../../guides/plugins/plugins/dependencies/using-composer-dependencies.md) must be declared in `composer.json` so they are traceable.
   * If `executeComposerCommands() === true` is used, dependencies are installed dynamically and do not need to be bundled.
 * `composer.lock` must not be included in the archive.
 * Deliver uncompiled (readable) JavaScript in addition to compiled assets. Uncompiled sources must be included in a separate folder to allow code review.
@@ -207,7 +207,7 @@ If the extension includes Composer dependencies:
 
 ## Storefront guidelines
 
-* No inline CSS allowed in storefront templates. Use your own classes and let your CSS be compiled by the plugin. See [Add SCSS variables](../../../guides/plugins/plugins/storefront/add-scss-variables.md#add-scss-variables).
+* No inline CSS allowed in storefront templates. Use your own classes and let your CSS be compiled by the plugin. See [Add SCSS variables](../../../guides/plugins/plugins/storefront/styling/add-scss-variables.md#add-scss-variables).
 * Avoid using the `!important` rule unless unavoidable.
 * All images must include meaningful `alt` tags, or original `alt` tags from the media manager.
 * All links must include meaningful `title` tags.
@@ -312,7 +312,7 @@ Use Scheme.org's [Schema Markup Validator](https://validator.schema.org/) and Go
 
 ## Tools
 
-Use the [Shopware CLI](/development/tooling/cli) to build, validate, and upload Shopware 6 plugin releases to the Community Store. It also supports efficiently managing store descriptions and plugin images.
+Use the [Shopware CLI](../../../products/cli/index.md) to build, validate, and upload Shopware 6 plugin releases to the Community Store. It also supports efficiently managing store descriptions and plugin images.
 
 ## Final notes
 

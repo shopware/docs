@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Theme inheritance
+  title: Theme Inheritance
   position: 90
 
 ---
@@ -119,4 +119,4 @@ Finally, the `configInheritance` section will use the field configuration from t
 Now that you know how the theme inheritance works you can start with own customizations. Here is a list of other related topics where assets can be used.
 
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
-* [Customize templates](../plugins/storefront/customize-templates)
+* [Customize templates](../plugins/storefront/templates/customize-templates.md)

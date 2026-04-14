@@ -1,0 +1,315 @@
+---
+nav:
+  title: Add Custom Controller
+  position: 20
+
+---
+
+# Add Custom Controller
+
+In this guide you will learn how to create a custom Storefront controller.
+
+## Prerequisites
+
+In order to add your own controller for your plugin, you first need a plugin as base.
+Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+
+::: info
+Refer to this video on **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)** explaining the basics about Storefront controllers.
+Available also on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+:::
+
+## Adding custom Storefront controller
+
+### Storefront Controller class example
+
+First of all we have to create a new controller which extends from the `StorefrontController` class.
+A controller is also just a service which can be registered via the service container.
+Furthermore, we have to define our `Route` with `defaults` and `_routeScope` via attributes, it is used to define which domain a route is part of and **needs to be set for every route**.
+In our case the scope is `storefront`.
+
+::: info
+Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`.
+This way of defining the route scope is deprecated for the 6.5 major version.
+:::
+
+Go ahead and create a new file `ExampleController.php` in the directory `<plugin root>/src/Storefront/Controller/`.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Controller;
+
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
+use Shopware\Storefront\Controller\StorefrontController;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+class ExampleController extends StorefrontController
+{
+}
+```
+
+:::
+
+Now we can create a new example method with a `Route` attribute which has to contain our route, in this case it will be `/example`.
+The route defines how our new method will be accessible.
+
+Below you can find an example implementation of a controller method including a route, where we render an `example.html.twig` template file with a template variable `example`.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Controller;
+
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Controller\StorefrontController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+class ExampleController extends StorefrontController
+{
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+    public function showExample(): Response
+    {
+        return $this->renderStorefront('@SwagBasicExample/storefront/page/example.html.twig', [
+            'example' => 'Hello world'
+        ]);
+    }
+}
+```
+
+:::
+
+The name of the method does not really matter, but it should somehow fit its purpose.
+More important is the `Route` attribute, that points to the route `/example`.
+Also note its name, which is also quite important.
+Make sure to use prefixes `frontend`, `widgets`, `payment`, `api` or `store-api` here, depending on what your route does.
+The first three prefixes are necessary to identify the route as a Storefront route.
+If you do not want to use the prefixes, you can [add allowed route names via configuration](#allow-custom-route-names-as-storefront-routes).
+Inside the method, we're using the method `renderStorefront` to render a twig template file in addition with the template variable `example`, which contains `Hello world`.
+This template variable will be usable in the rendered template file.
+The method `renderStorefront` then returns a `Response`, as every routed controller method has to.
+
+It is also possible to define the `_routeScope` per route.
+
+::: info
+Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`.
+This way of defining the route-scope is deprecated for the 6.5 major version.
+:::
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Controller;
+
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
+use Shopware\Storefront\Controller\StorefrontController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+class ExampleController extends StorefrontController
+{
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'], defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+    public function showExample(): Response
+    {
+        ...
+    }
+}
+```
+
+:::
+
+### Services.php example
+
+Next, we need to register our controller in the DI-container and make it public.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Resources/config/services.php]
+<?php declare(strict_types=1);
+
+use Swag\BasicExample\Storefront\Controller\ExampleController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(ExampleController::class)
+        ->public()
+        ->call('setContainer', [service('service_container')]);
+};
+```
+
+:::
+
+Please also note the `call` method, which is necessary in order to set the DI container to the controller.
+
+### Routes.php example
+
+Once we've registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin.
+This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location.
+Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Resources/config/routes.php]
+<?php declare(strict_types=1);
+
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
+return static function (RoutingConfigurator $routes): void {
+    $routes->import('../../Storefront/Controller/*Controller.php', 'attribute');
+};
+```
+
+:::
+
+### Adding template
+
+Now we registered our controller and Shopware indexes the route, but the template file, that is supposed to be rendered, is still missing.
+Let's change that now.
+
+As previously mentioned, the code will try to render an `index.html.twig` file.
+Thus, we have to create an `index.html.twig` in the `<plugin root>/src/Resources/views/storefront/page/example` directory, as defined in our controller.
+Below you can find an example, where we extend from the template `base.html.twig` and override the block `base_content`.
+In our [Customize templates](../templates/customize-templates.md) guide, you can learn more about customizing templates.
+
+::: code-group
+
+```twig [PLUGIN_ROOT/src/Resources/views/storefront/page/example.html.twig]
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_content %}
+    <h1>Our example controller!</h1>
+{% endblock %}
+```
+
+:::
+
+### Request and Context
+
+If necessary, we can access the `Request` and `SalesChannelContext` instances in our controller method.
+
+Here's an example:
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/Storefront/Controller/ExampleController.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Storefront\Controller;
+
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Controller\StorefrontController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+class ExampleController extends StorefrontController
+{
+    #[Route(path: '/example', name: 'frontend.example.example', methods: ['GET'])]
+    public function showExample(Request $request, SalesChannelContext $context): Response
+    {
+        ...
+    }
+}
+```
+
+:::
+
+### Allow custom route names as Storefront routes
+
+::: info
+This feature is available since Shopware 6.7.2.0
+:::
+
+To allow custom route names without a `frontend`, `widgets` or `payment` prefix, add the following configuration file to your plugin.
+
+::: code-group
+
+```yaml [PLUGIN_ROOT]/src/Resources/config/packages/storefront.yaml]
+storefront:
+    router:
+        allowed_routes:
+            - swag.test.foo-bar
+
+```
+
+:::
+
+Make sure, this file is loaded during the container build process.
+Overwrite the `build` method in your plugin base class to load the configuration files from the `Resources/config` directory.
+
+::: code-group
+
+```php [PLUGIN_ROOT/src/SwagBasicExample.php]
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample;
+
+use Shopware\Core\Framework\Plugin;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
+use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+class SwagBasicExample extends Plugin
+{
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        $locator = new FileLocator('Resources/config');
+
+        $resolver = new LoaderResolver([
+            new YamlFileLoader($container, $locator),
+            new GlobFileLoader($container, $locator),
+            new DirectoryLoader($container, $locator),
+        ]);
+
+        $configLoader = new DelegatingLoader($resolver);
+
+        $confDir = \rtrim($this->getPath(), '/') . '/Resources/config';
+
+        $configLoader->load($confDir . '/{packages}/*.yaml', 'glob');
+    }
+}
+```
+
+:::
+
+Now you can use the route name `swag.test.foo-bar` in your controller without the need for a prefix.
+
+```php
+#[Route(path: '/example', name: 'swag.test.foo-bar', methods: ['GET'])]
+public function showExample(Request $request, SalesChannelContext $context): Response
+{
+    //...
+}
+```
+
+## Next steps
+
+Since you've already created a controller now, which is also part of creating a so-called "page" in Shopware, you might want to head over to our guide about [creating a page](../controllers/add-custom-page.md).

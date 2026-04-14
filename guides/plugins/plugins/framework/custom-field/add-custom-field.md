@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add custom field
+  title: Add Custom Field
   position: 10
 
 ---
@@ -20,7 +20,7 @@ This guide will cover two similar subjects:
 
 This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom complex data](../data-handling/add-custom-complex-data) guide. The latter explained how to create your very first entity, which is used in the following examples.
 
-Since migrations will also be used here, it won't hurt to have a look at our guide about [Executing database queries](../../plugin-fundamentals/database-migrations).
+Since migrations will also be used here, it won't hurt to have a look at our guide about [Executing database queries](../../database/database-migrations.md).
 
 Also, adding translatable custom fields is covered here in short as well, for which you'll need to understand how translatable entities work in general. This is covered in our guide about [Adding data translations](../data-handling/add-data-translations). This subject will **not** be covered in depth in this guide.
 
