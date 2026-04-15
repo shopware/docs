@@ -19,6 +19,7 @@ sw-paas open service --service database --port 3306
 ```
 
 Database access is provided through the CLI tunnel. Direct public database exposure is not supported.
+Use the Shopware admin password when the MySQL client prompts for the database password.
 
 ### Note
 
