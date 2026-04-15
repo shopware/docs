@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Theme inheritance configuration
+  title: Theme Inheritance Configuration
   position: 110
 
 ---
@@ -15,7 +15,7 @@ The `configInheritance` is available from Shopware Version 6.4.8.0
 
 This guide explains how you can use a theme as a basic corporate design theme and create inherited themes for special purposes like holiday time or a sales week.
 
-Imagine you have a theme that is applying your corporate design to the storefront. With your colors, your logo and other configuration fields. But on a special week in the year, you have additional requirements for a special design, like a discount counter or an advent calendar.  
+Imagine you have a theme that is applying your corporate design to the storefront. With your colors, your logo and other configuration fields. But on a special week in the year, you have additional requirements for a special design, like a discount counter or an advent calendar.
 
 ## Setup
 
@@ -87,7 +87,7 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
               "en-GB": "Colours",
               "de-DE": "Farben"
           }
-      } 
+      }
     },
     "fields": {
       "sw-color-brand-primary": {
@@ -104,7 +104,7 @@ Add some configuration fields you need in your basic theme inside the `theme.jso
       },
       "sw-brand-icon": {
         "label": {
-            "en-GB": "Brand icon", 
+            "en-GB": "Brand icon",
             "de-DE": "Markenlogo"
         },
         "type": "url",
@@ -196,4 +196,4 @@ In this theme (`SwagBasicExampleThemeExtend`) all the configuration fields from 
 Now that you know how the theme inheritance works you can start with own customizations. Here is a list of other related topics where assets can be used.
 
 * [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
-* [Customize templates](../plugins/storefront/customize-templates)
+* [Customize templates](../plugins/storefront/templates/customize-templates.md)

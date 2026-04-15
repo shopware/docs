@@ -15,7 +15,7 @@ have a look at the [Rate limiter](../../../../hosting/infrastructure/rate-limite
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide) as well as the [Dependency injection](../../plugin-fundamentals/dependency-injection) guide.
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide) as well as the [Dependency injection](../../services/dependency-injection.md) guide.
 
 Furthermore you need an existing API route, to create a new one, head over to our [Add store API route](../store-api/add-store-api-route) guide.
 
@@ -175,7 +175,7 @@ public function load(Request $request, SalesChannelContext $context): ExampleRou
     // Limit ip address for example
     $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
     
-    // if action was successfully, reset limit 
+    // if action was successfully, reset limit
     if ($this->doAction() === true) {
         $this->rateLimiter->reset('example_route', $request->getClientIp());
     }

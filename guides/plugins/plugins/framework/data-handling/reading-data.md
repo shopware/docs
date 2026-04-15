@@ -1,20 +1,17 @@
 ---
 nav:
-  title: Reading data
-  position: 10
+  title: Reading Data
+  position: 100
 
 ---
 
 # Reading Data
 
-## Overview
-
 In this guide you will learn how to properly fetch data from the database in your plugin or for core contributions. This will also cover how to add filters to only find specific data, and how to aggregate your desired data. Unlike most other Symfony applications, Shopware 6 uses no ORM but rather a thin Data Abstraction Layer. It's worth getting used to the "DAL", as you might stumble upon this term every now and then in the Shopware universe.
 
 ## Prerequisites
 
-Since this guide is built upon the plugin base guide [Plugin base guide](../../plugin-base-guide), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../plugin-fundamentals/dependency-injection) will come in handy, since you need to know how to inject a service using the DI container.  
-You also might want to have a look at the concept behind the [Data abstraction layer concept](../../../../../concepts/framework/data-abstraction-layer) first to get a better grasp of how it works.
+Since this guide is built upon the plugin base guide [Plugin base guide](../../plugin-base-guide), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../services/dependency-injection.md) will come in handy, since you need to know how to inject a service using the DI container. You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer) to get a better grasp of how it works.
 
 ## Reading data
 
@@ -24,8 +21,7 @@ Let's get started with examples on how to read data now. This example will be ab
 
 Dealing with the Data Abstraction Layer is done by using the automatically generated repositories for each entity, such as a product. This means, that you have to inject the repository into your service first.
 
-The repository's service name follows this pattern: `entity_name.repository`  
-For products this then would be `product.repository`, so let's do this.
+The repository's service name follows this pattern: `entity_name.repository`. For products this would be `product.repository`:
 
 ```php
 // SwagBasicExample/src/Resources/config/services.php
@@ -379,9 +375,9 @@ For example, ordering products by `manufacturerNumber` alone could cause this is
 ```php
 $criteria = new Criteria();
 //This sorting alone would result in sorting that is nondeterministic as several products might have the same value for this field:
-$criteria->addSorting(new FieldSorting('manufacturerNumber'));  
+$criteria->addSorting(new FieldSorting('manufacturerNumber'));
 //However, simply by adding a secondary sorting by ID, the sorting becomes deterministic again, as the IDs are unique per product.
-$criteria->addSorting(new FieldSorting('id'));  
+$criteria->addSorting(new FieldSorting('id'));
 $criteria->setLimit(500);
 ```
 
@@ -389,4 +385,4 @@ And that's basically it for this guide!
 
 ## Next steps
 
-Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [Writing data](writing-data).
+Now that you know how to read data from the database using the Data Abstraction Layer, you can head over to our guide on [Writing data](writing-data.md).

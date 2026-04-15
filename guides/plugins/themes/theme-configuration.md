@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Theme configuration
+  title: Theme Configuration
   position: 40
 
 ---
@@ -19,7 +19,7 @@ This guide shows you how the theme configuration works and explains the possibil
 
 This guide is built upon the guide on creating a first theme:
 
-<PageRef page="create-a-theme" />
+<PageRef page="../themes/create-a-theme" />
 
 ## Structure of theme configuration
 
@@ -965,4 +965,4 @@ All configuration fields and their values from the mentioned themes in `configIn
 Now that you know how to configure your theme, here is a list of things you can do.
 
 - [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
-- [Customize Templates](../plugins/storefront/customize-templates)
+- [Customize Templates](../plugins/storefront/templates/customize-templates.md)

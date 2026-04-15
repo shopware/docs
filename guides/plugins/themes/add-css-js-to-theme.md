@@ -124,4 +124,4 @@ This command starts a NodeJS web server on port `9998`. If you open the Storefro
 Now that you know how to customize the styling via SCSS and add JavaScript, here is a list of things you can do.
 
 * [Override Bootstrap variables in a theme](override-bootstrap-variables-in-a-theme)
-* [Customize templates](../plugins/storefront/customize-templates)
+* [Customize templates](../plugins/storefront/templates/customize-templates.md)

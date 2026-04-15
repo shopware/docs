@@ -1,0 +1,154 @@
+---
+nav:
+  title: Add Cookie to Manager
+  position: 160
+
+---
+
+# Add Cookie to Manager
+
+## Overview
+
+Since the GDPR was introduced, every website has to be shipped with some sort of a cookie consent manager. This is also the case for Shopware 6 of course, which comes with a cookie consent manager by default. In this guide you will learn how you can add your own cookies to the cookie consent manager of Shopware 6.
+
+::: info
+For a comprehensive understanding of Shopware's cookie consent system, see the [Cookie Consent Management Concept](../../../../../concepts/commerce/content/cookie-consent-management.md).
+:::
+
+## Prerequisites
+
+Review the [Plugin base guide](../../plugin-base-guide.md) and create a running plugin. Also, you will need to know how to [create your own service](../../services/add-custom-service.md) and [subscribe to an event](../../framework/event/listening-to-events.md), so you might want to take a look at those guides as well.
+
+## Extend the cookie consent manager
+
+Adding custom cookies requires you to listen to the `CookieGroupCollectEvent` and add your custom cookies to the collection.
+
+::: tip
+It is recommended to use an event listener if you're listening to a single event. If you need to react to multiple events, an event subscriber is the better choice.
+:::
+
+### Registering your event listener
+
+Start with creating the `services.php` and registering your event listener.
+
+```php
+// <plugin root>/src/Resources/config/services.php
+<?php declare(strict_types=1);
+
+use PluginName\Listener\CookieListener;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(CookieListener::class)
+        ->tag('kernel.event_listener', ['event' => 'Shopware\Core\Content\Cookie\Event\CookieGroupCollectEvent']);
+};
+```
+
+In the next step we'll create the actual listener class.
+
+### Creating the listener
+
+We need to create a class called `CookieListener` with an `__invoke` method. This method will be executed once the `CookieGroupCollectEvent` is dispatched.
+
+The event object that is passed to our listener method contains the cookie groups collection, which we can use to add our custom cookies.
+
+::: warning
+Since Shopware 6.7.3.0, cookies use structured objects (`CookieEntry` and `CookieGroup`) instead of arrays for better type safety and consistency. The array format is deprecated.
+:::
+
+Let's have a look at an example:
+
+```php
+// <plugin root>/src/Listener/CookieListener.php
+<?php declare(strict_types=1);
+
+namespace PluginName\Listener;
+
+use Shopware\Core\Content\Cookie\Event\CookieGroupCollectEvent;
+use Shopware\Core\Content\Cookie\Service\CookieProvider;
+use Shopware\Core\Content\Cookie\Struct\CookieEntry;
+use Shopware\Core\Content\Cookie\Struct\CookieEntryCollection;
+
+class CookieListener
+{
+    public function __invoke(CookieGroupCollectEvent $event): void
+    {
+        $comfortFeaturesCookieGroup = $event->cookieGroupCollection->get(CookieProvider::SNIPPET_NAME_COOKIE_GROUP_COMFORT_FEATURES);
+        if (!$comfortFeaturesCookieGroup) {
+            return;
+        }
+
+        $entries = $comfortFeaturesCookieGroup->getEntries();
+        if ($entries === null) {
+            $entries = new CookieEntryCollection();
+            $comfortFeaturesCookieGroup->setEntries($entries);
+        }
+
+        $cookieEntry = new CookieEntry('my-cookie-key');
+        $cookieEntry->name = 'cookie.myCookieName';
+        $cookieEntry->value = '1';
+        $cookieEntry->expiration = 30;
+
+        $entries->add($cookieEntry);
+    }
+}
+```
+
+This will add your cookie to the existing "Comfort Features" group in the cookie consent manager.
+
+And that's basically it already. After loading your Storefront, you should now see your new cookie in the cookie consent manager.
+
+## Parameter Reference
+
+For a complete list of available parameters and their types, refer to the source code:
+
+* [`CookieEntry`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Cookie/Struct/CookieEntry.php) - Individual cookie definition
+* [`CookieGroup`](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Cookie/Struct/CookieGroup.php) - Cookie group definition
+
+::: info
+Cookie groups should not have the `cookie`, `value`, `expiration`, or `isRequired` parameters. These only apply to individual `CookieEntry` objects within the group's `entries`.
+:::
+
+## Migrating from CookieProviderInterface (Shopware 6.7.2 and earlier)
+
+If you are upgrading from an older version, you might have used the `CookieProviderInterface` to add custom cookies. This interface is now deprecated and should be replaced with the `CookieGroupCollectEvent`.
+
+For backward compatibility, you can still use the `CookieProviderInterface` to provide cookies in the old array syntax. However, it is highly recommended to use the new event-based system to provide the new object structure.
+
+## Cookie Configuration Changes and Re-Consent
+
+Since Shopware 6.7.3.0, cookie configurations include a hash that tracks changes. When you modify cookie configurations through your plugin (add/remove/change cookies), the hash changes automatically, triggering a re-consent flow for users.
+
+This helps maintain transparency by re-prompting users when cookie handling changes, supporting GDPR compliance requirements. The hash is automatically calculated from all cookie configurations provided by the `CookieProvider`.
+
+::: info
+**Hash Storage Format**: The configuration hash is stored in the browser's `cookie-config-hash` cookie as an object where the language ID is the key and the cookie hash is the value, for example: `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`. This enables per-language consent tracking. Since cookies are stored per domain by the browser, installations using different domains for different languages don't encounter tracking conflicts. The language ID is specifically used when multiple languages are served from the same domain.
+:::
+
+::: info
+While this feature helps with GDPR compliance, shop owners are responsible for ensuring their overall cookie usage, privacy policies, and data handling practices comply with GDPR and other applicable regulations.
+:::
+
+### How it works
+
+1. Your plugin adds/modifies cookies via the `CookieGroupCollectEvent`
+2. Shopware calculates a hash of the entire cookie configuration
+3. The hash is stored in the user's browser as an object where the language ID is the key and the hash is the value (e.g., `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`)
+4. On the next visit, if the hash differs for the current language, the consent banner appears again
+5. Users are informed about changes and can make new choices
+
+This automatic re-consent mechanism helps shop owners maintain transparency about cookie changes.
+
+::: info
+The configuration hash is exposed via the Store API endpoint `/store-api/cookie/groups`. For API documentation, see [Fetch all cookie groups](https://shopware.stoplight.io/docs/store-api/f9c70be044a15-fetch-all-cookie-groups).
+:::
+
+## Video Platform Cookies
+
+YouTube and Vimeo cookies are now handled separately in Shopware's cookie management. If you're adding video functionality to your plugin, ensure you register the appropriate cookie for your video platform or reuse existing ones.
+
+## Next steps
+
+Those changes will mainly just show your new cookies in the cookie consent manager, but without much function. Head over to our guide about [Reacting to cookie consent changes](reacting-to-cookie-consent-changes) to see how you can implement your custom logic once your cookie got accepted or declined.

@@ -94,7 +94,7 @@ The registration flow also dispatches events for the different lifecycle stages.
 
 ### 5. Implement action buttons, webhooks, and payment handling
 
-[Check out the official app documentation to learn more about the different integration points with this SDK](../../app-registration-setup.md#sdk-integration).
+[Check out the official app documentation to learn more about the different integration points with this SDK](../../lifecycle/app-registration-setup.md#sdk-integration).
 
 You can also check out the [APP SDK](https://github.com/shopware/app-php-sdk) documentation.
 

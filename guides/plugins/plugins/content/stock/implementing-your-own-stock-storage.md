@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Implementing your own stock storage
+  title: Implementing Your Own Stock Storage
   position: 10
 
 ---
 
-# Implementing your own stock storage
+# Implementing Your Own Stock Storage
 
 ## Overview
 
@@ -13,7 +13,7 @@ Shopware stores stock as simple integer values in the `product` table. If you ne
 
 ## Prerequisites
 
-Here you will be decorating a service; therefore, it will be helpful to familiarize yourself with the [Adjusting a Service](../../../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service) guide.
+Here you will be decorating a service; therefore, it will be helpful to familiarize yourself with the [Adjusting a Service](../../../../../guides/plugins/plugins/services/adjusting-service.md) guide.
 
 ## Add a decorator to load the stock
 
@@ -57,14 +57,14 @@ class StockStorageDecorator extends AbstractStockStorage
     }
 
     /**
-     * @param list<StockAlteration> $changes  
+     * @param list<StockAlteration> $changes
      */
     public function alter(array $changes, Context $context): void
     {
         foreach ($changes as $alteration) {
             $this->stockApi->updateStock($alteration->productId, $alteration->newQuantity);
         }
-        
+      
         $this->decorated->alter($changes, $context);
     }
 

@@ -13,7 +13,7 @@ Flysystem is a file storage library for PHP. It provides one interface to intera
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom service guide](../../plugin-fundamentals/add-custom-service).
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom service guide](../../services/add-custom-service.md).
 
 ## Flysystem overview
 

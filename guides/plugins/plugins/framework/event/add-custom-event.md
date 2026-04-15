@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add custom event
+  title: Add Custom Event
   position: 10
 
 ---
@@ -65,7 +65,7 @@ class ExampleEvent implements ShopwareSalesChannelEvent
     }
 
     public function getContext(): Context
-    { 
+    {
         return $this->salesChannelContext->getContext();
     }
 
@@ -109,4 +109,4 @@ class ExampleEventService
 
 ## Next steps
 
-Now that you know how to create your own event, you may want to act on it. To get a grip on this, head over to our [Listening to events](../../plugin-fundamentals/listening-to-events) guide.
+Now that you know how to create your own event, read the [Listening to events](../../framework/event/listening-to-events.md) guide for information on applying it.

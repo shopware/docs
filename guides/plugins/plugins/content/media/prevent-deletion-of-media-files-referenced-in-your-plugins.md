@@ -1,20 +1,21 @@
 ---
 nav:
-  title: Prevent Deletion of Media Files Referenced in your Plugins
+  title: Prevent Deletion of Media Files Referenced in Plugins
   position: 10
 
 ---
 
-# Prevent Deletion of Media Files Referenced in your Plugins
+# Prevent Deletion of Media Files Referenced in Plugins
 
 ::: info
-The ability to prevent Media entities from being deleted is available since Shopware 6.5.1.0.
+Preventing media entities from being deleted has been possible since Shopware 6.5.1.0.
 :::
 
 ## Overview
 
-The Shopware CLI application provides a `media:delete-unused` command, which deletes all media entities and their corresponding files that are not used in your application.
-Not used means that it is not referenced by any other entity. This works well in the simple case that all your entity definitions store references to Media entities with correct foreign keys.
+The Shopware CLI provides a `media:delete-unused` command that deletes all media entities and corresponding files that are not used in your application.
+
+"Not used" means that it is not referenced by any other entity. This works well in the simple case that all your entity definitions store references to Media entities with correct foreign keys.
 
 However, this does not cover all the possible cases, even for many internal Shopware features. For example, the CMS entities store their configuration as JSON blobs with references to Media IDs stored in a nested data structure.
 
@@ -25,8 +26,7 @@ If you are developing an extension that references Media entities, and you canno
 ## Prerequisites
 
 As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide).
-Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection) container
-and about using a subscriber to [Listen to events](../../plugin-fundamentals/listening-to-events).
+Furthermore, you'll have to know about adding classes to the [Dependency injection](../../services/dependency-injection.md) container and about using a subscriber to [Listen to events](../../framework/event/listening-to-events.md).
 
 ## The deletion process
 
@@ -122,7 +122,7 @@ We check whether there are any references to the Media IDs from the event in the
 
 Finally, we return all the IDs of Media used in the slider config so they are not deleted.
 
-Make sure to register your event subscriber to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
+Make sure to register your event subscriber to the [Dependency injection container](../../services/dependency-injection.md)
 by using the tag `kernel.event_subscriber`.
 
 <Tabs>
