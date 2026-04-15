@@ -97,7 +97,7 @@ Also remember to not only activate your plugin but also to assign your theme to 
 
 Of course this example is very simplified and does not use any variables, even though you most likely want to do that.
 Using variables is exactly the same as in [Twig](https://twig.symfony.com/doc/3.x/templates.html#variables) in general, so this won't be explained here in detail.
-Still, this is how you use a variable: `{{ variableName }}`
+Still, this is how you use a variable: <code v-pre>{{ variableName }}</code>
 
 But rather than that, how do you know which variables are available to use? For this case, you can just dump all available variables:
 

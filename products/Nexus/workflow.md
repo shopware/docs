@@ -107,7 +107,7 @@ Workflows move through these states from creation to active execution.
 
 ## Expression syntax
 
-Expressions use `{{ }}` syntax in templates and mappings.
+Expressions use <code v-pre>{{ }}</code> syntax in templates and mappings.
 
 ### Examples
 
