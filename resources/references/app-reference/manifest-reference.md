@@ -25,7 +25,7 @@ Can be omitted if no communication between Shopware and your app is needed. For 
 
 ## Requirements
 
-Declare requirements that must be met for your app to function properly (since `6.7.10.0`). This section can be omitted if your app does not need environment preconditions for setup or installation. For more details, see the [requirements section](../../../guides/plugins/apps/app-registration-setup.md#requirements).
+Declare requirements that must be met for your app to function properly (since `6.7.10.0`). This section can be omitted if your app does not need environment preconditions for setup or installation. For more details, see the [requirements section](../../../guides/plugins/apps/lifecycle/app-registration-setup.md#requirements).
 
 <<< @/docs/snippets/config/app/requirements.xml
 

@@ -289,7 +289,7 @@ Add a `<requirements>` element to your `manifest.xml`. Each requirement is an em
 :::
 
 ::: info
-Requirements are available since Shopware 6.7.10.0. For the full list of available requirements, see the [manifest reference](../../../resources/references/app-reference/manifest-reference.md#requirements).
+Requirements are available since Shopware 6.7.10.0. For the full list of available requirements, see the [manifest reference](../../../../resources/references/app-reference/manifest-reference.md#requirements).
 The requirement feature is extensible. We encourage you to contribute new requirements to the Shopware core to allow all app developers to use them.
 :::
 
