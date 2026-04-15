@@ -297,7 +297,6 @@ The requirement feature is extensible. We encourage you to contribute new requir
 Validation is skipped in `dev` and `test` environments so that local development and CI are not blocked by infrastructure checks.
 :::
 
-
 ## Permissions
 
 Shopware comes with the possibility to create fine-grained [Access Control Lists](../administration/../../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).
