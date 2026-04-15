@@ -1,436 +1,366 @@
-nav:\
-title: Quality guidelines for apps in the plugin system\
-position: 20
+---
+nav:
+  title: Quality guidelines for apps in the plugin system
+  position: 20
 
-* * * * *
+---
 
-Quality Guidelines for the Plugin System in the Shopware Store
-==============================================================
+# Quality guidelines for the Shopware Store
 
-These guidelines apply to all extensions distributed via the Shopware Store, including both plugins and apps. They define the quality, security, and compliance requirements for publication.
+These guidelines apply to all extensions distributed via the Shopware Store, including plugins and apps. They define the quality, security, and compliance requirements for publication.
 
-Scope and terminology
+## Scope and terminology
 
--   **Extension**: umbrella term for plugins and apps.
-
--   **Plugin**: installed in the Shopware instance; PHP code, Composer.
-
--   **App**: integrated via app system; no direct PHP execution in core.
+* **Extension**: umbrella term for plugins and apps.
+* **Plugin**: installed in the Shopware instance; PHP code and Composer packages.
+* **App**: integrated via the app system; no direct PHP execution in core.
 
 Unless stated otherwise, requirements apply to all extensions.
 
-What kind of extension is allowed?
-----------------------------------
+## What kind of extension is allowed?
 
-Currently, all types of extensions are allowed, except those that violate the following regulations. Extensions with the functions listed below are not permitted and will not be approved:
+Currently, all types of extensions are allowed, except those that violate the regulations below. Extensions with the following characteristics are not permitted and will not be approved:
 
--   Function that included in the shopware B2B Components - [Shopware 6 - Commercial Features - B2B Components](https://docs.shopware.com/en/shopware-6-en/commercial-features/b2b-components)
+* Functions that are included in the Shopware B2B Components; see [Shopware 6 - Commercial Features - B2B Components](https://docs.shopware.com/en/shopware-6-en/commercial-features/b2b-components).
+* Direct SQL changes by the merchant or other security-relevant issues.
+* Extensions that are two major Shopware versions below the current supported range.
+* If your extension is a software app or interface with downstream costs, transaction fees, or service fees for the customer, a technology partner agreement must be completed before the app can be activated.
 
--   Direct SQL adjustments by user or other security relefant issues
-
--   Extensions that are two major versions below the current one
-
--   If your extensionis a software app/interface with downstream costs, transaction fees, or service fees for the customer, we need to complete a technology partner agreement in order to activate your app.
-
-Review process
---------------
+## Review process
 
 All extensions are:
 
-1.  Automatically [code-reviewed](https://github.com/shopwareLabs/store-plugin-codereview "https://github.com/shopwareLabs/store-plugin-codereview") (PHPStan, SonarQube), due to our quality assurance, with special attention on impacts to the Administration and Storefront.
+1. Automatically [code-reviewed](https://github.com/shopwareLabs/store-plugin-codereview) (PHPStan, SonarQube) as part of quality assurance, with special attention to impacts on the Administration and Storefront.
+2. Manually reviewed for security, coding standards, user experience, and functionality.
+3. Tested on the latest stable [Shopware 6](https://www.shopware.com/en/download/#shopware-6) Community Edition.
 
-2.  Manually reviewed for security, coding standards, user experience, and functionality.
-
-3.  Tested on the latest stable [Shopware 6](https://www.shopware.com/de/download/#shopware-6 "https://www.shopware.com/de/download/#shopware-6") CE version.
-
-Always test against the highest supported Shopware 6 version (e.g., `shopware/testenv:6.7.6`).
+Always test against the highest supported Shopware 6 version (for example `shopware/testenv:6.7.6`).
 
 For apps, we additionally test:
 
--   `config.xml` per sales channel
+* `config.xml` per sales channel.
+* Install and uninstall behavior.
+* Styling and viewport issues.
 
--   Install/uninstall behavior
+Before publishing an extension, review the full test process to ensure faster approval.
 
--   Styling and viewport issues
+## Checklist for testing
 
-Before publishing an extension, review the full test process to ensure fast approval.
+* We use automatic code review and look for security issues and Shopware coding standards in the manual code review.
+* We check the full functionality of the extension and look for styling issues on every viewport.
 
-Checklist for testing
----------------------
+[Documentation for Extension Partner – preview and testing](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
 
--   We pay attention to the automatic code review and look for security issues and shopware coding standards in the manual code review.
+## Extension store description
 
--   We check the complete functionality of the extension and check for styling errors on every viewport.
-
-Link: [Documentation for Extension Partner](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview "https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview")
-
-Extension store description
----------------------------
-
-The release to the international store is standard, the German store is optional.\
-As an extension will be released in both stores (German and international), the content must accurately translate 1:1 from English to German.
+Release to the international store is standard; the German store is optional. When an extension is released in both stores, content must accurately translate one-to-one from English to German.
 
 ### Short description
 
-(Min. 150 --- max. 185 characters)---The app's short description must be unique and at least 150 characters long.\
-Use the short description wisely, as the text will tease your extension in the overview along with the "Customers also bought" and "Customers also viewed" recommendations.\
-The short description is also published as a meta-description.
+Minimum 150 characters, maximum 185 characters. The short description must be unique and at least 150 characters long.
+
+Use the short description carefully: it appears in the overview together with "Customers also bought" and "Customers also viewed". It is also used as the meta description.
 
 ### Description
 
-(Min. 200 characters)---The extension description must be at least 200 characters long and describe the app's functions in detail.
+Minimum 200 characters. The description must describe the extension's features in detail.
 
--   Inline styles will be stripped. The following HTML tags are allowed:
+* Inline styles are stripped. The following HTML tags are allowed:
 
-`<a>  <p>  <br>  <b>  <strong>  <i>  <ul>  <ol>  <li>  <h2>  <h3>  <h4>  <h5>`
+  `<a>`, `<p>`, `<br>`, `<b>`, `<strong>`, `<i>`, `<ul>`, `<ol>`, `<li>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`
 
--   Accurately and clearly describe the extension and its use cases.
+* Describe the extension and its use cases accurately and clearly.
+* Include clear, complete setup and configuration instructions.
 
--   Include clear, complete setup and configuration instructions.
-
-    ::: info\
-    - Avoid the words "plugin / app" and "shopware / for shopware" in the display name.\
-    - Avoid blank spaces as filler text.\
-    - Avoid any form of advertising or contact information in description.\
-    :::
+::: info
+* Avoid the words "plugin" / "app" and "Shopware" / "for Shopware" in the display name.
+* Avoid blank spaces as filler text.
+* Avoid advertising or contact information in the description.
+:::
 
 ### Configuration manual
 
-Explain how your extension is installed and configured, how it works on a technical base, and how it can be used to achieve the desired result.\
-Of course, your extension manual should contain a setup guide and be accompanied by clean HTML source code.
+Explain how your extension is installed and configured, how it works technically, and how merchants achieve the desired outcome. The manual should include a setup guide and use clean HTML source code.
 
 ### Images
 
-Include several screenshots and descriptive images from the Storefront and backend that represent the extension functionality.\
-They must show the extension "in action", its configuration options, and how to use it.\
-We recommend uploading screenshots showing the mobile and desktop-view.
+Include several screenshots and descriptive images from the Storefront and Administration that show the extension in use. They must show the extension in action, its configuration options, and how to use it. We recommend screenshots for both mobile and desktop.
 
-Only images that represent or show the function of the extension may be used. Advertising for other extensions or services is not permitted.
+Only images that represent or illustrate the extension may be used. Advertising for other extensions or services is not permitted.
 
-::: info\
-- Use English-only screenshots for the English store listing and preview images.\
-- Screenshots in German for the German store description are optional.\
-- Advertising for other extensions or services is not permitted.\
-- At least one image for the storefront and one image for the admin\
-- Do not mix English with other languages in your screenshots.\
-Link: [How To - Add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to "https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to")\
+::: info
+* Use English-only screenshots for the English store listing and preview images.
+* Screenshots in German for the German store are optional.
+* Advertising for other extensions or services is not permitted.
+* Provide at least one image for the Storefront and one for the Administration.
+* Do not mix English with other languages in the same screenshots.
+
+[How to add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 :::
 
-### Link to demoshop
+### Link to demo shop
 
-If you provide a demo shop, the link must be valid (the URL cannot contain `http:` or `https:`).\
-Do not link to your test environments, as we will delete them automatically two weeks after they are created.
+If you provide a demo shop, the link must be valid and stable. Do not link to short-lived test environments; they may be removed automatically two weeks after creation.
 
-### Personal data protection information
+### Personal data protection
 
-If personal data of the customers (store operator and/or his customers) are processed with this extension according to Art. 28 DSGVO, the following information of the data processing company must be stored in the field "Subprocessor".
+If personal data of customers (the merchant and/or their customers) is processed with this extension according to Art. 28 GDPR, the data processor's details must be stored in the **Subprocessor** field.
 
-If other companies are involved in the data processing of personal data, the same information must be stored accordingly for them in the field "Further subprocessors".
+If other companies are involved in processing personal data, the same information must be stored for them under **Further subprocessors**.
 
-### Manufacturer Profile
+### Manufacturer profile
 
-Your manufacturer profile must mandatorily contain accurate English and German descriptions and a manufacturer logo.\
-You can find the manufacturer profile in your account under Shopware Account > Extension Partner > [Extension Partner profile](https://account.shopware.com/producer/profile "https://account.shopware.com/producer/profile").
+Your manufacturer profile must contain accurate English and German descriptions and a manufacturer logo.
 
-::: info\
-- The source code's descriptions, profiles, and instructions do not allow iframes, external scripts, or tracking pixels.\
-Custom styles may not overwrite the original Shopware styles. External sources must be included via https.\
-- The manufacturer/partner certificates are dynamically loaded at the end of each app description and published by us.\
+You can edit the profile under Shopware Account → Extension Partner → [Extension Partner profile](https://account.shopware.com/producer/profile).
+
+::: info
+* Descriptions, profiles, and instructions must not use iframes, external scripts, or tracking pixels.
+* Custom styles must not overwrite original Shopware styles. External resources must be loaded over HTTPS.
+* Manufacturer and partner certificates are loaded dynamically at the end of each app description and are published by Shopware.
 :::
 
-Basic Guidelines
-----------------
+## General technical guidelines
 
 ### Testing functionality
 
-Due to our quality assurance, we check the app's complete functionality and test it wherever it impacts the administration or storefront.
+We verify the extension's full functionality everywhere it affects the Administration or Storefront. Every extension is code-reviewed by Shopware to ensure coding and security standards.
 
-Also, every extension will be code-reviewed by one of our core-developer ensuring coding and security standards.
+### Fallback language and translations
 
-### Fallback language / Translations
+The shop language is not always English or German. If the merchant uses Spanish, for example, and your extension has no Spanish translation yet, use English as the fallback.
 
-The installation is not always in English or German.\
-For example, if the customer has his installation in Spanish and your extension is not yet available in this language, you should use the English translation as a fallback.
+If the extension is available in more than one language, declare this with **Translations into the following languages are available** in the **Description & images** section of your Shopware Account.
 
-If your extension is available in more than one language (e.g., English, Spanish, French and German), these can be defined using the option "Translations into the following languages are available" (located in the "Description & images" section of your *Account*).
+We check text snippets, `config.xml`, and `composer.json`.
 
-We check for text snippets, `config.xml`, and `composer.json`.
+### Valid preview images for the Administration
 
-### Valid preview images for the Shopware administration
+A preview image must be available in the **Extension Manager**. Upload a valid favicon named `plugin.png` (PNG, 112 x 112 pixels). Store it under `src/Resources/config/`. It identifies your extension in the Extension Manager.
 
-Preview images: There must be a preview image available in the *Extension Manager*.\
-You must upload a valid favicon named plugin.png (png / 112 x 112 pixels) for the extension.\
-This favicon will help you identify your extension in the Extension Manager module in the administration.\
-The favicon has to be stored under `src/Resources/config/`.
-
-Also, provide a preview image for Themes in the *Theme Manager* and CMS elements in the *Shopping Experiences*.
+Also provide a preview image for themes in the **Theme Manager** and for CMS elements in **Shopping Experiences**.
 
 ### Configuration per sales channel
 
-Apps that appear in the Storefront must be able to be configured separately for each sales channel.
+Apps that appear in the Storefront must be configurable separately for each sales channel.
 
-### External links with rel="noopener"
+### External links with `rel="noopener"`
 
-Every external link in the administration or Storefront must be marked as *rel="noopener" AND target="_blank"*.
+Every external link in the Administration or Storefront that opens in a new tab must use `target="_blank"` together with `rel="noopener"`.
 
 ### Error messages and logging
 
-Error or informational messages can only be recorded in the event log of Shopware's log folder (/var/log/).\
-You have to develop your own log service.\
-**Never write extension exceptions into the Shopware default log or outside the Shopware system log folder.**\
-This ensures that the log file can never be accessed via the URL.
+Error or informational messages must be written only to the event log in Shopware's log directory (`/var/log/`). Implement your own log service.
 
-For payment extensions, we check if the "plugin logger" service is used for the debug/error.log and that logs are written in the directory /var/log/. Log files must be used in every circumstance.
+**Never write extension-specific exceptions into Shopware's default log or outside the Shopware log folder.** That reduces the risk of log files being reachable via URL.
 
-The log file had to be named like this: "MyExtension-Year-Month-Day.log"
+For payment extensions, we check that the plugin logger service is used for debug or error output and that logs are written under `/var/log/`. Log files must be used consistently.
 
-Another solution is to store them in the database.\
-Try to avoid using your own log tables. Otherwise, you have to implement a scheduled task that regularly empties your log table within the given time of max. 6 months.
+Name log files for example: `MyExtension-YYYY-MM-DD.log`.
 
-### Avoid 400/500 Error
+Alternatively, logs may be stored in the database. Avoid custom log tables unless you implement a scheduled task that purges data within a maximum retention of six months.
 
-*Avoid 500 errors at any time.* Avoid 400 errors unless they are related to an API call.
+### Avoid HTTP 400 and 500 errors
 
-### With "Install/Uninstall" the user must decide whether the data/table is to be deleted or not
+Avoid **500** errors at all times. Avoid **400** errors unless they are clearly tied to an expected API response.
 
-When clicking on the "Install / Uninstall" option in the Extension Manager, the user must be presented with the options "completely delete" or "keep the extension data, text snippets, media folder including own media and table adjustments".\
-You can check this using the [Adminer-Extension from *Friends of Shopware*](https://store.shopware.com/de/frosh79014577529f/adminer-fuer-das-admin.html "https://store.shopware.com/de/frosh79014577529f/adminer-fuer-das-admin.html") in your provided test-environment.
+### Install and uninstall: data retention choice
 
-### Not allowed to extend the Extension Manager
+When the merchant uses **Install** or **Uninstall** in the Extension Manager, they must be able to choose whether extension data (including snippets, media, and database changes) is **fully removed** or **kept**.
 
-The *Extension Manager* must not be extended or overwritten.
+You can verify database behavior with the [Adminer extension from Friends of Shopware](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) in your test environment.
 
-### Own composer dependencies
+### Do not extend the Extension Manager
 
-Composer dependencies are possible if they are in the `composer.json`.\
-With `executeComposerCommands() === true` in the plugin base class, we provide a dynamic installation of the composer dependencies by default, so they don't have to be included.\
-Everything that is delivered in code should be traceable either directly or via `composer.json`.
+The Extension Manager must not be extended or overwritten.
 
-Developer documentation article to add private dependency
+### Composer dependencies
 
-### Extension manager
+Dependencies must be declared in `composer.json`. With `executeComposerCommands() === true` in the plugin base class, Composer dependencies can be installed dynamically by default and do not need to be bundled manually. Everything shipped in code must be traceable directly or via `composer.json`.
 
-The Debug Console controls the app's installation, uninstallation, reinstallation, and deletion.\
-No 400 errors or exceptions are allowed to appear. If the extension requires special PHP options, it must be queried during installation.\
-If the query is negative, a growl message must appear in the administration.
+For private Composer repositories, follow Composer's documentation on [private repositories and authentication](https://getcomposer.org/doc/articles/authentication-for-private-packages.md) so reviewers can install the extension.
 
-### Reloading of files not allowed
+### Extension Manager lifecycle
 
-Apps may not load other files during and after the installation in the *Extension Manager*.
+The Debug Console drives installation, uninstallation, reinstallation, and deletion. No **400** responses or unhandled exceptions may occur. If the extension needs special PHP settings, validate them during installation and show a clear growl message in the Administration if requirements are not met.
 
-### Uncompiled JavaScript must be delivered within the binary
+### No file reloading during installation
 
-Compiled JavaScript offers many benefits such as improved performance and code optimization.\
-However, it is difficult to read and understand the compiled code.\
-The uncompiled JavaScript code must be placed in a separate folder to ensure it remains accessible to all developers.\
-This allows other developers to review and understand the code in its original, readable form.
+Apps must not load additional files during or immediately after installation in the Extension Manager.
 
-Please build your `main.js` as described in our documentation and create the minified code as described in our developer documentation.
+### Ship unminified JavaScript alongside the build
 
-Loading the JS files
+Compiled JavaScript improves performance but is hard to review. Ship the original, readable JavaScript in a separate folder so others can audit it.
 
-Injecting into the Administration
+Build `main.js` as described in the developer documentation and generate minified assets accordingly. For injecting into the Administration, follow <PageRef page="../../plugins/plugins/administration/module-component-management/add-custom-module" title="Add custom module" /> and for the Storefront <PageRef page="../../plugins/plugins/storefront/add-custom-javascript" title="Add custom JavaScript" />.
 
-Shopware reserves the right to publish extensions with minified code after individual consideration and consultation with the developer.\
-For this, the developer must ensure that Shopware has access to the current unminified code of the extension at all times.
+Shopware may publish extensions with minified code only after individual review, provided the developer always grants access to the current unminified sources.
 
-### Message queue
+### Message queue payload size
 
-If the extension adds messages to the message queue, ensure they are not bigger than 256 KB.\
-This limitation is set by common message queue workers and should not be exceeded.
+If the extension enqueues messages, keep payloads at or below **256 KB**, in line with common message queue workers.
 
-### Note on Shopware technology partner contract for interfaces
+### Shopware Technology Partner agreement
 
-If your extension is a software app/interface with downstream costs, transaction fees, or service fees for the customer, we need to complete a technology partner agreement in order to activate your app.
+If your extension is a software app or interface with downstream costs, transaction fees, or service fees for the customer, a technology partner agreement is required before activation.
 
-If you have any questions regarding the technology partner agreement, please contact our sales team by writing an email to <alliances@shopware.com> or calling **+44 (0) 203 095 2445 (UK) / 00 800 746 7626 0 (worldwide) / +49 (0) 25 55 / 928 85-0 (Germany)**.
+For questions, contact the sales team at [alliances@shopware.com](mailto:alliances@shopware.com) or by phone: **+44 (0) 203 095 2445 (UK)**, **00 800 746 7626 0 (worldwide)**, **+49 (0) 2555 928 85-0 (Germany)**.
 
-Storefront Guidelines
----------------------
+## Storefront guidelines
 
-### Testing the storefront
+### Testing the Storefront
 
-Test the frontend and the checkout for new errors throughout the entire Storefront using the Browser Debug Console and also pay attention to JavaScript errors.
+Test the full Storefront and checkout with the browser developer tools open and watch for JavaScript errors.
 
-### No inline CSS allowed in storefront templates. Use your own classes and let your CSS be compiled by the plugin. See [Add SCSS variables](https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables "https://developer.shopware.com/docs/guides/plugins/plugins/storefront/add-scss-variables.html#add-scss-variables").
+### Markup, CSS, and accessibility
 
--   Avoid using the `!important` rule unless unavoidable.
+* No inline CSS in Storefront templates. Use your own classes and compile CSS with the extension. See <PageRef page="../../plugins/plugins/storefront/add-scss-variables" title="Add SCSS variables" />.
+* Avoid `!important` unless unavoidable.
+* Images need meaningful `alt` text (or the original alt from the media manager).
+* Links need meaningful `title` attributes where appropriate.
+* External links use `target="_blank"` with `rel="noopener"`.
+* Do not use `<h1>`–`<h6>` in Storefront templates on pages with `<meta name="robots" content="index,follow">`; reserve real headings for content. You may use classes such as `<span class="h2">` for visual hierarchy.
+* Keep performance stable; Lighthouse audits in the A/B range are recommended.
+* Re-test the Storefront and checkout after changes, including the browser console for JavaScript errors.
 
--   All images must include meaningful `alt` tags, or original `alt` tags from the media manager.
+### SEO and indexing
 
--   All links must include meaningful `title` tags.
+* New controller URLs or XHR endpoints that must not be indexed should send `X-Robots-Tag: noindex, nofollow`. See Google's documentation on the [robots meta tag and `X-Robots-Tag`](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#xrobotstag).
+* Public frontend URLs created by the extension should appear in `sitemap.xml` where applicable, use valid canonical tags, and have unique meta descriptions and `title` tags (configurable in the Administration or via snippets).
 
--   External links must use `target="_blank"` together with `rel="noopener"`.
+### Lighthouse testing
 
--   No `<hX>` tags in the storefront templates, which are set to `<meta name="robots" content="index,follow">`. These are reserved exclusively for content purposes.
+Run a [Google Lighthouse](https://developer.chrome.com/docs/lighthouse) audit before and after activating the extension.
 
-    -   However, you may employ `<span class="h2">`, for instance.
+Significant regressions in performance, accessibility, best practices, or SEO are **not** acceptable. Do not introduce new console errors.
 
--   Performance should remain stable (Lighthouse A/B check recommended).
+### Structured data and rich results
 
--   Test the frontend and the checkout for new errors throughout the entire Storefront using the Browser Debug Console, paying close attention to JavaScript errors.
+Validate structured data with [Schema.org's validator](https://validator.schema.org/) and Google's [Rich Results Test](https://search.google.com/test/rich-results). Test the homepage, categories, and product detail pages across typical cases (in stock, out of stock, with and without reviews, variants with dimensions and identifiers, and so on).
 
-### SEO & indexing requirements
+### Fonts and external services
 
--   New controller URLs or XHR requests must include the header `X-Robots-Tag: noindex, nofollow`. See [robots meta tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=de#xrobotstag "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag?hl=de#xrobotstag") documentation for additional guidance.
+If you load fonts or assets from third parties (for example Google Fonts or Font Awesome), state this in the extension store description. Merchants may need to update their privacy policy. A tooltip next to the relevant configuration can help.
 
--   Public frontend URLs created by the extension must appear in `sitemap.xml` and include a valid canonical tag, unique meta descriptions, and `title` tags (configurable via Administration or as a text snippet).
+### Cookie Consent Manager
 
-### Lighthouse A/B-Testing
+Cookies set from the shop that are not strictly required for running Shopware must be optional and registered in the Cookie Consent Manager.
 
-Run a [Google Lighthouse](https://developer.chrome.com/docs/lighthouse "https://developer.chrome.com/docs/lighthouse") audit before and after activating the extension.
+We distinguish **Technically required**, **Marketing**, and **Comfort features**. Optional cookies must appear **unchecked** by default in the cookie configuration in the Storefront.
 
-Significant regressions in performance, accessibility, best practices, or SEO are allowed. No new console errors may be introduced.
+## Administration guidelines
 
-### [schema.org/Rich](http://schema.org/Rich "http://schema.org/Rich") Snippets A/B-Testing
+### Main menu entries
 
-Do an A/B-Test with [The Scheme Programming Language](http://scheme.org/) *'s Structured Data Testing Tool* and *Google Rich Result Tester* to check the homepage, categories, and various product detail pages (incl. available products, unavailable products, products with no review, single review, many reviews with various ratings, out-of-stock products, products to be released in the future or any other kind of product configuration and products including ean, mpn, width, length, height, weight).
+Do not add entries to the main menu of the Administration; this is reserved for core look and feel.
 
--   **Testing tool** for A/B-Testing:
+### Media folders
 
-    -   Link: [Schema Markup Validator of schema.org](https://validator.schema.org/ "https://validator.schema.org/")
-
-    -   Link: [Google Rich Result Tester](https://search.google.com/test/rich-results "https://search.google.com/test/rich-results")
-
-### Usage of fonts from external sources
-
-If you are using external fonts (e.g., Google fonts, Fontawesome) or external services, the extension store description must contain this information.
-
-Please be aware that you might have to edit your *data protection information*.\
-This info could be placed as a tooltip near the font settings of the extension configuration.
-
-### Register your cookie to the Cookie Consent Manager
-
-We expect every cookie set from the store URL to be optional and not technically required for running shopware.\
-Therefore, the cookies had to be registered in our Cookie Consent Manager.
-
-We differentiate between "Technically required", "Marketing" and "Comfort features".\
-All cookies must appear (unchecked) in the cookie configuration box in the frontend.
-
-Administration guidelines
--------------------------
-
-### Menu entries in the main menu are not allowed
-
-Menu entries in the main menu of the administration are not allowed because of the look and feel.
-
-### Own media folder
-
-Manufacturer must create their own media folders with the right thumbnail settings or use existing ones to upload images, except for upload fields within the `config.xml`.
-
-If you use your own media folder, keep in mind that the folder and the included data had to be removed if selected during the uninstallation.
+Create dedicated media folders with correct thumbnail settings, or reuse suitable existing folders, except for upload fields defined in `config.xml`. If you use a custom folder, remove it on uninstall when the merchant chooses to delete extension data.
 
 ### API test button
 
--   If your API corresponds via API credentials to external services, we expect an API test button.\
-    Apart from that, you can validate the required credentials while saving them in the extension settings.\
-    In this case, a status message must be displayed in the administration and Shopware log.\
-    If the API data is incorrect, an entry must appear in the event log file in the Shopware folder `/var/log/` respectively in the database.
+If your extension calls external APIs with credentials from the Administration, provide an **API test** action (button or equivalent). You may alternatively validate credentials when saving settings; in both cases, show a clear status in the Administration and log failures to `/var/log/` or the database event log.
 
--   **Example** for implementing an API Test Button into the System Config form:
+Example implementation: [ShyimApiTest on GitHub](https://github.com/shyim/ShyimApiTest).
 
-    -   Link: [GitHub](https://github.com/shyim/ShyimApiTest "https://github.com/shyim/ShyimApiTest")
+### Shopping Experiences
 
-### Shopping experiences
-
-Shopping worlds elements must include an element icon.\
-If the extension is deleted, *Shopping Worlds* should work flawlessly in the frontend.
+CMS elements must ship with an element icon. After the extension is removed, Shopping Experiences must still work correctly in the Storefront.
 
 ### Themes
 
-Themes must include its own preview image.
+Themes must include their own preview image.
 
-### External technology/ Shopware Technology Partner (STP) apps
+### Shopware Technology Partner reporting
 
-Every external technology extension needs to track its commission.\
-Below is an example of implementing the tracking logic in their extensions:
+External technology extensions under an STP contract must report commission-related usage. Example payload for `POST /shopwarepartners/reports/technology`:
 
-// POST /shopwarepartners/reports/technology - Allows partners to send us the info based on the STP contract
+```json
+{
+  "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
+  "reportDate": "2005-08-15T15:52:01",
+  "instanceId": "alur24esfaw3ghk",
+  "shopwareVersion": "6.7.0",
+  "reportDataKeys": [
+    { "customer": 3 },
+    { "turnover": 440 }
+  ]
+}
+```
 
-`{  "identifier":  "8e167662-6bbb-11eb-9439-0242ac130002",  "reportDate":  "2005-08-15T15:52:01",  "instanceId":  "alur24esfaw3ghk",  "shopwareVersion":  "6.7.0",  "reportDataKeys":  [  {  "customer":  3  },  {  "turnover":  440  }  ]  }`
+### Automatic code review (PHPStan and SonarQube)
 
-### Automatic code reviews with PhpStan and SonarQube
+Current review configurations for uploads via the Shopware Account are published on GitHub: [store-plugin-codereview](https://github.com/shopwareLabs/store-plugin-codereview).
 
-Our most current code review configurations when uploading apps via the Shopware Account can be found on GitHub.
+### SonarQube blockers
 
--   Link: [Code reviews for Shopware 6 on GitHub](https://github.com/shopwareLabs/store-plugin-codereview "https://github.com/shopwareLabs/store-plugin-codereview")
+The following patterns are blocked, among others: `die`, `exit`, `var_dump`.
 
-### Sonarcube Rules status Blocker
+[List of SonarQube blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt)
 
-The following statements will be blocked:\
--die; exit; var_dump
+### Cypress end-to-end tests
 
--   Link: [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt "https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt").
+Cypress tests for Shopware 6 are maintained in the core repository; see [`src/Administration/Resources`](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources) and community projects such as Friends of Shopware for contributions.
 
-### Automated code tests with Cypress
+### Shopware CLI
 
-There are Cypress tests for Shopware 6 on GitHub.\
-The project is driven by the *Friends of Shopware* group. You can contribute at any time:
+<PageRef page="../../../products/cli/index" title="Shopware CLI" /> helps you build, validate, and upload Shopware 6 extensions and manage store descriptions and images efficiently.
 
--   Link: Developer Documentation Cypress Tests for Shopware 6
+## Automatic code review errors
 
--   Link: [Cypress Tests for Shopware 6](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources "https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources")
+For a consolidated list of frequent review findings, see <PageRef page="./store-review-errors" title="Common Store Review Errors" />.
 
-### Useful tool for plugin development and extension management
+The following issues often appear in automated checks:
 
-The `shopware-cli` is a useful tool for building, validating and uploading new Shopware 6 plugin releases to the Community Store. It also allows you to manage the store description and images of your plugins efficiently.
+### The required `composer.json` file was not found
 
-Automatic code review - Errors
-------------------------------
+**Cause:** Invalid or missing `composer.json`, a mismatch between the Store technical name and `composer.json`, or an incorrect ZIP layout.
 
-### The required composer.json file was not found
+The technical name must match `extra.shopware-plugin-class` and the bootstrap class namespace (case-sensitive). Many failures come from a wrong technical name, for example `Swag\MyPlugin\SwagMyPluginSW6` instead of `Swag\MyPlugin\SwagMyPlugin`.
 
-**Cause:** Error in composer.json
+Example: [valid `composer.json`](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20).
 
-One possible cause is that the technical extension name from the Community Store or Account does not match the technical name entered in composer.json, or the extension is incorrectly zipped.\
-The technical extension name must be stored in the composer.json, located at `composer.json` > extra > `shopware-plugin-class`.\
-Could you take a look at the bootstrap class? Most of the errors are caused by the wrong technical name.\
-For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
+### Cross-domain messaging
 
-Link: [Example of a valid composer.json](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20 "https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20").
+When using `postMessage()` or similar APIs, validate `event.origin` and avoid wildcard targets. See also the [OWASP guide on web messaging](https://github.com/OWASP/wstg/blob/master/document/4-Web_Application_Security_Testing/11-Client-side_Testing/11-Testing_Web_Messaging.md).
 
-### Ensure cross-domain messages are sent to the intended domain
+### No bootstrapping file found
 
-When using `postMessage()` or similar cross-window messaging APIs, verify the message origin (e.g. `event.origin`) and restrict target domains to trusted URLs instead of `'*'`. This prevents malicious sites from sending or receiving unauthorized messages.
+The bootstrap class cannot be resolved. Typical causes: wrong ZIP structure, typos, or case sensitivity in paths or the technical name.
 
-### No bootstrapping file found. Expecting bootstrapping in
+### Class `Shopware\Storefront\*` not found
 
-The bootstrap cannot be found.\
-The reasons could be that the folder structure in the ZIP file needs to be corrected, a typo, or a case-sensitive error in the extension source (e.g., in the technical name).
+Declare required Shopware packages explicitly in `composer.json`, for example `"shopware/storefront": "~6.x.0"`, instead of unconstrained `*`.
 
-### Class Shopware\Storefront\* not found
+<PageRef page="../../plugins/apps/app-base-guide" title="App base guide" /> for meta information and packaging.
 
-Missing requirements in the composer.json (e.g. "require": {"shopware/frontend": "*"},)
+### Cookies must be set securely
 
-Link: "Shopware App Development: App Meta Information - Explanation of the properties
+Use secure cookie flags and register cookies in the Cookie Consent Manager where required.
 
-### Cookies are written safely
+### `jsonEncode()` on an unknown class
 
-Be sure you set cookies as secure.\
-Remember to register your cookie to the *Cookie Consent Manager*.
+Shopware uses PHP's `json_encode()`; do not rely on non-standard wrappers.
 
-### Call to static method jsonEncode() on an unknown class
+### Lock file out of date
 
-Shopware always uses json_Encode exclusively - there is no other fallback.
+Run `composer update` locally so the lock matches `composer.json`. **Do not** ship `composer.lock` inside the extension archive; delete it before packaging.
 
-### The lock file is not up to date with the latest changes in composer.json
+### `SnippetFileInterface` not found (Early Access)
 
-You may need to get updated dependencies. Run an update to update them.
+Wildcard requirements such as `"shopware/core": "*"` can resolve to Early Access builds where classes do not exist yet, which fails review.
 
-The `composer.lock` in the extension archive has to be deleted.
+Pin compatible versions and stability, for example:
 
-### Class Shopware\Core\System\Snippet\Files\SnippetFileInterface not found and could not be autoloaded
+```json
+{
+  "require": {
+    "shopware/core": "~6.1.0",
+    "shopware/storefront": "~6.1.0"
+  },
+  "minimum-stability": "RC"
+}
+```
 
-In the Shopware 6 Early Access (EA) version, the mentioned class did not exist.\
-Therefore, the code review failed. The reason for the problem is the following specification in the composer.json:
-
-`<pre>"require": { "shopware/core": "*", "shopware/storefront": "*" },</pre>`
-
-The Composer resolves this to "Whatever is the latest from these repositories" and then installs the Early Access version instead of the current Release Candidate.\
-This happens because the Composer does not know an EA as a stability level (like stable or RC) and is, therefore, ultimately considered "stable".\
-The solution is to amend the requirement as follows:
-
-`<pre>"require": { "shopware/core": "~6.1.0", "shopware/storefront": "~6.1.0" }, "minimum-stability": "RC"</pre>`
-
-This ensures that at least version Shopware 6.1 is installed, even if it is a Release Candidate.\
-It will be preferred as soon as the final 6.1 is released.
+This pins a supported 6.1 line and prefers release candidates until the stable release is available.
