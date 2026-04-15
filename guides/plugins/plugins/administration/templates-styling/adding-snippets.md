@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Adding snippets
+  title: Adding Snippets
   position: 60
 
 ---
 
-# Adding snippets
+# Adding Snippets
 
 ## Overview
 
@@ -13,7 +13,7 @@ By default Shopware 6 uses the [Vue I18n](https://kazupon.github.io/vue-i18n/sta
 
 ## Creating snippet files
 
-Normally you use snippets in your custom module. To keep things organized, create a new directory named `snippet` inside module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside it, e.g., `de-DE.json`, `en-GB.json`. For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](./../../../../../concepts/translations/fallback-language-selection).
+Normally you use snippets in your custom module. To keep things organized, create a new directory named `snippet` inside module directory `<plugin root>/src/Resources/app/administration/src/module/<your-module>/snippet`. For each language you want to support, you need a JSON file inside it, e.g., `de-DE.json`, `en-GB.json`. For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../../../../concepts/translations/fallback-language-selection.md).
 
 ::: info
 Providing snippets for apps works the same as in plugins but it has a more simplistic file structure. Also, unlike plugins, App-Snippets **are not allowed** to override existing snippet keys. So, use the following path for vendor-prefixed app snippet files: `<app root>/Resources/app/administration/snippet`
@@ -61,7 +61,7 @@ Component.register('my-custom-page', {
 });
 ```
 
-Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../../resources/references/upgrades/administration/vue3.md))
+Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../upgrades-migrations/administration/vue3.md)).
 
 ## Using the snippets in templates
 

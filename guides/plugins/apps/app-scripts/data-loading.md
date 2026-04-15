@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Data loading
+  title: Data Loading
   position: 20
 
 ---
 
-# Load additional data for the Storefront with App Scripts
+# Load Additional Data for the Storefront with App Scripts
 
-If your app needs additional data in your [customized Storefront templates](../../plugins/storefront/customize-templates.md), you can load that data with app scripts and make it available to your template.
+If your app needs additional data in your [customized Storefront templates](../../plugins/storefront/templates/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -112,7 +112,7 @@ The `store` service only loads "public" entities. This means that the entities i
 
 One major difference is that when using the `repository` service, your app needs `read` permissions for every entity it reads, whereas you don't need additional permissions to use the `store` service (since it only searches for "public" data).
 
-Refer to the [App registration & backend setup guide](../app-registration-setup.md#permissions) for more information on how permissions work for apps.
+Refer to the [App registration & backend setup guide](../lifecycle/app-registration-setup.md#permissions) for more information on how permissions work for apps.
 
 The `repository` service exposes the same data as the CRUD operations of the [Admin API](../../../development/integrations-api/index.md#admin-api), whereas the `store` service gives access to the same data as the [Store API](../../../development/integrations-api/index.md#store-api).
 

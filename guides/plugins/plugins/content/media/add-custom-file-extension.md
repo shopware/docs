@@ -1,29 +1,27 @@
 ---
 nav:
-  title: Add custom media extension
+  title: Add Custom Media File Extensions
   position: 20
 
 ---
 
-# Add Custom Media File Extension
+# Add Custom Media File Extensions
 
-You might have come across the fact that you cannot just upload any type of media to Shopware by using the Media
-module in the Administration.
-If that's the case for you, this guide will be the solution.
-It will explain how to add new allowed file extensions to Shopware using a plugin.
+Not all media types can be uploaded to Shopware with the Administration's Media module. This guide explains how to use plugins to add custom media file extensions.
 
 ## Prerequisites
 
-As most of our plugin guides, this guide was also built upon our [Plugin base guide](../../plugin-base-guide).
-Furthermore, you'll have to know about adding classes to the [Dependency injection](../../plugin-fundamentals/dependency-injection) container
-and about using a subscriber to [Listen to events](../../plugin-fundamentals/listening-to-events).
+Review these guides before proceeding:
+
+- [Plugin base guide](../../plugin-base-guide)
+- [Dependency injection](../../services/dependency-injection.md), to learn how to add classes to the container
+- [Listen to events](../../framework/event/listening-to-events.md), for guidance on using subscribers
 
 ## Adding a custom extension
 
 In this section, we're going to allow a new extension to Shopware first, without letting Shopware know exactly what kind of file this new extension represents (Images, videos, documents, etc.).
 
-For this to work, all you have to do is register for the `MediaFileExtensionWhitelistEvent` event, which can be found [here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
-This is, of course, done via a [subscriber](../../plugin-fundamentals/listening-to-events).
+For this to work, use a [subscriber](../../framework/event/listening-to-events.md) to register for the `MediaFileExtensionWhitelistEvent` event found [here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/File/FileSaver.php#L397-L398).
 
 Have a look at the following code example:
 
@@ -150,8 +148,7 @@ Make sure to add flags to your media type, e.g., the `transparent` flag, or if i
 You can find all available flags in their respective media type classes,
 e.g. [here](https://github.com/shopware/shopware/blob/v6.4.0.0/src/Core/Content/Media/MediaType/ImageType.php#L7-L10) for the image media type.
 
-Make sure to register your new type detector to the [Dependency injection container](../../plugin-fundamentals/dependency-injection)
-by using the tag `shopware.media_type.detector`.
+Make sure to register your new type detector to the [Dependency injection container](../../services/dependency-injection.md) by using the tag `shopware.media_type.detector`.
 
 Shopware will now recognise your new image extension and handle your new file like an image.
 

@@ -1,3 +1,9 @@
+---
+nav:
+  title: In-App Purchase Gateway
+  position: 50
+---
+
 # In-App Purchase Gateway
 
 ## Context
@@ -11,9 +17,9 @@ In-App Purchase Gateway was introduced to enhance flexibility in managing In-App
 The gateway enables app servers to restrict specific In-App Purchases based on advanced decision-making processes handled on the app server side.
 
 ::: info
-**Current Limitations:**  
-At present, the In-App Purchase Gateway supports only restricting the checkout process for new In-App Purchases.  
-**Plans:**  
+**Current Limitations:**
+At present, the In-App Purchase Gateway supports only restricting the checkout process for new In-App Purchases.
+**Plans:**
 We aim to expand its functionality to include filtering entire lists of In-App Purchases before they are displayed to users.
 :::
 
@@ -21,7 +27,7 @@ We aim to expand its functionality to include filtering entire lists of In-App P
 
 You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
 
-<PageRef page="../../app-base-guide.md" title="App base guide" />
+<PageRef page="../../app-base-guide" title="App base guide" />
 
 Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.

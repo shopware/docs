@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add store API route
+  title: Add Store API Route
   position: 10
 
 ---
 
-# Add Store API route
+# Add Store API Route
 
 ## Overview
 
@@ -19,7 +19,7 @@ You also should have a look at our [Adding custom complex data](../data-handling
 
 ## Add Store API route
 
-As you may already know from the [Adjusting a service](../../plugin-fundamentals/adjusting-service) guide, we use abstract classes to make our routes more decoratable.
+As you may already know from the [Adjusting a service](../../../plugins/services/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
 
 ::: warning
 All fields that should be available through the API require the flag `ApiAware` in the definition.
@@ -297,7 +297,7 @@ Your generated request and response could look like this:
 
 ## Make the route available for the Storefront
 
-If you want to access the functionality of your route also from the Storefront you need to make it available there by adding a custom [Storefront controller](../../storefront/add-custom-controller) that will wrap your just created route.
+If you want to access the functionality of your route also from the Storefront you need to make it available there by adding a custom [Storefront controller](../../storefront/controllers/add-custom-controller.md) that will wrap your just created route.
 
 ```php
 // <plugin root>/src/Storefront/Controller/ExampleController.php
@@ -376,8 +376,8 @@ return static function (RoutingConfigurator $routes): void {
 
 ### Requesting your route from the Storefront
 
-You can request your new route from the Storefront from inside a [custom javascript plugin](../../storefront/add-custom-javascript).
-We expect that you have followed that guide and know how to register your custom javascript plugin in the Storefront.
+You can request your new route from the Storefront from inside a [custom JavaScript plugin](../../storefront/javascript/add-custom-javascript.md).
+We expect that you have followed that guide and know how to register your custom JavaScript plugin in the Storefront.
 
 When you want to request your custom route you can use the existing `http-client` service for that.
 

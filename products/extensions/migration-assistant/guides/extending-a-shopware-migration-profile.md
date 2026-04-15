@@ -17,7 +17,7 @@ It is required to have a basic plugin running. You must have installed the [Swag
 
 ## Enrich existing plugin with migration features
 
-Instead of creating a new plugin for the migration, you might want to add migration features to your existing plugin. Of course, your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [section of the guide](../../../../guides/plugins/plugins/plugin-fundamentals/database-migrations) on how to inject the needed migration services only if the Migration Assistant plugin is available. You could also have a look at the example plugin to see how the conditional loading is managed in the plugin base class.
+Instead of creating a new plugin for the migration, you can add migration features to your existing plugin. Your plugin should then also be installable without the Migration Assistant plugin. So we have an optional requirement. Have a look at this [section of the guide](../../../../guides/plugins/plugins/database/database-migrations.md) on how to inject the needed migration services only if the Migration Assistant plugin is available. The example plugin shows how conditional loading is managed in the plugin base class.
 
 ## Creating a new dataSet
 

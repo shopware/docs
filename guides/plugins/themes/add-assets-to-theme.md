@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add assets to a Theme
+  title: Add Assets to a Theme
   position: 70
 
 ---
@@ -23,7 +23,7 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 ### Adding assets in theme.json file
 
-While working with your own theme, you might have already come across the [Theme configuration](theme-configuration). In there, you have the possibility to configure your paths to your custom assets like images, fonts, etc. This way, please configure your asset path accordingly.
+While working with a theme you might have noted the [Theme configuration](theme-configuration), where you can configure paths to custom assets like images, fonts, etc. Configure your asset path accordingly:
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -57,11 +57,11 @@ Next, run the command `bin/console theme:compile`. The assets from the path defi
 
 This way of adding custom assets refers to the default way of dealing with assets. For more details, please check out the article that specifically addresses this topic:
 
-<PageRef page="../plugins/storefront/add-custom-assets" />
+<PageRef page="../plugins/storefront/styling/add-custom-assets" />
 
 ## Linking to assets
 
-You can link to the asset with the twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
+You can link to the asset with the Twig [asset](https://symfony.com/doc/current/templates.html#linking-to-css-javascript-and-image-assets) function:
 
 ```html
 <img src="{{ asset('/assets/your-image.png', 'theme') }}">
@@ -79,4 +79,4 @@ body {
 
 Now that you know how to use your assets in a theme, here is a list of other related topics where assets can be used.
 
-* [Customize templates](../plugins/storefront/customize-templates)
+* [Customize templates](../plugins/storefront/templates/customize-templates.md)

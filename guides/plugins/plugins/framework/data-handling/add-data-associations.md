@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Adding data associations
-  position: 70
+  title: Adding Data Associations
+  position: 40
 
 ---
 

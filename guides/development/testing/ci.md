@@ -30,6 +30,6 @@ Follow the [Deployment guide](../../hosting/installation-updates/deployments/ind
 
 ## Custom/Store plugins
 
-* Build and validate with `shopware-cli extension build` ([Extension build command](../../products/cli/extension-commands/build.md)) to ensure the ZIP is reproducible.
+* Build and validate with `shopware-cli extension build` ([Extension build command](../../../products/cli/extension-commands/build.md) to ensure the ZIP is reproducible.
 * Run unit/integration tests with the Shopware test environment; keep fixtures inside the plugin to avoid coupling to project data.
 * For Store plugins, add the Shopware Store validations early (linting, metadata, PHPStan) to catch review issues before submission ([Store submission via CLI](../../../products/cli/shopware-account-commands/releasing-extension-to-shopware-store.md)).

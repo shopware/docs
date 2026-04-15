@@ -1,13 +1,15 @@
 ---
 nav:
-  title: Getting started
+  title: Getting Started
   position: 10
 
 ---
 
 # Getting Started
 
-The app server written in TypeScript and is an open-source project accessible at [app-sdk-js](https://github.com/shopware/app-sdk-js).
+This example assumes you already have a running app backend.
+
+The app server is written in TypeScript and is an open-source project accessible at [app-sdk-js](https://github.com/shopware/app-sdk-js).
 
 ## Installation
 
@@ -17,9 +19,16 @@ Install the App PHP SDK via NPM:
 npm install --save @shopware-ag/app-sdk-server
 ```
 
-After the installation, you can use the SDK in your project. Here is an example:
+After installation, you can use the SDK in your project. Setting up the registration endpoints in your app is a natural next step.
 
 ## Registration process
+
+To handle app registration, create an `AppServer` instance and expose two routes:
+
+- `/authorize` starts the registration flow
+- `/authorize/callback` handles the callback from Shopware
+
+In the following example, `AppServer` is configured with your app name, app secret, and authorize callback URL. `InMemoryShopRepository` stores registered shops in memory, which is useful for local development and testing. For production, replace it with a persistent database-backed repository.
 
 ```javascript
 import { AppServer, InMemoryShopRepository } from '@shopware-ag/app-server-sdk'
@@ -70,7 +79,7 @@ deno serve index.js
 
 Node.JS does not support the `Request` and `Response` objects. You can use [@hono/node-server](https://github.com/honojs/node-server) to run the server.
 
-The recommendation here is to use a Framework like [Hono](https://hono.dev/).
+We recommend using a framework like [Hono](https://hono.dev/).
 
 </Tab>
 

@@ -1,15 +1,15 @@
 ---
 nav:
-  title: Change price of items in cart
+  title: Change Price of Items in Cart
   position: 50
 
 ---
 
-# Change price of items in cart
+# Change Price of Items in Cart
 
 ## Overview
 
-This guide will tackle the issue of changing the price of a line item in the cart dynamically. The following example is **not** recommended if you want to add a discount / surcharge to your products. Make sure to check out the guide about [adding a discount into the cart](add-cart-discounts).
+This guide will tackle the issue of changing the price of a line item in the cart dynamically. The following example is **not** recommended if you want to add a discount / surcharge to your products. Make sure to check out the guide about [adding a discount into the cart](add-cart-discounts.md).
 
 ::: warning
 Changing the price like it's done in the following example should rarely be done and only with great caution. A live-shopping plugin would be a good example about when to actually change an item's price instead of adding a discount / surcharge.
@@ -19,7 +19,7 @@ Changing the price like it's done in the following example should rarely be done
 
 This guide is also built upon the [plugin base guide](../../plugin-base-guide), which creates a plugin first. The namespaces used in the examples of this guide match those of the plugin base guide, yet those are just examples.
 
-Furthermore, you should know how to register a service to the [dependency injection container](../../plugin-fundamentals/dependency-injection).
+Furthermore, you should know how to register a service to the [dependency injection container](../../services/dependency-injection.md).
 
 ## Changing the price
 
@@ -125,7 +125,7 @@ Afterwards we're iterating over all product IDs, that still need to request a ne
 
 The last step is to save that new price to the `CartDataCollector`.
 
-And that's it, we're now collecting the prices for our product line items. Registering the class to the [dependency injection container](../../plugin-fundamentals/dependency-injection) will be done in the [last section](change-price-of-item#Registering%20to%20DI%20container) of this guide.
+And that's it, we're now collecting the prices for our product line items. Registering the class to the [dependency injection container](../../services/dependency-injection.md) will be done in the [last section](change-price-of-item#Registering%20to%20DI%20container) of this guide.
 
 ### The processor
 

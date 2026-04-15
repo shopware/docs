@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Using assets
+  title: Using Assets
   position: 180
 
 ---
 
-# Using assets
+# Using Assets
 
 ## Overview
 
@@ -13,11 +13,7 @@ When working with an own plugin, the usage of own custom images or other assets 
 
 ## Prerequisites
 
-In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the Plugin base guide:
-
-<PageRef page="../../plugin-base-guide" />
-
-Needless to say, you should have your image or another asset at hand to work with.
+Refer to the [plugin base guide](../../plugin-base-guide.md) to learn how to make a plugin. An image or other asset type is also required.
 
 ## Add custom assets
 
@@ -36,10 +32,10 @@ In order to add your own custom assets, you need to save your assets in the `Res
     └── SwagBasicExample.php
 ```
 
-Similar as in [using custom assets in Storefront](../../storefront/add-custom-assets.md), you need to execute the following command:
+Similar as in [using custom assets in Storefront](../../storefront/styling/add-custom-assets.md), you need to execute the following command:
 
 ```bash
-// 
+//
 bin/console assets:install
 ```
 

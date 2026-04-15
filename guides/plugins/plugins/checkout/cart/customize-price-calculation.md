@@ -1,29 +1,23 @@
 ---
 nav:
-  title: Customize price calculation
+  title: Customize Price Calculation
   position: 60
 
 ---
 
 # Customize Price Calculation
 
-## Overview
-
-There are cases where you globally want to adjust the calculation of product prices. This can be achieved in Shopware by decorating a single service.
-
-This guide will cover this subject with a short example.
+This guide explains how to globally adjust the calculation of product prices by decorating a single service, and includes a brief example.
 
 ## Prerequisites
 
-As most guides, this guide is also built upon our [plugin base guide](../../plugin-base-guide), but it's not mandatory to use exactly that plugin as a foundation. The examples in this guide use the namespace however.
-
-Furthermore, you'll have to understand service decoration for this guide, so if you're not familiar with that, head over to our guide regarding [adjusting a service](../../plugin-fundamentals/adjusting-service).
+Review the [plugin base guide](../../plugin-base-guide) and the guide on [adjusting a service](../../services/adjusting-service.md) for guidance on service decoration.
 
 ## Decorating the calculator
 
 In order to customize the price calculation for products as a whole, you'll have to decorate the service [ProductPriceCalculator](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Product/SalesChannel/Price/ProductPriceCalculator.php). It comes with a `calculate` method, which you can decorate and therefore customize.
 
-So let's do that real quick. If you're looking for an in-depth explanation, head over to our guide about [adjusting a service](../../plugin-fundamentals/adjusting-service).
+So let's do that real quick. If you're looking for an in-depth explanation, head over to our guide about [adjusting a service](../../services/adjusting-service.md).
 
 Here's an example decorated calculator:
 
