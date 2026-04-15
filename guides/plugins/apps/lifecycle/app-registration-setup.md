@@ -13,7 +13,7 @@ This page documents app setup (registration), permissions, validation, and chang
 
 ::: info
 Registration is necessary only when your app backend and Shopware need to communicate. It is performed during the installation of your app.
-This process is called setup. Apps can also declare [requirements](../../../resources/references/app-reference/manifest-reference.md#requirements) that are validated before registration begins.
+This process is called setup.
 :::
 
 ::: warning
@@ -297,9 +297,10 @@ The requirement feature is extensible. We encourage you to contribute new requir
 Validation is skipped in `dev` and `test` environments so that local development and CI are not blocked by infrastructure checks.
 :::
 
+
 ## Permissions
 
-Shopware allows creating fine-grained [Access Control Lists](../administration/../../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).
+Shopware comes with the possibility to create fine-grained [Access Control Lists](../administration/../../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).
 This means you need to request permissions if your app needs to read or write data via the API or receive webhooks.
 The permissions your app needs are defined in the manifest file and combine a privilege (`read`, `create`, `update`, or `delete`) with an entity.
 Since version 6.4.12.0, your app can also request additional non-CRUD privileges with the `<permission>` element.
