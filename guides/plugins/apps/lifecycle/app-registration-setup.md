@@ -266,6 +266,37 @@ As this process is also used for secret rotation, your app **must generate a new
 To prevent failure of in-flight requests during the secret rotation, your app **should accept the old secret in parallel** with the new secret for a short period (e.g., 1 minute). After that grace period, the signatures based on the old secret **must be** considered invalid.
 :::
 
+## Requirements
+
+Apps can declare requirements in their manifest that must be met for the app to function properly. For example, an app that communicates with the shop via the Admin API will fail if the shop is not publicly accessible — declaring that upfront avoids a registration attempt that is guaranteed to fail. Shopware validates requirements during installation and updates in `prod` environments. If a requirement is not met, the installation is rejected with a descriptive error before the app attempts registration.
+
+Add a `<requirements>` element to your `manifest.xml`. Each requirement is an empty child element — its presence enables it:
+
+::: code-group
+
+```xml [manifest.xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/manifest-3.0.xsd">
+    <meta>
+ ...
+    </meta>
+    <requirements>
+        <public-access/>
+    </requirements>
+</manifest>
+```
+
+:::
+
+::: info
+Requirements are available since Shopware 6.7.10.0. For the full list of available requirements, see the [manifest reference](../../../../resources/references/app-reference/manifest-reference.md#requirements).
+The requirement feature is extensible. We encourage you to contribute new requirements to the Shopware core to allow all app developers to use them.
+:::
+
+::: warning
+Validation is skipped in `dev` and `test` environments so that local development and CI are not blocked by infrastructure checks.
+:::
+
 ## Permissions
 
 Shopware comes with the possibility to create fine-grained [Access Control Lists](../administration/../../plugins/administration/permissions-error-handling/add-acl-rules.md) \(ACLs\).

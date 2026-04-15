@@ -23,6 +23,23 @@ Can be omitted if no communication between Shopware and your app is needed. For 
 
 <<< @/docs/snippets/config/app/setup.xml
 
+## Requirements
+
+Declare requirements that must be met for your app to function properly (since `6.7.10.0`). This section can be omitted if your app does not need environment preconditions for setup or installation. For more details, see the [requirements section](../../../guides/plugins/apps/lifecycle/app-registration-setup.md#requirements).
+
+<<< @/docs/snippets/config/app/requirements.xml
+
+### Available requirements
+
+#### `public-access` (since 6.7.10.0)
+
+Validates that the Shopware instance is publicly reachable, which is necessary for apps that rely on webhooks or server-to-server communication. This is a best-effort check — a temporary network issue could cause it to fail, and a passing check does not guarantee the condition will hold indefinitely. The validator checks that:
+
+- `APP_URL` is configured and uses HTTPS
+- The host is not `localhost`, an IP address, or a reserved domain (`.local`, `.test`, `.example`, etc.)
+- The host resolves via DNS to a public IP address
+- The health check endpoint (`/api/_info/health-check`) returns HTTP 200
+
 ## Storefront
 
 Can be omitted if your app template needs higher load priority than other plugins/apps. For more details, follow the [storefront guide](../../../guides/plugins/apps/storefront/index.md).
