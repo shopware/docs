@@ -89,6 +89,10 @@ The cloning process happens in two stages:
 
 This ensures that the target application receives an exact copy of the source application's state at the time of the selected deployment.
 
+:::warning
+Cloning does not anonymize database content. The restored snapshot includes the full database state and filesystem data from the source application, including scheduled task data stored in the database.
+:::
+
 ### Monitor clone progress
 
 After initiating the clone, you can monitor the progress using:
