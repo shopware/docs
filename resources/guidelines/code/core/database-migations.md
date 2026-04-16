@@ -1,5 +1,4 @@
 ## Introduction
-
 Changing the database structure of Shopware is an important and sensitive topic, because it can effect the installation of customers and their data in many ways.
 Therefore, it is important for every developer to understand the core principles of database migrations, also in the case of backward compatibility.
 
@@ -34,7 +33,7 @@ The migration consists of two separated steps: `update` and `updateDestructive`.
 
 ## Backward compatibility
 
-As every other change, also your database changes should always be [backward compatible](../backward-compatibility.md) for minor and patch releases and support blue-green deployment.
+As every other change, also your database changes should always be [backward compatible](/docs/resources/guidelines/code/backward-compatibility.html) for minor and patch releases and support blue-green deployment.
 A common technique is the [expand and contract](https://www.tim-wellhausen.de/papers/ExpandAndContract/ExpandAndContract.html) pattern, which will help you to implement your changes in a backward compatible way.
 
 * **Expand**: Instead of renaming an existing column, create a new column with the updated name. (non-destructive)
@@ -85,7 +84,7 @@ Migrations are executed in following order.
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
-You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/database-migrations.md)
+You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/database-migations.md)
 :::
 
 ### 1. NEVER change an executed migration
