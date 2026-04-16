@@ -39,7 +39,7 @@ log.init({ initializer: 'INFO' }, (level, tag, msg, params) => {
 });
 ```
 
-If you need custom Vite configuration (for example, path aliases), create a `vite.config.mts` file in the `<plugin root>/src/Resources/app/administration/src/` directory:
+If you need custom Vite configuration (for example, path aliases), create a `vite.config.mts` file in the `<plugin root>/src/Resources/app/administration/src/` directory (alongside your entry file, e.g., `main.js`). Note that `package.json` stays in `<plugin root>/src/Resources/app/administration/`:
 
 ```typescript
 // <plugin root>/src/Resources/app/administration/src/vite.config.mts
@@ -48,7 +48,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     resolve: {
         alias: {
-            '@my-alias': '/path/to/module',
+            '@my-module': 'src/my-module',
         },
     },
 });
