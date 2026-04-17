@@ -1,0 +1,11 @@
+shopware:
+  html_sanitizer:
+    sets:
+      - name: basic
+        custom_tags:
+          - tag: "your-custom-element"
+            type: "Block"
+            contents: "Flow"
+            attr_collections: ["Common"]
+            attributes:
+              - custom-attribute
