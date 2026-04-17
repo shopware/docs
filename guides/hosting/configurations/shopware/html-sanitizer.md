@@ -44,13 +44,13 @@ Disabling the HTML sanitizer will allow potentially unsafe or malicious HTML cod
 ### Adding new custom tags
 
 ::: info
-This features is available since Shopware 6.7.10.0
+This feature is available since Shopware 6.7.10.0.
 :::
 
 It is also possible to register new custom tags to the HTML sanitizer.
-This is useful, if you create tags with JavaScript or want to introduce custom components.
+This is useful if you create tags with JavaScript or want to introduce custom components.
 
-Add a new entry to `custom_tags` in your before mentioned `shopware.yaml` file:
+Add a new entry to `custom_tags` in your previously mentioned `shopware.yaml` file:
 
 <<< @/docs/snippets/config/html_sanitizer_custom_tags.yaml
 
