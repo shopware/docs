@@ -55,5 +55,6 @@ Add a new entry to `custom_tags` in your previously mentioned `shopware.yaml` fi
 <<< @/docs/snippets/config/html_sanitizer_custom_tags.yaml
 
 This will allow you to use the tag with the name `your-custom-element` in your HTML.
+Have a look at the [docs](http://htmlpurifier.org/docs/enduser-customize.html) ("Add an element" section) of the used library to learn which options you have.
 
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"html_sanitizer"} -->
