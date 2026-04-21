@@ -19,9 +19,26 @@ The following configurations are all optional.
 
 ## Setup
 
-Can be omitted if no communication between Shopware and your app is needed. For more information, follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup.md).
+Can be omitted if no communication between Shopware and your app is needed. For more information, follow the [App registration & backend setup guide](../../../guides/plugins/apps/lifecycle/app-registration-setup.md).
 
 <<< @/docs/snippets/config/app/setup.xml
+
+## Requirements
+
+Declare requirements that must be met for your app to function properly (since `6.7.10.0`). This section can be omitted if your app does not need environment preconditions for setup or installation. For more details, see the [requirements section](../../../guides/plugins/apps/lifecycle/app-registration-setup.md#requirements).
+
+<<< @/docs/snippets/config/app/requirements.xml
+
+### Available requirements
+
+#### `public-access` (since 6.7.10.0)
+
+Validates that the Shopware instance is publicly reachable, which is necessary for apps that rely on webhooks or server-to-server communication. This is a best-effort check — a temporary network issue could cause it to fail, and a passing check does not guarantee the condition will hold indefinitely. The validator checks that:
+
+- `APP_URL` is configured and uses HTTPS
+- The host is not `localhost`, an IP address, or a reserved domain (`.local`, `.test`, `.example`, etc.)
+- The host resolves via DNS to a public IP address
+- The health check endpoint (`/api/_info/health-check`) returns HTTP 200
 
 ## Storefront
 
@@ -31,7 +48,7 @@ Can be omitted if your app template needs higher load priority than other plugin
 
 ## Permissions
 
-_Optional_, can be omitted if your app does not need permissions. For more details, follow the [App registration & backend setup guide](../../../guides/plugins/apps/app-registration-setup.md#permissions).
+_Optional_, can be omitted if your app does not need permissions. For more details, follow the [App registration & backend setup guide](../../../guides/plugins/apps/lifecycle/app-registration-setup.md#permissions).
 
 You can use individual permission elements (`read`, `create`, `update`, `delete`) or the `<crud>` shortcut element which automatically grants all four CRUD permissions for an entity:
 
@@ -57,7 +74,7 @@ A list of all external endpoints your app communicates with (since `6.4.12.0`)
 
 ## Webhooks
 
-Register webhooks you want to receive, keep in mind that the name needs to be unique. For more details, follow the [app webhook guide](../../../guides/plugins/apps/webhook.md).
+Register webhooks you want to receive, keep in mind that the name needs to be unique. For more details, follow the [app webhook guide](../../../guides/plugins/apps/lifecycle/webhook.md).
 
 <<< @/docs/snippets/config/app/webhooks.xml
 
@@ -85,13 +102,13 @@ Add a cookie group to the consent manager. For more details, the [cookies with a
 
 ## Payments
 
-Add your payment methods via payments and handle your synchronous and asynchronous via an external app-server. For more details, the [app payment guide](../../../guides/plugins/apps/payment.md).
+Add your payment methods via payments and handle your synchronous and asynchronous via an external app-server. For more details, the [app payment guide](../../../guides/plugins/apps/checkout/payment.md).
 
 <<< @/docs/snippets/config/app/payments.xml
 
 ## Shipping methods
 
-Add your shipping methods via shipping-methods and handle your synchronous and asynchronous via an external app-server. For more details, the [shipping methods guide](../../../guides/plugins/apps/shipping-methods.md).
+Add your shipping methods via shipping-methods and handle your synchronous and asynchronous via an external app-server. For more details, the [shipping methods guide](../../../guides/plugins/apps/checkout/shipping-methods.md).
 
 <<< @/docs/snippets/config/app/shipping-methods.xml
 
@@ -103,6 +120,6 @@ The identifier of the rule condition must be unique should not change. Otherwise
 
 ## Tax
 
-Add an external tax provider to your app that is calculating your taxes on the fly for complex tax setups. For more details, follow the [tax provider guide](../../../guides/plugins/apps/tax-provider.md).
+Add an external tax provider to your app that is calculating your taxes on the fly for complex tax setups. For more details, follow the [tax provider guide](../../../guides/plugins/apps/checkout/tax-provider.md).
 
 <<< @/docs/snippets/config/app/tax.xml

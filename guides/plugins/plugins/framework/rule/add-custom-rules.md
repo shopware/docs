@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add custom rules
+  title: Add Custom Rules
   position: 10
 
 ---
@@ -17,9 +17,9 @@ This example will introduce a new rule, which checks if it is the first monday o
 
 In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom rule.
+You also should be familiar with the [Dependency Injection container](../../services/dependency-injection.md) as this is used to register your custom rule.
 
-It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rule) as well.
+It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rule-system/index.md) (../../../../../concepts/framework/rule) as well.
 
 ## Create custom rule
 

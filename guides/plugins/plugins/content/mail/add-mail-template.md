@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add mail templates
+  title: Add Mail Templates
   position: 20
 
 ---
@@ -17,7 +17,7 @@ This guide will cover how to add a custom mail template with your plugin.
 
 The namespaces used in the examples of this guide are the same as the namespace from our [Plugin base guide](../../plugin-base-guide), so you might want to have a look at it first.
 
-Furthermore, this guide will use [Database migrations](../../plugin-fundamentals/database-migrations) in order to add a custom mail template, which is not explained in depth here. Make sure to understand those first!
+Furthermore, this guide will use [Database migrations](../../database/database-migrations.md) in order to add a custom mail template, which is not explained in depth here. Make sure to understand those first!
 
 ## Adding a mail template via migration
 
@@ -131,7 +131,7 @@ class Migration1616418675AddMailTemplate extends MigrationStep
             ]);
         }
 
-        if (!empty($deDeLangId)) {            
+        if (!empty($deDeLangId)) {
             $connection->executeStatement("
             INSERT IGNORE INTO `mail_template_translation`
                 (mail_template_id, language_id, sender_name, subject, description, content_html, content_plain, created_at)

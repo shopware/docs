@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Adding data translations
-  position: 80
+  title: Adding Data Translations
+  position: 60
 
 ---
 
