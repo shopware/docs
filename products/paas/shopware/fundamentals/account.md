@@ -110,8 +110,9 @@ sw-paas account service-account grant revoke
 
 The `token` command manages access tokens for either your own account or a service account. Personal access tokens are useful for non-interactive CLI usage, CI/CD pipelines, and integrations with external systems.
 
-A token inherits all permissions of the user who created it, except the ability to create new tokens. This means any action the user can perform, the token can perform as well.
+Personal access tokens inherit the permissions of the user who created them, except the ability to create new tokens. This means any action the user can perform, the personal token can perform as well.
 
+Service account tokens do not inherit the full permissions of the user who created them. They authenticate as the service account and are limited to the permissions granted to that service account.
 ### Personal tokens
 
 Generate a new access token:
