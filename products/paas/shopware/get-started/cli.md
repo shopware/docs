@@ -68,7 +68,7 @@ Add the user and assign a role:
 sw-paas account user add --sub "<user-id of the new user>"
 ```
 
-For project-level and application-level access, membership requests, and service accounts, see the [Account Guide](../fundamentals/account.md).
+For project-level and application-level access, membership requests, and service accounts, see the [account guide](../fundamentals/account.md).
 
 ## Available commands
 
