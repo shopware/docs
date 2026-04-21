@@ -12,7 +12,7 @@ Before you start, you'll need a Shopware account. Shopware uses AWS Cognito for 
 
 Once your organization is onboarded to the Shopware Business Platform (SBP) and users are added to Shopware PaaS Native, the first user gets the admin role. This admin can then assign roles to other users in your organization.
 
-For more on managing users, service accounts, and tokens, see our [Account Guide](../fundamentals/account.md).
+For more on managing users, service accounts, and tokens, see our [account guide](../fundamentals/account.md).
 
 ## Installation
 
