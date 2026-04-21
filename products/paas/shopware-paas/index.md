@@ -84,7 +84,6 @@ git push shopware
 The sub-pages describe a more detailed step-by-step guide that you can follow to set up your PaaS project.
 
 First, make sure your [PaaS CLI is set up correctly](cli-setup).
-Once you can authenticate with the CLI, review [account](account) to inspect your own access, manage user memberships, and configure service accounts for automation.
 Once your PaaS CLI is up and running, it is time to [set up your project repository](repository).
 
 When your repository is set up correctly, you are ready to [push and deploy your project](build-deploy) to the PaaS environment.
