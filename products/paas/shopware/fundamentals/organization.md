@@ -57,4 +57,4 @@ To remove a user from the organization:
 sw-paas account user remove
 ```
 
-For project-level and application-level memberships, membership requests, service accounts, and tokens, see [Account](./account.md).
+For project-level and application-level memberships, membership requests, service accounts, and tokens, see [account guide](./account.md).
