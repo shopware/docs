@@ -44,7 +44,7 @@ Run the following command to open a browser window and log in to your Shopware P
 sw-paas auth
 ```
 
-For more details on managing your account, user access, service accounts, and machine tokens for CI/CD, see the [Account Guide](../fundamentals/account.md).
+For more details on managing your account, user access, service accounts, and machine tokens for CI/CD, see the [account guide](../fundamentals/account.md).
 
 ## Authorization
 
