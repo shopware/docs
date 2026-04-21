@@ -1,15 +1,13 @@
 ---
 nav:
-  title: Writing data
-  position: 20
+  title: Writing Data
+  position: 150
 
 ---
 
 # Writing Data
 
-## Overview
-
-This guide will teach you everything you need to know in order to write data to the database in Shopware 6. It will also include a short explanation about writing associated data.
+This guide explains how to write data to the database in Shopware 6. It also includes a short explanation about writing associated data.
 
 ## Prerequisites
 
@@ -29,8 +27,9 @@ Let's get started with examples to write data. This example will be about writin
 
 Dealing with the Data Abstraction Layer is done by using the automatically generated repositories for each entity, such as a product. This means, that you have to inject the repository into your service first.
 
-The repository's service name follows this pattern: `entity_name.repository`  
-For products this then would be `product.repository`. Additional to that, you're going to need the `tax` repository later for this guide, so let's add this as well already.
+The repository's service name follows this pattern: `entity_name.repository`. For products this would be `product.repository`.
+
+Add the `tax` repository, which will appear later in this guide:
 
 ```php
 // SwagBasicExample/src/Resources/config/services.php

@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add cart discounts
+  title: Add Cart Discounts
   position: 30
 
 ---
@@ -9,13 +9,11 @@ nav:
 
 ## Overview
 
-In this guide you'll learn how to create discounts for your cart. In this example, we will create a discount for products that have 'Example' in their name.
+This guide explains how to create discounts for your cart. In this example, we will create a discount for products that have 'Example' in their name.
 
 ## Prerequisites
 
-In order to create cart discounts for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
-
-Furthermore you should be familiar with the service registration in Shopware, otherwise head over to our [Add custom service](../../plugin-fundamentals/add-custom-service) guide.
+Refer to the [Plugin Base Guide](../../plugin-base-guide) for information on creating plugins, and to the [Add custom service](../../services/add-custom-service.md) guide for details on service registration.
 
 ## Creating the processor
 

@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add data to mails
+  title: Add Data to Mails
   position: 10
 
 ---
@@ -17,11 +17,11 @@ This guide will teach you how to add new data to the mail templates using your p
 
 This guide is built upon our [plugin base guide](../../plugin-base-guide), whose namespace is going to be used in the examples of this guide. However, you can use those examples with any plugin, you'll just have to adjust the namespace and the directory the files are located in.
 
-Furthermore, you should know how to [decorate a service](../../plugin-fundamentals/adjusting-service).
+Furthermore, you should know how to [decorate a service](../../services/adjusting-service.md).
 
 ## Adding data via decorator
 
-In order to add new data to the mail templates, you'll have to decorate the [MailService](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Mail/Service/MailService.php).
+To add new data to the mail templates, decorate the [MailService](https://github.com/shopware/shopware/blob/trunk/src/Core/Content/Mail/Service/MailService.php).
 
 To be precise, you have to extend the `send` method, whose last parameter is the `$templateData`, that we want to enrich.
 
@@ -66,7 +66,7 @@ class AddDataToMails extends AbstractMailService
 
 :::
 
-If you don't recognise the decoration pattern used here, make sure to have a look at our guide about [decorations](../../plugin-fundamentals/adjusting-service).
+If you don't recognise the decoration pattern used here, make sure to have a look at our guide about [decorations](../../services/adjusting-service.md).
 
 As always, we're passing in the original `MailService` as a constructor parameter, so we can return it in the `getDecorated` method, as well as use the original `send` method after having adjusted the `$templateData`.
 
@@ -142,11 +142,9 @@ class MyMailSubscriber implements EventSubscriberInterface
 }
 ```
 
-:::
+### Register the event subscriber
 
-### Register your event subscriber
-
-You have to register the subscriber to the service container as well.
+Register the subscriber to the service container.
 
 Here's the respective example `services.php`:
 

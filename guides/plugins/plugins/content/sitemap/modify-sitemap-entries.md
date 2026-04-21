@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Modifying sitemap entries
+  title: Modifying Sitemap Entries
   position: 20
 
 ---
@@ -10,15 +10,14 @@ nav:
 ## Overview
 
 You might have had a look at our guide about [adding custom sitemap entries](add-custom-sitemap-entries),
-for example for a custom entity.
-However, you might not want to add new URLs, but rather modify already existing ones.
+for example for a custom entity. However, you might not want to add new URLs, but rather modify already existing ones.
 This guide covers how to modify existing sitemap URLs (for example product URLs) in a plugin.
 
 ## Prerequisites
 
 This guide is built upon the [Plugin base guide](../../plugin-base-guide), like most guides.
 
-Knowing [service decoration](../../plugin-fundamentals/adjusting-service) and the sitemap URL provider system from
+Knowing [service decoration](../../services/adjusting-service.md) and the sitemap URL provider system from
 [adding custom sitemap entries](add-custom-sitemap-entries) will be helpful.
 
 ## Ways to modify sitemap entries
@@ -196,8 +195,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 ## Important note about `getSeoUrls`
 
-`getSeoUrls` is a protected method on `AbstractUrlProvider`.
-If you only decorate a provider and forward `getUrls()` to the inner service, overriding `getSeoUrls` in your decorator
+`getSeoUrls` is a protected method on `AbstractUrlProvider`. If you only decorate a provider and forward `getUrls()` to the inner service, overriding `getSeoUrls` in your decorator
 has no effect.
 
 If you really need to change SEO URL lookup internals, you have to implement the provider logic in your own service.

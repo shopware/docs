@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add payment plugin
+  title: Add Payment Plugin
   position: 10
 
 ---
@@ -8,7 +8,7 @@ nav:
 # Add Payment Plugin
 
 ::: warning
-From Shopware 6.7.0.0, the payment handling is refactored and is done via a single `AbstractPaymentHandler`.
+From Shopware 6.7.0.0, payment handling is done with a single `AbstractPaymentHandler`.
 :::
 
 ## Overview
@@ -20,7 +20,7 @@ That's why Shopware 6 offers an easy platform on which you can build payment plu
 
 The examples mentioned in this guide are built upon our plugin base guide.
 
-<PageRef page="../../plugin-base-guide.md" title="Plugin base guide"/>
+<PageRef page="../../plugin-base-guide" title="Plugin base guide"/>
 
 If you want to understand the payment process in detail, head to our Payment Concept.
 
@@ -34,7 +34,7 @@ Shopware provides you with a handy `Shopware\Core\Checkout\Payment\Cart\PaymentH
 
 ### Registering the service
 
-Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../plugin-fundamentals/dependency-injection) container.
+Before we're going to have a look at some examples, we need to register our new service to the [Dependency Injection](../../services/dependency-injection.md) container.
 Please make sure to add the `shopware.payment.method` tag to your service definition, otherwise Shopware won't recognize your service as a payment handler.
 
 We'll use a class called `MyCustomPaymentHandler` here.

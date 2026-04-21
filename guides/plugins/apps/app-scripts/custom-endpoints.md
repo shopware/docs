@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Custom endpoints
+  title: Custom Endpoints
   position: 30
 
 ---
@@ -48,7 +48,7 @@ The possible route scopes are `storefront`, `store-api`, `api` and `administrati
 ## Custom Endpoints
 
 There are specialized script-execution endpoints for the `api`, `store-api` and `storefront` scopes.
-Refer to the [API docs](../../../integrations-api/) for more information on the distinction of those APIs.
+Refer to the [API docs](../../../development/integrations-api/index.md) for more information on the distinction of those APIs.
 Those endpoints allow you to trigger the execution of your scripts with an HTTP request against those endpoints.
 
 Custom endpoint scripts need to be located in a folder that is prefixed with the name of the api scope (one of `api-`, `store-api-` or `storefront`).
@@ -63,11 +63,11 @@ To prevent name collisions with other apps, you should always include your vendo
 The best practice is to add your app name after the API scope prefix and then use it as a REST style resource identifier, e.g., `/api/script/swagMyApp/test-script`.
 :::
 
-In your custom endpoint scripts, you get access to the JSON payload of the request (and the query parameters for GET-requests) and have access to the read & write functionality of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer).
-For a complete overview of the available data and service, refer to the [hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference#api-hook).
+In your custom endpoint scripts, you get access to the JSON payload of the request (and the query parameters for GET-requests) and have access to the read & write functionality of the [Data Abstraction Layer](../../../../concepts/framework/data-abstraction-layer.md).
+For a complete overview of the available data and service, refer to the [hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#api-hook).
 
 By default, a `204 No Content` response will be sent after your script was executed.
-To provide a custom response, you can use the [`response`-service](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference#scriptresponsefactoryfacade) to create a response and set it as the `response` of the hook:
+To provide a custom response, you can use the [`response`-service](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#scriptresponsefactoryfacade) to create a response and set it as the `response` of the hook:
 
 ```twig
 // Resources/scripts/api-custom-endpoint/my-example-script.twig
@@ -93,7 +93,7 @@ This endpoint only allows `POST` requests.
 
 Caching of responses is not supported for Admin API responses.
 
-For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference#api-hook).
+For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#api-hook).
 
 ### Store API endpoints
 
@@ -102,7 +102,7 @@ The execution of those scripts is possible over the `/store-api/script/{hook-nam
 
 This endpoint allows `POST` and `GET` requests.
 
-This hook is an [Interface Hook](./#interface-hooks). The execution of your logic should be implemented in the `response` block of your script.
+This hook is an [Interface Hook](../app-scripts/index.md#interface-hooks). The execution of your logic should be implemented in the `response` block of your script.
 
 ```twig
 // Resources/scripts/store-api-custom-endpoint/my-example-script.twig
@@ -126,7 +126,7 @@ A simple cache key generation would be to generate an `md5`-hash of all the inco
 {% endblock %}
 ```
 
-For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference#store-api-hook).
+For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#store-api-hook).
 
 ### Storefront endpoints
 
@@ -161,14 +161,14 @@ Additionally, it is also possible to redirect to an existing route:
 {% do hook.setResponse(response) %}
 ```
 
-For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference#storefront-hook).
+For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#storefront-hook).
 
 ## Caching
 
 To improve the end-user experience and provide a scalable system, the customer-facing APIs (i.e., `store-api` and `storefront`) offer a caching mechanism to cache the response to specific requests and return the response from the cache on further requests instead of computing it again and again on each request.
 
 By default, caching is enabled for custom endpoints, but for `store-api` endpoints you have to generate the cache key in the script.
-For `storefront` requests, however, shopware takes care of it so that responses get automatically cached (if the [HTTP-Cache](../../../../concepts/framework/http_cache) is enabled).
+For `storefront` requests, however, shopware takes care of it so that responses get automatically cached (if the [HTTP-Cache](../../../../concepts/framework/http_cache.md) is enabled).
 
 ### Cache Config
 
@@ -215,7 +215,7 @@ You can specify for how long a response should be cached by calling the `cache.m
 > **Note:** The cache states feature is deprecated and will be removed in v6.8.0.0. It also does not work when the `CACHE_REWORK` feature flag is enabled.
 
 You can specify that the cached response is not valid if one of the given states is present.
-For more detailed information on the invalidation states, refer to the [HTTP-cache docs](../../../../concepts/framework/http_cache#sw-states).
+For more detailed information on the invalidation states, refer to the [HTTP-cache docs](../../../../concepts/framework/http_cache.md#sw-states).
 
 ```twig
 {% set response = services.response.json({ 'foo': 'bar' }) %}
@@ -275,4 +275,4 @@ You can then use the filtered-down list of ids to invalidate entity-specific tag
 {% do services.cache.invalidate(tags) %}
 ```
 
-For a complete overview of what data and services are available, refer to the [cache-invalidation hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cache-invalidation).
+For a complete overview of what data and services are available, refer to the [cache-invalidation hook reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cache-invalidation).

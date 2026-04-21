@@ -36,7 +36,7 @@ In addition, you need a custom entity to add to the search to begin with. Head o
 
 To support an entity in the untyped global search, the entity has to be defined in one of the Administration Modules.
 
-<PageRef page="../module-component-management/add-custom-module.md" />
+<PageRef page="../module-component-management/add-custom-module" />
 
 Add the `entity` and `defaultSearchConfiguration` values to your module to make it available to the search bar component.
 

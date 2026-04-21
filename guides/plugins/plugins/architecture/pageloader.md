@@ -1,15 +1,36 @@
 ---
 nav:
-  title: Page Loader
+  title: Page Loader Extension Architecture
   position: 80
 
 ---
 
-# Page Loader
+# Page Loader Extension Architecture
 
-* Pageloaders must be divided into appropriate domains that represent the different sections of the Storefront - "products", "account", etc.
-* Each page loader must have an abstract class from which it derives (See [decoration pattern](../../../../resources/references/adr/2020-11-25-decoration-pattern.md)). This pattern can be used to replace the page loader in a project completely.
-* Each page loader has a page object to return, in which all the necessary information for the page is present.
-* At the end of each page loader, an individual `PageLoaded` event is thrown. Third-party developers can use this event to provide additional data.
-* Page loaders are not allowed to work directly with repositories but are only allowed to load data via the Store API. This is to ensure that all storefront functionalities can also be accessed via the Store API.
-* A Page object must always extend from the base `\Shopware\Storefront\Page\Page` class.
+Page loaders assemble all data required to render a storefront page. They centralize data fetching and guarantee consistent storefront behavior.
+
+## Design principles
+
+* Page loaders separate HTTP concerns from business logic.
+* Data must be fetched via Store API routes.
+* Page loaders must remain replaceable via decoration.
+* Pages must be fully constructed before rendering.
+
+## Extension guidelines
+
+* Divide page loaders by domains that represent different Storefront sections: e.g. products, account, checkout.
+* Provide an abstract base class for [decoration](../../../../resources/references/adr/2020-11-25-decoration-pattern.md). The decoration pattern can be used to completely replace the page loader in a project.
+* Return a dedicated page object containing all required data.
+* Dispatch a corresponding `PageLoaded` event after loading. This event can be used to provide further data by third-party developers.
+* Never access repositories directly inside a page loader.
+* Use Store API routes for all data retrieval, to ensure that Store API can access all storefront functionalities.
+* Page objects must extend from the base `\Shopware\Storefront\Page\Page` class.
+
+## Why this matters
+
+Page loaders guarantee that:
+
+* Storefront rendering remains deterministic.
+* Data can be reused via the Store API.
+* Extensions can replace or decorate page behavior safely.
+* Rendering logic stays independent from database concerns.

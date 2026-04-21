@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Field inheritance
-  position: 110
+  title: Field Inheritance
+  position: 90
 
 ---
 
@@ -29,7 +29,9 @@ To start using inheritance, we have to update our definition and database.
 
 ### Make fields nullable
 
-The first thing we need to do is to make all our fields that we want to make inheritable nullable in our migration. If you lack knowledge about migrations, have a look at our [Database migrations](../../plugin-fundamentals/database-migrations) guide. We also need a 'parent_id' field for the parent reference.
+First, make all fields intended to be inheritable nullable in the migration. Review the [Database Migrations guide](../../database/database-migrations.md) for more information.
+
+A `parent_id` field for the parent reference is needed:
 
 ```sql
 ALTER TABLE `swag_example` ADD `parent_id` BINARY(16) NULL;
@@ -56,7 +58,7 @@ class Migration1615363012MakeInheritedColumnsNullable extends MigrationStep
     public function update(Connection $connection): void
     {
         $query = <<<SQL
-            ALTER TABLE `swag_example` 
+            ALTER TABLE `swag_example`
                 ADD `parent_id` BINARY(16) NULL,
                 MODIFY `description` VARCHAR(255) NULL;
         SQL;
@@ -271,7 +273,7 @@ class Migration1615363013AddInheritedAssociation extends MigrationStep
     public function update(Connection $connection): void
     {
         $query = <<<SQL
-            ALTER TABLE `swag_example` 
+            ALTER TABLE `swag_example`
                 ADD `tax_id` BINARY(16) NULL,
                 ADD CONSTRAINT `fk.swag_example.tax_id` FOREIGN KEY (`tax_id`)
                     REFERENCES `tax` (`id`) ON DELETE CASCADE ON UPDATE CASCADE'

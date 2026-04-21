@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Adding custom complex data
+  title: Adding Custom Complex Data
   position: 30
 
 ---
@@ -9,11 +9,11 @@ nav:
 
 ## Overview
 
-Quite often, your plugin has to save data into a custom database table. Shopware 6's data abstraction layer fully supports custom entities, so you don't have to take care of the data handling at all.
+Plugins often need to save data into a custom database table. Shopware 6's data abstraction layer (DAL) fully supports custom entities, so you don't have to take care of the data handling at all.
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations). Also, you'll have to understand how the [Dependency injection](../../plugin-fundamentals/dependency-injection) works as well.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../database/database-migrations.md). Also, you'll have to understand how the [Dependency injection](../../services/dependency-injection.md) works as well.
 
 ::: info
 Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -25,7 +25,7 @@ We'll start with creating a new database table. Make sure to always add your ind
 
 In this guide we'll name our table `swag_example`, you'll find this name a few more times in here, so make sure to remember that one.
 
-As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../plugin-fundamentals/database-migrations), head over to this guide to understand how this example works.
+As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../database/database-migrations.md), head over to this guide to understand how this example works.
 
 ```php
 // <plugin root>/src/Migration/Migration1611664789Example.php
@@ -76,8 +76,7 @@ After reinstalling your plugin, you should see your new database table `swag_exa
 
 Introducing the table to Shopware 6 is done by adding a so called `EntityDefinition` for your table. As the name suggests, it defines your own entity, including its fields and name, the latter also represents the table name and therefore has to perfectly match.
 
-Your custom entity definition should be placed inside a folder named after the domain it handles, e.g. "Checkout" if you were to include a Checkout entity. Thus, a good location for this example could be in a directory like this: `<plugin root>/src/Core/Content/Example`  
-This will also be the case for the `Entity` class itself, as well as the `EntityCollection` class, but those are explained later in this guide.
+Your custom entity definition should be placed inside a folder named after the domain it handles, e.g. "Checkout" if you were to include a Checkout entity. Thus, a good location for this example could be in a directory like `<plugin root>/src/Core/Content/Example`. This will also be the case for the `Entity` class itself, as well as the `EntityCollection` class, but those are explained later in this guide.
 
 Start of with creating a new file named `ExampleDefinition.php` in the directory `<plugin root>/src/Core/Content/Example/ExampleDefinition.php`. Below you can see our example definition, which is explained afterwards:
 
@@ -163,7 +162,7 @@ Another thing to note is the `addFlags` call on the `IdField`. Those flags are l
 
 If you want to know more about the flags and how to use them, head over to our guide on how to use flags [Using flags](using-flags).
 
-All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.php` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.php` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service), or our guide about the [Dependency injection](../../plugin-fundamentals/dependency-injection).
+All that's left to do now, is to introduce your `ExampleDefinition` to Shopware by registering your class in your `services.php` file and by using the `shopware.entity.definition` tag, because Shopware is looking for definitions this way. If your plugin does not have a `services.php` file yet or you don't know how that's done, head over to our guide about registering a custom service [Add a custom class / service](../../services/add-custom-service.md), or our guide about the [Dependency injection](../../services/dependency-injection.md).
 
 Here's the `services.php` as it should look like:
 
@@ -319,4 +318,4 @@ You've now got a simple entity about a single database table. However, your enti
 
 For example we also have a guide about [Associations](add-data-associations), since you most likely will have multiple tables that have a relation to each other. Furthermore, the fields in this example are already [Using flags](using-flags). When dealing with products, you are also dealing with [Inheritance](field-inheritance), which we also got covered.
 
-One more thing: Maybe you want to connect your database table to an already existing database table, hence an already existing entity. This is done by [extending the said existing entity](add-complex-data-to-existing-entities).
+Learn how to connect your database table to an already existing database table/entity from the [Adding Complex Data to Existing Entities guide](add-complex-data-to-existing-entities).
