@@ -18,7 +18,7 @@ sw-paas account whoami
 
 This shows the currently authenticated user and the roles attached to that user.
 
-For role details at organization level, see [Organizations](./organization.md).
+For role details at organization level, see [organization guide](./organization.md).
 
 ## Context
 
