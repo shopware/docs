@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Adding complex data to existing entities
-  position: 40
+  title: Adding Complex Data to Existing Entities
+  position: 20
 
 ---
 
@@ -55,7 +55,7 @@ class CustomExtension extends EntityExtension
 }
 ```
 
-Now we have to register our extension via the DI-container. If you don't know how that's done in general, head over to our guide about registering a custom service [Add a custom class / service](../../plugin-fundamentals/add-custom-service) or our guide about the [dependency injection](../../plugin-fundamentals/dependency-injection).
+Now we have to register our extension via the DI-container, explained in greater detail in the [Add a custom class / service](../../services/add-custom-service.md) and [dependency injection](../../services/dependency-injection.md) guides.
 
 Here's our `services.php`:
 
@@ -203,7 +203,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 #### Adding the new database table
 
-Of course, you have to add the new database table via a [Database migration](../../plugin-fundamentals/database-migrations). Look at the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
+Of course, you have to add the new database table via a [Database migration](../../database/database-migrations.md). Look at the guide linked above to see how exactly this is done. Here's the example migration and how it could look like:
 
 ```php
 <?php declare(strict_types=1);

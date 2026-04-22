@@ -12,7 +12,7 @@ This guide shows how to create a Shopware app that adds an Administration module
 - build an app-based Admin UI locally
 - iterate on the frontend without setting up an app backend first
 
-If you need app registration, signing, webhooks, or Admin API credentials, continue with [App registration & backend setup](app-registration-setup.md).
+If you need app registration, signing, webhooks, or Admin API credentials, continue with [App registration & backend setup](../apps/lifecycle/app-registration-setup.md).
 
 ## What this guide covers
 
@@ -161,6 +161,6 @@ At this point, Shopware loads the Admin module from your local Vite server.
 
 ## Next steps
 
-- [App registration & backend setup](app-registration-setup.md)
-- [App signature verification](app-signature-verification.md)
-- [Webhooks](webhook.md)
+- [App registration & backend setup](../apps/lifecycle/app-registration-setup.md)
+- [App signature verification](../apps/lifecycle/app-signature-verification.md)
+- [Webhooks](../apps/lifecycle/webhook.md)

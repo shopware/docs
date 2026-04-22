@@ -1,15 +1,15 @@
 ---
 nav:
-  title: Signing
+  title: Signing Responses
   position: 40
 
 ---
 
-# Signing of responses
+# Signing Responses
 
-The Shopware App System requires you to sign your responses to the Shopware server.
+Shopware requires signed responses for requests that are handled server-to-server. The signature is used to verify the authenticity of the response and to ensure that the response was not tampered with.
 
-The signing is required for all responses that are sent to the Shopware server. The signature is used to verify the authenticity of the response and to ensure that the response was not tampered with.
+Use the `signResponse()` method to sign a `Response` with the corresponding shop.
 
 To sign the response, you can call the signer with `signResponse` method. The signer will sign the response with the provided shop.
 
@@ -30,4 +30,4 @@ const response = new Response('Hello World', {
 const signedResponse = await app.signer.signResponse(response, shop);
 ```
 
-Next, we will look into the [Making HTTP requests to the Shop](./05-http-client).
+Next, we will look into [Making HTTP requests to the Shop](./05-http-client).

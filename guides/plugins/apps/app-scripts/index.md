@@ -16,7 +16,8 @@ Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported 
 ## Script hooks
 
 The entry point for each script is the so-called "Hooks". You can register one or more scripts inside your app that should be executed whenever a specific hook is triggered.
-Through the hook, your script gets access to the data of the current execution context and can react to or manipulate the data in some way.  
+
+Through the hook, your script gets access to the data of the current execution context and can react to or manipulate the data in some way.
 
 See the [Hooks reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference) for a complete list of all available.
 
@@ -47,7 +48,7 @@ The file structure of your apps should look like this:
 
 Sometimes scripts can become more complex or you want to extract common functionality. Thus it is handy to split your scripts into smaller parts that can later be included in other scripts.
 
-In order to do that you can compose your reusable scripts into [twig macros](https://twig.symfony.com/doc/3.x/tags/macro.html), put them inside a dedicated `include` folder and then import them using the [twig import functionality](https://twig.symfony.com/doc/3.x/tags/import.html).
+In order to do that you can compose your reusable scripts into [Twig macros](https://twig.symfony.com/doc/3.x/tags/macro.html), put them inside a dedicated `include` folder and then import them using the [twig import functionality](https://twig.symfony.com/doc/3.x/tags/import.html).
 
 ```text
 └── DemoApp
@@ -108,7 +109,7 @@ The available data and services are described for each hook (or each function in
 
 ### Translation
 
-Inside the app script, you have access to the [Storefront translation mechanism](../../plugins/storefront/add-translations) by using the `|trans`-filter.
+Inside the app script, you have access to the [Storefront translation mechanism](../../plugins/storefront/styling/add-translations.md) by using the `|trans`-filter.
 
 ```twig
 {% set translated = 'my.snippet.key'|trans %}
@@ -204,7 +205,7 @@ Instead of using `AND` or `OR` in if-conditions, you can use the `&&` or `||` sh
 You can use the `return` tag to return values from inside macros.
 
 ```twig
-{% macro foo() %} 
+{% macro foo() %}
      {% return 'bar' %}
 {% endmacro %}
 ```

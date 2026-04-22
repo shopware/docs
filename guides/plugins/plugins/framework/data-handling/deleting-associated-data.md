@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Removing associated data
-  position: 60
+  title: Removing Associated Data
+  position: 70
 
 ---
 

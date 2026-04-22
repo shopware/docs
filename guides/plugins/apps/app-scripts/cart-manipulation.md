@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Cart manipulation
+  title: Cart Manipulation
   position: 10
 
 ---
@@ -120,7 +120,7 @@ You can define price fields for [custom fields](../custom-data/custom-fields)
 
 ### Price fields inside app config
 
-You can define price fields for [app configuration](../configuration).
+You can define price fields for [app configuration](../lifecycle/configuration.md).
 
 ```xml
 // Resources/config/config.xml
@@ -152,7 +152,7 @@ You can specify the `gross` and `net` prices for each currency.
 
 ### Prices inside the app config
 
-As described above, it is also possible to use price fields inside the [app configuration](../configuration). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
+As described above, it is also possible to use price fields inside the [app configuration](../lifecycle/configuration.md). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
 
 ```twig
 // Resources/scripts/cart/my-cart-script.twig
@@ -259,7 +259,7 @@ You can add custom (meta-) data to line items in the cart by manipulating the pa
 ## Add errors and notifications to the cart
 
 Your app script can block the cart's checkout by raising an error.
-As the first parameter you have to provide the [snippet key](../../plugins/storefront/add-translations) of the error message that should be displayed to the user.
+As the first parameter you have to provide the [snippet key](../../plugins/storefront/styling/add-translations.md) of the error message that should be displayed to the user.
 As the second optional parameter, you can specify a `id` for the error, so you can reference the error later on in your script.
 Lastly, you can provide an array of parameters as the optional third parameter if you need to pass parameters to the snippet.
 
@@ -284,8 +284,8 @@ The API is basically the same as for adding errors.
 
 ## Rule based cart scripts
 
-The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rule) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
-For example, you can add an entity-single-select field to your [app's config](../configuration) to allow the merchant to choose a rule that needs to match your app script taking effect.
+The cart scripts automatically integrate with the [Rule Builder](../../../../concepts/framework/rule-system/index.md) and you can use the full power of the rule builder to only do your cart manipulations if a given rule matches.
+For example, you can add an entity-single-select field to your [app's config](../lifecycle/configuration.md) to allow the merchant to choose a rule that needs to match your app script taking effect.
 
 ```xml
 // Resources/config/config.xml
@@ -316,4 +316,4 @@ Inside your cart script, you can check if the rule matches by checking if the co
 
 ## Further information
 
-Take a look at the [cart manipulation script service reference](../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference).
+Take a look at the [cart manipulation script service reference](../../../../resources/references/app-reference/script-reference/cart-manipulation-script-services-reference.md).

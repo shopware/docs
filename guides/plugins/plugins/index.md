@@ -23,10 +23,10 @@ You will likely create a plugin when you need deep server-side integration or re
 | Create a new plugin from scratch | [Plugin base guide](plugin-base-guide.md) |
 | Add Admin configuration fields (`config.xml`) | [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md) |
 | Read config in PHP, Admin JS, or Storefront | [Use plugin configuration](plugin-fundamentals/use-plugin-configuration.md) |
-| React to domain events | [Listening to events](plugin-fundamentals/listening-to-events.md) |
-| Register services & DI | [Dependency injection](plugin-fundamentals/dependency-injection.md) |
-| Database changes | [Database migrations](plugin-fundamentals/database-migrations.md) |
-| Composer dependencies in a plugin | [Adding Composer dependencies](plugin-fundamentals/using-composer-dependencies.md) |
+| React to domain events | [Listening to events](../plugins/framework/event/listening-to-events.md) |
+| Register services & DI | [Dependency injection](../plugins/services/dependency-injection.md) |
+| Database changes | [Database migrations](../plugins/database/database-migrations.md) |
+| Composer dependencies in a plugin | [Adding Composer dependencies](../plugins/dependencies/using-composer-dependencies.md) |
 | More topics | [Plugin fundamentals](plugin-fundamentals/index.md) (logging, cache, routes, …) |
 
 ::: info

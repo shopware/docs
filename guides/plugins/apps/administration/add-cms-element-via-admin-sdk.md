@@ -7,15 +7,13 @@ nav:
 
 # Add CMS Element
 
-## Overview
-
 This guide explains how to create a new CMS element using the Meteor Admin SDK. The example plugin is named
 `SwagBasicAppCmsElementExample`, following the naming conventions used in other guides.
 
 ## Prerequisites
 
-* Familiarity with creating [Plugins](../../plugins/plugin-base-guide) or [Apps](../app-base-guide)
-* Familiarity with [creating custom admin components](../../plugins/administration/module-component-management/add-custom-component#creating-a-custom-component)
+* Familiarity with creating [Plugins](../../plugins/plugin-base-guide.md) or [Apps](../app-base-guide.md)
+* Familiarity with [creating custom admin components](../../plugins/administration/module-component-management/add-custom-component.md#creating-a-custom-component)
 * Understanding of the [Meteor Admin SDK](/resources/admin-extension-sdk/getting-started/installation)
 
 ::: info
@@ -24,8 +22,7 @@ This example uses TypeScript, which is recommended but not required to develop S
 
 ## Creating your custom element
 
-Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element#creating-your-custom-element), this guide describes how to create a new
-custom element via an app. Creating a new element requires the Meteor Admin SDK.
+Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element.md), this guide describes how to create a new custom element via an app. Creating a new element requires the Meteor Admin SDK.
 
 In this example, you will build a scenario where a shop manager can configure a link to display a Dailymotion video.
 

@@ -15,7 +15,7 @@ A [Middleware](https://symfony.com/doc/current/messenger.html#middleware) is cal
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../plugin-fundamentals/dependency-injection), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../services/dependency-injection.md), so having this open in another tab won't hurt.
 
 ## Create middleware
 

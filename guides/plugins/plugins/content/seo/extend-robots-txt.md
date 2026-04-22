@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Extend robots.txt configuration
+  title: Extend robots.txt Configuration
   position: 20
 
 ---
 
-# Extend robots.txt configuration
+# Extend robots.txt Configuration
 
 ## Overview
 
@@ -30,10 +30,10 @@ This guide requires you to have a basic plugin running. If you don't know how to
 
 <PageRef page="../../plugin-base-guide" />
 
-You should also be familiar with [Event listeners](../../plugin-fundamentals/listening-to-events).
+You should also be familiar with [Event listeners](../../framework/event/listening-to-events.md).
 
 ::: info
-This guide uses EventListeners since each example listens to a single event. If you need to subscribe to multiple events in the same class, consider using an [EventSubscriber](../../plugin-fundamentals/listening-to-events#listening-to-events-via-subscriber) instead.
+This guide uses EventListeners since each example listens to a single event. If you need to subscribe to multiple events in the same class, consider using an [EventSubscriber](../../framework/event/listening-to-events.md#creating-your-own-subscriber) instead.
 :::
 
 ## Modifying parsed directives

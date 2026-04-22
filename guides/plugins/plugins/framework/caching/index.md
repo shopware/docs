@@ -11,7 +11,7 @@ Caching is a technique to store frequently accessed data in a temporary storage 
 
 While caching enhances performance, it requires careful management of data consistency, cache invalidation strategies, and storage efficiency to prevent serving outdated or incorrect data.
 
-This guide will show you how you can modify the default caching mechanisms to suite your needs. If you are looking for information on how to add your routes to the HTTP-Cache, take a look at [this guide](../../storefront/add-caching-to-custom-controller.md).
+This guide will show you how you can modify the default caching mechanisms to suite your needs. If you are looking for information on how to add your routes to the HTTP-Cache, take a look at [this guide](../../storefront/advanced/add-caching-to-custom-controller.md).
 
 ## Cache Layers
 
@@ -254,7 +254,7 @@ To invalidate the cache, you need to call the `CacheInvalidator` service and pas
 ```php
 class CacheInvalidationSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private CacheInvalidator $cacheInvalidator) 
+    public function __construct(private CacheInvalidator $cacheInvalidator)
     {
     }
     
@@ -350,7 +350,7 @@ class TweakCacheInvalidation implements CompilerPassInterface
             ]
         );
     }
-} 
+}
 ```
 
 ### Object Cache

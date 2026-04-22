@@ -1,42 +1,33 @@
 ---
 nav:
-  title: Add custom SEO URLs
+  title: Add Custom SEO URLs
   position: 10
 
 ---
 
-# Add custom SEO URLs
+# Add Custom SEO URLs
 
 ## Overview
 
-Every good website had to deal with it at some point: SEO URLs. Of course Shopware supports the usage of SEO URLs, e.g. for products or categories.
-
-This guide however will cover the question on how you can define your own SEO URLs, e.g. for your own custom entities. This will include both static SEO URLs, as well as dynamic SEO URLs.
+Shopware supports SEO URL usage for products, categories, and other entities. This guide covers how to define both static and dynamic custom SEO URLs for custom entities.
 
 ## Prerequisites
 
-As every almost every guide in the plugins section, this guide as well is built upon the plugin base guide.
+Review the plugin base guide:
 
 <PageRef page="../../plugin-base-guide" />
 
-Furthermore, we're going to use a [Custom storefront controller](../../storefront/add-custom-controller) for the static SEO URL example, as well as [Custom entities](../../framework/data-handling/add-custom-complex-data) for the dynamic SEO URLs. Make sure you know and understand those two as well before diving deeper into this guide. Those come with two different solutions:
+It is also important to understand [Custom storefront controllers](../../storefront/controllers/add-custom-controller.md) and [plugin migrations](../../database/database-migrations.md), which are relevant to the static SEO URL example, and [Custom entities](../../framework/data-handling/add-custom-complex-data.md) and [DAL event](../../framework/data-handling/replacing-associated-data.md) usage for dynamic SEO URLs.
 
-* Using [plugin migrations](../../plugin-fundamentals/database-migrations) for static SEO URLs
-* Using [DAL events](../../framework/data-handling/using-database-events) to react on entity changes and therefore generating a dynamic SEO URL
-
-## Custom SEO URLs
-
-As already mentioned in the overview, this guide will be divided into two parts: Static and dynamic SEO URLs.
-
-### Static SEO URLs
+## Static SEO URLs
 
 A static SEO URL doesn't have to change every now and then. Imagine a custom controller, which is accessible via the link `yourShop.com/example`.
 
-Now if you want this URL to be translatable, you'll have to add a custom SEO URL to your controller route, so it is accessible using both `Example-Page` in English, as well as e.g. `Beispiel-Seite` in German.
+To make this URL translatable, add a custom SEO URL to the controller route so it is accessible using both `Example-Page` in English and`Beispiel-Seite` in German.
 
-#### Example controller
+### Example controller
 
-For this example, the controller from the [Add custom controller guide](../../storefront/add-custom-controller) is being used. It creates a controller with a route like the example mentioned above: `/example`
+This example uses the controller from the [Add custom controller guide](../../storefront/controllers/add-custom-controller.md). It creates a controller with a route like the example mentioned above: `/example`
 
 Let's now have a look at our example controller:
 
@@ -69,9 +60,9 @@ class ExampleController extends StorefrontController
 
 The important information you'll need here is the route name, `frontend.example.example`, as well as the route itself: `/example`. Make sure to remember those for the next step.
 
-#### Example migration
+### Example migration
 
-Creating a SEO URL in this scenario can be achieved by creating a [plugin migration](../../plugin-fundamentals/database-migrations).
+Creating a SEO URL in this scenario can be achieved by creating a [plugin migration](../../database/database-migrations.md).
 
 The migration has to insert an entry for each sales channel and language into the `seo_url` table. For this case, we're making use of the `ImportTranslationsTrait`, which comes with a helper method `importTranslation`.
 
@@ -150,25 +141,25 @@ SQL;
 }
 ```
 
-You might want to have a look at the `getSeoMetaArray` method, that we implemented here. Most important for you are the columns `route_name` and `path_info` here, which represent the values you've defined in your controller's route attributes.
+Consider reviewing the `getSeoMetaArray` method, implemented here. Most important are the columns `route_name` and `path_info`, which represent the values you've defined in your controller's route attributes.
 
 By using the default PHP method `array_merge`, we're then also adding our translated SEO URL to the column `seo_path_info`.
 
-And that's it! After installing our plugin, you should now be able to access your controller's route with the given SEO URLs.
+And that's it! After installing the plugin, you should be able to access your controller's route with the given SEO URLs.
 
 ::: info
 You can only access the German SEO URL if you've configured a German domain in your respective sales channel first.
 :::
 
-### Dynamic SEO URLs
+## Dynamic SEO URLs
 
 Dynamic SEO URLs are URLs, that have to change every now and then. Yet, there's another separation necessary.
 
 If you're going to generate custom SEO URLs for your custom entities, you'll have to follow the section about [Dynamic SEO URLs for entities](add-custom-seo-url#dynamic-seo-urls-for-entities). For all other kinds of dynamic content, that are not DAL entities, the section about [Dynamic SEO URLs for other content](add-custom-seo-url#dynamic-seo-urls-for-custom-content) is your way to go.
 
-#### Dynamic SEO URLs for entities
+### Dynamic SEO URLs for entities
 
-This scenario will be about a custom entity, to be specific we're going to use the entity from our guide about [adding custom complex data](../../framework/data-handling/add-custom-complex-data), which then would have a custom Storefront route for each entity.
+This scenario will be about a custom entity, to be specific we're going to use the entity from our guide about [adding custom complex data](../../framework/data-handling/add-custom-complex-data.md), which then would have a custom Storefront route for each entity.
 
 Each entity comes with a name, which eventually should be the SEO URL. Thus, your entity named `Foo` should be accessible using the route `yourShop.com/Foo` or `yourShop.com/Entities/Foo` or whatever you'd like. Now, everytime you create a new entity, a SEO URL has to be automatically created as well. When you update your entities' name, guess what, you'll have to change the SEO URL as well.
 
@@ -295,9 +286,9 @@ It then has to be registered to the container using the tag `shopware.seo_url.ro
 
 Now that you've set up this class, there are two more things to be done, which are covered in the next sections.
 
-**Example subscriber**
+### Example subscriber
 
-Every time your entity is written now, you have to let Shopware know, that you want to generate the SEO URLs for those entities now. This is done by reacting to the [DAL events](../../framework/data-handling/using-database-events) of your custom entity, to be specific we're going to use the `written` event. Everytime your entity is written, you then have to execute the `update` method of the `Shopware\Core\Content\Seo\SeoUrlUpdater` class.
+Every time your entity is written now, you have to let Shopware know, that you want to generate the SEO URLs for those entities now. This is done by reacting to the [DAL events](../../framework/data-handling/using-database-events.md) of your custom entity, to be specific we're going to use the `written` event. Everytime your entity is written, you then have to execute the `update` method of the `Shopware\Core\Content\Seo\SeoUrlUpdater` class.
 
 Once again, let's have a look at an example subscriber here:
 
@@ -369,9 +360,9 @@ As already said, we're using the `written` event of our custom entity by providi
 
 The `SeoUrlUpdater` will need one more thing in order to work properly: An entry in the table `seo_url_template`, which is done in the next step.
 
-**Example SeoUrlTemplate migration**
+### Example `SeoUrlTemplate` migration
 
-Now we need to add an entry to the `seo_url_template` table for our new dynamic SEO URL template. This is done by adding a [database migration](../../plugin-fundamentals/database-migrations) to our plugin.
+Now we need to add an entry to the `seo_url_template` table for our new dynamic SEO URL template. This is done by adding a [database migration](../../database/database-migrations.md) to our plugin.
 
 The most important values you'll have to set in the migration are:
 
@@ -421,10 +412,10 @@ class Migration1619514731AddExampleSeoUrlTemplate extends MigrationStep
 And that's it! Every time your entity is written now, you'll automatically generate a SEO URL for it.
 
 ::: info
-This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller).
+Review the guide on [creating a storefront controller](../../storefront/controllers/add-custom-controller.md) to learn how to create a controller with the used example route.
 :::
 
-**Reacting to entity deletion**
+### Reacting to entity deletion
 
 If your entity is deleted, you want the SEO URL to be updated as well. In detail, the column `is_deleted` of the respective entry in the `seo_url` table has to be set to `1`.
 
@@ -463,7 +454,7 @@ class DynamicSeoUrlPageSubscriber implements EventSubscriberInterface
 }
 ```
 
-#### Dynamic SEO URLs for custom content
+### Dynamic SEO URLs for custom content
 
 This section is specifically about dynamic content other than custom entities. This could be e.g. data from an external resource, maybe external APIs.
 
@@ -471,7 +462,7 @@ You'll need some kind of event or some other way to execute code once your dynam
 
 In this example, we'll assume you've got a class called `DynamicSeoUrlsService` with a method `writeSeoEntries`. This method will get an array of entries to be written, including their respective payload, such as a name for the SEO URL. It also needs the current context.
 
-Calling this method is up to you, depending on your set up and the type of "dynamic content" you're having.
+Calling this method depends on your setup and the type of "dynamic content."
 
 This method will then use the `SeoUrlPersister` and its method `updateSeoUrls` in order to write entries to the `seo_url` table.
 
@@ -556,12 +547,12 @@ The method `writeSeoEntries` will look for a Storefront sales channel and return
 * `seoPathInfo`: The actual SEO path you want to use - in this case the name of the said content
 
 ::: info
-This guide will not cover creating an actual controller with the used example route. Learn how that is done in our guide about [creating a storefront controller](../../storefront/add-custom-controller).
+The [creating a storefront controller](../../storefront/controllers/add-custom-controller.md) guide covers how to create a controller with the example route used here.
 :::
 
 It will then use the built array and all of the other information like the context, the route name and an array of foreign keys for the method `updateSeoUrls` of the `SeoUrlPersister`. And that's it for your dynamic content.
 
-#### Reacting to deletion of the content
+## Reacting to content deletion
 
 If your custom dynamic content is deleted, you have to set the column `is_deleted` to `1` of the respective `seo_url` entry. This can be achieved with a new method, in this example we'll call it `deleteSeoEntries`. It will receive an array of IDs to be deleted. Those IDs have to match the value of the column `foreign_key` in the `seo_url` table. Also it needs the current context. It will take care of setting the generated SEO URLs to `deleted`. It will **not** delete an entry from the table `seo_url`.
 
@@ -574,7 +565,7 @@ public function deleteSeoEntries(array $ids, Context $context): void
 
 This way the respective SEO URLs will be marked as `is_deleted` for the system. However, this SEO route will remain accessible, so make sure to implement a check whether or not the content still exists in your controller.
 
-#### Writing SEO URLs for another language
+## Writing SEO URLs for another language
 
 In the example mentioned above, we're just using a `Context` instance, for whichever language that is. You can be more specific here though, in order to properly define the language ID yourself here and therefore ensuring it is written for the right language.
 

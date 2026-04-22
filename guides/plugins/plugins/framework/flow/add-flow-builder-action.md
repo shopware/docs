@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add Flow Builder action
+  title: Add Flow Builder Action
   position: 10
 
 ---
 
-# Add custom flow Action
+# Add Flow Builder Action
 
 ## Overview
 
@@ -15,7 +15,7 @@ In this guide, you'll learn how to create custom flow action in Shopware. The fl
 
 In order to add your own custom flow action for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide.](../../plugin-base-guide)
 
-You also should be familiar with the [Dependency Injection container](../../plugin-fundamentals/dependency-injection) as this is used to register your custom flow action and [Listening to events](../../plugin-fundamentals/listening-to-events#creating-your-own-subscriber) to create a subscriber class.
+You also should be familiar with the [Dependency Injection container](../../services/dependency-injection.md) as this is used to register your custom flow action and [Listening to events](../../framework/event/listening-to-events.md#creating-your-own-subscriber) to create a subscriber class.
 
 It might be helpful to gather some general understanding about the [concept of Flow Builder](../../../../../concepts/framework/flow-concept) as well.
 

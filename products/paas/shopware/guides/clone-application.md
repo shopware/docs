@@ -89,6 +89,10 @@ The cloning process happens in two stages:
 
 This ensures that the target application receives an exact copy of the source application's state at the time of the selected deployment.
 
+:::warning
+Cloning does not anonymize database content. The restored snapshot includes the full database state and filesystem data from the source application, including scheduled task data stored in the database.
+:::
+
 ### Monitor clone progress
 
 After initiating the clone, you can monitor the progress using:
@@ -144,6 +148,20 @@ bin/console user:change-password admin
 ```
 
 Follow the prompts to set a new password for the admin user.
+
+### Reindex OpenSearch
+
+If your shop has OpenSearch enabled, you will need to reindex after cloning. Open an exec session:
+
+```shell
+sw-paas exec --new
+```
+
+Once you're in the session, run the following command to reindex:
+
+```shell
+bin/console dal:refresh:index --use-queue
+```
 
 ### Update domain in sales channel
 
