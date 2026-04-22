@@ -55,6 +55,15 @@ shopware:
             interval: '60 seconds'
 ```
 
+::: info
+The following optional limiters are available starting with Shopware 6.7.10.0.
+:::
+
+- `login_user`: Storefront / Store-API customer authentication per email address, regardless of IP.
+- `login_client`: Storefront / Store-API customer authentication per IP address, regardless of email.
+- `oauth_user`: API oauth authentication / Administration login per username, regardless of IP.
+- `oauth_client`: API oauth authentication / Administration login per IP address, regardless of username.
+
 ### Configuring time backoff policy
 
 The `time_backoff` policy is built by Shopware itself. It enables you to throttle the request in multiple steps with different waiting times.
