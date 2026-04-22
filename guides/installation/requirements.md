@@ -57,7 +57,7 @@ You can use these commands to check your actual environment:
 
   * Recommended version: 8.0
   * Minimum version: 8.0.17
-  * Problematic versions: 8.0.20, 8.0.21
+  * Not supported versions: 8.0.20, 8.0.21. 8.4.x onwards
 
 * MariaDB
 
