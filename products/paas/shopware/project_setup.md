@@ -8,7 +8,7 @@ nav:
 
 ## Local setup
 
-Customizations that change the file system must be developed locally. This includes Shopware updates, installing and updating plugins ([documentation](https://developers.shopware.com/developers-guide/shopware-composer/#requiring-plugins)), making the initial configurations for the installation such as the system language, making code changes if necessary, etc.
+Customizations that change the file system must be developed locally. This includes Shopware updates, installing and updating plugins ([documentation](https://devdocs.safefive.de/developers-guide/shopware-composer/#requiring-plugins)), making the initial configurations for the installation such as the system language, making code changes if necessary, etc.
 
 :::info
 It's not possible to manage extensions in the Shopware Administration panel. In distributed and high available setups, you can't dynamically install or update extensions because those changes need to be done on every host server. Therefore, such operations should be performed during a deployment/rollout and not dynamically.
