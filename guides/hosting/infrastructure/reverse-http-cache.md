@@ -95,11 +95,11 @@ shopware:
       each_theme_config: false
 
   http_cache:
-      reverse_proxy:
-        enabled: true
-        use_varnish_xkey: true
-        hosts:
-          - 'varnish-host'
+    reverse_proxy:
+      enabled: true
+      use_varnish_xkey: true
+      hosts:
+        - 'varnish-host'
 ```
 
 <PageRef page="https://github.com/shopware/varnish-shopware/blob/main/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
