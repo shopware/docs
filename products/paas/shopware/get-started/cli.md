@@ -12,7 +12,7 @@ Before you start, you'll need a Shopware account. Shopware uses AWS Cognito for 
 
 Once your organization is onboarded to the Shopware Business Platform (SBP) and users are added to Shopware PaaS Native, the first user gets the admin role. This admin can then assign roles to other users in your organization.
 
-For more on managing users, see our [Organization Guide](../fundamentals/organization.md).
+For more on managing users, service accounts, and tokens, see our [account guide](../fundamentals/account.md).
 
 ## Installation
 
@@ -44,7 +44,7 @@ Run the following command to open a browser window and log in to your Shopware P
 sw-paas auth
 ```
 
-For more details on managing your account and creating machine tokens for CI/CD, see the [account command](../fundamentals/account) guide.
+For more details on managing your account, user access, service accounts, and machine tokens for CI/CD, see the [account guide](../fundamentals/account.md).
 
 ## Authorization
 
@@ -62,11 +62,13 @@ If you are an Account Admin and want to add more users, ask the new user to get 
 sw-paas account whoami --output json
 ```
 
-Add the user to your organization and assign a role:
+Add the user and assign a role:
 
 ```sh
 sw-paas account user add --sub "<user-id of the new user>"
 ```
+
+For project-level and application-level access, membership requests, and service accounts, see the [account guide](../fundamentals/account.md).
 
 ## Available commands
 
