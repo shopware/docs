@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Shopware 6 Installation
+  title: Installation
   position: 1
 ---
 
