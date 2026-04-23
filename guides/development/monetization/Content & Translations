@@ -1,0 +1,11 @@
+# Content & Translations
+
+Extensions must always be available in English. The German translation is optional. The description is available in English and German.
+If it is specified that the extension is also available in other languages, it must also be translated in Shopware.
+Allowed HTML Tags `<a> <p> <br> <b> <strong> <i> <ul> <ol> <li> <h2> <h3> <h4> <h5>`
+There must be no advertising for your own services or contact information in admin, description or images
+Links that encourage contact are not permitted. This also applies to support email addresses and backlinks.
+
+In general, the extension’s visual design must be consistent with that of shopware and integrate seamlessly into the existing sections.
+
+How To - Add images and icons to extensions
