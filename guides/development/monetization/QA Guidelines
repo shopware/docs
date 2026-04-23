@@ -1,0 +1,28 @@
+# Functionality & Integration
+
+Extension functionality works as described
+
+- The extension and its features work as described
+
+API validation successful
+
+- API test button available or validation upon saving in the extension settings (for external services)
+- Status message in the admin area and in the log indicating whether the test was successful or not example: [GitHub](https://github.com/shyim/ShyimApiTest "https://github.com/shyim/ShyimApiTest")
+- Invalid API data is logged in the event log (/var/log/) or in the database
+
+Configuration per sales channel
+
+- Apps that appear in the storefront must be able to be configured separately for each sales channel or if they are only to be applied to a single channel.
+
+**More**  
+Message queue  
+If the extension adds messages to the message queue, the entry should not be bigger than 256 KB.  
+This limitation is set by common message queue workers and should not be exceeded.
+
+Usage of fonts from external sources  
+If external fonts (e.g., Google Fonts, Font Awesome) or external services are used, this information must be included in the description in the extension store.
+
+**Tools:**  
+[Adminer for Admin](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html "https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html")  
+[Tools](https://store.shopware.com/en/frosh12599847132f/tools.html "https://store.shopware.com/en/frosh12599847132f/tools.html")  
+[Mail Archive](https://store.shopware.com/en/frosh97876597450f/mail-archive.html "https://store.shopware.com/en/frosh97876597450f/mail-archive.html")
