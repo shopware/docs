@@ -1,0 +1,33 @@
+## Store description available (DE & EN)
+
+**Description**
+
+- Minimum 200 characters
+- Must describe functionality in detail
+- Must be accurately translated 1:1 (EN ↔ DE)
+- A precise and clear description of the extension and its use cases.
+
+**Short description**
+
+- 150–185 characters
+- Used as teaser and meta description
+
+**Images**
+
+- The language used in the images must not be mixed
+- The images should only show how the extension works
+- At least one screenshot for storefront and admin showing the features
+- The images need to be high quality
+
+## Admin translations managed correctly
+
+- English must be the fallback language and always be available
+- This applies to all settings and error messages.
+
+**More**  
+Own media folder  
+Separate media folders must be created or existing folders must be used to upload images
+
+The basic structure of shopware should not be changed or modified.
+
+Menu entries in the main menu of the administration are not allowed.
