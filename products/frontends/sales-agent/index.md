@@ -9,7 +9,7 @@ nav:
 
 This project is designed to streamline the communication and sales processes between sales representatives and their customers. By integrating Shopware, it enables sales representatives to handle various tasks in an optimized environment, without the overhead added by the Shopware Administration.
 
-![ ](../../assets/sales-agent-overview.jpg)
+![ ](../../../assets/sales-agent-overview.jpg)
 
 :::info
 **Sales Agent** is a licensed application and not available as open source.
@@ -28,7 +28,7 @@ Review the below minimum operating requirements before you install *Sales Agent*
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
 * [Shopware Frontends framework](https://frontends.shopware.com/) based on [Nuxt 3](https://nuxt.com/).
-* Instance of [Shopware 6](../../guides/installation/) (version 6.7.3 and above).
+* Instance of [Shopware 6](../../../guides/installation/index.md) (version 6.7.3 and above).
 * Database: MySQL
 * Beyond or Evolve license needed for the Shopware instance.
 
@@ -38,7 +38,7 @@ Review the below minimum operating requirements before you install *Sales Agent*
 
 ## Architecture
 
-![ ](../../assets/sales-agent-architecture.jpg)
+![ ](../../../assets/sales-agent-architecture.jpg)
 
 The architecture depicted in the image shows a system with the following components:
 

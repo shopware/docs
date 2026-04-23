@@ -12,4 +12,4 @@ Applications in Shopware PaaS Native are created by default with two S3-compatib
 
 Shopware filesystem is configured to use S3-compatible object storage by default for new applications. This storage setup is part of the platform design and should not be changed later.
 
-You can learn more about the Shopware filesystem [here](../../../../guides/hosting/infrastructure/filesystem.md).
+You can learn more about the Shopware filesystem [here](../../../../../guides/hosting/infrastructure/filesystem.md).

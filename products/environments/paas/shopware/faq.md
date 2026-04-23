@@ -81,11 +81,11 @@ Yes. Deployments are designed to be zero downtime and use Kubernetes rolling upd
 
 ## In what order do deployment steps run?
 
-Database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../guides/hosting/installation-updates/deployments/deployment-helper#execution-flow).
+Database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper#execution-flow).
 
 ## Can I configure pre-deployment and post-deployment hooks?
 
-Yes. Use the [deployment helper](../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration) to define deployment hooks.
+Yes. Use the [deployment helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration) to define deployment hooks.
 
 ## Can I automate deployments from CI/CD?
 

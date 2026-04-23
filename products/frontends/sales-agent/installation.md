@@ -79,4 +79,4 @@ pnpm app:build
 
 - Verify the Installed App: after installation, you should see the Sales Agent menu item appear in the Settings.
 
-![ ](../../assets/sales-agent-item.png)
+![ ](../../../assets/sales-agent-item.png)

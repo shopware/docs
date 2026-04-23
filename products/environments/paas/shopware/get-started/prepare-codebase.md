@@ -20,7 +20,7 @@ Additionally, before installation, verify that each plugin supports **S3-based s
 
 ## How to uninstall plugins
 
-To uninstall plugins in the PaaS environment, use the [Deployment Helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper#removal-of-extensions) which provides a streamlined process for extension management.
+To uninstall plugins in the PaaS environment, use the [Deployment Helper](../../../../../guides/hosting/installation-updates/deployments/deployment-helper#removal-of-extensions) which provides a streamlined process for extension management.
 
 The uninstallation process involves two steps:
 
@@ -28,7 +28,7 @@ The uninstallation process involves two steps:
 
 2. **Remove from source code**: After the deployment, remove the extension from your source code and deploy again.
 
-For detailed instructions and configuration examples, refer to the [Removal of extensions](../../../../guides/hosting/installation-updates/deployments/deployment-helper#removal-of-extensions) section in the Deployment Helper documentation.
+For detailed instructions and configuration examples, refer to the [Removal of extensions](../../../../../guides/hosting/installation-updates/deployments/deployment-helper#removal-of-extensions) section in the Deployment Helper documentation.
 
 ## Generating the required files
 
@@ -93,4 +93,4 @@ For the full configuration reference, see the [Application YAML Configuration](.
 
 ## Hooks Configuration
 
-Shopware PaaS Native uses the deployment helper to execute custom hooks for your application. To see how these hooks are configured, refer to the [Deployment Helper documentation](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).
+Shopware PaaS Native uses the deployment helper to execute custom hooks for your application. To see how these hooks are configured, refer to the [Deployment Helper documentation](../../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).

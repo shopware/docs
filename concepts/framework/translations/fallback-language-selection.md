@@ -50,7 +50,7 @@ The command supports several options:
 
 ## Implementation guidelines for extension developers
 
-For detailed instructions, see the [Extension Translation Migration](./../../resources/references/upgrades/core/translation/extension-translation) guide. In short:
+For detailed instructions, see the [Extension Translation Migration](../../../guides/upgrades-migrations/extension-translation) guide. In short:
 
 - **Create a complete base file** (`messages.<language>.base.json`) for each supported language.
 - **Add patch files only when needed** – keep them minimal.
@@ -62,4 +62,4 @@ For detailed instructions, see the [Extension Translation Migration](./../../res
 ## Conclusion
 
 The country-independent snippet layer streamlines translation maintenance by consolidating common strings into a neutral fallback file and isolating regional vocabulary into small patch files.
-For further examples, refer to [Built-in Translation Handling](./built-in-translation-system) and [Extension Translation Migration](./../../resources/references/upgrades/core/translation/extension-translation).
+For further examples, refer to [Built-in Translation Handling](./built-in-translation-system) and [Extension Translation Migration](../../../guides/upgrades-migrations/extension-translation).

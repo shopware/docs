@@ -31,11 +31,11 @@ shopware-cli extension fix /path/to/your/extension
 shopware-cli project fix /path/to/your/project
 ```
 
-Always back up or version your code before running refactoring commands, as they will modify files in place. [Learn more here](../../products/cli/automatic-refactoring.md).
+Always back up or version your code before running refactoring commands, as they will modify files in place. [Learn more here](./automatic-refactoring.md).
 
 ### Project commands
 
-Work directly with your [Shopware project](../../guides/hosting/installation-updates/deployments/index.md) to automate setup and maintenance tasks. Available commands include:
+Work directly with your [Shopware project](../../../guides/hosting/installation-updates/deployments/index.md) to automate setup and maintenance tasks. Available commands include:
 
 ```bash
 shopware-cli project create         # Create a new Shopware 6 project
@@ -45,7 +45,7 @@ shopware-cli project ci          # Build Shopware in the CI
 
 ### Extension commands
 
-Create, build, and validate Shopware [extensions](../../guides/plugins/index.md) and prepare them for the [Shopware Store](https://store.shopware.com/de/) or for distribution. Available commands include:
+Create, build, and validate Shopware [extensions](../../../guides/plugins/index.md) and prepare them for the [Shopware Store](https://store.shopware.com/de/) or for distribution. Available commands include:
 
 ```bash
 shopware-cli extension fix   # Fix an extension

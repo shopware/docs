@@ -11,7 +11,7 @@ nav:
 
 You can create interactive live video events for your customers straight from your Shopware website without having to switch between a presentation tool, video conferencing system, and store system. It is one sophisticated solution to highlight your products, engage your customers, and reinforce brand loyalty.
 
-![ ](../../assets/products-digitalSalesRooms.png)
+![ ](../../../assets/products-digitalSalesRooms.png)
 
 ::: warning
 *Digital Sales Rooms* is a license extension and is not available as open source.
@@ -30,8 +30,8 @@ Review the below minimum operating requirements before you install the *Digital 
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
 * [Shopware Frontends framework](https://frontends.shopware.com/) based on Nuxt 3.
-* Instance of [Shopware 6](../../guides/installation/) (version 6.6.0 and above).
-  * Recommend installing with [devenv](../../guides/installation/setups/devenv.md)
+* Instance of [Shopware 6](../../../guides/installation/index.md) (version 6.6.0 and above).
+  * Recommend installing with [devenv](../../../guides/installation/legacy-setups/devenv-setup.md)
 * Third party services:
   * [Daily.co](https://www.daily.co/) - Refer to setup instructions for [realtime video call](./setup-3rd-party/realtime-video-dailyco.md)
   * [Mercure](https://mercure.rocks/)- Refer to setup instructions for [realtime Mercure service](./setup-3rd-party/realtime-service-mercure.md)

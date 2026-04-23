@@ -22,7 +22,7 @@ In this part, we will learn how to get and install the **Digital Sales Rooms** p
 
 If you are a merchant with **Shopware Beyond**, you can access [account.shopware.com](https://auth.shopware.com/login?return_to=https:%2F%2Faccount.shopware.com%2Fportal) and create a [wildcard environment](https://docs.shopware.com/en/account-en/extension-partner/wildcard-environments?category=account-en/extension-partner) with attached plugins.
 
-![ ](../../../assets/products-digitalSalesRooms-wildcard.png)
+![ ](../../../../assets/products-digitalSalesRooms-wildcard.png)
 
 By this way, you can get the plugin quickly into Shopware instance in multiple ways (via composer, direct download or through your Shopware Account).
 

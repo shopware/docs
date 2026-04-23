@@ -28,8 +28,8 @@ https://dsr.shopware.io/de-DE - Deutsch
 https://dsr.shopware.io/en-US - English (US)
 ```
 
-![ ](../../../assets/setup-domain-for-sales-channel-DSR.png)
+![ ](../../../../assets/setup-domain-for-sales-channel-DSR.png)
 
 - These *Digital Sales Rooms* domains should be selected as *Available domains* in [Configuration Page - Appointments](./plugin-config.md#appointments)
 
-![ ](../../../assets/fill-domain-into-configuration.png)
+![ ](../../../../assets/fill-domain-into-configuration.png)
