@@ -28,6 +28,7 @@ You will likely create a plugin when you need deep server-side integration or re
 | Database changes | [Database migrations](../plugins/database/database-migrations.md) |
 | Composer dependencies in a plugin | [Adding Composer dependencies](../plugins/dependencies/using-composer-dependencies.md) |
 | More topics | [Plugin fundamentals](plugin-fundamentals/index.md) (logging, cache, routes, …) |
+| Add custom MCP tools, prompts, resources | [MCP Server extension](mcp-server.md) |
 
 ::: info
 If your extension focuses primarily on Storefront design changes, a [theme plugin](../themes/theme-base-guide.md) is often the best choice.

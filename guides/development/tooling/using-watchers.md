@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Hot Module Reloading using watchers
+  title: Hot Module Replacement
   position: 10
 
 ---
