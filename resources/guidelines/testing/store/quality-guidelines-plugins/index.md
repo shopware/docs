@@ -342,7 +342,7 @@ There are Cypress tests for Shopware 6 on GitHub. The project is driven by the *
 One possible cause is that the technical app name from the Community Store or Account does not match the technical name entered in composer.json, or the app is incorrectly zipped. The technical app name has to be stored in the last part of the composer.json located at composer.json > extra > shopware-plugin-class. So take a look at the bootstrap class. Most of the errors is caused by the wrong technical name. For example, "Swag\\MyPlugin\\SwagMyPluginSW6" instead of "Swag\\MyPlugin\\SwagMyPlugin".
 
 [Here is an example](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20) of a valid composer.json.  
-See "[Plugin-Base Class](https://developers.shopware.com/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information.
+See "[Plugin-Base Class](https://devdocs.safefive.de/designers-guide/javascript-statemanager-and-pluginbase/#plugin-base-class)" for more information.
 
 ### Ensure cross-domain messages are sent to the intended domain
 

@@ -1,5 +1,5 @@
 redirects:
-    developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
+    developers-guide/plugin-guidelines/: https://devdocs.safefive.de/developers-guide/plugin-guidelines/
     guides/plugins/apps/platform-sh-template.html: guides/plugins/apps/app-base-guide.html
     guides/integrations-api/store-api-guide.html: guides/integrations-api/
     guides/integrations-api/store-api-guide/register-a-customer.html: guides/integrations-api/
@@ -20,3 +20,8 @@ redirects:
     guides/plugins/plugins/storefront/use-csrf-protection.html: guides/hosting/configurations/framework/samesite-protection.html
     products/extensions/b2b-suite/*: products/extensions/b2b/b2b-suite/*
     products/extensions/b2b-components/*: products/extensions/b2b/b2b-components/*
+    products/guided-shopping/: products/digital-sales-rooms/
+    products/guided-shopping/installation/: products/digital-sales-rooms/installation/
+    products/guided-shopping/selfHostedMercureInstallation.md: products/digital-sales-rooms/installation/realtime-service-mercure.md
+    products/guided-shopping/sampleMercureConfig.md: products/digital-sales-rooms/installation/realtime-service-mercure.md
+    products/guided-shopping/checklist.md: products/digital-sales-rooms/
