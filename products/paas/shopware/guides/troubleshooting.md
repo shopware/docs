@@ -32,7 +32,7 @@ If a page is slow, intermittently returns an error, or seems to be cached, inspe
 sw-paas app timing --query "foo=bar"
 ```
 
-Adding a query parameter helps bypass cached responses so you can inspect a fresh request.
+Adding a query parameter helps bypass cached responses, allowing you to inspect a fresh request.
 
 The following response headers are especially useful:
 
