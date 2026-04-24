@@ -2,21 +2,23 @@ redirects:
     guides/hosting/configurations/shopware/staging.html: guides/hosting/installation-updates/creating-a-staging-instance.html
     developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
     guides/plugins/apps/platform-sh-template.html: guides/plugins/apps/app-base-guide.html
-    guides/integrations-api/store-api-guide.html: guides/integrations-api/
-    guides/integrations-api/store-api-guide/register-a-customer.html: guides/integrations-api/
-    guides/integrations-api/store-api-guide/search-for-products.html: guides/integrations-api/
-    guides/integrations-api/store-api-guide/work-with-the-cart.html: guides/integrations-api/
-    guides/integrations-api/store-api-guide/handling-the-payment.html: guides/integrations-api/
-    guides/integrations-api/store-api-guide/faq.html: guides/integrations-api/
-    guides/integrations-api/admin-api/: guides/integrations-api/
-    guides/integrations-api/admin-api/action-routes.html: guides/integrations-api/
-    guides/integrations-api/admin-api/authentication.html: guides/integrations-api/
-    guides/integrations-api/admin-api/reading-entities.html: guides/integrations-api/
-    guides/integrations-api/admin-api/writing-entities/: guides/integrations-api/
-    guides/integrations-api/admin-api/writing-entities/associations.html: guides/integrations-api/
-    guides/integrations-api/admin-api/writing-entities/bulk-payloads.html: guides/integrations-api/
-    guides/integrations-api/admin-api/writing-entities/product-data.html: guides/integrations-api/
-    resources/references/api-reference/admin-api-reference.html: guides/integrations-api/
+    guides/integrations-api/index.html: guides/development/integrations-api/index.html
+    guides/integrations-api/: guides/development/integrations-api/
+    guides/integrations-api/store-api-guide.html: guides/development/integrations-api/
+    guides/integrations-api/store-api-guide/register-a-customer.html: guides/development/integrations-api/
+    guides/integrations-api/store-api-guide/search-for-products.html: guides/development/integrations-api/
+    guides/integrations-api/store-api-guide/work-with-the-cart.html: guides/development/integrations-api/
+    guides/integrations-api/store-api-guide/handling-the-payment.html: guides/development/integrations-api/
+    guides/integrations-api/store-api-guide/faq.html: guides/development/integrations-api/
+    guides/integrations-api/admin-api/: guides/development/integrations-api/
+    guides/integrations-api/admin-api/action-routes.html: guides/development/integrations-api/
+    guides/integrations-api/admin-api/authentication.html: guides/development/integrations-api/
+    guides/integrations-api/admin-api/reading-entities.html: guides/development/integrations-api/
+    guides/integrations-api/admin-api/writing-entities/: guides/development/integrations-api/
+    guides/integrations-api/admin-api/writing-entities/associations.html: guides/development/integrations-api/
+    guides/integrations-api/admin-api/writing-entities/bulk-payloads.html: guides/development/integrations-api/
+    guides/integrations-api/admin-api/writing-entities/product-data.html: guides/development/integrations-api/
+    resources/references/api-reference/admin-api-reference.html: guides/development/integrations-api/
     concepts/extensions/elasticsearch-concept.html: concepts/framework/elasticsearch.html
     guides/plugins/plugins/storefront/use-csrf-protection.html: guides/hosting/configurations/framework/samesite-protection.html
     guides/plugins/plugins/storefront/add-caching-to-custom-controller.html: guides/plugins/plugins/storefront/advanced/add-caching-to-custom-controller.html
@@ -174,8 +176,8 @@ redirects:
     resources/guidelines/testing/store/quality-guidelines-plugins/: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-apps/: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/testing-guidelines.html
-    guides/integrations-api/general-concepts/: guides/development/integrations-api/general-concepts/
-    guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/general-concepts/api-versioning.html
+    guides/integrations-api/general-concepts/: guides/development/integrations-api/
+    guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/request-headers.html#sw-version-id
     guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/request-headers.html
     guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/search-criteria.html
     guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/partial-data-loading.html
