@@ -38,11 +38,13 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 ### Plugin or App?
 
 **Use a plugin or Symfony bundle when:**
+
 - Your tool needs direct DAL / service container access
 - You want to ship via the Shopware Marketplace
 - Your capability is tightly coupled to Shopware's install / activate lifecycle
 
 **Use an app when:**
+
 - Your logic runs on a remote service (ERP, PIM, CRM, SaaS backend)
 - You need Cloud compatibility (apps work where plugins cannot)
 - Your capability should deploy and scale independently from Shopware

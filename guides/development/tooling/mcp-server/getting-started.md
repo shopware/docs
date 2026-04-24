@@ -19,7 +19,7 @@ This guide walks you through connecting an AI client to a Shopware shop using th
 
 Add the following to your `.env` file:
 
-```
+```bash
 MCP_SERVER=1
 ```
 
@@ -35,7 +35,7 @@ bin/console integration:create "My MCP Client" --admin
 
 This outputs an access key and secret:
 
-```
+```bash
 SHOPWARE_ACCESS_KEY_ID=SWIA...
 SHOPWARE_SECRET_ACCESS_KEY=...
 ```
@@ -154,11 +154,11 @@ By default an admin integration can call all registered tools. To restrict acces
 1. Go to **Settings → Integrations**
 2. Open the context menu for your integration → **Edit MCP Tools**
 
-<img src="../../../../assets/mcp-integrations-edit-mcp-tools-action.png" alt="Edit MCP Tools action in the Integrations list" width="700">
+   <img src="../../../../assets/mcp-integrations-edit-mcp-tools-action.png" alt="Edit MCP Tools action in the Integrations list" width="700">
 
 3. Disable the "All tools" toggle and select only the tools this integration should use
 
-<img src="../../../../assets/mcp-integrations-tool-selection-modal.png" alt="Tool selection modal" width="500">
+   <img src="../../../../assets/mcp-integrations-tool-selection-modal.png" alt="Tool selection modal" width="500">
 
 When a tool is enabled, its declared dependencies are automatically included. For example, enabling `shopware-entity-delete` also enables `shopware-entity-search` and `shopware-entity-schema` because they are required for it to work.
 

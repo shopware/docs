@@ -14,11 +14,13 @@ This page documents all built-in tools, resources, and the system prompt provide
 All core tools return a consistent JSON envelope via `McpToolResponse`:
 
 **Success:**
+
 ```json
 {"success": true, "data": [...], "_meta": {"total": 42, "page": 1, "limit": 25}}
 ```
 
 **Error:**
+
 ```json
 {"success": false, "error": "Human-readable message telling the agent what to do next"}
 ```
@@ -28,6 +30,7 @@ The `_meta` field is optional and used for pagination context, dry-run status, a
 ## Dry-run behavior
 
 All write tools default to `dryRun=true`. In dry-run mode:
+
 - Changes are validated and previewed but **not persisted**
 - A database transaction is opened, the operation runs, then the transaction is rolled back
 - Flow Builder actions are suppressed (`SKIP_TRIGGER_FLOW`)
@@ -61,6 +64,7 @@ Get the field and association schema of any Shopware entity. Use this first to d
 | `entity` | string | yes | Entity name (e.g., `product`, `order`, `customer`) |
 
 **Example:**
+
 ```json
 {"entity": "product"}
 ```
@@ -88,9 +92,11 @@ Search entity records using Admin API criteria. Returns entity rows with paginat
 **Pagination:** The response `_meta` block always includes `total`, `page`, and `limit`. Iterate by incrementing `page` until `page * limit >= total`.
 
 **Examples:**
+
 ```json
 {"entity": "product", "term": "shirt", "limit": 5}
 ```
+
 ```json
 {"entity": "product", "criteria": "{\"filter\": [{\"type\": \"range\", \"field\": \"stock\", \"parameters\": {\"lte\": 5}}], \"sort\": [{\"field\": \"stock\", \"order\": \"ASC\"}]}"}
 ```
@@ -116,9 +122,11 @@ Use this instead of `shopware-entity-search` when you need counts, averages, sum
 **Response:** `{"success": true, "data": {"aggregations": {"<name>": {...}}}}`
 
 **Examples:**
+
 ```json
 {"entity": "order", "aggregations": "[{\"type\": \"avg\", \"name\": \"avgOrderValue\", \"field\": \"amountTotal\"}]"}
 ```
+
 ```json
 {
   "entity": "newsletter_recipient",
@@ -227,9 +235,11 @@ Change the state of an order, its transactions, and/or its deliveries in one cal
 **ACL:** `order:read` always; `order:update`, `order_transaction:update`, `order_delivery:update` per action on commit.
 
 **Examples:**
+
 ```json
 {"orderNumber": "10001", "deliveryAction": "ship", "dryRun": true}
 ```
+
 ```json
 {"orderNumber": "10001", "orderAction": "cancel", "transactionAction": "refund", "deliveryAction": "cancel", "dryRun": false}
 ```
@@ -286,6 +296,7 @@ Resources are static reference data available via MCP resource URIs. They requir
 ### shopware-context
 
 The system prompt that explains how to work with the Shopware MCP server. It covers:
+
 - Core entity relationships (product, order, customer, category)
 - How to use the DAL criteria format
 - Available tools grouped by purpose

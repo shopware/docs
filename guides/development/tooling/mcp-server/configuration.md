@@ -11,7 +11,7 @@ nav:
 
 The MCP server is gated behind the `MCP_SERVER` feature flag. Add it to your `.env` file:
 
-```
+```bash
 MCP_SERVER=1
 ```
 
@@ -80,6 +80,7 @@ Shopware defaults to a file-based session store that writes to `%kernel.cache_di
 The file store works on a single machine. In a multi-server or Kubernetes environment, `initialize` and subsequent tool calls may land on different workers that do not share a local filesystem. Switch to Redis:
 
 **`config/services.yaml`:**
+
 ```yaml
 services:
     mcp.session.cache_psr16:
@@ -94,6 +95,7 @@ services:
 ```
 
 **`config/packages/framework.yaml`:**
+
 ```yaml
 framework:
     cache:
@@ -150,6 +152,7 @@ bin/console debug:mcp shopware-entity-search
 ```
 
 If a tool is missing from this output, it is also missing from the live endpoint. Common causes:
+
 - Plugin is not installed or activated
 - Service tag is missing (`shopware.mcp.tool`)
 - `#[McpTool]` attribute is on `__invoke()` instead of the class

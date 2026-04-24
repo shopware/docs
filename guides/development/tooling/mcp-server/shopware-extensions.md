@@ -65,7 +65,7 @@ Install via one line in `config/bundles.php` after requiring the package, which 
 
 A separate project for **developer-facing** local MCP tools: code generation, testing, linting, cache clearing, and deployment operations. This is distinct from the shop's `/api/_mcp` endpoint.
 
-Where `/api/_mcp` gives AI clients access to shop data and merchant operations, `ai-coding-tools` gives AI coding assistants in your IDE access to the Shopware development environment itself. Use this when you want your IDE's AI to run `bin/console`, execute tests, or generate boilerplate code against a local Shopware installation.
+Where `/api/_mcp` gives AI clients access to shop data and merchant operations, `ai-coding-tools` gives AI coding assistants in your IDE access to the Shopware development environment itself. Use this when you want an AI coding assistant in your IDE to run `bin/console`, execute tests, or generate boilerplate code against a local Shopware installation.
 
 :::info Experimental
 `ai-coding-tools` lives under the `shopwareLabs` GitHub organization and is considered experimental. APIs may change without notice.

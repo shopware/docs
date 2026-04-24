@@ -10,6 +10,7 @@ nav:
 Shopware apps can add custom tools, prompts, and resources to the MCP server through a declarative `Resources/mcp.xml` file. When an AI client calls an app tool, Shopware sends an HMAC-signed HTTP POST to your app's endpoint and returns the response to the client.
 
 Use an app when:
+
 - Your capability runs on a remote service (ERP, PIM, CRM, SaaS backend)
 - You want cloud compatibility (apps work in Shopware Cloud environments where plugins cannot run)
 - Your capability needs to scale or deploy independently from Shopware
@@ -43,7 +44,7 @@ All three capability types (tools, prompts, resources) follow the same lifecycle
 
 Names declared in `mcp.xml` are automatically prefixed with the app name at install time:
 
-```
+```text
 app name: "my-erp"
 declared name: "sync-orders"
 → final tool name: "my-erp-sync-orders"
@@ -105,6 +106,7 @@ Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
 When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared in `mcp.xml`:
 
 **Request body:**
+
 ```json
 {
   "tool": "my-erp-sync-orders",

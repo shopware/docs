@@ -24,6 +24,7 @@ sequenceDiagram
 ```
 
 **When to use a tool:**
+
 - The agent needs to decide when and whether to call it
 - The operation requires parameters beyond a simple identifier
 - The capability involves writes, state changes, or dynamic queries
@@ -35,13 +36,14 @@ sequenceDiagram
 
 A resource is a read-only data endpoint identified by a URI. Resources expose stable reference data that the agent or client can fetch without any decision-making. Unlike tools, resources have no description to guide the agent; they are simply data at a known address.
 
-```
+```text
 shopware://entities          → list of all entity names
 shopware://sales-channels    → sales channels with IDs and domains
 shopware://state-machines    → states and valid transitions per machine
 ```
 
 **When to use a resource:**
+
 - The data is read-only and identified by a stable, predictable URI
 - The information is needed frequently and does not change mid-session (entity names, currencies, languages)
 - You want the client or agent to load context without consuming tool-call budget
@@ -62,6 +64,7 @@ sequenceDiagram
 ```
 
 **When to use a prompt:**
+
 - You want to provide step-by-step sequences for common tasks
 - You want to explain domain-specific concepts (entity relationships, state machine semantics)
 - You want to mention available resources and when to use them
@@ -88,6 +91,7 @@ A well-designed MCP server uses all three:
 3. **Tools** do the actual work: search, read, write, transition state.
 
 For example, to ship an order the agent would:
+
 1. Read `shopware://state-machines` to confirm `ship` is a valid delivery action
 2. Call `shopware-order-state` with `deliveryAction: "ship"` and `dryRun: true` to preview
 3. Call again with `dryRun: false` to execute

@@ -114,12 +114,14 @@ Add any additional tools from installed plugins to this file. Tools not listed s
 If a tool does not appear in `debug:mcp` output, it will also be missing from the live endpoint.
 
 **For plugin tools:**
+
 - Confirm the plugin is installed and activated: `bin/console plugin:list`
 - Confirm the service has `<tag name="shopware.mcp.tool"/>` in `services.xml`
 - Confirm `#[McpTool]` is on the **class**, not on `__invoke()`
 - Run `bin/console cache:clear` after changes
 
 **For core / bundle tools:**
+
 - Confirm the directory is listed in `mcp.yaml` `scan_dirs`
 - Confirm the service has the correct DI tag (`mcp.tool` for in-tree bundles)
 

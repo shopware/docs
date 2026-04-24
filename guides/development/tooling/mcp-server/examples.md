@@ -15,6 +15,7 @@ Step-by-step workflows showing how the built-in tools and resources work togethe
 Read the `shopware://entities` resource with no tool call needed.
 
 **Understand an entity's fields and associations:**
+
 ```json
 Tool: shopware-entity-schema
 Input: {"entity": "product"}
@@ -25,12 +26,14 @@ Use the schema result to understand which fields and association names are valid
 ## Searching for products
 
 **Simple term search:**
+
 ```json
 Tool: shopware-entity-search
 Input: {"entity": "product", "term": "shirt", "limit": 5}
 ```
 
 **Filter with criteria JSON for active products with stock above 10, sorted by name:**
+
 ```json
 Tool: shopware-entity-search
 Input: {
@@ -40,6 +43,7 @@ Input: {
 ```
 
 **Paginate through results:**
+
 ```json
 Tool: shopware-entity-search
 Input: {"entity": "product", "limit": 10, "page": 3}
@@ -48,6 +52,7 @@ Input: {"entity": "product", "limit": 10, "page": 3}
 Continue incrementing `page` until `page * limit >= _meta.total`.
 
 **Select specific fields with explicit includes:**
+
 ```json
 Tool: shopware-entity-search
 Input: {
@@ -59,6 +64,7 @@ Input: {
 ## Working with orders
 
 **Recent orders with line items and transactions:**
+
 ```json
 Tool: shopware-entity-search
 Input: {
@@ -68,24 +74,28 @@ Input: {
 ```
 
 **Preview shipping a delivery:**
+
 ```json
 Tool: shopware-order-state
 Input: {"orderNumber": "10001", "deliveryAction": "ship", "dryRun": true}
 ```
 
 **Execute the shipment:**
+
 ```json
 Tool: shopware-order-state
 Input: {"orderNumber": "10001", "deliveryAction": "ship", "dryRun": false}
 ```
 
 **Preview full cancellation (order + transaction + delivery):**
+
 ```json
 Tool: shopware-order-state
 Input: {"orderNumber": "10001", "orderAction": "cancel", "transactionAction": "cancel", "deliveryAction": "cancel", "dryRun": true}
 ```
 
 **Cancel order and refund paid transaction:**
+
 ```json
 Tool: shopware-order-state
 Input: {"orderNumber": "10001", "orderAction": "cancel", "transactionAction": "refund", "deliveryAction": "cancel", "dryRun": false}
@@ -96,18 +106,21 @@ Read `shopware://state-machines` first to see valid actions for each state machi
 ## System configuration
 
 **Read all listing settings:**
+
 ```json
 Tool: shopware-system-config-read
 Input: {"key": "core.listing"}
 ```
 
 **Preview a config change:**
+
 ```json
 Tool: shopware-system-config-write
 Input: {"key": "core.listing.defaultSorting", "value": "\"price-asc\"", "dryRun": true}
 ```
 
 **Apply the change:**
+
 ```json
 Tool: shopware-system-config-write
 Input: {"key": "core.listing.defaultSorting", "value": "\"price-asc\"", "dryRun": false}
@@ -116,6 +129,7 @@ Input: {"key": "core.listing.defaultSorting", "value": "\"price-asc\"", "dryRun"
 ## Creating and updating entities
 
 **Create a product (preview first):**
+
 ```json
 Tool: shopware-entity-upsert
 Input: {
@@ -128,6 +142,7 @@ Input: {
 Use `shopware://currencies` to find `currencyId`. Use `shopware-entity-search` on `tax` to find `taxId`.
 
 **Update an existing entity:**
+
 ```json
 Tool: shopware-entity-upsert
 Input: {
@@ -140,6 +155,7 @@ Input: {
 ## Analytics and reporting
 
 **Count opt-in newsletter subscribers:**
+
 ```json
 Tool: shopware-entity-aggregate
 Input: {
@@ -150,6 +166,7 @@ Input: {
 ```
 
 **Average order value for the current month:**
+
 ```json
 Tool: shopware-entity-aggregate
 Input: {
@@ -160,6 +177,7 @@ Input: {
 ```
 
 **Orders by month (date histogram):**
+
 ```json
 Tool: shopware-entity-aggregate
 Input: {
@@ -171,6 +189,7 @@ Input: {
 ## Media and appearance
 
 **Upload a product image from a URL:**
+
 ```json
 Tool: shopware-media-upload
 Input: {"url": "https://example.com/images/product.jpg", "productId": "<product-uuid>"}
@@ -179,12 +198,14 @@ Input: {"url": "https://example.com/images/product.jpg", "productId": "<product-
 **Upload a logo and update the theme:**
 
 **Step 1:** Upload the image:
+
 ```json
 Tool: shopware-media-upload
 Input: {"url": "https://example.com/logo.svg", "fileName": "shop-logo"}
 ```
 
 **Step 2:** Use the returned `mediaId` to update the theme:
+
 ```json
 Tool: shopware-theme-config
 Input: {

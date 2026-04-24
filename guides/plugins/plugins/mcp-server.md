@@ -10,6 +10,7 @@ nav:
 Shopware plugins and Symfony bundles can add custom tools, prompts, and resources to the MCP server. This guide covers the plugin path: in-process PHP with full DAL access and the Shopware plugin lifecycle.
 
 Use a plugin when:
+
 - Your tool needs deep access to DAL repositories, services, or the Symfony container
 - You want to ship via the Shopware Marketplace
 - Your capability is tightly coupled to Shopware's plugin lifecycle (install, activate, deactivate)
@@ -28,7 +29,7 @@ This convention applies uniformly to tools, prompts, and resources.
 
 ## Plugin structure
 
-```
+```text
 custom/plugins/SwagMyPlugin/
 ├── composer.json
 └── src/
@@ -87,6 +88,7 @@ class MyTool extends McpToolResponse
 ```
 
 **Key rules:**
+
 - `#[McpTool]` goes on the class, not on `__invoke()`. The compiler pass reads class-level attributes; method-level attributes are silently ignored.
 - Names must only contain `a-zA-Z0-9_-`.
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional. `Context` is injected by the framework and is not exposed as an agent parameter.
@@ -169,6 +171,7 @@ bin/console debug:mcp
 ```
 
 If the tool appears here, it is available in the live HTTP endpoint. If it does not appear, check:
+
 - Plugin is installed and active
 - Service has `<tag name="shopware.mcp.tool"/>`
 - `#[McpTool]` is on the class, not on `__invoke()`
