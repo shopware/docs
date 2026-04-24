@@ -126,7 +126,7 @@ The Admin UI surfaces two helpers for getting ACL right:
 
 <img src="../../../../assets/mcp-permissions-privilege-gap-modal.png" alt="Privilege gap modal on the Role detail page" width="500">
 
-## CLI: debug:mcp
+## CLI: `debug:mcp`
 
 List all registered capabilities:
 
@@ -134,7 +134,7 @@ List all registered capabilities:
 bin/console debug:mcp
 ```
 
-The output shows five columns: **Name**, **Description**, **Dependencies**, **Privileges**, and **Source**. It reads from the live server registry and covers core tools, plugin tools, and app tools in one view.
+The output shows four columns: **Name**, **Source**, **Dependencies**, and **Privileges**. It reads from the live server registry and covers core tools, plugin tools, and app tools in one view.
 
 Filter by capability type:
 
@@ -142,7 +142,7 @@ Filter by capability type:
 bin/console debug:mcp --tools      # tools only
 bin/console debug:mcp --prompts    # prompts only
 bin/console debug:mcp --resources  # resources only
-bin/console debug:mcp --all        # all types (default)
+bin/console debug:mcp --all        # detailed per-capability output
 ```
 
 Drill into a single capability by name:

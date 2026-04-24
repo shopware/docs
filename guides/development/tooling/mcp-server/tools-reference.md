@@ -166,7 +166,7 @@ Read system configuration values. Pass a domain prefix to retrieve all keys unde
 
 ## Write Tools
 
-All write tools default to `dryRun=true`. Always preview before committing.
+Most write tools default to `dryRun=true`. Always preview before committing. `shopware-media-upload` is the exception — it performs the upload immediately and has no dry-run mode.
 
 ### shopware-entity-upsert
 
@@ -270,8 +270,8 @@ Read or update theme configuration for a sales channel. Manages brand colors, lo
 | Name | Type | Required | Default | Description |
 |---|---|---|---|---|
 | `salesChannelId` | string | yes | — | Sales channel UUID |
-| `action` | string | yes | — | `get` or `update` |
-| `config` | string | no | — | For `update`: JSON key-value pairs, e.g. `{"sw-color-brand-primary": {"value": "#0000ff"}}` |
+| `action` | string | no | `"get"` | `get` or `update` |
+| `config` | string | no | `"{}"` | For `update`: JSON key-value pairs, e.g. `{"sw-color-brand-primary": {"value": "#0000ff"}}` |
 | `dryRun` | bool | no | `true` | For `update`: preview without persisting |
 
 **ACL:** `theme:read` for `get`; `theme:update` for `update`.

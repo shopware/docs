@@ -15,7 +15,7 @@ Use a plugin when:
 - You want to ship via the Shopware Marketplace
 - Your capability is tightly coupled to Shopware's plugin lifecycle (install, activate, deactivate)
 
-For remote/webhook-based capabilities, see [Extending via App](../apps/mcp-server.md). For a general overview of the three extension types, see the [MCP Server index](../../development/tooling/mcp-server/index.md#architecture).
+For remote/webhook-based capabilities, see [Extending via App](../apps/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../development/tooling/mcp-server/extending.md).
 
 ## Naming convention
 
@@ -52,11 +52,11 @@ The `#[McpTool]` attribute must be on the **class**, not on `__invoke()`. Extend
 namespace Swag\MyPlugin\Mcp\Tool;
 
 use Mcp\Capability\Attribute\McpTool;
-use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolDependsOn;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolRequires;
+use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
 use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
 
 #[McpTool(name: 'swag-my-plugin-orders', description: 'List recent orders for a given customer email.')]
@@ -66,12 +66,16 @@ class MyTool extends McpToolResponse
 {
     public function __construct(
         private readonly EntityRepository $orderRepository,
+        private readonly McpContextProvider $contextProvider,
     ) {
     }
 
-    public function __invoke(string $email, int $limit = 10, Context $context = new Context()): string
+    public function __invoke(string $email, int $limit = 10): string
     {
-        $this->requirePrivilege($context, 'order:read');
+        $context = $this->contextProvider->getContext();
+        if ($error = $this->requirePrivilege($context, 'order:read')) {
+            return $error;
+        }
 
         $criteria = new Criteria();
         $criteria->addFilter(/* ... */);
@@ -91,9 +95,10 @@ class MyTool extends McpToolResponse
 
 - `#[McpTool]` goes on the class, not on `__invoke()`. The compiler pass reads class-level attributes; method-level attributes are silently ignored.
 - Names must only contain `a-zA-Z0-9_-`.
-- Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional. `Context` is injected by the framework and is not exposed as an agent parameter.
-- Always call `$this->requirePrivilege($context, '...')` at the top of `__invoke()`. `#[McpToolRequires]` is declarative only; without `requirePrivilege()` there is no runtime enforcement.
-- Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use the injected `$context` instead.
+- Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
+- Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
+- `requirePrivilege()` returns an error string on failure; check its return value with `if ($error = $this->requirePrivilege(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
+- Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use `McpContextProvider::getContext()` instead.
 - Return a `string` from `__invoke()`. The MCP SDK wraps the return value into the protocol response automatically.
 - Extend `McpToolResponse` to use `$this->success()` and `$this->error()` helpers.
 
@@ -140,6 +145,7 @@ In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`
     <services>
         <service id="Swag\MyPlugin\Mcp\Tool\MyTool">
             <argument type="service" id="order.repository"/>
+            <argument type="service" id="Shopware\Core\Framework\Mcp\Context\McpContextProvider"/>
             <tag name="shopware.mcp.tool"/>
         </service>
     </services>
@@ -291,3 +297,4 @@ For write tools, use `$this->executeWithDryRun()`, which catches exceptions auto
 - [MCP Concepts](../../development/tooling/mcp-server/mcp-concepts.md): tools, resources, and prompts explained
 - [Best Practices](../../development/tooling/mcp-server/best-practices.md): design principles for MCP tools
 - [Configuration](../../development/tooling/mcp-server/configuration.md): allowlist, ACL, and CLI debugging
+- [SwagMcpAdminUsers](https://github.com/shopwareLabs/SwagMcpAdminUsers): example plugin registering tools, prompts, and resources for admin user management

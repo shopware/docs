@@ -16,7 +16,7 @@ Use an app when:
 - Your capability needs to scale or deploy independently from Shopware
 - You are building a SaaS integration where isolation matters more than in-process performance
 
-For in-process PHP with full DAL access, see [Extending via Plugin](../plugins/mcp-server.md). For a general overview of extension types, see the [MCP Server index](../../development/tooling/mcp-server/index.md#architecture).
+For in-process PHP with full DAL access, see [Extending via Plugin](../plugins/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../development/tooling/mcp-server/extending.md).
 
 ## How app capabilities work
 
@@ -52,7 +52,7 @@ declared name: "sync-orders"
 
 Names must only contain `a-zA-Z0-9_-` (no dots). The `shopware-` prefix is reserved for core tools; app names that would produce a `shopware-` prefixed capability are silently skipped.
 
-## mcp.xml structure
+## `mcp.xml` structure
 
 Place `Resources/mcp.xml` in your app bundle:
 
@@ -130,7 +130,45 @@ When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared
 | `source.shopId` | Unique shop identifier. Use this for multi-tenant app backends |
 | `source.appVersion` | Installed version of the app |
 
-The same structure is used for prompts and resources, with the field renamed to `prompt` or `resource` accordingly.
+For prompts, the request body uses `prompt` instead of `tool`, and arguments are omitted:
+
+```json
+{
+  "prompt": "my-erp-erp-context",
+  "source": {
+    "url": "https://shop.example.com",
+    "shopId": "abc123def456",
+    "appVersion": "1.2.0"
+  }
+}
+```
+
+The response must be a JSON array of message objects:
+
+```json
+[
+  {"role": "user", "content": "You are working with ERP-synced Shopware data..."}
+]
+```
+
+For resources, the request body uses `resource` instead of `tool`:
+
+```json
+{
+  "resource": "my-erp-erp-status",
+  "source": {
+    "url": "https://shop.example.com",
+    "shopId": "abc123def456",
+    "appVersion": "1.2.0"
+  }
+}
+```
+
+The response must be a single object with `uri`, `mimeType`, and `text`:
+
+```json
+{"uri": "my-erp://erp-status", "mimeType": "application/json", "text": "{\"connected\": true}"}
+```
 
 ## Verifying the signature
 
@@ -197,3 +235,4 @@ Your tools appear with **Source: app** in the output.
 - [MCP Concepts](../../development/tooling/mcp-server/mcp-concepts.md): tools, resources, and prompts explained
 - [Best Practices](../../development/tooling/mcp-server/best-practices.md): design principles for MCP tools
 - [Extending via Plugin](../plugins/mcp-server.md): in-process PHP alternative
+- [McpHelloWorld](https://github.com/shopwareLabs/McpHelloWorld): minimal example app registering tools, prompts, and resources via webhook

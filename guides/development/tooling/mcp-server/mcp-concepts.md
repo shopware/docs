@@ -7,7 +7,7 @@ nav:
 
 # MCP Concepts
 
-The Model Context Protocol defines three building blocks that servers can expose: **tools**, **resources**, and **prompts**. Knowing what each one does and when to use it is the starting point for working with Shopware's MCP server or building your own extensions.
+The Model Context Protocol (MCP) defines three building blocks that servers can expose: **tools**, **resources**, and **prompts**. Knowing what each one does and when to use it is the starting point for working with Shopware's MCP server or building your own extensions.
 
 The full specification is available at [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/).
 

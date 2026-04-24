@@ -45,7 +45,7 @@ If a tool accepts a name that maps to an internal enum, registry, or state machi
 
 ### Limit tool count
 
-Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools means more tokens spent before the agent even starts reasoning. Shopware core alone already ships more than 15 tools, so keeping a single integration lean matters.
+Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools means more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like SwagMcpMerchantAssistant add more, so keeping a single integration lean matters.
 
 The practical approach is to use **multiple integrations with scoped tool allowlists** rather than one integration that gets everything. For example:
 

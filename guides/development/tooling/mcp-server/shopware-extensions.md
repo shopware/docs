@@ -47,7 +47,7 @@ All write tools default to `dryRun=true`.
 
 A Symfony bundle (not a plugin) that adds developer diagnostic tools to the MCP server. It targets environments where host-side tools cannot reach the Shopware instance directly, for example SaaS environments, staging servers, and on-premise deployments.
 
-### Available tools
+### Diagnostic tools
 
 | Tool | What it does |
 |---|---|

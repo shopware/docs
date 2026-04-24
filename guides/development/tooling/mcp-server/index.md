@@ -62,7 +62,7 @@ Shopware's MCP server is built on `symfony/mcp-bundle`, which implements the [MC
 | `structuredContent` and `isError` in tool results | Not used; Shopware uses its own `{"success": bool, ...}` envelope |
 | ACL checks on resources | Not implemented (resources are public within the authenticated session) |
 
-If a feature you need is missing from `symfony/mcp-bundle`, check the [symfony/mcp-bundle repository](https://github.com/symfony/mcp-bundle) for open issues and pending releases before building a workaround.
+If a feature you need is missing from `symfony/mcp-bundle`, check its [repository](https://github.com/symfony/mcp-bundle) for open issues and pending releases before building a workaround.
 
 ## In this section
 
@@ -73,6 +73,7 @@ If a feature you need is missing from `symfony/mcp-bundle`, check the [symfony/m
 | [Tools Reference](./tools-reference.md) | All built-in tools, resources, and prompts with parameters |
 | [Configuration](./configuration.md) | Feature flag, allowlist, session store, rate limiting, CLI |
 | [Best Practices](./best-practices.md) | Design principles for building MCP tools |
+| [Extending the MCP Server](./extending.md) | Tools, prompts, and resources for all three extension types side by side |
 | [Examples](./examples.md) | Step-by-step workflows for common tasks |
 | [Troubleshooting](./troubleshooting.md) | Fix common connection and permission issues |
 | [Shopware Extensions](./shopware-extensions.md) | Copilot, SwagMcpMerchantAssistant, SwagMcpDevTools, ai-coding-tools |
@@ -83,3 +84,4 @@ To extend the MCP server with your own tools:
 
 - [Extending via Plugin](../../plugins/plugins/mcp-server.md): in-process PHP with full DAL access, Shopware lifecycle
 - [Extending via App](../../plugins/apps/mcp-server.md): webhook-based, works in Shopware Cloud
+- [Side-by-side comparison](./extending.md): all three capability types for all three extension types
