@@ -177,7 +177,7 @@ redirects:
     resources/guidelines/testing/store/quality-guidelines-apps/: guides/development/testing/testing-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/testing-guidelines.html
     guides/integrations-api/general-concepts/: guides/development/integrations-api/index.html
-    guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/index.html
+    guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/request-headers.html#sw-version-id
     guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/request-headers.html
     guides/integrations-api/general-concepts/search-criteria.html: guides/development/integrations-api/search-criteria.html
     guides/integrations-api/general-concepts/partial-data-loading.html: guides/development/integrations-api/partial-data-loading.html
