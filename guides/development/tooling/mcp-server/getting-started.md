@@ -12,7 +12,7 @@ This guide walks you through connecting an AI client to a Shopware shop using th
 ## Prerequisites
 
 - Shopware 6.7 or later
-- `symfony/mcp-bundle` installed (`composer require symfony/mcp-bundle`)
+- `symfony/mcp-bundle` installed — verify with `composer show symfony/mcp-bundle`. If it is missing, ensure it is listed as a dependency in `composer.json` and run `composer install`.
 - The `MCP_SERVER` feature flag enabled (see [Configuration](./configuration.md))
 
 ## Step 1: Enable the feature flag

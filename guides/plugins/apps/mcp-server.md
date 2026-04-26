@@ -70,6 +70,10 @@ Place `Resources/mcp.xml` in your app bundle:
                 <property name="since" type="string" description="ISO 8601 date, sync orders after this date" required="true"/>
                 <property name="limit" type="integer" description="Maximum number of orders to sync" required="false"/>
             </input-schema>
+            <required-privileges>
+                <privilege>order:read</privilege>
+                <privilege>order:update</privilege>
+            </required-privileges>
         </mcp-tool>
     </mcp-tools>
 
@@ -97,9 +101,27 @@ Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
 | Attribute | Required | Description |
 |---|---|---|
 | `name` | yes | Parameter name |
-| `type` | yes | JSON Schema type: `string`, `integer`, `number`, `boolean` |
+| `type` | yes | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
 | `description` | no | Description shown to the AI client |
 | `required` | no | Whether the parameter is required (default: `false`) |
+
+### Required privileges
+
+List the ACL privileges your tool needs with `<required-privileges>`. The admin UI uses this list to warn operators when an integration's role is missing privileges a tool expects.
+
+How strictly these privileges are enforced depends on the URL mode:
+
+- **External URL** (`https://...`): informational only. Shopware does not check these privileges before calling your webhook. Your app must enforce them on its own side — for example by validating `source.shopId` against what that shop is permitted to do in your backend.
+- **Internal path** (`/api/...`): enforced by Shopware. The call is dispatched as a Symfony subrequest through the normal Admin API stack, so the integration's ACL role is checked just like any other API call. Declare the privileges accurately so the Admin UI can warn operators about gaps.
+
+## URL modes: external vs internal
+
+The `url` attribute supports two modes:
+
+- **External URL** (`https://...`): Shopware sends an HMAC-signed POST to your remote endpoint. This is the default for SaaS integrations and any app hosted outside Shopware.
+- **Internal path** (`/...`): Shopware dispatches the call as a Symfony subrequest. This lets an app use [app scripts](../app-scripts/) to serve capability logic without running an external server. Example: `url="/api/script/mcp-greet"`.
+
+Use the internal-path mode when your tool is a thin wrapper around data Shopware already has. Use external URLs when you need to call out to an ERP, PIM, or any system Shopware cannot reach directly.
 
 ## Webhook protocol
 
@@ -210,7 +232,7 @@ Return a JSON string as the tool result. Shopware forwards this to the AI client
 {"success": true, "data": {"synced": 42, "errors": 0}}
 ```
 
-For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. This is not enforced by the protocol but makes the AI client's experience more predictable.
+For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. Shopware does not reject responses that omit `success`, but it logs a warning when the field is missing so operators can spot broken handlers.
 
 **Timeout:** App webhook calls time out after `shopware.mcp.app_tool_timeout` seconds (default: 10). Keep responses fast or use async patterns with status polling.
 
@@ -228,7 +250,7 @@ Verify with:
 bin/console debug:mcp
 ```
 
-Your tools appear with **Source: app** in the output.
+Your tools appear with **Source: app** in the output. To see what a specific integration can reach (respecting its per-integration allowlist), pass `--integration=SWIA...` with the integration's access key.
 
 ## Further reading
 

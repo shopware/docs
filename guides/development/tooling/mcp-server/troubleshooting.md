@@ -122,7 +122,7 @@ If a tool does not appear in `debug:mcp` output, it will also be missing from th
 
 **For core / bundle tools:**
 
-- Confirm the directory is listed in `mcp.yaml` `scan_dirs`
+- Confirm the directory is listed in `config/packages/mcp.php` `scan_dirs`
 - Confirm the service has the correct DI tag (`mcp.tool` for in-tree bundles)
 
 ## Security layers

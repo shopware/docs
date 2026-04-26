@@ -27,7 +27,7 @@ Tools let the AI agent call your code to take action or fetch data.
 
 <Tab title="App">
 
-Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-prefixed with the app name.
+Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-prefixed with the app name. Use `<required-privileges>` to help the admin UI warn operators about missing ACL roles. Use `url="/..."` to route to an app script instead of an external URL.
 
 ```xml
 <mcp-tools>
@@ -37,6 +37,9 @@ Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-p
         <input-schema>
             <property name="since" type="string" description="ISO 8601 date" required="true"/>
         </input-schema>
+        <required-privileges>
+            <privilege>order:read</privilege>
+        </required-privileges>
     </mcp-tool>
 </mcp-tools>
 ```

@@ -45,21 +45,13 @@ An empty list (the default) means no compile-time restriction; all registered to
 
 :::info Per-integration allowlist
 For production use, manage tool access per integration under **Settings → Integrations → Edit MCP Tools**. The global `allowed_tools` is a coarse safety switch, not the main product control.
+
+The per-integration allowlist is stored in the `integration.mcp_tool_allowlist` column. `null` means all tools are allowed; a JSON array lists the allowed tool names; an empty array means no tools are allowed.
 :::
 
 ## MCP bundle configuration
 
-The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.yaml`:
-
-```yaml
-mcp:
-    app: 'Shopware'
-    version: '1.0.0'
-    client_transports:
-        http: true
-    http:
-        path: /api/_mcp
-```
+The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file and it is loaded automatically when the bundle is installed. You do not need to create or modify it for standard setups.
 
 ## Session store
 
@@ -72,7 +64,7 @@ Shopware defaults to a file-based session store that writes to `%kernel.cache_di
 | `file` (default) | No | No | `%kernel.cache_dir%/mcp-sessions/` |
 | `memory` | No | No | Per-process RAM |
 | `cache` (avoid) | No in dev | No | `cache.app` (ArrayAdapter in dev) |
-| `framework` (unusable in Shopware) | Yes | Yes | Requires active PHP session — not available because the Admin API is stateless |
+| `framework` (unusable in Shopware) | Yes | Yes | Requires active PHP session, not available because the Admin API is stateless |
 | Custom Redis store (recommended for production) | Yes | Yes | Redis / Valkey |
 
 ### Production: Redis session store
@@ -142,13 +134,18 @@ Filter by capability type:
 bin/console debug:mcp --tools      # tools only
 bin/console debug:mcp --prompts    # prompts only
 bin/console debug:mcp --resources  # resources only
-bin/console debug:mcp --all        # detailed per-capability output
 ```
 
 Drill into a single capability by name:
 
 ```bash
 bin/console debug:mcp shopware-entity-search
+```
+
+See the registry from a specific integration's perspective (honors its per-integration allowlist):
+
+```bash
+bin/console debug:mcp --integration=SWIA...
 ```
 
 If a tool is missing from this output, it is also missing from the live endpoint. Common causes:
