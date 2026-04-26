@@ -51,7 +51,7 @@ The per-integration allowlist is stored in the `integration.mcp_tool_allowlist` 
 
 ## MCP bundle configuration
 
-The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file and it is loaded automatically when the bundle is installed. You do not need to create or modify it for standard setups.
+The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file and it is loaded automatically when the `MCP_SERVER` feature flag is active. You do not need to create or modify it for standard setups.
 
 ## Session store
 
