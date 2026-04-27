@@ -74,6 +74,42 @@ Shopware enforces a 100 KB response size limit per tool call. Tool responses are
 
 Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_meta": ...}` and `{"success": false, "error": "..."}` envelopes. Agents learn one pattern and apply it everywhere.
 
+### Write tool descriptions for agent routing
+
+The `description` field on `#[McpTool]` is the only signal the agent uses to pick between similar tools. Write it for routing accuracy, not as documentation.
+
+**Lead with the trigger phrases the user will say.** Agents pattern-match on user wording. A description that opens with "The correct tool for count, sum, average, and other aggregate questions" routes correctly when the user asks "how many products?". A description that opens with "Run aggregations over any Shopware entity" does not.
+
+**Use negative phrasing to break ties.** When two tools share keywords (e.g., `shopware-entity-search` and `shopware-entity-aggregate` both work on entities), the agent will gravitate to the description that is more concrete. Spell out the contrast directly:
+
+> "Use this — NOT shopware-entity-search — for any 'how many', 'total value', or 'average' query. The search tool's `_meta.total` is pagination metadata, not a reporting count."
+
+**Do not reference other tools as prerequisites unless they truly are.** A description that ends with "Use shopware-foo-read to check current values first" trains the agent to call the read tool even when it should not. If a tool is genuinely a prerequisite, declare it with `#[McpToolDependsOn]` instead of with prose.
+
+**Mention the use cases the user will name.** If a prompt is "upload this image as a product cover", the description should contain the phrase "product cover" — and clarify that no extra parameter is required to satisfy that case. Otherwise the agent infers it cannot fulfill the request and returns no tool selection.
+
+**Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user often does not say (a sales channel UUID, a tax ID), give it a default of `''` or `null` and validate inside the method. Required-but-missing parameters cause some agents to refuse the tool call entirely instead of asking the user.
+
+**Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is the user does not get the tool they wanted; the cost of running the eval is a few hundred tokens.
+
+### Tool descriptions are baked into the DI container
+
+Shopware reads `#[McpTool]` attributes at container compile time. Changing a description requires `bin/console cache:clear` for the new text to reach the MCP endpoint. If your changes do not show up in `bin/console debug:mcp` or in `tools/list`, clear the container cache first.
+
+### Use the system prompt as the disambiguation override layer
+
+Some routing decisions cannot be solved at the description level alone — for example, when two tools have legitimate overlap in keywords or when an unusual phrasing is common in your domain. Use the `shopware-context` prompt (or your own `#[McpPrompt]`) for these:
+
+```text
+### Counting and aggregating (entity-aggregate vs entity-search)
+- "How many products are there?" → shopware-entity-aggregate (count aggregation), NOT entity-search
+- "List all orders from the last 7 days" → shopware-entity-search (date-range filter, NOT aggregate)
+- Rule: any question asking for a NUMBER (count, total, sum, average) → always shopware-entity-aggregate
+- Rule: any question asking to LIST, SHOW, or RETRIEVE records → always shopware-entity-search
+```
+
+The system prompt is fetched fresh on every session, so updates take effect without a cache clear. Tool descriptions are static and ship with the integration; the system prompt is the place to encode evolving guidance.
+
 ### Write actionable error messages
 
 When a tool fails, the error message is the agent's only signal for recovery. Make it actionable:

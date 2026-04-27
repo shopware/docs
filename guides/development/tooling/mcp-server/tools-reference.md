@@ -269,7 +269,7 @@ Read or update theme configuration for a sales channel. Manages brand colors, lo
 
 | Name | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `salesChannelId` | string | yes | — | Sales channel UUID |
+| `salesChannelId` | string | yes (validated at runtime) | `""` | Sales channel UUID. Optional in the JSON schema so agents do not refuse the call when the user has not provided one; the tool returns an actionable error if empty. |
 | `action` | string | no | `"get"` | `get` or `update` |
 | `config` | string | no | `"{}"` | For `update`: JSON key-value pairs, e.g. `{"sw-color-brand-primary": {"value": "#0000ff"}}` |
 | `dryRun` | bool | no | `true` | For `update`: preview without persisting |
