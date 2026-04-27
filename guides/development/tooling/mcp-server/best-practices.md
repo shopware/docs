@@ -90,7 +90,7 @@ The `description` field on `#[McpTool]` is the only signal the agent uses to pic
 
 **Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user often does not say (a sales channel UUID, a tax ID), give it a default of `''` or `null` and validate inside the method. Required-but-missing parameters cause some agents to refuse the tool call entirely instead of asking the user.
 
-**Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is the user does not get the tool they wanted; the cost of running the eval is a few hundred tokens.
+**Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
 
 ### Tool descriptions are baked into the DI container
 
