@@ -186,7 +186,7 @@ services:
     imageproxy:
         image: ghcr.io/shopwarelabs/devcontainer/image-proxy
         ports:
- - "8050:80"
+ - "8050:8000"
         environment:
           # Your production URL.
           REMOTE_SERVER_HOST: shopware.com
