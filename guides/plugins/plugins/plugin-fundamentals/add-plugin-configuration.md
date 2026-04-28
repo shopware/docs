@@ -32,7 +32,7 @@ Below you'll find an example structure:
         ├── src
         │   ├── Resources
         │   │   └── config
-        │   │       └── config.xml 
+        │   │       └── config.xml
         │   └── SwagBasicExample.php
         └── composer.json
 ```
@@ -48,8 +48,9 @@ You can organize the content in `<card>` elements.
 Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`.
 See the minimum `config.xml` below:
 
-```xml
-<!--<plugin root>/src/Resources/config/config.xml-->
+::: code-group
+
+```xml [PLUGIN_ROOT/src/Resources/config/config.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -61,6 +62,8 @@ See the minimum `config.xml` below:
     </card>
 </config>
 ```
+
+:::
 
 Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible.
 This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
@@ -92,23 +95,23 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 Unless defined otherwise, your `<input-field>` will be a text field.
 Below you'll find a list of all available `<input-field type="?">`.
 
-| Type          | Configuration settings                                                                                                                                                              | Renders           | Default value example                   |
-|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
+| Type          | Configuration settings                                                                                                                                                                       | Renders           | Default value example                   |
+|:--------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
 | text          | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | Text field        | Some text                               |
-| textarea      | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                              | Text area         | Some more text                          |
-| text-editor   | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                                                             | HTML editor       | Some text with HTML `<div>`tags`</div>` |
-| url           | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | URL field         | <https://example.com>                     |
-| password      | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions)                                                | Password field    | ********                                |
-| int           | [length](add-plugin-configuration.md#number-length-restrictions)                                                                                                                       | Number field      | 42                                      |
-| float         | [length](add-plugin-configuration.md#number-length-restrictions)                                                                                                                       | Number field      | 42.42                                   |
-| bool          |                                                                                                                                                                                     | Switch            | `true` or `false`                       |
-| checkbox      |                                                                                                                                                                                     | Checkbox          | `true` or `false`                       |
-| datetime      |                                                                                                                                                                                     | Date-time picker  | 2024-04-04T12:00:00.000Z                |
-| date          |                                                                                                                                                                                     | Date picker       | 2024-04-05T00:00:00                     |
-| time          |                                                                                                                                                                                     | Time picker       | 11:00:00                                |
-| colorpicker   |                                                                                                                                                                                     | Color picker      | #189EFF                                 |
-| single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                | Single-Select box | option_id                               |
-| multi-select  | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                | Multi-Select box  | [option_id1, option_id2]                |
+| textarea      | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                 | Text area         | Some more text                          |
+| text-editor   | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                                                                   | HTML editor       | Some text with HTML `<div>`tags`</div>` |
+| url           | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | URL field         | <https://example.com>                   |
+| password      | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions)                                                   | Password field    | ********                                |
+| int           | [length](add-plugin-configuration.md#number-length-restrictions)                                                                                                                             | Number field      | 42                                      |
+| float         | [length](add-plugin-configuration.md#number-length-restrictions)                                                                                                                             | Number field      | 42.42                                   |
+| bool          |                                                                                                                                                                                              | Switch            | `true` or `false`                       |
+| checkbox      |                                                                                                                                                                                              | Checkbox          | `true` or `false`                       |
+| datetime      |                                                                                                                                                                                              | Date-time picker  | 2024-04-04T12:00:00.000Z                |
+| date          |                                                                                                                                                                                              | Date picker       | 2024-04-05T00:00:00                     |
+| time          |                                                                                                                                                                                              | Time picker       | 11:00:00                                |
+| colorpicker   |                                                                                                                                                                                              | Color picker      | #189EFF                                 |
+| single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                   | Single-Select box | option_id                               |
+| multi-select  | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                   | Multi-Select box  | [option_id1, option_id2]                |
 
 ### Input field settings
 
@@ -317,6 +320,21 @@ Allows you to edit snippet values within the configuration page.
 This component does not store values in the system config, but changes the translations for the snippet key.
 **Note: This field is only available from 6.3.4.0 onward.**
 
+### Entity selects without a name field
+
+Some entities do not have a `name` field, which is used per default in the select components. For example, the `mail_template` entity does not have a name field, but you can still use `description` as a `label-property` to select mail templates in your plugin configuration. Without it, the select field would be empty and not usable. You can check available properties for an entity in the `EntityDefinition` of the entity (in this case `Shopware\Core\Content\MailTemplate\MailTemplateDefinition`).
+
+```html
+<component name="sw-entity-single-select">
+    <name>exampleMailTemplate</name>
+    <entity>mail_template</entity>
+    <label-property>description</label-property>
+    <label>Choose a mail template for the plugin configuration</label>
+</component>
+```
+
+Stores the ID of the selected mail template into the system config.
+
 ### Supported component types
 
 Please Note: It is impossible to allow every component in the `config.xml`, due to their complexities.
@@ -336,8 +354,9 @@ Full multi-card `config.xml` example (collapse to focus on smaller snippets abov
 <details>
 <summary>Full example <code>config.xml</code></summary>
 
-```xml
-<!--<plugin root>/src/Resources/config/config.xml-->
+::: code-group
+
+```xml [PLUGIN_ROOT/src/Resources/config/config.xml]
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -391,6 +410,8 @@ Full multi-card `config.xml` example (collapse to focus on smaller snippets abov
     </card>
 </config>
 ```
+
+:::
 
 </details>
 
