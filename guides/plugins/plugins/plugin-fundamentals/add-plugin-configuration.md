@@ -324,7 +324,6 @@ This component does not store values in the system config, but changes the trans
 
 Some entities do not have a `name` field, which is used per default in the select components. For example, the `mail_template` entity does not have a name field, but you can still use `description` as a `label-property` to select mail templates in your plugin configuration. Without it, the select field would be empty and not usable. You can check available properties for an entity in the `EntityDefinition` of the entity (in this case `Shopware\Core\Content\MailTemplate\MailTemplateDefinition`).
 
-
 ```html
 <component name="sw-entity-single-select">
     <name>exampleMailTemplate</name>
