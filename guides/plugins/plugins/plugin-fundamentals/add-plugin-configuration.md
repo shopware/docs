@@ -32,7 +32,7 @@ Below you'll find an example structure:
         ├── src
         │   ├── Resources
         │   │   └── config
-        │   │       └── config.xml 
+        │   │       └── config.xml
         │   └── SwagBasicExample.php
         └── composer.json
 ```
@@ -273,19 +273,6 @@ Here are some examples:
 
 Stores the ID of the selected product into the system config.
 
-### Entity single select for mail templates
-
-```html
-<component name="sw-entity-single-select">
-    <name>exampleMailTemplate</name>
-    <entity>mail_template</entity>
-    <label-property>description</label-property>
-    <label>Choose a mail template for the plugin configuration</label>
-</component>
-```
-
-Stores the ID of the selected mail template into the system config. Displays the mail template description in the Administration.
-
 ### Entity multi ID select for products
 
 ```html
@@ -329,6 +316,22 @@ Stores an array with IDs of the selected products into the system config.
 Allows you to edit snippet values within the configuration page.
 This component does not store values in the system config, but changes the translations for the snippet key.
 **Note: This field is only available from 6.3.4.0 onward.**
+
+### Entity selects without a name field
+
+Some entities do not have a `name` field, which is used per default in the select components. For example, the `mail_template` entity does not have a name field, but you can still use `description` as a `label-property` to select mail templates in your plugin configuration. Without it, the select field would be empty and not usable. You can check available properties for an entity in the `EntityDefinition` of the entity (in this case `Shopware\Core\Content\MailTemplate\MailTemplateDefinition`).
+
+
+```html
+<component name="sw-entity-single-select">
+    <name>exampleMailTemplate</name>
+    <entity>mail_template</entity>
+    <label-property>description</label-property>
+    <label>Choose a mail template for the plugin configuration</label>
+</component>
+```
+
+Stores the ID of the selected mail template into the system config.
 
 ### Supported component types
 
