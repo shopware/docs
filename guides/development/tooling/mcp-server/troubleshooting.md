@@ -12,13 +12,17 @@ nav:
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | `Authentication failed. Configure your MCP client...` | Wrong or missing credentials | Check `sw-access-key` / `sw-secret-access-key` in your client config |
-| `Tool "X" is not in the allowlist...` | Tool not enabled for this integration | Settings → Integrations → Edit MCP Tools → enable the tool |
+| `Tool "X" is not in the allowlist...` | Tool not enabled for this integration | Settings → Integrations → Edit MCP Allowlist → enable the tool |
+| `Resource "X" is not in the allowlist...` | Resource not enabled for this integration | Settings → Integrations → Edit MCP Allowlist → enable the resource |
+| `Prompt "X" is not in the allowlist...` | Prompt not enabled for this integration | Settings → Integrations → Edit MCP Allowlist → enable the prompt |
 | `Missing privilege: {entity}:read` | Integration role lacks the permission | Assign an ACL role with the required privilege, or use `--admin` |
-| Tool missing from `tools/list` | Blocked by allowlist | Enable the tool under Edit MCP Tools |
+| Tool missing from `tools/list` | Blocked by allowlist | Enable the tool under Edit MCP Allowlist |
 | No tools in `tools/list` at all | Allowlist is an empty array | "All tools" toggle is OFF with nothing selected. Enable tools or turn the toggle back ON |
 | Admin integration but tool still blocked | Per-integration allowlist is set | Admin bypasses ACL (layer 3) only; the allowlist (layer 2) still applies regardless |
+| All capabilities visible when using a user login token | Bearer tokens bypass the allowlist | By design. Admin user login tokens (`client_id = administration`) are not subject to allowlist filtering. Only integration credentials (`sw-access-key` / `sw-secret-access-key`) are. |
 | Tool missing entirely | Plugin inactive, missing tag, or attribute misplaced | Check `bin/console debug:mcp` |
 | `ECONNREFUSED` or "fetch failed" | Server not running or wrong URL | Start Shopware and verify the URL in your client config |
+| Client shows "Needs authentication" after failed connect | Client fell back to `/register` OAuth endpoint | Credentials or URL are wrong. Verify your `sw-access-key` and `sw-secret-access-key` and that the URL ends with `/api/_mcp` |
 
 ## Connection issues
 
@@ -29,6 +33,16 @@ Your MCP client cannot reach the Shopware server.
 1. Start the Shopware server (Docker, ddev, or your usual local setup).
 2. Verify the URL in your MCP client config matches how you access the shop (host and port).
 3. For local development, confirm the shop is reachable at the same URL in a browser before retrying the MCP client.
+
+### Client shows "Needs authentication" or falls back to `/register`
+
+Some MCP clients (e.g. Cursor) follow the OAuth 2.0 dynamic client registration flow when the primary connection fails. They automatically POST to `{server-origin}/register`, expecting a JSON error response. Shopware handles this and returns a structured error so the client can display a "Needs authentication" state instead of an opaque connection failure.
+
+If you see this state, the root cause is in your credentials or URL, not the fallback itself:
+
+1. Confirm your `sw-access-key` starts with `SWIA` (integration access key, not a user or sales channel key).
+2. Confirm your `sw-secret-access-key` matches the secret shown when the integration was created.
+3. Confirm the URL in your client config ends with `/api/_mcp` (not `/api/_action/mcp/tools` or the shop root).
 
 ## Client-specific issues
 
@@ -127,21 +141,23 @@ If a tool does not appear in `debug:mcp` output, it will also be missing from th
 
 ## Security layers
 
-The MCP endpoint passes every request through three independent security layers. A request must clear all three before a tool executes:
+The MCP endpoint passes every request through three independent security layers. A request must clear all three before a capability executes:
 
 ```mermaid
 flowchart LR
     A[Request] --> B{Authentication}
     B -- fail --> E1["Authentication failed"]
-    B -- pass --> C{Tool Allowlist}
-    C -- fail --> E2["Tool not in allowlist"]
+    B -- pass --> C{MCP Allowlist}
+    C -- fail --> E2["Not in allowlist"]
     C -- pass --> D{ACL}
     D -- fail --> E3["Missing privilege"]
-    D -- pass --> F([Tool executes])
+    D -- pass --> F([Capability executes])
 ```
 
 **Authentication (Layer 1):** Pass `sw-access-key` and `sw-secret-access-key` headers. Obtain credentials from Settings → Integrations.
 
-**Tool Allowlist (Layer 2):** Each integration has its own allowlist. `null` means all tools are accessible; an empty array `[]` means no tools are accessible. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
+**MCP Allowlist (Layer 2):** Each integration has its own allowlist covering tools, resources, and prompts. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. Configure via Settings → Integrations → Edit MCP Allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
 
-**ACL (Layer 3):** Even if a tool is in the allowlist, the integration's ACL role must have the required entity-level permissions.
+This layer is only enforced for integration-authenticated requests (`sw-access-key` + `sw-secret-access-key`, or OAuth `client_credentials` for an integration key). Admin user bearer tokens (password / refresh-token grant, `client_id = administration`) skip this layer and see all capabilities.
+
+**ACL (Layer 3):** Even if a capability is in the allowlist, the integration's ACL role must have the required entity-level permissions.

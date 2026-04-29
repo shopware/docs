@@ -147,18 +147,18 @@ Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are
 
 Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients.
 
-## Controlling which tools are available
+## Controlling which capabilities are available
 
-By default an admin integration can call all registered tools. To restrict access:
+By default an admin integration can call all registered tools, resources, and prompts. To restrict access:
 
 1. Go to **Settings → Integrations**
-2. Open the context menu for your integration → **Edit MCP Tools**
+2. Open the context menu for your integration → **Edit MCP Allowlist**
 
-   <img src="../../../../assets/mcp-integrations-edit-mcp-tools-action.png" alt="Edit MCP Tools action in the Integrations list" width="700">
+   <img src="../../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
 
-3. Disable the "All tools" toggle and select only the tools this integration should use
+3. Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use
 
-   <img src="../../../../assets/mcp-integrations-tool-selection-modal.png" alt="Tool selection modal" width="500">
+   <img src="../../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 
 When a tool is enabled, its declared dependencies are automatically included. For example, enabling `shopware-entity-delete` also enables `shopware-entity-search` and `shopware-entity-schema` because they are required for it to work.
 

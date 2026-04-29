@@ -53,9 +53,13 @@ The practical approach is to use **multiple integrations with scoped tool allowl
 - **Developer integration:** entity search, entity schema, aggregate, system config read. What a developer or CI pipeline needs for inspection and debugging.
 - **App-specific integration:** only the tools relevant to a specific workflow or external system.
 
-Each integration sees only its allowed tools, so each AI session starts with a smaller, more focused context. Configure allowlists under **Settings → Integrations → Edit MCP Tools**.
+Each integration sees only its allowed tools, resources, and prompts, so each AI session starts with a smaller, more focused context. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist**.
 
 Every registered tool also consumes tokens from the agent's context window for the entire session — not only when called. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients enforce their own hard caps (Cursor limits the total to 40 tools across all connected MCP servers). Scoped integrations with a small allowlist keep sessions fast and predictable.
+
+When everything is enabled, the modal also shows inline privilege gaps — a sign that the integration's role does not actually cover what its allowlist exposes:
+
+<img src="../../../../assets/mcp-integrations-allowlist-selection-modal.png" alt="Allowlist modal with all tools selected, showing inline privilege warnings" width="500">
 
 Strategies to reduce tool count within a single integration:
 

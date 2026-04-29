@@ -44,9 +44,11 @@ shopware:
 An empty list (the default) means no compile-time restriction; all registered tools are available. The per-integration allowlist in the Admin UI is the primary control for day-to-day access management.
 
 :::info Per-integration allowlist
-For production use, manage tool access per integration under **Settings → Integrations → Edit MCP Tools**. The global `allowed_tools` is a coarse safety switch, not the main product control.
+For production use, manage tool access per integration under **Settings → Integrations → Edit MCP Allowlist**. The global `allowed_tools` is a coarse safety switch, not the main product control.
 
-The per-integration allowlist is stored in the `integration.mcp_tool_allowlist` column. `null` means all tools are allowed; a JSON array lists the allowed tool names; an empty array means no tools are allowed.
+The per-integration allowlist is stored in the `integration.mcp_allowlist` column as a JSON object with `tools`, `resources`, and `prompts` keys. `null` per key means all capabilities of that type are allowed; a JSON array restricts to the listed names; an empty array `[]` means no capabilities of that type are accessible.
+
+**Scope:** the allowlist only applies to integration-authenticated requests, i.e. those using `sw-access-key` + `sw-secret-access-key` headers or an OAuth `client_credentials` token minted for an integration access key (`SWIA...`). Admin user bearer tokens (issued via password or refresh-token grant with `client_id = administration`) bypass the allowlist entirely and see all capabilities, subject only to the user's ACL.
 :::
 
 ## MCP bundle configuration
@@ -106,7 +108,7 @@ All MCP tool operations respect the integration's Admin API ACL role. To restric
 
 1. Create an ACL role in **Settings → Users & Permissions → Roles** with only the required permissions.
 2. Assign that role to the integration (omit `--admin` when creating via CLI).
-3. Under **Settings → Integrations → Edit MCP Tools**, enable only the tools needed for this integration.
+3. Under **Settings → Integrations → Edit MCP Allowlist**, enable only the tools needed for this integration.
 
 The Admin UI surfaces two helpers for getting ACL right:
 
@@ -114,9 +116,9 @@ The Admin UI surfaces two helpers for getting ACL right:
 
 <img src="../../../../assets/mcp-permissions-privilege-hint.png" alt="Users & Permissions hint showing missing privileges" width="700">
 
-- The **Edit MCP Tools** modal shows a coverage warning when an assigned role is missing privileges required by an allowed tool:
+- The **Edit MCP Allowlist** modal shows a coverage warning when an assigned role is missing privileges required by an allowed tool:
 
-<img src="../../../../assets/mcp-permissions-privilege-gap-modal.png" alt="Privilege gap modal on the Role detail page" width="500">
+<img src="../../../../assets/mcp-allowlist-collapsed.png" alt="Privilege gap warnings on the Edit MCP Allowlist modal" width="500">
 
 ## CLI: `debug:mcp`
 
