@@ -1,0 +1,29 @@
+---
+nav:
+  title: Storefront, performance, and errors
+  position: 30
+---
+
+# Storefront, performance, and errors
+
+## Storefront
+
+- The app must support viewports for mobile, tablet, and desktop.
+- No inline CSS allowed in storefront templates.
+- The changes to the storefront should be designed to ensure accessibility.
+- The app's design must not detract from the overall look of the store and must be responsive
+
+## Performance
+
+- The application must not measurably impair the performance of the store or the server.
+
+## Errors
+
+- No JavaScript or console errors in the storefront
+- No HTTP errors (500 / 404)
+- No 400/500 unless they are related to an API call
+- If error messages appear, they must clearly state what to do or what was done incorrectly
+
+## Tools
+
+- Check errors and performance: Google Lighthouse
