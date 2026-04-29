@@ -64,4 +64,4 @@ Detailed Shopware Store QA topics (scope, code quality, storefront, SEO, cookies
 
 For the official publication requirements, legal conditions, and compliance rules, see:
 
-<PageRef page="../monetization/quality-guidelines" />
+<PageRef page="../testing/store/quality-guidelines" />

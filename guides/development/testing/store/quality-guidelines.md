@@ -17,6 +17,8 @@ These guidelines apply to all extensions distributed via the Shopware Store, inc
 
 Unless stated otherwise, requirements apply to all extensions.
 
+For rules on direct database access, core file changes, and bypassing Shopware APIs, see [Not allowed behaviors in the Shopware Store](./not-allowed-store-behaviors.md).
+
 ## Review process
 
 All extensions are:
