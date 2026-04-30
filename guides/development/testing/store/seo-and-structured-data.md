@@ -1,7 +1,7 @@
 ---
 nav:
   title: SEO and structured data
-  position: 40
+  position: 50
 ---
 
 # SEO and structured data

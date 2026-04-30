@@ -1,7 +1,7 @@
 ---
 nav:
   title: Code quality
-  position: 80
+  position: 90
 ---
 
 # Code quality

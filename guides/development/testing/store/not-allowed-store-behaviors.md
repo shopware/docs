@@ -1,12 +1,12 @@
 ---
 nav:
   title: Not allowed store behaviors
-  position: 15
+  position: 20
 ---
 
 # Not allowed behaviors in the Shopware Store
 
-Extended principles for security- and legally critical extensions (Store QA). This page summarizes which kinds of changes are **not** acceptable in Store extensions—and which extension patterns **are** allowed instead.
+This page summarizes which kinds of changes are **not** acceptable in Store extensions—and which extension patterns **are** allowed instead.
 
 ## Basic rule
 
@@ -43,6 +43,4 @@ Shopware is deliberately designed so that extensions remain stable, update-proof
 - **Liability risk:** Extensions that undermine legal protection mechanisms create problems for merchants and for the ecosystem.
 - **Quality standard:** The Store stands for trust. Extensions must behave like good guests: they may use the space, but must not remove load-bearing walls.
 
-## In short
-
-If a feature is only possible through direct SQL, core file manipulation, or bypassing intended interfaces, that is a sign the approach should change—not that the rules are too strict.
+In short, a feature is only possible through direct SQL, core file manipulation, or bypassing intended interfaces, that is a sign the approach should change—not that the rules are too strict.

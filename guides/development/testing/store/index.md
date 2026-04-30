@@ -1,20 +1,30 @@
 ---
 nav:
   title: Store
-  position: 50
+  position: 5
 ---
 
 # Store
 
-Quality assurance and review criteria for extensions submitted to the Shopware Store. This material was consolidated from [shopware/docs](https://github.com/shopware/docs) pull requests [#2208](https://github.com/shopware/docs/pull/2208), [#2255](https://github.com/shopware/docs/pull/2255), [#2256](https://github.com/shopware/docs/pull/2256), [#2257](https://github.com/shopware/docs/pull/2257), [#2258](https://github.com/shopware/docs/pull/2258), [#2259](https://github.com/shopware/docs/pull/2259), [#2260](https://github.com/shopware/docs/pull/2260), [#2261](https://github.com/shopware/docs/pull/2261), [#2262](https://github.com/shopware/docs/pull/2262), and [#2263](https://github.com/shopware/docs/pull/2263).
+This section covers review criteria and publication requirements for extensions in the Shopware Store.
 
-<PageRef page="./qa-guideline-general" title="QA guideline (general)" />
+## Quality guidelines
+
+These guidelines apply to all extensions distributed via the Shopware Store. They define quality, security, and compliance requirements for publication.
+
+<PageRef page="./quality-guidelines" title="Quality guidelines for Store extensions" />
+
+## Scope and review checks
+
+The following pages describe integration behavior and architecture boundaries (core, database, filesystem, and APIs).
 
 <PageRef page="./not-allowed-store-behaviors" title="Not allowed store behaviors" />
 
-<PageRef page="./qa-guidelines" title="QA guidelines" />
+<PageRef page="./functionality-integration" title="Functionality and integration" />
 
-<PageRef page="./quality-guidelines" title="Quality guidelines for Store extensions" />
+## Storefront, SEO, and compliance
+
+Review expectations for the storefront, structured data, performance, errors, and cookie and privacy behavior.
 
 <PageRef page="./storefront-performance-and-errors" title="Storefront, performance, and errors" />
 
@@ -22,10 +32,26 @@ Quality assurance and review criteria for extensions submitted to the Shopware S
 
 <PageRef page="./cookies-and-privacy" title="Cookies and privacy" />
 
+## Listing and extension lifecycle
+
+Store listing content, translations, uninstall and cleanup behavior, and code quality during review.
+
 <PageRef page="./content-and-translations" title="Content and translations" />
 
-<PageRef page="./installation-and-cleanup" title="Installation and cleanup" />
+<PageRef page="./installation-and-cleanup" title="Uninstallation and data cleanup" />
 
 <PageRef page="./code-quality" title="Code quality" />
 
-For the broader extension testing overview, see <PageRef page="../testing-guidelines" title="Testing guidelines for extensions" />.
+## Frequently asked questions
+
+Common questions about Store submission, review, and readiness:
+
+<PageRef page="./faq" title="Frequently asked questions" />
+
+## Related
+
+To publish your extension in the Shopware Store, follow the testing criteria used during the Store review process:
+
+<PageRef page="../testing-guidelines" title="Testing guidelines for extensions" />
+
+It focuses on how your extension is functionally tested before approval.

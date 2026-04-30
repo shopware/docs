@@ -1,7 +1,7 @@
 ---
 nav:
   title: Quality Guidelines for Store Extensions
-  position: 20
+  position: 10
 
 ---
 
@@ -11,9 +11,9 @@ These guidelines apply to all extensions distributed via the Shopware Store, inc
 
 ## Scope and terminology
 
-* **Extension**: umbrella term for plugins and apps.
-* **Plugin**: installed in the Shopware instance; PHP code, Composer.
-* **App**: integrated via app system; no direct PHP execution in core.
+* **Extension**: Umbrella term for plugins and apps.
+* **Plugin**: Installed in the Shopware instance; PHP code, Composer.
+* **App**: Integrated via app system; no direct PHP execution in core.
 
 Unless stated otherwise, requirements apply to all extensions.
 
