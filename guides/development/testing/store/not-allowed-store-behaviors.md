@@ -43,4 +43,4 @@ Shopware is deliberately designed so that extensions remain stable, update-proof
 - **Liability risk:** Extensions that undermine legal protection mechanisms create problems for merchants and for the ecosystem.
 - **Quality standard:** The Store stands for trust. Extensions must behave like good guests: they may use the space, but must not remove load-bearing walls.
 
-In short, a feature is only possible through direct SQL, core file manipulation, or bypassing intended interfaces, that is a sign the approach should change—not that the rules are too strict.
+In short, if a feature is only possible through direct SQL, core file manipulation, or bypassing intended interfaces, that is a sign the approach should change—not that the rules are too strict.

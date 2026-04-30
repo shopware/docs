@@ -6,43 +6,47 @@ nav:
 
 # Code quality
 
-In the final step, the quality of the extension is checked.  
-The extension should adhere to Shopware's standards and avoid duplicating code and functions if they already exist.
+Extensions must pass automated code review (PHPStan, SonarQube) and manual review for security, standards, UX, and behavior. Configurations used during submission are [public on GitHub](https://github.com/shopwareLabs/store-plugin-codereview).
 
-## Review process
-
-All extensions are subject to an automated code review (for example, PHPStan, SonarQube) as part of the quality assurance process, with particular focus on potential impacts on the Administration and Storefront.
-In addition, a manual review is conducted to assess security, coding standards, user experience, and overall functionality.
-The current configurations for automated code reviews (PHPStan and SonarQube) used during app submission via the Shopware Account are publicly available on GitHub.
+* Do not ship development-only files or unused resources in the archive.
+* Include only necessary dependencies.
+* Use secure cookie settings (see [Cookies and privacy](./cookies-and-privacy.md)).
 
 ## SonarQube rules (blocker)
 
-The use of the following statements is strictly prohibited and will result in rejection:
+The following are prohibited and will fail review:
 
-- `die`
-- `exit`
-- `var_dump`
-- Link: [Refer to the list of the already existing blockers](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt).
+* `die`
+* `exit`
+* `var_dump`
+
+[List of blocker patterns](https://s3.eu-central-1.amazonaws.com/wiki-assets.shopware.com/1657519735/blocker.txt)
 
 ## Error messages and logging
 
-Error and informational messages may only be recorded within the Shopware log directory (`/var/log/`).
-A dedicated logging service must be implemented for the extension. Writing exceptions or log entries to the default Shopware log or to locations outside the Shopware logging system is not permitted.
-For payment extensions, it is required to use the provided "plugin logger" service. Logs (for example, debug or error logs) must be written to the `/var/log/` directory.
-
-Log files must follow the naming convention:  
-`MyExtension-Year-Month-Day.log`
-
-As an alternative, log data may be stored in the database.
-
-The use of custom log tables should be avoided. If such tables are implemented, a scheduled task must be provided to ensure regular cleanup. Log data must not be retained for longer than six months.
+* Log errors and informational messages only under Shopware’s log directory (`/var/log/`).
+* Do not write to Shopware’s default logs or paths outside the logging system (logs must not be reachable via URL).
+* Use the pattern `MyExtension-Year-Month-Day.log`.
+* Payment extensions must use the **plugin logger** service.
+* Database logging is allowed; avoid custom log tables. If you use them, add scheduled cleanup and keep data at most **six months**.
 
 ## JavaScript delivery
 
-Uncompiled JavaScript code must be included within the delivered binary. The source code must be stored in a dedicated directory to ensure accessibility and maintainability for developers.
+* Deliver **uncompiled, readable** JavaScript together with compiled assets. Store sources in a **separate folder** for review.
+* Shopware must be able to access **unminified** sources at all times.
+* Follow [Loading the JS files](../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration) when building `main.js` and minified output.
 
 ## Cross-domain communication
 
-Cross-domain communication must be limited to explicitly defined and trusted domains.
+Limit cross-domain use to explicit, trusted domains. For `postMessage()` and similar APIs, verify message origins; never use `*` as the target origin.
 
-When using `postMessage()` or similar cross-window messaging APIs, the origin of incoming messages must be verified. Target domains must be explicitly specified; the use of wildcard targets (for example, `*`) is not permitted.
+## Plugin-specific requirements {#plugin-specific-requirements}
+
+These apply to **plugins** only:
+
+* Declare [Composer dependencies](../../../guides/plugins/plugins/dependencies/using-composer-dependencies.md) in `composer.json` so code is traceable. If `executeComposerCommands()` returns true, dependencies may be installed dynamically and need not all be bundled.
+* Do **not** include `composer.lock` in the archive.
+* Ship **production** artifacts only in the ZIP.
+* Write unified logs under `/var/log/` as described above.
+
+For `composer.json` structure, ZIP layout, and common mistakes, see [Common Store review errors](./store-review-errors.md).

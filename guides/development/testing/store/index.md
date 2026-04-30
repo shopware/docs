@@ -42,6 +42,8 @@ Store listing content, translations, uninstall and cleanup behavior, and code qu
 
 <PageRef page="./code-quality" title="Code quality" />
 
+<PageRef page="./store-review-errors" title="Common Store review errors" />
+
 ## Frequently asked questions
 
 Common questions about Store submission, review, and readiness:

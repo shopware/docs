@@ -1,7 +1,7 @@
 ---
 nav:
   title: Store Review Errors
-  position: 30
+  position: 25
 
 ---
 
