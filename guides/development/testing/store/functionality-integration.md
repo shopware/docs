@@ -8,7 +8,7 @@ nav:
 
 ## Extension functionality
 
-Extension functionality works as described:
+The extension's features work as described in the documentation. All listed features must be submitted by the time of the review.
 
 ## API validation
 
