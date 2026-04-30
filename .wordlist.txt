@@ -1182,7 +1182,6 @@ bAcl
 bAjaxPanel
 bAuditLog
 bAuth
-backlinks
 bLogin
 bPlatform
 bRestApi
@@ -1191,6 +1190,7 @@ bTemplateExtension
 backend
 backends
 backface
+backlinks
 backoff
 backport
 backported
