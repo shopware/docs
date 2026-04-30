@@ -57,7 +57,7 @@ Each integration sees only its allowed tools, resources, and prompts, so each AI
 
 Every registered tool also consumes tokens from the agent's context window for the entire session — not only when called. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients enforce their own hard caps (Cursor limits the total to 40 tools across all connected MCP servers). Scoped integrations with a small allowlist keep sessions fast and predictable.
 
-When everything is enabled, the modal also shows inline privilege gaps — a sign that the integration's role does not actually cover what its allowlist exposes:
+When everything is enabled, the modal also shows inline privilege gaps, meaning the integration's role does not actually cover what its allowlist exposes:
 
 <img src="../../../../assets/mcp-integrations-allowlist-selection-modal.png" alt="Allowlist modal with all tools selected, showing inline privilege warnings" width="500">
 
@@ -66,9 +66,13 @@ Strategies to reduce tool count within a single integration:
 - Use an `action` parameter to multiplex related operations into one tool (e.g., `shopware-theme-config` with `action: "get" | "update"`)
 - Use resources instead of tools for static reference data
 
-### Keep responses under 100 KB
+### Keep responses compact
 
-Shopware enforces a 100 KB response size limit per tool call. Tool responses are injected directly into the agent's context window: oversized responses consume a large share of the token budget and can cause some clients to drop or truncate the result entirely. The `McpToolResponse` base class includes a built-in size guard that rejects oversized responses before they reach the agent.
+Tool responses are injected directly into the agent's context window, so large responses consume a significant portion of the token budget.
+
+When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead it stores the payload in a session-scoped cache and returns a `shopware://tool-result/{uuid}` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also carries `responseSize` and `note` explaining why the result was deferred. For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
+
+The goal is still to keep responses small. Deferred resources still cost tokens when the agent fetches them, and some clients may not follow up automatically.
 
 - **Separate entity rows from aggregations.** Aggregations (especially `terms` or `date-histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in one response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records, never both in one tool call.
 - **Use `McpEntityIncludes` in plugin tools.** If your tool returns DAL entity data via `JsonEntityEncoder`, use the `McpEntityIncludes` trait. It automatically strips unrequested associations, thumbnails, and translated duplicates, keeping responses compact without manual field filtering.

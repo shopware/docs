@@ -112,11 +112,11 @@ All MCP tool operations respect the integration's Admin API ACL role. To restric
 
 The Admin UI surfaces two helpers for getting ACL right:
 
-- The **Role detail** page shows which integrations reference that role and highlights any privilege gaps:
+- The **Role detail** page shows a banner when the role is assigned to MCP-enabled integrations. Click **Show MCP tool requirements** to open the MCP Tool Requirements modal, which lists every privilege required by the allowed tools. Switch between **By Permission** (per-entity view with Grant buttons) and **By Tool** (per-tool view). Use **Grant all missing** to add the missing privileges in one click:
 
-<img src="../../../../assets/mcp-permissions-privilege-hint.png" alt="Users & Permissions hint showing missing privileges" width="700">
+<img src="../../../../assets/mcp-permissions-privilege-hint.png" alt="MCP Tool Requirements modal showing missing privileges by entity with Grant buttons" width="700">
 
-- The **Edit MCP Allowlist** modal shows a coverage warning when an assigned role is missing privileges required by an allowed tool:
+- The **Edit MCP Allowlist** modal shows a coverage warning when the assigned role is missing privileges required by an allowed tool:
 
 <img src="../../../../assets/mcp-allowlist-collapsed.png" alt="Privilege gap warnings on the Edit MCP Allowlist modal" width="500">
 
