@@ -48,6 +48,13 @@ This comparison table helps you decide which Shopware extension type best fits y
 Extensions must explicitly support target Shopware versions. Review the [Upgrades and Migrations](../../upgrades-migrations/index.md) section before releasing updates to ensure compatibility with upcoming core changes.
 :::
 
+## MCP Server extensibility
+
+Both plugins and apps can contribute custom tools, prompts, and resources to Shopware's built-in [MCP Server](../tooling/mcp-server/index.md). This lets AI clients access your extension's capabilities alongside core platform tools.
+
+- [Extend the MCP Server via Plugin](../../plugins/plugins/mcp-server.md)
+- [Extend the MCP Server via App](../../plugins/apps/mcp-server.md)
+
 ## Extension guides
 
 These guides provide essential information on how to create, configure, and extend your store with Shopware extensions:

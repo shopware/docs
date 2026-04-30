@@ -53,3 +53,5 @@ After the base setup, continue with the path that fits your app:
 - **Event-based integrations:** See [Webhook](../apps/lifecycle/webhook.md) to react to Shopware events asynchronously.
 
 - **Feature-specific integrations:** Continue with the dedicated guides for [Payment](../apps/checkout/payment.md), [Shipping methods](../apps/checkout/shipping-methods.md), [Tax provider](../apps/checkout/tax-provider.md), or [Configuration](../apps/lifecycle/configuration.md), depending on your app’s capabilities.
+
+- **MCP tools, prompts, and resources:** See [MCP Server extension](mcp-server.md) to expose custom AI-callable capabilities via `Resources/mcp.xml` and HMAC-signed webhooks.

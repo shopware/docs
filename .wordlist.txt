@@ -6,6 +6,7 @@ ADDR
 ADR
 ADRs
 AES
+AI
 AOF
 API's
 APIRequestContext
@@ -72,6 +73,7 @@ AppServer
 AppServers
 AppSystem
 Archlinux
+ArrayAdapter
 ArrayFacade
 AssociationField
 AsyncAws
@@ -340,6 +342,7 @@ DomainExceptions
 Dotenv
 DynamoDB
 ECDSA
+ECONNREFUSED
 ENUM
 ENUMS
 EOL
@@ -441,6 +444,7 @@ GCM
 GDPR
 GIFs
 GLB
+GPT
 GenericPage
 GenericPageLoader
 GitLab
@@ -565,6 +569,8 @@ LongText
 LongTextField
 Lychee
 MACOSX
+MCP
+MCPs
 MDN
 MJML
 MOV
@@ -589,12 +595,14 @@ ManyToOne
 ManyToOneAssociation
 ManyToOneAssociationField
 MapState
+McpHelloWorld
 MediaDataSelection
 MediaDataSet
 MediaFolderDataSet
 MediaType
 MemcachedSessionHandler
 MenuOffcanvasPagelet
+MerchantAssistant
 Mercure
 MessageAware
 MessageQueue
@@ -710,6 +718,7 @@ PHPStorm
 PHPUnit
 PHPunit
 PII
+PIM
 POC
 POS
 PRs
@@ -958,6 +967,7 @@ StorefrontController
 StorefrontPage
 StorefrontResponse
 Storer
+Streamable
 StringField
 StringFields
 Struct
@@ -975,6 +985,9 @@ SwagB
 SwagBasicExample
 SwagBasicExampleTheme
 SwagDigitalSalesRooms
+SwagMcpAdminUsers
+SwagMcpDevTools
+SwagMcpMerchantAssistant
 SwagMigrationBundleExample
 SwagMyPlugin
 SwagMyPluginSW
@@ -1034,6 +1047,7 @@ UDP
 UI
 UID
 UML
+URIs
 USD
 UUID
 UUIDs
@@ -1143,6 +1157,7 @@ activateShopwareTheme
 adr
 afterSort
 ag
+ai
 ajax
 allowlist
 allowlists
@@ -1380,6 +1395,7 @@ dr
 dragTo
 dropdown
 dropdowns
+dryRun
 dsr
 dunglas
 duplications
@@ -1642,6 +1658,7 @@ minimalistic
 mixin
 mixins
 mocksArentStubs
+modelcontextprotocol
 modifiability
 modularity
 monday
@@ -1893,6 +1910,7 @@ shopName
 shopUrl
 shopware
 shopware's
+shopwareLabs
 shopwarelabs
 shopwarepartners
 shorthands
@@ -1945,6 +1963,8 @@ subfolder
 suboptimal
 subprocessor
 subprocessors
+subrequest
+substring
 supervisord
 svg
 sw
@@ -2017,6 +2037,7 @@ uniqBy
 unminified
 unprefixed
 unregister
+unrequested
 unsecure
 unserialize
 unstorage

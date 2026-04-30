@@ -116,6 +116,31 @@ App\YourBundleName\YourBundleName::class => ['all' => true],
 //...
 ```
 
+### Optional bundles
+
+If a bundle is not always installed (for example a dev-only package or an experimental feature), wrap its registration in a guard. Without a guard the application will crash with a class-not-found error on any environment where the package is absent.
+
+**Package not always installed** — use `InstalledVersions::isInstalled()`:
+
+```php
+use Composer\InstalledVersions;
+
+if (InstalledVersions::isInstalled('vendor/your-bundle-package')) {
+    $bundles[App\YourBundleName\YourBundleName::class] = ['all' => true];
+}
+```
+
+**Experimental feature behind a Shopware feature flag** — combine both checks so the bundle is only loaded when the flag is active and the package is present. `Feature::isActive()` reads from environment variables and is safe to call in `bundles.php`:
+
+```php
+use Composer\InstalledVersions;
+use Shopware\Core\Framework\Feature;
+
+if (Feature::isActive('YOUR_FEATURE_FLAG') && InstalledVersions::isInstalled('vendor/your-bundle-package')) {
+    $bundles[App\YourBundleName\YourBundleName::class] = ['all' => true];
+}
+```
+
 ## Adding services, Twig templates, routes, and themes
 
 You can add services, Twig templates, routes, etc. to your bundle like you would do in a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The bundle will be automatically detected and the files will be loaded.
