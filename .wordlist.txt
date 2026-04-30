@@ -276,6 +276,7 @@ DAL
 DBAL
 DDL
 DESC
+DHL
 DIC
 DIC EntityRepository
 DNF
@@ -1181,6 +1182,7 @@ bAcl
 bAjaxPanel
 bAuditLog
 bAuth
+backlinks
 bLogin
 bPlatform
 bRestApi
