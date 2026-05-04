@@ -9,7 +9,7 @@ nav:
 
 Shopware provides multiple ways to monetize your extension in the Store. Choose the model that fits your business strategy and target audience.
 
-All monetized extensions must comply with our [quality guidelines](./quality-guidelines) and avoid [Common Store Review Errors](./store-review-errors).
+All monetized extensions must comply with our [quality guidelines](../testing/store/quality-guidelines) and avoid [Common Store Review Errors](./store-review-errors).
 
 ## Paid extensions
 
@@ -21,4 +21,4 @@ Sell your extension with a one-time purchase or subscription model via the Shopw
 
 ## Commission-based integrations
 
-If your extension integrates external services and generates revenue (e.g., transaction-based fees), a Shopware Technology Partner (STP) agreement may be required. See the [quality guidelines](./quality-guidelines) for details.
+If your extension integrates external services and generates revenue (e.g., transaction-based fees), a Shopware Technology Partner (STP) agreement may be required. See the [quality guidelines](../testing/store/quality-guidelines) for details.

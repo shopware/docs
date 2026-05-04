@@ -187,6 +187,10 @@ redirects:
     resources/accessibility/accessibility-checklist.html: guides/development/accessibility/accessibility-checklist.html
     resources/accessibility/storefront-accessibility.html: guides/development/accessibility/storefront-accessibility.html
     guides/plugins/apps/in-app-purchases.html: guides/development/monetization/in-app-purchases.html
+    guides/development/monetization/quality-guidelines.html: guides/development/testing/store/quality-guidelines.html
+    guides/development/monetization/quality-guidelines/: guides/development/testing/store/quality-guidelines.html
+    guides/development/monetization/store-review-errors.html: guides/development/testing/store/store-review-errors.html
+    guides/development/monetization/store-review-errors/: guides/development/testing/store/store-review-errors.html
     guides/plugins/plugins/testing/playwright/actor-pattern.html: guides/development/testing/e2e-playwright/actor-pattern.html
     guides/plugins/plugins/testing/playwright/best-practices.html: guides/development/testing/e2e-playwright/best-practices.html
     guides/plugins/plugins/testing/playwright/deployment.html: guides/development/testing/e2e-playwright/deployment.html
