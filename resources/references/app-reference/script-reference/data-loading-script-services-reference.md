@@ -17,6 +17,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 
 * The `aggregate()` method allows you to execute aggregations specified in the given criteria.
 
+    
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\AggregationResultCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Search/AggregationResult/AggregationResultCollection.php)
 
     A `AggregationResultCollection` including the results of the aggregations you specified in the criteria.
@@ -42,11 +43,11 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		    'sum': sumResult.getSum
 		}) %}
         ```
-
 ### ids()
 
 * The `ids()` method allows you to search for the Ids of Entities that match a given criteria.
 
+    
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Search\IdSearchResult`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Search/IdSearchResult.php)
 
     A `IdSearchResult` including all entity-ids that matched your criteria.
@@ -72,11 +73,11 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		    'ids': productIds
 		}) %}
         ```
-
 ### search()
 
 * The `search()` method allows you to search for Entities that match a given criteria.
 
+    
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Search/EntitySearchResult.php)
 
     A `EntitySearchResult` including all entities that matched your criteria.
@@ -98,7 +99,6 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-
     * Filter the search result.
 
         ```twig
@@ -115,7 +115,6 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-
     * Add associations that should be included in the result.
 
         ```twig
@@ -134,9 +133,7 @@ Keep in mind that your app needs to have the correct permissions for the data it
 		{% do page.addExtension('myProduct', product) %}
 		{% do page.addExtension('myManufacturer', product.manufacturer) %}
         ```
-
 _________
-
 ## [services.store (`Shopware\Core\Framework\DataAbstractionLayer\Facade\SalesChannelRepositoryFacade`)](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Facade/SalesChannelRepositoryFacade.php) {#saleschannelrepositoryfacade}
 
 The `store` service can be used to access publicly available `store-api` data.
@@ -150,6 +147,7 @@ this means that e.g. product prices are already calculated based on the current 
 
 * The `aggregate()` method allows you to execute aggregations specified in the given criteria.
 
+    
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\AggregationResultCollection`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Search/AggregationResult/AggregationResultCollection.php)
 
     A `AggregationResultCollection` including the results of the aggregations you specified in the criteria.
@@ -175,11 +173,11 @@ this means that e.g. product prices are already calculated based on the current 
 		    'sum': sumResult.getSum
 		}) %}
         ```
-
 ### ids()
 
 * The `ids()` method allows you to search for the Ids of Entities that match a given criteria.
 
+    
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Search\IdSearchResult`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Search/IdSearchResult.php)
 
     A `IdSearchResult` including all entity-ids that matched your criteria.
@@ -205,11 +203,11 @@ this means that e.g. product prices are already calculated based on the current 
 		    'ids': productIds
 		}) %}
         ```
-
 ### search()
 
 * The `search()` method allows you to search for Entities that match a given criteria.
 
+    
 * **Returns** [`Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Search/EntitySearchResult.php)
 
     A `EntitySearchResult` including all entities that matched your criteria.
@@ -231,7 +229,6 @@ this means that e.g. product prices are already calculated based on the current 
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-
     * Filter the search result.
 
         ```twig
@@ -248,7 +245,6 @@ this means that e.g. product prices are already calculated based on the current 
 		
 		{% do page.addExtension('myProduct', product) %}
         ```
-
     * Add associations that should be included in the result.
 
         ```twig
@@ -267,5 +263,4 @@ this means that e.g. product prices are already calculated based on the current 
 		{% do page.addExtension('myProduct', product) %}
 		{% do page.addExtension('myManufacturer', product.manufacturer) %}
         ```
-
 _________
