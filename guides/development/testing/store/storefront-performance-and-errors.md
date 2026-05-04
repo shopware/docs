@@ -9,7 +9,7 @@ nav:
 ## Storefront
 
 * Support viewports for mobile, tablet, and desktop.
-* No inline CSS in storefront templates. Use your own classes and compile CSS with the plugin. See [Add SCSS variables](../../../guides/plugins/plugins/storefront/styling/add-scss-variables.md#add-scss-variables).
+* No inline CSS in storefront templates. Use your own classes and compile CSS with the plugin. See [Add SCSS variables](../../../plugins/plugins/storefront/styling/add-scss-variables.md#add-scss-variables).
 * Avoid `!important` unless it is unavoidable.
 * Design for accessibility; the extension must not break the overall look of the store and must be responsive.
 

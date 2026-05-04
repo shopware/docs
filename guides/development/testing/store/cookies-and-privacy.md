@@ -6,7 +6,7 @@ nav:
 
 # Cookies and privacy
 
-Register cookies correctly in the [Cookie Consent Manager](../../../guides/plugins/plugins/storefront/advanced/add-cookie-to-manager.md).
+Register cookies correctly in the [Cookie Consent Manager](../../../plugins/plugins/storefront/advanced/add-cookie-to-manager.md).
 
 * Every cookie set from the store URL should be optional and not classified as technically required for running Shopware unless it truly is. We use **Technically required**, **Marketing**, and **Comfort features** (see below).
 * All cookies must appear **unchecked** by default in the cookie configuration UI in the storefront, except where law and product behavior explicitly require otherwise.

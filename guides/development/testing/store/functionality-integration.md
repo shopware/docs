@@ -6,8 +6,6 @@ nav:
 
 # Functionality and integration
 
-## Extension functionality
-
 The extension’s features must work as described. All advertised features must be available at review time.
 
 ## API validation and external services

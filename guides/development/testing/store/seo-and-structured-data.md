@@ -29,7 +29,7 @@ Required when the extension changes products or product pages:
 
 ## External links
 
-* Use `target="_blank"` together with `rel="noopener"`.
+Use `target="_blank"` together with `rel="noopener"`.
 
 ## Lighthouse and structured-data checks {#lighthouse-and-structured-data-checks}
 

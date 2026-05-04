@@ -34,7 +34,7 @@ The following are prohibited and will fail review:
 
 * Deliver **uncompiled, readable** JavaScript together with compiled assets. Store sources in a **separate folder** for review.
 * Shopware must be able to access **unminified** sources at all times.
-* Follow [Loading the JS files](../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../guides/plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration) when building `main.js` and minified output.
+* Follow [Loading the JS files](../../../plugins/plugins/administration/module-component-management/add-custom-field.md#loading-the-js-files) and [Injecting into the Administration](../../../plugins/plugins/administration/module-component-management/add-custom-field.md#injecting-into-the-administration) when building `main.js` and minified output.
 
 ## Cross-domain communication
 
@@ -44,7 +44,7 @@ Limit cross-domain use to explicit, trusted domains. For `postMessage()` and sim
 
 These apply to **plugins** only:
 
-* Declare [Composer dependencies](../../../guides/plugins/plugins/dependencies/using-composer-dependencies.md) in `composer.json` so code is traceable. If `executeComposerCommands()` returns true, dependencies may be installed dynamically and need not all be bundled.
+* Declare [Composer dependencies](../../../plugins/plugins/dependencies/using-composer-dependencies.md) in `composer.json` so code is traceable. If `executeComposerCommands()` returns true, dependencies may be installed dynamically and need not all be bundled.
 * Do **not** include `composer.lock` in the archive.
 * Ship **production** artifacts only in the ZIP.
 * Write unified logs under `/var/log/` as described above.
