@@ -8,7 +8,6 @@ nav:
 
 This page outlines which types of changes are **not permitted** in Store extensions and highlights the **permitted** extension patterns you should use instead.
 
-
 ## Basic rule
 
 Extensions must not make any direct changes to the existing Shopware structure. This includes in particular:
@@ -34,6 +33,7 @@ In addition, extensions are not permitted that:
 - Extending via the mechanisms provided by Shopware (DAL, migrations, events, decorator pattern, subscribers, services).
 - Copying existing structures (for example, templates, configurations, assets) and adapting the copy without changing the original.
 - Creating your own tables, entities, configuration values, or directories, provided these are clearly assigned to the extension.
+
 ## Why these rules exist
 
 Shopware is deliberately designed so that extensions remain stable, update-proof, and legally compliant. Direct interventions in the database or file system may seem pragmatic, but they pose real risks:
