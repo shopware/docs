@@ -61,9 +61,9 @@ Admin users (`admin = true`) always bypass the allowlist regardless of auth mode
 
 ### Delegated user calls (`sw-app-user-id`)
 
-Apps that act on behalf of a logged-in user — for example a Copilot sidebar embedded in the Admin UI — can pass the `sw-app-user-id` header alongside integration credentials:
+Apps that act on behalf of a logged-in user (for example a Copilot sidebar embedded in the Admin UI) can pass the `sw-app-user-id` header alongside integration credentials:
 
-```
+```text
 sw-access-key: SWIA...
 sw-secret-access-key: ...
 sw-app-user-id: <user-uuid>
