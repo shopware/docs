@@ -14,4 +14,4 @@ This section explains how to customize and extend Storefront templates in plugin
 
 ## Reference
 
-* [Shopware's Twig Runctions](./twig-function-reference.md)
+* [Shopware's Twig Functions](./twig-function-reference.md)
