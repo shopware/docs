@@ -41,15 +41,54 @@ shopware:
             - shopware-system-config-read
 ```
 
-An empty list (the default) means no compile-time restriction; all registered tools are available. The per-integration allowlist in the Admin UI is the primary control for day-to-day access management.
+An empty list (the default) means no compile-time restriction; all registered tools are available. The per-integration and per-user allowlists in the Admin UI are the primary controls for day-to-day access management.
 
-:::info Per-integration allowlist
-For production use, manage tool access per integration under **Settings → Integrations → Edit MCP Allowlist**. The global `allowed_tools` is a coarse safety switch, not the main product control.
+:::info Per-principal allowlist
+Shopware applies a per-principal MCP allowlist depending on how the client authenticates:
 
-The per-integration allowlist is stored in the `integration.mcp_allowlist` column as a JSON object with `tools`, `resources`, and `prompts` keys. `null` per key means all capabilities of that type are allowed; a JSON array restricts to the listed names; an empty array `[]` means no capabilities of that type are accessible.
+| Auth mode | Allowlist source |
+|-----------|-----------------|
+| Integration access key (`SWIA...`) | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist** |
+| User access key (`SWUA...`) | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP Tool Allowlist** |
+| Bearer JWT, password / refresh grant | Per-user allowlist of the authenticated user |
+| Bearer JWT, client_credentials | Per-integration allowlist |
+| Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist |
 
-**Scope:** the allowlist only applies to integration-authenticated requests, i.e. those using `sw-access-key` + `sw-secret-access-key` headers or an OAuth `client_credentials` token minted for an integration access key (`SWIA...`). Admin user bearer tokens (issued via password or refresh-token grant with `client_id = administration`) bypass the allowlist entirely and see all capabilities, subject only to the user's ACL.
+`null` per key means all capabilities of that type are allowed; a JSON array restricts to the listed names; an empty array `[]` means no capabilities of that type are accessible.
+
+Admin users (`admin = true`) always bypass the allowlist regardless of auth mode.
 :::
+
+### Delegated user calls (`sw-app-user-id`)
+
+Apps that act on behalf of a logged-in user — for example a Copilot sidebar embedded in the Admin UI — can pass the `sw-app-user-id` header alongside integration credentials:
+
+```
+sw-access-key: SWIA...
+sw-secret-access-key: ...
+sw-app-user-id: <user-uuid>
+```
+
+The value must be the Shopware user ID (a UUID in hex format, e.g. `01932f3a...`). Apps embedded in the Admin UI can read it from:
+
+- The current session in JavaScript: `Shopware.Store.get('session').currentUser.id`
+- The Admin API: `GET /api/_info/me` — the `data.id` field in the response
+
+If the header is absent or not a valid UUID, Shopware ignores it and applies only the integration allowlist.
+
+When this header is present with a valid user UUID, Shopware applies the **intersection** of the integration allowlist and the user allowlist. A tool is only available if both the integration and the user have it enabled:
+
+| Integration allowlist | User allowlist | Effective allowlist |
+|-----------------------|----------------|---------------------|
+| `null` (unrestricted) | `null` (unrestricted) | unrestricted |
+| `null` | `[tool-b]` | `[tool-b]` |
+| `[tool-a, tool-b]` | `null` | `[tool-a, tool-b]` |
+| `[tool-a, tool-b]` | `[tool-b, tool-c]` | `[tool-b]` |
+| `[tool-a]` | `[]` | `[]` (nothing) |
+
+Admin users bypass the user side of the intersection — if the user is an admin, their allowlist is treated as `null` (unrestricted), so the integration allowlist alone applies.
+
+This pattern lets the app owner control which tools the integration may ever call, while users control which of those tools they personally allow the app to use on their behalf. Neither side can grant more than what the other has permitted.
 
 ## MCP bundle configuration
 

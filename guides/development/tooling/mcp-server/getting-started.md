@@ -145,24 +145,25 @@ Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are
 
 ### Bearer token
 
-Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients.
+Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients. When authenticated via bearer token, the user's per-user allowlist applies (configured under **Settings → Users & Permissions → [user] → MCP Tool Allowlist**).
 
 ## Controlling which capabilities are available
 
 By default an admin integration can call all registered tools, resources, and prompts. To restrict access:
 
-1. Go to **Settings → Integrations**
-2. Open the context menu for your integration → **Edit MCP Allowlist**
+**Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
    <img src="../../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
 
-3. Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use
+Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use:
 
    <img src="../../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 
+**Per user** — Go to **Settings → Users & Permissions**, open the user detail page, and manage the **MCP Tool Allowlist** card at the bottom of the page. This allowlist applies when the user authenticates via a user access key or bearer token. Admin users bypass the allowlist entirely.
+
 When a tool is enabled, its declared dependencies are automatically included. For example, enabling `shopware-entity-delete` also enables `shopware-entity-search` and `shopware-entity-schema` because they are required for it to work.
 
-See [Configuration](./configuration.md) for the global `allowed_tools` safety switch and session store options.
+See [Configuration](./configuration.md) for the global `allowed_tools` safety switch, the full per-principal allowlist reference, and session store options.
 
 ## Next steps
 
