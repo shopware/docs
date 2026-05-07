@@ -23,7 +23,7 @@ nav:
 
 ## Project/bundle structure
 
-* Keep domain logic in bundles, not in templates or controllers; expose services via dependency injection. Se the [bundle guide](../../plugins/plugins/bundle.md) for further guidance.
+* Keep domain logic in bundles, not in templates or controllers; expose services via dependency injection. See the [bundle guide](../../plugins/plugins/bundle.md) for further guidance.
 * Use Composer `type: shopware-platform-plugin` or `shopware-bundle` consistently; align namespaces with the bundle name.
 * Isolate integration points (events, DAL extensions) behind service classes so upgrades only touch narrow surfaces.
 
