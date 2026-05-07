@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add Custom CMS bBlocks
+  title: Add Custom CMS Blocks
   position: 10
 
 ---
 
-# Add Custom CMS blocks
+# Add Custom CMS Blocks
 
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
