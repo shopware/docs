@@ -7,7 +7,7 @@ nav:
 
 # References
 
-his section contains structured technical reference documentation for Shopware. Use it when you need precise specifications, XML schemas, CLI commands, event payloads, or implementation details. Step-by-step guides are in other sections.
+This section contains structured technical reference documentation for Shopware. Use it when you need precise specifications, XML schemas, CLI commands, event payloads, or implementation details. Step-by-step guides are in other sections.
 
 ## Core and platform references
 
