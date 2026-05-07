@@ -7,6 +7,8 @@ nav:
 
 # Customize Price Calculation
 
+## Overview
+
 This guide explains how to globally adjust the calculation of product prices by decorating a single service, and includes a brief example.
 
 ## Prerequisites

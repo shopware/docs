@@ -7,4 +7,8 @@ nav:
 
 # Filesystem
 
-Plugins often need the ability to read and write files. Thanks to the [Flysystem](https://flysystem.thephpleague.com/docs/) that Shopware uses, this can be managed very easily. It does not matter whether the files are stored on the local file system or at a cloud provider. The read and write access remains the same. If you want to learn more about the configuration of the file system in Shopware, have a look at the [filesystem guide](../../../../hosting/infrastructure/filesystem). For example, you will learn how to outsource the file system to the Amazon cloud. In a plugin, we don't have to worry about the configuration and can use the advantages of the Flysystem directly.
+Plugins often need the ability to read and write files. Shopware uses [Flysystem](https://flysystem.thephpleague.com/docs/), a file storage library for PHP. It provides a unified interface to interact with different storage backends, whether local file systems or cloud providers.
+
+Plugins do not require handling underlying configuration. It is possible to use the Flysystem abstraction directly, and the read/write API remains the same regardless of whether files are stored on a local file system or with a cloud provider.
+
+To learn more about filesystem configuration in Shopware, see the [filesystem guide](../../../../hosting/infrastructure/filesystem), including details on using cloud storage (such as Amazon S3) to outsource the file system.

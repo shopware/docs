@@ -7,8 +7,9 @@ nav:
 
 # Entities via Attributes
 
-Since Shopware v6.6.3.0, it has been possible to register entities via PHP attributes.
-This guide will demonstrate the process.
+## Overview
+
+Since Shopware v6.6.3.0, it has been possible to register entities via PHP attributes. This guide will demonstrate the process.
 
 ## Define the entity
 

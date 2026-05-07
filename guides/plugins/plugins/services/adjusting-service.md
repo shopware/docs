@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Adjusting a service
+  title: Adjusting a Service
   position: 70
 
 ---

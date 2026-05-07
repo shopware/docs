@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Add JavaScript as Script tag
+  title: Add JavaScript as Script Tag
   position: 65
 
 ---
 
 # Add JavaScript as Script Tag
+
+## Overview
 
 You often want to add your JavaScript to your main entry point `<plugin root>/src/Resources/app/storefront/src/main.js` to automatically compile it alongside the Storefront JavaScript.
 Refer to the [Add custom JavaScript](./add-custom-javascript.md) guide for more information.

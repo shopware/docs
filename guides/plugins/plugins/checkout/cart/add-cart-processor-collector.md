@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add cart collector/processor
+  title: Add Cart Collector/Processor
   position: 10
 
 ---

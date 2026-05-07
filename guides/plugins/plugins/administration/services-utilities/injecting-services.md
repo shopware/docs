@@ -1,13 +1,18 @@
-# Injecting services
+---
+nav:
+  title: Injecting Services
+  position: 110
+
+---
+
+# Injecting Services
 
 ## Overview
 
-This short guide will teach you how to use a service in the Shopware 6 Administration.
+This short guide covers how to use a service in the Shopware 6 Administration, including:
 
-Along these lines, this chapter will cover the following topics:
-
-* What is an Administration service?
-* How to use a service?
+* What an Administration service is
+* How to use a service
 
 ## Prerequisites
 

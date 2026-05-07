@@ -7,6 +7,8 @@ nav:
 
 # Database Migrations
 
+## Overview
+
 This guide covers what migrations are and how to use them.
 
 Migrations are PHP classes used to manage incremental and reversible database schema changes. Shopware comes with a pre-built Migration System, to take away most of the work for you. Throughout this guide, you will find the `$` symbol representing your command line.

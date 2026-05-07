@@ -21,9 +21,9 @@ Devenv provides project-local PHP, Node, Composer, and services via Nix, so you 
 
 On the host, you only need a minimal toolchain:
 
-- [Nix package manager](https://nixos.org/download.html)
-- Git
-- Docker Engine, only if you plan to run additional containerized services alongside Devenv (Optional)
+* [Nix package manager](https://nixos.org/download.html)
+* Git
+* Docker Engine, only if you plan to run additional containerized services alongside Devenv (Optional)
 
 See the [Shopware 6 requirements](../system-requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
 

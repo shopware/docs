@@ -225,5 +225,4 @@ configuration details loaded from the `translation.yaml` file.
 You can require it via dependency injection and because of the usage of the `TranslationConfigLoader` with lazy loading,
 the configuration is always available when needed.
 
-[migration-guide]: ../../resources/references/upgrades/core/translation/language-pack-migration.md
-[language-layer-docs]: TODO
+More information is available in the [Migration Guide](../../guides/upgrades-migrations/language-pack-migration.md).

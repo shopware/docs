@@ -7,7 +7,7 @@ nav:
 
 # Using Symfony Bundles Instead of Plugins
 
-This guide handles some basic concepts of Shopware plugins covered in our [Plugin base guide](plugin-base-guide). You may want to have a look or refresh your knowledge on Symfony's [Bundle system](https://symfony.com/doc/current/bundles.html).
+This guide refers to some basic concepts of Shopware plugins also covered in the [Plugin base guide](./plugin-base-guide.md). You may want to refresh your knowledge of Symfony's [Bundle system](https://symfony.com/doc/current/bundles.html).
 
 ::: info
 Check out our [Shopware Toolbox PHPStorm extension](../../development/tooling/shopware-toolbox.md) with useful features like autocompletion, code generation or guideline checks.
@@ -19,8 +19,6 @@ You might use a Symfony bundle instead of a plugin when:
 * You do not want Administration management
 * You are building project-level customization
 * You want pure Symfony integration
-
-A bundle is Symfony's preferred way to provide additional third-party features to any Symfony application. Those bundles are everywhere: Symfony even outsources many of its core features into external bundles. The template engine `Twig`, the `Security` bundle, the `WebProfiler`, as well as many other third-party bundles can be installed on demand to extend your Symfony application in any way. The Bundle System is Symfony's way of providing an extendable framework with plugin capabilities.
 
 ## How Plugins extend bundles
 
@@ -42,7 +40,7 @@ Use a pure Symfony bundle when:
 * You manage everything via Composer
 * You do not distribute the extension
 
-## Project Structure
+## Project structure
 
 How a typical Shopware 6 project structure looks when bundles are used:
 
@@ -81,7 +79,7 @@ project-root/
 └── .shopware-project.yaml
 ```
 
-The Bundle is typically placed in the `src/` folder of your project, which is the standard location for custom code in a Shopware project. You still will need to register the bundle in the `config/bundles.php` file of your project.
+The Bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You still will need to register the bundle in the project's `config/bundles.php` file.
 
 ## Choosing the right bundle class
 
@@ -92,7 +90,7 @@ There are two bundle classes you can choose from:
 
 ## Creating a bundle
 
-By default, The namespace `App\` is registered to the `src` folder in any Shopware project to be used for customizations. We recommend using this namespace, if you like to change the project structure, you can change the `App\` namespace in the `composer.json` file of your project.
+By default, The namespace `App\` is registered to the `src` folder in any Shopware project to be used for customizations. We recommend using this namespace. To change the project structure, change the `App\` namespace in the project's `composer.json` file.
 
 ```php
 // <project root>/src/YourBundleName.php
@@ -107,7 +105,7 @@ class YourBundleName extends Bundle
 }
 ```
 
-The bundle class needs to be registered in the `config/bundles.php` file of your project.
+The bundle class must be registered in the project's `config/bundles.php` file.
 
 ```php
 // <project root>/config/bundles.php
@@ -118,15 +116,15 @@ App\YourBundleName\YourBundleName::class => ['all' => true],
 
 ## Adding services, Twig templates, routes, and themes
 
-You can add services, Twig templates, routes, etc. to your bundle like you would do in a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The bundle will be automatically detected and the files will be loaded.
+You can add services, Twig templates, routes, etc. to your bundle just as you would to a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The bundle will be automatically detected and the files will be loaded.
 
 To mark your bundle as a theme, it's enough to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.
 This will automatically register your bundle as a theme and make it available in the Shopware administration.
-You can also add a `theme.json` file to define the theme configuration like [described here](../themes/theme-configuration.md).
+You can also add a `theme.json` file to define the theme configuration like [described here](../themes/configuration/theme-configuration.md).
 
 ## Adding migrations
 
-Migrations are not automatically detected in bundles. To enable migrations, you need to overwrite the `build` method in your bundle class like this:
+Migrations are not automatically detected in bundles. To enable migrations, overwrite the `build` method in the bundle class:
 
 ```php
 // <project root>/src/YourBundleName.php
@@ -147,14 +145,13 @@ class YourBundleName extends Bundle
 }
 ```
 
-As Bundles don't have a lifecycle, the migrations are not automatically executed.
-You need to execute them manually via the console command:
+As Bundles don't have a lifecycle, the migrations are not automatically executed. Execute them manually via the console command:
 
 ```bash
 bin/console database:migrate <BundleName> --all
 ```
 
-If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md), you can add it to the `.shopware-project.yaml` file like this:
+If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md), you can add it to the `.shopware-project.yaml` file:
 
 ```yaml
 deployment:
@@ -165,9 +162,7 @@ deployment:
 
 ## Integration into Shopware CLI
 
-The Shopware CLI cannot detect bundles automatically. Therefore, the assets of the bundles are not built automatically.
-You will need to adjust your project's `composer.json` file of your project to specify the path to the bundle.
-Do this by adding the `extra` section to the `composer.json` file:
+The Shopware CLI cannot detect bundles automatically. Therefore, bundle assets are not built automatically. Adjust the project's `composer.json` file to specify the path to the bundle. Do this by adding the `extra` section to the `composer.json` file:
 
 ```json
 {
@@ -185,16 +180,13 @@ This will tell Shopware CLI where the bundle is located and its name.
 
 ## Next steps
 
-Now that you know about the differences between a Symfony bundle and a Shopware plugin, you might also want to have a look into the following Symfony-specific topics and how they are integrated in Shopware 6:
+Now that you know about the differences between a Symfony bundle and a Shopware plugin, review the following guides:
 
 * [Dependency Injection](../plugins/services/dependency-injection.md)
 * [Listening to events](../plugins/framework/event/listening-to-events.md)
 
-::: info
-Here are some useful videos explaining:
+Also check out these useful videos:
 
-* **[Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)**
-* **[Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)**
-
-Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-:::
+* [Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)
+* [Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)
+* The free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma)

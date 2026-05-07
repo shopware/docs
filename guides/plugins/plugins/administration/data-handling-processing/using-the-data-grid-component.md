@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Using the data grid component
+  title: Using the Data Grid Component
   position: 230
 
 ---
 
-# Using the data grid component
+# Using the Data Grid Component
 
 ## Overview
 

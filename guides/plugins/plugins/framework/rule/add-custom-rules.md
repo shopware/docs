@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-In this guide you will learn how to create rules in Shopware. Rules are used by the rule builder.
+The Rule Builder allows users to add custom rules to create dynamic conditions and actions. Using the Rule Builder, you can define specific criteria based on various attributes, such as customer data, cart contents, order details, or other relevant factors. These custom rules can then trigger specific actions, such as applying discounts, displaying personalized content, or adjusting pricing based on specific conditions.
 
 This example will introduce a new rule, which checks if it is the first monday of the month or not. The shop owner is then able to react on this specific day every month with special prices or dispatch methods.
 

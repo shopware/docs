@@ -7,6 +7,10 @@ nav:
 
 # Multi-Inventory
 
+## Overview
+
+Multi-Inventory extends Shopware’s stock management by letting you manage inventory across multiple warehouses and warehouse groups. It is designed primarily for API-first integrations with ERP systems, while also providing Administration support for manual management and inspection. This guide explains the required setup, the underlying data model, and how to work with the feature through the Admin API.
+
 ## Pre-requisites and setup
 
 ### Commercial Plugin

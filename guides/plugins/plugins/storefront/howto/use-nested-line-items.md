@@ -7,6 +7,8 @@ nav:
 
 # Use Nested Line Items
 
+## Overview
+
 This guide will show you how to use nested line items. It covers extending views and shows how the Custom Product plugin handles this.
 
 ## Prerequisites

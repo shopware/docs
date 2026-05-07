@@ -7,6 +7,8 @@ nav:
 
 # Add Cookies to the Consent Manager
 
+## Overview
+
 Before proceeding, review the [app-base-guide](../app-base-guide.md).
 
 The [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management) provides a comprehensive guide to Shopware's cookie consent system.

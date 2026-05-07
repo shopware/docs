@@ -1,15 +1,15 @@
 ---
 nav:
-  title: Add tab to existing module
+  title: Add Tab to Existing Module
   position: 160
 
 ---
 
-# Add tab to existing module
+# Add Tab to Existing Module
 
 ## Overview
 
-You want to create a new tab in the Administration? This guide gets you covered on this subject. A realistic example would be adding a new association for an entity, which you want to configure on a separate tab on the entity detail page.
+This guide covers creating a new tab in the Administration. A realistic example would be adding a new association for an entity, which you want to configure on a separate tab on the entity detail page.
 
 ## Prerequisites
 

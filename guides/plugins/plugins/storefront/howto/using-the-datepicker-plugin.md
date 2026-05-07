@@ -7,6 +7,8 @@ nav:
 
 # Using the Datepicker Plugin
 
+## Overview
+
 To provide an input field for date and time values, use the datepicker plugin. This guide shows you how to use it.
 
 The datepicker plugin uses the `flatpickr` implementation under the hood. So, check out the `flatpickr` documentation,

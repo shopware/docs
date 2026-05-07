@@ -7,6 +7,8 @@ nav:
 
 # Add Data to Storefront Page
 
+## Overview
+
 Pages or pagelets are the objects that get handed to the templates and provide all necessary information for the template to render.
 
 If you make template changes you probably want to display some data that is currently not available in the page.

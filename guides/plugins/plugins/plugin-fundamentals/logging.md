@@ -1,3 +1,10 @@
+---
+nav:
+  title: Logging
+  position: 10
+
+---
+
 # Logging
 
 ## Overview

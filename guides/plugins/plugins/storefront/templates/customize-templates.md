@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Customize templates
+  title: Customize Templates
   position: 10
 
 ---
@@ -13,8 +13,8 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the [Plugin base guide](../../plugin-base-guide.md), so you might want to have a look at it.
-Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+- Familiarity with the [Plugin base guide](../../plugin-base-guide.md) and how to create plugins
+- Knowledge of [Twig](https://twig.symfony.com/) is advantageous but not necessary
 
 ## Getting started
 

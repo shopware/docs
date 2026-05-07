@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Adding NPM dependencies
+  title: Adding NPM Dependencies
   position: 120
 
 ---

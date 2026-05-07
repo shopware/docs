@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Testing guidelines for extensions
+  title: Testing Guidelines for Extensions
   position: 10
 
 ---

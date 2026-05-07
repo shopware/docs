@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add middleware
+  title: Add Middleware
   position: 30
 
 ---

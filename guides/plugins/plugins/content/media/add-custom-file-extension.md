@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Media File Extensions
 
+## Overview
+
 Not all media types can be uploaded to Shopware with the Administration's Media module. This guide explains how to use plugins to add custom media file extensions.
 
 ## Prerequisites

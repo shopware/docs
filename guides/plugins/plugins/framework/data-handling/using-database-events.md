@@ -7,6 +7,8 @@ nav:
 
 # Using Database Events
 
+## Overview
+
 Events are the easiest way to extend the Data Abstraction Layer (DAL). Every entity comes with a set of events which will be dispatched in various situations.
 
 All events are nested into one container event so that your subscriber should only get called once for e.g. a search request instead of dispatching the event 30 times.

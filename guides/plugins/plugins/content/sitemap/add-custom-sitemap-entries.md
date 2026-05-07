@@ -57,7 +57,7 @@ It then has to be registered to the [service container][dependency-injection] us
 It has to provide three methods:
 
 - `getDecorated`: Just throw an exception of type `DecorationPatternException` here. This is done for the sake of extending
-a class via decoration. Learn more about this [here][adjusting-services].
+a class via decoration. Learn more about this [here](../../services/adjusting-service.md).
 - `getName`: A technical name for your custom URLs
 - `getUrls`: The main method to take care of. It has to return an instance of `Shopware\Core\Content\Sitemap\Struct\UrlResult`,
 containing an array of all URLs to be added.
@@ -235,6 +235,6 @@ All of those instances are then stored in an array, which in return is passed to
 This completes the implementation. Your custom URLs will now be included in the generated sitemap.
 
 [dynamic-entity-seo]: ../seo/add-custom-seo-url#dynamic-seo-urls-for-entities
-[dependency-injection]: ../../plugin-fundamentals/dependency-injection
+[dependency-injection]: ../../services/dependency-injection.md
 [custom-complex-data]: ../../framework/data-handling/add-custom-complex-data
 [adjusting-services]: ../../plugin-fundamentals/adjusting-service

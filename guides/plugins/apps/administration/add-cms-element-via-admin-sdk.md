@@ -7,6 +7,8 @@ nav:
 
 # Add CMS Element
 
+## Overview
+
 This guide explains how to create a new CMS element using the Meteor Admin SDK. The example plugin is named
 `SwagBasicAppCmsElementExample`, following the naming conventions used in other guides.
 

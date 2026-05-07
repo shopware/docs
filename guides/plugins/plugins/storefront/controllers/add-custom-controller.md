@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Controller
 
+## Overview
+
 In this guide you will learn how to create a custom Storefront controller.
 
 ## Prerequisites

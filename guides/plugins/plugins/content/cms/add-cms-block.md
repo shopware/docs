@@ -6,9 +6,9 @@ nav:
 
 # Add CMS Blocks
 
-## What is a Block?
+## Overview
 
-A CMS block in Shopware is a fundamental structural component of the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what blocks are:
+A CMS block in Shopware is a fundamental structural component of the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what blocks are.
 
 ### CMS Hierarchy
 
@@ -184,7 +184,7 @@ You can create your own blocks or extend and reuse existing ones. Don't forget t
 </div>
 ```
 
-The `block` is automatically passed to the template and contains meta data and configuration values.  See the `CmsBlockDefinition.php` for a full overview.
+The `block` is automatically passed to the template and contains meta data and configuration values. See the `CmsBlockDefinition.php` for a full overview.
 
 ### How to Render Slots
 

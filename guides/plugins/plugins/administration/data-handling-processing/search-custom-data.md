@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add custom data to the search
+  title: Add Custom Data to the Search
   position: 310
 
 ---
 
-# Add custom data to the search
+# Add Custom Data to the Search
 
 ## Overview
 

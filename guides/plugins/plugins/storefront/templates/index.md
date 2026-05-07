@@ -8,10 +8,10 @@ nav:
 
 This section explains how to customize and extend Storefront templates in plugins.
 
-* [Customize templates](./customize-templates.md)
+* [Customize Templates](./customize-templates.md)
 * [Customize Header/Footer](./customize-header-footer.md)
-* [Add custom Twig functions](./add-custom-twig-function.md)
+* [Add Custom Twig Functions](./add-custom-twig-function.md)
 
 ## Reference
 
-* [Shopware's Twig functions](./twig-function-reference.md)
+* [Shopware's Twig Runctions](./twig-function-reference.md)

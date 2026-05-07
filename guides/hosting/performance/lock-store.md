@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Lock store
+# Lock Storage
 
 Shopware uses [Symfony's lock component](https://symfony.com/doc/5.x/lock.html) to implement locking functionality.
 By default, Symfony will use a local lock store. This means in multi-machine (cluster) setups, naive file locks will break the system; therefore, it is highly recommended to use one of the [supported remote stores](https://symfony.com/doc/5.x/components/lock.html#available-stores).

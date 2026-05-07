@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add Flow Builder trigger
+  title: Add Flow Builder Trigger
   position: 20
 
 ---
 
-# Add custom flow trigger
+# Add Custom Flow Trigger
 
 ::: info
   This functionality is available starting with Shopware 6.4.6.0
@@ -24,7 +24,7 @@ for better integration later.
 
 ## Existing triggers and actions
 
-You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference) to read triggers and actions detail.
+Refer to the [Flow reference](../../../../development/troubleshooting/flow-reference.md) to read triggers and actions details.
 
 ## Event interfaces and classes
 

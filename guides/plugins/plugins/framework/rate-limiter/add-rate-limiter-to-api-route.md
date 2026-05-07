@@ -9,6 +9,8 @@ nav:
 
 ## Overview
 
+A rate limiter controls the rate or frequency at which API requests can be made. It sets limits on the number of requests that can be processed within a specified time period, preventing excessive usage and reducing the risk of brute-force attacks. This helps to maintain system stability, protect against misuse, and ensure fair resource allocation.
+
 In this guide you'll learn how to secure API routes with a rate limit to reduce the risk against bruteforce attacks.
 If you want to learn more about the configuration of the rate limiter in Shopware,
 have a look at the [Rate limiter](../../../../hosting/infrastructure/rate-limiter) guide.

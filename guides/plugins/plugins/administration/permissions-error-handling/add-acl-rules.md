@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Adding permissions
+  title: Adding Permissions
   position: 110
 
 ---
 
-# Adding permissions
+# Adding Permissions
 
 ## Overview
 

@@ -1,7 +1,7 @@
 ---
 nav:
   title: Redis
-  position:  7
+  position: 80
 
 ---
 

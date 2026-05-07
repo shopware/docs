@@ -17,7 +17,7 @@ Even if this is originally a plugin guide, everything will work perfectly in a t
 
 ## Prerequisites
 
-To follow this guide easily, you first need to have a functioning plugin installed. Head over to our [Plugin base guide](../plugins/plugin-base-guide) to create a plugin, if you don't know how it's done yet. Also, knowing and understanding SCSS will be quite mandatory to fully understand what's going on here. Furthermore, it might be helpful to read the guide on how to [handle own assets](../plugins/storefront/styling/add-custom-assets.md) in your plugin before you start with this one.
+To follow this guide easily, you first need to have a functioning plugin installed. Head over to our [Plugin base guide](../../plugins/plugin-base-guide.md) to create a plugin, if you don't know how it's done yet. Also, knowing and understanding SCSS will be quite mandatory to fully understand what's going on here. Furthermore, it might be helpful to read the guide on how to [handle own assets](../../plugins/storefront/styling/add-custom-assets.md) in your plugin before you start with this one.
 
 ## Adding icon
 
@@ -27,7 +27,6 @@ Needless to say, the first step is saving your image somewhere in your plugin wh
 
 ```text
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/default
-`
 ```
 
 You can also provide "solid" icons or any other custom pack names that can be configured later with the `pack` parameter. You can do that by creating a folder with the pack name:

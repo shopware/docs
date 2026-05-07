@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add custom CLI commands
+  title: Add Custom CLI Commands
   position: 90
 
 ---
@@ -18,6 +18,6 @@ $services->set(Swag\BasicExample\Command\ExampleCommand::class)
 
 Commands registered as services in a Shopware plugin are automatically available via `bin/console`.
 
-## More interesting topics
+## Other interesting topics
 
 * [Adding a scheduled task](add-scheduled-task)

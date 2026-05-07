@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add product entity extension to elasticsearch
+  title: Add Product Entity Extension to Elasticsearch
   position: 20
 
 ---

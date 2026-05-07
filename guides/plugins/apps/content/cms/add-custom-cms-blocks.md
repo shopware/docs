@@ -1,16 +1,18 @@
 ---
 nav:
-  title: Add custom CMS blocks
+  title: Add Custom CMS bBlocks
   position: 10
 
 ---
 
-# Add custom CMS blocks
+# Add Custom CMS blocks
 
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
 
-Alternatively, you can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system; however, these will not be available in Shopware cloud stores.
+## Overview
+
+You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system. However, these will not be available in Shopware cloud stores.
 :::
 
 Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
@@ -25,6 +27,7 @@ This guide is based on our [App Base Guide](../../app-base-guide) and assumes yo
 
 Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block).
 Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
+
 The basic directory structure looks as follows:
 
 ```text
@@ -47,9 +50,7 @@ The basic directory structure looks as follows:
 └── manifest.xml
 ```
 
-Each CMS block defined within your `cms.xml` must have a directory matching the block's name in `Resources/cms/blocks/`.
-In those directories, you define your blocks for the CMS module in the Administration by supplying a `preview.html` file containing the template used to display a preview.
-Styling the preview in the sidebar and the component in the CMS editor can be done in `styles.css`.
+Each CMS block defined within your `cms.xml` must have a directory matching the block's name in `Resources/cms/blocks/`. In those directories, you define your blocks for the CMS module in the Administration by supplying a `preview.html` file containing the template used to display a preview. Styling the preview in the sidebar and the component in the CMS editor can be done in `styles.css`.
 
 ::: info
 Due to technical limitations, it's not possible to use templating engines \(like Twig\) or preprocessors \(like Sass\) for rendering and styling the preview.
@@ -59,8 +60,7 @@ The Storefront representations of your blocks reside in `Resources/views/storefr
 
 ## Defining blocks
 
-As already mentioned above, and similar to an app's `manifest.xml`, CMS blocks also require a definition in `cms.xml`.
-In this example, we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
+As already mentioned above, and similar to an app's `manifest.xml`, CMS blocks also require a definition in `cms.xml`. In this example, we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
 ```xml
 // <app root>/Resources/cms.xml

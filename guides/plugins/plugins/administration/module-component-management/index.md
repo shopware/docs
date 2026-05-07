@@ -13,9 +13,9 @@ This guide covers how to create, extend, and customize Administration modules an
 - Override or extend existing components
 - Work with base components and input fields
 
-- [Add Custom Module](./add-custom-module)
-- [Customizing Modules](./customizing-modules)
-- [Add Custom Component](./add-custom-component)
-- [Customizing Components](./customizing-components)
-- [Using Base Components](./using-base-components)
 - [Add Custom Field](./add-custom-field)
+- [Add Custom Component](./add-custom-component)
+- [Add Custom Module](./add-custom-module)
+- [Customizing Components](./customizing-components)
+- [Customizing Modules](./customizing-modules)
+- [Using Base Components](./using-base-components)

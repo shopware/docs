@@ -9,14 +9,6 @@ nav:
 
 ## Overview
 
-Flysystem is a file storage library for PHP. It provides one interface to interact with many types of filesystems. The Flysystem file system in Shopware is flexible, allowing seamless interaction with various file storage systems. It provides a consistent interface to access, manipulate, and manage files across different storage backends.
-
-## Prerequisites
-
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom service guide](../../services/add-custom-service.md).
-
-## Flysystem overview
-
 The Flysystem enables your plugin to read and write files through a common interface. There are several default namespaces/directories that are available, for example:
 
 * One for private files of the shop: invoices, delivery notes
@@ -29,6 +21,10 @@ However, every plugin/bundle gets an own namespace that should be used for priva
 
 * `swag_basic_example.filesystem.public` for public plugin files
 * `swag_basic_example.filesystem.private` for private plugin files
+
+## Prerequisites
+
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom service guide](../../services/add-custom-service.md).
 
 ## Use filesystem in a service
 

@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Rule Conditions
 
+## Overview
+
 This guide explains how to make your app introduce custom conditions for use in the [Rule Builder](../../../../concepts/framework/rule-system/index.md). Custom conditions can be defined with fields to be rendered in the Administration and with their own logic, using the same approach as [App Scripts](../app-scripts/index.md).
 
 ::: info

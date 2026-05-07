@@ -7,8 +7,11 @@ nav:
 
 # Customize Header/Footer
 
+## Overview
+
 With the introduction of ESI loading for the header and footer, the way how to customize the header and footer has changed.
 E.g. it is no longer possible to customize the header and footer depending on the current page data.
+
 This guide will show you how to customize the header and footer in your plugin.
 
 ## Prerequisites

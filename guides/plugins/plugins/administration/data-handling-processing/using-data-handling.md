@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Using the data handling
+  title: Using Data Handling
   position: 120
 
 ---
 
-# Using the data handling
+# Using Data Handling
+
+## Overview
 
 The Shopware 6 Administration allows you to fetch and write nearly everything in the database. This guide will teach you the basics of the data handling.
 

@@ -6,13 +6,13 @@ nav:
 
 # In-App Purchase Gateway
 
-## Context
-
 ::: info
 In-App Purchase is available since Shopware version 6.6.9.0
 :::
 
-In-App Purchase Gateway was introduced to enhance flexibility in managing In-App Purchases.
+## Overview
+
+The In-App Purchase Gateway enhances flexibility in managing In-App Purchases.
 
 The gateway enables app servers to restrict specific In-App Purchases based on advanced decision-making processes handled on the app server side.
 
@@ -25,14 +25,14 @@ We aim to expand its functionality to include filtering entire lists of In-App P
 
 ## Prerequisites
 
-You should be familiar with the concept of Apps, their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server.
+You should be familiar with the concept of Apps, their registration flow, and how to sign and verify requests and responses between Shopware and the App backend server.
 
 <PageRef page="../../app-base-guide" title="App base guide" />
 
 Your app server must be also accessible for the Shopware server.
 You can use a tunneling service like [ngrok](https://ngrok.com/) for development.
 
-## Manifest Configuration
+## Manifest configuration
 
 To indicate that your app leverages the In-App Purchase Gateway, include the `inAppPurchase` property within the `gateways` property in your app's `manifest.xml`.
 
@@ -59,9 +59,8 @@ The app server will receive a list containing the single only In-App Purchase th
 ::: warning
 **Connection timeouts**
 
-The Shopware shop will wait for a response for 5 seconds.
-Be sure that your In-App Purchases gateway implementation on your app server responds in time,
-otherwise Shopware will time out and drop the connection.
+The Shopware shop will wait for a response for five seconds.
+Be sure that your In-App Purchases gateway implementation on your app server responds in time, otherwise Shopware will time out and drop the connection.
 :::
 
 <Tabs>

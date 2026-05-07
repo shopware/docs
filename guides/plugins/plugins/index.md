@@ -7,58 +7,56 @@ nav:
 
 # Plugins
 
-Plugins are Shopware's server-side extension type, giving you deep integration with the e-commerce platform. They allow you to extend, overwrite, and modify Shopware’s core capabilities. Unlike apps and themes, plugins run directly inside the shop environment and can interact tightly with the system.
+Plugins are Shopware’s PHP-based, server-side extension type for enhancing platform functionality. They allow you to extend, overwrite, and modify Shopware's core capabilities at runtime.
 
-You will likely create a plugin when you need deep server-side integration or require complex functionalities such as:
+Plugins run directly inside the Shopware environment and provide full access to:
 
-- Custom price calculation
-- Product imports
-- Custom content/product logic
-- Integrating third-party identity providers
-- Dynamic validations
-- Customer tracking or behavioral logic
+* The Symfony service container
+* Events and subscribers
+* Database layer and migrations
+* CLI commands and scheduled tasks
+* Administration extensions
+* Storefront extensions
 
-| Goal | Guide |
-|------|--------|
-| Create a new plugin from scratch | [Plugin base guide](plugin-base-guide.md) |
-| Add Admin configuration fields (`config.xml`) | [Add plugin configuration](plugin-fundamentals/add-plugin-configuration.md) |
-| Read config in PHP, Admin JS, or Storefront | [Use plugin configuration](plugin-fundamentals/use-plugin-configuration.md) |
-| React to domain events | [Listening to events](../plugins/framework/event/listening-to-events.md) |
-| Register services & DI | [Dependency injection](../plugins/services/dependency-injection.md) |
-| Database changes | [Database migrations](../plugins/database/database-migrations.md) |
-| Composer dependencies in a plugin | [Adding Composer dependencies](../plugins/dependencies/using-composer-dependencies.md) |
-| More topics | [Plugin fundamentals](plugin-fundamentals/index.md) (logging, cache, routes, …) |
+Technically, plugins are extensions of [Symfony bundles](./bundle.md). They follow a defined directory structure and, when used as managed extensions, provide a lifecycle (install, update, deactivate, uninstall).
+
+Plugins can ship their own assets, controllers, services, and tests, enabling deep platform and full extensibility across core and custom functionality.
+
+## When to create and use a plugin
+
+You will typically use a plugin when you need to:
+
+* Implement custom business logic for customer tracking, content, products and product imports, etc.
+* Modify or customize checkout or pricing behavior or calculations
+* Add database entities or migrations
+* Listen to and react to platform events
+* Register services in the DI container
+* Extend the Administration with custom modules
+* Add backend commands or scheduled tasks
+* Integrate third-party systems, including identity providers
+* Enable dynamic validations
+
+:::Info
+For infrastructure and external system integrations (e.g., Redis, Elasticsearch, or custom APIs), refer to the dedicated [integration guides](../plugins/integrations/index.md /integrations).
+:::
+
+### Choosing the right extension type
+
+| Requirement | Use |
+|-------------|------|
+| Backend logic or deep integration | Plugin |
+| Storefront styling or template overrides only | Plugin-based Theme |
+| SaaS-based integration without server access | App |
 
 ::: info
-If your extension focuses primarily on Storefront design changes, a [theme plugin](../themes/theme-base-guide.md) is often the best choice.
+If your extension focuses only on design changes, a simple template adjustment, typically done through a plugin-based [theme](../themes/index.md), may be the best choice.
 :::
 
-## Types of plugins
+## Plugin types
 
-Shopware plugins differ in their folder structure and functionality.
+Shopware supports multiple plugin models, which differ in their folder structure and functionality.
 
-### Plugins
-
-`<shopware project root>/custom/plugins` contains all plugins from the Shopware store. You install and manage these plugins via the Shopware Administration.
-
-### Static plugins
-
-`<shopware project root>/custom/static-plugins` contains all project-specific plugins that are typically committed to the Git repository.
-
-:::info
-The Shopware Administration does not detect static plugins. The project must require them via Composer for them to be installable.
-:::
-
-```bash
-# You can find the vendor/package name in the plugin's composer.json file under "name"
-composer req <vendor>/<plugin-name>
-```
-
-### Symfony bundle / Shopware bundle
-
-You can also use Shopware/Symfony [bundles](bundle.md) instead of plugins. Bundles are installed bundles with Composer and offer full control over projects. They are not managed by the Shopware Administration, and are a good choice when you want to avoid plugin lifecycle handling or Administration management.
-
-## Feature comparison
+### Feature comparison
 
 | Feature                                       | Plugin             | Static Plugin           | Shopware Bundle                 | Symfony Bundle                  |
 |-----------------------------------------------|--------------------|-------------------------|---------------------------------|---------------------------------|
@@ -68,3 +66,67 @@ You can also use Shopware/Symfony [bundles](bundle.md) instead of plugins. Bundl
 | Can be managed in Administration              | Yes                | No                      | No                              | No                              |
 | Can be a Theme                                | Yes                | Yes                     | Yes                             | No                              |
 | Can modify Admin / Storefront with JS/CSS     | Yes                | Yes                     | Yes                             | No                              |
+
+### Static plugins (recommended)
+
+Project-specific static plugins live in `<shopware project root>/custom/static-plugins`, which contains all project-specific plugins that are typically committed to the Git repository. The Shopware Administration does not detect static plugins. They must be required via Composer before they can be installed and activated:
+
+```bash
+# You can find the vendor/package name in the plugin's composer.json file under "name"
+composer req <vendor>/<plugin-name>
+```
+
+Static plugins are ideal for:
+
+* Custom project logic
+* Team development workflows
+* CI/CD pipelines
+* Long-term maintainability
+
+Characteristics:
+
+* Versioned in Git
+* Live inside your project repository
+* Are installed and managed via Composer
+* Integrate cleanly into deployment workflows
+* No dependency on Administration installation
+* Offer clear separation between project code and marketplace extensions
+
+### Managed plugins
+
+Managed plugins are commonly used for marketplace-distributed extensions. They are located in `<shopware root>/custom/plugins` and are typically installed and managed via the Shopware Administration.
+
+### Bundles
+
+Symfony-based [bundles](../plugins/bundle.md) are installed via Composer. They do not have a Shopware plugin lifecycle and are not managed via the Administration.
+
+Bundles are useful when you want:
+
+* Full Symfony-level control
+* No lifecycle handling or Administration management
+* Pure project-level customization
+
+Choose the extension model that best fits your distribution and maintenance strategy.
+
+## Architectural recommendation
+
+There is no need to create a separate plugin for every distinct functionality.
+
+For custom projects, it is often preferable to:
+
+* Maintain all custom logic in a single repository
+* Share one CI pipeline and one set of static analysis rules
+* Organize functionality through clean internal directory structure
+
+It does not matter whether static plugins or Symfony bundles internally are used, as much as having:
+
+* Clear domain boundaries
+* Consistent structure
+* Centralized quality control
+
+It is perfectly valid to ship multiple separate plugins, but keeping them in a single repository with unified tooling significantly reduces long-term maintenance and upgrade friction.
+
+## Next steps
+
+* Review the [Plugin base guide](./plugin-base-guide.md) to learn how to create plugins
+* Make note of [CI](../../development/testing/ci.md) and other testing guidance to prevent upgrade-related regressions

@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Add custom check
+  title: Add Custom Check
   position: 10
 
 ---
 
-# Overview
+# Add Custom Check
+
+## Overview
 
 In this guide, we will be building a dummy example of a custom system check that verifies if the local system has enough disk space to operate normally.
 

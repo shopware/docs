@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Add data to CMS element
+  title: Add Data to CMS Element
   position: 40
 
 ---
 
 # Add Data to CMS Element
+
+## Overview
 
 When creating custom CMS elements,
 you sometimes want to use more complex data types than text or boolean values, e.g., other entities such as media or products.

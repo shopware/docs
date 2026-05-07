@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Dependency injection
+  title: Dependency Injection
   position: 40
 
 ---

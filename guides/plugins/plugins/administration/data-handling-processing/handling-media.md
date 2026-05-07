@@ -1,4 +1,10 @@
-# Handling media
+---
+nav:
+  title: Handling Media
+  position: 100
+---
+
+# Handling Media
 
 ## Overview
 

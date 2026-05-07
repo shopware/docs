@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Override existing route
+  title: Override Existing Route
   position: 30
 
 ---

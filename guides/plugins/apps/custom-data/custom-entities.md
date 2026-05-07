@@ -1,15 +1,17 @@
 ---
 nav:
-  title: Custom entities
+  title: Custom Entities
   position: 20
 
 ---
 
-# Custom entities
+# Custom Entities
 
-In addition to [Custom fields](custom-fields), you can create completely own entities in the system, named custom entities.
-Unlike [Custom fields](custom-fields), you can generate completely custom data structures with custom relations, which can then be maintained by the admin.
-To make use of the custom entities register your entities in your `entities.xml` file, which is located in the `Resources` directory of your app.
+## Overview
+
+In addition to [Custom fields](custom-fields), you can define entirely new entities in the system, called custom entities. Unlike [Custom fields](custom-fields), custom entities let you model fully customized data structures and relationships. These entities can then be managed directly in the Administration.
+
+To use custom entities, register them in your app's `Resources/entities.xml` file:
 
 ```xml
 // <app root>/Resources/entities.xml

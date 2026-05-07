@@ -11,6 +11,8 @@ nav:
 The Shopware app custom flow triggers are only accessible from 6.5.3.0 and later versions.
 :::
 
+## Overview
+
 In addition to the default triggers, you have the option to incorporate custom, pre-defined, and adjustable triggers into the flow builder.
 
 ![Custom flow trigger in Administration](../../../../assets/flow-builder-custom-trigger-preview.png)

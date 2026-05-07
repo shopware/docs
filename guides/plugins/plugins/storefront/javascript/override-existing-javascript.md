@@ -7,6 +7,8 @@ nav:
 
 # Override Existing JavaScript
 
+## Overview
+
 Override core JavaScript plugin logic by overriding it with your own implementations. Extending the cookie permission plugin, showing the cookie notice on every page load, and asking the user if they want to hide cookie bar via a confirm dialogue are the key actions involved.
 
 ## Prerequisites

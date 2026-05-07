@@ -6,6 +6,8 @@ nav:
 
 # Build an Admin UI App Locally
 
+## Overview
+
 This guide shows how to create a Shopware app that adds an Administration module backed by a local frontend development server. Use this setup when you want to:
 
 - add a custom module to the Administration

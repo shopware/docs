@@ -1,15 +1,17 @@
 ---
 nav:
-  title: Starter Guide - Add an API endpoint
+  title: Add an API endpoint
   position: 20
 
 ---
 
-# Starter Guide - Add an API Endpoint
+# Add an API Endpoint
 
 ::: info
-Note that this guide relies on [App scripts](../app-scripts/), introduced from Shopware 6.4.8.0 version.
+This guide relies on [App scripts](../app-scripts/), introduced from Shopware 6.4.8.0 version.
 :::
+
+## Overview
 
 This guide shows how you can add a custom API endpoint that delivers dynamic data starting from zero.
 

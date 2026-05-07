@@ -24,7 +24,7 @@ This is because, in such cases, malicious actors would already need to be authen
 
 ## API-aware field
 
-The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference).
+The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](../../guides/development/troubleshooting/dal-reference/flags-reference.md).
 
 ## Captcha
 

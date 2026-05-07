@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Listing Filters
 
+## Overview
+
 In an online shop, filters are an important feature. So you might use filters in your custom plugin. This guide will get you covered on how to implement your own, custom filters in Shopware's Storefront.
 
 ## Prerequisites
@@ -156,7 +158,7 @@ As we want to filter a boolean value, we choose the `filter-boolean` component h
 | `filter-range` | Displays a range which can be used for filtering |
 | `filter-rating-select` and `filter-rating-select-item` | Filter component for rating |
 
-Extending  `component_filter_panel_items` as shown above puts our filter *after* the already existing ones. We could put it at the beginning by moving the `parent()` call to the end of the block.
+Extending `component_filter_panel_items` as shown above puts our filter *after* the already existing ones. We could put it at the beginning by moving the `parent()` call to the end of the block.
 
 If we instead want our filter to be placed before or after a specific filter in the middle of the list, we can instead extend the block for that filter. For example, if we want our filter to be displayed after the price filter, we would extend the block `component_filter_panel_item_price`:
 

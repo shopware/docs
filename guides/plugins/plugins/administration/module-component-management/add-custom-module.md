@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Add custom module
+  title: Add Custom Module
   position: 10
 
 ---
 
-# Add custom module
+# Add Custom Module
+
+## Overview
 
 In the `Administration` core code, each module is defined in a directory called `module`.
 Inside the `module` directory lies the list of several modules, each having their own directory named after the module itself.

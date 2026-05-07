@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Override existing routes
+  title: Override Existing Routes
   position: 150
 
 ---
 
-# Override existing routes
+# Override Existing Routes
 
 ## Overview
 

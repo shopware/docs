@@ -1,15 +1,15 @@
 ---
 nav:
-  title: EnumField reference
+  title: EnumField Reference
   position: 100
 
 ---
 
-# EnumField reference
+# EnumField Reference
 
 ## Usage
 
-The `EnumField` can be used to restrict  `string` or `int` values to a fixed set.
+The `EnumField` can be used to restrict `string` or `int` values to a fixed set.
 
 Define a `\BackedEnum` class, use them in an Entity and restrict the values in your RDBMS.
 

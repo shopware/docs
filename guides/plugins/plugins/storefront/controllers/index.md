@@ -7,8 +7,7 @@ nav:
 
 # Storefront Controllers
 
-Storefront controllers define HTTP endpoints for the storefront scope.
-They coordinate page rendering and delegate business logic to Store API routes or page loaders.
+Storefront controllers define HTTP endpoints for the storefront scope. They coordinate page rendering and delegate business logic to Store API routes or page loaders.
 
 ## Core Principles
 

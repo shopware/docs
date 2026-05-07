@@ -1,15 +1,17 @@
 ---
 nav:
-  title: Debugging Elasticsearch
+  title: Debugging and Troubleshooting Elasticsearch
   position: 20
 
 ---
 
-# Debugging Elasticsearch
+# Debugging and Troubleshooting Elasticsearch
 
 ## Overview
 
-This article shows you how to debug the status and indexing process of your Elasticsearch environment. Ensure that the [Debug-Mode](./elasticsearch-debugging) is activated in your *.env* file.
+This guide shows you how to debug the status and indexing process of your Elasticsearch environment. Use this guide when Elasticsearch indexing, aliases, queues, or search results are not behaving as expected.
+
+Ensure that the [Debug-Mode](./elasticsearch-debugging) is activated in your *.env* file.
 
 ## Shopware 6 CLI commands
 
@@ -251,7 +253,7 @@ After the last message has been processed, your index should be found in your St
 bin/console es:create:alias
 ```
 
-## Logfiles and tipps
+## Logfiles and tips
 
 You can usually find the Elasticsearch logfiles at [`/var/log/elasticsearch`](https://www.elastic.co/guide/en/elasticsearch/reference/master/settings.html#_config_file_format) to check for any issues when indexing.
 Also, tools like [Kibana](https://www.elastic.co/kibana) or [Cerebro](https://help.profihost.com/hc/de/articles/18918050563729-Cerebro) can help you better understand what is happening in your Elasticsearch.

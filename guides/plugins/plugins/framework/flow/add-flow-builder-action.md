@@ -21,7 +21,7 @@ It might be helpful to gather some general understanding about the [concept of F
 
 ## Existing triggers and actions
 
-You can refer to the [Flow reference](../../../../../resources/references/core-reference/flow-reference) to read triggers and actions detail.
+You can refer to the [Flow reference](../../../../development/troubleshooting/flow-reference.md) to read triggers and actions detail.
 
 ## Create custom flow action
 

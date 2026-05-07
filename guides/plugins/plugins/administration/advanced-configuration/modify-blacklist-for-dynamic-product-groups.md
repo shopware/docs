@@ -4,7 +4,7 @@ nav:
   position: 20
 ---
 
-# Modify dynamic product groups blacklist
+# Modify Dynamic Product Groups Blacklist
 
 ## Overview
 

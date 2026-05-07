@@ -7,6 +7,8 @@ nav:
 
 # Manipulate the Cart with App Scripts
 
+## Overview
+
 If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart) script hook.
 
 ::: info

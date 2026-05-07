@@ -12,7 +12,9 @@ This document represents core guidelines and has been mirrored from the core in 
 Find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/extendability.md)
 :::
 
-The Extendability of our software and its features is an essential part of development. Enabling external companies, as well as ourselves, to customize our software so it can be adapted to different business cases is the foundation of our software's success.
+## Overview
+
+The extendability of our software and its features is an essential part of development. Enabling external companies, as well as ourselves, to customize our software so it can be adapted to different business cases is the foundation of our software's success.
 
 Regarding software extendability, different business cases and requirements must be considered, and we must also build the software architecture accordingly.
 

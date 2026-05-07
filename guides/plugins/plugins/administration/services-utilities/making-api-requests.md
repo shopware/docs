@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Making API requests
+  title: Making API Requests
   position: 70
 
 ---

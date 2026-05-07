@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Running actions inside transactions
+  title: Running Actions Inside Transactions
   position: 30
 
 ---
 
-# Action transactions
+# Running Actions Inside Transactions
 
 ## Overview
 

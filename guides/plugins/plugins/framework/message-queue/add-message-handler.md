@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add message handler
+  title: Add Message Handler
   position: 20
 
 ---
 
-# Add message handler
+# Add Message Handler
 
 ## Overview
 

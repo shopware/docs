@@ -7,6 +7,8 @@ nav:
 
 # Load Additional Data for the Storefront with App Scripts
 
+## Overview
+
 If your app needs additional data in your [customized Storefront templates](../../plugins/storefront/templates/customize-templates.md), you can load that data with app scripts and make it available to your template.
 
 ::: info

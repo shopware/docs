@@ -1,13 +1,16 @@
 ---
 nav:
-  title: Custom fields
+  title: Custom Data Fields
   position: 10
 
 ---
 
-# Custom Data
+# Custom Data Fields
 
-You can add custom fields to Shopware and thus add your own fields to extending data records. The user is able to modify this fields from within the Shopware Administration.  
+## Overview
+
+You can add custom fields to Shopware and thus add your own fields to extending data records. The user is able to modify this fields from within the Shopware Administration.
+
 To make use of the custom fields, register your custom field sets in your manifest file:
 
 <<< @/docs/snippets/config/app/custom-fields-simple.xml

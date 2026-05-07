@@ -1,13 +1,15 @@
 ---
 nav:
-  title: Using utility functions
+  title: Using Utility Functions
   position: 250
 
 ---
 
-# Using utility functions
+# Using Utility Functions
 
-Utility functions in the Shopware 6 Administration are registered to [the Shopware object](../data-handling-processing/the-shopware-object.md) and are therefore accessible everywhere in the Administration. They provide many useful [shortcuts](../../../../../resources/references/administration-reference/utils.md) for common tasks.
+## Overview
+
+Utility functions in the Shopware 6 Administration are registered to [the Shopware object](../data-handling-processing/the-shopware-object.md) and are therefore accessible everywhere in the Administration. They provide many useful [shortcuts](../administration-reference/utils.md) for common tasks.
 
 ## Prerequisites
 

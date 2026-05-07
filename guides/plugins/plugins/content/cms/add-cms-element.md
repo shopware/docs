@@ -1,14 +1,14 @@
 ---
 nav:
-  title: Add CMS element
+  title: Add CMS Element
   position: 20
 ---
 
 # Add CMS Elements
 
-## What is an Element?
+## Overview
 
-A CMS element in Shopware is the smallest content unit in the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what elements are:
+A CMS element in Shopware is the smallest content unit in the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what elements are.
 
 ### CMS Hierarchy
 
@@ -244,7 +244,7 @@ You can create your own elements or extend and reuse existing ones. Don't forget
 </div>
 ```
 
-The `element` is automatically passed to the template and contains meta data and configuration values.  See the `CmsSlotDefinition.php` for a full overview.
+The `element` is automatically passed to the template and contains meta data and configuration values. See the `CmsSlotDefinition.php` for a full overview.
 
 ## Next steps
 

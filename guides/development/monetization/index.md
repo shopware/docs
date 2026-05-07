@@ -9,7 +9,7 @@ nav:
 
 Shopware provides multiple ways to monetize your extension in the Store. Choose the model that fits your business strategy and target audience.
 
-All monetized extensions must comply with our [quality guidelines](../testing/store/quality-guidelines) and avoid [Common Store Review Errors](./store-review-errors).
+All monetized extensions must comply with our [quality guidelines](../testing/store/quality-guidelines) and avoid [Common Store Review Errors](../../development/testing/store/store-review-errors.md).
 
 ## Paid extensions
 

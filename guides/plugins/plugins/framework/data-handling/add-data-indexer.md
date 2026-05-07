@@ -9,7 +9,11 @@ nav:
 
 ## Overview
 
-Data indexer are used to optimize the performance of recurring complex tasks. One good example to understand the benefit of data indexer would be the cheapest price calculation within Shopware. Every product has a `cheapest_price` column in the database which should contain the cheapest price a product has. The calculation of this column can be complex, because a product can have several variants with advanced pricing rules and so on. This makes the calculation more difficult and would take too much time when reading 25 products for a listing. To optimize the performance there is a data indexer that calculates the cheapest price of a product every time the product is updated by the DAL. This means that no new calculation has to be performed when a product is read, and performance during reading is significantly increased. Furthermore data indexer can make use of the [Message queue](../../../../hosting/infrastructure/message-queue) to handle the calculations asynchronously.
+Data indexer are used to optimize the performance of recurring complex tasks.
+
+One good example to understand the benefit of data indexer would be the cheapest price calculation within Shopware. Every product has a `cheapest_price` column in the database which should contain the cheapest price a product has. The calculation of this column can be complex, because a product can have several variants with advanced pricing rules and so on. This makes the calculation more difficult and would take too much time when reading 25 products for a listing.
+
+To optimize the performance there is a data indexer that calculates the cheapest price of a product every time the product is updated by the DAL. This means that no new calculation has to be performed when a product is read, and performance during reading is significantly increased. Furthermore data indexer can make use of the [Message queue](../../../../hosting/infrastructure/message-queue) to handle the calculations asynchronously.
 
 ## Prerequisites
 

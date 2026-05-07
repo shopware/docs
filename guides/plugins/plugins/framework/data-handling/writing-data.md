@@ -7,6 +7,8 @@ nav:
 
 # Writing Data
 
+## Overview
+
 This guide explains how to write data to the database in Shopware 6. It also includes a short explanation about writing associated data.
 
 ## Prerequisites

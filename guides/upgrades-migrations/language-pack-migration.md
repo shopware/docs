@@ -88,6 +88,6 @@ Starting with **Shopware 6.7.7.0** and **Language Pack 5.37.1**, the migration p
 please update Shopware to >= 6.7.7.0, Language Pack to >= 5.37.1, remove the translation files created from running the
 command and run the command again. Or follow the updated migration guide.
 
-[translation-system]: ../../../../../concepts/translations/built-in-translation-system.md
+[translation-system]: ../../concepts/translations/built-in-translation-system.md
 [language-pack-plugin]: https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html
 [shopware-translations]: https://translate.shopware.com

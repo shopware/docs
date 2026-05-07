@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Customize templates
+  title: Customize Templates
   position: 10
 
 ---

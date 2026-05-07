@@ -15,18 +15,19 @@ nav:
 
 ## Choose the right extension type
 
-* **Custom project/bundle**: Fit for bespoke installations you fully control. See the [bundle guide](../../plugins/plugins/bundle.md) for the bundle layout and when to embed project-specific logic.
-* **Private/custom plugin**: Use the standard plugin skeleton for reusable features across a few projects. Start with the [plugin base guide](../../plugins/plugins/plugin-base-guide.md) and keep project overrides as thin as possible.
-* **Store plugin**: Same plugin layout, but hardened for Store review: strict metadata, no project-only hacks, testability, and BC guarantees.
+* **Custom project/bundle**: Suitable for bespoke installations you fully control. See the [bundle guide](../../plugins/plugins/bundle.md) for the bundle layout and when to embed project-specific logic.
+* **Static plugin**: Project-specific, customized plugins; the recommended option. Use the standard plugin skeleton for reusable features across a few projects. Start with the [plugin base guide](../../plugins/plugins/plugin-base-guide.md) and keep project overrides as thin as possible.
+* **Managed plugin**: Same plugin layout, but [hardened for Store review](../../plugins/plugins/index.md#managed-plugins): strict metadata, no project-only hacks, testability, and BC guarantees.
 * **App**: Prefer when you cannot host PHP in the shop or need SaaS-style isolation. Follow the [app base guide](../../plugins/apps/app-base-guide.md) for manifest and server structure.
+* **Theme**: To customize the visual appearance of the Shopware [Storefront] only. Follow the [theme base guide](../../plugins/themes/theme-base-guide.md) for guidance.
 
 ## Project/bundle structure
 
-* Keep domain logic in bundles, not in templates or controllers; expose services via dependency injection (see the [bundle guide](../../plugins/plugins/bundle.md)).
+* Keep domain logic in bundles, not in templates or controllers; expose services via dependency injection. Se the [bundle guide](../../plugins/plugins/bundle.md) for further guidance.
 * Use Composer `type: shopware-platform-plugin` or `shopware-bundle` consistently; align namespaces with the bundle name.
 * Isolate integration points (events, DAL extensions) behind service classes so upgrades only touch narrow surfaces.
 
-## Plugin structure (custom and Store)
+## Plugin structure (static/custom and managed/Store)
 
 * Start from the default plugin skeleton ([plugin base guide](../../plugins/plugins/plugin-base-guide.md)); avoid bespoke auto-loaders or custom entrypoints.
 * Keep configuration, migrations, administration, and storefront assets in their default folders; avoid cross-wiring plugins.
@@ -35,7 +36,7 @@ nav:
 
 ## App structure
 
-* Keep the manifest minimal and explicit: permissions, webhooks, actions, and extensions should match the documented entrypoints ([app base guide](../../plugins/apps/app-base-guide.md)).
+* Keep the manifest minimal and explicit: permissions, webhooks, actions, and extensions should match the documented entrypoints. See the [app base guide](../../plugins/apps/app-base-guide.md) for further guidance.
 * Separate app backend (API/webhook handlers) from UI assets.
 * Avoid stateful coupling to shop runtime; design for multi-tenant hosting.
 

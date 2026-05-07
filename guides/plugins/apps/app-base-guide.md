@@ -7,6 +7,8 @@ nav:
 
 # App Base Guide
 
+## Overview
+
 This guide covers the common foundation that every Shopware app starts with, then shows you where the implementation diverges. For general context, read the [App concept](../../../concepts/extensions/apps-concept.md).
 
 There are multiple ways to begin building a Shopware app, but not all of them fit every use case. This guide focuses on the shared foundation that applies to all apps:

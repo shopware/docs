@@ -1,7 +1,7 @@
 ---
 nav:
   title: Infrastructure
-  position: 40
+  position: 10
 
 ---
 

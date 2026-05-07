@@ -1,13 +1,11 @@
 ---
 nav:
-  title: Add scheduled task
+  title: Add Scheduled Task
   position: 100
 
 ---
 
 # Add Scheduled Task
-
-## Overview
 
 Quite often one might want to run any type of code on a regular basis, e.g. to clean up very old entries every once in a while, automatically. Usually known as "Cronjobs", Shopware 6 supports a `ScheduledTask` for this.
 

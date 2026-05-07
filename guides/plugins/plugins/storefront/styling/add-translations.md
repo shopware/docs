@@ -7,6 +7,8 @@ nav:
 
 # Add Translations
 
+## Overview
+
 In this guide, you'll learn how to add translations to the Storefront and how to use them in your twig templates.
 To organize your snippets you can add them to `.json` files, so structuring and finding snippets you want to change is very easy.
 

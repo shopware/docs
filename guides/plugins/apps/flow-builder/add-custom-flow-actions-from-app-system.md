@@ -11,6 +11,8 @@ nav:
 Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10.0 and are not supported in previous versions.
 :::
 
+## Overview
+
 Besides the default actions, developers can add custom, predefined, and configurable web hook actions to the flow builder.
 
 ![Custom flow action in Administration](../../../../assets/flow-builder-app-action-preview.png)
