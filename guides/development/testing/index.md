@@ -58,6 +58,10 @@ To publish your extension in the Shopware Store, follow the testing criteria use
 
 It focuses on how your extension is functionally tested before approval.
 
+Detailed Shopware Store QA topics (scope, code quality, storefront, SEO, cookies, content, installation):
+
+<PageRef page="../testing/store/index" title="Store" />
+
 For the official publication requirements, legal conditions, and compliance rules, see:
 
-<PageRef page="../monetization/quality-guidelines" />
+<PageRef page="../testing/store/quality-guidelines" />

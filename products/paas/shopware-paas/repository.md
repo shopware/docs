@@ -21,7 +21,7 @@ This guide explains the repository setup using **GitHub**. You can also integrat
 
 Firstly, create a new project with `composer create-project shopware/production <folder-name>` using the [Symfony Flex](../../../guides/installation/template.md) template.
 
-This will create a brand new Shopware 6 project in the given folder. Now, change it into the newly created project and require the PaaS configuration with `composer req paas`.
+This will create a brand new Shopware 6 project in the given folder. Now, change it into the newly created project and require the PaaS configuration with `composer req shopware/paas-meta`.
 
 Secondly, create a new Git repository and push it to your favourite Git hosting service.
 

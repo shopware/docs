@@ -1,7 +1,7 @@
 ---
 nav:
   title: Store Review Errors
-  position: 30
+  position: 25
 
 ---
 
@@ -32,7 +32,7 @@ Example [reference](https://github.com/FriendsOfShopware/FroshPlatformPerformanc
 **Correct**: `Swag\\MyPlugin\\SwagMyPlugin`
 **Incorrect**: `Swag\\MyPlugin\\SwagMyPluginSW6`
 
-[Extension Meta Information – Explanation of the properties](../../../guides/plugins/plugins/plugin-base-guide#the-composerjson-file)
+[Extension Meta Information – Explanation of the properties](../../../plugins/plugins/plugin-base-guide.md#the-composerjson-file)
 
 ### Missing bootstrap class
 

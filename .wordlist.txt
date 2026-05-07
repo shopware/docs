@@ -278,6 +278,7 @@ DAL
 DBAL
 DDL
 DESC
+DHL
 DIC
 DIC EntityRepository
 DNF
@@ -936,6 +937,7 @@ ShopNameStorer
 Shopware
 Shopware's
 ShopwareTypes
+ShyimApiTest
 SimpleHttpClient
 SimpleNotification
 Sinon
@@ -1204,6 +1206,7 @@ bTemplateExtension
 backend
 backends
 backface
+backlinks
 backoff
 backport
 backported
@@ -1243,6 +1246,7 @@ callables
 camelCase
 camelcase
 caniuse
+canonicals
 capitalizeString
 capsulate
 captcha
@@ -1429,6 +1433,7 @@ everytime
 evolvability
 exampler
 explainer
+explainers
 extendability
 extensibility
 externalReference
@@ -1547,6 +1552,7 @@ inclusivity
 incrementer
 incrementing
 indexActions
+indexable
 individualPricingId
 infoIt
 ini

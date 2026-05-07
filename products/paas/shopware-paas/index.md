@@ -44,7 +44,7 @@ cd /demo
 3.) Install the PaaS composer package
 
 ```sh
-composer req paas
+composer req shopware/paas-meta
 ```
 
 4.) Initialize your local Git repository
