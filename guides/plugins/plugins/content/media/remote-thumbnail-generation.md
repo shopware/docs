@@ -39,7 +39,7 @@ The pattern supports the following variables:
 * `height`: The height of the thumbnail.
 * `mediaUpdatedAt`: The timestamp of the last media change.
 
-For example, by default, the pattern was set as `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL would be generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
+For example, with the default pattern `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL is generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
 
 ## Usage
 
@@ -50,15 +50,17 @@ Please note that the external service needs to be able to handle the URL pattern
 
 ## Invalidating Thumbnails with Fastly
 
-If you are using Fastly as your CDN, you can let Shopware invalidate the cached thumbnails when the media is updated.
-To do this, you need to configure your Fastly API key in your `config/packages/shopware.yaml`:
+If you are using Fastly as your CDN, you can let Shopware invalidate the cached thumbnails when media is updated.
+To do this, configure your Fastly API key in your `config/packages/shopware.yaml`:
 
 ```yaml
 shopware:
   cdn:
     fastly:
-      api_key: YOUR_FASTLY_API_KEY
+      api_key: '%env(FASTLY_API_KEY)%'
 ```
+
+You can also configure `shopware.cdn.fastly.max_parallel_invalidations` to control how many invalidation requests are sent in parallel.
 
 ## Conclusion
 
