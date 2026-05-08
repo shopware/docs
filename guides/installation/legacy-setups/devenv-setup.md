@@ -355,8 +355,8 @@ export LANG=en_US.UTF-8
 
 Default credentials:
 
-- User: `shopware`
-- Password: `shopware`
+* User: `shopware`
+* Password: `shopware`
 
 ### Mailhog
 
