@@ -9,18 +9,15 @@ nav:
 
 ## Overview
 
-If your app needs to manipulate the cart, you can do so by using the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart) script hook.
+If your app needs to modify the cart, you can use the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart) script hook. App scripts extend the general [cart concept](../../../../concepts/commerce/checkout-concept/cart) by acting as another [cart processor](../../../../concepts/commerce/checkout-concept/cart#cart-processors---price-calculation-and-validation).
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
 :::
 
-## Overview
+Your `cart` scripts run whenever the cart is calculated. For example, they are executed when an item is added to the cart or when the selected shipping or payment method changes.
 
-The cart manipulation in app scripts expands on the general [cart concept](../../../../concepts/commerce/checkout-concept/cart). In that concept, your cart scripts act as another [cart processor](../../../../concepts/commerce/checkout-concept/cart#cart-processors---price-calculation-and-validation).
-
-Your `cart` scripts run whenever the cart is calculated, this means that the script will be executed when an item is added to the cart, when the selected shipping and payment methods change, etc.
-You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) to get data from the cart or to manipulate the cart. For an overview of all data and services that are available, please refer to the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart).
+You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) for reading data from the cart and modifying it. For an overview of all available data and services, see the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart).
 
 ## Prerequisites
 
