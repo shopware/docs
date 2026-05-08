@@ -36,8 +36,8 @@ You will typically use a plugin when you need to:
 * Integrate third-party systems, including identity providers
 * Enable dynamic validations
 
-:::Info
-For infrastructure and external system integrations (e.g., Redis, Elasticsearch, or custom APIs), refer to the dedicated [integration guides](../plugins/integrations/index.md /integrations).
+::: info
+For infrastructure and external system integrations (e.g., Redis, Elasticsearch, or custom APIs), refer to the dedicated [integration guides](../plugins/integrations/index.md).
 :::
 
 ### Choosing the right extension type
