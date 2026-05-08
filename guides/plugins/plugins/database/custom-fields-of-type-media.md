@@ -12,18 +12,16 @@ After adding a custom field of type media in the Administration or via a plugin,
 This is often used on products to add additional images to the product detail page.
 If you want to learn more about custom fields, take a look at [Adding custom fields](../framework/custom-field/add-custom-field).
 
-## Overview
+## Resolve media custom fields in Twig
 
-In the product detail page template, `page.product.translated.customFields.xxx` (where `xxx` is your custom field name) contains the media UUID.
-Resolve this UUID by using Twig's `searchMedia` function:
+In the product detail page template, `page.product.translated.customFields.xxx` (where `xxx` is your custom field name) contains the media UUID. Resolve this UUID by using Twig's `searchMedia` function:
 
 ```php
 // platform/src/Core/Framework/Adapter/Twig/Extension/MediaExtension.php
 public function searchMedia(array $ids, Context $context): MediaCollection { ... }
 ```
 
-This function resolves the corresponding media entities for the given IDs.
-Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
+This function resolves the corresponding media entities for the given IDs. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
 
 ```twig
 // <plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig
