@@ -205,8 +205,8 @@ Once installation completes, open `http://localhost:8000/admin` in your browser.
 
 The default credentials are:
 
-- User: `admin`
-- Password: `shopware`
+* User: `admin`
+* Password: `shopware`
 
 ::: info
 On Windows with WSL2, change the default sales channel domain to `http://localhost:8000`. Use *http*, not https.
