@@ -19,8 +19,6 @@ The gateway enables app servers to restrict specific In-App Purchases based on a
 ::: info
 **Current Limitations:**
 At present, the In-App Purchase Gateway supports only restricting the checkout process for new In-App Purchases.
-**Plans:**
-We aim to expand its functionality to include filtering entire lists of In-App Purchases before they are displayed to users.
 :::
 
 ## Prerequisites
