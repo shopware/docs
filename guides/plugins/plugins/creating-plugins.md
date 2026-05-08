@@ -150,6 +150,7 @@ Here's an example `composer.json` you can refer to:
     }
 }
 ```
+
 </details>
 
 ::: warning
@@ -189,9 +190,9 @@ SwagBasicExample/
     └── SwagBasicExample.php
 ```
 
-- **namespace**: here, it's `Swag\BasicExample`. We recommend using a combination of your manufacturer prefix and the technical name to name it.
-- **`src/` directory**: recommended but not strictly required.
-- **PHP class**: `SwagBasicExample.php`, which you name after your plugin.
+* **namespace**: here, it's `Swag\BasicExample`. We recommend using a combination of your manufacturer prefix and the technical name to name it.
+* **`src/` directory**: recommended but not strictly required.
+* **PHP class**: `SwagBasicExample.php`, which you name after your plugin.
 
 The new class `SwagBasicExample` must extend Shopware's abstract plugin class, `Shopware\Core\Framework\Plugin`:
 
