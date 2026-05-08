@@ -8,7 +8,7 @@ nav:
 
 This guide covers common PHPStan issues in Shopware code and shows how to fix them with proper DAL typing and null-safe patterns.
 
-## EntityRepository Should Define a Generic Type
+## EntityRepository should define a generic type
 
 **Problem**: Repository returns `EntityCollection` without type information.
 
@@ -48,7 +48,7 @@ Be aware that the `EntityRepository` class is a generic class, which gets an Ent
 This might sound counter-intuitive and different to other well-known repository classes, which take the Entity class as the generic type.
 But it was the easiest technical solution to get PHPStan to understand the type of the collection returned by the search method.
 
-## Null Safety with First method and Associations
+## Null safety with first method and associations
 
 **Problem**: Calling `first` could return `null`, also entity associations can be `null` if not loaded.
 
