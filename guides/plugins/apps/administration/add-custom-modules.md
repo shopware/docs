@@ -19,8 +19,6 @@ You should be familiar with the concept of Apps, especially their registration f
 
 <PageRef page="../app-base-guide" />
 
-## Overview
-
 In your app, you are able to add your own modules to the Administration. Your custom modules are loaded as iframes which are embedded in the Shopware Administration and within this iframe, your website will be loaded and shown.
 
 Creating custom modules takes place at the `<admin>` section of your `manifest.xml`; see the [Manifest Reference](../../../../resources/references/app-reference/manifest-reference.md) for more details. You can add any amount of custom modules by adding new `<module>` elements to your manifest.
