@@ -9,13 +9,13 @@ nav:
 
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
+::: info
 
 ## Overview
 
 You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system. However, these will not be available in Shopware cloud stores.
-:::
 
-Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
+New to Shopware's Shopping Experiences \(CMS\)? Start with the concept behind it:
 
 <PageRef page="../../../../../concepts/commerce/content/shopping-experiences-cms" />
 
@@ -23,10 +23,9 @@ Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out 
 
 This guide is based on our [App Base Guide](../../app-base-guide) and assumes you have already set up an app.
 
-## Overview
+## Add CMS blocks from an app
 
-Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block).
-Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
+Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block). Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
 
 The basic directory structure looks as follows:
 
