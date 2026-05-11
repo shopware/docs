@@ -17,10 +17,9 @@ In this guide, you'll learn how to create a custom flow trigger in Shopware. Tri
 
 ## Prerequisites
 
-In order to add your own custom flow trigger for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
+In order to add your own custom flow trigger for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
-You also should be familiar with [Add custom event](../event/add-custom-event) to know how to create an event. Please refer to the [Flow Builder concept](../../../../../concepts/framework/flow-concept)
-for better integration later.
+You also should be familiar with [Add custom event](../event/add-custom-event.md) to know how to create an event. Please refer to the [Flow Builder concept](../../../../../concepts/framework/flow-concept.md) for better integration later.
 
 ## Existing triggers and actions
 
@@ -44,7 +43,7 @@ Any event that implements one of these interfaces will be available in the trigg
 
 ## Create custom flow trigger
 
-To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the Administration.
+To create a custom flow trigger, firstly you have to create a plugin and install it, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md) to do it. I will create a plugin named `ExamplePlugin`. There will be an example to actually show your new trigger in the Administration.
 
 ### Create a new trigger (event)
 
@@ -117,7 +116,7 @@ From 6.5, in Flow Builder, the original event will be deprecated and we will onl
 
 We have created many Aware interfaces. These Aware are the conditions to restore event data in Flow Builder via `FlowStorer` respective.
 
-You could read here more about the [Storer](../../../../../concepts/framework/flow-concept#storer-concept) concept.
+You could read here more about the [Storer](../../../../../concepts/framework/flow-concept.md#storer-concept) concept.
 
 | Aware interface | Storer respective |
 | :--- | :--- |

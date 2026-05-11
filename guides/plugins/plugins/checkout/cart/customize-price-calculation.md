@@ -13,7 +13,7 @@ This guide explains how to globally adjust the calculation of product prices by 
 
 ## Prerequisites
 
-Review the [plugin base guide](../../plugin-base-guide) and the guide on [adjusting a service](../../services/adjusting-service.md) for guidance on service decoration.
+Review the [plugin base guide](../../plugin-base-guide.md) and the guide on [adjusting a service](../../services/adjusting-service.md) for guidance on service decoration.
 
 ## Decorating the calculator
 
@@ -100,4 +100,4 @@ return static function (ContainerConfigurator $configurator): void {
 
 ## Next steps
 
-Instead of manipulating a product's price, you can also try to add a discount or a surcharge to the cart. This is explained in our guide about [adding cart discounts](add-cart-discounts).
+Instead of manipulating a product's price, you can also try to add a discount or a surcharge to the cart. This is explained in our guide about [adding cart discounts](add-cart-discounts.md).

@@ -11,7 +11,7 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide), but that one is not mandatory. Knowing how the `services.php` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md). It is shortly explained here as well though, so no worries!
+This guide is built upon our [plugin base guide](../plugin-base-guide.md), but that one is not mandatory. Knowing how the `services.php` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md). It is shortly explained here as well though, so no worries!
 
 ::: info
 Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -125,4 +125,4 @@ Now you still need to run the command `bin/console messenger:consume` to actuall
 
 ## More interesting topics
 
-* [Adding a custom command](add-custom-commands)
+* [Adding a custom command](add-custom-commands.md)

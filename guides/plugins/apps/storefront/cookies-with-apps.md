@@ -9,9 +9,9 @@ nav:
 
 ## Overview
 
-Before proceeding, review the [app-base-guide](../app-base-guide.md).
+Before proceeding, review the [App Base Guide](../app-base-guide.md).
 
-The [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management) provides a comprehensive guide to Shopware's cookie consent system.
+The [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management.md) provides a comprehensive guide to Shopware's cookie consent system.
 
 ## Create a single cookie
 
@@ -45,7 +45,7 @@ Cookie elements can be configured by adding the following child elements:
 * `expiration` (optional): Cookie lifetime in days. **If unset, the cookie expires with the session.**
 * `snippet-description` (optional): A string that represents the description of the cookie in the cookie consent manager. To provide translations, this should be the key of a Storefront snippet.
 
-For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference).
+For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
 ## Create a cookie group
 
@@ -140,7 +140,7 @@ To learn how to set up Storefront snippets, refer to the snippet guide.
 
 Any changes made to the cookie definitions in your app's `manifest.xml` are automatically detected by Shopware's consent system. This will trigger a re-consent flow for users, ensuring they are always prompted about the latest cookie settings.
 
-This process is handled by a configuration hash mechanism, which is explained in detail in the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management#configuration-hash-mechanism).
+This process is handled by a configuration hash mechanism, which is explained in detail in the [Cookie Consent Management Concept](../../../../concepts/commerce/content/cookie-consent-management.md#configuration-hash-mechanism).
 
 ## Reacting to cookie consent changes
 

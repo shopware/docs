@@ -69,7 +69,7 @@ All the above requirements and approaches are based on different design patterns
 
 With the Decoration pattern, we can replace or extend certain areas of Shopware completely. We often use this pattern for our Store API routes to provide more functionality in the Store API. Another use case is the **functional replacement market** case, where we can completely replace features with other technologies or external libraries.
 
-An example Store API route is the CategoryRoute. For this route, there is an [Abstract class](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Content/Category/SalesChannel/AbstractCategoryRoute.php) to which we type behind a [Concrete implementation](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Content/Category/SalesChannel/CategoryRoute.php) and a [Cache decorator](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Content/Category/SalesChannel/CachedCategoryRoute.php)
+An example Store API route is the CategoryRoute. For this route, there is an [Abstract class](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Content/Category/SalesChannel/AbstractCategoryRoute.php) to which we type behind a [Concrete implementation](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Content/Category/SalesChannel/CategoryRoute.php) and a [Cache decorator](https://github.com/shopware/shopware/blob/v6.4.12.0/src/Core/Content/Category/SalesChannel/CachedCategoryRoute.php).
 
 ### Factory
 

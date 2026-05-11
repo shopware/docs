@@ -13,15 +13,15 @@ Data indexer are used to optimize the performance of recurring complex tasks.
 
 One good example to understand the benefit of data indexer would be the cheapest price calculation within Shopware. Every product has a `cheapest_price` column in the database which should contain the cheapest price a product has. The calculation of this column can be complex, because a product can have several variants with advanced pricing rules and so on. This makes the calculation more difficult and would take too much time when reading 25 products for a listing.
 
-To optimize the performance there is a data indexer that calculates the cheapest price of a product every time the product is updated by the DAL. This means that no new calculation has to be performed when a product is read, and performance during reading is significantly increased. Furthermore data indexer can make use of the [Message queue](../../../../hosting/infrastructure/message-queue) to handle the calculations asynchronously.
+To optimize the performance there is a data indexer that calculates the cheapest price of a product every time the product is updated by the DAL. This means that no new calculation has to be performed when a product is read, and performance during reading is significantly increased. Furthermore data indexer can make use of the [Message queue](../../../../hosting/infrastructure/message-queue.md) to handle the calculations asynchronously.
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create data indexer you should have read the [Adding custom complex data guide](./add-custom-complex-data).
+This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create data indexer you should have read the [Adding custom complex data guide](./add-custom-complex-data.md).
 
 ## Adding an own data indexer
 
-It is possible to add data indexer for your own entities, like the one created in the [Adding custom complex data](./add-custom-complex-data) guide or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](#index-data-using-existing-events) section below. To create a new indexer, just create a new class in your plugin:
+It is possible to add data indexer for your own entities, like the one created in the [Adding custom complex data](./add-custom-complex-data) guide or for existing entities. However, if you want to react on changes of existing entities the preferred way should be subscribing to the events if available. See the [Index data using existing events](./add-data-indexer.md#index-data-using-existing-events) section below. To create a new indexer, just create a new class in your plugin:
 
 ```php
 // <plugin root>/src/Core/Framework/DataAbstractionLayer/Indexing/ExampleIndexer.php
@@ -168,7 +168,7 @@ Let's take a closer look at the functions of the entity indexer class.
 
 ### Handle messages asynchronously or synchronously
 
-By default, all messages which are returned by the `public function update()` function in the indexer are handled synchronously. That means the `handle()` function is called directly after the `update()` function. To handle the messages asynchronously over the [Message queue](../../../../hosting/infrastructure/message-queue) the `EntityIndexingMessage` can be used with different constructor parameters. A closer look at the `EntityIndexingMessage` class shows that it has a fourth parameter named `$forceQueue` which is `false` by default. This parameter can be set to `true` and then the message will be handled asynchronously by the message queue.
+By default, all messages which are returned by the `public function update()` function in the indexer are handled synchronously. That means the `handle()` function is called directly after the `update()` function. To handle the messages asynchronously over the [Message queue](../../../../hosting/infrastructure/message-queue.md) the `EntityIndexingMessage` can be used with different constructor parameters. A closer look at the `EntityIndexingMessage` class shows that it has a fourth parameter named `$forceQueue` which is `false` by default. This parameter can be set to `true` and then the message will be handled asynchronously by the message queue.
 
 ### Use DAL functionalities in the indexer
 

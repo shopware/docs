@@ -334,4 +334,4 @@ And then add the corresponding app script that should be executed when the user 
 {% do hook.setResponse(response) %}
 ```
 
-As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the administration](#providing-feedback-in-the-administration).
+As you can see it is possible to provide a [`JsonResponse`](../../../../resources/references/app-reference/script-reference/custom-endpoint-script-services-reference.md#json) to give [feedback to the user in the Administration](#providing-feedback-in-the-administration).

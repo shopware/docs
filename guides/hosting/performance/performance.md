@@ -15,7 +15,7 @@ When you use a `contains` filter in dynamic product groups (especially when you 
 The reason is that the underlying SQL query is not and cannot be optimized for this kind of filter.
 When you use OpenSearch instead of relying on the DB for searching, this issue should be resolved.
 Alternatively, for using `contains` on custom fields, it should be preferred to create individual bool custom fields for the different values and check those instead.
-When contains on usual fields is used and slow, it should help to add a [custom field](../../../guides/plugins/plugins/framework/custom-field/index) and manually manage that.
+When contains on usual fields is used and slow, it should help to add a [custom field](../../plugins/plugins/framework/custom-field/index.md) and manually manage that.
 Alternatively, [tags](https://docs.shopware.com/en/shopware-6-en/settings/tags) can be used for this purpose.
 
 ### Cache is invalided too often
@@ -36,7 +36,7 @@ If the `APP_ENV` is set to `dev` Shopware keeps many objects for debugging purpo
 If the memory usage issue persists after setting `APP_ENV` to `prod`, check if you are using the [sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads).
 Also consider changing the `indexing-behavior` to your needs if you need to sync many entities.
 Another reason for high memory usage might be the logging within the application.
-See the logging section in the [performance guide](../../../guides/hosting/performance/performance-tweaks#logging) for more information.
+See the logging section in the [performance guide](../../../guides/hosting/performance/performance-tweaks.md#logging) for more information.
 After all, you still can make use of tools like blackfire.io to find the root cause of the memory usage.
 
 ### Session Deadlocks with file-based sessions
@@ -49,7 +49,7 @@ Symptoms include:
 * PHP processes stuck in "waiting" state
 * Issues appearing only under concurrent requests
 
-The recommended solution is to [use Redis for sessions](../../../guides/hosting/performance/session), which eliminates the file-based locking conflict.
+The recommended solution is to [use Redis for sessions](../../../guides/hosting/performance/session.md), which eliminates the file-based locking conflict.
 If Redis is not available in your environment, you can work around the issue by disabling cache stampede protection (option available since Shopware 6.7.7.0).
 
 ```yaml

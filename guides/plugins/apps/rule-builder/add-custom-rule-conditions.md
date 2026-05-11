@@ -19,15 +19,15 @@ Note that app rule conditions were introduced in Shopware 6.4.12.0, and are not 
 
 If you're not familiar with the app system, please take a look at the concept first.
 
-<PageRef page="../../../../concepts/extensions/apps-concept" />
+<PageRef page="../../../../concepts/extensions/apps-concept.md" />
 
 You should also be familiar with the general concept of the Rule Builder.
 
-<PageRef page="../../../../concepts/framework/rule-system/index" />
+<PageRef page="../../../../concepts/framework/rule-system/index.md" />
 
 For the attached logic of your custom conditions, you'll use [Twig files](https://twig.symfony.com/). Please refer to the App Scripts guide for a general introduction.
 
-<PageRef page="../app-scripts/index" />
+<PageRef page="../app-scripts/index.md" />
 
 ## Definition
 
@@ -47,7 +47,7 @@ The following fields are required:
 
 Constraints are optional and may be used to define fields, whose purpose is to provide data for use within the condition's script.
 
-Constraints are a collection of [custom fields](../custom-data/index.md), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
+Constraints are a collection of [custom fields](../custom-data/custom-fields.md), which allows you to provide a variety of different fields for setting parameters within the administration. Fields may be marked as `required`. The `name` attribute of the field is also the variable the field's value will be exposed as within the condition's script. So it is advisable to use a variable-friendly name and to use unique names within the confines of a single condition.
 
 The above example will add the condition shown below for selection in the Administration:
 
@@ -67,7 +67,7 @@ The corresponding scripts to the defined conditions within `manifest.xml` need t
     └── manifest.xml
 ```
 
-Scripts for rule conditions are [twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. They offer the same extended syntax and debugging options as [App Scripts](../app-scripts/).
+Scripts for rule conditions are [Twig files](https://twig.symfony.com/) that are executed in a sandboxed environment. They offer the same extended syntax and debugging options as [App Scripts](../app-scripts/index.md).
 
 Within the script you will have access to the `scope` variable which is an instance of `RuleScope` as described in the [Rule Builder concept](../../../../concepts/framework/rule-system/index.md). The scope instance provides you with the current `SalesChannelContext` and, given the right scope, the current cart. Further available variables depend on the existence of constraints within the definition of your conditions.
 

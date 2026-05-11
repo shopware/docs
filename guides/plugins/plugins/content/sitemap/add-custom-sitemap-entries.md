@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add custom sitemap entries
+  title: Add Custom Sitemap Entries
   position: 10
 
 ---
@@ -42,7 +42,7 @@ The `salesChannelId` is the ID of the sales channel you want to add the URL to.
 
 ### By adding a URL provider
 
-This part of the guide is mainly built upon the guide about [Adding a custom SEO URL][dynamic-entity-seo],
+This part of the guide is mainly built upon the guide about [Adding a custom SEO URL](../seo/add-custom-seo-url.md#dynamic-seo-urls-for-custom-content),
 so you might want to have a look at that.
 The said guide comes with a custom entity, a controller with a technical route to display each entity, and a custom SEO URL.
 All of this will be needed for this guide, as we're going to add the custom entity SEO URLs to the sitemap here.
@@ -51,7 +51,7 @@ So let's get started.
 Adding custom URLs to the sitemap is done by adding a so-called "URL provider" to the system.
 
 This is done by adding a new class, which is extending from `Shopware\Core\Content\Sitemap\Provider\AbstractUrlProvider`.
-It then has to be registered to the [service container][dependency-injection] using the tag
+It then has to be registered to the [service container](../../services/dependency-injection.md) using the tag
 `shopware.sitemap_url_provider`.
 
 It has to provide three methods:
@@ -201,7 +201,7 @@ Start by creating a new class `CustomUrlProvider`, which is extending from the `
 Following are the constants `CHANGE_FREQ` and `priority` - you don't have to add those values as constants of course.
 They're going to be used later in the generation of the sitemap URLs.
 
-Passed into the constructor are the repository for our [custom entity][custom-complex-data],
+Passed into the constructor are the repository for our [custom entity](../../framework/data-handling/add-custom-complex-data.md),
 the DBAL connection used for actually fetching SEO URLs from the database, and the Symfony router to generate SEO URLs
 that have not yet been written to the database.
 
@@ -212,7 +212,7 @@ of your entities.
 If there aren't any entities to be fetched, there is nothing more to be done here.
 
 Afterward we fetch all already existing SEO URLs for our custom entities. Once again, have a look at our guide about
-[adding a custom SEO URL][dynamic-entity-seo] if you don't know how to add custom
+[adding a custom SEO URL](../seo/add-custom-seo-url.md) if you don't know how to add custom
 SEO URLs in the first place.
 
 We're then iterating over all of our fetched entities, and we create an instance of `Shopware\Core\Content\Sitemap\Struct\Url`
@@ -233,8 +233,3 @@ generating it on the fly.
 
 All of those instances are then stored in an array, which in return is passed to the `UrlResult`.
 This completes the implementation. Your custom URLs will now be included in the generated sitemap.
-
-[dynamic-entity-seo]: ../seo/add-custom-seo-url#dynamic-seo-urls-for-entities
-[dependency-injection]: ../../services/dependency-injection.md
-[custom-complex-data]: ../../framework/data-handling/add-custom-complex-data
-[adjusting-services]: ../../plugin-fundamentals/adjusting-service

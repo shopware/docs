@@ -7,7 +7,7 @@ nav:
 
 # Apps as Themes
 
-To ship whole [themes](../../themes/) inside an app, just include the theme configuration as a [theme.json](../../../plugins/themes/configuration/theme-configuration.md) file inside your app's `Resources` folder. The folder structure of a theme may look like this:
+To ship whole [themes](../../themes/index.md) inside an app, just include the theme configuration as a [theme.json](../../../plugins/themes/configuration/theme-configuration.md) file inside your app's `Resources` folder. The folder structure of a theme may look like this:
 
 ```text
 └── DemoTheme

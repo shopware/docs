@@ -124,5 +124,5 @@ You can then require them like other dependencies:
 
 ## More interesting topics
 
-* [Using NPM dependencies](using-npm-dependencies)
-* [Adding plugin dependencies](add-plugin-dependencies)
+* [Using NPM dependencies](using-npm-dependencies.md)
+* [Adding plugin dependencies](add-plugin-dependencies.md)

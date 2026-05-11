@@ -11,4 +11,4 @@ Plugins often need the ability to read and write files. Shopware uses [Flysystem
 
 Plugins do not require handling underlying configuration. It is possible to use the Flysystem abstraction directly, and the read/write API remains the same regardless of whether files are stored on a local file system or with a cloud provider.
 
-To learn more about filesystem configuration in Shopware, see the [filesystem guide](../../../../hosting/infrastructure/filesystem), including details on using cloud storage (such as Amazon S3) to outsource the file system.
+To learn more about filesystem configuration in Shopware, see the [filesystem guide](../../../../hosting/infrastructure/filesystem.md), including details on using cloud storage (such as Amazon S3) to outsource the file system.

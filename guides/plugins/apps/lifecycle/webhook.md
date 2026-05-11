@@ -122,7 +122,7 @@ Starting from Shopware version 6.4.5.0, the current language ID of the shopware 
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature`. Every request should have a SHA256 HMAC of the request body that is signed with the secret your app assigned the shop during the [registration](app-registration-setup.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-registration-setup.md#confirmation-request).
 
-You can use a variety of events to react to changes in Shopware that way. See the[Webhook-Events-Reference](../../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
+You can use a variety of events to react to changes in Shopware that way. See the [Webhook-Events-Reference](../../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
 
 ## Webhooks for live version only
 

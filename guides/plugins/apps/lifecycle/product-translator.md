@@ -15,7 +15,7 @@ You will learn how to read and write data to the Shopware Admin API using an exa
 ## Prerequisites
 
 * Basic CLI usage (creating files, directories, running commands)
-* Installed [shopware-cli](../../../../products/cli/) tools
+* Installed [shopware-cli](../../../../products/cli/index.md) tools
 * Installed [symfony-cli](https://symfony.com/download)
 * A running MariaDB or MySQL accessible to your development machine
 

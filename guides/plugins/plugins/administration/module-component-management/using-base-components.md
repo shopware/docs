@@ -32,4 +32,4 @@ Using base components in your own Administration templates is rather simple. In 
 </div>
 ```
 
-That's basically it. To continue building beautiful custom components, learn how to write templates and how to include them in your components [here](../templates-styling/writing-templates.md)
+That's basically it. To continue building beautiful custom components, learn how to write templates and how to include them in your components [here](../templates-styling/writing-templates.md).

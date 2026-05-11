@@ -11,7 +11,7 @@ nav:
 
 This guide shows you how to debug the status and indexing process of your Elasticsearch environment. Use this guide when Elasticsearch indexing, aliases, queues, or search results are not behaving as expected.
 
-Ensure that the [Debug-Mode](./elasticsearch-debugging) is activated in your *.env* file.
+Ensure that the Debug-Mode is activated in your *.env* file.
 
 ## Shopware 6 CLI commands
 

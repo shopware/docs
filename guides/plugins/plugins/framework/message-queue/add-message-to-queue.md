@@ -23,7 +23,7 @@ It will be wrapped in an [envelope](https://symfony.com/doc/current/components/m
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It will use an example service, so if you don't know how to add a custom service yet, have a look at our guide about [Adding a custom service](../../services/add-custom-service.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../services/dependency-injection.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It will use an example service, so if you don't know how to add a custom service yet, have a look at our guide about [Adding a custom service](../../services/add-custom-service.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../services/dependency-injection.md), so having this open in another tab won't hurt.
 
 ## Create a message
 
@@ -140,4 +140,4 @@ shopware:
 
 ## Next steps
 
-Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to [Add message handler](add-message-handler) guide.
+Now that you know how to create a message and add it to the queue, let's create a handler to process our message. To do this, head over to [Add message handler](add-message-handler.md) guide.

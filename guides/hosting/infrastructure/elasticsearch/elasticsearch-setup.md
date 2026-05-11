@@ -18,20 +18,20 @@ Currently, the implementation for Elasticsearch/Opensearch works in the same way
 ## Requirements
 
 - [A supported OpenSearch (or Elasticsearch) server](../../../hosting/index.md#recommended-stack-and-supported-versions)
-- [Running message queue workers in the background](../message-queue)
+- [Running message queue workers in the background](../message-queue.md)
 
 ## Server basics
 
 Elasticsearch installation and configuration greatly depend on your operating system and hosting provider. You will find extensive documentation online regarding the installation and configuration of Elasticsearch on most common Linux distributions. Some hosting providers might also provide specific documentation regarding this subject. Installation on macOS or Windows is also possible but not officially supported.
 
-The current Shopware 6 integration is designed to work with the out-of-the-box configuration of Elasticsearch. This does not mean, of course, that these are the best settings for a production environment. Although they will affect performance and security, the settings you choose to use on your Elasticsearch setup will be mostly transparent to your Shopware installation. The best setting constellation for your shop will greatly depend on your server setup, the number, and structure of products, and replication requirements, to name a few. In this document, we can't give you specific examples for your setup, but provide you with hints and basics you might need to choose your perfect setup. More detailed information can be found on the official [Elasticsearch](https://www.elastic.co/guide/index.html) documentation page.
+The current Shopware 6 integration is designed to work with the out-of-the-box configuration of Elasticsearch. This does not mean, of course, that these are the best settings for a production environment. Although they will affect performance and security, the settings you choose to use on your Elasticsearch setup will be mostly transparent to your Shopware installation. The best setting constellation for your shop will greatly depend on your server setup, the number, and structure of products, and replication requirements, to name a few. In this document, we can't give you specific examples for your setup, but provide you with hints and basics you might need to choose your perfect setup. More detailed information can be found on the official [Elasticsearch](https://www.elastic.co/docs) documentation page.
 
 ### Elasticsearch server setup
 
 Elasticsearch is meant to be used as a cluster setup so it can scale properly and provide you with reliability.
 In this cluster, you can choose how many nodes you want to use and which different type each node in the cluster shall have.
 A one-node cluster should only be used for development or test environments, because it can't scale and does not provide additional reliability.
-Reliability is given when you have at least three nodes because of the process of election of the master node. This is further explained in more detail in the [Master Node](#master-node) section.
+Reliability is given when you have at least three nodes because of the process of election of the master node. This is further explained in more detail in the [Master Node](elasticsearch-setup.md#master-nodes) section.
 From our experience, the best way is to have a cluster with five nodes. You can have the three needed master-eligible nodes and 2 nodes which are data nodes and do not proceed in the election process.
 Which cluster is really needed in your setup and fits your needs best is up to you.
 
@@ -167,7 +167,7 @@ For additional support with common Elasticsearch errors and more tips please ref
 ### Indexing the whole shop
 
 Sometimes you want to reindex your whole shop, including Elasticsearch, SEO-URLs, product index, and more.
-For a reindex of the whole shop, you can use the command `bin/console dal:refresh:index --use-queue`. Use the `--use-queue` option because you will have too many products to index without the [message queue](../message-queue) involved.
+For a reindex of the whole shop, you can use the command `bin/console dal:refresh:index --use-queue`. Use the `--use-queue` option because you will have too many products to index without the [message queue](../message-queue.md) involved.
 
 ### Alias creation
 
@@ -181,10 +181,10 @@ If a messenger process is active, the entries of that table are processed one by
 In case a message runs into an error, it is written into the `dead_messages` table and will be processed again after a specific time frame.
 
 You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
-In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](../../../../guides/hosting/infrastructure/message-queue#admin-worker).
+In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](../message-queue.md#admin-worker).
 
 Our experience has shown that up to three worker processes are normal and useful for a production environment.
-If you want more than that, a tool like [RabbitMQ](../message-queue#message-queue-on-production-systems) to handle the queue is needed so your database will not become a bottleneck.
+If you want more than that, a tool like [RabbitMQ](../message-queue.md#message-queue-on-production-systems) to handle the queue is needed so your database will not become a bottleneck.
 
 ## Configuration
 
@@ -215,7 +215,7 @@ bin/console es:admin:test
 ```
 
 ::: info
-Advanced admin users can refer to [elasticsearch reference guide](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-simple-query-string-query) for complex search queries.
+Advanced admin users can refer to [Elasticsearch reference guide](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-simple-query-string-query) for complex search queries.
 :::
 
 ### Apply OpenSearch globally in Admin API

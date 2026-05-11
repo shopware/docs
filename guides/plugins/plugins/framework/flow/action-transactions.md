@@ -11,11 +11,11 @@ nav:
 
 In this guide, you will learn how to run your action code inside a transaction. This may be important for you if you want to graciously handle rollbacks in certain scenarios. We have implemented various abstractions to ease this process; however, you need to opt in.
 
-For some more background, please see the ADR [Action Transactions](../../../../../resources/references/adr/2024-02-11-transactional-flow-actions).
+For some more background, please see the ADR [Action Transactions](../../../../../resources/references/adr/2024-02-11-transactional-flow-actions.md).
 
 ## Prerequisites
 
-In order to make your action run inside a database transaction, you will need an existing Flow Action. Therefore, you can refer to the [Add Flow Builder Action Guide.](./add-flow-builder-action)
+In order to make your action run inside a database transaction, you will need an existing Flow Action. Therefore, you can refer to the [Add Flow Builder Action Guide.](./add-flow-builder-action.md)
 
 ## Run your action inside a transaction
 

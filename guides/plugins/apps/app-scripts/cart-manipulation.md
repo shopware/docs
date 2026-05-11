@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-If your app needs to modify the cart, you can use the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart) script hook. App scripts extend the general [cart concept](../../../../concepts/commerce/checkout-concept/cart) by acting as another [cart processor](../../../../concepts/commerce/checkout-concept/cart#cart-processors---price-calculation-and-validation).
+If your app needs to modify the cart, you can use the [`cart`](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart) script hook. App scripts extend the general [cart concept](../../../../concepts/commerce/checkout-concept/cart.md) by acting as another [cart processor](../../../../concepts/commerce/checkout-concept/cart.md#cart-processors---price-calculation-and-validation).
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -17,11 +17,11 @@ Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported 
 
 Your `cart` scripts run whenever the cart is calculated. For example, they are executed when an item is added to the cart or when the selected shipping or payment method changes.
 
-You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) for reading data from the cart and modifying it. For an overview of all available data and services, see the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference#cart).
+You have access to a `cart`-service that provides a [fluent API](https://www.martinfowler.com/bliki/FluentInterface.html) for reading data from the cart and modifying it. For an overview of all available data and services, see the [cart hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cart).
 
 ## Prerequisites
 
-To get a better understanding of the cart, please make yourself familiar with the [cart concept](../../../../concepts/commerce/checkout-concept/cart) in general.
+To get a better understanding of the cart, please make yourself familiar with the [cart concept](../../../../concepts/commerce/checkout-concept/cart.md) in general.
 We will expand on that concept and refer to ideas defined there in this guide.
 
 ## Calculating the cart
@@ -38,7 +38,7 @@ But if your script depends on updated and recalculated prices, you can recalcula
 {% do services.cart.calculate() %}
 ```
 
-The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart#calculation) is executed again.
+The `calculate()` call will recalculate the whole cart and update the total prices, etc. For this the complete [`process`-step](../../../../concepts/commerce/checkout-concept/cart.md#calculation) is executed again.
 
 ::: warning
 Note that by executing the `process` step, all properties of the cart (e.g. `products()`, `items()`, `price()`) are recreated and thus will return new instances.
@@ -92,7 +92,7 @@ In general, Shopware prices consist of gross and net prices and are currency dep
 
 ### Price fields inside custom fields
 
-You can define price fields for [custom fields](../custom-data/custom-fields)
+You can define price fields for [custom fields](../custom-data/custom-fields.md)
 
 ::: code-group
 
@@ -151,7 +151,7 @@ You can specify the `gross` and `net` prices for each currency.
 
 ### Prices inside the app config
 
-As described above, it is also possible to use price fields inside the [app configuration](../lifecycle/configuration.md). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference#SystemConfigFacade) and pass them to the same price factory as the manual definitions.
+As described above, it is also possible to use price fields inside the [app configuration](../lifecycle/configuration.md). In your cart scripts, you can access those config values over the [`config` service](../../../../resources/references/app-reference/script-reference/miscellaneous-script-services-reference.md#servicesconfig-shopwarecoresystemsystemconfigfacadesystemconfigfacade-systemconfigfacade) and pass them to the same price factory as the manual definitions.
 
 ```twig
 // Resources/scripts/cart/my-cart-script.twig

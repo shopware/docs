@@ -24,7 +24,7 @@ However, every plugin/bundle gets an own namespace that should be used for priva
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide) and the [Add custom service guide](../../services/add-custom-service.md).
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide.md) and the [Add custom service guide](../../services/add-custom-service.md).
 
 ## Use filesystem in a service
 

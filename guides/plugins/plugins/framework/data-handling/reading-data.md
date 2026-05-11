@@ -13,7 +13,7 @@ In this guide you will learn how to properly fetch data from the database in you
 
 ## Prerequisites
 
-Since this guide is built upon the plugin base guide [Plugin base guide](../../plugin-base-guide), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../services/dependency-injection.md) will come in handy, since you need to know how to inject a service using the DI container. You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer) to get a better grasp of how it works.
+Since this guide is built upon the plugin base guide [Plugin base guide](../../plugin-base-guide.md), you might want to have a look at it. Furthermore, the guide about [Dependency injection](../../services/dependency-injection.md) will come in handy, since you need to know how to inject a service using the DI container. You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) to get a better grasp of how it works.
 
 ## Reading data
 

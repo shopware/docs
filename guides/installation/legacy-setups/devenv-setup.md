@@ -421,4 +421,4 @@ Do not commit service tokens or credentials to version control. Store secrets in
 
 ## Detailed configurations
 
-You can find more detailed configurations for your devenv setup in the [Additional Devenv Options](devenv-options) article.
+You can find more detailed configurations for your devenv setup in the [Additional Devenv Options](devenv-options.md) article.

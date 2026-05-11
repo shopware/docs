@@ -11,14 +11,14 @@ nav:
 
 In this guide you will learn how to version your entities.
 The entity versioning system in Shopware gives you the opportunity to create multiple versions of an entity, which could be used to save drafts for example.
-Learn more about the versioning concept [here](../../../../../concepts/framework/data-abstraction-layer#versioning).
+Learn more about the versioning concept [here](../../../../../concepts/framework/data-abstraction-layer.md#versioning).
 
 ## Prerequisites
 
 In order to add your own versioned entities for your plugin, you first need a plugin as base.
-Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
+Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
-Furthermore, you should have a look at our [Adding custom complex data](add-custom-complex-data) guide, since this guide is built upon it.
+Furthermore, you should have a look at our [Adding custom complex data](add-custom-complex-data.md) guide, since this guide is built upon it.
 
 ## Adjust migration
 
@@ -116,7 +116,7 @@ The merged version is now our new live version. From now on we can find it witho
 
 If you have an entity with foreign keys, your foreign keys also need to be versioned.
 In this example we're using an inherited field.
-If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance) guide.
+If you are not familiar with inheritance, head over to our [Field inheritance](field-inheritance.md) guide.
 
 ### Migration
 

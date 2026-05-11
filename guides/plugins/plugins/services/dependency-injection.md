@@ -15,10 +15,10 @@ You can read more about injecting services in the [Symfony documentation](https:
 ## Prerequisites
 
 To add your own custom service for your plugin, you first need a plugin as a base.
-Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
+Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 Furthermore, you need a working service.
-Therefore, you can refer to [Adding a custom service](add-custom-service) guide.
+Therefore, you can refer to [Adding a custom service](add-custom-service.md) guide.
 
 ::: info
 Refer to this video on **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)** explaining DI based on the example of a custom CLI command.

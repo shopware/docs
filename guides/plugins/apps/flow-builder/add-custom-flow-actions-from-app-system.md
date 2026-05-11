@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add custom flow action from app system
+  title: Add Custom Flow Action from App System
   position: 10
 
 ---
 
-# Add custom flow actions
+# Add Custom Flow Actions
 
 ::: info
 Custom flow actions in Shopware Apps are available starting with Shopware 6.4.10.0 and are not supported in previous versions.
@@ -27,7 +27,7 @@ After reading, you will be able to
 
 Please make sure you already have a working Shopware 6 store running (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept) for more information.
+Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept.md) for more information.
 
 ## Create the app wrapper
 
@@ -260,7 +260,7 @@ Available input field attributes:
 You assemble your configuration from a variety of input fields.
 
 ::: info
-To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration#the-different-types-of-input-field).
+To get more information on how to create configuration forms, see [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md#the-different-types-of-input-field).
 :::
 
 | Type          | Shopware component     |
@@ -291,5 +291,5 @@ bin/console app:install --activate FlowBuilderActionApp
 
 ## Further steps
 
-* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference) page
+* [Flow action example configuration](../../../../resources/references/app-reference/flow-action-reference.md) page
 * [Schema definition for flow actions (GitHub)](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/App/Flow/Schema/flow-1.0.xsd)`

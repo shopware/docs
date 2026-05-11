@@ -22,7 +22,7 @@ A block represents a reusable layout unit that defines how elements are arranged
 
 **Key concept**: Blocks define the structure (layout and slots), while elements provide the actual content. This separation allows the same block to display different types of content in its slots.
 
-> **Learn more**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
+> **Learn more**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](../../../../../concepts/commerce/content/shopping-experiences-cms.md).
 
 ## Where to Find Blocks
 
@@ -223,4 +223,4 @@ This dynamically builds the template path based on the element type. For example
 
 ## Next steps
 
-Now you've got your very own CMS block running, what about a custom CMS element? Head over to our guide, which will explain exactly that: [Creating a custom CMS element](add-cms-element)
+Now you've got your very own CMS block running, what about a custom CMS element? Head over to our guide, which will explain exactly that: [Creating a custom CMS element](add-cms-element.md).

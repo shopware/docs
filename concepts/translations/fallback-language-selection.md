@@ -62,4 +62,4 @@ For detailed instructions, see the [Extension Translation Migration](../../guide
 ## Conclusion
 
 The country-independent snippet layer streamlines translation maintenance by consolidating common strings into a neutral fallback file and isolating regional vocabulary into small patch files.
-For further examples, refer to [Built-in Translation Handling](./built-in-translation-system) and [Extension Translation Migration](../../guides/upgrades-migrations/extension-translation.md).
+For further examples, refer to [Built-in Translation Handling](built-in-translation-system.md) and [Extension Translation Migration](../../guides/upgrades-migrations/extension-translation.md).

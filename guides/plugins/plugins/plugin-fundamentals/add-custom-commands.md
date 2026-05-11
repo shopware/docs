@@ -20,4 +20,4 @@ Commands registered as services in a Shopware plugin are automatically available
 
 ## Other interesting topics
 
-* [Adding a scheduled task](add-scheduled-task)
+* [Adding a scheduled task](add-scheduled-task.md)

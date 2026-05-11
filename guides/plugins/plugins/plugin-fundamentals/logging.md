@@ -13,7 +13,7 @@ As a plugin developer, you may want to log certain actions or errors to a log fi
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
+This guide is built upon our [plugin base guide](../plugin-base-guide.md), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
 
 ## Configuring Monolog
 

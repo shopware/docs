@@ -15,7 +15,7 @@ Not all media types can be uploaded to Shopware with the Administration's Media 
 
 Review these guides before proceeding:
 
-- [Plugin base guide](../../plugin-base-guide)
+- [Plugin base guide](../../plugin-base-guide.md)
 - [Dependency injection](../../services/dependency-injection.md), to learn how to add classes to the container
 - [Listen to events](../../framework/event/listening-to-events.md), for guidance on using subscribers
 

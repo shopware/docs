@@ -10,7 +10,7 @@ nav:
 
 After adding a custom field of type media in the Administration or via a plugin, you can assign media objects to different entities.
 This is often used on products to add additional images to the product detail page.
-If you want to learn more about custom fields, take a look at [Adding custom fields](../framework/custom-field/add-custom-field).
+If you want to learn more about custom fields, take a look at [Adding custom fields](../framework/custom-field/add-custom-field.md).
 
 ## Resolve media custom fields in Twig
 

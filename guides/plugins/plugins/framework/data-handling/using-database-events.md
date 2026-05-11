@@ -15,7 +15,7 @@ All events are nested into one container event so that your subscriber should on
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
+This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), but any plugin will work here. Just note that all examples are using the plugin mentioned above.
 
 Furthermore you should have a look at our [Listening to Events](../../framework/event/listening-to-events.md) guide since we are subscribing to events in this guide.
 

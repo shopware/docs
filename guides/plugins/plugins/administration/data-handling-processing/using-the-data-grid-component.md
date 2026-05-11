@@ -31,7 +31,7 @@ This template will be used in a new component. Learn how to override existing co
 
 ## Declaring the data
 
-Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the guide [How to use the data handling](using-data-handling.md)
+Since this is a very basic example the following code will just statically assign data to the `dataSource` and `columns` data attribute. If you want to load data and render that instead, please consult the [How to use the data handling guide](using-data-handling.md).
 
 ```javascript
 // <plugin-root>/src/Resources/app/administration/app/src/component/swag-example/index.js

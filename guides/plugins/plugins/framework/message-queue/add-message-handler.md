@@ -19,7 +19,7 @@ A [handler](https://symfony.com/doc/current/messenger.html#creating-a-message-ha
 
 ## Prerequisites
 
-As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide), but you don't necessarily need that. It will use an example message, so if you don't know how to add a custom message yet, have a look at our guide about [Adding a message to queue](add-message-to-queue). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../services/dependency-injection.md), so having this open in another tab won't hurt.
+As most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md), but you don't necessarily need that. It will use an example message, so if you don't know how to add a custom message yet, have a look at our guide about [Adding a message to queue](add-message-to-queue.md). Furthermore, registering classes or services to the DI container is also not explained here, but it's covered in our guide about [Dependency injection](../../services/dependency-injection.md), so having this open in another tab won't hurt.
 
 ## Handling messages
 
@@ -46,6 +46,6 @@ class SmsHandler
 
 ## Next steps
 
-Now that you know how to add a message handler, you may want to add a custom middleware for your bus. To do this, head over to [Add middleware](add-middleware) guide.
+Now that you know how to add a message handler, you may want to add a custom middleware for your bus. To do this, head over to [Add middleware](add-middleware.md) guide.
 
 If you want to learn more about configuring the message queue, have a look at the [Message queue hosting guide](../../../../hosting/infrastructure/message-queue.md).
