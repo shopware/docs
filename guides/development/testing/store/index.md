@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Store
+  title: Extensions for Store
   position: 5
 ---
 
@@ -46,11 +46,11 @@ Beyond runtime behavior, review covers how you present the extension in the Stor
 
 <PageRef page="./store-review-errors" title="Common Store review errors" />
 
-## Frequently asked questions
+## FAQ
 
 For submission logistics, timelines, and readiness questions that do not fit a single technical page, start here.
 
-<PageRef page="./faq" title="Frequently asked questions" />
+<PageRef page="./faq" title="FAQ" />
 
 ## Related
 

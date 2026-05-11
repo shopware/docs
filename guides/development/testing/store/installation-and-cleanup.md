@@ -32,9 +32,3 @@ For **completely delete**:
 The free [Adminer for Admin](https://store.shopware.com/en/frosh79014577529f/adminer-for-admin.html) extension can help verify database state in your test environment.
 
 After uninstall, [Shopping Experiences](../../../../concepts/commerce/content/shopping-experiences-cms.md) must continue to work in the storefront.
-
-## Apps and Extension Manager
-
-**Apps:** Do not load or reload external files during or after installation in the Extension Manager.
-
-Avoid extending or overwriting the Extension Manager in general.
