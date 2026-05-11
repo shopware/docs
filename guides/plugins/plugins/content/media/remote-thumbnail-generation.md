@@ -109,7 +109,7 @@ shopware:
 | `shopware.cdn.fastly.soft_purge`                 | bool/string | `false` | Sent verbatim as the `fastly-soft-purge` request header. Set to `true` (or `'1'`) to keep serving stale content while purges propagate.                                                   |
 | `shopware.cdn.fastly.max_parallel_invalidations` | int         | `2`     | Guzzle pool concurrency for purge requests. Bounds how many `POST https://api.fastly.com/purge/{url}` calls are in flight simultaneously.                                                 |
 
-When media changes (a path, file, deletion), the `BanMediaUrl` listener resolves all affected URLs and dispatches them through `FastlyMediaReverseProxy`, which sends one purge request per URL. Failures are logged at `critical` level and do not block the write process.
+When media changes (path change, file update, or deletion), the `BanMediaUrl` listener resolves all affected URLs and dispatches them through `FastlyMediaReverseProxy`, which sends one purge request per URL. Failures are logged at `critical` level and do not block the write process.
 
 ::: info
 This is the **media-cache** Fastly configuration node. It is independent from `shopware.http_cache.reverse_proxy.fastly`, which configures the storefront's HTTP-cache invalidation gateway and exposes additional options such as `service_id`, `instance_tag`, and `tag_prefix`. See [Reverse HTTP cache](../../../../hosting/infrastructure/reverse-http-cache.md#configure-fastly) for the storefront side.
