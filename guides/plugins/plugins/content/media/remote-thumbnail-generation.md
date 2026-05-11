@@ -8,7 +8,7 @@ nav:
 # Remote Thumbnail Generation
 
 ::: info
-This feature is available starting with Shopware version 6.6.4.0. The `{mediaUpdatedAt}` pattern variable was added in 6.6.5.0, the `ResolveRemoteThumbnailUrlExtension` hook in 6.7.1.0.
+This feature is available starting with Shopware version 6.6.4.0. The `{mediaUpdatedAt}` pattern variable was added in 6.6.5.0, and the `ResolveRemoteThumbnailUrlExtension` hook was added in 6.7.1.0.
 :::
 
 In certain scenarios, you might want to disable the filesystem thumbnail generation in Shopware and use an external CDN service to handle the thumbnails.
