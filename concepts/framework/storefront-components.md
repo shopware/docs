@@ -203,6 +203,7 @@ Within that file, you can add your component-specific styles.
 **Important Note:** Other than usual theme files, the style files of components are **not** compiled with the PHP-based theme compiler. For the Storefront Components there is a new build process based on Vite. Extensions that provide new components have to provide the compiled build artifacts of their components. They are not recompiled on runtime and therefore only have access to information that are available on build time. Further information can be found in the section about the build process further down below.
 
 ### Accessing Theme Configuration
+
 Storefront components are not compiled with PHP and therefore don't have access to theme variables in SCSS. Instead, the theme configuration can be accessed as native CSS custom properties.
 
 ```CSS
@@ -212,6 +213,7 @@ Storefront components are not compiled with PHP and therefore don't have access 
 ```
 
 ### Using Bootstrap in SCSS
+
 Bootstrap is still available in the build-time SCSS of components, so you can use variables and mixins from it.
 
 ```SCSS
@@ -528,6 +530,7 @@ class ButtonPrimary extends ShopwareComponent {
 ```
 
 ## Component Build Process
+
 The style and script files of components are built with a new Vite build process. Extensions always have to provide the build artifacts for all its components. You can use the corresponding commands in Shopware to build your components.
 
 **Full Storefront Build:**
@@ -572,6 +575,7 @@ export default async () => {
 ```
 
 ## Component Dev-Server
+
 For development there is a new dev-server feature available, also based on Vite. It provides live reload and component imports, but also supports style and script files of the normal theme system, so you can work on both simultaniously.
 
 ```bash
