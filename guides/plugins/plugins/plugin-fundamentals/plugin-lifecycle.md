@@ -141,7 +141,7 @@ public function postInstall(InstallContext $context): void
 {
 }
 
-public function postUpdate(UpdateContext $updateContext): void
+public function postUpdate(UpdateContext $context): void
 {
 }
 ```
