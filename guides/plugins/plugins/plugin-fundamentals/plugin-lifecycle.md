@@ -119,7 +119,7 @@ The `update()` method runs when your plugin is updated to a new version. Databas
 
 ```php
 // <plugin root>/src/SwagBasicExample
-public function update(UpdateContext $updateContext$context): void
+public function update(UpdateContext $context): void
 {
     // Update as necessary, rarely database-related
 }
