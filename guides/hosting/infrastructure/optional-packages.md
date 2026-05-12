@@ -23,7 +23,7 @@ composer require --dev symfony/profiler-pack
 Install the Platform-as-a-Service integration:
 
 ```bash
-composer require paas --ignore-platform-req=ext-amqp
+composer require shopware/paas-meta --ignore-platform-req=ext-amqp
 ```
 
 ## Fastly integration
