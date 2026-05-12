@@ -102,7 +102,7 @@ The opposite of `activate()` in most respects. It is executed when the plugin is
 
 ```php
 // <plugin root>/src/SwagBasicExample
-public function deactivate(DeactivateContext $deactivateContext): void
+public function deactivate(DeactivateContext $context): void
 {
     // Deactivate entities, such as a new payment method
     // Or remove previously created entities
