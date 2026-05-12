@@ -27,7 +27,7 @@ vendor/bin/shopware-deployment-helper run
 
 ## What does the Deployment Helper exactly do?
 
-The Deployment Helper checks for you, if Shopware is installed and if not, it will install it for you.
+The Deployment Helper checks for you if Shopware is installed, and if not, it will install it for you.
 It will also check if the database server is accessible, and if not, it will wait until it is.
 
 Besides installing or updating Shopware, it also simplifies common tasks which normally are executed during the deployment like:
@@ -143,8 +143,8 @@ deployment:
     license-domain: 'example.com'
 
   # Automatically runs `system:setup:staging --no-interaction --force` after deployment,
-  # before extensions are managed. Use this on staging environments so the instance is
-  # switched into staging mode on every deploy. See "Staging Mode Integration" below.
+  # before extensions are managed. Use this on staging environments, so the instance is
+  # switched into staging mode on every deployment. See "Staging Mode Integration" below.
   staging:
     enabled: false
 ```
@@ -264,7 +264,7 @@ With this setting, the Deployment Helper will skip extension installation and up
 
 ## One Time Tasks
 
-One time tasks are tasks that should be executed only once during the deployment, like a migration script.
+One-time tasks are tasks that should be executed only once during the deployment, like a migration script.
 
 You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` which tasks were executed and when.
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
@@ -272,7 +272,7 @@ To manually mark a task as run you can use `./vendor/bin/shopware-deployment-hel
 
 ## Staging Mode Integration
 
-On a staging environment, you usually want Shopware's staging mode to be applied again every time the database is refreshed from production, so emails stay disabled, app connections are reset, URLs are rewritten, and so on. The Deployment Helper can do this for you automatically.
+In a staging environment, you usually want Shopware's staging mode to be applied again every time the database is refreshed from production, so emails stay disabled, app connections are reset, URLs are rewritten, and so on. The Deployment Helper can do this for you automatically.
 
 Enable it either in `.shopware-project.yml`:
 
@@ -284,7 +284,7 @@ deployment:
 
 …or via the environment variable `SHOPWARE_DEPLOYMENT_STAGING=1`. The latter is convenient when the same `.shopware-project.yml` is shared between production and staging — set the env variable only on the staging environment.
 
-When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` during deployment, before extensions are managed, for both the install and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
+When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` during deployment, before extensions are managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
 
 :::warning
 Do not enable this on your production environment. `system:setup:staging` is a destructive operation that, among other things, deletes apps with active external connections and disables email delivery.
@@ -322,10 +322,10 @@ To find the name (for example `SwagPlatformDemoData`) of the extension you want 
 Shopware Plugin Service
 =======================
 
- ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ---------------------- 
-  Plugin                        Label                                      Composer name                                  Version   Upgrade version   Author              Installed   Active   Upgradeable   Required by composer  
  ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
-  SwagPlatformDemoData          Shopware 6 Demo data                       swag/demo-data                                 2.0.1                       shopware AG         Yes         No       No            No 
+  Plugin                        Label                                      Composer name                                  Version   Upgrade version   Author              Installed   Active   Upgradeable   Required by composer
+ ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
+  SwagPlatformDemoData          Shopware 6 Demo data                       swag/demo-data                                 2.0.1                       shopware AG         Yes         No       No            No
  ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
 ```
 
