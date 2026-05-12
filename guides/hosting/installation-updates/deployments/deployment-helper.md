@@ -272,7 +272,7 @@ To manually mark a task as run you can use `./vendor/bin/shopware-deployment-hel
 
 ## Staging Mode Integration
 
-On a staging environment, you usually want Shopware's staging mode to be (re-)applied every time the database is refreshed from production, so emails stay disabled, app connections are reset, URLs are rewritten, and so on. The Deployment Helper can do this for you automatically.
+On a staging environment, you usually want Shopware's staging mode to be applied again every time the database is refreshed from production, so emails stay disabled, app connections are reset, URLs are rewritten, and so on. The Deployment Helper can do this for you automatically.
 
 Enable it either in `.shopware-project.yml`:
 
