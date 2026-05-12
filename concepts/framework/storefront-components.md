@@ -12,7 +12,7 @@ It enables developers to build reusable, atomic component templates in Twig and 
 
 ## Creating Components
 
-Creating a new component is simple. All you need to do is create the corresponding files for your component in the right directory. All components live in `views/components/` of their specific Symfony bundle, like the Shopware Storefront, or your own extension. There are two different ways to define a component, which will be covered in the following:
+Creating a new component is straightforward. All you need to do is create the corresponding files for your component in the right directory. All components live in `views/components/` of their specific Symfony bundle, like the Shopware Storefront, or your own extension. There are two different ways to define a component, which will be covered in the following:
 
 ### 1. Anonymous Components
 
@@ -167,7 +167,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
 This creates the same component as the example in the anonymous components section, but here the component's properties are defined in the PHP class as public attributes.
 
-To learn what kind of possibilities the PHP implementation of your component offers, you can just refer to the [official documentation](https://symfony.com/bundles/ux-twig-component/current/index.html).
+To learn what kind of possibilities the PHP implementation of your component offers, you can refer to the [official documentation](https://symfony.com/bundles/ux-twig-component/current/index.html).
 
 ## Adding Component Styles
 
@@ -200,7 +200,7 @@ MyExtension/
 
 Within that file, you can add your component-specific styles.
 
-**Important Note:** Other than usual theme files, the style files of components are **not** compiled with the PHP-based theme compiler. For the Storefront Components there is a new build process based on Vite. Extensions that provide new components have to provide the compiled build artifacts of their components. They are not recompiled on runtime and therefore only have access to information that are available on build time. Further information can be found in the section about the build process further down below.
+**Important Note:** Other than usual theme files, the style files of components are **not** compiled with the PHP-based theme compiler. For the Storefront Components there is a new build process based on Vite. Extensions that provide new components have to provide the compiled build artifacts of their components. They are not recompiled on runtime and therefore only have access to information that is available on build time. Further information can be found in the section about the build process further down below.
 
 ### Accessing Theme Configuration
 
@@ -225,8 +225,7 @@ Bootstrap is still available in the build-time SCSS of components, so you can us
 }
 ```
 
-**Note:** Bootstrap 5.3 of Shopware still uses some deprecated Sass syntax, which is why we use it with `@import`. If your are using Bootstrap in your components, you might see some deprecation warnings in your console, which are related to Bootstrap.
-
+**Note:** Bootstrap 5.3 of Shopware still uses some deprecated Sass syntax, which is why we use it with `@import`. If you are using Bootstrap in your components, you might see some deprecation warnings in your console, which are related to Bootstrap.
 
 ## Adding Component JavaScript
 
@@ -235,13 +234,13 @@ For Twig components that need to implement interactive functionality via JavaScr
 ### Major differences between JS plugin and component system
 
 1. **Automatic initialization**
-    If the component is implemented properly it will automatically be initialized on the corresponding elements. Even if the DOM tree changes and elements are added or removed, the component will automatically be initialized on added elements or destroyed for removed elements. No more manual re-initialization of plugins that have to work in conjunction after dynamic DOM changes.
+    If the component is implemented properly, it will automatically be initialized on the corresponding elements. Even if the DOM tree changes and elements are added or removed, the component will automatically be initialized on added elements or destroyed for removed elements. No more manual re-initialization of plugins that have to work in conjunction after dynamic DOM changes.
 
 2. **No registration needed**
     The component system uses native ES module loading that does everything for you, if you follow the conventions. The script will automatically be loaded and initialized on corresponding elements just based on the component's name.
 
 3. **Better events instead of overrides**
-    The current override technique of the JS plugin system was not reintroduced to the component system because it had major flaws: overrides could occur only once, which can lead to conflicts between different Shopware extensions. Instead, there is a central event system which is easier to use and offers a more robust public interface. In addition, it offers special interception events, for example, to manipulate request data before it is sent.
+    The current override technique of the JS plugin system was not reintroduced to the component system because it had major flaws: overrides could occur only once, which can lead to conflicts between different Shopware extensions. Instead, there is a central event system that is easier to use and offers a more robust public interface. In addition, it offers special interception events, for example, to manipulate request data before it is sent.
 
 4. **TypeScript Support**
     Your component script file can be TypeScript or plain JavaScript.
@@ -320,7 +319,7 @@ export default class ButtonPrimary extends ShopwareComponent {
 
 Components don't have to be registered manually. If the script file of your component follows the rules of the Twig component directory structure, they are automatically loaded via ES module loading.
 
-Shopware generates an import map for all components based on the Twig component tag name. On initialization, Shopware will search for all elements with a `data-component` attribute and will try to load the corresponding script file, if necessary. Just make sure to add the data attribute, including the tag name of your Twig component, to the root element of your component.
+Shopware generates an import map for all components based on the Twig component tag name. On initialization, Shopware will search for all elements with a `data-component` attribute and will try to load the corresponding script file, if necessary. Make sure to add the data attribute, including the tag name of your Twig component, to the root element of your component.
 
 ```Twig
 {# components/Button/Primary.html.twig #}
@@ -469,7 +468,7 @@ window.Shopware.intercept('BuyButton:PreSubmit', (data) => {
 });
 ```
 
-Don't forget to return the data again, so the component logic can work with it.
+Remember to return the data again, so the component logic can work with it.
 
 There can be multiple subscribers to a single event. They will all be executed in the order as they are registered. You can change the order by passing a priority parameter as an optional third option when registering an event. By default, all subscribers have the priority `0`. The higher the priority, the earlier the subscriber is called in the chain. Also, negative values are possible to move a subscriber further down the chain.
 
@@ -576,13 +575,13 @@ export default async () => {
 
 ## Component Dev-Server
 
-For development there is a new dev-server feature available, also based on Vite. It provides live reload and component imports, but also supports style and script files of the normal theme system, so you can work on both simultaniously.
+For development there is a new dev-server feature available, also based on Vite. It provides live reload and component imports but also supports style and script files of the normal theme system, so you can work on both simultaneously.
 
 ```bash
 composer storefront:dev-server
 ```
 
-When the dev-server is running, you can simply open your normal Storefront. The assets are injected automatically from the Vite dev-server. No proxy needed. When you stop the dev-server the Storefront will serve production assets again.
+When the dev-server is running, you can open your normal Storefront. The assets are injected automatically from the Vite dev-server. No proxy needed. When you stop the dev-server, the Storefront will serve production assets again.
 
 ## Component Documentation (Experimental)
 
