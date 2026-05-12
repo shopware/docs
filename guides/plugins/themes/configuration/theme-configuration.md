@@ -618,7 +618,7 @@ A custom single-select field example
 </Tab>
 </Tabs>
 
-![Example of a custom single-select field](../../../assets/example-single-select-config.png)
+![Example of a custom single-select field](../../../../assets/example-single-select-config.png)
 
 A custom multi-select field example
 
