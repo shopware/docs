@@ -170,7 +170,7 @@ When uninstalling a plugin, you can choose whether to remove all associated plug
 
 ```php
 // <plugin root>/src/SwagBasicExample
-public function uninstall(UninstallContext $uninstallContext): void
+public function uninstall(UninstallContext $context): void
 {
     parent::uninstall($uninstallContext);
 
