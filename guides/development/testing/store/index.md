@@ -8,7 +8,7 @@ nav:
 
 This section is for **extension developers** (plugins, apps, themes) who plan to distribute through the [Shopware Store](https://store.shopware.com/). It describes what reviewers check during publication and how you can align your implementation and tests with those expectations before you submit.
 
-Store review complements your own automated and manual testing: it verifies that your extension stays within supported integration boundaries, behaves predictably for merchants and end customers, and meets listing, security, and compliance rules. Treat these pages as a checklist-oriented companion to the general [testing guidelines](../testing-guidelines).
+Store review complements your own automated and manual testing: it verifies that your extension stays within supported integration boundaries, behaves predictably for merchants and end customers, and meets listing, security, and compliance rules. Treat these pages as a checklist-oriented companion to the general [testing guide](../index).
 
 ## Quality guidelines
 
@@ -54,6 +54,6 @@ For submission logistics, timelines, and readiness questions that do not fit a s
 
 ## Related
 
-Functional scenarios and test ideas used in the broader extension testing story are documented under testing guidelines; pair that guide with the Store-specific pages above when you plan your test matrix.
+For automated and manual testing strategies to complement your Store submission, see the broader testing section:
 
-<PageRef page="../testing-guidelines" title="Testing guidelines for extensions" />
+<PageRef page="../index" title="Testing" />
