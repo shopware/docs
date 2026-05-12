@@ -38,7 +38,10 @@ The basic structure of Shopware should not be changed or modified.
 * Do **not** load external files during installation in the Extension Manager.
 * Include an **API test** integration when API credentials are required.
 * Do **not** modify the Extension Manager.
-* A **Shopware Technology Partner (STP)** agreement is required for commission-based integrations that bill the merchant (see below).
+* A **Shopware Technology Partner (STP)** agreement is required for commission-based integrations that bill the merchant.
+
+**App-specific requirements:**
+
 * Apps visible in the Storefront with `config.xml` must support separate configuration per sales channel.
 
 ## External fonts and services
