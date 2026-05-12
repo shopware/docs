@@ -156,7 +156,7 @@ Do not blindly delete entities your plugin created. For example, if your plugin 
 
 ```php
 // <plugin root>/src/SwagBasicExample
-public function uninstall(UninstallContext $uninstallContext): void
+public function uninstall(UninstallContext $context): void
 {
     // Remove or deactivate the data created by the plugin
 }
