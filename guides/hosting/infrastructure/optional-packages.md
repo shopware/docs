@@ -31,5 +31,5 @@ composer require shopware/paas-meta --ignore-platform-req=ext-amqp
 Install Fastly support:
 
 ```bash
-composer require fastly
+composer require shopware/fastly-meta
 ```
