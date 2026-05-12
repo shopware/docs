@@ -84,7 +84,7 @@ Avoid creating new business data for your plugin in the `install()` method. Crea
 
 ```php
 // <plugin root>/src/SwagBasicExample
-public function activate(ActivateContext $activateContext): void
+public function activate(ActivateContext $context): void
 {
     // Activate entities, such as a new payment method
     // Or create new entities, because now your plugin is installed and active
