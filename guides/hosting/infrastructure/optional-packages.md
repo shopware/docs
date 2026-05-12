@@ -15,7 +15,7 @@ Extend a project with optional packages as needed.
 Install Symfony’s profiler and related development tools:
 
 ```bash
-composer require --dev symfony/profiler-pack
+composer require --dev shopware/dev-tools
 ```
 
 ## PaaS integration
