@@ -137,7 +137,7 @@ Run [CI](../../../development/testing/ci.md) (static analysis, tests, and reprod
 
 ```php
 // <plugin root>/src/SwagBasicExample
-public function postInstall(InstallContext $installContext): void
+public function postInstall(InstallContext $context): void
 {
 }
 
