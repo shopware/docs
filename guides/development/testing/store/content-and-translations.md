@@ -12,7 +12,7 @@ Listing text, translations, previews, and account profile content for the Shopwa
 
 All extensions must:
 
-* The extension will publish in the international store. Publication in the German Store is optional. If the extension should also be available in the German Store, there must be a 1:1 translation between English and German.
+* Be published in the international store. Publication in the German Store is optional. If the extension should also be available in the German Store, there must be a 1:1 translation between English and German.
 * **Short description** (150–185 characters): Teaser in overviews, “Customers also bought” / “Customers also viewed,” and published as the meta description.
 * **Long description** (minimum 200 characters): Describe functionality in detail; must match 1:1 between English and German where both are used.
 * Use meaningful short and long descriptions.
