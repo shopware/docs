@@ -790,13 +790,13 @@ A custom multi-select field example
 </Tab>
 </Tabs>
 
-![Example of a custom multi-select field](../../../assets/example-multi-select-config.png)
+![Example of a custom multi-select field](../../../../assets/example-multi-select-config.png)
 
 ## Tabs, blocks and sections
 
 You can use tabs, blocks and sections to structure and group the config options.
 
-![Example of tabs, blocks and sections](../../../assets/theme-config.png)
+![Example of tabs, blocks and sections](../../../../assets/theme-config.png)
 
 In the picture above are four tabs. In the "Colours" tab there is one block "Theme colours" which contains two sections named "Important colors" and "Other". You can define the block and section individually for each item. Example:
 
