@@ -42,7 +42,7 @@ Listing copy, languages, images, previews, manufacturer profile, and account rul
 
 #### Fallback language/translations
 
-Fallback languages, account configuration, and Administration translations are covered in [Content and translations](./content-and-translations.md#fallback-language-and-translations).
+Fallback languages, account configuration, and Administration translations are covered in [Content and translations](./content-and-translations.md#admin-translations).
 
 ### Functional requirements
 
@@ -59,7 +59,7 @@ Packaging and delivery rules for plugins—Composer archive, readable JavaScript
 
 #### App-specific requirements
 
-Rules that apply only to apps—per-sales-channel `config.xml`, API test flows, no Extension Manager changes, and STP where required — are documented under [Functionality and integration](./functionality-integration.md#app-specific-requirements).
+For apps, reviewers additionally validate `config.xml` per sales channel, install and uninstall flows, and Administration presentation. Technical rules are documented under [Functionality and integration](./functionality-integration.md).
 
 ### Storefront guidelines
 
@@ -71,7 +71,7 @@ Sitemaps, canonicals, robots headers, and structured data: [SEO and structured d
 
 ### Administration guidelines
 
-Main-menu rules, media folders, API test buttons, validation messages, and logging in the Administration: [Content and translations](./content-and-translations.md) and [Functionality and integration](./functionality-integration.md).
+Main-menu rules, media folders, API test buttons, validation messages, and logging in the Administration: [Functionality and integration](./functionality-integration.md) and [Content and translations](./content-and-translations.md).
 
 ### Composer and dependencies
 
