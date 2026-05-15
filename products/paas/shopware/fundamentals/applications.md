@@ -76,6 +76,20 @@ Pre-deployment and post-deployment hooks are supported through the [deployment h
 
 Automated deployments from CI/CD are supported. The CLI can run in non-interactive mode and supports machine-to-machine authentication with tokens.
 
+You can inspect runtime logs with:
+
+```sh
+sw-paas application logs
+```
+
+Deployment setup and migration logs are available with:
+
+```sh
+sw-paas application deploy logs
+```
+
+Both commands print a Grafana Explore URL at the end so you can continue investigating the same logs in Grafana. For more log filtering options, see [Logs](../monitoring/logs).
+
 ## Deploy a specific build of your application
 
 To create a deployment with a specific build, use the following command:
