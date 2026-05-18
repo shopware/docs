@@ -251,7 +251,7 @@ To see your changes you have to build the Storefront. Use the following command 
 <Tab title="Template">
 
 ```bash
-./bin/build-storefront.sh
+shopware-cli project storefront-build
 ```
 
 </Tab>

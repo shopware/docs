@@ -73,7 +73,7 @@ As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin. I
 <Tab title="Template">
 
 ```bash
-./bin/build-administration.sh
+shopware-cli project admin-build
 ```
 
 </Tab>

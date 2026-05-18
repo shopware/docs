@@ -23,7 +23,7 @@ composer run build:js:admin
 <Tab title="Build administration (Production template)">
 
 ```bash
-./bin/build-administration.sh
+shopware-cli project admin-build
 ```
 
 </Tab>
@@ -39,7 +39,7 @@ composer run build:js:storefront
 <Tab title="Build storefront (Production template)">
 
 ```bash
-./bin/build-storefront.sh
+shopware-cli project storefront-build
 ```
 
 </Tab>
@@ -87,7 +87,7 @@ To enable Hot Module Reloading, use the following shell scripts in the Shopware 
 <Tab title="Admin watcher">
 
 ```bash
-./bin/watch-administration.sh
+shopware-cli project admin-watch
 ```
 
 </Tab>
@@ -95,7 +95,7 @@ To enable Hot Module Reloading, use the following shell scripts in the Shopware 
 <Tab title="Storefront watcher">
 
 ```bash
-./bin/watch-storefront.sh
+shopware-cli project storefront-watch
 ```
 
 </Tab>

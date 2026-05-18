@@ -78,15 +78,15 @@ make watch-admin
 make watch-storefront
 ```
 
-### Alternative: run build and watch scripts directly
+### Alternative: use Shopware CLI
 
-If you prefer not to use `make`, your project also provides bash scripts in the `bin/` directory to build and watch the Administration and Storefront. Run the following commands:
+If you prefer not to use `make`, you can use the [Shopware CLI](https://developer.shopware.com/docs/products/cli/) to build and watch the Administration and Storefront. Run the following commands:
 
 ```bash
-./bin/build-administration.sh
-./bin/build-storefront.sh
-./bin/watch-administration.sh
-./bin/watch-storefront.sh
+shopware-cli project admin-build
+shopware-cli project storefront-build
+shopware-cli project admin-watch
+shopware-cli project storefront-watch
 ```
 
 The `watch` commands monitor changes to the Administration and Storefront and automatically rebuild them.
