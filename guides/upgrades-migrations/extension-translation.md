@@ -76,7 +76,7 @@ Here are some example locales that are dialects of the generic base layer.
 └···
 ```
 
-For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../../../../concepts/framework/translations/fallback-language-selection.md).
+For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../concepts/framework/translations/fallback-language-selection.md).
 
 ## Testing Your Migration
 
