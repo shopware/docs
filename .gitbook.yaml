@@ -244,5 +244,6 @@ redirects:
     resources/references/core-reference/flow-reference.html: guides/development/troubleshooting/flow-reference.html
     resources/references/core-reference/rules-reference.html: guides/development/troubleshooting/rules-reference.html
     guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html
+    products/Nexus/: products/nexus/
     guides/installation/start-developing.html: guides/development/start-developing.html
     
