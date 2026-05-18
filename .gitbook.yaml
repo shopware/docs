@@ -245,4 +245,5 @@ redirects:
     resources/references/core-reference/rules-reference.html: guides/development/troubleshooting/rules-reference.html
     guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html
     guides/installation/start-developing.html: guides/development/start-developing.html
+    concepts/translations/: concepts/framework/translations/
     
