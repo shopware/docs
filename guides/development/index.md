@@ -40,7 +40,8 @@ To sell an extension or offer paid features, see the [Monetization guide](moneti
 
 Most development follows this sequence:
 
-* Set up the environment
+* [Set up the environment](./dev-environment.md) — Start your Docker-based development environment with `shopware-cli project dev`
+* [Start developing](./start-developing.md) — Run commands, use watchers, and customize your environment
 * Create the project or extension
 * Install and activate it
 * Implement business logic
@@ -77,7 +78,8 @@ The Administration is part of the runtime environment and will be used throughou
 
 ## Development tooling
 
-* `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../resources/references/core-reference/commands-reference.md).
+* [Development Environment](./dev-environment.md) — Docker-based environment with an interactive terminal dashboard, log streaming, and runtime configuration
+* `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../resources/references/core-reference/commands-reference.md). You can run these from your host with `shopware-cli project console`.
 * The standalone [Shopware CLI](../../products/tools/cli/installation.md) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](../../products/tools/cli/project-commands/helper-commands.md).
 * IDE support: Shopware provides a [PHPStorm plugin](tooling/shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).
 * [Deployment Helper](../hosting/installation-updates/deployments/deployment-helper.md): Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
@@ -88,4 +90,4 @@ The [troubleshooting](troubleshooting/index.md) guides provide reference informa
 
 ## Next steps
 
-Move on to the [Start Developing guide](start-developing.md).
+Set up your [Development Environment](./dev-environment.md), then move on to [Start Developing](./start-developing.md).

@@ -27,7 +27,7 @@ The version parameter can be also `latest` for the latest stable version or `dev
 
 ## Development Environment
 
-Shopware CLI provides a fully integrated Docker-based development environment. See the [Development Environment](./dev-environment.md) guide for details.
+Shopware CLI provides a fully integrated Docker-based development environment. See the [Development Environment](../../../guides/development/dev-environment.md) guide for the full workflow, or the [CLI command reference](./dev-environment.md) for a quick overview.
 
 ```bash
 # Launch the interactive dashboard
