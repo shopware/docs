@@ -25,6 +25,22 @@ shopware-cli project create <folder-name> <version>
 
 The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
 
+## Development Environment
+
+Shopware CLI provides a fully integrated Docker-based development environment. See the [Development Environment](./dev-environment.md) guide for details.
+
+```bash
+# Launch the interactive dashboard
+shopware-cli project dev
+
+# Start/stop in the background
+shopware-cli project dev start
+shopware-cli project dev stop
+
+# View application logs
+shopware-cli project logs
+```
+
 ## Replacements to include in shell scripts
 
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.

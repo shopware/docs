@@ -22,6 +22,28 @@ Common development areas:
 
 Projects follow the [project template layout](../installation/project-overview.md).
 
+## Using the Development Environment
+
+Shopware CLI provides an integrated Docker-based development environment with an interactive terminal dashboard. From your project root:
+
+```bash
+# Launch the interactive DevTUI dashboard
+shopware-cli project dev
+
+# Or start the environment in the background
+shopware-cli project dev start
+```
+
+The dashboard provides:
+
+- An overview of your Shop and Admin URLs with credentials
+- One-click Admin and Storefront watchers
+- Real-time log streaming from `var/log/` and Docker containers
+- PHP version and profiler configuration (xdebug, blackfire, tideways, etc.)
+- Service discovery (Adminer, Mailpit, queue, etc.)
+
+See the [Development Environment guide](../../products/cli/project-commands/dev-environment.md) for full details.
+
 ## Using `bin/console` for development
 
 To run commands, open a shell inside the web container:
