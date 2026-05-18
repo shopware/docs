@@ -41,10 +41,12 @@ shopware-cli project console database:migrate --all
 
 :::info Legacy workflow
 If your project uses the older `make`-based setup and you need to shell into the container manually:
+
 ```bash
 make shell
 docker compose exec web bash
 ```
+
 Most tasks are now easier with `shopware-cli project console` and the DevTUI dashboard.
 :::
 
