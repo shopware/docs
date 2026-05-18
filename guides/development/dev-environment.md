@@ -71,15 +71,55 @@ When selecting `blackfire` or `tideways`, additional credential fields appear. S
 
 After changing settings, select **Save & Regenerate** to update `compose.yaml`. Restart the environment for changes to take effect.
 
-## Setup Wizard
+## Migrating from Legacy Setups
 
-If your project doesn't have a development environment configured (compatibility date before `2026-03-01`), running `shopware-cli project dev` starts the setup wizard instead. The wizard:
+If your project was created before March 2026 and uses the older `make up`/`make setup` workflow with a hand-written `compose.yaml`, running `shopware-cli project dev` automatically detects this and launches a **setup wizard** instead of the dashboard.
 
-1. Collects your Shop URL, admin username/password, PHP version, and profiler choice
-2. Resolves compatible PHP versions from your `composer.lock`
-3. Adds `shopware/deployment-helper` to `composer.json` if missing
-4. Writes the environment configuration to `.shopware-project.yml`
-5. Generates `compose.yaml` and starts the Docker environment
+### What Triggers the Wizard
+
+The wizard appears when your project's `compatibility_date` in `.shopware-project.yml` is before `2026-03-01` (or missing entirely). This signals that the project hasn't been configured for the new development environment yet.
+
+### What the Wizard Does
+
+Walking through the setup wizard takes about a minute. Here's what happens at each step:
+
+1. **Welcome** — explains what the wizard will do and asks you to proceed
+2. **Admin user** — pre-fills `admin` (you can change it) for the Shopware admin account
+3. **Admin password** — pre-fills `shopware` (you can change it); stored as credentials in `.shopware-project.yml`
+4. **PHP version** — reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.4`)
+5. **Profiler** — choose from `none`, `xdebug`, `blackfire`, `tideways`, `pcov`, or `spx`
+6. **Review** — shows a summary of all your choices before applying changes
+
+After you confirm, the wizard:
+
+- Sets `compatibility_date` to `2026-03-01` in `.shopware-project.yml`
+- Adds a `local` environment with type `docker` and your chosen URL/credentials
+- Configures the Docker PHP version and profiler settings
+- Writes profiler secrets (Blackfire credentials, Tideways API key) to `.shopware-project.local.yml`
+- Generates a new `compose.yaml` tailored to your project's dependencies
+- Starts the Docker containers and runs the Shopware installer
+
+### What Happens to Existing Files
+
+| File | What changes |
+|------|-------------|
+| `.shopware-project.yml` | Updated with `compatibility_date`, `environments`, and `docker` config |
+| `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways) |
+| `compose.yaml` | **Replaced** with the CLI-managed version. Your old file is overwritten — back it up first if you have customizations you want to port to `compose.override.yaml` |
+| `Makefile` | **Not touched**. You can delete it once you've migrated, or keep it around |
+| `composer.json` | If `shopware/deployment-helper` isn't already present, it's added to `require` |
+
+### After the Wizard Completes
+
+If `shopware/deployment-helper` was added to `composer.json`, you'll be prompted to run:
+
+```bash
+composer install
+```
+
+This pulls in the helper package, which the dashboard uses to run the Shopware installer. After that, the environment starts automatically.
+
+Once migrated, the legacy `make up`/`make down`/`make setup` workflow is no longer needed — use `shopware-cli project dev` to manage your environment instead. If you had customizations in your old `compose.yaml`, move them to `compose.override.yaml` before running the wizard (or recover them from git afterwards).
 
 ## Viewing Application Logs
 

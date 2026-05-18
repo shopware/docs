@@ -7,7 +7,7 @@ nav:
 
 # Development Environment (CLI Reference)
 
-This page is a quick reference for the `shopware-cli project dev` and `shopware-cli project logs` commands. For the full development workflow and setup guide, see [Development Environment](../../guides/development/dev-environment.md).
+This page is a quick reference for the `shopware-cli project dev` and `shopware-cli project logs` commands. For the full development workflow and setup guide, see [Development Environment](../../../../guides/development/dev-environment.md).
 
 ## Commands
 
@@ -51,7 +51,7 @@ shopware-cli project logs --lines 50
 
 ## Configuration
 
-The environment is configured in `.shopware-project.yml`. See the [full configuration reference](../../guides/development/dev-environment.md#configuration-reference) for all options.
+The environment is configured in `.shopware-project.yml`. See the [full configuration reference](../../../../guides/development/dev-environment.md#configuration-reference) for all options.
 
 ```yaml
 # .shopware-project.yml
@@ -73,5 +73,5 @@ environments:
 
 ## Further Reading
 
-- [Development Environment guide](../../guides/development/dev-environment.md) — full workflow, setup wizard, service overview, troubleshooting
-- [Start Developing](../../guides/development/start-developing.md) — next steps after your environment is running
+- [Development Environment guide](../../../../guides/development/dev-environment.md) — full workflow, setup wizard, service overview, troubleshooting
+- [Start Developing](../../../../guides/development/start-developing.md) — next steps after your environment is running
