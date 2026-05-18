@@ -224,15 +224,13 @@ use Shopware\Core\Maintenance\Staging\Event\SetupStagingEvent;
 class StagingSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
- {
-        return [
-            SetupStagingEvent::class => 'onSetupStaging'
- ];
- }
+    {
+        return [SetupStagingEvent::class => 'onSetupStaging'];
+    }
 
     public function onSetupStaging(SetupStagingEvent $event): void
- {
+    {
         // modify the database to turn on the test mode
- }
+    }
 }
 ```
