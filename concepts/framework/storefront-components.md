@@ -12,7 +12,7 @@ It enables developers to build reusable, atomic component templates in Twig and 
 
 ## Creating Components
 
-Creating a new component is straightforward. All you need to do is create the corresponding files for your component in the right directory. All components live in `views/components/` of their specific Symfony bundle, like the Shopware Storefront, or your own extension. There are two different ways to define a component, which will be covered in the following:
+Creating a new component is straightforward. All you need to do is create the corresponding files for your component in the right directory. All components live in `Resources/views/components/` of their specific Symfony bundle, like the Shopware Storefront, or your own extension. There are two different ways to define a component, which will be covered in the following:
 
 ### 1. Anonymous Components
 
@@ -204,7 +204,7 @@ Within that file, you can add your component-specific styles.
 
 ### Accessing Theme Configuration
 
-Storefront components are not compiled with PHP and therefore don't have access to theme variables in SCSS. Instead, the theme configuration can be accessed as native CSS custom properties.
+Storefront components SCSS is not compiled with PHP and therefore does not have access to theme variables in SCSS. Instead, the theme configuration can be accessed as native CSS custom properties.
 
 ```CSS
 .btn-primary {
@@ -581,7 +581,7 @@ For development there is a new dev-server feature available, also based on Vite.
 composer storefront:dev-server
 ```
 
-When the dev-server is running, you can open your normal Storefront. The assets are injected automatically from the Vite dev-server. No proxy needed. When you stop the dev-server, the Storefront will serve production assets again.
+When the dev-server is running, you can open your normal Storefront URL. The assets are injected automatically from the Vite dev-server. No proxy needed. When you stop the dev-server, the Storefront will serve production assets again.
 
 ## Component Documentation (Experimental)
 
