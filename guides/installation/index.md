@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Shopware 6 Installation
-  position: 1
+  title: Installation
+  position: 20
 ---
 
 # Overview of Shopware 6 Community Edition Installation
