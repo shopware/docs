@@ -70,6 +70,8 @@ MyExtension/
 
 This example will create the component `MyExtension:Button`.
 
+#### Defining Properties
+
 In anonymous components you can define properties for your component right within the template. Properties are configuration options that can be used to pass data to your component. You can define default values for these properties and use the data within your component template as usual Twig variables.
 
 **Component Template:**
@@ -200,7 +202,7 @@ MyExtension/
 
 Within that file, you can add your component-specific styles.
 
-**Important Note:** Other than usual theme files, the style files of components are **not** compiled with the PHP-based theme compiler. For the Storefront Components there is a new build process based on Vite. Extensions that provide new components have to provide the compiled build artifacts of their components. They are not recompiled on runtime and therefore only have access to information that is available on build time. Further information can be found in the section about the build process further down below.
+**Important Note:** Other than usual theme files, the style files of components are **not** compiled with the PHP-based theme compiler. For the Storefront Components there is a new build process based on Vite. Extensions that provide new components have to provide the compiled build artifacts of their components. They are not recompiled on runtime and therefore only have access to information that is available on build time. Further information can be found in the section about the [build process](#component-build-process) further down below.
 
 ### Accessing Theme Configuration
 
