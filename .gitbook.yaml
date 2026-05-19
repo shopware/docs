@@ -246,4 +246,5 @@ redirects:
     guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html
     products/Nexus/: products/nexus/
     guides/installation/start-developing.html: guides/development/start-developing.html
+    concepts/translations/: concepts/framework/translations/
     
