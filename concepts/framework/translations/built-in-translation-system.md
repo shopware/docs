@@ -74,8 +74,7 @@ When loading translations, the system follows a defined priority order to resolv
    translations or dialects as small patch files. For more information about the language-layer changes, you can have a
    look at its documentation.
 3. Country-agnostic translations (`en` and `de`) – These are shipped with Shopware and its plugins. They ensure that the
-   system always has a reliable fallback language and provide a consistent developer experience without requiring you
-   to wait until your translations are accepted at [translate.shopware.com](https://crowdin.com/project/shopware6). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../concepts/translations/fallback-language-selection.md).
+   system always has a reliable fallback language and provide a consistent developer experience without requiring you to wait until your translations are accepted at [translate.shopware.com](https://crowdin.com/project/shopware6). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](fallback-language-selection.md).
 4. Built-in translation system – Finally, the translations installed via the built-in translation system are applied.
 
 ## Built-in translation system and Flysystem

@@ -54,10 +54,6 @@ Learn how to structure CI for projects and plugins, including static analysis, t
 
 To publish your extension in the Shopware Store, follow the testing criteria used during the Store review process.
 
-<PageRef page="../testing/testing-guidelines" />
-
-It focuses on how your extension is functionally tested before approval.
-
 Detailed Shopware Store QA topics (scope, code quality, storefront, SEO, cookies, content, installation):
 
 <PageRef page="../testing/store/index" title="Store" />

@@ -183,7 +183,7 @@ Now you can:
 
 Use automated tools to **detect common accessibility issues** in your extension:
 
-* **[Google Lighthouse](https://developer.shopware.com/docs/resources/guidelines/testing/store/quality-guidelines-apps/#lighthouse-a-b-testing)** – Run audits in Chrome DevTools.
+* **[Google Lighthouse](../testing/store/quality-guidelines.md#lighthouse-a-b-testing)** – Run audits in Chrome DevTools.
 * **AXE DevTools** – More detailed accessibility testing.
 * **WAVE (WebAIM Tool)** – Identifies HTML structure and ARIA misuses.
 

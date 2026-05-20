@@ -8,7 +8,7 @@ nav:
 # Remote Thumbnail Generation
 
 ::: info
-This feature is available starting with Shopware version 6.6.4.0
+This feature is available starting with Shopware version 6.6.4.0. The `{mediaUpdatedAt}` pattern variable was added in 6.6.5.0, and the `ResolveRemoteThumbnailUrlExtension` hook was added in 6.7.1.0.
 :::
 
 ## Overview
@@ -29,19 +29,24 @@ shopware:
       pattern: '{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}'
 ```
 
-1. `shopware.media.remote_thumbnails.enable`: Set this parameter to `true` to enable remote thumbnails.
-
-2. `shopware.media.remote_thumbnails.pattern`: This parameter defines the URL pattern for your remote thumbnails. Replace it with your actual URL pattern.
+| Key                                        | Type   | Default                                                    | Description                                                                                                                                                                                            |
+|--------------------------------------------|--------|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `shopware.media.remote_thumbnails.enable`  | bool   | `false`                                                    | Master switch. When `true`, Shopware stops creating, persisting, and deleting thumbnail files and database records and instead synthesizes thumbnail URLs from the configured pattern at request time. |
+| `shopware.media.remote_thumbnails.pattern` | string | `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}` | Template used to build thumbnail URLs. Variables are listed below.                                                                                                                                     |
 
 The pattern supports the following variables:
 
-* `mediaUrl`: The base URL of the media file.
-* `mediaPath`: The media file path relative to the `mediaUrl`.
-* `width`: The width of the thumbnail.
-* `height`: The height of the thumbnail.
-* `mediaUpdatedAt`: The timestamp of the last media change.
+* `mediaUrl`: The base URL of the public filesystem (`shopware.filesystem.public`). For media whose `path` is already absolute (e.g., uploaded by URL), `{mediaUrl}` is replaced with an empty string and the leading slash is trimmed automatically.
+* `mediaPath`: The media file path relative to `mediaUrl` (for example `media/ab/cd/file.jpg`).
+* `width`: The width from the assigned `media_thumbnail_size` of the media folder.
+* `height`: The height from the assigned `media_thumbnail_size` of the media folder.
+* `mediaUpdatedAt`: Unix timestamp of `media.updatedAt`, falling back to `media.createdAt`. Empty string when both are null. Useful as a cache-buster (Shopware versions older than 6.6.5.0 do not support this variable).
 
-For example, by default, the pattern was set as `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL would be generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
+For example, with the default pattern `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL is generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
+
+::: warning
+Private media is intentionally excluded from remote URL generation: it keeps using its signed local URL even while the feature is enabled. Plan accordingly if your shop relies on private media.
+:::
 
 ## Usage
 
@@ -50,17 +55,67 @@ These URLs will point to the external CDN service, which should handle generatin
 
 Please note that the external service needs to be able to handle the URL pattern and generate the appropriate thumbnails based on the provided parameters.
 
+## Behavior when enabled
+
+Enabling `shopware.media.remote_thumbnails.enable` short-circuits multiple subsystems. Plugins that interact with thumbnails directly should be aware of the changes:
+
+* **`ThumbnailService`** — `generate()`, `updateThumbnails()`, and `deleteThumbnails()` throw `MediaException::thumbnailGenerationDisabled()` (HTTP 400, error code `MEDIA_THUMBNAIL_GENERATION_DISABLED`). Guard custom code that calls these methods.
+* **Message handler** — `GenerateThumbnailsHandler` and `UpdateThumbnailsHandler` consume but no longer process `GenerateThumbnailsMessage` / `UpdateThumbnailsMessage`.
+* **Media indexer** — `MediaIndexer::iterate`, `update`, and `handle` early-return, so no `MediaIndexingMessage` is enqueued and `media.thumbnails_ro` is not maintained (since 6.7.1.0). Running `bin/console dal:refresh:index media.indexer` is a no-op.
+* **CLI commands** — `bin/console media:generate-thumbnails` aborts with `Command::FAILURE` and prints `Remote thumbnails are enabled. Skipping thumbnail generation.`
+* **`FileSaver`** — uploads no longer dispatch a `GenerateThumbnailsMessage`, and renames skip the thumbnail-rename step (which would otherwise fail because no local thumbnail files exist).
+* **`MediaDeletionSubscriber`** — original files are still deleted, but the thumbnail-file enumeration and the `media_thumbnail` row deletion are skipped.
+* **`MediaUrlLoader`** — listens to `media.loaded` / `media.partial_loaded` and delegates to `RemoteThumbnailLoader`, which synthesizes a `MediaThumbnailCollection` in memory based on the media folder's configured `media_thumbnail_size` entries.
+
+::: warning
+The synthesized `MediaThumbnailEntity` instances are assigned a fresh random UUID on every request and are not persisted. Do not rely on `media_thumbnail.id` being stable, and do not join other tables against it while the feature is on.
+:::
+
+## Cleaning up local thumbnails
+
+If you switch from local to remote thumbnails on an existing shop, the previously generated `media_thumbnail` records and files remain in storage. Shopware ships a CLI command (added in 6.6.6.0) that removes them:
+
+```bash
+bin/console media:delete-local-thumbnails
+```
+
+The command only runs when remote thumbnails are enabled. It deletes every row from `media_thumbnail`, removes the corresponding files via the configured filesystem adapter, and clears the serialized `media.thumbnails_ro` column so that the storefront immediately stops referencing stale entries.
+
+## Extending the URL generation
+
+`RemoteThumbnailLoader` dispatches the URL through the `ResolveRemoteThumbnailUrlExtension` (extension name `remote_thumbnail_url.resolve`, available since 6.7.1.0). Apps and plugins can subscribe to it to:
+
+* rewrite the URL (for example, sign it, route it through an image-resizing proxy, swap the host per sales-channel),
+* return `null` to skip a thumbnail entirely (since 6.7.3.0),
+* read the full `MediaEntity` to make decisions based on `mimeType`, custom fields, or folder configuration.
+
+Subscribe to the extension via the standard extension event mechanism. Do not modify `MediaUrlLoader` or `RemoteThumbnailLoader` directly; both are marked `@final` and may change.
+
 ## Invalidating Thumbnails with Fastly
 
-If you are using Fastly as your CDN, you can let Shopware invalidate the cached thumbnails when the media is updated.
-To do this, you need to configure your Fastly API key in your `config/packages/shopware.yaml`:
+If you are using Fastly as your CDN, you can let Shopware invalidate the cached thumbnails when media is updated.
+To do this, configure your Fastly API key in your `config/packages/shopware.yaml`:
 
 ```yaml
 shopware:
   cdn:
     fastly:
-      api_key: YOUR_FASTLY_API_KEY
+      api_key: '%env(FASTLY_API_KEY)%'
+      soft_purge: false
+      max_parallel_invalidations: 2
 ```
+
+| Key                                              | Type        | Default | Description                                                                                                                                                                               |
+|--------------------------------------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `shopware.cdn.fastly.api_key`                    | string      | `''`    | Personal Fastly token. **Setting this to a non-empty value is what activates media invalidation** — there is no separate `enabled` flag. With an empty key, the listener silently no-ops. |
+| `shopware.cdn.fastly.soft_purge`                 | bool/string | `false` | Sent verbatim as the `fastly-soft-purge` request header. Set to `true` (or `'1'`) to keep serving stale content while purges propagate.                                                   |
+| `shopware.cdn.fastly.max_parallel_invalidations` | int         | `2`     | Guzzle pool concurrency for purge requests. Bounds how many `POST https://api.fastly.com/purge/{url}` calls are in flight simultaneously.                                                 |
+
+When media changes (path change, file update, or deletion), the `BanMediaUrl` listener resolves all affected URLs and dispatches them through `FastlyMediaReverseProxy`, which sends one purge request per URL. Failures are logged at `critical` level and do not block the write process.
+
+::: info
+This is the **media-cache** Fastly configuration node. It is independent from `shopware.http_cache.reverse_proxy.fastly`, which configures the storefront's HTTP-cache invalidation gateway and exposes additional options such as `service_id`, `instance_tag`, and `tag_prefix`. See [Reverse HTTP cache](../../../../hosting/infrastructure/reverse-http-cache.md#configure-fastly) for the storefront side.
+:::
 
 ## Conclusion
 

@@ -29,7 +29,7 @@ The domain can be freely defined (we recommend your extension name in kebab case
 Locales should follow the ISO string of the supported language, such as `de`, `en`, or `es-AR`.
 This format follows [IETF BCP 47](https://datatracker.ietf.org/doc/html/bcp47), restricted to [ISO 639-1 (2-letter) language codes](https://en.wikipedia.org/wiki/ISO_639-1) as used by [Symfony](https://symfony.com/doc/current/reference/constraints/Locale.html), but with dashes (`-`) instead of underscores (`_`).
 
-For more information on selecting proper locales, see our documentation on [Fallback language selection](../../../../../concepts/translations/fallback-language-selection.md).
+For more information on selecting proper locales, see our documentation on [Fallback language selection](../../../../../concepts/framework/translations/fallback-language-selection.md).
 
 In case you want to provide base translations (ship translations for a whole new language), indicate it with the suffix `.base` in your file name.
 Now the filename convention to be followed looks like this `<name>.<locale>.base.json` - for example, `my-app.de.base.json`.

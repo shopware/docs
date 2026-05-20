@@ -6,7 +6,7 @@ nav:
 
 # Functionality and integration
 
-The extension’s features must work as described. All advertised features must be available at review time.
+The extension’s visual design must be consistent with Shopware and fit existing sections.
 
 ## API validation and external services
 
@@ -20,51 +20,33 @@ Example pattern: [ShyimApiTest](https://github.com/shyim/ShyimApiTest).
 
 ## Configuration per sales channel
 
-Apps that appear in the Storefront and use `config.xml` must be configurable **per sales channel**, or explicitly scoped to a single channel.
+Extensions that appear in the Storefront must be able to be configured separately for each sales channel, or scoped so they apply only to a single channel.
 
 ## Message queue
 
-If the extension enqueues messages, each payload must not exceed **262,144 bytes (256 KB)**.
+If the extension adds messages to the message queue, the entry should not be bigger than **256 KB**.
 
-## External fonts and services
+This limitation is set by common message queue workers and should not be exceeded.
 
-If you use external fonts (for example Google Fonts, Font Awesome) or other third-party services, state this clearly in the **extension store description**. If personal data is transferred, update privacy information; a **tooltip** in configuration is recommended.
+## Structure
 
-## App-specific requirements {#app-specific-requirements}
+**Own media folder:** Create separate media folders or use existing ones for uploads. Do not change Shopware’s base structure. Do not add entries to the main menu of the Administration.
 
-These apply to **apps** only:
+The basic structure of Shopware should not be changed or modified.
 
 * Provide **per-sales-channel** configuration when you use `config.xml`.
 * Do **not** load external files during installation in the Extension Manager.
 * Include an **API test** integration when API credentials are required.
 * Do **not** modify the Extension Manager.
-* A **Shopware Technology Partner (STP)** agreement is required for commission-based integrations that bill the merchant (see below).
+* A **Shopware Technology Partner (STP)** agreement is required for commission-based integrations that bill the merchant.
+
+**App-specific requirements:**
+
 * Apps visible in the Storefront with `config.xml` must support separate configuration per sales channel.
 
-## Commercial and technology partner (STP) integrations
+## External fonts and services
 
-If the extension integrates external services and generates revenue (for example fees per transaction), an **STP agreement** may be required. Commission-based integrations must report usage as defined in the contract.
-
-Example payload shape reported to Shopware (see your contract for the live endpoint and fields):
-
-```json
-{
-  "identifier": "8e167662-6bbb-11eb-9439-0242ac130002",
-  "reportDate": "2005-08-15T15:52:01",
-  "instanceId": "alur24esfaw3ghk",
-  "shopwareVersion": "6.3.1",
-  "reportDataKeys": [
-    { "customer": 3 },
-    { "turnover": 440 }
-  ]
-}
-```
-
-Partners typically `POST` reports to `/shopwarepartners/reports/technology` as specified in the STP documentation.
-
-Questions: [alliances@shopware.com](mailto:alliances@shopware.com) or **+44 (0) 203 095 2445 (UK)**, **00 800 746 7626 0 (worldwide)**, **+49 (0) 25 55 / 928 85-0 (Germany)**.
-
-**Progressive Web App:** For PWA compatibility and the PWA flag in the Store, contact [alliances@shopware.com](mailto:alliances@shopware.com).
+If external fonts (for example, Google Fonts, Font Awesome) or external services are used, this information must be included in the description in the extension store.
 
 ## Tools
 
