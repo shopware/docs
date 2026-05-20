@@ -44,6 +44,6 @@ LICENSE.txt
 *.swp
 *.swo
 
-# Ignore ADR files
+# Ignore ADR files and guidelines content managed separately
 resources/references/adr/
 resources/guidelines/
