@@ -69,6 +69,10 @@ composer run watch:admin
 <Tab title="Storefront watcher">
 
 ```bash
+# Since Shopware 6.7.11.0
+composer run storefront:dev-server
+
+# Before Shopware 6.7.11.0
 composer run watch:storefront
 ```
 

@@ -28,4 +28,4 @@ If personal data of customers (merchant and/or end customers) is processed with 
 * Enter the data processor’s details in **Subprocessor**.
 * Enter any further processors under **Further subprocessors**.
 
-If external services transfer personal data, update your privacy information; a tooltip in the extension configuration is recommended.
+If external services transmit personal data or are in use, this should be specified in the description.
