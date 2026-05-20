@@ -1373,6 +1373,7 @@ direnv
 direnv's
 discountfacade
 discoverability
+discoverable
 docblock
 docblocks
 dockware
