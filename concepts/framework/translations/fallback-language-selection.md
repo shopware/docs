@@ -1,3 +1,10 @@
+---
+nav:
+  title: Fallback language selection
+  position: 50
+
+---
+
 # Fallback language selection
 
 With Shopware 6.7 a **country-agnostic snippet layer** was introduced to reduce duplicate translations.
@@ -50,7 +57,7 @@ The command supports several options:
 
 ## Implementation guidelines for extension developers
 
-For detailed instructions, see the [Extension Translation Migration](../../guides/upgrades-migrations/extension-translation.md) guide. In short:
+For detailed instructions, see the [Extension Translation Migration](../../../guides/upgrades-migrations/extension-translation.md) guide. In short:
 
 - **Create a complete base file** (`messages.<language>.base.json`) for each supported language.
 - **Add patch files only when needed** – keep them minimal.
@@ -62,4 +69,4 @@ For detailed instructions, see the [Extension Translation Migration](../../guide
 ## Conclusion
 
 The country-independent snippet layer streamlines translation maintenance by consolidating common strings into a neutral fallback file and isolating regional vocabulary into small patch files.
-For further examples, refer to [Built-in Translation Handling](built-in-translation-system.md) and [Extension Translation Migration](../../guides/upgrades-migrations/extension-translation.md).
+For further examples, refer to [Built-in Translation Handling](built-in-translation-system.md) and [Extension Translation Migration](../../../guides/upgrades-migrations/extension-translation.md).

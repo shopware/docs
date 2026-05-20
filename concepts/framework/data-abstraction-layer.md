@@ -16,7 +16,7 @@ The DAL is implemented with the specific needs of Shopware in mind and lets deve
 Some concepts used by the DAL, like Criteria, may sound familiar to you if you know [Doctrine](https://symfony.com/doc/current/doctrine.html) or other ORMs.
 A reference to more in-depth documentation about the DAL can be found below.
 
-Refer to [Shopware 6.6.5.0 entity relationship model](../../assets/shopware6-erd.pdf) that depicts different tables and their relationships.
+Refer to [Shopware 6.6.5.0 entity relationship model](https://developer.shopware.com/assets/shopware6-erd.pdf) that depicts different tables and their relationships.
 
 Alternatively, you can export a fresh ER model, using [MySQL Workbench](https://dev.mysql.com/doc/workbench/en/wb-reverse-engineering.html), [PHPStorm Database Tools](https://www.jetbrains.com/help/phpstorm/creating-diagrams.html), or similar tool.
 

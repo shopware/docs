@@ -9,7 +9,7 @@ nav:
 
 Shopware provides official tools that support the full lifecycle of a Shopware project, from development to deployment and long-term maintenance:
 
-- [Admin Extension SDK](/resources/admin-extension-sdk/): an NPM library for Shopware 6 apps and plugins that need an easy way to extend or customize the Administration.
+- [Admin Extension SDK](https://developer.shopware.com/resources/admin-extension-sdk/): an NPM library for Shopware 6 apps and plugins that need an easy way to extend or customize the Administration.
 
 - `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../../resources/references/core-reference/commands-reference.md).
 

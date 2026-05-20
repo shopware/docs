@@ -94,7 +94,7 @@ The `previewMedia` field provides a path `app/storefront/dist/assets/defaultThem
 
 ## Views
 
-The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](add-theme-inheritance) guide.
+The `views` section controls the template inheritance. This will be covered in the [Theme inheritance](../inheritance/add-theme-inheritance.md) guide.
 
 ```javascript
 // <plugin root>/src/Resources/theme.json

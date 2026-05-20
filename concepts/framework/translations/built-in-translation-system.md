@@ -1,3 +1,10 @@
+---
+nav:
+  title: Built-in Translation Handling
+  position: 50
+
+---
+
 # Built-in Translation Handling
 
 ## Overview
@@ -8,7 +15,7 @@ It provides the same set of translations as the **Language Pack** plugin and is 
 
 > **Note:** The Language Pack plugin is deprecated and will be removed with Shopware version **6.8.0.0**.
 > If you are currently using the Language Pack plugin, please refer to
-> the [Migration guide](../../guides/upgrades-migrations/language-pack-migration.md) for instructions
+> the [Migration guide](../../../guides/upgrades-migrations/language-pack-migration.md) for instructions
 > on switching to the new system.
 
 ## Where do the translations come from?
@@ -224,4 +231,4 @@ configuration details loaded from the `translation.yaml` file.
 You can require it via dependency injection and because of the usage of the `TranslationConfigLoader` with lazy loading,
 the configuration is always available when needed.
 
-More information is available in the [Migration Guide](../../guides/upgrades-migrations/language-pack-migration.md).
+More information is available in the [Migration Guide](../../../guides/upgrades-migrations/language-pack-migration.md).
