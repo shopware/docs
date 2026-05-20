@@ -32,7 +32,7 @@ Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-p
 ```xml
 <mcp-tools>
     <mcp-tool name="sync-orders" url="https://app.example.com/mcp/sync-orders">
-        <label>Sync Orders</label>
+        <label>Sync Orders</label><!-- shown as the tool title in MCP client UIs -->
         <description>Synchronize orders with the ERP</description>
         <input-schema>
             <property name="since" type="string" description="ISO 8601 date" required="true"/>
@@ -55,7 +55,7 @@ Webhook response: return a JSON string, ideally following the `{"success": bool,
 PHP class with `#[McpTool]` on the class, tagged `shopware.mcp.tool` in `services.xml`.
 
 ```php
-#[McpTool(name: 'swag-my-plugin-orders', description: 'List recent orders.')]
+#[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders.')]
 #[McpToolRequires('order:read')]
 class OrdersTool extends McpToolResponse
 {
@@ -76,17 +76,16 @@ class OrdersTool extends McpToolResponse
 
 <Tab title="Bundle">
 
-Identical PHP class and `services.xml` as a plugin. Gate service loading in the bundle's `build()` method:
+Identical PHP class and `services.xml` as a plugin. Load services unconditionally in the bundle's `build()` method — the MCP feature flag gates the HTTP endpoint, not the service registration:
 
 ```php
 public function build(ContainerBuilder $container): void
 {
-    if (!Feature::has('MCP_SERVER')) {
-        return;
-    }
     // load services.xml with shopware.mcp.tool tag
 }
 ```
+
+To register the bundle itself only when the MCP feature is active, gate the entry in `config/bundles.php` — see [Optional bundles](../../../plugins/plugins/bundle.md#optional-bundles).
 
 Bundles have no install/activate lifecycle. They are always active when registered in `config/bundles.php`.
 
@@ -128,7 +127,7 @@ Declare in `Resources/mcp.xml`. Webhook body uses `prompt` instead of `tool`. Re
 PHP class with `#[McpPrompt]`, tagged `shopware.mcp.prompt`. No need to extend `McpToolResponse`.
 
 ```php
-#[McpPrompt(name: 'swag-my-plugin-context', description: 'Context for My Plugin tools.')]
+#[McpPrompt(name: 'swag-my-plugin-context', title: 'My Plugin Context', description: 'Context for My Plugin tools.')]
 class MyPluginContextPrompt
 {
     public function __invoke(): array

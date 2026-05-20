@@ -59,7 +59,7 @@ use Shopware\Core\Framework\Mcp\Attribute\McpToolRequires;
 use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
 use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
 
-#[McpTool(name: 'swag-my-plugin-orders', description: 'List recent orders for a given customer email.')]
+#[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders for a given customer email.')]
 #[McpToolDependsOn('shopware-entity-schema')]
 #[McpToolRequires('order:read')]
 class MyTool extends McpToolResponse
@@ -94,6 +94,7 @@ class MyTool extends McpToolResponse
 **Key rules:**
 
 - `#[McpTool]` goes on the class, not on `__invoke()`. The compiler pass reads class-level attributes; method-level attributes are silently ignored.
+- `title` is optional. When set, MCP clients (Claude Desktop, Cursor, etc.) display it in their tool list instead of the machine-readable `name`. Omit it if you have no better label to offer.
 - Names must only contain `a-zA-Z0-9_-`.
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
@@ -152,7 +153,7 @@ In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`
 </container>
 ```
 
-Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The `McpToolCompilerPass` remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
+Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The `McpToolDiscoveryCompilerPass` remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
 
 ### Available tags
 
@@ -189,7 +190,7 @@ Follow the same pattern with `#[McpPrompt]` and `shopware.mcp.prompt`:
 ```php
 use Mcp\Capability\Attribute\McpPrompt;
 
-#[McpPrompt(name: 'swag-my-plugin-context', description: 'Context for using the My Plugin MCP tools.')]
+#[McpPrompt(name: 'swag-my-plugin-context', title: 'My Plugin Context', description: 'Context for using the My Plugin MCP tools.')]
 class MyPluginContextPrompt
 {
     public function __invoke(): array
@@ -228,18 +229,17 @@ Symfony bundles (not Shopware plugins) follow the same `shopware.mcp.tool` tag m
 
 - The bundle class extends `Symfony\Component\HttpKernel\Bundle\Bundle`, not `Shopware\Core\Framework\Plugin`
 - No Shopware install/activate lifecycle; the bundle is always active when registered in `config/bundles.php`
-- Gate services in the bundle's `build()` method instead of using `shopware.feature` tags:
+- Load services unconditionally in the bundle's `build()` method — no feature flag gate is required, because the MCP feature flag gates the HTTP endpoint, not the service registration:
 
 ```php
 public function build(ContainerBuilder $container): void
 {
-    if (!Feature::has('MCP_SERVER')) {
-        return;
-    }
     $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/Resources/config'));
     $loader->load('services.xml');
 }
 ```
+
+If you only want to register the bundle itself when the MCP feature is active, gate the entry in `config/bundles.php` instead — see [Optional bundles](./bundle.md#optional-bundles).
 
 ## Common pitfalls
 

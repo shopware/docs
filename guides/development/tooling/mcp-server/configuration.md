@@ -92,7 +92,7 @@ This pattern lets the app owner control which tools the integration may ever cal
 
 ## MCP bundle configuration
 
-The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file and it is loaded automatically when the `MCP_SERVER` feature flag is active. You do not need to create or modify it for standard setups.
+The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file and Symfony loads it automatically; the `MCP_SERVER` feature flag only gates the HTTP endpoint (`/api/_mcp`), not the bundle's DI configuration. You do not need to create or modify it for standard setups.
 
 ## Session store
 

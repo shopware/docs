@@ -240,6 +240,8 @@ For consistency with core tools, follow the `{"success": bool, "data": ..., "_me
 
 Labels and descriptions in `mcp.xml` support translations via `lang` attributes. Shopware resolves them against the system's default locale at load time. If a translation for the active locale is not found, it falls back to `en-GB`.
 
+The resolved `<label>` value is forwarded to the MCP protocol as the capability's `title` field. MCP clients (Claude Desktop, Cursor, etc.) display this title in their tool list instead of the machine-readable `name`. Without a `<label>`, clients fall back to showing `name`.
+
 ## Installing the app
 
 Apps are installed through the standard Shopware app lifecycle (Settings → Extensions → My Apps, or via the Shopware CLI). After installation, your MCP capabilities appear automatically in the server's tool list.
