@@ -19,7 +19,7 @@ nav:
 | Tool missing from `tools/list` | Blocked by allowlist | Enable the tool under Edit MCP Allowlist |
 | No tools in `tools/list` at all | Allowlist is an empty array | "All tools" toggle is OFF with nothing selected. Enable tools or turn the toggle back ON |
 | Admin integration but tool still blocked | Per-integration allowlist is set | Admin bypasses ACL (layer 3) only; the allowlist (layer 2) still applies regardless |
-| All capabilities visible when using a user login token | Bearer tokens bypass the allowlist | By design. Admin user login tokens (`client_id = administration`) are not subject to allowlist filtering. Only integration credentials (`sw-access-key` / `sw-secret-access-key`) are. |
+| All capabilities visible when using a user login token | Admin user login bypasses the allowlist | By design. Tokens issued to admin user accounts (`admin = true`) are not subject to allowlist filtering. Non-admin user tokens still respect the per-user allowlist. Only integration credentials (`sw-access-key` / `sw-secret-access-key`) always go through the allowlist. |
 | Tool missing entirely | Plugin inactive, missing tag, or attribute misplaced | Check `bin/console debug:mcp` |
 | `ECONNREFUSED` or "fetch failed" | Server not running or wrong URL | Start Shopware and verify the URL in your client config |
 | Client shows "Needs authentication" after failed connect | Client fell back to `/register` OAuth endpoint | Credentials or URL are wrong. Verify your `sw-access-key` and `sw-secret-access-key` and that the URL ends with `/api/_mcp` |

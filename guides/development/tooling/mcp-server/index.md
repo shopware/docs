@@ -1,7 +1,7 @@
 ---
 nav:
   title: MCP Server
-  position: 2040
+  position: 10
 
 ---
 
@@ -82,6 +82,6 @@ If a feature you need is missing from `symfony/mcp-bundle`, check its [repositor
 
 To extend the MCP server with your own tools:
 
-- [Extending via Plugin](../../plugins/plugins/mcp-server.md): in-process PHP with full DAL access, Shopware lifecycle
-- [Extending via App](../../plugins/apps/mcp-server.md): webhook-based, works in Shopware Cloud
+- [Extending via Plugin](../../../guides/plugins/plugins/mcp-server.md): in-process PHP with full DAL access, Shopware lifecycle
+- [Extending via App](../../../guides/plugins/apps/mcp-server.md): webhook-based, works in Shopware Cloud
 - [Side-by-side comparison](./extending.md): all three capability types for all three extension types

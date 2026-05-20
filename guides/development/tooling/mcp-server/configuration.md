@@ -56,7 +56,7 @@ Shopware applies a per-principal MCP allowlist depending on how the client authe
 
 `null` per key means all capabilities of that type are allowed; a JSON array restricts to the listed names; an empty array `[]` means no capabilities of that type are accessible.
 
-Admin users (`admin = true`) always bypass the allowlist regardless of auth mode.
+Admin user accounts (`admin = true`) always bypass the allowlist regardless of auth mode. This applies to user accounts, not to integrations created with `--admin` (which bypasses ACL but still respects the per-integration allowlist).
 :::
 
 ### Delegated user calls (`sw-app-user-id`)
@@ -153,11 +153,11 @@ The Admin UI surfaces two helpers for getting ACL right:
 
 - The **Role detail** page shows a banner when the role is assigned to MCP-enabled integrations. Click **Show MCP tool requirements** to open the MCP Tool Requirements modal, which lists every privilege required by the allowed tools. Switch between **By Permission** (per-entity view with Grant buttons) and **By Tool** (per-tool view). Use **Grant all missing** to add the missing privileges in one click:
 
-<img src="../../../../assets/mcp-permissions-privilege-hint.png" alt="MCP Tool Requirements modal showing missing privileges by entity with Grant buttons" width="700">
+<img src="../../../assets/mcp-permissions-privilege-hint.png" alt="MCP Tool Requirements modal showing missing privileges by entity with Grant buttons" width="700">
 
 - The **Edit MCP Allowlist** modal shows a coverage warning when the assigned role is missing privileges required by an allowed tool:
 
-<img src="../../../../assets/mcp-allowlist-collapsed.png" alt="Privilege gap warnings on the Edit MCP Allowlist modal" width="500">
+<img src="../../../assets/mcp-allowlist-collapsed.png" alt="Privilege gap warnings on the Edit MCP Allowlist modal" width="500">
 
 ## CLI: `debug:mcp`
 

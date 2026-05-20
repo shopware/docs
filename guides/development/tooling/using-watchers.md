@@ -80,7 +80,7 @@ composer run watch:storefront
 
 </Tabs>
 
-To enable Hot Module Reloading, use the following shell scripts in the Shopware Production template:
+To enable Hot Module Replacement, use the following shell scripts in the Shopware Production template:
 
 <Tabs>
 
