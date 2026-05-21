@@ -24,22 +24,25 @@ This example uses TypeScript, which is recommended but not required to develop S
 
 ## Creating your custom element
 
-Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element.md), this guide describes how to create a new custom element via an app. Creating a new element requires the Meteor Admin SDK.
+Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element.md), this guide describes how to create a new custom element via an app.
+Creating a new element requires the Meteor Admin SDK.
 
 ::: info
-Apps can also add CMS blocks declaratively via `cms.xml` without the Meteor Admin SDK. That approach is simpler but limited to reusing existing Shopware elements inside the block's slots. See [Add custom CMS blocks](../content/cms/add-custom-cms-blocks) for details.
+Apps can also add CMS blocks declaratively via `cms.xml` without the Meteor Admin SDK.
+That approach is simpler but limited to reusing existing Shopware elements inside the block's slots.
+See [Add custom CMS blocks](../content/cms/add-custom-cms-blocks) for details.
 :::
 
-The example demonstrates a scenario where a shop manager can configure a link to display a Dailymotion video.
+The example demonstrates a scenario where a shop manager can configure a video ID to display a Dailymotion video.
 
 ### Target structure
 
 Any file structure works for apps, as everything is loaded via iFrame. Shopware recommends using Vue 3 single-file components (SFCs).
 
-When the extension is complete, the file structure will look like this:
+When the app is complete, the file structure will look like this:
 
 ```bash
-// <plugin root>/src/Resources/app/administration/src
+// SwagBasicAppCmsElementExample/src/Resources/app/administration/src
 ├── base
 │   └── mainCommands.ts
 ├── main.ts
@@ -124,8 +127,10 @@ for your templates. For CMS elements, these IDs are **auto-generated** from the 
 
 The Shopware CMS distinguishes between two concepts:
 
-* A **block** is the selectable container that appears in the block picker (organised by categories such as *Text*, *Image*, *Video*, etc.). Users add blocks to a section, and each block contains one or more slots.
-* An **element** is the content type that lives inside a slot (e.g., a video player, an image, a text). Elements can also be swapped inside an existing slot via the element-replacement modal.
+* A **block** is the selectable container that appears in the block picker (organised by categories such as *Text*, *Image*, *Video*, etc.).
+  Users add blocks to a section, and each block contains one or more slots.
+* An **element** is the content type that lives inside a slot (e.g., a video player, an image, a text).
+  Elements can also be swapped inside an existing slot via the element-replacement modal.
 
 The registration method you call determines where your addition is reachable:
 
@@ -169,9 +174,12 @@ void cms.registerCmsElement({
 });
 ```
 
-The `category` field of `registerCmsBlock` controls which group the block appears in: `'video'`, `'text'`, `'image'`, `'text-image'`, `'commerce'`, `'sidebar'`, `'form'`, or a custom string (which creates a new category group). The `slots` array lists the element types each slot of the block accepts.
+The `category` field of `registerCmsBlock` controls which group the block appears in:
+`'video'`, `'text'`, `'image'`, `'text-image'`, `'commerce'`, `'sidebar'`, `'form'`, or a custom string (which creates a new category group).
+The `slots` array lists the element types each slot of the block accepts.
 
-As a best practice, use a **constant** for the CMS element name and the publishing key. The publishing key must be the element name followed by the `__config-element` suffix.
+As a best practice, use a **constant** for the CMS element name and the publishing key.
+The publishing key must be the element name followed by the `__config-element` suffix.
 
 ## Templates and communication with the Administration
 
@@ -179,7 +187,7 @@ The remaining files are the Vue single-file components inside the `views` folder
 component name containing three files as shown below:
 
 ```bash
-// <plugin root>/src/Resources/app/administration/src
+// SwagBasicAppCmsElementExample/src/Resources/app/administration/src
 views
 └── swag-dailymotion
     ├── swag-dailymotion-config.vue
@@ -189,8 +197,7 @@ views
 
 ### Element ID
 
-When Shopware renders any of the three CMS iFrames, it automatically appends the current CMS slot's ID as an
-`elementId` query parameter to the iFrame URL:
+When Shopware renders any of the three CMS iFrames, it automatically appends the ID of the current CMS element instance as an `elementId` query parameter to the iFrame URL:
 
 ```http request
 https://your-app-server/...?elementId=<uuid>
@@ -279,7 +286,7 @@ onBeforeMount(async () => {
 * `data.update()` sends only the changed config structure back to Shopware — not the entire element
 * The current config is fetched via `data.get()` in `onBeforeMount` and linked to the computed property `dailyUrl`; the setter calls `data.update({ id, data })` to persist changes
 
-![Dailymotion config modal](../../../../assets/add-cms-element-via-admin-sdk-config.png)
+![The image shows the configuration modal for a dailymotion video CMS element. The modal contains one text input for the Dailymotion video ID, a caption for the input and a title.](../../../../assets/add-cms-element-via-admin-sdk-config.png "Dailymotion config modal")
 
 ### The element file
 
@@ -362,7 +369,7 @@ onBeforeMount(async () => {
 * `data.get()` fetches the initial element config using the element-specific `dataId`
 * `data.subscribe()` keeps the element in sync whenever the config changes — it receives the same flat selector-keyed object as `data.get()` and is called regardless of where the change originates
 
-![Dailymotion CMS element](../../../../assets/add-cms-element-via-admin-sdk-element.png)
+![The image shows the Shopware administration's CMS layout editor. The current layout only has one block with a Dailymotion CMS element. The block shows the paused preview of the configured video.](../../../../assets/add-cms-element-via-admin-sdk-element.png "Dailymotion CMS element")
 
 ### The preview file
 
@@ -375,7 +382,7 @@ In most cases it contains minimal logic — a static image, a skeleton, or a log
 </template>
 ```
 
-![Dailymotion element preview](../../../../assets/add-cms-element-via-admin-sdk-preview.png)
+![The image shows the "Replace element" modal to replace the current block with another element. Depicted is the Dailymotion element which has the text "Preview!" as the element preview as configured in this example.](../../../../assets/add-cms-element-via-admin-sdk-preview.png "Dailymotion element preview")
 
 ## Storefront implementation
 
