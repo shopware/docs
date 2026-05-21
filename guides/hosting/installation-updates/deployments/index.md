@@ -40,7 +40,7 @@ Apply this approach to keep deployments deterministic and reduce environment-spe
 Treat plugins as versioned deliverables that integrate cleanly into your deployment workflow (for e.g., via the [Deployment helper](deployment-helper.md)):
 
 - Manage extensions via Composer whenever possible. Composer ensures versioned, reproducible installs during deployment.
-- For Store submission or custom distribution workflows, build versioned ZIP artifacts from CI using the [Extension build command](../../../../products/cli/extension-commands/build.md). Install and activate them via CLI or deployment automation.
+- For Store submission or custom distribution workflows, build versioned ZIP artifacts from CI using the [Extension build command](../../../../products/tools/cli/extension-commands/build.md). Install and activate them via CLI or deployment automation.
 - Execute plugin migrations as part of deployment and ensure update steps are idempotent so that retries remain safe.
 - For Store plugins in particular, avoid post-deployment manual tweaks.
 

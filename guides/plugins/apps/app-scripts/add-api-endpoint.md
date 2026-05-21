@@ -26,7 +26,7 @@ After reading, you will be able to:
 
 * A Shopware cloud store
 * Basic CLI usage (creating files, directories, running commands)
-* Installed and configured [shopware-cli](../../../../products/cli/index.md) tools
+* Installed and configured [shopware-cli](../../../../products/tools/cli/index.md) tools
 * General knowledge of [Twig Syntax](https://twig.symfony.com/)
 * A text editor
 
@@ -131,7 +131,7 @@ Let's start with a simple script to see it in action:
 Next we will install the App using the Shopware CLI.
 
 ::: info
-If this is your first time using the Shopware CLI, you have to [install](../../../../products/cli/index.md) it first. Next, configure it using the `shopware-cli project config init` command.
+If this is your first time using the Shopware CLI, you have to [install](../../../../products/tools/cli/index.md) it first. Next, configure it using the `shopware-cli project config init` command.
 :::
 
 Run this command from the root of the project directory.
