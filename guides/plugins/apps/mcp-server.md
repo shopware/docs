@@ -201,14 +201,14 @@ Every webhook request is signed with HMAC-SHA256 using your app secret. Always v
 const crypto = require('crypto');
 
 function verifySignature(body, signature, appSecret) {
+    if (typeof signature !== 'string' || signature.length === 0) return false;
     const expected = crypto
         .createHmac('sha256', appSecret)
         .update(body)
-        .digest('hex');
-    return crypto.timingSafeEqual(
-        Buffer.from(signature),
-        Buffer.from(expected)
-    );
+        .digest();
+    const received = Buffer.from(signature, 'hex');
+    if (received.length !== expected.length) return false;
+    return crypto.timingSafeEqual(received, expected);
 }
 
 app.post('/mcp/sync-orders', (req, res) => {

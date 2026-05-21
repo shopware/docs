@@ -72,7 +72,6 @@ AppScripts
 AppServer
 AppServers
 AppSystem
-Archlinux
 ArrayAdapter
 ArrayFacade
 AssociationField
