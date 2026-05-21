@@ -1,7 +1,7 @@
 ---
 nav:
   title: Extending the MCP Server
-  position: 60
+  position: 55
 
 ---
 
@@ -11,8 +11,8 @@ You can add three capability types to the MCP server: **tools**, **prompts**, an
 
 This page is a quick reference. For step-by-step guides, see:
 
-- [Extending via Plugin](../../../guides/plugins/plugins/mcp-server.md)
-- [Extending via App](../../../guides/plugins/apps/mcp-server.md)
+- [Extending via Plugin](../../../plugins/plugins/mcp-server.md)
+- [Extending via App](../../../plugins/apps/mcp-server.md)
 
 **Working examples:**
 
@@ -46,7 +46,7 @@ Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-p
 
 Webhook response: return a JSON string, ideally following the `{"success": bool, "data": ...}` envelope.
 
-→ [Full app guide](../../../guides/plugins/apps/mcp-server.md): webhook protocol, signature verification, lifecycle
+→ [Full app guide](../../../plugins/apps/mcp-server.md): webhook protocol, signature verification, lifecycle
 
 </Tab>
 
@@ -70,7 +70,7 @@ class OrdersTool extends McpToolResponse
 }
 ```
 
-→ [Full plugin guide](../../../guides/plugins/plugins/mcp-server.md): class structure, DI, pitfalls, verification
+→ [Full plugin guide](../../../plugins/plugins/mcp-server.md): class structure, DI, pitfalls, verification
 
 </Tab>
 
@@ -85,11 +85,11 @@ public function build(ContainerBuilder $container): void
 }
 ```
 
-To register the bundle itself only when the MCP feature is active, gate the entry in `config/bundles.php` — see [Optional bundles](../../../guides/plugins/plugins/bundle.md#optional-bundles).
+To register the bundle itself only when the MCP feature is active, gate the entry in `config/bundles.php` — see [Optional bundles](../../../plugins/plugins/bundle.md#optional-bundles).
 
 Bundles have no install/activate lifecycle. They are always active when registered in `config/bundles.php`.
 
-→ [Plugin guide](../../../guides/plugins/plugins/mcp-server.md): the PHP class and services.xml patterns are identical
+→ [Plugin guide](../../../plugins/plugins/mcp-server.md): the PHP class and services.xml patterns are identical
 
 </Tab>
 
@@ -118,7 +118,7 @@ Declare in `Resources/mcp.xml`. Webhook body uses `prompt` instead of `tool`. Re
 [{"role": "user", "content": "You are working with ERP-synced Shopware data..."}]
 ```
 
-→ [Full app guide](../../../guides/plugins/apps/mcp-server.md#webhook-protocol)
+→ [Full app guide](../../../plugins/apps/mcp-server.md#webhook-protocol)
 
 </Tab>
 
@@ -139,7 +139,7 @@ class MyPluginContextPrompt
 }
 ```
 
-→ [Full plugin guide](../../../guides/plugins/plugins/mcp-server.md#adding-prompts)
+→ [Full plugin guide](../../../plugins/plugins/mcp-server.md#adding-prompts)
 
 </Tab>
 
@@ -175,7 +175,7 @@ Declare in `Resources/mcp.xml` with both a `uri` (MCP identifier) and a `url` (w
 {"uri": "my-erp://status", "mimeType": "application/json", "text": "{\"connected\": true}"}
 ```
 
-→ [Full app guide](../../../guides/plugins/apps/mcp-server.md#webhook-protocol)
+→ [Full app guide](../../../plugins/apps/mcp-server.md#webhook-protocol)
 
 </Tab>
 
@@ -199,7 +199,7 @@ class MyPluginConfigResource
 }
 ```
 
-→ [Full plugin guide](../../../guides/plugins/plugins/mcp-server.md#adding-resources)
+→ [Full plugin guide](../../../plugins/plugins/mcp-server.md#adding-resources)
 
 </Tab>
 

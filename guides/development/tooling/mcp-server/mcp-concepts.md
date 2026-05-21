@@ -1,7 +1,7 @@
 ---
 nav:
   title: MCP Concepts
-  position: 10
+  position: 15
 
 ---
 
@@ -103,4 +103,4 @@ The resource saved one tool call; the tool did the work; the prompt explained th
 - [Getting Started](./getting-started.md): connect an AI client to your Shopware shop
 - [Tools Reference](./tools-reference.md): all built-in tools, resources, and prompts
 - [Best Practices](./best-practices.md): design principles for building your own tools
-- [Extending via Plugin](../../../guides/plugins/plugins/mcp-server.md): add custom tools to Shopware
+- [Extending via Plugin](../../../plugins/plugins/mcp-server.md): add custom tools to Shopware

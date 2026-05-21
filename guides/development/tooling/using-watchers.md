@@ -1,7 +1,7 @@
 ---
 nav:
   title: Hot Module Replacement
-  position: 10
+  position: 20
 
 ---
 
