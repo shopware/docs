@@ -1,19 +1,19 @@
 ---
 nav:
-  title: Add filter
+  title: Add Filter
   position: 280
 
 ---
 
-# Add filter
+# Add Filter
 
 ## Overview
 
-In this guide you'll learn, how to create a filter for the Shopware Administration. A filter is just a little helper for formatting text. In this example, we create a filter that converts text into uppercase and adds an underscore at the beginning and end.
+This guide covers how to create a filter for the Shopware Administration. A filter is just a little helper for formatting text. In this example, we create a filter that converts text into uppercase and adds an underscore at the beginning and end.
 
 ## Prerequisites
 
-This guide requires you to already have a basic plugin running. If you don't know how to do this in the first place, have a look at our [Plugin base guide](../../plugin-base-guide.md).
+You need to already have a basic plugin running. If you don't know how to create a plugin, have a look at our [Plugin base guide](../../plugin-base-guide.md).
 
 ## Creating the filter
 

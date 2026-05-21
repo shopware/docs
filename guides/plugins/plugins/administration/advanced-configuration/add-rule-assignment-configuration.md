@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add rule assignment configuration
+  title: Add Rule Assignment Configuration
   position: 330
 
 ---
 
-# Add rule assignment configuration
+# Add Rule Assignment Configuration
 
 ::: info
 The rule assignment configuration is available from Shopware Version 6.4.8.0

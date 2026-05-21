@@ -21,9 +21,9 @@ Devenv provides project-local PHP, Node, Composer, and services via Nix, so you 
 
 On the host, you only need a minimal toolchain:
 
-- [Nix package manager](https://nixos.org/download.html)
-- Git
-- Docker Engine, only if you plan to run additional containerized services alongside Devenv (Optional)
+* [Nix package manager](https://nixos.org/download.html)
+* Git
+* Docker Engine, only if you plan to run additional containerized services alongside Devenv (Optional)
 
 See the [Shopware 6 requirements](../system-requirements.md) for general system requirements and supported versions. Devenv will provide the exact runtime versions per project.
 
@@ -205,8 +205,8 @@ Once installation completes, open `http://localhost:8000/admin` in your browser.
 
 The default credentials are:
 
-- User: `admin`
-- Password: `shopware`
+* User: `admin`
+* Password: `shopware`
 
 ::: info
 On Windows with WSL2, change the default sales channel domain to `http://localhost:8000`. Use *http*, not https.
@@ -355,8 +355,8 @@ export LANG=en_US.UTF-8
 
 Default credentials:
 
-- User: `shopware`
-- Password: `shopware`
+* User: `shopware`
+* Password: `shopware`
 
 ### Mailhog
 
@@ -421,4 +421,4 @@ Do not commit service tokens or credentials to version control. Store secrets in
 
 ## Detailed configurations
 
-You can find more detailed configurations for your devenv setup in the [Additional Devenv Options](devenv-options) article.
+You can find more detailed configurations for your devenv setup in the [Additional Devenv Options](devenv-options.md) article.

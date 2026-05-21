@@ -7,6 +7,8 @@ nav:
 
 # App Registration & Backend Setup
 
+## Overview
+
 This page documents app setup (registration), permissions, validation, and changes to the shop URL for apps with a backend.
 
 ## Setup

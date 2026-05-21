@@ -7,6 +7,8 @@ nav:
 
 # Webhook
 
+## Overview
+
 With webhooks, you can subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the URL specified for this particular event.
 
 ## Prerequisites
@@ -106,8 +108,8 @@ The `source` property contains all necessary information about the Shopware inst
 
 * `url` is the URL under which your app can reach the Shopware instance and its API.
 * `appVersion` is the version of the app that is installed.
-* `shopId` is the id by which you can identify the Shopware instance.
-* `eventId` is a unique identifier of the event. This id will not change if sending of the webhook is retried, etc. **Since 6.4.11.0**.
+* `shopId` is the ID by which you can identify the Shopware instance.
+* `eventId` is a unique identifier of the event. This ID will not change if sending of the webhook is retried, etc. **Since 6.4.11.0**.
 
 The next property, `data` contains the name of the event so that a single endpoint can handle several different events. `data` also contains the event data in the `payload` property. Due to the asynchronous nature of these webhooks, the `payload` for `entity.written` events does not contain complete entities as these might become outdated. Instead, the entity in the payload is characterized by its id, stored under `primaryKey`, so the app can fetch additional data through the shop API. This also has the advantage of giving the app explicit control over the associations that get fetched instead of relying on the associations determined by the event. Other events, in contrast, contain the entity data that defines the event but keep in mind that the event might not contain all associations.
 
@@ -115,12 +117,12 @@ The next property, `timestamp` is the time at which the webhook was handled. Thi
 
 ::: info
 Starting from Shopware version 6.4.1.0, the current Shopware version will be sent as a `sw-version` header.
-Starting from Shopware version 6.4.5.0, the current language id of the shopware context will be sent as a  `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
+Starting from Shopware version 6.4.5.0, the current language ID of the shopware context will be sent as a `sw-context-language` header, and the locale of the user or locale of the context language is available under the `sw-user-language` header.
 :::
 
 You can verify the authenticity of the incoming request by checking the `shopware-shop-signature`. Every request should have a SHA256 HMAC of the request body that is signed with the secret your app assigned the shop during the [registration](app-registration-setup.md#setup). The mechanism to verify the request is exactly the same as the one used for the [confirmation request](app-registration-setup.md#confirmation-request).
 
-You can use a variety of events to react to changes in Shopware that way. See the[Webhook-Events-Reference](../../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
+You can use a variety of events to react to changes in Shopware that way. See the [Webhook-Events-Reference](../../../../resources/references/app-reference/webhook-events-reference.md) for an overview.
 
 ## Webhooks for live version only
 

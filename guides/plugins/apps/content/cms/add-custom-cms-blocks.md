@@ -1,30 +1,32 @@
 ---
 nav:
-  title: Add custom CMS blocks
+  title: Add Custom CMS Blocks
   position: 10
 
 ---
 
-# Add custom CMS blocks
+# Add Custom CMS Blocks
 
 ::: info
 This functionality is available starting with Shopware 6.4.4.0.
-
-Alternatively, you can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block) using the plugin system; however, these will not be available in Shopware cloud stores.
-:::
-
-Didn't get in touch with Shopware's Shopping Experiences \(CMS\) yet? Check out the concept behind it first:
-
-<PageRef page="../../../../../concepts/commerce/content/shopping-experiences-cms" />
-
-## Prerequisites
-
-This guide is based on our [App Base Guide](../../app-base-guide) and assumes you have already set up an app.
+::: info
 
 ## Overview
 
-Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block).
-Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
+You can [add custom CMS blocks](../../../plugins/content/cms/add-cms-block.md) using the plugin system. However, these will not be available in Shopware cloud stores.
+
+New to Shopware's Shopping Experiences \(CMS\)? Start with the concept behind it:
+
+<PageRef page="../../../../../concepts/commerce/content/shopping-experiences-cms.md" />
+
+## Prerequisites
+
+This guide is based on our [App Base Guide](../../app-base-guide.md) and assumes you have already set up an app.
+
+## Add CMS blocks from an app
+
+Adding custom CMS blocks from an app works a bit differently than [adding them from a plugin](../../../plugins/content/cms/add-cms-block.md). Custom CMS blocks are added by providing a `cms.xml` in the `Resources/` directory of your app.
+
 The basic directory structure looks as follows:
 
 ```text
@@ -47,9 +49,7 @@ The basic directory structure looks as follows:
 └── manifest.xml
 ```
 
-Each CMS block defined within your `cms.xml` must have a directory matching the block's name in `Resources/cms/blocks/`.
-In those directories, you define your blocks for the CMS module in the Administration by supplying a `preview.html` file containing the template used to display a preview.
-Styling the preview in the sidebar and the component in the CMS editor can be done in `styles.css`.
+Each CMS block defined within your `cms.xml` must have a directory matching the block's name in `Resources/cms/blocks/`. In those directories, you define your blocks for the CMS module in the Administration by supplying a `preview.html` file containing the template used to display a preview. Styling the preview in the sidebar and the component in the CMS editor can be done in `styles.css`.
 
 ::: info
 Due to technical limitations, it's not possible to use templating engines \(like Twig\) or preprocessors \(like Sass\) for rendering and styling the preview.
@@ -59,8 +59,7 @@ The Storefront representations of your blocks reside in `Resources/views/storefr
 
 ## Defining blocks
 
-As already mentioned above, and similar to an app's `manifest.xml`, CMS blocks also require a definition in `cms.xml`.
-In this example, we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
+As already mentioned above, and similar to an app's `manifest.xml`, CMS blocks also require a definition in `cms.xml`. In this example, we will define a custom CMS block that will extend the default block `image-text` and reverse its elements:
 
 ```xml
 // <app root>/Resources/cms.xml
@@ -115,7 +114,7 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 `<name>` : A **unique** technical name for your block.
 
-`<category>` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block#custom-block-in-the-administration).
+`<category>` : Blocks are divided into categories. Available categories can be found in the [plugin guide](../../../plugins/content/cms/add-cms-block.md#how-to-create-a-block-in-the-administration).
 
 `<label>` : The **translatable** label will be shown in the Administration.
 
@@ -125,7 +124,7 @@ Let's have a look at how to configure a CMS block from your app's `cms.xml`:
 
 The full CMS reference is available here:
 
-<PageRef page="../../../../../resources/references/app-reference/cms-reference" />
+<PageRef page="../../../../../resources/references/app-reference/cms-reference.md" />
 
 ### Block preview
 
@@ -214,7 +213,7 @@ Unlike adding blocks from a plugin, blocks provided from an app will be automati
 
 ## Storefront representation
 
-Providing the Storefront representation of your blocks works very similarly to the [plugin example](../../../plugins/content/cms/add-cms-block#storefront-representation).
+Providing the Storefront representation of your blocks works very similarly to the [plugin example](../cms/add-custom-cms-blocks.md#storefront-representation).
 In `Resources/views/storefront/block/`, a Twig template matching the pattern `cms-block-${block.name}-component.html.twig` is expected.
 
 So in this example, it's sufficient to simply extend the existing `image-text` element:
@@ -228,4 +227,4 @@ Styling of your blocks in the Storefront can then be done in `Resources/app/stor
 
 ## Further reading
 
-You can further take a look at the [CMS references](../../../../../resources/references/app-reference/cms-reference).
+You can further take a look at the [CMS references](../../../../../resources/references/app-reference/cms-reference.md).

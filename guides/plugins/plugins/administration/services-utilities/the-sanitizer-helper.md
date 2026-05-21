@@ -1,4 +1,11 @@
-# The Sanitizer helper
+---
+nav:
+  title: Sanitizer Helper
+  position: 130
+
+---
+
+# Sanitizer Helper
 
 ## Overview
 

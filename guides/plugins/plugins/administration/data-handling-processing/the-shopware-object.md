@@ -1,11 +1,11 @@
 ---
 nav:
-  title: The Shopware object
+  title: The Shopware Object
   position: 270
 
 ---
 
-# The Shopware object
+# The Shopware Object
 
 ## Overview
 

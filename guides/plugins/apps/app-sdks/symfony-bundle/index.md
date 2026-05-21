@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Official Symfony bundle
+  title: Official Symfony Bundle
   position: 10
 
 ---
 
-# App Bundle
+# Official Symfony Bundle
 
 The App Bundle integrates the PHP App SDK with Symfony. The source repository is [app-bundle-symfony](https://github.com/shopware/app-bundle-symfony).
 

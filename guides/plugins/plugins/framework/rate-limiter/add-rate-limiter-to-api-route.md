@@ -9,15 +9,17 @@ nav:
 
 ## Overview
 
+A rate limiter controls the rate or frequency at which API requests can be made. It sets limits on the number of requests that can be processed within a specified time period, preventing excessive usage and reducing the risk of brute-force attacks. This helps to maintain system stability, protect against misuse, and ensure fair resource allocation.
+
 In this guide you'll learn how to secure API routes with a rate limit to reduce the risk against bruteforce attacks.
 If you want to learn more about the configuration of the rate limiter in Shopware,
-have a look at the [Rate limiter](../../../../hosting/infrastructure/rate-limiter) guide.
+have a look at the [Rate limiter](../../../../hosting/infrastructure/rate-limiter.md) guide.
 
 ## Prerequisites
 
-This guide is built upon both the [Plugin base guide](../../plugin-base-guide) as well as the [Dependency injection](../../services/dependency-injection.md) guide.
+This guide is built upon both the [Plugin base guide](../../plugin-base-guide.md) as well as the [Dependency injection](../../services/dependency-injection.md) guide.
 
-Furthermore you need an existing API route, to create a new one, head over to our [Add store API route](../store-api/add-store-api-route) guide.
+Furthermore you need an existing API route, to create a new one, head over to our [Add Store API route](../store-api/add-store-api-route.md) guide.
 
 ## Creating a new rate limit
 
@@ -31,7 +33,7 @@ Each rate limit configuration needs the following keys:
 - `enabled`: Enables / Disables the rate limit for the specific route (default value: true).
 - `policy`: Possible policies are `fixed_window`, `sliding_window`, `token_bucket`, `time_backoff`. For more information check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#rate-limiting-policies).
 
-If you plan to configure the `time_backoff` policy, head over to [rate limiter](../../../../hosting/infrastructure/rate-limiter#configuring-time-backoff-policy) guide.
+If you plan to configure the `time_backoff` policy, head over to [rate limiter](../../../../hosting/infrastructure/rate-limiter.md#configuring-time-backoff-policy) guide.
 Otherwise, check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#configuration) for the other keys you need for each policy.
 
 ```yaml

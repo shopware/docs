@@ -70,7 +70,7 @@ To reduce long-term upgrade cost:
 ### Store plugins
 
 * Align Store metadata (compatibility range, changelog) with the tested core versions; refuse installation on unsupported versions.
-* Run Shopware Store validation on the new build before submission ([Store submission via CLI](../../products/cli/shopware-account-commands/releasing-extension-to-shopware-store.md)).
+* Run Shopware Store validation on the new build before submission ([Store submission via CLI](../../products/tools/cli/shopware-account-commands/releasing-extension-to-shopware-store.md)).
 * Communicate BC breaks explicitly.
 * Prefer additive changes and feature flags to keep existing shops stable.
 

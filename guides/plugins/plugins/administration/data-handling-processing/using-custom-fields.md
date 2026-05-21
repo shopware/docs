@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Using custom fields
+  title: Using Custom Fields
   position: 300
 
 ---
 
-# Using custom fields
+# Using Custom Fields
 
 ## Prerequisites
 

@@ -7,7 +7,7 @@ nav:
 
 # App Scripts
 
-App Scripts allow your app to include logic that is executed inside the Shopware execution stack. It allows you to build richer extensions that integrate more deeply with Shopware.
+App scripts allow your app to include logic that is executed inside the Shopware execution stack. They allow you to build richer extensions that integrate more deeply with Shopware.
 
 ::: info
 Note that app scripts were introduced in Shopware 6.4.8.0 and are not supported in previous versions.
@@ -23,7 +23,7 @@ See the [Hooks reference](../../../../resources/references/app-reference/script-
 
 ## Scripts
 
-At the core, app scripts are [twig files](https://twig.symfony.com/) executed in a sandboxed environment. Based on which hook the script is registered to, the script has access to the data of that hook and pre-defined services that can be used to execute your custom logic.
+At the core, app scripts are [Twig files](https://twig.symfony.com/) executed in a sandboxed environment. Based on which hook the script is registered to, the script has access to the data of that hook and pre-defined services that can be used to execute your custom logic.
 
 Apps scripts are placed in the `Resources/scripts` directory of your app. For each hook, you want to execute a script on, create a new subdirectory. The name of the subdirectory needs to match the name of the hook.
 

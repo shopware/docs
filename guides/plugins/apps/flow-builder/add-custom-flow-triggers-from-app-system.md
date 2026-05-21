@@ -11,6 +11,8 @@ nav:
 The Shopware app custom flow triggers are only accessible from 6.5.3.0 and later versions.
 :::
 
+## Overview
+
 In addition to the default triggers, you have the option to incorporate custom, pre-defined, and adjustable triggers into the flow builder.
 
 ![Custom flow trigger in Administration](../../../../assets/flow-builder-custom-trigger-preview.png)
@@ -25,7 +27,7 @@ After reading, you will be able to :
 
 Please ensure you have a working Shopware 6 store (either cloud or self-hosted). Prior knowledge about the Flow Builder feature of Shopware 6 is useful.
 
-Please see the [Flow Builder Concept](../../../../concepts/framework/flow-concept) for more information.
+Please see the [Flow Builder Concept](../../../../concepts/framework//flow-concept.md) for more information.
 
 ## Create the app wrapper
 
@@ -194,11 +196,11 @@ Or we can use the data when defining the email template.
     <h1>Visit us at: {{ url }} </h1>
 ```
 
-Please see the [StorableFlow Concept](../../../../resources/references/adr/2022-07-21-adding-the-storable-flow-to-implement-delay-action-in-flow-builder) for more information.
+Please see the [StorableFlow Concept](../../../../resources/references/adr/2022-07-21-adding-the-storable-flow-to-implement-delay-action-in-flow-builder.md) for more information.
 
 ## Snippet for translation
 
-You can define snippets to translate your custom trigger to show the trigger tree and flow list. Refer to the [Adding snippets](../../plugins/administration/templates-styling/adding-snippets) guide for more information.
+You can define snippets to translate your custom trigger to show the trigger tree and flow list. Refer to the [Adding snippets](../../plugins/administration/templates-styling/adding-snippets.md) guide for more information.
 
 Snippet keys should be defined based on your trigger name defined at `<name>` in your `flow.xml`.
 

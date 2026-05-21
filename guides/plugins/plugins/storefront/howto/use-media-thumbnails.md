@@ -7,6 +7,8 @@ nav:
 
 # Working with Media and Thumbnails
 
+## Overview
+
 In Shopware's Storefront, you can assign media objects to the different entities. To name an example, this is often used for products to show more information with images on the product detail page. This guide should give you a starting point on how to use media and thumbnails in your Storefront plugin.
 
 ## Prerequisites

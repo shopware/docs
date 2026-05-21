@@ -11,6 +11,8 @@ nav:
 Configurations for apps adhere to the same schema as [Plugin Configurations](../../plugins/plugin-fundamentals/add-plugin-configuration.md).
 :::
 
+## Overview
+
 To offer configuration possibilities to your users you can provide a `config.xml` file that describes your configuration options. You can find detailed information about the possibilities and the structure of the `config.xml` in the according documentation page. To include a `config.xml` file in your app put it into the `Resources/config` folder:
 
 ```text

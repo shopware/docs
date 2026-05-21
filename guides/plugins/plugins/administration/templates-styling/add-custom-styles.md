@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add custom styles
+  title: Add Custom Styles
   position: 220
 
 ---
 
-# Add custom styles
+# Add Custom Styles
 
 ## Overview
 

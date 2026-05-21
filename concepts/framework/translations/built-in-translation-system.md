@@ -1,3 +1,10 @@
+---
+nav:
+  title: Built-in Translation Handling
+  position: 50
+
+---
+
 # Built-in Translation Handling
 
 ## Overview
@@ -8,7 +15,7 @@ It provides the same set of translations as the **Language Pack** plugin and is 
 
 > **Note:** The Language Pack plugin is deprecated and will be removed with Shopware version **6.8.0.0**.
 > If you are currently using the Language Pack plugin, please refer to
-> the [Migration guide][migration-guide] for instructions
+> the [Migration guide](../../../guides/upgrades-migrations/language-pack-migration.md) for instructions
 > on switching to the new system.
 
 ## Where do the translations come from?
@@ -19,7 +26,7 @@ This repository is managed using [Crowdin](https://crowdin.com/project/shopware6
 as well as for some official plugins. The repository syncs with Crowdin every day to ensure that the latest translations
 are always available.
 
-## How to Install and Update Translations?
+## How to install and update translations?
 
 To use the built-in translation system, you can use the following console commands:
 
@@ -74,8 +81,7 @@ When loading translations, the system follows a defined priority order to resolv
    translations or dialects as small patch files. For more information about the language-layer changes, you can have a
    look at its documentation.
 3. Country-agnostic translations (`en` and `de`) – These are shipped with Shopware and its plugins. They ensure that the
-   system always has a reliable fallback language and provide a consistent developer experience without requiring you
-   to wait until your translations are accepted at [translate.shopware.com](https://crowdin.com/project/shopware6). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](./../../concepts/framework/translations/fallback-language-selection).
+   system always has a reliable fallback language and provide a consistent developer experience without requiring you to wait until your translations are accepted at [translate.shopware.com](https://crowdin.com/project/shopware6). For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](fallback-language-selection.md).
 4. Built-in translation system – Finally, the translations installed via the built-in translation system are applied.
 
 ## Built-in translation system and Flysystem
@@ -225,5 +231,4 @@ configuration details loaded from the `translation.yaml` file.
 You can require it via dependency injection and because of the usage of the `TranslationConfigLoader` with lazy loading,
 the configuration is always available when needed.
 
-[migration-guide]: ../../resources/references/upgrades/core/translation/language-pack-migration.md
-[language-layer-docs]: TODO
+More information is available in the [Migration Guide](../../../guides/upgrades-migrations/language-pack-migration.md).

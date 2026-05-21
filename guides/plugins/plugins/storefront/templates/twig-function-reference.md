@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Twig Functions
+  title: Twig Functions Reference
   position: 10
 
 ---
 
-# Twig Functions
+# Twig Functions Reference
 
 In Shopware, Twig functionality is extended with custom tags, functions, filters, and extensions.
 
@@ -28,17 +28,17 @@ Templates which are imported via \{\% sw_use \%\} are not allowed to have additi
 | `sw_import`     | Includes all macros from another file with support for multi inheritance. The API is the same like in Twig's default `import`                          | See [Twig 3 documentation for `import`](https://twig.symfony.com/doc/3.x/tags/import.html)                       |
 | `sw_from`       | Includes single macros from another file with support for multi inheritance. The API is the same like in Twig's default `from`                         | See [Twig 3 documentation for `from`](https://twig.symfony.com/doc/3.x/tags/from.html)                           |
 | `sw_icon`       | Displays an icon from a given icon set                                                                                                                 | See [Add custom icon](../../../../../guides/plugins/plugins/storefront/styling/add-icons.md#adding-icon) guide for details.       |
-| `sw_thumbnails` | Renders a  tag with correctly configured “srcset” and “sizes” attributes based on the provided parameters                                              | See [Add thumbnail](../../../../../guides/plugins/plugins/storefront/howto/use-media-thumbnails.md) guide for more information. |
+| `sw_thumbnails` | Renders a tag with correctly configured “srcset” and “sizes” attributes based on the provided parameters                                              | See [Add thumbnail](../../../../../guides/plugins/plugins/storefront/howto/use-media-thumbnails.md) guide for more information. |
 
 ## Functions
 
 | Function       | Description                                                                                                                                                    | Notes                                                                                             |
 |:---------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|
 | `config`       | Gets a value from the system config (used by plugins and global settings) for the given sales channel                                                          | See [Reading the configuration values](../../../apps/lifecycle/configuration.md)                |
-| `theme_config` | Gets a value from the current theme                                                                                                                            | See [Theme configuration](../../../themes/theme-configuration.md)                     |
-| `sw_block`     | Renders a block of the same or another file with support for multi inheritance. The is the same like in Twig's default `block`                                 | See [Twig 3 documentation for `block`](https://twig.symfony.com/doc/3.x/functions/block.html)     |
-| `sw_source`    | Prints the content of a template file with support for multi inheritance. The is the same like in Twig's default `source`                                      | See [Twig 3 documentation for  `source`](https://twig.symfony.com/doc/3.x/functions/source.html)  |
-| `sw_include`   | Renders the content of another template file with support for multi inheritance. The is the same like in Twig's default `include` and the new `sw_include` tag | See [Twig 3 documentation for `include`](https://twig.symfony.com/doc/3.x/functions/include.html) |
+| `theme_config` | Gets a value from the current theme                                                                                                                            | See [Theme configuration](../../../themes/configuration/theme-configuration.md)                     |
+| `sw_block`     | Renders a block of the same or another file with support for multi-inheritance. This is the same as in Twig's default `block`                                 | See [Twig 3 documentation for `block`](https://twig.symfony.com/doc/3.x/functions/block.html)     |
+| `sw_source`    | Prints the content of a template file with support for multi-inheritance. This is the same as in Twig's default `source`                                      | See [Twig 3 documentation for  `source`](https://twig.symfony.com/doc/3.x/functions/source.html)  |
+| `sw_include`   | Renders the content of another template file with support for multi-inheritance. This is the same as in Twig's default `include` and the new `sw_include` tag | See [Twig 3 documentation for `include`](https://twig.symfony.com/doc/3.x/functions/include.html) |
 
 ## Filter
 
@@ -46,7 +46,7 @@ Templates which are imported via \{\% sw_use \%\} are not allowed to have additi
 |:--------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `replace_recursive` | Enables recursive replacement in addition to twig's default `replace` filter                                                                                            | To see an example, see the guide on [add custom JavaScript](../javascript/add-custom-javascript.md)                                   |
 | `currency`          | Adopts currency formatting: The currency symbol and the comma setting.                                                                                                  | ---                                                                                                                                                             |
-| `sw_sanitize`       | Filters tags and attributes from a given string. By default, twig's auto escaping is on, so this filter explicitly allows basic HTML tags like &lt;i%gt;, &lt;b&gt;,... | ---                                                                                                                                                             |
+| `sw_sanitize`       | Filters tags and attributes from a given string. By default, Twig's auto escaping is on, so this filter explicitly allows basic HTML tags like &lt;i%gt;, &lt;b&gt;,... | ---                                                                                                                                                             |
 | `sw_convert_unit`   | Convert between measurement units                                                                                                                                       | Available since 6.7.1.0, to see examples, see the [adr on the measurement system](../../../../../resources/references/adr/2025-05-12-implement-measurement-system.md) |
 
 ## Extensions

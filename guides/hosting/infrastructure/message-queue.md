@@ -1,7 +1,7 @@
 ---
 nav:
   title: Message Queue
-  position: 20
+  position: 50
 
 ---
 
@@ -142,7 +142,7 @@ If a message fails, it will be moved to the failed transport. The failed transpo
 
 ## Changing the transport
 
-By default, Shopware uses the Doctrine transport. This is simple transport that stores the messages in the database. This is a good choice for development, but not recommended for production systems. You can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/). This would, relieve the database and, on the other hand, use a much more specialized service for handling message queues. The following are examples of the steps needed.
+By default, Shopware uses the Doctrine transport. This is simple transport that stores the messages in the database. This is a good choice for development, but not recommended for production systems. You can change the transport to another system like [RabbitMQ](https://www.rabbitmq.com/). This would relieve the database and, on the other hand, use a much more specialized service for handling message queues. The following are examples of the steps needed.
 
 You can find all available transport options in the Symfony Messenger documentation: <https://symfony.com/doc/current/messenger.html#transport-configuration>
 
@@ -182,7 +182,7 @@ For more information on this check the [Symfony docs](https://symfony.com/doc/cu
 
 A [transport](https://symfony.com/doc/current/messenger.html#transports-async-queued-messages) is responsible for communicating with your 3rd party message broker. You can configure multiple transports and route messages to multiple or different transports. Supported are all transports that are either supported by [Symfony](https://symfony.com/doc/current/messenger.html#transport-configuration) itself. If you don't configure a transport, messages will be processed synchronously like in the Symfony event system.
 
-You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your  transports.
+You can configure an amqp transport directly in your `framework.yaml` and simply tell Symfony to use your transports.
 
 In a simple setup you only need to set the transport to a valid DSN like:
 

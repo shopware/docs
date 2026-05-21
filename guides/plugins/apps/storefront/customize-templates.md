@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Customize templates
+  title: Customize Templates
   position: 10
 
 ---
@@ -15,12 +15,12 @@ This guide will cover customizing Storefront templates using an app.
 
 Before you begin, make sure you have:
 
-* A basic understanding of [Shopware app development](../app-base-guide).
+* A basic understanding of [Shopware app development](../app-base-guide.md).
 * Familiarity with the [Twig template](https://twig.symfony.com/) is beneficial.
 
 ## Getting started
 
-This guide assumes you have already set up your Shopware app. If not, refer to the [app base guide](../app-base-guide) for the initial setup.
+This guide assumes you have already set up your Shopware app. If not, refer to the [app base guide](../app-base-guide.md) for the initial setup.
 
 The following sections give you a very short example of how you can extend a storefront block. For simplicity's sake, only the page logo is replaced with a 'Hello world!' text.
 
@@ -33,7 +33,7 @@ First of all, in your app's root, register your app's own view path, which basic
 As mentioned earlier, this guide is only trying to replace the 'demo' logo with a 'Hello world!' text. In order to find the proper template, you can simply search for the term 'logo' inside the `<shopware root>/src/Storefront` directory. This will eventually lead you to [this file](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Storefront/Resources/views/storefront/layout/header/logo.html.twig).
 
 ::: info
-There's a plugin out there called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper), that adds hints about template blocks and includes into the rendered HTML. This way, it's easier to actually find the proper template.
+The [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) plugin adds hints about template blocks and includes into the rendered HTML. This way, it's easier to actually find the proper template.
 :::
 
 ### Overriding the template
@@ -95,7 +95,7 @@ But how do you know which variables are available to use? For this, you can just
 This `dump()` call will print out all variables available on this page.
 
 ::: info
-Once again, the plugin called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler, when opening a request and its details. This might help here as well.
+[FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler when opening a request, and its details as well. This might help here as well.
 :::
 
 ## Storefront Components

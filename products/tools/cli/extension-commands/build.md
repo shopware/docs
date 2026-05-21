@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Building extensions and creating archives
+  title: Building Extensions and Creating Archives
   position: 2
 
 ---
 
-# Building extensions and creating archives
+# Building Extensions and Creating Archives
 
-Extensions consist of PHP Changes, JavaScript and CSS. To release an extension to the Shopware Store or upload it to a Shopware 6 instance without having to rebuild Storefront and Administration, your extension needs to provide the compiled assets.
+Extensions consist of PHP Changes, JavaScript, and CSS. To release an extension to the Shopware Store or upload it to a Shopware 6 instance without having to rebuild Storefront and Administration, your extension needs to provide the compiled assets.
 
 ## Building an extension
 

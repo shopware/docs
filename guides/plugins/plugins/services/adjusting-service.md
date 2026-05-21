@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Adjusting a service
+  title: Adjusting a Service
   position: 70
 
 ---
@@ -13,7 +13,7 @@ In this guide you'll learn how to adjust a service. You can read more about serv
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide).
+In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ::: info
 Refer to this video on **[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)** explaining service decorations with an easy example. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).

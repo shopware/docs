@@ -31,7 +31,7 @@ shopware-cli extension fix /path/to/your/extension
 shopware-cli project fix /path/to/your/project
 ```
 
-Always back up or version your code before running refactoring commands, as they will modify files in place. [Learn more here](../../products/cli/automatic-refactoring.md).
+Always back up or version your code before running refactoring commands, as they will modify files in place. [Learn more here](automatic-refactoring.md).
 
 ### Project commands
 

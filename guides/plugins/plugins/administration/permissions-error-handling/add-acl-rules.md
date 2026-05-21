@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Adding permissions
+  title: Adding Permissions
   position: 110
 
 ---
 
-# Adding permissions
+# Adding Permissions
 
 ## Overview
 
@@ -26,7 +26,7 @@ Note: ACL Rules in the Administration can be circumnavigated by making direct AP
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. A basic understanding of the [vue router](https://router.vuejs.org/) is also required. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. A basic understanding of the [Vue router](https://router.vuejs.org/) is also required. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation.
 
 ## Admin privileges
 

@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Jest unit tests in Shopware's administration
+  title: Jest Unit Tests in Shopware's Administration
   position: 20
 
 ---

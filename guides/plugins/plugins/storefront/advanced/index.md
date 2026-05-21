@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Advanced
+  title: Advanced Storefront Customization
   position: 100
 ---
 
@@ -13,4 +13,4 @@ These guides focus on performance optimization, caching behavior, cookie consent
 * [Add caching to custom controller](./add-caching-to-custom-controller.md)
 * [Add cookie to manager](./add-cookie-to-manager.md)
 * [Reacting to cookie consent changes](./reacting-to-cookie-consent-changes.md)
-* [Remove Javascript plugin](./remove-unnecessary-js-plugin.md)
+* [Remove JavaScript plugin](./remove-unnecessary-js-plugin.md)

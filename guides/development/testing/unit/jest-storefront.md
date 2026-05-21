@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Jest unit tests in Shopware's storefront
+  title: Jest Unit Tests in Shopware's Storefront
   position: 30
 
 ---
@@ -51,7 +51,7 @@ Please note that in this example, `<environment>` is a placeholder for the envir
 
 ## Writing a basic test
 
-When writing Jest unit tests in the Storefront, you will soon realize that it's not that much different from writing Jest unit tests in general. Unlike the [Jest unit tests in the Administration](jest-admin), you basically don't need to go the extra mile to write your unit tests. Services, helpers, and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. They can be used in isolation, making them easy to test.
+When writing Jest unit tests in the Storefront, you will soon realize that it's not that much different from writing Jest unit tests in general. Unlike the [Jest unit tests in the Administration](jest-admin.md), you basically don't need to go the extra mile to write your unit tests. Services, helpers, and isolated ECMAScript modules are well testable because you can import them directly without mocking or stubbing dependencies. They can be used in isolation, making them easy to test.
 
 Let's start from scratch with a simple example: imagine we want to write a test for a helper class, e.g., the `feature.helper` of our Storefront, that handles feature flag usage. We want to test whether our feature helper can indeed handle active feature flags.
 

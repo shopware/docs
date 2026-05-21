@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Adding Composer dependencies
+  title: Adding Composer Dependencies
   position: 130
 
 ---
 
 # Adding Composer Dependencies
+
+## Overview
 
 In this guide you'll learn how to add Composer dependencies to your project.
 
@@ -122,5 +124,5 @@ You can then require them like other dependencies:
 
 ## More interesting topics
 
-* [Using NPM dependencies](using-npm-dependencies)
-* [Adding plugin dependencies](add-plugin-dependencies)
+* [Using NPM dependencies](using-npm-dependencies.md)
+* [Adding plugin dependencies](add-plugin-dependencies.md)

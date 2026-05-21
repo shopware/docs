@@ -5,7 +5,9 @@ nav:
 
 ---
 
-# Customer-specific Pricing
+# Customer-Specific Pricing
+
+## Overview
 
 The Customer-specific pricing feature enables significant advances in pricing model capabilities in the Shopware 6 ecosystem.
 

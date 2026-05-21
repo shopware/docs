@@ -208,7 +208,7 @@ or
 composer e2e:cypress -- run --spec="cypress/e2e/storefront/**/*.cy.js"
 ```
 
-To see a complete overview of all PSH scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../../resources/references/testing-reference/e2e-commands/).
+To see a complete overview of all PSH scripts for e2e tests, feel free to refer to our [e2e command reference](../../../../../resources/references/testing-reference/e2e-commands.md).
 </Tab>
 </Tabs>
 

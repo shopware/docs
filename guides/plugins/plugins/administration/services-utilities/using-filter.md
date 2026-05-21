@@ -1,15 +1,15 @@
 ---
 nav:
-  title: Using filter
+  title: Using Filter
   position: 290
 
 ---
 
-# Using filter
+# Using Filter
 
 ## Overview
 
-In this guide you'll learn how to use filters in the Shopware Administration.
+This guide describes how to use filters in the Shopware Administration.
 
 ## Prerequisites
 

@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Add menu entry
+  title: Add Menu Entry
   position: 40
 
 ---
 
-# Add menu entry
+# Add Menu Entry
 
 ## Overview
 

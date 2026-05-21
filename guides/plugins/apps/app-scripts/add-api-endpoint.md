@@ -1,15 +1,17 @@
 ---
 nav:
-  title: Starter Guide - Add an API endpoint
+  title: Add an API endpoint
   position: 20
 
 ---
 
-# Starter Guide - Add an API Endpoint
+# Add an API Endpoint
 
 ::: info
-Note that this guide relies on [App scripts](../app-scripts/), introduced from Shopware 6.4.8.0 version.
+This guide relies on [app scripts](../app-scripts/index.md), introduced from Shopware 6.4.8.0 version.
 :::
+
+## Overview
 
 This guide shows how you can add a custom API endpoint that delivers dynamic data starting from zero.
 
@@ -24,7 +26,7 @@ After reading, you will be able to:
 
 * A Shopware cloud store
 * Basic CLI usage (creating files, directories, running commands)
-* Installed and configured [shopware-cli](../../../../products/cli/) tools
+* Installed and configured [shopware-cli](../../../../products/tools/cli/index.md) tools
 * General knowledge of [Twig Syntax](https://twig.symfony.com/)
 * A text editor
 
@@ -72,7 +74,7 @@ We will need them later on when performing searches.
 
 ## Create the script
 
-We will define our new API endpoint in a script file based on [App Scripts](./../app-scripts/).
+We will define our new API endpoint in a script file based on [app scripts](../app-scripts/index.md).
 There are specific directory conventions that we have to follow to register a new API endpoint script.
 The prefix for our API endpoint is one of the following and cannot be changed:
 
@@ -86,7 +88,7 @@ The prefix for our API endpoint is one of the following and cannot be changed:
 You might wonder why the Storefront shows up in that table. In Storefront endpoints, you can render not only JSON but also twig templates.
 But use them with care - whenever you create a Storefront endpoint, your app will not be compatible with headless consumers.
 
-Learn more about the different endpoints in [custom endpoints](../app-scripts/custom-endpoints)
+Learn more about the different endpoints in [custom endpoints](../app-scripts/custom-endpoints.md)
 :::
 
 ### Directory structure
@@ -129,7 +131,7 @@ Let's start with a simple script to see it in action:
 Next we will install the App using the Shopware CLI.
 
 ::: info
-If this is your first time using the Shopware CLI, you have to [install](../../../../products/cli/installation) it first. Next, configure it using the `shopware-cli project config init` command.
+If this is your first time using the Shopware CLI, you have to [install](../../../../products/tools/cli/index.md) it first. Next, configure it using the `shopware-cli project config init` command.
 :::
 
 Run this command from the root of the project directory.
@@ -223,9 +225,7 @@ In the following lines, we define a search criteria. The criteria contain a desc
 Ultimately, it gives a result of all products that have been ordered and the total ordered.
 
 ::: info
-To learn more about the structure of search criteria, follow the link below:
-
-[Search Criteria](../../../development/integrations-api/search-criteria.md)
+To learn more about the structure of search criteria, check out the [Search Criteria guide](../../../development/integrations-api/search-criteria.md).
 :::
 
 We now send a request to the database to retrieve the result using:
@@ -325,6 +325,6 @@ In a proper app, you should consider the following points:
 
 ## Where to continue
 
-* More on adding [custom endpoints](../app-scripts/custom-endpoints)
-* See how you can use [Twig functions](../app-scripts/#extended-syntax) in app scripts
+* More on adding [custom endpoints](../app-scripts/custom-endpoints.md)
+* See how you can use [Twig functions](../app-scripts/index.md#extended-syntax) in app scripts
 * Working with [DAL Aggregations](../../../development/troubleshooting/dal-reference/aggregations-reference.md)

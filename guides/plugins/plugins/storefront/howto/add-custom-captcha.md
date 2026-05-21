@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Captcha
 
+## Overview
+
 Add your custom captcha to the Shopware 6 core. This guide shows you how.
 
 ## Prerequisites

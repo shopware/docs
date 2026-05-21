@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Generating MySQL dumps
+  title: Generating MySQL Dumps
   position: 1
 
 ---
 
-# Generating MySQL dumps
+# Generating MySQL Dumps
 
 Shopware CLI has built-in support for generating MySQL dumps. The dump command is native implementation and does not use existing tools like `mysqldump`.
 

@@ -11,6 +11,8 @@ nav:
 The configuration flag `css` is available from Shopware Version 6.4.13.0
 :::
 
+## Overview
+
 In order to add SCSS variables to your plugin, you can configure fields in your `config.xml` to be exposed as scss variables.
 
 We recommend using the declaration of SCSS variables via the `config.xml`. You can still use a subscriber if you need to be more flexible, as described [here](./add-scss-variables-via-subscriber.md).
