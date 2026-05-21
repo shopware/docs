@@ -35,7 +35,7 @@ Always back up or version your code before running refactoring commands, as they
 
 ### Project commands
 
-Work directly with your [Shopware project](../../guides/hosting/installation-updates/deployments/index.md) to automate setup and maintenance tasks. Available commands include:
+Work directly with your [Shopware project](../../../guides/hosting/installation-updates/deployments/index.md) to automate setup and maintenance tasks. Available commands include:
 
 ```bash
 shopware-cli project create         # Create a new Shopware 6 project
@@ -45,7 +45,7 @@ shopware-cli project ci          # Build Shopware in the CI
 
 ### Extension commands
 
-Create, build, and validate Shopware [extensions](../../guides/plugins/index.md) and prepare them for the [Shopware Store](https://store.shopware.com/de/) or for distribution. Available commands include:
+Create, build, and validate Shopware [extensions](../../../guides/plugins/index.md) and prepare them for the [Shopware Store](https://store.shopware.com/de/) or for distribution. Available commands include:
 
 ```bash
 shopware-cli extension fix   # Fix an extension
