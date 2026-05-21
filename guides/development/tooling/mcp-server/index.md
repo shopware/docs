@@ -17,15 +17,15 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 
 ## What the MCP server provides
 
-| Capability | Details |
-|---|---|
-| **HTTP endpoint** | `POST /api/_mcp` via Streamable HTTP transport |
-| **Authentication** | Integration credentials or OAuth bearer tokens |
-| **Authorization** | Full Admin API ACL enforcement per tool call |
-| **Tool allowlist** | Per-integration tool selection in Admin UI |
-| **Rate limiting** | Per-integration rate limiting |
-| **Discovery** | `bin/console debug:mcp` lists all registered capabilities |
-| **Extensibility** | Plugins, bundles, and apps can contribute custom tools, prompts, and resources |
+| Capability         | Details                                                                        |
+|--------------------|--------------------------------------------------------------------------------|
+| **HTTP endpoint**  | `POST /api/_mcp` via Streamable HTTP transport                                 |
+| **Authentication** | Integration credentials or OAuth bearer tokens                                 |
+| **Authorization**  | Full Admin API ACL enforcement per tool call                                   |
+| **Tool allowlist** | Per-integration tool selection in Admin UI                                     |
+| **Rate limiting**  | Per-integration rate limiting                                                  |
+| **Discovery**      | `bin/console debug:mcp` lists all registered capabilities                      |
+| **Extensibility**  | Plugins, bundles, and apps can contribute custom tools, prompts, and resources |
 
 ## Architecture
 
@@ -53,30 +53,30 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 
 Shopware's MCP server is built on `symfony/mcp-bundle`, which implements the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25). The bundle may not cover every feature in the latest spec revision, and some areas of the spec are only partially implemented. Known gaps:
 
-| Area | Status |
-|---|---|
-| `listChanged` notifications for tools, prompts, and resources | Not implemented |
-| Resource templates and resource subscriptions | Not implemented |
-| Protocol-level pagination | Not implemented (Shopware uses application-level `limit`/`page`) |
-| Completion utility for prompt/URI template arguments | Not implemented |
-| `structuredContent` and `isError` in tool results | Not used; Shopware uses its own `{"success": bool, ...}` envelope |
-| ACL checks on resources | Not implemented (resources are public within the authenticated session) |
+| Area                                                          | Status                                                                  |
+|---------------------------------------------------------------|-------------------------------------------------------------------------|
+| `listChanged` notifications for tools, prompts, and resources | Not implemented                                                         |
+| Resource templates and resource subscriptions                 | Not implemented                                                         |
+| Protocol-level pagination                                     | Not implemented (Shopware uses application-level `limit`/`page`)        |
+| Completion utility for prompt/URI template arguments          | Not implemented                                                         |
+| `structuredContent` and `isError` in tool results             | Not used; Shopware uses its own `{"success": bool, ...}` envelope       |
+| ACL checks on resources                                       | Not implemented (resources are public within the authenticated session) |
 
 If a feature you need is missing from `symfony/mcp-bundle`, check its [repository](https://github.com/symfony/mcp-bundle) for open issues and pending releases before building a workaround.
 
 ## In this section
 
-| Page | What you will find |
-|---|---|
-| [MCP Concepts](./mcp-concepts.md) | What tools, resources, and prompts are and when to use each |
-| [Getting Started](./getting-started.md) | Connect your first AI client to a Shopware shop |
-| [Tools Reference](./tools-reference.md) | All built-in tools, resources, and prompts with parameters |
-| [Configuration](./configuration.md) | Feature flag, allowlist, session store, rate limiting, CLI |
-| [Best Practices](./best-practices.md) | Design principles for building MCP tools |
-| [Extending the MCP Server](./extending.md) | Tools, prompts, and resources for all three extension types side by side |
-| [Examples](./examples.md) | Step-by-step workflows for common tasks |
-| [Troubleshooting](./troubleshooting.md) | Fix common connection and permission issues |
-| [Shopware Extensions](./shopware-extensions.md) | Copilot, SwagMcpMerchantAssistant, SwagMcpDevTools, ai-coding-tools |
+| Page                                            | What you will find                                                       |
+|-------------------------------------------------|--------------------------------------------------------------------------|
+| [MCP Concepts](./mcp-concepts.md)               | What tools, resources, and prompts are and when to use each              |
+| [Getting Started](./getting-started.md)         | Connect your first AI client to a Shopware shop                          |
+| [Tools Reference](./tools-reference.md)         | All built-in tools, resources, and prompts with parameters               |
+| [Configuration](./configuration.md)             | Feature flag, allowlist, session store, rate limiting, CLI               |
+| [Best Practices](./best-practices.md)           | Design principles for building MCP tools                                 |
+| [Extending the MCP Server](./extending.md)      | Tools, prompts, and resources for all three extension types side by side |
+| [Examples](./examples.md)                       | Step-by-step workflows for common tasks                                  |
+| [Troubleshooting](./troubleshooting.md)         | Fix common connection and permission issues                              |
+| [Shopware Extensions](./shopware-extensions.md) | Copilot, SwagMcpMerchantAssistant, SwagMcpDevTools, ai-coding-tools      |
 
 ## Extension guides
 

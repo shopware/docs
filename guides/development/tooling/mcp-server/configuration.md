@@ -46,13 +46,13 @@ An empty list (the default) means no compile-time restriction; all registered to
 :::info Per-principal allowlist
 Shopware applies a per-principal MCP allowlist depending on how the client authenticates:
 
-| Auth mode | Allowlist source |
-|-----------|-----------------|
-| Integration access key (`SWIA...`) | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist** |
-| User access key (`SWUA...`) | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP Tool Allowlist** |
-| Bearer JWT, password / refresh grant | Per-user allowlist of the authenticated user |
-| Bearer JWT, client_credentials | Per-integration allowlist |
-| Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist |
+| Auth mode                                | Allowlist source                                                                          |
+|------------------------------------------|-------------------------------------------------------------------------------------------|
+| Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist**          |
+| User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP Tool Allowlist** |
+| Bearer JWT, password / refresh grant     | Per-user allowlist of the authenticated user                                              |
+| Bearer JWT, client_credentials           | Per-integration allowlist                                                                 |
+| Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist                          |
 
 `null` per key means all capabilities of that type are allowed; a JSON array restricts to the listed names; an empty array `[]` means no capabilities of that type are accessible.
 
@@ -61,7 +61,7 @@ Admin user accounts (`admin = true`) always bypass the allowlist regardless of a
 
 ### Delegated user calls (`sw-app-user-id`)
 
-Apps that act on behalf of a logged-in user (for example a Copilot sidebar embedded in the Admin UI) can pass the `sw-app-user-id` header alongside integration credentials:
+Apps that act on behalf of a logged-in user (for example, a Copilot sidebar embedded in the Admin UI) can pass the `sw-app-user-id` header alongside integration credentials:
 
 ```text
 sw-access-key: SWIA...
@@ -78,13 +78,13 @@ If the header is absent or not a valid UUID, Shopware ignores it and applies onl
 
 When this header is present with a valid user UUID, Shopware applies the **intersection** of the integration allowlist and the user allowlist. A tool is only available if both the integration and the user have it enabled:
 
-| Integration allowlist | User allowlist | Effective allowlist |
-|-----------------------|----------------|---------------------|
-| `null` (unrestricted) | `null` (unrestricted) | unrestricted |
-| `null` | `[tool-b]` | `[tool-b]` |
-| `[tool-a, tool-b]` | `null` | `[tool-a, tool-b]` |
-| `[tool-a, tool-b]` | `[tool-b, tool-c]` | `[tool-b]` |
-| `[tool-a]` | `[]` | `[]` (nothing) |
+| Integration allowlist | User allowlist        | Effective allowlist |
+|-----------------------|-----------------------|---------------------|
+| `null` (unrestricted) | `null` (unrestricted) | unrestricted        |
+| `null`                | `[tool-b]`            | `[tool-b]`          |
+| `[tool-a, tool-b]`    | `null`                | `[tool-a, tool-b]`  |
+| `[tool-a, tool-b]`    | `[tool-b, tool-c]`    | `[tool-b]`          |
+| `[tool-a]`            | `[]`                  | `[]` (nothing)      |
 
 Admin users bypass the user side of the intersection — if the user is an admin, their allowlist is treated as `null` (unrestricted), so the integration allowlist alone applies.
 
@@ -92,7 +92,7 @@ This pattern lets the app owner control which tools the integration may ever cal
 
 ## MCP bundle configuration
 
-The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file and Symfony loads it automatically; the `MCP_SERVER` feature flag only gates the HTTP endpoint (`/api/_mcp`), not the bundle's DI configuration. You do not need to create or modify it for standard setups.
+The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file, and Symfony loads it automatically; the `MCP_SERVER` feature flag only gates the HTTP endpoint (`/api/_mcp`), not the bundle's DI configuration. You do not need to create or modify it for standard setups.
 
 ## Session store
 
@@ -100,13 +100,13 @@ MCP sessions track an ongoing conversation across multiple requests. The client 
 
 Shopware defaults to a file-based session store that writes to `%kernel.cache_dir%/mcp-sessions/`.
 
-| Store | Multi-worker | Multi-server | Backend |
-|---|---|---|---|
-| `file` (default) | No | No | `%kernel.cache_dir%/mcp-sessions/` |
-| `memory` | No | No | Per-process RAM |
-| `cache` (avoid) | No in dev | No | `cache.app` (ArrayAdapter in dev) |
-| `framework` (unusable in Shopware) | Yes | Yes | Requires active PHP session, not available because the Admin API is stateless |
-| Custom Redis store (recommended for production) | Yes | Yes | Redis / Valkey |
+| Store                                           | Multi-worker | Multi-server | Backend                                                                       |
+|-------------------------------------------------|--------------|--------------|-------------------------------------------------------------------------------|
+| `file` (default)                                | No           | No           | `%kernel.cache_dir%/mcp-sessions/`                                            |
+| `memory`                                        | No           | No           | Per-process RAM                                                               |
+| `cache` (avoid)                                 | No in dev    | No           | `cache.app` (ArrayAdapter in dev)                                             |
+| `framework` (unusable in Shopware)              | Yes          | Yes          | Requires active PHP session, not available because the Admin API is stateless |
+| Custom Redis store (recommended for production) | Yes          | Yes          | Redis / Valkey                                                                |
 
 ### Production: Redis session store
 

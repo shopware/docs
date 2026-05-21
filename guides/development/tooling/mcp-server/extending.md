@@ -213,11 +213,11 @@ Identical to the plugin pattern. Register with `shopware.mcp.resource` and load 
 
 ## Summary
 
-| | App | Plugin | Bundle |
-|---|---|---|---|
-| **Tool** | `<mcp-tool>` in `mcp.xml` + webhook handler | `#[McpTool]` class + `shopware.mcp.tool` tag | Same as plugin |
-| **Prompt** | `<mcp-prompt>` in `mcp.xml` + webhook returns message array | `#[McpPrompt]` class + `shopware.mcp.prompt` tag | Same as plugin |
-| **Resource** | `<mcp-resource>` in `mcp.xml` + webhook returns `{uri, mimeType, text}` | `#[McpResource]` class + `shopware.mcp.resource` tag | Same as plugin |
-| **Context access** | Via `source.shopId` in webhook body | `McpContextProvider::getContext()` | Same as plugin |
-| **DAL access** | No (remote process) | Full | Full |
-| **Lifecycle** | App install/update | Plugin install/activate | Always active |
+|                    | App                                                                     | Plugin                                               | Bundle         |
+|--------------------|-------------------------------------------------------------------------|------------------------------------------------------|----------------|
+| **Tool**           | `<mcp-tool>` in `mcp.xml` + webhook handler                             | `#[McpTool]` class + `shopware.mcp.tool` tag         | Same as plugin |
+| **Prompt**         | `<mcp-prompt>` in `mcp.xml` + webhook returns message array             | `#[McpPrompt]` class + `shopware.mcp.prompt` tag     | Same as plugin |
+| **Resource**       | `<mcp-resource>` in `mcp.xml` + webhook returns `{uri, mimeType, text}` | `#[McpResource]` class + `shopware.mcp.resource` tag | Same as plugin |
+| **Context access** | Via `source.shopId` in webhook body                                     | `McpContextProvider::getContext()`                   | Same as plugin |
+| **DAL access**     | No (remote process)                                                     | Full                                                 | Full           |
+| **Lifecycle**      | App install/update                                                      | Plugin install/activate                              | Always active  |

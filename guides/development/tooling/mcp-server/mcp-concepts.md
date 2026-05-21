@@ -73,14 +73,14 @@ sequenceDiagram
 
 ## Comparison
 
-| | Tool | Resource | Prompt |
-|---|---|---|---|
-| **Invocation** | Agent decides when to call | Client or agent fetches | User selects in client |
-| **Parameters** | Yes, typed and named | URI only | Optional arguments |
-| **Can write data** | Yes | No | No |
-| **Has description to guide agent** | Yes | No | Yes |
-| **Counts as a tool call** | Yes | No | No |
-| **Best for** | Actions, queries with parameters | Reference lookups, pre-loaded context | System instructions, workflow recipes |
+|                                    | Tool                             | Resource                              | Prompt                                |
+|------------------------------------|----------------------------------|---------------------------------------|---------------------------------------|
+| **Invocation**                     | Agent decides when to call       | Client or agent fetches               | User selects in client                |
+| **Parameters**                     | Yes, typed and named             | URI only                              | Optional arguments                    |
+| **Can write data**                 | Yes                              | No                                    | No                                    |
+| **Has description to guide agent** | Yes                              | No                                    | Yes                                   |
+| **Counts as a tool call**          | Yes                              | No                                    | No                                    |
+| **Best for**                       | Actions, queries with parameters | Reference lookups, pre-loaded context | System instructions, workflow recipes |
 
 ## How they work together
 

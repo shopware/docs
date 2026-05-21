@@ -50,12 +50,12 @@ The `--admin` flag grants full Admin API access. For production use, omit `--adm
 
 Both clients use `"type": "streamable-http"`. Add the following config to the appropriate file:
 
-| Client | Config file |
-|---|---|
-| Claude Desktop (macOS) | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json` |
-| Cursor (project) | `.cursor/mcp.json` in your project root |
-| Cursor (user) | `~/.cursor/mcp.json` |
+| Client                   | Config file                                                       |
+|--------------------------|-------------------------------------------------------------------|
+| Claude Desktop (macOS)   | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json`                     |
+| Cursor (project)         | `.cursor/mcp.json` in your project root                           |
+| Cursor (user)            | `~/.cursor/mcp.json`                                              |
 
 ```json
 {
@@ -149,7 +149,7 @@ Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth
 
 ## Controlling which capabilities are available
 
-By default an admin integration can call all registered tools, resources, and prompts. To restrict access:
+By default, an admin integration can call all registered tools, resources, and prompts. To restrict access:
 
 **Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
