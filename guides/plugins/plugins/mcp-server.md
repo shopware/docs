@@ -209,7 +209,7 @@ Follow the same pattern with `#[McpResource]` and `shopware.mcp.resource`:
 ```php
 use Mcp\Capability\Attribute\McpResource;
 
-#[McpResource(uri: 'swag-my-plugin://config', name: 'My Plugin Config', description: 'Current configuration values.')]
+#[McpResource(uri: 'swag-my-plugin://config', name: 'swag-my-plugin-config', description: 'Current configuration values.')]
 class MyPluginConfigResource
 {
     public function __invoke(): array

@@ -85,7 +85,8 @@ Place `Resources/mcp.xml` in your app bundle:
     </mcp-prompts>
 
     <mcp-resources>
-        <mcp-resource name="erp-status" url="https://app.example.com/mcp/resources/erp-status">
+        <mcp-resource name="erp-status" uri="my-erp://erp-status"
+            url="https://app.example.com/mcp/resources/erp-status" mime-type="application/json">
             <label>ERP Status</label>
             <description>Current ERP connection status and last sync timestamp</description>
         </mcp-resource>
@@ -226,7 +227,7 @@ app.post('/mcp/sync-orders', (req, res) => {
 
 ## Returning a response
 
-Return a JSON string as the tool result. Shopware forwards this to the AI client as-is:
+Return JSON as the tool result body. Shopware forwards it to the AI client as-is:
 
 ```json
 {"success": true, "data": {"synced": 42, "errors": 0}}
