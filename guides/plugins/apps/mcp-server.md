@@ -59,7 +59,7 @@ Place `Resources/mcp.xml` in your app bundle:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <mcp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://developer.shopware.com/docs/assets/mcp-1.0.xsd">
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/mcp-1.0.xsd">
 
     <mcp-tools>
         <mcp-tool name="sync-orders" url="https://app.example.com/mcp/sync-orders">
@@ -195,7 +195,7 @@ The response must be a single object with `uri`, `mimeType`, and `text`:
 
 ## Verifying the signature
 
-Every webhook request is signed with HMAC-SHA256 using your app secret. Always verify the `shopware-shop-signature` header before processing the request:
+Every webhook request is signed with HMAC-SHA256 using your app secret (the `<secret>` value from your `manifest.xml`). Always verify the `shopware-shop-signature` header before processing the request:
 
 ```javascript
 // Node.js example
