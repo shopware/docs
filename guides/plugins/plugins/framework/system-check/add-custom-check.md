@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Add custom check
+  title: Add Custom Check
   position: 10
 
 ---
 
-# Overview
+# Add Custom Check
+
+## Overview
 
 In this guide, we will be building a dummy example of a custom system check that verifies if the local system has enough disk space to operate normally.
 
@@ -98,4 +100,4 @@ $services->set(YourNameSpace\LocalDiskSpaceCheck::class)
 
 ### Trigger the check
 
-The system check is now part of the system check collection and will be executed when the system check is triggered. Refer to the [System Check](./) guide for more information.
+The system check is now part of the system check collection and will be executed when the system check is triggered. Refer to the [System Check](index.md) guide for more information.

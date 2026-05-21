@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Utils
+# Utils Reference
 
 This guide provides an overview of utility functions bound to the Shopware global object.
 

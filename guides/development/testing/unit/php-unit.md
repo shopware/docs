@@ -205,7 +205,7 @@ To execute a specific test class or method of a testsuite, pass the argument `--
 
 ## Flex template
 
-To run PHPunit tests install the flex template [dev-tools](../../../../guides/installation/template.md#how-do-i-migrate-from-production-template-to-symfony-flex) package via composer.
+To run PHPunit tests install the flex template [dev-tools](../../../installation/project-overview.md#project-template) package via Composer.
 
 ```shell
 composer require --dev dev-tools

@@ -6,6 +6,8 @@ nav:
 
 # Client-Side App Backend Communication
 
+## Overview
+
 Direct communication from the browser to the app backend involves generating a JSON Web Token (JWT).
 This token contains session-specific information, as [claims](#the-json-web-token), and is securely signed by the shop.
 This mechanism ensures a secure exchange of data between the client and the app backend.

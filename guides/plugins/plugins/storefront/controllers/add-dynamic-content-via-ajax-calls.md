@@ -7,6 +7,8 @@ nav:
 
 # Add Dynamic Content via AJAX Calls
 
+## Overview
+
 This guide will show you how to add dynamic content to your Storefront.
 It combines and builds upon the guides about [adding custom JavaScript](../javascript/add-custom-javascript.md) and [adding a custom controller](../controllers/add-custom-controller.md), so you should probably read them first.
 

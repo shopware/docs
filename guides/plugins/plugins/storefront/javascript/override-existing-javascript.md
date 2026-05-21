@@ -7,6 +7,8 @@ nav:
 
 # Override Existing JavaScript
 
+## Overview
+
 Override core JavaScript plugin logic by overriding it with your own implementations. Extending the cookie permission plugin, showing the cookie notice on every page load, and asking the user if they want to hide cookie bar via a confirm dialogue are the key actions involved.
 
 ## Prerequisites
@@ -146,4 +148,4 @@ You should see the cookie notice at the bottom of the page. If you click the "Ac
 
 ## Next steps
 
-It is sometimes possible to use an event instead of overriding a JavaScript plugin. Read the [listening to events](./reacting-to-javascript-events) guide to learn how.
+It is sometimes possible to use an event instead of overriding a JavaScript plugin. Read the [listening to events](./reacting-to-javascript-events.md) guide to learn how.

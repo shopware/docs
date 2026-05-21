@@ -1,55 +1,50 @@
 ---
 nav:
-  title: Create a first theme
+  title: Create a Theme
   position: 20
 
 ---
 
-# Create a First Theme
+# Create a Theme
 
 ## Overview
 
-This guide will show you how to create a theme from scratch. You will also learn how to install and activate your theme.
+This guide covers how to create, install, and activate a custom Shopware 6 theme.
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line.
+All you need:
 
-## Create your first plugin theme
+* A running Shopware 6 instance
+* Full file system and CLI access
 
-Let's get started with creating your plugin by finding a proper name for it.
+## Name your plugin theme
 
-### Name your plugin theme
-
-First, you need to find a name for your theme. We're talking about a technical name here, so it needs to describe your theme appearance as short as possible, written in UpperCamelCase. To prevent issues with duplicated theme names, you should add a shorthand prefix for your company.  
-Shopware uses "Swag" as a prefix for that case.  
-For this example guide we'll use the theme name **SwagBasicExampleTheme.**
-
-::: info
-Notice: The name of a theme must begin with a capital letter too!
-:::
+Use **UpperCamelCase**, e.g., `SwagBasicExampleTheme`, beginning with a capital letter and ideally with a company prefix to avoid duplication. Choose a name that describes your theme appearance as succinctly and clearly as possible.
 
 ### Create a plugin-based theme
 
-Now that you've found your name, it's time to actually create your plugin.
-
-Open your terminal and run the following command to create a new theme
+Run the following command in your terminal:
 
 ```bash
 bin/console theme:create SwagBasicExampleTheme
+```
 
-# you should get an output like this:
+You should get an output like this:
 
+```bash
 Creating theme structure under .../development/custom/plugins/SwagBasicExampleTheme
 ```
 
-After your theme was created successfully Shopware has to know that it now exists. You have to refresh the plugin list by running the following command.
+Shopware needs to know that your new theme exists. Refresh the plugin list by running:
 
 ```bash
 bin/console plugin:refresh
+```
 
-# you should get an output like this
+You should get an output like this:
 
+```bash
 [OK] Plugin list refreshed                                                                              
 
 Shopware Plugin Service
@@ -64,12 +59,17 @@ Shopware Plugin Service
  1 plugins, 0 installed, 0 active , 0 upgradeable
 ```
 
-Now Shopware recognises your plugin theme. The next step is the installation and activation of your theme. Run the following command in terminal.
+### Activating the theme
+
+The next command installs and activates the theme:
 
 ```bash
-# run this command to install and activate your plugin
 bin/console plugin:install --activate SwagBasicExampleTheme
+```
 
+The output should look like this, indicating success:
+
+```bash
 Shopware Plugin Lifecycle Service
 =================================
 
@@ -81,17 +81,18 @@ Shopware Plugin Lifecycle Service
  [OK] Installed 1 plugin(s).
 ```
 
-Your theme was successfully installed and activated.
+### Assign to a sales channel
 
-The last thing we need to do to work with the theme is to assign it to a sales channel. You can do that by running the `theme:change` command in the terminal and follow the instructions.
+The final step in this guide involves assigning the theme to a sales channel and changing the default Storefront theme. Run this command:
 
 ```bash
 # run this to change the current Storefront theme
 $ bin/console theme:change
+```
 
-# you will get an interactive prompt to change the 
-# current theme of the Storefront like this
+You should see an interactive prompt like this:
 
+```bash
 Please select a sales channel:
 [0] Storefront | 64bbbe810d824c339a6c191779b2c205
 [1] Headless | 98432def39fc4624b33213a56b8c944d
@@ -106,14 +107,13 @@ Set "SwagBasicExampleTheme" as new theme for sales channel "Storefront"
 Compiling theme 13e0a4a46af547479b1347617926995b for sales channel SwagBasicExampleTheme
 ```
 
-At first, we have to select a sales channel. The obvious choice here is the 'Storefront'. Afterwards enter the number for our theme.
-
-Now your theme is fully installed, and you can start your customization.
+First, select `Storefront` as the sales channel. Then enter your theme's number. This fully installs your theme, and you can start your customization.
 
 ### Directory structure of a theme
 
+The structure of a plugin-based theme:
+
 ```bash
-# structure of a plugin-based theme
 ├── composer.json
 └── src
     ├── Resources
@@ -134,10 +134,37 @@ Now your theme is fully installed, and you can start your customization.
     └── SwagBasicExampleTheme.php
 ```
 
+## Troubleshooting
+
+When the theme is not visible, run the command:
+
+```bash
+bin/console plugin:refresh
+bin/console plugin:list
+```
+
+When the theme is not applied, run the command:
+
+```bash
+bin/console theme:change
+bin/console theme:compile
+```
+
+When there are errors no changes, run the command:
+
+```bash
+bin/console cache:clear
+```
+
+Also helpful:
+
+* Check `var/log/`
+* Verify file permissions in `custom/plugins/`
+
 ## Next steps
 
-Now that you have created your own theme, the next step is to learn how to make settings and adjustments.
+Now that you have created a theme, learn how to configure settings and styling:
 
-* [Theme configuration](theme-configuration)
-* [Add SCSS Styling and JavaScript to a theme](add-css-js-to-theme)
-* [Add assets to theme](add-assets-to-theme)
+* [Theme configuration](../themes/configuration/theme-configuration.md)
+* [Add SCSS Styling and JavaScript to a theme](../themes/styling/add-css-js-to-theme.md)
+* [Add assets to theme](../themes/assets/add-assets-to-theme.md)

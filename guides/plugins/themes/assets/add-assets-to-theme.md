@@ -15,7 +15,7 @@ Your theme can include custom assets like images. This short guide will show you
 
 This guide is built upon the guide on creating a first theme:
 
-<PageRef page="create-a-theme" />
+<PageRef page="../create-a-theme.md" />
 
 ## Using custom assets
 
@@ -23,7 +23,7 @@ There are basically two ways of adding custom assets to your theme. The first on
 
 ### Adding assets in theme.json file
 
-While working with a theme you might have noted the [Theme configuration](theme-configuration), where you can configure paths to custom assets like images, fonts, etc. Configure your asset path accordingly:
+While working with a theme you might have noted the [Theme configuration](../configuration/theme-configuration.md), where you can configure paths to custom assets like images, fonts, etc. Configure your asset path accordingly:
 
 ```javascript
 // <plugin root>/src/Resources/theme.json
@@ -57,7 +57,7 @@ Next, run the command `bin/console theme:compile`. The assets from the path defi
 
 This way of adding custom assets refers to the default way of dealing with assets. For more details, please check out the article that specifically addresses this topic:
 
-<PageRef page="../plugins/storefront/styling/add-custom-assets" />
+<PageRef page="../../plugins/storefront/styling/add-custom-assets.md" />
 
 ## Linking to assets
 
@@ -79,4 +79,4 @@ body {
 
 Now that you know how to use your assets in a theme, here is a list of other related topics where assets can be used.
 
-* [Customize templates](../plugins/storefront/templates/customize-templates.md)
+* [Customize templates](../../plugins/storefront/templates/customize-templates.md)

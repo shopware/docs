@@ -48,11 +48,11 @@ There must be no advertising for your own services or contact information in the
 [How to add images and icons to extensions](https://docs.shopware.com/en/account-en/adding-pictures-and-icons/how-to)
 :::
 
-## Preview and Extension Manager presentation
+## Preview and Extension Manager presentation {#preview-and-extension-manager-presentation}
 
 For detailed requirements, see the [FAQ — What must a preview include?](./faq.md#what-must-a-preview-include).
 
-## Admin translations
+## Admin translations {#admin-translations}
 
 Extensions must work independently of the system language. If a translation is missing (for example, Spanish), use a proper fallback (usually English).
 

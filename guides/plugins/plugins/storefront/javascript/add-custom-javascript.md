@@ -7,6 +7,8 @@ nav:
 
 # Add Custom JavaScript
 
+## Overview
+
 Adding interactivity to your Storefront sometimes might require writing your own JavaScript plugin. This guide covers writing and registering your own JavaScript plugins. You will write a plugin that checks whether the user has scrolled to the bottom of the page, then creates an alert.
 
 ## Prerequisites

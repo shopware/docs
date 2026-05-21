@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Pagelet
 
+## Overview
+
 In this guide, you will learn how to create custom pagelets for your Storefront pages.
 
 In short: Pages are exactly that, a fully functioning page of your store with a template loaded by a route. A pagelet is an important and reusable fraction of several pages, such as a footer or the navigation.

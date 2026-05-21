@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Field in the Storefront
 
+## Overview
+
 This guide will show you how to use custom fields, e.g., labels in the Storefront.
 
 ## Prerequisites

@@ -17,10 +17,10 @@ Shopware offers two extension types:
 Plugins and apps are installed and activated for the whole Shopware instance.
 
 :::info
-Before choosing an extension type, review the recommended [Code structure](code-structure.md). Following the standard structure reduces upgrade friction and prevents long-term maintenance issues.
+Before choosing an extension type, review the recommended [Code structure](code-structure.md) to proactively reduce upgrade friction and prevent long-term maintenance issues.
 :::
 
-A storefront theme is *not* a separate extension type, but a stripped-down plugin consisting of a customized storefront UI. In Cloud environments, storefront themes are delivered via apps.
+A storefront theme is *not* a distinct extension type, but a stripped-down plugin consisting of a customized storefront UI. In Cloud environments, storefront themes are delivered via apps.
 
 ## Monetization
 

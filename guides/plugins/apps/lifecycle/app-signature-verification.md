@@ -7,6 +7,8 @@ nav:
 
 # Signing & Verification in the App System
 
+## Overview
+
 To ensure secure communication between Shopware shops and your app server, Shopware signs all outgoing requests using a cryptographic signature.
 The signature is generated using [HMAC-SHA256](https://en.wikipedia.org/wiki/HMAC), hashing either the query string or the request body, depending on the request method, with your app secret.
 By verifying this signature on your server, you can confirm that the request originates from Shopware and remains unaltered during transmission.

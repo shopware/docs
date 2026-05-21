@@ -7,6 +7,8 @@ nav:
 
 # Caching
 
+## Overview
+
 Caching is a technique to store frequently accessed data in a temporary storage layer for faster retrieval, reducing latency and improving performance by avoiding repeated and costly data retrieval operations
 
 While caching enhances performance, it requires careful management of data consistency, cache invalidation strategies, and storage efficiency to prevent serving outdated or incorrect data.

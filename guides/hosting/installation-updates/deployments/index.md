@@ -13,7 +13,7 @@ The following guides outline the core principles and practical steps for deployi
 
 Successful deployments are predictable, repeatable, and reversible:
 
-- Build artifacts once in CI and deploy those artifacts.
+- Build artifacts once in [CI](../../../development/testing/ci.md) and deploy those artifacts.
 - Keep configuration and secrets outside the codebase.
 - Make database changes predictable.
 - Wherever possible, clearly separate build-time concerns from runtime concerns to ensure consistency across environments.

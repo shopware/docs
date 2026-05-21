@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Sorting for Product Listing
 
+## Overview
+
 Individual sortings are groups of sorting options which you can use to sort product listings. The sortings are available in the Storefront.
 
 This guide will show you how to add individual sorting options using a migration \(manageable\) or at runtime \(non-manageable\).

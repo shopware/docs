@@ -1,25 +1,23 @@
 ---
 nav:
-  title: Add custom module
+  title: Add Custom Module
   position: 20
 
 ---
 
-# Add custom module
+# Add Custom Module
 
-:::info
+## Overview
+
 This guide will show you how to add custom modules to the Shopware Administration using your manifest file. This works for simple applications; however, if you want to write more advanced applications, the [Meteor Admin SDK](meteor-admin-sdk.md) is recommended. It has many more features and is more flexible.
 
 For further details and guidance on custom modules, refer to the documentation provided on the Meteor Admin SDK's [custom modules](https://developer.shopware.com/resources/admin-extension-sdk/api-reference/ui/mainModule.html) section.
-:::
 
 ## Prerequisites
 
 You should be familiar with the concept of Apps, especially their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server, as that is required to authenticate the requests coming from the shops and showing the correct content in your modules.
 
 <PageRef page="../app-base-guide" />
-
-## Overview
 
 In your app, you are able to add your own modules to the Administration. Your custom modules are loaded as iframes which are embedded in the Shopware Administration and within this iframe, your website will be loaded and shown.
 
@@ -120,7 +118,7 @@ class ModuleController {
 
 ## Leave loading state
 
-Because your module is displayed as an iframe in the Administration, Shopware can not easily tell when your module has finished loading. Therefore, your new module will display a loading spinner to signalize your iframe is loading. To leave the loading state, your iframe needs to give a notification when the loading process is done.
+Because your module is displayed as an iframe in the Administration, Shopware can not easily tell when your module has finished loading. Therefore, your new module will display a loading spinner to signal that your iframe is loading. To leave the loading state, your iframe needs to give a notification when the loading process is done.
 
 ```javascript
 function sendReadyState() {

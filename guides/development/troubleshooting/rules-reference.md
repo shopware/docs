@@ -1,7 +1,7 @@
 ---
 nav:
   title: Rules Reference
-  position: 30
+  position: 40
 
 ---
 

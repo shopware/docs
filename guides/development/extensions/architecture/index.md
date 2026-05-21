@@ -6,6 +6,8 @@ nav:
 
 # Extension Architecture
 
+## Overview
+
 This section defines the architectural principles that govern how Shopware can be extended. It describes extension contracts, subsystem boundaries, and public API guarantees that apply to all extension types:
 
 * Plugins

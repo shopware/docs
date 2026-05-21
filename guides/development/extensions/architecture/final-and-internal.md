@@ -5,12 +5,14 @@ nav:
 
 ---
 
-# Final and internal annotation
+# Final and Internal Annotation
 
 ::: info
 This document represents core guidelines and has been mirrored from the core in our Shopware 6 repository.
 You can find the original version [here](https://github.com/shopware/shopware/blob/trunk/coding-guidelines/core/final-and-internal.md)
 :::
+
+## Overview
 
 We use `@final` and `@internal` annotations to mark classes as final or internal. This allows us to mark services and classes as public or private API and to define which breaking changes can be expected.
 

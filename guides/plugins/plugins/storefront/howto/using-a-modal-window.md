@@ -7,6 +7,8 @@ nav:
 
 # Using a Modal Window
 
+## Overview
+
 This guide explains how you can use a modal window in your plugin in different scenarios.
 
 ## Prerequisites

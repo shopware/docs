@@ -91,6 +91,7 @@ redirects:
     products/plugins/commercial/: products/extensions/commercial/
     guides/installation/devenv.html: guides/installation/setups/devenv.html
     products/cli/extension-commands/validation.html: products/cli/validation.html
+    products/cli/project-commands/remote-extension-managment.html: products/cli/project-commands/remote-extension-management.html
     products/paas/: products/paas/index.html
     products/paas/cli-setup.html: products/paas/shopware-paas/cli-setup.html
     products/paas/repository.html: products/paas/shopware-paas/repository.html
@@ -136,7 +137,6 @@ redirects:
     products/paas/shopware/CLI/repository.html: products/paas/shopware/guides/setting-up-repository-access.html
     products/paas/shopware/setup-shopware-for-paas.html: products/paas/shopware/get-started/prepare-codebase.html
     products/paas/shopware/project_setup.html: products/paas/shopware/get-started/quickstart.html
-    guides/plugins/plugins/testing/end-to-end-testing.html: guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing.html
     resources/guidelines/testing/cypress-best-practices.html: guides/plugins/plugins/testing/cypress/cypress-best-practises.html
     resources/guidelines/trouble-shoting.html: resources/guidelines/troubleshooting.html
     products/extensions/subscriptions/guides/event.html: products/extensions/subscriptions/guides/separate-checkout.html
@@ -160,6 +160,17 @@ redirects:
     guides/plugins/plugins/administration/system-updates/vite.html: guides/upgrades-migrations/administration/vite.html
     guides/plugins/plugins/administration/system-updates/vue-migration-build.html: guides/upgrades-migrations/administration/vue-migration-build.html
     guides/plugins/plugins/administration/system-updates/vue-native.html: guides/upgrades-migrations/administration/vue-native.html
+    guides/plugins/plugins/testing/end-to-end-testing.html: guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing.html
+    guides/plugins/themes/add-assets-to-theme.html: guides/plugins/themes/assets/add-assets-to-theme.html
+    guides/plugins/themes/add-css-js-to-theme.html: guides/plugins/themes/styling/add-css-js-to-theme.html
+    guides/plugins/themes/add-icons.html: guides/plugins/themes/assets/add-icons.html
+    guides/plugins/themes/add-theme-inheritance-without-resources.html: guides/plugins/themes/inheritance/add-theme-inheritance-without-resources.html
+    guides/plugins/themes/add-theme-inheritance.html: guides/plugins/themes/inheritance/add-theme-inheritance.html
+    guides/plugins/themes/differences-plugins-and-apps-vs-themes.html: guides/plugins/themes/index.html
+    guides/plugins/themes/override-bootstrap-variables-in-a-theme.html: guides/plugins/themes/styling/override-bootstrap-variables-in-a-theme.html
+    guides/plugins/themes/override-theme-breakpoints.html: guides/plugins/themes/styling/override-theme-breakpoints.html
+    guides/plugins/themes/theme-configuration.html: guides/plugins/themes/configuration/theme-configuration.html
+    guides/plugins/themes/theme-inheritance-configuration.html: guides/plugins/themes/configuration/theme-inheritance-configuration.html
     resources/references/upgrades/core/translation/extension-translation.html: guides/upgrades-migrations/extension-translation.html
     resources/references/upgrades/core/translation/language-pack-migration.html: guides/upgrades-migrations/language-pack-migration.html
     resources/references/upgrades/administration/: guides/upgrades-migrations/administration/
@@ -176,6 +187,10 @@ redirects:
     resources/guidelines/testing/store/quality-guidelines-plugins/: guides/development/testing/store/quality-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-apps/: guides/development/testing/store/quality-guidelines.html
     resources/guidelines/testing/store/quality-guidelines-plugins/#the-way-we-test-apps-based-on-the-plugin-system: guides/development/testing/store/quality-guidelines.html
+    resources/guidelines/troubleshooting/index.html: guides/development/troubleshooting/index.html
+    resources/guidelines/troubleshooting/elasticsearch.html: guides/hosting/infrastructure/elasticsearch/elasticsearch.html
+    resources/guidelines/troubleshooting/performance.html: guides/hosting/performance/performance.html
+    resources/guidelines/troubleshooting/phpstan.html: guides/development/troubleshooting/phpstan.html
     guides/integrations-api/general-concepts/: guides/development/integrations-api/
     guides/integrations-api/general-concepts/api-versioning.html: guides/development/integrations-api/request-headers.html#sw-version-id
     guides/integrations-api/general-concepts/request-headers.html: guides/development/integrations-api/request-headers.html
@@ -207,7 +222,6 @@ redirects:
     guides/plugins/plugins/testing/cypress/cypress-best-practises.html: guides/development/testing/legacy/cypress/cypress-best-practises.html
     guides/plugins/plugins/testing/cypress/cypress-end-to-end-testing/: guides/development/testing/legacy/cypress/
     guides/resources/references/core-reference/dal-reference/filters-reference.html: resources/references/core-reference/dal-reference/filters-reference.html
-    resources/guidelines/code/core/database-migations.html: resources/guidelines/code/core/database-migrations.html
     resources/guidelines/code/core/final-and-internal.html: guides/development/extensions/architecture/final-and-internal.html
     resources/guidelines/code/core/internal.html: guides/development/extensions/architecture/internal.html
     resources/guidelines/code/core/extendability.html: guides/development/extensions/architecture/extendability.html

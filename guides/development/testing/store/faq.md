@@ -50,4 +50,4 @@ For a preview to be accepted, it must meet all the requirements listed in the st
 
 If no images are available yet, placeholders such as a logo or “coming soon” can be used.
 
-See also: [Preview and Extension Manager presentation](https://developer.shopware.com/docs/guides/development/testing/store/content-and-translations.html#preview-and-extension-manager-presentation).
+See also: [Preview and Extension Manager presentation](./content-and-translations.md#preview-and-extension-manager-presentation).

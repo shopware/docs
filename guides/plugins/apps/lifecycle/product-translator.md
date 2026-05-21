@@ -1,19 +1,21 @@
 ---
 nav:
-  title: Starter Guide - Read and write data
+  title: Read and write data
   position: 10
 
 ---
 
-# Starter Guide - Read and Write Data
+# Read and Write Data
 
-This guide will show you how to set up an app server with our [app bundle](https://github.com/shopware/app-bundle-symfony).
+## Overview
+
+This guide covers how to set up an app server with our [app bundle](https://github.com/shopware/app-bundle-symfony).
 You will learn how to read and write data to the Shopware Admin API using an example of fetching dynamic translations for products when they are updated.
 
 ## Prerequisites
 
 * Basic CLI usage (creating files, directories, running commands)
-* Installed [shopware-cli](../../../../products/cli/) tools
+* Installed [shopware-cli](../../../../products/cli/index.md) tools
 * Installed [symfony-cli](https://symfony.com/download)
 * A running MariaDB or MySQL accessible to your development machine
 

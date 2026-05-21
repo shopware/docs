@@ -7,10 +7,12 @@ nav:
 
 # Add Custom Icons
 
+## Overview
+
 In this guide you will learn how to use the icon renderer component as well as adding custom icons.
 
 ::: info
-Even if this is originally a plugin guide, everything will work perfectly in a theme as well. Actually, a theme even is a kind of plugin. So don't get confused by us talking about plugins here.
+This guide also applies to [themes](../../../themes/index.md).
 :::
 
 ## Prerequisites
@@ -25,7 +27,6 @@ Needless to say, the first step is saving your image somewhere in your plugin wh
 
 ```text
 <YourPlugin>/src/Resources/app/storefront/dist/assets/icon/default
-`
 ```
 
 You can also provide "solid" icons or any other custom pack names which can be configured later with the `pack` parameter. You can do that by creating a folder with the pack name:

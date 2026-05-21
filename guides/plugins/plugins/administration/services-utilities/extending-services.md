@@ -5,13 +5,13 @@ nav:
 
 ---
 
-# Extending services
+# Extending Services
 
 ## Overview
 
-This guide will teach you how to extend a Shopware provided service with middleware and decorators.
+This guide covers how to extend a Shopware provided service with middleware and decorators.
 The Shopware 6 Administration uses [BottleJS](https://github.com/young-steveo/bottlejs) to provide the framework for services.
-If you want to learn how to create your own services, look at [this guide](./add-custom-service.md).
+To learn how to create your own services, look at [this guide](./add-custom-service.md).
 
 ## Prerequisites
 
