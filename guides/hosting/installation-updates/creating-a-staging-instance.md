@@ -54,7 +54,7 @@ Ensure that the `mysqldump` and `mysql` binaries are from the same major version
 We recommend using `shopware-cli project dump` to create a database dump, then importing it with the regular MySQL command. The CLI also includes an anonymization flag to ensure no personal data is in the staging environment.
 
 ::: info
-`shopware-cli` is a separate Go command-line application with many useful commands for Shopware. [Learn how to install it](../../../../docs/products/cli/installation.md).
+`shopware-cli` is a separate Go command-line application with many useful commands for Shopware. [Learn how to install it](../../../products/tools/cli/installation.md).
 :::
 
 ```bash
@@ -65,7 +65,7 @@ shopware-cli project dump --clean --host localhost --username db_user --password
 shopware-cli project dump --clean --anonymize --host localhost --username db_user --password db_pass --output shop.sql shopware
 ```
 
-Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../../docs/products/cli/project-commands/mysql-dump.md) for details.
+Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../products/tools/cli/project-commands/mysql-dump.md) for details.
 
 ### 3. Configuring the staging instance
 

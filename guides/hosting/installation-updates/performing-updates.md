@@ -30,7 +30,7 @@ Before any update, check if the installed extensions are compatible with the new
 shopware-cli project upgrade-check
 ```
 
-This command checks your installed extensions against the target Shopware version. If an extension is not compatible, check with the extension developer if an update is available. If you don't have the Shopware CLI installed, see the [installation guide](../../../products/cli/index.md).
+This command checks your installed extensions against the target Shopware version. If an extension is not compatible, check with the extension developer if an update is available. If you don't have the Shopware CLI installed, see the [installation guide](../../../products/tools/cli/index.md).
 
 Managing all extensions through Composer is the best way to ensure compatibility. It simplifies the update process as Composer automatically resolves the correct versions of the extensions.
 

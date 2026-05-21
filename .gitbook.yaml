@@ -90,8 +90,8 @@ redirects:
     guides/plugins/plugins/administration/adding-responsive-behavior.html: guides/plugins/plugins/administration/ui-ux/adding-responsive-behavior.html
     products/plugins/commercial/: products/extensions/commercial/
     guides/installation/devenv.html: guides/installation/setups/devenv.html
-    products/cli/extension-commands/validation.html: products/cli/validation.html
-    products/cli/project-commands/remote-extension-managment.html: products/cli/project-commands/remote-extension-management.html
+    products/tools/cli/extension-commands/validation.html: products/tools/cli/validation.html
+    products/tools/cli/project-commands/remote-extension-managment.html: products/tools/cli/project-commands/remote-extension-management.html
     products/paas/: products/paas/index.html
     products/paas/cli-setup.html: products/paas/shopware-paas/cli-setup.html
     products/paas/repository.html: products/paas/shopware-paas/repository.html
@@ -144,7 +144,7 @@ redirects:
     concepts/framework/rules.html: concepts/framework/rule/index.html
     products/extensions/migration-assistant/concept.html: products/extensions/migration-assistant/concept/index.html
     products/extensions/migration-assistant/guides.html: products/extensions/migration-assistant/guides/index.html
-    products/cli/project-commands/project-config-sync.html: guides/development/tooling/fixture-bundle.html
+    products/tools/cli/project-commands/project-config-sync.html: guides/development/tooling/fixture-bundle.html
     products/sales-agent/deployment.html: products/sales-agent/best-practices/app-deployment/hosted-with-ubuntu-server.html
     guides/installation/requirements.html: guides/installation/system-requirements.html
     guides/installation/setups/docker.html: guides/installation/legacy-setups/docker-setup.html
@@ -259,6 +259,7 @@ redirects:
     resources/references/core-reference/rules-reference.html: guides/development/troubleshooting/rules-reference.html
     guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html
     products/Nexus/: products/nexus/
+    products/cli/: products/tools/cli/
     guides/installation/start-developing.html: guides/development/start-developing.html
     concepts/translations/: concepts/framework/translations/
     

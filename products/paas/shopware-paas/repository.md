@@ -77,7 +77,7 @@ shopware	<paas-url>.git (push)
 
 ## Migrating from the old template to the new template
 
-If you have already used the [Shopware PaaS old template](https://github.com/shopwareArchive/paas), please follow the guide to [migrate it to the new structure](../../../products/cli/project-commands/autofix.md#migrate-a-project-to-symfony-flex).
+If you have already used the [Shopware PaaS old template](https://github.com/shopwareArchive/paas), please follow the guide to [migrate it to the new structure](../../tools/cli/project-commands/autofix.md#migrate-a-project-to-symfony-flex).
 
 The following tasks have to be done additionally to the flex migration:
 
