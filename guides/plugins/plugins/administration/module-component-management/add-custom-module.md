@@ -183,7 +183,7 @@ Given this plugin would be named "AdministrationNewModule", the bundled and mini
 <Tab title="Template">
 
 ```bash
-./bin/build-administration.sh
+shopware-cli project admin-build
 ```
 
 </Tab>

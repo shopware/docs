@@ -1375,7 +1375,7 @@ index.json
 
 ### Partially compiling the Storefront
 
-You can also build just the JavaScript bundle using `CI=1 SHOPWARE_SKIP_THEME_COMPILE=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true bin/build-storefront.sh` (without the need for the above loader) in your CI. After that, run `bin/console theme:dump` on your production system when the database is available. This will happen automatically if theme variables are changed via the admin panel.
+You can also build just the JavaScript bundle using `CI=1 SHOPWARE_SKIP_THEME_COMPILE=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true shopware-cli project storefront-build` (without the need for the above loader) in your CI. After that, run `bin/console theme:dump` on your production system when the database is available. This will happen automatically if theme variables are changed via the admin panel.
 
 ## Cache directory and hash implications
 
