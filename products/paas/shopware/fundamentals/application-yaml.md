@@ -29,6 +29,7 @@ The file consists of two main sections:
 app:
   php:
     version: "8.3"
+    extensions: []
   environment_variables: []
 services:
   mysql:
@@ -43,6 +44,8 @@ services:
 app:
   php:
     version: "8.3"
+    extensions:
+      - imagick
   environment_variables:
     - name: INSTALL_LOCALE
       value: fr-FR
@@ -67,6 +70,18 @@ The PHP version used by the application.
 app:
   php:
     version: "8.3"
+```
+
+### `app.php.extensions`
+
+The PHP extensions to install during build time. We use [this](https://github.com/mlocati/docker-php-extension-installer) installer to install extension.
+
+```yaml
+app:
+  php:
+    extentions:
+      - extension1
+      - extension2
 ```
 
 ### `app.environment_variables`
