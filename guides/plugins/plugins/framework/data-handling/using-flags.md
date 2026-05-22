@@ -7,13 +7,15 @@ nav:
 
 # Using Flags
 
+## Overview
+
 In this guide you'll learn how to use flags of the DAL but this guide will not explain all flags and its purpose.
 
 ## Prerequisites
 
-In order to use flags in your entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
+In order to use flags in your entities for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
-You should also have a look at the [Flags reference](../../../../../resources/references/core-reference/dal-reference/flags-reference) to understand what each flag is used for. Furthermore you should know how entities work, therefore you can head over to our [Adding custom complex data](add-custom-complex-data) guide.
+You should also have a look at the [Flags reference](../../../../development/troubleshooting/dal-reference/flags-reference.md) to understand what each flag is used for. Furthermore you should know how entities work, therefore you can head over to our [Adding custom complex data](add-custom-complex-data.md) guide.
 
 ## Using flags
 

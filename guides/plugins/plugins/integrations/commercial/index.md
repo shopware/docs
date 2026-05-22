@@ -11,5 +11,5 @@ The Commercial plugin extends Shopware with advanced enterprise features availab
 
 This section documents the API-first features provided by the Commercial plugin and how to integrate them into your systems:
 
-* [Multi-Inventory](./multi-inventory.md)
 * [Customer-specific Pricing](./customer-specific-pricing.md)
+* [Multi-Inventory](./multi-inventory.md)

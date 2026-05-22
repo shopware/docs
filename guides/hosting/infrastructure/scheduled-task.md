@@ -1,11 +1,11 @@
 ---
 nav:
   title: Scheduled Task
-  position: 30
+  position: 100
 
 ---
 
-# Scheduled task
+# Scheduled Task
 
 ## What are scheduled tasks?
 
@@ -93,7 +93,7 @@ You can run scheduled tasks as part of your queue workers with the help of the s
 bin/console messenger:consume scheduler_shopware
 ```
 
-On startup of this command reads the `scheduled_task` database table and applies the stored intervals, an entry in this table is optional.  In the event that these intervals are modified in the database, it is necessary to restart the command for the updated intervals to take effect.
+On startup of this command reads the `scheduled_task` database table and applies the stored intervals, an entry in this table is optional. In the event that these intervals are modified in the database, it is necessary to restart the command for the updated intervals to take effect.
 To deactivate tasks, set status to `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskDefinition::STATUS_INACTIVE` in this table, and restart the `consume` command.
 
 <!--@include: ../../../snippets/guide/debugging_scheduled_tasks.md-->

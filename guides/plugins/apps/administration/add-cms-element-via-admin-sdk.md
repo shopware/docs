@@ -7,6 +7,8 @@ nav:
 
 # Add CMS Element
 
+## Overview
+
 This guide explains how to create a new CMS element using the Meteor Admin SDK. The example plugin is named
 `SwagBasicAppCmsElementExample`, following the naming conventions used in other guides.
 
@@ -14,7 +16,7 @@ This guide explains how to create a new CMS element using the Meteor Admin SDK. 
 
 * Familiarity with creating [Plugins](../../plugins/plugin-base-guide.md) or [Apps](../app-base-guide.md)
 * Familiarity with [creating custom admin components](../../plugins/administration/module-component-management/add-custom-component.md#creating-a-custom-component)
-* Understanding of the [Meteor Admin SDK](/resources/admin-extension-sdk/getting-started/installation)
+* Understanding of the [Meteor Admin SDK](meteor-admin-sdk.md)
 
 ::: info
 This example uses TypeScript, which is recommended but not required to develop Shopware.
@@ -145,7 +147,7 @@ use the Vue.js component to make them work.
 What's especially interesting here is the use of the `location` object. This is a main concept of the Meteor Admin SDK,
 where Shopware provides dedicated `locationIds` to offer you places to inject your templates into. For further
 information on that, it is recommended to take a look at the documentation of the
-[Meteor Admin SDK](/resources/admin-extension-sdk/concepts/locations) to learn more about its concepts.
+[Meteor Admin SDK](meteor-admin-sdk.md) to learn more about its concepts.
 
 In your case, we will get your own **auto-generated** `locationIds`, depending on the name of your CMS element and
 suffixes, such as `-element`, `-config`, and `-preview`.
@@ -366,12 +368,11 @@ export default Vue.extend({
 
 ## Storefront implementation
 
-After completing the admin implementation, you also need a storefront representation of your blocks. This is similar to
-typical plugin development, except for the path. All storefront templates must follow this pattern:
+After completing the admin implementation, you also need a Storefront representation of your blocks. This is similar to typical plugin development, except for the path. All Storefront templates must follow this pattern:
+
 `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
 
-For more details, see the guide on [CMS element development for plugins](../../plugins/content/cms/add-cms-element#storefront-implementation).
-Below is an example of how your storefront template
+For more details, see the guide on [CMS element development for plugins](../../plugins/content/cms/add-cms-element.md). Below is an example of how your Storefront template
 (`swag-dailymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look:
 
 ```twig

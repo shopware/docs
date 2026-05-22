@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Add shortcuts
+  title: Add Shortcuts
   position: 320
 
 ---

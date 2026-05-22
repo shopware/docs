@@ -1,13 +1,18 @@
-# Injecting services
+---
+nav:
+  title: Injecting Services
+  position: 110
+
+---
+
+# Injecting Services
 
 ## Overview
 
-This short guide will teach you how to use a service in the Shopware 6 Administration.
+This short guide covers how to use a service in the Shopware 6 Administration, including:
 
-Along these lines, this chapter will cover the following topics:
-
-* What is an Administration service?
-* How to use a service?
+* What an Administration service is
+* How to use a service
 
 ## Prerequisites
 
@@ -16,7 +21,7 @@ Of course you'll have to understand JavaScript, but that's a prerequisite for Sh
 
 ## Definition of an Administration service
 
-Shopware 6 uses [bottleJS](https://github.com/young-steveo/bottlejs) to inject services.
+Shopware 6 uses [BottleJS](https://github.com/young-steveo/bottlejs) to inject services.
 Services are small self-contained utility classes, like the [repositoryFactory](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Administration/Resources/app/administration/src/core/data-new/repository-factory.data.js), which provides a way to talk to the API.
 
 ## Injection of a service

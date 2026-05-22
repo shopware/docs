@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Page
 
+## Overview
+
 In this guide, you will learn how to create a custom page for your Storefront.
 A page in general consists of a controller, a page loader, a "page loaded" event and a page class, which is like a struct and contains the most necessary data for the page.
 

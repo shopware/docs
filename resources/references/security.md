@@ -17,14 +17,14 @@ If you have found a security vulnerability in Shopware, please report it to us f
 
 ## ACL in the Administration
 
-The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept#acl-in-the-administration)
+The Access Control List (ACL) in Shopware ensures that by default, data can only be created, read, updated, or deleted (CRUD), once the user has specific privileges for a module. [ACL in the Administration](../../concepts/framework/architecture/administration-concept.md#acl-in-the-administration)
 
 Issues in the ACL permission validation are generally treated as bugs. They are not considered security vulnerabilities by themselves, as long as the missing or incorrect permission check does not result in privilege escalation, unauthorized access to sensitive data, or similar severe consequences.
 This is because, in such cases, malicious actors would already need to be authenticated with access to the Administration (or an authenticated Admin API context).
 
 ## API-aware field
 
-The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](core-reference/dal-reference/flags-reference).
+The `ApiAware` flag allows you to control what fields of your entity are exposed to the Store API. For more information, refer to [Flags Reference](../../guides/development/troubleshooting/dal-reference/flags-reference.md).
 
 ## Captcha
 
@@ -51,7 +51,7 @@ If this is a concern to you, you can disable the whole URL upload feature by set
 
 General Data Protection Regulation (GDPR) is a comprehensive European Union (EU) regulation that enhances individuals' privacy rights by imposing strict rules on how organizations collect, process, and protect personal data. For more information, refer to [GDPR](https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/gdpr) guide.
 
-Shopware provides a comprehensive [Cookie Consent Management](../../concepts/commerce/content/cookie-consent-management) system with features to help shop owners handle customer privacy preferences, ensure transparent cookie handling, and support GDPR compliance efforts.
+Shopware provides a comprehensive [Cookie Consent Management](../../concepts/commerce/content/cookie-consent-management.md) system with features to help shop owners handle customer privacy preferences, ensure transparent cookie handling, and support GDPR compliance efforts.
 
 ## HTML sanitizer
 

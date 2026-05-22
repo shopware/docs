@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Add data to CMS element
+  title: Add Data to CMS Element
   position: 40
 
 ---
 
 # Add Data to CMS Element
+
+## Overview
 
 When creating custom CMS elements,
 you sometimes want to use more complex data types than text or boolean values, e.g., other entities such as media or products.
@@ -14,7 +16,7 @@ In those cases you can implement a custom `CmsElementResolver` to resolve the co
 ## Prerequisites
 
 This guide will not explain how to create custom CMS elements in general,
-so head over to the official guide about [Adding a custom CMS element](add-cms-element) to learn this first.
+so head over to the official guide about [Adding a custom CMS element](add-cms-element.md) to learn this first.
 
 ## Create a data resolver
 
@@ -54,7 +56,7 @@ class DailyMotionCmsElementResolver extends AbstractCmsElementResolver
 
 Our custom resolver extends from the `AbstractCmsElementResolver` which forces us to implement the methods `getType`, `collect` and `enrich`.
 
-In the previous [example](add-cms-element) we added a CMS element with the name `dailymotion`.
+In the previous [example](add-cms-element.md) we added a CMS element with the name `dailymotion`.
 As you can see the `getType` method of our custom resolver reflects that name by returning the `dailymotion` string.
 This resolver is called every time for an element of the type `dailymotion`.
 
@@ -86,7 +88,7 @@ As in the following example, you can retrieve the configuration for the current 
 In this case we read out `myCustomMedia` field which may contain a mediaId.
 If a `mediaId` exists, we create a new `CriteriaCollection` for it.
 Now we are able to use this media object later on.
-If you want to add data from an [attribute entity](../../framework/data-handling/entities-via-attributes), you do not have an explicit definition class.
+If you want to add data from an [attribute entity](../../framework/data-handling/entities-via-attributes.md), you do not have an explicit definition class.
 Instead, you pass `example_entity.definition` as second parameter to the `CriteriaCollection::add()` method.
 
 ::: code-group

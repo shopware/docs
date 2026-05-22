@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Customize templates
+  title: Customize Templates
   position: 10
 
 ---
@@ -13,8 +13,8 @@ This guide will cover customizing Storefront templates with a plugin.
 
 ## Prerequisites
 
-As most guides, this guide is built upon the [Plugin base guide](../../plugin-base-guide.md), so you might want to have a look at it.
-Other than that, knowing [Twig](https://twig.symfony.com/) is a big advantage for this guide, but that's not necessary.
+* Familiarity with the [Plugin base guide](../../plugin-base-guide.md) and how to create plugins
+* Knowledge of [Twig](https://twig.symfony.com/) is advantageous but not necessary
 
 ## Getting started
 
@@ -110,6 +110,12 @@ This `dump()` call will print out all variables available on this page.
 ::: info
 Once again, the plugin called [FroshDevelopmentHelper](https://github.com/FriendsOfShopware/FroshDevelopmentHelper) adds all available page data to the Twig tab in the profiler, when opening a request and its details. This might help here as well.
 :::
+
+## Storefront Components
+
+Since Shopware 6.7.11.0, a new component system is available which offers the possibility to build atomic template components which can be reused in a composable way throughout the Storefront.
+
+To learn more about how to use Storefront Components in your plugin, refer to the main documentation of [Storefront Components](../../../../../concepts/framework/storefront-components.md).
 
 ## Next steps
 

@@ -8,14 +8,9 @@ nav:
 
 This guide covers how to create, extend, and customize Administration modules and Vue components. Use them to:
 
-- Create custom modules and routes
-- Register and build custom components
-- Override or extend existing components
-- Work with base components and input fields
-
-- [Add Custom Module](./add-custom-module)
-- [Customizing Modules](./customizing-modules)
-- [Add Custom Component](./add-custom-component)
-- [Customizing Components](./customizing-components)
-- [Using Base Components](./using-base-components)
-- [Add Custom Field](./add-custom-field)
+* [Add Custom Fields](add-custom-field.md)
+* [Add Custom Components](add-custom-component.md)
+* [Add Custom Modules](add-custom-module.md)
+* [Customize Components](customizing-components.md)
+* [Customize Modules](customizing-modules.md)
+* [Use Base Components](using-base-components.md)

@@ -1,11 +1,13 @@
 ---
 nav:
-  title: Using the data handling
+  title: Using Data Handling
   position: 120
 
 ---
 
-# Using the data handling
+# Using Data Handling
+
+## Overview
 
 The Shopware 6 Administration allows you to fetch and write nearly everything in the database. This guide will teach you the basics of the data handling.
 
@@ -21,7 +23,7 @@ Considering that the data handling in the Administration is remotely operating t
 
 ## The repository service
 
-Accessing the Shopware API in the Administration is done by using the repository service, which can be injected with a [bottleJs](https://github.com/young-steveo/bottlejs) dependency injection container. In the Shopware Administration, there's a wrapper that makes `bottleJs` work with the [inject / provide](https://vuejs.org/v2/api/#provide-inject) from [`Vue`](https://vuejs.org/). In short: You can use the `inject` key in your component configuration to fetch services from the `bottleJs` DI container, such as the `repositoryFactory`, that you will need in order to get a repository for a single entity.
+Accessing the Shopware API in the Administration is done by using the repository service, which can be injected with a [BottleJS](https://github.com/young-steveo/bottlejs) dependency injection container. In the Shopware Administration, there's a wrapper that makes `bottleJs` work with the [inject / provide](https://vuejs.org/v2/api/#provide-inject) from [`Vue`](https://vuejs.org/). In short: You can use the `inject` key in your component configuration to fetch services from the `bottleJs` DI container, such as the `repositoryFactory`, that you will need in order to get a repository for a single entity.
 
 Add those lines to your component configuration:
 
@@ -877,4 +879,4 @@ Component.extend('swag-paypal-pos-wizard', 'sw-first-run-wizard-modal', {
 
 ## Next steps
 
-As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../../../../../guides/plugins/plugins/framework/data-handling/) in PHP.
+As this is very similar to the DAL it might be interesting to learn more about that. For this, head over to the section about the [data handling](../../../../../guides/plugins/plugins/framework/data-handling/index.md) in PHP.

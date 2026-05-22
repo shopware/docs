@@ -1,7 +1,7 @@
 ---
 nav:
   title: Use Plugin Configuration
-  position: 20
+  position: 30
 
 ---
 
@@ -11,7 +11,7 @@ The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to
 
 ## Prerequisites
 
-- A plugin [Plugin Base Guide](../plugin-base-guide.md)
+- Review the [Plugin Base Guide](../plugin-base-guide.md)
 - [Plugin configuration](add-plugin-configuration.md) in the first instance
 - Familiarity with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
 

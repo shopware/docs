@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Making API requests
+  title: Making API Requests
   position: 70
 
 ---
@@ -15,7 +15,7 @@ In this guide you'll learn how to create a custom API service in your plugin's a
 
 In order to add your own custom API service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
-You also need to have a custom administration module or component. Refer to [Add custom module](../module-component-management/add-custom-module) to get started.
+You also need to have a custom administration module or component. Refer to [Add custom module](../module-component-management/add-custom-module.md) to get started.
 
 ## Creating the API service
 
@@ -320,4 +320,4 @@ Now that you've created your API service, you might want to:
 - Implement caching strategies for better performance
 - Add request interceptors for global error handling
 
-For more information on creating backend API endpoints, refer to the [API documentation](../../../../../concepts/api/).
+For more information on creating backend API endpoints, refer to the [API documentation](../../../../../concepts/api/index.md).

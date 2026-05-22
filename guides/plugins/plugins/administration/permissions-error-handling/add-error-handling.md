@@ -1,13 +1,11 @@
 ---
 nav:
-  title: Adding error handling
+  title: Adding Error Handling
   position: 130
 
 ---
 
-# Adding error handling
-
-​
+# Adding Error Handling
 
 ## Overview
 

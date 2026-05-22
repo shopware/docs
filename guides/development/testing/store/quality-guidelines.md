@@ -87,7 +87,7 @@ Validators and page types to test: [SEO and structured data](./seo-and-structure
 
 ### Tools
 
-Use the [Shopware CLI](../../../../products/cli/index.md) to build, validate, and upload Shopware 6 plugin releases and to manage store descriptions and images.
+Use the [Shopware CLI](../../../../products/tools/cli/index.md) to build, validate, and upload Shopware 6 plugin releases and to manage store descriptions and images.
 
 ## Final notes
 

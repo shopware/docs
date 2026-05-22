@@ -19,7 +19,7 @@ This article explains the fundamental steps to deploy Shopware 6 to a certain in
 
 ## Prerequisites
 
-Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../../installation/template) because this article relies on some scripts to exist in your repository.
+Please make sure you already have a working Shopware 6 instance running and that your repository is based on the [Symfony Flex template](../../../installation/project-overview.md#project-template) because this article relies on some scripts to exist in your repository.
 
 ### Preparations before the first deployment
 
@@ -40,7 +40,7 @@ The structure looks like this:
 
 Suppose you haven't used such a structure yet, it is recommended to move the current document root contents to a different location because you will have to copy some existing files into the `shared` folder after your first deployment with [Deployer](https://deployer.org/).
 
-For more information, refer to [Migrating existing instance to Deployer structure](deployment-with-deployer#migrating-existing-instance-to-deployer-structure).
+For more information, refer to [Migrating existing instance to Deployer structure](deployment-with-deployer.md#migrating-existing-instance-to-deployer-structure).
 
 ### Webserver configuration
 
@@ -83,7 +83,7 @@ We use Shopware CLI, which simplifies the installation of the dependencies and b
 
 ### 3. Transferring the workspace
 
-For transferring the files to the target server, please configure at least one host in the [`deploy.php`](deployment-with-deployer#deploy-php):
+For transferring the files to the target server, please configure at least one host in the [`deploy.php`](deployment-with-deployer.md#deployphp):
 
 ```php
 host('SSH-HOSTNAME')
@@ -97,7 +97,7 @@ host('SSH-HOSTNAME')
     ->set('writable_mode', 'chmod');
 ```
 
-This step is defined in the `deploy:update_code` job in the [`deploy.php`](deployment-with-deployer#deploy-php):
+This step is defined in the `deploy:update_code` job in the [`deploy.php`](deployment-with-deployer.md#deployphp):
 
 ```php
 task('deploy:update_code')->setCallback(static function () {
@@ -119,7 +119,7 @@ The migrations need to be applied on the target server.
 If you are deploying to a cluster with multiple web servers, please make sure to run the migrations only on one of the servers.
 :::
 
-This step is defined in the `sw:deployment:helper` job in the [`deploy.php`](deployment-with-deployer#deploy-php), which is part of the `sw:deploy` task group:
+This step is defined in the `sw:deployment:helper` job in the [`deploy.php`](deployment-with-deployer.md#deployphp), which is part of the `sw:deploy` task group:
 
 ```php
 task('sw:deployment:helper', static function() {
@@ -131,7 +131,7 @@ task('sw:deployment:helper', static function() {
 
 Before putting the new version live, ensure to create an empty file `install.lock` in the root of the build workspace. Otherwise, Shopware will redirect every request to the Shopware installer because it assumes that Shopware isn't installed yet.
 
-This task is defined in the `sw:touch_install_lock` job in the [`deploy.php`](deployment-with-deployer#deploy-php), which is part of the `sw:deploy` task group:
+This task is defined in the `sw:touch_install_lock` job in the [`deploy.php`](deployment-with-deployer.md#deployphp), which is part of the `sw:deploy` task group:
 
 ```php
 task('sw:touch_install_lock', static function () {
@@ -155,7 +155,7 @@ task('sw:health_checks', static function () {
 
 After all the steps are done, Deployer will switch the symlinks destination to the new release.
 
-This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer#deploy-php).
+This task is defined in the `deploy:symlink` default job in the [`deploy.php`](deployment-with-deployer.md#deployphp).
 
 ## Deployer output
 
@@ -186,9 +186,9 @@ After the very first deployment with Deployer, you have to copy some files and d
 Let's agree on the following two paths for the examples:
 
 1. You have copied your existing Shopware instance to `/var/www/shopware_backup`.
-2. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer#deploy-php) to `/var/www/shopware`.
+2. You have set the `deploy_path` in the [`deploy.php`](deployment-with-deployer.md#deployphp) to `/var/www/shopware`.
 
-Now, look at the `shared_files` and `shared_dirs` configurations in the [`deploy.php`](deployment-with-deployer#deploy-php). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the `deploy.php` the commands would be the following:
+Now, look at the `shared_files` and `shared_dirs` configurations in the [`deploy.php`](deployment-with-deployer.md#deployphp). Simply copy all the paths into `/var/www/shopware/shared`. For the configuration of the `deploy.php` the commands would be the following:
 
 ```bash
 cp /var/www/shopware_backup/.env.local /var/www/shopware/shared/.env.local

@@ -7,6 +7,8 @@ nav:
 
 # Fetching Data with JavaScript
 
+## Overview
+
 When developing a plugin, you might want to fetch necessary data from the API. This guide explains how.
 
 ## Prerequisites

@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Customize modules
+  title: Customize Modules
   position: 140
 
 ---
 
-# Customize modules
+# Customize Modules
 
 ## Overview
 

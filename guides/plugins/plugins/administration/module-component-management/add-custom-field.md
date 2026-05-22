@@ -1,15 +1,15 @@
 ---
 nav:
-  title: Add custom input field to existing component
+  title: Add Custom Input Field to Existing Component
   position: 200
 
 ---
 
-# Add custom input field to existing component
+# Add Custom Input Field to Existing Component
 
 ## Overview
 
-If you were wondering how to add a new input field to an existing module in the Administration via plugin, then you've found the right guide to cover that subject. In the following examples, you'll add a new input field to the product's detail page, to display and configure some other product data not being handled by default.
+This guide explains how to add a new input field to an existing module in the Administration using a plugin. The following examples show how to add a new input field to the product's detail page in order to display and configure other product data not being handled by default.
 
 ## Prerequisites
 

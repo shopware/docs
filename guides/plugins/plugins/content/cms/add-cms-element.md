@@ -1,14 +1,14 @@
 ---
 nav:
-  title: Add CMS element
+  title: Add CMS Elements
   position: 20
 ---
 
 # Add CMS Elements
 
-## What is an Element?
+## Overview
 
-A CMS element in Shopware is the smallest content unit in the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what elements are:
+A CMS element in Shopware is the smallest content unit in the Shopping Experience (CMS) system. Understanding the hierarchy helps clarify what elements are.
 
 ### CMS Hierarchy
 
@@ -22,9 +22,9 @@ Elements are the "primitives" in the CMS hierarchy. They have no knowledge of th
 
 **Key concept**: Elements provide the actual content, while blocks define the structure and layout. This separation allows different element types to be placed in the same block slot.
 
-> **Learn more**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](https://developer.shopware.com/docs/concepts/commerce/content/shopping-experiences-cms.html).
+> **Learn more**: For a deeper understanding of the CMS architecture, see the [Shopping Experience fundamental guide](../../../../../concepts/commerce/content/shopping-experiences-cms.md).
 
-## Where to Find Elements
+## Where to find elements
 
 Elements are added to blocks within the Shopping Experience module:
 
@@ -41,7 +41,7 @@ You can find related element code here:
 * Storefront: `src/Storefront/Resources/views/storefront/element/`
 * Core: `\Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader::load`
 
-## How to Create an Element in the Administration
+## How to create an element in the Administration
 
 We recommend this structure for CMS elements:
 
@@ -66,14 +66,14 @@ We recommend this structure for CMS elements:
                     └── cms-el-preview-dailymotion.scss
 ```
 
-### Step 1: Import Your Element in main.js
+### Step 1: Import your element in main.js
 
 ```JS
 // <plugin root>/src/Resources/app/administration/src/main.js
 import './module/sw-cms/elements/dailymotion';
 ```
 
-### Step 2: Register the Element
+### Step 2: Register the element
 
 ```JS
 // <plugin root>/src/Resources/app/administration/src/module/sw-cms/elements/dailymotion/index.js
@@ -107,7 +107,7 @@ Shopware.Service('cmsService').registerCmsElement({
 | hidden           | (Optional) Hides the element in the "replace element" modal                                |
 | removable        | (Optional) Prevents the element from being removed from a slot via UI                      |
 
-### Step 3: Create the Preview Component
+### Step 3: Create the preview component
 
 The preview is shown as a thumbnail when selecting or swapping elements in block slots. You could also display a static image of your final Storefront element here.
 
@@ -122,7 +122,7 @@ Shopware.Component.register('cms-el-preview-dailymotion', {
 });
 ```
 
-### Step 4: Create the Main Component
+### Step 4: Create the main component
 
 The main component is displayed in the editor layout. It should provide a good representation of the final Storefront element.
 
@@ -158,7 +158,7 @@ Shopware.Component.register('cms-el-dailymotion', {
 * The `cms-element` mixin provides common props and data-mapping for config objects
 * Use fallback content to avoid invisible elements in the editor (for example when missing an `iframe` or `img` `src`)
 
-### Step 5: Create the Configuration Component
+### Step 5: Create the configuration component
 
 This component will be displayed in a modal and should provide form fields for all options defined in Step 2 (`defaultConfig`).
 
@@ -184,9 +184,9 @@ Shopware.Component.register('cms-el-config-dailymotion', {
 **Key points**:
 
 * The `cms-element` mixin provides common props and data-mapping for config objects
-* Use [Shopware meteor components](https://shopware.design/meteor-components/) for a consistent UI
+* Use [Shopware Meteor components](https://shopware.design/meteor-components/) for a consistent UI
 
-### Step 6: Inheritance Support For Elements
+### Step 6: Inheritance support for elements
 
 Inheritance in the CMS provides fine-grained control over how content is customized between the base layout and content pages (category, product, landing page, ..) they are assigned to.
 Similar to how product variants work, content managers can choose to either inherit the content from the base layout or override it with custom content for each page.
@@ -214,7 +214,7 @@ For an improved user experience when working with inherited fields, we provide a
 
 You can find more references in the standard CMS elements located in `src/Administration/Resources/app/administration/src/module/sw-cms/elements/`.
 
-## How to Create an Element in the Storefront
+## How to Create an element in the Storefront
 
 The Storefront template defines how your element appears on the actual storefront. It is expected to be located in the directory `src/Resources/views/storefront/element`. In there, a twig template file has to follow this naming convention:
 
@@ -226,7 +226,7 @@ The Storefront template defines how your element appears on the actual storefron
 
 Full example: `cms-element-dailymotion.html.twig`
 
-### Basic Template
+### Basic template
 
 You can create your own elements or extend and reuse existing ones. Don't forget to clear the Storefront cache after adding new templates.
 
@@ -244,10 +244,10 @@ You can create your own elements or extend and reuse existing ones. Don't forget
 </div>
 ```
 
-The `element` is automatically passed to the template and contains meta data and configuration values.  See the `CmsSlotDefinition.php` for a full overview.
+The `element` is automatically passed to the template and contains meta data and configuration values. See the `CmsSlotDefinition.php` for a full overview.
 
 ## Next steps
 
 There are many possibilities to extend Shopware's CMS.
 If you haven't done so already, consider using your element in a cms block.
-To learn how to do this, take a look at the guide on [Add custom cms block](add-cms-block).
+To learn how to do this, take a look at the guide on [Add custom CMS block](add-cms-block.md).

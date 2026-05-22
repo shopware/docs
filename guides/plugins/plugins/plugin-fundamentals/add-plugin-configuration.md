@@ -1,30 +1,31 @@
 ---
 nav:
-  title: Add plugin configuration
-  position: 10
+  title: Add Plugin Configuration
+  position: 20
 
 ---
 
 # Add Plugin Configuration
 
-The Shopware plugin system lets you define a configuration screen in the Administration for your plugin using `config.xml` only. No custom Admin templates are required.
+Shopware allows you to define a configuration page for your plugin using a `config.xml` file. No custom Administration module or knowledge of templating is required.
 
 ::: info Related guide
-See [Use plugin configuration](use-plugin-configuration.md) for more details.
+See [Use plugin configuration](use-plugin-configuration.md) for additional guidance.
 :::
 
 ## Prerequisites
 
-To build your own configuration page for your plugin, you first need a plugin as base.
-Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+A running plugin. Review the [Plugin Base Guide](../plugin-base-guide.md) for instructions.
 
 ## Create your plugin configuration
 
-Related resources: [Adding a plugin configuration (YouTube)](https://www.youtube.com/watch?v=XXcmgKBRh-s), [Backend Development](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+::: info
+This video is part of the free Shopware Academy online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+:::
 
-All you need to do is create a `config.xml` file inside a `Resources/config` directory in your plugin root.
-The content of the `config.xml` will be dynamically rendered in the Administration.
-Below you'll find an example structure:
+Create `src/Resources/config/config.xml` inside your plugin. The content of the `config.xml` will be dynamically rendered in the Administration.
+
+An example structure:
 
 ```text
 └── plugins
@@ -43,10 +44,9 @@ As you now know how to create configurations, you can start to fill it with life
 
 ### Cards in your configuration
 
-The `config.xml` follows a simple syntax.
-You can organize the content in `<card>` elements.
-Every `config.xml` must contain a minimum of one `<card>` element and each `<card>` must contain one `<title>` and at least one `<input-field>`.
-See the minimum `config.xml` below:
+The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements.
+
+Every `config.xml` must contain at least one `<card>` element with a `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
 
 ::: code-group
 
@@ -95,8 +95,11 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 Unless defined otherwise, your `<input-field>` will be a text field.
 Below you'll find a list of all available `<input-field type="?">`.
 
-| Type          | Configuration settings                                                                                                                                                                       | Renders           | Default value example                   |
-|:--------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
+<details>
+<summary>Supported input field types</summary>
+
+| Type          | Configuration settings                                                                                                                                                              | Renders           | Default value example                   |
+|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
 | text          | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | Text field        | Some text                               |
 | textarea      | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                 | Text area         | Some more text                          |
 | text-editor   | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                                                                   | HTML editor       | Some text with HTML `<div>`tags`</div>` |
@@ -112,6 +115,8 @@ Below you'll find a list of all available `<input-field type="?">`.
 | colorpicker   |                                                                                                                                                                                              | Color picker      | #189EFF                                 |
 | single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                   | Single-Select box | option_id                               |
 | multi-select  | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                   | Multi-Select box  | [option_id1, option_id2]                |
+
+</details>
 
 ### Input field settings
 
@@ -417,10 +422,8 @@ Full multi-card `config.xml` example (collapse to focus on smaller snippets abov
 
 ## Add values to your configuration
 
-After adding your input fields to the `config.xml`, save and refresh the Administration. Then open the **Extensions → My extensions → Plugins** tab, find your plugin, and open **Configure** (or the plugin’s configuration action). Use the **Configuration** tab to enter values for your fields. *(Apps use a separate tab; plugin settings are under **Plugins**.)*
+After adding your input fields to the `config.xml`, save and refresh the Administration. Navigate from the sidebar to the **Extensions → My extensions → Plugins** tab, find your plugin, and click **Configure** (or the plugin’s configuration action). Use the **Configuration** tab to enter values for your fields. (Apps use a separate tab.)
 
 ## Next steps
 
-Now you've added your own plugin configuration.
-But how do you actually read which configurations the shop owner used?
-This will be covered in our guide about [Using the plugin configuration](use-plugin-configuration.md).
+Now that your configuration is defined, review the [Using the plugin configuration](use-plugin-configuration.md) guide to use it in your plugin logic.

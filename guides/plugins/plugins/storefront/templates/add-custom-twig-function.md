@@ -7,6 +7,8 @@ nav:
 
 # Add Custom Twig Functions
 
+## Overview
+
 Create your own Twig function to call a PHP script from the Twig template during theme development. Pass a string to the `TwigFunction` and return a `MD5-Hash`.
 
 ::: info

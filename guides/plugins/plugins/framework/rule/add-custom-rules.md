@@ -9,17 +9,17 @@ nav:
 
 ## Overview
 
-In this guide you will learn how to create rules in Shopware. Rules are used by the rule builder.
+The Rule Builder allows users to add custom rules to create dynamic conditions and actions. Using the Rule Builder, you can define specific criteria based on various attributes, such as customer data, cart contents, order details, or other relevant factors. These custom rules can then trigger specific actions, such as applying discounts, displaying personalized content, or adjusting pricing based on specific conditions.
 
 This example will introduce a new rule, which checks if it is the first monday of the month or not. The shop owner is then able to react on this specific day every month with special prices or dispatch methods.
 
 ## Prerequisites
 
-In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
+In order to add your own custom rules for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
 You also should be familiar with the [Dependency Injection container](../../services/dependency-injection.md) as this is used to register your custom rule.
 
-It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rule-system/index.md) (../../../../../concepts/framework/rule) as well.
+It might be helpful to gather some general understanding about the concept of [Rules](../../../../../concepts/framework/rule-system/index.md) as well.
 
 ## Create custom rule
 
@@ -140,7 +140,7 @@ $context->getRuleIds();
 
 ### Showing rule in the Administration
 
-Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/services-utilities/add-custom-service#Decorating%20a%20service) guide.
+Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/services-utilities/add-custom-service.md#decorating-a-service) guide.
 
 Create a new directory called `<plugin root>/src/Resources/app/administration/src/decorator`. In this directory we create a new file called `rule-condition-service-decoration.js`.
 
@@ -208,7 +208,7 @@ Shopware.Application.addServiceProviderDecorator('ruleConditionDataProviderServi
 
 ### Custom rule component
 
-Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-first-monday`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/module-component-management/add-custom-component) section.
+Now that you have registered your rule to the Administration, you would still be lacking the actual component `swag-first-monday`. As you have already defined a path for it in your service decoration, create the following directory: `<plugin root>/src/Resources/app/administration/src/core/component/swag-first-monday`. If you are unfamiliar with creating components in Shopware, refer to the [add your own component](../../administration/module-component-management/add-custom-component.md) section.
 
 Here's an example of what this component could look like:
 
@@ -346,7 +346,7 @@ When you add a new rule-select component to assign rules somewhere in Shopware, 
 For that, we need to write some twig code. The important property here is the `rule-aware-group-key` property which should match the assignment name of the rule-aware group we just extended.
 
 ::: info
-Refer to [customize administration components](../../administration/module-component-management/customizing-components) to know more about it.
+Refer to [customize Administration components](../../administration/module-component-management/customizing-components.md) to know more about it.
 :::
 
 ```twig
@@ -365,4 +365,4 @@ The above guide explains the integration of a boolean and no values. If you want
 
 ## Further reading
 
-For more other information you can refer to [Add rule assignment configuration](../../administration/advanced-configuration/add-rule-assignment-configuration) section of the guide.
+For more other information you can refer to [Add rule assignment configuration](../../administration/advanced-configuration/add-rule-assignment-configuration.md) section of the guide.

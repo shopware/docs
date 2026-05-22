@@ -1,10 +1,12 @@
 ---
 nav:
-  title: Customizing components
+  title: Customizing Components
   position: 170
 ---
 
-# Customizing components
+# Customizing Components
+
+## Overview
 
 The Shopware 6 Administration allows you to override and extend components to change its content and its behavior.
 

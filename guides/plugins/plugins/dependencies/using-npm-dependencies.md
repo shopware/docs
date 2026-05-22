@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Adding NPM dependencies
+  title: Adding NPM Dependencies
   position: 120
 
 ---
@@ -60,7 +60,7 @@ Build the Administration using:
 composer build:js:admin
 ```
 
-For more information on migrating from Webpack to Vite, see the [Webpack to Vite migration guide](/guides/upgrades-migrations/administration/vite).
+For more information on migrating from Webpack to Vite, see the [Webpack to Vite migration guide](../../../upgrades-migrations/administration/vite.md).
 
 ## Storefront (Webpack)
 
@@ -128,6 +128,6 @@ Build the Storefront using:
 
 ## Next steps
 
-Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/services-utilities/add-custom-service)
+Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/services-utilities/add-custom-service.md)
 
-If you want to add [Composer dependencies](using-composer-dependencies), or even other [plugin dependencies](add-plugin-dependencies), we've got you covered as well.
+If you want to add [Composer dependencies](using-composer-dependencies.md), or even other [plugin dependencies](add-plugin-dependencies.md), we've got you covered as well.

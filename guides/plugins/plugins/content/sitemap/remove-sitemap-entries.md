@@ -1,10 +1,12 @@
 ---
 nav:
-  title: Remove sitemap entries
+  title: Remove Sitemap Entries
   position: 30
 ---
 
 # Remove Sitemap Entries
+
+## Overview
 
 This guide shows how to exclude specific URLs from the sitemap.
 

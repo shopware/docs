@@ -34,8 +34,7 @@ When a translation key is requested, Shopware will:
 
 ### Automatic
 
-Shipping with Shopware **6.7.3**, there's the command line tool `bin/console translation:lint-filenames` that can be used to
-check the translation files, or use the `--fix` parameter to even automate the migration process. For more information, see [this migration article](../../../../../concepts/translations/fallback-language-selection.md#migration-and-linting-via-command).
+Shipping with Shopware **6.7.3**, there's the command line tool `bin/console translation:lint-filenames` that can be used to check the translation files, or use the `--fix` parameter to even automate the migration process. For more information, see [this migration article](../../concepts/framework/translations/fallback-language-selection.md#migration-and-linting-via-command).
 
 ### Manual
 
@@ -76,7 +75,7 @@ Here are some example locales that are dialects of the generic base layer.
 └···
 ```
 
-For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../../../../concepts/translations/fallback-language-selection.md).
+For more details on selecting a fallback language and structuring your snippet files, see the [Fallback Languages guide](../../concepts/framework/translations/fallback-language-selection.md).
 
 ## Testing Your Migration
 

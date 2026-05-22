@@ -7,11 +7,13 @@ nav:
 
 # Add Custom Assets
 
+## Overview
+
 When working with an own plugin, the usage of own custom images or other assets is a natural requirement. So of course you can do that in Shopware. In this guide we will discover together how it's possible to add and use custom assets in your Shopware plugin.
 
 ## Prerequisites
 
-In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md)
+In order to be able to start with this guide, you need to have an own plugin running. As to most guides, this guide is also built upon the [Plugin base guide](../../plugin-base-guide.md).
 
 Needless to say, you should have your image or another asset at hand to work with.
 
@@ -80,7 +82,7 @@ You see, we can use our custom assets by using the asset path provided by the `b
 
 Of course, you're able to use custom assets in themes as well. In this context there's another way on integration custom assets into your theme. Please take a look on the guide about adding assets to a theme for further detail:
 
-<PageRef page="../../../themes/add-assets-to-theme" />
+<PageRef page="../../../themes/assets/add-assets-to-theme.md" />
 
 ## Next steps
 

@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Directives reference
+# Directives Reference
 
 This is an overview of all the directives registered globally to Vue. Directives are the same as in Vue.
 
