@@ -116,19 +116,19 @@ deployment:
       - Name
 
     overrides:
-      # the key is the extension name (app or plugin)
+      # The key is the extension name (app or plugin)
       MyPlugin:
         # Same as exclude
         state: ignore
 
       AnotherPlugin:
-        # This plugin can be installed, but should be inactive
+        # This plugin can be installed but should be inactive
         state: inactive
 
       RemoveThisPlugin:
         # This plugin will be uninstalled if it is installed
         state: remove
-        # should the extension data of an uninstalled extension be kept
+        # Keep data of an uninstalled extension
         keepUserData: true
 
   one-time-tasks:
@@ -192,7 +192,7 @@ deployment:
     exclude: !reset
       - OnlyThisPlugin
 
-  # Resets the one-time-tasks field: all inherited tasks are removed and only these remain
+  # Resets the one-time-tasks field: all inherited tasks are removed, and only these remain
   one-time-tasks: !reset
     - id: only-task
       script: only-script
@@ -342,7 +342,7 @@ deployment:
       TheExtensionWeWantToGetRidOf:
         # This plugin will be uninstalled if it is installed
         state: remove
-        # should the extension data of an uninstalled extension be kept
+        # Keep data of an uninstalled extension
         keepUserData: true
 
 ```
