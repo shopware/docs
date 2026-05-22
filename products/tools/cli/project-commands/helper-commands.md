@@ -17,7 +17,7 @@ To create a new project, you can use the following command:
 shopware-cli project create <folder-name>
 ```
 
-It will ask you for the Shopware version. You can pass the version as second parameter:
+It will ask you for the Shopware version. You can pass the version as the second parameter:
 
 ```bash
 shopware-cli project create <folder-name> <version>
@@ -36,15 +36,15 @@ Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-Additionally to the replacement, Shopware CLI allows only watching a specific set of extensions or exclude few.
+Additionally to the replacement, Shopware CLI allows only watching a specific set of extensions or excluding a few.
 
-To only watch specific:
+To only watch specific extensions:
 
 ```bash
 shopware-cli project admin-watch --only-extensions <name>,<second>....
 ```
 
-To exclude specific:
+To exclude specific extensions:
 
 ```bash
 shopware-cli project admin-watch --skip-extensions <name>,<second>....
@@ -53,7 +53,7 @@ shopware-cli project admin-watch --skip-extensions <name>,<second>....
 ### Building only custom extensions
 
 When working with a lot of 3rd party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
-This is unnecessary, because store extensions are shipped together with their assets.
+This is unnecessary because store extensions are shipped together with their assets.
 
 Use
 
