@@ -47,7 +47,7 @@ If a tool accepts a name that maps to an internal enum, registry, or state machi
 
 Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools means more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like SwagMcpMerchantAssistant add more, so keeping a single integration lean matters.
 
-The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration that gets everything. A persona is a specific role with a specific job; size the toolset to what that role actually needs. For example:
+The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration that gets everything. A persona is a specific role with a specific job; only include the tools that role actually needs. For example:
 
 - **Merchant integration:** order state, system config, media upload, theme config. What a store manager needs day-to-day.
 - **Developer integration:** entity search, entity schema, aggregate, system config read. What a developer or CI pipeline needs for inspection and debugging.
@@ -100,7 +100,7 @@ The `description` field on `#[McpTool]` is the only signal the agent uses to pic
 
 **Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
 
-**Treat evals as the regression net for descriptions and prompt wording.** Tool descriptions, system-prompt recipes, and resource lists are natural-language code. Changes to any of them can silently break routing on prompts that used to work. Maintain a small library of representative prompts ("how many products?", "ship order 10042", "upload this image as a product cover") with the expected tool selection, and run it before merging description changes the same way you run unit tests before merging behavior changes.
+**Use automated checks as the regression net for descriptions and prompt wording.** Tool descriptions, system-prompt recipes, and resource lists are natural-language code. Changes to any of them can silently break routing on prompts that used to work. Maintain a small library of representative prompts ("how many products?", "ship order 10042", "upload this image as a product cover") with the expected tool selection, and run it before merging description changes the same way you run unit tests before merging behavior changes.
 
 ### Tool descriptions are baked into the DI container
 
