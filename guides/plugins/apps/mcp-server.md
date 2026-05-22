@@ -59,7 +59,7 @@ Place `Resources/mcp.xml` in your app bundle:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <mcp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Schema/mcp-1.0.xsd">
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Mcp/Schema/mcp-1.0.xsd">
 
     <mcp-tools>
         <mcp-tool name="sync-orders" url="https://app.example.com/mcp/sync-orders">
@@ -123,6 +123,38 @@ The `url` attribute supports two modes:
 - **Internal path** (`/...`): Shopware dispatches the call as a Symfony subrequest. This lets an app use [app scripts](../app-scripts/) to serve capability logic without running an external server. Example: `url="/api/script/mcp-greet"`.
 
 Use the internal-path mode when your tool is a thin wrapper around data Shopware already has. Use external URLs when you need to call out to an ERP, PIM, or any system Shopware cannot reach directly.
+
+### Internal-path example: app script
+
+Point the tool at an [app script endpoint](../app-scripts/add-api-endpoint.md):
+
+```xml
+<mcp-tool name="greet" url="/api/script/mcp-greet">
+    <label>Greet</label>
+    <description>Return a greeting for the given name.</description>
+    <input-schema>
+        <property name="name" type="string" description="Name to greet" required="true"/>
+    </input-schema>
+</mcp-tool>
+```
+
+In `Resources/scripts/api-mcp-greet/greet.twig`, access the call's `arguments` directly through `hook.request`:
+
+```twig
+{% block response %}
+    {% set args = hook.request.arguments ?? {} %}
+    {% set name = args.name ?? 'World' %}
+
+    {% set response = services.response.json({
+        success: true,
+        data: { message: 'Hello, ' ~ name ~ '!' }
+    }) %}
+
+    {% do hook.setResponse(response) %}
+{% endblock %}
+```
+
+`hook.request` exposes the parsed POST body. Arguments live under `hook.request.arguments`. Shopware handles signature verification and locale resolution for internal-path calls. You only need to return the JSON envelope.
 
 ## Webhook protocol
 

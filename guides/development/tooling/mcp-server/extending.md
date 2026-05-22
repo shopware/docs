@@ -44,7 +44,7 @@ Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-p
 </mcp-tools>
 ```
 
-Webhook response: return a JSON string, ideally following the `{"success": bool, "data": ...}` envelope.
+Webhook response: return a JSON object, ideally following the `{"success": bool, "data": ...}` envelope.
 
 → [Full app guide](../../../plugins/apps/mcp-server.md): webhook protocol, signature verification, lifecycle
 

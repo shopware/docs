@@ -17,15 +17,15 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 
 ## What the MCP server provides
 
-| Capability         | Details                                                                        |
-|--------------------|--------------------------------------------------------------------------------|
-| **HTTP endpoint**  | `POST /api/_mcp` via Streamable HTTP transport                                 |
-| **Authentication** | Integration credentials or OAuth bearer tokens                                 |
-| **Authorization**  | Full Admin API ACL enforcement per tool call                                   |
-| **Tool allowlist** | Per-integration tool selection in Admin UI                                     |
-| **Rate limiting**  | Per-integration rate limiting                                                  |
-| **Discovery**      | `bin/console debug:mcp` lists all registered capabilities                      |
-| **Extensibility**  | Plugins, bundles, and apps can contribute custom tools, prompts, and resources |
+| Capability | Details |
+|---|---|
+| **HTTP endpoint** | `POST /api/_mcp` via Streamable HTTP transport |
+| **Authentication** | Integration credentials or OAuth bearer tokens |
+| **Authorization** | Full Admin API ACL enforcement per tool call |
+| **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id` |
+| **Rate limiting** | Per-integration rate limiting |
+| **Discovery** | `bin/console debug:mcp` lists all registered capabilities |
+| **Extensibility** | Plugins, bundles, and apps can contribute custom tools, prompts, and resources |
 
 ## Architecture
 

@@ -156,8 +156,8 @@ flowchart LR
 
 **Authentication (Layer 1):** Pass `sw-access-key` and `sw-secret-access-key` headers. Obtain credentials from Settings → Integrations.
 
-**MCP Allowlist (Layer 2):** Each integration has its own allowlist covering tools, resources, and prompts. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. Configure via Settings → Integrations → Edit MCP Allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
+**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under Settings → Integrations → Edit MCP Allowlist, and each user has their own under Settings → Users & Permissions → [user] → MCP Tool Allowlist. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
 
-This layer is only enforced for integration-authenticated requests (`sw-access-key` + `sw-secret-access-key`, or OAuth `client_credentials` for an integration key). Admin user bearer tokens (password / refresh-token grant, `client_id = administration`) skip this layer and see all capabilities.
+Which allowlist applies depends on the auth method: integration credentials use the integration allowlist; user access keys and user bearer tokens use the per-user allowlist; admin user accounts (`admin = true`) bypass the allowlist entirely. When an app forwards `sw-app-user-id` alongside integration credentials (e.g., Copilot), Shopware applies the **intersection** of the integration and user allowlists.
 
 **ACL (Layer 3):** Even if a capability is in the allowlist, the integration's ACL role must have the required entity-level permissions.

@@ -47,13 +47,13 @@ If a tool accepts a name that maps to an internal enum, registry, or state machi
 
 Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools means more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like SwagMcpMerchantAssistant add more, so keeping a single integration lean matters.
 
-The practical approach is to use **multiple integrations with scoped tool allowlists** rather than one integration that gets everything. For example:
+The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration that gets everything. A persona is a specific role with a specific job; size the toolset to what that role actually needs. For example:
 
 - **Merchant integration:** order state, system config, media upload, theme config. What a store manager needs day-to-day.
 - **Developer integration:** entity search, entity schema, aggregate, system config read. What a developer or CI pipeline needs for inspection and debugging.
 - **App-specific integration:** only the tools relevant to a specific workflow or external system.
 
-Each integration sees only its allowed tools, resources, and prompts, so each AI session starts with a smaller, more focused context. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist**.
+Each integration sees only its allowed tools, resources, and prompts, so each AI session starts with a smaller, more focused context. Treat the allowlist, system prompt, and exposed resources together as **product quality**, not just security. A narrow context makes the agent reliable; a broad allowlist dilutes routing and degrades answers. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist** (per integration) and **Settings → Users & Permissions → [user] → MCP Tool Allowlist** (per user).
 
 Every registered tool also consumes tokens from the agent's context window for the entire session — not only when called. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients enforce their own hard caps (Cursor limits the total to 40 tools across all connected MCP servers). Scoped integrations with a small allowlist keep sessions fast and predictable.
 
@@ -99,6 +99,8 @@ The `description` field on `#[McpTool]` is the only signal the agent uses to pic
 **Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user often does not say (a sales channel UUID, a tax ID), give it a default of `''` or `null` and validate inside the method. Required-but-missing parameters cause some agents to refuse the tool call entirely instead of asking the user.
 
 **Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
+
+**Treat evals as the regression net for descriptions and prompt wording.** Tool descriptions, system-prompt recipes, and resource lists are natural-language code. Changes to any of them can silently break routing on prompts that used to work. Maintain a small library of representative prompts ("how many products?", "ship order 10042", "upload this image as a product cover") with the expected tool selection, and run it before merging description changes the same way you run unit tests before merging behavior changes.
 
 ### Tool descriptions are baked into the DI container
 
