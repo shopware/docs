@@ -238,13 +238,25 @@ The **Failure Reason** column shows why a run failed. It is only set for entries
 
 ### Logs
 
-The full output of each Cron Job execution is available in Grafana. Use the following label filter to find the relevant log entries:
+The full output of each cron job execution is available through the CLI:
 
-```text
-component: cronjob
+```bash
+sw-paas application cronjob logs
 ```
 
-For details on how to access and query logs in Grafana, see [Logs](../monitoring/logs).
+If you know the run ID, pass it directly:
+
+```bash
+sw-paas application cronjob logs --run-id <run-id>
+```
+
+The short alias `cron` is also supported:
+
+```bash
+sw-paas application cron logs
+```
+
+The command prints a Grafana Explore URL at the end so you can continue investigating the same cron job run in Grafana. For advanced log filters and Grafana access, see [Logs](../monitoring/logs).
 
 ## Specifying Organization, Project, and Application
 
