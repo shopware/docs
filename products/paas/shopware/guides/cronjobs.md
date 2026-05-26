@@ -238,7 +238,7 @@ The **Failure Reason** column shows why a run failed. It is only set for entries
 
 ### Logs
 
-The full output of each Cron Job execution is available through the CLI:
+The full output of each cron job execution is available through the CLI:
 
 ```bash
 sw-paas application cronjob logs
