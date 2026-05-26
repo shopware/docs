@@ -74,12 +74,12 @@ app:
 
 ### `app.php.extensions`
 
-The PHP extensions to install during build time. We use [this](https://github.com/mlocati/docker-php-extension-installer) installer to install extension.
+The PHP extensions to install during build time. We use [this](https://github.com/mlocati/docker-php-extension-installer) installer to install extensions.
 
 ```yaml
 app:
   php:
-    extentions:
+    extensions:
       - extension1
       - extension2
 ```
