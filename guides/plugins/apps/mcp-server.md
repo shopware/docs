@@ -22,13 +22,13 @@ For in-process PHP with full DAL access, see [Extending via Plugin](../plugins/m
 
 ```mermaid
 sequenceDiagram
-    participant Client as AI Client
-    participant SW as Shopware
-    participant App as Your App
-    Client->>SW: call tool
-    SW->>App: HMAC-signed POST
-    App-->>SW: JSON response
-    SW-->>Client: result
+ participant Client as AI Client
+ participant SW as Shopware
+ participant App as Your App
+ Client->>SW: call tool
+ SW->>App: HMAC-signed POST
+ App-->>SW: JSON response
+ SW-->>Client: result
 ```
 
 All three capability types (tools, prompts, resources) follow the same lifecycle:
@@ -112,8 +112,8 @@ List the ACL privileges your tool needs with `<required-privileges>`. The admin 
 
 How strictly these privileges are enforced depends on the URL mode:
 
-- **External URL** (`https://...`): informational only. Shopware does not check these privileges before calling your webhook. Your app must enforce them on its own side — for example by validating `source.shopId` against what that shop is permitted to do in your backend.
-- **Internal path** (`/api/...`): enforced by Shopware. The call is dispatched as a Symfony subrequest through the normal Admin API stack, so the integration's ACL role is checked just like any other API call. Declare the privileges accurately so the Admin UI can warn operators about gaps.
+- **External URL** (`https://...`): informational only. Shopware does not check these privileges before calling your webhook. Your app must enforce them on its own side - for example, by validating `source.shopId` against what that shop is permitted to do in your backend.
+- **Internal path** (`/api/...`): enforced by Shopware. The call is dispatched as a Symfony subrequest via the normal Admin API stack, so the integration's ACL role is checked just as with any other API call. Declare the privileges accurately so the Admin UI can warn operators about gaps.
 
 ## URL modes: external vs internal
 
@@ -122,7 +122,7 @@ The `url` attribute supports two modes:
 - **External URL** (`https://...`): Shopware sends an HMAC-signed POST to your remote endpoint. This is the default for SaaS integrations and any app hosted outside Shopware.
 - **Internal path** (`/...`): Shopware dispatches the call as a Symfony subrequest. This lets an app use [app scripts](../app-scripts/) to serve capability logic without running an external server. Example: `url="/api/script/mcp-greet"`.
 
-Use the internal-path mode when your tool is a thin wrapper around data Shopware already has. Use external URLs when you need to call out to an ERP, PIM, or any system Shopware cannot reach directly.
+Use the internal-path mode when your tool is a thin wrapper around data that Shopware already has. Use external URLs when you need to call out to an ERP, PIM, or any system that Shopware cannot reach directly.
 
 ### Internal-path example: app script
 
@@ -142,15 +142,15 @@ In `Resources/scripts/api-mcp-greet/greet.twig`, access the call's `arguments` d
 
 ```twig
 {% block response %}
-    {% set args = hook.request.arguments ?? {} %}
-    {% set name = args.name ?? 'World' %}
+ {% set args = hook.request.arguments ?? {} %}
+ {% set name = args.name ?? 'World' %}
 
-    {% set response = services.response.json({
-        success: true,
-        data: { message: 'Hello, ' ~ name ~ '!' }
-    }) %}
+ {% set response = services.response.json({
+ success: true,
+ data: { message: 'Hello, ' ~ name ~ '!' }
+ }) %}
 
-    {% do hook.setResponse(response) %}
+ {% do hook.setResponse(response) %}
 {% endblock %}
 ```
 
@@ -168,12 +168,12 @@ When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared
   "arguments": {
     "since": "2026-01-01",
     "limit": 100
-  },
+ },
   "source": {
     "url": "https://shop.example.com",
     "shopId": "abc123def456",
     "appVersion": "1.2.0"
-  }
+ }
 }
 ```
 
@@ -194,7 +194,7 @@ For prompts, the request body uses `prompt` instead of `tool`, and arguments are
     "url": "https://shop.example.com",
     "shopId": "abc123def456",
     "appVersion": "1.2.0"
-  }
+ }
 }
 ```
 
@@ -202,7 +202,7 @@ The response must be a JSON array of message objects:
 
 ```json
 [
-  {"role": "user", "content": "You are working with ERP-synced Shopware data..."}
+ {"role": "user", "content": "You are working with ERP-synced Shopware data..."}
 ]
 ```
 
@@ -215,7 +215,7 @@ For resources, the request body uses `resource` instead of `tool`:
     "url": "https://shop.example.com",
     "shopId": "abc123def456",
     "appVersion": "1.2.0"
-  }
+ }
 }
 ```
 
@@ -236,9 +236,9 @@ const crypto = require('crypto');
 function verifySignature(body, signature, appSecret) {
     if (typeof signature !== 'string' || signature.length === 0) return false;
     const expected = crypto
-        .createHmac('sha256', appSecret)
-        .update(body)
-        .digest();
+ .createHmac('sha256', appSecret)
+ .update(body)
+ .digest();
     const received = Buffer.from(signature, 'hex');
     if (received.length !== expected.length) return false;
     return crypto.timingSafeEqual(received, expected);
@@ -250,7 +250,7 @@ app.post('/mcp/sync-orders', (req, res) => {
 
     if (!verifySignature(rawBody, signature, process.env.APP_SECRET)) {
         return res.status(401).json({ error: 'Invalid signature' });
-    }
+ }
 
     const { arguments: args, source } = req.body;
     // ... handle the tool call

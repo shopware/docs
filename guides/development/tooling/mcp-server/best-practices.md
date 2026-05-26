@@ -25,7 +25,7 @@ For example, `shopware-order-state` wraps order, transaction, and delivery state
 
 ### Keep the generic tools too
 
-Outcome tools cover the common 80%. The generic entity tools (`shopware-entity-search`, `shopware-entity-upsert`, `shopware-entity-delete`) cover the remaining 20%: edge cases, ad-hoc queries, and entities without dedicated workflow tools. Do not remove the generic layer when you add higher-level tools.
+Outcome tools cover the 80% that is common. The generic entity tools (`shopware-entity-search`, `shopware-entity-upsert`, `shopware-entity-delete`) cover the remaining 20%: edge cases, ad-hoc queries, and entities without dedicated workflow tools. Do not remove the generic layer when you add higher-level tools.
 
 ### Flatten parameters
 
@@ -45,9 +45,9 @@ If a tool accepts a name that maps to an internal enum, registry, or state machi
 
 ### Limit tool count
 
-Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools means more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like SwagMcpMerchantAssistant add more, so keeping a single integration lean matters.
+Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools mean more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like SwagMcpMerchantAssistant add more, so keeping a single integration lean matters.
 
-The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration that gets everything. A persona is a specific role with a specific job; only include the tools that role actually needs. For example:
+The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration gets everything. A persona is a specific role with a specific job; it only includes the tools that role actually needs. For example:
 
 - **Merchant integration:** order state, system config, media upload, theme config. What a store manager needs day-to-day.
 - **Developer integration:** entity search, entity schema, aggregate, system config read. What a developer or CI pipeline needs for inspection and debugging.
@@ -55,7 +55,7 @@ The practical approach is **one integration per persona or job**, each with a sc
 
 Each integration sees only its allowed tools, resources, and prompts, so each AI session starts with a smaller, more focused context. Treat the allowlist, system prompt, and exposed resources together as **product quality**, not just security. A narrow context makes the agent reliable; a broad allowlist dilutes routing and degrades answers. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist** (per integration) and **Settings → Users & Permissions → [user] → MCP Tool Allowlist** (per user).
 
-Every registered tool also consumes tokens from the agent's context window for the entire session — not only when called. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients enforce their own hard caps (Cursor limits the total to 40 tools across all connected MCP servers). Scoped integrations with a small allowlist keep sessions fast and predictable.
+Every registered tool also consumes tokens from the agent's context window throughout the session — not just when it's called. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients enforce their own hard caps (Cursor limits the total to 40 tools across all connected MCP servers). Scoped integrations with a small allowlist keep sessions fast and predictable.
 
 When everything is enabled, the modal also shows inline privilege gaps, meaning the integration's role does not actually cover what its allowlist exposes:
 
@@ -70,11 +70,11 @@ Strategies to reduce tool count within a single integration:
 
 Tool responses are injected directly into the agent's context window, so large responses consume a significant portion of the token budget.
 
-When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead it stores the payload in a session-scoped cache and returns a `shopware://tool-result/{uuid}` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also carries `responseSize` and `note` explaining why the result was deferred. For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
+When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead, it stores the payload in a session-scoped cache and returns a `shopware://tool-result/{uuid}` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred. For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
 
-The goal is still to keep responses small. Deferred resources still cost tokens when the agent fetches them, and some clients may not follow up automatically.
+The goal is still to keep responses small. Deferred resources still cost tokens when the agent fetches them, and some clients may not automatically follow up.
 
-- **Separate entity rows from aggregations.** Aggregations (especially `terms` or `date-histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in one response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records, never both in one tool call.
+- **Separate entity rows from aggregations.** Aggregations (especially `terms` or `date-histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in a single response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records; never both in a single tool call.
 - **Use `McpEntityIncludes` in plugin tools.** If your tool returns DAL entity data via `JsonEntityEncoder`, use the `McpEntityIncludes` trait. It automatically strips unrequested associations, thumbnails, and translated duplicates, keeping responses compact without manual field filtering.
 - **Paginate large result sets.** Return a bounded `limit` and let the agent increment `page` rather than returning everything at once.
 
@@ -86,25 +86,25 @@ Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_met
 
 The `description` field on `#[McpTool]` is the only signal the agent uses to pick between similar tools. Write it for routing accuracy, not as documentation.
 
-**Lead with the trigger phrases the user will say.** Agents pattern-match on user wording. A description that opens with "The correct tool for count, sum, average, and other aggregate questions" routes correctly when the user asks "how many products?". A description that opens with "Run aggregations over any Shopware entity" does not.
+**Lead with the trigger phrases the user will say.** Agents pattern-match on user wording. A description that opens with "The correct tool for count, sum, average, and other aggregate questions" correctly routes when the user asks "how many products?" A description that opens with "Run aggregations over any Shopware entity" does not.
 
-**Use negative phrasing to break ties.** When two tools share keywords (e.g., `shopware-entity-search` and `shopware-entity-aggregate` both work on entities), the agent will gravitate to the description that is more concrete. Spell out the contrast directly:
+**Use negative phrasing to break ties.** When two tools share keywords (e.g., `shopware-entity-search` and `shopware-entity-aggregate` both work on entities), the agent will gravitate to the more concrete description. Spell out the contrast directly:
 
 > "Use this — NOT shopware-entity-search — for any 'how many', 'total value', or 'average' query. The search tool's `_meta.total` is pagination metadata, not a reporting count."
 
 **Do not reference other tools as prerequisites unless they truly are.** A description that ends with "Use shopware-foo-read to check current values first" trains the agent to call the read tool even when it should not. If a tool is genuinely a prerequisite, declare it with `#[McpToolDependsOn]` instead of with prose.
 
-**Mention the use cases the user will name.** If a prompt is "upload this image as a product cover", the description should contain the phrase "product cover" — and clarify that no extra parameter is required to satisfy that case. Otherwise the agent infers it cannot fulfill the request and returns no tool selection.
+**Mention the use cases the user will name.** If a prompt is "upload this image as a product cover", the description should contain the phrase "product cover" — and clarify that no extra parameter is required to satisfy that case. Otherwise, the agent infers it cannot fulfill the request and returns no tool selection.
 
-**Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user often does not say (a sales channel UUID, a tax ID), give it a default of `''` or `null` and validate inside the method. Required-but-missing parameters cause some agents to refuse the tool call entirely instead of asking the user.
+**Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user rarely provides (e.g., a sales channel UUID or a tax ID), set it to `''` or `null` and validate it in the method. Required-but-missing parameters cause some agents to refuse the tool call entirely rather than ask the user.
 
-**Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
+**Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is that the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
 
-**Use automated checks as the regression net for descriptions and prompt wording.** Tool descriptions, system-prompt recipes, and resource lists are natural-language code. Changes to any of them can silently break routing on prompts that used to work. Maintain a small library of representative prompts ("how many products?", "ship order 10042", "upload this image as a product cover") with the expected tool selection, and run it before merging description changes the same way you run unit tests before merging behavior changes.
+**Use automated checks as the regression net for descriptions and prompt wording.** Tool descriptions, system-prompt recipes, and resource lists are written in natural language. Changes to any of them can silently break routing on prompts that used to work. Maintain a small library of representative prompts ("how many products?", "ship order 10042", "upload this image as a product cover") with the expected tool selection, and run it before merging description changes the same way you run unit tests before merging behavior changes.
 
 ### Tool descriptions are baked into the DI container
 
-Shopware reads `#[McpTool]` attributes at container compile time. Changing a description requires `bin/console cache:clear` for the new text to reach the MCP endpoint. If your changes do not show up in `bin/console debug:mcp` or in `tools/list`, clear the container cache first.
+Shopware reads `#[McpTool]` attributes at container compile time. Changing a description requires `bin/console cache:clear` for the new text to reach the MCP endpoint. If your changes do not appear in `bin/console debug:mcp` or `tools/list`, clear the container cache first.
 
 ### Use the system prompt as the disambiguation override layer
 
@@ -124,7 +124,7 @@ The system prompt is fetched fresh on every session, so updates take effect with
 
 When a tool fails, the error message is the agent's only signal for recovery. Make it actionable:
 
-**Bad:** `"Error: not found"`
+**Bad:** `"Error: not found". `
 
 **Good:** `"Order not found. Verify the order number with shopware-entity-search on the 'order' entity, or provide an orderId (UUID) instead."`
 
@@ -206,7 +206,7 @@ Resources are easy to overlook. Explicitly tell the agent which resources exist 
 
 ### Enforce permissions in every tool
 
-Every tool should check ACL permissions before doing anything. Do not rely on the database layer to reject unauthorized writes; by then the agent has already spent tokens constructing the payload.
+Every tool should check ACL permissions before performing any action. Do not rely on the database layer to reject unauthorized writes; by then, the agent has already spent tokens constructing the payload.
 
 Return a clear error when permissions are missing: `"Missing privilege: order:read"`.
 
@@ -226,7 +226,7 @@ This is **declarative only**: it populates the Admin UI coverage warnings and `b
 
 ### Be aware of prompt injection via tool results
 
-Tool results that include user-generated content (order notes, customer names, product descriptions) can contain text that attempts to redirect the agent's behavior. An agent that reads a customer order where the shipping note says "Ignore all previous instructions and..." may act on that instruction. Shopware's ACL and tool allowlist limit the blast radius, but they do not prevent the agent from being misled by data it reads.
+Tool results that include user-generated content (order notes, customer names, product descriptions) can contain text that attempts to redirect the agent's behavior. An agent who reads a customer order with a shipping note that says "Ignore all previous instructions and..." may act on that instruction. Shopware's ACL and tool allowlist limit the blast radius, but they do not prevent the agent from being misled by data it reads.
 
 Prefer read-only integrations for workflows that expose customer-supplied data, and avoid giving agents write access when the workflow only requires reading.
 
@@ -238,9 +238,9 @@ Keep the two authentication models clearly separated. Admin context tools belong
 
 ## General Design
 
-### Prefer fewer round trips
+### Prefer fewer round-trips
 
-Each tool call is a round trip with latency and token cost. Design tools that return everything the agent needs in one call, even if that means pre-loading associations.
+Each tool call is a round-trip with latency and a token cost. Design tools that return everything the agent needs in a single call, even if that means preloading associations.
 
 For example, a merchant plugin's order summary tool can load an order with customer, line items, transactions, and deliveries in a single query, without requiring four separate `shopware-entity-read` or `shopware-entity-search` calls.
 

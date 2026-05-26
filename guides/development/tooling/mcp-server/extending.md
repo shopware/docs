@@ -153,7 +153,7 @@ Identical to the plugin pattern. Register with `shopware.mcp.prompt` and load se
 
 ## Resources
 
-Resources expose read-only reference data via a URI without using up tool call budget. Return `{uri, mimeType, text}`.
+Resources expose read-only reference data via a URI without consuming the tool's call budget. Return `{uri, mimeType, text}`.
 
 <Tabs>
 
@@ -185,7 +185,7 @@ PHP class with `#[McpResource]`, tagged `shopware.mcp.resource`. Returns `array{
 
 ```php
 #[McpResource(uri: 'swag-my-plugin://config', name: 'swag-my-plugin-config',
-    description: 'Current plugin configuration.')]
+ description: 'Current plugin configuration.')]
 class MyPluginConfigResource
 {
     public function __invoke(): array
@@ -205,7 +205,7 @@ class MyPluginConfigResource
 
 <Tab title="Bundle">
 
-Identical to the plugin pattern. Register with `shopware.mcp.resource` and load services unconditionally in `build()` — the MCP feature flag gates the HTTP endpoint, not service registration.
+Identical to the plugin pattern. Register with `shopware.mcp.resource` and load services unconditionally in `build()` - the MCP feature flag gates the HTTP endpoint, not service registration.
 
 </Tab>
 
@@ -215,9 +215,9 @@ Identical to the plugin pattern. Register with `shopware.mcp.resource` and load 
 
 |                    | App                                                                     | Plugin                                               | Bundle         |
 |--------------------|-------------------------------------------------------------------------|------------------------------------------------------|----------------|
-| **Tool**           | `<mcp-tool>` in `mcp.xml` + webhook handler                             | `#[McpTool]` class + `shopware.mcp.tool` tag         | Same as plugin |
-| **Prompt**         | `<mcp-prompt>` in `mcp.xml` + webhook returns message array             | `#[McpPrompt]` class + `shopware.mcp.prompt` tag     | Same as plugin |
-| **Resource**       | `<mcp-resource>` in `mcp.xml` + webhook returns `{uri, mimeType, text}` | `#[McpResource]` class + `shopware.mcp.resource` tag | Same as plugin |
-| **Context access** | Via `source.shopId` in webhook body                                     | `McpContextProvider::getContext()`                   | Same as plugin |
-| **DAL access**     | No (remote process)                                                     | Full                                                 | Full           |
-| **Lifecycle**      | App install/update                                                      | Plugin install/activate                              | Always active  |
+| **Tool** | `<mcp-tool>` in `mcp.xml` + webhook handler                             | `#[McpTool]` class + `shopware.mcp.tool` tag         | Same as plugin |
+| **Prompt** | `<mcp-prompt>` in `mcp.xml` + webhook returns message array             | `#[McpPrompt]` class + `shopware.mcp.prompt` tag     | Same as plugin |
+| **Resource** | `<mcp-resource>` in `mcp.xml` + webhook returns `{uri, mimeType, text}` | `#[McpResource]` class + `shopware.mcp.resource` tag | Same as plugin |
+| **Context access** | Via `source.shopId` in webhook body                                     | `McpContextProvider::getContext()` | Same as plugin |
+| **DAL access** | No (remote process)                                                     | Full                                                 | Full           |
+| **Lifecycle** | App install/update                                                      | Plugin install/activate                              | Always active  |

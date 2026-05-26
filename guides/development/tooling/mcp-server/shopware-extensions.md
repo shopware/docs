@@ -11,7 +11,7 @@ Shopware ships several MCP-related projects beyond the core platform. This page 
 
 ## Shopware Copilot
 
-Shopware Copilot is the AI assistant embedded directly in the Shopware Administration. It is the primary production consumer of the MCP server; merchants can ask questions, get recommendations, and carry out store management tasks through a conversational interface without leaving the Admin.
+Shopware Copilot is the AI assistant embedded directly in the Shopware Administration. It is the primary consumer of the MCP server; merchants can ask questions, get recommendations, and perform store management tasks through a conversational interface without leaving Admin.
 
 Copilot connects to the shop's `/api/_mcp` endpoint under the hood. No extra configuration is needed to use Copilot: once the MCP server is enabled, Copilot automatically has access to the registered tools and can use them on behalf of the merchant.
 
@@ -27,15 +27,15 @@ A Shopware plugin that extends the MCP server with merchant-focused workflow too
 
 | Tool                         | What it does                                                                                               |
 |------------------------------|------------------------------------------------------------------------------------------------------------|
-| `merchant-order-summary`     | Formatted overview of an order including customer, line items, totals, and current state                   |
-| `merchant-customer-lookup`   | Find a customer by email address, customer number, or UUID                                                 |
-| `merchant-product-create`    | Create a product with natural parameters (gross price, tax rate, currency code) and resolve IDs internally |
-| `merchant-revenue-report`    | Revenue breakdown for a date range, grouped by day, week, or month                                         |
+| `merchant-order-summary` | Formatted overview of an order including customer, line items, totals, and current state                   |
+| `merchant-customer-lookup` | Find a customer by email address, customer number, or UUID                                                 |
+| `merchant-product-create` | Create a product with natural parameters (gross price, tax rate, currency code) and resolve IDs internally |
+| `merchant-revenue-report` | Revenue breakdown for a date range, grouped by day, week, or month                                         |
 | `merchant-bestseller-report` | Top products by quantity sold for a date range                                                             |
 | `merchant-storefront-search` | Customer-facing product search with resolved prices and customer-specific pricing                          |
-| `merchant-cart-manage`       | Create, inspect, and modify a cart                                                                         |
-| `merchant-cart-checkout`     | Complete a cart checkout                                                                                   |
-| `merchant-checkout-methods`  | List available payment and shipping methods for a sales channel                                            |
+| `merchant-cart-manage` | Create, inspect, and modify a cart                                                                         |
+| `merchant-cart-checkout` | Complete a cart checkout                                                                                   |
+| `merchant-checkout-methods` | List available payment and shipping methods for a sales channel                                            |
 
 All writing tools default to `dryRun=true`.
 
@@ -45,7 +45,7 @@ All writing tools default to `dryRun=true`.
 **Distribution:** Shopware CLI (`shopware extension install SwagMcpDevTools`)\
 **Tool prefix:** `swag-dev-tools-*`
 
-A Symfony bundle (not a plugin) that adds developer diagnostic tools to the MCP server. It targets environments where host-side tools cannot reach the Shopware instance directly, for example SaaS environments, staging servers, and on-premise deployments.
+A Symfony bundle (not a plugin) that adds developer diagnostic tools to the MCP server. It targets environments where host-side tools cannot reach the Shopware instance directly, such as SaaS environments, staging servers, and on-premises deployments.
 
 ### Diagnostic tools
 

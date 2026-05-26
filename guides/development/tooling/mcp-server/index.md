@@ -7,9 +7,9 @@ nav:
 
 # MCP Server
 
-The Model Context Protocol (MCP) is an open standard that lets AI clients (Claude Desktop, Cursor, and Claude Code) talk to external systems through a structured, tool-based interface. Instead of copy-pasting data into a chat window, an AI agent can call a tool like `shopware-entity-search` directly and receive structured results it can reason about.
+The Model Context Protocol (MCP) is an open standard that enables AI clients (Claude Desktop, Cursor, and Claude Code) to communicate with external systems via a structured, tool-based interface. Instead of copy-pasting data into a chat window, an AI agent can call a tool like `shopware-entity-search` directly and receive structured results that it can reason about.
 
-Shopware ships a native MCP server as part of the core platform. It exposes an endpoint at `/api/_mcp` that any MCP-compatible AI client can connect to using integration credentials.
+Shopware ships a native MCP server with the core platform. It exposes an endpoint at `/api/_mcp` that any MCP-compatible AI client can connect to using integration credentials.
 
 :::info Experimental
 The MCP server is behind the `MCP_SERVER` feature flag and is considered experimental until Shopware 6.8. APIs and tool names may change before the stable release.
@@ -33,19 +33,19 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 
 **Plugins and Symfony bundles** run in-process with full access to DAL repositories, the service container, and the Shopware plugin lifecycle. They register tools, prompts, and resources via Symfony service tags. Shopware ships [SwagMcpMerchantAssistant](./shopware-extensions.md) (merchant workflow tools) and [SwagMcpDevTools](./shopware-extensions.md) (developer diagnostics) as examples of what plugins and bundles can do, but extension developers are free to build any capability as a plugin.
 
-**Apps** register capabilities declaratively in `Resources/mcp.xml`. Shopware calls the app's endpoint over HTTP with an HMAC-signed request at runtime. Use an app when your logic runs on a remote service, needs cloud compatibility, or should deploy independently from Shopware.
+**Apps** register capabilities declaratively in `Resources/mcp.xml`. Shopware calls the app's endpoint over HTTP at runtime, using an HMAC-signed request. Use an app when your logic runs on a remote service, requires cloud compatibility, or should be deployed independently from Shopware.
 
 ### Plugin or App?
 
 **Use a plugin or Symfony bundle when:**
 
-- Your tool needs direct DAL / service container access
+- Your tool needs direct DAL/service container access
 - You want to ship via the Shopware Marketplace
 - Your capability is tightly coupled to Shopware's install / activate lifecycle
 
 **Use an app when:**
 
-- Your logic runs on a remote service (ERP, PIM, CRM, SaaS backend)
+- Your logic runs on a remote service (ERP, PIM, CRM, SaaS administration)
 - You need Cloud compatibility (apps work where plugins cannot)
 - Your capability should deploy and scale independently from Shopware
 
@@ -68,14 +68,14 @@ If a feature you need is missing from `symfony/mcp-bundle`, check its [repositor
 
 | Page                                            | What you will find                                                       |
 |-------------------------------------------------|--------------------------------------------------------------------------|
-| [MCP Concepts](./mcp-concepts.md)               | What tools, resources, and prompts are and when to use each              |
-| [Getting Started](./getting-started.md)         | Connect your first AI client to a Shopware shop                          |
-| [Tools Reference](./tools-reference.md)         | All built-in tools, resources, and prompts with parameters               |
-| [Configuration](./configuration.md)             | Feature flag, allowlist, session store, rate limiting, CLI               |
-| [Best Practices](./best-practices.md)           | Design principles for building MCP tools                                 |
-| [Extending the MCP Server](./extending.md)      | Tools, prompts, and resources for all three extension types side by side |
-| [Examples](./examples.md)                       | Step-by-step workflows for common tasks                                  |
-| [Troubleshooting](./troubleshooting.md)         | Fix common connection and permission issues                              |
+| [MCP Concepts](./mcp-concepts.md) | What tools, resources, and prompts are and when to use each              |
+| [Getting Started](./getting-started.md) | Connect your first AI client to a Shopware shop                          |
+| [Tools Reference](./tools-reference.md) | All built-in tools, resources, and prompts with parameters               |
+| [Configuration](./configuration.md) | Feature flag, allowlist, session store, rate limiting, CLI               |
+| [Best Practices](./best-practices.md) | Design principles for building MCP tools                                 |
+| [Extending the MCP Server](./extending.md) | Tools, prompts, and resources for all three extension types side by side |
+| [Examples](./examples.md) | Step-by-step workflows for common tasks                                  |
+| [Troubleshooting](./troubleshooting.md) | Fix common connection and permission issues                              |
 | [Shopware Extensions](./shopware-extensions.md) | Copilot, SwagMcpMerchantAssistant, SwagMcpDevTools, ai-coding-tools      |
 
 ## Extension guides

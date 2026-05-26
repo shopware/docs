@@ -17,10 +17,10 @@ A tool is a callable function that the AI agent invokes to take an action or ret
 
 ```mermaid
 sequenceDiagram
-    participant Client as AI Client
-    participant SW as Shopware
-    Client->>SW: call tool with arguments
-    SW-->>Client: structured result
+ participant Client as AI Client
+ participant SW as Shopware
+ Client->>SW: call tool with arguments
+ SW-->>Client: structured result
 ```
 
 **When to use a tool:**
@@ -53,14 +53,14 @@ shopware://state-machines    → states and valid transitions per machine
 
 ## Prompts
 
-A prompt is a named instruction template that sets up the AI's behavior for a specific domain. Prompts explain how to combine tools for real tasks, describe entity relationships, and provide error recovery guidance. They are user-triggered (the client requests a specific prompt) rather than agent-driven.
+A prompt is a named instruction template that defines the AI's behavior in a specific domain. Prompts explain how to combine tools for real-world tasks, describe entity relationships, and provide guidance on error recovery. They are user-triggered (the client requests a specific prompt) rather than agent-driven.
 
 ```mermaid
 sequenceDiagram
-    participant Client as AI Client
-    participant SW as Shopware
-    Client->>SW: request prompt by name
-    SW-->>Client: system instructions
+ participant Client as AI Client
+ participant SW as Shopware
+ Client->>SW: request prompt by name
+ SW-->>Client: system instructions
 ```
 
 **When to use a prompt:**
@@ -75,12 +75,12 @@ sequenceDiagram
 
 |                                    | Tool                             | Resource                              | Prompt                                |
 |------------------------------------|----------------------------------|---------------------------------------|---------------------------------------|
-| **Invocation**                     | Agent decides when to call       | Client or agent fetches               | User selects in client                |
-| **Parameters**                     | Yes, typed and named             | URI only                              | Optional arguments                    |
-| **Can write data**                 | Yes                              | No                                    | No                                    |
+| **Invocation** | Agent decides when to call       | Client or agent fetches               | User selects in client                |
+| **Parameters** | Yes, typed and named             | URI only                              | Optional arguments                    |
+| **Can write data** | Yes                              | No                                    | No                                    |
 | **Has description to guide agent** | Yes                              | No                                    | Yes                                   |
-| **Counts as a tool call**          | Yes                              | No                                    | No                                    |
-| **Best for**                       | Actions, queries with parameters | Reference lookups, pre-loaded context | System instructions, workflow recipes |
+| **Counts as a tool call** | Yes                              | No                                    | No                                    |
+| **Best for** | Actions, queries with parameters | Reference lookups, pre-loaded context | System instructions, workflow recipes |
 
 ## How they work together
 
@@ -90,13 +90,13 @@ A well-designed MCP server uses all three:
 2. **Prompts** explain how to combine tools for real tasks and remind the agent which resources exist.
 3. **Tools** do the actual work: search, read, write, transition state.
 
-For example, to ship an order the agent would:
+For example, to ship an order, the agent would:
 
 1. Read `shopware://state-machines` to confirm `ship` is a valid delivery action
 2. Call `shopware-order-state` with `deliveryAction: "ship"` and `dryRun: true` to preview
 3. Call again with `dryRun: false` to execute
 
-The resource saved one tool call; the tool did the work; the prompt explained the pattern.
+The resource saved one tool that did the work; the prompt explained the pattern.
 
 ## Next steps
 

@@ -53,9 +53,9 @@ Both clients use `"type": "streamable-http"`. Add the following config to the ap
 | Client                   | Config file                                                       |
 |--------------------------|-------------------------------------------------------------------|
 | Claude Desktop (macOS)   | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json`                     |
+| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json` |
 | Cursor (project)         | `.cursor/mcp.json` in your project root                           |
-| Cursor (user)            | `~/.cursor/mcp.json`                                              |
+| Cursor (user)            | `~/.cursor/mcp.json` |
 
 ```json
 {
@@ -66,9 +66,9 @@ Both clients use `"type": "streamable-http"`. Add the following config to the ap
             "headers": {
                 "sw-access-key": "SWIA...",
                 "sw-secret-access-key": "..."
-            }
-        }
-    }
+ }
+ }
+ }
 }
 ```
 
@@ -85,9 +85,9 @@ Claude Code uses `"type": "http"` — the MCP spec calls the transport `"streama
             "headers": {
                 "sw-access-key": "SWIA...",
                 "sw-secret-access-key": "..."
-            }
-        }
-    }
+ }
+ }
+ }
 }
 ```
 
@@ -95,12 +95,12 @@ Or register via CLI:
 
 ```bash
 claude mcp add --transport http shopware http://localhost:8000/api/_mcp \
-  --header "sw-access-key: SWIA..." \
+ --header "sw-access-key: SWIA..." \
   --header "sw-secret-access-key: ..."
 ```
 
 :::warning Keep credentials out of version control
-Never commit `.mcp.json`, `.cursor/mcp.json`, or other files containing integration credentials. These files are already listed in the `.gitignore` of the Shopware project template.
+Never commit `.mcp.json`, `.cursor/mcp.json`, or other files containing integration credentials. These files are already listed in the Shopware project template's `.gitignore`.
 :::
 
 ### Codex
@@ -135,13 +135,13 @@ Verify the server is working with the CLI:
 bin/console debug:mcp
 ```
 
-This lists all registered tools, prompts, and resources, the same view the AI client sees.
+This lists all registered tools, prompts, and resources, the same view that the AI client sees.
 
 ## Authentication methods
 
 ### Integration credentials (recommended)
 
-Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are valid as long as the integration exists with no token expiration or manual refresh.
+Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are valid as long as the integration exists, with no token expiration or manual refresh required.
 
 ### Bearer token
 

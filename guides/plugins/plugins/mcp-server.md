@@ -33,13 +33,13 @@ This convention applies uniformly to tools, prompts, and resources.
 custom/plugins/SwagMyPlugin/
 ├── composer.json
 └── src/
-    ├── SwagMyPlugin.php              # Plugin class
-    ├── Mcp/
-    │   └── Tool/
-    │       └── MyTool.php            # MCP tool class
-    └── Resources/
-        └── config/
-            └── services.xml          # Service registration
+ ├── SwagMyPlugin.php              # Plugin class
+ ├── Mcp/
+ │   └── Tool/
+ │       └── MyTool.php            # MCP tool class
+ └── Resources/
+ └── config/
+ └── services.xml          # Service registration
 ```
 
 ## Step 1: Create the tool class
@@ -100,7 +100,7 @@ class MyTool extends McpToolResponse
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
 - `requirePrivilege()` returns an error string on failure; check its return value with `if ($error = $this->requirePrivilege(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
 - Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use `McpContextProvider::getContext()` instead.
-- Return a `string` from `__invoke()`. The MCP SDK wraps the return value into the protocol response automatically.
+- Return a `string` from `__invoke()`. The MCP SDK automatically wraps the return value into the protocol response.
 - Extend `McpToolResponse` to use `$this->success()` and `$this->error()` helpers.
 
 ## Step 2: Declare dependencies and privileges
@@ -141,7 +141,7 @@ In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services
-               http://symfony.com/schema/dic/services/services-1.0.xsd">
+ http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
         <service id="Swag\MyPlugin\Mcp\Tool\MyTool">
@@ -153,7 +153,7 @@ In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`
 </container>
 ```
 
-Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler passes remap this tag to `mcp.tool` at compile time and register the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
+Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler passes remap this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
 
 ### Available tags
 
@@ -257,13 +257,13 @@ Names must only contain `a-zA-Z0-9_-`. Dots are not allowed:
 
 ### Attribute on the wrong level
 
-`#[McpTool]` must be on the class. Placing it on `__invoke()` silently drops the tool:
+`#[McpTool]` must be in the class. Placing it on `__invoke()` silently drops the tool:
 
 ```php
 // Wrong (tool is silently skipped)
 class MyTool extends McpToolResponse
 {
-    #[McpTool(name: 'swag-my-plugin-orders', description: '...')]
+ #[McpTool(name: 'swag-my-plugin-orders', description: '...')]
     public function __invoke(): string { ... }
 }
 
