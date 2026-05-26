@@ -14,10 +14,10 @@ Among other parameters, you can configure the following using environment variab
 - `PHP_MAX_UPLOAD_SIZE`: post_max_size
 - `PHP_MAX_EXECUTION_TIME`: max_execution_time
 
-For the exhaustive list please refer to this [page](https://github.com/shopware/docker/blob/main/fpm/rootfs/usr/local/etc/php/conf.d/docker.ini).
+For the exhaustive list, please refer to this [page](https://github.com/shopware/docker/blob/main/fpm/rootfs/usr/local/etc/php/conf.d/docker.ini).
 
-# Note:
+## Note
 
-We recommand to modify the following ones:
+We recommend modifying the following ones:
 
-- `PHP_SESSION_HANDLER`: this natively manage by our automation, no should update be required for this.
+- `PHP_SESSION_HANDLER`: This is natively managed by our automation, no update should be required for this.
