@@ -27,7 +27,7 @@ vendor/bin/shopware-deployment-helper run
 
 ## What does the Deployment Helper exactly do?
 
-The Deployment Helper checks for you, if Shopware is installed and if not, it will install it for you.
+The Deployment Helper checks for you if Shopware is installed, and if not, it will install it for you.
 It will also check if the database server is accessible, and if not, it will wait until it is.
 
 Besides installing or updating Shopware, it also simplifies common tasks which normally are executed during the deployment like:
@@ -116,19 +116,19 @@ deployment:
       - Name
 
     overrides:
-      # the key is the extension name (app or plugin)
+      # The key is the extension name (app or plugin)
       MyPlugin:
         # Same as exclude
         state: ignore
 
       AnotherPlugin:
-        # This plugin can be installed, but should be inactive
+        # This plugin can be installed but should be inactive
         state: inactive
 
       RemoveThisPlugin:
         # This plugin will be uninstalled if it is installed
         state: remove
-        # should the extension data of an uninstalled extension be kept
+        # Keep data of an uninstalled extension
         keepUserData: true
 
   one-time-tasks:
@@ -141,6 +141,12 @@ deployment:
 
   store:
     license-domain: 'example.com'
+
+  # Automatically runs `system:setup:staging --no-interaction --force` after deployment,
+  # before extensions are managed. Use this on staging environments, so the instance is
+  # switched into staging mode on every deployment. See "Staging Mode Integration" below.
+  staging:
+    enabled: false
 ```
 
 ## Local Configuration Overrides
@@ -186,7 +192,7 @@ deployment:
     exclude: !reset
       - OnlyThisPlugin
 
-  # Resets the one-time-tasks field: all inherited tasks are removed and only these remain
+  # Resets the one-time-tasks field: all inherited tasks are removed, and only these remain
   one-time-tasks: !reset
     - id: only-task
       script: only-script
@@ -219,6 +225,7 @@ Additionally, you can configure the Shopware installation using the following en
 - `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
 - `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
 - `SHOPWARE_USAGE_DATA_CONSENT` - Controls Shopware Usage Data sharing (`accepted` or `revoked`), overwrites Administration choice
+- `SHOPWARE_DEPLOYMENT_STAGING` - Set to `1` to enable staging mode (equivalent to `deployment.staging.enabled: true` in `.shopware-project.yml`)
 
 ## Extension Management and Store-installed Plugins
 
@@ -257,11 +264,31 @@ With this setting, the Deployment Helper will skip extension installation and up
 
 ## One Time Tasks
 
-One time tasks are tasks that should be executed only once during the deployment, like a migration script.
+One-time tasks are tasks that should be executed only once during the deployment, like a migration script.
 
 You can check with `./vendor/bin/shopware-deployment-helper one-time-task:list` which tasks were executed and when.
 To remove a task, use `./vendor/bin/shopware-deployment-helper one-time-task:unmark <id>`. This will cause the task to be executed again during the next update.
 To manually mark a task as run you can use `./vendor/bin/shopware-deployment-helper one-time-task:mark <id>`.
+
+## Staging Mode Integration
+
+In a staging environment, you usually want Shopware's staging mode to be applied again every time the database is refreshed from production, so emails stay disabled, app connections are reset, URLs are rewritten, and so on. The Deployment Helper can do this for you automatically.
+
+Enable it either in `.shopware-project.yml`:
+
+```yaml
+deployment:
+  staging:
+    enabled: true
+```
+
+…or via the environment variable `SHOPWARE_DEPLOYMENT_STAGING=1`. The latter is convenient when the same `.shopware-project.yml` is shared between production and staging — set the env variable only on the staging environment.
+
+When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` during deployment, before extensions are managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
+
+:::warning
+Do not enable this on your production environment. `system:setup:staging` is a destructive operation that, among other things, deletes apps with active external connections and disables email delivery.
+:::
 
 ## Fastly Integration
 
@@ -295,10 +322,10 @@ To find the name (for example `SwagPlatformDemoData`) of the extension you want 
 Shopware Plugin Service
 =======================
 
- ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ---------------------- 
-  Plugin                        Label                                      Composer name                                  Version   Upgrade version   Author              Installed   Active   Upgradeable   Required by composer  
  ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
-  SwagPlatformDemoData          Shopware 6 Demo data                       swag/demo-data                                 2.0.1                       shopware AG         Yes         No       No            No 
+  Plugin                        Label                                      Composer name                                  Version   Upgrade version   Author              Installed   Active   Upgradeable   Required by composer
+ ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
+  SwagPlatformDemoData          Shopware 6 Demo data                       swag/demo-data                                 2.0.1                       shopware AG         Yes         No       No            No
  ----------------------------- ------------------------------------------ ---------------------------------------------- --------- ----------------- ------------------- ----------- -------- ------------- ----------------------
 ```
 
@@ -315,7 +342,7 @@ deployment:
       TheExtensionWeWantToGetRidOf:
         # This plugin will be uninstalled if it is installed
         state: remove
-        # should the extension data of an uninstalled extension be kept
+        # Keep data of an uninstalled extension
         keepUserData: true
 
 ```
