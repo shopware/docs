@@ -627,6 +627,7 @@ MyTestClass
 MyTestInterface
 NATS
 NFS
+NGWAF
 NPM
 NUR
 NVDA
@@ -1097,6 +1098,7 @@ VueJs
 VueX
 Vuei
 Vuex
+WAF
 WASM
 WCAG
 WMA
@@ -1431,6 +1433,7 @@ fetchable
 fieldset
 fileSize
 fileinfo
+filesize
 filesystem
 filesystems
 firstname
@@ -1695,6 +1698,7 @@ onboarded
 onboarding
 onlyAvailable
 onlyOnFeature
+ons
 onwards
 oop
 opcache

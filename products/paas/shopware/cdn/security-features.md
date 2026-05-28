@@ -1,0 +1,30 @@
+---
+nav:
+  title: Security Features
+  position: 42
+---
+
+# Web Application Firewall
+
+This section provides comprehensive information about the Web Application Firewall solutions for Shopware PaaS Native.
+
+## Overview
+
+Shopware PaaS Native includes a Web Application Firewall (WAF) by default, powered by Fastly [NGWAF](https://docs.fastly.com/products/fastly-next-gen-waf). The enabled default feature set is the NGWAF `Core` feature set.
+
+This provides protection by default against OWASP Top 10 categories.
+
+Customers do not need to take any action; this is automatically enabled and configured for every application.
+
+We have the possibility of adding more add-ons from the different feature sets provided by Fastly on our roadmap (with no timeline at this stage).
+
+<!-- To be released soon
+# DDOS protection
+
+This section provides comprehensive information about the DDOS protection solution for Shopware PaaS Native.
+
+## Overview
+
+This feature is a premium add-ons. It is powered by [Fastly DDOS Protection](https://www.fastly.com/products/ddos-protection).
+
+Reach out to us to know more about this. -->
