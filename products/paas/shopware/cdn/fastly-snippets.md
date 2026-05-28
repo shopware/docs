@@ -11,7 +11,7 @@ This section provides comprehensive information about Fastly snippets configurat
 ## Storefront service
 
 To deploy Fastly snippets for the `storefront` service, you need to install the following recipe: `shopware/fastly-meta`.
-For more information about this recipe, please have a look [here](https://github.com/shopware/fastly-meta).
+For more information about this recipe, please have a look at the [shopware/fastly-meta recipe documentation](https://github.com/shopware/fastly-meta).
 
 The `FASTLY_API_KEY` and `FASTLY_SERVICE_ID` are automatically provided to the Shopware instance.
 
