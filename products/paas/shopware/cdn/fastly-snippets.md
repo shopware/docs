@@ -4,7 +4,7 @@ nav:
   position: 43
 ---
 
-# Overview
+# Fastly Snippets
 
 This section provides comprehensive information about Fastly snippets configuration.
 
