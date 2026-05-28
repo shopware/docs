@@ -14,9 +14,9 @@ Shopware PaaS Native includes a Web Application Firewall (WAF) by default, power
 
 This provides protection by default against OWASP Top 10 categories.
 
-Nothing needs to be done on the customer, this is automatically enabled and configured for every application.
+Customers do not need to take any action; this is automatically enabled and configured for every application.
 
-We have on our roadmap(no timeline at this stage), possibility to add more addons from the different feature set provided by Fastly.
+We have the possibility of adding more add-ons from the different feature sets provided by Fastly on our roadmap (with no timeline at this stage).
 
 <!-- To be released soon
 # DDOS protection
