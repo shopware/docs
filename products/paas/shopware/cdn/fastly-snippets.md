@@ -17,6 +17,6 @@ The `FASTLY_API_KEY` and `FASTLY_SERVICE_ID` are automatically provided to the S
 
 The snippets are automatically installed and configured during the application deployment, and no further action is needed.
 
-## Limitation
+## Limitations
 
-For now only the snippets for the `storefront` service can be configured. We are working on providing a unified experience in regard to snippet management for both services (`storefront` and `cdn`)
+ For now only the snippets for the `storefront` service can be configured. We are working on providing a unified experience in regard to snippet management for both services (`storefront` and `cdn`).
