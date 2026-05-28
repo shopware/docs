@@ -12,7 +12,7 @@ This section provides comprehensive information about the Web Application Firewa
 
 Shopware PaaS Native includes a Web Application Firewall (WAF) by default, powered by Fastly [NGWAF](https://docs.fastly.com/products/fastly-next-gen-waf). The enabled default feature set is the NGWAF `Core` feature set.
 
-This provide by default a protection against OWASP top 10 categories.
+This provides protection by default against OWASP Top 10 categories.
 
 Nothing needs to be done on the customer, this is automatically enabled and configured for every application.
 
