@@ -33,8 +33,8 @@ Fastly is automatically configured and enabled by default in Shopware PaaS Nativ
 
 We configure two different Fastly services:
 
-- storefront: Service that proxy the storefront and admin Shopware instances.
-- cdn: Service that proxy all the CDN assets hosted on S3 (public bucket).
+- `storefront`: Service that proxies the storefront and admin Shopware instances.
+- `cdn`: Service that proxies all the CDN assets hosted on S3 (public bucket).
 
 ## Custom Domains
 
