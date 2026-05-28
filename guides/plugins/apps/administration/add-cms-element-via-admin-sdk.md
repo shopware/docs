@@ -24,28 +24,34 @@ This example uses TypeScript, which is recommended but not required to develop S
 
 ## Creating your custom element
 
-Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element.md), this guide describes how to create a new custom element via an app. Creating a new element requires the Meteor Admin SDK.
+Similar to [creating a new custom element via plugin](../../plugins/content/cms/add-cms-element.md), this guide describes how to create a new custom element via an app.
+Creating a new element requires the Meteor Admin SDK.
 
-In this example, you will build a scenario where a shop manager can configure a link to display a Dailymotion video.
+::: info
+Apps can also add CMS blocks declaratively via `cms.xml` without the Meteor Admin SDK.
+That approach is simpler but limited to reusing existing Shopware elements inside the block's slots.
+See [Add custom CMS blocks](../content/cms/add-custom-cms-blocks) for details.
+:::
+
+The example demonstrates a scenario where a shop manager can configure a video ID to display a Dailymotion video.
 
 ### Target structure
 
-You can choose your preferred approach when creating apps, as everything is loaded via iFrame. However, Shopware
-recommends using a full Vue.js approach.
+Any file structure works for apps, as everything is loaded via iFrame. Shopware recommends using Vue 3 single-file components (SFCs).
 
-When the extension is complete, the file structure will look like this:
+When the app is complete, the file structure will look like this:
 
 ```bash
-// <plugin root>/src/Resources/app/administration/src
+// SwagBasicAppCmsElementExample/src/Resources/app/administration/src
 ├── base
 │   └── mainCommands.ts
 ├── main.ts
 ├── viewRenderer.ts
 └── views
     └── swag-dailymotion
-        ├── swag-dailymotion-config.ts
-        ├── swag-dailymotion-element.ts
-        └── swag-dailymotion-preview.ts
+        ├── swag-dailymotion-config.vue
+        ├── swag-dailymotion-element.vue
+        └── swag-dailymotion-preview.vue
 ```
 
 ## Initial loading of components
@@ -53,26 +59,6 @@ When the extension is complete, the file structure will look like this:
 The entry point is the `main.ts` file:
 
 ```javascript
-// Prior to 6.7
-import 'regenerator-runtime/runtime';
-import { location } from '@shopware-ag/meteor-admin-sdk';
-
-// Only execute extensionSDK commands when
-// it is inside an iFrame
-if (location.isIframe()) {
-    if (location.is(location.MAIN_HIDDEN)) {
-        // Execute the base commands
-        import('./base/mainCommands');
-    } else {
-        // Render different views
-        import('./viewRenderer');
-    }
-}
-```
-
-```javascript
-// 6.7 and above (inside meteor-app folder)
-import 'regenerator-runtime/runtime';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
 if (location.is(location.MAIN_HIDDEN)) {
@@ -84,89 +70,98 @@ if (location.is(location.MAIN_HIDDEN)) {
 }
 ```
 
-This is the main file, which is executed first and functions as the entry point.
+Use `if(location.is(location.MAIN_HIDDEN))` to **load the main commands** defined in `mainCommands.ts`.
+This branch loads logic only — no templates are rendered into the Administration here.
 
-Use `if(location.is(location.MAIN_HIDDEN))` to **load the main commands**, which are defined in the `mainCommands.ts`
-file. This will only be used to load logic, but not templates into the Administration.
-
-Lastly, the `else` case will be responsible for specific loading of views via `viewRenderer.ts`. This is where the view
-templates will be loaded.
+The `else` case loads the view templates via `viewRenderer.ts`.
 
 ### Loading all required templates
 
-Next, create the `viewRenderer.ts` file, which loads the three required files for a CMS element:
+Next, create the `viewRenderer.ts` file, which loads the three required Vue SFCs for a CMS element:
 
-* `swag-dailymotion-config.ts`, which will handle the content of the CMS element configuration
-* `swag-dailymotion-element.ts`, which represents the actual target element in the CMS
-* `swag-dailymotion-preview.ts`, which is responsible for the preview, when selecting the CMS element in its selection
+* `swag-dailymotion-config.vue`, which will handle the content of the CMS element configuration
+* `swag-dailymotion-element.vue`, which represents the actual target element in the CMS
+* `swag-dailymotion-preview.vue`, which is responsible for the preview when selecting the CMS element in its selection
   screen
 
-Observe that every file is named according to the component and prefixed with `swag-dailymotion`, (vendor prefix) to
-ensure no other developer accidentally chooses the same name.
+Each file is named after its component and prefixed with `swag-dailymotion` (vendor prefix) to avoid naming conflicts.
 
 The following example shows how component loading via `viewRenderer.ts` is implemented:
 
 ```javascript
-import Vue from 'vue';
+import { createApp, defineAsyncComponent, h } from 'vue';
 import { location } from '@shopware-ag/meteor-admin-sdk';
 
 // watch for height changes
 location.startAutoResizer();
 
-// start app views
-const app = new Vue({
-    el: '#app',
-    data() {
-        return { location };
-    },
-    components: {
-        'SwagDailymotionElement':
-            () => import('./views/swag-dailymotion/swag-dailymotion-element'),
-        'SwagDailymotionConfig':
-            () => import('./views/swag-dailymotion/swag-dailymotion-config'),
-        'SwagDailymotionPreview':
-            () => import('./views/swag-dailymotion/swag-dailymotion-preview'),
-    },
-    template: `
-        <SwagDailymotionElement
-            v-if="location.is('swag-dailymotion-element')"
-        ></SwagDailymotionElement>
-        <SwagDailymotionConfig
-            v-else-if="location.is('swag-dailymotion-config')"
-        ></SwagDailymotionConfig>
-        <SwagDailymotionPreview
-            v-else-if="location.is('swag-dailymotion-preview')"
-        ></SwagDailymotionPreview>
-    `,
+const locations = {
+    'swag-dailymotion-element': defineAsyncComponent(
+        () => import('./views/swag-dailymotion/swag-dailymotion-element.vue'),
+    ),
+    'swag-dailymotion-config': defineAsyncComponent(
+        () => import('./views/swag-dailymotion/swag-dailymotion-config.vue'),
+    ),
+    'swag-dailymotion-preview': defineAsyncComponent(
+        () => import('./views/swag-dailymotion/swag-dailymotion-preview.vue'),
+    ),
+};
+
+const app = createApp({
+    render: () => h(locations[location.get()]),
 });
+
+app.mount('#app');
 ```
 
-Really straightforward, isn't it? As you probably know from Vue.js's Options API, you just need to load, register and
-use the Vue.js component to make them work.
+The `locations` map connects each Shopware-provided location ID to the corresponding Vue component. `location.get()`
+returns the current location ID so the correct component is rendered inside the iFrame.
 
-What's especially interesting here is the use of the `location` object. This is a main concept of the Meteor Admin SDK,
-where Shopware provides dedicated `locationIds` to offer you places to inject your templates into. For further
-information on that, it is recommended to take a look at the documentation of the
-[Meteor Admin SDK](meteor-admin-sdk.md) to learn more about its concepts.
+Location IDs are a core concept of the Meteor Admin SDK — Shopware provides dedicated `locationIds` as injection points
+for your templates. For CMS elements, these IDs are **auto-generated** from the element name plus the suffixes
+`-element`, `-config`, and `-preview`. They become available once the element is registered (see the next section).
 
-In your case, we will get your own **auto-generated** `locationIds`, depending on the name of your CMS element and
-suffixes, such as `-element`, `-config`, and `-preview`.
+> **Learn more**: See the [Meteor Admin SDK locations reference](/resources/admin-extension-sdk/concepts/locations) for a full overview of the concept.
 
-Those will be available after **registering the component**, which we will do in the following chapter.
+## Registering the block and element
 
-## Registering a new element
+The Shopware CMS distinguishes between two concepts:
 
-For this step, go to `mainCommands.ts`, as registering CMS elements should be done in a global scope.
+* A **block** is the selectable container that appears in the block picker (organised by categories such as *Text*, *Image*, *Video*, etc.).
+  Users add blocks to a section, and each block contains one or more slots.
+* An **element** is the content type that lives inside a slot (e.g., a video player, an image, a text).
+  Elements can also be swapped inside an existing slot via the element-replacement modal.
+
+The registration method you call determines where your addition is reachable:
+
+| What you call                 | Where it appears                                                                                                                            |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `registerCmsElement` only     | Element-replacement modal only (the <SwagIcon icon="repeat" style="display:inline-block;vertical-align:middle" /> icon on an existing slot) |
+| `registerCmsBlock` only       | Block picker under the chosen category — but the slot renders nothing until an element is also registered                                   |
+| Both                          | Block picker **and** element-replacement modal                                                                                              |
+
+To make your CMS addition fully discoverable and functional, call both.
+
+Go to `mainCommands.ts` and add both registrations:
 
 ```javascript
 import { cms } from '@shopware-ag/meteor-admin-sdk';
 
 const CMS_ELEMENT_NAME = 'swag-dailymotion';
-const CONSTANTS = {
+export const CONSTANTS = {
     CMS_ELEMENT_NAME,
     PUBLISHING_KEY: `${CMS_ELEMENT_NAME}__config-element`,
 };
 
+// Makes the block appear in the block picker under the "Video" category
+void cms.registerCmsBlock({
+    name: CONSTANTS.CMS_ELEMENT_NAME,
+    label: 'Dailymotion video',
+    category: 'video',
+    slots: [{ element: CONSTANTS.CMS_ELEMENT_NAME }],
+});
+
+// Registers the element that fills the block's slot
 void cms.registerCmsElement({
     name: CONSTANTS.CMS_ELEMENT_NAME,
     label: 'Dailymotion video',
@@ -177,194 +172,217 @@ void cms.registerCmsElement({
         },
     },
 });
-
-export default CONSTANTS;
 ```
 
-At first, you import the Meteor Admin SDK's CMS object used for `cms.registerCmsElement` to register a new element.
+The `category` field of `registerCmsBlock` controls which group the block appears in:
+`'video'`, `'text'`, `'image'`, `'text-image'`, `'commerce'`, `'sidebar'`, `'form'`, or a custom string (which creates a new category group).
+The `slots` array lists the element types each slot of the block accepts.
 
-That is all about what is required to register your CMS element. As a best practice, it is recommended to create a
-**constant** for the CMS element name and the publishing key. This makes it easier to maintain and keep track of
-changes. The publishing key can be predefined since the name must be a combination of CMS element name and the
-`__config-element` suffix as shown above.
+As a best practice, use a **constant** for the CMS element name and the publishing key.
+The publishing key must be the element name followed by the `__config-element` suffix.
 
 ## Templates and communication with the Administration
 
-The remaining files are the components inside the `views` folder. As with typical CMS element loading, create a folder
-with the full component name containing three files as shown below:
+The remaining files are the Vue single-file components inside the `views` folder. Create a folder with the full
+component name containing three files as shown below:
 
 ```bash
-// <plugin root>/src/Resources/app/administration/src
+// SwagBasicAppCmsElementExample/src/Resources/app/administration/src
 views
 └── swag-dailymotion
-    ├── swag-dailymotion-config.ts
-    ├── swag-dailymotion-element.ts
-    └── swag-dailymotion-preview.ts
+    ├── swag-dailymotion-config.vue
+    ├── swag-dailymotion-element.vue
+    └── swag-dailymotion-preview.vue
 ```
 
-You can vary the structure of `swag-dailymotion`'s contents and create folders for each of the three. However, for
-simplicity, use single file components.
+### Element ID
+
+When Shopware renders any of the three CMS iFrames, it automatically appends the ID of the current CMS element instance as an `elementId` query parameter to the iFrame URL:
+
+```http request
+https://your-app-server/...?elementId=<uuid>
+```
+
+Use this ID together with the publishing key to address the correct element's data in Shopware:
+
+```javascript
+const params = new URLSearchParams(window.location.search);
+const elementId = params.get('elementId');
+const dataId = `${CONSTANTS.PUBLISHING_KEY}__${elementId}`;
+```
 
 ### The config file
 
-The following section describes each file, starting with `swag-dailymotion-config.ts`:
+The following section describes each file, starting with `swag-dailymotion-config.vue`:
 
-```javascript
-import Vue from 'vue'
-import { data } from "@shopware-ag/meteor-admin-sdk";
-import CONSTANTS from "../../base/mainCommands";
+```html
+<template>
+  <div>
+    <h2>Config!</h2>
+    Video-Code: <input v-model="dailyUrl" type="text"><br>
+  </div>
+</template>
 
-export default Vue.extend({
-    template: `
-        <div>
-          <h2>
-            Config!
-          </h2>
-          Video-Code: <input v-model="dailyUrl" type="text"/><br/>
-        </div>
-    `,
+<script setup lang="ts">
+import { onBeforeMount, ref, computed } from 'vue';
+import { data } from '@shopware-ag/meteor-admin-sdk';
+import { CONSTANTS } from '../../base/mainCommands';
 
-    data(): Object {
-        return {
-            element: null
-        }
+const dailyUrlValue = ref('');
+const dailyUrlSource = ref('static');
+
+const selectors = ['config.dailyUrl.value', 'config.dailyUrl.source'];
+
+const dataId = computed(() => {
+    const params = new URLSearchParams(window.location.search);
+    const elementId = params.get('elementId');
+
+    return elementId
+        ? `${CONSTANTS.PUBLISHING_KEY}__${elementId}`
+        : CONSTANTS.PUBLISHING_KEY;
+});
+
+const dailyUrl = computed({
+    get(): string {
+        return dailyUrlValue.value || '';
     },
 
-    computed: {
-        dailyUrl: {
-            get(): string {
-                return this.element?.config?.dailyUrl?.value || '';
+    set(value: string): void {
+        dailyUrlValue.value = value;
+
+        data.update({
+            id: dataId.value,
+            data: {
+                config: {
+                    dailyUrl: {
+                        value: dailyUrlValue.value,
+                        source: dailyUrlSource.value,
+                    },
+                },
             },
-
-            set(value: string): void {
-                this.element.config.dailyUrl.value = value;
-
-                data.update({
-                    id: CONSTANTS.PUBLISHING_KEY,
-                    data: this.element,
-                });
-            }
-        }
+        });
     },
+});
 
-    created() {
-        this.createdComponent();
-    },
+onBeforeMount(async () => {
+    const value = await data.get({
+        id: dataId.value,
+        selectors,
+    }) as { 'config.dailyUrl.value': string; 'config.dailyUrl.source': string };
 
-    methods: {
-        async createdComponent() {
-            this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-        }
+    if (value) {
+        dailyUrlValue.value = value['config.dailyUrl.value'];
+        dailyUrlSource.value = value['config.dailyUrl.source'];
     }
 });
+</script>
 ```
 
-This file is the config component used to define every type of configuration for the CMS element. Most of the code will
-be common for experienced Shopware 6 developers, so here are some important highlights:
+**Key points:**
 
-* Import `data` from the Meteor Admin SDK, which is required for data handling between this app and Shopware
-* The `element` variable contains the typical CMS element object and is also used to manage the element configuration
-  you want to edit
-* The `publishingKey` is used to tell the Meteor Admin SDK in Shopware what piece of information you want to fetch. In
-  this case, you need the `element` data
+* `data` is imported from the Meteor Admin SDK and handles all data exchange between the app and Shopware
+* `dataId` is derived from the `elementId` query parameter appended by Shopware to the iFrame URL, combined with `CONSTANTS.PUBLISHING_KEY`
+* `data.get()` accepts an optional `selectors` array so only the relevant fields are fetched; the result is a flat object keyed by selector path (e.g. `value['config.dailyUrl.value']`)
+* `data.update()` sends only the changed config structure back to Shopware — not the entire element
+* The current config is fetched via `data.get()` in `onBeforeMount` and linked to the computed property `dailyUrl`; the setter calls `data.update({ id, data })` to persist changes
 
-So, now you need a simple input field to get a `dailyUrl` for the Dailymotion video to be displayed. For that, first
-fetch the element via `data.get()` as seen in `createdComponent` and then link it to the computed property `dailyUrl`
-with getters and setters to mutate it. Using `data.update({ id, data })` you provide the publishing key `id` as a target
-and `data` for the data you want to save in Shopware.
-
-With these small additions to typical CMS element behavior, you have already done with the config modal.
-
-![Dailymotion config modal](../../../../assets/add-cms-element-via-admin-sdk-config.png)
+![The image shows the configuration modal for a dailymotion video CMS element. The modal contains one text input for the Dailymotion video ID, a caption for the input and a title.](../../../../assets/add-cms-element-via-admin-sdk-config.png "Dailymotion config modal")
 
 ### The element file
 
-Now let's have a look at the result of `swag-dailymotion-element.ts`:
+`swag-dailymotion-element.vue` contains the main rendering logic for the CMS element in the Administration:
 
-```javascript
-import Vue from 'vue'
-import { data } from "@shopware-ag/meteor-admin-sdk";
-import CONSTANTS from "../../base/mainCommands";
+```html
+<template>
+  <div class="sw-cms-el-dailymotion">
+    <div class="sw-cms-el-dailymotion-iframe-wrapper">
+      <iframe
+        frameborder="0"
+        type="text/html"
+        width="100%"
+        height="100%"
+        :src="dailyUrl"
+      />
+    </div>
+  </div>
+</template>
 
-export default Vue.extend({
-    template: `
-        <div>
-            <h2>
-              Element!
-            </h2>
-            <div class="sw-cms-el-dailymotion">
-                <div class="sw-cms-el-dailymotion-iframe-wrapper">
-                    <iframe
-                        frameborder="0"
-                        type="text/html"
-                        width="100%"
-                        height="100%"
-                        :src="dailyUrl">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    `,
+<script setup lang="ts">
+import { ref, computed, onBeforeMount } from 'vue';
+import { data } from '@shopware-ag/meteor-admin-sdk';
+import { CONSTANTS } from '../../base/mainCommands';
 
-    data(): { element: object|null } {
-        return {
-            element: null
-        }
-    },
+const dailyUrlValue = ref('');
+const dailyUrlSource = ref('static');
 
-    computed: {
-        dailyUrl(): string {
-            return `https://www.dailymotion.com/embed/video/${this.element?.config?.dailyUrl?.value || ''}`;
-        }
-    },
+const selectors = ['config.dailyUrl.value', 'config.dailyUrl.source'];
 
-    created() {
-        this.createdComponent();
-    },
-
-    methods: {
-        async createdComponent() {
-            this.element = await data.get({ id: CONSTANTS.PUBLISHING_KEY });
-            data.subscribe(CONSTANTS.PUBLISHING_KEY, this.elementSubscriber);
-        },
-
-        elementSubscriber(response: { data: unknown, id: string }): void {
-            this.element = response.data;
-        }
-    }
+const dailyUrl = computed(() => {
+    const code = dailyUrlValue.value || 'x8hc5d6';
+    return `https://www.dailymotion.com/embed/video/${code}`;
 });
+
+const dataId = computed(() => {
+    const params = new URLSearchParams(window.location.search);
+    const elementId = params.get('elementId');
+
+    return elementId
+        ? `${CONSTANTS.PUBLISHING_KEY}__${elementId}`
+        : CONSTANTS.PUBLISHING_KEY;
+});
+
+onBeforeMount(async () => {
+    const value = await data.get({
+        id: dataId.value,
+        selectors,
+    }) as { 'config.dailyUrl.value': string; 'config.dailyUrl.source': string };
+
+    if (value) {
+        dailyUrlValue.value = value['config.dailyUrl.value'];
+        dailyUrlSource.value = value['config.dailyUrl.source'];
+    }
+
+    data.subscribe(
+        dataId.value,
+        (response) => {
+            const responseData = response.data as {
+                'config.dailyUrl.value': string;
+                'config.dailyUrl.source': string;
+            };
+            dailyUrlValue.value = responseData['config.dailyUrl.value'];
+            dailyUrlSource.value = responseData['config.dailyUrl.source'];
+        },
+        { selectors },
+    );
+});
+</script>
+
+<style scoped>
+.sw-cms-el-dailymotion-iframe-wrapper {
+    height: 500px;
+}
+</style>
 ```
 
-Here, you have the main rendering logic for the Administration's CMS element. This file shows what your element will
-look like when it's done. So besides a template and the computed `dailyUrl`, used to correctly load the Dailymotion
-video player, the only interesting part is the `createdComponent` method.
+**Key points:**
 
-It initially fetches the `element` data, as you've already seen it in the config file. After that, using
-`data.subscribe(id, method)` it subscribes to the publishing key, which will update the element data automatically if
-something changes. It doesn't matter if the changes originate from our config modal outside Shopware or from somewhere
-else inside Shopware.
+* `data.get()` fetches the initial element config using the element-specific `dataId`
+* `data.subscribe()` keeps the element in sync whenever the config changes — it receives the same flat selector-keyed object as `data.get()` and is called regardless of where the change originates
 
-![Dailymotion CMS element](../../../../assets/add-cms-element-via-admin-sdk-element.png)
+![The image shows the Shopware administration's CMS layout editor. The current layout only has one block with a Dailymotion CMS element. The block shows the paused preview of the configured video.](../../../../assets/add-cms-element-via-admin-sdk-element.png "Dailymotion CMS element")
 
 ### The preview file
 
-Lastly, have a look at `swag-dailymotion-preview.ts`. In most cases, this file contains minimal logic, as it is only
-used for the preview when selecting a CMS element for your block. It is common to show an example preview, a skeleton
-of the result, or just the Dailymotion logo. The following code is sufficient for this example:
+`swag-dailymotion-preview.vue` is the thumbnail shown in the block picker when a user browses the *Video* category.
+In most cases it contains minimal logic — a static image, a skeleton, or a logo is sufficient:
 
-```javascript
-import Vue from 'vue'
-
-export default Vue.extend({
-    template: `
-        <h2>
-          Preview!
-        </h2>
-    `,
-});
+```html
+<template>
+  <h2>Preview!</h2>
+</template>
 ```
 
-![Dailymotion element preview](../../../../assets/add-cms-element-via-admin-sdk-preview.png)
+![The image shows the "Replace element" modal to replace the current block with another element. Depicted is the Dailymotion element which has the text "Preview!" as the element preview as configured in this example.](../../../../assets/add-cms-element-via-admin-sdk-preview.png "Dailymotion element preview")
 
 ## Storefront implementation
 
@@ -372,8 +390,9 @@ After completing the admin implementation, you also need a Storefront representa
 
 `<app-name>/Resources/views/storefront/element/<elementname>.html.twig`
 
-For more details, see the guide on [CMS element development for plugins](../../plugins/content/cms/add-cms-element.md). Below is an example of how your Storefront template
-(`swag-dailymotion/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look:
+For more details, see the guide on [CMS element development for plugins](../../plugins/content/cms/add-cms-element#storefront-implementation).
+Below is an example of how your storefront template
+(`SwagBasicAppCmsElementExample/Resources/views/storefront/element/cms-element-swag-dailymotion.html.twig`) could look:
 
 ```twig
 {% block element_swag_dailymotion %}
@@ -382,7 +401,7 @@ For more details, see the guide on [CMS element development for plugins](../../p
     <div class="cms-el-swag-dailymotion">
         <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
             <iframe style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden"
-                    src="https://www.dailymotion.com/embed/video//{{ element.config.dailyUrl.value }}"
+                    src="https://www.dailymotion.com/embed/video/{{ element.config.dailyUrl.value }}"
                     frameborder="0"
                     type="text/html"
                     width="100%"

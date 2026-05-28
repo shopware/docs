@@ -84,7 +84,7 @@ Please only add variable overrides in this file. You should not write CSS code l
 :::
 
 ::: info
-When running `composer run watch:storefront` in platform only setups or `./bin/watch-storefront.sh` in the production template, SCSS variables will be injected dynamically by webpack. When writing selectors and properties in the `overrides.scss` the code can appear multiple times in your built CSS.
+When running `composer run watch:storefront` in platform only setups or `shopware-cli project storefront-watch` in the production template, SCSS variables will be injected dynamically by webpack. When writing selectors and properties in the `overrides.scss` the code can appear multiple times in your built CSS.
 :::
 
 ## Next steps

@@ -69,7 +69,7 @@ Now you want to test if your custom styles actually apply to the Storefront. For
 <Tab title="Template">
 
 ```bash
-./bin/build-storefront.sh
+shopware-cli project storefront-build
 ```
 
 </Tab>
@@ -88,7 +88,7 @@ If you want to see all style changes made by you live, you can also use our Stor
 <Tab title="Template">
 
 ```bash
-./bin/watch-storefront.sh
+shopware-cli project storefront-watch
 ```
 
 </Tab>

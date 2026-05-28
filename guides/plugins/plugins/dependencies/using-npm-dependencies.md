@@ -123,7 +123,7 @@ PluginManager.register(
 Build the Storefront using:
 
 ```bash
-./bin/build-storefront.sh
+shopware-cli project storefront-build
 ```
 
 ## Next steps

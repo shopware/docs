@@ -144,7 +144,7 @@ Don't forget to rebuild the Administration after applying changes to your `main.
 <Tab title="Template">
 
 ```bash
-./bin/build-administration.sh
+shopware-cli project admin-build
 ```
 
 </Tab>

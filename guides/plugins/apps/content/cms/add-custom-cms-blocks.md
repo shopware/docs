@@ -202,7 +202,7 @@ The DOM structure of the block in the CMS editor will look like this:
 
 Each slot has a **unique** `name` and a `type` that refers to which element it shows.
 All available elements can be found in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
-Currently, app CMS blocks can use the elements shipped by Shopware.
+Currently, app CMS blocks defined via `cms.xml` can only use the elements shipped by Shopware. If you need a fully custom element with its own configuration UI and rendering logic, use the [Meteor Admin SDK approach](../../administration/add-cms-element-via-admin-sdk) instead.
 
 The `config` of a slot is highly dynamic, as it depends heavily on the `type` you choose.
 A good starting point for finding out which elements require which configuration is each element's `index.js` file in the corresponding directory in [src/Administration/Resources/app/administration/src/module/sw-cms/elements](https://github.com/shopware/shopware/tree/trunk/src/Administration/Resources/app/administration/src/module/sw-cms/elements).
