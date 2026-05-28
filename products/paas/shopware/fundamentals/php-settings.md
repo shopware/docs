@@ -18,6 +18,6 @@ For the exhaustive list, please refer to this [page](https://github.com/shopware
 
 ## Note
 
-We recommend modifying the following ones:
+The following variable is natively managed by our automation and should not be updated:
 
-- `PHP_SESSION_HANDLER`: This is natively managed by our automation, no update should be required for this.
+- `PHP_SESSION_HANDLER`
