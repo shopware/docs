@@ -124,7 +124,7 @@ The system prompt is fetched fresh on every session, so updates take effect with
 
 When a tool fails, the error message is the agent's only signal for recovery. Make it actionable:
 
-**Bad:** `"Error: not found". `
+**Bad:** `"Error: not found"`
 
 **Good:** `"Order not found. Verify the order number with shopware-entity-search on the 'order' entity, or provide an orderId (UUID) instead."`
 
