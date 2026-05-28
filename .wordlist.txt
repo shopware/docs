@@ -1698,6 +1698,7 @@ onboarded
 onboarding
 onlyAvailable
 onlyOnFeature
+ons
 onwards
 oop
 opcache

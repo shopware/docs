@@ -16,7 +16,7 @@ This provides protection by default against OWASP Top 10 categories.
 
 Customers do not need to take any action; this is automatically enabled and configured for every application.
 
-We have the possibility of adding more addons from the different feature sets provided by Fastly on our roadmap (with no timeline at this stage).
+We have the possibility of adding more add-ons from the different feature sets provided by Fastly on our roadmap (with no timeline at this stage).
 
 <!-- To be released soon
 # DDOS protection
@@ -25,6 +25,6 @@ This section provides comprehensive information about the DDOS protection soluti
 
 ## Overview
 
-This feature is a premium addons. It is powered by [Fastly DDOS Protection](https://www.fastly.com/products/ddos-protection).
+This feature is a premium add-ons. It is powered by [Fastly DDOS Protection](https://www.fastly.com/products/ddos-protection).
 
 Reach out to us to know more about this. -->
