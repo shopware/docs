@@ -25,7 +25,7 @@ Fastly is fully integrated into Shopware PaaS Native. The integration includes:
 
 - Automatic cache invalidation mechanisms
 - Soft purge capabilities to maintain performance during cache updates
-- Deployment helper integration for seamless VCL snippet management. See [here](../cdn/fastly-snippets.md) for more details.
+- Deployment helper integration for seamless VCL snippet management. See the [Fastly snippets documentation](./fastly-snippets.md) for more details.
 
 ### Configuration
 
