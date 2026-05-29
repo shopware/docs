@@ -9,6 +9,8 @@ nav:
 
 Shopware CLI has built-in validation for extensions. This is useful in your CI/CD pipeline to validate the extension before you release it.
 
+Some validation tools, especially when using `--full`, run PHP and Node.js tooling under the hood. The Docker examples are recommended because the image already contains the required runtime dependencies. If PHP and Node.js are available locally, you can run the `shopware-cli` commands directly instead.
+
 ## Validating an extension
 
 To validate an extension, you can use the following command:
@@ -17,6 +19,8 @@ To validate an extension, you can use the following command:
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate /ext
 ```
@@ -24,6 +28,8 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validat
 </Tab>
 
 <Tab title="Without Docker">
+
+Use the local path to your extension when running the command without Docker:
 
 ```shell
 shopware-cli extension validate /path/to/your/extension
@@ -65,6 +71,8 @@ By default, only a few tools are run, but you can run all tools by using the `--
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext
 ```
@@ -72,6 +80,8 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validat
 </Tab>
 
 <Tab title="Without Docker">
+
+Use the local path to your extension when running the command without Docker:
 
 ```shell
 shopware-cli extension validate --full /path/to/your/extension
@@ -87,6 +97,8 @@ By default, it will check against the latest allowed Shopware version according 
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against lowest
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against highest
@@ -96,9 +108,11 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validat
 
 <Tab title="Without Docker">
 
+Use the local path to your extension when running the command without Docker:
+
 ```shell
-shopware-cli extension validate --full /ext --check-against lowest
-shopware-cli extension validate --full /ext --check-against highest
+shopware-cli extension validate --full /path/to/your/extension --check-against lowest
+shopware-cli extension validate --full /path/to/your/extension --check-against highest
 ```
 
 </Tab>
@@ -136,6 +150,8 @@ You can run a single tool:
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only phpstan
 ```
@@ -150,14 +166,16 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validat
 
 <Tab title="Without Docker">
 
+Use the local path to your extension when running the command without Docker:
+
 ```shell
-shopware-cli extension validate --full /ext --only phpstan
+shopware-cli extension validate --full /path/to/your/extension --only phpstan
 ```
 
 Or run multiple tools by separating them with commas:
 
 ```shell
-shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
+shopware-cli extension validate --full /path/to/your/extension --only "phpstan,eslint,stylelint"
 ```
 
 </Tab>
