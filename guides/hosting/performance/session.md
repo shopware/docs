@@ -33,7 +33,7 @@ sequenceDiagram
     C-->>B: Cart and context restored (a new token is issued if the context expired)
 ```
 
-Each hop in the diagram is governed by its own setting, so the lifecycles are independent: a customer can still have a valid cart token while the Symfony session is already gone, or keep a session cookie long after the persisted context has been cleaned up.
+Each hop in the diagram is governed by its own setting, so the lifecycles are independent: a customer can still have a valid cart token while the Symfony session is already gone, or keep a session cookie long after the persisted context has been cleaned up. The following table compares the settings that control each lifecycle.
 
 | Scope | Key / token | Controlled by | What it limits |
 | --- | --- | --- | --- |
