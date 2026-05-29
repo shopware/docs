@@ -11,31 +11,37 @@ Shopware, by default, uses the session storage configured in PHP. On most instal
 
 ## Session, context, and cart lifetime
 
-Shopware uses multiple lifecycles in parallel. A customer can still have a valid cart token while the Symfony session is already gone, or the other way around.
+Shopware runs several lifecycles in parallel. The Symfony session, the sales channel context, and the persisted cart each have their own lifetime, and each is controlled by a different configuration value. The diagram below shows how they are resolved on a request and which setting governs each step.
 
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Browser
-    participant Symfony Session
-    participant Sales Channel Context
-    participant Cart
+    participant B as Browser
+    participant S as Symfony session
+    participant SCC as Sales Channel Context
+    participant C as Cart
 
-    Browser->>Symfony Session: Store session cookie
-    Symfony Session->>Sales Channel Context: Resolve context token
-    Sales Channel Context->>Cart: Load cart by token
-    Note over Symfony Session: framework.session.cookie_lifetime<br/>framework.session.gc_maxlifetime
-    Note over Sales Channel Context: shopware.api.store.context_lifetime<br/>shopware.sales_channel_context.expire_days
-    Note over Cart: shopware.cart.expire_days
+    B->>S: Request with session cookie
+    Note over B,S: framework.session.cookie_lifetime — browser keeps the cookie<br/>framework.session.gc_maxlifetime — server keeps the session data
+
+    S->>SCC: Resolve context via context token
+    Note over SCC: shopware.api.store.context_lifetime — token still accepted<br/>shopware.sales_channel_context.expire_days — stored context cleanup
+
+    SCC->>C: Load cart by context token
+    Note over C: shopware.cart.expire_days — persisted cart cleanup
+
+    C-->>B: Cart and context restored (a new token is issued if the context expired)
 ```
 
-| Scope | Key / token | Controlled by | What expires |
+Each hop in the diagram is governed by its own setting, so the lifecycles are independent: a customer can still have a valid cart token while the Symfony session is already gone, or keep a session cookie long after the persisted context has been cleaned up.
+
+| Scope | Key / token | Controlled by | What it limits |
 | --- | --- | --- | --- |
 | Browser session cookie | Symfony session cookie | `framework.session.cookie_lifetime` | How long the browser keeps the cookie |
 | Server-side session data | Symfony session storage entry | `framework.session.gc_maxlifetime` | When session data can be garbage collected |
-| Store API context token | Sales channel context token | `shopware.api.store.context_lifetime` | Store API context token validity |
-| Persisted sales channel context | Sales channel context record | `shopware.sales_channel_context.expire_days` | Stored context data in Shopware |
-| Cart persistence | Cart token and cart data | `shopware.cart.expire_days` | Persisted cart data |
+| Store API context token | Sales channel context token | `shopware.api.store.context_lifetime` | How long a context token stays valid before a new one is issued (`DateInterval`, e.g. `P1D`) |
+| Persisted sales channel context | Sales channel context record | `shopware.sales_channel_context.expire_days` | When the cleanup task removes stored context records |
+| Cart persistence | Cart token and cart data | `shopware.cart.expire_days` | When the cleanup task removes persisted carts |
 
 Longer lifetimes improve convenience, but they increase risk on shared devices because user-related data remains available for a longer time. They can also increase infrastructure usage, for example Redis memory consumption, because session and context data stay in storage longer.
 
