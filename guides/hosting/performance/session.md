@@ -22,7 +22,7 @@ sequenceDiagram
     participant C as Cart
 
     B->>S: Request with session cookie
-    Note over B,S: framework.session.cookie_lifetime — browser keeps the cookie<br/>framework.session.gc_maxlifetime — server keeps the session data
+    Note over S: framework.session.cookie_lifetime — browser keeps the cookie<br/>framework.session.gc_maxlifetime — server keeps the session data
 
     S->>SCC: Resolve context via context token
     Note over SCC: shopware.api.store.context_lifetime — token still accepted<br/>shopware.sales_channel_context.expire_days — stored context cleanup
