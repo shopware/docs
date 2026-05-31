@@ -1274,6 +1274,7 @@ colorpicker
 compatability
 componentSectionRenderer
 composable
+composables
 config
 configComponent
 configs
@@ -1998,6 +1999,7 @@ toolchain
 tooltip
 tooltips
 totalAmount
+touchpoints
 tradeoff
 transactionCapture
 transactionId
