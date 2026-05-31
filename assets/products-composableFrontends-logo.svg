@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="132" viewBox="0 0 480 132" role="img" aria-labelledby="title desc">
+  <title id="title">Composable Frontends logo</title>
+  <desc id="desc">The Shopware Frontends icon next to the words Composable Frontends.</desc>
+  <style>
+    .mark-dark{fill:#008BDF}
+    .mark-mid{fill:#189EFF}
+    .mark-light{fill:#7FCAFF}
+    .word-primary{fill:#14213D}
+    .word-secondary{fill:#189EFF}
+  </style>
+  <g transform="translate(24 18) scale(0.22)">
+    <path class="mark-dark" d="M28.9,177.7c0,18.5,15,33.4,33.4,33.4h387.4c18.5,0,33.4-15,33.4-33.4s-15-33.4-33.4-33.4H62.3C43.9,144.3,28.9,159.3,28.9,177.7C28.9,177.7,28.9,159.3,28.9,177.7z"/>
+    <path class="mark-mid" d="M28.9,256c0,18.5,15,33.4,33.4,33.4h387.4c18.5,0,33.4-15,33.4-33.4s-15-33.4-33.4-33.4H62.3C43.9,222.6,28.9,237.5,28.9,256C28.9,256,28.9,237.5,28.9,256z"/>
+    <path class="mark-light" d="M28.9,334.3c0,18.5,15,33.4,33.4,33.4h387.4c18.5,0,33.4-15,33.4-33.4c0-18.5-15-33.4-33.4-33.4H62.3C43.9,300.9,28.9,315.8,28.9,334.3C28.9,334.3,28.9,315.8,28.9,334.3z"/>
+  </g>
+  <g font-family="Inter, Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="154" y="60" class="word-primary" font-size="44">Composable</text>
+    <text x="154" y="106" class="word-secondary" font-size="44">Frontends</text>
+  </g>
+</svg>
