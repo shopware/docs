@@ -50,7 +50,7 @@ This means if your script still holds references to those properties inside vari
 Your `cart`-script will probably run multiple times per cart whenever the cart is recalculated, e.g., whenever a new product is added to the cart.
 This means that you have to check that your script works when it is executed multiple times.
 
-The safest way to ensure is to check the cart to see if your script's action was already taken and only execute it if not.
+The safest way to ensure this is to check the cart to see if your script's action was already taken and only execute it if not.
 For example, you could only add a discount to the cart if it doesn't already exist.
 
 ```twig
@@ -65,17 +65,17 @@ This way, you can only perform the action if your custom state is not present an
 
 ```twig
 // Resources/scripts/cart/my-cart-script.twig
-{% set isEligable = services.cart.items.count > 3 %}
+{% set isEligible = services.cart.items.count > 3 %}
 
 {% if not services.cart.states.has('swag-my-state') %}
 
-    {% if isEligable %}
+    {% if isEligible %}
         {# perform action #}
     {% endif %}
 
 {% else %}
 
-    {% if not isEligable %}
+    {% if not isEligible %}
         {# revert action #}
     {% endif %}
 
@@ -166,7 +166,7 @@ Note that if you don't provide a default value for your configuration, you shoul
 
 Inside your cart scripts, you can modify the line items inside the current cart.
 
-### Add product a line item
+### Add a product line item
 
 You can add a new product line item simply by providing the product `id` of the product that should be added.
 Additionally, you may provide a quantity as a second parameter if the product should be added with a quantity higher than 1.
@@ -252,7 +252,7 @@ You can add custom (meta-) data to line items in the cart by manipulating the pa
 {# Add a custom payload value #}
 {% do lineItem.payload.set('custom-payload', myValue) %}
 {# Access the value #}
-{%  set value = lineItem.payload['custom-payload']) %}
+{% set value = lineItem.payload['custom-payload'] %}
 ```
 
 ## Add errors and notifications to the cart

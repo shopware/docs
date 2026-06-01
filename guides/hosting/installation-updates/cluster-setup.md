@@ -94,6 +94,12 @@ For more information, refer to the [filesystems](../infrastructure/filesystem) s
 
 Besides the S3 bucket, it is also necessary to create certain directories for the app servers as shared filesystem.
 
+#### `var/services`
+
+`<project-root>/var/services/` holds the source files of installed services. It must be writable by the app server.
+
+When a service is installed or updated, only the node that ran the install or update writes to this directory. We therefore recommend sharing it across app servers. If it is not shared, every other node will re-download the source files from the service registry the first time it performs an operation that needs them — for example compiling a service-managed theme, or rotating the app secret. This still works correctly, but produces redundant downloads.
+
 ## Shopware updates + security
 
 To update your project, we always recommend using a staging environment.
