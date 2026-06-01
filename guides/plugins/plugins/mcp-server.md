@@ -120,7 +120,7 @@ Only declare a dependency when it is genuinely required; unnecessary dependencie
 
 ### Required privileges
 
-Declare the ACL privileges your tool needs with `#[McpToolRequires]` so operators can configure roles correctly:
+Declare the [ACL privileges](../../development/tooling/mcp-server/configuration.md#acl-and-permissions) your tool needs with `#[McpToolRequires]` so operators can configure roles correctly:
 
 ```php
 // Static privilege
@@ -157,10 +157,10 @@ Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler passes r
 
 ### Available tags
 
-| Shopware tag | Purpose |
-|---|---|
-| `shopware.mcp.tool` | Register a tool |
-| `shopware.mcp.prompt` | Register a prompt |
+| Shopware tag            | Purpose             |
+|-------------------------|---------------------|
+| `shopware.mcp.tool`     | Register a tool     |
+| `shopware.mcp.prompt`   | Register a prompt   |
 | `shopware.mcp.resource` | Register a resource |
 
 ## Step 4: Install and verify

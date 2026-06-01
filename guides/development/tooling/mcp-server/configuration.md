@@ -48,7 +48,7 @@ Shopware applies a per-principal MCP allowlist depending on how the client authe
 
 | Auth mode                                | Allowlist source                                                                          |
 |------------------------------------------|-------------------------------------------------------------------------------------------|
-| Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist** |
+| Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist**          |
 | User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP Tool Allowlist** |
 | Bearer JWT, password / refresh grant     | Per-user allowlist of the authenticated user                                              |
 | Bearer JWT, client_credentials           | Per-integration allowlist                                                                 |
@@ -81,10 +81,10 @@ When this header is present, and a valid user UUID is provided, Shopware applies
 | Integration allowlist | User allowlist        | Effective allowlist |
 |-----------------------|-----------------------|---------------------|
 | `null` (unrestricted) | `null` (unrestricted) | unrestricted        |
-| `null` | `[tool-b]` | `[tool-b]` |
-| `[tool-a, tool-b]` | `null` | `[tool-a, tool-b]` |
-| `[tool-a, tool-b]` | `[tool-b, tool-c]` | `[tool-b]` |
-| `[tool-a]` | `[]` | `[]` (nothing)      |
+| `null`                | `[tool-b]`            | `[tool-b]`          |
+| `[tool-a, tool-b]`    | `null`                | `[tool-a, tool-b]`  |
+| `[tool-a, tool-b]`    | `[tool-b, tool-c]`    | `[tool-b]`          |
+| `[tool-a]`            | `[]`                  | `[]` (nothing)      |
 
 Admin users bypass the user side of the intersection — if the user is an admin, their allowlist is treated as `null` (unrestricted), so the integration allowlist alone applies.
 
@@ -102,8 +102,8 @@ Shopware defaults to a file-based session store that writes to `%kernel.cache_di
 
 | Store                                           | Multi-worker | Multi-server | Backend                                                                       |
 |-------------------------------------------------|--------------|--------------|-------------------------------------------------------------------------------|
-| `file` (default)                                | No           | No           | `%kernel.cache_dir%/mcp-sessions/` |
-| `memory` | No           | No           | Per-process RAM                                                               |
+| `file` (default)                                | No           | No           | `%kernel.cache_dir%/mcp-sessions/`                                            |
+| `memory`                                        | No           | No           | Per-process RAM                                                               |
 | `cache` (avoid)                                 | No in dev    | No           | `cache.app` (ArrayAdapter in dev)                                             |
 | `framework` (unusable in Shopware)              | Yes          | Yes          | Requires active PHP session, not available because the Admin API is stateless |
 | Custom Redis store (recommended for production) | Yes          | Yes          | Redis / Valkey                                                                |
