@@ -19,6 +19,14 @@ The files are generated from Twig templates and can be enabled per sales
 channel in the Administration. Merchants can also add custom notes or override
 individual content sources from the sales-channel detail page.
 
+::: info
+The core agentic files feature is available since Shopware 6.7.12.0. Older
+Shopware versions can serve compatible `/llms.txt` and `/agents.md` files
+through the Agentic Commerce plugin fallback. See
+[Agentic Commerce plugin compatibility](#agentic-commerce-plugin-compatibility)
+for details.
+:::
+
 ## Public paths
 
 Templates are registered below `Resources/views/files/<file-family>/`.
