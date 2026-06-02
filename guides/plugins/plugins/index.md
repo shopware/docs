@@ -35,6 +35,7 @@ You will typically use a plugin when you need to:
 * Add backend commands or scheduled tasks
 * Integrate third-party systems, including identity providers
 * Enable dynamic validations
+* Add custom [MCP tools, prompts, and resources](mcp-server.md) for AI clients
 
 ::: info
 For infrastructure and external system integrations (e.g., Redis, Elasticsearch, or custom APIs), refer to the dedicated [integration guides](../plugins/integrations/index.md).

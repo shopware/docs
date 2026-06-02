@@ -7,16 +7,16 @@ nav:
 
 # Using Symfony Bundles Instead of Plugins
 
-This guide refers to some basic concepts of Shopware plugins also covered in the [Plugin base guide](./plugin-base-guide.md). You may want to refresh your knowledge of Symfony's [Bundle system](https://symfony.com/doc/current/bundles.html).
+This guide covers some basic concepts of Shopware plugins, which are also covered in the [Plugin base guide](./plugin-base-guide.md). You may want to refresh your knowledge of Symfony's [Bundle system](https://symfony.com/doc/current/bundles.html).
 
 ::: info
-Check out our [Shopware Toolbox PHPStorm extension](../../development/tooling/shopware-toolbox.md) with useful features like autocompletion, code generation or guideline checks.
+Check out our [Shopware Toolbox PHPStorm extension](../../development/tooling/shopware-toolbox.md) with useful features such as autocompletion, code generation, and guideline checks.
 :::
 
 You might use a Symfony bundle instead of a plugin when:
 
 * You do not need a plugin lifecycle
-* You do not want Administration management
+* You do not want the Administration management
 * You are building project-level customization
 * You want pure Symfony integration
 
@@ -79,18 +79,18 @@ project-root/
 └── .shopware-project.yaml
 ```
 
-The Bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You still will need to register the bundle in the project's `config/bundles.php` file.
+The Bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You still will need to register the Bundle in the project's `config/bundles.php` file.
 
 ## Choosing the right bundle class
 
 There are two bundle classes you can choose from:
 
-* `Shopware\Core\Framework\Bundle`: the Shopware bundle class, which extends the Symfony bundle class with additional features like acting as theme, bringing JavaScript/CSS files, and migrations
+* `Shopware\Core\Framework\Bundle`: the Shopware bundle class, which extends the Symfony bundle class with additional features like acting as a theme, bringing JavaScript/CSS files, and migrations
 * `Symfony\Component\HttpKernel\Bundle\Bundle`: the Symfony bundle class, which you can use if you don't need additional features
 
 ## Creating a bundle
 
-By default, The namespace `App\` is registered to the `src` folder in any Shopware project to be used for customizations. We recommend using this namespace. To change the project structure, change the `App\` namespace in the project's `composer.json` file.
+By default, the `App\` namespace is registered in the `src` folder of any Shopware project for customizations. We recommend using this namespace. To change the project structure, change the `App\` namespace in the project's `composer.json` file.
 
 ```php
 // <project root>/src/YourBundleName.php
@@ -114,12 +114,37 @@ App\YourBundleName\YourBundleName::class => ['all' => true],
 //...
 ```
 
+### Optional bundles
+
+If a bundle is not always installed (for example, a dev-only package or an experimental feature), wrap its registration in a guard. Without a guard, the application will crash with a class-not-found error on any environment where the package is absent.
+
+**Package not always installed** — use `InstalledVersions::isInstalled()`:
+
+```php
+use Composer\InstalledVersions;
+
+if (InstalledVersions::isInstalled('vendor/your-bundle-package')) {
+    $bundles[App\YourBundleName\YourBundleName::class] = ['all' => true];
+}
+```
+
+**Experimental feature behind a Shopware feature flag** — combine both checks so the Bundle is only loaded when the flag is active, and the package is present. `Feature::isActive()` reads from environment variables and is safe to call in `bundles.php`:
+
+```php
+use Composer\InstalledVersions;
+use Shopware\Core\Framework\Feature;
+
+if (Feature::isActive('YOUR_FEATURE_FLAG') && InstalledVersions::isInstalled('vendor/your-bundle-package')) {
+    $bundles[App\YourBundleName\YourBundleName::class] = ['all' => true];
+}
+```
+
 ## Adding services, Twig templates, routes, and themes
 
-You can add services, Twig templates, routes, etc. to your bundle just as you would to a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The bundle will be automatically detected and the files will be loaded.
+You can add services, Twig templates, routes, etc., to your Bundle just as you would to a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The Bundle will be automatically detected, and the files will be loaded.
 
-To mark your bundle as a theme, it's enough to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.
-This will automatically register your bundle as a theme and make it available in the Shopware administration.
+To mark your Bundle as a theme, you only need to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.
+This will automatically register your Bundle as a theme and make it available in the Shopware administration.
 You can also add a `theme.json` file to define the theme configuration like [described here](../themes/configuration/theme-configuration.md).
 
 ## Adding migrations
@@ -145,7 +170,7 @@ class YourBundleName extends Bundle
 }
 ```
 
-As Bundles don't have a lifecycle, the migrations are not automatically executed. Execute them manually via the console command:
+Since Bundles don't have a lifecycle, migrations aren't automatically executed. Execute them manually via the console command:
 
 ```bash
 bin/console database:migrate <BundleName> --all
@@ -157,12 +182,12 @@ If you use [Deployment Helper](../../hosting/installation-updates/deployments/de
 deployment:
     hooks:
         pre-update: |
-            bin/console database:migrate <BundleName> --all
+ bin/console database:migrate <BundleName> --all
 ```
 
 ## Integration into Shopware CLI
 
-The Shopware CLI cannot detect bundles automatically. Therefore, bundle assets are not built automatically. Adjust the project's `composer.json` file to specify the path to the bundle. Do this by adding the `extra` section to the `composer.json` file:
+The Shopware CLI cannot automatically detect bundles. Therefore, bundle assets are not built automatically. Adjust the project's `composer.json` file to specify the Bundle's path. Do this by adding the `extra` section to the `composer.json` file:
 
 ```json
 {
@@ -170,13 +195,13 @@ The Shopware CLI cannot detect bundles automatically. Therefore, bundle assets a
         "shopware-bundles": {
           "src/<BundleName>": {
             "name": "<BundleName>",
-          }
-        }
-    }
+ }
+ }
+ }
 }
 ```
 
-This will tell Shopware CLI where the bundle is located and its name.
+This will tell Shopware CLI where the Bundle is located and its name.
 
 ## Next steps
 

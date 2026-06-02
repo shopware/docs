@@ -1,7 +1,7 @@
 ---
 nav:
   title: Shopware Toolbox
-  position: 20
+  position: 40
 
 ---
 

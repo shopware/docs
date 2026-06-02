@@ -1,7 +1,7 @@
 ---
 nav:
   title: Fixture Bundle
-  position: 30
+  position: 10
 
 ---
 
