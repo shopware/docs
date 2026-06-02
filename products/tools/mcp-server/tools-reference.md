@@ -16,7 +16,7 @@ All core tools return a consistent JSON envelope via `McpToolResponse`:
 **Success:**
 
 ```json
-{"success": true, "data": [...], "_meta": {"total": 42, "page": 1, "limit": 25}}
+{"success": true, "data": [], "_meta": {"total": 42, "page": 1, "limit": 25}}
 ```
 
 **Error:**

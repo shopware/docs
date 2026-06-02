@@ -53,9 +53,9 @@ Both clients use `"type": "streamable-http"`. Add the following config to the ap
 | Client                   | Config file                                                       |
 |--------------------------|-------------------------------------------------------------------|
 | Claude Desktop (macOS)   | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json` |
+| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json`                     |
 | Cursor (project)         | `.cursor/mcp.json` in your project root                           |
-| Cursor (user)            | `~/.cursor/mcp.json` |
+| Cursor (user)            | `~/.cursor/mcp.json`                                              |
 
 ```json
 {
@@ -153,11 +153,11 @@ By default, an admin integration can call all registered tools, resources, and p
 
 **Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
-   <img src="../../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
+   <img src="../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
 
 Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use:
 
-   <img src="../../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
+   <img src="../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 
 **Per user** — Go to **Settings → Users & Permissions**, open the user detail page, and manage the **MCP Tool Allowlist** card at the bottom of the page. This allowlist applies when the user authenticates via a user access key or bearer token. Admin users bypass the allowlist entirely.
 
