@@ -9,6 +9,7 @@ nav:
 This section explains how to customize and extend Storefront templates in plugins.
 
 * [Customize Templates](./customize-templates.md)
+* [Agentic Files](./agentic-files.md)
 * [Customize Header/Footer](./customize-header-footer.md)
 * [Add Custom Twig Functions](./add-custom-twig-function.md)
 
