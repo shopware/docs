@@ -29,7 +29,7 @@ Shopware plugins extend Symfony bundles and add:
 * Asset building integration
 * Administration management
 
-Class hierarchy: Plugin → Shopware\Bundle → Symfony\Bundle
+Class hierarchy: `Plugin` → `Shopware\Bundle` → `Symfony\Bundle`
 
 ## When to use a bundle
 
@@ -79,7 +79,7 @@ project-root/
 └── .shopware-project.yaml
 ```
 
-The Bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You still will need to register the Bundle in the project's `config/bundles.php` file.
+The Bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You will still need to register the Bundle in the project's `config/bundles.php` file.
 
 ## Choosing the right bundle class
 
@@ -144,7 +144,7 @@ if (Feature::isActive('YOUR_FEATURE_FLAG') && InstalledVersions::isInstalled('ve
 You can add services, Twig templates, routes, etc., to your Bundle just as you would to a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The Bundle will be automatically detected, and the files will be loaded.
 
 To mark your Bundle as a theme, you only need to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.
-This will automatically register your Bundle as a theme and make it available in the Shopware administration.
+This will automatically register your Bundle as a theme and make it available in the Administration.
 You can also add a `theme.json` file to define the theme configuration like [described here](../themes/configuration/theme-configuration.md).
 
 ## Adding migrations
@@ -170,7 +170,7 @@ class YourBundleName extends Bundle
 }
 ```
 
-Since Bundles don't have a lifecycle, migrations aren't automatically executed. Execute them manually via the console command:
+Since bundles don't have a lifecycle, migrations aren't automatically executed. Execute them manually via the console command:
 
 ```bash
 bin/console database:migrate <BundleName> --all
@@ -193,11 +193,11 @@ The Shopware CLI cannot automatically detect bundles. Therefore, bundle assets a
 {
     "extra": {
         "shopware-bundles": {
-          "src/<BundleName>": {
-            "name": "<BundleName>",
- }
- }
- }
+            "src/<BundleName>": {
+                "name": "<BundleName>"
+            }
+        }
+    }
 }
 ```
 
@@ -207,8 +207,8 @@ This will tell Shopware CLI where the Bundle is located and its name.
 
 Now that you know about the differences between a Symfony bundle and a Shopware plugin, review the following guides:
 
-* [Dependency Injection](../plugins/services/dependency-injection.md)
-* [Listening to events](../plugins/framework/event/listening-to-events.md)
+* [Dependency Injection](services/dependency-injection.md)
+* [Listening to events](framework/event/listening-to-events.md)
 
 Also check out these useful videos:
 

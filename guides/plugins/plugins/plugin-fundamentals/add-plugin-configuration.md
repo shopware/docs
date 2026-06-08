@@ -77,26 +77,31 @@ By default, the `lang` attribute is set to `en-GB`, to change the locale of a `<
     ...
     <card>
         <title>English Title</title>
-        <title lang="de-DE">German Titel</title>
+        <title lang="de-DE">German Title</title>
     </card>
     ...
 ```
 
 ### Input fields
 
-As you can see above, every `<input-field>` has to contain at least a `<name>` element.
+Every `<input-field>` must contain at least a `<name>` element.
 The `<name>` element is not translatable and has to be unique, since it will be used as the technical identifier for the config element.
 The field `<name>` must at least be 4 characters long and consist of only lower and upper case letters.
 It can contain numbers, but not at first place - see this RegEx pattern: `[a-zA-Z][a-zA-Z0-9]*`
+
+```html
+    ...
+    <input-field>
+        <name>exampleField</name>
+    </input-field>
+    ...
+```
 
 ### The different types of input field
 
 Your `<input-field>` can be of different types, this is managed via the `type` attribute.
 Unless defined otherwise, your `<input-field>` will be a text field.
 Below you'll find a list of all available `<input-field type="?">`.
-
-<details>
-<summary>Supported input field types</summary>
 
 | Type          | Configuration settings                                                                                                                                                              | Renders           | Default value example                   |
 |:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
@@ -116,14 +121,12 @@ Below you'll find a list of all available `<input-field type="?">`.
 | single-select | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                   | Single-Select box | option_id                               |
 | multi-select  | [options](add-plugin-configuration.md#options), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                   | Multi-Select box  | [option_id1, option_id2]                |
 
-</details>
-
 ### Input field settings
 
 These settings are used to configure your `<input-field>`.
 **Every `<input-field>` has to start with the `<name>` element.**
 After the `<name>` element you can configure any of the other settings mentioned above.
-Beside these settings, they have the following in common:
+Besides these settings, they have the following in common:
 [label](add-plugin-configuration.md#label-placeholder-and-help-text),
 [helpText](add-plugin-configuration.md#label-placeholder-and-help-text),
 [defaultValue](add-plugin-configuration.md#defaultvalue),
@@ -135,6 +138,18 @@ and [required](add-plugin-configuration.md#required).
 The settings `<label>`, `<placeholder>` and `<helpText>` are used to label and explain your `<input-field>` and are translatable.
 You define your `<label>`, `<placeholder>` and `<helpText>` the same way as the `<card><title>`, with the `lang` attribute.
 Please remember, that the `lang` attribute is set to `en-GB` per default.
+
+```html
+<input-field type="text">
+    <name>email</name>
+    <label>Email address</label>
+    <label lang="de-DE">E-Mail-Adresse</label>
+    <placeholder>you@example.com</placeholder>
+    <placeholder lang="de-DE">du@beispiel.de</placeholder>
+    <helpText>Enter your email address.</helpText>
+    <helpText lang="de-DE">Gib deine E-Mail-Adresse ein.</helpText>
+</input-field>
+```
 
 #### defaultValue
 
@@ -262,14 +277,14 @@ As you can see above, `<name>` elements are translatable via the `lang` attribut
 For more complex and advanced configurations it is possible to declare a `<component name="componentName">` element.
 This element can render many admin components.
 It is also possible to render your own admin component which you could deliver with your plugin.
-The name of the component has to match the components name in the Administration, for example `sw-entity-single-select`.
+The name of the component has to match the component's name in the Administration, for example `sw-entity-single-select`.
 The component also needs a `<name>` element first.
 All other elements within the component element will be passed to the rendered admin component as properties.
 For some components you could also use [`label` and `placeholder`](add-plugin-configuration.md#label-placeholder-and-help-text).
 
 Here are some examples:
 
-### Entity single select for products
+#### Entity single select for products
 
 ```html
 <component name="sw-entity-single-select">
@@ -281,7 +296,7 @@ Here are some examples:
 
 Stores the ID of the selected product into the system config.
 
-### Entity multi ID select for products
+#### Entity multi ID select for products
 
 ```html
 <component name="sw-entity-multi-id-select">
@@ -293,7 +308,7 @@ Stores the ID of the selected product into the system config.
 
 Stores an array with IDs of the selected products into the system config.
 
-### Media selection
+#### Media selection
 
 ```html
 <component name="sw-media-field">
@@ -302,7 +317,7 @@ Stores an array with IDs of the selected products into the system config.
 </component>
 ```
 
-### Text editor
+#### Text editor
 
 ```html
 <component name="sw-text-editor">
@@ -311,7 +326,7 @@ Stores an array with IDs of the selected products into the system config.
 </component>
 ```
 
-### Snippet field
+#### Snippet field
 
 ```html
 <component name="sw-snippet-field">
@@ -325,7 +340,7 @@ Allows you to edit snippet values within the configuration page.
 This component does not store values in the system config, but changes the translations for the snippet key.
 **Note: This field is only available from 6.3.4.0 onward.**
 
-### Entity selects without a name field
+#### Entity selects without a name field
 
 Some entities do not have a `name` field, which is used per default in the select components. For example, the `mail_template` entity does not have a name field, but you can still use `description` as a `label-property` to select mail templates in your plugin configuration. Without it, the select field would be empty and not usable. You can check available properties for an entity in the `EntityDefinition` of the entity (in this case `Shopware\Core\Content\MailTemplate\MailTemplateDefinition`).
 
@@ -340,10 +355,10 @@ Some entities do not have a `name` field, which is used per default in the selec
 
 Stores the ID of the selected mail template into the system config.
 
-### Supported component types
+#### Supported component types
 
-Please Note: It is impossible to allow every component in the `config.xml`, due to their complexities.
-If you can't efficiently resolve your plugin's necessities with, it is probably better to create an own module instead.
+Please note: It is impossible to allow every component in the `config.xml`, due to their complexities.
+If you can't efficiently resolve your plugin's necessities with these components, it is probably better to create your own module instead.
 Therefore, Shopware supports the following components by default (also to be found in the [ConfigValidator class](https://github.com/shopware/shopware/blob/v6.6.7.0/src/Core/Framework/App/Validation/ConfigValidator.php#L18)):
 
 * sw-entity-single-select

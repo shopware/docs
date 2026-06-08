@@ -7,18 +7,11 @@ nav:
 
 # Dependency Injection
 
-## Overview
-
-In this guide you'll learn how to inject services into other services.
-You can read more about injecting services in the [Symfony documentation](https://symfony.com/doc/current/service_container.html#injecting-services-config-into-a-service).
+This guide explains how to inject services into other services. For more details, see the [Symfony documentation](https://symfony.com/doc/current/service_container.html#injecting-services-config-into-a-service).
 
 ## Prerequisites
 
-To add your own custom service for your plugin, you first need a plugin as a base.
-Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
-
-Furthermore, you need a working service.
-Therefore, you can refer to [Adding a custom service](add-custom-service.md) guide.
+This guide builds on the [Plugin Base Guide](../plugin-base-guide.md) and requires a working service — see [Add Custom Service](add-custom-service.md).
 
 ::: info
 Refer to this video on **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)** explaining DI based on the example of a custom CLI command.
@@ -27,9 +20,7 @@ It is also available on our free online training ["Shopware 6 Backend Developmen
 
 ## Injecting another service
 
-This example will be about injecting the `SystemConfigService` into our `ExampleService`.
-First, we are preparing the `ExampleService` PHP class.
-Add the `SystemConfigService` as parameter to the constructor of the service class.
+The following example injects `SystemConfigService` into `ExampleService`. Add it as a constructor parameter:
 
 ::: code-group
 

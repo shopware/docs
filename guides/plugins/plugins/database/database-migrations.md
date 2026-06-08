@@ -7,10 +7,6 @@ nav:
 
 # Database Migrations
 
-## Overview
-
-This guide covers what migrations are and how to use them.
-
 Migrations are PHP classes used to manage incremental and reversible database schema changes. Shopware comes with a pre-built Migration System, to take away most of the work for you. Throughout this guide, you will find the `$` symbol representing your command line.
 
 ## Prerequisites
@@ -34,7 +30,7 @@ By default, Shopware 6 is looking for migration files in a directory called `Mig
             └── SwagBasicExample.php
 ```
 
-As you can see there is one file in the `<plugin root>/src/Migration` directory. Below you find a break down of what each part of its name means.
+As you can see there is one file in the `<plugin root>/src/Migration` directory. Below you'll find a breakdown of what each part of its name means.
 
 | File Name Snippet  | Meaning                                         |
 |:-------------------|:------------------------------------------------|
@@ -106,11 +102,11 @@ class Migration1611740369ExampleDescription extends MigrationStep
 
 As you can see, your migration contains three methods:
 
-* getCreationTimestamp\(\)
-* update\(\)
-* updateDestructive\(\)
+* `getCreationTimestamp()`
+* `update()`
+* `updateDestructive()`
 
-There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. In the `update()` method you implement non-destructive changes which should always be **reversible**. The `updateDestructive()` method is the follow up step, that is run after `update()` and used for **destructive none reversible changes**, like dropping columns or tables. Destructive migrations are only executed explicitly.
+There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. In the `update()` method you implement non-destructive changes which should always be **reversible**. The `updateDestructive()` method is the follow-up step, that is run after `update()` and used for **destructive non-reversible changes**, like dropping columns or tables. Destructive migrations are only executed explicitly.
 
 ::: info
 You do not add instructions to revert your migrations within the migration class itself. `updateDestructive` is not meant to revert instructions in `update`. Reverting changes in the database is done explicitly in plugin lifecycle method `uninstall`, as explained in the [Plugin Lifecycle guide](../plugin-fundamentals/plugin-lifecycle.md#uninstall).
@@ -169,7 +165,7 @@ This command will generate a new migration file including the `CREATE TABLE` or 
 | Option     | Meaning                                                                                                              |
 |:-----------|:---------------------------------------------------------------------------------------------------------------------|
 | --bundle   | The name of the plugin, when not provided the command will generate a migration in the core                          |
-| --entities | Comma-seperated list of the entities it should create migrations for, it will generate one migration file per entity |
+| --entities | Comma-separated list of the entities it should create migrations for, it will generate one migration file per entity |
 
 _Note: Your plugin has to be activated, otherwise your custom entity definition cannot be found._
 
@@ -194,7 +190,7 @@ $ ./bin/console database:migrate SwagBasicExample --all
 
 ## Advanced migration control
 
-Once you have become familiar with the migration process and the development flow, you may want to have finer control over the migrations performed during the installation and update. In this case the `MigrationCollection` which is only filled with your specific migrations, can be accessed via the `InstallContext` and all its subclasses \(UpdateContext, ActivateContext, ...\). A plugin must reject the automatic execution of migrations in order to have control over the migrations that are executed.
+Once you have become familiar with the migration process and the development flow, you may want to have finer control over the migrations performed during the installation and update. In this case the `MigrationCollection` which is only filled with your specific migrations, can be accessed via the `InstallContext` and all its subclasses (`UpdateContext`, `ActivateContext`, ...). A plugin must reject the automatic execution of migrations in order to have control over the migrations that are executed.
 
 Therefore, a typical update method might look more like this:
 
@@ -213,4 +209,4 @@ Therefore, a typical update method might look more like this:
     }
 ```
 
-If you don't use the Shopware migration system, an empty collection \(NullObject\) will be in the context.
+If you don't use the Shopware migration system, an empty collection (`NullObject`) will be in the context.
