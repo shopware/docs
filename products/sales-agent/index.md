@@ -27,7 +27,7 @@ Review the below minimum operating requirements before you install *Sales Agent*
 
 * [node](https://nodejs.org/en) >= v18
 * [pnpm](https://pnpm.io/installation) >= 8
-* [Shopware Frontends framework](https://frontends.shopware.com/) based on [Nuxt 3](https://nuxt.com/).
+* [Shopware Frontends framework](/frontends/) based on [Nuxt 3](https://nuxt.com/).
 * Instance of [Shopware 6](../../guides/installation/) (version 6.7.3 and above).
 * Database: MySQL
 * Beyond or Evolve license needed for the Shopware instance.
