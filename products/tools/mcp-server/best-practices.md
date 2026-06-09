@@ -59,7 +59,7 @@ Every registered tool also consumes tokens from the agent's context window throu
 
 When everything is enabled, the modal also shows inline privilege gaps, meaning the integration's role does not actually cover what its allowlist exposes:
 
-<img src="../../../../assets/mcp-integrations-allowlist-selection-modal.png" alt="Allowlist modal with all tools selected, showing inline privilege warnings" width="500">
+<img src="../../../assets/mcp-integrations-allowlist-selection-modal.png" alt="Allowlist modal with all tools selected, showing inline privilege warnings" width="500">
 
 Strategies to reduce tool count within a single integration:
 
