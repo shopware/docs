@@ -113,7 +113,7 @@ Product listings can load a reduced, curated field set instead of full product e
 This includes the `descriptionTeaser`, a shortened, HTML-free excerpt that replaces the full description in listings.
 It lowers database load, memory usage and transfer size — especially for catalogs with large product descriptions.
 
-Enable the setting per sales channel under *Settings > Products > "Load reduced product data in listings"* (`core.listing.partialDataLoading`).
+Enable the setting per sales channel under `Settings > Products > Load reduced product data in listings` (`core.listing.partialDataLoading`).
 With the setting enabled, listing products are partial entities — only enable it if your theme and extensions do not require additional product data in listings.
 The underlying mechanism is described in [Partial data loading](../../development/integrations-api/partial-data-loading.md).
 
