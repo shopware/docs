@@ -22,3 +22,17 @@ After you enable OpenSearch and update your application, you need to index your 
 
 - Open an interactive session: `sw-paas exec --new`
 - Once the exec session is ready, run the following command: `bin/console dal:refresh:index --use-queue`
+
+## Note
+
+- If you need to enable `APP_ENV` to `dev`, then you need to add the following in the file `config/packages/web_profiler.yaml` under the key `when@dev`:
+
+```yaml
+services:
+    Shopware\Elasticsearch\Profiler\DataCollector:
+        arguments:
+            $enabled: false
+            $adminEnabled: false
+```
+
+If you don't do, the next deployment will fail.
