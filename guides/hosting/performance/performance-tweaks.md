@@ -107,6 +107,20 @@ Supported since Shopware `6.7.9.0`. This is an experimental feature. For impleme
 
 Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
 
+## Reduced product data in listings
+
+Product listings can load a reduced, curated field set instead of full product entities.
+This includes the `descriptionTeaser`, a shortened (max. 512 characters), HTML-free excerpt that replaces the full description in listings.
+It lowers database load, memory usage, and transfer size — especially for catalogs with large product descriptions.
+
+Enable the setting per sales channel under `Settings > Products > Load reduced product data in listings` (`core.listing.partialDataLoading`).
+With the setting enabled, listing products are partial entities — only enable it if your theme and extensions do not require additional product data in listings.
+The underlying mechanism is described in [Partial data loading](../../development/integrations-api/partial-data-loading.md).
+
+::: info
+Supported since Shopware `6.7.12.0`. New installations have this setting enabled by default; existing shops continue loading full product data in listings until they opt in.
+:::
+
 ## Prevent mail data updates
 
 To provide auto-completion for different mail templates in the Administration UI, Shopware has a mechanism that writes an example mail into the database when sending the mail.
