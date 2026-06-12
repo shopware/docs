@@ -130,6 +130,26 @@ Beside these settings, they have the following in common:
 [disabled](add-plugin-configuration.md#disabled),
 and [required](add-plugin-configuration.md#required).
 
+#### Cache relevant fields
+
+Use the `cache-relevant="true"` attribute when a configuration value changes cached Storefront output. This applies to fields that are read in Storefront templates, controllers, page loaders, or other code paths that influence an HTTP-cached response.
+
+When a shop operator changes a cache-relevant field in the Administration, Shopware invalidates the affected Storefront HTTP cache entries for the current sales channel. Leave the attribute unset for internal settings, credentials, timestamps, or other values that do not change cached Storefront output.
+
+You can set the attribute on `<input-field>` and advanced `<component>` fields:
+
+```html
+<input-field type="bool" cache-relevant="true">
+    <name>showBadge</name>
+    <label>Show badge in the Storefront</label>
+</input-field>
+
+<component name="sw-media-field" cache-relevant="true">
+    <name>heroImage</name>
+    <label>Hero image</label>
+</component>
+```
+
 #### Label, placeholder and help text
 
 The settings `<label>`, `<placeholder>` and `<helpText>` are used to label and explain your `<input-field>` and are translatable.
@@ -398,6 +418,13 @@ Full multi-card `config.xml` example (collapse to focus on smaller snippets abov
             <defaultValue>smtp</defaultValue>
             <label>Mail method</label>
             <label lang="de-DE">Versand-Protokoll</label>
+        </input-field>
+
+        <input-field type="bool" cache-relevant="true">
+            <name>showBadge</name>
+            <defaultValue>true</defaultValue>
+            <label>Show badge in the Storefront</label>
+            <label lang="de-DE">Badge im Storefront anzeigen</label>
         </input-field>
     </card>
 
