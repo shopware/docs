@@ -102,7 +102,7 @@ class UsedClassesAvailableTest extends TestCase
 
             /** @var class-string $className */
             $className = $namespace . '\\' . $classRelativePath;
-            if (trait_exists($className) || enum_exists($className)) {
+            if (trait_exists($className, false) || enum_exists($className, false)) {
                 continue;
             }
 
