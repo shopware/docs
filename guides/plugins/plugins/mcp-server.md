@@ -15,7 +15,7 @@ Use a plugin when:
 - You want to ship via the Shopware Marketplace
 - Your capability is tightly coupled to Shopware's plugin lifecycle (install, activate, deactivate)
 
-For remote/webhook-based capabilities, see [Extending via App](../apps/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../development/tooling/mcp-server/extending.md).
+For remote/webhook-based capabilities, see [Extending via App](../apps/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../../products/tools/mcp-server/extending.md).
 
 ## Naming convention
 
@@ -120,7 +120,7 @@ Only declare a dependency when it is genuinely required; unnecessary dependencie
 
 ### Required privileges
 
-Declare the [ACL privileges](../../development/tooling/mcp-server/configuration.md#acl-and-permissions) your tool needs with `#[McpToolRequires]` so operators can configure roles correctly:
+Declare the [ACL privileges](../../../products/tools/mcp-server/configuration.md#acl-and-permissions) your tool needs with `#[McpToolRequires]` so operators can configure roles correctly:
 
 ```php
 // Static privilege
@@ -294,7 +294,7 @@ For write tools, use `$this->executeWithDryRun()`, which catches exceptions auto
 
 ## Further reading
 
-- [MCP Concepts](../../development/tooling/mcp-server/mcp-concepts.md): tools, resources, and prompts explained
-- [Best Practices](../../development/tooling/mcp-server/best-practices.md): design principles for MCP tools
-- [Configuration](../../development/tooling/mcp-server/configuration.md): allowlist, ACL, and CLI debugging
+- [MCP Concepts](../../../products/tools/mcp-server/mcp-concepts.md): tools, resources, and prompts explained
+- [Best Practices](../../../products/tools/mcp-server/best-practices.md): design principles for MCP tools
+- [Configuration](../../../products/tools/mcp-server/configuration.md): allowlist, ACL, and CLI debugging
 - [SwagMcpAdminUsers](https://github.com/shopwareLabs/SwagMcpAdminUsers): example plugin registering tools, prompts, and resources for admin user management

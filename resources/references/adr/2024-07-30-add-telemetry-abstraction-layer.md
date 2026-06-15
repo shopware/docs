@@ -74,4 +74,4 @@ By implementing a telemetry abstraction layer, we provide a unified way to integ
 
 ## Usage
 
-See [README.md](../src/Core/Framework/Telemetry/) for the implementation and usage details.
+See [README.md](https://github.com/shopware/shopware/tree/trunk/src/Core/Framework/Telemetry) for the implementation and usage details.
