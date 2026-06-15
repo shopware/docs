@@ -30,7 +30,7 @@ By default, Shopware 6 is looking for migration files in a directory called `Mig
             └── SwagBasicExample.php
 ```
 
-As you can see there is one file in the `<plugin root>/src/Migration` directory. Below you'll find a breakdown of what each part of its name means.
+As you can see, there is one file in the `<plugin root>/src/Migration` directory. Below you'll find a breakdown of what each part of its name means.
 
 | File Name Snippet  | Meaning                                         |
 |:-------------------|:------------------------------------------------|
