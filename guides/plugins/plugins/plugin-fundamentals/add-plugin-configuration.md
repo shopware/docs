@@ -134,6 +134,10 @@ and [required](add-plugin-configuration.md#required).
 
 Use the `cache-relevant="true"` attribute when a configuration value changes cached Storefront output. This applies to fields that are read in Storefront templates, controllers, page loaders, or other code paths that influence an HTTP-cached response.
 
+::: info
+The `cache-relevant` attribute is available starting with Shopware 6.7.12.0. Starting with Shopware 6.8.0.0, system config writes no longer invalidate caches by default, so fields that affect cached Storefront output need to provide this attribute.
+:::
+
 When a shop operator changes a cache-relevant field in the Administration, Shopware treats the write as cache-relevant and triggers the broader system config cache invalidation path for the current sales channel. Leave the attribute unset for internal settings, credentials, timestamps, or other values that do not change cached Storefront output.
 
 The default is off because most configuration values do not change cached Storefront output. Marking too many fields as cache relevant turns routine configuration saves into broad cache invalidations, which increases cache misses and negatively impacts performance and scalability.
