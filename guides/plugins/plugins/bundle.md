@@ -144,7 +144,7 @@ if (Feature::isActive('YOUR_FEATURE_FLAG') && InstalledVersions::isInstalled('ve
 You can add services, Twig templates, routes, etc., to your bundle just as you would to a plugin. Create `Resources/config/services.php` and `Resources/config/routes.php` files, or `Resources/views` for Twig templates. The bundle will be automatically detected, and the files will be loaded.
 
 To mark your bundle as a theme, you only need to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.
-This will automatically register your Bundle as a theme and make it available in the Administration.
+This will automatically register your bundle as a theme and make it available in the Administration.
 You can also add a `theme.json` file to define the theme configuration like [described here](../themes/configuration/theme-configuration.md).
 
 ## Adding migrations
