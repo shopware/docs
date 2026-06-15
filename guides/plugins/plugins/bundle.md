@@ -79,7 +79,7 @@ project-root/
 └── .shopware-project.yaml
 ```
 
-The Bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You will still need to register the Bundle in the project's `config/bundles.php` file.
+The bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You will still need to register the bundle in the project's `config/bundles.php` file.
 
 ## Choosing the right bundle class
 
