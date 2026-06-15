@@ -165,7 +165,7 @@ This command will generate a new migration file including the `CREATE TABLE` or 
 | Option     | Meaning                                                                                                              |
 |:-----------|:---------------------------------------------------------------------------------------------------------------------|
 | --bundle   | The name of the plugin, when not provided the command will generate a migration in the core                          |
-| --entities | Comma-separated list of the entities it should create migrations for, it will generate one migration file per entity |
+| --entities | Comma-separated list of the entities it should create migrations for; it will generate one migration file per entity |
 
 _Note: Your plugin has to be activated, otherwise your custom entity definition cannot be found._
 
