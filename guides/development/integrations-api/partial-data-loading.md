@@ -9,6 +9,8 @@ nav:
 
 `Partial data loading` allows you to select specific fields of an entity to be returned by the API. This can be useful if you only need a few fields of an entity and don't want to load the whole entity. This can reduce response size and improve your application's performance.
 
+Shopware itself uses this mechanism for storefront product listings when the `core.listing.partialDataLoading` setting is enabled. See [Reduced product data in listings](../../hosting/performance/performance-tweaks.md#reduced-product-data-in-listings).
+
 ## Partial data loading vs Includes
 
 `Partial data loading` is different from the [includes](./search-criteria.md#includes-apialias) feature. The `includes` works as post-output processing, so the complete entity or data is loaded on the backend and then filtered, while `partial data loading` works already at the database level. This means the database only loads the requested fields, not the entire entity.

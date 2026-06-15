@@ -31,7 +31,7 @@ It is important to consider the background of the potential audience reading you
 
 * [Developer docs](https://developer.shopware.com/docs/)
 * [API Reference Guide](https://shopware.stoplight.io/)
-* [Composable Frontends docs](https://frontends.shopware.com/)
+* [Composable Frontends docs](/frontends/)
 * [Component library](https://component-library.shopware.com/)
 
 ## Word list

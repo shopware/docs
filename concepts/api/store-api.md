@@ -14,4 +14,4 @@ The Store API acts as a normalized interface layer between customer-facing appli
 For details on endpoints, authentication methods, schemas, and request formats, always refer to the Store API documentation.
 <PageRef page="https://shopware.stoplight.io/docs/store-api/7b972a75a8d8d-shopware-store-api" title="Store API – Stoplight Reference" target="_blank" />
 
-Shopware provides [Composable Frontends](https://frontends.shopware.com/) as a headless frontend implementation based on the Store API.
+Shopware provides [Composable Frontends](/frontends/) as a headless frontend implementation based on the Store API.
