@@ -60,7 +60,7 @@ class SwagBasicExample extends Plugin
 
 This is a Symfony Bundle requirement. The same can also be achieved using Bundle Extensions. Please refer to the [Symfony Documentation](https://symfony.com/doc/current/bundles/extension.html).
 
-Use monolog configuration to create a channel for your log messages. The channel name should be unique and identify your plugin:
+Use Monolog configuration to create a channel for your log messages. The channel name should be unique and identify your plugin:
 
 ::: code-group
 
