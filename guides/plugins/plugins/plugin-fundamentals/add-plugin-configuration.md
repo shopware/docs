@@ -136,7 +136,7 @@ Use the `cache-relevant="true"` attribute when a configuration value changes cac
 
 When a shop operator changes a cache-relevant field in the Administration, Shopware invalidates the affected Storefront HTTP cache entries for the current sales channel. Leave the attribute unset for internal settings, credentials, timestamps, or other values that do not change cached Storefront output.
 
-The default is off because most configuration values do not change cached Storefront output. Marking too many fields as cache relevant turns routine configuration saves into HTTP cache invalidations, which increases cache misses and page generation work after saving.
+The default is off because most configuration values do not change cached Storefront output. Marking too many fields as cache relevant turns routine configuration saves into HTTP cache invalidations, which increases cache misses and negatively impacts performance and scalability.
 
 You can set the attribute on `<input-field>` and advanced `<component>` fields:
 
