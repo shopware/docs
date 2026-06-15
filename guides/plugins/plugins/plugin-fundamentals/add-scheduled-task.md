@@ -123,4 +123,4 @@ Now you still need to run the command `bin/console messenger:consume` to actuall
 
 ## Next steps
 
-* [Adding a custom command](add-custom-commands.md)
+[Adding a custom command](add-custom-commands.md)

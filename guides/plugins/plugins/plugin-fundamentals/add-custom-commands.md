@@ -45,4 +45,4 @@ class ExampleCommand extends Command
 
 ## Next steps
 
-* [Adding a scheduled task](add-scheduled-task.md)
+[Adding a scheduled task](add-scheduled-task.md)

@@ -145,7 +145,7 @@ You can add services, Twig templates, routes, etc., to your bundle just as you w
 
 To mark your bundle as a theme, you only need to implement the `Shopware\Core\Framework\ThemeInterface` interface in your bundle class.
 This will automatically register your bundle as a theme and make it available in the Administration.
-You can also add a `theme.json` file to define the theme configuration, as [described here](../themes/configuration/theme-configuration.md).
+You can also add a `theme.json` file to define the [theme configuration](../themes/configuration/theme-configuration.md).
 
 ## Adding migrations
 
