@@ -50,7 +50,7 @@ Extensions must explicitly support target Shopware versions. Review the [Upgrade
 
 ## MCP Server extensibility
 
-Both plugins and apps can contribute custom tools, prompts, and resources to Shopware's built-in [MCP Server](../tooling/mcp-server/index.md). This lets AI clients access your extension's capabilities alongside core platform tools.
+Both plugins and apps can contribute custom tools, prompts, and resources to Shopware's built-in [MCP Server](../../../products/tools/mcp-server/index.md). This lets AI clients access your extension's capabilities alongside core platform tools.
 
 - [Extend the MCP Server via Plugin](../../plugins/plugins/mcp-server.md)
 - [Extend the MCP Server via App](../../plugins/apps/mcp-server.md)

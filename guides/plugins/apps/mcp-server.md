@@ -16,7 +16,7 @@ Use an app when:
 - Your capability needs to scale or deploy independently from Shopware
 - You are building a SaaS integration where isolation matters more than in-process performance
 
-For in-process PHP with full DAL access, see [Extending via Plugin](../plugins/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../development/tooling/mcp-server/extending.md).
+For in-process PHP with full DAL access, see [Extending via Plugin](../plugins/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../../products/tools/mcp-server/extending.md).
 
 ## How app capabilities work
 
@@ -120,13 +120,13 @@ How strictly these privileges are enforced depends on the URL mode:
 The `url` attribute supports two modes:
 
 - **External URL** (`https://...`): Shopware sends an HMAC-signed POST to your remote endpoint. This is the default for SaaS integrations and any app hosted outside Shopware.
-- **Internal path** (`/...`): Shopware dispatches the call as a Symfony subrequest. This lets an app use [app scripts](../app-scripts/) to serve capability logic without running an external server. Example: `url="/api/script/mcp-greet"`.
+- **Internal path** (`/...`): Shopware dispatches the call as a Symfony subrequest. This lets an app use [app scripts](./app-scripts/) to serve capability logic without running an external server. Example: `url="/api/script/mcp-greet"`.
 
 Use the internal-path mode when your tool is a thin wrapper around data that Shopware already has. Use external URLs when you need to call out to an ERP, PIM, or any system that Shopware cannot reach directly.
 
 ### Internal-path example: app script
 
-Point the tool at an [app script endpoint](../app-scripts/add-api-endpoint.md):
+Point the tool at an [app script endpoint](./app-scripts/add-api-endpoint.md):
 
 ```xml
 <mcp-tool name="greet" url="/api/script/mcp-greet">
@@ -289,7 +289,7 @@ Your tools appear with **Source: app** in the output. To see what a specific int
 
 ## Further reading
 
-- [MCP Concepts](../../development/tooling/mcp-server/mcp-concepts.md): tools, resources, and prompts explained
-- [Best Practices](../../development/tooling/mcp-server/best-practices.md): design principles for MCP tools
+- [MCP Concepts](../../../products/tools/mcp-server/mcp-concepts.md): tools, resources, and prompts explained
+- [Best Practices](../../../products/tools/mcp-server/best-practices.md): design principles for MCP tools
 - [Extending via Plugin](../plugins/mcp-server.md): in-process PHP alternative
 - [McpHelloWorld](https://github.com/shopwareLabs/McpHelloWorld): minimal example app registering tools, prompts, and resources via webhook
