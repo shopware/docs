@@ -130,7 +130,7 @@ Beside these settings, they have the following in common:
 [disabled](add-plugin-configuration.md#disabled),
 and [required](add-plugin-configuration.md#required).
 
-#### Cache relevant fields
+#### Cache-relevant fields
 
 Use the `cache-relevant="true"` attribute when a configuration value changes cached Storefront output. This applies to fields that are read in Storefront templates, controllers, page loaders, or other code paths that influence an HTTP-cached response.
 
