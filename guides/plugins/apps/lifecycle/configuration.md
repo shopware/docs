@@ -27,6 +27,8 @@ To offer configuration possibilities to your users you can provide a `config.xml
 The configuration page will be displayed in the Administration under `Extensions > My extensions`.
 For development purposes you can use the Administration component to configure plugins to provide configuration for your app, therefore use the URL `{APP_URL}/admin#/sw/extension/config/{appName}`.
 
+If an app configuration value changes cached Storefront output, mark the corresponding `<input-field>` or `<component>` with `cache-relevant="true"` in the `config.xml`. See [Cache relevant fields](../../plugins/plugin-fundamentals/add-plugin-configuration.md#cache-relevant-fields) for details.
+
 ## Reading the configuration values
 
 The configuration values are saved as part of the `SystemConfig` and you can use the key `{appName}.config.{fieldName}` to identify the values. There are two possibilities to access the configuration values from your app. If you need those values on your app-backend server, you can read them over the API. If you need the configuration values in your Storefront twig templates you can use the `systemConfig()`-twig function.
