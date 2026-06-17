@@ -344,9 +344,9 @@ The Deployment Helper can also deploy Fastly VCL Snippets for you and keep them 
 composer require shopware/fastly-meta
 ```
 
-After that, make sure that environment variable `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set and the Fastly VCL Snippets will be deployed with the regular deployment process of the Deployment Helper.
+After that, make sure that environment variables `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set and the Fastly VCL Snippets will be deployed with the regular deployment process of the Deployment Helper.
 
-The deployment helper has also three commands to manage the Fastly VCL Snippets:
+The Deployment Helper also has three commands to manage the Fastly VCL Snippets:
 
 - `./vendor/bin/shopware-deployment-helper fastly:snippet:list` - List all VCL snippets that are currently deployed
 - `./vendor/bin/shopware-deployment-helper fastly:snippet:deploy` - Deploy all Fastly VCL snippets manually
