@@ -13,7 +13,7 @@ The plugin does not replace regular Shopware updates. It is meant to bridge the 
 
 ## Compatibility
 
-Each major Shopware version is covered by its own plugin version:
+The following table shows which plugin version covers each major Shopware version.
 
 | Plugin version | Shopware versions |
 |----------------|-------------------|
@@ -45,7 +45,7 @@ After installing a plugin update, clear the cache again so newly added fixes are
 
 ## How fixes work
 
-Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id, for example [GHSA-9v5m-39wh-5chq](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). All applicable fixes are active by default once the plugin is activated.
+Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id, for example [`GHSA-9v5m-39wh-5chq`](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). All applicable fixes are active by default once the plugin is activated.
 
 You can review and manage the fixes under *Settings > Extensions > Security Plugin* in the Administration. For each fix, the page shows a short description and a link to the official advisory with the technical details and severity.
 
@@ -55,7 +55,7 @@ In a cluster setup, the fix configuration is stored in the database and therefor
 
 ## Composer audit integration
 
-Tools like [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) report every advisory that affects your installed Shopware version — including the ones the Security Plugin already mitigates. To avoid these false alarms, you can exclude advisories that are covered by an active fix in your project's `composer.json` using the [advisories policy](https://getcomposer.org/doc/06-config.md#ignore-2):
+Tools like [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) report every advisory that affects your installed Shopware version — including the ones the Security Plugin already mitigates. To avoid these false alarms, you can exclude advisories that are covered by an active fix in your project's `composer.json` using the [advisories policy](https://getcomposer.org/doc/06-config.md#ignore-id):
 
 ```json
 {
