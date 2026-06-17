@@ -7,9 +7,9 @@ nav:
 # Shopware Nexus Overview
 
 :::warning
-**Beta Notice**
+**Early Access Notice**
 
-Shopware Nexus is currently in **beta** status. The range of functions is limited and may expand in future updates. Behaviour and scope may change.
+Shopware Nexus is currently in **Early Access**. The range of functions is limited and may expand in future updates. Behaviour and scope may change.
 :::
 
 Shopware Nexus is a unified platform for **event-driven automation and integration**.
@@ -23,7 +23,7 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 - Enables conditional logic and data transformation without coding
 - Provides real-time execution monitoring
 
-## Available in beta
+## Available in Early Access
 
 | Feature | Description |
 |----------|------------|
@@ -41,17 +41,18 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | Execution Monitoring | Track runs & metrics |
 | Delay Node | Add timed delays between steps |
 
-## Limitations in beta
+## Limitations in Early Access
 
-The following capabilities are **not available during the beta phase**:
+The following capabilities are **not available during Early Access**:
 
 - SLA guarantees  
 - 24/7 support  
 - Multi-region deployment (EU only)  
-- On-premise/self-hosted deployment  
 - Workflow marketplace  
 
-## Coming after beta
+Nexus is a managed cloud service. On-premise and self-hosted deployment are not being considered at this time.
+
+## Coming after Early Access
 
 | Feature | Planned For | Description |
 |----------|------------|------------|
