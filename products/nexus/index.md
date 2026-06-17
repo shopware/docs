@@ -22,6 +22,7 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 - Syncs data bidirectionally between Shopware and external systems (e.g., Microsoft Dynamics Business Central)
 - Enables conditional logic and data transformation without coding
 - Provides real-time execution monitoring
+- Manages team access with role-based permissions
 
 ## Available in Early Access
 
@@ -38,8 +39,10 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 | S3 Storage | Store data on S3 |
 | Data Transformation | Map and filter data |
 | Expression Placeholders | Placeholders to insert event data into templates |
-| Execution Monitoring | Track runs & metrics |
+| Execution Monitoring | Track runs & metrics, including per-node timeline and payloads |
 | Delay Node | Add timed delays between steps |
+| Workflow Versioning | Published version history with compare and restore |
+| User Management & Roles | Admin, Builder, and Viewer roles per company |
 
 ## Limitations in Early Access
 
@@ -59,6 +62,5 @@ Nexus is a managed cloud service. On-premise and self-hosted deployment are not 
 | AI-Assisted Authoring | GA | Intelligent suggestions |
 | Advanced Analytics | GA | Performance insights |
 | Per-Tenant Quotas | GA | Usage & billing |
-| Workflow Versioning UI | GA | Rollback support |
 | Additional ERP Connectors | Post-GA | SAP, Oracle, etc. |
 | Custom Node Development | Post-GA | Custom workflow nodes |

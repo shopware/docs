@@ -31,8 +31,12 @@ Typical structure:
 | Canvas | Visual workspace |
 | Node Palette | Available nodes |
 | Node Configuration | Params, Credentials, Notes, Debug |
-| Toolbar | Save, Publish, Execute, Undeploy |
+| Config Templates | Save and reuse node configurations across workflows |
+| Toolbar | Save, Publish, Run, Undeploy, Import/Export |
 | Execution Tab | Run history and metrics |
+
+A workflow can also be run manually with an optional input payload, and
+workflows can be exported to or imported from JSON for backup and sharing.
 
 ## Workflow states
 
@@ -54,12 +58,24 @@ Workflows move through these states from creation to active execution.
 - Execution duration
 - Messages processed per node
 - Error counts and latency
+- Node timeline showing each node's step, label, status, and runtime
+- Per-node payload inspection as formatted JSON
 
 ## Current Monitoring Limitations
 
-- No per-node execution logs
-- Limited payload inspection
 - Manual refresh required
+
+## Versioning
+
+Each time you publish a workflow, Nexus stores an immutable version in its
+history. From the **Versions** panel you can:
+
+- Review every published version with its author and publish time
+- Compare two versions to see node, connector, and setting changes
+- Restore an earlier version, which replaces the current draft (existing
+  published versions are untouched)
+
+A workflow must be deactivated before you can restore a version.
 
 ## Node types
 
