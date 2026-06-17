@@ -14,9 +14,7 @@ This section covers:
 * How to generate migrations from entity definitions
 * How to work with custom fields (e.g., media custom fields)
 
-## Guides
+Use migrations for schema changes and structural updates. Use custom fields to extend existing entities without modifying the core schema.
 
 * <PageRef page="./database-migrations" />
 * <PageRef page="./custom-fields-of-type-media" />
-
-Use migrations for schema changes and structural updates. Use custom fields to extend existing entities without modifying the core schema.

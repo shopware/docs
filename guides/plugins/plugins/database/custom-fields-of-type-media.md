@@ -6,11 +6,9 @@ nav:
 
 # Using Custom Fields of Type Media
 
-## Overview
-
 After adding a custom field of type media in the Administration or via a plugin, you can assign media objects to different entities.
 This is often used on products to add additional images to the product detail page.
-If you want to learn more about custom fields, take a look at [Adding custom fields](../framework/custom-field/add-custom-field.md).
+For more on custom fields, see [Adding custom fields](../framework/custom-field/add-custom-field.md).
 
 ## Resolve media custom fields in Twig
 
@@ -21,10 +19,10 @@ In the product detail page template, `page.product.translated.customFields.xxx` 
 public function searchMedia(array $ids, Context $context): MediaCollection { ... }
 ```
 
-This function resolves the corresponding media entities for the given IDs. Here is an example with a custom field \(`custom_sports_media_id`\) on the product detail page:
+This function resolves the corresponding media entities for the given IDs. Here is an example with a custom field (`custom_sports_media_id`) on the product detail page:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig
+{# <plugin root>/src/Resources/views/storefront/page/content/product-detail.html.twig #}
 {% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block page_product_detail_media %}
@@ -48,10 +46,10 @@ After loading the entity, you can use fields like `sportsMedia.url`, `sportsMedi
 This function performs a database query on every invocation and should therefore not be used inside a loop.
 To resolve multiple IDs at once, pass them as one array.
 
-To read the media objects within the product listing, we recommend the following procedure:
+To read the media objects within the product listing, use the following approach:
 
 ```twig
-// <plugin root>/src/Resources/views/storefront/component/product/listing.html.twig
+{# <plugin root>/src/Resources/views/storefront/component/product/listing.html.twig #}
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
 {% block element_product_listing_col %}

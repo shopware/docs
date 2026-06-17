@@ -11,7 +11,7 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide.md), but that one is not mandatory. Knowing how the `services.php` file in a plugin works is also helpful, which will be taught in our guides about [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md). It is shortly explained here as well though, so no worries!
+This guide builds on the [Plugin Base Guide](../plugin-base-guide.md). Familiarity with `services.php` is helpful — see [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md).
 
 ::: info
 Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -52,9 +52,9 @@ Note the tags required for both the task and its respective handler, `shopware.s
 
 ## ScheduledTask and its handler
 
-As you might have noticed, the `services.php` file tries to find both the task itself and the new task handler in a directory called `Service/ScheduledTask`. This naming is up to you, Shopware 6 decided to use this name though.
+The `services.php` file references both the task and its handler from `Service/ScheduledTask`. This directory name is a convention — you can use a different path as long as the namespace matches.
 
-Here's the an example `ScheduledTask`:
+Here's an example `ScheduledTask`:
 
 ```php
 // <plugin root>/src/Service/ScheduledTask/ExampleTask.php
@@ -80,12 +80,10 @@ class ExampleTask extends ScheduledTask
 
 Your `ExampleTask` class has to extend from the `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask` class, which will force you to implement two methods:
 
-* `getTaskName`: The technical name of your task. Make sure to add a vendor prefix to your custom task, to prevent collisions with other plugin's scheduled tasks. In this example this is `swag`.
+* `getTaskName`: The technical name of your task. Make sure to add a vendor prefix to your custom task, to prevent collisions with other plugins' scheduled tasks. In this example this is `swag`.
 * `getDefaultInterval`: The interval in seconds at which your scheduled task should be executed.
 
-And that's it for the `ExampleTask` class.
-
-Following will be the respective task handler:
+The respective task handler:
 
 ```php
 // <plugin root>/src/Service/ScheduledTask/ExampleTaskHandler.php
@@ -108,14 +106,14 @@ class ExampleTaskHandler extends ScheduledTaskHandler
 
 The task handler, `ExampleTaskHandler` as defined previously in your `services.php`, will be annotated with `AsMessageHandler` handling the `ExampleTask` class. In addition, the `ScheduledTaskHandler` has to extend from the class `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler`. This also comes with one method that you need to implement first:
 
-* `run`: This method is executed once your scheduled task is executed. Do everything, that your task is supposed to do here. In this example, it will just create a new file.
+* `run`: This method is executed when the scheduled task runs. Implement your task logic here.
 
-Now every five minutes, your task will be executed and it will print an output every time now.
+Every five minutes, Shopware will dispatch the task to the message bus and the handler's `run()` method will be executed.
 
 ## Executing the scheduled task
 
 Usually scheduled tasks are registered when installing or updating your plugin. If you don't want to reinstall your plugin in order to register your scheduled task, you can also use the following command to achieve this:
- `bin/console scheduled-task:register`
+`bin/console scheduled-task:register`
 
 In order to properly test your scheduled task, you first have to run the command `bin/console scheduled-task:run`. This will start the `ScheduledTaskRunner`, which takes care of your scheduled tasks and their respective timings. It will dispatch a message to the message bus once your scheduled task's interval is due.
 
@@ -123,6 +121,6 @@ Now you still need to run the command `bin/console messenger:consume` to actuall
 
 <!--@include: ../../../../snippets/guide/debugging_scheduled_tasks.md-->
 
-## More interesting topics
+## Next steps
 
-* [Adding a custom command](add-custom-commands.md)
+[Adding a custom command](add-custom-commands.md)

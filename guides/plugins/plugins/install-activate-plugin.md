@@ -15,7 +15,7 @@ From your Shopware project root directory, refresh the list of plugins:
 bin/console plugin:refresh
 ```
 
-A warning about the `version` field of the `composer.json` file might appear; this can be ignored. You should see a list like this:
+You should see a list like this:
 
 ```bash
 Shopware Plugin Service
@@ -28,7 +28,11 @@ Shopware Plugin Service
  ------------------------------ -------------------------------------------- ----------- ----------------- ---------------------------- ----------- -------- -------------
 ```
 
-This output is a **good sign**, because this means Shopware recognized your plugin successfully.
+This output confirms the plugin was loaded correctly.
+
+::: info
+If a warning about the `version` field in `composer.json` appears, it is expected and does not affect the result.
+:::
 
 Now install and activate:
 
@@ -36,7 +40,7 @@ Now install and activate:
 bin/console plugin:install --activate SwagBasicExample
 ```
 
-This should print the following output:
+This prints the following output:
 
 ```bash
 Shopware Plugin Lifecycle Service
@@ -48,7 +52,7 @@ Shopware Plugin Lifecycle Service
  Plugin "SwagBasicExample" has been installed and activated successfully.
 ```
 
-If successful, your plugin is now active and ready to use!
+Your plugin is now installed and active.
 
 ## Next steps
 
