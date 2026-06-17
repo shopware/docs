@@ -25,6 +25,32 @@ Then the helper can be executed via:
 vendor/bin/shopware-deployment-helper run
 ```
 
+### Available Commands
+
+The Deployment Helper ships with the following CLI commands:
+
+| Command | Description |
+|---|---|
+| `run` | Install or update Shopware (the main deployment command) |
+| `one-time-task:list` | List all one-time tasks and their execution status |
+| `one-time-task:mark <id>` | Mark a one-time task as executed without running it |
+| `one-time-task:unmark <id>` | Unmark a one-time task so it runs again on the next deployment |
+| `fastly:snippet:list` | List all deployed Fastly VCL snippets |
+| `fastly:snippet:deploy` | Deploy all Fastly VCL snippets manually |
+| `fastly:snippet:remove <name>` | Remove a Fastly VCL snippet by name |
+
+### Run Command Options
+
+The `run` command accepts the following options:
+
+| Option | Description |
+|---|---|
+| `--skip-theme-compile` | Skip theme compilation (use when the theme was already compiled in CI/CD) |
+| `--skip-assets-install` | Skip asset installation (use when assets were already copied in CI/CD) |
+| `--skip-asset-install` | Deprecated alias for `--skip-assets-install` |
+| `--timeout=<seconds>` | Set script execution timeout in seconds. Set to `null` to disable (default: `300` or `SHOPWARE_DEPLOYMENT_TIMEOUT`) |
+| `--project-config=<path>` | Path to a custom `.shopware-project.yml` file (absolute or relative to project root) |
+
 ## What does the Deployment Helper exactly do?
 
 The Deployment Helper checks for you if Shopware is installed, and if not, it will install it for you.
@@ -46,13 +72,13 @@ graph TD
     B -- Yes --> E[Execute pre-update hooks];
     B -- No --> N[Execute pre-install hooks];
 
-    E --> F[Enable maintenance mode];
+    E --> F["Enable maintenance mode (if configured)"];
     F --> G[Run system:update:finish];
     G --> H["Manage Plugins & Apps (install, update, deactivate, remove)"];
     H --> I["Manage Themes (refresh, compile)"];
     I --> J[Execute one-time tasks];
     J --> K[Execute post-update hooks];
-    K --> L[Disable maintenance mode];
+    K --> L["Disable maintenance mode (if configured)"];
     L --> M(Dispatch PostDeploy event);
 
     N --> O[Run system:install];
@@ -142,11 +168,23 @@ deployment:
   store:
     license-domain: 'example.com'
 
-  # Automatically runs `system:setup:staging --no-interaction --force` after deployment,
-  # before extensions are managed. Use this on staging environments, so the instance is
-  # switched into staging mode on every deployment. See "Staging Mode Integration" below.
+  # Automatically runs `system:setup:staging --no-interaction --force` after deployment
+  # and extension management has completed, as a PostDeploy listener.
+  # Use this on staging environments, so the instance is switched into staging mode
+  # on every deployment. See "Staging Mode Integration" below.
   staging:
     enabled: false
+
+  # Enable maintenance mode during updates. When enabled, the storefront is put into
+  # maintenance mode before running `system:update:finish` and restored afterwards.
+  # Both enable and disable operations are followed by a cache clear.
+  maintenance:
+    enabled: false
+
+  # Clear the HTTP and object cache after every deployment (via PostDeploy listener).
+  # This is independent of the maintenance-mode cache clears.
+  cache:
+    always_clear: false
 ```
 
 ## Local Configuration Overrides
@@ -219,13 +257,21 @@ Additionally, you can configure the Shopware installation using the following en
 - `INSTALL_CURRENCY` - The currency to install Shopware with (default: `EUR`)
 - `INSTALL_ADMIN_USERNAME` - The username of the admin user (default: `admin`)
 - `INSTALL_ADMIN_PASSWORD` - The password of the admin user (default: `shopware`)
+- `INSTALL_ADMIN_EMAIL` - The email address of the admin user (default: empty)
 - `SALES_CHANNEL_URL` - The URL of the Storefront sales channel (default: `http://localhost`)
+- `APP_URL` - Fallback URL for the Storefront sales channel when `SALES_CHANNEL_URL` is not set
 - `SHOPWARE_DEPLOYMENT_TIMEOUT` - The timeout allowed for setup commands, that are executed (default: `300`)
+- `SHOPWARE_DEPLOYMENT_FORCE_REINSTALL` - Set to `1` to force reinstallation with `--drop-database`
 - `SHOPWARE_STORE_ACCOUNT_EMAIL` - The email address of the Shopware account
 - `SHOPWARE_STORE_ACCOUNT_PASSWORD` - The password of the Shopware account
+- `SHOPWARE_STORE_SHOP_SECRET` - A pre-configured shop secret for Store authentication (alternative to email/password)
 - `SHOPWARE_STORE_LICENSE_DOMAIN` - The license domain of the Shopware Shop (default: license-domain value in YAML file)
 - `SHOPWARE_USAGE_DATA_CONSENT` - Controls Shopware Usage Data sharing (`accepted` or `revoked`), overwrites Administration choice
 - `SHOPWARE_DEPLOYMENT_STAGING` - Set to `1` to enable staging mode (equivalent to `deployment.staging.enabled: true` in `.shopware-project.yml`)
+- `SHOPWARE_PROJECT_CONFIG_FILE` - Path to a custom `.shopware-project.yml` file (absolute or relative to project root)
+- `FASTLY_API_TOKEN` - The API token for Fastly VCL snippet deployment
+- `FASTLY_SERVICE_ID` - The Fastly Service ID for VCL snippet deployment
+- `DO_NOT_TRACK` - Set to any value to opt out of telemetry tracking
 
 ## Extension Management and Store-installed Plugins
 
@@ -284,7 +330,7 @@ deployment:
 
 …or via the environment variable `SHOPWARE_DEPLOYMENT_STAGING=1`. The latter is convenient when the same `.shopware-project.yml` is shared between production and staging — set the env variable only on the staging environment.
 
-When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` during deployment, before extensions are managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
+When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` as a PostDeploy listener, after extensions have been managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
 
 :::warning
 Do not enable this on your production environment. `system:setup:staging` is a destructive operation that, among other things, deletes apps with active external connections and disables email delivery.
@@ -298,11 +344,12 @@ The Deployment Helper can also deploy Fastly VCL Snippets for you and keep them 
 composer require shopware/fastly-meta
 ```
 
-After that, make sure that environment variable `FASTLY_API_KEY` and `FASTLY_SERVICE_ID` are set and the Fastly VCL Snippets will be deployed with the regular deployment process of the Deployment Helper.
+After that, make sure that environment variable `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set and the Fastly VCL Snippets will be deployed with the regular deployment process of the Deployment Helper.
 
-The deployment helper has also two commands to manage the Fastly VCL Snippets:
+The deployment helper has also three commands to manage the Fastly VCL Snippets:
 
 - `./vendor/bin/shopware-deployment-helper fastly:snippet:list` - List all VCL snippets that are currently deployed
+- `./vendor/bin/shopware-deployment-helper fastly:snippet:deploy` - Deploy all Fastly VCL snippets manually
 - `./vendor/bin/shopware-deployment-helper fastly:snippet:remove <name>` - Remove a VCL snippet by name
 
 ## Automatic Store Login
