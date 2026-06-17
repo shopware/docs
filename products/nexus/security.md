@@ -20,3 +20,5 @@ nav:
 | Missing event data | Inspect payload with Log node |
 | BC filter returns empty | Validate OData syntax |
 | Slack message not sent | Re-authorize Slack |
+
+Still stuck? Ask in the [Nexus club](https://hub.shopware.com/clubs/nexus).

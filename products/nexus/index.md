@@ -12,6 +12,12 @@ nav:
 Shopware Nexus is currently in **Early Access**. The range of functions is limited and may expand in future updates. Behaviour and scope may change.
 :::
 
+:::info
+**Questions or feedback?**
+
+Join the [Nexus club](https://hub.shopware.com/clubs/nexus) to ask questions, share feedback, and help shape where Nexus goes next.
+:::
+
 Shopware Nexus is a unified platform for **event-driven automation and integration**.
 
 It empowers merchants to orchestrate systems visually using low-code simplicity, creating scalable workflows that connect Shopware with ERPs, CRMs, and other business systems.
