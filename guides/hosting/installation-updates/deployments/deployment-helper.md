@@ -34,7 +34,7 @@ The Deployment Helper ships with the following CLI commands:
 | `run` | Install or update Shopware (the main deployment command) |
 | `one-time-task:list` | List all one-time tasks and their execution status |
 | `one-time-task:mark <id>` | Mark a one-time task as executed without running it |
-| `one-time-task:unmark <id>` | Unmark a one-time task so it runs again on the next deployment |
+| `one-time-task:unmark <id>` | Remove the mark from a one-time task so it runs again on the next deployment |
 | `fastly:snippet:list` | List all deployed Fastly VCL snippets |
 | `fastly:snippet:deploy` | Deploy all Fastly VCL snippets manually |
 | `fastly:snippet:remove <name>` | Remove a Fastly VCL snippet by name |
@@ -169,7 +169,7 @@ deployment:
     license-domain: 'example.com'
 
   # Automatically runs `system:setup:staging --no-interaction --force` after deployment
-  # and extension management has completed, as a PostDeploy listener.
+  # and extension management has completed, as a `PostDeploy` event listener.
   # Use this on staging environments, so the instance is switched into staging mode
   # on every deployment. See "Staging Mode Integration" below.
   staging:
@@ -330,7 +330,7 @@ deployment:
 
 …or via the environment variable `SHOPWARE_DEPLOYMENT_STAGING=1`. The latter is convenient when the same `.shopware-project.yml` is shared between production and staging — set the env variable only on the staging environment.
 
-When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` as a PostDeploy listener, after extensions have been managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
+When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` as a `PostDeploy` event listener, after extensions have been managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../creating-a-staging-instance.md#configuring-staging-mode).
 
 :::warning
 Do not enable this on your production environment. `system:setup:staging` is a destructive operation that, among other things, deletes apps with active external connections and disables email delivery.
