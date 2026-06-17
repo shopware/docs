@@ -128,7 +128,7 @@ Next, we will define the `<setup>` part of the manifest. This part describes how
 </manifest>
 ```
 
-The `<registraionUrl>` is already implemented by the app template and is always `/app/lifecycle/register`, unless you modify `config/routes/shopware_app.yaml`.
+The `<registrationUrl>` is already implemented by the app template and is always `/app/lifecycle/register`, unless you modify `config/routes/shopware_app.yaml`.
 The `<secret>` element is only present in development versions of the app. In production, the extension store will provide the secret to authenticate your app buyers.
 
 ### Permissions
