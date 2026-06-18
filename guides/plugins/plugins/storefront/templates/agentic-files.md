@@ -121,7 +121,7 @@ requiring merchants to replace the whole template.
 
 ## Template variables
 
-Agentic file templates receive these variables:
+The following table lists the variables that agentic file templates receive.
 
 | Variable | Description |
 | --- | --- |
