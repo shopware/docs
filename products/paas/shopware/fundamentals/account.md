@@ -109,7 +109,7 @@ sw-paas account service-account grant revoke
 
 ## Authentication tokens
 
-The `token` command manages access tokens for either your own account or a service account. Personal access tokens can be used for personal scripts but for CI/CD you should use service accounts.
+The `token` command manages access tokens for either your own account or a service account. Personal access tokens can be used for personal scripts. For CI/CD, you should use service accounts.
 
 Personal access tokens inherit the permissions of the user who created them, except the ability to create new tokens. This means any action the user can perform, the personal token can perform as well.
 
