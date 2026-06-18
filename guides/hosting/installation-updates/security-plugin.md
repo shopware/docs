@@ -7,7 +7,7 @@ nav:
 
 # Security Plugin
 
-The [Shopware 6 Security Plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) (`SwagPlatformSecurity`) backports security fixes to existing Shopware installations. It allows you to close known security vulnerabilities with a simple plugin update, without upgrading Shopware itself. The plugin is free, open source, and developed at [shopware/SwagPlatformSecurity](https://github.com/shopware/SwagPlatformSecurity).
+The [Shopware 6 Security Plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) (`SwagPlatformSecurity`) backports security fixes to existing Shopware installations. It allows you to close known security vulnerabilities with a simple plugin update, without upgrading Shopware itself. The plugin is free and maintained by Shopware.
 
 The plugin does not replace regular Shopware updates. It is meant to bridge the time until you can perform a proper update, or to keep installations secure that cannot be updated immediately. Security issues in third-party dependencies such as Symfony or Twig are not covered by the plugin and still require a dependency or Shopware update — see [Third-party dependencies](#third-party-dependencies).
 
@@ -15,12 +15,12 @@ The plugin does not replace regular Shopware updates. It is meant to bridge the 
 
 The following table shows which plugin version covers each major Shopware version.
 
-| Plugin version | Shopware versions |
-|----------------|-------------------|
-| 4.x            | 6.7.x             |
-| 3.x            | 6.6.x             |
-| 2.x            | 6.5.x             |
-| 1.x            | 6.4.x             |
+| Plugin version | Shopware versions | Maintained |
+|----------------|-------------------|------------|
+| 4.x            | 6.7.x             | ✔️         |
+| 3.x            | 6.6.x             | ✔️         |
+| 2.x            | 6.5.x             | ✔️         |
+| 1.x            | 6.4.x             | ❌         |
 
 Within a plugin version, every fix declares the Shopware version range it applies to. A fix is only loaded when your Shopware version is affected: if your version already contains the official patch, or is older than the first affected version, the fix stays inactive automatically. Installing the plugin on a fully patched installation is therefore safe — it simply does nothing until a new vulnerability is published.
 
@@ -45,7 +45,7 @@ After installing a plugin update, clear the cache again so newly added fixes are
 
 ## How fixes work
 
-Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id, for example [`GHSA-9v5m-39wh-5chq`](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). All applicable fixes are active by default once the plugin is activated.
+Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id — the [GitHub Security Advisory](https://docs.github.com/en/code-security/security-advisories) identifier under which the vulnerability is published, for example [`GHSA-9v5m-39wh-5chq`](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). All applicable fixes are active by default once the plugin is activated.
 
 You can review and manage the fixes under *Settings > Extensions > Security Plugin* in the Administration. For each fix, the page shows a short description and a link to the official advisory with the technical details and severity.
 
@@ -62,10 +62,10 @@ Tools like [`composer audit`](https://getcomposer.org/doc/03-cli.md#audit) repor
     "config": {
         "policy": {
             "advisories": {
-                "ignore-id": [
-                    "GHSA-9v5m-39wh-5chq",
-                    "GHSA-xvhc-gm7j-mhmc"
-                ]
+                "ignore-id": {
+                    "GHSA-9v5m-39wh-5chq": "Mitigated by an active fix in the Security Plugin.",
+                    "GHSA-xvhc-gm7j-mhmc": "Mitigated by an active fix in the Security Plugin."
+                }
             }
         }
     }
@@ -88,7 +88,7 @@ The one-click button writes to the `composer.json` of the application server tha
 
 The Security Plugin only fixes issues in Shopware itself. Your installation also contains many third-party libraries — Symfony, Twig, and others — that publish their own security advisories. The *Security Plugin* settings page includes a dependency check that compares all installed Composer packages against the public advisory database of [packagist.org](https://packagist.org) and lists known vulnerabilities, similar to running `composer audit` on the server.
 
-For this check, the names and versions of your installed packages are transmitted to packagist.org; the result is cached for one hour. Advisories that are excluded through the `composer.json` policy described above are not reported again.
+For this check, the names and versions of your installed packages are transmitted to packagist.org; the result is cached for one hour. Advisories that are excluded through the advisories policy in `composer.json` described above are not reported again.
 
 Vulnerabilities in dependencies cannot be fixed by the plugin. Update the affected packages in the environment where your project is built:
 
