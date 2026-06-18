@@ -304,6 +304,7 @@ DataSets
 DataStorer
 Datadog
 DateField
+DateInterval
 DateIntervalField
 DateRangeRule
 DateTime
@@ -443,6 +444,7 @@ Fullstack
 GBP
 GCM
 GDPR
+GHSA
 GIFs
 GLB
 GPT
@@ -994,6 +996,7 @@ SwagMcpMerchantAssistant
 SwagMigrationBundleExample
 SwagMyPlugin
 SwagMyPluginSW
+SwagPlatformSecurity
 Symfony
 Symfony's
 SyncApi
@@ -1212,6 +1215,7 @@ backlinks
 backoff
 backport
 backported
+backports
 balancer
 basename
 benefitting
