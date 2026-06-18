@@ -71,8 +71,7 @@ Each time you publish a workflow, Nexus stores an immutable version in its histo
 
 - Review every published version with its author and publish time
 - Compare two versions to see node, connector, and setting changes
-- Restore an earlier version, which replaces the current draft (existing
-  published versions are untouched)
+- Restore an earlier version, which replaces the current draft (existing published versions are untouched)
 
 A workflow must be deactivated before you can restore a version.
 
