@@ -162,7 +162,7 @@ deployment:
     post:
       - title: Warm up the cache
         script: |
-          bin/console cache:warmup
+          %php.bin% bin/console cache:warmup
       - title: Notify the team
         script: ./notify.sh
 ```
