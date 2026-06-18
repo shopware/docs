@@ -67,8 +67,7 @@ Workflows move through these states from creation to active execution.
 
 ## Versioning
 
-Each time you publish a workflow, Nexus stores an immutable version in its
-history. From the **Versions** panel you can:
+Each time you publish a workflow, Nexus stores an immutable version in its history. From the **Versions** panel you can:
 
 - Review every published version with its author and publish time
 - Compare two versions to see node, connector, and setting changes
