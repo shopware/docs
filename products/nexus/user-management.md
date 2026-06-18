@@ -18,8 +18,7 @@ Nexus access is scoped to your company. Every user who belongs to the company is
 
 ## Managing users
 
-Admins manage users from the **User management** screen, which lists everyone
-in the company with their role and status (Active, Inactive, Pending).
+Admins manage users from the **User management** screen, which lists everyone in the company with their role and status (Active, Inactive, Pending).
 
 From here, an Admin can:
 
