@@ -6,8 +6,7 @@ nav:
 
 # User Management
 
-Nexus access is scoped to your company. Every user who belongs to the company
-is assigned a role that controls what they can see and do.
+Nexus access is scoped to your company. Every user who belongs to the company is assigned a role that controls what they can see and do.
 
 ## Roles
 
