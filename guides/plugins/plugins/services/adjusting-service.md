@@ -7,13 +7,11 @@ nav:
 
 # Adjusting a Service
 
-## Overview
-
-In this guide you'll learn how to adjust a service. You can read more about service decoration in the [Symfony documentation](https://symfony.com/doc/current/service_container/service_decoration.html).
+This guide explains how to adjust a service using decoration. For more details, see the [Symfony documentation](https://symfony.com/doc/current/service_container/service_decoration.html).
 
 ## Prerequisites
 
-In order to add your own custom service for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+This guide builds on the [Plugin Base Guide](../plugin-base-guide.md).
 
 ::: info
 Refer to this video on **[Decorating services](https://www.youtube.com/watch?v=Rgf4c9rd1kw)** explaining service decorations with an easy example. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
@@ -21,7 +19,7 @@ Refer to this video on **[Decorating services](https://www.youtube.com/watch?v=R
 
 ## Decorating the service
 
-First of all we have to create a new service for this example which gets decorated in the next step. Then we have to add a new service to our `services.php` with the `decorate` method pointing to our service we want to decorate. The `.inner` reference is used to keep the old one as reference.
+Register both the original service and the decorator in `services.php`. Use the `decorate` method to point to the service being decorated. The `.inner` reference keeps the original service available inside the decorator.
 
 Here's our example `services.php`:
 
@@ -46,13 +44,13 @@ return static function (ContainerConfigurator $configurator): void {
 };
 ```
 
-Now we have to define an abstract class because it's more beautiful and not so strict like interfaces. With an abstract class we can add new functions easier, you can read more about this at the end of this article. The abstract class has to include an abstract function called `getDecorated()` which has the return type of our instance.
+Define an abstract class for the service contract. Unlike interfaces, abstract classes allow adding new methods without breaking existing decorators — see [Adding new functions](#adding-new-functions-to-an-existing-service) below. The abstract class must include a `getDecorated()` method returning its own type.
 
 ::: info
 To avoid misunderstandings: The abstract service class and the implementation of it is not part of the decoration process itself and most of the times comes either from the Shopware core or from a plugin you want to extend. They are added here to have an example to decorate.
 :::
 
-Therefore, this is how your abstract class could then look like:
+Example abstract class:
 
 ```php
 // <plugin root>/src/Service/AbstractExampleService.php
@@ -68,9 +66,9 @@ abstract class AbstractExampleService
 }
 ```
 
-Now we have our abstract class, but no service which uses it. So we create our `ExampleService` which extends from our `AbstractExampleService`. In our service the `getDecorated()` function has to throw an `DecorationPatternException` because it has no decoration yet.
+`ExampleService` extends `AbstractExampleService`. Its `getDecorated()` throws `DecorationPatternException` because it has no decorator yet:
 
-Therefore, your service could then look like this:
+Example service:
 
 ```php
 // <plugin root>/src/Service/ExampleService.php
@@ -94,9 +92,9 @@ class ExampleService extends AbstractExampleService
 }
 ```
 
-The last step is creating our decorated service called `ExampleServiceDecorator` in this example. Our decorated service has to extend from the `AbstractExampleService` and the constructor has to accept an instance of `AbstractExampleService`. Furthermore, the `getDecorated()` function has to return the decorated service passed into the constructor.
+`ExampleServiceDecorator` extends `AbstractExampleService`, accepts the original service in its constructor, and returns it from `getDecorated()`:
 
-Your service could then look like below:
+Example decorator:
 
 ```php
 // <plugin root>/src/Service/ExampleServiceDecorator.php
@@ -152,7 +150,7 @@ abstract class AbstractExampleService
 }
 ```
 
-After we have implemented our new function in the abstract class, we implement it in our service too.
+Implement the new method in the concrete service as well:
 
 ```php
 // <plugin root>/src/Service/ExampleService.php

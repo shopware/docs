@@ -8,7 +8,7 @@ nav:
 # In-App Purchases
 
 ::: info
-In-App Purchase is available since Shopware version 6.6.9.0
+In-App Purchases are available since Shopware version 6.6.9.0
 :::
 
 In-App Purchases are a way to lock certain features behind a paywall within the same extension.
@@ -20,9 +20,9 @@ and then offer a paid version with more features.
 
 ## Allow users to buy an In-App Purchase
 
-In order to enable others to purchase your In-App Purchase, you must request a checkout for it via the `inAppPurchaseCheckout` store in the administration.
+In order to enable others to purchase your In-App Purchase, you must request a checkout for it via the `inAppPurchaseCheckout` store in the Administration.
 The checkout process itself is provided by Shopware.
-As this is purely functional, it is your responsibility to provide a button and hide it if the IAP cannot be purchased more than once.
+It is your responsibility to provide a button and hide it if the IAP cannot be purchased more than once.
 
 ```ts
 {
@@ -69,13 +69,15 @@ class Example
 If you want to check an in-app purchase in the administration:
 
 ```js
-if (Shopware.InAppPurchase.isActive('MyExtensionName', 'my-iap-identifier')) {};
+if (Shopware.InAppPurchase.isActive('MyExtensionName', 'my-iap-identifier')) {
+    // ...
+}
 ```
 
-## Event
+## Listen to In-App Purchase events
 
 Apps are also able to manipulate the available In-App Purchases as described in
-<PageRef page="../apps/gateways/in-app-purchase/in-app-purchase-gateway" title="In App purchase gateway" />
+<PageRef page="../apps/gateways/in-app-purchase/in-app-purchase-gateway" title="In-App purchase gateway" />.
 
 Plugins can listen to the `Shopware\Core\Framework\App\InAppPurchases\Event\InAppPurchasesGatewayEvent`.
 This event is dispatched after the In-App Purchases Gateway has received the app server response from a gateway

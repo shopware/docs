@@ -12,12 +12,10 @@ The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to
 ## Prerequisites
 
 - Review the [Plugin Base Guide](../plugin-base-guide.md)
-- [Plugin configuration](add-plugin-configuration.md) in the first instance
+- [Plugin configuration](add-plugin-configuration.md) — complete this first
 - Familiarity with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
 
-## Overview
-
-The plugin in this example already knows a subscriber, which listens to the `product.loaded` event and therefore will be called every time a product is loaded.
+The example plugin includes a subscriber that listens to the `product.loaded` event and is called every time a product is loaded.
 
 ```php
 // <plugin root>/src/Subscriber/MySubscriber.php
@@ -48,7 +46,7 @@ class MySubscriber implements EventSubscriberInterface
 For this guide, a very small plugin configuration file is available as well:
 
 ```xml
-// <plugin root>/src/Resources/config/config.xml
+<!-- <plugin root>/src/Resources/config/config.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
@@ -122,13 +120,11 @@ class MySubscriber implements EventSubscriberInterface
 }
 ```
 
-So far, so good. The `SystemConfigService` is now available in your subscriber.
+The `SystemConfigService` is now available in your subscriber.
 
-This service comes with a `get` method to read the configurations. The first idea would be to simply call `$this->systemConfigService->get('example')` now, wouldn't it? Simply using the technical name you've previously set for the configuration.
+Use the `get` method to read configuration values. Calling `$this->systemConfigService->get('example')` would be ambiguous — multiple plugins could define a field with the same technical name.
 
-But what would happen, if there were more plugins providing the same technical name for their very own configuration field? How would you access the proper field, how would you prevent plugin conflicts?
-
-That's why the plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>`. Thus, it would be `SwagBasicExample.config.example` here.
+To avoid conflicts, plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>`. Thus, it would be `SwagBasicExample.config.example` here.
 
 ```php
 // <plugin root>/src/Subscriber/MySubscriber.php
@@ -149,7 +145,7 @@ class MySubscriber implements EventSubscriberInterface
 ```
 
 ::: info
-Set the `saleschannelId` to `null` for the plugin configuration to be used by all Sales Channels else set to the corresponding Sales Channel ID.
+Set `salesChannelId` to `null` to apply the configuration to all Sales Channels, or pass a specific Sales Channel ID.
 :::
 
 </Tab>
@@ -157,7 +153,7 @@ Set the `saleschannelId` to `null` for the plugin configuration to be used by al
 
 In the Administration, use `systemConfigApiService` (wraps system-config endpoints).
 
-## Using injection in Vue components
+### Using injection in Vue components
 
 ```javascript
 // Example: Reading plugin configuration in Administration Vue component
@@ -184,7 +180,7 @@ export default Shopware.Component.wrapComponentConfig({
 });
 ```
 
-## Using direct service access
+### Using direct service access
 
 ```javascript
 // Example: Reading plugin configuration using direct service access
@@ -209,7 +205,7 @@ Your plugin needs the `system_config:read` permission to access this API endpoin
 </Tab>
 <Tab title="Storefront">
 
-## Twig (`config()`)
+### Twig (`config()`)
 
 In Storefront templates, use the `config()` Twig function to access plugin configuration values directly without making API calls:
 
@@ -222,7 +218,7 @@ In Storefront templates, use the `config()` Twig function to access plugin confi
 {% endif %}
 ```
 
-## Storefront JavaScript access
+### Storefront JavaScript access
 
 For Storefront JavaScript plugins, you can pass configuration values from Twig templates to your JavaScript code:
 

@@ -18,6 +18,31 @@ $services->set(Swag\BasicExample\Command\ExampleCommand::class)
 
 Commands registered as services in a Shopware plugin are automatically available via `bin/console`.
 
-## Other interesting topics
+A minimal command class:
 
-* [Adding a scheduled task](add-scheduled-task.md)
+```php
+// <plugin root>/src/Command/ExampleCommand.php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Command;
+
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+#[AsCommand(name: 'swag:example', description: 'Example command')]
+class ExampleCommand extends Command
+{
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $output->writeln('Hello from ExampleCommand');
+
+        return Command::SUCCESS;
+    }
+}
+```
+
+## Next steps
+
+[Adding a scheduled task](add-scheduled-task.md)

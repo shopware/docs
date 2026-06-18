@@ -187,6 +187,36 @@ deployment:
     always_clear: false
 ```
 
+### Multi-step hooks
+
+Each hook can either be a single script (as shown above) or a list of steps that are executed individually.
+Splitting a hook into steps gives clearer output during deployment, as each step is run and reported separately.
+
+A step can be an object with a `title` and a `script`, where the `title` is shown in the deployment output:
+
+```yaml
+deployment:
+  hooks:
+    post:
+      - title: Warm up the cache
+        script: |
+          %php.bin% bin/console cache:warmup
+      - title: Notify the team
+        script: ./notify.sh
+```
+
+As a shorthand, a step can also be a plain script string (without a title):
+
+```yaml
+deployment:
+  hooks:
+    pre-update:
+      - echo "first step"
+      - echo "second step"
+```
+
+The single-script form remains fully supported, so existing configurations keep working unchanged.
+
 ## Local Configuration Overrides
 
 You can create a `.shopware-project.local.yml` file alongside your `.shopware-project.yml` to override configuration values for local development without modifying the base config. This file should be added to your `.gitignore`.

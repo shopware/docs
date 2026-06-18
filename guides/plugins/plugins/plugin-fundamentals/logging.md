@@ -7,13 +7,11 @@ nav:
 
 # Logging
 
-## Overview
-
-As a plugin developer, you may want to log certain actions or errors to a log file to aid in debugging or to simply keep a record of performed actions.
+As a plugin developer, you may want to log certain actions or errors to a log file to aid in debugging or to keep a record of performed actions.
 
 ## Prerequisites
 
-This guide is built upon our [plugin base guide](../plugin-base-guide.md), which explains the basics of a plugin as a whole. Make sure to have a look at it to get started on building your first plugin.
+This guide is built upon the [Plugin Base Guide](../plugin-base-guide.md).
 
 ## Configuring Monolog
 
@@ -60,9 +58,9 @@ class SwagBasicExample extends Plugin
 
 :::
 
-This is a Symfony Bundle requirement, the same can also be achieved using Bundle Extensions. Please refer to the [Symfony Documentation](https://symfony.com/doc/current/bundles/extension.html).
+This is a Symfony Bundle requirement. The same can also be achieved using Bundle Extensions. Please refer to the [Symfony Documentation](https://symfony.com/doc/current/bundles/extension.html).
 
-We will now use monolog configuration to create a channel for your log messages; the channel should be a unique name identifying your plugin. See below for an example:
+Use Monolog configuration to create a channel for your log messages. The channel name should be unique and identify your plugin:
 
 ::: code-group
 
@@ -74,7 +72,7 @@ monolog:
 
 :::
 
-Monolog automatically registers a logger service that you can inject in to your services, which is scoped to your channel. You can access the logger with the service ID: `monolog.logger.my_plugin_channel`.
+Monolog automatically registers a logger service that you can inject into your services, which is scoped to your channel. You can access the logger with the service ID: `monolog.logger.my_plugin_channel`.
 
 With your newly created channel, you can create a handler, directing your new channel to it.
 
@@ -94,4 +92,9 @@ monolog:
 
 :::
 
-Following this approach allows project owners to redirect your channel to a different one to better suit their needs.
+Following this approach allows project owners to redirect your channel to a different handler to better suit their needs.
+
+## Next steps
+
+* [Adding a scheduled task](add-scheduled-task.md)
+* [Adding custom CLI commands](add-custom-commands.md)

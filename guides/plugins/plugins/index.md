@@ -20,7 +20,7 @@ Plugins run directly inside the Shopware environment and provide full access to:
 
 Technically, plugins are extensions of [Symfony bundles](./bundle.md). They follow a defined directory structure and, when used as managed extensions, provide a lifecycle (install, update, deactivate, uninstall).
 
-Plugins can ship their own assets, controllers, services, and tests, enabling deep platform and full extensibility across core and custom functionality.
+Plugins can ship their own assets, controllers, services, and tests, enabling deep extensibility across core and custom functionality.
 
 ## When to create and use a plugin
 
@@ -99,7 +99,7 @@ Managed plugins are commonly used for marketplace-distributed extensions. They a
 
 ### Bundles
 
-Symfony-based [bundles](../plugins/bundle.md) are installed via Composer. They do not have a Shopware plugin lifecycle and are not managed via the Administration.
+Symfony-based [bundles](./bundle.md) are installed via Composer. They do not have a Shopware plugin lifecycle and are not managed via the Administration.
 
 Bundles are useful when you want:
 
@@ -119,7 +119,7 @@ For custom projects, it is often preferable to:
 * Share one CI pipeline and one set of static analysis rules
 * Organize functionality through clean internal directory structure
 
-It does not matter whether static plugins or Symfony bundles internally are used, as much as having:
+It does not matter whether static plugins or Symfony bundles are used internally, as much as having:
 
 * Clear domain boundaries
 * Consistent structure

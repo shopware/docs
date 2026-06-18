@@ -7,19 +7,15 @@ nav:
 
 # Add Custom Service
 
-## Overview
-
 In this guide you'll learn how to create a custom service using the Symfony [DI Container](https://symfony.com/doc/current/service_container.html).
 
 ## Prerequisites
 
-To add your own custom service for your plugin, you first need a plugin as a base.
-Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
+This guide builds on the [Plugin Base Guide](../plugin-base-guide.md).
 
-## Adding service
+## Register a service
 
-For adding a custom service, you need to provide a `services.php` file in your plugin.
-Place a file with name `services.php` into a directory called `src/Resources/config/`.
+Create a `services.php` file at `src/Resources/config/services.php` in your plugin.
 
 ::: code-group
 
@@ -35,7 +31,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 :::
 
-Now you have two possibilities to add a service to your plugin.
+There are two approaches:
 
 ### Using autowire and autoconfigure
 
@@ -90,7 +86,7 @@ return static function (ContainerConfigurator $configurator): void {
 
 ### Actual service class
 
-Then this is what your service could look like:
+Example service class:
 
 ::: code-group
 
@@ -119,10 +115,9 @@ Read more about [private and public services](https://symfony.com/doc/current/se
 
 Symfony supports two other file formats to define your services: YAML and XML.
 However, starting with Symfony 7.4, XML service configuration has been deprecated, and it will no longer be supported in Symfony 8.0.
-Choose the one that suits you best.
 
 ## Next steps
 
-You have now created your own custom service. In the same manner, you can create other important plugin classes, such as [commands](../plugin-fundamentals/add-custom-commands.md), [scheduled tasks](../plugin-fundamentals/add-scheduled-task.md), or a [subscriber to listen to events](../framework/event/listening-to-events.md).
+You can apply the same approach to register other plugin classes, such as [commands](../plugin-fundamentals/add-custom-commands.md), [scheduled tasks](../plugin-fundamentals/add-scheduled-task.md), or a [subscriber to listen to events](../framework/event/listening-to-events.md).
 
-Furthermore, we also have a guide explaining how to [customize an existing service](../services/adjusting-service.md) instead.
+See also: [Adjusting a service](../services/adjusting-service.md).

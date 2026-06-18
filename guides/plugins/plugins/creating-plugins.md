@@ -5,13 +5,9 @@ nav:
 
 ---
 
-## Creating Plugins
+# Creating Plugins
 
 This guide walks you through creating and scaffolding a basic Shopware plugin so it can be installed locally on your Shopware 6 instance.
-
-::: info
-Refer to this video on [Creating a plugin](https://www.youtube.com/watch?v=_Tkoq5W7woI) that shows how to bootstrap a plugin. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-:::
 
 ## Prerequisites
 
@@ -20,8 +16,6 @@ You'll need:
 * PHP knowledge
 * A running Shopware 6 instance; refer to our [Install Shopware 6](../../installation/index.md) guide
 * full file system and command line access
-
-`<shopware project root>/custom/plugins` contains all plugins from the Shopware store. You install and manage these plugins via the Shopware Administration.
 
 ## 1. Choose a name
 
@@ -32,6 +26,8 @@ A vendor prefix is required if you plan to publish your plugin in the [Shopware 
 :::
 
 ## 2. Generate the plugin structure
+
+Plugins are located in `<shopware project root>/custom/plugins` and managed via the Shopware Administration.
 
 From your Shopware project's root directory, run:
 
@@ -93,7 +89,7 @@ This file contains basic metadata that Shopware needs to know about your plugin,
 * The technical name
 * The description
 * The author
-* The used license
+* The license
 * The current plugin version
 * The required dependencies
 * and other configuration details.
@@ -157,7 +153,7 @@ Here's an example `composer.json` you can refer to:
 If you change the `autoload.psr-4` path (for example, not using `src/`), adjust your directory structure accordingly.
 :::
 
-::: Info
+::: info
 Set up [CI](../../development/testing/ci.md) early. Run static analysis, tests, and `shopware-cli extension build` in CI so your plugin ZIP is reproducible and safe to promote across environments.
 :::
 
@@ -171,7 +167,7 @@ composer config repositories.shopware composer https://packages.shopware.com
 
 Authentication via API token is required. Refer to ["Using Composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) for detailed information.
 
-### Manual creation (optional)
+## Manual creation (optional)
 
 In most cases, you should use `bin/console plugin:create`. Manual creation is only useful if you need full control over the structure or are working in a custom setup.
 
@@ -190,7 +186,7 @@ SwagBasicExample/
     └── SwagBasicExample.php
 ```
 
-* **namespace**: here, it's `Swag\BasicExample`. We recommend using a combination of your manufacturer prefix and the technical name to name it.
+* **Namespace**: here, it's `Swag\BasicExample`. We recommend using a combination of your manufacturer prefix and the technical name to name it.
 * **`src/` directory**: recommended but not strictly required.
 * **PHP class**: `SwagBasicExample.php`, which you name after your plugin.
 
@@ -208,12 +204,6 @@ class SwagBasicExample extends Plugin
 {
 }
 ```
-
-::: warning
-If you change the `autoload.psr-4` path (for example, not using `src/`), your directory structure must match that configuration.
-:::
-
-And that's it. The basic structure and all necessary files for your plugin to be installable are done.
 
 ## Next steps
 

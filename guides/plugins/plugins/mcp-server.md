@@ -93,7 +93,7 @@ class MyTool extends McpToolResponse
 
 **Key rules:**
 
-- `#[McpTool]` goes on the class, not on `__invoke()`. The MCP compiler passes read class-level attributes; method-level attributes are silently ignored.
+- `#[McpTool]` goes on the class, not on `__invoke()`. The MCP compiler reads class-level attributes; method-level attributes are silently ignored.
 - `title` is optional. When set, MCP clients (Claude Desktop, Cursor, etc.) display it in their tool list instead of the machine-readable `name`. Omit it if you have no better label to offer.
 - Names must only contain `a-zA-Z0-9_-`.
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
@@ -153,7 +153,7 @@ In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`
 </container>
 ```
 
-Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler passes remap this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
+Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
 
 ### Available tags
 
