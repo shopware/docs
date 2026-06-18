@@ -11,11 +11,15 @@ Shopware CLI includes a built-in code formatter for PHP, JavaScript, CSS, SCSS, 
 
 A `--dry-run` mode is also available to preview changes without modifying files.
 
+The formatter runs PHP and Node.js tooling under the hood. The Docker examples are recommended because the image already contains the required runtime dependencies. If PHP and Node.js are available locally, you can run the `shopware-cli` commands directly instead.
+
 ## Formatting an extension
 
 <Tabs>
 
 <Tab title="With Docker (recommended)">
+
+The command mounts your current directory to `/ext` inside the container and formats that mounted extension directory:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension format /ext
@@ -30,6 +34,8 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension format 
 </Tab>
 
 <Tab title="Without Docker">
+
+Use the local path to your extension when running the command without Docker:
 
 ```shell
 shopware-cli extension format /path/to/your/extension
@@ -51,6 +57,8 @@ shopware-cli extension format /path/to/your/extension --dry-run
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/project` inside the container and formats that mounted project directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/project ghcr.io/shopware/shopware-cli project format /project
 ```
@@ -64,6 +72,8 @@ docker run --rm -v "$(pwd)":/project ghcr.io/shopware/shopware-cli project forma
 </Tab>
 
 <Tab title="Without Docker">
+
+Use the local path to your project when running the command without Docker:
 
 ```shell
 shopware-cli project format /path/to/your/project

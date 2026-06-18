@@ -15,6 +15,8 @@ Use this tool to modernize your codebase when upgrading to a new Shopware versio
 - [ESLint](https://eslint.org/) for JavaScript
 - Custom rules for Admin Twig files
 
+The refactoring command runs PHP and Node.js tooling under the hood. The Docker examples are recommended because the image already contains the required runtime dependencies. If PHP and Node.js are available locally, you can run the `shopware-cli` commands directly instead.
+
 ## Refactoring an extension
 
 ::: warning
@@ -25,6 +27,8 @@ Before you start, make sure you work on a copy or Git-versioned branch, because 
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/ext` inside the container and refactors that mounted extension directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension fix /ext
 ```
@@ -32,6 +36,8 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension fix /ex
 </Tab>
 
 <Tab title="Without Docker">
+
+Use the local path to your extension when running the command without Docker:
 
 ```shell
 shopware-cli extension fix /path/to/your/extension
@@ -49,6 +55,8 @@ You can also refactor a full Shopware project instead of a single extension.
 
 <Tab title="With Docker (recommended)">
 
+The command mounts your current directory to `/project` inside the container and refactors that mounted project directory:
+
 ```shell
 docker run --rm -v "$(pwd)":/project ghcr.io/shopware/shopware-cli project fix /project
 ```
@@ -56,6 +64,8 @@ docker run --rm -v "$(pwd)":/project ghcr.io/shopware/shopware-cli project fix /
 </Tab>
 
 <Tab title="Without Docker">
+
+Use the local path to your project when running the command without Docker:
 
 ```shell
 shopware-cli project fix /path/to/your/project
