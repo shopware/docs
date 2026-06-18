@@ -30,8 +30,8 @@ for details.
 ## Public paths
 
 Templates are registered below `Resources/views/files/<file-family>/`.
-Shopware derives the public path by removing the `files/<file-family>/` prefix
-and the `.twig` suffix.
+Shopware derives the public path by removing the `files/<file-family>/` prefix and the `.twig` suffix.
+The following table shows example mappings from template paths to public paths.
 
 | Template path | Public path |
 | --- | --- |
