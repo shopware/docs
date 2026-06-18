@@ -230,6 +230,6 @@ The fixers are enabled by the supported Shopware Version in the plugins `compose
 }
 ```
 
-### Missing classes in Storefront/Elasticsearch bundle
+### Missing classes in a Storefront/Elasticsearch bundle
 
-Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development and PHPStan can recognize the files.
+Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle, and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development and PHPStan can recognize the files.
