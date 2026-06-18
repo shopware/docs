@@ -119,7 +119,7 @@ Service account tokens do not inherit the full permissions of the user who creat
 Generate a new access token:
 
 ```sh
-sw-paas account token create --name "ci-token"
+sw-paas account token create
 ```
 
 ### Using a Token
