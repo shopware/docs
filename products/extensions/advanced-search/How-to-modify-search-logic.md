@@ -72,3 +72,22 @@ class SearchLogicDecorator extends AbstractSearchLogic
     }
 }
 ```
+
+## Strictness-based matching
+
+Besides the binary `AND` / `OR` operators, the search behavior can be configured with a strictness value (since Commercial 7.11.0) — a decimal between `0.0` and `1.0` that defines the share of the search terms a product must match. It is stored per sales channel in the `strictness` field of the `advanced_search_config` entity (default `1.0`); the legacy `and_logic` flag is deprecated in its favor.
+
+* `0.0` — at least one term must match (equivalent to `OR`).
+* `1.0` — all terms must match (equivalent to `AND`).
+* A value in between requires `ceil(numberOfTerms × strictness)` terms to match. For example, the query `blue running shoes` (3 terms) with `0.5` requires `ceil(3 × 0.5) = 2` of the terms to match.
+
+The `strictness` field drives the search behavior on its own — no feature flag is required for it to take effect.
+
+To edit it as presets in the Administration (the **Search behaviour** section), enable the `SwagCommercial.config.enableAdvancedSearchStrictnessPresets` system configuration. The UI then offers the presets `0`, `0.33`, `0.5`, `0.66`, and `1`; otherwise it shows the legacy `AND` / `OR` toggle (which maps to `1.0` / `0.0`). Regardless of that flag, you can set any decimal between `0.0` and `1.0` directly through the Admin API:
+
+```bash
+PATCH /api/advanced-search-config/{id}
+{
+    "strictness": 0.5
+}
+```
