@@ -100,7 +100,13 @@ class UsedClassesAvailableTest extends TestCase
         foreach ($this->getPluginClasses() as $class) {
             $classRelativePath = str_replace(['.php', '/'], ['', '\\'], $class->getRelativePathname());
 
-            $this->getMockBuilder($namespace . '\\' . $classRelativePath)
+            /** @var class-string $className */
+            $className = $namespace . '\\' . $classRelativePath;
+            if (trait_exists($className, false) || enum_exists($className, false)) {
+                continue;
+            }
+
+            $this->getMockBuilder($className)
  ->disableOriginalConstructor()
  ->getMock();
  }
