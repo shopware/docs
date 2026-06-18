@@ -125,9 +125,9 @@ The following table lists the variables that agentic file templates receive.
 
 | Variable | Description |
 | --- | --- |
-| `context` | The current sales-channel context. |
-| `salesChannel` | The sales channel, including languages and currencies needed by the default templates. |
-| `salesChannelFile` | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources. |
+| `context` | The current sales-channel context |
+| `salesChannel` | The sales channel, including languages and currencies needed by the default templates |
+| `salesChannelFile` | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.
 
