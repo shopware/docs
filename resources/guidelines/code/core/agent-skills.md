@@ -21,16 +21,16 @@ the same pattern applies to any future skill.
 
 Each skill has up to two surfaces — keep them in lockstep:
 
-1. **Interactive** — `.claude/skills/[name]/SKILL.md`. Loaded into a developer's
+1. **Interactive** — `.claude/skills/<name>/SKILL.md`. Loaded into a developer's
    editor session. Emits whatever output format is most useful to a human
    (typically Markdown).
 2. **Unattended (optional)** — a [GitHub Agentic Workflow](https://github.com/githubnext/gh-aw)
-   at `.github/workflows/[name].md` plus a `runtime-import`-ed policy fragment
-   at `.github/aw/[name]-policy.md`. Emits a structured artifact via
+   at `.github/workflows/<name>.md` plus a `runtime-import`-ed policy fragment
+   at `.github/aw/<name>-policy.md`. Emits a structured artifact via
    `safe-outputs` (`upload-artifact`, `add-labels`, `add-comment`).
 
 Both surfaces share the same rubric and references under
-`.claude/skills/[name]/references/` so they cannot drift in classification logic.
+`.claude/skills/<name>/references/` so they cannot drift in classification logic.
 
 ## Prerequisite
 
@@ -41,7 +41,7 @@ install command live in [`.github/aw/README.md`](../../.github/aw/) →
 
 ## File layout
 ```
-.claude/skills/[name]/
+.claude/skills/<name>/
 ├── SKILL.md                   # required — frontmatter + body
 ├── references/                # optional — on-demand context for the agent
 │   ├── CLASSIFICATION.md
@@ -50,11 +50,11 @@ install command live in [`.github/aw/README.md`](../../.github/aw/) →
 └── assets/                    # optional — worked examples, fixtures
     └── examples.md
 
-.github/workflows/[name].md    # optional — gh aw SOURCE (edit this)
-.github/workflows/[name].lock.yml   # compiled — `gh aw compile` regenerates
-.github/aw/[name]-policy.md    # optional — gh-aw-mode-specific fragment,
+.github/workflows/<name>.md    # optional — gh aw SOURCE (edit this)
+.github/workflows/<name>.lock.yml   # compiled — `gh aw compile` regenerates
+.github/aw/<name>-policy.md    # optional — gh-aw-mode-specific fragment,
                                # runtime-imported by the workflow
-.github/aw/shared/[name]-policy.md  # optional — shared rubric loaded by
+.github/aw/shared/<name>-policy.md  # optional — shared rubric loaded by
                                     # both the interactive skill and the
                                     # gh aw policy fragment
 ```
@@ -64,7 +64,7 @@ skills — never per-skill.
 
 ## Adding a new skill — checklist
 
-1. **Skill body.** Create `.claude/skills/[name]/SKILL.md` with at minimum
+1. **Skill body.** Create `.claude/skills/<name>/SKILL.md` with at minimum
    `name` and `description` in the frontmatter (see the
    [Agent Skills spec](https://agentskills.io/specification)). Keep SKILL.md
    short; push detail into `references/`.
@@ -74,17 +74,17 @@ skills — never per-skill.
    SKILL.md scannable.
 
    **If you build both an interactive surface and an unattended twin,**
-   the shared policy must live under `.github/aw/shared/[name]-policy.md`,
-   not inside `.claude/skills/[name]/references/`. gh aw's runtime-import
+   the shared policy must live under `.github/aw/shared/<name>-policy.md`,
+   not inside `.claude/skills/<name>/references/`. gh aw's runtime-import
    security validation forbids importing files outside `.github/`. The
    interactive skill references the same file via its repo-root path; the
    gh aw policy fragment imports it via
-   <code v-pre>{{#runtime-import .github/aw/shared/[name];-policy.md}}</code>. See how the
+   <code v-pre>{{#runtime-import .github/aw/shared/&lt;name&gt;-policy.md}}</code>. See how the
    `triage` skill wires it up for the exact pattern.
 
 3. **Decide on the unattended path.** If the skill should also run in CI:
-   create `.github/workflows/[name].md` (gh aw frontmatter) plus
-   `.github/aw/[name]-policy.md` (frontmatter-free fragment, runtime-imported
+   create `.github/workflows/<name>.md` (gh aw frontmatter) plus
+   `.github/aw/<name>-policy.md` (frontmatter-free fragment, runtime-imported
    by the workflow), then `gh aw compile`. The mechanics — secrets remap,
    engine model pin, registration trick, output validation — live in
    [`.github/aw/README.md`](../../.github/aw/).
@@ -92,7 +92,7 @@ skills — never per-skill.
 4. **Update the catalogue.** Add a row to `.claude/skills/README.md`
    describing the trigger phrases and the deliverable.
 
-5. **Run it once.** `gh aw run [name] -f …` and inspect with
+5. **Run it once.** `gh aw run <name> -f …` and inspect with
    `gh aw audit <run-id>`.
 
 ## Skill-specific conventions
