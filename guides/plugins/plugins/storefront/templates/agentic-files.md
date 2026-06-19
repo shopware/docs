@@ -156,7 +156,7 @@ If no snippet exists, the description stays empty.
 
 ## Agentic Commerce plugin compatibility
 
-The Agentic Commerce plugin is compatible with shops that already provide the
+The [Agentic Commerce plugin](https://store.shopware.com/de/swag705756117823f/agentic-commerce-beta.html) is compatible with shops that already provide the
 core agentic files feature and with older Shopware versions that do not.
 
 When the core feature is available:
