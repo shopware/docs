@@ -87,6 +87,7 @@ sw-paas account user requests resolve
 ## Service accounts
 
 Service accounts are machine identities for CI/CD pipelines and other automation.
+They can also be used to give an external developer temporary access to an application.
 
 Create, list, update, or delete a service account:
 
@@ -108,11 +109,15 @@ sw-paas account service-account grant revoke
 
 ## Authentication tokens
 
-The `token` command manages access tokens for either your own account or a service account. Personal access tokens are useful for non-interactive CLI usage, CI/CD pipelines, and integrations with external systems.
+The `token` command manages access tokens for either your own account or a service account. Personal access tokens can be used for personal scripts. For CI/CD, you should use service accounts.
 
 Personal access tokens inherit the permissions of the user who created them, except the ability to create new tokens. This means any action the user can perform, the personal token can perform as well.
 
 Service account tokens do not inherit the full permissions of the user who created them. They authenticate as the service account and are limited to the permissions granted to that service account.
+
+:::warning
+Personal access tokens should be used with caution since they are tied to a user. If someone obtains a personal access token, they can act on behalf of that user with all of their permissions.
+:::
 
 ### Personal tokens
 
