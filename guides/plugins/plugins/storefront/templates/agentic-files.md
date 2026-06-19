@@ -12,8 +12,13 @@ how they should interact with a shop.
 
 Shopware ships the `agentic` file family with these default files:
 
-* `/llms.txt`: A concise entry point to public sales-channel resources.
-* `/agents.md`: Guidance for AI agents interacting with the shop.
+* [`/llms.txt`](https://llmstxt.org/): A concise entry point to public
+  sales-channel resources.
+* [`/agents.md`](https://agents.md/): Guidance for AI agents interacting with
+  the shop.
+* [`/.well-known/ai-catalog.json`](https://agenticresourcediscovery.org/spec/):
+  An Agentic Resource Discovery catalog for machine-readable resources, such as
+  available MCP servers.
 
 The files are generated from Twig templates and can be enabled per sales
 channel in the Administration. Merchants can also add custom notes or override
@@ -21,8 +26,9 @@ individual content sources from the sales-channel detail page.
 
 ::: info
 The core agentic files feature is available since Shopware 6.7.12.0. Older
-Shopware versions can serve compatible `/llms.txt` and `/agents.md` files
-through the Agentic Commerce plugin fallback. See
+Shopware versions can serve compatible `/llms.txt`, `/agents.md`, and
+`/.well-known/ai-catalog.json` files through the Agentic Commerce plugin
+fallback. See
 [Agentic Commerce plugin compatibility](#agentic-commerce-plugin-compatibility)
 for details.
 :::
@@ -37,7 +43,7 @@ The following table shows example mappings from template paths to public paths.
 |-----------------------------------------------|-----------------------------|
 | `files/agentic/llms.txt.twig`                 | `/llms.txt`                 |
 | `files/agentic/agents.md.twig`                | `/agents.md`                |
-| `files/agentic/.well-known/example.json.twig` | `/.well-known/example.json` |
+| `files/agentic/.well-known/ai-catalog.json.twig` | `/.well-known/ai-catalog.json` |
 
 Files are served only for sales channels where the file is enabled. Disabled
 files and unknown files behave like regular 404 responses.
@@ -83,12 +89,30 @@ several extensions contribute content to the same file.
 {% endblock %}
 ```
 
+```twig [PLUGIN_ROOT/src/Resources/views/files/agentic/.well-known/ai-catalog.json.twig]
+{% sw_extends 'files/agentic/.well-known/ai-catalog.json.twig' %}
+
+{% block agentic_ai_catalog_entries %}
+    {% set entries = entries|merge([{
+        identifier: 'urn:ai:example.com:resource:my-integration',
+        displayName: 'My integration',
+        type: 'application/json',
+        url: '/.well-known/my-integration',
+        description: 'Machine-readable capabilities for this sales channel.',
+        tags: ['integration'],
+    }]) %}
+
+    {{ parent() }}
+{% endblock %}
+```
+
 :::
 
 Prefer the dedicated extension blocks for additive content:
 
 * `agentic_llms_extensions`
 * `agentic_agents_extensions`
+* `agentic_ai_catalog_entries`
 
 ## Add custom files
 
@@ -128,8 +152,44 @@ The following table lists the variables that agentic file templates receive.
 | `context`          | The current sales-channel context                                                                                                    |
 | `salesChannel`     | The sales channel, including languages and currencies needed by the default templates                                                |
 | `salesChannelFile` | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
+| `salesChannelFileContext` | Additional array context for file-specific data, such as base URL and publisher for `/.well-known/ai-catalog.json` |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.
+
+To add file-specific template context, subscribe to
+`SalesChannelFileRenderParametersExtension::onPost()`:
+
+```php
+use Shopware\Core\System\SalesChannel\File\Discovery\SalesChannelFile;
+use Shopware\Core\System\SalesChannel\File\Rendering\Extension\SalesChannelFileRenderParametersExtension;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+final class MyAgenticFileSubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            SalesChannelFileRenderParametersExtension::onPost() => 'addContext',
+        ];
+    }
+
+    public function addContext(SalesChannelFileRenderParametersExtension $extension): void
+    {
+        if ($extension->file->fileFamily !== SalesChannelFile::DEFAULT_FILE_FAMILY
+            || $extension->file->fileName !== '.well-known/ai-catalog.json'
+            || !\is_array($extension->result)
+        ) {
+            return;
+        }
+
+        $context = $extension->result['salesChannelFileContext'] ?? [];
+        $context = \is_array($context) ? $context : [];
+        $context['myIntegrationUrl'] = '/.well-known/my-integration';
+
+        $extension->result['salesChannelFileContext'] = $context;
+    }
+}
+```
 
 ## Add Administration descriptions
 
@@ -164,15 +224,18 @@ When the core feature is available:
 * Core handles discovery, Administration enablement, rendering, cache
   invalidation, and public serving.
 * The plugin only contributes UCP sections through the templates
-  `files/agentic/llms.txt.twig` and `files/agentic/agents.md.twig`.
+  `files/agentic/llms.txt.twig`, `files/agentic/agents.md.twig`, and
+  `files/agentic/.well-known/ai-catalog.json.twig`.
 * When UCP is activated for a sales channel, the plugin automatically enables
-  `/llms.txt` and `/agents.md` for that sales channel.
+  `/llms.txt`, `/agents.md`, and `/.well-known/ai-catalog.json` for that sales
+  channel.
 * After a shop is upgraded to a Shopware version with the core feature, the
   plugin enables the files for sales channels that already have UCP configured.
 
 When the core feature is not available:
 
-* The plugin provides fallback routes for `GET /llms.txt` and `GET /agents.md`.
+* The plugin provides fallback routes for `GET /llms.txt`, `GET /agents.md`,
+  and `GET /.well-known/ai-catalog.json`.
 * Fallback files are served only for sales channels where UCP is active.
 * The fallback mode does not backport the core Administration file-management UI,
   merchant template overrides, discovery API, or cache tagging.
