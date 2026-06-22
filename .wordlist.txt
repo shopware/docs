@@ -5,7 +5,6 @@ ACLs
 ADDR
 ADR
 ADRs
-ARD
 AES
 AI
 AOF
@@ -13,6 +12,7 @@ API's
 APIRequestContext
 APIs
 APM
+ARD
 AUR
 AbstractCaptcha
 AbstractDocumentRenderer
