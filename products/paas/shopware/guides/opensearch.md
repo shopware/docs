@@ -25,7 +25,7 @@ After you enable OpenSearch and update your application, you need to index your 
 
 ## Note
 
-- If you need to enable `APP_ENV` to `dev`, then you need to add the following in the file `config/packages/web_profiler.yaml` under the key `when@dev`:
+If you set `APP_ENV=dev`, add the following under `when@dev:` in `config/packages/web_profiler.yaml`:
 
 ```yaml
 services:
