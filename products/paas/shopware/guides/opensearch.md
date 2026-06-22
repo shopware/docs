@@ -35,4 +35,4 @@ services:
             $adminEnabled: false
 ```
 
-If you don't do, the next deployment will fail.
+If you don't do this, the next deployment will fail.
