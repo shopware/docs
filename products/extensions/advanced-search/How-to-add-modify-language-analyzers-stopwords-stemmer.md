@@ -34,3 +34,16 @@ advanced_search:
     language_analyzer_mapping:
         custom_iso: sw_your_custom_language_analyzer
 ```
+
+## Compound-word decomposition
+
+German catalogs often contain closed compound nouns (for example `Lederjacke` or `Akkubohrer`). Without decomposition, a search for `Jacke` does not match a product named `Lederjacke`.
+
+Since Commercial 7.12.0, Advanced Search ships a `dictionary_decompounder` filter that splits compound words into their parts at index time, using an editable, per-language dictionary. A curated German root-word dictionary is seeded by default. Decomposition is applied at index time only, on the technical-term index analyzer (`sw_<iso>_technical_term_index_analyzer`); the search query itself is never expanded into its parts.
+
+The dictionaries are stored as entities and can be managed through the Admin API:
+
+* `advanced_search_compound_dictionary` — the `wordList` of root words used to split compounds.
+* `advanced_search_stopword_dictionary` — custom `stopwords`, which are stripped at both index and search time.
+
+After editing a dictionary, run `bin/console es:index` so the updated analyzer configuration is applied to the index.
