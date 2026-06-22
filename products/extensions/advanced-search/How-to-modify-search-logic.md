@@ -83,7 +83,7 @@ Besides the binary `AND` / `OR` operators, the search behavior can be configured
 
 The `strictness` field drives the search behavior on its own — no feature flag is required for it to take effect.
 
-To edit it as presets in the Administration (the **Search behaviour** section), enable the `SwagCommercial.config.enableAdvancedSearchStrictnessPresets` system configuration. The UI then offers the presets `0`, `0.33`, `0.5`, `0.66`, and `1`; otherwise it shows the legacy `AND` / `OR` toggle (which maps to `1.0` / `0.0`). Regardless of that flag, you can set any decimal between `0.0` and `1.0` directly through the Admin API:
+To edit it as presets in the Administration (the **Search behavior** section), enable the `SwagCommercial.config.enableAdvancedSearchStrictnessPresets` system configuration. The UI then offers the presets `0`, `0.33`, `0.5`, `0.66`, and `1`; otherwise it shows the legacy `AND` / `OR` toggle (which maps to `1.0` / `0.0`). Regardless of that flag, you can set any decimal between `0.0` and `1.0` directly through the Admin API:
 
 ```bash
 PATCH /api/advanced-search-config/{id}
