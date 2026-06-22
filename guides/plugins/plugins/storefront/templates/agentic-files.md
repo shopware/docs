@@ -39,10 +39,10 @@ Templates are registered below `Resources/views/files/<file-family>/`.
 Shopware derives the public path by removing the `files/<file-family>/` prefix and the `.twig` suffix.
 The following table shows example mappings from template paths to public paths.
 
-| Template path                                 | Public path                 |
-|-----------------------------------------------|-----------------------------|
-| `files/agentic/llms.txt.twig`                 | `/llms.txt`                 |
-| `files/agentic/agents.md.twig`                | `/agents.md`                |
+| Template path                                    | Public path                    |
+|--------------------------------------------------|--------------------------------|
+| `files/agentic/llms.txt.twig`                    | `/llms.txt`                    |
+| `files/agentic/agents.md.twig`                   | `/agents.md`                   |
 | `files/agentic/.well-known/ai-catalog.json.twig` | `/.well-known/ai-catalog.json` |
 
 Files are served only for sales channels where the file is enabled. Disabled
@@ -147,12 +147,12 @@ requiring merchants to replace the whole template.
 
 The following table lists the variables that agentic file templates receive.
 
-| Variable           | Description                                                                                                                          |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `context`          | The current sales-channel context                                                                                                    |
-| `salesChannel`     | The sales channel, including languages and currencies needed by the default templates                                                |
-| `salesChannelFile` | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
-| `salesChannelFileContext` | Additional array context for file-specific data, such as base URL and publisher for `/.well-known/ai-catalog.json` |
+| Variable                  | Description                                                                                                                          |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| `context`                 | The current sales-channel context                                                                                                    |
+| `salesChannel`            | The sales channel, including languages and currencies needed by the default templates                                                |
+| `salesChannelFile`        | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
+| `salesChannelFileContext` | Additional array context for file-specific data, such as base URL and publisher for `/.well-known/ai-catalog.json`                   |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.
 
