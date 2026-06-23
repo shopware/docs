@@ -5,7 +5,7 @@ nav:
 
 ---
 
-# Agentic Commerce with MCP
+# MCP Support in Shopware
 
 ## What is MCP?
 
@@ -145,19 +145,6 @@ Supported extension paths include:
 - Apps using scripts
 
 This allows partners and developers to expose custom tools, resources, and prompts tailored to their business requirements.
-
-## How MCP fits into Agentic Commerce
-
-Agentic Commerce focuses on what users want to achieve through AI-powered commerce experiences.
-
-Examples include:
-
-- Building a buyer agent
-- Enabling AI-powered store operations
-- Creating merchant assistants
-- Automating commerce workflows
-
-MCP is the technical foundation that enables these experiences. It provides the standardized communication layer that allows AI agents to discover and use Shopware capabilities safely.
 
 ## Status
 
