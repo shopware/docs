@@ -207,6 +207,10 @@ validation:
     - message: 'Some error message'
 ```
 
+::: info
+Validation ignores are only applied to the `validate` command. The `fix` command does not respect these ignore rules and will still apply fixes for the matching identifiers. This is a known limitation.
+:::
+
 ## Scanning a project
 
 It's possible to scan an entire project instead of just a single extension. This is useful if you want to check all extensions in your project at once. You can do this by passing the path to the project root instead of the extension path.
