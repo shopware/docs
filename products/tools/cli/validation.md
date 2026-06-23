@@ -208,7 +208,7 @@ validation:
 ```
 
 ::: info
-Validation ignores are only applied to the `validate` command. The `fix` command does not respect these ignore rules and will still apply fixes for the matching identifiers. This is a known limitation.
+Validation ignores are only applied to the `validate` command. The `fix` command does not respect the `validation.ignore` rules and will still apply fixes even when an ignore would match (by identifier or message). This is a known limitation.
 :::
 
 ## Scanning a project
