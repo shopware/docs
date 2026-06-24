@@ -56,9 +56,9 @@ The Shopware MCP Server exposes three types of capabilities that AI agents can d
 | **Prompts**   | Provide domain-specific guidance and context for AI agents                                                    | Shopware context, query patterns, data model guidance, best practices                                                                                        |
 
 :::info
-* Write operations support **dry-run execution**, allowing agents to validate actions before committing changes.
-* Available capabilities depend on the configured integration, allowlist, and permissions.
-* Together, tools, resources, and prompts help AI agents understand Shopware and perform tasks safely and efficiently.
+- Write operations support **dry-run execution**, allowing agents to validate actions before committing changes.
+- Available capabilities depend on the configured integration, allowlist, and permissions.
+- Together, tools, resources, and prompts help AI agents understand Shopware and perform tasks safely and efficiently.
 :::
 
 ## Security and control
