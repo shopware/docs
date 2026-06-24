@@ -146,6 +146,15 @@ Supported extension paths include:
 
 This allows partners and developers to expose custom tools, resources, and prompts tailored to their business requirements.
 
+## MCP ecosystem
+
+| Component | Purpose |
+|-----------|---------|
+| [`shopware/shopware`](https://github.com/shopware/shopware) | Core MCP server implementation |
+| [`SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools) | Development and debugging tools (log search, log stream, notifications) |
+| [`SwagMcpMerchantAssistant`](https://github.com/shopware/SwagMcpMerchantAssistant) | Merchant-focused workflows and tools |
+| [`shopware-mcp-evals`](https://github.com/shopware/shopware-mcp-evals) | Evaluation and testing of MCP tools and prompts |
+
 ## Status
 
 The Shopware MCP Server is currently available as an experimental feature.
