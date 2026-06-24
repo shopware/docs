@@ -25,7 +25,9 @@ The application that you create is linked to a commit SHA and not to a branch. Y
 
 ## Can I run different applications like Node.js?
 
-No, currently PaaS is limited to Shopware projects.
+General custom applications are not supported.
+Composable frontends are supported as a dedicated application kind and can use a Node.js runtime.
+See [Composable Frontends](./composable-frontends/index.md) for details.
 
 ## How are secrets managed in PaaS?
 
