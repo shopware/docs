@@ -70,6 +70,8 @@ If a feature you need is missing from `symfony/mcp-bundle`, check its [repositor
 
 ## In this section
 
+The following table lists the pages included in this section.
+
 | Page                                            | What you will find                                                       |
 |-------------------------------------------------|--------------------------------------------------------------------------|
 | [MCP Concepts](./mcp-concepts.md)               | What tools, resources, and prompts are and when to use each              |
