@@ -208,6 +208,32 @@ $this->swagExampleRepository->upsert([[
 ]], $context);
 ```
 
+### Declarative custom fields via `Resources/config/custom-fields.xml`
+
+::: info
+Available starting with Shopware 6.7.13.0.
+:::
+
+Instead of registering custom field sets imperatively through plugin lifecycle hooks (see [Add a custom field to the Administration](#add-a-custom-field-to-the-administration) below), you can define them declaratively in a `Resources/config/custom-fields.xml` file at the root of your plugin. Shopware then handles creation, updates, and removal automatically during the plugin lifecycle (install, update, uninstall) — no `CustomFieldsInstaller` service or lifecycle hooks required.
+
+Place the file at `<plugin root>/src/Resources/config/custom-fields.xml`:
+
+<<< @/docs/snippets/config/custom-fields-standalone.xml
+
+On every install or update, Shopware syncs the defined sets:
+
+* Sets and fields present in the XML are created or updated.
+* Sets and fields that were previously defined by your plugin but are no longer in the XML are removed.
+* On uninstall (without keeping user data), the plugin's custom field sets are removed.
+
+::: warning
+The names of the custom fields are global and should always contain a vendor prefix, like "swag" for "shopware ag", to keep them unique. This applies to the name of the custom field set as well as to each field name.
+:::
+
+The XML format is identical to the one [apps use in their manifest](../../../apps/custom-data/custom-fields.md). For a full list of available field types and their configuration options, refer to the [custom field section of the Manifest reference](../../../../../resources/references/app-reference/manifest-reference.md).
+
+If you only need your custom fields to be available declaratively, you can stop here. The remaining sections describe the imperative alternative using the `custom_field_set.repository`, which you only need when creating sets dynamically at runtime.
+
 ### Add a custom field to the Administration
 
 You can skip this section if you don't want your new custom field to be editable in the Administration.
@@ -215,6 +241,10 @@ You can skip this section if you don't want your new custom field to be editable
 So now you've already filled the custom fields of one of your entity instances via code. But what if you want your user to do that, which is the more common case?
 
 Only if you want your custom field to show up in the Administration and to be editable in there, you have to define the custom fields first in a custom field set. For this you have to use the custom fieldset repository, which can be retrieved from the dependency injection container via the `custom_field_set.repository` key and is used like any other repository.
+
+::: info
+For most plugins, the [declarative `Resources/config/custom-fields.xml`](#declarative-custom-fields-via-resources-config-custom-fields-xml) approach is the simpler choice. Use the imperative approach below only when you need to create custom field sets dynamically at runtime.
+:::
 
 ```php
 // <plugin root>/src/Resources/config/services.php
