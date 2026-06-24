@@ -93,7 +93,7 @@ Write tools support dry-run execution by default, allowing agents to preview cha
 
 All MCP interactions are logged and traceable, enabling review of agent activity and issue investigation.
 
-## Common Use Cases
+## Common use cases
 
 ### Shopper
 
