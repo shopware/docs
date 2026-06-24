@@ -61,7 +61,7 @@ The Shopware MCP Server exposes three types of capabilities that AI agents can d
 * Together, tools, resources, and prompts help AI agents understand Shopware and perform tasks safely and efficiently.
 :::
 
-## Security and Control
+## Security and control
 
 Shopware MCP is designed with security and governance in mind.
 
