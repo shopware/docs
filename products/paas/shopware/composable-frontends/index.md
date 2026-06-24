@@ -112,5 +112,43 @@ For more details about builds, deployments and logs, see [Applications](../funda
 
 Fastly is configured automatically for composable frontends.
 This includes common edge behavior such as redirecting HTTP traffic to HTTPS.
+After each deployment, Shopware PaaS Native performs a full cache purge.
+
+## Caching and ISR
+
+Shopware PaaS Native supports and encourages Incremental Static Regeneration (ISR) for composable frontends.
+To cache a page at the CDN level, configure your frontend to send the following response header:
+
+```http
+Surrogate-Control: max-age=86400, stale-while-revalidate=86400
+```
+
+For routes that must not be cached, configure your frontend to send:
+
+```http
+Cache-Control: no-cache, no-store, must-revalidate
+Surrogate-Control: no-store
+```
+
+For Nuxt projects, configure these headers with `routeRules` in `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  routeRules: {
+    "/": {
+      isr: 60 * 60 * 24,
+      headers: {
+        "Surrogate-Control": "max-age=86400, stale-while-revalidate=86400",
+      },
+    },
+    "/account/**": {
+      headers: {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Surrogate-Control": "no-store",
+      },
+    },
+  },
+});
+```
 
 For more details about the CDN setup, see [CDN](../cdn/index.md).
