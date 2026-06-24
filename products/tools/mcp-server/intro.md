@@ -51,7 +51,9 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 
 ## Spec coverage and known limitations
 
-Shopware's MCP server is built on `symfony/mcp-bundle`, which implements the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25). The bundle may not cover every feature in the latest spec revision, and some areas of the spec are only partially implemented. Known gaps:
+Shopware's MCP server is built on `symfony/mcp-bundle`, which implements the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25). The bundle may not cover every feature in the latest spec revision, and some areas of the spec are only partially implemented.
+
+The following table lists known gaps.
 
 | Area                                                          | Status                                                                  |
 |---------------------------------------------------------------|-------------------------------------------------------------------------|
