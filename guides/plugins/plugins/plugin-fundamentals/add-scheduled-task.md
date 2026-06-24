@@ -110,6 +110,47 @@ The task handler, `ExampleTaskHandler` as defined previously in your `services.p
 
 Every five minutes, Shopware will dispatch the task to the message bus and the handler's `run()` method will be executed.
 
+## Dynamic rescheduling
+
+::: info
+Available since Shopware version 6.7.13.0
+:::
+
+By default, a scheduled task is rescheduled to run again after its `getDefaultInterval()` (i.e. `now + runInterval`). If you want to control *when* the task runs next based on your own domain data — for example, scheduling the next run to the timestamp of the next pending record instead of a fixed interval — let your handler implement the `Shopware\Core\Framework\MessageQueue\ScheduledTask\DynamicallyScheduledTaskHandler` interface.
+
+Shopware asks the handler for the next execution time and persists it for you, so the handler only answers the "when", not the "how":
+
+```php
+// <plugin root>/src/Service/ScheduledTask/ExampleTaskHandler.php
+<?php declare(strict_types=1);
+
+namespace Swag\BasicExample\Service\ScheduledTask;
+
+use Shopware\Core\Framework\MessageQueue\ScheduledTask\DynamicallyScheduledTaskHandler;
+use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
+use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskEntity;
+use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+#[AsMessageHandler(handles: ExampleTask::class)]
+class ExampleTaskHandler extends ScheduledTaskHandler implements DynamicallyScheduledTaskHandler
+{
+    public function run(): void
+    {
+        // ...
+    }
+
+    public function getNextExecutionTime(ScheduledTask $task, ScheduledTaskEntity $taskEntity): ?\DateTimeInterface
+    {
+        // return the time the task should next run at,
+        // or null to fall back to the default `now + runInterval` schedule
+        return $this->resolveNextPendingTimestamp();
+    }
+}
+```
+
+`getNextExecutionTime()` is called after `run()` finishes. Returning `null` falls back to the default interval-based schedule. If the returned time lies in the past, Shopware runs the task again as soon as possible.
+
 ## Executing the scheduled task
 
 Usually scheduled tasks are registered when installing or updating your plugin. If you don't want to reinstall your plugin in order to register your scheduled task, you can also use the following command to achieve this:
