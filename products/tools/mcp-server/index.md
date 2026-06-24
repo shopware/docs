@@ -51,9 +51,9 @@ The Shopware MCP Server exposes three types of capabilities that AI agents can d
 
 | Capability    | Purpose                                                                                                        | Examples                                                                                                                                                     |
 | ------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Tools**     | Allow agents to perform actions and operations within Shopware.                                                | Product search, entity retrieval, entity creation and updates, order state changes, media uploads, system configuration updates, checkout-related operations |
-| **Resources** | Provide structured reference information that helps agents understand the Shopware environment and data model. | Entity definitions, sales channels, currencies, languages, state machines, business events, extensions                                                       |
-| **Prompts**   | Provide domain-specific guidance and context for AI agents.                                                    | Shopware context, query patterns, data model guidance, best practices                                                                                        |
+| **Tools**     | Allow agents to perform actions and operations within Shopware                                                | Product search, entity retrieval, entity creation and updates, order state changes, media uploads, system configuration updates, checkout-related operations |
+| **Resources** | Provide structured reference information that helps agents understand the Shopware environment and data model | Entity definitions, sales channels, currencies, languages, state machines, business events, extensions                                                       |
+| **Prompts**   | Provide domain-specific guidance and context for AI agents                                                    | Shopware context, query patterns, data model guidance, best practices                                                                                        |
 
 :::info
 * Write operations support **dry-run execution**, allowing agents to validate actions before committing changes.
