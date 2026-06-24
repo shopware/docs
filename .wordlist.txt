@@ -50,6 +50,7 @@ Afile
 AfterLineItemAddedEvent
 AfterLineItemQuantityChangedEvent
 AfterLineItemRemovedEvent
+Agentic
 AggregationResultCollection
 AjaxModalPlugin
 Aktions
@@ -81,6 +82,7 @@ AsynchronousPaymentHandlerInterface
 AudienceContext
 AudienceContextResolver
 AuditLogValueEntity
+Auditability
 AuthenticationIdentityLoader
 AutoIncrementField
 Autofixer
@@ -1656,6 +1658,7 @@ matchers
 matthiasnoback
 maxPurchase
 mbstring
+mcp
 md
 mediaId
 mediaService
