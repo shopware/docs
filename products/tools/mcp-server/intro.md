@@ -17,6 +17,8 @@ The MCP server is behind the `MCP_SERVER` feature flag and is considered experim
 
 ## What the MCP server provides
 
+The following table summarizes the MCP server's core capabilities.
+
 | Capability         | Details                                                                                               |
 |--------------------|-------------------------------------------------------------------------------------------------------|
 | **HTTP endpoint**  | `POST /api/_mcp` via Streamable HTTP transport                                                        |
