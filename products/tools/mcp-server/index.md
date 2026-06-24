@@ -175,3 +175,7 @@ As the feature evolves, APIs, capabilities, and extension points may change base
 The Shopware MCP Server provides a standardized and secure way for AI agents to interact with Shopware.
 By exposing tools, resources, and prompts through MCP, Shopware enables developers, merchants, and AI systems to build powerful commerce experiences without relying on custom integrations.
 Whether you want to build a buyer agent, create a merchant assistant, or extend Shopware with custom AI capabilities, MCP provides the foundation for Agentic Commerce.
+
+## Next steps
+
+Now that you understand about MCP, continue with the technical documentation to learn how to set up, configure, and extend the [Shopware MCP Server](../mcp-server/intro.md)
