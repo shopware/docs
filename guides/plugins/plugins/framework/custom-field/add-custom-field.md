@@ -214,7 +214,7 @@ $this->swagExampleRepository->upsert([[
 Available starting with Shopware 6.7.13.0.
 :::
 
-Instead of registering custom field sets imperatively through plugin lifecycle hooks (see [Add a custom field to the Administration](#add-a-custom-field-to-the-administration) below), you can define them declaratively in a `Resources/config/custom-fields.xml` file at the root of your plugin. Shopware then handles creation, updates, and removal automatically during the plugin lifecycle (install, update, uninstall) — no `CustomFieldsInstaller` service or lifecycle hooks required.
+Instead of registering custom field sets imperatively through plugin lifecycle hooks (see [Add a custom field to the Administration](#add-a-custom-field-to-the-administration) below), you can define them declaratively in a `Resources/config/custom-fields.xml` file shipped with your plugin (under `src`). Shopware then handles creation, updates, and removal automatically during the plugin lifecycle (install, update, uninstall) — no `CustomFieldsInstaller` service or lifecycle hooks required.
 
 Place the file at `<plugin root>/src/Resources/config/custom-fields.xml`:
 
@@ -227,7 +227,7 @@ On every install or update, Shopware syncs the defined sets:
 * On uninstall (without keeping user data), the plugin's custom field sets are removed.
 
 ::: warning
-The names of the custom fields are global and should always contain a vendor prefix, like "swag" for "shopware ag", to keep them unique. This applies to the name of the custom field set as well as to each field name.
+The names of the custom fields are global and should always contain a vendor prefix, like "swag" for "Shopware AG", to keep them unique. This applies to the name of the custom field set as well as to each field name.
 :::
 
 The XML format is identical to the one [apps use in their manifest](../../../apps/custom-data/custom-fields.md). For a full list of available field types and their configuration options, refer to the [custom field section of the Manifest reference](../../../../../resources/references/app-reference/manifest-reference.md).
