@@ -13,7 +13,7 @@ This guide covers how to use an existing Administration mixin in a plugin. Gener
 
 ## Prerequisites
 
-All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. As stated before mixins in Shopware are basically the same as in Vue, so you should have read their [documentation](https://v2.vuejs.org/v2/guide/mixins.html?redirect=true) on them first.
+All you need for this guide is a running Shopware 6 instance and full access to both the files and a running plugin. Of course you'll have to understand JavaScript, but that's a prerequisite for Shopware as a whole and will not be taught as part of this documentation. As stated before mixins in Shopware are basically the same as in Vue, so you should have read their [documentation](https://vuejs.org/api/options-composition.html#mixins) on them first.
 
 ## Finding a mixin
 
