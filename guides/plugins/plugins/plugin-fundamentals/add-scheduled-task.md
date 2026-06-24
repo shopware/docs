@@ -116,7 +116,7 @@ Every five minutes, Shopware will dispatch the task to the message bus and the h
 Available since Shopware version 6.7.13.0
 :::
 
-By default, a scheduled task is rescheduled to run again after its `getDefaultInterval()` (i.e. `now + runInterval`). If you want to control *when* the task runs next based on your own domain data — for example, scheduling the next run to the timestamp of the next pending record instead of a fixed interval — let your handler implement the `Shopware\Core\Framework\MessageQueue\ScheduledTask\DynamicallyScheduledTaskHandler` interface.
+By default, a scheduled task is rescheduled to run again after its configured `runInterval` (initially taken from `getDefaultInterval()`), i.e. `nextExecutionTime + runInterval` (capped to `now` if it would lie in the past). If you want to control *when* the task runs next based on your own domain data — for example, scheduling the next run to the timestamp of the next pending record instead of a fixed interval — let your handler implement the `Shopware\Core\Framework\MessageQueue\ScheduledTask\DynamicallyScheduledTaskHandler` interface.
 
 Shopware asks the handler for the next execution time and persists it for you, so the handler only answers the "when", not the "how":
 
