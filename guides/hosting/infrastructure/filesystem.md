@@ -27,7 +27,7 @@ Shopware uses [Flysystem](https://flysystem.thephpleague.com/docs/) to talk to a
 
 ## How the filesystem is structured
 
-The filesystem is split into separate **adapters**, one per purpose. Each adapter can point at a different storage backend, but in practice you usually configure them all the same way.
+The filesystem is split into separate **adapters**, one per purpose. Each adapter can point at a different storage backend, but in practice you usually configure them all the same way. The following table lists the adapters and their default visibility and paths.
 
 | Filesystem | Visibility | What it holds | Default local path |
 |------------|------------|---------------|--------------------|
@@ -57,10 +57,10 @@ To use a non-default storage, add a `filesystem:` map under the `shopware:` key.
 
 | Key | Description |
 |-----|-------------|
-| `type` | The adapter to use: `local`, `amazon-s3`, or `google-storage`. **Required.** |
-| `url` | Public base URL under which the files are reachable. If omitted, Shopware derives it from `APP_URL`. Use this to point public files at a CDN domain. |
-| `visibility` | `public` (default) or `private`. Only `private` is meaningful for the `private` filesystem. |
-| `config` | Adapter-specific options (bucket, region, credentials, root, …). See [Supported adapters](#supported-adapters). |
+| `type` | The adapter to use: `local`, `amazon-s3`, or `google-storage`. **Required** |
+| `url` | Public base URL under which the files are reachable. If omitted, Shopware derives it from `APP_URL`. Use this to point public files at a CDN domain |
+| `visibility` | `public` (default) or `private`. Only `private` is meaningful for the `private` filesystem |
+| `config` | Adapter-specific options (bucket, region, credentials, root, …). See [Supported adapters](#supported-adapters) |
 
 ```yaml
 shopware:
