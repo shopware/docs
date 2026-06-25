@@ -214,17 +214,17 @@ $this->swagExampleRepository->upsert([[
 Available starting with Shopware 6.7.13.0.
 :::
 
-Instead of registering custom field sets imperatively through plugin lifecycle hooks (see [Add a custom field to the Administration](#add-a-custom-field-to-the-administration) below), you can define them declaratively in a `Resources/config/custom-fields.xml` file shipped with your plugin (under `src`). Shopware then handles creation, updates, and removal automatically during the plugin lifecycle (install, update, uninstall) — no `CustomFieldsInstaller` service or lifecycle hooks required.
+Instead of registering custom field sets imperatively through plugin lifecycle hooks (see [Add a custom field to the Administration](#add-a-custom-field-to-the-administration) below), you can define them declaratively in a `Resources/config/custom-fields.xml` file shipped with your plugin (under `src`). Shopware then handles creation, updates, and removal automatically during the plugin lifecycle (`install`, `update`, `uninstall`) — no `CustomFieldsInstaller` service or lifecycle hooks required.
 
 Place the file at `<plugin root>/src/Resources/config/custom-fields.xml`:
 
 <<< @/docs/snippets/config/custom-fields-standalone.xml
 
-On every install or update, Shopware syncs the defined sets:
+On every `install` or `update`, Shopware syncs the defined sets:
 
 * Sets and fields present in the XML are created or updated.
 * Sets and fields that were previously defined by your plugin but are no longer in the XML are removed.
-* On uninstall (without keeping user data), the plugin's custom field sets are removed.
+* On `uninstall` (without keeping user data), the plugin's custom field sets are removed.
 
 ::: warning
 The names of the custom fields are global and should always contain a vendor prefix, like "swag" for "Shopware AG", to keep them unique. This applies to the name of the custom field set as well as to each field name.
@@ -304,7 +304,7 @@ $this->customFieldSetRepository->create([
 ], $context);
 ```
 
-This will now create a custom field set with the name `swag_example_set` and the field, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention, because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
+This will now create a custom field set with the name `swag_example_set` and the field, `swag_example_size`. This time we also define its type, which should be of type integer here. The type is important to mention because the Administration will use this information to display a proper field. Also, when trying to write the custom field `swag_example_size`, the value has to be an integer.
 
 The translated labels are added to both the field and the set, which are going to be displayed in the Administration. Also, the fallback language can be defined in case the system language is not guaranteed to be either en_GB or de_DE.
 
