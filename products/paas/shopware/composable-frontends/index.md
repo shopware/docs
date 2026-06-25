@@ -46,6 +46,17 @@ The supported Node.js versions are:
 
 Choose the version that matches the runtime requirements of your frontend project and commit the `application.yaml` to your repository.
 
+## Runtime requirements
+
+Composable frontend applications must listen on port `3000`.
+
+They must also expose a health endpoint at `/api/healthz`.
+Shopware PaaS Native uses this endpoint for liveness and readiness checks.
+The endpoint should return a successful response when the application is ready to receive traffic.
+
+The container filesystem is read-only for security reasons.
+If your application needs to write temporary files at runtime, write them to `/app/tmp`.
+
 ## Environment variables
 
 Composable frontends use the same environment variable configuration as Shopware applications.
@@ -113,6 +124,14 @@ For more details about builds, deployments and logs, see [Applications](../funda
 Fastly is configured automatically for composable frontends.
 This includes common edge behavior such as redirecting HTTP traffic to HTTPS.
 After each deployment, Shopware PaaS Native performs a full cache purge.
+
+If you only want to purge the Fastly cache, create a new deployment without updating the application commit SHA:
+
+```sh
+sw-paas application deploy create
+```
+
+This redeploys the application using the same application build and runs the CDN purge action.
 
 ## Caching and ISR
 
