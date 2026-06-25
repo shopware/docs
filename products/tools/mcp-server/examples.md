@@ -294,4 +294,4 @@ Read `shopware://state-machines` to see all states and valid transition actions 
 
 ## Merchant workflow tools
 
-Higher-level tools for merchant operations (order summaries, customer lookup, product creation with human-readable parameters, revenue and bestseller reports, storefront search, cart management, and checkout flows) are provided by the [SwagMcpMerchantAssistant](./shopware-extensions.md#swagmcpmerchantassistant) plugin under the `merchant-*` namespace. Refer to that plugin's documentation for examples.
+Higher-level tools for merchant operations (order summaries, customer lookup, product creation with human-readable parameters, revenue and bestseller reports, storefront search, cart management, and checkout flows) are provided by the [SwagMcpMerchantTools](./shopware-extensions.md#swagmcpmerchanttools) plugin under the `merchant-*` namespace. Refer to that plugin's documentation for examples.

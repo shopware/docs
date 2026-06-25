@@ -15,9 +15,9 @@ Shopware Copilot is the AI assistant embedded directly in the Shopware Administr
 
 Copilot connects to the shop's `/api/_mcp` endpoint under the hood. No extra configuration is needed to use Copilot: once the MCP server is enabled, Copilot automatically has access to the registered tools and can use them on behalf of the merchant.
 
-## SwagMcpMerchantAssistant
+## SwagMcpMerchantTools
 
-**Repository:** `shopware/SwagMcpMerchantAssistant`\
+**Repository:** `shopware/SwagMcpMerchantTools`\
 **Distribution:** Shopware Marketplace\
 **Tool prefix:** `merchant-*`
 
