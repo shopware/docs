@@ -14,10 +14,10 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 This guide builds on the [Plugin Base Guide](../plugin-base-guide.md). Familiarity with `services.php` is helpful — see [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md).
 
 ::: info
-Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 :::
 
-## Registering scheduled task in the DI container
+## Registering a scheduled task in the DI container
 
 A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a plugin's `services.php`. For it to be found by Shopware 6 automatically, you need to place the `services.php` file in a `Resources/config/` directory, relative to the location of your plugin's base class. The path could look like this: `<plugin root>/src/Resources/config/services.php`.
 
@@ -80,7 +80,7 @@ class ExampleTask extends ScheduledTask
 
 Your `ExampleTask` class has to extend from the `Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask` class, which will force you to implement two methods:
 
-* `getTaskName`: The technical name of your task. Make sure to add a vendor prefix to your custom task, to prevent collisions with other plugins' scheduled tasks. In this example this is `swag`.
+* `getTaskName`: The technical name of your task. Make sure to add a vendor prefix to your custom task to prevent collisions with other plugins' scheduled tasks. In this example this is `swag`.
 * `getDefaultInterval`: The interval in seconds at which your scheduled task should be executed.
 
 The respective task handler:
