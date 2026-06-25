@@ -33,7 +33,7 @@ The following table summarizes the MCP server's core capabilities.
 
 **Core** owns the platform foundation: the HTTP endpoint, authentication bridge, ACL enforcement, rate limiting, capability discovery, and a set of low-level data access primitives (`shopware-entity-*`, `shopware-system-config-*`).
 
-**Plugins and Symfony bundles** run in-process with full access to DAL repositories, the service container, and the Shopware plugin lifecycle. They register tools, prompts, and resources via Symfony service tags. Shopware ships [SwagMcpMerchantAssistant](./shopware-extensions.md) (merchant workflow tools) and [SwagMcpDevTools](./shopware-extensions.md) (developer diagnostics) as examples of what plugins and bundles can do, but extension developers are free to build any capability as a plugin.
+**Plugins and Symfony bundles** run in-process with full access to DAL repositories, the service container, and the Shopware plugin lifecycle. They register tools, prompts, and resources via Symfony service tags. Shopware ships [SwagMcpMerchantTools](./shopware-extensions.md) (merchant workflow tools) and [SwagMcpDevTools](./shopware-extensions.md) (developer diagnostics) as examples of what plugins and bundles can do, but extension developers are free to build any capability as a plugin.
 
 **Apps** register capabilities declaratively in `Resources/mcp.xml`. Shopware calls the app's endpoint over HTTP at runtime, using an HMAC-signed request. Use an app when your logic runs on a remote service, requires cloud compatibility, or should be deployed independently from Shopware.
 
@@ -82,7 +82,7 @@ The following table lists the pages included in this section.
 | [Extending the MCP Server](./extending.md)      | Tools, prompts, and resources for all three extension types side by side |
 | [Examples](./examples.md)                       | Step-by-step workflows for common tasks                                  |
 | [Troubleshooting](./troubleshooting.md)         | Fix common connection and permission issues                              |
-| [Shopware Extensions](./shopware-extensions.md) | Copilot, SwagMcpMerchantAssistant, SwagMcpDevTools, ai-coding-tools      |
+| [Shopware Extensions](./shopware-extensions.md) | Copilot, SwagMcpMerchantTools, SwagMcpDevTools, ai-coding-tools      |
 
 ## Extension guides
 

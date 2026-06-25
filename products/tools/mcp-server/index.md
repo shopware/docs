@@ -91,10 +91,6 @@ Each agent receives only the capabilities required for its job.
 
 Write tools support dry-run execution by default, allowing agents to preview changes before committing them.
 
-### Auditability
-
-All MCP interactions are logged and traceable, enabling review of agent activity and issue investigation.
-
 ## Common use cases
 
 ### Shopper
@@ -154,7 +150,7 @@ This allows partners and developers to expose custom tools, resources, and promp
 |-----------|---------|
 | [`shopware/shopware`](https://github.com/shopware/shopware) | Core MCP server implementation |
 | [`SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools) | Development and debugging tools (log search, log stream, notifications) |
-| [`SwagMcpMerchantAssistant`](https://github.com/shopware/SwagMcpMerchantAssistant) | Merchant-focused workflows and tools |
+| [`SwagMcpMerchantTools`](https://github.com/shopware/SwagMcpMerchantTools) | Merchant-focused workflows and tools |
 | [`shopware-mcp-evals`](https://github.com/shopware/shopware-mcp-evals) | Evaluation and testing of MCP tools and prompts |
 
 ## Status
