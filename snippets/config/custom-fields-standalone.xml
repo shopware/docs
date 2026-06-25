@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/CustomField/Schema/custom-fields-1.0.xsd">
+    <!-- register each custom field set you may want to add -->
+    <custom-field-set>
+        <!-- the technical name of the custom field set, needs to be unique, therefore use your vendor prefix -->
+        <name>swag_example_set</name>
+        <!-- Translatable, the label of the field set -->
+        <label>Example Set</label>
+        <label lang="de-DE">Beispiel-Set</label>
+        <!-- define the entities to which your field set should be assigned -->
+        <related-entities>
+            <product/>
+        </related-entities>
+        <!-- define the fields in your set -->
+        <fields>
+            <!-- the element type defines the type of the field -->
+            <!-- the name needs to be unique, therefore use your vendor prefix -->
+            <int name="swag_example_weight">
+                <!-- Translatable, the label of the field -->
+                <label>Weight</label>
+                <!-- Optional, Default = 1, order your fields by specifying the position -->
+                <position>1</position>
+            </int>
+            <text name="swag_example_code">
+                <label>Example field</label>
+                <position>2</position>
+                <!-- Optional, Default = false, mark a field as required -->
+                <required>false</required>
+                <!-- Optional, Translatable, the help text for the field -->
+                <help-text>Example field</help-text>
+            </text>
+        </fields>
+    </custom-field-set>
+</custom-fields>
