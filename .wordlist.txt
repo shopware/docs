@@ -515,6 +515,7 @@ InterfaceHooks
 IsCompanyRule
 IsEmployeeRule
 IsNewCustomerRule
+ISR
 ItemFacade
 ItemsFacade
 JSON
