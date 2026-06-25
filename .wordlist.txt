@@ -180,8 +180,8 @@ ChangeCustomerSpecificFeaturesAction
 ChangeEmployeeStatusAction
 Changelog
 Changelogs
-ChatGPT
 Chargeback
+ChatGPT
 CheapestPriceFacade
 CheckoutCartPage
 CheckoutCartPageLoadedEvent
