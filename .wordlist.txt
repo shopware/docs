@@ -996,6 +996,7 @@ SwagDigitalSalesRooms
 SwagMcpAdminUsers
 SwagMcpDevTools
 SwagMcpMerchantAssistant
+SwagMcpMerchantTools
 SwagMigrationBundleExample
 SwagMyPlugin
 SwagMyPluginSW
