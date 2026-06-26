@@ -18,7 +18,7 @@ Shopware ships the `agentic` file family with these default files:
   the shop.
 * [`/.well-known/ai-catalog.json`](https://agenticresourcediscovery.org/spec/):
   An Agentic Resource Discovery catalog for machine-readable resources, such as
-  available MCP servers.
+  the Store API MCP server for headless/API sales channels when MCP is enabled.
 
 The files are generated from Twig templates and can be enabled per sales
 channel in the Administration. Merchants can also add custom notes or override
@@ -94,12 +94,16 @@ several extensions contribute content to the same file.
 
 {% block agentic_ai_catalog_entries %}
     {% set entries = entries|merge([{
-        identifier: 'urn:ai:example.com:resource:my-integration',
-        displayName: 'My integration',
-        type: 'application/json',
-        url: '/.well-known/my-integration',
-        description: 'Machine-readable capabilities for this sales channel.',
-        tags: ['integration'],
+        identifier: 'urn:air:example.com:server:my-integration',
+        displayName: 'My integration MCP server',
+        type: 'application/mcp-server-card+json',
+        url: salesChannelFileContext.myIntegrationMcpServerUrl,
+        description: 'MCP server for my integration.',
+        tags: ['integration', 'mcp'],
+        capabilities: ['my-integration-capability'],
+        representativeQueries: [
+            'inspect available integration capabilities',
+        ],
     }]) %}
 
     {{ parent() }}
@@ -124,6 +128,13 @@ For example, a plugin can add `/my-integration.md` with this template path:
 ```text
 PLUGIN_ROOT/src/Resources/views/files/agentic/my-integration.md.twig
 ```
+
+::: warning
+Every Twig file below `Resources/views/files/<file-family>/` is discovered as a
+public sales-channel file. Put private partials or include templates outside
+`Resources/views/files/**` and include them with an explicit Twig namespace,
+for example `@MyPlugin/agentic/includes/content.md.twig`.
+:::
 
 Use the `agentic` file family when your file belongs to the public AI and agent
 guidance surface. Use another file family only when the feature owns a separate
@@ -152,7 +163,7 @@ The following table lists the variables that agentic file templates receive.
 | `context`                 | The current sales-channel context                                                                                                    |
 | `salesChannel`            | The sales channel, including languages and currencies needed by the default templates                                                |
 | `salesChannelFile`        | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
-| `salesChannelFileContext` | Additional array context for file-specific data, such as base URL and publisher for `/.well-known/ai-catalog.json`                   |
+| `salesChannelFileContext` | Optional array context for file-specific data. For `/.well-known/ai-catalog.json`, core adds `baseUrl` and `publisher` when a sales-channel domain is available. When `MCP_SERVER` is active for headless/API sales channels, core also adds `storeApiMcpServerUrl`. |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.
 
@@ -184,12 +195,15 @@ final class MyAgenticFileSubscriber implements EventSubscriberInterface
 
         $context = $extension->result['salesChannelFileContext'] ?? [];
         $context = \is_array($context) ? $context : [];
-        $context['myIntegrationUrl'] = '/.well-known/my-integration';
+        $context['myIntegrationMcpServerUrl'] = '/.well-known/my-integration';
 
         $extension->result['salesChannelFileContext'] = $context;
     }
 }
 ```
+
+The extension result is the full Twig parameter array. Preserve existing keys
+and add only the data needed for the concrete file you handle.
 
 ## Add Administration descriptions
 
