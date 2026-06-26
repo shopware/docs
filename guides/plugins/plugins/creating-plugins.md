@@ -35,13 +35,15 @@ From your Shopware project's root directory, run:
 bin/console plugin:create SwagBasicExample
 ```
 
-Optionally, you can run this command to create a demo configuration file in the `Resources` directory:
+### Skipping optional scaffold files
+
+Pass the `--no-scaffold` flag to skip all optional scaffold files and generate only the required plugin skeleton:
 
 ```bash
-bin/console plugin:create SwagBasicExample --create-config
+bin/console plugin:create SwagBasicExample Swag\BasicExample --no-scaffold
 ```
 
-The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as per your need.
+When running the command interactively without the flag, you will be asked _"Would you like to scaffold optional plugin files?"_ — answering "no" has the same effect.
 
 ### Structure for long-term maintainability
 
