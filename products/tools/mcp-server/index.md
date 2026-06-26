@@ -151,7 +151,6 @@ This allows partners and developers to expose custom tools, resources, and promp
 | [`shopware/shopware`](https://github.com/shopware/shopware) | Core MCP server implementation |
 | [`SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools) | Development and debugging tools (log search, log stream, notifications) |
 | [`SwagMcpMerchantTools`](https://github.com/shopware/SwagMcpMerchantTools) | Merchant-focused workflows and tools |
-| [`shopware-mcp-evals`](https://github.com/shopware/shopware-mcp-evals) | Evaluation and testing of MCP tools and prompts |
 
 ## Status
 
