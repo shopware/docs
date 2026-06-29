@@ -12,6 +12,7 @@ API's
 APIRequestContext
 APIs
 APM
+ARD
 AUR
 AbstractCaptcha
 AbstractDocumentRenderer
@@ -1053,6 +1054,7 @@ TypeError
 TypeError's
 TypeScript
 TypeScript's
+UCP
 UDP
 UI
 UID
@@ -1168,6 +1170,7 @@ activateShopwareTheme
 adr
 afterSort
 ag
+agentic
 ai
 ajax
 allowlist
@@ -1449,6 +1452,7 @@ extendability
 extensibility
 externalReference
 failover
+fallback
 fallbacks
 fastly
 favicon
@@ -1630,6 +1634,7 @@ lineItemId
 linter
 linters
 linux
+llms
 localVue
 localhost
 localhost's
@@ -1911,6 +1916,7 @@ selectbox
 sellable
 sendmail
 seo
+seoUrl
 seperate
 seperated
 serializable
@@ -1992,6 +1998,7 @@ supervisord
 svg
 sw
 swSelect
+sw_extends
 swoole
 symfony
 symfony's
