@@ -178,15 +178,15 @@ shopware:
           secret: "{your-secret-key}"
 ```
 
-| `config` key                             | Description                                                                                                     |
-|------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| `bucket`                                 | Bucket name (**Required**)                                                                                      |
-| `region`                                 | Bucket region, e.g. `eu-central-1` (**Required**)                                                               |
-| `endpoint`                               | Custom endpoint URL. Optional for AWS; required for most S3-compatible providers                           |
+| `config` key                             | Description                                                                                                    |
+|------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `bucket`                                 | Bucket name (**Required**)                                                                                     |
+| `region`                                 | Bucket region, e.g. `eu-central-1` (**Required**)                                                              |
+| `endpoint`                               | Custom endpoint URL. Optional for AWS; required for most S3-compatible providers                               |
 | `use_path_style_endpoint`                | Set to `true` when the provider does **not** put the bucket in the subdomain (e.g. MinIO in its default setup) |
-| `root`                                   | Prefix inside the bucket all paths are stored under (**Optional**)                                               |
+| `root`                                   | Prefix inside the bucket all paths are stored under (**Optional**)                                             |
 | `credentials.key` / `credentials.secret` | Access key and secret. Optional — if omitted, AWS credential discovery (env vars, instance/IAM role) is used.  |
-| `options`                                | Extra options passed through to the underlying AsyncAws S3 client (**Optional**)                                  |
+| `options`                                | Extra options passed through to the underlying AsyncAws S3 client (**Optional**)                               |
 
 ::: warning
 Omit the `credentials` block on AWS infrastructure (EC2, ECS, EKS) and grant access through an **IAM role** instead. This keeps long-lived secrets out of your configuration.
@@ -218,7 +218,7 @@ shopware:
 | `projectId`   | Google Cloud project ID (**Required**)                                     |
 | `keyFilePath` | Path to a service account key JSON file.                                   |
 | `keyFile`     | The service account key as an inline array (alternative to `keyFilePath`). |
-| `root`        | Prefix inside the bucket (**Optional**)                                        |
+| `root`        | Prefix inside the bucket (**Optional**)                                    |
 
 The bucket must use the [fine-grained ACL mode](https://cloud.google.com/storage/docs/access-control#choose_between_uniform_and_fine-grained_access) so that Shopware can manage object visibility.
 
