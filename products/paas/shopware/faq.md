@@ -99,7 +99,7 @@ Outbound (egress) traffic from Shopware running in PaaS to the internet currentl
 - `52.59.182.116`
 - `18.159.165.194`
 
-These addresses do not change, so you can safely allowlist them in external systems, for example to grant PaaS access to an ERP system or other third-party services.
+These addresses are currently stable, so you can safely allowlist them in external systems (for example, to grant PaaS access to an ERP system or other third-party services).
 
 ## Can my build contact external services?
 
