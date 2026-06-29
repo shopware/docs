@@ -192,8 +192,6 @@ shopware:
 Omit the `credentials` block on AWS infrastructure (EC2, ECS, EKS) and grant access through an **IAM role** instead. This keeps long-lived secrets out of your configuration.
 :::
 
-For advanced control over timeouts, retries, and proxies, see [Custom HTTP client for S3](#custom-http-client-for-s3).
-
 ### Google Cloud Storage
 
 Install the adapter package first:
