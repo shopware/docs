@@ -93,7 +93,7 @@ Yes. The CLI supports non-interactive execution and machine-to-machine authentic
 
 ## What IP addresses does PaaS use for outbound traffic?
 
-Outbound (egress) traffic from Shopware running in PaaS to the internet always originates from the same three static IP addresses:
+Outbound (egress) traffic from Shopware running in PaaS to the internet always originates from the same three static IP addresses (AWS `eu-central-1` region):
 
 - `18.156.111.92`
 - `52.59.182.116`
