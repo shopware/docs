@@ -43,7 +43,7 @@ Pass the `--no-scaffold` flag to skip all optional scaffold files and generate o
 bin/console plugin:create SwagBasicExample Swag\BasicExample --no-scaffold
 ```
 
-When running the command interactively without the flag, you will be asked _"Would you like to scaffold optional plugin files?"_ — answering "no" has the same effect.
+When running the command interactively without the flag, you will be asked, "Would you like to scaffold optional plugin files?". Answering "no" has the same effect.
 
 ### Structure for long-term maintainability
 
