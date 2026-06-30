@@ -20,6 +20,9 @@ shopware-cli project dev
 # Start in the background (for CI or scripting)
 shopware-cli project dev start
 
+# Check whether the environment is running
+shopware-cli project dev status
+
 # Stop the environment
 shopware-cli project dev stop
 ```

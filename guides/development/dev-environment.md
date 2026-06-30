@@ -29,6 +29,12 @@ To start without the interactive dashboard (for CI or scripting):
 shopware-cli project dev start
 ```
 
+To check whether the environment is running:
+
+```bash
+shopware-cli project dev status
+```
+
 To stop everything:
 
 ```bash

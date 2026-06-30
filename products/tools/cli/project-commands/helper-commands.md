@@ -35,6 +35,7 @@ shopware-cli project dev
 
 # Start/stop in the background
 shopware-cli project dev start
+shopware-cli project dev status
 shopware-cli project dev stop
 
 # View application logs
