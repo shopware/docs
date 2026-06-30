@@ -17,6 +17,22 @@ To make use of the custom fields, register your custom field sets in your manife
 
 For a complete reference of the structure of the manifest file, take a look at the [Manifest reference](../../../../resources/references/app-reference/manifest-reference.md).
 
+::: warning
+Defining custom fields inline in `manifest.xml` via the `<custom-fields>` element is deprecated since Shopware 6.7.13.0 and will be removed in Shopware 6.8.0.0. Define your custom fields in a separate `Resources/config/custom-fields.xml` file instead (see below).
+:::
+
+## Defining custom fields in `Resources/config/custom-fields.xml`
+
+::: info
+Available starting with Shopware 6.7.13.0.
+:::
+
+Instead of the inline `<custom-fields>` section in `manifest.xml`, you can define your custom field sets in a dedicated `Resources/config/custom-fields.xml` file at the root of your app. The format inside `<custom-fields>` is identical to the inline manifest definition:
+
+<<< @/docs/snippets/config/custom-fields-standalone.xml
+
+When both a `Resources/config/custom-fields.xml` file and an inline `<custom-fields>` section in `manifest.xml` are present, the separate file takes priority. If only the inline definition exists, a deprecation warning is triggered. The same file format is also available for [plugins](../../plugins/framework/custom-field/add-custom-field.md#declarative-custom-fields-via-resources-config-custom-fields-xml).
+
 For the data needed, please refer to the custom fields in general: At first, you need a custom field set, as [custom fields](../../plugins/framework/custom-field/index.md) in Shopware are organised in sets. Here you need to consider some important fields:
 
 * `name`: A technical name for your set

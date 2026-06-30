@@ -91,6 +91,16 @@ Yes. Use the [deployment helper](../../../guides/hosting/installation-updates/de
 
 Yes. The CLI supports non-interactive execution and machine-to-machine authentication with tokens, so you can trigger builds and deployments from your CI/CD system.
 
+## What IP addresses does PaaS use for outbound traffic?
+
+Outbound (egress) traffic from Shopware running in PaaS to the internet currently originates from the same three static IP addresses (AWS `eu-central-1` region):
+
+- `18.156.111.92`
+- `52.59.182.116`
+- `18.159.165.194`
+
+These addresses are currently stable, so you can safely allowlist them in external systems (for example, to grant PaaS access to an ERP system or other third-party services).
+
 ## Can my build contact external services?
 
 Yes. Builds run as regular Docker builds and can contact external endpoints when required, for example configured Composer repositories.

@@ -45,7 +45,7 @@ If a tool accepts a name that maps to an internal enum, registry, or state machi
 
 ### Limit tool count
 
-Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools mean more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like SwagMcpMerchantAssistant add more, so keeping a single integration lean matters.
+Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools mean more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like `SwagMcpMerchantTools` add more, so keeping a single integration lean matters.
 
 The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration gets everything. A persona is a specific role with a specific job; it only includes the tools that role actually needs. For example:
 
@@ -234,7 +234,7 @@ Prefer read-only integrations for workflows that expose customer-supplied data, 
 
 Tools that operate through the storefront (cart, checkout, storefront search) use `SalesChannelContext`, not the Admin API `Context`. They do not need Admin ACL checks but do require a valid sales channel ID.
 
-Keep the two authentication models clearly separated. Admin context tools belong in core or admin-focused plugins. Storefront context tools belong in plugins like `SwagMcpMerchantAssistant`.
+Keep the two authentication models clearly separated. Admin context tools belong in core or admin-focused plugins. Storefront context tools belong in plugins like `SwagMcpMerchantTools`.
 
 ## General Design
 

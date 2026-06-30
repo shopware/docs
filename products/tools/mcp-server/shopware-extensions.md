@@ -15,13 +15,17 @@ Shopware Copilot is the AI assistant embedded directly in the Shopware Administr
 
 Copilot connects to the shop's `/api/_mcp` endpoint under the hood. No extra configuration is needed to use Copilot: once the MCP server is enabled, Copilot automatically has access to the registered tools and can use them on behalf of the merchant.
 
-## SwagMcpMerchantAssistant
+## SwagMcpMerchantTools
 
-**Repository:** `shopware/SwagMcpMerchantAssistant`\
-**Distribution:** Shopware Marketplace\
+**Repository:** [`shopware/SwagMcpMerchantTools`](https://github.com/shopware/SwagMcpMerchantTools)\
+**Distribution:** Composer (`composer require swag/mcp-merchant-tools`)\
 **Tool prefix:** `merchant-*`
 
-A Shopware plugin that extends the MCP server with merchant-focused workflow tools. Where core tools are DAL primitives (search, read, upsert, delete), the MerchantAssistant tools are high-level workflows with human-readable parameters designed for merchant operators.
+A Shopware plugin that extends the MCP server with merchant-focused workflow tools. Where core tools are DAL primitives (search, read, upsert, delete), these are high-level workflows with human-readable parameters built for merchant operators.
+
+:::warning Experimental
+`SwagMcpMerchantTools` is an experimental proof of concept with no backward-compatibility guarantee. It may be removed at any time, likely in favor of [Shopware Copilot](#shopware-copilot).
+:::
 
 ### Available tools
 
@@ -41,11 +45,15 @@ All writing tools default to `dryRun=true`.
 
 ## SwagMcpDevTools
 
-**Repository:** `shopware/SwagMcpDevTools`\
-**Distribution:** Shopware CLI (`shopware extension install SwagMcpDevTools`)\
+**Repository:** [`shopware/SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools)\
+**Distribution:** Composer (`composer require swag/mcp-dev-tools`)\
 **Tool prefix:** `swag-dev-tools-*`
 
 A Symfony bundle (not a plugin) that adds developer diagnostic tools to the MCP server. It targets environments where host-side tools cannot reach the Shopware instance directly, such as SaaS environments, staging servers, and on-premises deployments.
+
+:::warning Experimental
+`SwagMcpDevTools` is an experimental proof of concept with no backward-compatibility guarantee and may be removed at any time.
+:::
 
 ### Diagnostic tools
 
@@ -60,13 +68,24 @@ Install via one line in `config/bundles.php` after requiring the package, which 
 
 ## ai-coding-tools
 
-**Repository:** `shopwareLabs/ai-coding-tools`\
-**Distribution:** Shopware Labs (experimental)
+**Repository:** [`shopwareLabs/ai-coding-tools`](https://github.com/shopwareLabs/ai-coding-tools)\
+**Distribution:** Claude Code plugin marketplace (community project, MIT-licensed, experimental)
 
 A separate project for **developer-facing** local MCP tools: code generation, testing, linting, cache clearing, and deployment operations. This is distinct from the shop's `/api/_mcp` endpoint.
 
 Where `/api/_mcp` gives AI clients access to shop data and merchant operations, `ai-coding-tools` gives AI coding assistants in your IDE access to the Shopware development environment itself. Use this when you want an AI coding assistant in your IDE to run `bin/console`, execute tests, or generate boilerplate code against a local Shopware installation.
 
-:::info Experimental
-`ai-coding-tools` lives under the `shopwareLabs` GitHub organization and is considered experimental. APIs may change without notice.
+### Installation
+
+`ai-coding-tools` is a [Claude Code plugin marketplace](https://docs.claude.com/en/docs/claude-code/plugins). With Claude Code installed, add the marketplace and install only the plugins you need:
+
+```bash
+/plugin marketplace add shopwareLabs/ai-coding-tools
+/plugin install dev-tooling@shopware-ai-coding-tools
+```
+
+The marketplace bundles several plugins, for example `dev-tooling` (PHP/JS tooling via MCP), `gh-tooling` (GitHub CLI wrapper), `test-writing` (PHPUnit test generation), and `chunkhound-integration` (semantic code research). Selected skills are also exported as portable [Agent Skills](https://agentskills.io) packages for tools such as Cursor, Codex, and Gemini CLI. See the repository README for the full plugin list and setup steps.
+
+:::warning Experimental
+`ai-coding-tools` is an experimental community project, not an official Shopware product. Its plugins, skills, and commands can change or be removed at any time.
 :::
