@@ -175,6 +175,7 @@ CashRoundingConfigField
 CategoryRoute
 CentOS
 Centric
+Ceph
 Cerebro
 Chai
 ChangeCustomerSpecificFeaturesAction
@@ -338,6 +339,7 @@ Devops
 Devtool
 DifferentAddressesRule
 Differentiator
+DigitalOcean
 DirectoryLoader
 Direnv
 DiscountFacade
@@ -349,6 +351,8 @@ Dotenv
 DynamoDB
 ECDSA
 ECONNREFUSED
+ECS
+EKS
 ENUM
 ENUMS
 EOL
@@ -471,12 +475,14 @@ HMAC
 HMR
 Hacktober
 HeaderPagelet
+Hetzner
 Homebrew
 Hono
 HookClasses
 HookExecutor
 Hotjar
 HowTos
+IAM
 IANA
 IDEs
 IETF
@@ -620,6 +626,7 @@ Middleware
 MigrationCollection
 MigrationStep
 MimeType
+MinIO
 Minio
 Mixin
 Mixins
@@ -1843,6 +1850,7 @@ realtime
 rebase
 rebasing
 rebranded
+rebuildable
 recalculable
 redis
 refactorings
@@ -2055,6 +2063,7 @@ typeSingleSelectAndCheck
 typehint
 typehinted
 ui
+umask
 un
 uncomment
 uncommenting
@@ -2076,6 +2085,7 @@ untrusted
 untyped
 updateDestructive
 updateViaAdminApi
+uploadable
 upsert
 uri
 url

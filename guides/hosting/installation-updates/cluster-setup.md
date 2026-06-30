@@ -88,7 +88,7 @@ Please refer to the guide below.
 In a multi-app-server system, manage specific directories over a shared filesystem.
 This includes assets, theme files, and private as well as public filesystems. The recommendation is to use an S3 compatible bucket.
 
-For more information, refer to the [filesystems](../infrastructure/filesystem) section of this guide.
+For more information, refer to the [filesystems](../infrastructure/filesystem) section of this guide. If you are moving an existing single-server shop to a shared S3 bucket, follow the [migration guide](../infrastructure/filesystem#migrating-an-existing-filesystem-to-a-new-adapter) to copy the existing files and switch the configuration without losing media.
 
 ### Shared directories
 
