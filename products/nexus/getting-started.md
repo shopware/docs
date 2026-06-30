@@ -10,7 +10,7 @@ nav:
 
 - Shopware 6.7 or newer  
 - Active Shopware subscription  
-- Beta access granted by Shopware
+- Early Access granted by Shopware
 - Nexus service activated
 - Active Shopware services
     - Accept Shopware Service T&C's
@@ -28,14 +28,14 @@ nav:
 Your shops are pulled from the Shopware Business Platform.
 
 :::warning
-Beta Limitation - Only the first company linked to your user account is used. As such, only shops linked to that first company will be available in Nexus.
+Early Access Limitation - Only the first company linked to your user account is used. As such, only shops linked to that first company will be available in Nexus.
 :::
 
 ## Create workflow
 
 To create a workflow, follow the instructions in the [user documentation](https://docs.shopware.com/en/shopware-6-en/shopware-services/shopware-nexus?category=shopware-6-en/insider-previews).
 
-## Known Limitations - Beta-Specific
+## Known Limitations - Early Access
 
 | Limitation | Workaround |
 |------------|------------|
