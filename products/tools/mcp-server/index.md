@@ -151,6 +151,7 @@ This allows partners and developers to expose custom tools, resources, and promp
 | [`shopware/shopware`](https://github.com/shopware/shopware) | Core MCP server implementation |
 | [`SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools) | Development and debugging tools (log search, log stream, notifications) |
 | [`SwagMcpMerchantTools`](https://github.com/shopware/SwagMcpMerchantTools) | Merchant-focused workflows and tools |
+| [`shopware-admin-mcp`](https://github.com/shopware/shopware-admin-mcp) | MCP server that provides AI assistants with direct access to Shopware's Admin API for product management tasks |
 
 ## Status
 
