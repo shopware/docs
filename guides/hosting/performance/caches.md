@@ -159,7 +159,7 @@ This section explains a common surprise when running Shopware's cache on Redis: 
 
 A few Redis basics first, so the rest makes sense:
 
-* **TTL (time to live)** is an expiry timer on a key. A cache item written with a TTL of one hour is automatically deleted an hour later. A key with **no TTL** is *persistent* — Redis keeps it until something explicitly deletes it.
+* **TTL (Time To Live)** is an expiry timer on a key. A cache item written with a TTL of one hour is automatically deleted an hour later. A key with **no TTL** is *persistent* — Redis keeps it until something explicitly deletes it.
 * **`maxmemory`** is the memory limit you give Redis. When Redis reaches it, it does not just start rejecting writes — first it tries to free space using its **eviction policy**.
 * The recommended policy for the cache is **`volatile-lru`**. The `volatile` part is the catch: it will only evict keys that **have a TTL**. Keys without a TTL are off-limits — Redis will never evict them, no matter how full it gets.
 
