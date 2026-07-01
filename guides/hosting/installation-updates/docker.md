@@ -249,7 +249,7 @@ If you are not sure how old your running shop is, check the PHP version inside t
 docker compose exec web php -v
 ```
 
-Compare that with the [latest PHP releases](https://www.php.net/supported-versions.php). If the patch version (the last number, e.g. the `12` in `8.3.12`) is old, your container has not been rebuilt in a while and is missing security fixes. That is the signal to do the rebuild below.
+Compare that with the [latest PHP releases](https://www.php.net/supported-versions.php). If a newer patch version is available (the last number, e.g. a higher number than the `12` in `8.3.12`), your container has not been rebuilt in a while and is missing security fixes. That is the signal to do the rebuild below.
 
 For the full picture — not just PHP, but every package in the image — scan the image with a vulnerability scanner such as [Trivy](https://trivy.dev/) or [Grype](https://github.com/anchore/grype). Trivy needs no setup and reports all known vulnerabilities (CVEs) in the image:
 
