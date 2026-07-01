@@ -233,11 +233,11 @@ This is the most common mistake with Docker-based shops, so if you read only one
 
 The following table summarizes the three separate things that get updated and how you update them. Do not mix them up.
 
-| What | What it means | How you update it | How often |
-|------|---------------|-------------------|-----------|
-| **PHP (the base image)** | The runtime your shop runs on, with security fixes | **Rebuild and redeploy** your image — no code change needed | When a scan finds a vulnerability |
-| **Shopware** | The shop software itself, plus extensions | Update with Composer, then rebuild and redeploy | When a version you want is released |
-| **Your own code** | Your project and any custom extensions | Update with Composer/npm, then rebuild and redeploy | When you change something |
+| What                     | What it means                                      | How you update it                                           | How often                           |
+|--------------------------|----------------------------------------------------|-------------------------------------------------------------|-------------------------------------|
+| **PHP (the base image)** | The runtime your shop runs on, with security fixes | **Rebuild and redeploy** your image — no code change needed | When a scan finds a vulnerability   |
+| **Shopware**             | The shop software itself, plus extensions          | Update with Composer, then rebuild and redeploy             | When a version you want is released |
+| **Your own code**        | Your project and any custom extensions             | Update with Composer/npm, then rebuild and redeploy         | When you change something           |
 
 The rest of this section explains each one.
 
@@ -249,7 +249,7 @@ If you are not sure how old your running shop is, check the PHP version inside t
 docker compose exec web php -v
 ```
 
-Compare that with the [latest PHP releases](https://www.php.net/supported-versions.php). If a newer patch version is available (the last number, e.g. a higher number than the `12` in `8.3.12`), your container has not been rebuilt in a while and is missing security fixes. That is the signal to do the rebuild below.
+Compare that with the [latest PHP releases](https://www.php.net/supported-versions.php). If a newer patch version is available (the last number, e.g., a higher number than the `12` in `8.3.12`), your container has not been rebuilt in a while and is missing security fixes. That is the signal to do the rebuild below.
 
 For the full picture — not just PHP, but every package in the image — scan the image with a vulnerability scanner such as [Trivy](https://trivy.dev/) or [Grype](https://github.com/anchore/grype). Trivy needs no setup and reports all known vulnerabilities (CVEs) in the image:
 
@@ -258,7 +258,7 @@ For the full picture — not just PHP, but every package in the image — scan t
 trivy image my-shopware-image:latest
 ```
 
-**Scan on a schedule, and rebuild only when the scan finds something.** This is the recommended rhythm: instead of rebuilding blindly every day, run the scan regularly (e.g. weekly, ideally as a scheduled job in your build pipeline) and treat a finding as the signal to rebuild. When the scan reports security issues, rebuild with `--pull` (see below) and scan again — most OS- and PHP-level findings disappear once you are on the freshly rebuilt base image. If the pipeline scan still reports vulnerabilities after a rebuild, let it fail the build so nothing vulnerable ships quietly.
+**Scan on a schedule and rebuild only when the scan finds something.** This is the recommended rhythm: instead of rebuilding blindly every day, run the scan regularly (e.g., weekly, ideally as a scheduled job in your build pipeline) and treat a finding as the signal to rebuild. When the scan reports security issues, rebuild with `--pull` (see below) and scan again — most OS- and PHP-level findings disappear once you are on the freshly rebuilt base image. If the pipeline scan still reports vulnerabilities after a rebuild, let it fail the build so nothing vulnerable ships quietly.
 
 ### Keeping PHP up to date
 
@@ -282,9 +282,9 @@ The `--pull` flag is what tells Docker to fetch the newest `docker-base` image i
 
 You do not need to rebuild every day — only when there is actually something to fix. Automate the *detection* so you know when that is:
 
-- **If you have a build pipeline (CI/CD):** add a scheduled scan (e.g. weekly) as described above, and trigger a rebuild-and-redeploy when it reports a vulnerability. This is the recommended approach.
+- **If you have a build pipeline (CI/CD):** add a scheduled scan (e.g., weekly) as described above, and trigger a rebuild-and-redeploy when it reports a vulnerability. This is the recommended approach.
 - **If you pinned the image to a sha256 digest:** use [Dependabot or Renovate](#best-practices) to open an update automatically when a newer base image is published, so you rebuild in response to a real new release.
-- **If you do all of this by hand:** put a recurring reminder in your calendar (for example, once a week) to run the scan, and rebuild only if it finds something. It is not elegant, but it keeps your shop patched without pointless rebuilds.
+- **If you do all of this by hand:** put a recurring reminder in your calendar (for example, once a week) to run the scan and rebuild only if it finds something. It is not elegant, but it keeps your shop patched without pointless rebuilds.
 
 ::: info
 The tags like `8.3-frankenphp` are *rolling* tags: over time, the same tag points to a newer PHP patch version. This is why rebuilding with the same tag is enough to pull in security fixes — you do not need to change anything in your Dockerfile.
@@ -300,7 +300,7 @@ For the full step-by-step procedure — including backups, maintenance mode, che
 
 ### Updating Shopware and PHP together (major upgrade)
 
-When you move to a new **major** Shopware version (these come out once a year, e.g. 6.6 → 6.7), you usually also need a newer PHP version. It is tempting to change everything in one big rebuild — **do not do this.** If something breaks, you will not know whether PHP or Shopware caused it, and you will have a hard time undoing it. This is exactly the kind of "creative" update that breaks shops.
+When you move to a new **major** Shopware version (these come out once a year, e.g., 6.6 → 6.7), you usually also need a newer PHP version. It is tempting to change everything in one big rebuild — **do not do this.** If something breaks, you will not know whether PHP or Shopware caused it, and you will have a hard time undoing it. This is exactly the kind of "creative" update that breaks shops.
 
 Instead, change **one thing at a time**, in order. This works because every Shopware major supports *two* PHP versions (the old one and a newer one) at the same time, so you can move PHP and Shopware in separate steps.
 
@@ -317,14 +317,14 @@ FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 Take a **backup of your database and files before you start**, then do these steps one after another, testing after each:
 
 1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md).
-2. **Raise PHP to an in-between version — still on old Shopware.** Change `PHP_VERSION` to a version both 6.6 and 6.7 support (here: `8.3`), then rebuild and redeploy. Because both versions support it, this is safe while still on 6.6. Test the shop.
+2. **Raise PHP to an in-between version — still on old Shopware.** Change `PHP_VERSION` to a version both 6.6 and 6.7 support (here: `8.3`), then rebuild, and redeploy. Because both versions support it, this is safe while still on 6.6. Test the shop.
 3. **Update Shopware.** Now do the Shopware 6.6 → 6.7 update by following [Performing Shopware Updates](./performing-updates.md). Rebuild, redeploy, test the shop.
 4. **Raise PHP to the final version.** Now that you are on 6.7, change `PHP_VERSION` to the final target (`8.5`), rebuild, redeploy, and test one last time.
 
 If any step misbehaves, you know exactly which change caused it, and you can roll that one step back instead of unpicking a tangle of changes.
 
 ::: danger
-Never jump several Shopware majors and PHP versions at once (for example 6.5 straight to 6.7). Go one major version at a time, and always take a backup before starting.
+Never jump several Shopware majors and PHP versions at once (for example, 6.5 straight to 6.7). Go one major version at a time and always take a backup before starting.
 :::
 
 ## Adding custom PHP extensions
