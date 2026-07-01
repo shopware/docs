@@ -254,6 +254,8 @@ The following parameters can be defined for a config field item:
 
 Since the translations in `theme.config` are only used by the Theme Manager in the administration, we decided to use snippet keys for translating the configuration in order to ensure inheritance.
 
+Store these snippet keys in Administration snippet files, for example `<plugin root>/src/Resources/app/administration/src/app/snippet/de.json` and `<plugin root>/src/Resources/app/administration/src/app/snippet/en.json`. Locale-specific files such as `de-DE.json` and `en-GB.json` are also supported and override the base language files.
+
 Each snippet key begins with `sw-theme`, followed by the theme’s technical name, or its respective parent theme name, since snippets are inherited from the parent theme as well. It then includes the names of the relevant `tab`, `block`, `section`, and `field`. If you're translating field options, a numeric index is added to the snippet path. If any of these elements are unnamed, `default` will be used as the replacement in the key.
 
 At the end of the key, you append `label`. For fields, you may alternatively use `helpText` instead of `label`.
