@@ -163,7 +163,7 @@ A few Redis basics first, so the rest makes sense:
 * **`maxmemory`** is the memory limit you give Redis. When Redis reaches it, it does not just start rejecting writes — first it tries to free space using its **eviction policy**.
 * The recommended policy for the cache is **`volatile-lru`**. The `volatile` part is the catch: it will only evict keys that **have a TTL**. Keys without a TTL are off-limits — Redis will never evict them, no matter how full it gets.
 
-So a cache Redis sitting at its `maxmemory` limit is completely normal and healthy. It fills up over time, and `volatile-lru` keeps deleting expired (or soon-to-expire) keys to make room for new ones. **Full is fine** — as long as enough of that memory is held by keys *with* a TTL, so Redis always has something it is allowed to evict.
+So a cache Redis sitting at its `maxmemory` limit is completely normal and healthy. It fills up over time, and `volatile-lru` keeps evicting least recently used keys that have a TTL set to make room for new ones. **Full is fine** — as long as enough of that memory is held by keys *with* a TTL, so Redis always has something it is allowed to evict.
 
 #### The problem: cache tags never expire
 
