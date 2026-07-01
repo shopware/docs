@@ -143,6 +143,7 @@ CSP
 CSPs
 CSRF
 CSV
+CVEs
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -469,6 +470,7 @@ GoogleReCaptchaV
 Grafana
 Grantable
 GridHelper
+Grype
 GuestWishlistPage
 GuestWishlistPagelet
 HMAC
@@ -1056,6 +1058,7 @@ TreePath
 TreePathField
 TreeSelect
 TriggerReload
+Trivy
 TwigJS
 TypeDetector
 TypeError
