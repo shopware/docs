@@ -231,7 +231,7 @@ Getting a shop running once is **not** the end of the job. A container that was 
 
 This is the most common mistake with Docker-based shops, so if you read only one section on this page, read this one.
 
-There are three separate things that get updated, and they are updated in different ways. Do not mix them up:
+The following table summarizes the three separate things that get updated and how you update them. Do not mix them up.
 
 | What | What it means | How you update it | How often |
 |------|---------------|-------------------|-----------|
