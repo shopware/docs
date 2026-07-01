@@ -160,7 +160,7 @@ This section explains a common surprise when running Shopware's cache on Redis: 
 A few Redis basics first, so the rest makes sense:
 
 * **TTL (Time To Live)** is an expiry timer on a key. A cache item written with a TTL of one hour is automatically deleted an hour later. A key with **no TTL** is *persistent* — Redis keeps it until something explicitly deletes it.
-* **`maxmemory`** is the memory limit you give Redis. When Redis reaches it, it does not just start rejecting writes — first it tries to free space using its **eviction policy**.
+* **`maxmemory`** is the memory limit you give Redis. When Redis reaches it, it does not just start rejecting `writes` — first it tries to free space using its **eviction policy**.
 * The recommended policy for the cache is **`volatile-lru`**. The `volatile` part is the catch: it will only evict keys that **have a TTL**. Keys without a TTL are off-limits — Redis will never evict them, no matter how full it gets.
 
 So a cache Redis sitting at its `maxmemory` limit is completely normal and healthy. It fills up over time, and `volatile-lru` keeps evicting least recently used keys that have a TTL set to make room for new ones. **Full is fine** — as long as enough of that memory is held by keys *with* a TTL, so Redis always has something it is allowed to evict.
@@ -177,7 +177,7 @@ Here is the catch: **these tag-index keys have no TTL.** Only the cached items t
 2. An hour passes. The cached page **expires and is removed** — but its entry in the `product-123` tag set is **not** removed. The set now points at a key that no longer exists. That leftover entry is called an **orphaned tag**.
 3. Repeat this millions of times a day on a busy shop, and the tag sets keep growing with orphaned entries — and because they have no TTL, `volatile-lru` can never evict them.
 
-While the tag sets are a small share of total memory, everything is fine: there are plenty of expiring cache items for Redis to evict. The trouble starts when the persistent, no-TTL tag data grows large enough that Redis no longer has *enough* evictable keys to reclaim. At that point Redis cannot free space for new writes and starts returning **out-of-memory (OOM) errors** — even though `volatile-lru` is set correctly.
+While the tag sets are a small share of total memory, everything is fine: there are plenty of expiring cache items for Redis to evict. The trouble starts when the persistent, no-TTL tag data grows large enough that Redis no longer has *enough* evictable keys to reclaim. At that point Redis cannot free space for new `writes` and starts returning **out-of-memory (OOM) errors** — even though `volatile-lru` is set correctly.
 
 ::: warning
 The problem is **not** that the cache Redis is full — that is expected and healthy. The problem is having **too many keys without a TTL**, which leaves Redis nothing it is allowed to evict. If your cache instance throws OOM errors, do not just raise `maxmemory` — first check how much memory is held by keys *without* a TTL.
@@ -222,4 +222,4 @@ shopware-redis-cli-helper --url redis://127.0.0.1:6379/0 cleanup
 shopware-redis-cli-helper --url redis://127.0.0.1:6379/0 cleanup --apply
 ```
 
-The important part is **step 3 on a schedule** — run the cleanup as a recurring cron job (for example, nightly) rather than once. Orphaned tags accumulate continuously, so a one-off cleanup fixes today's symptom but the instance will fill up again. A regular prune keeps the no-TTL share small and permanently avoids the OOM errors.
+The important part is **step 3 on a schedule** — run the cleanup as a recurring cron job (for example, nightly) rather than once. Orphaned tags accumulate continuously, so a one-off cleanup fixes today's symptom, but the instance will fill up again. A regular prune keeps the no-TTL share small and permanently avoids the OOM errors.
