@@ -30,6 +30,10 @@ For key eviction policy you should use `volatile-lru`, which only automatically 
 
 The caching data (HTTP-Cache & Object cache) is what should be stored in this instance.
 
+::: warning
+A cache Redis reaching its memory limit is normal — `volatile-lru` keeps evicting expired keys to make room. The problem is having too many keys **without** a TTL: `volatile-lru` can only evict keys that have one. Symfony's tag-aware cache adapter stores tag-index sets without a TTL, and they accumulate orphaned entries over time. If they are never pruned, they leave Redis with too little evictable data and it runs out of memory. See [Cache tags and keys without a TTL](../performance/caches#cache-tags-and-keys-without-a-ttl) for how to detect and prune them.
+:::
+
 <PageRef page="../performance/caches" />
 
 ## Durable, but "aging" data

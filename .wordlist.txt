@@ -674,6 +674,7 @@ Nvidia
 OAuth
 OData
 OIDC
+OOM
 OPENSEARCH
 ORM
 ORMs
@@ -1451,6 +1452,7 @@ eslintrc
 et
 eu
 everytime
+evictable
 evolvability
 exampler
 explainer
