@@ -333,6 +333,7 @@ Deployer
 Deprecations
 Deutsch
 DevOps
+DevTUI
 DevTools
 Devenv
 DeviceHelper
@@ -538,6 +539,7 @@ LONGTEXT
 LUA
 LandingPage
 LastNameRule
+LavinMQ
 Lerna
 Lifecycle
 LineItemClearanceSaleRule
@@ -1178,6 +1180,7 @@ actionAmount
 actionType
 actionability
 activateShopwareTheme
+adminer
 adr
 afterSort
 ag
@@ -1634,8 +1637,10 @@ jwks
 jwt
 kebabCase
 keyframes
+keypress
 landingpage
 lang
+lavinmq
 lazysizes
 libxml
 lifecycle
@@ -1759,6 +1764,7 @@ org's
 organizationUnitIds
 otel
 otlp
+overridable
 overrideComponentSetup
 oversales
 paas
@@ -1900,6 +1906,7 @@ rollout
 routeName
 routeScope
 routeScopes
+runnable
 runtime
 runtimes
 salesChannel
@@ -2136,6 +2143,7 @@ wishlist
 wordlist
 www
 xasjkyld
+xdebug
 xhost's
 xkeys
 xl

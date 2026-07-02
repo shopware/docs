@@ -1,155 +1,148 @@
 ---
 nav:
   title: Start Developing
-  position: 2
+  position: 4
 
 ---
 
 # Start Developing
 
-This section outlines the typical next steps for development in your running Shopware instance.
+This guide covers what to do once your [development environment](./dev-environment.md) is running.
 
-## Access Administration and Storefront
+## Your Environment
 
-- Storefront: `http://127.0.0.1:8000`
-- Administration: `http://127.0.0.1:8000/admin` *(default credentials: `admin` / `shopware`)*
+Once the containers are up, you have:
+
+- **Storefront**: `http://127.0.0.1:8000`
+- **Administration**: `http://127.0.0.1:8000/admin` *(default credentials: `admin` / `shopware`)*
+
+The DevTUI dashboard (`shopware-cli project dev`) shows these URLs and your credentials at a glance.
 
 Common development areas:
 
-- `custom/`: your plugins and themes
-- `bin/console`: application CLI (Symfony console)
+- `custom/` — your plugins and themes
+- `bin/console` — application CLI (Symfony console), runnable from your host via `shopware-cli project console`
 - the Administration UI
 
-Projects follow the [project template layout](../installation/project-overview.md).
+## Running Commands
 
-## Using `bin/console` for development
+Use `shopware-cli project console` to run `bin/console` commands from your host — no need to enter the container:
 
-To run commands, open a shell inside the web container:
+```bash
+# Clear caches
+shopware-cli project console cache:clear
+
+# Install and activate a plugin
+shopware-cli project console plugin:install --activate MyPlugin
+
+# Run database migrations
+shopware-cli project console database:migrate --all
+```
+
+:::info Legacy workflow
+If your project uses the older `make`-based setup and you need to shell into the container manually:
 
 ```bash
 make shell
+docker compose exec web bash
 ```
 
-This command drops you into the container’s terminal; you will see the prompt change.
-
-From inside the container, retrieve a list of commands with:
-
-```bash
-bin/console
-```
-
-Tasks handled in `bin/console` include:
-
-- Installing and activating plugins
-- Clearing caches
-- Running migrations
-- Adjusting system configuration
-- Running plugin-related development tasks
-
-:::info
-Inside the container, you only need `bin/console …`. But if you prefer to run commands from your host machine instead, you can use the full Docker prefix: `docker compose exec web bin/console cache:clear`.
+Most tasks are now easier with `shopware-cli project console` and the DevTUI dashboard.
 :::
 
-## Administration setup tasks
+## Frontend Development
 
-- Open the **Admin** at `http://localhost:8000/admin`
-- Sign in or create a Shopware account; this is necessary when you want to install Store extensions.
-- Connect to the **Shopware Store**
-- Install plugins or themes from the Store
-- Configure payment methods if you need them (not required for local development)
-
-Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **`Settings > Shop > Basic information`**.
-
-## Frontend development
-
-Use these commands when developing or customizing the UI, including Storefront, Administration, or extensions that affect either one:
+When developing the Administration or Storefront, use watchers for Hot Module Replacement. Start them directly from the DevTUI General tab (key `1`), or from the command line:
 
 ```bash
-# Build the administration (admin panel)
-make build-administration
-
-# Build the storefront (shop frontend)
-make build-storefront
-
-# Start a watcher to rebuild the Administration automatically when files change
-make watch-admin
-
-# Start a watcher for Storefront
-make watch-storefront
-```
-
-### Alternative: use Shopware CLI
-
-If you prefer not to use `make`, you can use the [Shopware CLI](https://developer.shopware.com/docs/products/cli/) to build and watch the Administration and Storefront. Run the following commands:
-
-```bash
-shopware-cli project admin-build
-shopware-cli project storefront-build
+# Administration (Vite HMR on port 5173)
 shopware-cli project admin-watch
+
+# Storefront (webpack HMR on port 9998)
 shopware-cli project storefront-watch
 ```
 
-The `watch` commands monitor changes to the Administration and Storefront and automatically rebuild them.
-
-## Local environment overview
-
-With Shopware running, your local setup includes:
-
-- **Web service:** Serves the Storefront and the Administration.
-- **Database (MariaDB):** Runs on port 3306 inside Docker.
-  - Internal hostname: `database`.
-  - Host access: `localhost:3306`, if you want to inspect the database directly.
-- **Mailpit:** A local mail-testing tool available at `http://localhost:8025`. Use it to view emails sent by Shopware (e.g., registration or order confirmations) without an external mail server.
-- **Adminer (database UI):** A lightweight web interface for viewing and editing your database, available at `http://localhost:8080`.
-
-For Docker setups, inspect ports and services with:
+To only watch specific extensions:
 
 ```bash
-docker compose ps
+shopware-cli project admin-watch --only-extensions MyPlugin,OtherPlugin
+shopware-cli project storefront-watch --only-extensions MyPlugin,OtherPlugin
 ```
 
-## Environment setup
+To exclude specific extensions:
 
-### Connecting to a remote database
+```bash
+shopware-cli project admin-watch --skip-extensions SomePlugin
+```
 
-To use a database outside the Docker stack, set `DATABASE_URL` in `.env.local` in the standard form:
+For the Storefront watcher, the CLI prompts you to select a sales channel if one isn't configured.
+
+When working with many third-party extensions, building only custom extensions speeds things up:
+
+```bash
+shopware-cli project storefront-build --only-custom-static-extensions
+shopware-cli project admin-build --only-custom-static-extensions
+```
+
+For more details, see [Using Watchers](./tooling/using-watchers.md).
+
+## Administration Setup
+
+When accessing the Administration for the first time:
+
+- Sign in or create a Shopware account (required to install Store extensions)
+- Connect to the **Shopware Store**
+- Install plugins or themes from the Store
+- Configure payment methods if needed
+
+Basic shop settings (name, language, currency) can be changed later under **Settings > Shop > Basic information**.
+
+## Environment Customization
+
+### compose.override.yaml
+
+The `compose.yaml` file is managed by shopware-cli and regenerated automatically. Place all customizations in `compose.override.yaml`:
+
+```yaml
+# compose.override.yaml
+services:
+  web:
+    environment:
+      APP_ENV: dev
+    ports:
+      - "9003:9003"   # Xdebug
+
+  database:
+    ports:
+      - "3306:3306"   # Expose MySQL to host
+```
+
+### Connecting to a Remote Database
+
+To use an external database, set `DATABASE_URL` in `.env.local`:
 
 ```bash
 DATABASE_URL="mysql://user:password@<host>:3306/<database>"
 ```
 
-Containers cannot always reach services bound only to the host's `localhost`. If `localhost` does not work, try `host.docker.internal` or your host machine’s LAN IP, or add an `extra_hosts` entry in `compose.yaml`.
+If the container can't reach `localhost`, try `host.docker.internal` or your host's LAN IP.
 
-### Environment variables
+### Environment Variables
 
-You can create a `.env` file in the project root to override default environment variables. Most changes take effect automatically without requiring container restarts. Changes to `APP_ENV` require a restart:
+Create a `.env` file in the project root to override defaults. Most changes apply immediately. Changes to `APP_ENV` require a restart (`shopware-cli project dev stop && shopware-cli project dev start`).
 
-```bash
-make up
-```
+## Shopware Account and Private Composer Packages
 
-### Docker overrides
-
-Use `compose.override.yaml` to:
-
-- Change ports
-- Add services
-- Enable debugging
-- Adjust networking
-
-This keeps your changes local and out of version control.
-
-## Shopware account and Composer (private packages)
-
-Shopware operates a private Composer registry for licensed and commercial extensions. To install packages that require Shopware account authentication, configure Composer with your Shopware account credentials (create an access token in your Shopware account when prompted):
+To install licensed extensions from Shopware's private Composer registry:
 
 ```bash
 composer config --global http-basic.packages.shopware.com <username> <token>
 ```
 
-Use the hostname and steps described in your Shopware account or in the extension download instructions, if they differ.
+Create an access token in your Shopware account under **Shops > Licenses**.
 
-## Next steps
+## Next Steps
 
-- Build extensions: [Extensions](extensions/index.md).
-- Integrate via HTTP: [APIs](integrations-api/index.md).
+- [Build Extensions](./extensions/index.md) — Create plugins, apps, and themes
+- [Work with APIs](./integrations-api/index.md) — Integrate external systems
+- [Set up CI/CD](../../products/tools/cli/project-commands/build.md) — Automate builds and deployments

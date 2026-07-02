@@ -10,6 +10,7 @@ nav:
 [Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It's a standalone developer tool that you install and configure separately from your Shopware instance. Once set up, it helps you automate and speed up common tasks such as:
 
 - managing and configuring Shopware projects
+- starting and operating an integrated Docker-based development environment
 - building, validating, and packaging extensions
 - uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
