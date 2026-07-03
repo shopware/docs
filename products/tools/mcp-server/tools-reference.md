@@ -51,6 +51,51 @@ When you enable a tool in the integration's tool allowlist, its declared depende
 | `shopware-entity-delete`       | `shopware-entity-search`      |
 | `shopware-system-config-write` | `shopware-system-config-read` |
 
+## Discovery Tools
+
+Discovery tools help clients work with a small initial tool list while still finding the right tool for a task.
+
+### shopware-tool-search
+
+Search the allowed tool catalog by free-text query. Use it when a needed tool is not visible in `tools/list`.
+
+**Parameters:**
+
+| Name         | Type   | Required | Default | Description                                  |
+|--------------|--------|----------|---------|----------------------------------------------|
+| `query`      | string | yes      | —       | Search phrase, for example `order state`     |
+| `maxResults` | int    | no       | 3       | Maximum number of matches. Capped at 20      |
+
+**Response:** `{"success": true, "data": [{"tool": {...}, "score": 12.3, "matchedIn": ["name:token"]}], "_meta": {"query": "...", "totalCandidates": 42}}`
+
+Tool search respects the current allowlist and does not return tools that the current integration or user cannot access.
+
+### shopware-toolsets-list
+
+List MCP toolsets that can be enabled for the current session. Toolsets are derived from explicit tool group metadata and are intended to reveal related deferred tools on demand.
+
+**Parameters:** none.
+
+**Response:** `{"success": true, "data": {"toolsets": [{"name": "order", "title": "Order tools", "tools": ["shopware-order-state"], "enabled": false}]}}`
+
+### shopware-toolset-enable
+
+Enable one toolset for the current MCP session and ask the client to refresh `tools/list`.
+
+**Parameters:**
+
+| Name      | Type   | Required | Description                                      |
+|-----------|--------|----------|--------------------------------------------------|
+| `toolset` | string | yes      | Toolset name returned by `shopware-toolsets-list` |
+
+**Example:**
+
+```json
+{"toolset": "order"}
+```
+
+Enabling a toolset is session-scoped. It changes tool visibility only; it does not bypass the integration or user allowlist.
+
 ## Read Tools
 
 ### shopware-entity-schema

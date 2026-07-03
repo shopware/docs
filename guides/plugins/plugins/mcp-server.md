@@ -55,11 +55,13 @@ use Mcp\Capability\Attribute\McpTool;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolDependsOn;
+use Shopware\Core\Framework\Mcp\Attribute\McpToolGroup;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolRequires;
 use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
 use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
 
-#[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders for a given customer email.')]
+#[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders for a given customer email.', meta: ['deferred' => true])]
+#[McpToolGroup('orders')]
 #[McpToolDependsOn('shopware-entity-schema')]
 #[McpToolRequires('order:read')]
 class MyTool extends McpToolResponse
@@ -95,6 +97,8 @@ class MyTool extends McpToolResponse
 
 - `#[McpTool]` goes on the class, not on `__invoke()`. The MCP compiler reads class-level attributes; method-level attributes are silently ignored.
 - `title` is optional. When set, MCP clients (Claude Desktop, Cursor, etc.) display it in their tool list instead of the machine-readable `name`. Omit it if you have no better label to offer.
+- Set `meta: ['deferred' => true]` for tools that should stay hidden from the initial `tools/list` response and be found through `shopware-tool-search` or a toolset. Use `meta: ['deferred' => false]` only for small, broadly useful discovery or bootstrap tools.
+- Use `#[McpToolGroup('...')]` to assign a tool to a session toolset. Group names should describe the workflow area, for example `orders`, `erp`, or `media`. Toolsets change visibility only; the integration or user allowlist still controls access.
 - Names must only contain `a-zA-Z0-9_-`.
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
