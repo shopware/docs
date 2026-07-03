@@ -148,7 +148,10 @@ _shopware-challenge.example.com.  IN  TXT  "shopware-challenge=abc123"
 ```
 
 ::: info
-**DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 4.
+The challenge record needs to stay as long as the domain is configured in our PaaS.
+:::
+
+::: info **DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 4.
 :::
 
 ### Step 4: Create Domain in PaaS
