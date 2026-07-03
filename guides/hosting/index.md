@@ -8,9 +8,13 @@ nav:
 
 Setting up an operating environment for Shopware can be hard, but it doesn't have to be if you follow some general guidelines in the subsequent sections.
 
+:::info
+This page covers the recommended application stack and supported versions. For the physical machine requirements of your workstation or server, see the [system requirements](../installation/system-requirements.md) guide.
+:::
+
 ## Recommended stack and supported versions
 
-The following versions and configurations are officially supported for Shopware 6 development. For the physical machine requirements of your workstation or server, see the [system requirements](../installation/system-requirements.md) guide.
+The following versions and configurations are officially supported for Shopware 6 development:
 
 | Component            | Install                                                                                                                                                                                                                                                                                                                            | Minimum Version                                                                                                                      | Recommended              | Required / Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------|:-------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

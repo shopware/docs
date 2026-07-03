@@ -9,6 +9,10 @@ nav:
 
 Before setting up the Shopware 6 development environment, ensure your system meets the following requirements.
 
+:::info
+This page covers the physical machine requirements for your workstation or server. For the recommended application stack and supported versions, see the [hosting guide](../../guides/hosting/).
+:::
+
 ## Hardware
 
 | Component | Requirement |
@@ -42,7 +46,7 @@ Example command:
 sudo usermod -aG docker $USER
 ```
 
-Once your environment meets these requirements, [installation](../../guides/installation/index.md) is possible. This installation path focuses on a Docker-based setup. If you want to install Shopware from scratch, please refer to the [software requirements and hosting guide](../../guides/hosting/) instead, which covers the recommended application stack and supported versions in detail.
+Once your environment meets these requirements, [installation](../../guides/installation/index.md) is possible. This installation path focuses on a Docker-based setup. If you want to install Shopware from scratch, please refer to the [software requirements and hosting guide](../../guides/hosting/) instead.
 
 :::info
 For alternative installation approaches, see the documentation on [legacy setups](./legacy-setups/index.md). These methods are no longer recommended for new projects.
