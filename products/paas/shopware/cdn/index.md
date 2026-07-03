@@ -102,24 +102,6 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 2a04:4e42:600::820
 ```
 
-**3. Domain ownership** - Create a `TXT` record to prove domain ownership:
-
-```dns
-_shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
-```
-
-Replace `<domain>` with your actual domain and `<organization id>` with your organization ID from `sw-paas org list`.
-
-**Example for domain `example.com` with organization ID `abc123`:**
-
-```dns
-_shopware-challenge.example.com.  IN  TXT  "shopware-challenge=abc123"
-```
-
-::: info
-**DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 3.
-:::
-
 ### Step 2: Verify DNS Propagation
 
 Before creating the domain in the PaaS platform, verify that your DNS records have propagated correctly using the `dig` command or online DNS lookup tools.
@@ -145,7 +127,31 @@ dig _shopware-challenge.example.com TXT
 
 Ensure the responses match the values you configured in Step 1.
 
-### Step 3: Create Domain in PaaS
+### Step 3: Domain ownership - Create a `TXT` record to prove domain ownership:
+
+```dns
+_shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
+```
+
+Replace `<domain>` with your actual domain and `<organization id>` with your organization ID from `sw-paas org list`.
+
+Example with the following setup:
+
+- your application FQDN is `myshop.example.com`
+- then your domain is `example.com`
+- your organization ID is `abc123`
+
+Create the following record:
+
+```dns
+_shopware-challenge.example.com.  IN  TXT  "shopware-challenge=abc123"
+```
+
+::: info
+**DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 3.
+:::
+
+### Step 4: Create Domain in PaaS
 
 Once DNS records are configured and propagated, create the domain using the CLI:
 
