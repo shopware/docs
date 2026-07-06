@@ -417,6 +417,7 @@ ExtensionAPI
 FLAC
 FPM
 FQCN
+FQDN
 FastRoute
 Fastly
 Fastly's
