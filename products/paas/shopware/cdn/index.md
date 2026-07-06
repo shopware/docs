@@ -127,7 +127,7 @@ dig _shopware-challenge.example.com TXT
 
 Ensure the responses match the values you configured in Step 1.
 
-### Step 3: Domain ownership - Create a `TXT` record to prove domain ownership:
+### Step 3: Domain ownership - Create a `TXT` record to prove domain ownership
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
