@@ -1,121 +1,105 @@
 ---
 nav:
-  title: Build an AI Merchant Assistant
+  title: Build an AI Catalog Quality Assistant
   position: 15
 
 ---
 
-
-# Build an AI Merchant Assistant using the Shopware Admin MCP Server
+# Build an AI Catalog Quality Assistant using the Shopware Admin MCP Server
 
 ## Overview
 
-The Shopware Admin MCP Server enables AI agents to interact with Shopware MCP. Instead of integrating directly with the Shopware Administration API, AI clients discover and execute Shopware capabilities exposed by the MCP Server.
+In this tutorial, you'll build an AI-powered catalog quality assistant that helps merchants identify and improve incomplete or inconsistent product data using the Shopware Admin MCP Server.
 
-In this tutorial, you'll build an AI-powered merchant assistant that can perform common administrative tasks through natural language while abiding by Shopware's authentication and authorization model.
+Instead of implementing custom integrations against the Shopware Administration API, you'll use the Shopware Admin MCP Server to expose Shopware capabilities to any MCP-compatible AI client.
 
-At the end of this tutorial, your assistant will be able to:
-
-- Connect to a Shopware instance
-- Discover available MCP capabilities
-- Retrieve Shopware entities
-- Execute merchant operations
-- Abide Shopware ACL permissions
-- Execute write operations safely
+The assistant will help merchants maintain a high-quality product catalog by identifying missing or incomplete product information and enriching it using AI.
 
 ## Use case
 
-You're developing an AI-powered administration assistant for a Shopware project.
+Catalog quality has a direct impact on customer experience, search relevance, and conversion rates. As product catalogs grow, manually identifying and correcting incomplete product data becomes increasingly time-consuming.
 
-Instead of implementing custom integrations against the Shopware Administration API, you'll use the `shopware-admin-mcp` server to expose Shopware capabilities to any MCP-compatible AI client.
+In this tutorial, you'll build an AI assistant that can help merchants:
 
-The resulting assistant can help merchants perform administrative tasks such as:
+- Identify products without descriptions.
+- Find products missing images.
+- Detect missing SEO metadata.
+- Identify incomplete product attributes.
+- Review inconsistent catalog data.
+- Generate or improve product descriptions.
+- Enrich missing catalog information.
+- Safely apply bulk updates after validation.
 
-- Searching products
-- Retrieving order information
-- Updating product data
-- Reviewing inventory
-- Managing media
-- Generating reports
-
-Because the assistant communicates through the Shopware MCP Server, all requests follow Shopware's authentication, authorization, and extension mechanisms.
+The assistant communicates with Shopware through the Shopware Admin MCP Server and performs all operations using the authenticated user's permissions.
 
 # What you'll build
 
-By the end of this tutorial, your architecture will look like this:
+By the end of this tutorial, you'll have an AI assistant capable of:
 
-```text
-Merchant
-
-↓
-
-Claude Desktop / Cursor / Codex
-
-↓
-
-Shopware Admin MCP Server
-
-↓
-
-Shopware Administration API
-
-↓
-
-Shopware Core
-```
-
-The assistant communicates with Shopware through MCP instead of calling the Administration API directly.
+- Connecting to the Shopware Admin MCP Server.
+- Discovering available MCP capabilities.
+- Searching and retrieving Shopware entities.
+- Identifying catalog quality issues.
+- Enriching catalog data.
+- Previewing changes using Dry Run.
+- Applying validated updates.
 
 # Prerequisites
 
 Before you begin, ensure you have:
 
 - Shopware **6.7.11.0** or later
-- [Shopware Admin MCP Server](https://github.com/shopware/shopware-admin-mcp)
-- API credentials
-- An MCP-compatible AI client
-- Access to the Shopware Administration
+- Shopware Admin MCP Server configured
+- API credentials with appropriate permissions
+- An MCP-compatible AI client (Claude Desktop, Cursor, Codex, ChatGPT, or another compatible client)
 
-If you haven't configured the MCP Server yet, complete:
+If you haven't configured the Shopware Admin MCP Server yet, complete the following guides first:
 
 - Install the Shopware Admin MCP Server
 - Configure Authentication
 
-# Step 1 — Install the Shopware Admin MCP Server
+# Architecture
 
-Follow the installation guide:
+```text
+Merchant
 
-[Install the Shopware Admin MCP Server](https://github.com/shopware/shopware-admin-mcp#installation)
+        │
 
-Once installed, verify that the MCP endpoint is available.
+        ▼
 
-# Step 2 — Configure authentication
+AI Client
+(Claude, Cursor, Codex, ...)
 
-Configure your preferred authentication method.
+        │
 
-Supported methods include:
+        ▼
 
-- Bearer Token
-- SW Access Key
+Shopware Admin MCP Server
 
-The authenticated user determines which MCP capabilities are available.
+        │
 
-# Step 3 — Connect an MCP-compatible AI client
+        ▼
 
-Connect your preferred AI client.
+Shopware Administration API
 
-Supported examples include:
+        │
 
-- Claude Desktop
-- Cursor
-- Codex
-- Shopware Copilot
+        ▼
 
-Once connected, verify that the client discovers the Shopware MCP Server.
+Shopware Core
+```
 
-# Step 4 — Discover available Shopware capabilities
+The Shopware Admin MCP Server exposes Shopware capabilities as MCP Tools, Resources, and Prompts that AI clients can discover automatically.
 
-After establishing the connection, the AI client automatically discovers the capabilities exposed by the Shopware MCP Server.
+# Step 1 — Connect your AI client
+
+Connect your preferred MCP-compatible AI client to the Shopware Admin MCP Server.
+
+After connecting, verify that the client successfully discovers the Shopware MCP Server and its available capabilities.
+
+# Step 2 — Discover available capabilities
+
+Once connected, the AI client automatically retrieves the capabilities exposed by the Shopware Admin MCP Server.
 
 These include:
 
@@ -123,62 +107,94 @@ These include:
 |------------|-------------|
 | Tools | Execute Shopware operations |
 | Resources | Access Shopware reference information |
-| Prompts | Provide Shopware-specific guidance |
+| Prompts | Provide Shopware-specific context |
 
-The available capabilities depend on:
+The available capabilities depend on the authenticated user, installed extensions, and configured permissions.
 
-- Installed extensions
-- Authenticated user
-- Configured allowlists
+# Step 3 — Identify catalog quality issues
 
-# Step 5 — Execute merchant operations
-
-Your assistant can now perform merchant operations using natural language.
+Ask your assistant to analyze your product catalog.
 
 Example prompts:
 
-> Show products that are currently out of stock.
+> Find all products without descriptions.
 
-> List all pending orders.
+> Find products missing images.
 
-> Find products without descriptions.
+> List products without SEO metadata.
 
-The MCP Server automatically discovers the appropriate tools and executes the requested operations.
+> Identify products with missing manufacturer information.
 
-# Step 6 — Execute write operations safely
+> Show products that are missing required attributes.
 
-Write operations support **Dry Run** mode.
+The assistant discovers the appropriate MCP tools and retrieves the requested information from Shopware.
 
-Before updating Shopware data, execute the operation in Dry Run mode to validate:
+# Step 4 — Enrich catalog data
 
-- Permissions
+Once quality issues have been identified, ask the assistant to generate or improve the missing information.
+
+Examples:
+
+> Generate descriptions for products without descriptions.
+
+> Create SEO titles and meta descriptions for products missing metadata.
+
+> Suggest alternative text for product images.
+
+> Improve existing product descriptions based on product specifications.
+
+The generated content can be reviewed before applying any changes.
+
+# Step 5 — Validate changes
+
+Before modifying Shopware data, execute the operation using **Dry Run** mode.
+
+Dry Run validates:
+
+- User permissions
 - Entity resolution
-- Parameters
+- Operation parameters
+- Expected changes
 
-Once validated, execute the operation normally.
+without updating any Shopware data.
 
-# Step 7 — Restrict your assistant
+Review the generated changes before continuing.
 
-Merchant assistants rarely require unrestricted access.
+# Step 6 — Apply updates
 
-Restrict the assistant using:
+Once you've reviewed the proposed changes, execute the update.
 
-- ACL permissions
-- Tool allowlists
-- Resource allowlists
-- Prompt allowlists
+Example:
+
+> Apply the generated descriptions to all reviewed products.
+
+The Shopware Admin MCP Server performs the requested operations using the authenticated user's permissions.
+
+# Step 7 — Secure the assistant
+
+Restrict the assistant to only the capabilities required for catalog management.
 
 For example:
 
 | Allowed | Restricted |
 |----------|------------|
 | Search Products | Delete Products |
-| Read Orders | Create Users |
-| Generate Reports | Modify System Configuration |
+| Update Products | Create Users |
+| Read Categories | Modify System Configuration |
+| Generate Product Content | Manage Integrations |
 
-# Step 8 — Extend the assistant
+Access is controlled using:
 
-You can expose additional capabilities by creating custom:
+- Shopware ACL permissions
+- Tool allowlists
+- Resource allowlists
+- Prompt allowlists
+
+# Extend the assistant
+
+The Shopware MCP ecosystem can be extended with custom capabilities.
+
+You can create custom:
 
 - Tools
 - Resources
@@ -190,40 +206,28 @@ using:
 - Symfony Bundles
 - Apps
 
-The Shopware MCP Server automatically exposes these extensions to connected AI clients.
+These extensions become automatically discoverable by connected MCP clients.
 
-# Verify the implementation
+# Result
 
-Verify that your assistant can:
+Congratulations!
 
-- Discover Shopware capabilities
-- Retrieve Shopware entities
-- Execute merchant operations
-- Respect ACL permissions
-- Execute write operations
+You have built an AI-powered catalog quality assistant that can:
 
-If the assistant cannot discover tools, verify:
-
-- Authentication
-- MCP configuration
-- User permissions
-
-# Related repositories
-
-| Repository | Purpose |
-|------------|---------|
-| `shopware/shopware` | Core Shopware platform |
-| `shopware-admin-mcp` | Shopware Admin MCP Server |
-| `SwagMcpMerchantTools` | Merchant-specific MCP capabilities |
-| `SwagMcpDevTools` | Development and debugging tools |
+- Analyze your Shopware product catalog.
+- Identify incomplete or inconsistent product data.
+- Generate enriched product content.
+- Preview changes safely using Dry Run.
+- Apply validated updates through the Shopware Admin MCP Server.
 
 # Next steps
 
-Now that you've built a merchant assistant, continue with:
+Continue exploring the Shopware MCP ecosystem:
 
-- Connect additional MCP clients
-- Extend the Shopware MCP Server
-- Create custom MCP Tools
-- Create custom Resources
-- Create custom Prompts
+- Build an AI Inventory Assistant
+- Build an AI Order Operations Assistant
+- Extend the Shopware Admin MCP Server
+- Create Custom MCP Tools
+- Create Custom Resources
+- Create Custom Prompts
 - Explore the MCP Server Reference
