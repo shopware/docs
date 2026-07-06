@@ -102,32 +102,7 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 2a04:4e42:600::820
 ```
 
-### Step 2: Verify DNS Propagation
-
-Before creating the domain in the PaaS platform, verify that your DNS records have propagated correctly using the `dig` command or online DNS lookup tools.
-
-**For non-apex domains (CNAME):**
-
-```bash
-dig shop.example.com CNAME
-```
-
-**For apex domains:**
-
-```bash
-# Verify A records
-dig example.com A
-
-# Verify AAAA records
-dig example.com AAAA
-
-# Verify TXT record
-dig _shopware-challenge.example.com TXT
-```
-
-Ensure the responses match the values you configured in Step 1.
-
-### Step 3: Domain ownership - Create a `TXT` record to prove domain ownership
+### Step 2: Domain ownership - Create a `TXT` record to prove domain ownership
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
@@ -152,7 +127,37 @@ The challenge record needs to stay as long as the domain is configured in our Pa
 :::
 
 ::: info **DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 4.
+Use Step 3 to validate all records are correct and propagated.
 :::
+
+### Step 3: Verify DNS Propagation
+
+Before creating the domain in the PaaS platform, verify that your DNS records have propagated correctly using the `dig` command or online DNS lookup tools.
+
+**For non-apex domains (CNAME):**
+
+```bash
+dig shop.example.com CNAME
+```
+
+**For apex domains:**
+
+```bash
+# Verify A records
+dig example.com A
+
+# Verify AAAA records
+dig example.com AAAA
+```
+
+**For challenge record:**
+
+```bash
+# Verify TXT record
+dig _shopware-challenge.example.com TXT
+```
+
+Ensure the responses match the values you configured in Step 1 and 2.
 
 ### Step 4: Create Domain in PaaS
 
