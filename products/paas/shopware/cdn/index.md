@@ -174,7 +174,7 @@ You can attach multiple domains to a single shop by running this command for eac
 If validation fails, verify your DNS configuration and wait for propagation before retrying.
 :::
 
-### Step 4: Deploy Application
+### Step 5: Deploy Application
 
 After successful domain creation, trigger an application deployment to activate the domain:
 
@@ -190,7 +190,7 @@ sw-paas application update
 
 You may use the same commit to trigger a deployment.
 
-### Step 5: Configure in Shopware
+### Step 6: Configure in Shopware
 
 After deployment completes:
 
