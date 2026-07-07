@@ -43,9 +43,23 @@ bin/console cache:clear
 
 After installing a plugin update, clear the cache again so newly added fixes are loaded.
 
+::: warning
+Installing or updating the plugin does **not** update Shopware's Composer dependencies. If `composer.lock` still pins an outdated version of Shopware or a bundled library such as Symfony or Twig, the installation stays vulnerable even with the plugin active.
+
+After installing or updating the plugin, check for and apply dependency updates in the environment where your project is built, then deploy:
+
+```bash
+composer audit
+composer update <package-name> --with-all-dependencies
+bin/console cache:clear
+```
+
+Update only the packages the audit reports rather than running a blanket `composer update`. See [Third-party dependencies](#third-party-dependencies).
+:::
+
 ## How fixes work
 
-Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id — the [GitHub Security Advisory](https://docs.github.com/en/code-security/security-advisories) identifier under which the vulnerability is published, for example [`GHSA-9v5m-39wh-5chq`](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). All applicable fixes are active by default once the plugin is activated.
+Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id — the [GitHub Security Advisory](https://docs.github.com/en/code-security/security-advisories) identifier under which the vulnerability is published, for example [`GHSA-9v5m-39wh-5chq`](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). You can browse all published Shopware advisories on the [Shopware security advisories page](https://github.com/shopware/shopware/security/advisories). All applicable fixes are active by default once the plugin is activated.
 
 You can review and manage the fixes under *Settings > Extensions > Security Plugin* in the Administration. For each fix, the page shows a short description and a link to the official advisory with the technical details and severity.
 
@@ -86,9 +100,9 @@ The one-click button writes to the `composer.json` of the application server tha
 
 ## Third-party dependencies
 
-The Security Plugin only fixes issues in Shopware's own code.  It does **not** backport fixes for the third-party libraries your installation depends on. Symfony above all, but also Twig and others, are direct dependencies of Shopware itself and publish their own security advisories. When such a library is affected, the fix lives in the dependency and reaches your installation only through a Composer update (see below), or through a Shopware update that requires the patched version.
+The Security Plugin only fixes issues in Shopware's own code. It does **not** backport fixes for the third-party libraries your installation depends on. We recommend checking [Symfony security advisories](https://symfony.com/blog/category/security-advisories), [Twig security advisories](https://github.com/twigphp/Twig/security/advisories), and similar resources for other direct dependencies of Shopware. When such a library is affected, the fix lives in the dependency and reaches your installation only through a Composer update (see below), or through a Shopware update that requires the patched version.
 
-The *Settings > Extensions > Security Plugin* page page includes a dependency check that compares all installed Composer packages against the public advisory database of [packagist.org](https://packagist.org) and lists known vulnerabilities, similar to running `composer audit` on the server.
+The *Settings > Extensions > Security Plugin* page includes a dependency check that compares all installed Composer packages against the public advisory database of [packagist.org](https://packagist.org) and lists known vulnerabilities, similar to running `composer audit` on the server.
 
 For this check, the names and versions of your installed packages are transmitted to packagist.org; the result is cached for one hour. Advisories that are excluded through the `advisories` policy in `composer.json` described above are not reported again.
 
