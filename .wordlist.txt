@@ -1969,6 +1969,7 @@ sm
 smartbar
 snakeCase
 sortings
+sourcemaps
 sql
 src
 srcset
