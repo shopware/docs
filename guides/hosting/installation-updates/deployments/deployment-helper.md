@@ -9,7 +9,7 @@ nav:
 
 The [Deployment Helper](https://github.com/shopware/deployment-helper) is a standalone, Shopware-version-independent PHP tool that unifies the steps executed after code has been uploaded to the server. In a traditional deployment, it runs once the files are in place. In a containerized environment, it runs against the new source code before traffic is switched over.
 
-Deployment Helper does not replace your CI build, such as [Shopware CLI](https://github.com/shopware/shopware-cli)'s `project ci`, but complements it by handling deploy-time tasks. Its `run` command supports both fresh installations and updates by automatically detecting the required action, so your deployment script only needs to call `run`.
+Deployment Helper does not replace your CI build, like the [Shopware CLI](https://github.com/shopware/shopware-cli) `project ci` command does, but complements it by handling deploy-time tasks. Its `run` command supports both fresh installations and updates by automatically detecting the required action, so your deployment script only needs to call `run`.
 
 ## What the Deployment Helper does
 
@@ -96,12 +96,12 @@ vendor/bin/shopware-deployment-helper run --skip-theme-compile --skip-assets-ins
 
 In a Docker environment, you have a base image with a running PHP Webserver. From that image you make a new image with your Shopware source code.
 
-To prepare the Shopware source code, run [Shopware CLI's `project ci`](../../../../products/tools/cli/) command to install the dependencies and build the assets.
+To prepare the Shopware source code, run the [Shopware CLI `project ci`](../../../../products/tools/cli/) command to install the dependencies and build the assets.
 On deployment, either spawn a second container or init a container, which runs the Deployment Helper. The Deployment Helper sets up Shopware when it is not installed, installs the extensions, and runs the one-time tasks.
 
 ### SFTP / Deployer
 
-When using SFTP or Deployer, clone the repository to the CI/CD server and run [Shopware CLI's `project ci`](../../../../products/tools/cli/) command to install the dependencies and build the assets. Then upload the source code to the server and run the Deployment Helper on the server.
+When using SFTP or Deployer, clone the repository to the CI/CD server and run the [Shopware CLI `project ci`](../../../../products/tools/cli/) command to install the dependencies and build the assets. Then upload the source code to the server and run the Deployment Helper on the server.
 
 The Deployment Helper sets up Shopware when it is not installed, installs the extensions, and runs the one-time tasks.
 
