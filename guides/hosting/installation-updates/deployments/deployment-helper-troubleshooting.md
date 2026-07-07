@@ -90,7 +90,7 @@ Automatic snippet deployment during `run` only happens when:
 - `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set, and
 - `FASTLY_DISABLE_SNIPPET_UPDATE` is **not** set to `1`.
 
-To manage snippets manually, use the `fastly:snippet:*` commands (see [Fastly integration](deployment-helper.md#fastly-integration)).
+To manage snippets manually, use the `fastly:snippet:*` commands. See [Fastly integration](deployment-helper.md#fastly-integration).
 
 ## Need to completely reinstall
 
