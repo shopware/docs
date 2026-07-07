@@ -237,7 +237,7 @@ The local file is deep-merged on top of the base configuration:
 
 - **Scalar values** (strings, numbers) are replaced by the local value.
 - **Maps** (associative arrays) are deep-merged recursively.
-- **Lists** (indexed arrays)**:** for each list-valued key, the list from `.shopware-project.local.yml` is appended to the end of the list from `.shopware-project.yml`. The relative order of items within each list is preserved, nested lists are treated the same way, and no automatic deduplication is performed.
+- **Lists** (indexed arrays): for each list-valued key, the list from `.shopware-project.local.yml` is appended to the end of the list from `.shopware-project.yml`. The relative order of items within each list is preserved, nested lists are treated the same way, and no automatic deduplication is performed.
 
 ```yaml
 # .shopware-project.local.yml
