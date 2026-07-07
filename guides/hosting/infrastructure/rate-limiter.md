@@ -19,24 +19,24 @@ These rate limiters are always active. You do not need to add the `shopware.api.
 
 ## Default rate limiters
 
-The following limiters are enabled by default. The values listed here reflect the current Shopware core configuration and may change between versions. When in doubt, the source of truth is `Shopware\Core\Framework\Resources\config\packages\shopware.yaml` in the version you are running.
+The following limiters are enabled by default. The values listed here reflect the current Shopware core configuration and may change between versions. When in doubt, the source of truth is `src/Core/Framework/Resources/config/packages/shopware.yaml` in the version you are running.
 
 | Limiter | Protects | Since | Policy | Reset | Limits |
 | --- | --- | --- | --- | --- | --- |
-| `login` | Storefront / Store-API customer authentication. | 6.4.6.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
-| `guest_login` | Storefront / Store-API after-order guest authentication. | 6.4.6.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
-| `oauth` | API OAuth authentication / Administration login. | 6.4.6.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
-| `reset_password` | Storefront / Store-API customer password reset. | 6.4.6.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
-| `user_recovery` | Administration user password recovery. | 6.4.6.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
-| `contact_form` | Storefront / Store-API contact form. | 6.4.6.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
-| `notification` | Store-API notification endpoint. | 6.4.8.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
-| `newsletter_form` | Store-API newsletter registration. | 6.4.16.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
-| `cart_add_line_item` | Adding line items to the cart. | 6.4.18.0 | `system_config` | 1 hour | Limit read from `core.cart.lineItemAddLimit`, interval 60s |
-| `revocation_request_form` | Store-API revocation request form. | 6.7.9.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
-| `newsletter_unsubscribe_form` | Store-API newsletter unsubscribe. | 6.7.9.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
-| `app_shop_verify` | App shop registration verification. | 6.7.9.0 | `sliding_window` | n/a | 60 / 60min |
-| `mcp_admin_api` | MCP server Admin API access (keyed per OAuth token). | 6.8.0.0 | `time_backoff` | 1 hour | 300 / 60s, 1000 / 10min |
-| `mcp_store_api` | MCP server Store API access (keyed per sales-channel context token). | 6.8.0.0 | `time_backoff` | 1 hour | 120 / 60s, 600 / 10min |
+| `login` | Storefront / Store-API customer authentication | 6.4.6.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
+| `guest_login` | Storefront / Store-API after-order guest authentication | 6.4.6.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
+| `oauth` | API OAuth authentication / Administration login | 6.4.6.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
+| `reset_password` | Storefront / Store-API customer password reset | 6.4.6.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
+| `user_recovery` | Administration user password recovery | 6.4.6.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
+| `contact_form` | Storefront / Store-API contact form | 6.4.6.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
+| `notification` | Store-API notification endpoint | 6.4.8.0 | `time_backoff` | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s |
+| `newsletter_form` | Store-API newsletter registration | 6.4.16.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
+| `cart_add_line_item` | Adding line items to the cart | 6.4.18.0 | `system_config` | 1 hour | Limit read from `core.cart.lineItemAddLimit`, interval 60s |
+| `revocation_request_form` | Store-API revocation request form | 6.7.9.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
+| `newsletter_unsubscribe_form` | Store-API newsletter unsubscribe | 6.7.9.0 | `time_backoff` | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s |
+| `app_shop_verify` | App shop registration verification | 6.7.9.0 | `sliding_window` | n/a | 60 / 60min |
+| `mcp_admin_api` | MCP server Admin API access (keyed per OAuth token) | 6.8.0.0 | `time_backoff` | 1 hour | 300 / 60s, 1000 / 10min |
+| `mcp_store_api` | MCP server Store API access (keyed per sales-channel context token) | 6.8.0.0 | `time_backoff` | 1 hour | 120 / 60s, 600 / 10min |
 
 In the table above, `Limits` uses the `limit / interval` notation, and `s` / `min` are seconds / minutes. When you add a new default limiter to the core, add a row here with its introduction version so this table stays complete.
 
@@ -56,7 +56,7 @@ To override the [default rate limiters](#default-rate-limiters) for your shop, y
 The following example disables the `login` limiter and overrides the `oauth` limiter:
 
 ```yaml
-// <shop root>/config/packages/shopware.yaml
+// <shop root>/config/packages/shopware.yml
 shopware:
   api:
     rate_limiter:
