@@ -60,6 +60,17 @@ This is a yes/no question about whether to run Shopware locally using Docker, ou
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
 :::
 
+### Do you need a Shopware account?
+
+To install Shopware, develop locally, build the Storefront or Administration, or write your own extensions, you do not need a Shopware account. Everything above works without signing in.
+
+A Shopware account is needed when you:
+
+- install extensions from the Shopware Store. This applies to free extensions too, because Store installs are tied to an account and a license.
+- pull licensed or commercial packages from Shopware's private Composer registry; see [Shopware account and Composer](../development/start-developing.md#shopware-account-and-composer-private-packages).
+
+If you are just trying things out, skip the account and Store steps in the in-browser First Run Wizard and continue from the terminal. To use a specific extension without the Store, install it from source or via Composer instead.
+
 ### Customize options (optional)
 
 The customization options currently offered by the CLI include:
