@@ -55,8 +55,9 @@ To override the [default rate limiters](#default-rate-limiters) for your shop, y
 
 The following example disables the `login` limiter and overrides the `oauth` limiter:
 
-```yaml
-// <shop root>/config/packages/shopware.yml
+::: code-group
+
+```yaml [SHOP_ROOT/config/packages/shopware.yaml]
 shopware:
   api:
     rate_limiter:
@@ -73,6 +74,8 @@ shopware:
             interval: '60 seconds'
 ```
 
+:::
+
 ::: info
 The following optional limiters are available starting with Shopware 6.7.10.0.
 :::
@@ -88,8 +91,9 @@ The `time_backoff` policy is built by Shopware itself. It enables you to throttl
 Below you can find an example which throttles the request for 10 seconds after 3 requests and starting from 5 requests it always
 throttles for 60 seconds. If there are no more requests, it will be reset after 24 hours.
 
-```yaml
-// <plugin root>/src/Resources/config/rate_limiter.yaml
+::: code-group
+
+```yaml [PLUGIN_ROOT/src/Resources/config/rate_limiter.yaml]
 example_route:
     enabled: true
     policy: 'time_backoff'
@@ -100,3 +104,5 @@ example_route:
         - limit: 5
           interval: '60 seconds'
 ```
+
+:::
