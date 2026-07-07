@@ -347,7 +347,7 @@ Shopware Plugin Service
 
 Removing an extension requires you to follow two steps:
 
-1.) Set the extension to `remove` in the `.shopware-project.yml` file
+1. Set the extension to `remove` in the `.shopware-project.yml` file:
 
 ```yaml
 deployment:
@@ -365,9 +365,7 @@ deployment:
 
 and deploy the changes. The extension will be uninstalled and is inactive.
 
-2.) Remove the extension from source code
-
-After the deployment you can remove the extension from the source code, remove the entry from the `.shopware-project.yml` file, and deploy the changes again.
+2. Remove the extension from source code, remove the entry from the `.shopware-project.yml` file, and deploy the changes again.
 
 ## One-time tasks
 
