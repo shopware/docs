@@ -7,7 +7,7 @@ nav:
 
 # Deployment Helper Troubleshooting
 
-This page highlights common failures when running `shopware-deployment-helper run`, and provides guidance for resolving them. For the full command, configuration, and environment-variable reference, see [Deployment Helper](deployment-helper.md).
+This page highlights common failures when running `vendor/bin/shopware-deployment-helper run`, and provides guidance for resolving them. For the full command, configuration, and environment-variable reference, see [Deployment Helper](deployment-helper.md).
 
 ## Getting more detail
 
