@@ -108,7 +108,7 @@ docker compose ps
 ```
 
 ::: info
-Docker installations are set up through the CLI wizard. `make setup` runs the installer inside the web container and configures the database for you. There is no browser installer step to fill in. 
+Docker installations are set up through the CLI wizard. `make setup` runs the installer inside the web container and configures the database for you. There is no browser installer step to fill in.
 
 If you set `DATABASE_URL` yourself or connect external tooling, use the Docker service name `database` as the host, not `localhost`, because containers reach each other by service name on the Docker network. The database name and credentials are defined in your project's `compose.yaml`.
 :::
