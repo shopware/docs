@@ -98,7 +98,7 @@ Vulnerabilities in dependencies cannot be fixed by the plugin. Update the affect
 composer update <package-name> --with-all-dependencies
 ```
 
-Create a backup before updating, test the shop afterward, and deploy as usual. If a patched version is not reachable within your current version constraints, a Shopware update is required first. 
+Create a backup before updating, test the shop afterward, and deploy as usual. If a patched version is not reachable within your current version constraints, a Shopware update is required first.
 
 The same applies once a dependency reaches its end of life: no further security releases are published for it, so a Shopware version that ships a maintained release is required. Check the maintenance and end-of-life status of each Symfony branch on the [Symfony releases page](https://symfony.com/releases).
 
