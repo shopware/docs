@@ -24,7 +24,7 @@ Common development areas:
 - `bin/console` — application CLI (Symfony console), runnable from your host via `shopware-cli project console`
 - The Administration UI
 
-## Running Commands
+## Running commands
 
 Use `shopware-cli project console` to run `bin/console` commands from your host — no need to enter the container:
 
