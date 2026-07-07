@@ -59,7 +59,7 @@ Your environment at a glance:
 
 - **Watchers** — toggle Admin and Storefront watchers on or off
 
-### Instance Tab (2)
+### Instance tab (2)
 
 Browse and stream logs from your running environment:
 
