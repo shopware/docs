@@ -427,7 +427,7 @@ shopware:
 
 ### Disable last-modified version strategy for theme assets
 
-By default, Shopware appends a `?<timestamp>` query parameter to every theme asset URL by reading the file's last-modified time from the filesystem. On remote filesystems such as S3 or GCS this triggers an API call per asset per request (cached, but the cache misses still cost round-trips on first use or after a cache flush).
+By default, Shopware appends a `?{timestamp}` cache-busting suffix to every theme asset URL by reading the file's last modified time from the filesystem. On remote filesystems such as S3 or GCS (Google Cloud Storage), this can trigger a filesystem metadata call per asset path on cache miss (for example, after a cache flush).
 
 When the default `SeedingThemePathBuilder` is active — which is the case unless you have explicitly changed `storefront.theme.theme_path_builder_id` — this timestamp suffix is redundant. The path builder already rotates the asset path on every theme compilation, which is the actual cache-invalidation event. You can disable the last-modified lookups entirely:
 
