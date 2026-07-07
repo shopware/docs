@@ -53,7 +53,7 @@ Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-Additionally to the replacement, Shopware CLI allows only watching a specific set of extensions or excluding a few.
+In addition to the replacements, Shopware CLI allows only watching a specific set of extensions or excluding a few.
 
 To only watch specific extensions:
 
@@ -69,7 +69,7 @@ shopware-cli project admin-watch --skip-extensions <name>,<second>....
 
 ### Building only custom extensions
 
-When working with a lot of 3rd party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
+When working with many third-party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
 This is unnecessary because store extensions are shipped together with their assets.
 
 Use
@@ -99,7 +99,7 @@ It is just a shortcut for `bin/console cache:clear` without having to be in the 
 shopware-cli project clear-cache
 ```
 
-If in the `.shopware-project.yml` a API connection is configured, it will clear the remote instance cache.
+If in the `.shopware-project.yml` an API connection is configured, it will clear the remote instance cache.
 
 ## Console
 

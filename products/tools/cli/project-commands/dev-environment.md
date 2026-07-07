@@ -29,9 +29,9 @@ shopware-cli project dev stop
 
 The interactive dashboard has three tabs:
 
-- **General** — environment overview, URLs, credentials, watchers, services
-- **Logs** — real-time log streaming from `var/log/`, watchers, and Docker
-- **Config** — PHP version, profiler, and credential management
+- **Overview** — shop info, access credentials, setup health checks, and watcher toggles
+- **Instance** — containers, watcher processes, and log files with live-streaming
+- **Config** — PHP version, profiler
 
 ### View Application Logs
 

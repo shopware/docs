@@ -43,26 +43,31 @@ shopware-cli project dev stop
 
 ## DevTUI Dashboard
 
-The dashboard has three tabs, switched with the number keys or by clicking:
+The dashboard has three tabs, switched with the number keys:
 
-### General Tab (1)
+### Overview Tab (1)
 
 Your environment at a glance:
 
-- **Environment type** — docker, local, or symfony-cli
-- **Shop and Admin URLs** with credentials for quick access
-- **Watchers** — start Admin (Vite HMR on port `5173`) and Storefront (webpack HMR on port `9998`) watchers with one keypress
-- **Services** — auto-discovered auxiliary services like Adminer, Mailpit, and message queues
+**Left panel:**
 
-### Logs Tab (2)
+- **Shop** — Shopware version, environment type (`docker`, `local`, or `symfony-cli`), shop and admin URLs, and security update expiry date
+- **Access** — URLs, usernames, and passwords for Shop Admin, Adminer, and Mailpit
+- **Setup health** — runtime checks (PHP version, memory limit), local behavior warnings, and debug settings, each showing the current value against the recommended one
 
-Real-time log streaming from multiple sources:
+**Right panel:**
 
-- **Application logs** from `var/log/` — most recently modified file selected by default
-- **Watcher output** — live build output from Admin and Storefront watchers
-- **Docker logs** — `docker compose logs` from the web container
+- **Watchers** — toggle Admin and Storefront watchers on or off
 
-Use the sidebar to switch sources. Toggle follow mode with `f`.
+### Instance Tab (2)
+
+Browse and stream logs from your running environment:
+
+- **Containers** — all Docker containers with a live status indicator for the active one
+- **Processes** — watcher processes (Admin Watcher, Storefront Watcher) when running
+- **Log files** — application log files (e.g., `dev.log`)
+
+Use `↑`/`↓` to navigate sources and `enter` to select one. Scroll with `pgup`/`pgdn`.
 
 ### Config Tab (3)
 
@@ -92,16 +97,14 @@ Walking through the setup wizard takes about a minute. Here's what happens at ea
 1. **Welcome** — explains what the wizard will do and asks you to proceed
 2. **Admin user** — pre-fills `admin` (you can change it) for the Shopware admin account
 3. **Admin password** — pre-fills `shopware` (you can change it); stored as credentials in `.shopware-project.yml`
-4. **PHP version** — reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.4`)
-5. **Profiler** — choose from `none`, `xdebug`, `blackfire`, `tideways`, `pcov`, or `spx`
-6. **Review** — shows a summary of all your choices before applying changes
+4. **PHP version** — reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.5`)
+5. **Review** — shows a summary of all your choices before applying changes
 
 After you confirm, the wizard:
 
 - Sets `compatibility_date` to `2026-03-01` in `.shopware-project.yml`
 - Adds a `local` environment with type `docker` and your chosen URL/credentials
-- Configures the Docker PHP version and profiler settings
-- Writes profiler secrets (Blackfire credentials, Tideways API key) to `.shopware-project.local.yml`
+- Configures the Docker PHP version
 - Generates a new `compose.yaml` tailored to your project's dependencies
 - Starts the Docker containers and runs the Shopware installer
 
@@ -111,7 +114,7 @@ After you confirm, the wizard:
 |------|-------------|
 | `.shopware-project.yml` | Updated with `compatibility_date`, `environments`, and `docker` config |
 | `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways) |
-| `compose.yaml` | **Replaced** with the CLI-managed version. Your old file is overwritten — back it up first if you have customizations you want to port to `compose.override.yaml` |
+| `compose.yaml` | **Replaced** with the CLI-managed version. Your old file is overwritten — back it up first. Move any customizations to `compose.override.yaml`. |
 | `Makefile` | **Not touched**. You can delete it once you've migrated, or keep it around |
 | `composer.json` | If `shopware/deployment-helper` isn't already present, it's added to `require` |
 
@@ -177,7 +180,9 @@ The CLI generates a `compose.yaml` tailored to your project:
 
 \* *Auto-detected from `composer.lock` or enabled via configuration.*
 
-The `compose.yaml` file is **fully managed by shopware-cli** and regenerated whenever you change configuration. **Never edit it directly.**
+::: warning
+`compose.yaml` is fully managed by shopware-cli and regenerated whenever you change configuration. Never edit it directly — your changes will be overwritten.
+:::
 
 ### Customizing with compose.override.yaml
 
@@ -293,7 +298,7 @@ This is by design. `compose.yaml` is fully managed and regenerated on config cha
 
 ### Containers won't start
 
-Check logs with `shopware-cli project logs -f` or from the Logs tab in the dashboard.
+Check logs with `shopware-cli project logs -f` or from the Instance tab in the dashboard.
 
 ### Shopware isn't installed
 
