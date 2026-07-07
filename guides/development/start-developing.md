@@ -50,7 +50,7 @@ docker compose exec web bash
 Most tasks are now easier with `shopware-cli project console` and the DevTUI dashboard.
 :::
 
-## Frontend Development
+## Frontend development
 
 When developing the Administration or Storefront, use watchers for Hot Module Replacement. Start them directly from the DevTUI Overview tab (key `1`), or from the command line:
 
