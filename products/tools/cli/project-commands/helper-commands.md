@@ -99,7 +99,7 @@ It is just a shortcut for `bin/console cache:clear` without having to be in the 
 shopware-cli project clear-cache
 ```
 
-If in the `.shopware-project.yml` an API connection is configured, it will clear the remote instance cache.
+If an API connection is configured in the `.shopware-project.yml`, it will clear the remote instance cache.
 
 ## Console
 
