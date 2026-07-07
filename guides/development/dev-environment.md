@@ -181,7 +181,7 @@ The CLI generates a `compose.yaml` tailored to your project:
 \* *Auto-detected from `composer.lock` or enabled via configuration.*
 
 ::: warning
-`compose.yaml` is fully managed by shopware-cli and regenerated whenever you change configuration. Never edit it directly — your changes will be overwritten.
+`compose.yaml` is fully managed by Shopware CLI and regenerated whenever you change configuration. Never edit it directly, because your changes will be overwritten.
 :::
 
 ### Customizing with `compose.override.yaml`
