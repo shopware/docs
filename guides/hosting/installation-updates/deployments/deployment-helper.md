@@ -19,8 +19,7 @@ Beyond installing or updating Shopware, it also simplifies common tasks that are
 
 - Installing or updating the extensions (apps and plugins)
 - Compiling the theme
-- Run custom commands
-- Run one-time commands
+- Running custom and one-time commands
 
 For common failures and how to resolve them, see [Deployment Helper Troubleshooting](deployment-helper-troubleshooting.md).
 
