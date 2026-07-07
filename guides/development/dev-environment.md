@@ -184,7 +184,7 @@ The CLI generates a `compose.yaml` tailored to your project:
 `compose.yaml` is fully managed by shopware-cli and regenerated whenever you change configuration. Never edit it directly — your changes will be overwritten.
 :::
 
-### Customizing with compose.override.yaml
+### Customizing with `compose.override.yaml`
 
 Place all customizations in `compose.override.yaml`. Docker Compose [merges multiple files](https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/), so your overrides are applied on top of the managed file:
 
