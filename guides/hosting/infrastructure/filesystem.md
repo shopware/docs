@@ -425,6 +425,22 @@ shopware:
     batch_write_size: 250
 ```
 
+### Disable last-modified version strategy for theme assets
+
+By default, Shopware appends a `?<timestamp>` query parameter to every theme asset URL by reading the file's last-modified time from the filesystem. On remote filesystems such as S3 or GCS this triggers an API call per asset per request (cached, but the cache misses still cost round-trips on first use or after a cache flush).
+
+When the default `SeedingThemePathBuilder` is active — which is the case unless you have explicitly changed `storefront.theme.theme_path_builder_id` — this timestamp suffix is redundant. The path builder already rotates the asset path on every theme compilation, which is the actual cache-invalidation event. You can disable the last-modified lookups entirely:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+  filesystem:
+    theme:
+      use_last_modified_version_strategy: false
+```
+
+The option defaults to `true`, so existing installations are unaffected. Set it to `false` on shops with a remote theme filesystem to eliminate the extra metadata calls.
+
 ### Add your own adapter
 
 To support a storage backend Shopware does not ship with, create a Flysystem adapter (see the [official Flysystem guide](https://flysystem.thephpleague.com/docs/advanced/creating-an-adapter/)) and wrap it in an `AdapterFactory`:
