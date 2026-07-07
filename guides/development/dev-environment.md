@@ -41,7 +41,7 @@ To stop everything:
 shopware-cli project dev stop
 ```
 
-## DevTUI Dashboard
+## Development TUI Dashboard
 
 The dashboard has three tabs, switched with the number keys:
 
