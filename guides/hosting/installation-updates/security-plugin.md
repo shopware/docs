@@ -86,7 +86,9 @@ The one-click button writes to the `composer.json` of the application server tha
 
 ## Third-party dependencies
 
-The Security Plugin only fixes issues in Shopware itself. Your installation also contains many third-party libraries — Symfony, Twig, and others — that publish their own security advisories. The *Security Plugin* settings page includes a dependency check that compares all installed Composer packages against the public advisory database of [packagist.org](https://packagist.org) and lists known vulnerabilities, similar to running `composer audit` on the server.
+The Security Plugin only fixes issues in Shopware's own code.  It does **not** backport fixes for the third-party libraries your installation depends on. Symfony above all, but also Twig and others, are direct dependencies of Shopware itself and publish their own security advisories. When such a library is affected, the fix lives in the dependency and reaches your installation only through a Composer update (see below), or through a Shopware update that requires the patched version.
+
+The *Settings > Extensions > Security Plugin* page page includes a dependency check that compares all installed Composer packages against the public advisory database of [packagist.org](https://packagist.org) and lists known vulnerabilities, similar to running `composer audit` on the server.
 
 For this check, the names and versions of your installed packages are transmitted to packagist.org; the result is cached for one hour. Advisories that are excluded through the `advisories` policy in `composer.json` described above are not reported again.
 
@@ -96,4 +98,8 @@ Vulnerabilities in dependencies cannot be fixed by the plugin. Update the affect
 composer update <package-name> --with-all-dependencies
 ```
 
-Create a backup before updating, test the shop afterward, and deploy as usual. If a patched version is not reachable within your current version constraints, a Shopware update is required first. Independent of the Administration page, running `composer audit` regularly in your CI pipeline is good practice.
+Create a backup before updating, test the shop afterward, and deploy as usual. If a patched version is not reachable within your current version constraints, a Shopware update is required first. 
+
+The same applies once a dependency reaches its end of life: no further security releases are published for it, so a Shopware version that ships a maintained release is required. Check the maintenance and end-of-life status of each Symfony branch on the [Symfony releases page](https://symfony.com/releases).
+
+Independent of the Administration page, running `composer audit` regularly in your CI pipeline is good practice.
