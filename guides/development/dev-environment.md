@@ -69,7 +69,7 @@ Browse and stream logs from your running environment:
 
 Use `↑`/`↓` to navigate sources and `enter` to select one. Scroll with `pgup`/`pgdn`.
 
-### Config Tab (3)
+### Config tab (3)
 
 Adjust your Docker environment without touching YAML:
 
