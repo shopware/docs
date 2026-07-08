@@ -78,7 +78,7 @@ The Administration is part of the runtime environment and will be used throughou
 
 ## Development tooling
 
-* [Development Environment](./dev-environment.md) — Docker-based environment with an interactive terminal dashboard, log streaming, and runtime configuration
+* [Development Environment](./dev-environment.md) — Docker-based environment with an interactive terminal user interface (TUI), log streaming, and runtime configuration
 * `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../resources/references/core-reference/commands-reference.md). You can run these from your host with `shopware-cli project console`.
 * The standalone [Shopware CLI](../../products/tools/cli/installation.md) supports project scaffolding, CI/CD workflows, automation tasks, and more. See the [helper commands guide](../../products/tools/cli/project-commands/helper-commands.md).
 * IDE support: Shopware provides a [PHPStorm plugin](tooling/shopware-toolbox.md) and [VS Code extension](https://marketplace.visualstudio.com/items?itemName=shopware.shopware-lsp).

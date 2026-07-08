@@ -13,7 +13,7 @@ Shopware CLI provides a fully integrated Docker-based development environment. A
 The development environment requires a compatibility date of `2026-03-01` or later in your `.shopware-project.yml`. Projects created with `shopware-cli project create` have this set automatically.
 :::
 
-## Starting the Environment
+## Starting the environment
 
 From your Shopware project root, run:
 
@@ -21,7 +21,7 @@ From your Shopware project root, run:
 shopware-cli project dev
 ```
 
-This launches the interactive **DevTUI** dashboard. If your containers aren't running yet, the dashboard starts them. If Shopware hasn't been installed, it guides you through the installation wizard.
+This launches the development terminal user interface (TUI). If your containers aren't running yet, the dashboard starts them. If Shopware hasn't been installed, it guides you through the installation wizard.
 
 To start without the interactive dashboard (for CI or scripting):
 
@@ -71,8 +71,7 @@ Use `↑`/`↓` to navigate sources and `enter` to select one. Scroll with `pgup
 
 ### Config tab (3)
 
-Adjust your Docker environment without touching YAML:
-
+The following table lists the settings you can change in the Config tab:
 | Setting | Options |
 |---------|---------|
 | **PHP Version** | `8.2`, `8.3`, `8.4`, `8.5` |
@@ -82,15 +81,15 @@ When selecting `blackfire` or `tideways`, additional credential fields appear. S
 
 After changing settings, select **Save & Regenerate** to update `compose.yaml`. Restart the environment for changes to take effect.
 
-## Migrating from Legacy Setups
+## Migrating from legacy setups
 
-If your project was created before March 2026 and uses the older `make up`/`make setup` workflow with a hand-written `compose.yaml`, running `shopware-cli project dev` automatically detects this and launches a **setup wizard** instead of the dashboard.
+If your project was created before March 2026 and uses the older `make up`/`make setup` workflow with a hand-written `compose.yaml`, running `shopware-cli project dev` automatically detects this and launches a setup wizard instead of the dashboard.
 
-### What Triggers the Wizard
+### What triggers the wizard
 
 The wizard appears when your project's `compatibility_date` in `.shopware-project.yml` is before `2026-03-01` (or missing entirely). This signals that the project hasn't been configured for the new development environment yet.
 
-### What the Wizard Does
+### What the wizard does
 
 Walking through the setup wizard takes about a minute. Here's what happens at each step:
 
@@ -108,17 +107,17 @@ After you confirm, the wizard:
 - Generates a new `compose.yaml` tailored to your project's dependencies
 - Starts the Docker containers and runs the Shopware installer
 
-### What Happens to Existing Files
+### What happens to existing files
 
 | File | What changes |
 |------|-------------|
 | `.shopware-project.yml` | Updated with `compatibility_date`, `environments`, and `docker` config |
 | `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways) |
-| `compose.yaml` | **Replaced** with the CLI-managed version. Your old file is overwritten — back it up first. Move any customizations to `compose.override.yaml`. |
-| `Makefile` | **Not touched**. You can delete it once you've migrated, or keep it around |
+| `compose.yaml` | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
+| `Makefile` | **Not touched** - you can delete it once you've migrated, or keep it around |
 | `composer.json` | If `shopware/deployment-helper` isn't already present, it's added to `require` |
 
-### After the Wizard Completes
+### After the wizard completes
 
 If `shopware/deployment-helper` was added to `composer.json`, you'll be prompted to run:
 
@@ -128,9 +127,9 @@ composer install
 
 This pulls in the helper package, which the dashboard uses to run the Shopware installer. After that, the environment starts automatically.
 
-Once migrated, the legacy `make up`/`make down`/`make setup` workflow is no longer needed — use `shopware-cli project dev` to manage your environment instead. If you had customizations in your old `compose.yaml`, move them to `compose.override.yaml` before running the wizard (or recover them from git afterwards).
+Once migrated, the legacy `make up`/`make down`/`make setup` workflow is no longer needed; use `shopware-cli project dev` to manage your environment instead. If you had customizations in your old `compose.yaml`, move them to `compose.override.yaml` before running the wizard (or recover them from git afterwards).
 
-## Viewing Application Logs
+## Viewing application logs
 
 Inspect Shopware logs without opening the dashboard:
 
@@ -151,7 +150,7 @@ shopware-cli project logs -l
 shopware-cli project logs --lines 50
 ```
 
-## Running Shopware Commands
+## Running Shopware commands
 
 Use `shopware-cli project console` to run `bin/console` commands from your host — no need to shell into the container:
 
@@ -163,7 +162,7 @@ shopware-cli project console dal:refresh:index
 
 When using the Docker executor, commands automatically run inside the web container via `docker compose exec`.
 
-## Docker Services
+## Docker services
 
 The CLI generates a `compose.yaml` tailored to your project:
 
@@ -220,7 +219,7 @@ The compose file inspects your `composer.lock` at generation time:
 - `shopware/elasticsearch` → adds **OpenSearch** with environment variables
 - PHP version defaults to `8.3`, overridable in the Config tab
 
-## Environment Executors
+## Environment executors
 
 The CLI abstracts command execution across environment types, configured per environment in `.shopware-project.yml`:
 
@@ -253,7 +252,7 @@ The web container exposes these ports by default:
 | `9999` | Storefront Proxy |
 | `5773` | IDE debugging |
 
-## Configuration Reference
+## Configuration reference
 
 ### .shopware-project.yml
 
@@ -279,7 +278,7 @@ environments:
       password: shopware
 ```
 
-### .shopware-project.local.yml
+### `.shopware-project.local.yml`
 
 Sensitive credentials are stored in `.shopware-project.local.yml` (add to `.gitignore`):
 
@@ -292,7 +291,7 @@ docker:
 
 ## Troubleshooting
 
-### compose.yaml keeps getting reset
+### `compose.yaml` keeps getting reset
 
 This is by design. `compose.yaml` is fully managed and regenerated on config changes. Use `compose.override.yaml` for all customizations. See [Customizing with compose.override.yaml](#customizing-with-composeoverrideyaml).
 
@@ -308,7 +307,7 @@ The development TUI's initialization wizard, which mirrors steps in Shopware's i
 
 Set `compatibility_date: '2026-03-01'` in `.shopware-project.yml`. For more context, see the [build command docs](../../products/tools/cli/project-commands/build.md#compatibility-date).
 
-## Next Steps
+## Next steps
 
 - [Start Developing](./start-developing.md) — What to do once your environment is running
 - [Build Extensions](./extensions/index.md) — Create plugins, apps, and themes

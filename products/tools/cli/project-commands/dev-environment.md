@@ -11,7 +11,7 @@ This page is a quick reference for the `shopware-cli project dev` and `shopware-
 
 ## Commands
 
-### Start the Environment
+### Start the environment
 
 ```bash
 # Interactive dashboard (default when run in a terminal)
@@ -33,7 +33,7 @@ The interactive dashboard has three tabs:
 - **Instance** — containers, watcher processes, and log files with live-streaming
 - **Config** — PHP version, profiler
 
-### View Application Logs
+### View application logs
 
 ```bash
 # Last 100 lines of the most recently modified log file
@@ -74,7 +74,7 @@ environments:
       password: shopware
 ```
 
-## Further Reading
+## Further reading
 
 - [Development Environment guide](../../../../guides/development/dev-environment.md) — full workflow, setup wizard, service overview, troubleshooting
 - [Start Developing](../../../../guides/development/start-developing.md) — next steps after your environment is running

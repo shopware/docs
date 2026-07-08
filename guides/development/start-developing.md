@@ -9,14 +9,14 @@ nav:
 
 This guide covers what to do once your [development environment](./dev-environment.md) is running.
 
-## Your Environment
+## Your environment
 
 Once the containers are up, you have:
 
 - **Storefront**: `http://127.0.0.1:8000`
 - **Administration**: `http://127.0.0.1:8000/admin` *(default credentials: `admin` / `shopware`)*
 
-The DevTUI dashboard (`shopware-cli project dev`) shows these URLs and your credentials at a glance.
+The development terminal user interface (TUI) (`shopware-cli project dev`) shows these URLs and your credentials at a glance.
 
 Common development areas:
 
@@ -47,7 +47,7 @@ make shell
 docker compose exec web bash
 ```
 
-Most tasks are now easier with `shopware-cli project console` and the DevTUI dashboard.
+Most tasks are now easier with `shopware-cli project console` and the development TUI.
 :::
 
 ## Frontend development
@@ -86,18 +86,18 @@ shopware-cli project admin-build --only-custom-static-extensions
 
 For more details, see [Using Watchers](./tooling/using-watchers.md).
 
-## Administration Setup
+## Administration setup
 
 When accessing the Administration for the first time:
 
 - Sign in or create a Shopware account (required to install Store extensions)
-- Connect to the **Shopware Store**
+- Connect to the Shopware Store
 - Install plugins or themes from the Store
 - Configure payment methods if needed
 
 Basic shop settings (name, language, currency) can be changed later under **Settings > Shop > Basic information**.
 
-## Environment Customization
+## Environment customization
 
 ### compose.override.yaml
 
@@ -117,7 +117,7 @@ services:
       - "3306:3306"   # Expose MySQL to host
 ```
 
-### Connecting to a Remote Database
+### Connecting to a remote database
 
 To use an external database, set `DATABASE_URL` in `.env.local`:
 
@@ -127,11 +127,11 @@ DATABASE_URL="mysql://user:password@<host>:3306/<database>"
 
 If the container can't reach `localhost`, try `host.docker.internal` or your host's LAN IP.
 
-### Environment Variables
+### Environment variables
 
 Create a `.env` file in the project root to override defaults. Most changes apply immediately. Changes to `APP_ENV` require a restart (`shopware-cli project dev stop && shopware-cli project dev start`).
 
-## Shopware Account and Private Composer Packages
+## Shopware account and private Composer packages
 
 To install licensed extensions from Shopware's private Composer registry:
 
@@ -141,7 +141,7 @@ composer config --global http-basic.packages.shopware.com <username> <token>
 
 Create an access token in your Shopware account under **Shops > Licenses**.
 
-## Next Steps
+## Next steps
 
 - [Build Extensions](./extensions/index.md) — Create plugins, apps, and themes
 - [Work with APIs](./integrations-api/index.md) — Integrate external systems

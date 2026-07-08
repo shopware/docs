@@ -11,7 +11,7 @@ You have just installed Shopware, and this section guides you through the fundam
 
 ## Development tooling
 
-The Docker setup provisions Shopware for development. The recommended way to manage your environment is through the [Development Environment](../development/dev-environment.md) dashboard (`shopware-cli project dev`), which provides:
+The Docker setup provisions Shopware for development. The recommended way to manage your environment is through the [Development Environment](../development/dev-environment.md) terminal user interface (TUI), available via `shopware-cli project dev`. It provides:
 
 - One-command start/stop of the entire stack
 - Real-time log streaming from `var/log/` and Docker containers
@@ -22,7 +22,7 @@ The Docker setup provisions Shopware for development. The recommended way to man
 Development tools such as:
 
 - [`shopware/dev-tools`](https://github.com/shopware/dev-tools)
-- [Symfony profiler]( https://symfony.com/doc/current/profiler.html) (**only in development mode**)
+- [Symfony profiler](https://symfony.com/doc/current/profiler.html) (**only in development mode**)
 - linting and testing tools
 
 are managed via the Shopware CLI. These are installed into the user's environment and shared across projects and extensions, rather than being added as project-level `require-dev` dependencies.
