@@ -65,11 +65,14 @@ A one-time task is only recorded as done after it succeeds. If it keeps running,
 
 ## A config setting seems to have no effect
 
-Unrecognized keys in `.shopware-project.yml` are ignored silently. Check:
+Deployment Helper provides a configuration schema for `.shopware-project.yml`. Use it in your editor to validate the file while editing, so misspelled or misplaced keys are reported before deployment.
 
-- The key is spelled correctly and nested under `deployment:`.
+Check if:
+
+- Your editor is using the schema and does not report any validation errors.
+- The key is nested under the correct section, for example `deployment:`.
 - You are editing the file the helper actually loads. If `SHOPWARE_PROJECT_CONFIG_FILE` or `--project-config` is set, that file wins over the auto-discovered one.
-- A `.shopware-project.local.yml` isn't overriding your value (local files merge on top of the base). See [Local configuration overrides](deployment-helper.md#local-configuration-overrides).
+- A `.shopware-project.local.yml` is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](deployment-helper.md#local-configuration-overrides).
 
 ## Extensions aren't being installed or updated as expected
 
