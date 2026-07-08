@@ -1,7 +1,7 @@
 ---
 nav:
   title: Start Developing
-  position: 4
+  position: 2
 
 ---
 
