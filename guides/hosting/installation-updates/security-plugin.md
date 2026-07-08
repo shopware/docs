@@ -61,6 +61,8 @@ Update only the packages the audit reports rather than running a blanket `compos
 
 Every fix in the plugin corresponds to a published security advisory and is identified by its GHSA id — the [GitHub Security Advisory](https://docs.github.com/en/code-security/security-advisories) identifier under which the vulnerability is published, for example [`GHSA-9v5m-39wh-5chq`](https://github.com/shopware/shopware/security/advisories/GHSA-9v5m-39wh-5chq). You can browse all published Shopware advisories on the [Shopware security advisories page](https://github.com/shopware/shopware/security/advisories). All applicable fixes are active by default once the plugin is activated.
 
+In some cases, a vulnerability cannot be fixed safely or completely through the security plugin for every affected Shopware version. If an update is required instead, this will be stated in the corresponding advisory. The security plugin is an additional protection mechanism and does not replace keeping Shopware updated.
+
 You can review and manage the fixes under *Settings > Extensions > Security Plugin* in the Administration. For each fix, the page shows a short description and a link to the official advisory with the technical details and severity.
 
 Individual fixes can be deactivated, for example, when a fix conflicts with a customization. Deactivating a fix requires confirming with your administrator password because it reopens the corresponding vulnerability. Treat deactivation as a temporary measure only.
