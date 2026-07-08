@@ -68,8 +68,9 @@ A Shopware account is needed when you:
 
 - install extensions from the Shopware Store. This applies to free extensions too, because Store installs are tied to an account and a license.
 - pull licensed or commercial packages from Shopware's private Composer registry; see [Shopware account and Composer](../development/start-developing.md#shopware-account-and-composer-private-packages).
+- use Shopware commercially and need a commercial plan; see [Shopware pricing](https://www.shopware.com/en/pricing/).
 
-If you are just trying things out, skip the account and Store steps in the in-browser First Run Wizard and continue from the terminal. To use a specific extension without the Store, install it from source or via Composer instead.
+If you are just trying things out, you may skip the account and Store steps in the in-browser First Run Wizard and continue from the terminal. To use a specific extension without the Store, install it from source or via Composer instead.
 
 ### Customize options (optional)
 
