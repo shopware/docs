@@ -39,15 +39,17 @@ vendor/bin/shopware-deployment-helper run --timeout=null
 
 You can also set `SHOPWARE_DEPLOYMENT_TIMEOUT` in the environment. The `--timeout` option takes precedence.
 
-## Theme or asset steps are slow or redundant in CI/CD
+## Theme and assets were not pre-built in CI/CD
 
-If your CI build already compiled the theme and installed assets (via `shopware-cli project ci`), skip those steps at deploy time:
+The deployment artifact must already contain the compiled theme and installed assets. In CI/CD, build the artifact with `shopware-cli project ci` and deploy that output.
+
+At deploy time, run Deployment Helper with the theme and asset steps skipped so it only consumes the pre-built artifact:
 
 ```bash
 vendor/bin/shopware-deployment-helper run --skip-theme-compile --skip-assets-install
 ```
 
-Only skip them if the build genuinely produced them. Otherwise, the storefront will be missing compiled assets.
+If the Storefront is missing assets after deployment, fix the CI build artifact or upload step. Do not compensate by compiling the theme or installing assets during deployment.
 
 ## An update ran, but `system:update:finish` did not
 
