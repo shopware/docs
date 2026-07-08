@@ -79,7 +79,7 @@ vendor/bin/shopware-deployment-helper run
 
 ## Usage examples
 
-A deployment splits into two phases: a build and a deploy. The CI build must produce the dependencies, installed assets, and compiled theme. The deploy step then runs the Deployment Helper against that pre-built artifact. 
+A deployment splits into two phases: a build and a deploy. The CI build must produce the dependencies, installed assets, and compiled theme. The deploy step then runs the Deployment Helper against that pre-built artifact.
 
 A typical pipeline:
 
