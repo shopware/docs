@@ -302,7 +302,7 @@ Check logs with `shopware-cli project logs -f` or from the Instance tab in the d
 
 ### Shopware isn't installed
 
-The DevTUI prompts you to run the installer. It uses `shopware/deployment-helper` to install Shopware with your chosen locale, currency, and admin credentials.
+The development TUI's initialization wizard, which mirrors steps in Shopware's in-browser First Run Wizard, prompts you to run the installer. It uses `shopware/deployment-helper` to install Shopware with your chosen locale, currency, and Admin credentials.
 
 ### Compatibility date error
 
