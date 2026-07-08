@@ -62,13 +62,15 @@ If you choose the Docker option, be sure that Docker is running. Otherwise, a "f
 
 ### Do you need a Shopware account?
 
-To install Shopware, develop locally, build the Storefront or Administration, or write your own extensions, you do not need a Shopware account. Everything above works without signing in.
+If you are just trying things out, you may skip the account and Store steps in the in-browser First Run Wizard and continue from the terminal. To use a specific extension without the Store, install it from source or via Composer instead.
+
+To install Shopware, develop locally, build the Storefront or Administration, or write your own extensions, you do not need a Shopware account. You can even run a store without an account.
 
 A Shopware account is needed when you:
 
 - install extensions from the Shopware Store. This applies to free extensions too, because Store installs are tied to an account and a license.
 - pull licensed or commercial packages from Shopware's private Composer registry; see [Shopware account and Composer](../development/start-developing.md#shopware-account-and-composer-private-packages).
-- use Shopware commercially and need a commercial plan; see [Shopware pricing](https://www.shopware.com/en/pricing/).
+- use Shopware-hosted resources, account-bound services, or commercial offerings that require an account, subscription, or commercial plan; see [Shopware pricing](https://www.shopware.com/en/pricing/).
 
 If you are just trying things out, you may skip the account and Store steps in the in-browser First Run Wizard and continue from the terminal. To use a specific extension without the Store, install it from source or via Composer instead.
 
