@@ -57,6 +57,32 @@ The endpoint should return a successful response when the application is ready t
 The container filesystem is read-only for security reasons.
 If your application needs to write temporary files at runtime, write them to `/app/tmp`.
 
+## Custom Dockerfile
+
+If the default Shopware PaaS Native build does not fit your composable frontend, you can provide your own Dockerfile.
+
+Configure the custom Dockerfile in `application.yaml`:
+
+```yaml
+apiVersion: v1
+kind: cfe
+
+app:
+  build:
+    dockerfile_path: Dockerfile
+  node:
+    version: 24
+```
+
+When you use a custom Dockerfile, follow these additional requirements:
+
+- Run the container as a non-root user with `UID` and `GID` set to `1000`
+- Keep packages up to date
+- Use an entrypoint that starts the server directly
+- Follow general security and performance best practices
+
+Shopware PaaS Native still handles the build and deployment workflow for the application.
+
 ## Environment variables
 
 Composable frontends use the same environment variable configuration as Shopware applications.
@@ -88,9 +114,8 @@ For the full precedence rules and configuration details, see [Environment variab
 ## Deployment
 
 Composable frontends use the same deployment workflow as Shopware applications.
-Shopware builds the container image for you with the managed PaaS build system, so you do not need to provide or publish your own image.
-If your repository contains a Dockerfile, it is not used for composable frontend deployments.
-The deployed image is built by the PaaS build system based on the composable frontend configuration.
+By default, Shopware builds the container image for you with the managed PaaS build system.
+If you configure a custom Dockerfile in `application.yaml`, the PaaS build system uses that Dockerfile to build the deployed image.
 
 After changing the frontend source code or the `application.yaml`, update the application with:
 
