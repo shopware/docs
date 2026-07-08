@@ -79,14 +79,16 @@ vendor/bin/shopware-deployment-helper run
 
 ## Usage examples
 
-A deployment splits into two phases: a build (in CI, produces dependencies and compiled assets) and a deploy (on the server or in the new container, runs the Deployment Helper). A typical pipeline:
+A deployment splits into two phases: a build and a deploy. The CI build must produce the dependencies, installed assets, and compiled theme. The deploy step then runs the Deployment Helper against that pre-built artifact. 
+
+A typical pipeline:
 
 ```bash
 # 1. Build (CI): install dependencies and compile assets
 shopware-cli project ci .
 
 # 2. Deploy (server / new container): install or update Shopware.
-#    Skip the build steps the CI already produced.
+#    Consume the pre-built artifact; do not build assets during deploy.
 vendor/bin/shopware-deployment-helper run --skip-theme-compile --skip-assets-install
 ```
 
