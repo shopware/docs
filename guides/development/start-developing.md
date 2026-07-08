@@ -22,9 +22,9 @@ Common development areas:
 
 - `custom/` — your plugins and themes
 - `bin/console` — application CLI (Symfony console), runnable from your host via `shopware-cli project console`
-- the Administration UI
+- The Administration UI
 
-## Running Commands
+## Running commands
 
 Use `shopware-cli project console` to run `bin/console` commands from your host — no need to enter the container:
 
@@ -50,9 +50,9 @@ docker compose exec web bash
 Most tasks are now easier with `shopware-cli project console` and the DevTUI dashboard.
 :::
 
-## Frontend Development
+## Frontend development
 
-When developing the Administration or Storefront, use watchers for Hot Module Replacement. Start them directly from the DevTUI General tab (key `1`), or from the command line:
+When developing the Administration or Storefront, use watchers for Hot Module Replacement. Start them directly from the DevTUI Overview tab (key `1`), or from the command line:
 
 ```bash
 # Administration (Vite HMR on port 5173)
@@ -75,7 +75,7 @@ To exclude specific extensions:
 shopware-cli project admin-watch --skip-extensions SomePlugin
 ```
 
-For the Storefront watcher, the CLI prompts you to select a sales channel if one isn't configured.
+For the Storefront Watcher, the CLI prompts you to select a sales channel if one isn't configured.
 
 When working with many third-party extensions, building only custom extensions speeds things up:
 

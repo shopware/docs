@@ -15,7 +15,7 @@ The Docker setup provisions Shopware for development. The recommended way to man
 
 - One-command start/stop of the entire stack
 - Real-time log streaming from `var/log/` and Docker containers
-- Admin and Storefront watchers (HMR)
+- Admin and Storefront Watchers (HMR)
 - PHP version and profiler configuration (xdebug, blackfire, tideways, etc.)
 - Service discovery (Adminer, Mailpit, queue, etc.)
 
@@ -65,7 +65,7 @@ Container names depend on the name of your project folder.
 | **Volume `my-project_db-data`**       | Persistent storage      | Stores the MariaDB database files so your data isn't lost when containers are stopped or rebuilt.                             |
 | **Container `my-project-mailer-1`**   | Mailpit service         | Captures outgoing emails for local testing. View at `http://localhost:8025`.                           |
 | **Container `my-project-database-1`** | MariaDB service         | Runs the Shopware database. Inside the Docker network, its hostname is `database`.                                            |
-| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the storefront and Admin UI at `http://localhost:8000`.                |
+| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the Storefront and Admin UI at `http://localhost:8000`.                |
 | **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at `http://localhost:8080`. |
 
 ### Project structure
