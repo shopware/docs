@@ -415,7 +415,7 @@ The Deployment Helper also has three commands to manage the Fastly VCL Snippets:
 
 ## Automatic store login
 
-The Deployment Helper can automatically log in to the Shopware Store so that you can install extensions from the Store. For this, set the environment variables `SHOPWARE_STORE_ACCOUNT_EMAIL` and `SHOPWARE_STORE_ACCOUNT_PASSWORD`, and configure a license domain in the `.shopware-project.yml` file.
+The Deployment Helper can automatically log in to the Shopware Store so that you can install extensions from the Store. For this, set the environment variables `SHOPWARE_STORE_ACCOUNT_EMAIL` and `SHOPWARE_STORE_ACCOUNT_PASSWORD`, and configure a license domain in the `.shopware-project.yml` file. Do **not** commit `.shopware-project.yml` to Git.
 
 The license domain can be set also by env variable `SHOPWARE_STORE_LICENSE_DOMAIN`, which will overwrite the value from the `.shopware-project.yml` file.
 
