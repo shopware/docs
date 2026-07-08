@@ -60,10 +60,6 @@ Inside the container, you only need `bin/console …`. But if you prefer to run 
 
 Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **`Settings > Shop > Basic information`**.
 
-For local development, you do not need a Shopware account. Installing Shopware, building the Storefront or Administration, and writing your own extensions all work without signing in. An account is required when your workflow uses Shopware-hosted resources, such as installing extensions from the Shopware Store (including free extensions), or pulling licensed or commercial packages from Shopware’s private Composer registry. Some optional Shopware services are also cloud-backed and may require an account, shop or company linkage, quotas, or a subscription depending on the service. See [Shopware account and Composer](#shopware-account-and-composer-private-packages).
-
-To use an extension without the Store, install it from source or via Composer.
-
 ## Frontend development
 
 Use these commands when developing or customizing the UI, including Storefront, Administration, or extensions that affect either one:
