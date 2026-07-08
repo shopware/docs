@@ -44,7 +44,7 @@ bin/console cache:clear
 After installing a plugin update, clear the cache again so newly added fixes are loaded.
 
 ::: warning
-Installing or updating the plugin does **not** update Shopware's Composer dependencies. If `composer.lock` still pins an outdated version of Shopware or a bundled library such as Symfony or Twig, the installation stays vulnerable even with the plugin active.
+Installing or updating the plugin does **not** update Shopware's Composer dependencies. If `composer.lock` still pins an outdated version of Shopware or a bundled library such as Symfony or Twig, the installation stays vulnerable even with the plugin active. See the [Composer lock file and dependency updates](https://getcomposer.org/doc/01-basic-usage.md#updating-dependencies-to-their-latest-versions) documentation for how Composer handles locked dependency versions.
 
 After installing or updating the plugin, check for and apply dependency updates in the environment where your project is built, then deploy:
 
