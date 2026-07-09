@@ -69,7 +69,7 @@ Browse and stream logs from your running environment:
 
 Use the sidebar to switch sources. Toggle follow mode with `Enter`.
 
-### Config Tab (3)
+### 3. Config Tab
 
 The following table lists the settings you can change in the Config tab:
 | Setting | Options |
