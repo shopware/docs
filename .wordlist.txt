@@ -143,6 +143,7 @@ CSP
 CSPs
 CSRF
 CSV
+CVEs
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -417,6 +418,7 @@ ExtensionAPI
 FLAC
 FPM
 FQCN
+FQDN
 FastRoute
 Fastly
 Fastly's
@@ -470,6 +472,7 @@ GoogleReCaptchaV
 Grafana
 Grantable
 GridHelper
+Grype
 GuestWishlistPage
 GuestWishlistPagelet
 HMAC
@@ -676,6 +679,7 @@ Nvidia
 OAuth
 OData
 OIDC
+OOM
 OPENSEARCH
 ORM
 ORMs
@@ -1059,6 +1063,7 @@ TreePath
 TreePathField
 TreeSelect
 TriggerReload
+Trivy
 TwigJS
 TypeDetector
 TypeError
@@ -1456,6 +1461,7 @@ eslintrc
 et
 eu
 everytime
+evictable
 evolvability
 exampler
 explainer
