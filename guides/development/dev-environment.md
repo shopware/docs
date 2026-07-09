@@ -45,7 +45,7 @@ shopware-cli project dev stop
 
 The dashboard has three tabs, which can be switched to with the corresponding number key or by using the Tab button.
 
-### Overview Tab (1)
+###  1. Overview Tab
 
 Your environment at a glance:
 
