@@ -51,7 +51,9 @@ No, PaaS uses Fastly as the CDN and provides a fixed database configuration at t
 
 ## Can I host my custom applications?
 
-Custom applications and decoupled storefront hosting will be evaluated based on customer needs but are not currently supported.
+General custom applications are not currently supported.
+Composable frontends are supported as a dedicated application kind and can use a Node.js runtime.
+Other decoupled storefront hosting scenarios will be evaluated based on customer needs.
 
 ## What is the difference between `exec` and `command` ?
 

@@ -35,7 +35,7 @@ kind: cfe
 
 app:
   node:
-    version: 24
+    version: "24"
 ```
 
 The supported Node.js versions are:
@@ -71,7 +71,7 @@ app:
   build:
     dockerfile_path: Dockerfile
   node:
-    version: 24
+    version: "24"
 ```
 
 When you use a custom Dockerfile, follow these additional requirements:
@@ -93,7 +93,7 @@ kind: cfe
 
 app:
   node:
-    version: 24
+    version: "24"
   environment_variables:
     - name: FOO
       value: BAR
