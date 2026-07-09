@@ -43,7 +43,7 @@ shopware-cli project dev stop
 
 ## Development terminal user interface (TUI)
 
-The dashboard has three tabs, either switched to with the corresponding number key or by using the Tab button.
+The dashboard has three tabs, which can be switched to with the corresponding number key or by using the Tab button.
 
 ### Overview Tab (1)
 
