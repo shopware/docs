@@ -491,6 +491,7 @@ IDEs
 IETF
 IPV
 IPv
+ISR
 IdField
 IdSearchResult
 Ideate
@@ -1647,6 +1648,7 @@ lineItemId
 linter
 linters
 linux
+liveness
 llms
 localVue
 localhost
