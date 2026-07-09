@@ -11,7 +11,7 @@ You have just installed Shopware, and this section guides you through the fundam
 
 ## Development tooling
 
-The Docker setup provisions Shopware for development. The recommended way to manage your environment is through the [Development Environment](../development/dev-environment.md) terminal user interface (TUI), available via `shopware-cli project dev`. It provides:
+The Docker setup provisions Shopware for development. The recommended way to manage your environment is through the [Development Environment](../development/dev-environment.md) TUI, available via `shopware-cli project dev`. It provides:
 
 - One-command start/stop of the entire stack
 - Real-time log streaming from `var/log/` and Docker containers
