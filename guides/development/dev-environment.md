@@ -256,7 +256,7 @@ The web container exposes these ports by default:
 
 ## Configuration reference
 
-### `.shopware-project.local.yml`
+### `.shopware-project.yml`
 
 ```yaml
 compatibility_date: '2026-03-01'
