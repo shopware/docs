@@ -102,7 +102,7 @@ The one-click button writes to the `composer.json` of the application server tha
 
 ## Third-party dependencies
 
-The Security Plugin only fixes issues in Shopware's own code. It does **not** backport fixes for the third-party libraries your installation depends on. We recommend checking [Symfony security advisories](https://symfony.com/blog/category/security-advisories), [Twig security advisories](https://github.com/twigphp/Twig/security/advisories), and similar resources for other direct dependencies of Shopware. When such a library is affected, the fix lives in the dependency and reaches your installation only through a Composer update (see below), or through a Shopware update that requires the patched version.
+The Security Plugin only fixes issues in Shopware's own code. It does **not** backport fixes for the third-party libraries your installation depends on. We recommend checking [Symfony security advisories](https://symfony.com/blog/category/security-advisories), [Twig security advisories](https://github.com/twigphp/Twig/security/advisories), and similar resources for other direct dependencies of Shopware. When such a library is affected, the fix lives in the dependency and reaches your installation only through a Composer update (see below) or through a Shopware update that requires the patched version.
 
 The *Settings > Extensions > Security Plugin* page includes a dependency check that compares all installed Composer packages against the public advisory database of [packagist.org](https://packagist.org) and lists known vulnerabilities, similar to running `composer audit` on the server.
 

@@ -99,8 +99,8 @@ To manage snippets manually, use the `fastly:snippet:*` commands. See [Fastly in
 
 ## Need to completely reinstall
 
-If an environment is broken beyond repair, force a clean install from scratch.
+If an environment is broken beyond repair, force a clean `install` from scratch.
 
 :::warning
-Setting `SHOPWARE_DEPLOYMENT_FORCE_REINSTALL=1` triggers a fresh install with `--drop-database`. This destroys existing data! Only use it on disposable environments, never on production.
+Setting `SHOPWARE_DEPLOYMENT_FORCE_REINSTALL=1` triggers a fresh `install` with `--drop-database`. This destroys existing data! Only use it in disposable environments, never in production.
 :::
