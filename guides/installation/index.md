@@ -99,7 +99,7 @@ cd my-shop
 shopware-cli project dev
 ```
 
-This launches the development terminal user interface (TUI). The dashboard starts your Docker containers, runs the Shopware installer (first time only), and gives you an overview of your environment - Shop URLs, credentials, watchers, logs, and service configuration - all in one place.
+This launches the Development TUI. The dashboard starts your Docker containers, runs the Shopware installer (first time only), and gives you an overview of your environment - Shop URLs, credentials, watchers, logs, and service configuration - all in one place.
 
 For details, see the [Development Environment guide](../development/dev-environment.md).
 
