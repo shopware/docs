@@ -79,7 +79,9 @@ The following table lists the settings you can change in the Config tab:
 
 When selecting `blackfire` or `tideways`, additional credential fields appear. Sensitive credentials are stored in `.shopware-project.local.yml` (excluded from version control).
 
-> **Note:** The profiler is now configured via the Config tab.
+:::info
+The profiler is now configured via the Config tab.
+:::
 
 After changing settings, select **Save & Regenerate** to update `compose.yaml`. Restart the environment for changes to take effect.
 
