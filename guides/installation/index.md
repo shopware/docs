@@ -60,6 +60,20 @@ This is a yes/no question about whether to run Shopware locally using Docker, ou
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
 :::
 
+### Do you need a Shopware account?
+
+To install Shopware, develop locally, build the Storefront or Administration, write your own extensions, or run a store, you do not need a Shopware account. Everything above works without signing in.
+
+If you are just trying things out, you may skip the account and Store steps in the browser's `First Run Wizard` and continue from the terminal.
+
+A Shopware account is needed when you:
+
+- install extensions from the Shopware Store. This applies to free extensions too, because Store installations are tied to an account and a license.
+- pull licensed or commercial packages from Shopware's private Composer registry; see [Shopware account and Composer](../development/start-developing.md#shopware-account-and-composer-private-packages).
+- book or manage a commercial Shopware plan, or use account-bound Shopware-hosted services or commercial offerings; see [Shopware pricing](https://www.shopware.com/en/pricing/).
+
+To use a specific extension without the Store, install it from source or via Composer instead.
+
 ### Customize options (optional)
 
 The customization options currently offered by the CLI include:
@@ -106,6 +120,12 @@ Check the container status anytime with the following command:
 ```bash
 docker compose ps
 ```
+
+::: info
+Docker installations are set up through the CLI wizard. `make setup` runs the installer inside the web container and configures the database for you. There is no browser installer step to fill in.
+
+If you set `DATABASE_URL` yourself or connect external tooling, use the Docker service name `database` as the host, not `localhost`, because containers reach each other by service name on the Docker network. The database name and credentials are defined in your project's `compose.yaml`.
+:::
 
 ### Accessing the new shop (all setups)
 
