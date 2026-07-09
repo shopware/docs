@@ -41,11 +41,11 @@ To stop everything:
 shopware-cli project dev stop
 ```
 
-## Development TUI Dashboard
+## Development terminal user interface (TUI)
 
-The development terminal user interface (TUI) dashboard has three tabs, switched with the number keys or by pressing "Enter":
+The dashboard has three tabs, either switched to with the corresponding number key or by using the Tab button.
 
-### Overview tab (1)
+### Overview Tab (1)
 
 Your environment at a glance:
 
@@ -59,7 +59,7 @@ Your environment at a glance:
 
 - **Watchers** — toggle Admin and Storefront watchers on or off
 
-### Instance tab (2)
+### Instance Tab (2)
 
 Browse and stream logs from your running environment:
 
@@ -67,9 +67,9 @@ Browse and stream logs from your running environment:
 - **Processes** — watcher processes (Admin Watcher, Storefront Watcher) when running
 - **Log files** — application log files (e.g., `dev.log`)
 
-Use `↑`/`↓` to navigate sources and `enter` to select one. Scroll with `pgup`/`pgdn`.
+Use the sidebar to switch sources. Toggle follow mode with `Enter`.
 
-### Config tab (3)
+### Config Tab (3)
 
 The following table lists the settings you can change in the Config tab:
 | Setting | Options |
@@ -78,6 +78,8 @@ The following table lists the settings you can change in the Config tab:
 | **Profiler** | `none`, `xdebug`, `blackfire`, `tideways`, `pcov`, `spx` |
 
 When selecting `blackfire` or `tideways`, additional credential fields appear. Sensitive credentials are stored in `.shopware-project.local.yml` (excluded from version control).
+
+> **Note:** The profiler is now configured via the Config tab.
 
 After changing settings, select **Save & Regenerate** to update `compose.yaml`. Restart the environment for changes to take effect.
 
@@ -180,7 +182,7 @@ The CLI generates a `compose.yaml` tailored to your project:
 \* *Auto-detected from `composer.lock` or enabled via configuration.*
 
 ::: warning
-`compose.yaml` is fully managed by Shopware CLI and regenerated whenever you change configuration. Never edit it directly, because your changes will be overwritten.
+The `compose.yaml` file is fully managed by the Shopware CLI and regenerated whenever you change configuration. **Never edit it directly.**
 :::
 
 ### Customizing with `compose.override.yaml`
@@ -254,7 +256,7 @@ The web container exposes these ports by default:
 
 ## Configuration reference
 
-### .shopware-project.yml
+### `.shopware-project.local.yml`
 
 ```yaml
 compatibility_date: '2026-03-01'
@@ -297,7 +299,7 @@ This is by design. `compose.yaml` is fully managed and regenerated on config cha
 
 ### Containers won't start
 
-Check logs with `shopware-cli project logs -f` or from the Instance tab in the dashboard.
+Check logs with `shopware-cli project logs -f` or from the Instance tab in the TUI.
 
 ### Shopware isn't installed
 
