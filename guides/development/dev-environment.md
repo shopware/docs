@@ -7,7 +7,7 @@ nav:
 
 # Development Environment
 
-Shopware CLI provides a fully integrated Docker-based development environment. A single command launches your entire stack, streams logs, manages watchers, and lets you configure PHP and profiling — all without manually editing Docker files.
+Shopware CLI provides a fully integrated Docker-based development environment. A single command launches your entire stack, streams logs, manages watchers, and lets you configure PHP and profiling - all without manually editing Docker files.
 
 :::info
 The development environment requires a compatibility date of `2026-03-01` or later in your `.shopware-project.yml`. Projects created with `shopware-cli project create` have this set automatically.
@@ -51,21 +51,21 @@ Your environment at a glance:
 
 **Left panel:**
 
-- **Shop** — Shopware version, environment type (`docker`, `local`, or `symfony-cli`), shop and admin URLs, and security update expiry date
-- **Access** — URLs, usernames, and passwords for Shop Admin, Adminer, and Mailpit
-- **Setup health** — runtime checks (PHP version, memory limit), local behavior warnings, and debug settings, each showing the current value against the recommended one
+- **Shop** - Shopware version, environment type (`docker`, `local`, or `symfony-cli`), shop and admin URLs, and security update expiry date
+- **Access** - URLs, usernames, and passwords for Shop Admin, Adminer, and Mailpit
+- **Setup health** - runtime checks (PHP version, memory limit), local behavior warnings, and debug settings, each showing the current value against the recommended one
 
 **Right panel:**
 
-- **Watchers** — toggle Admin and Storefront watchers on or off
+- **Watchers** - toggle Admin and Storefront watchers on or off
 
 ### Instance Tab (2)
 
 Browse and stream logs from your running environment:
 
-- **Containers** — all Docker containers with a live status indicator for the active one
-- **Processes** — watcher processes (Admin Watcher, Storefront Watcher) when running
-- **Log files** — application log files (e.g., `dev.log`)
+- **Containers** - all Docker containers with a live status indicator for the active one
+- **Processes** - watcher processes (Admin Watcher, Storefront Watcher) when running
+- **Log files** - application log files (e.g., `dev.log`)
 
 Use the sidebar to switch sources. Toggle follow mode with `Enter`.
 
@@ -95,11 +95,11 @@ The wizard appears when your project's `compatibility_date` in `.shopware-projec
 
 Walking through the setup wizard takes about a minute. Here's what happens at each step:
 
-1. **Welcome** — explains what the wizard will do and asks you to proceed
-2. **Admin user** — pre-fills `admin` (you can change it) for the Shopware admin account
-3. **Admin password** — pre-fills `shopware` (you can change it); stored as credentials in `.shopware-project.yml`
-4. **PHP version** — reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.5`)
-5. **Review** — shows a summary of all your choices before applying changes
+1. **Welcome** - explains what the wizard will do and asks you to proceed
+2. **Admin user** - pre-fills `admin` (you can change it) for the Shopware admin account
+3. **Admin password** - pre-fills `shopware` (you can change it); stored as credentials in `.shopware-project.yml`
+4. **PHP version** - reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.5`)
+5. **Review** - shows a summary of all your choices before applying changes
 
 After you confirm, the wizard:
 
@@ -154,7 +154,7 @@ shopware-cli project logs --lines 50
 
 ## Running Shopware commands
 
-Use `shopware-cli project console` to run `bin/console` commands from your host — no need to shell into the container:
+Use `shopware-cli project console` to run `bin/console` commands from your host - no need to shell into the container:
 
 ```bash
 shopware-cli project console cache:clear
@@ -311,6 +311,6 @@ Set `compatibility_date: '2026-03-01'` in `.shopware-project.yml`. For more cont
 
 ## Next steps
 
-- [Start Developing](./start-developing.md) — What to do once your environment is running
-- [Build Extensions](./extensions/index.md) — Create plugins, apps, and themes
-- [Using Watchers](./tooling/using-watchers.md) — Hot Module Replacement for Admin and Storefront
+- [Start Developing](./start-developing.md) - What to do once your environment is running
+- [Build Extensions](./extensions/index.md) - Create plugins, apps, and themes
+- [Using Watchers](./tooling/using-watchers.md) - Hot Module Replacement for Admin and Storefront

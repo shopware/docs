@@ -20,13 +20,13 @@ The development terminal user interface (TUI) (`shopware-cli project dev`) shows
 
 Common development areas:
 
-- `custom/` — your plugins and themes
-- `bin/console` — application CLI (Symfony console), runnable from your host via `shopware-cli project console`
+- `custom/` - your plugins and themes
+- `bin/console` - application CLI (Symfony console), runnable from your host via `shopware-cli project console`
 - The Administration UI
 
 ## Running commands
 
-Use `shopware-cli project console` to run `bin/console` commands from your host — no need to enter the container:
+Use `shopware-cli project console` to run `bin/console` commands from your host - no need to enter the container:
 
 ```bash
 # Clear caches
@@ -143,6 +143,6 @@ Create an access token in your Shopware account under **Shops > Licenses**.
 
 ## Next steps
 
-- [Build Extensions](./extensions/index.md) — Create plugins, apps, and themes
-- [Work with APIs](./integrations-api/index.md) — Integrate external systems
-- [Set up CI/CD](../../products/tools/cli/project-commands/build.md) — Automate builds and deployments
+- [Build Extensions](./extensions/index.md) - Create plugins, apps, and themes
+- [Work with APIs](./integrations-api/index.md) - Integrate external systems
+- [Set up CI/CD](../../products/tools/cli/project-commands/build.md) - Automate builds and deployments
