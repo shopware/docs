@@ -219,8 +219,8 @@ The CLI-generated `compose.yaml` includes this header for clarity:
 
 The compose file inspects your `composer.lock` at generation time:
 
-- `symfony/amqp-messenger` → adds **LavinMQ** and sets `MESSENGER_TRANSPORT_DSN`
-- `shopware/elasticsearch` → adds **OpenSearch** with environment variables
+- `symfony/amqp-messenger` - adds **LavinMQ** and sets `MESSENGER_TRANSPORT_DSN`
+- `shopware/elasticsearch` - adds **OpenSearch** with environment variables
 - PHP version defaults to `8.3`, overridable in the Config tab
 
 ## Environment executors
