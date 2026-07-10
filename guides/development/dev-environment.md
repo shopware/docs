@@ -101,7 +101,6 @@ Walking through the setup wizard takes about a minute. Here's what happens at ea
 2. **Admin user** - pre-fills `admin` (you can change it) for the Shopware admin account
 3. **Admin password** - pre-fills `shopware` (you can change it); stored as credentials in `.shopware-project.yml`
 4. **PHP version** - reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.5`)
-5. **Review** - shows a summary of all your choices before applying changes
 
 After you confirm, the wizard:
 
