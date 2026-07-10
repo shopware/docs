@@ -109,6 +109,8 @@ Similar to `clear-cache`, there is also a general shortcut for `bin/console`:
 shopware-cli project console <command>
 ```
 
+A shorter `swx` alias is also available. See [Running Shopware commands](../../../../guides/development/dev-environment.md#running-shopware-commands).
+
 ## Admin API
 
 If you want to make requests against the Shopware-API using curl, you need to get a JWT token and add it as a header. Shopware CLI has a helper command for that:
