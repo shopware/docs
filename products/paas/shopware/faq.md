@@ -25,7 +25,9 @@ The application that you create is linked to a commit SHA and not to a branch. Y
 
 ## Can I run different applications like Node.js?
 
-No, currently PaaS is limited to Shopware projects.
+General custom applications are not supported.
+Composable frontends are supported as a dedicated application kind and can use a Node.js runtime.
+See [Composable Frontends](./composable-frontends/index.md) for details.
 
 ## How are secrets managed in PaaS?
 
@@ -49,7 +51,9 @@ No, PaaS uses Fastly as the CDN and provides a fixed database configuration at t
 
 ## Can I host my custom applications?
 
-Custom applications and decoupled storefront hosting will be evaluated based on customer needs but are not currently supported.
+General custom applications are not currently supported.
+Composable frontends are supported as a dedicated application kind and can use a Node.js runtime.
+Other decoupled storefront hosting scenarios will be evaluated based on customer needs.
 
 ## What is the difference between `exec` and `command` ?
 

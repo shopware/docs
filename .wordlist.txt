@@ -492,6 +492,7 @@ IDEs
 IETF
 IPV
 IPv
+ISR
 IdField
 IdSearchResult
 Ideate
@@ -1654,6 +1655,7 @@ lineItemId
 linter
 linters
 linux
+liveness
 llms
 localVue
 localhost
@@ -1978,6 +1980,7 @@ sm
 smartbar
 snakeCase
 sortings
+sourcemaps
 sql
 src
 srcset
