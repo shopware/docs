@@ -39,6 +39,8 @@ shopware-cli project console plugin:install --activate MyPlugin
 shopware-cli project console database:migrate --all
 ```
 
+For the shorter `swx` alias, see [Running Shopware commands](./dev-environment.md#running-shopware-commands).
+
 :::info Legacy workflow
 If your project uses the older `make`-based setup and you need to shell into the container manually:
 
