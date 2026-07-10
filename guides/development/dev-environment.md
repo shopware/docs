@@ -165,6 +165,14 @@ shopware-cli project console dal:refresh:index
 
 When using the Docker executor, commands automatically run inside the web container via `docker compose exec`.
 
+To type a little less, you can also use the `swx` alias as a shortcut for `shopware-cli project console`:
+
+```bash
+swx cache:clear
+swx plugin:refresh
+swx dal:refresh:index
+```
+
 ## Docker services
 
 The CLI generates a `compose.yaml` tailored to your project:
