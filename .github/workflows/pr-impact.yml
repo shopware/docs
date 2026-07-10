@@ -29,5 +29,4 @@ jobs:
       - name: Run analyzer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/pr-impact.js
-        
+        run: node .github/scripts/pr-impact.js
