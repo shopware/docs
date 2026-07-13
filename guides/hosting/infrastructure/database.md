@@ -51,6 +51,119 @@ To use the MySQL cluster, you have to configure the following in the `.env` file
 - `DATABASE_URL` is the connection string for the MySQL primary.
 - `DATABASE_REPLICA_x_URL` (e.g `DATABASE_REPLICA_0_URL`, `DATABASE_REPLICA_1_URL`) - is the connection string for the MySQL read-only server.
 
+## SSL/TLS Connection
+
+Many cloud database providers and production environments require encrypted connections.
+Shopware supports TLS for MySQL/MariaDB connections through the `DATABASE_SSL_*` environment
+variables.
+
+### Using DATABASE_SSL_* environment variables
+
+Shopware's `MySQLFactory` automatically reads these environment variables and applies them
+to the Doctrine database connection. No additional configuration is needed — just set the
+variables in your `.env.local` file:
+
+```dotenv
+DATABASE_URL="mysql://username:password@host:3306/dbname"
+DATABASE_SSL_CA="/etc/ssl/certs/db-ca.pem"
+DATABASE_SSL_CERT="/etc/ssl/certs/db-client-cert.pem"
+DATABASE_SSL_KEY="/etc/ssl/certs/db-client-key.pem"
+# DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1  # Uncomment to skip verification (non-production only)
+```
+
+The following table describes the available `DATABASE_SSL_*` variables.
+
+| Variable                               | Description                                                                                 |
+|----------------------------------------|---------------------------------------------------------------------------------------------|
+| `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM) used for server certificate verification       |
+| `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS                                    |
+| `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS                                    |
+| `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | Set to `1` to skip server certificate verification (non-production only); requires PHP 8.2+ |
+
+> [!NOTE]
+> `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` requires PHP 8.2 or later and the `PDO\MySQL`
+> class available in `ext-pdo_mysql`. For a full list of available environment variables,
+> see the [Environment Variables reference](../configurations/shopware/environment-variables.md).
+
+#### Force SSL without a CA certificate
+
+If your database server requires TLS, but you don't have the CA certificate handy
+(for example, on a managed cloud database), you can force an encrypted connection
+without certificate verification:
+
+```dotenv
+DATABASE_SSL_CA=true
+DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1
+```
+
+This tells MySQL to use SSL for the connection but skip certificate validation.
+Only use this in development or staging — never in production without a proper CA.
+
+### Persistent connections (`DATABASE_PERSISTENT_CONNECTION`)
+
+When enabled, the database connection is kept open and reused
+across requests instead of opening a new one every time. This avoids the overhead of
+the TLS handshake and MySQL authentication on each request.
+
+**Use cases:**
+
+- Long-running PHP worker processes (FrankenPHP worker mode, CLI message consumers),
+  where reconnecting on every job is wasteful
+- High-traffic environments where connection churn dominates request time
+
+**When to avoid:**
+
+- Database clusters using read replicas: persistent connections can pin requests to the
+  wrong node, breaking read/write splitting
+- Horizontally scaled web servers with many PHP-FPM children: MySQL has a finite
+  `max_connections` limit, and idle persistent connections from every FPM child can
+  quickly exhaust it
+- Development environments where frequent restarts are expected
+
+:::warning
+Only enable this on dedicated worker servers. On web servers with many FPM
+children connecting to a database cluster, persistent connections can cause
+connection exhaustion and unpredictable replica routing.
+:::
+
+### Protocol compression (`DATABASE_PROTOCOL_COMPRESSION`)
+
+When enabled, MySQL wire protocol traffic is compressed
+before transmission. This reduces network bandwidth usage at the cost of a small
+CPU overhead for compression and decompression.
+
+**Use cases:**
+
+- Bandwidth-constrained environments (for example, cloud databases with metered
+  egress, or connections over the public internet)
+- Large result sets or high throughput workloads where the network link is
+  saturated before CPU
+
+**Trade-off:** The compression itself adds a small latency penalty, but this is
+usually negligible compared to the benefit of avoiding a network bottleneck.
+If your LAN port is at 100% utilization, compression will improve effective
+throughput more than it costs in CPU.
+
+### Amazon RDS / Aurora
+
+AWS RDS and Aurora enforce TLS by default. Download the [AWS RDS CA bundle](https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem)
+and reference it in your connection:
+
+```dotenv
+DATABASE_URL="mysql://username:password@your-cluster.rds.amazonaws.com:3306/dbname"
+DATABASE_SSL_CA="/etc/ssl/certs/rds-ca-bundle.pem"
+```
+
+### Verify the TLS connection
+
+To confirm that TLS is active, run this SQL query via the Shopware CLI or your MySQL client:
+
+```sql
+SHOW STATUS LIKE 'Ssl_cipher';
+```
+
+A non-empty value (for example, `TLS_AES_256_GCM_SHA384`) confirms the connection is encrypted.
+
 ## Setup for long-running environments
 
 When running Shopware in long-lived PHP worker environments such as FrankenPHP worker mode, database connections can stay open long enough to exceed MySQL's `wait_timeout`.

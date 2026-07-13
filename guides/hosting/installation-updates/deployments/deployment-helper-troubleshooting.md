@@ -23,7 +23,7 @@ Check if:
 
 - `DATABASE_URL` is correct and reachable from the deploy environment (host, port, credentials).
 - the database service is actually up before the helper runs. In container setups, order startup so the database is ready, or add your own wait.
-- TLS is required, and `DATABASE_SSL_CA` / `DATABASE_SSL_CERT` / `DATABASE_SSL_KEY` are set. To bypass server-certificate verification (non-production only), set `DATABASE_SSL_DONT_VERIFY_SERVER_CERT`. See [Environment variables](deployment-helper.md#environment-variables).
+- TLS is required, and `DATABASE_SSL_CA` / `DATABASE_SSL_CERT` / `DATABASE_SSL_KEY` are set. Verify the certificate paths are correct and readable by the PHP process. To bypass server-certificate verification (non-production only), set `DATABASE_SSL_DONT_VERIFY_SERVER_CERT`. See [SSL/TLS Connection guide](../../infrastructure/database.md#ssltls-connection) and [Environment variables](deployment-helper.md#environment-variables).
 
 ## A step times out on a large shop
 
