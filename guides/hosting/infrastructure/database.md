@@ -70,6 +70,7 @@ DATABASE_SSL_CERT="/etc/ssl/certs/db-client-cert.pem"
 DATABASE_SSL_KEY="/etc/ssl/certs/db-client-key.pem"
 # DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1  # Uncomment to skip verification (non-production only)
 ```
+
 The following table describes the available `DATABASE_SSL_*` variables.
 
 | Variable                               | Description                                                                                |
@@ -97,7 +98,6 @@ DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1
 
 This tells MySQL to use SSL for the connection but skip certificate validation.
 Only use this in development or staging — never in production without a proper CA.
-
 
 ### Additional database connection options
 
