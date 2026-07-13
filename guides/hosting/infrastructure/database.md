@@ -111,6 +111,47 @@ DATABASE_PERSISTENT_CONNECTION=1
 DATABASE_PROTOCOL_COMPRESSION=1
 ```
 
+#### Persistent connections (DATABASE_PERSISTENT_CONNECTION)
+
+When enabled via `PDO::ATTR_PERSISTENT`, the database connection is kept open and reused
+across requests instead of opening a new one every time. This avoids the overhead of
+the TLS handshake and MySQL authentication on each request.
+
+**Use cases:**
+- Long-running PHP worker processes (FrankenPHP worker mode, CLI message consumers),
+  where reconnecting on every job is wasteful
+- High-traffic environments where connection churn dominates request time
+
+**When to avoid:**
+- Database clusters using read replicas: persistent connections can pin requests to the
+  wrong node, breaking read/write splitting
+- Horizontally scaled web servers with many PHP-FPM children: MySQL has a finite
+  `max_connections` limit, and idle persistent connections from every FPM child can
+  quickly exhaust it
+- Development environments where frequent restarts are expected
+
+> [!WARNING]
+> Only enable this on dedicated worker servers. On web servers with many FPM
+> children connecting to a database cluster, persistent connections can cause
+> connection exhaustion and unpredictable replica routing.
+
+#### Protocol compression (DATABASE_PROTOCOL_COMPRESSION)
+
+When enabled via `Mysql::ATTR_COMPRESS`, MySQL wire protocol traffic is compressed
+before transmission. This reduces network bandwidth usage at the cost of a small
+CPU overhead for compression and decompression.
+
+**Use cases:**
+- Bandwidth-constrained environments (for example, cloud databases with metered
+  egress, or connections over the public internet)
+- Large result sets or high throughput workloads where the network link is
+  saturated before CPU
+
+**Trade-off:** The compression itself adds a small latency penalty, but this is
+usually negligible compared to the benefit of avoiding a network bottleneck.
+If your LAN port is at 100% utilization, compression will improve effective
+throughput more than it costs in CPU.
+
 ### Amazon RDS / Aurora
 
 AWS RDS and Aurora enforce TLS by default. Download the [AWS RDS CA bundle](https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem)
