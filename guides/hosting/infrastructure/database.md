@@ -120,10 +120,11 @@ the TLS handshake and MySQL authentication on each request.
   quickly exhaust it
 - Development environments where frequent restarts are expected
 
-> [!WARNING]
-> Only enable this on dedicated worker servers. On web servers with many FPM
-> children connecting to a database cluster, persistent connections can cause
-> connection exhaustion and unpredictable replica routing.
+:::warning
+Only enable this on dedicated worker servers. On web servers with many FPM
+children connecting to a database cluster, persistent connections can cause
+connection exhaustion and unpredictable replica routing.
+:::
 
 ### Protocol compression (`DATABASE_PROTOCOL_COMPRESSION`)
 
