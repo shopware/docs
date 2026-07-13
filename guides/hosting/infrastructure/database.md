@@ -55,7 +55,7 @@ To use the MySQL cluster, you have to configure the following in the `.env` file
 
 Many cloud database providers and production environments require encrypted connections.
 Shopware supports TLS for MySQL/MariaDB connections through the `DATABASE_SSL_*` environment
-variables, or by embedding SSL parameters directly in `DATABASE_URL`.
+variables.
 
 ### Using DATABASE_SSL_* environment variables
 
@@ -84,25 +84,6 @@ The following table describes the available `DATABASE_SSL_*` variables.
 > class available in `ext-pdo_mysql`. For a full list of available environment variables,
 > see the [Environment Variables reference](../../configurations/shopware/environment-variables.md).
 
-### SSL parameters in DATABASE_URL (alternative)
-
-You can also embed SSL options directly as query parameters in `DATABASE_URL`.
-This works through Doctrine's DSN parser and can be used alongside or instead of
-the `DATABASE_SSL_*` variables:
-
-    DATABASE_URL="mysql://username:password@host:3306/dbname?ssl-ca=/etc/ssl/certs/db-ca.pem&ssl-cert=/etc/ssl/certs/db-client-cert.pem&ssl-key=/etc/ssl/certs/db-client-key.pem"
-
-The following table lists common MySQL SSL query parameters:
-
-| Parameter  | Description                                     |
-|------------|-------------------------------------------------|
-| `ssl-ca`   | Path to the CA certificate file (PEM format)     |
-| `ssl-cert` | Path to the client certificate file (PEM format) |
-| `ssl-key`  | Path to the client private key file (PEM format) |
-> [!NOTE]
-> When both `DATABASE_SSL_*` env vars and DSN query parameters are set, the environment
-> variables take precedence because `MySQLFactory` sets them as `driverOptions` after
-> parsing the DSN.
 
 ### Additional database connection options
 
@@ -122,7 +103,8 @@ AWS RDS and Aurora enforce TLS by default. Download the [AWS RDS CA bundle](http
 and reference it in your connection:
 
 ```dotenv
-DATABASE_URL="mysql://username:password@your-cluster.rds.amazonaws.com:3306/dbname?sslmode=verify-ca&sslrootcert=/etc/ssl/certs/rds-ca-bundle.pem"
+DATABASE_URL="mysql://username:password@your-cluster.rds.amazonaws.com:3306/dbname"
+DATABASE_SSL_CA="/etc/ssl/certs/rds-ca-bundle.pem"
 ```
 
 ### Verify the TLS connection
