@@ -106,11 +106,13 @@ across requests instead of opening a new one every time. This avoids the overhea
 the TLS handshake and MySQL authentication on each request.
 
 **Use cases:**
+
 - Long-running PHP worker processes (FrankenPHP worker mode, CLI message consumers),
   where reconnecting on every job is wasteful
 - High-traffic environments where connection churn dominates request time
 
 **When to avoid:**
+
 - Database clusters using read replicas: persistent connections can pin requests to the
   wrong node, breaking read/write splitting
 - Horizontally scaled web servers with many PHP-FPM children: MySQL has a finite
@@ -130,6 +132,7 @@ before transmission. This reduces network bandwidth usage at the cost of a small
 CPU overhead for compression and decompression.
 
 **Use cases:**
+
 - Bandwidth-constrained environments (for example, cloud databases with metered
   egress, or connections over the public internet)
 - Large result sets or high throughput workloads where the network link is
