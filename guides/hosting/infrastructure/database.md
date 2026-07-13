@@ -111,9 +111,9 @@ DATABASE_PERSISTENT_CONNECTION=1
 DATABASE_PROTOCOL_COMPRESSION=1
 ```
 
-#### Persistent connections (DATABASE_PERSISTENT_CONNECTION)
+#### Persistent connections (`DATABASE_PERSISTENT_CONNECTION`)
 
-When enabled via `PDO::ATTR_PERSISTENT`, the database connection is kept open and reused
+When enabled, the database connection is kept open and reused
 across requests instead of opening a new one every time. This avoids the overhead of
 the TLS handshake and MySQL authentication on each request.
 
@@ -135,9 +135,9 @@ the TLS handshake and MySQL authentication on each request.
 > children connecting to a database cluster, persistent connections can cause
 > connection exhaustion and unpredictable replica routing.
 
-#### Protocol compression (DATABASE_PROTOCOL_COMPRESSION)
+#### Protocol compression (`DATABASE_PROTOCOL_COMPRESSION`)
 
-When enabled via `Mysql::ATTR_COMPRESS`, MySQL wire protocol traffic is compressed
+When enabled, MySQL wire protocol traffic is compressed
 before transmission. This reduces network bandwidth usage at the cost of a small
 CPU overhead for compression and decompression.
 
