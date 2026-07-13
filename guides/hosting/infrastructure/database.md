@@ -84,6 +84,20 @@ The following table describes the available `DATABASE_SSL_*` variables.
 > class available in `ext-pdo_mysql`. For a full list of available environment variables,
 > see the [Environment Variables reference](../../configurations/shopware/environment-variables.md).
 
+#### Force SSL without a CA certificate
+
+If your database server requires TLS but you don't have the CA certificate handy
+(for example, on a managed cloud database), you can force an encrypted connection
+without certificate verification:
+
+```dotenv
+DATABASE_SSL_CA=true
+DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1
+```
+
+This tells MySQL to use SSL for the connection but skip certificate validation.
+Only use this in development or staging — never in production without a proper CA.
+
 
 ### Additional database connection options
 
