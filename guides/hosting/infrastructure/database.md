@@ -70,16 +70,17 @@ DATABASE_SSL_CERT="/etc/ssl/certs/db-client-cert.pem"
 DATABASE_SSL_KEY="/etc/ssl/certs/db-client-key.pem"
 # DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1  # Uncomment to skip verification (non-production only)
 ```
+The following table describes the available `DATABASE_SSL_*` variables.
 
 | Variable                               | Description                                                                                |
 |----------------------------------------|--------------------------------------------------------------------------------------------|
-| `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM). Used for server certificate verification.    |
-| `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS.                                  |
-| `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS.                                  |
-| `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | Set to `1` to skip server certificate verification (non-production only). Requires PHP 8.2+. |
+| `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM) used for server certificate verification      |
+| `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS                                  |
+| `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS                                  |
+| `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | Set to `1` to skip server certificate verification (non-production only); requires PHP 8.2+ |
 
 > [!NOTE]
-> `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` requires PHP 8.2 or later and the `Pdo\Mysql`
+> `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` requires PHP 8.2 or later and the `PDO\MySQL`
 > class available in `ext-pdo_mysql`. For a full list of available environment variables,
 > see the [Environment Variables reference](../../configurations/shopware/environment-variables.md).
 
@@ -89,19 +90,15 @@ You can also embed SSL options directly as query parameters in `DATABASE_URL`.
 This works through Doctrine's DSN parser and can be used alongside or instead of
 the `DATABASE_SSL_*` variables:
 
-```dotenv
-DATABASE_URL="mysql://username:password@host:3306/dbname?sslmode=verify-ca&sslrootcert=/etc/ssl/certs/db-ca.pem"
-```
+    DATABASE_URL="mysql://username:password@host:3306/dbname?ssl-ca=/etc/ssl/certs/db-ca.pem&ssl-cert=/etc/ssl/certs/db-client-cert.pem&ssl-key=/etc/ssl/certs/db-client-key.pem"
 
-Common SSL query parameters:
+The following table lists common MySQL SSL query parameters:
 
-| Parameter     | Description                                                          |
-|---------------|----------------------------------------------------------------------|
-| `sslrootcert` | Path to the CA certificate file (PEM format)                        |
-| `sslcert`     | Path to the client certificate file (for mutual TLS)                 |
-| `sslkey`      | Path to the client private key file (for mutual TLS)                 |
-| `sslverify`   | Set to `false` to skip certificate verification (non-production only)|
-
+| Parameter  | Description                                     |
+|------------|-------------------------------------------------|
+| `ssl-ca`   | Path to the CA certificate file (PEM format)     |
+| `ssl-cert` | Path to the client certificate file (PEM format) |
+| `ssl-key`  | Path to the client private key file (PEM format) |
 > [!NOTE]
 > When both `DATABASE_SSL_*` env vars and DSN query parameters are set, the environment
 > variables take precedence because `MySQLFactory` sets them as `driverOptions` after
