@@ -51,6 +51,93 @@ To use the MySQL cluster, you have to configure the following in the `.env` file
 - `DATABASE_URL` is the connection string for the MySQL primary.
 - `DATABASE_REPLICA_x_URL` (e.g `DATABASE_REPLICA_0_URL`, `DATABASE_REPLICA_1_URL`) - is the connection string for the MySQL read-only server.
 
+## SSL/TLS Connection
+
+Many cloud database providers and production environments require encrypted connections.
+Shopware supports TLS for MySQL/MariaDB connections through the `DATABASE_SSL_*` environment
+variables, or by embedding SSL parameters directly in `DATABASE_URL`.
+
+### Using DATABASE_SSL_* environment variables
+
+Shopware's `MySQLFactory` automatically reads these environment variables and applies them
+to the Doctrine database connection. No additional configuration is needed — just set the
+variables in your `.env.local` file:
+
+```dotenv
+DATABASE_URL="mysql://username:password@host:3306/dbname"
+DATABASE_SSL_CA="/etc/ssl/certs/db-ca.pem"
+DATABASE_SSL_CERT="/etc/ssl/certs/db-client-cert.pem"
+DATABASE_SSL_KEY="/etc/ssl/certs/db-client-key.pem"
+# DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1  # Uncomment to skip verification (non-production only)
+```
+
+| Variable                               | Description                                                                                |
+|----------------------------------------|--------------------------------------------------------------------------------------------|
+| `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM). Used for server certificate verification.    |
+| `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS.                                  |
+| `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS.                                  |
+| `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | Set to `1` to skip server certificate verification (non-production only). Requires PHP 8.2+. |
+
+> [!NOTE]
+> `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` requires PHP 8.2 or later and the `Pdo\Mysql`
+> class available in `ext-pdo_mysql`. For a full list of available environment variables,
+> see the [Environment Variables reference](../../configurations/shopware/environment-variables.md).
+
+### SSL parameters in DATABASE_URL (alternative)
+
+You can also embed SSL options directly as query parameters in `DATABASE_URL`.
+This works through Doctrine's DSN parser and can be used alongside or instead of
+the `DATABASE_SSL_*` variables:
+
+```dotenv
+DATABASE_URL="mysql://username:password@host:3306/dbname?sslmode=verify-ca&sslrootcert=/etc/ssl/certs/db-ca.pem"
+```
+
+Common SSL query parameters:
+
+| Parameter     | Description                                                          |
+|---------------|----------------------------------------------------------------------|
+| `sslrootcert` | Path to the CA certificate file (PEM format)                        |
+| `sslcert`     | Path to the client certificate file (for mutual TLS)                 |
+| `sslkey`      | Path to the client private key file (for mutual TLS)                 |
+| `sslverify`   | Set to `false` to skip certificate verification (non-production only)|
+
+> [!NOTE]
+> When both `DATABASE_SSL_*` env vars and DSN query parameters are set, the environment
+> variables take precedence because `MySQLFactory` sets them as `driverOptions` after
+> parsing the DSN.
+
+### Additional database connection options
+
+Shopware also supports these environment variables for advanced database connections:
+
+```dotenv
+# Keep the database connection open across requests (useful for worker processes)
+DATABASE_PERSISTENT_CONNECTION=1
+
+# Enable MySQL protocol compression for reduced network traffic
+DATABASE_PROTOCOL_COMPRESSION=1
+```
+
+### Amazon RDS / Aurora
+
+AWS RDS and Aurora enforce TLS by default. Download the [AWS RDS CA bundle](https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem)
+and reference it in your connection:
+
+```dotenv
+DATABASE_URL="mysql://username:password@your-cluster.rds.amazonaws.com:3306/dbname?sslmode=verify-ca&sslrootcert=/etc/ssl/certs/rds-ca-bundle.pem"
+```
+
+### Verify the TLS connection
+
+To confirm that TLS is active, run this SQL query via the Shopware CLI or your MySQL client:
+
+```sql
+SHOW STATUS LIKE 'Ssl_cipher';
+```
+
+A non-empty value (for example, `TLS_AES_256_GCM_SHA384`) confirms the connection is encrypted.
+
 ## Setup for long-running environments
 
 When running Shopware in long-lived PHP worker environments such as FrankenPHP worker mode, database connections can stay open long enough to exceed MySQL's `wait_timeout`.
