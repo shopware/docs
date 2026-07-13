@@ -173,11 +173,11 @@ Your AI client is now connected to Shopware. Try a few prompts to verify that th
 
 For example:
 
-* Show all products in my store.
-* Find products with stock below five units.
-* Find all active products without descriptions.
-* Generate SEO-friendly meta titles for your products (eg, guitars)
-* Increase prices of products in a specific category by 5%. Show a preview before applying the changes.
+- Show all products in my store.
+- Find products with stock below five units.
+- Find all active products without descriptions.
+- Generate SEO-friendly meta titles for your products (eg, guitars)
+- Increase prices of products in a specific category by 5%. Show a preview before applying the changes.
 
 If the AI can retrieve data and respond to these requests, your integration is ready to use.
 
