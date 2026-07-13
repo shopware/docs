@@ -73,21 +73,21 @@ DATABASE_SSL_KEY="/etc/ssl/certs/db-client-key.pem"
 
 The following table describes the available `DATABASE_SSL_*` variables.
 
-| Variable                               | Description                                                                                |
-|----------------------------------------|--------------------------------------------------------------------------------------------|
-| `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM) used for server certificate verification      |
-| `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS                                  |
-| `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS                                  |
+| Variable                               | Description                                                                                 |
+|----------------------------------------|---------------------------------------------------------------------------------------------|
+| `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM) used for server certificate verification       |
+| `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS                                    |
+| `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS                                    |
 | `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | Set to `1` to skip server certificate verification (non-production only); requires PHP 8.2+ |
 
 > [!NOTE]
 > `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` requires PHP 8.2 or later and the `PDO\MySQL`
 > class available in `ext-pdo_mysql`. For a full list of available environment variables,
-> see the [Environment Variables reference](../../configurations/shopware/environment-variables.md).
+> see the [Environment Variables reference](../configurations/shopware/environment-variables.md).
 
 #### Force SSL without a CA certificate
 
-If your database server requires TLS but you don't have the CA certificate handy
+If your database server requires TLS, but you don't have the CA certificate handy
 (for example, on a managed cloud database), you can force an encrypted connection
 without certificate verification:
 
