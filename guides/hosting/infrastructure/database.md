@@ -99,19 +99,7 @@ DATABASE_SSL_DONT_VERIFY_SERVER_CERT=1
 This tells MySQL to use SSL for the connection but skip certificate validation.
 Only use this in development or staging — never in production without a proper CA.
 
-### Additional database connection options
-
-Shopware also supports these environment variables for advanced database connections:
-
-```dotenv
-# Keep the database connection open across requests (useful for worker processes)
-DATABASE_PERSISTENT_CONNECTION=1
-
-# Enable MySQL protocol compression for reduced network traffic
-DATABASE_PROTOCOL_COMPRESSION=1
-```
-
-#### Persistent connections (`DATABASE_PERSISTENT_CONNECTION`)
+### Persistent connections (`DATABASE_PERSISTENT_CONNECTION`)
 
 When enabled, the database connection is kept open and reused
 across requests instead of opening a new one every time. This avoids the overhead of
@@ -135,7 +123,7 @@ the TLS handshake and MySQL authentication on each request.
 > children connecting to a database cluster, persistent connections can cause
 > connection exhaustion and unpredictable replica routing.
 
-#### Protocol compression (`DATABASE_PROTOCOL_COMPRESSION`)
+### Protocol compression (`DATABASE_PROTOCOL_COMPRESSION`)
 
 When enabled, MySQL wire protocol traffic is compressed
 before transmission. This reduces network bandwidth usage at the cost of a small
