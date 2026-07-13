@@ -476,10 +476,10 @@ Deployment control:
 Database:
 
 - `DATABASE_URL` - The database connection string. Required; the Deployment Helper aborts if it is not set.
-- `DATABASE_SSL_CA` - Path to the TLS CA certificate for the database connection
-- `DATABASE_SSL_CERT` - Path to the TLS client certificate
-- `DATABASE_SSL_KEY` - Path to the TLS client key
-- `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` - Set to any value to skip server-certificate verification (non-production only)
+- `DATABASE_SSL_CA` - Path to the TLS CA certificate for the database connection. Automatically applied by `MySQLFactory`. (see [SSL/TLS Setup](../../infrastructure/database.md#ssltls-connection))
+- `DATABASE_SSL_CERT` - Path to the TLS client certificate. Automatically applied by `MySQLFactory`. (see [SSL/TLS Setup](../../infrastructure/database.md#ssltls-connection))
+- `DATABASE_SSL_KEY` - Path to the TLS client key. Automatically applied by `MySQLFactory`. (see [SSL/TLS Setup](../../infrastructure/database.md#ssltls-connection))
+- `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` - Set to any value to skip server-certificate verification (non-production only). Automatically applied by `MySQLFactory`. (see [SSL/TLS Setup](../../infrastructure/database.md#ssltls-connection))
 
 Store authentication:
 
