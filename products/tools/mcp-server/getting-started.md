@@ -44,6 +44,8 @@ SHOPWARE_SECRET_ACCESS_KEY=...
 The `--admin` flag grants full Admin API access. For production use, omit `--admin`, create a dedicated ACL role with only the required permissions, and assign it to the integration. See [Configuration](./configuration.md#acl-and-permissions) for details.
 :::
 
+<YoutubeRef video="cjk7nTa1O6I" title="How to Connect AI agent to Shopware Using the MCP Server | Step-by-Step Tutorial" target="_blank" />
+
 ## Step 3: Configure your AI client
 
 ### Claude Desktop and Cursor
@@ -164,6 +166,20 @@ Disable the toggle for each capability type and select only the tools, resources
 When a tool is enabled, its declared dependencies are automatically included. For example, enabling `shopware-entity-delete` also enables `shopware-entity-search` and `shopware-entity-schema` because they are required for it to work.
 
 See [Configuration](./configuration.md) for the global `allowed_tools` safety switch, the full per-principal allowlist reference, and session store options.
+
+## Try your first prompts
+
+Your AI client is now connected to Shopware. Try a few prompts to verify that the MCP server is working correctly.
+
+For example:
+
+- Show all products in my store.
+- Find products with stock below five units.
+- Find all active products without descriptions.
+- Generate SEO-friendly meta titles for your products (eg, guitars)
+- Increase prices of products in a specific category by 5%. Show a preview before applying the changes.
+
+If the AI can retrieve data and respond to these requests, your integration is ready to use.
 
 ## Next steps
 
