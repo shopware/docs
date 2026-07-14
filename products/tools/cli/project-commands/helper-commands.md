@@ -25,6 +25,23 @@ shopware-cli project create <folder-name> <version>
 
 The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
 
+## Development environment
+
+Shopware CLI provides a fully integrated Docker-based development environment. See the [Development Environment](../../../../guides/development/dev-environment.md) guide for the full workflow, or the [CLI command reference](./dev-environment.md) for a quick overview.
+
+```bash
+# Launch the interactive development terminal user interface (TUI)
+shopware-cli project dev
+
+# Start/stop in the background
+shopware-cli project dev start
+shopware-cli project dev status
+shopware-cli project dev stop
+
+# View application logs
+shopware-cli project logs
+```
+
 ## Replacements to include in shell scripts
 
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
@@ -36,7 +53,7 @@ Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-Additionally to the replacement, Shopware CLI allows only watching a specific set of extensions or excluding a few.
+In addition to the replacements, Shopware CLI allows only watching a specific set of extensions or excluding a few.
 
 To only watch specific extensions:
 
@@ -52,7 +69,7 @@ shopware-cli project admin-watch --skip-extensions <name>,<second>....
 
 ### Building only custom extensions
 
-When working with a lot of 3rd party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
+When working with many third-party extensions, `project storefront-build` and `project admin-build` would become slow, when all extensions are built.
 This is unnecessary because store extensions are shipped together with their assets.
 
 Use
@@ -82,7 +99,7 @@ It is just a shortcut for `bin/console cache:clear` without having to be in the 
 shopware-cli project clear-cache
 ```
 
-If in the `.shopware-project.yml` a API connection is configured, it will clear the remote instance cache.
+If an API connection is configured in the `.shopware-project.yml`, it will clear the remote instance cache.
 
 ## Console
 
@@ -91,6 +108,8 @@ Similar to `clear-cache`, there is also a general shortcut for `bin/console`:
 ```bash
 shopware-cli project console <command>
 ```
+
+A shorter `swx` alias is also available. See [Running Shopware commands](../../../../guides/development/dev-environment.md#running-shopware-commands).
 
 ## Admin API
 
