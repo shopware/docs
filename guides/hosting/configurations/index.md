@@ -54,7 +54,7 @@ bin/console config:dump-reference shopware
 
 Symfony environment variable placeholders, such as `%env(int:CART_EXPIRE_DAYS)%`, are resolved at runtime. They cannot be used for Shopware configuration options that enforce a positive minimum value while the service container is compiled. Symfony validates these options against an integer placeholder value of `0`, which fails the minimum-value constraint.
 
-The following options are affected:
+The following options are affected (depending on your Shopware version and its configuration constraints):
 
 - `shopware.filesystem.batch_write_size`
 - `shopware.sitemap.batchsize`
