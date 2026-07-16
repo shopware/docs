@@ -13,8 +13,8 @@ Use this guide when your extension needs another PHP package — for example, a 
 
 How the dependency gets installed depends on how your plugin is set up:
 
-- **Static plugins or Composer-managed plugins (recommended):** The project's root Composer installation resolves and installs your plugin's dependencies automatically. No extra steps are needed — this is one of the main reasons the [static plugin approach](../plugin-base-guide.md) is recommended.
-- **Zip-installed plugins (e.g., distributed via the Shopware Store):** The dependencies are not resolved by the project. You must either let Shopware run Composer during installation by overriding `executeComposerCommands()`, or bundle the packages with your plugin. Both options are described below.
+* **Static plugins or Composer-managed plugins (recommended):** The project's root Composer installation resolves and installs your plugin's dependencies automatically. No extra steps are needed — this is one of the main reasons the [static plugin approach](../plugin-base-guide.md) is recommended.
+* **Zip-installed plugins (e.g., distributed via the Shopware Store):** The dependencies are not resolved by the project. You must either let Shopware run Composer during installation by overriding `executeComposerCommands()`, or bundle the packages with your plugin. Both options are described below.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ All you need for this guide is a running Shopware 6 instance and full access to 
 
 ## Adding a Composer package to the `composer.json` file
 
-As an example, in this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), a package that provides the functionality to export PHP variables for visualization. 
+As an example, in this guide we will install [`exporter`](https://github.com/sebastianbergmann/exporter), a package that provides the functionality to export PHP variables for visualization.
 
 Before installing, temporarily remove the `shopware/core` entry from the `require` section of your plugin's `composer.json`. Otherwise, Composer would download Shopware itself into your plugin's `vendor` directory.
 
