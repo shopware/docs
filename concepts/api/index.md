@@ -21,3 +21,7 @@ Both APIs use HTTP and exchange JSON payloads. The Administration API requires O
 * Header-based contextual behavior
 
 These patterns form the foundation of integration development.
+
+## Start building
+
+Use the [Working with APIs](../../guides/development/integrations-api/index.md) guide for practical API setup, authentication, request examples, and links to the generated API reference.

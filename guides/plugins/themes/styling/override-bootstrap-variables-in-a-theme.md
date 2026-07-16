@@ -15,6 +15,8 @@ The storefront theme is implemented as a skin on top of Bootstrap:
 
 Sometimes it is necessary to adjust SCSS variables if you want to change the look of the Storefront for example default variables like `$border-radius` which is defined by Bootstrap. This guide will show how you can override those SCSS variables.
 
+For background on why the Storefront uses Bootstrap, see the [Storefront Concept](../../../../concepts/framework/architecture/storefront-concept.md).
+
 ## Prerequisites
 
 All you need for this guide is a running Shopware 6 instance and full access to both the files, as well as the command line. You also need to have an installed and activated theme which is assigned to a sales channel. Checkout the [Create a first theme](../create-a-theme.md) guide if you have not yet a working theme setup.

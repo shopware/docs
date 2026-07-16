@@ -11,7 +11,7 @@ Storefront Themes let you customize the visual appearance of the Shopware [Store
 
 Unlike regular plugins, themes do not contain backend logic. Their purpose is purely storefront presentation, and they are managed per sales channel through the Theme Manager.
 
-Shopware comes with a default theme built on top of Bootstrap 5. Everything you can do with Bootstrap, you can do with the Shopware Storefront.
+Shopware comes with a default theme built on top of Bootstrap 5. Everything you can do with Bootstrap, you can do with the Shopware Storefront. For background on the Storefront frontend stack and Bootstrap foundation, see the [Storefront Concept](../../../concepts/framework/architecture/storefront-concept.md).
 
 ```text
 Extensions
