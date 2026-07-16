@@ -11,11 +11,11 @@ nav:
 
 Plugins often need to save data into a custom database table. Shopware 6's data abstraction layer (DAL) fully supports custom entities, so you don't have to take care of the data handling at all.
 
-This guide builds on the [Plugin Base Guide](../../plugin-base-guide.md). Before creating a custom DAL entity, create the database table with a [plugin migration](../../database/database-migrations.md). Familiarity with [Dependency Injection](../../services/dependency-injection.md) is also helpful because the entity definition is registered as a service.
-
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../database/database-migrations.md). Also, you'll have to understand how the [Dependency injection](../../services/dependency-injection.md) works as well.
+This guide builds upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples reference that plugin. 
+
+Before creating a custom DAL entity you'll need to create a database table, which requires an understanding of [plugin migrations](../../database/database-migrations.md). Familiarity with [Dependency injection](../../services/dependency-injection.md) is also required, because the entity definition is registered as a service.
 
 ::: info
 Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
