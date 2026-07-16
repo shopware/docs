@@ -11,7 +11,7 @@ nav:
 
 The following section guides you on the security, performance or structural configurations specific to Shopware 6.
 
-## How shop configuration works
+## How Shopware configuration works
 
 Shopware configuration can come from different places, depending on whether the value is operational, environment-specific, or meant to be changed by shop administrators.
 
