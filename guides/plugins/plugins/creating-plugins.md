@@ -159,12 +159,12 @@ Set up [CI](../../development/testing/ci.md) early. Run static analysis, tests, 
 
 ### Depending on other plugins
 
-If your plugin requires another plugin to be installed, declare it in the `require` section of your `composer.json` using the other plugin's Composer name and version:
+If your plugin requires another plugin to be installed, declare it in the `require` section of your `composer.json` using the other plugin's Composer name and version (here, an example plugin named `swag/other-plugin`):
 
 ```json
 "require": {
     "shopware/core": "~6.7.0",
-    "swag/swag-basic-example": "^1.0"
+    "swag/other-plugin": "^1.0"
 }
 ```
 
