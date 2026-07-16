@@ -269,7 +269,7 @@ To prevent failure of in-flight requests during the secret rotation, your app **
 :::
 
 ::: info
-On the Shopware side, a rotation or install whose confirmation is interrupted stays recoverable. See [App Secret Rotation & Recovery](app-secret-recovery.md) for the operator commands (`app:secret:rotate`, `app:secret:recover`) and what to do when a secret has been claimed by another shop.
+On the Shopware side, a rotation or install whose confirmation is interrupted stays recoverable. See [App Secret Rotation & Recovery](app-secret-recovery.md) for the operator command `app:secret:rotate`, recovery by re-running `app:install`, and what to do when a secret has been claimed by another shop.
 :::
 
 ## Requirements
