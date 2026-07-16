@@ -197,3 +197,16 @@ Therefore, a typical update method might look more like this:
 ```
 
 If you don't use the Shopware migration system, an empty collection (`NullObject`) will be in the context.
+
+### Customizing the migration path / namespace
+
+Most plugins should keep the default `src/Migration` directory — the tooling and examples in this guide assume it. If you have a specific reason to relocate your migrations, you can choose another namespace for them by overwriting your plugin's `getMigrationNamespace()` method in the plugin base class:
+
+```php
+public function getMigrationNamespace(): string
+{
+    return 'Swag\BasicExample\MyMigrationNamespace';
+}
+```
+
+Since the path is read from the namespace, your Migration directory would have to be named `MyMigrationNamespace` now.
