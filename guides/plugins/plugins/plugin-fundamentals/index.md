@@ -19,17 +19,9 @@ Plugin fundamentals are the building blocks for adding behavior to a Shopware pl
 - Register services or inject dependencies: [Services and dependency injection](../services/index.md)
 - React to Shopware events: [Listening to events](../framework/event/listening-to-events.md)
 - Change or extend existing services: [Decorating services](../services/adjusting-service.md#decorating-the-service)
+- Add a Storefront URL or render a Storefront response: [Add Custom Controller](../storefront/controllers/add-custom-controller.md)
 - Add database changes: [Database migrations](../database/database-migrations.md)
 - Add Composer or npm dependencies: [Plugin dependencies](../dependencies/index.md)
-
-## How should your plugin code be triggered?
-
-- React when Shopware does something, such as loading, writing, or processing data — use an event subscriber: [Listening to events](../framework/event/listening-to-events.md)
-- Add a Storefront URL or render a Storefront response — use a Storefront controller: [Add Custom Controller](../storefront/controllers/add-custom-controller.md)
-- Add a command that runs through `bin/console` — use a console command: [CLI commands](add-custom-commands.md)
-- Run plugin logic regularly in the background — use a scheduled task: [Scheduled tasks](add-scheduled-task.md)
-- Share reusable plugin logic between subscribers, controllers, commands, or tasks — use a service: [Services and dependency injection](../services/index.md)
-- Change behavior of an existing Shopware service — use service decoration: [Decorating services](../services/adjusting-service.md#decorating-the-service)
 
 As a rule of thumb: use an event subscriber when your plugin reacts to something Shopware already does, use a controller when you need a new HTTP entry point, use a command for manual or scripted CLI work, and use a scheduled task for recurring background work.
 
