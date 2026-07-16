@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-This guide covers how to **rotate** an app's secret and how to **recover** an app when a secret rotation or first registration does not complete — using the `app:secret:rotate` and `app:secret:recover` console commands.
+This guide covers how to **rotate** an app's secret and how to **recover** an app when a secret rotation or first registration does not complete — using the `app:secret:rotate` command, and by re-running `app:install` to recover.
 
 App registration shares a secret that Shopware uses to sign every request to the app's backend. Renewing that secret — and the first registration itself — takes two steps: the app generates a new secret during the handshake, then starts using it only once it has processed Shopware's confirmation request.
 
@@ -51,7 +51,7 @@ bin/console app:secret:rotate <app-name>
 bin/console app:secret:rotate
 ```
 
-Rotation re-registers the app with a freshly generated secret; the new secret becomes active only once the app confirms it. If the confirmation is interrupted, the new secret is retained in `unconfirmed_app_secrets` and the rotation reports a failure — the active secret is left untouched, and the app is recovered with the command below.
+Rotation re-registers the app with a freshly generated secret; the new secret becomes active only once the app confirms it. If the confirmation is interrupted, the new secret is retained in `unconfirmed_app_secrets` and the rotation reports a failure — the active secret is left untouched, and the app is recovered by re-running `app:install`, as described below.
 
 ::: warning
 Rotation **refuses to run** if the app already has an unconfirmed secret (`appSecretRotationAlreadyPending`). Recover that secret first — rotating again would overwrite the only record of a secret the app may already hold.
@@ -59,28 +59,25 @@ Rotation **refuses to run** if the app already has an unconfirmed secret (`appSe
 
 When triggered via the API, rotation is queued (`RotateAppSecretMessage`) and runs in the background; the CLI command runs it synchronously and reports the result directly.
 
-## Recovering a stranded app — `app:secret:recover`
+## Recovering a stranded app — re-run `app:install`
 
-Use this after a rotation or install whose confirmation was interrupted left an unconfirmed secret.
+When a rotation or install whose confirmation was interrupted leaves an unconfirmed secret, **re-run the install** — there is no separate recovery command and no opt-in flag:
 
 ```bash
-# List every app that currently has an unconfirmed secret (the recovery worklist)
-bin/console app:secret:recover
-
-# Recover one app
-bin/console app:secret:recover <app-name>
+# Recover (and, if the install was interrupted, finish) the app — just install it again
+bin/console app:install <app-name>
 ```
 
-Recovery re-registers the app on a fresh integration, signing each attempt with a secret the app might still hold — the **unconfirmed secrets newest-first, then the committed secret** as a fallback. The first secret the app accepts wins; a fresh secret is then committed and both sides are back in sync. Recovery is operator-driven by design: nothing happens automatically, and the metric below flags apps that need it.
+Re-running `app:install` detects the pending unconfirmed secret and re-registers the app on a fresh integration, signing each attempt with a secret the app might still hold — the **unconfirmed secrets newest-first, then the committed secret** as a fallback. The first secret the app accepts wins; a fresh secret is then committed and both sides are back in sync. A **half-finished install** is resumed and completed; a **fully-installed app** whose rotation broke is credential-repaired only. The `app.unconfirmed_app_secrets.count` gauge (below) surfaces how many apps currently need recovering.
 
-`app:secret:recover <app>` reports one of:
+Re-running `app:install <app>` on a pending app results in one of:
 
-| outcome | what it means | next step |
+| result | what it means | next step |
 |---|---|---|
-| **Re-registered with a fresh secret** | a secret the app still trusts was found, so both sides are re-synced | done — reinstall the app to finish a half-completed install |
-| **Nothing to recover** | no unconfirmed secret; the app is already in sync | — |
-| **Outcome unknown** | an attempt timed out or returned an HTTP `5xx`; all state is kept intact | run `app:secret:recover` again |
-| **Claimed by another party** | the app trusts none of Shopware's secrets, so recovery is not possible | run `app:shop-id:change` (see below) |
+| **Recovered & completed** | a secret the app still trusts was found, so both sides are re-synced; a half-finished install is finished | done |
+| **Already installed** | no unconfirmed secret left to recover (or a concurrent run already recovered it) | — |
+| **Outcome unknown** | an attempt timed out or returned an HTTP `5xx`; all state is kept intact | re-run `app:install` |
+| **Recovery failed — claimed by another party** | the app trusts none of Shopware's secrets, so recovery is not possible | run `app:shop-id:change` (see below) |
 | **Recovery failed** | a hard error, such as the lock store being unavailable (HTTP `503`) or a missing manifest | fix the cause, then retry |
 
 ### Timeline — recoverable (the common case)
@@ -88,7 +85,7 @@ Recovery re-registers the app on a fresh integration, signing each attempt with 
 | step | what happens |
 |---|---|
 | 1 | An operator rotates *MyApp*; the new secret is saved as unconfirmed; the confirmation times out. |
-| 2 | `bin/console app:secret:recover MyApp` signs with the unconfirmed secret, then the previous one, until MyApp accepts. |
+| 2 | Re-run `bin/console app:install MyApp`; it signs with the unconfirmed secret, then the previous one, until MyApp accepts. |
 | 3 | A fresh secret is committed, and both sides are back **in sync**. |
 
 ## When recovery isn't possible — `app:shop-id:change`
@@ -99,8 +96,8 @@ The **claimed** outcome means the app trusts none of the secrets Shopware holds,
 |---|---|
 | 1 | Production *Shop A* is cloned to *staging* — the clone copies Shop A's shop ID **and** its app secrets. |
 | 2 | Staging rotates MyApp's secret; the app now binds that shop ID to *staging's* new secret. |
-| 3 | Shop A runs `app:secret:recover MyApp`, but the app trusts only staging's secret, so every candidate is rejected. |
-| 4 | Recovery reverts cleanly and reports **claimed**, so Shop A runs `bin/console app:shop-id:change` to take a fresh, distinct identity, then re-registers. |
+| 3 | Shop A re-runs `app:install MyApp`, but the app trusts only staging's secret, so every candidate is rejected. |
+| 4 | Recovery reverts cleanly and reports **recovery failed** (claimed), so Shop A runs `bin/console app:shop-id:change` to take a fresh, distinct identity, then re-registers. |
 
 This is genuinely unrecoverable, not a defect: the app keys registration by **shop ID**, and the clone now legitimately owns that ID's secret. No secret Shop A holds can reclaim it — the only correct move is to give Shop A its own identity.
 
@@ -110,7 +107,7 @@ A cloned shop (for example, a staging instance restored from a production dump) 
 
 ## Uninstall, reinstall, and the deleted-apps store
 
-Separate from `app:secret:recover`, Shopware carries an app's **committed** secret across an uninstall and reinstall on the same shop: on uninstall it stashes the committed secret in the `deleted_apps` table, and on reinstall it replays it to sign the re-registration. A reinstall therefore succeeds whether or not the app acts on the `app.deleted` (uninstall) webhook:
+Separate from install-based recovery, Shopware carries an app's **committed** secret across an uninstall and reinstall on the same shop: on uninstall it stashes the committed secret in the `deleted_apps` table, and on reinstall it replays it to sign the re-registration. A reinstall therefore succeeds whether or not the app acts on the `app.deleted` (uninstall) webhook:
 
 | step | what happens |
 |---|---|
@@ -127,16 +124,16 @@ This carries only the **committed** secret. An app caught **mid-rotation** holds
 | 2 | The operator uninstalls the app. The store keeps only the committed `S1`; the unconfirmed `S2` is discarded. |
 | 3 | If the app kept its record, the reinstall replays `S1` but the app trusts only `S2`, so the reinstall is rejected and the app is stranded, with no record of `S2` anywhere. |
 
-So **recover the live app first** with `app:secret:recover`, then uninstall if you still need to.
+So **recover the live app first** by re-running `app:install`, then uninstall if you still need to.
 
 ::: info
-The two mechanisms are complementary: the `deleted_apps` store carries the **committed** secret across an uninstall automatically; `app:secret:recover` re-syncs the **unconfirmed** secret of an app that is still installed.
+The two mechanisms are complementary: the `deleted_apps` store carries the **committed** secret across an uninstall automatically; re-running `app:install` re-syncs the **unconfirmed** secret of an app that is still installed.
 :::
 
 ## Limits
 
 - **Recover the live app row.** Recover **before** you uninstall or run `app:shop-id:change` on an app that still has an unconfirmed secret. Uninstall discards the unconfirmed secret — only the *committed* secret is remembered for a reinstall — so an app whose only record is unconfirmed cannot be recovered once it is uninstalled.
-- **Recovery is secret-only.** It re-syncs the secret but does not finish a half-completed install (the app stays inactive, its lifecycle handlers unrun). Complete such an install by reinstalling it; the recovered secret is replayed automatically.
+- **A completed app is credential-repaired only.** Re-running `app:install` on a *fully-installed* app whose rotation broke re-syncs the secret without replaying its lifecycle; a *half-finished* install, by contrast, is resumed and completed by the same command.
 - **Cross-instance locking.** Rotation and recovery serialize per app behind a lock. In a multi-server deployment, configure a shared `LOCK_DSN` (Redis or a database DSN) — the default `flock` is per-host and does not serialize across instances.
 
 ## Observability
@@ -150,9 +147,9 @@ A periodic metric reports how many apps are stuck with an unconfirmed secret, al
 | metric | type | meaning |
 |---|---|---|
 | `app.unconfirmed_app_secrets.count` | gauge | apps currently holding an unconfirmed secret (a "stuck" rotation) |
-| `app.registration.outcome.count` | counter | registration confirms, tagged `committed`, `rejected`, `ambiguous`, or `handshake_failed` |
+| `app.registration.failure.count` | counter | registration confirm **failures**, tagged `rejected`, `ambiguous`, or `handshake_failed` |
 | `app.secret_recovery.outcome.count` | counter | recovery attempts, tagged `recovered`, `claimed`, or `unknown` |
 
 ::: info
-A rising `app.unconfirmed_app_secrets.count` means rotations or installs are not confirming. Run `bin/console app:secret:recover` with no argument to list the affected apps and recover them.
+A rising `app.unconfirmed_app_secrets.count` means rotations or installs are not confirming. Re-run `bin/console app:install <app-name>` on an affected app to recover it.
 :::
