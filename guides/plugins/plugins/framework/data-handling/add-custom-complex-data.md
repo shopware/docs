@@ -13,7 +13,7 @@ Plugins often need to save data into a custom database table. Shopware 6's data 
 
 ## Prerequisites
 
-This guide builds upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples reference that plugin. 
+This guide builds upon the [Plugin base guide](../../../plugins/plugin-base-guide.md), but any plugin will work here. Just note that all examples reference that plugin. 
 
 Before creating a custom DAL entity you'll need to create a database table, which requires an understanding of [plugin migrations](../../database/database-migrations.md). Familiarity with [Dependency injection](../../services/dependency-injection.md) is also required, because the entity definition is registered as a service.
 
