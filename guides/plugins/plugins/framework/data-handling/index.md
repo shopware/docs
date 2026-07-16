@@ -18,5 +18,3 @@ Start with the step that matches what you want to do:
 - React to DAL write or entity events — [Using Database Events](using-database-events.md)
 
 For custom plugin data, create the database table first with a migration, then add the DAL entity definition that maps to that table.
-
-Also, [Using Database Events](using-database-events.md) will come in handy when you need to react to DAL writes or entity events.
