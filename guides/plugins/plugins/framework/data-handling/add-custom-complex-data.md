@@ -27,7 +27,7 @@ We'll start with creating a new database table. Make sure to always add your ind
 
 In this guide we'll name our table `swag_example`, you'll find this name a few more times in here, so make sure to remember that one.
 
-As already mentioned in the prerequisites, creating a database table is done via [plugin migrations](../../database/database-migrations.md) — use the guide to understand how this example works.
+As already mentioned in the prerequisites, creating a database table is done via [plugin migrations](../../database/database-migrations.md) - use the guide to understand how this example works.
 
 ```php
 // <plugin root>/src/Migration/Migration1611664789Example.php
