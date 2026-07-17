@@ -27,7 +27,7 @@ Due to their direct access to the Shopware process and the database, **plugins a
 
 ## Start building
 
-Use the [Extension Development](../../guides/development/extensions/index.md) guide to choose between apps and plugins, or go directly to the implementation path you need:
+Use the [Extensions](../../guides/development/extensions/index.md) guide to choose between apps and plugins, or go directly to the implementation path you need:
 
 - [App Base Guide](../../guides/plugins/apps/app-base-guide.md)
 - [Plugin Base Guide](../../guides/plugins/plugins/plugin-base-guide.md)
