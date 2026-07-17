@@ -24,4 +24,4 @@ These patterns form the foundation of integration development.
 
 ## Start building
 
-Use the [Working with APIs](../../guides/development/integrations-api/index.md) guide for practical API setup, authentication, request examples, and links to the generated API reference.
+Use the [API](../../guides/development/integrations-api/index.md) guide for practical API setup, authentication, request examples, and links to the generated API reference.
