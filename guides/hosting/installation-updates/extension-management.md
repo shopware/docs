@@ -54,7 +54,7 @@ bin/console plugin:install --activate <extension-name>
 
 You can also find the Composer package name when you click "Install via Composer" in the Shopware Account.
 
-::: info
+:::warning
 Removing a Composer package or uninstalling a plugin does not cancel a paid subscription. License state is managed in the Shopware Account, and cancellation must be done there.
 :::
 
