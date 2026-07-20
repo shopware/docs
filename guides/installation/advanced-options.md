@@ -5,9 +5,26 @@ nav:
 
 ---
 
-# Advanced options
+# Advanced Options
 
 This section covers optional and advanced Docker configuration for Shopware projects. Refer to it once your local environment is running and you want to customize your setup, mirror production more closely, or support advanced workflows.
+
+## Installing into an existing directory
+
+If you already have a target directory, `cd` into it and run the `project create` command. When prompted for a project name, leave the field empty. The project will
+be scaffolded in the current directory:
+
+```bash
+cd /path/to/project
+shopware-cli project create
+```
+
+In non-interactive mode, omit the project name argument (or pass `.`) to
+achieve the same result:
+
+```bash
+shopware-cli project create --no-interaction
+```
 
 ## Customizing the runtime environment
 
