@@ -12,7 +12,7 @@ This section covers optional and advanced Docker configuration for Shopware proj
 ## Installing into an existing directory
 
 If you already have a target directory, `cd` into it and run the `project create` command. When prompted for a project name, leave the field empty. The project will
-be scaffolded in the current directory:
+be generated in the current directory:
 
 ```bash
 cd /path/to/project
