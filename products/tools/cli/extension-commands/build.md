@@ -65,7 +65,7 @@ Also `shopware-cli project ci` detects know automatically this bundle and builds
 Building with esbuild works completely standalone without the Shopware codebase. This means if you import files from Shopware, you have to copy it to your extension.
 :::
 
-esbuild can be used for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
+The `esbuild` bundler can be used for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
 
 ```yaml
 # .shopware-extension.yml
