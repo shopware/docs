@@ -27,23 +27,20 @@ Development tools such as:
 
 are managed via the Shopware CLI. These are installed into the user's environment and shared across projects and extensions, rather than being added as project-level `require-dev` dependencies.
 
-[Demo data](https://github.com/shopware/SwagPlatformDemoData) is optional and can be installed during the in-browser first-run wizard.
+[Demo data](https://github.com/shopware/SwagPlatformDemoData) is optional. For developer setups, prefer terminal-based setup and development workflows instead of the in-browser First Run Wizard.
 
 Your local project is ready for debugging, profiling, and extension development out of the box.
 
 In day-to-day development, you'll mostly interact with:
 
-- **Makefile**: shortcuts for Docker and Shopware commands (`make up`, `make setup`, etc.)
-- **custom/**: where you build your own plugins and themes
-- **bin/console**: the application CLI that ships with Shopware (Symfony console).
-  It is used for tasks such as running migrations, installing plugins, clearing caches, or managing configuration in your project.
+- **`shopware-cli project dev`**: starts and manages the Docker-based development environment, including containers, logs, watchers, credentials, and service URLs.
+- **`shopware-cli project console <command>`**: runs Shopware application commands from your host without opening an interactive container shell.
+- **`swx <command>`**: shortcut for `shopware-cli project console <command>`, for example `swx cache:clear`.
+- **`custom/`**: where you build your own plugins and themes.
 
-:::info
-`bin/console` differs from the standalone [Shopware CLI](https://github.com/shopware/shopware-cli) used for extension builds and CI workflows.
-The Docker setup already includes the standalone Shopware CLI inside the container.
-:::
+`bin/console` is the application CLI that ships with Shopware (Symfony console). Use it for Shopware application commands such as migrations, plugin installation, cache clearing, or configuration changes. In Docker-based setups, run those commands through `shopware-cli project console` or `swx` so they execute in the correct container context.
 
-Most other files in the project either configure the environment or support these core layers.
+The standalone [Shopware CLI](https://github.com/shopware/shopware-cli) is different from `bin/console`: it manages project workflows such as the development environment, helper commands, extension builds, and CI workflows.
 
 ## Project template
 
@@ -107,7 +104,7 @@ This table outlines the key directories and files in your Shopware project and t
 | **config/**               | Directory                   | Symfony configuration files (framework, database, mail, etc.).                             | Similar to `config/` in many web frameworks.                                                      |
 | **custom/**               | Directory                   | Your plugins, themes, or app customizations.                                               | This is where you add new extensions - your "src" for Shopware plugins.                           |
 | **files/**                | Directory                   | Uploaded media and temporary files.                                                        | Ignored by git; generated at runtime.                                                             |
-| **Makefile**              | Build helper                | Shortcuts for Docker tasks (`make up`, `make setup`, etc.).                                | Replaces long Docker commands with memorable aliases.                                             |
+| **Makefile**              | Legacy build helper                | May exist in older setups with shortcuts for Docker tasks (`make up`, `make setup`, etc.).                                | Replaces long Docker commands with memorable aliases.                                             |
 | **public/**               | Web root                    | The actual web-server-accessible directory (contains `index.php`, assets, etc.).           | Like `/dist` in JS frameworks or `/public_html`.                                                  |
 | **src/**                  | Source code                 | Shopware's core application source.                                                        | Where the main PHP codebase lives; not usually edited in a project clone.                         |
 | **symfony.lock**          | Symfony dependency snapshot | Records Symfony recipes applied during setup.                                              | Used internally by Symfony Flex; no manual editing.                                               |

@@ -126,7 +126,7 @@ Here's an example `composer.json` you can refer to:
         }
     ],
     "require": {
-        "shopware/core": "~6.6.0"
+        "shopware/core": "~6.7.0"
     },
     "extra": {
         "shopware-plugin-class": "Swag\\BasicExample\\SwagBasicExample",
@@ -157,6 +157,19 @@ If you change the `autoload.psr-4` path (for example, not using `src/`), adjust 
 Set up [CI](../../development/testing/ci.md) early. Run static analysis, tests, and `shopware-cli extension build` in CI so your plugin ZIP is reproducible and safe to promote across environments.
 :::
 
+### Depending on other plugins
+
+If your plugin requires another plugin to be installed, declare it in the `require` section of your `composer.json` using the other plugin's Composer name and version (here, an example plugin named `swag/other-plugin`):
+
+```json
+"require": {
+    "shopware/core": "~6.7.0",
+    "swag/other-plugin": "^1.0"
+}
+```
+
+Shopware will then enforce that the required plugin is installed and activated first. For version constraints, dev setups, and store considerations, see [Add Plugin Dependencies](./dependencies/add-plugin-dependencies.md).
+
 ## Add Shopware Packagist (optional)
 
 Shopware's Packagist instance enables management of Shopware Store plugins directly in the `composer.json`. To add the repository to your project, run:
@@ -165,7 +178,7 @@ Shopware's Packagist instance enables management of Shopware Store plugins direc
 composer config repositories.shopware composer https://packages.shopware.com
 ```
 
-Authentication via API token is required. Refer to ["Using Composer for plugin installation in Shopware"](https://www.shopware.com/en/news/using-composer-for-plugin-installation-in-shopware/) for detailed information.
+Authentication via API token is required. Refer to [Extension Management](../../hosting/installation-updates/extension-management.md) for how to obtain the token and set up `auth.json`.
 
 ## Manual creation (optional)
 

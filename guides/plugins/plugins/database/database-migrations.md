@@ -38,19 +38,6 @@ As you can see, there is one file in the `<plugin root>/src/Migration` directory
 | 1546422281         | A Timestamp used to make migrations incremental |
 | ExampleDescription | A descriptive name for your migration           |
 
-### Customizing the migration path / namespace
-
-You are also able to change the migration directory. This is done by choosing another namespace for your migrations, which can be changed by overwriting your plugin's `getMigrationNamespace()` method in the plugin base class:
-
-```php
-public function getMigrationNamespace(): string
-{
-    return 'Swag\BasicExample\MyMigrationNamespace';
-}
-```
-
-Since the path is read from the namespace, your Migration directory would have to be named `MyMigrationNamespace` now.
-
 ## Generate migration skeleton
 
 To generate the boilerplate code for your migration, you have to open your Shopware root directory in your terminal and execute the command `database:create-migration`. Below you can see the command used in this example to create the migration seen above in the file structure.
@@ -210,3 +197,16 @@ Therefore, a typical update method might look more like this:
 ```
 
 If you don't use the Shopware migration system, an empty collection (`NullObject`) will be in the context.
+
+### Customizing the migration path / namespace
+
+Most plugins should keep the default `src/Migration` directory — the tooling and examples in this guide assume it. If you have a specific reason to relocate your migrations, you can choose another namespace for them by overwriting your plugin's `getMigrationNamespace()` method in the plugin base class:
+
+```php
+public function getMigrationNamespace(): string
+{
+    return 'Swag\BasicExample\MyMigrationNamespace';
+}
+```
+
+Since the path is read from the namespace, your Migration directory would have to be named `MyMigrationNamespace` now.
