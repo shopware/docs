@@ -17,10 +17,6 @@ This guide builds upon the [Plugin base guide](../../../plugins/plugin-base-guid
 
 Before creating a custom DAL entity you'll need to create a database table, which requires an understanding of [plugin migrations](../../database/database-migrations.md). Familiarity with [Dependency injection](../../services/dependency-injection.md) is also required, because the entity definition is registered as a service.
 
-::: info
-Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-:::
-
 ## Creating the database table
 
 We'll start with creating a new database table. Make sure to always add your individual prefix to your plugin's database tables, e.g. your manufacturer name.
