@@ -18,4 +18,4 @@ To write advanced apps, its recommended that you use the [Meteor Admin SDK](http
 - **Developer experience:** Have a great development experience right from the start. And it will become better and better in the future.
 - **Lightweight:** The whole library is completely tree-shakable and dependency-free. Every functionality can be imported granularly to keep your bundle as small and fast as possible.
 
-Go to [Installation](https://developer.shopware.com/resources/admin-extension-sdk/getting-started/installation.html) to get started. Or check out the [quick start guide](https://developer.shopware.com/resources/admin-extension-sdk/#quick-start).
+[Get started here](https://developer.shopware.com/resources/admin-extension-sdk/getting-started/).
