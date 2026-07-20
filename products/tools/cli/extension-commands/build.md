@@ -44,7 +44,7 @@ build:
 
 ## Extension as bundle
 
-If your extension is not a plugin but itself a bundle, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the `extra` part of the Composer definition like this:
+If your extension is not a plugin but itself a bundle, make sure your Composer package type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the `extra` part of the Composer definition like this:
 
 ```json
 {
