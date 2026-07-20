@@ -30,48 +30,23 @@ Verify the installation:
 sw-paas version
 ```
 
-## Step 2: Connect Your Git Repository
+## Step 2: Create Your First Project and Connect Your Git Repository
 
-To connect your private git repository with our backend, you need to add an SSH key to your repository. This key is used to clone your repository and deploy your code to the cluster.
-
-### 2.1 Generate and Store SSH Key
-
-Run the following command to create an SSH key and store it securely in your organization's vault:
+Start the project creation wizard:
 
 ```sh
-sw-paas vault create --type ssh
+sw-paas project create
 ```
 
-This command will generate a new SSH key pair and store the private key securely.
-
-::: info
-Organization vs Project Level
-
-- **Organization level**: All projects can use the key
-- **Project level**: Only a specific project can use the key (add `--project` flag)
-
-Project-level keys override organization-level keys.
-:::
-
-### 2.2 Add Public Key to Repository
-
-After running the command, the CLI will display the generated public key. Copy this public key and add it to your repository settings:
+The wizard prompts you for the organization, project name, and Git repository. When asked whether to create a project SSH key for the repository, answer `y`. The CLI creates the key, displays its public key, and waits for you to add it to your repository settings:
 
 - **GitHub**: Go to `Settings` → `Deploy keys` → `Add deploy key`
 - **GitLab**: Go to `Settings` → `Repository` → `Deploy Keys`
 - **Bitbucket**: Go to `Repository settings` → `Access keys`
 
-Ensure the key has **read access** to the repository.
+Ensure the key has **read access** to the repository, then confirm in the wizard that you added the key. The CLI then completes the project creation.
 
-## Step 3: Create Your First Project
-
-Initialize a new PaaS project:
-
-```sh
-sw-paas project create --name "my-shopware-app" --repository "git@github.com:username/repo.git"
-```
-
-## Step 4: Create and deploy an Application Instance of the project
+## Step 3: Create and deploy an Application Instance of the project
 
 Create your application:
 
