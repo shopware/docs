@@ -7,7 +7,7 @@ nav:
 # Shopware 6 Community Edition Installation
 
 :::info
-The recommended way for developers to build Shopware is with the Docker setup, made simple with a [Shopware CLI](../../products/tools/cli/index.md) installation path. Docker provides a consistent, production-like environment for development. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
+The recommended way for developers to build Shopware is with the Docker setup, made simple by the [Shopware CLI](../../products/tools/cli/index.md) installation path. Docker provides a consistent, production-like environment for development. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
 :::
 
 Welcome to the Installation Guide for Shopware 6 Community Edition (CE)! This guide will help you set up a local Shopware 6 development environment, whether you’re:
