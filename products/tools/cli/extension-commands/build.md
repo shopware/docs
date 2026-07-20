@@ -81,14 +81,13 @@ build:
 ### Content-addressable assets and Vite manifest
 
 When building with esbuild, Shopware CLI emits content-hashed variants of the
-compiled JS and CSS files (e.g. `<name>-<hash>.js`) alongside the unhashed
-files, in the same directories.
+compiled JS and CSS files (e.g. `<name>-<hash>.js`) alongside files without hashes in the same directories.
 
 - **Shopware 6.7+**: The generated `.vite/manifest.json` and `.vite/entrypoints.json`
   reference the hashed filenames, so browser and CDN caches are invalidated
   automatically whenever the extension assets change. Note that an existing
   `.vite/manifest.json` is overwritten on each esbuild build.
-- **Shopware < 6.7**: The unhashed files are kept for backward compatibility and
+- **Shopware < 6.7**: The files without hashes are kept for backward compatibility and
   continue to be loaded as before.
 
 No configuration is required. This happens automatically when esbuild is enabled.
