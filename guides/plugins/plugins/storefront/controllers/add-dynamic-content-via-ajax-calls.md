@@ -18,7 +18,7 @@ For this guide we will use a very simple controller that returns a timestamp wra
 
 ::: info
 Refer to this video on **[Creating a JSON controller](https://www.youtube.com/watch?v=VzREUDdpZ3E)** dealing with the creation of a controller that returns JSON data.
-Available also on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Available also on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
 :::
 
 As mentioned before this guide builds up upon the [adding a custom controller](../controllers/add-custom-controller.md) guide.

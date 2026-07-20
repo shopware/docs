@@ -20,7 +20,7 @@ A running plugin. Review the [Plugin Base Guide](../plugin-base-guide.md) for in
 ## Create your plugin configuration
 
 ::: info
-This video is part of the free Shopware Academy online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+This video is part of the free Shopware Academy online training ["Backend Development"](https://hub.shopware.com/learn/unit/plugin-configuration).
 :::
 
 Create `src/Resources/config/config.xml` inside your plugin. The content of the `config.xml` will be dynamically rendered in the Administration. Start with a simple text field first; the available field types and advanced options are listed below.

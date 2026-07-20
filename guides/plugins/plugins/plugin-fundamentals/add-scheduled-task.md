@@ -14,7 +14,7 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 This guide builds on the [Plugin Base Guide](../plugin-base-guide.md). Familiarity with `services.php` is helpful — see [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md).
 
 ::: info
-Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
 :::
 
 ## Registering a scheduled task in the DI container
