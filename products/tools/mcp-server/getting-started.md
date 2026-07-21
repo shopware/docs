@@ -44,8 +44,6 @@ SHOPWARE_SECRET_ACCESS_KEY=...
 The `--admin` flag grants full Admin API access. For production use, omit `--admin`, create a dedicated ACL role with only the required permissions, and assign it to the integration. See [Configuration](./configuration.md#acl-and-permissions) for details.
 :::
 
-<YoutubeRef video="cjk7nTa1O6I" title="How to Connect AI agent to Shopware Using the MCP Server | Step-by-Step Tutorial" target="_blank" />
-
 ## Step 3: Configure your AI client
 
 ### Claude Desktop and Cursor
