@@ -108,7 +108,12 @@ sw-paas account service-account grant revoke
 ```
 
 :::warning
-Service account tokens can have stricter authorization policies than human users. When using a strictly scoped token, specify resources with `--organization-id`, `--project-id`, and `--application-id`. The corresponding `--organization`, `--project`, and `--application` options accept names, which the CLI resolves to IDs through internal list API calls. These lookups require additional permissions that a strictly scoped token might not have. To use resource names instead, grant the service account the `organization:viewer` and `project:viewer` policies.
+Service account tokens can have stricter authorization policies than human users. When using a
+strictly scoped token, specify resources with `--organization-id`, `--project-id`, and
+`--application-id`. The corresponding `--organization`, `--project`, and `--application` options
+accept names, which the CLI resolves to IDs through internal list API calls. These lookups require
+additional permissions that a strictly scoped token might not have. To use resource names instead,
+grant the service account the `organization:viewer` and `project:viewer` policies.
 :::
 
 ## Authentication tokens
