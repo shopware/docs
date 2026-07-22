@@ -42,3 +42,23 @@ Component.register('swag-basic-example', {
     }
 });
 ```
+
+## Using snackbars for brief feedback
+
+For brief feedback such as confirming that a plugin action completed, use the global Meteor snackbar instead of the notification mixin:
+
+```javascript
+Shopware.Service('snackbarService').addSnackbar({
+    id: 'my-plugin-saved',
+    message: 'The settings have been saved.',
+    variant: 'info',
+});
+```
+
+To dismiss a snackbar before its duration expires, pass the same ID to `removeSnackbar()`:
+
+```javascript
+Shopware.Service('snackbarService').removeSnackbar('my-plugin-saved');
+```
+
+The snackbar service is separate from the legacy notification system. Continue using the notification mixin when you need its title, actions, or system-notification behavior.
