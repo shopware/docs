@@ -61,9 +61,12 @@ When everything is enabled, the modal also shows inline privilege gaps, meaning 
 
 <img src="../../../assets/mcp-integrations-allowlist-selection-modal.png" alt="Allowlist modal with all tools selected, showing inline privilege warnings" width="500">
 
+Use deferred tools and toolsets for large tool catalogs. Keep only discovery and high-signal bootstrap tools visible by default. Put workflow-specific tools into groups such as `order`, `media`, or an extension-specific group, and let the client enable that group when the conversation needs it. This improves routing and context usage, but it is not a security control. The allowlist and ACL checks still decide whether the tool can be called.
+
 Strategies to reduce tool count within a single integration:
 
 - Use an `action` parameter to multiplex related operations into one tool (e.g., `shopware-theme-config` with `action: "get" | "update"`)
+- Mark specialized tools as deferred and assign them to a toolset group
 - Use resources instead of tools for static reference data
 
 ### Keep responses compact

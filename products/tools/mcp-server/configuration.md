@@ -90,6 +90,46 @@ Admin users bypass the user side of the intersection — if the user is an admin
 
 This pattern lets the app owner control which tools the integration may ever call, while users control which of those tools they personally allow the app to use on their behalf. Neither side can grant more than what the other has permitted.
 
+## Tool discovery
+
+To keep MCP sessions small, Shopware does not need to advertise every registered tool in the initial `tools/list` response. Tools can be marked as **deferred** by the server. Deferred tools stay callable when they are allowed, but they are hidden from the initial list until the client explicitly discovers or enables them.
+
+The default visible tools are the discovery tools and a small set of core tools that agents commonly need to get started, such as entity schema/search and tool search. Other tools can be found through tool search or enabled through a session toolset.
+
+### Tool search
+
+Use `shopware-tool-search` when the needed tool is not visible in `tools/list`. It searches the allowed tool catalog and returns matching tool definitions inline:
+
+```json
+{"query": "order state", "maxResults": 3}
+```
+
+Tool search respects the current allowlist. It cannot reveal or call tools that the integration or user is not allowed to use.
+
+### Session toolsets
+
+Toolsets are session-scoped groups of related tools. They are derived from explicit tool group metadata, for example `entity`, `order`, `media`, or `system-config`. They are a visibility convenience for the current MCP session, not a permission system.
+
+The typical client flow is:
+
+1. Call `shopware-toolsets-list` to see available toolsets.
+2. Call `shopware-toolset-enable` with the selected toolset name.
+3. Refresh `tools/list` when the client receives the list-changed notification.
+
+Example:
+
+```json
+{"toolset": "order"}
+```
+
+Enabling a toolset only makes tools visible if they are also allowed by the effective allowlist. The allowlist remains the hard security boundary.
+
+### List pagination and refresh notifications
+
+Capability list responses support MCP cursor pagination for tools, resources, and prompts. Clients should follow `nextCursor` until it is absent instead of assuming the first page contains every capability.
+
+Shopware sends MCP list-changed notifications when the visible capability set changes, for example after enabling a session toolset or after app capabilities are installed, updated, activated, deactivated, or removed. Clients should refresh `tools/list`, `resources/list`, or `prompts/list` according to the notification.
+
 ## MCP bundle configuration
 
 The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file, and Symfony loads it automatically; the `MCP_SERVER` feature flag only gates the HTTP endpoint (`/api/_mcp`), not the bundle's DI configuration. You do not need to create or modify it for standard setups.
