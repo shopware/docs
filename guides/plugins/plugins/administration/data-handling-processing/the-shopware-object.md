@@ -50,6 +50,26 @@ Module.register('your-module', {});
 
 Learn more about them here: [Creating administration module](../module-component-management/add-custom-module.md)
 
+## Display a snackbar
+
+Use the `snackbarService` for brief feedback in the Administration, such as confirming that a plugin action completed. It displays the message in the global Meteor snackbar.
+
+```javascript
+Shopware.Service('snackbarService').addSnackbar({
+    id: 'my-plugin-saved',
+    message: 'The settings have been saved.',
+    variant: 'info',
+});
+```
+
+To dismiss a snackbar before its duration expires, pass the same ID to `removeSnackbar()`:
+
+```javascript
+Shopware.Service('snackbarService').removeSnackbar('my-plugin-saved');
+```
+
+The snackbar service is separate from the legacy notification system. Continue using notifications when you need their title, actions, or system-notification behavior.
+
 ## A more general overview
 
 We now have discussed the most commonly used parts of the `Shopware` object, but there is much more to discover. Take a look at all these options in a brief overview below:
