@@ -268,6 +268,10 @@ As this process is also used for secret rotation, your app **must generate a new
 To prevent failure of in-flight requests during the secret rotation, your app **should accept the old secret in parallel** with the new secret for a short period (e.g., 1 minute). After that grace period, the signatures based on the old secret **must be** considered invalid.
 :::
 
+::: info
+On the Shopware side, a rotation or install whose confirmation is interrupted stays recoverable. See [App Secret Rotation & Recovery](app-secret-recovery.md) for the operator command `app:secret:rotate`, recovery by re-running `app:install`, and what to do when a secret has been claimed by another shop.
+:::
+
 ## Requirements
 
 Apps can declare requirements in their manifest that must be met for the app to function properly. For example, an app that communicates with the shop via the Admin API will fail if the shop is not publicly accessible — declaring that upfront avoids a registration attempt that is guaranteed to fail. Shopware validates requirements during installation and updates in `prod` environments. If a requirement is not met, the installation is rejected with a descriptive error before the app attempts registration.
@@ -495,7 +499,7 @@ That is why simple themes are not affected by shop migrations, and they will con
 Every time a request is made against an app backend, Shopware checks whether the current APP_URL differs from the one used when Shopware generated an ID for this shop.
 If the APP_URL differs, Shopware will stop sending requests to the installed apps to prevent data corruption on the apps' side.
 Now the user can resolve the issue using one of the following strategies.
-The user can either run a strategy with the `bin/console app:url-change:resolve` command, or with a modal that pops up when the Administration is opened.
+The user can either run a strategy with the `bin/console app:shop-id:change` command (formerly `app:url-change:resolve`), or with a modal that pops up when the Administration is opened.
 
 ### APP_URL change resolver
 
