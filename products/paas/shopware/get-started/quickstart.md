@@ -30,7 +30,7 @@ Verify the installation:
 sw-paas version
 ```
 
-## Step 2: Create Your First Project and Connect Your Git Repository
+## Step 2: Create your first project and connect your Git repository
 
 Start the project creation wizard:
 
@@ -46,7 +46,7 @@ The wizard prompts you for the organization, project name, and Git repository. W
 
 Ensure the key has **read access** to the repository, then confirm in the wizard that you added the key. The CLI then completes the project creation.
 
-## Step 3: Create and deploy an Application Instance of the project
+## Step 3: Create and deploy an application instance of the project
 
 Create your application:
 
