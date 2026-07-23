@@ -43,7 +43,7 @@ Production databases can be very large (100GB+ of MySQL data), making it impract
 
 The following tables are anonymized:
 
-[See here for the complete list](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go#L246)
+[Find the complete list here](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go#L246)
 
 It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `.shopware-project.yml` file.
 
