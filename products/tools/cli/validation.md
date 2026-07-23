@@ -93,7 +93,10 @@ shopware-cli extension validate --full /path/to/your/extension
 
 By default, it will check against the latest allowed Shopware version according to your constraints in `composer.json`.
 
-**Important:** It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. This is critical because extensions often pass validation on the latest version but fail on the lowest supported version due to API changes and deprecations.
+
+:::info
+It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. This is critical because extensions often pass validation on the latest version but fail on the lowest supported version due to API changes and deprecations.
+:::
 
 You can do this by using the `--check-against` option:
 
