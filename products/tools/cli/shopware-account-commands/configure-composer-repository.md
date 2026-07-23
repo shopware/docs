@@ -19,22 +19,22 @@ shopware-cli account login
 
 This stores your credentials locally. See the [Authentication](./authentication.md) guide for more information.
 
-## Manual composer configuration
+## Configure with Shopware Packages token
 
-After logging in, you can manually create an `auth.json` file in your project root with your store credentials:
+Create an `auth.json` file in your project root with your Shopware Packages token:
 
 ```json
 {
   "http-basic": {
     "packages.shopware.com": {
-      "username": "<your-username>",
-      "password": "<your-password>"
+      "username": "token",
+      "password": "<your-shopware-packages-token>"
     }
   }
 }
 ```
 
-Replace `<your-username>` and `<your-password>` with your Shopware Account credentials.
+Get your Shopware Packages token from your Shopware Account: "Shops" > "Licenses" > "..." of one extension > "Install via Composer".
 
 ::: warning
 Keep `auth.json` out of version control. Add it to `.gitignore` to avoid committing credentials to your repository.
