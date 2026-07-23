@@ -17,7 +17,7 @@ This command modifies the given directory and deletes files. Make sure you have 
 shopware-cli project ci <path>
 ```
 
-One of the most-used commands in the Shopware CLI. After cloning a repository, this command prepares a complete deployable artifact with all dependencies installed and assets compiled. Widely used in PaaS and SaaS deployments.
+One of the most-used commands in the Shopware CLI. After cloning a repository, this command prepares a complete artifact that can be deployed with all dependencies installed and assets compiled. It is widely used in PaaS and SaaS deployments.
 
 ## What does it do?
 
@@ -124,7 +124,7 @@ The `project ci` command automatically generates a Software Bill of Materials (S
 - **Compliance tracking**: Document all software components in your deployment artifact
 - **Supply chain security**: Maintain a record of what's included in each release
 
-The SBOM is included in the build artifact automatically and can be consumed by tools like Grype, Syft, and other container security scanners.
+The SBOM is included in the build artifact automatically and can be consumed by tools like Grype and other container security scanners.
 
 ## Build Hooks
 
