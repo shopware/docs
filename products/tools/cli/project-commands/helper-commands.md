@@ -25,6 +25,14 @@ shopware-cli project create <folder-name> <version>
 
 The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
 
+For older Shopware versions with known security vulnerabilities, it is possible to use `--no-audit` to bypass Composer's security advisory blocking:
+
+```bash
+shopware-cli project create <folder-name> <version> --no-audit
+```
+
+This allows installation of older versions that have known security issues. Use with caution and consider installing the [Shopware Security plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) to backport security fixes.
+
 ## Development environment
 
 Shopware CLI provides a fully integrated Docker-based development environment. See the [Development Environment](../../../../guides/development/dev-environment.md) guide for the full workflow, or the [CLI command reference](./dev-environment.md) for a quick overview.
@@ -52,6 +60,10 @@ Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/build-administration.sh | `shopware-cli project admin-build`      |
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
+
+The `admin-build` command runs npm install on first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
+
+The `admin-watch` command: faster than `admin-build` because it monitors changes and rebuilds only what changed. See changes in real-time during development without waiting for a full rebuild.
 
 In addition to the replacements, Shopware CLI allows only watching a specific set of extensions or excluding a few.
 
@@ -83,13 +95,17 @@ to build only extensions in the `custom/static-plugins` folder of your project, 
 
 ## Worker
 
-Usually you have to start the worker with `bin/console messenger:consume` in the project root directory. But if you want to have more than one worker at once, it gets a bit tricky. Shopware CLI has a helper command for that:
+Starting Messenger workers manually with `bin/console messenger:consume` gets complicated when you need multiple workers running simultaneously. Usually you don't want just one: multiple workers handle higher message throughput.
+
+Shopware CLI provides a wrapper to easily start multiple workers:
 
 ```bash
 shopware-cli project worker <amount>
 ```
 
-For production, you should let this handle **supervisord** or **systemd**. But for development, this is a quick way to start multiple workers.
+For example, start three workers: `shopware-cli project worker 3`
+
+For production: use **supervisord** or **systemd** for process management. For development: quick way to spawn multiple workers without manual setup. Widely used by [Shopware PaaS](../../../products/paas/shopware-paas/).
 
 ## Clear cache
 
@@ -113,16 +129,83 @@ A shorter `swx` alias is also available. See [Running Shopware commands](../../.
 
 ## Admin API
 
-If you want to make requests against the Shopware-API using curl, you need to get a JWT token and add it as a header. Shopware CLI has a helper command for that:
+The `project admin-api` command is a pre-authenticated curl wrapper for the Shopware Admin API. Instead of manually handling JWT token generation and headers, this command handles authentication automatically:
+
+```bash
+shopware-cli project admin-api GET /_info/version
+shopware-cli project admin-api POST /api/search/product -d '{"limit":10}'
+```
+
+It works like curl with the same flags (`-d` for data, `-H` for headers, etc.), but pre-authenticated. This is especially useful for bash scripting and automation where getting curl authentication working can be complex.
+
+To extract the JWT token for use in other scripts:
 
 ```bash
 shopware-cli project admin-api --output-token
 ```
 
-This will output the JWT token to the console. You can also make directly API requests like:
+This outputs the token that you can use in your own curl commands or scripts.
+
+## Project validation
+
+To validate your entire Shopware project and all its extensions, use:
 
 ```bash
-shopware-cli project admin-api GET /_info/version
+shopware-cli project validate
 ```
 
-You can also pass more options like `-d` for data or `-H` for headers as you would do with curl.
+This runs validation checks on all extensions in your project. Available flags:
+
+```bash
+shopware-cli project validate --reporter json
+shopware-cli project validate --only phpstan
+shopware-cli project validate --exclude rector
+```
+
+See [Validation](../validation.md) for more details on validation tools.
+
+## Project diagnostics
+
+The `doctor` command checks your Shopware project for common issues and problems:
+
+```bash
+shopware-cli project doctor
+```
+
+This is useful when you encounter problems with your setup and need to understand what might be misconfigured. The output provides information about your environment and project configuration.
+
+## Project configuration schema
+
+To view the JSON schema for the `.shopware-project.yml` configuration file:
+
+```bash
+shopware-cli project config-schema
+```
+
+This outputs the JSON schema describing all available configuration options in `.shopware-project.yml`. Useful for automation and understanding the project configuration structure.
+
+## Initialize project configuration
+
+To create a new `.shopware-project.yml` configuration file interactively:
+
+```bash
+shopware-cli project config init
+```
+
+This generates a basic configuration file for your Shopware project. The file is also referenced in development environment setup and deployment configurations.
+
+## Generate JWT secret
+
+```bash
+shopware-cli project generate-jwt <path-to-project>
+```
+
+Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Required only for Shopware versions before 6.5; in 6.5+, JWT secrets are generated automatically.
+
+Output as environment variables:
+
+```bash
+shopware-cli project generate-jwt --env
+```
+
+This outputs keys as `JWT_PRIVATE_KEY` and `JWT_PUBLIC_KEY` environment variables (base64-encoded), useful for CI/CD environments.

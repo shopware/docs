@@ -5,26 +5,37 @@ nav:
 
 ---
 
-# Configure composer repository
+# Configure Composer repository
 
-To install extensions from the Shopware Store, you need to configure the Composer repository in your `composer.json` file. Shopware CLI can configure this for you automatically.
+To install extensions from the Shopware Store, you need to configure Composer with authentication credentials for your store account.
 
-First, make sure you have access to the given Shop in Shopware Account. You can check this with the following command:
+## Authenticate with Shopware Account
+
+First, log in to your Shopware Account:
 
 ```bash
-shopware-cli account merchant shop list
+shopware-cli account login
 ```
 
-If you don't see the shop you want to use, you need to switch to the correct company with the following command. Check the [Authentication](./authentication.md) guide for more information.
+This stores your credentials locally. See the [Authentication](./authentication.md) guide for more information.
 
-To create a `auth.json` file with the Composer repository configuration, you can use the following command:
+## Manual composer configuration
 
-::: info
-You can also use the tab completion in the terminal to get the domains of the shops you have access to.
+After logging in, you can manually create an `auth.json` file in your project root with your store credentials:
+
+```json
+{
+  "http-basic": {
+    "packages.shopware.com": {
+      "username": "<your-username>",
+      "password": "<your-password>"
+    }
+  }
+}
+```
+
+Replace `<your-username>` and `<your-password>` with your Shopware Account credentials.
+
+::: warning
+Keep `auth.json` out of version control. Add it to `.gitignore` to avoid committing credentials to your repository.
 :::
-
-```bash
-shopware-cli account merchant shop configure-composer <domain>
-```
-
-This will create `auth.json` and append the Composer repository configuration to your `composer.json` file.

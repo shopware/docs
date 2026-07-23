@@ -65,7 +65,7 @@ These versions don't need to be installed locally; they are downloaded on demand
 
 ## Running all validation tools
 
-By default, only a few tools are run, but you can run all tools by using the `--full` option. This will run all available tools and check your extension against the latest Shopware version.
+By default, validate runs basic checks: extension metadata, some linting, and common mistakes. Use the `--full` option to run comprehensive checks with all available tools: phpstan for PHP static analysis, ESLint for JavaScript, and more. This will thoroughly validate your extension against the latest Shopware version.
 
 <Tabs>
 
@@ -91,7 +91,11 @@ shopware-cli extension validate --full /path/to/your/extension
 
 </Tabs>
 
-By default, it will check against the latest allowed Shopware version according to your constraints in `composer.json`. It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. You can do this by using the `--check-against` option:
+By default, it will check against the latest allowed Shopware version according to your constraints in `composer.json`.
+
+**Important:** It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. This is critical because extensions often pass validation on the latest version but fail on the lowest supported version due to API changes and deprecations.
+
+You can do this by using the `--check-against` option:
 
 <Tabs>
 
