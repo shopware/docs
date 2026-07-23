@@ -52,17 +52,16 @@ The snackbar service is available from Shopware 6.7.14.0.
 For brief feedback such as confirming that a plugin action completed, use the global Meteor snackbar instead of the notification mixin:
 
 ```javascript
-Shopware.Service('snackbarService').addSnackbar({
-    id: 'my-plugin-saved',
+const snackbar = Shopware.Service('snackbarService').addSnackbar({
     message: 'The settings have been saved.',
-    variant: 'info',
+    variant: 'success',
 });
 ```
 
-To dismiss a snackbar before its duration expires, pass the same ID to `removeSnackbar()`:
+To dismiss a snackbar before its duration expires, pass its generated ID to `removeSnackbar()`:
 
 ```javascript
-Shopware.Service('snackbarService').removeSnackbar('my-plugin-saved');
+Shopware.Service('snackbarService').removeSnackbar(snackbar.id);
 ```
 
 The snackbar service is separate from the legacy notification system. Continue using the notification mixin when you need its title, actions, or system-notification behavior.
