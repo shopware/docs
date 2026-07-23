@@ -9,6 +9,7 @@ nav:
 The `shopware-cli project image-proxy` command solves a common development problem: when you clone a production database to your local machine, you get 404 errors for product images because you don't have the actual image files. Downloading the entire media library (often 100GB+) is impractical for local development.
 
 The image proxy starts a local HTTP server that:
+
 - Intercepts image requests from Shopware
 - Checks local cache first
 - Fetches missing images from your production server on-demand
