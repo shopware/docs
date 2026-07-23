@@ -172,7 +172,7 @@ The `doctor` command checks your Shopware project for common issues and problems
 shopware-cli project doctor
 ```
 
-This is useful when you encounter problems with your setup and need to understand what might be misconfigured. The output provides information about your environment and project configuration.
+This is useful when you encounter problems with your setup and need to understand what might be configured improperly. The output provides information about your environment and project configuration.
 
 ## Project configuration schema
 
