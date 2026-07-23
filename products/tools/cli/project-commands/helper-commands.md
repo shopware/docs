@@ -105,7 +105,7 @@ shopware-cli project worker <amount>
 
 For example, start three workers: `shopware-cli project worker 3`
 
-For production: use **supervisord** or **systemd** for process management. For development: quick way to spawn multiple workers without manual setup. Widely used by [Shopware PaaS](../../../products/paas/shopware-paas/).
+For production: use **supervisord** or **systemd** for process management. For development: quick way to spawn multiple workers without manual setup. Widely used by [Shopware PaaS](../../../paas/shopware-paas/).
 
 ## Clear cache
 
