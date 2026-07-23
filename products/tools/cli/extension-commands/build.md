@@ -59,16 +59,6 @@ If your extension is not a plugin but itself a bundle, make sure your Composer t
 Now you can use `shopware-cli extension build <path>` to build the assets and distribute them together with your bundle.
 Also `shopware-cli project ci` detects know automatically this bundle and builds the assets for it.
 
-### Content-addressable assets and Vite manifest
-
-When building with esbuild, Shopware CLI emits content-hashed variants of the
-compiled JS and CSS files (e.g. `<name>-<hash>.js`) alongside files without hashes in the same directories.
-
-- **Shopware 6.7+**: The generated `.vite/manifest.json` and `.vite/entrypoints.json` reference the hashed filenames, so browser and CDN caches are invalidated automatically whenever the extension assets change. Note that an existing `.vite/manifest.json` is overwritten on each esbuild build.
-- **Shopware < 6.7**: The files without hashes are kept for backward compatibility and continue to be loaded as before.
-
-No configuration is required. This happens automatically when esbuild is enabled.
-
 ## Using esbuild for JavaScript bundling
 
 ::: warning
@@ -87,6 +77,16 @@ build:
       # Use esbuild for Storefront
       enable_es_build_for_storefront: true
 ```
+
+### Content-addressable assets and Vite manifest
+
+When building with esbuild, Shopware CLI emits content-hashed variants of the
+compiled JS and CSS files (e.g. `<name>-<hash>.js`) alongside files without hashes in the same directories.
+
+- **Shopware 6.7+**: The generated `.vite/manifest.json` and `.vite/entrypoints.json` reference the hashed filenames, so browser and CDN caches are invalidated automatically whenever the extension assets change. Note that an existing `.vite/manifest.json` is overwritten on each esbuild build.
+- **Shopware < 6.7**: The files without hashes are kept for backward compatibility and continue to be loaded as before.
+
+No configuration is required. This happens automatically when esbuild is enabled.
 
 ## Creating an archive
 
