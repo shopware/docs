@@ -52,6 +52,12 @@ declared name: "sync-orders"
 
 Names must only contain `a-zA-Z0-9_-` (no dots). The `shopware-` prefix is reserved for core tools; app names that would produce a `shopware-` prefixed capability are silently skipped.
 
+## Tool groups and discovery
+
+Shopware automatically groups all tools from an app into a toolset named after the app's technical name. No additional field in `mcp.xml` is required. An MCP client can find the tools with `shopware-tool-search` or enable the complete app toolset with `shopware-toolset-enable`.
+
+When an app is installed, updated, activated, deactivated, or deleted, Shopware sends the relevant `notifications/*/list_changed` message to active MCP sessions. Clients can then refresh their tools, prompts, or resources.
+
 ## `mcp.xml` structure
 
 Place `Resources/mcp.xml` in your app bundle:
@@ -277,7 +283,7 @@ The resolved `<label>` value is forwarded to the MCP protocol as the capability'
 
 ## Installing the app
 
-Apps are installed through the standard Shopware app lifecycle (Settings → Extensions → My Apps, or via the Shopware CLI). After installation, your MCP capabilities appear automatically in the server's tool list.
+Apps are installed through the standard Shopware app lifecycle (Settings → Extensions → My Apps, or via the Shopware CLI). After installation, your MCP capabilities appear automatically in the server catalogue. Tools are initially deferred until the client discovers them or enables the app's toolset.
 
 Verify with:
 

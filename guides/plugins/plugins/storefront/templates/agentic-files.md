@@ -18,7 +18,7 @@ Shopware ships the `agentic` file family with these default files:
   the shop.
 * [`/.well-known/ai-catalog.json`](https://agenticresourcediscovery.org/spec/):
   An Agentic Resource Discovery catalog for machine-readable resources, such as
-  the Store API MCP server for headless/API sales channels when MCP is enabled.
+  the Store API MCP server for headless/API sales channels.
 
 The files are generated from Twig templates and can be enabled per sales
 channel in the Administration. Merchants can also add custom notes or override
@@ -163,7 +163,7 @@ The following table lists the variables that agentic file templates receive.
 | `context`                 | The current sales-channel context                                                                                                    |
 | `salesChannel`            | The sales channel, including languages and currencies needed by the default templates                                                |
 | `salesChannelFile`        | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
-| `salesChannelFileContext` | Optional array context for file-specific data. For `/.well-known/ai-catalog.json`, core adds `baseUrl` and `publisher` when a sales-channel domain is available. When `MCP_SERVER` is active for headless/API sales channels, core also adds `storeApiMcpServerUrl`. |
+| `salesChannelFileContext` | Optional array context for file-specific data. For `/.well-known/ai-catalog.json`, core adds `baseUrl` and `publisher` when a sales-channel domain is available. For headless/API sales channels, core also adds `storeApiMcpServerUrl`. |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.
 
