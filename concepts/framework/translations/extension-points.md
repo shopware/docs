@@ -16,15 +16,15 @@ what you want to achieve.
 Use the table below to jump to the mechanism that fits your use case. The entries are ordered from the
 lightest option (configuration only) to the most invasive one (service decoration).
 
-| I want to…                                                              | Use                                                                                 |
-|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| Point the download system at a different repository or language set     | [Configuration override](#configuration-override-shopware-translation)              |
-| Distribute translations for my extension                                | [Ship snippets with an extension](#ship-snippets-with-an-extension)                 |
-| Change the resolved storefront snippets at runtime                      | [Storefront snippet extension](#storefront-snippet-resolution)                      |
-| React when a language is installed or removed                           | [Translation events](#translation-events)                                           |
-| Store downloaded translations somewhere other than the local disk       | [Storage backend](#storage-backend-flysystem)                                       |
-| Replace the loading or validation logic entirely                        | [Service decoration](#service-decoration)                                           |
-| Automate installation and updates                                       | [CLI commands and scheduled task](#cli-commands-and-scheduled-task)                 |
+| Goal | Mechanism |
+|------|-----------|
+| Point the download system at a different repository or language set | [Configuration override](#configuration-override-shopware-translation) |
+| Distribute translations for my extension | [Ship snippets with an extension](#ship-snippets-with-an-extension) |
+| Change the resolved storefront snippets at runtime | [Storefront snippet extension](#storefront-snippet-resolution) |
+| React when a language is installed or removed | [Translation events](#translation-events) |
+| Store downloaded translations somewhere other than the local disk | [Storage backend](#storage-backend-flysystem) |
+| Replace the loading or validation logic entirely | [Service decoration](#service-decoration) |
+| Automate installation and updates | [CLI commands and scheduled task](#cli-commands-and-scheduled-task) |
 
 ## Configuration override (`shopware.translation`)
 
@@ -166,12 +166,12 @@ When configuration and events are not enough, the loading and validation service
 Shopware's [decoration pattern](../../../guides/plugins/plugins/services/adjusting-service.md). Decorate the
 **service id** in the first column and delegate to the injected inner instance.
 
-| Service id to decorate                            | Base type                                     | Responsibility                                                                     |
-|---------------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------|
-| `Service\AbstractTranslationConfigLoader`         | abstract class, uses `getDecorated()`         | Reads and validates the translation configuration into a `TranslationConfig`.      |
-| `Service\TranslationLoader`                       | extends `AbstractTranslationLoader`, uses `getDecorated()` | Downloads translation files for a locale and creates the language and snippet set. |
-| `Files\SnippetFileLoader`                         | implements `SnippetFileLoaderInterface`       | Discovers the snippet files shipped by bundles and apps.                            |
-| `SnippetValidatorInterface`                       | interface                                     | Validates snippet files for missing or superfluous keys.                            |
+| Service id to decorate | Base type | Responsibility |
+|------------------------|-----------|----------------|
+| `Shopware\Core\System\Snippet\Service\AbstractTranslationConfigLoader` | abstract class, uses `getDecorated()` | Reads and validates the translation configuration into a `TranslationConfig` |
+| `Shopware\Core\System\Snippet\Service\TranslationLoader` | extends `AbstractTranslationLoader`, uses `getDecorated()` | Downloads translation files for a locale and creates the language and snippet set |
+| `Shopware\Core\System\Snippet\Files\SnippetFileLoader` | implements `SnippetFileLoaderInterface` | Discovers the snippet files shipped by bundles and apps |
+| `Shopware\Core\System\Snippet\SnippetValidatorInterface` | interface | Validates snippet files for missing or superfluous keys |
 
 The two abstract-class services use the `getDecorated()` convention: your decorator extends the abstract class
 and returns the injected inner instance from `getDecorated()`. The interface-based services only require
@@ -193,8 +193,8 @@ Notes:
   `DecorationPatternException`. Decorate the `AbstractTranslationConfigLoader` id (an alias to the concrete
   service), never the concrete class.
 * `TranslationLoader` is registered and consumed under its own concrete id (there is no abstract alias), and
-  its `getDecorated()` likewise throws. Decorate the `Service\TranslationLoader` id and return the injected
-  inner instance from your override.
+  its `getDecorated()` likewise throws. Decorate the `Shopware\Core\System\Snippet\Service\TranslationLoader`
+  id and return the injected inner instance from your override.
 * `AbstractTranslationLoader::pluginTranslationExists()` is deprecated for removal in v6.8.0. Override
   `pluginTranslationExistsForLocale()` instead for locale-aware behaviour.
 
@@ -203,13 +203,13 @@ Notes:
 The download system can be driven entirely from the command line, which is the recommended way to manage
 languages during deployment or image builds:
 
-| Command                          | Purpose                                                                 |
-|----------------------------------|-------------------------------------------------------------------------|
-| `translation:install`            | Download and install translations for the given `--locales` or `--all`. |
-| `translation:update`            | Update all installed translations from the repository.                  |
-| `translation:list`               | List the locales configured for installation and update.               |
-| `translation:lint-filenames`     | Validate (and with `--fix` migrate) snippet file names.                 |
-| `snippet:validate`               | Validate snippet files for missing or extraneous keys.                  |
+| Command | Purpose |
+|---------|---------|
+| `translation:install` | Download and install translations for the given `--locales` or `--all` |
+| `translation:update` | Update all installed translations from the repository |
+| `translation:list` | List the locales configured for installation and update |
+| `translation:lint-filenames` | Validate (and with `--fix` migrate) snippet file names |
+| `snippet:validate` | Validate snippet files for missing or extraneous keys |
 
 Updates also run automatically through the `UpdateTranslationsTask` scheduled task
 (`Shopware\Core\System\Snippet\ScheduledTask`), so installations stay current without manual intervention.
