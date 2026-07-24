@@ -42,3 +42,40 @@ Component.register('swag-basic-example', {
     }
 });
 ```
+
+## Using snackbars for brief feedback
+
+::: info
+The snackbar service is available from Shopware 6.7.14.0.
+:::
+
+For brief feedback such as confirming that a plugin action completed, use the global Meteor snackbar instead of the notification mixin:
+
+```javascript
+const snackbar = Shopware.Service('snackbarService').addSnackbar({
+    message: 'The settings have been saved.',
+    variant: 'success',
+});
+```
+
+To dismiss a snackbar before its duration expires, pass its generated ID to `removeSnackbar()`:
+
+```javascript
+Shopware.Service('snackbarService').removeSnackbar(snackbar.id);
+```
+
+For Composition API extensions, use the `useSnackbar()` composable. It is experimental until Shopware 6.8.0 and requires the `ADMIN_COMPOSITION_API_EXTENSION_SYSTEM` feature flag:
+
+```javascript
+import useSnackbar from 'src/app/composables/use-snackbar';
+
+const { addSnackbar, removeSnackbar } = useSnackbar();
+const snackbar = addSnackbar({
+    message: 'The settings have been saved.',
+    variant: 'success',
+});
+
+removeSnackbar(snackbar.id);
+```
+
+The snackbar service is separate from the legacy notification system. Continue using the notification mixin when you need its title, actions, or system-notification behavior.
