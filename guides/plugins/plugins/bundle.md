@@ -214,4 +214,4 @@ Also check out these useful videos:
 
 * [Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)
 * [Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)
-* The free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma)
+* The free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-essentials)

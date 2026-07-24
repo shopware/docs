@@ -19,7 +19,7 @@ To create an own plugin, you can refer to the [Plugin Base Guide](../../plugin-b
 
 ::: info
 Refer to this video on **[Live coding example with product.loaded event](https://www.youtube.com/watch?v=cJDaiuyjKJk)**.
-Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Also available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
 :::
 
 ## Creating your own subscriber

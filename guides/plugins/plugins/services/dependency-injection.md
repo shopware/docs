@@ -15,7 +15,7 @@ This guide builds on the [Plugin Base Guide](../plugin-base-guide.md) and requir
 
 ::: info
 Refer to this video on **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)** explaining DI based on the example of a custom CLI command.
-It is also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+It is also available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/course/events-and-di).
 :::
 
 ## Injecting another service
