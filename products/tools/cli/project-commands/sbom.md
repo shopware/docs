@@ -9,7 +9,7 @@ nav:
 
 The `shopware-cli project sbom` command generates a Software Bill of Materials (SBOM) for a Shopware project from `composer.lock`. The output is a [CycloneDX](https://cyclonedx.org/) 1.7 JSON document — the same artifact that `shopware-cli project ci` produces, without running the full CI build.
 
-Use it for security reviews, vulnerability scanning, compliance exports, and release artifacts when you only need the SBOM and not a deployable build.
+Use it for security reviews, vulnerability scanning, compliance exports, and release artifacts when you only need the SBOM and not a full production build.
 
 ## Usage
 
