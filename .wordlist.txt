@@ -280,6 +280,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+CycloneDX
 DAL
 DBAL
 DDL
@@ -889,6 +890,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBOM
 SBP
 SCSS
 SDK
@@ -1286,6 +1288,7 @@ cartfacade
 cartpricefacade
 catchable
 catched
+cdx
 cetera
 changelog
 changelogs
@@ -1924,6 +1927,7 @@ saleschannelrepositoryfacade
 salutationId
 sandboxed
 sarven
+sbom
 scalability
 scalable
 schemas
