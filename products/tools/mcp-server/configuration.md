@@ -7,16 +7,6 @@ nav:
 
 # Configuration
 
-## Feature flag
-
-The MCP server is gated behind the `MCP_SERVER` feature flag. Add it to your `.env` file:
-
-```bash
-MCP_SERVER=1
-```
-
-When inactive, all MCP services are removed from the container at compile time with no runtime overhead.
-
 ## Shopware MCP configuration
 
 Shopware-specific MCP settings live under the `shopware.mcp` key in `config/packages/shopware.yaml` or any config file loaded in your application:
@@ -36,12 +26,17 @@ shopware:
 shopware:
     mcp:
         allowed_tools:
+            - shopware-tool-search
+            - shopware-toolsets-list
+            - shopware-toolset-enable
             - shopware-entity-schema
             - shopware-entity-search
             - shopware-system-config-read
 ```
 
-An empty list (the default) means no compile-time restriction; all registered tools are available. The per-integration and per-user allowlists in the Admin UI are the primary controls for day-to-day access management.
+An empty list (the default) means no compile-time restriction; all registered tools are available. When the list is not empty, add the three discovery tools and every domain tool that should remain available globally. The domain tools in the example are only an illustrative subset; you do not need to list every registered tool unless you want all of them available.
+
+Removing the discovery tools at compile time prevents clients from finding and enabling the remaining tools. The per-integration and per-user allowlists in the Administration are the primary controls for day-to-day access management.
 
 :::info Per-principal allowlist
 Shopware applies a per-principal MCP allowlist depending on how the client authenticates:
@@ -54,7 +49,9 @@ Shopware applies a per-principal MCP allowlist depending on how the client authe
 | Bearer JWT, client_credentials           | Per-integration allowlist                                                                 |
 | Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist                          |
 
-`null` per key means all capabilities of that type are allowed; a JSON array restricts to the listed names; an empty array `[]` means no capabilities of that type are accessible.
+`null` per key means all capabilities of that type are allowed; a JSON array restricts access to the listed names; an empty array `[]` denies access to that capability type.
+
+The three server-owned discovery tools are the exception for tool allowlists. They remain available so that clients can use the discovery flow, but their search results and toolsets contain only tools permitted by the effective allowlist.
 
 Admin user accounts (`admin = true`) always bypass the allowlist regardless of auth mode. This applies to user accounts, not to integrations created with `--admin` (which bypasses ACL but still respects the per-integration allowlist).
 :::
@@ -92,11 +89,17 @@ This pattern lets the app owner control which tools the integration may ever cal
 
 ## MCP bundle configuration
 
-The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file, and Symfony loads it automatically; the `MCP_SERVER` feature flag only gates the HTTP endpoint (`/api/_mcp`), not the bundle's DI configuration. You do not need to create or modify it for standard setups.
+The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file, and Symfony loads it automatically. You do not need to create or modify it for standard setups.
+
+## Capability list pagination
+
+The `tools/list`, `resources/list`, and `prompts/list` methods use MCP cursor pagination. When a response contains `nextCursor`, pass that value unchanged as `cursor` in the next request. Continue until `nextCursor` is absent.
+
+Treat cursors as opaque values. Shopware applies the effective allowlist before pagination, so each page contains only capabilities the current principal may access.
 
 ## Session store
 
-MCP sessions track an ongoing conversation across multiple requests. The client performs an `initialize` handshake first, then sends subsequent `tools/call` requests referencing that session ID. Session data must survive between requests.
+MCP sessions track an ongoing conversation across multiple requests. The client performs an `initialize` handshake first, then sends subsequent `tools/call` requests referencing that session ID. Session data and enabled toolsets must survive between requests.
 
 Shopware defaults to a file-based session store that writes to `%kernel.cache_dir%/mcp-sessions/`.
 
@@ -167,7 +170,7 @@ List all registered capabilities:
 bin/console debug:mcp
 ```
 
-The output shows four columns: **Name**, **Source**, **Dependencies**, and **Privileges**. It reads from the live server registry and covers core tools, plugin tools, and app tools in one view.
+The tool output shows five columns: **Name**, **Group**, **Source**, **Dependencies**, and **Privileges**. It reads from the complete live server registry and covers core and extension tools in one view. The **Group** becomes the toolset name used for progressive discovery.
 
 Filter by capability type:
 

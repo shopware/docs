@@ -43,19 +43,19 @@ Agents tend to be overconfident; they will call a write tool on the first attemp
 
 If a tool accepts a name that maps to an internal enum, registry, or state machine (event names, action names, state transitions), validate it before writing. The database may silently accept invalid values that produce broken data at runtime.
 
-### Limit tool count
+### Keep allowlists and toolsets focused
 
-Each tool added to the MCP server increases the context window consumed by tool descriptions. More tools mean more tokens spent before the agent even starts reasoning. Shopware core ships 11 built-in `shopware-*` tools, and plugins like `SwagMcpMerchantTools` add more, so keeping a single integration lean matters.
+Shopware uses progressive discovery so a fresh session advertises only three meta-tools. The agent searches the allowed catalogue and enables additional toolsets as needed. This bounds the startup context even when many tools are installed.
 
-The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. Not one integration gets everything. A persona is a specific role with a specific job; it only includes the tools that role actually needs. For example:
+Allowlists still matter. They define the catalogue that discovery can search and remain the call-time security boundary. The practical approach is **one integration per persona or job**, each with a scoped tool allowlist. A persona is a specific role with a specific job; it only includes the tools that role actually needs. For example:
 
 - **Merchant integration:** order state, system config, media upload, theme config. What a store manager needs day-to-day.
 - **Developer integration:** entity search, entity schema, aggregate, system config read. What a developer or CI pipeline needs for inspection and debugging.
 - **App-specific integration:** only the tools relevant to a specific workflow or external system.
 
-Each integration sees only its allowed tools, resources, and prompts, so each AI session starts with a smaller, more focused context. Treat the allowlist, system prompt, and exposed resources together as **product quality**, not just security. A narrow context makes the agent reliable; a broad allowlist dilutes routing and degrades answers. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist** (per integration) and **Settings → Users & Permissions → [user] → MCP Tool Allowlist** (per user).
+Each integration can discover and call only its allowed tools, resources, and prompts. Treat the allowlist, system prompt, tool groups, and exposed resources together as **product quality**, not just security. A focused catalogue improves search relevance and limits what the agent can enable. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist** (per integration) and **Settings → Users & Permissions → [user] → MCP Tool Allowlist** (per user).
 
-Every registered tool also consumes tokens from the agent's context window throughout the session — not just when it's called. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients enforce their own hard caps (Cursor limits the total to 40 tools across all connected MCP servers). Scoped integrations with a small allowlist keep sessions fast and predictable.
+Every enabled tool consumes tokens from the agent's context window throughout the rest of the session. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients also enforce hard caps on the number of tools. Keep toolsets cohesive so an agent can enable one relevant group without loading unrelated schemas.
 
 When everything is enabled, the modal also shows inline privilege gaps, meaning the integration's role does not actually cover what its allowlist exposes:
 
@@ -65,6 +65,7 @@ Strategies to reduce tool count within a single integration:
 
 - Use an `action` parameter to multiplex related operations into one tool (e.g., `shopware-theme-config` with `action: "get" | "update"`)
 - Use resources instead of tools for static reference data
+- Assign tools from plugins and Symfony bundles to focused groups with `#[McpToolGroup]`
 
 ### Keep responses compact
 

@@ -9,6 +9,15 @@ nav:
 
 You can add three capability types to the MCP server: **tools**, **prompts**, and **resources**. There are three ways to implement them: as an **app** (webhook-based, works in Shopware Cloud), a **plugin** (in-process PHP, full DAL access), or a **Symfony bundle** (in-process, always active, no install lifecycle).
 
+:::info Compatibility with earlier Shopware versions
+When using MCP on a Shopware 6.7 version earlier than 6.7.14.0, enable the server
+by setting `MCP_SERVER=1` in the environment. Starting with Shopware 6.7.14.0,
+the feature flag is removed and the MCP server is always enabled.
+
+Register extension capabilities normally in both cases. The flag controls the
+MCP server itself; extension services do not need a `shopware.feature` tag.
+:::
+
 This page is a quick reference. For step-by-step guides, see:
 
 - [Extending via Plugin](../../../guides/plugins/plugins/mcp-server.md)
@@ -27,7 +36,7 @@ Tools let the AI agent call your code to take action or fetch data.
 
 <Tab title="App">
 
-Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-prefixed with the app name. Use `<required-privileges>` to help the admin UI warn operators about missing ACL roles. Use `url="/..."` to route to an app script instead of an external URL.
+Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-prefixed with the app name, and all tools from the app form a toolset named after the app. Use `<required-privileges>` to help the admin UI warn operators about missing ACL roles. Use `url="/..."` to route to an app script instead of an external URL.
 
 ```xml
 <mcp-tools>
@@ -56,6 +65,7 @@ PHP class with `#[McpTool]` on the class, tagged `shopware.mcp.tool` in `service
 
 ```php
 #[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders.')]
+#[McpToolGroup('swag-my-plugin')]
 #[McpToolRequires('order:read')]
 class OrdersTool extends McpToolResponse
 {
@@ -70,13 +80,21 @@ class OrdersTool extends McpToolResponse
 }
 ```
 
+`#[McpToolGroup]` is optional. Without it, Shopware uses the longest
+hyphen-separated name prefix that the tool shares with another tool without an
+explicit group. For example, `swag-my-plugin-orders` and
+`swag-my-plugin-products` form the group `swag-my-plugin`. A tool without a
+longer shared prefix falls back to its first name segment, such as `swag`.
+Define the attribute explicitly when the inferred group should not change with
+the registered tool catalogue.
+
 → [Full plugin guide](../../../guides/plugins/plugins/mcp-server.md): class structure, DI, pitfalls, verification
 
 </Tab>
 
 <Tab title="Bundle">
 
-Identical PHP class and `services.xml` as a plugin. Load services unconditionally in the bundle's `build()` method — the MCP feature flag gates the HTTP endpoint, not the service registration:
+Identical PHP class and `services.xml` as a plugin. Load services unconditionally in the bundle's `build()` method:
 
 ```php
 public function build(ContainerBuilder $container): void
@@ -84,8 +102,6 @@ public function build(ContainerBuilder $container): void
     // load services.xml with shopware.mcp.tool tag
 }
 ```
-
-To register the bundle itself only when the MCP feature is active, gate the entry in `config/bundles.php` — see [Optional bundles](../../../guides/plugins/plugins/bundle.md#optional-bundles).
 
 Bundles have no install/activate lifecycle. They are always active when registered in `config/bundles.php`.
 
@@ -145,7 +161,7 @@ class MyPluginContextPrompt
 
 <Tab title="Bundle">
 
-Identical to the plugin pattern. Register with `shopware.mcp.prompt` and load services unconditionally in `build()` — the MCP feature flag gates the HTTP endpoint, not service registration.
+Identical to the plugin pattern. Register with `shopware.mcp.prompt` and load services unconditionally in `build()`.
 
 </Tab>
 
@@ -205,7 +221,7 @@ class MyPluginConfigResource
 
 <Tab title="Bundle">
 
-Identical to the plugin pattern. Register with `shopware.mcp.resource` and load services unconditionally in `build()` - the MCP feature flag gates the HTTP endpoint, not service registration.
+Identical to the plugin pattern. Register with `shopware.mcp.resource` and load services unconditionally in `build()`.
 
 </Tab>
 
@@ -215,7 +231,7 @@ Identical to the plugin pattern. Register with `shopware.mcp.resource` and load 
 
 |                    | App                                                                     | Plugin                                               | Bundle         |
 |--------------------|-------------------------------------------------------------------------|------------------------------------------------------|----------------|
-| **Tool**           | `<mcp-tool>` in `mcp.xml` + webhook handler                             | `#[McpTool]` class + `shopware.mcp.tool` tag         | Same as plugin |
+| **Tool**           | `<mcp-tool>` in `mcp.xml` + webhook handler                             | Attributes + `shopware.mcp.tool` service tag         | Same as plugin |
 | **Prompt**         | `<mcp-prompt>` in `mcp.xml` + webhook returns message array             | `#[McpPrompt]` class + `shopware.mcp.prompt` tag     | Same as plugin |
 | **Resource**       | `<mcp-resource>` in `mcp.xml` + webhook returns `{uri, mimeType, text}` | `#[McpResource]` class + `shopware.mcp.resource` tag | Same as plugin |
 | **Context access** | Via `source.shopId` in webhook body                                     | `McpContextProvider::getContext()`                   | Same as plugin |

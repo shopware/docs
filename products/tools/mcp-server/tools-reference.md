@@ -27,6 +27,37 @@ All core tools return a consistent JSON envelope via `McpToolResponse`:
 
 The `_meta` field is optional and used for pagination context, dry-run status, and sales channel scope.
 
+## Discovery tools
+
+A fresh MCP session advertises only three discovery tools. All other tools become visible when their toolset is enabled for the session.
+
+### shopware-tool-search
+
+Search the allowed tool catalogue using a free-text query. The response contains the most relevant tool definitions, their scores, and where the query matched.
+
+| Name         | Type   | Required | Default | Description                            |
+|--------------|--------|----------|---------|----------------------------------------|
+| `query`      | string | yes      | —       | Description of the required capability |
+| `maxResults` | int    | no       | 3       | Maximum results, capped at 20           |
+
+Some clients can call a returned tool definition directly. Otherwise, find and enable its toolset before calling it.
+
+### shopware-toolsets-list
+
+List toolsets available to the current principal. Each entry contains the toolset name, title, description, tool names, and whether it is already enabled for the current session.
+
+This tool has no parameters.
+
+### shopware-toolset-enable
+
+Enable one toolset for the current MCP session.
+
+| Name      | Type   | Required | Description                                      |
+|-----------|--------|----------|--------------------------------------------------|
+| `toolset` | string | yes      | Toolset name returned by `shopware-toolsets-list` |
+
+The response sets `_meta.listChanged` to `true` and Shopware emits `notifications/tools/list_changed`. Clients that do not refresh automatically must request `tools/list` again. Enabling a toolset does not grant permission to call its tools; the effective MCP allowlist remains the security boundary.
+
 ## Dry-run behavior
 
 All write tools default to `dryRun=true`. In dry-run mode:

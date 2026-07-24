@@ -9,20 +9,22 @@ nav:
 
 ## Quick reference
 
-| Symptom                                                  | Likely cause                                         | Fix                                                                                                                                                                                                                                                                           |
-|----------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Authentication failed. Configure your MCP client...`    | Wrong or missing credentials                         | Check `sw-access-key` / `sw-secret-access-key` in your client config                                                                                                                                                                                                          |
-| `Tool "X" is not in the allowlist...`                    | Tool not enabled for this integration                | Settings → Integrations → Edit MCP Allowlist → enable the tool                                                                                                                                                                                                                |
-| `Resource "X" is not in the allowlist...`                | Resource not enabled for this integration            | Settings → Integrations → Edit MCP Allowlist → enable the resource                                                                                                                                                                                                            |
-| `Prompt "X" is not in the allowlist...`                  | Prompt not enabled for this integration              | Settings → Integrations → Edit MCP Allowlist → enable the prompt                                                                                                                                                                                                              |
-| `Missing privilege: {entity}:read`                       | Integration role lacks the permission                | Assign an ACL role with the required privilege, or use `--admin`                                                                                                                                                                                                              |
-| Tool missing from `tools/list`                           | Blocked by allowlist                                 | Enable the tool under Edit MCP Allowlist                                                                                                                                                                                                                                      |
-| No tools in `tools/list` at all                          | Allowlist is an empty array                          | "All tools" toggle is OFF with nothing selected. Enable tools or turn the toggle back ON                                                                                                                                                                                      |
-| Admin integration but tool still blocked                 | Per-integration allowlist is set                     | Admin bypasses ACL (layer 3) only; the allowlist (layer 2) still applies regardless                                                                                                                                                                                           |
-| All capabilities visible when using a user login token   | Admin user login bypasses the allowlist              | By design. Tokens issued to admin user accounts (`admin = true`) are not subject to allowlist filtering. Non-admin user tokens still respect the per-user allowlist. Only integration credentials (`sw-access-key` / `sw-secret-access-key`) always go through the allowlist. |
-| Tool missing entirely                                    | Plugin inactive, missing tag, or attribute misplaced | Check `bin/console debug:mcp`                                                                                                                                                                                                                                                 |
-| `ECONNREFUSED` or "fetch failed"                         | Server not running or wrong URL                      | Start Shopware and verify the URL in your client config                                                                                                                                                                                                                       |
-| Client shows "Needs authentication" after failed connect | Client fell back to `/register` OAuth endpoint       | Credentials or URL are wrong. Verify your `sw-access-key` and `sw-secret-access-key` and that the URL ends with `/api/_mcp`                                                                                                                                                   |
+| Symptom                                                  | Likely cause                                              | Fix                                                                                                                               |
+|----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `Authentication failed. Configure your MCP client...`    | Wrong or missing credentials                              | Check `sw-access-key` / `sw-secret-access-key` in your client config                                                               |
+| `Tool "X" is not in the allowlist...`                    | Tool not enabled for this integration                     | Settings → Integrations → Edit MCP Allowlist → enable the tool                                                                     |
+| `Resource "X" is not in the allowlist...`                | Resource not enabled for this integration                 | Settings → Integrations → Edit MCP Allowlist → enable the resource                                                                 |
+| `Prompt "X" is not in the allowlist...`                  | Prompt not enabled for this integration                   | Settings → Integrations → Edit MCP Allowlist → enable the prompt                                                                   |
+| `Missing privilege: {entity}:read`                       | Integration role lacks the permission                     | Assign an ACL role with the required privilege, or use `--admin`                                                                   |
+| Only three tools appear in a fresh session               | Expected progressive discovery behavior                   | Use `shopware-tool-search` or enable a group with `shopware-toolset-enable`                                                        |
+| Allowed tool missing from `tools/list`                   | Its toolset is not enabled                                | Search for the tool, enable its toolset, then refresh `tools/list`                                                                 |
+| Enabled toolset does not appear                          | Client ignored `notifications/tools/list_changed`         | Refresh `tools/list` manually                                                                                                      |
+| No tools appear in `tools/list`                          | Discovery tools were removed by global `allowed_tools`    | Add all three discovery tools to `shopware.mcp.allowed_tools`                                                                      |
+| Admin integration but tool still blocked                | Per-integration allowlist is set                          | Admin bypasses ACL only; the integration allowlist still applies                                                                  |
+| Tool search returns every tool for an admin user         | Admin user login bypasses the per-user allowlist          | Use a non-admin user when the per-user allowlist must apply                                                                         |
+| Tool missing entirely                                   | Extension inactive or capability registration missing     | Check `bin/console debug:mcp`                                                                                                      |
+| `ECONNREFUSED` or "fetch failed"                        | Server not running or wrong URL                           | Start Shopware and verify the URL in your client config                                                                            |
+| Client shows "Needs authentication" after failed connect | Client fell back to `/register` OAuth endpoint            | Verify the credentials and ensure the URL ends with `/api/_mcp`                                                                    |
 
 ## Connection issues
 
@@ -65,62 +67,6 @@ Claude Code requires `"type": "http"` in `.mcp.json`. The MCP spec transport nam
 }
 ```
 
-### Cursor: schema lookups on every tool call
-
-The Cursor reads the MCP tool schema descriptor files before every tool call, adding a visible file-lookup step to each interaction. You can eliminate this by embedding tool schemas directly in a Cursor rule:
-
-1. Create `.cursor/rules/shopware-mcp-tools.mdc` in your project root.
-2. Set `alwaysApply: true` in the front matter.
-3. List all tool schemas inline so Cursor can skip the descriptor lookup.
-
-**Example rule file:**
-
-```markdown
----
-description: Shopware MCP tool schemas, call tools directly without reading schema files first
-alwaysApply: true
----
-
-# Shopware MCP Tools
-
-When using Shopware MCP tools, call them directly without reading schema files first.
-
-## shopware-entity-search
-Search entity records. Required: `entity` (string). Optional: `criteria` (JSON string), `limit` (int, default 25), `page` (int, default 1), `term` (string).
-
-## shopware-entity-schema
-Get the field/association schema of an entity. Required: `entity` (string).
-
-## shopware-entity-read
-Read a single entity by UUID. Required: `entity` (string), `id` (string). Optional: `criteria` (JSON string).
-
-## shopware-entity-upsert
-Create or update entity data. Required: `entity` (string), `payload` (JSON string). Optional: `dryRun` (bool, default true).
-
-## shopware-entity-delete
-Delete entities. Required: `entity` (string), `ids` (JSON array string). Optional: `dryRun` (bool, default true).
-
-## shopware-entity-aggregate
-Run aggregations. Required: `entity` (string), `aggregations` (JSON string). Optional: `filters` (JSON string).
-
-## shopware-order-state
-Change order/transaction/delivery state. One of `orderNumber` or `orderId` is required. Optional: `orderAction`, `transactionAction`, `deliveryAction` (strings), `dryRun` (bool, default true).
-
-## shopware-system-config-read
-Read system config. Required: `key` (string). Optional: `salesChannelId` (string).
-
-## shopware-system-config-write
-Write system config. Required: `key` (string), `value` (string). Optional: `salesChannelId` (string), `dryRun` (bool, default true).
-
-## shopware-media-upload
-Upload media from URL. Required: `url` (string). Optional: `fileName` (string), `mediaFolderId` (string), `productId` (string).
-
-## shopware-theme-config
-Read/update theme config. Required: `salesChannelId` (string), `action` ("get" or "update"). Optional: `config` (JSON string), `dryRun` (bool, default true).
-```
-
-Add any additional tools from installed plugins to this file. Tools not listed still work. Cursor falls back to reading the descriptor file.
-
 ## Tool registration issues
 
 ### Tool missing from `bin/console debug:mcp`
@@ -156,7 +102,7 @@ flowchart LR
 
 **Authentication (Layer 1):** Pass `sw-access-key` and `sw-secret-access-key` headers. Obtain credentials from Settings → Integrations.
 
-**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under Settings → Integrations → Edit MCP Allowlist, and each user has their own under Settings → Users & Permissions → [user] → MCP Tool Allowlist. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
+**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under Settings → Integrations → Edit MCP Allowlist, and each user has their own under Settings → Users & Permissions → [user] → MCP Tool Allowlist. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The three server-owned discovery tools remain available, but cannot expose or enable tools denied by the effective allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
 
 Which allowlist applies depends on the auth method: integration credentials use the integration allowlist; user access keys and user bearer tokens use the per-user allowlist; admin user accounts (`admin = true`) bypass the allowlist entirely. When an app forwards `sw-app-user-id` alongside integration credentials (e.g., Copilot), Shopware applies the **intersection** of the integration and user allowlists.
 

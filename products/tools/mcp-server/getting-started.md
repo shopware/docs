@@ -13,19 +13,8 @@ This guide walks you through connecting an AI client to a Shopware shop using th
 
 - Shopware 6.7 or later
 - `symfony/mcp-bundle` installed — verify with `composer show symfony/mcp-bundle`. If it is missing, ensure it is listed as a dependency in `composer.json` and run `composer install`.
-- The `MCP_SERVER` feature flag enabled (see [Configuration](./configuration.md))
 
-## Step 1: Enable the feature flag
-
-Add the following to your `.env` file:
-
-```bash
-MCP_SERVER=1
-```
-
-This activates the MCP endpoint at `/api/_mcp` and registers all tools, resources, and prompts.
-
-## Step 2: Create an integration
+## Step 1: Create an integration
 
 Create a Shopware integration for the MCP client. The integration provides the credentials the client will use to authenticate.
 
@@ -44,7 +33,7 @@ SHOPWARE_SECRET_ACCESS_KEY=...
 The `--admin` flag grants full Admin API access. For production use, omit `--admin`, create a dedicated ACL role with only the required permissions, and assign it to the integration. See [Configuration](./configuration.md#acl-and-permissions) for details.
 :::
 
-## Step 3: Configure your AI client
+## Step 2: Configure your AI client
 
 ### Claude Desktop and Cursor
 
@@ -125,7 +114,7 @@ export SHOPWARE_MCP_SECRET_KEY='...'
 The CLI shortcut supports bearer-token auth but not custom HTTP headers. For Shopware's `sw-access-key` / `sw-secret-access-key` auth, editing `config.toml` directly is required.
 :::
 
-## Step 4: First connection
+## Step 3: First connection
 
 After adding the configuration, open or restart your AI client and look for the Shopware MCP server in the tools panel. The first connection may take a few seconds while Shopware boots its kernel and warms up caches. If the client shows "No tools" briefly, wait a moment and refresh.
 
@@ -135,7 +124,24 @@ Verify the server is working with the CLI:
 bin/console debug:mcp
 ```
 
-This lists all registered tools, prompts, and resources, the same view that the AI client sees.
+This lists the complete registered capability catalogue. A fresh AI client session initially receives only the discovery tools described in the following section.
+
+## Discover tools on demand
+
+Shopware keeps the initial tool surface small, regardless of how many tools an integration is allowed to call. A fresh session advertises these discovery tools:
+
+- `shopware-tool-search`: Find relevant allowed tools from a free-text query.
+- `shopware-toolsets-list`: List the available groups of allowed tools.
+- `shopware-toolset-enable`: Enable one toolset for the current MCP session.
+
+When no advertised tool matches the task:
+
+1. Call `shopware-tool-search` with a description of the required capability.
+2. If the client cannot call a returned tool definition directly, call `shopware-toolsets-list` to find its toolset.
+3. Enable the toolset with `shopware-toolset-enable`.
+4. Refresh `tools/list`. Clients that support `notifications/tools/list_changed` do this automatically; other clients must refresh manually.
+
+Enabled toolsets remain active only for the current MCP session. The same discovery flow applies to the Admin API endpoint (`/api/_mcp`) and Store API endpoint (`/store-api/_mcp`).
 
 ## Authentication methods
 
@@ -149,7 +155,7 @@ Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth
 
 ## Controlling which capabilities are available
 
-By default, an admin integration can call all registered tools, resources, and prompts. To restrict access:
+By default, an admin integration is permitted to call all registered tools, resources, and prompts. Only the discovery tools are advertised at the start of a session. To restrict which capabilities can be discovered and called:
 
 **Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
