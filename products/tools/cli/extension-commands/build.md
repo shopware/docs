@@ -44,7 +44,7 @@ build:
 
 ## Extension as bundle
 
-If your extension is not a plugin but itself a bundle, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the `extra` part of the composer definition like this:
+If your extension is not a plugin but itself a bundle, make sure your Composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the `extra` part of the composer definition like this:
 
 ```json
 {
@@ -59,13 +59,13 @@ If your extension is not a plugin but itself a bundle, make sure your composer t
 Now you can use `shopware-cli extension build <path>` to build the assets and distribute them together with your bundle.
 Also `shopware-cli project ci` detects know automatically this bundle and builds the assets for it.
 
-## Using `esbuild` for JavaScript bundling
+## Using esbuild for JavaScript bundling
 
 ::: warning
 Building with esbuild works completely standalone without the Shopware codebase. This means if you import files from Shopware, you have to copy it to your extension.
 :::
 
-Esbuild can be used for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
+An esbuild bundle can be used for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
 
 ```yaml
 # .shopware-extension.yml
@@ -77,6 +77,16 @@ build:
       # Use esbuild for Storefront
       enable_es_build_for_storefront: true
 ```
+
+### Content-addressable assets and Vite manifest
+
+When building with esbuild, Shopware CLI emits content-hashed variants of the
+compiled JS and CSS files (e.g. `<name>-<hash>.js`) alongside files without hashes in the same directories.
+
+- **Shopware 6.7+**: The generated `.vite/manifest.json` and `.vite/entrypoints.json` reference the hashed filenames, so browser and CDN caches are invalidated automatically whenever the extension assets change. Note that an existing `.vite/manifest.json` is overwritten on each esbuild build.
+- **Shopware < 6.7**: The files without hashes are kept for backward compatibility and continue to be loaded as before.
+
+No configuration is required. This happens automatically when esbuild is enabled.
 
 ## Creating an archive
 
@@ -90,9 +100,9 @@ The command copies the extension to a temporary directory, builds the assets, de
 
 **By default, the command picks the latest released git tag**, use the `--disable-git` flag to disable this behavior and use the current source code. Besides disabling it completely, you can also specify a specific tag or commit using `--git-commit`.
 
-### Bundling composer dependencies
+### Bundling Composer dependencies
 
-Before Shopware 6.5, bundling the composer dependencies into the zip file is required. Shopware CLI automatically runs `composer install` and removes duplicate composer dependencies to avoid conflicts.
+Before Shopware 6.5, bundling the Composer dependencies into the zip file is required. Shopware CLI automatically runs `composer install` and removes duplicate Composer dependencies to avoid conflicts.
 
 To disable this behavior, you can adjust the configuration:
 
@@ -165,7 +175,18 @@ To verify the checksum of installed extensions, you can use the [FroshTools](htt
 
 ### Release mode
 
-If you are building an archive for distribution, you can enable the release mode with the flag `--release`. This will remove the App secret from the `manifest.xml` and generate changelog files if enabled.
+When building an extension for distribution to the Shopware Store or installation in a Shopware instance, enable release mode with the `--release` flag:
+
+```bash
+shopware-cli extension zip <path> --release
+```
+
+Release mode:
+
+- Removes secrets: Strips out sensitive data that may have been committed during development (credentials, API keys, app secrets)
+- Generates changelog: Automatically creates changelog files from Git commits (if enabled in configuration)
+
+This is important when distributing extensions because developers often commit configuration files with secrets during development that shouldn't be included in the final package.
 
 The changelog generation can be enabled with the configuration:
 

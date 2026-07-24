@@ -17,6 +17,8 @@ This command modifies the given directory and deletes files. Make sure you have 
 shopware-cli project ci <path>
 ```
 
+One of the most-used commands in the Shopware CLI. After cloning a repository, this command prepares a complete artifact that can be deployed with all dependencies installed and assets compiled. It is widely used in PaaS and SaaS deployments.
+
 ## What does it do?
 
 - It runs `composer install` (by default, only installs the production dependencies, use `--with-dev-dependencies` to install the dev dependencies as well)
@@ -24,6 +26,19 @@ shopware-cli project ci <path>
 - Deletes unnecessary files like `node_modules` and many more to save disk space
 - Deletes source code of compiled assets to save disk space
 - Merges snippets of extensions to speed up Administration
+- Generates a Software Bill of Materials (SBOM) listing all deployed dependencies
+
+## CI system configuration
+
+Specify which CI/CD platform to configure for:
+
+```bash
+shopware-cli project ci <path> --ci github
+shopware-cli project ci <path> --ci gitlab
+shopware-cli project ci <path> --ci none
+```
+
+Options: `github`, `gitlab`, `none` (default).
 
 ## Using private Composer repositories
 
@@ -99,6 +114,17 @@ When MJML compilation is enabled:
 ### Requirements
 
 MJML compilation requires the `mjml` package to be installed via NPM in your build environment. The CLI uses local compilation to convert MJML templates to HTML.
+
+## Software Bill of Materials (SBOM)
+
+The `project ci` command automatically generates a Software Bill of Materials (SBOM) file containing a list of all dependencies installed in your project. This file is useful for:
+
+- **Docker images**: Container scanning tools can read SBOM files to identify dependencies and check for vulnerabilities
+- **Security scanning**: Understand exactly which packages and versions are deployed in production
+- **Compliance tracking**: Document all software components in your deployment artifact
+- **Supply chain security**: Maintain a record of what's included in each release
+
+The SBOM is included in the build artifact automatically and can be consumed by tools like Grype and other container security scanners.
 
 ## Build Hooks
 
