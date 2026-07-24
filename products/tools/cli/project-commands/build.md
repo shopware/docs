@@ -24,6 +24,9 @@ shopware-cli project ci <path>
 - Deletes unnecessary files like `node_modules` and many more to save disk space
 - Deletes source code of compiled assets to save disk space
 - Merges snippets of extensions to speed up Administration
+- Writes a CycloneDX 1.7 SBOM (`sbom.cdx.json`) from `composer.lock`
+
+If you only need the SBOM and not a full CI build, use [`shopware-cli project sbom`](sbom.md) instead.
 
 ## Using private Composer repositories
 
