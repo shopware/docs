@@ -243,7 +243,7 @@ raised as `SnippetException`.
 
 To change its behaviour, services should depend on the abstract class `AbstractTranslationConfigLoader`, and custom
 decorators can override methods like `load()` while delegating to the original loader. The concrete
-`TranslationConfigLoader` is `@internal`, so decorate the `AbstractTranslationConfigLoader` service id, not the concrete
+`TranslationConfigLoader` is `@internal`, so decorate the `AbstractTranslationConfigLoader` service ID, not the concrete
 class.
 
 For the complete list of extension points across the translation system, see the
