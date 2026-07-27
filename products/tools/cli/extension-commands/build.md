@@ -70,7 +70,7 @@ An esbuild bundle can be used for JavaScript bundling, offering a significantly 
 ```yaml
 # .shopware-extension.yml
 build:
-  package:
+  zip:
     assets:
       # Use esbuild for Administration
       enable_es_build_for_admin: true
@@ -109,7 +109,7 @@ To disable this behavior, you can adjust the configuration:
 ```yaml
 # .shopware-extension.yml
 build:
-  package:
+  zip:
     composer:
       enabled: false
 ```
@@ -123,7 +123,7 @@ Shopware CLI deletes a lot of known files before packaging the extension into a 
 ```yaml
 # .shopware-extension.yml
 build:
-  package:
+  zip:
     pack:
       excludes:
         paths:
@@ -137,7 +137,7 @@ If you bring additional NPM packages, make sure that you added only runtime depe
 ```yaml
 # .shopware-extension.yml
 build:
-  package:
+  zip:
     assets:
       npm_strict: true
 ```
@@ -153,7 +153,7 @@ If you want to exclude certain files or paths from the checksum calculation, you
 ```yaml
 # .shopware-extension.yml
 build:
-  package:
+  zip:
     checksum:
       ignore:
         - <path>
@@ -165,7 +165,7 @@ For example, to exclude the `src/Resources/config/services.php` file from checks
 ```yaml
 # .shopware-extension.yml
 build:
-  package:
+  zip:
     checksum:
       ignore:
         - src/Resources/config/services.php
