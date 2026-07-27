@@ -12,18 +12,20 @@ Users will have to specify a gateway for the connection. The gateway defines the
 
 ## Gateway
 
-The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service.xml using the `shopware.migration.gateway` tag:
+The gateway defines how to communicate from Shopware 6 with your source system, like Shopware 5. Every profile needs to have at least one gateway. Gateways need to be defined in the corresponding service configuration file using the `shopware.migration.gateway` tag:
 
-```html
-<service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Local\ShopwareLocalGateway">
-  <!-- ... -->
-  <tag name="shopware.migration.gateway" />
-</service>
+```php
+$services->set(ShopwareLocalGateway::class)
+    ->args([
+        // ...
+    ])
+    ->tag('shopware.migration.gateway');
 
-<service id="SwagMigrationAssistant\Profile\Shopware\Gateway\Api\ShopwareApiGateway">
-  <!-- ... -->
-  <tag name="shopware.migration.gateway"/>
-</service>
+$services->set(ShopwareApiGateway::class)
+    ->args([
+        // ...
+    ])
+    ->tag('shopware.migration.gateway');
 ```
 
 To use the `ShopwareApiGateway`, you must download the corresponding Shopware 5 plugin [Shopware Migration Connector](https://github.com/shopware/SwagMigrationConnector) first.
