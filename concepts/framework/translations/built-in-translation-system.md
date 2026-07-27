@@ -213,10 +213,10 @@ and a locale code.
 
 ## How to extend or modify the configuration handling
 
-### Configuration override (recommended)
+### Configuration override
 
-You do not need to touch `translation.yaml` or write any PHP to change the configuration. Any field can be overridden
-from a standard Symfony configuration file in `config/packages` through the `shopware.translation` section:
+You can change the configuration from a standard Symfony configuration file in `config/packages` through the
+`shopware.translation` section, without touching `translation.yaml` or writing any PHP:
 
 ```yaml
 # config/packages/translation.yaml
@@ -228,21 +228,21 @@ shopware:
 ```
 
 Any option left unset falls back to the shipped default. The list options (`plugins`, `excluded_locales`,
-`plugin_mapping`, `languages`) replace the shipped default instead of merging into it — provide the full list, or an
+`plugin_mapping`, `languages`) replace the shipped default instead of merging into it, so provide the full list, or an
 empty list (`[]`) to clear it. Configuration keys use `snake_case`, whereas the shipped `translation.yaml` uses the
-dash-separated keys documented above; both describe the same fields.
+dash-separated keys documented above. Both describe the same fields.
 
-### TranslationConfigLoader (advanced)
+### TranslationConfigLoader
 
-When configuration is not expressive enough — for example, when the values must be computed at runtime — the
-decoration pattern is available. The `TranslationConfigLoader`
-(`src/Core/System/Snippet/Service/TranslationConfigLoader.php`) is part of the Shopware core and is responsible for
-loading and validating the `translation.yaml` file. It provides a `TranslationConfig` object that contains all
-configured fields, ensures that URLs are valid, languages and plugins are properly structured, and plugin mappings are
-resolved. Errors such as missing files or invalid configuration values are raised as `SnippetException`.
+If you need behaviour that configuration cannot express, for example values computed at runtime, you can decorate the
+loader. The `TranslationConfigLoader` (`src/Core/System/Snippet/Service/TranslationConfigLoader.php`) is part of the
+Shopware core and is responsible for loading and validating the `translation.yaml` file. It provides a
+`TranslationConfig` object that contains all configured fields, ensures that URLs are valid, languages and plugins are
+properly structured, and plugin mappings are resolved. Errors such as missing files or invalid configuration values are
+raised as `SnippetException`.
 
-To extend or modify its behavior, services should depend on the abstract class `AbstractTranslationConfigLoader`, and
-custom decorators can override methods like `load()` while delegating to the original loader. The concrete
+To change its behaviour, services should depend on the abstract class `AbstractTranslationConfigLoader`, and custom
+decorators can override methods like `load()` while delegating to the original loader. The concrete
 `TranslationConfigLoader` is `@internal`, so decorate the `AbstractTranslationConfigLoader` service id, not the concrete
 class.
 

@@ -14,7 +14,7 @@ set of strings for a request. Each part offers dedicated extension points, so th
 what you want to achieve.
 
 Use the table below to jump to the mechanism that fits your use case. The entries are ordered from the
-lightest option (configuration only) to the most invasive one (service decoration).
+lightest option (configuration only) to the most involved (service decoration).
 
 | Goal | Mechanism |
 |------|-----------|
@@ -28,43 +28,15 @@ lightest option (configuration only) to the most invasive one (service decoratio
 
 ## Configuration override (`shopware.translation`)
 
-The preferred and code-free way to influence the [built-in translation handling](built-in-translation-system.md)
-is the `shopware.translation` configuration section. It lets a host or extension override any field of the
-shipped `translation.yaml` from a standard Symfony configuration file in `config/packages`, without decorating
-any service.
+The built-in translation handling reads its configuration from the shipped `translation.yaml`. A host or
+extension can override any field from a standard Symfony configuration file in `config/packages` through the
+`shopware.translation` section, without decorating any service. This is the entry point for changing the
+repository URL, restricting the offered languages, or adding the plugins whose translations are downloaded.
 
-```yaml
-# config/packages/translation.yaml
-shopware:
-    translation:
-        # change where translations are fetched from
-        repository_url: 'https://raw.githubusercontent.com/my-org/translations/main/translations'
-        metadata_url: 'https://raw.githubusercontent.com/my-org/translations/main/crowdin-metadata.json'
-        # add a plugin so its translations are downloaded alongside Shopware's
-        plugins:
-            - 'SwagCommercial'
-            - 'MyCustomPlugin'
-        # map an internal plugin name to its name in the translation repository
-        plugin_mapping:
-            - plugin: 'MyCustomPlugin'
-              name: 'CustomPluginTranslations'
-        # restrict the offered languages
-        languages:
-            - name: 'Français'
-              locale: 'fr-FR'
-```
-
-Key points:
-
-* Any option you leave unset falls back to the value shipped in `translation.yaml`.
-* The list options (`plugins`, `excluded_locales`, `plugin_mapping`, `languages`) **replace** the shipped
-  default rather than merging into it. Provide the complete list you want, or an empty list (`[]`) to clear
-  the default entirely.
-* Configuration keys use `snake_case` (for example `repository_url`), whereas the shipped `translation.yaml`
-  uses dash-separated keys (`repository-url`). Both describe the same fields.
-
-See the [field reference](built-in-translation-system.md#translation-configuration) for the meaning of every
-field. For scenarios that configuration cannot express, fall back to [service decoration](#service-decoration).
+For the syntax, the replace semantics of the list options, and the full field reference, see
+[Configuration override](built-in-translation-system.md#configuration-override) and the
+[field reference](built-in-translation-system.md#translation-configuration) on the built-in translation
+handling page.
 
 ## Ship snippets with an extension
 
@@ -155,16 +127,16 @@ Snippet database entities additionally dispatch the standard DAL entity lifecycl
 ## Storage backend (Flysystem)
 
 Downloaded translations are written through the `shopware.filesystem.private` Flysystem adapter rather than
-directly to disk. By configuring that adapter you can keep translations on the local file system (the default)
-or move them to a shared backend such as Amazon S3, Google Cloud Storage, or Azure Blob Storage — useful when
-several application nodes must share the same installed translations. See the
-[filesystem configuration guide](../../../guides/hosting/infrastructure/filesystem.md) for adapter options.
+directly to disk, so you can keep them on the local file system or move them to a shared backend. See
+[Built-in translation system and Flysystem](built-in-translation-system.md#built-in-translation-system-and-flysystem)
+for the supported backends, and the [filesystem configuration guide](../../../guides/hosting/infrastructure/filesystem.md)
+for adapter options.
 
 ## Service decoration
 
-When configuration and events are not enough, the loading and validation services can be replaced through
-Shopware's [decoration pattern](../../../guides/plugins/plugins/services/adjusting-service.md). Decorate the
-**service id** in the first column and delegate to the injected inner instance.
+To change behaviour that configuration and events do not cover, the loading and validation services can be
+replaced through Shopware's [decoration pattern](../../../guides/plugins/plugins/services/adjusting-service.md).
+Decorate the **service id** in the first column and delegate to the injected inner instance.
 
 | Service id to decorate | Base type | Responsibility |
 |------------------------|-----------|----------------|
@@ -177,8 +149,9 @@ The two abstract-class services use the `getDecorated()` convention: your decora
 and returns the injected inner instance from `getDecorated()`. The interface-based services only require
 implementing the interface and delegating to the inner instance.
 
-Example — replacing the configuration loader (prefer the
-[configuration override](#configuration-override-shopware-translation) unless you need runtime logic):
+Example — replacing the configuration loader (the
+[configuration override](#configuration-override-shopware-translation) covers the same field values without a
+decorator):
 
 ```xml
 <service id="MyPlugin\Service\CustomTranslationConfigLoader"
@@ -200,8 +173,9 @@ Notes:
 
 ## CLI commands and scheduled task
 
-The download system can be driven entirely from the command line, which is the recommended way to manage
-languages during deployment or image builds:
+The download system can be driven entirely from the command line, which suits managing languages during
+deployment or image builds. See the [built-in translation handling](built-in-translation-system.md#how-to-install-and-update-translations)
+page for the `translation:install` and `translation:update` details:
 
 | Command | Purpose |
 |---------|---------|
@@ -218,5 +192,5 @@ Updates also run automatically through the `UpdateTranslationsTask` scheduled ta
 
 * `TranslationConfigLoader` is `@internal` and refuses decoration of the concrete class — use the
   `AbstractTranslationConfigLoader` alias or the configuration override.
-* `StorefrontSnippetsExtension` is `final`; interact with it through its events and public properties, not by
+* `StorefrontSnippetsExtension` is `final`. Interact with it through its events and public properties, not by
   extending it.
