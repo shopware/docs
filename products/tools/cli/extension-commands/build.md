@@ -70,7 +70,7 @@ An esbuild bundle can be used for JavaScript bundling, offering a significantly 
 ```yaml
 # .shopware-extension.yml
 build:
-  zip:
+  package:
     assets:
       # Use esbuild for Administration
       enable_es_build_for_admin: true
@@ -93,37 +93,37 @@ No configuration is required. This happens automatically when esbuild is enabled
 To create an archive of an extension, you can use the following command:
 
 ```bash
-shopware-cli extension zip <path>
+shopware-cli extension package <path>
 ```
 
-The command copies the extension to a temporary directory, builds the assets, deletes unnecessary files and creates a zip archive of the extension. The archive is placed in the current working directory.
+The command copies the extension to a temporary directory, builds the assets, deletes unnecessary files and creates a ZIP archive of the extension. The archive is placed in the current working directory.
 
 **By default, the command picks the latest released git tag**, use the `--disable-git` flag to disable this behavior and use the current source code. Besides disabling it completely, you can also specify a specific tag or commit using `--git-commit`.
 
 ### Bundling Composer dependencies
 
-Before Shopware 6.5, bundling the Composer dependencies into the zip file is required. Shopware CLI automatically runs `composer install` and removes duplicate Composer dependencies to avoid conflicts.
+Before Shopware 6.5, bundling the Composer dependencies into the ZIP file is required. Shopware CLI automatically runs `composer install` and removes duplicate Composer dependencies to avoid conflicts.
 
 To disable this behavior, you can adjust the configuration:
 
 ```yaml
 # .shopware-extension.yml
 build:
-  zip:
+  package:
     composer:
       enabled: false
 ```
 
 This is automatically disabled for plugins targeting Shopware 6.5 and above and `executeComposerCommands` should be used instead.
 
-### Delete files before zipping
+### Delete files before packaging
 
-Shopware CLI deletes a lot of known files before zipping the extension. If you want to delete more files, you can adjust the configuration:
+Shopware CLI deletes a lot of known files before packaging the extension into a ZIP file. If you want to delete more files, you can adjust the configuration:
 
 ```yaml
 # .shopware-extension.yml
 build:
-  zip:
+  package:
     pack:
       excludes:
         paths:
@@ -137,7 +137,7 @@ If you bring additional NPM packages, make sure that you added only runtime depe
 ```yaml
 # .shopware-extension.yml
 build:
-  zip:
+  package:
     assets:
       npm_strict: true
 ```
@@ -146,14 +146,14 @@ This skips unnecessary `npm install` and `npm ci` commands and only installs the
 
 ### Checksums
 
-When creating an archive using `shopware-cli extension zip`, a `checksum.json` file is automatically generated. This file contains checksums for all files in the extension, which can be used to verify the integrity of the extension after installation.
+When creating an archive using `shopware-cli extension package`, a `checksum.json` file is automatically generated. This file contains checksums for all files in the extension, which can be used to verify the integrity of the extension after installation.
 
 If you want to exclude certain files or paths from the checksum calculation, you can configure this in your `.shopware-extension.yml` file:
 
 ```yaml
 # .shopware-extension.yml
 build:
-  zip:
+  package:
     checksum:
       ignore:
         - <path>
@@ -165,7 +165,7 @@ For example, to exclude the `src/Resources/config/services.php` file from checks
 ```yaml
 # .shopware-extension.yml
 build:
-  zip:
+  package:
     checksum:
       ignore:
         - src/Resources/config/services.php
@@ -178,7 +178,7 @@ To verify the checksum of installed extensions, you can use the [FroshTools](htt
 When building an extension for distribution to the Shopware Store or installation in a Shopware instance, enable release mode with the `--release` flag:
 
 ```bash
-shopware-cli extension zip <path> --release
+shopware-cli extension package <path> --release
 ```
 
 Release mode:
@@ -217,22 +217,22 @@ With the combination of `pattern`, `variables` and `template` we link the commit
 
 ### Overwrites
 
-Extension configuration can be overwritten during the zipping process, allowing changes to aspects such as the version and app-related settings.
+Extension configuration can be overwritten during the packaging process, allowing changes to aspects such as the version and app-related settings.
 
 Replaces the version in `composer.json` or `manifest.xml` with the given version:
 
 ```yaml
-shopware-cli extension zip --overwrite-version=1.0.0 <path>
+shopware-cli extension package --overwrite-version=1.0.0 <path>
 ```
 
 Replaces all external URLs in `manifest.xml` to that given URL:
 
 ```yaml
-shopware-cli extension zip --overwrite-app-backend-url=https://example.com <path>
+shopware-cli extension package --overwrite-app-backend-url=https://example.com <path>
 ```
 
 Replaces the App secret in `manifest.xml` with the given secret:
 
 ```yaml
-shopware-cli extension zip --overwrite-app-backend-secret=MySecret <path>
+shopware-cli extension package --overwrite-app-backend-secret=MySecret <path>
 ```
