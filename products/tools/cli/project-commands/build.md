@@ -28,17 +28,17 @@ One of the most-used commands in the Shopware CLI. After cloning a repository, t
 - Merges snippets of extensions to speed up Administration
 - Generates a Software Bill of Materials (SBOM) listing all deployed dependencies
 
-## CI system configuration
+## CI system
 
-Specify which CI/CD platform to configure for:
+The CI system is detected automatically from the environment, so you don't need to configure anything.
+
+If you want to override the detection — for example, to disable CI-specific output — pass `--ci`:
 
 ```bash
-shopware-cli project ci <path> --ci github
-shopware-cli project ci <path> --ci gitlab
 shopware-cli project ci <path> --ci none
 ```
 
-Options: `github`, `gitlab`, `none` (default).
+Accepted values: `github`, `gitlab`, `none`.
 
 ## Using private Composer repositories
 
