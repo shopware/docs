@@ -67,3 +67,9 @@ COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopw
 </Tabs>
 
 **Binary & releases:** Prebuilt packages and archives are published at [shopware/shopware-cli · Releases](https://github.com/shopware/shopware-cli/releases).
+
+## Telemetry
+
+Shopware CLI collects limited usage telemetry to help us improve the tool and understand which features are most valuable to you. No personal data, credentials, or file contents are collected. You can opt out anytime by setting the `DO_NOT_TRACK` environment variable.
+
+See [Telemetry & Privacy](../../../resources/references/telemetry.md#shopware-cli) for full details about what data is collected and how to disable telemetry.

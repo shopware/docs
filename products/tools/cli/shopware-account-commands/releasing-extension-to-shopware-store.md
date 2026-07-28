@@ -16,12 +16,20 @@ nav:
 
 ## Releasing the extension
 
-To release the extension to the Shopware Store, you need to upload the zip file to the store. This can be done with the `shopware-cli account producer extension upload` command.
+To release the extension to the Shopware Store, upload the ZIP file using the `shopware-cli account producer extension upload` command. This is primarily designed for CI/CD pipelines to automate extension releases:
 
 ```bash
 shopware-cli account producer extension upload <zip-path>
 ```
 
-This command will check first if an extension with the same version already exists in the store. If not, it will upload the extension to the store. For the compatibility of the extension, the command will use the Composer constraint of `composer.json` or `manifest.xml` file.
+The upload process:
 
-After the upload, the command will wait for the result of the automatic validation. This can take a few minutes. If the validation fails, the command will output the error message, and you need to fix the issue and upload the extension again. You can skip this check with the `--skip-for-review-result` option.
+1. Checks for existing version: Verifies no extension with the same version already exists in the store
+2. Uploads the package: Sends your ZIP file to the Shopware Store
+3. Determines compatibility: Uses the Composer constraint from `composer.json` or `manifest.xml`
+4. Waits for code review: The command automatically waits for the Store's automatic code review to complete (may take several minutes)
+5. Reports results: Shows whether the code review passed or failed
+
+If the code review fails, fix the issues and upload again. You can skip waiting for the review result with the `--skip-for-review-result` option if needed for CI/CD workflows that handle results separately.
+
+This workflow means you don't need to use the Shopware Store Admin UI at all—your CI/CD pipeline can handle the entire release process automatically.
