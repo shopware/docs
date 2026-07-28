@@ -26,7 +26,7 @@ shopware-cli project sbom ./my-shop \
 shopware-cli project sbom --include-dev-dependencies
 ```
 
-If you omit the path argument, Shopware CLI resolves the nearest Shopware project (by walking for `composer.json` / `composer.lock`) and falls back to the current working directory.
+If you omit the path argument, Shopware CLI resolves the nearest Shopware project (by walking up the directory tree and looking for `composer.json` / `composer.lock`) and falls back to the current working directory.
 
 ## What does it do?
 
