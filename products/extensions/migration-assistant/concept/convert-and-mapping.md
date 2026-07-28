@@ -14,11 +14,13 @@ Data gathered by `Reader` objects is transferred to `Converter` objects that put
 
 Converters are registered in the service container:
 
-```html
-<service id="SwagMigrationAssistant\Profile\Shopware\Converter\ProductConverter"
-         parent="SwagMigrationAssistant\Profile\Shopware\Converter\ShopwareConverter" abstract="true">
-    <!-- ... -->
-</service>
+```php
+$services->set(ProductConverter::class)
+    ->abstract()
+    ->parent(ShopwareConverter::class)
+    ->args([
+        // ...
+    ]);
 ```
 
 The converters have to extend the `ShopwareConverter` class and implement the `convert` method. This method will receive one data entry at a time. It will have to be returned in the right format to be usable for the `writer`.

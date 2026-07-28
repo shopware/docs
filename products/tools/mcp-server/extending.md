@@ -52,7 +52,7 @@ Webhook response: return a JSON object, ideally following the `{"success": bool,
 
 <Tab title="Plugin">
 
-PHP class with `#[McpTool]` on the class, tagged `shopware.mcp.tool` in `services.xml`.
+PHP class with `#[McpTool]` on the class, tagged `shopware.mcp.tool` in `services.php`.
 
 ```php
 #[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders.')]
@@ -76,12 +76,12 @@ class OrdersTool extends McpToolResponse
 
 <Tab title="Bundle">
 
-Identical PHP class and `services.xml` as a plugin. Load services unconditionally in the bundle's `build()` method — the MCP feature flag gates the HTTP endpoint, not the service registration:
+Identical PHP class and `services.php` as a plugin. Load services unconditionally in the bundle's `build()` method — the MCP feature flag gates the HTTP endpoint, not the service registration:
 
 ```php
 public function build(ContainerBuilder $container): void
 {
-    // load services.xml with shopware.mcp.tool tag
+    // load services.php with shopware.mcp.tool tag
 }
 ```
 
@@ -89,7 +89,7 @@ To register the bundle itself only when the MCP feature is active, gate the entr
 
 Bundles have no install/activate lifecycle. They are always active when registered in `config/bundles.php`.
 
-→ [Plugin guide](../../../guides/plugins/plugins/mcp-server.md): the PHP class and services.xml patterns are identical
+→ [Plugin guide](../../../guides/plugins/plugins/mcp-server.md): the PHP class and services.php patterns are identical
 
 </Tab>
 

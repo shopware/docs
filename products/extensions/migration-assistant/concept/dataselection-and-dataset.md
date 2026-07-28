@@ -101,10 +101,9 @@ class ProductDataSet extends DataSet
 
 The `DataSelections` are registered the following way:
 
-```html
-<service id="SwagMigrationAssistant\Profile\Shopware\DataSelection\ProductDataSelection">
-    <tag name="shopware.migration.data_selection"/>
-</service>
+```php
+$services->set(ProductDataSelection::class)
+    ->tag('shopware.migration.data_selection');
 ```
 
 It is also possible to specify the same `DataSets` in multiple `DataSelections` \(this should only be done if no other options are available\). Have a look at the `ProductReviewDataSelection`:

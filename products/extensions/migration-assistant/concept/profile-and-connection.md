@@ -12,13 +12,12 @@ Users of the plugin can create connections to different source systems. A connec
 
 ## Profile
 
-The base of Shopware Migration Assistant is the profile, which enables you to migrate your shop system to Shopware 6. Shopware Migration Assistant comes with the default Shopware 5.5 profile and is located in the `shopware55.xml`:
+The base of Shopware Migration Assistant is the profile, which enables you to migrate your shop system to Shopware 6. Shopware Migration Assistant comes with the default Shopware 5.5 profile and is located in the `shopware55.php`:
 
-```html
-<!-- Shopware 5.5 Profile -->
-<service id="SwagMigrationAssistant\Profile\Shopware55\Shopware55Profile">
-    <tag name="shopware.migration.profile"/>
-</service>
+```php
+// Shopware 5.5 Profile
+$services->set(Shopware55Profile::class)
+    ->tag('shopware.migration.profile');
 ```
 
 In order to identify itself, the profile has to implement getter functions like `getName()`, which returns the unique name of the profile. The profile is used together with the [Gateway](gateway-and-reader#gateway) to check and apply the right processing during a migration run.
