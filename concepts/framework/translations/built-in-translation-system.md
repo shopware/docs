@@ -234,14 +234,14 @@ dash-separated keys documented above. Both describe the same fields.
 
 ### TranslationConfigLoader
 
-If you need behaviour that configuration cannot express, for example values computed at runtime, you can decorate the
+If you need behavior that configuration cannot express, for example values computed at runtime, you can decorate the
 loader. The `TranslationConfigLoader` (`src/Core/System/Snippet/Service/TranslationConfigLoader.php`) is part of the
 Shopware core and is responsible for loading and validating the `translation.yaml` file. It provides a
 `TranslationConfig` object that contains all configured fields, ensures that URLs are valid, languages and plugins are
 properly structured, and plugin mappings are resolved. Errors such as missing files or invalid configuration values are
 raised as `SnippetException`.
 
-To change its behaviour, services should depend on the abstract class `AbstractTranslationConfigLoader`, and custom
+To change its behavior, services should depend on the abstract class `AbstractTranslationConfigLoader`, and custom
 decorators can override methods like `load()` while delegating to the original loader. The concrete
 `TranslationConfigLoader` is `@internal`, so decorate the `AbstractTranslationConfigLoader` service ID, not the concrete
 class.

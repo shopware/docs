@@ -2,7 +2,6 @@
 nav:
   title: Extension points
   position: 60
-
 ---
 
 # Extension points of the translation system
@@ -105,7 +104,7 @@ The download system dispatches two events you can subscribe to:
 | `TranslationRemovedEvent` | After a locale has been removed (`TranslationRemover`)                                     | `locale`                    |
 
 Both live in `Shopware\Core\System\Snippet\Event`. Subscribe to them to trigger follow-up work such as cache
-warming, notifications, or synchronising a downstream system when the set of installed languages changes.
+warming, notifications, or synchronizing a downstream system when the set of installed languages changes.
 
 Snippet database entities additionally dispatch the standard DAL entity lifecycle events collected in
 `Shopware\Core\System\Snippet\SnippetEvents` (for example `SNIPPET_WRITTEN_EVENT`).
@@ -142,7 +141,7 @@ extension can override any field from a standard Symfony configuration file in `
 `shopware.translation` section, without decorating any service. This is the entry point for changing the
 repository URL, restricting the offered languages, or adding the plugins whose translations are downloaded.
 
-For the syntax, the replace semantics of the list options, and the full field reference, see
+For the syntax, the replacement semantics of the list options, and the full field reference, see
 [Configuration override](built-in-translation-system.md#configuration-override) and the
 [field reference](built-in-translation-system.md#translation-configuration) on the built-in translation
 handling page.
@@ -153,7 +152,7 @@ technical name differs from the name in the repository).
 
 ## Service decoration
 
-To change behaviour that configuration and events do not cover, the loading and validation services can be
+To change behavior that configuration and events do not cover, the loading and validation services can be
 replaced through Shopware's [decoration pattern](../../../guides/plugins/plugins/services/adjusting-service.md).
 Decorate the **service ID** in the first column and delegate to the injected inner instance.
 
@@ -187,7 +186,7 @@ Notes:
   its `getDecorated()` likewise throws. Decorate the `Shopware\Core\System\Snippet\Service\TranslationLoader`
   ID and return the injected inner instance from your override.
 * `AbstractTranslationLoader::pluginTranslationExists()` is deprecated for removal in v6.8.0. Override
-  `pluginTranslationExistsForLocale()` instead for locale-aware behaviour.
+  `pluginTranslationExistsForLocale()` instead for locale-aware behavior.
 
 ## What you cannot extend
 
