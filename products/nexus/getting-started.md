@@ -8,8 +8,7 @@ nav:
 
 ## Prerequisites
 
-- Shopware 6.7 or newer  
-- Active Shopware subscription  
+- Shopware 6.7 or newer
 - Early Access granted by Shopware
 - Nexus service activated
 - Active Shopware services
