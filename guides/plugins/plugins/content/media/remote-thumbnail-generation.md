@@ -27,19 +27,29 @@ shopware:
     remote_thumbnails:
       enable: true
       pattern: '{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}'
+      fallback_sizes:
+        - { width: 320, height: 320 }
+        - { width: 640, height: 640 }
 ```
 
 | Key                                        | Type   | Default                                                    | Description                                                                                                                                                                                            |
 |--------------------------------------------|--------|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `shopware.media.remote_thumbnails.enable`  | bool   | `false`                                                    | Master switch. When `true`, Shopware stops creating, persisting, and deleting thumbnail files and database records and instead synthesizes thumbnail URLs from the configured pattern at request time. |
 | `shopware.media.remote_thumbnails.pattern` | string | `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}` | Template used to build thumbnail URLs. Variables are listed below.                                                                                                                                     |
+| `shopware.media.remote_thumbnails.fallback_sizes` | array | `[]` | Optional list of `{ width, height }` thumbnail sizes used when an enabled media folder has no assigned thumbnail sizes. |
+
+### Fallback sizes
+
+Configure `fallback_sizes` to generate remote thumbnail URLs for media in folders that have thumbnail generation enabled but no assigned thumbnail sizes. Each entry requires a positive integer `width` and `height`.
+
+Folder-specific thumbnail sizes take precedence over `fallback_sizes`. Set **Create thumbnails** to disabled in the media folder settings to opt out of both configured and fallback remote thumbnail URLs. An empty `fallback_sizes` list preserves the existing behavior.
 
 The pattern supports the following variables:
 
 * `mediaUrl`: The base URL of the public filesystem (`shopware.filesystem.public`). For media whose `path` is already absolute (e.g., uploaded by URL), `{mediaUrl}` is replaced with an empty string and the leading slash is trimmed automatically.
 * `mediaPath`: The media file path relative to `mediaUrl` (for example `media/ab/cd/file.jpg`).
-* `width`: The width from the assigned `media_thumbnail_size` of the media folder.
-* `height`: The height from the assigned `media_thumbnail_size` of the media folder.
+* `width`: The width from the assigned `media_thumbnail_size` of the media folder or a configured fallback size.
+* `height`: The height from the assigned `media_thumbnail_size` of the media folder or a configured fallback size.
 * `mediaUpdatedAt`: Unix timestamp of `media.updatedAt`, falling back to `media.createdAt`. Empty string when both are null. Useful as a cache-buster (Shopware versions older than 6.6.5.0 do not support this variable).
 
 For example, with the default pattern `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}`, the thumbnail URL is generated as `https://yourshop.example/abc/123/456.jpg?width=80&ts=1718954838`.
@@ -65,7 +75,7 @@ Enabling `shopware.media.remote_thumbnails.enable` short-circuits multiple subsy
 * **CLI commands** — `bin/console media:generate-thumbnails` aborts with `Command::FAILURE` and prints `Remote thumbnails are enabled. Skipping thumbnail generation.`
 * **`FileSaver`** — uploads no longer dispatch a `GenerateThumbnailsMessage`, and renames skip the thumbnail-rename step (which would otherwise fail because no local thumbnail files exist).
 * **`MediaDeletionSubscriber`** — original files are still deleted, but the thumbnail-file enumeration and the `media_thumbnail` row deletion are skipped.
-* **`MediaUrlLoader`** — listens to `media.loaded` / `media.partial_loaded` and delegates to `RemoteThumbnailLoader`, which synthesizes a `MediaThumbnailCollection` in memory based on the media folder's configured `media_thumbnail_size` entries.
+* **`MediaUrlLoader`** — listens to `media.loaded` / `media.partial_loaded` and delegates to `RemoteThumbnailLoader`, which synthesizes a `MediaThumbnailCollection` in memory based on the media folder's configured `media_thumbnail_size` entries or `fallback_sizes`.
 
 ::: warning
 The synthesized `MediaThumbnailEntity` instances are assigned a fresh random UUID on every request and are not persisted. Do not rely on `media_thumbnail.id` being stable, and do not join other tables against it while the feature is on.
