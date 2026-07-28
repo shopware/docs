@@ -195,4 +195,3 @@ Notes:
   `AbstractTranslationConfigLoader` alias or the configuration override.
 * `StorefrontSnippetsExtension` is `final`. Interact with it through its events and public properties, not by
   extending it.
-</content>
