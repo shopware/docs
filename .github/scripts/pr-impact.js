@@ -1,14 +1,25 @@
-const github = require("@actions/github");
+const fs = require("fs");
+
+// ======================================================
+// Configuration
+// ======================================================
 
 const token = process.env.GITHUB_TOKEN;
 
-const octokit = github.getOctokit(token);
+const event = JSON.parse(
+    fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8")
+);
 
-const context = github.context;
+const owner = event.repository.owner.login;
+const repo = event.repository.name;
+const pull_number = event.pull_request.number;
 
-const owner = context.repo.owner;
-const repo = context.repo.repo;
-const pull_number = context.payload.pull_request.number;
+const API = `https://api.github.com/repos/${owner}/${repo}`;
+
+const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/vnd.github+json"
+};
 
 const RULES = {
     paths: [
@@ -64,7 +75,55 @@ const RULES = {
     }
 };
 
+// ======================================================
+// GitHub Helpers
+// ======================================================
+
+async function githubGet(url) {
+
+    const response = await fetch(url, {
+        headers
+    });
+
+    if (!response.ok) {
+        throw new Error(
+            `GitHub GET failed (${response.status}) ${url}`
+        );
+    }
+
+    return response.json();
+}
+
+async function githubPost(url, body) {
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            ...headers,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(
+            `GitHub POST failed (${response.status})\n${text}`
+        );
+    }
+
+    return response.json();
+}
+
+// ======================================================
+// Analyzer
+// ======================================================
+
 (async () => {
+
+    console.log("=================================");
+    console.log("Documentation Impact Analyzer");
+    console.log("=================================");
 
     let score = 0;
 
@@ -72,18 +131,21 @@ const RULES = {
 
     const categories = new Set();
 
-    const pr =
-        (await octokit.rest.pulls.get({
-            owner,
-            repo,
-            pull_number
-        })).data;
+    //-----------------------------------------------------
+    // PR
+    //-----------------------------------------------------
+
+    const pr = await githubGet(
+        `${API}/pulls/${pull_number}`
+    );
 
     const title = pr.title.toLowerCase();
 
-    console.log("Analyzing:", title);
+    console.log("PR:", pr.title);
 
-    // ---------- TITLE ----------
+    //-----------------------------------------------------
+    // Title
+    //-----------------------------------------------------
 
     for (const [keyword, value] of Object.entries(RULES.keywords)) {
 
@@ -93,23 +155,26 @@ const RULES = {
 
             reasons.push(`+${value}: PR title contains "${keyword}"`);
         }
+
     }
 
-    // ---------- FILES ----------
+    //-----------------------------------------------------
+    // Files
+    //-----------------------------------------------------
 
-    const files =
-        await octokit.paginate(
-            octokit.rest.pulls.listFiles,
-            {
-                owner,
-                repo,
-                pull_number
-            }
-        );
+    const files = await githubGet(
+        `${API}/pulls/${pull_number}/files`
+    );
+
+    console.log(`Found ${files.length} changed files`);
 
     for (const file of files) {
 
-        console.log(file.filename);
+        console.log("Analyzing:", file.filename);
+
+        //-------------------------------------------------
+        // Path Rules
+        //-------------------------------------------------
 
         for (const rule of RULES.paths) {
 
@@ -123,13 +188,16 @@ const RULES = {
 
                 if (rule.category)
                     categories.add(rule.category);
+
             }
 
         }
 
         const patch = file.patch || "";
 
-        // ---------- NEW HEADINGS ----------
+        //-------------------------------------------------
+        // New Headings
+        //-------------------------------------------------
 
         const headings =
             (patch.match(/\+\s*##\s/g) || []).length;
@@ -138,10 +206,15 @@ const RULES = {
 
             score += headings * 2;
 
-            reasons.push(`+${headings * 2}: ${headings} new headings`);
+            reasons.push(
+                `+${headings * 2}: ${headings} new headings`
+            );
+
         }
 
-        // ---------- CODE BLOCKS ----------
+        //-------------------------------------------------
+        // Code Blocks
+        //-------------------------------------------------
 
         const code =
             (patch.match(/\+\s*```/g) || []).length;
@@ -150,10 +223,15 @@ const RULES = {
 
             score += code;
 
-            reasons.push(`+${code}: code examples`);
+            reasons.push(
+                `+${code}: Code examples`
+            );
+
         }
 
-        // ---------- API ----------
+        //-------------------------------------------------
+        // API Endpoints
+        //-------------------------------------------------
 
         if (/\+\s*(GET|POST|PUT|DELETE)\s+\/api/i.test(patch)) {
 
@@ -161,10 +239,15 @@ const RULES = {
 
             categories.add("API");
 
-            reasons.push("+4: API endpoint documented");
+            reasons.push(
+                "+4: API endpoint documented"
+            );
+
         }
 
-        // ---------- DEPRECATION ----------
+        //-------------------------------------------------
+        // Deprecation
+        //-------------------------------------------------
 
         if (/deprecated/i.test(patch)) {
 
@@ -172,10 +255,15 @@ const RULES = {
 
             categories.add("Migration");
 
-            reasons.push("+4: Deprecation");
+            reasons.push(
+                "+4: Deprecation"
+            );
+
         }
 
-        // ---------- BREAKING ----------
+        //-------------------------------------------------
+        // Breaking
+        //-------------------------------------------------
 
         if (/breaking/i.test(patch)) {
 
@@ -183,28 +271,37 @@ const RULES = {
 
             categories.add("Migration");
 
-            reasons.push("+5: Breaking change");
+            reasons.push(
+                "+5: Breaking change"
+            );
+
         }
 
     }
+
+    //-----------------------------------------------------
+    // Recommendation
+    //-----------------------------------------------------
 
     let recommendation;
 
     if (score >= 10) {
 
-        recommendation =
-            "✅ Highly meaningful";
+        recommendation = "✅ Highly meaningful";
 
     } else if (score >= 6) {
 
-        recommendation =
-            "⚠️ Needs manual review";
+        recommendation = "⚠️ Needs manual review";
 
     } else {
 
-        recommendation =
-            "❌ Probably not meaningful";
+        recommendation = "❌ Probably not meaningful";
+
     }
+
+    //-----------------------------------------------------
+    // Comment
+    //-----------------------------------------------------
 
     const comment = `## 📊 Documentation Impact Analyzer
 
@@ -223,11 +320,18 @@ ${reasons.map(r => `- ${r}`).join("\n")}
 > This score is automatically generated based on documentation impact heuristics.
 `;
 
-    await octokit.rest.issues.createComment({
-        owner,
-        repo,
-        issue_number: pull_number,
-        body: comment
-    });
+    await githubPost(
+        `${API}/issues/${pull_number}/comments`,
+        {
+            body: comment
+        }
+    );
+
+    console.log("");
+    console.log("=================================");
+    console.log("Analysis Complete");
+    console.log("=================================");
+    console.log("Score:", score);
+    console.log("Recommendation:", recommendation);
 
 })();
