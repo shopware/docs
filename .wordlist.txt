@@ -333,6 +333,7 @@ Deployer
 Deprecations
 Deutsch
 DevOps
+DevTUI
 DevTools
 Devenv
 DeviceHelper
@@ -491,6 +492,7 @@ IDEs
 IETF
 IPV
 IPv
+ISR
 IdField
 IdSearchResult
 Ideate
@@ -539,6 +541,7 @@ LONGTEXT
 LUA
 LandingPage
 LastNameRule
+LavinMQ
 Lerna
 Lifecycle
 LineItemClearanceSaleRule
@@ -886,6 +889,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBOM
 SBP
 SCSS
 SDK
@@ -1022,6 +1026,8 @@ TCP
 TLS
 TTL
 TTLs
+TUI
+TUI's
 TaxFreeConfigField
 TaxProvider
 TaxProviderStruct
@@ -1179,6 +1185,7 @@ actionAmount
 actionType
 actionability
 activateShopwareTheme
+adminer
 adr
 afterSort
 ag
@@ -1635,8 +1642,10 @@ jwks
 jwt
 kebabCase
 keyframes
+keypress
 landingpage
 lang
+lavinmq
 lazysizes
 libxml
 lifecycle
@@ -1647,6 +1656,7 @@ lineItemId
 linter
 linters
 linux
+liveness
 llms
 localVue
 localhost
@@ -1760,6 +1770,7 @@ org's
 organizationUnitIds
 otel
 otlp
+overridable
 overrideComponentSetup
 oversales
 paas
@@ -1901,6 +1912,7 @@ rollout
 routeName
 routeScope
 routeScopes
+runnable
 runtime
 runtimes
 salesChannel
@@ -1969,6 +1981,7 @@ sm
 smartbar
 snakeCase
 sortings
+sourcemaps
 sql
 src
 srcset
@@ -2137,6 +2150,7 @@ wishlist
 wordlist
 www
 xasjkyld
+xdebug
 xhost's
 xkeys
 xl

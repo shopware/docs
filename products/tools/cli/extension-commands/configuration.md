@@ -44,6 +44,10 @@ validation:
 
 When you edit that file in an editor, you will get autocompletion and hints for the available options.
 
+::: info
+To programmatically access the configuration schema, use `shopware-cli extension config-schema`. This outputs the JSON schema and is particularly useful for AI agents and automation tools that need to understand the extension configuration structure.
+:::
+
 ## Compatibility date
 
 You can define a `compatibility_date` in `.shopware-extension.yml`:

@@ -115,6 +115,8 @@ To get details about a given deployment:
 sw-paas application deploy get
 ```
 
+To back up and restore application assets and database data, see [Snapshots](./snapshots.md).
+
 ## Plugin Management
 
 Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-management#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.

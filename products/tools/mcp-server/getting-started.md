@@ -165,6 +165,20 @@ When a tool is enabled, its declared dependencies are automatically included. Fo
 
 See [Configuration](./configuration.md) for the global `allowed_tools` safety switch, the full per-principal allowlist reference, and session store options.
 
+## Try your first prompts
+
+Your AI client is now connected to Shopware. Try a few prompts to verify that the MCP server is working correctly.
+
+For example:
+
+- Show all products in my store.
+- Find products with stock below five units.
+- Find all active products without descriptions.
+- Generate SEO-friendly meta titles for your products (eg, guitars)
+- Increase prices of products in a specific category by 5%. Show a preview before applying the changes.
+
+If the AI can retrieve data and respond to these requests, your integration is ready to use.
+
 ## Next steps
 
 - [Tools Reference](./tools-reference.md): explore all built-in tools and resources

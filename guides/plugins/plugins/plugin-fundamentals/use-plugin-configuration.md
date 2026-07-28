@@ -7,13 +7,13 @@ nav:
 
 # Use Plugin Configuration
 
-The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins. This guide helps you to use them in your plugin.
+The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins. This guide helps you to use them in your plugin, showing you how to read plugin configuration values in PHP, Administration JavaScript, and Storefront code.
 
 ## Prerequisites
 
-- Review the [Plugin Base Guide](../plugin-base-guide.md)
-- [Plugin configuration](add-plugin-configuration.md) — complete this first
-- Familiarity with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
+- First, review the [Plugin Base Guide](../plugin-base-guide.md)
+- Then define a plugin configuration field in [Add plugin configuration](add-plugin-configuration.md)
+- Get familiar with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
 
 The example plugin includes a subscriber that listens to the `product.loaded` event and is called every time a product is loaded.
 

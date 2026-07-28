@@ -207,20 +207,20 @@ In headless, there are two header parameters that need to be set namely `sw-subs
 
 Below is an example of the context set on a subscription cart in the Storefront:
 
-```xml
-<route id="frontend.subscription.checkout.cart.page"
-        path="/subscription/checkout/cart/{subscriptionToken}"
-        methods="GET"
-        controller="subscription.storefront.controller.checkout::cartPage">
-    <default key="_noStore">true</default>
-    <default key="_routeScope"><list><string>storefront</string></list></default>
-    <default key="_subscriptionCart">true</default>
-    <default key="_subscriptionContext">true</default>
-    <default key="_controllerName">checkout</default>
-    <default key="_controllerAction">cartpage</default>
-    <default key="_templateScopes">subscription</default>
-    <option key="seo">false</option>
-</route>
+```php
+$routes->add('frontend.subscription.checkout.cart.page', '/subscription/checkout/cart/{subscriptionToken}')
+    ->controller('subscription.storefront.controller.checkout::cartPage')
+    ->methods(['GET'])
+    ->defaults([
+        '_noStore' => 'true',
+        '_routeScope' => ['storefront'],
+        '_subscriptionCart' => 'true',
+        '_subscriptionContext' => 'true',
+        '_controllerName' => 'checkout',
+        '_controllerAction' => 'cartpage',
+        '_templateScopes' => 'subscription',
+    ])
+    ->options(['seo' => false]);
 ```
 
 And, here is an example of the headers set on a subscription cart using headless:
@@ -239,7 +239,7 @@ curl -XPOST '/store-api/subscription/checkout/cart/line-item' /
     }'
 ```
 
-These context definitions can be found in `Subscription/Resources/app/config/routes/storefront.xml` or `Subscription/Resources/app/config/routes/store-api.xml`.
+These context definitions can be found in `Subscription/Resources/config/routes/storefront.php` or `Subscription/Resources/config/routes/store-api.php`.
 
 ## Subscription carts in the Storefront
 
