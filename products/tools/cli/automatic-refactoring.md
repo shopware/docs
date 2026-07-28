@@ -7,9 +7,15 @@ nav:
 
 # Automatic refactoring
 
-Shopware CLI includes a built-in automatic refactoring tool that helps you automatically update and clean up code in your Shopware projects and extensions.
+Shopware CLI includes a built-in automatic refactoring tool with pre-configured rules for Shopware projects. Instead of manually configuring and managing multiple linters and fixers, this tool automatically handles breaking changes and code modernization when you upgrade Shopware versions.
 
-Use this tool to modernize your codebase when upgrading to a new Shopware version or to apply best-practice changes automatically.
+Use this tool to:
+
+- Automatically fix breaking changes between Shopware versions
+- Apply Shopware-idiomatic code fixes
+- Modernize your codebase without manual linter configuration
+
+The tool uses:
 
 - [Rector](https://getrector.com/) for PHP
 - [ESLint](https://eslint.org/) for JavaScript
@@ -78,6 +84,23 @@ shopware-cli project fix /path/to/your/project
 The CLI runs Rector and ESLint automatically. After completion, review all changes and commit or revert them as needed.
 
 Make sure the `shopware/core` requirement in your `composer.json` file reflects the version you're targeting. Shopware CLI determines which upgrade rules to apply based on that version constraint.
+
+### Project fix options
+
+Run only specific tools:
+
+```shell
+shopware-cli project fix /path/to/your/project --only phpstan
+shopware-cli project fix /path/to/your/project --only "phpstan,eslint"
+```
+
+Allow running on non-Git repositories:
+
+```shell
+shopware-cli project fix /path/to/your/project --allow-non-git
+```
+
+By default, `project fix` requires a Git repository to safely track changes.
 
 ## After running refactoring
 
