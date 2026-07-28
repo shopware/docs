@@ -39,7 +39,7 @@ custom/plugins/SwagMyPlugin/
  │       └── MyTool.php            # MCP tool class
  └── Resources/
  └── config/
- └── services.xml          # Service registration
+ └── services.php          # Service registration
 ```
 
 ## Step 1: Create the tool class
@@ -134,23 +134,27 @@ The attribute is **declarative only**: it populates the Admin UI coverage warnin
 
 ## Step 3: Register the service
 
-In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`:
+In `src/Resources/config/services.php`, tag the service with `shopware.mcp.tool`:
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services
- http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\MyPlugin\Mcp\Tool\MyTool">
-            <argument type="service" id="order.repository"/>
-            <argument type="service" id="Shopware\Core\Framework\Mcp\Context\McpContextProvider"/>
-            <tag name="shopware.mcp.tool"/>
-        </service>
-    </services>
-</container>
+use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
+use Swag\MyPlugin\Mcp\Tool\MyTool;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MyTool::class)
+        ->args([
+            service('order.repository'),
+            service(McpContextProvider::class),
+        ])
+        ->tag('shopware.mcp.tool');
+};
 ```
 
 Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
@@ -180,7 +184,7 @@ bin/console debug:mcp
 If the tool appears here, it is available in the live HTTP endpoint. If it does not appear, check:
 
 - Plugin is installed and active
-- Service has `<tag name="shopware.mcp.tool"/>`
+- Service is tagged with `shopware.mcp.tool`
 - `#[McpTool]` is on the class, not on `__invoke()`
 
 ## Adding prompts
@@ -234,8 +238,8 @@ Symfony bundles (not Shopware plugins) follow the same `shopware.mcp.tool` tag m
 ```php
 public function build(ContainerBuilder $container): void
 {
-    $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/Resources/config'));
-    $loader->load('services.xml');
+    $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/Resources/config'));
+    $loader->load('services.php');
 }
 ```
 
