@@ -280,6 +280,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+CycloneDX
 DAL
 DBAL
 DDL
@@ -1287,6 +1288,7 @@ cartfacade
 cartpricefacade
 catchable
 catched
+cdx
 cetera
 changelog
 changelogs
@@ -1925,6 +1927,7 @@ saleschannelrepositoryfacade
 salutationId
 sandboxed
 sarven
+sbom
 scalability
 scalable
 schemas
