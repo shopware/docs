@@ -41,6 +41,7 @@ Work directly with your [Shopware project](../../../guides/hosting/installation-
 shopware-cli project create         # Create a new Shopware 6 project
 shopware-cli project dump       # Dumps the Shopware database
 shopware-cli project ci          # Build Shopware in the CI
+shopware-cli project sbom        # Generate a CycloneDX SBOM from composer.lock
 ```
 
 ### Extension commands

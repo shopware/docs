@@ -26,6 +26,10 @@ One of the most-used commands in the Shopware CLI. After cloning a repository, t
 - Deletes unnecessary files like `node_modules` and many more to save disk space
 - Deletes source code of compiled assets to save disk space
 - Merges snippets of extensions to speed up Administration
+- Writes a CycloneDX 1.7 SBOM (`sbom.cdx.json`) from `composer.lock`
+
+If you only need the SBOM and not a full CI build, use [`shopware-cli project sbom`](sbom.md) instead.
+
 - Generates a Software Bill of Materials (SBOM) listing all deployed dependencies
 
 ## CI system
