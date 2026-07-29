@@ -1,10 +1,9 @@
 name: Documentation Impact Analyzer
 
 on:
-  schedule:
-    - cron: "0 9 * * 1"   # Every Monday 09:00 UTC
-
-  workflow_dispatch:
+  pull_request:
+    types:
+      - ready_for_review
 
 permissions:
   contents: read
