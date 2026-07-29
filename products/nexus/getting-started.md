@@ -14,7 +14,7 @@ nav:
 - Active Shopware services
     - Accept Shopware Service T&C's
     - Activate Nexus service
-    - Register shop in SBP if not already done
+    - Register shop in your Shopware Account if not already done
 
 ## Accessing Nexus
 
