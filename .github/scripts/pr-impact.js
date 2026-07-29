@@ -131,17 +131,26 @@ async function githubPost(url, body) {
 
     const categories = new Set();
 
-    //-----------------------------------------------------
-    // PR
-    //-----------------------------------------------------
+//-----------------------------------------------------
+// PR
+//-----------------------------------------------------
 
-    const pr = await githubGet(
-        `${API}/pulls/${pull_number}`
-    );
+const pr = await githubGet(
+    `${API}/pulls/${pull_number}`
+);
 
-    const title = pr.title.toLowerCase();
+// Skip draft pull requests
+if (pr.draft) {
+    console.log("=================================");
+    console.log("Draft PR detected");
+    console.log("Skipping analysis...");
+    console.log("=================================");
+    process.exit(0);
+}
 
-    console.log("PR:", pr.title);
+const title = pr.title.toLowerCase();
+
+console.log("PR:", pr.title);
 
     //-----------------------------------------------------
     // Title

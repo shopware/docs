@@ -3,8 +3,10 @@ name: Documentation Impact Analyzer
 on:
   pull_request:
     types:
+      - opened
       - ready_for_review
-
+      - synchronize
+      
 permissions:
   contents: read
   pull-requests: write
