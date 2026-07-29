@@ -33,20 +33,24 @@ A fresh MCP session advertises only three discovery tools. All other tools becom
 
 ### shopware-tool-search
 
-Search the allowed tool catalogue using a free-text query. The response contains the most relevant tool definitions, their scores, and where the query matched.
+Search the tool catalogue using a free-text query. The search covers every registered tool, including tools that are not currently advertised, and drops everything the effective allowlist does not permit.
 
 | Name         | Type   | Required | Default | Description                            |
 |--------------|--------|----------|---------|----------------------------------------|
 | `query`      | string | yes      | —       | Description of the required capability |
 | `maxResults` | int    | no       | 3       | Maximum results, capped at 20           |
 
+Each result contains the complete `tool` definition, a `score`, and `matchedIn` — the places the query matched, such as `name:prefix`, `description`, or `parameter`. The `_meta` field reports the echoed `query`, the number of `totalCandidates` considered, and a `usage` hint describing the next step.
+
+Matches below an internal relevance threshold are discarded, so receiving fewer results than `maxResults` — or none at all — is normal for a vague query. Out-of-range `maxResults` values are clamped rather than rejected.
+
 Some clients can call a returned tool definition directly. Otherwise, find and enable its toolset before calling it.
 
 ### shopware-toolsets-list
 
-List toolsets available to the current principal. Each entry contains the toolset name, title, description, tool names, and whether it is already enabled for the current session.
+List toolsets available to the current principal. Each entry contains the toolset `name`, `title`, `description`, `tools` (the tool names it contains), and `enabled` — whether it is already active for the current session. A toolset whose tools are all denied by the allowlist is not listed at all.
 
-This tool has no parameters.
+This tool has no parameters. Without an `Mcp-Session-Id` header, every entry reports `enabled: false`.
 
 ### shopware-toolset-enable
 
@@ -56,7 +60,30 @@ Enable one toolset for the current MCP session.
 |-----------|--------|----------|--------------------------------------------------|
 | `toolset` | string | yes      | Toolset name returned by `shopware-toolsets-list` |
 
+Enable one toolset per call. There is no counterpart for disabling a toolset, and enabling the same toolset twice is a no-op. The call needs an active MCP session; without one it fails with `Cannot enable an MCP toolset without an active MCP session.` An unknown or non-visible name fails with `Unknown MCP toolset "<name>". Call shopware-toolsets-list first to list available toolsets.`
+
 The response sets `_meta.listChanged` to `true` and Shopware emits `notifications/tools/list_changed`. Clients that do not refresh automatically must request `tools/list` again. Enabling a toolset does not grant permission to call its tools; the effective MCP allowlist remains the security boundary.
+
+## Toolsets
+
+Every tool belongs to exactly one group, and every group except `discovery` becomes a toolset that a client can enable. Core ships these toolsets:
+
+| Toolset         | Title                | Tools                                                                                                                                                    |
+|-----------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `entity`        | Entity tools         | `shopware-entity-schema`, `shopware-entity-search`, `shopware-entity-read`, `shopware-entity-aggregate`, `shopware-entity-upsert`, `shopware-entity-delete` |
+| `system-config` | System config tools  | `shopware-system-config-read`, `shopware-system-config-write`                                                                                            |
+| `media`         | Media tools          | `shopware-media-upload`                                                                                                                                  |
+| `order`         | Order tools          | `shopware-order-state`                                                                                                                                   |
+| `theme`         | Theme tools          | `shopware-theme-config` (Storefront bundle)                                                                                                              |
+| `store-api`     | Store api tools      | `shopware-store-api-context` — [Store API endpoint](./store-api.md) only                                                                                 |
+
+The `discovery` group holds `shopware-tool-search`, `shopware-toolsets-list`, and `shopware-toolset-enable`. It is always advertised and never appears in `shopware-toolsets-list`, so it cannot be enabled or disabled.
+
+Titles and descriptions are generated from the group name: `#[McpToolGroup('swag-my-plugin')]` produces the title "Swag my plugin tools". Extensions cannot override the generated label, so choose the group name accordingly.
+
+## Large tool results
+
+A tool response larger than 100 KB is not returned inline. Shopware stores it and returns a reference instead: `_meta.resourceUri` contains a `shopware://tool-result/{id}` URI that the client reads through the matching resource template. Cached results are removed when the MCP session ends.
 
 ## Dry-run behavior
 
@@ -83,6 +110,8 @@ When you enable a tool in the integration's tool allowlist, its declared depende
 | `shopware-system-config-write` | `shopware-system-config-read` |
 
 ## Read Tools
+
+The entity tools below belong to the `entity` toolset, `shopware-system-config-read` to `system-config`. Enable the toolset before calling them.
 
 ### shopware-entity-schema
 
@@ -199,6 +228,8 @@ Read system configuration values. Pass a domain prefix to retrieve all keys unde
 
 Most write tools default to `dryRun=true`. Always preview before committing. `shopware-media-upload` is the exception — it performs the upload immediately and has no dry-run mode.
 
+These tools are spread across the `entity`, `system-config`, `order`, and `media` toolsets. Enable the toolset before calling them.
+
 ### shopware-entity-upsert
 
 Create or update entity data. Use `shopware-entity-schema` to discover required fields first.
@@ -291,6 +322,8 @@ Upload a media file from a public URL. Optionally, assign it as the product's co
 **ACL:** `media:create`; additionally `product:update` when `productId` is provided.
 
 ## Storefront Bundle Tools
+
+Registered by the Storefront bundle in the `theme` toolset.
 
 ### shopware-theme-config
 

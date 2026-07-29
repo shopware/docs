@@ -11,7 +11,7 @@ This guide walks you through connecting an AI client to a Shopware shop using th
 
 ## Prerequisites
 
-- Shopware 6.7 or later
+- Shopware 6.7.14.0 or later. On 6.7.11.0 to 6.7.13.x, set `MCP_SERVER=1` in your `.env` file first and skip the discovery section below — see [Configuration](./configuration.md).
 - `symfony/mcp-bundle` installed — verify with `composer show symfony/mcp-bundle`. If it is missing, ensure it is listed as a dependency in `composer.json` and run `composer install`.
 
 ## Step 1: Create an integration
@@ -141,7 +141,11 @@ When no advertised tool matches the task:
 3. Enable the toolset with `shopware-toolset-enable`.
 4. Refresh `tools/list`. Clients that support `notifications/tools/list_changed` do this automatically; other clients must refresh manually.
 
-Enabled toolsets remain active only for the current MCP session. The same discovery flow applies to the Admin API endpoint (`/api/_mcp`) and Store API endpoint (`/store-api/_mcp`).
+Shopware never pushes notifications on its own. A queued `notifications/tools/list_changed` reaches the client with the response to its next request, or over an open streaming connection.
+
+Enabled toolsets remain active only for the current MCP session and are tracked by the `Mcp-Session-Id` header. The same discovery flow applies to the Admin API endpoint (`/api/_mcp`) and the [Store API endpoint](./store-api.md) (`/store-api/_mcp`).
+
+The toolset names shipped by core are listed in the [Tools Reference](./tools-reference.md#toolsets).
 
 ## Authentication methods
 
@@ -151,7 +155,7 @@ Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are
 
 ### Bearer token
 
-Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients. When authenticated via bearer token, the user's per-user allowlist applies (configured under **Settings → Users & Permissions → [user] → MCP Tool Allowlist**).
+Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients. When authenticated via bearer token, the user's per-user allowlist applies (configured under **Settings → Users & Permissions → [user] → MCP tool allowlist**).
 
 ## Controlling which capabilities are available
 
@@ -165,7 +169,7 @@ Disable the toggle for each capability type and select only the tools, resources
 
    <img src="../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 
-**Per user** — Go to **Settings → Users & Permissions**, open the user detail page, and manage the **MCP Tool Allowlist** card at the bottom of the page. This allowlist applies when the user authenticates via a user access key or bearer token. Admin users bypass the allowlist entirely.
+**Per user** — Go to **Settings → Users & Permissions**, open the user detail page, and manage the **MCP tool allowlist** card at the bottom of the page. This allowlist applies when the user authenticates via a user access key or bearer token. Admin users bypass the allowlist entirely.
 
 When a tool is enabled, its declared dependencies are automatically included. For example, enabling `shopware-entity-delete` also enables `shopware-entity-search` and `shopware-entity-schema` because they are required for it to work.
 

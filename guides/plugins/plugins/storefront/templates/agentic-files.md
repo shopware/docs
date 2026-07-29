@@ -163,7 +163,7 @@ The following table lists the variables that agentic file templates receive.
 | `context`                 | The current sales-channel context                                                                                                    |
 | `salesChannel`            | The sales channel, including languages and currencies needed by the default templates                                                |
 | `salesChannelFile`        | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
-| `salesChannelFileContext` | Optional array context for file-specific data. For `/.well-known/ai-catalog.json`, core adds `baseUrl` and `publisher` when a sales-channel domain is available. For headless/API sales channels, core also adds `storeApiMcpServerUrl`. |
+| `salesChannelFileContext` | Optional array context for file-specific data. For `/.well-known/ai-catalog.json`, core adds `baseUrl` and `publisher` when a sales-channel domain is available. For sales channels of type API (headless), core also adds `storeApiMcpServerUrl`, pointing at the [Store API MCP server](../../../../../products/tools/mcp-server/store-api.md). The default template only renders the catalog entry when both `storeApiMcpServerUrl` and `publisher` are set. |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.
 

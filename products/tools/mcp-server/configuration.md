@@ -7,6 +7,14 @@ nav:
 
 # Configuration
 
+:::info Version requirements
+This page describes Shopware 6.7.14.0 and later, where the MCP server is always enabled and progressive tool discovery is active.
+
+On Shopware 6.7.11.0 to 6.7.13.x, the MCP server is gated behind the `MCP_SERVER` feature flag. Set `MCP_SERVER=1` in your `.env` file to enable the endpoint. Those versions advertise every allowed tool in `tools/list`; the discovery tools, tool groups, toolsets, cursor pagination, and `listChanged` notifications do not exist there.
+
+Starting with 6.7.14.0, the flag is removed and has no effect. Remove `MCP_SERVER` from your `.env` file. The MCP classes stay marked as experimental until 6.8.0.
+:::
+
 ## Shopware MCP configuration
 
 Shopware-specific MCP settings live under the `shopware.mcp` key in `config/packages/shopware.yaml` or any config file loaded in your application:
@@ -17,6 +25,15 @@ shopware:
         allowed_tools: []       # Empty = all tools allowed. List tool names to restrict globally.
         app_tool_timeout: 10    # Timeout in seconds for app webhook tool calls.
 ```
+
+These two keys are the complete `shopware.mcp` configuration:
+
+| Key                | Type            | Default | Description                                                             |
+|--------------------|-----------------|---------|-------------------------------------------------------------------------|
+| `allowed_tools`    | list of strings | `[]`    | Installation-wide tool allowlist applied at compile time. Empty = all.  |
+| `app_tool_timeout` | integer         | `10`    | Timeout in seconds for app webhook tool calls. Minimum `1`.             |
+
+Everything else — the endpoint path, server instructions, and list pagination — is configured on the `symfony/mcp-bundle` extension, not under `shopware.mcp`.
 
 ### Global tool allowlist
 
@@ -44,7 +61,7 @@ Shopware applies a per-principal MCP allowlist depending on how the client authe
 | Auth mode                                | Allowlist source                                                                          |
 |------------------------------------------|-------------------------------------------------------------------------------------------|
 | Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist**          |
-| User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP Tool Allowlist** |
+| User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP tool allowlist** |
 | Bearer JWT, password / refresh grant     | Per-user allowlist of the authenticated user                                              |
 | Bearer JWT, client_credentials           | Per-integration allowlist                                                                 |
 | Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist                          |
@@ -91,17 +108,31 @@ This pattern lets the app owner control which tools the integration may ever cal
 
 The underlying `symfony/mcp-bundle` is configured in `config/packages/mcp.php`. Shopware ships this file, and Symfony loads it automatically. You do not need to create or modify it for standard setups.
 
+This file also sets the server `instructions` that clients receive during `initialize`. They tell the agent that the advertised tool list is not the full catalogue and that it should call `shopware-tool-search` before concluding that an action is unsupported.
+
 ## Capability list pagination
 
 The `tools/list`, `resources/list`, and `prompts/list` methods use MCP cursor pagination. When a response contains `nextCursor`, pass that value unchanged as `cursor` in the next request. Continue until `nextCursor` is absent.
 
-Treat cursors as opaque values. Shopware applies the effective allowlist before pagination, so each page contains only capabilities the current principal may access.
+The default page size is 50 entries. It is the MCP bundle's `pagination_limit` option, not a `shopware.mcp` key. Shopware does not set it, so to change it, configure the `mcp` extension in your own config file:
+
+```yaml
+# config/packages/mcp.yaml
+mcp:
+    pagination_limit: 100
+```
+
+Treat cursors as opaque values. Shopware applies the effective allowlist before pagination, so each page contains only capabilities the current principal may access, and a cursor is only meaningful for the principal that received it. An unknown, malformed, or out-of-range cursor is answered with the JSON-RPC error `-32602` and the message `Invalid value for pagination parameter "cursor"`.
+
+In practice `tools/list` rarely paginates: it only contains the discovery tools plus the tools of the toolsets enabled for the current session. `resources/templates/list` is not allowlist-filtered.
 
 ## Session store
 
 MCP sessions track an ongoing conversation across multiple requests. The client performs an `initialize` handshake first, then sends subsequent `tools/call` requests referencing that session ID. Session data and enabled toolsets must survive between requests.
 
 Shopware defaults to a file-based session store that writes to `%kernel.cache_dir%/mcp-sessions/`.
+
+Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only — not per user and not per integration. Rows are deleted when the client ends the session with `DELETE /api/_mcp`. Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, so the scheduler must run in production.
 
 | Store                                           | Multi-worker | Multi-server | Backend                                                                       |
 |-------------------------------------------------|--------------|--------------|-------------------------------------------------------------------------------|
@@ -158,7 +189,7 @@ The Admin UI surfaces two helpers for getting ACL right:
 
 <img src="../../../assets/mcp-permissions-privilege-hint.png" alt="MCP Tool Requirements modal showing missing privileges by entity with Grant buttons" width="700">
 
-- The **Edit MCP Allowlist** modal shows a coverage warning when the assigned role is missing privileges required by an allowed tool:
+- The **Edit MCP Allowlist** modal groups tools by their tool group — the same taxonomy that becomes a toolset for progressive discovery. Each group has its own checkbox that also reflects partial selections, plus expand and collapse controls, so you can allow a whole toolset in one click. A tool that another selected tool declares as a dependency is included automatically and marked as such. The modal also shows a coverage warning when the assigned role is missing privileges required by an allowed tool:
 
 <img src="../../../assets/mcp-allowlist-collapsed.png" alt="Privilege gap warnings on the Edit MCP Allowlist modal" width="500">
 
@@ -171,6 +202,8 @@ bin/console debug:mcp
 ```
 
 The tool output shows five columns: **Name**, **Group**, **Source**, **Dependencies**, and **Privileges**. It reads from the complete live server registry and covers core and extension tools in one view. The **Group** becomes the toolset name used for progressive discovery.
+
+The command prints separate sections for **Tools**, **Prompts**, **Resources**, and **Resource Templates**. It covers the Admin API server only; Store API capabilities are not listed — see [Store API MCP](./store-api.md).
 
 Filter by capability type:
 
@@ -201,4 +234,11 @@ If a tool is missing from this output, it is also missing from the live endpoint
 
 ## Rate limiting
 
-The MCP endpoint applies per-integration rate limiting. Each set of credentials gets its own rate limit bucket. Rate limiting protects the endpoint from brute-force attempts and runaway agent loops.
+Both MCP endpoints are rate limited with their own buckets, configured under `shopware.api.rate_limiter` in `config/packages/shopware.yaml`. Rate limiting protects the endpoints from brute-force attempts and runaway agent loops.
+
+| Bucket           | Endpoint          | Keyed on                                    | Limits                                |
+|------------------|-------------------|---------------------------------------------|---------------------------------------|
+| `mcp_admin_api`  | `/api/_mcp`       | Access token, falling back to client IP     | 300 per minute, 1000 per 10 minutes   |
+| `mcp_store_api`  | `/store-api/_mcp` | Sales channel and context token, plus client IP | 120 per minute, 600 per 10 minutes |
+
+Both use the `time_backoff` policy and reset after one hour. Exceeding a limit returns HTTP 429 with the remaining wait time in the response body; no `Retry-After` header is sent.

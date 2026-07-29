@@ -9,10 +9,12 @@ nav:
 
 The Model Context Protocol (MCP) is an open standard that enables AI clients (Claude Desktop, Cursor, and Claude Code) to communicate with external systems via a structured, tool-based interface. Instead of copy-pasting data into a chat window, an AI agent can call a tool like `shopware-entity-search` directly and receive structured results that it can reason about.
 
-Shopware ships a native MCP server with the core platform. It exposes an endpoint at `/api/_mcp` that any MCP-compatible AI client can connect to using integration credentials.
+Shopware ships a native MCP server with the core platform. It exposes an endpoint at `/api/_mcp` that any MCP-compatible AI client can connect to using integration credentials, and a sales-channel-facing endpoint at `/store-api/_mcp` — see [Store API MCP](./store-api.md).
 
 :::info Experimental
 The MCP server is considered experimental until Shopware 6.8. APIs and tool names may change before the stable release.
+
+The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` feature flag. Shopware 6.7.14.0 removes the flag and introduces progressive tool discovery — see [Configuration](./configuration.md) for what applies to which version.
 :::
 
 ## What the MCP server provides
@@ -53,13 +55,13 @@ The following table summarizes the MCP server's core capabilities.
 
 ## Spec coverage and known limitations
 
-Shopware's MCP server is built on `symfony/mcp-bundle`, which implements the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25). The bundle may not cover every feature in the latest spec revision, and some areas of the spec are only partially implemented.
+Shopware's MCP server is built on `symfony/mcp-bundle` (currently `~0.11.0` with `mcp/sdk ^0.7.0`) and takes the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25) as its reference. Shopware does not pin a protocol revision: the SDK negotiates it from the client's `initialize` request. The bundle may not cover every feature of the reference revision, and some areas of the spec are only partially implemented.
 
 Shopware supports cursor pagination for capability lists and emits `listChanged` notifications when capabilities change. The following table lists the remaining known gaps.
 
 | Area                                          | Status                                                                  |
 |-----------------------------------------------|-------------------------------------------------------------------------|
-| Resource templates and resource subscriptions | Not implemented                                                         |
+| Resource subscriptions                        | Not implemented (resource templates are supported)                      |
 | Completion utility for prompt/URI arguments   | Not implemented                                                         |
 | `structuredContent` and `isError` in results  | Not used; Shopware uses its own `{"success": bool, ...}` envelope       |
 | ACL checks on resources                       | Not implemented (resources are public within the authenticated session) |
@@ -75,6 +77,7 @@ The following table lists the pages included in this section.
 | [MCP Concepts](./mcp-concepts.md)               | What tools, resources, and prompts are and when to use each              |
 | [Getting Started](./getting-started.md)         | Connect your first AI client to a Shopware shop                          |
 | [Tools Reference](./tools-reference.md)         | All built-in tools, resources, and prompts with parameters               |
+| [Store API MCP](./store-api.md)                 | The sales-channel endpoint: auth, tools, rate limits, advertisement      |
 | [Configuration](./configuration.md)             | Allowlist, discovery, session store, rate limiting, CLI                  |
 | [Best Practices](./best-practices.md)           | Design principles for building MCP tools                                 |
 | [Extending the MCP Server](./extending.md)      | Tools, prompts, and resources for all three extension types side by side |

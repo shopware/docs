@@ -22,9 +22,14 @@ nav:
 | No tools appear in `tools/list`                          | Discovery tools were removed by global `allowed_tools`    | Add all three discovery tools to `shopware.mcp.allowed_tools`                                                                      |
 | Admin integration but tool still blocked                | Per-integration allowlist is set                          | Admin bypasses ACL only; the integration allowlist still applies                                                                  |
 | Tool search returns every tool for an admin user         | Admin user login bypasses the per-user allowlist          | Use a non-admin user when the per-user allowlist must apply                                                                         |
+| `shopware-tool-search` returns nothing                  | Query too vague; low-scoring matches are dropped          | Search with concrete domain wording, or list toolsets with `shopware-toolsets-list`                                                |
+| `Cannot enable an MCP toolset without an active MCP session.` | Client did not send the `Mcp-Session-Id` header       | Complete the `initialize` handshake and send the returned session ID with every request                                            |
+| `Invalid value for pagination parameter "cursor"`       | Cursor is stale, malformed, or from another principal     | Restart the list from the first page without a `cursor`                                                                            |
+| Toolsets are forgotten between requests                 | Session store is not shared across workers                | Use a Redis session store in multi-server setups                                                                                   |
 | Tool missing entirely                                   | Extension inactive or capability registration missing     | Check `bin/console debug:mcp`                                                                                                      |
 | `ECONNREFUSED` or "fetch failed"                        | Server not running or wrong URL                           | Start Shopware and verify the URL in your client config                                                                            |
 | Client shows "Needs authentication" after failed connect | Client fell back to `/register` OAuth endpoint            | Verify the credentials and ensure the URL ends with `/api/_mcp`                                                                    |
+| A tool returns `shopware://tool-result/...` instead of data | Result exceeded 100 KB and was offloaded               | Read the URI as a resource, or narrow the request with a smaller `limit` or fewer fields                                            |
 
 ## Connection issues
 
@@ -102,8 +107,12 @@ flowchart LR
 
 **Authentication (Layer 1):** Pass `sw-access-key` and `sw-secret-access-key` headers. Obtain credentials from Settings → Integrations.
 
-**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under **Settings → Integrations → Edit MCP Allowlist**, and each user has their own under **Settings → Users & Permissions → [user] → MCP Tool Allowlist**. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The three server-owned discovery tools remain available, but cannot expose or enable tools denied by the effective allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
+**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under **Settings → Integrations → Edit MCP Allowlist**, and each user has their own under **Settings → Users & Permissions → [user] → MCP tool allowlist**. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The three server-owned discovery tools remain available, but cannot expose or enable tools denied by the effective allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
 
 Which allowlist applies depends on the auth method: integration credentials use the integration allowlist; user access keys and user bearer tokens use the per-user allowlist; admin user accounts (`admin = true`) bypass the allowlist entirely. When an app forwards `sw-app-user-id` alongside integration credentials (e.g., Copilot), Shopware applies the **intersection** of the integration and user allowlists.
+
+Bearer tokens obtained through the Administration login (`client_id = administration`) resolve to no integration, so they are treated as unrestricted. Test allowlist behavior with integration credentials or a user access key, never with a token copied out of the Administration.
+
+The Store API endpoint has no allowlist layer at all — see [Store API MCP](./store-api.md).
 
 **ACL (Layer 3):** Even if a capability is in the allowlist, the integration's ACL role must have the required entity-level permissions.

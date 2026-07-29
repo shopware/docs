@@ -17,6 +17,10 @@ Use a plugin when:
 
 For remote/webhook-based capabilities, see [Extending via App](../apps/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../../products/tools/mcp-server/extending.md).
 
+:::info Version requirements
+This guide describes Shopware 6.7.14.0 and later. Earlier 6.7 versions need `MCP_SERVER=1` in the environment and have no tool groups or toolsets, so skip [Step 2](#step-2-assign-a-tool-group) there. See [Configuration](../../../products/tools/mcp-server/configuration.md) for details.
+:::
+
 ## Naming convention
 
 All capability names must only contain `a-zA-Z0-9_-` (no dots). Use a hyphen-separated vendor prefix to avoid conflicts:
@@ -113,13 +117,13 @@ For in-process extensions, including plugins and Symfony bundles, assign every t
 #[McpToolGroup('swag-my-plugin')]
 ```
 
-Groups organize tools in the Administration allowlist and `debug:mcp`. Each group also becomes a toolset that an MCP client can enable for its current session. Use a stable, hyphenated name that keeps related tools together without loading unrelated schemas.
+Groups organize tools in the Administration allowlist and `debug:mcp`. Each group also becomes a toolset that an MCP client can enable for its current session. Use a stable, hyphenated name that keeps related tools together without loading unrelated schemas. A tool belongs to exactly one group, so the attribute cannot be repeated. The toolset title is generated from the group name — `swag-my-plugin` becomes "Swag my plugin tools".
 
-The attribute is optional. Without it, Shopware uses the longest hyphen-separated name prefix that the tool shares with another tool without an explicit group. For example, `swag-my-plugin-orders` and `swag-my-plugin-products` form the group `swag-my-plugin`. A tool without a longer shared prefix falls back to its first name segment, such as `swag`.
+The attribute is optional. Without it, Shopware uses the longest hyphen-separated name prefix that the tool shares with another tool that also has no explicit group. For example, `swag-my-plugin-orders` and `swag-my-plugin-products` form the group `swag-my-plugin`. A tool without a longer shared prefix falls back to its first name segment, such as `swag`. Prefixes are compared segment by segment and case-insensitively, so `swagfoo-orders` and `swag-orders` share nothing.
 
-Because the inferred group depends on the other registered tools, declare the group explicitly when you need a stable toolset name or want a different grouping.
+Because the inferred group depends on which other tools are registered without a group, declare the group explicitly when you need a stable toolset name or want a different grouping. An explicit group also takes precedence over the group Shopware derives for app tools.
 
-The special `discovery` group places an allowed tool in the initial session surface. Use it only for an intentional discovery meta-tool; regular domain tools should remain deferred.
+The special `discovery` group places an allowed tool in the initial session surface. Such a tool is always advertised and never appears in `shopware-toolsets-list`, so it can be neither enabled nor disabled. Use it only for an intentional discovery meta-tool; regular domain tools should remain deferred.
 
 ## Step 3: Declare dependencies and privileges
 

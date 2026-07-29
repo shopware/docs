@@ -53,7 +53,9 @@ Allowlists still matter. They define the catalogue that discovery can search and
 - **Developer integration:** entity search, entity schema, aggregate, system config read. What a developer or CI pipeline needs for inspection and debugging.
 - **App-specific integration:** only the tools relevant to a specific workflow or external system.
 
-Each integration can discover and call only its allowed tools, resources, and prompts. Treat the allowlist, system prompt, tool groups, and exposed resources together as **product quality**, not just security. A focused catalogue improves search relevance and limits what the agent can enable. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist** (per integration) and **Settings → Users & Permissions → [user] → MCP Tool Allowlist** (per user).
+Each integration can discover and call only its allowed tools, resources, and prompts. Treat the allowlist, system prompt, tool groups, and exposed resources together as **product quality**, not just security. A focused catalogue improves search relevance and limits what the agent can enable. Configure allowlists under **Settings → Integrations → Edit MCP Allowlist** (per integration) and **Settings → Users & Permissions → [user] → MCP tool allowlist** (per user).
+
+Both modals group tools by their tool group, so allowing or denying a complete toolset is a single click. That makes the group a design decision, not just metadata: a group that mixes read-only inspection with destructive writes forces operators to choose between too much and too little.
 
 Every enabled tool consumes tokens from the agent's context window throughout the rest of the session. Each tool schema (name, description, parameters) costs roughly **550–1,400 tokens** depending on complexity. Some clients also enforce hard caps on the number of tools. Keep toolsets cohesive so an agent can enable one relevant group without loading unrelated schemas.
 

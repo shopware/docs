@@ -10,12 +10,17 @@ nav:
 You can add three capability types to the MCP server: **tools**, **prompts**, and **resources**. There are three ways to implement them: as an **app** (webhook-based, works in Shopware Cloud), a **plugin** (in-process PHP, full DAL access), or a **Symfony bundle** (in-process, always active, no install lifecycle).
 
 :::info Compatibility with earlier Shopware versions
-When using MCP on a Shopware 6.7 version earlier than 6.7.14.0, enable the server
-by setting `MCP_SERVER=1` in the environment. Starting with Shopware 6.7.14.0,
-the feature flag is removed and the MCP server is always enabled.
+This page describes Shopware 6.7.14.0 and later, where the feature flag is
+removed, the MCP server is always enabled, and tool groups and toolsets exist.
+
+On a Shopware 6.7 version earlier than 6.7.14.0, enable the server by setting
+`MCP_SERVER=1` in the environment. Those versions have no tool groups, so
+`#[McpToolGroup]` does not exist yet and every allowed tool is advertised
+directly.
 
 Register extension capabilities normally in both cases. The flag controls the
 MCP server itself; extension services do not need a `shopware.feature` tag.
+See [Configuration](./configuration.md) for the full version matrix.
 :::
 
 This page is a quick reference. For step-by-step guides, see:
@@ -36,7 +41,7 @@ Tools let the AI agent call your code to take action or fetch data.
 
 <Tab title="App">
 
-Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-prefixed with the app name, and all tools from the app form a toolset named after the app. Use `<required-privileges>` to help the admin UI warn operators about missing ACL roles. Use `url="/..."` to route to an app script instead of an external URL.
+Declare in `Resources/mcp.xml`, handle via webhook POST. The full name is auto-prefixed with the app name, and all tools from an active app form a toolset named after the app's technical name. Use `<required-privileges>` to help the admin UI warn operators about missing ACL roles. Use `url="/..."` to route to an app script instead of an external URL.
 
 ```xml
 <mcp-tools>
@@ -80,13 +85,13 @@ class OrdersTool extends McpToolResponse
 }
 ```
 
-`#[McpToolGroup]` is optional. Without it, Shopware uses the longest
-hyphen-separated name prefix that the tool shares with another tool without an
-explicit group. For example, `swag-my-plugin-orders` and
-`swag-my-plugin-products` form the group `swag-my-plugin`. A tool without a
-longer shared prefix falls back to its first name segment, such as `swag`.
-Define the attribute explicitly when the inferred group should not change with
-the registered tool catalogue.
+`#[McpToolGroup]` is optional and accepts exactly one group. Without it,
+Shopware uses the longest hyphen-separated name prefix that the tool shares with
+another tool that also has no explicit group. For example,
+`swag-my-plugin-orders` and `swag-my-plugin-products` form the group
+`swag-my-plugin`. A tool without a longer shared prefix falls back to its first
+name segment, such as `swag`. Define the attribute explicitly when the inferred
+group should not change with the registered tool catalogue.
 
 → [Full plugin guide](../../../guides/plugins/plugins/mcp-server.md): class structure, DI, pitfalls, verification
 
