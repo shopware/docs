@@ -33,6 +33,8 @@ flowchart TD
     F -->|"translation.update scheduled task<br/>daily per installation"| G["Your shop<br/>private filesystem"]
 ```
 
+The following table lists where each step of that chain runs and when it is triggered.
+
 | Step                                  | Where it runs                                | Schedule                     |
 |---------------------------------------|----------------------------------------------|------------------------------|
 | Collect source snippets from the code | `shopware/translations`, `update-translations.yml` | Daily, 18:00 UTC        |
@@ -117,7 +119,7 @@ running the `translation:update` command.
 :::
 
 The task keeps the translations that are installed in a shop in sync with the translations repository, without anyone
-having to run a command.
+having to run a command. The following table lists its registration details.
 
 | Property               | Value                                                                  |
 |------------------------|------------------------------------------------------------------------|
@@ -190,11 +192,13 @@ leaves the previous state intact and the next run retries the same locales.
 
 ## Troubleshooting
 
-| Symptom                                                     | Cause and solution                                                                                                                              |
-|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| The task never runs                                         | No background worker is consuming the queue. See [Scheduled Task](../../../guides/hosting/infrastructure/scheduled-task.md).                     |
-| The task runs but nothing changes                           | No installed locale has a newer remote `updatedAt` timestamp, or no translation is installed at all. Run `bin/console translation:list`: locales without a **Last update** value are not installed. |
-| A translation approved in Crowdin is missing               | The download workflow has not run yet, or its pull request is still open. Check the open pull requests on `shopware/translations`.                |
-| The task fails with a network error                         | The shop cannot reach `repository-url` or `metadata-url`. Check outbound HTTPS access or point the URLs at a mirror.                             |
-| A language shows a progress below 100 percent               | Strings are translated but not approved, or new source strings were added. Both are resolved in Crowdin.                                         |
-| A storefront text is broken after an update                 | Most likely a snippet with HTML markup. Report it on [shopware/translations](https://github.com/shopware/translations/issues) and fix it in Crowdin. |
+The following table lists the symptoms you are most likely to run into, together with their cause and solution.
+
+| Symptom                                       | Cause and solution                                                                                                                                                                               |
+|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| The task never runs                           | No background worker is consuming the queue. See [Scheduled Task](../../../guides/hosting/infrastructure/scheduled-task.md)                                                                       |
+| The task runs but nothing changes             | No installed locale has a newer remote `updatedAt` timestamp, or no translation is installed at all. Run `bin/console translation:list` — locales without a **Last update** value are not installed |
+| A translation approved in Crowdin is missing  | The download workflow has not run yet, or its pull request is still open. Check the open pull requests on `shopware/translations`                                                                  |
+| The task fails with a network error           | The shop cannot reach `repository-url` or `metadata-url`. Check outbound HTTPS access or point the URLs at a mirror                                                                               |
+| A language shows a progress below 100 percent | Strings are translated but not approved, or new source strings were added. Both are resolved in Crowdin                                                                                           |
+| A storefront text is broken after an update   | Most likely a snippet with HTML markup. Report it on [shopware/translations](https://github.com/shopware/translations/issues) and fix it in Crowdin                                               |
