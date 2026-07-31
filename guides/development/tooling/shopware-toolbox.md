@@ -51,6 +51,8 @@ The comment contains a SHA-256 hash of the upstream block content and the instal
 
 #### Inspections
 
+The following table lists the available inspections, their default state, and when they are reported:
+
 | Inspection | Enabled by default | Reported when |
 |---|---|---|
 | The upstream block has changed | Yes | The recorded hash no longer matches the upstream block. Check that your override is still correct. |
