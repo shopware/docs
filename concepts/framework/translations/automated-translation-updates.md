@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-Translations are not part of a Shopware release. They are maintained in Crowdin, published to the
+Translations are not part of a Shopware release. They are maintained in Crowdin ([translate.shopware.com](https://translate.shopware.com)), published to the
 [shopware/translations](https://github.com/shopware/translations) repository, and pulled into an installation by the
 built-in translation system. Two automated processes keep this chain moving:
 
