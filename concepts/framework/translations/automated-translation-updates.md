@@ -13,9 +13,9 @@ Translations are not part of a Shopware release. They are maintained in Crowdin 
 [shopware/translations](https://github.com/shopware/translations) repository, and pulled into an installation by the
 built-in translation system. Two automated processes keep this chain moving:
 
-* Upstream, a set of scheduled GitHub Actions workflows exchanges snippets between `shopware/shopware`, Crowdin, and
+* Upstream: A set of scheduled GitHub Actions workflows exchanges snippets between `shopware/shopware`, Crowdin, and
   the translations repository.
-* Downstream, the `translation.update` scheduled task refreshes the translations that are installed in a shop.
+* Downstream: The `translation.update` scheduled task refreshes the translations that are installed in a shop.
 
 This page describes both halves: how a changed snippet reaches the translations repository, and how the scheduled task
 brings it into a shop. For installing translations in the first place, see
