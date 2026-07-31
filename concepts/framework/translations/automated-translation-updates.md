@@ -25,12 +25,12 @@ brings it into a shop. For installing translations in the first place, see
 
 ```mermaid
 flowchart TD
-    A["shopware/shopware<br/>en and de snippet files"] -->|"Collect snippets<br/>daily, 18:00 UTC"| B["shopware/translations<br/>translations/en-GB, translations/de-DE"]
-    B -->|"Upload sources<br/>daily, 20:00 UTC"| C["Crowdin project shopware6<br/>translate.shopware.com"]
+    A["<strong>shopware/shopware:</strong><br/>en and de snippet files"] -->|"Collect snippets<br/>daily, 18:00 UTC"| B
+    B["<strong>shopware/translations:</strong><br/>translations/en-GB, translations/de-DE"] -->|"Upload sources<br/>daily, 20:00 UTC"| C
     D["Translators and proofreaders"] --> C
-    C -->|"Download translations<br/>daily, 22:00 UTC"| E["Pull request on shopware/translations<br/>plus updated crowdin-metadata.json"]
-    E -->|"Maintainer review and merge"| F["shopware/translations, branch main"]
-    F -->|"translation.update scheduled task<br/>daily per installation"| G["Your shop<br/>private filesystem"]
+    C["Crowdin project 'shopware6' at<br/>translate.shopware.com"] -->|"Download translations<br/>daily, 22:00 UTC"| E
+    E["Pull request on shopware/translations<br/>(plus updated crowdin-metadata.json)"] -->|"Maintainer review and merge"| F
+    F["shopware/translations, branch main"] -->|"Scheduled task using translation.update<br/>daily by default"| G["Your shop<br/>private filesystem"]
 ```
 
 The following table lists where each step of that chain runs and when it is triggered.
@@ -40,10 +40,10 @@ The following table lists where each step of that chain runs and when it is trig
 | Collect source snippets from the code | `shopware/translations`, `update-translations.yml` | Daily, 18:00 UTC        |
 | Upload sources to Crowdin             | `shopware/translations`, `crowdin-upload.yml`     | Daily, 20:00 UTC        |
 | Download translations from Crowdin    | `shopware/translations`, `crowdin-download.yml`   | Daily, 22:00 UTC        |
-| Update the installed translations     | Your installation, `translation.update` task      | Daily, per installation |
+| Update the installed translations     | Your installation, `translation.update` task      | Daily, by default       |
 
 ::: info
-Expect roughly one to two days between approving a translation in Crowdin and seeing it in a shop: the download
+Expect roughly one to two workdays between approving a translation in Crowdin and seeing it in a shop: the download
 workflow runs once a day, its pull request needs a maintainer review, and the scheduled task then picks the change up
 on its next run.
 :::
@@ -54,7 +54,8 @@ on its next run.
 
 English and German snippets are shipped with Shopware and its plugins. English is the source language of the Crowdin
 project, and German is uploaded as an already existing translation, so neither of them is edited in Crowdin. To add or
-reword such a string, change the snippet file in the respective repository, for example in `shopware/shopware`:
+reword such a string, change the snippet file in the respective repository, for example in `shopware/shopware`, and
+create a pull request:
 
 | Bundle         | Source file                                                       | File in the translations repository                       |
 |----------------|-------------------------------------------------------------------|-----------------------------------------------------------|
@@ -79,13 +80,12 @@ snippet key over rewording one that is already translated.
 
 ### Translate and approve strings in Crowdin
 
-Translations are maintained in the public Crowdin project at [translate.shopware.com](https://translate.shopware.com/),
-which is the Crowdin project [shopware6](https://crowdin.com/project/shopware6). Everyone can contribute:
+Translations are maintained in the public Crowdin project `shopware6` at
+[translate.shopware.com](https://translate.shopware.com/). Everyone can contribute:
 
 1. Create a Crowdin account and open the project.
 2. Choose your language and the file you want to work on. The Shopware snippets are split by bundle
-   (`administration.json`, `messages.json`, and `storefront.json`), and every official plugin contributes its own
-   files.
+   (`administration.json`, `messages.json`, and `storefront.json`), and official plugins contribute their own files.
 3. Translate the strings, or suggest an alternative for an existing translation.
 4. A proofreader approves the suggestion. Only approved strings are considered final; unapproved suggestions still get
    downloaded, but they are the reason a language reports a progress below 100 percent.
@@ -109,7 +109,8 @@ A maintainer reviews and merges the pull request. Two things need attention duri
   changed but the corresponding suggestion has not been approved in Crowdin yet. Approve it there instead of editing
   the file in the pull request.
 
-Once the pull request is merged into `main`, the translations are available for download by every installation.
+Once the pull request is merged into `main` of `shopware/translations`, the translations are available for download by
+every installation.
 
 ## The `translation.update` scheduled task
 
