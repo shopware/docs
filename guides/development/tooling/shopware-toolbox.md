@@ -62,7 +62,7 @@ The following table lists the available inspections, their default state, and wh
 
 #### Intentions
 
-Place the cursor on a block and press Alt+Enter (macOS: Option+Enter):
+Place the cursor on a block and press **Alt+Enter** (macOS: **Option+Enter**):
 
 * **Add/Update the Shopware 6 versioning comment** writes or refreshes the `shopware-block` comment for the block.
 * **Show Twig block difference** opens a diff between your override and the current upstream block, so you can review what changed after an update.
