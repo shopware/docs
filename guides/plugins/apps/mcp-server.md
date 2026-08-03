@@ -283,7 +283,7 @@ The resolved `<label>` value is forwarded to the MCP protocol as the capability'
 
 ## Installing the app
 
-Apps are installed through the standard Shopware app lifecycle (Settings → Extensions → My Apps, or via the Shopware CLI). After installation, your MCP capabilities appear automatically in the server catalogue. Tools are initially deferred until the client discovers them or enables the app's toolset.
+Apps are installed through the standard Shopware app lifecycle (**Settings → Extensions → My Apps**, or via the **Shopware CLI**). After installation, your MCP capabilities appear automatically in the server catalogue. Tools are initially deferred until the client discovers them or enables the app's toolset.
 
 Verify with:
 
