@@ -29,16 +29,16 @@ The `_meta` field is optional and used for pagination context, dry-run status, a
 
 ## Discovery tools
 
-A fresh MCP session advertises only three discovery tools. All other tools become visible when their toolset is enabled for the session.
+With core alone, a fresh MCP session advertises only the three discovery tools below; every other core tool becomes visible when its toolset is enabled for the session. A plugin or bundle can add its own tool to the `discovery` group, in which case that tool is advertised from the start as well — see [Assign a tool group](../../../guides/plugins/plugins/mcp-server.md#step-2-assign-a-tool-group).
 
 ### shopware-tool-search
 
 Search the tool catalogue using a free-text query. The search covers every registered tool, including tools that are not currently advertised, and drops everything the effective allowlist does not permit.
 
-| Name         | Type   | Required | Default | Description                            |
-|--------------|--------|----------|---------|----------------------------------------|
-| `query`      | string | yes      | —       | Description of the required capability |
-| `maxResults` | int    | no       | 3       | Maximum results, capped at 20           |
+| Name         | Type   | Required | Default | Description                                    |
+|--------------|--------|----------|---------|--------------------------------------------------|
+| `query`      | string | yes      | —       | Free-text search query, such as `upload a product image` |
+| `maxResults` | int    | no       | 3       | Maximum number of results, capped at 20        |
 
 Each result contains the complete `tool` definition, a `score`, and `matchedIn` — the places the query matched, such as `name:prefix`, `description`, or `parameter`. The `_meta` field reports the echoed `query`, the number of `totalCandidates` considered, and a `usage` hint describing the next step.
 

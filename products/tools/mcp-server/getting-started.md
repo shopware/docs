@@ -131,7 +131,7 @@ This lists the complete registered capability catalogue. A fresh AI client sessi
 Shopware keeps the initial tool surface small, regardless of how many tools an integration is allowed to call. A fresh session advertises these discovery tools:
 
 - `shopware-tool-search`: Find relevant allowed tools from a free-text query.
-- `shopware-toolsets-list`: List the available groups of allowed tools.
+- `shopware-toolsets-list`: List the toolsets of allowed tools that can be enabled.
 - `shopware-toolset-enable`: Enable one toolset for the current MCP session.
 
 When no advertised tool matches the task:

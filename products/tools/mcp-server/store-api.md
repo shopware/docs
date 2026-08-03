@@ -19,7 +19,7 @@ The Store API MCP server was introduced in Shopware 6.7.11.0 and, like the Admin
 |-------------|-------------------------------------------|
 | Path        | `/store-api/_mcp`                         |
 | Methods     | `GET`, `POST`, `DELETE`, `OPTIONS`         |
-| Transport   | Streamable HTTP                            |
+| Transport   | Streamable HTTP transport                  |
 | Route scope | `store-api`                                |
 
 `POST` carries the JSON-RPC messages, `GET` opens a stream for server-initiated messages such as `notifications/tools/list_changed`, and `DELETE` ends the MCP session and releases its state.

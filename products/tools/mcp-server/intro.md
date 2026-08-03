@@ -23,7 +23,7 @@ The following table summarizes the MCP server's core capabilities.
 
 | Capability         | Details                                                                                               |
 |--------------------|-------------------------------------------------------------------------------------------------------|
-| **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP                                       |
+| **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP transport                             |
 | **Authentication** | Integration or OAuth credentials for Admin API; Store API authentication headers for Store API       |
 | **Authorization**  | Admin API ACL enforcement or the current Store API sales-channel context                              |
 | **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id` |
