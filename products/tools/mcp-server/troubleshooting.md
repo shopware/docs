@@ -76,7 +76,7 @@ If a tool does not appear in the `debug:mcp` output, it will also be missing fro
 **For plugin tools:**
 
 - Confirm the plugin is installed and activated: `bin/console plugin:list`
-- Confirm the service has `<tag name="shopware.mcp.tool"/>` in `services.xml`
+- Confirm the service is tagged with `shopware.mcp.tool` in `services.php`
 - Confirm `#[McpTool]` is on the **class**, not on `__invoke()`
 - Run `bin/console cache:clear` after changes
 

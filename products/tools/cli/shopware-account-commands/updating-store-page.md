@@ -23,7 +23,18 @@ shopware-cli account producer extension info pull <path-to-extension-folder>
 
 This will download all uploaded Store images and create a `.shopware-extension.yml` with all metadata of the extension.
 
-This file can be checked in into the version control and will be automatically removed when you create a zip file using Shopware CLI.
+This file can be checked into version control and will be automatically removed when you create a zip file using Shopware CLI.
+
+## Managing metadata locally with Git
+
+The `.shopware-extension.yml` file contains all your extension's Store metadata (description, tags, installation instructions, images). By checking this file into Git, you can:
+
+- Track changes to your Store page like you track code
+- Review and approve Store page updates via pull requests
+- Automate Store page updates as part of your CI/CD pipeline
+- Use AI tools to generate tags and installation descriptions for marketing
+
+For example, you can use AI to generate appropriate tags for the Shopware Store or write clear installation instructions based on your extension's features.
 
 ## Updating the Store page
 
@@ -34,6 +45,10 @@ shopware-cli account producer extension info push <path-to-extension-folder>
 ```
 
 This will upload all images and metadata to the Store page.
+
+::: warning
+Changes pushed with `info push` go **live immediately** to the Shopware Store and are visible to all users. The Store page cache refreshes every 6 hours, so any mistakes will be visible for that duration. Make sure your changes are correct before pushing.
+:::
 
 ## Image configuration
 

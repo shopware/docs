@@ -8,6 +8,10 @@ on:
 jobs:
   check-milestone-and-version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -16,40 +20,106 @@ jobs:
       - name: Get all open pull requests
         id: get_open_prs
         run: |
-          open_prs=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open" | jq -r '.[].number' | tr '\n' ' ')
-          echo "open_prs=$open_prs" >> $GITHUB_ENV
+          # Paginate because the GitHub API defaults to 30 items per page.
+          prs=()
+          page=1
+          while true; do
+            response=$(curl -fsSL --show-error \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls?state=open&per_page=100&page=$page")
+
+            numbers=$(echo "$response" | jq -r '.[].number')
+            if [ -z "$numbers" ]; then
+              break
+            fi
+
+            while read -r n; do
+              prs+=("$n")
+            done <<< "$numbers"
+
+            page=$((page + 1))
+          done
+          # end
+
+
+          echo "open_prs=${prs[*]}" >> $GITHUB_ENV
 
       - name: Process each pull request
         run: |
+          normalize_version() {
+            # Normalize both milestone titles and release tags:
+            # - remove whitespace
+            # - remove leading 'v'
+            # - compare only major.minor.patch (ignore the trailing build/hotfix segment)
+            s=$(echo "$1" | tr -d '[:space:]' | sed -e 's/^v//')
+            IFS='.' read -r a b c _rest <<< "$s"
+            if [ -n "$a" ] && [ -n "$b" ] && [ -n "$c" ]; then
+              echo "$a.$b.$c"
+            else
+              echo ""
+            fi
+          }
+
           for pr_number in $open_prs; do
-            milestone=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number" | jq -r .milestone.title)
-            latest_version=$(curl -s https://api.github.com/repos/shopware/shopware/releases/latest | jq -r .tag_name)
-            if [ "$milestone" == "$latest_version" ]; then
-              existing_comments=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            milestone=$(curl -s \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number" | jq -r '.milestone.title // empty')
+
+            latest_version=$(curl -s \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/shopware/shopware/releases/latest" | jq -r .tag_name)
+
+            milestone_norm=$(normalize_version "$milestone")
+            latest_norm=$(normalize_version "$latest_version")
+
+            if [ -n "$milestone_norm" ] && [ "$milestone_norm" == "$latest_norm" ]; then
+              existing_comments=$(curl -s \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Accept: application/vnd.github+json" \
                 "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments" | jq -r '.[].body')
+
               if ! echo "$existing_comments" | grep -q "The feature is ready to be merged @Isengo1989 @sushmangupta @bojanrajh"; then
-                curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                curl -s \
+                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Content-Type: application/json" \
                   -X POST \
                   -d "{\"body\": \"The feature is ready to be merged @Isengo1989 @sushmangupta @bojanrajh\"}" \
                   "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments"
               fi
-              # Remove blocked label if it exists
-              curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name' | grep -q "blocked" && \
-                curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+
+              # Remove Blocked label if it exists (label is 'Blocked' in this repo).
+              existing_labels=$(curl -s \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name')
+
+              if echo "$existing_labels" | grep -qx "Blocked"; then
+                curl -s \
+                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "Accept: application/vnd.github+json" \
                   -X DELETE \
-                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels/blocked"
+                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels/Blocked"
+              fi
             else
-              if [ "$milestone" != "null" ]; then
-                # Add blocked label if it does not exist
-                curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name' | grep -q "blocked" || \
-                  curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              if [ -n "$milestone_norm" ]; then
+                # Add Blocked label if it does not exist (label is 'Blocked' in this repo).
+                existing_labels=$(curl -s \
+                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "Accept: application/vnd.github+json" \
+                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name')
+
+                if ! echo "$existing_labels" | grep -qx "Blocked"; then
+                  curl -s \
+                    -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                    -H "Accept: application/vnd.github+json" \
+                    -H "Content-Type: application/json" \
                     -X POST \
-                    -d "{\"labels\": [\"blocked\"]}" \
+                    -d "{\"labels\": [\"Blocked\"]}" \
                     "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels"
+                fi
               fi
             fi
           done
