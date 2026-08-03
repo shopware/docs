@@ -16,7 +16,7 @@ The same pattern applies to every translatable field (`product.name`, `category.
 
 ## Why both exist
 
-The Data Abstraction Layer is built for Shopware’s CRUD-style Admin API and Administration UI. Editors need to see **what is actually stored for the language they are editing**, including empty overrides, versus **what the customer would see** after fallbacks.
+The Data Abstraction Layer is built for Shopware’s CRUD-style Admin API and Administration UI. Editors need to see **what is actually stored for the language they are editing**, including empty overrides, versus **what the customer would see** after fallbacks. The following table summarizes what each variant means.
 
 | Access                    | Meaning                                                                                                        |
 |---------------------------|----------------------------------------------------------------------------------------------------------------|
