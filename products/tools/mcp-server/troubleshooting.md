@@ -102,7 +102,7 @@ flowchart LR
 
 **Authentication (Layer 1):** Pass `sw-access-key` and `sw-secret-access-key` headers. Obtain credentials from Settings → Integrations.
 
-**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under Settings → Integrations → Edit MCP Allowlist, and each user has their own under Settings → Users & Permissions → [user] → MCP Tool Allowlist. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The three server-owned discovery tools remain available, but cannot expose or enable tools denied by the effective allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
+**MCP Allowlist (Layer 2):** Allowlists are scoped per principal: each integration has its own allowlist under **Settings → Integrations → Edit MCP Allowlist**, and each user has their own under **Settings → Users & Permissions → [user] → MCP Tool Allowlist**. `null` per type means all capabilities of that type are accessible; an empty array `[]` means none are accessible. The three server-owned discovery tools remain available, but cannot expose or enable tools denied by the effective allowlist. The `admin` flag on an integration does **not** bypass the allowlist; it only bypasses layer 3 (ACL).
 
 Which allowlist applies depends on the auth method: integration credentials use the integration allowlist; user access keys and user bearer tokens use the per-user allowlist; admin user accounts (`admin = true`) bypass the allowlist entirely. When an app forwards `sw-app-user-id` alongside integration credentials (e.g., Copilot), Shopware applies the **intersection** of the integration and user allowlists.
 
