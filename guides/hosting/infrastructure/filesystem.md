@@ -376,7 +376,7 @@ Changing the strategy on a shop with existing media changes the generated paths 
 
 ### Media path cache busting
 
-By default, Shopware adds the upload timestamp to the physical media path and adds the media update timestamp as a `ts` query parameter to its public URL. You can disable the path timestamp and use query-string cache busting only:
+By default, Shopware appends the upload timestamp to the physical media path and includes the media update timestamp as a `ts` query parameter in its public URL. You can disable the path timestamp and use query-string cache busting only:
 
 ```yaml
 # <project root>/config/packages/prod/shopware.yml
