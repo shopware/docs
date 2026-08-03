@@ -141,8 +141,9 @@ On every run, the handler refreshes all currently installed translations:
    filesystem. Locales that are already current are skipped.
 4. Store the new timestamps in `crowdin-metadata.lock`.
 
-The task is the automated equivalent of `bin/console translation:update`. Both go through the same service, so it does
-not matter whether an update is triggered manually or by the task.
+The task is the automated equivalent of `bin/console translation:update`: both compare the same metadata and update the
+same set of locales, so it does not matter whether an update is triggered manually or by the task. They reach that
+result through different code paths, though, so do not rely on one to report what the other did.
 
 ### Requirements
 
