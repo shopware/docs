@@ -116,7 +116,8 @@ every installation.
 
 ::: info
 The scheduled task is available starting with Shopware 6.7.13.0. In older versions, translations are updated only by
-running the `translation:update` command.
+running the `translation:update` command. The per-language `translationAutoUpdate` flag follows in Shopware 6.7.14.0;
+before that release, the task updates every installed translation.
 :::
 
 The task keeps the translations that are installed in a shop in sync with the translations repository, without anyone
@@ -132,18 +133,21 @@ having to run a command. The following table lists its registration details.
 
 ### What the task does
 
-On every run, the handler refreshes all currently installed translations:
+On every run, the handler refreshes the installed translations of every language whose automatic updates are enabled
+(the `translationAutoUpdate` flag, on by default):
 
-1. Read the local `crowdin-metadata.lock` file from the private filesystem. If no translation is installed, the task
+1. Collect the locales of all languages that have `translationAutoUpdate` enabled. If no language qualifies, the task
    ends immediately and sends no request to the translations repository.
-2. Fetch the remote metadata for the installed locales and compare their `updatedAt` timestamps.
-3. Download the snippet files of every locale whose remote timestamp is newer and write them to the private
+2. Read the local `crowdin-metadata.lock` file from the private filesystem and restrict the collected locales to the
+   ones that are actually installed.
+3. Fetch the remote metadata for those locales and compare their `updatedAt` timestamps.
+4. Download the snippet files of every locale whose remote timestamp is newer and write them to the private
    filesystem. Locales that are already current are skipped.
-4. Store the new timestamps in `crowdin-metadata.lock`.
+5. Store the new timestamps in `crowdin-metadata.lock`.
 
-The task is the automated equivalent of `bin/console translation:update`: both compare the same metadata and update the
-same set of locales, so it does not matter whether an update is triggered manually or by the task. They reach that
-result through different code paths, though, so do not rely on one to report what the other did.
+`bin/console translation:update` performs the same kind of refresh, but it is not scoped: it updates every installed
+translation, regardless of the `translationAutoUpdate` flag. The two also run through different code paths, so do not
+rely on one to report what the other did.
 
 ### Requirements
 
@@ -183,6 +187,8 @@ reviewed deployment artifact. Run `translation:update` during the deployment ins
   untouched, so a language that was deliberately deactivated stays deactivated while still receiving snippet updates.
 * **It does not overwrite database translations.** Snippets edited in the Administration keep the highest priority, as
   described in [Loading priority](built-in-translation-system.md#loading-priority).
+* **It does not update languages with automatic updates disabled.** A language whose `translationAutoUpdate` flag is
+  off is skipped, even when a newer translation is available. Use `translation:update` to refresh it anyway.
 * **It does not remove languages** when a locale disappears from the translations repository.
 
 ### Failure handling
@@ -199,7 +205,7 @@ The following table lists the symptoms you are most likely to run into, together
 | Symptom                                       | Cause and solution                                                                                                                                                                               |
 |-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | The task never runs                           | No background worker is consuming the queue. See [Scheduled Task](../../../guides/hosting/infrastructure/scheduled-task.md)                                                                       |
-| The task runs but nothing changes             | No installed locale has a newer remote `updatedAt` timestamp, or no translation is installed at all. Run `bin/console translation:list` — locales without a **Last update** value are not installed |
+| The task runs but nothing changes             | No installed locale has a newer remote `updatedAt` timestamp, the language has `translationAutoUpdate` disabled, or no translation is installed at all. Run `bin/console translation:list` — locales without a **Last update** value are not installed |
 | A translation approved in Crowdin is missing  | The download workflow has not run yet, or its pull request is still open. Check the open pull requests on `shopware/translations`                                                                  |
 | The task fails with a network error           | The shop cannot reach `repository-url` or `metadata-url`. Check outbound HTTPS access or point the URLs at a mirror                                                                               |
 | A language shows a progress below 100 percent | Strings are translated but not approved, or new source strings were added. Both are resolved in Crowdin                                                                                           |
