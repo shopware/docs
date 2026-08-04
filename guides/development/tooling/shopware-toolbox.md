@@ -47,7 +47,7 @@ Place the cursor on the relevant code and press **Alt+Enter** (macOS: **Option+E
 * **Add/Update the Shopware 6 versioning comment** and **Show Twig block difference** — see [Twig block versioning](#twig-block-versioning)
 
 ::: info
-*Create event listener* is the fastest way to subscribe to an event: navigate to the event class in the core (see [Finding events](../../plugins/plugins/framework/event/finding-events.md)), trigger the intention, pick the target plugin, and the subscriber file plus its service registration are created for you.
+*Create event listener* is the fastest way to subscribe to an event: navigate to the event class in the core (see the [Finding Events guide](../../plugins/plugins/framework/event/finding-events.md)), trigger the intention, pick the target plugin, and the subscriber file plus its service registration are created for you.
 :::
 
 ### Inspections
