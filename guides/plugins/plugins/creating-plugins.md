@@ -65,7 +65,7 @@ To generate a specific example instead of all of them, pass its option. Each opt
 | `--create-admin-module` | Example Administration module with snippets |
 | `--create-javascript-plugin` | Example Storefront JavaScript plugin |
 | `--create-custom-fieldset` | Example custom fieldset (`custom-fields.xml`) |
-| `--entities=Example,Foo` | Entity definition, entity, collection, and migration per entity (PascalCase, comma-separated) |
+| `--entities=Example,Foo` | Entity definition, entity, collection, and migration per entity (UpperCamelCase, comma-separated) |
 
 Every generator that needs a service definition also appends it to the plugin's service configuration in `src/Resources/config`.
 
