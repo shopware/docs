@@ -11,7 +11,7 @@ The [Shopware 6 Toolbox plugin](https://plugins.jetbrains.com/plugin/17632-shopw
 
 It is not a standalone application. It runs inside PHPStorm (and other JetBrains IDEs) and provides Shopware-specific development helpers.
 
-For plugin development, the Shopware 6 Toolbox plugin covers much of the same ground as `bin/console plugin:create` and the manual file creation described in [Creating plugins](../../plugins/plugins/creating-plugins.md), but from inside the editor: it creates the plugin skeleton, generates single files (scheduled task, migration, admin module, CMS block), turns an event class into a subscriber, and validates `composer.json` against Shopware Store requirements. Because the generators use JetBrains file templates, you can adapt every generated file to your own conventions — see [Customize the generated files](#customize-the-generated-files).
+For plugin development, the Shopware 6 Toolbox plugin covers much of the same ground as `bin/console plugin:create` and the manual file creation described in the [Creating Plugins guide](../../plugins/plugins/creating-plugins.md), but from inside the editor: it creates the plugin skeleton, generates single files (scheduled task, migration, admin module, CMS block), turns an event class into a subscriber, and validates `composer.json` against Shopware Store requirements. Because the generators use JetBrains file templates, you can adapt every generated file to your own conventions — see [Customize the generated files](#customize-the-generated-files).
 
 ![Shopware Toolbox Screenshot 1](../../../assets/shopware-toolbox-1.png)
 
