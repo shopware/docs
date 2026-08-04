@@ -138,7 +138,7 @@ For more background, read the [Twig block versioning announcement](https://www.s
 
 ## Customize the generated files
 
-The generators use regular JetBrains file templates, so every generated file can be adapted to your own conventions — for example to add a company copyright header to all generated PHP classes.
+The generators use regular JetBrains file templates, so every generated file can be adapted to your own conventions — for example, to add a company copyright header to all generated PHP classes.
 
 Open *Settings → Editor → File and Code Templates* and edit the Shopware templates. Changes apply to all files created by the Toolbox generators from then on, project-wide or per IDE, depending on the tab you edit them in.
 
