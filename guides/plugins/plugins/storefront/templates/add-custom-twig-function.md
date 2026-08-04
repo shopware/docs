@@ -23,7 +23,7 @@ Refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 In the following sections, we will create and expand all necessary files for the Twig function to work. There are two such files:
 
 * PHP file with the twig functions itself and
-* Services.xml
+* services.php
 
 ## Creating the Twig function
 
@@ -69,6 +69,8 @@ $services->set(SwagCreateMd5Hash::class)
         ->public()
         ->tag('twig.extension'); // Required
 ```
+
+:::
 
 Once done, you can access this `TwigFunction` within your plugin.
 

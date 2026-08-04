@@ -25,7 +25,9 @@ The application that you create is linked to a commit SHA and not to a branch. Y
 
 ## Can I run different applications like Node.js?
 
-No, currently PaaS is limited to Shopware projects.
+General custom applications are not supported.
+Composable frontends are supported as a dedicated application kind and can use a Node.js runtime.
+See [Composable Frontends](./composable-frontends/index.md) for details.
 
 ## How are secrets managed in PaaS?
 
@@ -49,7 +51,9 @@ No, PaaS uses Fastly as the CDN and provides a fixed database configuration at t
 
 ## Can I host my custom applications?
 
-Custom applications and decoupled storefront hosting will be evaluated based on customer needs but are not currently supported.
+General custom applications are not currently supported.
+Composable frontends are supported as a dedicated application kind and can use a Node.js runtime.
+Other decoupled storefront hosting scenarios will be evaluated based on customer needs.
 
 ## What is the difference between `exec` and `command` ?
 
@@ -90,6 +94,16 @@ Yes. Use the [deployment helper](../../../guides/hosting/installation-updates/de
 ## Can I automate deployments from CI/CD?
 
 Yes. The CLI supports non-interactive execution and machine-to-machine authentication with tokens, so you can trigger builds and deployments from your CI/CD system.
+
+## What IP addresses does PaaS use for outbound traffic?
+
+Outbound (egress) traffic from Shopware running in PaaS to the internet currently originates from the same three static IP addresses (AWS `eu-central-1` region):
+
+- `18.156.111.92`
+- `52.59.182.116`
+- `18.159.165.194`
+
+These addresses are currently stable, so you can safely allowlist them in external systems (for example, to grant PaaS access to an ERP system or other third-party services).
 
 ## Can my build contact external services?
 

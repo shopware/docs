@@ -20,3 +20,13 @@ nav:
 | Missing event data | Inspect payload with Log node |
 | BC filter returns empty | Validate OData syntax |
 | Slack message not sent | Re-authorize Slack |
+
+### Activating the Nexus ingestion service
+
+If runtime extension management is disabled (common on composer-managed installations), the **Shopware Nexus Event Ingestion Service** cannot be activated from the Administration. Activate it from the CLI instead:
+
+```bash
+bin/console app:activate ShopwareNexusIngestionService
+```
+
+Still stuck? Ask in the [Nexus club](https://hub.shopware.com/clubs/nexus).

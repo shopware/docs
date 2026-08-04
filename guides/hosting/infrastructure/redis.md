@@ -7,7 +7,7 @@ nav:
 
 # Redis
 
-[Redis](https://redis.io/docs/latest/get-started/) is an in-memory data storage, that offers high performance and can be used as a cache, message broker, and database. It is a key-value store that supports various data structures like strings, hashes, lists, sets, and sorted sets.
+[Redis](https://redis.io/docs/latest/get-started/) is an in-memory data storage that offers high performance and can be used as a cache, message broker, and database. It is a key-value store that supports various data structures like strings, hashes, lists, sets, and sorted sets.
 Especially in high-performance and high-throughput scenarios it can give better results, than relying on a traditional relational database.
 Therefore, multiple adapter exists in shopware, to offload some tasks from the DB to Redis.
 
@@ -16,8 +16,8 @@ However, as the data that is stored in Redis differs and also the access pattern
 The data stored in Redis can be roughly classified into those three categories:
 
 1. Ephemeral data: This data is not critical and can be easily recreated when lost, e.g., caches.
-2. Durable, but "aging" data: This data is important and cannot easily be recreated, but the relevance of the data decreases over time, e.g. sessions.
-3. Durable and critical data: This data is important and cannot easily be recreated, e.g. carts, number ranges.
+2. Durable, but "aging" data: This data is important and cannot easily be recreated, but the relevance of the data decreases over time, e.g., sessions.
+3. Durable and critical data: This data is important and cannot easily be recreated, e.g., carts, number ranges.
 
 Please note that in current Redis versions, it is not possible to use different eviction policies for different databases in the same Redis instance. Therefore, it is recommended to use separate Redis instances for different types of data.
 
@@ -30,13 +30,17 @@ For key eviction policy you should use `volatile-lru`, which only automatically 
 
 The caching data (HTTP-Cache & Object cache) is what should be stored in this instance.
 
+::: warning
+A cache Redis reaching its memory limit is normal — `volatile-lru` keeps evicting least recently used keys that have a TTL set to make room. The problem is having too many keys **without** a TTL: `volatile-lru` can only evict keys that have one. Symfony's tag-aware cache adapter stores tag-index sets without a TTL, and they accumulate orphaned entries over time. If they are never pruned, they leave Redis with too little evictable data, and it runs out of memory. See [Cache tags and keys without a TTL](../performance/caches#cache-tags-and-keys-without-a-ttl) for how to detect and prune them.
+:::
+
 <PageRef page="../performance/caches" />
 
 ## Durable, but "aging" data
 
-As the data stored here is durable and should be persistent, even in the case of a Redis restart, it is recommended to configure the used Redis instance that it will not just keep the data in memory, but also store it on the disk. This can be done by using snapshots (RDB) and Append Only Files (AOF), refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
+As the data stored here is durable and should be persistent, even in the case of a Redis restart, it is recommended to configure the used Redis instance that it will not just keep the data in memory but also store it on the disk. This can be done by using snapshots (RDB) and Append Only Files (AOF), refer to the [Redis docs](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) for details.
 
-`allkeys-lru` should be used as key eviction policy here, as by default more recent data is more important than older data, therefore the oldest values should be discarded, when Redis reach the max memory.
+`allkeys-lru` should be used as key eviction policy here, as by default more recent data is more important than older data, therefore, the oldest values should be discarded, when Redis reach the max memory.
 
 The session data is what should be stored in this instance.
 
@@ -44,15 +48,15 @@ The session data is what should be stored in this instance.
 
 ## Durable and critical data
 
-Again this is durable data, that can not easily be recreated, therefore it should be persisted as well.
+Again, this is durable data that cannot easily be recreated, therefore, it should be persisted as well.
 
 As the data is critical, it is important to use a key eviction policy that will not delete data that is not expired, therefore `volatile-lru` should be used.
 
-The cart, number range, lock store and increment data is what should be stored in this instance.
+The cart, number range, lock store, and increment data are what should be stored in this instance.
 
 ## Configuration
 
-Starting with v6.6.8.0 Shopware supports configuring different reusable Redis connections in the`config/packages/shopware.yaml` file under the `shopware` section:
+Starting with v6.6.8.0, Shopware supports configuring different reusable Redis connections in the`config/packages/shopware.yaml` file under the `shopware` section:
 
 ```yaml
 shopware:

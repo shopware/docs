@@ -9,6 +9,10 @@ nav:
 
 Before setting up the Shopware 6 development environment, ensure your system meets the following requirements.
 
+:::info
+This page covers the physical machine requirements for your workstation or server. For the recommended application stack and supported versions, see the [hosting guide](../../guides/hosting/).
+:::
+
 ## Hardware
 
 | Component | Requirement |

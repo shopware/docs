@@ -225,6 +225,108 @@ volumes:
 - Use an external storage provider for all files to keep all state out of the container
 - Use Redis/Valkey for Cache and Session storage so all instances share the same cache and session
 
+## Keeping the setup up to date
+
+Getting a shop running once is **not** the end of the job. A container that was built once and then left alone keeps running the exact PHP version it was built with — forever. Months later, that PHP will be missing security fixes that have long since been released. Your shop looks like it is "just running fine", but it is running on an outdated, potentially vulnerable runtime.
+
+This is the most common mistake with Docker-based shops, so if you read only one section on this page, read this one.
+
+The following table summarizes the three separate things that get updated and how you update them. Do not mix them up.
+
+| What                     | What it means                                      | How you update it                                           | How often                           |
+|--------------------------|----------------------------------------------------|-------------------------------------------------------------|-------------------------------------|
+| **PHP (the base image)** | The runtime your shop runs on, with security fixes | **Rebuild and redeploy** your image — no code change needed | When a scan finds a vulnerability   |
+| **Shopware**             | The shop software itself, plus extensions          | Update with Composer, then rebuild and redeploy             | When a version you want is released |
+| **Your own code**        | Your project and any custom extensions             | Update with Composer/npm, then rebuild and redeploy         | When you change something           |
+
+The rest of this section explains each one.
+
+### Am I affected? Check what you are running
+
+If you are not sure how old your running shop is, check the PHP version inside the running container:
+
+```bash
+docker compose exec web php -v
+```
+
+Compare that with the [latest PHP releases](https://www.php.net/supported-versions.php). If a newer patch version is available (the last number, e.g., a higher number than the `12` in `8.3.12`), your container has not been rebuilt in a while and is missing security fixes. That is the signal to do the rebuild below.
+
+For the full picture — not just PHP, but every package in the image — scan the image with a vulnerability scanner such as [Trivy](https://trivy.dev/) or [Grype](https://github.com/anchore/grype). Trivy needs no setup and reports all known vulnerabilities (CVEs) in the image:
+
+```bash
+# Scan the image your compose setup builds (replace with your image name/tag)
+trivy image my-shopware-image:latest
+```
+
+**Scan on a schedule and rebuild only when the scan finds something.** This is the recommended rhythm: instead of rebuilding blindly every day, run the scan regularly (e.g., weekly, ideally as a scheduled job in your build pipeline) and treat a finding as the signal to rebuild. When the scan reports security issues, rebuild with `--pull` (see below) and scan again — most OS- and PHP-level findings disappear once you are on the freshly rebuilt base image. If the pipeline scan still reports vulnerabilities after a rebuild, let it fail the build so nothing vulnerable ships quietly.
+
+### Keeping PHP up to date
+
+The Shopware `docker-base` image is rebuilt **every day** with the newest PHP patch release and operating-system security fixes, so a fix is always waiting in the registry. To actually get those fixes into your shop, you have to **rebuild your own image and redeploy it** — this is the action you take whenever the scan above reports a vulnerability. Building alone does nothing until the new image is running.
+
+::: warning
+Rebuilding an image on your laptop does **not** update your live shop. You must also redeploy so the running containers use the new image. "Build" and "deploy" are two separate steps.
+:::
+
+Using the `compose.yaml` from the [Typical Setup](#typical-setup) above, the full command is:
+
+```bash
+# 1. Rebuild, pulling the newest base image from the registry
+docker compose build --pull
+
+# 2. Redeploy so the running containers use the new image
+docker compose up -d
+```
+
+The `--pull` flag is what tells Docker to fetch the newest `docker-base` image instead of reusing an old cached one. This step does **not** change your Shopware version, your database, or your extensions — it only swaps the PHP runtime underneath, so it is safe to run whenever a scan tells you to.
+
+You do not need to rebuild every day — only when there is actually something to fix. Automate the *detection* so you know when that is:
+
+- **If you have a build pipeline (CI/CD):** add a scheduled scan (e.g., weekly) as described above, and trigger a rebuild-and-redeploy when it reports a vulnerability. This is the recommended approach.
+- **If you pinned the image to a sha256 digest:** use [Dependabot or Renovate](#best-practices) to open an update automatically when a newer base image is published, so you rebuild in response to a real new release.
+- **If you do all of this by hand:** put a recurring reminder in your calendar (for example, once a week) to run the scan and rebuild only if it finds something. It is not elegant, but it keeps your shop patched without pointless rebuilds.
+
+::: info
+The tags like `8.3-frankenphp` are *rolling* tags: over time, the same tag points to a newer PHP patch version. This is why rebuilding with the same tag is enough to pull in security fixes — you do not need to change anything in your Dockerfile.
+:::
+
+### Updating Shopware
+
+Updating Shopware itself (the `shopware/core` package and your extensions) works the same as with any other hosting method: you update the Composer dependencies in your project, rebuild the image, and redeploy. During deployment the [Deployment Helper](./deployments/deployment-helper.md) automatically runs the database migrations (`system:update:finish`) for you.
+
+For the full step-by-step procedure — including backups, maintenance mode, checking extension compatibility, and the difference between small (minor) and yearly (major) updates — follow the dedicated guide:
+
+<PageRef page="./performing-updates" title="Performing Shopware Updates" />
+
+### Updating Shopware and PHP together (major upgrade)
+
+When you move to a new **major** Shopware version (these come out once a year, e.g., 6.6 → 6.7), you usually also need a newer PHP version. It is tempting to change everything in one big rebuild — **do not do this.** If something breaks, you will not know whether PHP or Shopware caused it, and you will have a hard time undoing it. This is exactly the kind of "creative" update that breaks shops.
+
+Instead, change **one thing at a time**, in order. This works because every Shopware major supports *two* PHP versions (the old one and a newer one) at the same time, so you can move PHP and Shopware in separate steps.
+
+The PHP version is controlled by a single line in your `Dockerfile`, the `PHP_VERSION` build argument:
+
+```dockerfile
+ARG PHP_VERSION=8.3
+FROM ghcr.io/shopware/docker-base:$PHP_VERSION-frankenphp AS base-image
+FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
+```
+
+**Example: going from Shopware 6.6 on PHP 8.2 to Shopware 6.7 on PHP 8.5.**
+
+Take a **backup of your database and files before you start**, then do these steps one after another, testing after each:
+
+1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md).
+2. **Raise PHP to an in-between version — still on old Shopware.** Change `PHP_VERSION` to a version both 6.6 and 6.7 support (here: `8.3`), then rebuild, and redeploy. Because both versions support it, this is safe while still on 6.6. Test the shop.
+3. **Update Shopware.** Now do the Shopware 6.6 → 6.7 update by following [Performing Shopware Updates](./performing-updates.md). Rebuild, redeploy, test the shop.
+4. **Raise PHP to the final version.** Now that you are on 6.7, change `PHP_VERSION` to the final target (`8.5`), rebuild, redeploy, and test one last time.
+
+If any step misbehaves, you know exactly which change caused it, and you can roll that one step back instead of unpicking a tangle of changes.
+
+::: danger
+Never jump several Shopware majors and PHP versions at once (for example, 6.5 straight to 6.7). Go one major version at a time and always take a backup before starting.
+:::
+
 ## Adding custom PHP extensions
 
 The Docker image contains the [docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer) which allows you to install PHP extensions with the `install-php-extensions` command.

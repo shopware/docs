@@ -13,11 +13,9 @@ Plugins often need to save data into a custom database table. Shopware 6's data 
 
 ## Prerequisites
 
-This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above. In order to create a database table, you need to understand plugin migrations [Plugin migrations](../../database/database-migrations.md). Also, you'll have to understand how the [Dependency injection](../../services/dependency-injection.md) works as well.
+This guide builds upon the [Plugin base guide](../../../plugins/plugin-base-guide.md), but any plugin will work here. Just note that all examples reference that plugin.
 
-::: info
-Refer to this video on **[Creating a custom entity](https://www.youtube.com/watch?v=mTHTyof4gPk)**. Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
-:::
+Before creating a custom DAL entity you'll need to create a database table, which requires an understanding of [plugin migrations](../../database/database-migrations.md). Familiarity with [Dependency injection](../../services/dependency-injection.md) is also required, because the entity definition is registered as a service.
 
 ## Creating the database table
 
@@ -25,7 +23,7 @@ We'll start with creating a new database table. Make sure to always add your ind
 
 In this guide we'll name our table `swag_example`, you'll find this name a few more times in here, so make sure to remember that one.
 
-As already mentioned in the prerequisites, creating a database table is done via plugin migrations [Plugin migrations](../../database/database-migrations.md), head over to this guide to understand how this example works.
+As already mentioned in the prerequisites, creating a database table is done via [plugin migrations](../../database/database-migrations.md) - use the guide to understand how this example works.
 
 ```php
 // <plugin root>/src/Migration/Migration1611664789Example.php

@@ -7,6 +7,10 @@ nav:
 
 # Adjusting a Service
 
+Service decoration is one of the main ways to extend Shopware behavior from a plugin, alongside reacting to events. Prefer events when you need to react to something Shopware does. Prefer service decoration when you need to change how an existing service behaves.
+
+Shopware services that are designed for decoration often expose an abstract class as their contract instead of a PHP interface. The abstract class provides the `getDecorated()` chain and allows new non-abstract methods to be added without immediately breaking existing decorators.
+
 This guide explains how to adjust a service using decoration. For more details, see the [Symfony documentation](https://symfony.com/doc/current/service_container/service_decoration.html).
 
 ## Prerequisites

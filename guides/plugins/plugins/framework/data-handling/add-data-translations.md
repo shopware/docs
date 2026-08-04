@@ -11,6 +11,8 @@ nav:
 
 In this guide you'll learn how to add translations to entities.
 
+When reading translated data later, prefer `entity.translated.field` in storefront and sales-channel contexts, and use the plain `entity.field` in Admin/CRUD flows where you need the value stored for the current language. See [Plain vs translated entity fields](../../../../../concepts/framework/translations/plain-vs-translated-fields.md).
+
 ## Prerequisites
 
 This guide is built upon the [Plugin base guide](../../plugin-base-guide), but any plugin will work here. Just note that all examples are using the plugin mentioned above.

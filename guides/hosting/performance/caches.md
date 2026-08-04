@@ -150,3 +150,76 @@ redis://auth@/var/run/redis.sock
 ```
 
 For more information or other adapters checkout [Symfony FrameworkBundle](https://symfony.com/doc/current/cache.html#configuring-cache-with-frameworkbundle) documentation.
+
+### Cache tags and keys without a TTL
+
+This section explains a common surprise when running Shopware's cache on Redis: the cache instance runs out of memory even though eviction is configured correctly. The short version is that some cache keys never expire, and if too many of them pile up, Redis has nothing left to clean up. Read on for what that means and how to fix it.
+
+#### Background: TTL and eviction
+
+A few Redis basics first, so the rest makes sense:
+
+* **TTL (Time To Live)** is an expiry timer on a key. A cache item written with a TTL of one hour is automatically deleted an hour later. A key with **no TTL** is *persistent* — Redis keeps it until something explicitly deletes it.
+* **`maxmemory`** is the memory limit you give Redis. When Redis reaches it, it does not just start rejecting `writes` — first it tries to free space using its **eviction policy**.
+* The recommended policy for the cache is **`volatile-lru`**. The `volatile` part is the catch: it will only evict keys that **have a TTL**. Keys without a TTL are off-limits — Redis will never evict them, no matter how full it gets.
+
+So a cache Redis sitting at its `maxmemory` limit is completely normal and healthy. It fills up over time, and `volatile-lru` keeps evicting least recently used keys that have a TTL set to make room for new ones. **Full is fine** — as long as enough of that memory is held by keys *with* a TTL, so Redis always has something it is allowed to evict.
+
+#### The problem: cache tags never expire
+
+Shopware needs to invalidate related cache entries together — for example, when a product changes, every cached page that shows that product must be dropped. This is done with **cache tags**, and it requires the `redis_tag_aware` adapter (configured above).
+
+To make tags work, Symfony keeps a **tag index** in Redis. For each tag (say, `product-123`) it stores a Redis *set* listing every cache key that carries that tag. These index keys contain the `\x01tags\x01` marker in their name.
+
+Here is the catch: **these tag-index keys have no TTL.** Only the cached items themselves expire. Walk through what happens to a single cached page:
+
+1. Shopware caches a product page with a one-hour TTL, and adds its key to the `product-123` tag set so it can be invalidated later.
+2. An hour passes. The cached page **expires and is removed** — but its entry in the `product-123` tag set is **not** removed. The set now points at a key that no longer exists. That leftover entry is called an **orphaned tag**.
+3. Repeat this millions of times a day on a busy shop, and the tag sets keep growing with orphaned entries — and because they have no TTL, `volatile-lru` can never evict them.
+
+While the tag sets are a small share of total memory, everything is fine: there are plenty of expiring cache items for Redis to evict. The trouble starts when the persistent, no-TTL tag data grows large enough that Redis no longer has *enough* evictable keys to reclaim. At that point Redis cannot free space for new `writes` and starts returning **out-of-memory (OOM) errors** — even though `volatile-lru` is set correctly.
+
+::: warning
+The problem is **not** that the cache Redis is full — that is expected and healthy. The problem is having **too many keys without a TTL**, which leaves Redis nothing it is allowed to evict. If your cache instance throws OOM errors, do not just raise `maxmemory` — first check how much memory is held by keys *without* a TTL.
+:::
+
+#### How to tell if this is your problem
+
+Signs that point at orphaned tags rather than a genuinely undersized cache:
+
+* Redis reports OOM errors (`OOM command not allowed when used memory > 'maxmemory'`) while the eviction policy is `volatile-lru`.
+* Raising `maxmemory` only postpones the problem — it fills up again.
+* A large share of the used memory is in keys with **no TTL** (in a healthy cache, almost everything should have a TTL).
+
+You can get a rough read directly from `redis-cli`:
+
+```bash
+# How many keys have no expiry set at all?
+redis-cli INFO keyspace
+# e.g. "db0:keys=1000000,expires=200000,avg_ttl=0"
+# -> 800000 keys (1,000,000 - 200,000) have NO TTL. That is a red flag.
+```
+
+`keys` is the total number of keys and `expires` is how many of them have a TTL; the difference is the number of persistent keys. If that difference is large, orphaned tag sets are the likely cause.
+
+#### The fix: prune orphaned tags regularly
+
+Symfony does not clean up these tag sets on its own, so you have to remove the orphaned entries yourself, on a schedule. Either of these tools does the job (both iterate with the non-blocking `SCAN` command and are safe to run against production):
+
+* **[FroshTools](https://github.com/FriendsOfShopware/FroshTools)** — a Shopware plugin that adds the `frosh:redis-tag:cleanup` console command. It scans the tag sets and removes members pointing at keys that no longer exist.
+* **[shopware-redis-cli-helper](https://github.com/shyim/shopware-redis-cli-helper)** — a standalone command-line tool that does the same job faster. Its `insights` command has a **Persistent** view showing exactly how much memory is held by no-TTL keys (handy to confirm the diagnosis first), and its `cleanup` command prunes the orphaned tags.
+
+Using the standalone helper, for example:
+
+```bash
+# 1. Confirm the diagnosis: see how much memory is held by keys without a TTL
+shopware-redis-cli-helper --url redis://127.0.0.1:6379/0 insights
+
+# 2. Preview what a cleanup would remove (dry run — changes nothing)
+shopware-redis-cli-helper --url redis://127.0.0.1:6379/0 cleanup
+
+# 3. Apply the cleanup for real
+shopware-redis-cli-helper --url redis://127.0.0.1:6379/0 cleanup --apply
+```
+
+The important part is **step 3 on a schedule** — run the cleanup as a recurring cron job (for example, nightly) rather than once. Orphaned tags accumulate continuously, so a one-off cleanup fixes today's symptom, but the instance will fill up again. A regular prune keeps the no-TTL share small and permanently avoids the OOM errors.

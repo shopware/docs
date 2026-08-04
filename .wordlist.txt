@@ -143,6 +143,7 @@ CSP
 CSPs
 CSRF
 CSV
+CVEs
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -175,6 +176,7 @@ CashRoundingConfigField
 CategoryRoute
 CentOS
 Centric
+Ceph
 Cerebro
 Chai
 ChangeCustomerSpecificFeaturesAction
@@ -278,6 +280,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+CycloneDX
 DAL
 DBAL
 DDL
@@ -331,6 +334,7 @@ Deployer
 Deprecations
 Deutsch
 DevOps
+DevTUI
 DevTools
 Devenv
 DeviceHelper
@@ -338,6 +342,7 @@ Devops
 Devtool
 DifferentAddressesRule
 Differentiator
+DigitalOcean
 DirectoryLoader
 Direnv
 DiscountFacade
@@ -349,6 +354,8 @@ Dotenv
 DynamoDB
 ECDSA
 ECONNREFUSED
+ECS
+EKS
 ENUM
 ENUMS
 EOL
@@ -412,6 +419,7 @@ ExtensionAPI
 FLAC
 FPM
 FQCN
+FQDN
 FastRoute
 Fastly
 Fastly's
@@ -465,23 +473,27 @@ GoogleReCaptchaV
 Grafana
 Grantable
 GridHelper
+Grype
 GuestWishlistPage
 GuestWishlistPagelet
 HMAC
 HMR
 Hacktober
 HeaderPagelet
+Hetzner
 Homebrew
 Hono
 HookClasses
 HookExecutor
 Hotjar
 HowTos
+IAM
 IANA
 IDEs
 IETF
 IPV
 IPv
+ISR
 IdField
 IdSearchResult
 Ideate
@@ -530,6 +542,7 @@ LONGTEXT
 LUA
 LandingPage
 LastNameRule
+LavinMQ
 Lerna
 Lifecycle
 LineItemClearanceSaleRule
@@ -620,6 +633,7 @@ Middleware
 MigrationCollection
 MigrationStep
 MimeType
+MinIO
 Minio
 Mixin
 Mixins
@@ -667,6 +681,7 @@ Nvidia
 OAuth
 OData
 OIDC
+OOM
 OPENSEARCH
 ORM
 ORMs
@@ -875,6 +890,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBOM
 SBP
 SCSS
 SDK
@@ -1011,6 +1027,8 @@ TCP
 TLS
 TTL
 TTLs
+TUI
+TUI's
 TaxFreeConfigField
 TaxProvider
 TaxProviderStruct
@@ -1048,6 +1066,7 @@ TreePath
 TreePathField
 TreeSelect
 TriggerReload
+Trivy
 TwigJS
 TypeDetector
 TypeError
@@ -1103,6 +1122,7 @@ Validator
 Valkey
 VariantListingConfigField
 Vercel
+Verkaufskanal
 VersionDataPayload
 VersionDataPayloadField
 VersionField
@@ -1167,6 +1187,7 @@ actionAmount
 actionType
 actionability
 activateShopwareTheme
+adminer
 adr
 afterSort
 ag
@@ -1268,6 +1289,7 @@ cartfacade
 cartpricefacade
 catchable
 catched
+cdx
 cetera
 changelog
 changelogs
@@ -1444,6 +1466,7 @@ eslintrc
 et
 eu
 everytime
+evictable
 evolvability
 exampler
 explainer
@@ -1622,8 +1645,10 @@ jwks
 jwt
 kebabCase
 keyframes
+keypress
 landingpage
 lang
+lavinmq
 lazysizes
 libxml
 lifecycle
@@ -1634,6 +1659,7 @@ lineItemId
 linter
 linters
 linux
+liveness
 llms
 localVue
 localhost
@@ -1747,6 +1773,7 @@ org's
 organizationUnitIds
 otel
 otlp
+overridable
 overrideComponentSetup
 oversales
 paas
@@ -1843,6 +1870,7 @@ realtime
 rebase
 rebasing
 rebranded
+rebuildable
 recalculable
 redis
 refactorings
@@ -1887,6 +1915,7 @@ rollout
 routeName
 routeScope
 routeScopes
+runnable
 runtime
 runtimes
 salesChannel
@@ -1899,6 +1928,7 @@ saleschannelrepositoryfacade
 salutationId
 sandboxed
 sarven
+sbom
 scalability
 scalable
 schemas
@@ -1955,6 +1985,7 @@ sm
 smartbar
 snakeCase
 sortings
+sourcemaps
 sql
 src
 srcset
@@ -2055,6 +2086,7 @@ typeSingleSelectAndCheck
 typehint
 typehinted
 ui
+umask
 un
 uncomment
 uncommenting
@@ -2076,6 +2108,7 @@ untrusted
 untyped
 updateDestructive
 updateViaAdminApi
+uploadable
 upsert
 uri
 url
@@ -2121,6 +2154,7 @@ wishlist
 wordlist
 www
 xasjkyld
+xdebug
 xhost's
 xkeys
 xl
