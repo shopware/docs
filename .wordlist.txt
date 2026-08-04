@@ -1123,6 +1123,7 @@ Validator
 Valkey
 VariantListingConfigField
 Vercel
+Verkaufskanal
 VersionDataPayload
 VersionDataPayloadField
 VersionField
