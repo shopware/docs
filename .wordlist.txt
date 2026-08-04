@@ -849,6 +849,7 @@ RDB
 RDBMS
 README
 RHEL
+RPC
 RSA
 RabbitMQ
 RabbitMq
@@ -2062,6 +2063,8 @@ toggleable
 tokenized
 tokenizer
 toolchain
+toolset
+toolsets
 tooltip
 tooltips
 totalAmount
