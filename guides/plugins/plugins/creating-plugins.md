@@ -73,7 +73,7 @@ Every generator that needs a service definition also appends it to the plugin's 
 Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as a starting point and verify it against the version you target.
 :::
 
-Make sure to adjust the namespace in the generated files as per your need.
+Make sure to adjust the namespace in the generated files as per your needs.
 
 ### Generate from your IDE instead
 
