@@ -161,7 +161,7 @@ Type hint the abstract class, never the concrete implementation, in constructors
 
 ### Prefer designed extension points
 
-Decoration works on any service, whether or not the service was designed to be extended. Where the core offers an [extension point](../framework/extension/index.md), prefer it: extension points are subscribed to as events (`.pre`, `.post`, `.error`), so multiple extensions can participate without forming a chain, and their input objects can gain new data without breaking existing subscribers. See [Extension Points vs Events](../framework/extension/extension-vs-events.md) for the differences and [Listening to events](../framework/event/listening-to-events.md) for plain events.
+Decoration works on any service, whether or not the service was designed to be extended. Where the core offers an [extension point](../framework/extension/index.md), prefer it: extension points are subscribed to as events (`.pre`, `.post`, `.error`), so multiple extensions can participate without forming a chain, and their input objects can gain new data without breaking existing subscribers. See the [Extension Points vs Events guide](../framework/extension/extension-vs-events.md) for the differences and the [Listening to Events guide](../framework/event/listening-to-events.md) for plain events.
 
 Use decoration when there is no extension point and you need to change how an existing service behaves.
 
