@@ -49,7 +49,7 @@ Component.register('swag-basic-example', {
 The snackbar service is available from Shopware 6.7.14.0.
 :::
 
-For brief feedback such as confirming that a plugin action completed, use the global Meteor snackbar instead of the notification mixin:
+For brief feedback such as confirming that a plugin action is completed, use the global Meteor snackbar instead of the notification mixin:
 
 ```javascript
 const snackbar = Shopware.Service('snackbarService').addSnackbar({
