@@ -35,13 +35,53 @@ From your Shopware project's root directory, run:
 bin/console plugin:create SwagBasicExample
 ```
 
-Optionally, you can run this command to create a demo configuration file in the `Resources` directory:
+The command asks for a plugin name and namespace (both PascalCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
+
+Use `--static` to create the plugin in `custom/static-plugins` instead of `custom/plugins`:
 
 ```bash
-bin/console plugin:create SwagBasicExample --create-config
+bin/console plugin:create SwagBasicExample --static
 ```
 
-The command will generate all the basic required files that are needed for an extension to be installed on a Shopware instance. Make sure to adjust the namespace in the files as per your need.
+### Skip the optional scaffolding
+
+Answering *no* to the scaffolding question, or passing `--no-scaffold`, creates only the required files:
+
+```bash
+bin/console plugin:create SwagBasicExample --no-scaffold
+```
+
+This is the recommended starting point when you already know what your plugin needs. The optional scaffolding generates example code across several directories, which is useful as a reference but leaves files behind that you have to read and delete.
+
+To generate a specific example instead of all of them, pass its option. Each option can also be answered interactively:
+
+| Option | Generates |
+| --- | --- |
+| `--create-storefront-controller` | Example Storefront controller, its template, and a `routes.php` entry |
+| `--create-store-api-route` | Example Store API route with abstract class and response class |
+| `--create-event-subscriber` | Example event subscriber |
+| `--create-command` | Example console command |
+| `--create-scheduled-task` | Example scheduled task |
+| `--create-admin-module` | Example Administration module with snippets |
+| `--create-javascript-plugin` | Example Storefront JavaScript plugin |
+| `--create-custom-fieldset` | Example custom fieldset (`custom-fields.xml`) |
+| `--entities=Example,Foo` | Entity definition, entity, collection, and migration per entity (PascalCase, comma-separated) |
+
+Every generator that needs a service definition also appends it to the plugin's service configuration in `src/Resources/config`.
+
+::: info
+Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as a starting point and verify it against the version you target.
+:::
+
+Make sure to adjust the namespace in the generated files as per your need.
+
+### Generate from your IDE instead
+
+The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) for PHPStorm creates plugins and single files (scheduled task, migration, Administration module, CMS block, event subscriber) from the editor. Its generators are based on JetBrains file templates, so you can adapt the generated files to your own conventions, which is not possible with the core scaffolding.
+
+::: info
+After adding or changing service configuration, routes, or Twig templates, clear the cache with `bin/console cache:clear`. Stale caches are the most common reason a newly generated file appears to have no effect.
+:::
 
 ### Structure for long-term maintainability
 
@@ -102,6 +142,8 @@ At a minimum, it must define:
 * [PSR-4](https://www.php-fig.org/psr/psr-4/) autoload configuration
 
 The `extra.shopware-plugin-class` value must reference your plugin’s base PHP class (e.g. `Swag\\BasicExample\\SwagBasicExample`).
+
+`shopware-platform-plugin` is the only Composer type Shopware treats as a plugin. A package with any other type — `library`, `project`, or the `shopware-app` type used for apps — is not picked up as a plugin and never appears in the Administration, even if everything else is set up correctly. Shopware also rejects a plugin whose `extra.shopware-plugin-class` or `extra.label` is missing.
 
 The `autoload.psr-4` namespace must match your directory structure. If you change the path (for example, not using `src/`), your folders must reflect that configuration.
 

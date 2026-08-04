@@ -24,6 +24,13 @@ This guide outlines the typical development flow when creating a Shopware plugin
 11. [Write tests](../../development/testing/index.md) and configure [CI](../../development/testing/ci.md)
 12. Add [diagnostics](plugin-fundamentals/logging.md)
 
+## Tooling
+
+Most steps above can be generated instead of written by hand:
+
+* `bin/console plugin:create` scaffolds the plugin; see [Creating plugins](creating-plugins.md)
+* The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) generates plugins, subscribers, scheduled tasks, migrations, and Administration modules from PHPStorm, using file templates you can adapt to your own conventions
+
 ## Upgrade readiness
 
 Design plugins so that:
