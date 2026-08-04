@@ -414,6 +414,7 @@ ExamplePageletLoader
 ExamplePlugin
 ExampleTranslationDefinition
 ExcludeMultiWarehouseStockUpdateFilter
+Extenders
 Extensibility
 ExtensionAPI
 FLAC
@@ -855,6 +856,7 @@ RabbitMq
 Readonly
 RecipientsAware
 RecipientsStorer
+Rector
 RecurringPaymentHandlerInterface
 RedHat
 Redict
@@ -1332,11 +1334,13 @@ const's
 contactFormData
 containerfacade
 contextToken
+contravariant
 control
 copyToClipboard
 copyable
 cors
 countryId
+covariant
 createActionResponse
 createCategoryFixture
 createCmsFixture
@@ -1472,6 +1476,8 @@ exampler
 explainer
 explainers
 extendability
+extender
+extenders
 extensibility
 externalReference
 failover
@@ -2014,6 +2020,7 @@ stylelintrc
 stylesheet
 stylesheets
 stylings
+subclass
 subclasses
 subcomponents
 subcontent

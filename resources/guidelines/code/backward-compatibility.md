@@ -27,6 +27,8 @@ During the development, different cases occur where you want to replace old code
 
 The `@deprecated` annotation is used for obsolete public code, which will be removed with the next major release. The annotation always needs the specific major version tag, in which the code should be removed. Always add a meaningful comment with information about the corresponding replacement and how the deprecated code can be removed.
 
+Use `@deprecated` only when the symbol itself becomes obsolete — it is removed or replaced, and consumers should stop using it. A symbol that stays but *changes* (a different return type, a new parameter, becoming final, and so on) is **not** deprecated: static analysis tools would report every usage as "usage of deprecated code" although there is nothing to migrate away from. Such planned changes are announced with dedicated PHP attributes instead — see [BC-change attributes](#bc-change-attributes). The former `@deprecated tag:vX.Y.Z - reason:*` markers are migrated to these attributes, and a PHPStan rule prevents new `reason:*` markers from being introduced.
+
 ### @experimental
 
 ```php
@@ -38,6 +40,26 @@ The `@deprecated` annotation is used for obsolete public code, which will be rem
 The `@experimental` annotation is used for newly introduced code, which is not yet released. This ensures that it will not be treated as a public API until the corresponding feature is released and makes it possible to change the code in any way until the final release. Always add the name of the corresponding feature flag to the annotation so that it will not be forgotten when the corresponding feature is released.
 The `@experimental` annotation should be treated like the default `@internal` annotation.
 The mentioned  `stableVersion` tag is used to hint when the feature is planned to be stable.
+
+### BC-change attributes
+
+```php
+use Shopware\Core\Framework\Deprecation\BCChange\ReturnTypeNarrowing;
+
+#[ReturnTypeNarrowing(version: 'v6.8.0', newType: 'static')]
+public function assign(array $options): self
+```
+
+Planned changes to symbols that **stay** — signature changes, visibility changes, a class becoming final — are announced with attributes from the `Shopware\Core\Framework\Deprecation\BCChange` namespace instead of `@deprecated`. Each attribute states the version in which the change happens and carries the announced declaration as a machine-readable payload (types are referenced via `::class`), so IDEs, Rector, and other tooling can act on it.
+
+Every attribute implements one or both of two marker interfaces that tell you whether your code is affected:
+
+* `CallSiteCompatibilityChange` — affects code that **calls** the symbol.
+* `ExtenderCompatibilityChange` — affects classes that **extend or override** the symbol.
+
+Usage is validated by PHPStan: the announced change must be structurally possible (for example, referenced parameters must exist, an announced exception must not already be covered by the current `@throws` contract), extender-only changes must not be announced on final symbols, and changes whose legacy usage is detectable at runtime must trigger a conditional deprecation via `Feature::triggerDeprecationOrThrow()`. Stale attributes fail the build once the announced version is released.
+
+See [Announced API changes](#announced-api-changes-bc-change-attributes) for every attribute and how to make your code compatible with the current and the next major version at the same time.
 
 ## Workflows
 
@@ -67,6 +89,281 @@ The first goal should always be to make your changes backward compatible. But th
 | 🔴 **Breaking change**  | Add `@major-deprecated` annotation.                                                                                                                          | Remove old code.                     |
 | 🔍 **Tests**            | Add new tests behind a major feature flag. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                 |
 
+## Announced API changes (BC-change attributes)
+
+This section lists every BC-change attribute, who is affected, and how to write extension code **today** that keeps working after the announced change. The directional naming is deliberate: PHP's variance rules make one direction of every change safe to anticipate, so in almost all cases a single code path is compatible with the current *and* the next major version — no version checks needed.
+
+| Attribute                 | Announces                                             | Affects                | Safe opt-in today                                                             |
+|---------------------------|-------------------------------------------------------|------------------------|-------------------------------------------------------------------------------|
+| `#[ReturnTypeNarrowing]`  | Return type becomes narrower                          | Extenders              | ✅ Declare the announced type in your override now                             |
+| `#[ReturnTypeWidening]`   | Return type becomes wider                             | Call sites             | ✅ Handle the announced type now                                               |
+| `#[ParameterTypeNarrowing]` | Parameter type becomes narrower                     | Call sites             | ✅ Pass only values of the announced type now                                  |
+| `#[ParameterTypeWidening]` | Parameter type becomes wider                         | Extenders              | ✅ Declare the announced type in your override now                             |
+| `#[NewOptionalParameter]` | A new optional parameter is added                     | Extenders              | ✅ Add the parameter to your override now                                      |
+| `#[NewRequiredParameter]` | A new required parameter is added                     | Call sites & extenders | ✅ Pass the parameter now / add it (optional) to your override now             |
+| `#[ParameterNameChange]`  | A parameter is renamed                                | Call sites (named args) | ✅ Use positional arguments now                                               |
+| `#[ParameterRemoval]`     | An (optional) parameter is removed                    | Call sites             | ✅ Stop passing it now                                                         |
+| `#[ExceptionChange]`      | The thrown exception types change                     | Call sites             | ✅ Catch the current and the announced exceptions now                          |
+| `#[BecomesAbstract]`      | A method loses its default implementation             | Extenders              | ✅ Implement the method in your subclass now                                   |
+| `#[BecomesFinal]`         | A class or method becomes final                       | Extenders              | ⚠️ Switch from inheritance to decoration/composition — works on both versions |
+| `#[BecomesInternal]`      | A symbol becomes `@internal`                          | Call sites & extenders | ✅ Stop using it now                                                           |
+| `#[VisibilityChange]`     | Visibility is reduced (e.g., public → protected)      | Call sites & extenders | ✅ Stop calling it from outside the announced scope now                        |
+| `#[ClassHierarchyChange]` | The inheritance chain of a class changes              | Call sites & extenders | ⚠️ Depends on the change — stop relying on ancestors that go away             |
+
+### Quick guides per attribute
+
+Each guide covers both audiences. "Nothing to do" means the change cannot break that side of the contract — the reasoning is given so you can verify it for your case.
+
+#### ReturnTypeNarrowing
+
+```php
+#[ReturnTypeNarrowing(version: 'v6.8.0', newType: 'static')]
+public function assign(array $options): self
+```
+
+**Call sites**: Nothing to do — a narrower return value satisfies every consumer of the current, wider type.
+
+**Extending classes**: PHP return types are covariant: an override may always declare a narrower type than its parent. Declare the announced type in your override now — it is valid against the current declaration and stays valid after the change:
+
+```php
+// works on both versions
+class MyStruct extends CoreStruct
+{
+    public function assign(array $options): static
+    {
+        // ...
+    }
+}
+```
+
+#### ReturnTypeWidening
+
+```php
+#[ReturnTypeWidening(version: 'v6.8.0', newType: '?array')]
+public function getIncludes(): array
+```
+
+**Call sites**: Handle the announced (wider) type already. The extra handling is dead code today, but becomes required after the change:
+
+```php
+// works on both versions
+$includes = $criteria->getIncludes() ?? [];
+```
+
+**Extending classes**: Your override may keep its current, narrower return type — after the change it is simply narrower than the parent, which covariance allows. If your override delegates to `parent::`, handle the announced type there like a call site.
+
+#### ParameterTypeNarrowing
+
+```php
+#[ParameterTypeNarrowing(version: 'v6.8.0', parameterName: 'id', newType: 'string')]
+public function load(int|string $id): void
+```
+
+**Call sites**: Pass only values of the announced (narrower) type. A `string` is accepted by `int|string` today and by `string` after the change:
+
+```php
+// works on both versions
+$service->load((string) $productId);
+```
+
+**Extending classes**: Nothing to do — your override may keep the current, wider parameter type; after the change it is simply wider than the parent, which contravariance allows.
+
+#### ParameterTypeWidening
+
+```php
+#[ParameterTypeWidening(version: 'v6.8.0', parameterName: 'value', newType: 'string|int')]
+public function format(string $value): string
+```
+
+**Call sites**: Nothing to do — everything you pass today stays valid. Start passing values of the additional types only once your minimum supported Shopware version declares them.
+
+**Extending classes**: PHP parameter types are contravariant: an override may always declare a wider type than its parent. Declare the announced type in your override now:
+
+```php
+// works on both versions
+class MyFormatter extends CoreFormatter
+{
+    public function format(string|int $value): string
+    {
+        // ...
+    }
+}
+```
+
+#### NewOptionalParameter
+
+```php
+#[NewOptionalParameter(version: 'v6.8.0', parameterName: 'states', parameterType: 'array')]
+public function scope(string $scope, callable $callback /* , array $states = [] */): void
+```
+
+**Call sites**: Nothing required — the parameter is optional. Some implementations already read it via `func_get_args()`, but that is not guaranteed for every implementation of an interface, so only start passing it once your minimum supported Shopware version declares the parameter.
+
+**Extending classes**: An override may declare additional optional parameters that its parent does not have, so add the announced parameter to your override now. The signature is compatible with the current parent declaration and with the future one:
+
+```php
+// works on both versions
+class MyContext extends Context
+{
+    public function scope(string $scope, callable $callback, array $states = []): void
+    {
+        // ...
+    }
+}
+```
+
+#### NewRequiredParameter
+
+```php
+#[NewRequiredParameter(version: 'v6.8.0', parameterName: 'criteria', parameterType: Criteria::class)]
+public function get(string $id, SalesChannelContext $context /* , Criteria $criteria */): Response
+{
+    if (\func_num_args() < 3) {
+        Feature::triggerDeprecationOrThrow('v6.8.0.0', '...');
+    }
+    // ...
+}
+```
+
+**Call sites**: Pass the parameter today — extra arguments are valid PHP, and an implementation announcing this change reads the parameter via `func_get_args()` and triggers a deprecation when it is missing:
+
+```php
+// works on both versions
+$route->get($id, $context, new Criteria());
+```
+
+**Extending classes**: Add the announced parameter to your override as an *optional* parameter now. That signature is a valid override of the current parent declaration, and an optional parameter also satisfies a required parent parameter after the change:
+
+```php
+// works on both versions
+class MyRoute extends CoreRoute
+{
+    public function get(string $id, SalesChannelContext $context, ?Criteria $criteria = null): Response
+    {
+        $criteria ??= new Criteria();
+        // ...
+    }
+}
+```
+
+#### ParameterNameChange
+
+```php
+#[ParameterNameChange(version: 'v6.8.0', parameterName: 'salesChannelContext', newName: 'context')]
+public function process(Cart $cart, SalesChannelContext $salesChannelContext): void
+```
+
+**Call sites**: Named arguments break when the parameter is renamed. Use positional arguments — they work with either name:
+
+```php
+// breaks after the rename
+$processor->process(salesChannelContext: $context, cart: $cart);
+
+// works on both versions
+$processor->process($cart, $context);
+```
+
+**Extending classes**: Parameter names are not part of PHP's override contract, so your override stays valid with either name. Rename the parameter to the announced name once you raise your minimum supported version — until then, callers using named arguments against *your* class are bound to the name you declare.
+
+#### ParameterRemoval
+
+```php
+#[ParameterRemoval(version: 'v6.8.0', parameterName: 'options')]
+public function __construct(?array $options = null)
+```
+
+**Call sites**: The parameter is optional today — simply stop passing it:
+
+```php
+// works on both versions
+new CustomerEmailUnique();
+```
+
+**Extending classes**: Keep the parameter in your override and stop using its value. PHP does not allow an override to drop an optional parent parameter, and after the removal your extra optional parameter remains a valid override — so the unchanged signature works on both versions. You can drop it whenever you raise your minimum supported version.
+
+#### ExceptionChange
+
+```php
+/**
+ * @throws TableNotFoundException
+ */
+#[ExceptionChange(version: 'v6.8.0', newExceptions: [UtilException::class])]
+protected function columnExists(Connection $connection, string $table, string $column): bool
+```
+
+**Call sites**: The announced exception classes already exist, so catch both. Multi-catch works on both versions:
+
+```php
+// works on both versions
+try {
+    $this->columnExists($connection, 'product', 'custom_field');
+} catch (TableNotFoundException | UtilException $e) {
+    // ...
+}
+```
+
+Note: an `#[ExceptionChange]` is only used when the new exceptions fall **outside** the current `@throws` contract. If a method starts throwing a *narrower* exception (a subclass of what it throws today), existing `catch` blocks keep working and no announcement is made.
+
+**Extending classes**: If your override throws the current exception types itself, switch to the announced types when you raise your minimum supported version. If it delegates to `parent::` and handles its exceptions, apply the call-site guidance above.
+
+#### BecomesAbstract
+
+```php
+#[BecomesAbstract(version: 'v6.8.0')]
+public function getNextExecutionTime(): ?\DateTimeInterface
+{
+    // default implementation, removed in v6.8.0
+}
+```
+
+**Call sites**: Nothing to do — the method stays callable; only the default implementation disappears.
+
+**Extending classes**: The default implementation goes away. Implement the method in your subclass now, without calling `parent::` — overriding a concrete method is always allowed, so this works on both versions.
+
+#### BecomesFinal
+
+```php
+#[BecomesFinal(version: 'v6.8.0')]
+class RuleConditionRegistry
+```
+
+**Call sites**: Nothing to do — calling a final class or method is unaffected.
+
+**Extending classes**: Extending stops working at the announced version, so this is the one change that usually requires a refactor: replace inheritance with [decoration](../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) or composition. The refactored code works on both versions — do it now rather than at upgrade time.
+
+#### BecomesInternal
+
+```php
+#[BecomesInternal(version: 'v6.8.0')]
+class ImitateCustomerTokenGenerator
+```
+
+**Call sites**: Stop calling the symbol and switch to the replacement named in the description — that code works on both versions.
+
+**Extending classes**: Stop extending or overriding the symbol — it leaves the public API entirely, so internal changes will no longer be announced afterwards.
+
+#### VisibilityChange
+
+```php
+#[VisibilityChange(version: 'v6.8.0', newVisibility: 'protected')]
+public function buildName(string $id): string
+```
+
+**Call sites**: Stop calling the method from outside the announced scope now — inline the logic or use the replacement named in the description. That code works on both versions.
+
+**Extending classes**: Your override may keep its current visibility (PHP allows an override to be more visible than its parent), so the signature needs no change. But treat the method as having the announced visibility: do not rely on it being callable from outside, and do not build new public API on top of it.
+
+#### ClassHierarchyChange
+
+```php
+#[ClassHierarchyChange(version: 'v6.8.0', description: 'Will no longer extend EntitySearchResult, but will keep extending Struct.')]
+class ProductListingResult extends EntitySearchResult
+```
+
+**Call sites**: The required description states exactly what changes. Stop type-hinting or `instanceof`-checking against ancestors that leave the hierarchy — reference the class itself or an ancestor that stays. That code works on both versions.
+
+**Extending classes**: The same applies to your subclass, plus one more thing: methods and properties your subclass inherits *through* a leaving ancestor disappear with it. Stop using them, or implement them yourself — both work on both versions.
+
 ## Compatibility sheet
 
 To ensure backward compatibility, it is important to know what you are allowed to do and what not. The following sheet should give you an orientation on common changes and how they could affect the backward compatibility. Although a lot of effort went into this list, it is not guaranteed to be 100% complete. Always keep the persona of third-party developers in mind and challenge your changes against external needs.
@@ -81,18 +378,18 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | ---                                                                                                           | ---        | ---                                                                                                                                                                                                                            |
 | Change the typehint of a class, interface or trait.                                                           | 🔴 NO      | Add the new typehint as an abstract class. <br>Code Example: [Extend class with abstract class](#extend-class-with-abstract-class)                                                                                             |
 | Change the constructor of a service.                                                                          | ✅ YES     | Services have to be instantiated over the container, so the changes should not break anything.                                                                                                                                 |
-| Change the constructor of a class, that is not a service. (Instantiated with new Class())                     | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br> Code Example: [Add an argument](#add-an-argument)                                                                            |
-| Change the arguments of a public method.                                                                      | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br>Code Example: [Add an argument](#add-an-argument)                                                                             |
-| Change the arguments of a protected method.                                                                   | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br>Code Example: [Add an argument](#add-an-argument)                                                                             |
+| Change the constructor of a class, that is not a service. (Instantiated with new Class())                     | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br> Code Example: [Add an argument](#add-an-argument)                                                                            |
+| Change the arguments of a public method.                                                                      | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br>Code Example: [Add an argument](#add-an-argument)                                                                             |
+| Change the arguments of a protected method.                                                                   | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br>Code Example: [Add an argument](#add-an-argument)                                                                             |
 | Change the arguments of a private method.                                                                     | ✅ YES     |                                                                                                                                                                                                                                |
-| Change the return the type of a method.                                                                       | 🔴 NO      | Create a new method and deprecate the old one.                                                                                                                                                                                 |
+| Change the return the type of a method.                                                                       | ⚪ PARTIAL | Announce it with `#[ReturnTypeNarrowing]` / `#[ReturnTypeWidening]` and apply the change in the next major version. For changes that are neither a narrowing nor a widening, create a new method and deprecate the old one.       |
 | Change the value of a public constant.                                                                        | 🔴 NO      | You should add a new constant. Annotate the old constant as deprecated and remove it in the next major version.                                                                                                                |
 | Change the value of a private constant.                                                                       | ✅ YES     | Check all potential usages of the constant. Maybe it is used somewhere to be stored in the database. In that case, you must write a migration for it which ensures every use of the constant in a db-value is updated as well. |
-| Change a class or method to final.                                                                            | 🔴 NO      | You will have to deprecate the class or method and add an annotation that it will be final in the next major version.                                                                                                          |
-| Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO      | Annotate it as deprecated and change the visibility in the next major version.                                                                                                                                                 |
+| Change a class or method to final.                                                                            | 🔴 NO      | Announce it with `#[BecomesFinal]` and apply the change in the next major version.                                                                                                                                             |
+| Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO      | Announce it with `#[VisibilityChange]` and change the visibility in the next major version.                                                                                                                                    |
 | Change the namespace of a class.                                                                              | 🔴 NO      | Duplicate the class and mark the old one as deprecated.                                                                                                                                                                        |
 | Change static state (remove static or delete static keyword).                                                 | 🔴 NO      | Annotate it as deprecated and add or remove the static keyword in the next major version.                                                                                                                                      |
-| Add parameter to interface or abstract class function.                                                        | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. <br> Code Example: [Add an argument](#add-an-argument)                                                                            |
+| Add parameter to interface or abstract class function.                                                        | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br> Code Example: [Add an argument](#add-an-argument)                                                                            |
 | Add new public function to interface.                                                                         | 🔴 NO      |                                                                                                                                                                                                                                |
 | Add new public function to abstract class.                                                                    | ⚪ PARTIAL | Only possible if the abstract class already contains the `getDecorated` call. <br> Code Example: [Add a public function](#add-a-public-function)                                                                                 |
 | Add an event or event dispatch.                                                                               | ✅ YES     |                                                                                                                                                                                                                                |
@@ -220,26 +517,23 @@ class AbstractMailService implements MailServiceInterface
 #### Add an argument
 
 ```php
-/**
- * @deprecated tag:v6.5.0 - Parameter $precision will be mandatory in future implementation
- */
-public function calculate(ProductEntity $product, Context $context /*, int $precision */): Product
+#[NewRequiredParameter(version: 'v6.8.0', parameterName: 'precision', parameterType: 'int')]
+public function calculate(ProductEntity $product, Context $context /* , int $precision */): Product
 {
-   if (Feature::isActive('v6.5.0.0')) {
-      if (\func_num_args() === 3) {
-         $precision = func_get_arg(2);
-         // Do new calculation
-      } else {
-         Feature::triggerDeprecationOrThrow(
-            'v6.5.0.0',
-            'The parameter $precision will be mandatory in future implementation.'
-         );
-      }
-   } else {
-      // Do old calculation
-   }
+    if (\func_num_args() < 3) {
+        Feature::triggerDeprecationOrThrow(
+            'v6.8.0.0',
+            'Calling calculate() without the $precision parameter is deprecated. It will be required in v6.8.0.0.'
+        );
+    }
+
+    $precision = \func_num_args() >= 3 ? func_get_arg(2) : self::DEFAULT_PRECISION;
+
+    // ...
 }
 ```
+
+The commented-out parameter in the signature documents the future declaration, the attribute announces it for tooling, and the conditional runtime deprecation (enforced by PHPStan for detectable changes) warns legacy callers. Use `#[NewOptionalParameter]` instead when the parameter will be optional; the runtime deprecation is not needed in that case. Methods that are invoked by the framework itself, such as controller actions with a `#[Route]` attribute, must not trigger the runtime deprecation — the framework always calls them with the declared parameters.
 
 #### Add a public function
 
