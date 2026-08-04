@@ -72,6 +72,8 @@ This serves as a final fallback to ensure only one label for the entity in the e
 The translations for a record are stored in a separate table.
 The name of this table is always the same as the table for which the records are translated, with the additional suffix `_translation`.
 
+On read, every translatable property is exposed twice: as the plain field for the current language (which may be `null`) and under `translated` with inheritance applied. Prefer `translated` in storefront and sales-channel contexts; use the plain field in Admin/CRUD flows where you need to know what is stored for that language. See [Plain vs translated entity fields](translations/plain-vs-translated-fields.md).
+
 ### Versioning
 
 Another feature that the DAL offers is versioning.
