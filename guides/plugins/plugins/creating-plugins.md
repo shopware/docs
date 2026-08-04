@@ -35,7 +35,7 @@ From your Shopware project's root directory, run:
 bin/console plugin:create SwagBasicExample
 ```
 
-The command asks for a plugin name and namespace (both PascalCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
+The command asks for a plugin name and namespace (both UpperCamelCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
 
 Use `--static` to create the plugin in `custom/static-plugins` instead of `custom/plugins`:
 
