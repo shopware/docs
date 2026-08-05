@@ -351,11 +351,14 @@ ${reasons.map(r => `- ${r}`).join("\n")}
 `;
 
     const comments = await githubGet(
-        `${API}/issues/${pull_number}/comments`
+        `${API}/issues/${pull_number}/comments?per_page=100`
     );
 
     const existingComment = comments.find(
-        item => item.body && item.body.startsWith("## 📊 Documentation Impact Analyzer")
+        item =>
+            item.user?.login === "github-actions[bot]" &&
+            typeof item.body === "string" &&
+            item.body.startsWith("## 📊 Documentation Impact Analyzer")
     );
 
     if (existingComment) {
