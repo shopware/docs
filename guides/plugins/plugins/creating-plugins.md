@@ -35,6 +35,17 @@ From your Shopware project's root directory, run:
 bin/console plugin:create SwagBasicExample
 ```
 
+::: tip Choose the workflow that fits your environment
+Shopware's `bin/console plugin:create` command is the official, IDE-agnostic baseline
+for repeatable plugin setup and automation. If you use PhpStorm, the [Shopware 6
+Toolbox plugin](../../development/tooling/shopware-toolbox.md)
+can generate an event subscriber, scheduled task, migration, Administration module,
+or other component directly inside an existing plugin. AI coding tools can also help
+you create or adapt these components, but always verify their namespaces, generated
+paths, service registration, and Shopware-version compatibility against the linked
+guides.
+:::
+
 The command asks for a plugin name and namespace (both UpperCamelCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
 
 Use `--static` to create the plugin in `custom/static-plugins` instead of `custom/plugins`:
@@ -48,8 +59,13 @@ bin/console plugin:create SwagBasicExample --static
 Pass the `--no-scaffold` flag to skip all optional scaffold files and generate only the required plugin skeleton:
 
 ```bash
-bin/console plugin:create SwagBasicExample `Swag\BasicExample` --no-scaffold
+bin/console plugin:create SwagBasicExample 'Swag\BasicExample' --no-scaffold
 ```
+
+The namespace is passed as a quoted argument because the backslash is part of the
+namespace. The plugin name and namespace must use `UpperCamelCase`; do not enter a
+human-readable name with spaces. The plugin name becomes the technical name used by
+Shopware to identify the plugin.
 
 When running the command interactively without the flag, you will be asked, "Would you like to scaffold optional plugin files?". Answering "no" has the same effect.
 
@@ -71,15 +87,40 @@ To generate a specific example instead of all of them, pass its option. Each opt
 
 Every generator that needs a service definition also appends it to the plugin's service configuration in `src/Resources/config`.
 
+The generated files are placed below the plugin root. For example, the optional
+components use paths such as:
+
+| Component | Typical generated location |
+| --- | --- |
+| Console command | `src/Command/` and `src/Resources/config/services.php` |
+| Scheduled task | `src/ScheduledTask/` and `src/Resources/config/services.php` |
+| Event subscriber | `src/Subscriber/` and `src/Resources/config/services.php` |
+| Storefront controller | `src/Storefront/Controller/`, `src/Resources/views/`, and `src/Resources/config/routes.php` |
+| Administration module | `src/Resources/app/administration/` |
+| Storefront JavaScript plugin | `src/Resources/app/storefront/src/` |
+| Custom field set | `src/Resources/config/custom-fields.xml` |
+
+Treat generated examples as starting points. Selecting an option can create several
+related files and service definitions; deleting only one file later can leave broken
+references or an invalid service configuration. If you are unsure whether you need
+an option, use `--no-scaffold` and add the feature from its focused guide instead.
+
 ::: info
 Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as a starting point and verify it against the version you target.
 :::
 
 Make sure to adjust the namespace in the generated files as per your needs.
 
-### Generate from your IDE instead
+### Generate components with the PhpStorm Toolbox
 
-The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) for PHPStorm creates plugins and single files (scheduled task, migration, Administration module, CMS block, event subscriber) from the editor. Its generators are based on JetBrains file templates, so you can adapt the generated files to your own conventions, which is not possible with the core scaffolding.
+The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) for
+PhpStorm creates plugins and individual components (including event subscribers,
+scheduled tasks, migrations, Administration modules, and CMS blocks) from the editor.
+Its generators are based on JetBrains file templates, so you can adapt the generated
+files to your own conventions. This is especially useful for event subscribers,
+because it creates the component in the context of the plugin you are working on.
+After generating it, verify the [service registration](framework/event/listening-to-events.md#registering-your-subscriber-via-servicesphp)
+required for Shopware to discover the subscriber.
 
 ::: info
 After adding or changing service configuration, routes, or Twig templates, clear the cache with `bin/console cache:clear`. Stale caches are the most common reason a newly generated file appears to have no effect.
@@ -135,6 +176,13 @@ This file contains basic metadata that Shopware needs to know about your plugin,
 * The current plugin version
 * The required dependencies
 * and other configuration details.
+
+The plugin's technical name is the identifier used by Shopware and must remain stable
+after the plugin is distributed. Use the same name consistently in the plugin
+directory, namespace, base class, and generated configuration. A change to the
+technical name can prevent Shopware from matching an existing installation to the
+plugin. For the related `technicalName` requirement introduced for payment and
+shipping methods in Shopware 6.7, see the [Shopware 6.7 release notes](https://developer.shopware.com/release-notes/6.7/6.7.0.0.html#new-technicalname-property-for-payment-and-shipping-methods).
 
 At a minimum, it must define:
 

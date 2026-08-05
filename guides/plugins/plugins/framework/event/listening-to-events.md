@@ -9,8 +9,15 @@ nav:
 
 ## Overview
 
-A way to listen to events in Symfony projects is via an [event subscriber,](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber) which is a class that defines one or more methods that listen to one or various events.
-It is thus the same in Shopware, so this article will guide you on how to create event subscriber in your Shopware extension.
+A way to listen to events in Symfony projects is via an [event subscriber,](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber) which is a class that defines one or more methods that listen to one or various events. This guide explains how to create event subscriber in your Shopware extension.
+
+Use an event subscriber when your plugin needs to react to an event that Shopware
+already dispatches, for example after an entity was loaded or written. Subscribers
+are intended for observation and enrichment; they are not a replacement for
+decorating a service when you need to change the existing control flow. If you only
+need to listen to one event, an event listener can be simpler. See the
+[plugin fundamentals](../plugin-fundamentals/index.md) for a feature-selection
+overview.
 
 ## Prerequisites
 
@@ -106,6 +113,13 @@ class MySubscriber implements EventSubscriberInterface
 ```
 
 Unfortunately, your subscriber is not even loaded yet - this will be done in the previously registered `services.php` file.
+
+::: warning
+Creating the subscriber class alone is not enough. It must be registered in the
+dependency injection container and tagged with `kernel.event_subscriber`. If the
+class is missing from `services.php`, Shopware will not call it and there may be no
+obvious error indicating that the event was not handled.
+:::
 
 ### Registering your subscriber via services.php
 
