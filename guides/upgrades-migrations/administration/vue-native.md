@@ -8,7 +8,7 @@ nav:
 
 :::info
 This article was updated. It previously described the migration as a fixed roadmap tied to specific Shopware versions.
-Those version-based timelines have been removed, because the new systems are still experimental and no release version is committed yet.
+Those version-based timelines have been removed because the new systems are still experimental and no release version is committed yet.
 The article now describes the direction of the migration rather than when each step will happen.
 :::
 
@@ -66,7 +66,7 @@ Our transition to a more native Vue.js approach is driven by several key factors
 
 #### Why Make This Change?
 
-We aim to better align with Vue's ecosystem, to minimize the amount of specifications new Developers need to learn.
+We aim to better align with Vue's ecosystem to minimize the number of specifications new Developers need to learn.
 The Composition API has become the new standard for Vue documentation and projects across GitHub.
 Renowned libraries like `vue-i18n` are dropping support of the Options API, as seen in their [migration guide](https://vue-i18n.intlify.dev/guide/migration/vue3#summary), and we expect similar transitions from other tools in the ecosystem.
 This also aligns with Vue's best practices, as highlighted in the official [Composition API FAQ](https://vuejs.org/guide/extras/composition-api-faq.html#why-composition-api).
@@ -103,10 +103,10 @@ We will gradually transform all component templates from external `*.html.twig` 
 
 The following table shows the current status of both systems and the direction they are heading in:
 
-| System                      | Status today | Long-term direction                                                             |
-|-----------------------------|--------------|----------------------------------------------------------------------------------|
-| Twig.js blocks              | Standard     | Will be deprecated and removed once the migration to native blocks is complete   |
-| Native blocks (`sw-block`)  | Experimental | Will become the standard for core components and extensions                      |
+| System                     | Status today | Long-term direction                                                            |
+|----------------------------|--------------|--------------------------------------------------------------------------------|
+| Twig.js blocks             | Standard     | Will be deprecated and removed once the migration to native blocks is complete |
+| Native blocks (`sw-block`) | Experimental | Will become the standard for core components and extensions                    |
 
 ### 3. Vuex to Pinia
 
@@ -146,13 +146,13 @@ Shopware.Component.register('sw-text-field', {
  <input type=text v-model="value" @change="onChange">
  {% endblock %}
  `,
-   
+
    data() {
        return {
            value: null,
  }
  },
-   
+
    methods: {
        onChange() {
            this.$emit('update:value', this.value);
@@ -170,11 +170,11 @@ Shopware.Component.override('sw-text-field', {
    template: `
  {% block sw-text-field %}
  {% parent %}
-       
+
  {{ helpText }}
  {% endblock %}
  `,
-   
+
    props: {
        helpText: {
            type: String,
@@ -262,7 +262,7 @@ For overrides, we created a new convention. They must match the `*.override.vue`
 {# Notice the native block components #}
 <sw-block extends="sw-text-field">
  <sw-block-parent/>
-   
+
  {{ helpText}}
 </sw-block>
 </template>
