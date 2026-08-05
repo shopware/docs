@@ -227,6 +227,10 @@ import './sw-dashboard-index-override/';
 
 ## Experimental: Composition API extension system
 
+:::warning
+The Composition API extension system is **experimental**. Its API can still change, and there is no committed timeline or release version for when it will become the standard.
+:::
+
 Shopware 6 is introducing a new way to extend components using the Composition API. This system is currently in an experimental state and is needed for the future migration of components from the Options API to the Composition API.
 
 ### Current status and future plans
