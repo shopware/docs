@@ -18,6 +18,7 @@ These guides covers how to create, extend, and use services and utility helpers 
 - [Add Custom Service](./add-custom-service)
 - [Injecting Services](./injecting-services)
 - [Extending Services](./extending-services)
+- [Displaying User Feedback](./displaying-user-feedback)
 - [Making API Requests](./making-api-requests)
 - [Add Filter](./add-filter)
 - [Using Filter](./using-filter)
