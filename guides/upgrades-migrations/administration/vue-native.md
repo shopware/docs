@@ -15,13 +15,12 @@ The article now describes the direction of the migration rather than when each s
 :::warning
 The Composition API extension system and the native block system (`sw-block`) described in this article are **experimental**.
 Their APIs can still change, and there is no committed timeline or release version for when they will become the standard.
-This document serves as a general guideline for our development direction.
 :::
 
 ## Introduction
 
 We are planning a significant shift in our development approach, moving towards a more native Vue.js implementation.
-This document outlines the reasons for this change and provides an overview of the migration path.
+This document outlines the reasons for this change and provides an overview of the migration path. It serves as a general guideline for our development direction.
 
 ## Current status
 
@@ -79,6 +78,8 @@ The transformation will happen gradually to give all of us enough time to adapt.
 
 #### Migration Path
 
+The following table shows the current status of both systems and the direction they are heading in:
+
 | System                           | Status today | Long-term direction                                                                  |
 |----------------------------------|--------------|--------------------------------------------------------------------------------------|
 | Options API                      | Standard     | Will be deprecated and removed once the migration to the Composition API is complete |
@@ -99,6 +100,8 @@ Standard tooling like VSCode, ESLint, and Prettier will work out of the box.
 We will gradually transform all component templates from external `*.html.twig` files with Twig.js into `.vue` files using the native block implementation.
 
 #### Migration Path
+
+The following table shows the current status of both systems and the direction they are heading in:
 
 | System                      | Status today | Long-term direction                                                             |
 |-----------------------------|--------------|----------------------------------------------------------------------------------|
