@@ -115,6 +115,27 @@ async function githubPost(url, body) {
     return response.json();
 }
 
+async function githubPatch(url, body) {
+
+    const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+            ...headers,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(
+            `GitHub PATCH failed (${response.status})\n${text}`
+        );
+    }
+
+    return response.json();
+}
+
 // ======================================================
 // Analyzer
 // ======================================================
@@ -329,12 +350,33 @@ ${reasons.map(r => `- ${r}`).join("\n")}
 > This score is automatically generated based on documentation impact heuristics.
 `;
 
-    await githubPost(
-        `${API}/issues/${pull_number}/comments`,
-        {
-            body: comment
-        }
+    const comments = await githubGet(
+        `${API}/issues/${pull_number}/comments`
     );
+
+    const existingComment = comments.find(
+        item => item.body && item.body.startsWith("## 📊 Documentation Impact Analyzer")
+    );
+
+    if (existingComment) {
+
+        await githubPatch(
+            `${API}/issues/comments/${existingComment.id}`,
+            {
+                body: comment
+            }
+        );
+
+    } else {
+
+        await githubPost(
+            `${API}/issues/${pull_number}/comments`,
+            {
+                body: comment
+            }
+        );
+
+    }
 
     console.log("");
     console.log("=================================");
