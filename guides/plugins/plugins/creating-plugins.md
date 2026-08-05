@@ -37,7 +37,7 @@ bin/console plugin:create SwagBasicExample
 
 ::: tip Choose the workflow that fits your environment
 Shopware's `bin/console plugin:create` command is the official, IDE-agnostic baseline
-for repeatable plugin setup and automation. If you use PhpStorm, the [Shopware 6
+for repeatable plugin setup and automation. If you use PHPStorm, the [Shopware 6
 Toolbox plugin](../../development/tooling/shopware-toolbox.md)
 can generate an event subscriber, scheduled task, migration, Administration module,
 or other component directly inside an existing plugin. AI coding tools can also help
@@ -111,10 +111,10 @@ Generated files are tied to the Shopware version you run the command on. When yo
 
 Make sure to adjust the namespace in the generated files as per your needs.
 
-### Generate components with the PhpStorm Toolbox
+### Generate components with the PHPStorm Toolbox
 
 The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) for
-PhpStorm creates plugins and individual components (including event subscribers,
+PHPStorm creates plugins and individual components (including event subscribers,
 scheduled tasks, migrations, Administration modules, and CMS blocks) from the editor.
 Its generators are based on JetBrains file templates, so you can adapt the generated
 files to your own conventions. This is especially useful for event subscribers,
