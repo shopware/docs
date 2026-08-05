@@ -43,13 +43,15 @@ Use `--static` to create the plugin in `custom/static-plugins` instead of `custo
 bin/console plugin:create SwagBasicExample --static
 ```
 
-### Skip the optional scaffolding
+### Skipping optional scaffold files
 
-Answering *no* to the scaffolding question, or passing `--no-scaffold`, creates only the required files:
+Pass the `--no-scaffold` flag to skip all optional scaffold files and generate only the required plugin skeleton:
 
 ```bash
-bin/console plugin:create SwagBasicExample --no-scaffold
+bin/console plugin:create SwagBasicExample `Swag\BasicExample` --no-scaffold
 ```
+
+When running the command interactively without the flag, you will be asked, "Would you like to scaffold optional plugin files?". Answering "no" has the same effect.
 
 This is the recommended starting point when you already know what your plugin needs. The optional scaffolding generates example code across several directories, which is useful as a reference but leaves files behind that you have to read and delete.
 
@@ -154,8 +156,9 @@ Here's an example `composer.json` you can refer to:
 <details>
 <summary>Example composer.json</summary>
 
+`<plugin root>/composer.json`:
+
 ```json
-// <plugin root>/composer.json
 {
     "name": "swag/basic-example",
     "description": "Description for the plugin SwagBasicExample",
@@ -191,10 +194,6 @@ Here's an example `composer.json` you can refer to:
 
 </details>
 
-::: warning
-If you change the `autoload.psr-4` path (for example, not using `src/`), adjust your directory structure accordingly.
-:::
-
 ::: info
 Set up [CI](../../development/testing/ci.md) early. Run static analysis, tests, and `shopware-cli extension build` in CI so your plugin ZIP is reproducible and safe to promote across environments.
 :::
@@ -224,41 +223,11 @@ Authentication via API token is required. Refer to [Extension Management](../../
 
 ## Manual creation (optional)
 
-In most cases, you should use `bin/console plugin:create`. Manual creation is only useful if you need full control over the structure or are working in a custom setup.
+In most cases, use `bin/console plugin:create`. Manual creation is only useful if you need full control over the structure or are working in a custom setup.
 
-Navigate to `custom/plugins` to create a new directory named after your plugin, so that it looks like this:
+Create a directory in `custom/plugins` using your plugin’s technical name, following the minimal structure shown above. Use a namespace that combines your manufacturer prefix and technical name. The `src/` directory is recommended but not required, provided that the directory structure matches the PSR-4 autoload configuration in `composer.json`.
 
-```bash
-custom/plugins/SwagBasicExample
-```
-
-Minimal structure:
-
-```text
-SwagBasicExample/
-├── composer.json
-└── src/
-    └── SwagBasicExample.php
-```
-
-* **Namespace**: here, it's `Swag\BasicExample`. We recommend using a combination of your manufacturer prefix and the technical name to name it.
-* **`src/` directory**: recommended but not strictly required.
-* **PHP class**: `SwagBasicExample.php`, which you name after your plugin.
-
-The new class `SwagBasicExample` must extend Shopware's abstract plugin class, `Shopware\Core\Framework\Plugin`:
-
-```php
-// <plugin root>/src/SwagBasicExample.php
-<?php declare(strict_types=1);
-
-namespace Swag\BasicExample;
-
-use Shopware\Core\Framework\Plugin;
-
-class SwagBasicExample extends Plugin
-{
-}
-```
+The plugin’s base class must extend `Shopware\Core\Framework\Plugin`.
 
 ## Next steps
 
