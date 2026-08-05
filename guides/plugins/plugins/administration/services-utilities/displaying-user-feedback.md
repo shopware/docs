@@ -51,5 +51,6 @@ const snackbar = snackbarService.addSnackbar({
     variant: 'success',
 });
 
+// when you want to remove it later
 snackbarService.removeSnackbar(snackbar.id);
 ```
