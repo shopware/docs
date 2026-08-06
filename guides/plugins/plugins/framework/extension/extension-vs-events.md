@@ -36,7 +36,7 @@ public function onResolveListing(ResolveListingExtension $event): void
 {
     // Can return a result that replaces the default behavior
     $event->result = $this->customProductLoader->load($event->criteria, $event->context);
-    
+
     // Can stop the default implementation
     $event->stopPropagation();
 }
@@ -79,10 +79,10 @@ try {
 } catch (\Throwable $e) {
     $extension->exception = $e;
     $extension->resetPropagation();
-    
+
     // Dispatch error event for recovery
     $this->dispatcher->dispatch($extension, self::error($name));
-    
+
     // If no recovery, rethrow
     if ($extension->result === null) {
         throw $e;
@@ -207,12 +207,12 @@ public function onOrderCompleted(OrderCompletedEvent $event): void
 
 Before extension points existed, replacing core behavior meant [decorating a service](../../services/adjusting-service.md). Decoration still works and is still the only option where no extension point is available, but it has structural drawbacks that extension points were introduced to avoid:
 
-| Aspect | Extension Points | Service Decoration |
-| --- | --- | --- |
-| Multiple extensions on the same logic | Independent subscribers on the same extension event | Nested decorator chain; each link must call the next one |
-| One extension misbehaving | Affects its own subscriber | Breaks the whole chain and silently drops other extensions' behavior |
+| Aspect                                   | Extension Points                                                     | Service Decoration                                                            |
+|------------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Multiple extensions on the same logic    | Independent subscribers on the same extension event                  | Nested decorator chain; each link must call the next one                      |
+| One extension misbehaving                | Affects its own subscriber                                           | Breaks the whole chain and silently drops other extensions' behavior          |
 | Adding a parameter to the extended logic | Extension object gains a property; existing subscribers keep working | Signature change in every decorator, so a new plugin major per Shopware major |
-| Discoverability | Extension classes and event names | Requires inspecting the service container to see who decorates what |
+| Discoverability                          | Extension classes and event names                                    | Requires inspecting the service container to see who decorates what           |
 
 Prefer an extension point when one exists for the logic you want to change, and reach for decoration only when it does not. See [Decoration in a shared codebase](../../services/adjusting-service.md#decoration-in-a-shared-codebase) for the rules to follow when you do decorate.
 

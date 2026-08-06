@@ -94,7 +94,7 @@ The plugin stores this information in a comment above the block:
 
 The comment contains a SHA-256 hash of the upstream block content and the version of the extension the block belongs to, taken from the Composer package or from the extension's `composer.json`. This works for Shopware core templates and for third-party extensions, both installed via Composer and located in `custom/plugins` — so overriding another plugin's block is covered the same way as overriding a core block.
 
-The upstream block is resolved through the template's `sw_extends` chain. That keeps versioning correct when you extend a template at a different relative path and prevents sibling overrides from other plugins from being mistaken for the upstream. When the chain cannot be resolved, blocks that carry a versioning comment are treated as overrides rather than upstream, so a broken chain cannot mask upstream changes or removals.
+The upstream block is resolved through the template's `sw_extends` chain. That keeps versioning correct when you extend a template at a different relative path, and prevents sibling overrides from other plugins from being mistaken for the upstream. When the chain cannot be resolved, blocks that carry a versioning comment are treated as overrides rather than upstream, so a broken chain cannot mask upstream changes or removals.
 
 #### Twig inspections
 
@@ -148,7 +148,7 @@ The core scaffolding of `bin/console plugin:create` is not customizable this way
 
 ## Installation
 
-The Shopware 6 Toolbox plugin builds on the PHP, Twig, Sass, YAML, and JavaScript plugins bundled with PHPStorm and integrates with the [Symfony Support](https://plugins.jetbrains.com/plugin/7219-symfony-support) plugin when it is installed.
+The Shopware 6 Toolbox plugin builds on the PHP, Twig, Sass, YAML, and JavaScript plugins bundled with PHPStorm, and integrates with the [Symfony Support](https://plugins.jetbrains.com/plugin/7219-symfony-support) plugin when it is installed.
 
 Follow these steps:
 
