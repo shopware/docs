@@ -42,3 +42,5 @@ Component.register('swag-basic-example', {
     }
 });
 ```
+
+For guidance on choosing notifications or snackbars, see [Displaying user feedback](../services-utilities/displaying-user-feedback.md).
