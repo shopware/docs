@@ -27,12 +27,12 @@ Multiple live templates for development. Use Cmd/Ctrl + J to view all live templ
 
 Generators are available under *File → New → Shopware Platform* (or **Ctrl/Cmd + N** in the project tree):
 
-| Group | Generates |
-| --- | --- |
-| Plugin | Plugin skeleton, `config.xml` |
-| PHP | Scheduled task, database migration |
-| App | App skeleton, custom entities, app script, CMS block or CMS element for an app |
-| Administration | Vue component, Vue module, CMS block, CMS element |
+| Group          | Generates                                                                      |
+|----------------|--------------------------------------------------------------------------------|
+| Plugin         | Plugin skeleton, `config.xml`                                                  |
+| PHP            | Scheduled task, database migration                                             |
+| App            | App skeleton, custom entities, app script, CMS block or CMS element for an app |
+| Administration | Vue component, Vue module, CMS block, CMS element                              |
 
 Further generators are available as context actions: *Extend this block* on a Storefront Twig block creates the override file, and *Extend component* / *Extend method* in the editor context menu create the corresponding Administration override. Changelog entries and other boilerplate are available as live templates.
 
@@ -54,15 +54,15 @@ Place the cursor on the relevant code and press **Alt+Enter** (macOS: **Option+E
 
 Inspections are grouped under *Shopware 6* in *Settings → Editor → Inspections*.
 
-| Group | Inspection | Severity |
-| --- | --- | --- |
-| PHP | Class used instead of abstract class (constructor type hints a concrete class that is meant to be decorated) | Error |
-| PHP | Criteria IDs set by filter instead of constructor | Warning |
-| Administration | Snippet translation is missing | Warning |
-| Administration | Using Vue template slots is deprecated | Warning |
-| Script | Requested service is not available in this scope | Warning |
-| Script | Permission is missing in `manifest.xml` | Warning |
-| Store check | `composer.json`: missing `extra.label`, `extra.description`, `extra.manufacturerLink`, `extra.supportLink`, or `require.shopware/core` | Warning |
+| Group          | Inspection                                                                                                                             | Severity |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------|----------|
+| PHP            | Class used instead of abstract class (constructor type hints a concrete class that is meant to be decorated)                           | Error    |
+| PHP            | Criteria IDs set by filter instead of constructor                                                                                      | Warning  |
+| Administration | Snippet translation is missing                                                                                                         | Warning  |
+| Administration | Using Vue template slots is deprecated                                                                                                 | Warning  |
+| Script         | Requested service is not available in this scope                                                                                       | Warning  |
+| Script         | Permission is missing in `manifest.xml`                                                                                                | Warning  |
+| Store check    | `composer.json`: missing `extra.label`, `extra.description`, `extra.manufacturerLink`, `extra.supportLink`, or `require.shopware/core` | Warning  |
 
 All of the above are enabled by default. The Twig group is listed under [Twig block versioning](#twig-inspections).
 
@@ -94,18 +94,18 @@ The plugin stores this information in a comment above the block:
 
 The comment contains a SHA-256 hash of the upstream block content and the version of the extension the block belongs to, taken from the Composer package or from the extension's `composer.json`. This works for Shopware core templates and for third-party extensions, both installed via Composer and located in `custom/plugins` — so overriding another plugin's block is covered the same way as overriding a core block.
 
-The upstream block is resolved through the template's `sw_extends` chain. That keeps versioning correct when you extend a template at a different relative path, and prevents sibling overrides from other plugins from being mistaken for the upstream. When the chain cannot be resolved, blocks that carry a versioning comment are treated as overrides rather than upstream, so a broken chain cannot mask upstream changes or removals.
+The upstream block is resolved through the template's `sw_extends` chain. That keeps versioning correct when you extend a template at a different relative path and prevents sibling overrides from other plugins from being mistaken for the upstream. When the chain cannot be resolved, blocks that carry a versioning comment are treated as overrides rather than upstream, so a broken chain cannot mask upstream changes or removals.
 
 #### Twig inspections
 
 The following table lists the available inspections, their default state, and when they are reported:
 
-| Inspection | Enabled by default | Reported when |
-| --- | --- | --- |
-| The upstream block has changed | Yes | The recorded hash no longer matches the upstream block. Check that your override is still correct. |
-| The upstream block has been removed | Yes | The block no longer exists upstream. Check that your override is still needed. |
-| Twig block is deprecated | Yes | The upstream block is marked as deprecated and will be removed in a future version. |
-| Shopware versioning block comment is missing | No | A block in a template that extends another template via `sw_extends` has no versioning comment yet. Templates that do not extend anything, including the core templates themselves, are not reported. |
+| Inspection                                   | Enabled by default | Reported when                                                                                                                                                                                         |
+|----------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| The upstream block has changed               | Yes                | The recorded hash no longer matches the upstream block. Check that your override is still correct.                                                                                                    |
+| The upstream block has been removed          | Yes                | The block no longer exists upstream. Check that your override is still needed.                                                                                                                        |
+| Twig block is deprecated                     | Yes                | The upstream block is marked as deprecated and will be removed in a future version.                                                                                                                   |
+| Shopware versioning block comment is missing | No                 | A block in a template that extends another template via `sw_extends` has no versioning comment yet. Templates that do not extend anything, including the core templates themselves, are not reported. |
 
 #### Twig versioning intentions
 
@@ -128,7 +128,7 @@ For more background, read the [Twig block versioning announcement](https://www.s
 * Template paths in `sw_extends` and `sw_include`, covering every bundle including plugins in `custom/plugins`
 * Repository at `this.repositoryFactory.create`
 * Module.register labels
-* Context-aware admin component auto-completion (only when Twig file is next to an `index.js`)
+* Context-aware admin component auto-completion (only when the Twig file is next to an `index.js`)
 * Feature flags
 
 ### Project setup
@@ -148,7 +148,7 @@ The core scaffolding of `bin/console plugin:create` is not customizable this way
 
 ## Installation
 
-The Shopware 6 Toolbox plugin builds on the PHP, Twig, Sass, YAML, and JavaScript plugins bundled with PHPStorm, and integrates with the [Symfony Support](https://plugins.jetbrains.com/plugin/7219-symfony-support) plugin when it is installed.
+The Shopware 6 Toolbox plugin builds on the PHP, Twig, Sass, YAML, and JavaScript plugins bundled with PHPStorm and integrates with the [Symfony Support](https://plugins.jetbrains.com/plugin/7219-symfony-support) plugin when it is installed.
 
 Follow these steps:
 
