@@ -4,17 +4,23 @@ nav:
   position: 15
 ---
 
-# Future Development Roadmap: Moving Towards Vue Native
+# Moving Towards Native Vue
 
 :::info
-The information provided in this article, including timelines and specific implementations, is subject to change.
-This document serves as a general guideline for our development direction.
+This article was updated. It previously described the migration as a fixed roadmap tied to specific Shopware versions.
+Those version-based timelines have been removed because the new systems are still experimental and no release version is committed yet.
+The article now describes the direction of the migration rather than when each step will happen.
+:::
+
+:::warning
+The Composition API extension system and the native block system (`sw-block`) described in this article are **experimental**.
+Their APIs can still change, and there is no committed timeline or release version for when they will become the standard.
 :::
 
 ## Introduction
 
 We are planning a significant shift in our development approach, moving towards a more native Vue.js implementation.
-This document outlines the reasons for this change and provides an overview of our upgrade path.
+This document outlines the reasons for this change and provides an overview of the migration path. It serves as a general guideline for our development direction.
 
 ## Current status
 
@@ -60,7 +66,7 @@ Our transition to a more native Vue.js approach is driven by several key factors
 
 #### Why Make This Change?
 
-We aim to better align with Vue's ecosystem, to minimize the amount of specifications new Developers need to learn.
+We aim to better align with Vue's ecosystem to minimize the number of specifications new Developers need to learn.
 The Composition API has become the new standard for Vue documentation and projects across GitHub.
 Renowned libraries like `vue-i18n` are dropping support of the Options API, as seen in their [migration guide](https://vue-i18n.intlify.dev/guide/migration/vue3#summary), and we expect similar transitions from other tools in the ecosystem.
 This also aligns with Vue's best practices, as highlighted in the official [Composition API FAQ](https://vuejs.org/guide/extras/composition-api-faq.html#why-composition-api).
@@ -68,17 +74,16 @@ This also aligns with Vue's best practices, as highlighted in the official [Comp
 #### What Will Change?
 
 We will gradually transform our components from Options API to Composition API. Together with native blocks, this lays the foundation for using Single File Components (SFCs).
-The transformation will be spread across multiple major versions to give all of us enough time to adapt. Take a look at the estimated timeline below.
+The transformation will happen gradually to give all of us enough time to adapt. Breaking changes, like removing the Options API, will only happen in a future major version. There is no committed timeline or release version for this transition.
 
-#### Upgrade Path
+#### Migration Path
 
-| Shopware Version | Options API                     | Composition API              |
-|:----------------:|---------------------------------|------------------------------|
-|       6.7        | Standard                        | Experimental                 |
-|       6.8        | Still supported for extensions* | Standard for Core components |
-|       6.9        | Removed completely              | Standard                     |
+The following table shows the current status of both systems and the direction they are heading in:
 
-*Extensions still can register components using the Options API; overwriting Core components needs the Composition API.
+| System                           | Status today | Long-term direction                                                                  |
+|----------------------------------|--------------|--------------------------------------------------------------------------------------|
+| Options API                      | Standard     | Will be deprecated and removed once the migration to the Composition API is complete |
+| Composition API extension system | Experimental | Will become the standard for core components and extensions                          |
 
 ### 2. TwigJS to Native Blocks
 
@@ -94,15 +99,14 @@ Standard tooling like VSCode, ESLint, and Prettier will work out of the box.
 
 We will gradually transform all component templates from external `*.html.twig` files with Twig.js into `.vue` files using the native block implementation.
 
-#### Upgrade Path
+#### Migration Path
 
-| Shopware Version | Twig.Js                         | Native blocks                |
-|:----------------:|---------------------------------|------------------------------|
-|       6.7        | Standard                        | Experimental                 |
-|       6.8        | Still supported for extensions* | Standard for Core components |
-|       6.9        | Removed completely              | Standard                     |
+The following table shows the current status of both systems and the direction they are heading in:
 
-*Extensions still can register components using Twig.js templates; overwriting Core blocks needs the native block implementation.
+| System                     | Status today | Long-term direction                                                            |
+|----------------------------|--------------|--------------------------------------------------------------------------------|
+| Twig.js blocks             | Standard     | Will be deprecated and removed once the migration to native blocks is complete |
+| Native blocks (`sw-block`) | Experimental | Will become the standard for core components and extensions                    |
 
 ### 3. Vuex to Pinia
 
@@ -127,9 +131,9 @@ We will move all core Vuex states to Pinia stores. The public API will change fr
 
 Now let's take a look at how core and extension components will evolve.
 
-### Shopware 6.7
+### Today: The stable extension system
 
-First, we start with the current status, which is still compatible with Shopware 6.7.
+First, we start with the current status: components are registered with the Options API and use Twig.js templates.
 
 #### Core component
 
@@ -142,13 +146,13 @@ Shopware.Component.register('sw-text-field', {
  <input type=text v-model="value" @change="onChange">
  {% endblock %}
  `,
-   
+
    data() {
        return {
            value: null,
  }
  },
-   
+
    methods: {
        onChange() {
            this.$emit('update:value', this.value);
@@ -166,11 +170,11 @@ Shopware.Component.override('sw-text-field', {
    template: `
  {% block sw-text-field %}
  {% parent %}
-       
+
  {{ helpText }}
  {% endblock %}
  `,
-   
+
    props: {
        helpText: {
            type: String,
@@ -196,9 +200,13 @@ Shopware.Component.register('your-crazy-ai-field', {
 })
 ```
 
-### Shopware 6.8
+### Experimental: The native extension system
 
-In Shopware 6.8, the core uses single-file components with the Composition API.
+:::warning
+The APIs shown in this example are experimental and can still change.
+:::
+
+Once components are migrated, the core will use single-file components with the Composition API. You can already try out this system today as an experimental feature.
 
 #### Core component
 
@@ -254,7 +262,7 @@ For overrides, we created a new convention. They must match the `*.override.vue`
 {# Notice the native block components #}
 <sw-block extends="sw-text-field">
  <sw-block-parent/>
-   
+
  {{ helpText}}
 </sw-block>
 </template>
@@ -290,15 +298,15 @@ Shopware.Component.register('your-crazy-ai-field', {
 })
 ```
 
-### Shopware 6.9
+### Long-term direction
 
-The only difference for 6.9 is that you can no longer register new components via `Shopware.Component.register`.
+Once the migration is complete and the new systems have left the experimental state, registering components via `Shopware.Component.register` with the Options API or Twig.js templates will no longer be possible. This will only happen in a future major version.
 
 ## FAQ
 
-**Will existing extensions built with the Options API continue to work in Shopware 6.8?**
+**Will existing extensions built with the Options API continue to work?**
 
-When you only use `Shopware.Component.register`, yes. If you also use `Shopware.Component.extend/ override, you need to use the composition API extension approach for that.
+When you only use `Shopware.Component.register`, yes. If you use `Shopware.Component.extend`/`Shopware.Component.override` on components that have been migrated to the Composition API, you need to use the Composition API extension approach for those.
 
 **How can I prepare my development team for the transition to Composition API?**
 
@@ -310,11 +318,11 @@ It works with native Vue.js components; therefore, it is compatible with default
 
 **Can I mix Composition API and Options API components during the transition period?**
 
-Yes, as long as you stick to the limitations from the upgrade paths.
+Yes, as long as you stick to the limitations from the migration paths above.
 
 **How will the migration from Twig.js templates to .vue files affect my existing component overrides?**
 
-You need to migrate all your overrides with Shopware 6.8.
+You will need to migrate your overrides to the native block implementation once the components you are overriding have been migrated to `.vue` files.
 
 **What tools or resources will be available to help migrate existing components?**
 
@@ -328,13 +336,13 @@ During our tests, we didn't experience any performance issues.
 
 It has built-in TypeScript support.
 
-**What happens to existing extensions using Twig.js templates after version 6.9?**
+**What happens to existing extensions using Twig.js templates once the migration is complete?**
 
-They will stop working with Shopware version 6.9.
+They will stop working once Twig.js support is removed. This will only happen in a future major version.
 
-**Can I start using the native blocks and Composition API in my extensions before version 6.8?**
+**Can I already use the native blocks and Composition API in my extensions today?**
 
-Yes! You can add new components using SFC and native blocks. But you can't extend core components using the old systems or vice versa.
+Yes! Both systems are available as experimental features. You can add new components using SFC and native blocks. But you can't extend core components using the old systems or vice versa. Keep in mind that experimental APIs can still change.
 
 **Which extensions are affected by these changes?**
 
