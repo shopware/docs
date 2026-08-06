@@ -42,7 +42,7 @@ For more information about using mixins, see [Using Mixins](../mixins-directives
 The snackbar service is available from Shopware 6.7.14.0.
 :::
 
-Use the global Meteor snackbar for brief feedback, such as confirming that a plugin action completed. To dismiss a snackbar before its duration expires, pass its generated ID to `removeSnackbar()`:
+Use the global Meteor snackbar for brief feedback, such as confirming that a plugin action completed:
 
 ```javascript
 const snackbarService = Shopware.Service('snackbarService');
@@ -50,7 +50,10 @@ const snackbar = snackbarService.addSnackbar({
     message: 'The settings have been saved.',
     variant: 'success',
 });
+```
 
-// when you want to remove it later
+To dismiss a snackbar before its duration expires, pass its generated ID to `removeSnackbar()`:
+
+```javascript
 snackbarService.removeSnackbar(snackbar.id);
 ```
