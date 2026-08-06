@@ -86,10 +86,6 @@ class Migration1615470599ExampleSorting extends MigrationStep
             ]
         );
     }
-
-    public function updateDestructive(Connection $connection): void
-    {
-    }
 }
 ```
 
