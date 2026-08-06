@@ -169,7 +169,7 @@ Once logged in to Grafana:
 
 1. Open **Dashboards**.
 2. Select the **Logs** dashboard.
-3. Filter logs by selecting the service you want to inspect.
+3. Filter logs by selecting the component you want to inspect.
 4. Use the search box next to the filter to search within the selected logs.
 
 ## Log retention
