@@ -116,13 +116,15 @@ For more details, see the [Environment variables](./environment-variables.md) pa
 
 ### `services.mysql`
 
-Configures the managed MySQL database.
+Configures the managed MySQL database. Shopware PaaS Native supports MySQL versions `8.0` and `8.4`.
 
 ```yaml
 services:
   mysql:
-    version: "8.0"
+    version: "8.4"
 ```
+
+Once MySQL `8.4` has been configured, downgrading to MySQL `8.0` is not possible.
 
 ### `services.opensearch`
 
