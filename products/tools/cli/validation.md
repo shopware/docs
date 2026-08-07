@@ -7,308 +7,213 @@ nav:
 
 ## Validation
 
-Shopware CLI has built-in validation for extensions. It is meant to be run locally and in CI/CD pipelines, so that you can find technical problems in an extension version before you upload it to the [Shopware Store](https://store.shopware.com/de/).
+Shopware CLI has built-in validation for extensions. Run it during development and in CI/CD pipelines to find technical problems before uploading an extension version to the [Shopware Store](https://store.shopware.com/de/).
 
-Validation covers the technical criteria of an extension that can be automated: metadata, packaging, static analysis, and code style. It is not a one-to-one replica of the complete Shopware Store review, which also includes checks that cannot be automated locally (for example functional testing, store page content, and manual review). Treat a green local run as "the automatable technical criteria pass", not as a guaranteed Store approval. See [Checking a release before uploading it to the Store](#checking-a-release-before-uploading-it-to-the-store).
+Validation covers technical criteria that can be automated, such as metadata, packaging, static analysis, and linting. It is not a one-to-one replica of the complete Shopware Store review, which also includes functional testing, Store page content, and manual review. A successful validation run is a strong technical pre-upload signal, but it does not guarantee Store approval or mean that the CLI and Store review use an identical rule set.
 
 Validation has two modes:
 
-- **Basic (default)**: The built-in `sw-cli` checks: metadata, icon, license, snippets, PHP lint, packaging. Does not need PHP or Node.js.
-- **Full (`--full`)**: Involves everything from basic, plus PHPStan, ESLint, Stylelint, Prettier, PHP-CS-Fixer, Rector, Twig linters. **_Does_** need PHP and Node.js.
+- **Basic (default)**: Runs the built-in `sw-cli` checks, including metadata, icon, snippets, PHP linting, and packaging-related checks. It does not require a locally installed PHP or Node.js runtime.
+- **Full (`--full`)**: Runs the basic checks plus validation tools such as PHPStan, ESLint, Stylelint, and the Administration and Storefront Twig linters.
 
-Some validation tools, especially when using `--full`, run PHP and Node.js tooling under the hood. Running Shopware CLI through the `ghcr.io/shopware/shopware-cli` Docker image is therefore the recommended way to validate an extension: the image already ships the required runtime dependencies, and the same command behaves identically on a developer machine and in CI. The examples on this page use Docker. If PHP and Node.js are available locally, the equivalent `shopware-cli` command is shown under **Without Docker**.
+### Recommended setup: Docker
+
+Run Shopware CLI through the `ghcr.io/shopware/shopware-cli` Docker image for a consistent validation environment without managing the required runtimes on the host. The primary examples on this page use Docker.
+
+If you already run Shopware CLI directly in an existing development or CI environment, the same CLI commands continue to work. For full validation, the host environment must provide PHP 8.2 or newer, Node.js 20 or newer, Composer, and npm.
 
 ## Validating an extension
 
-To validate an extension, you can use the following command:
-
-<Tabs>
-
-<Tab title="With Docker (recommended)">
-
-The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+From the extension directory, mount the current directory into the Shopware CLI container and validate it:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate /ext
 ```
 
-</Tab>
-
-<Tab title="Without Docker">
-
-Use the local path to your extension when running the command without Docker:
+If you run Shopware CLI directly on the host, use the corresponding local path:
 
 ```shell
 shopware-cli extension validate /path/to/your/extension
 ```
 
-</Tab>
-
-</Tabs>
-
-The path can be absolute or relative to the directory containing the extension or the zip file. The command exits with a non-zero exit code if the validation fails with an error-level message. Warnings are reported but do not fail the command.
+For direct CLI execution, relative paths are resolved from the current working directory. The command exits with a non-zero exit code if validation reports an error-level finding. Warnings are reported but do not fail the command.
 
 ### Validating a directory or a zip file
 
 `extension validate` accepts both a source directory and a built zip file, and the two are not equivalent:
 
-| Input          | Behavior                                                                                                                                                                                 |
-|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Directory      | Fast feedback loop during development. Packaging checks (`zip.disallowed_file`) are automatically ignored, because development files like `tests` or `phpstan.neon` are expected to be there. With `--full`, the files are copied to a temporary directory first (see [`--no-copy`](#running-without-copying-the-sources)). |
-| zip file       | Validates exactly the artifact the Store receives. Packaging checks are active: disallowed files and directories, and path traversal inside the archive.                                   |
+| Input     | Behavior |
+|-----------|----------|
+| Directory | Intended for feedback during development. `zip.disallowed_file` findings are automatically ignored for directory input. With `--full`, the files are copied to a temporary directory first unless `--no-copy` is used. |
+| zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed. |
 
-For this reason, validate the zip file as the final gate before uploading a version to the Store, and validate the directory during day-to-day development.
+For day-to-day development, validate the source directory. Before uploading a release, validate the packaged zip so the checks run against the artifact you intend to submit.
 
 ## What is validated in basic mode?
 
-Basic mode runs the `sw-cli` tool, which performs the following checks. The identifier in brackets is the value you can use in [validation ignores](#validation-ignores).
+Basic mode runs the `sw-cli` tool. It includes checks such as the following; this list is not exhaustive. The identifier in brackets is the value you can use in [validation ignores](#validation-ignores).
 
-Metadata in `composer.json` (plugins/themes) or `manifest.xml` (apps):
+Metadata and extension structure checks include:
 
-- The version is present and parsable (`metadata.version`)
-- The extension name is present and non-empty (`metadata.name`)
-- A `shopware/core` requirement exists and the constraint is parsable (`metadata.shopware_version`)
-- `label` is translated in German and English (`metadata.label`)
-- `description` is translated in German and English, and each is between 150 and 185 characters (`metadata.description`)
-- The license is either `proprietary` or a valid SPDX license identifier (`metadata.license`)
-- For apps: `meta:author`, `meta:copyright`, and `meta:license` are set (`metadata.author`, `metadata.copyright`, `metadata.license`)
-- For apps: `setup:secret` is not committed, as it is only meant for local development (`metadata.setup`)
+- The extension version and name are present and valid (`metadata.version`, `metadata.name`)
+- The Shopware version constraint can be determined (`metadata.shopware_version`)
+- Plugin Composer metadata such as type, description, authors, requirements, autoloading, labels, descriptions, manufacturer links, and support links is validated
+- App metadata such as author, copyright, license, and development-only setup secrets is validated
+- The extension icon exists and meets the supported size and dimension requirements (`metadata.icon`, `metadata.icon.size`)
+- `theme.json` can be parsed and referenced assets can be found
+- Administration and Storefront snippet files contain matching translation keys
+- PHP source files are linted (`php.linter`)
+- Deprecated `Resources/config/services.xml` and `Resources/config/routes.xml` are reported as warnings. `shopware-cli extension fix` can convert them to YAML
+- Apps are checked for disallowed PHP and Twig files (`zip.disallowed_php_file`, `zip.disallowed_twig_file`)
 
-Extension icon:
-
-- The icon file exists (`metadata.icon`)
-- It is not larger than 30 KB (`metadata.icon.size`)
-- Its dimensions are between 112x112 and 256x256 pixels (`metadata.icon.size`)
-
-Code and structure:
-
-- All PHP files can be linted with the minimum supported PHP version (`php.linter`)
-- The `theme.json` can be parsed and included assets can be found
-- All snippet files of the administration and the storefront contain the same set of translation keys
-- Deprecated `Resources/config/services.xml` and `Resources/config/routes.xml` are reported as a warning, as Symfony XML configuration should be migrated to YAML (`config.services_xml.deprecated`, `config.routes_xml.deprecated`). `shopware-cli extension fix` can convert them automatically
-- For apps: no `.php` files are contained (`zip.disallowed_php_file`), and `.twig` files only live in `Resources/views` or `Resources/scripts` (`zip.disallowed_twig_file`)
-
-Packaging (only when a zip file is validated):
-
-- No disallowed files or directories are contained, for example `.git`, `.github`, `tests`, `var`, `node_modules`, `phpstan.neon`, `.php-cs-fixer.dist.php`, `auth.json`, `Resources/store`, or CI configuration files (`zip.disallowed_file`)
-- No path traversal is contained in the archive (`zip.path_travel`)
+Zip validation also runs packaging-related checks that are suppressed for directory input.
 
 ### Supported PHP versions for linting
 
-The following PHP versions are supported for linting:
+Shopware CLI uses an embedded Go-based PHP linter. It does not download or execute PHP runtimes for basic PHP linting.
 
-- 7.3
-- 7.4
-- 8.0
-- 8.1
-- 8.2
-- 8.3
-- 8.4
-- 8.5
-- 8.6 (preview)
+The underlying linter supports PHP language profiles from PHP 7.2 through PHP 8.5, with PHP 8.6 available as a preview profile. Shopware CLI currently normalizes a derived PHP 7.2 profile to PHP 7.3 for linting.
 
-A `composer.json` requiring PHP 7.2 is linted with 7.3, as 7.2 is not supported by the linter.
-
-These versions don't need to be installed locally; they are downloaded on demand and executed using WebAssembly without any dependencies.
-
-The version is derived from the Shopware version constraint of your extension. To lint against a specific version instead, set it in `.shopware-extension.yaml`:
+By default, Shopware CLI derives the PHP language profile from the extension's Shopware version constraint. To select a specific profile instead, set `validation.php_version` in `.shopware-extension.yml`:
 
 ```yaml
 validation:
   php_version: '8.4'
 ```
 
-## Running all validation tools
+## Running full validation
 
-By default, validate runs basic checks: extension metadata, some linting, and common mistakes. Use the `--full` option to run comprehensive checks with all available tools: phpstan for PHP static analysis, ESLint for JavaScript, and more. This will thoroughly validate your extension against the latest Shopware version.
-
-<Tabs>
-
-<Tab title="With Docker (recommended)">
-
-The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+Use `--full` to add the additional validation tools to the built-in checks:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext
 ```
 
-</Tab>
-
-<Tab title="Without Docker">
-
-Use the local path to your extension when running the command without Docker:
+If you run Shopware CLI directly on the host, the equivalent command is:
 
 ```shell
 shopware-cli extension validate --full /path/to/your/extension
 ```
 
-</Tab>
+For direct execution, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. If the validated extension has no `vendor` directory, full validation also resolves its Composer dependencies; packages listed under `suggest` are included so optional integrations can be analyzed. Private Composer packages require appropriate Composer authentication.
 
-</Tabs>
-
-With `--full`, the CLI downloads its bundled PHP and Node.js tooling on first use and installs the Composer dependencies of your extension if no `vendor` directory exists yet. Packages listed under `suggest` in your `composer.json` are installed as well, so that optional integrations can be analyzed. Private packages require an `auth.json` in the extension root.
-
-By default, it will check against the latest allowed Shopware version according to your constraints in `composer.json`.
-
-:::info
-It's recommended to run the check against the lowest and highest allowed version, so you can be sure that your extension is compatible with all versions. This is critical because extensions often pass validation on the latest version but fail on the lowest supported version due to API changes and deprecations.
-:::
-
-You can do this by using the `--check-against` option:
-
-<Tabs>
-
-<Tab title="With Docker (recommended)">
-
-The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+By default, Composer dependency resolution uses the highest versions allowed by the extension constraints. To test the other end of the supported range, use `--check-against lowest`:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against lowest
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against highest
 ```
 
-</Tab>
-
-<Tab title="Without Docker">
-
-Use the local path to your extension when running the command without Docker:
+If you run Shopware CLI directly:
 
 ```shell
 shopware-cli extension validate --full /path/to/your/extension --check-against lowest
 shopware-cli extension validate --full /path/to/your/extension --check-against highest
 ```
 
-</Tab>
+With `--check-against lowest`, Composer adds `--prefer-lowest` when it resolves the extension dependencies.
 
-</Tabs>
+:::warning
+Dependency resolution only runs when the validated copy does not already contain a `vendor` directory. If `vendor` is present, both `lowest` and `highest` reuse those installed dependencies instead of resolving a new dependency set. Use a clean validation input when you want the two commands to exercise both ends of the supported dependency range.
+:::
 
-With `--check-against lowest`, the Composer dependencies are resolved with `--prefer-lowest`, so the extension is analyzed against the oldest Shopware version your constraint allows.
+### Reporters
 
-The check command has multiple reporting options, you can use `--reporter` to specify the output format. The following formats are supported:
+Use `--reporter` to specify the output format:
 
 | Format     | Description                             |
 |------------|-----------------------------------------|
-| `summary`  | default list of all errors and warnings |
-| `json`     | json output                             |
-| `junit`    | junit output                            |
+| `summary`  | List of errors and warnings             |
+| `json`     | JSON output                             |
+| `junit`    | JUnit output                            |
 | `github`   | GitHub Actions output                   |
 | `gitlab`   | GitLab Code Quality output              |
-| `markdown` | markdown output                         |
+| `markdown` | Markdown output                         |
 
-If `--reporter` is not set, the format is detected automatically: `github` when running in GitHub Actions, `gitlab` when running in GitLab CI, and `summary` otherwise.
+If `--reporter` is not set, the format is detected automatically: `github` in GitHub Actions, `gitlab` in GitLab CI, and `summary` otherwise.
 
-## Running Specific Tools
+## Running specific validation tools
 
-Instead of running all tools, you can choose to run specific tools using the `--only` flag. The following tools are available:
+With `--full`, `extension validate` calls the validation check implemented by each registered tool. The tools that currently add validation findings are:
 
-| Tool              | Description                                                       | Runs in basic mode |
-|-------------------|-------------------------------------------------------------------|--------------------|
-| `sw-cli`          | Shopware CLI validation checks (metadata, icon, snippets, packaging) | Yes                |
-| `phpstan`         | PHP static analysis (skipped for apps, as they have no `composer.json`) | No                 |
-| `php-cs-fixer`    | PHP code style                                                    | No                 |
-| `rector`          | PHP code refactoring and deprecation detection                    | No                 |
-| `eslint`          | JavaScript/TypeScript linting                                     | No                 |
-| `stylelint`       | CSS/SCSS linting                                                  | No                 |
-| `prettier`        | Code formatting                                                   | No                 |
-| `admin-twig`      | Admin Twig template checks                                        | No                 |
-| `storefront-twig` | Storefront Twig template checks                                   | No                 |
-| `symfony-xml`     | Symfony XML configuration checks                                  | No                 |
+| Tool              | Validation performed |
+|-------------------|----------------------|
+| `sw-cli`          | Built-in Shopware CLI checks for metadata, snippets, structure, and packaging |
+| `phpstan`         | PHP static analysis; skipped for apps because they do not have a `composer.json` |
+| `eslint`          | JavaScript and TypeScript linting |
+| `stylelint`       | CSS/SCSS linting |
+| `admin-twig`      | Administration Twig checks |
+| `storefront-twig` | Storefront Twig checks |
 
-You can run a single tool:
+The shared tool registry also contains `rector`, `php-cs-fixer`, `prettier`, and `symfony-xml`. These tools currently do not add findings during `extension validate`; they are used by `extension fix` or `extension format` instead.
 
-<Tabs>
-
-<Tab title="With Docker (recommended)">
-
-The command mounts your current directory to `/ext` inside the container and validates that mounted extension directory:
+You can run only selected validation tools:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only phpstan
 ```
 
-Or run multiple tools by separating them with commas:
+Or run multiple validation tools by separating them with commas:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
 ```
 
-</Tab>
+If you run Shopware CLI directly, use the same flags with the local extension path.
 
-<Tab title="Without Docker">
-
-Use the local path to your extension when running the command without Docker:
+The inverse is `--exclude`, which runs all registered tools except the listed names:
 
 ```shell
-shopware-cli extension validate --full /path/to/your/extension --only phpstan
-```
-
-Or run multiple tools by separating them with commas:
-
-```shell
-shopware-cli extension validate --full /path/to/your/extension --only "phpstan,eslint,stylelint"
-```
-
-</Tab>
-
-</Tabs>
-
-This is particularly useful when:
-
-- You want to focus on specific aspects of your code
-- You want to run only the relevant tools for the files you've changed
-- You want to fix issues one tool at a time
-
-The inverse is `--exclude`, which runs everything except the listed tools:
-
-```shell
-shopware-cli extension validate --full /path/to/your/extension --exclude "prettier,php-cs-fixer"
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --exclude "eslint,stylelint"
 ```
 
 Both flags accept a comma-separated list and fail with an error if a tool name does not exist.
 
 ### Running without copying the sources
 
-With `--full`, the extension is copied to a temporary directory before the tools run, so that generated files do not end up in your working directory. Use `--no-copy` to run the tools directly in the source directory instead:
+With `--full`, a directory input is copied to a temporary directory before the tools run. Use `--no-copy` to run directly in the mounted source directory instead:
+
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full --no-copy /ext
+```
+
+For direct CLI execution, the equivalent option is:
 
 ```shell
 shopware-cli extension validate --full --no-copy /path/to/your/extension
 ```
 
-This is faster on large extensions and keeps the installed `vendor` directory around for the next run, but the tools may write cache and dependency files into your extension directory.
-
-## Store compliance checks
-
-The `--store-compliance` flag enables additional checks that are relevant when an extension is distributed through the Shopware Store:
-
-```shell
-shopware-cli extension validate --store-compliance /path/to/your/extension.zip
-```
-
-It changes the behavior in two ways:
-
-- Asset checks are enabled: built administration and storefront assets must be shipped together with their sources, and shipped sources must have their built assets. This catches both a zip with build artifacts that cannot be rebuilt and a zip that is missing the compiled assets.
-- Your `validation.ignore` configuration is discarded, so no finding can be silenced.
-
-Alternatively, set the environment variable `SHOPWARE_CLI_STORE_COMPLIANCE=1`, which is useful in a pipeline where the same command is shared between local and release runs.
-
-The flag can be combined with `--full`.
+This can be faster on large extensions and keeps generated dependency or cache files in the source directory, but it also means validation tools can modify or add files there.
 
 ## Checking a release before uploading it to the Store
 
-To check a new version of an existing extension the same way you would check a first release, build the artifact and validate the artifact itself:
+For the strongest pre-upload signal available from Shopware CLI, validate the same package that you intend to upload with `--full`. This runs the CLI's full validator set against the packaged artifact. It does not guarantee that every Store-review criterion is represented in the CLI or that passing validation guarantees Store approval.
+
+`extension package` is the current packaging command. `extension zip` remains available as a deprecated alias.
+
+From the extension root, create a release package with a predictable filename:
 
 ```shell
-# 1. Build the assets and create the zip that will be uploaded
-shopware-cli extension zip --release /path/to/your/extension
-
-# 2. Validate the built zip against the lowest and the highest supported Shopware version
-shopware-cli extension validate --full --store-compliance MyExtension-1.2.0.zip --check-against lowest
-shopware-cli extension validate --full --store-compliance MyExtension-1.2.0.zip --check-against highest
+mkdir -p dist
+docker run --rm -v "$(pwd)":/ext -w /ext ghcr.io/shopware/shopware-cli extension package /ext --release --output-directory /ext/dist --filename extension.zip
 ```
 
-Because this runs against the zip, the packaging checks are active and you get the same error-level findings that a wrongly packaged upload would produce. See [Creating a zip](./extension-commands/build.md) for the available `extension zip` options and [Releasing an extension to the Shopware Store](./shopware-account-commands/releasing-extension-to-shopware-store.md) for the upload itself.
+Then validate the packaged artifact:
 
-In GitHub Actions, the source directory can be validated on every pull request, and the built zip on every tag:
+```shell
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext/dist/extension.zip
+```
+
+If you already run Shopware CLI directly, the corresponding workflow is:
+
+```shell
+shopware-cli extension package /path/to/your/extension --release --output-directory dist --filename extension.zip
+shopware-cli extension validate --full dist/extension.zip
+```
+
+See [Building Extensions and Creating Archives](./extension-commands/build.md) for packaging options and [Releasing an extension to the Shopware Store](./shopware-account-commands/releasing-extension-to-shopware-store.md) for the upload itself.
+
+In GitHub Actions, you can use the same Docker image rather than maintaining PHP and Node.js setup steps on the runner:
 
 ```yaml
 name: Validate extension
@@ -319,86 +224,86 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: shopware/shopware-cli-action@v3
-      - name: Validate against the lowest supported version
-        run: shopware-cli extension validate --full . --check-against lowest
-      - name: Validate against the highest supported version
-        run: shopware-cli extension validate --full . --check-against highest
+      - name: Validate extension
+        run: docker run --rm -v "$GITHUB_WORKSPACE":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext
 
   validate-release:
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: shopware/shopware-cli-action@v3
-      - name: Build the zip
-        run: shopware-cli extension zip --release --output-directory dist .
-      - name: Validate the zip
-        run: shopware-cli extension validate --full --store-compliance dist/*.zip --check-against lowest
+      - name: Create release package
+        run: |
+          mkdir -p dist
+          docker run --rm -v "$GITHUB_WORKSPACE":/ext -w /ext ghcr.io/shopware/shopware-cli extension package /ext --release --output-directory /ext/dist --filename extension.zip
+      - name: Validate release package
+        run: docker run --rm -v "$GITHUB_WORKSPACE":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext/dist/extension.zip
 ```
 
-Use `--store-compliance` on the built zip rather than on a plain source checkout: its asset checks expect built administration and storefront assets to be present, which is only true after `extension zip` (or an explicit build) has run.
-
-The `github` reporter is selected automatically in GitHub Actions, so findings are annotated on the changed lines.
+The `github` reporter is selected automatically in GitHub Actions, so findings are emitted as GitHub annotations.
 
 :::warning
-Local validation cannot replace the Store review completely. It does not verify the content of your store page, screenshots, or changelog, it does not install and functionally test your extension in a shop, and it does not cover parts of the review that are done manually. A version that passes locally can still be rejected for those reasons.
+Local or CI validation cannot replace the Store review completely. It does not install and functionally test the extension in a shop, verify all Store listing content, or cover manual review criteria. A version that passes validation can still be rejected for those reasons.
 :::
 
 ## Validation ignores
 
-If you want to ignore errors or warnings, you can create a `.shopware-extension.yaml` file in your extension root with the following content:
+To ignore selected errors or warnings for an extension, create a `.shopware-extension.yml` file in the extension root:
 
 ```yaml
 validation:
   ignore:
-    # Ignore all errors by identifier
+    # Ignore all findings with this identifier
     - identifier: 'Shopware.XXXXXX'
-    # Ignore all errors by identifier and path
+    # Ignore findings with this identifier and path
     - identifier: 'Shopware.XXXXXX'
       path: 'path/to/file.php'
-    # Ignore all errors by message and path
+    # Ignore findings containing this message and matching this path
     - message: 'Some error message'
       path: 'path/to/file.php'
-    # Ignore all errors by message
+    # Ignore findings containing this message
     - message: 'Some error message'
 ```
 
-The identifier of a finding is shown in the validation output and is listed for the built-in checks in [What is validated in basic mode?](#what-is-validated-in-basic-mode).
+The identifier of a finding is shown in the validation output.
 
-The `validation.ignore` rules have the following limitations:
+Validation ignores are applied by the `validate` command. `extension fix` does not use `validation.ignore` to decide which fixes to apply.
 
-- They are only applied to the `validate` command. The `fix` command does not respect them and will still apply fixes even when an ignore would match (by identifier or message). This is a known limitation.
-- They are not applied when `--store-compliance` is used.
-- When a directory instead of a zip file is validated, the packaging findings (`zip.disallowed_file`) are always ignored, regardless of the configuration.
+When a directory rather than a zip file is validated, `zip.disallowed_file` findings are automatically ignored independently of your configuration.
 
 ## Scanning a project
 
-It's possible to scan an entire project instead of just a single extension. This is useful if you want to check all extensions in your project at once. You can do this by passing the path to the project root instead of the extension path.
+Use the dedicated project validation command to scan a Shopware project instead of a single extension:
 
-All config files like `phpstan.neon` and `.php-cs-fixer.dist.php` should be placed in the project root for proper configuration or to override the default settings. The Verifier will automatically detect the config files and use them for the checks.
+```shell
+docker run --rm -v "$(pwd)":/project -w /project ghcr.io/shopware/shopware-cli project validate /project
+```
 
-Ignoring errors works similarly to extensions; in that case, you can create a `.shopware-project.yaml` file in your project root with the same syntax.
+If you run Shopware CLI directly:
+
+```shell
+shopware-cli project validate /path/to/your/project
+```
+
+`project validate` discovers project extensions and configured bundles and runs the registered validation tools against the project. Project-level validation settings are read from `.shopware-project.yml` under `validation`.
+
+For example, project validation ignores use the same identifier, path, and message fields:
+
+```yaml
+validation:
+  ignore:
+    - identifier: 'phpstan/some.identifier'
+      path: 'custom/plugins/MyPlugin/src/Example.php'
+```
+
+You can also exclude extensions from project validation with `validation.ignore_extensions` in `.shopware-project.yml`.
 
 ## Common issues
 
-### Fixer does nothing for Shopware 6.7
-
-The fixers are enabled by the supported Shopware Version in the plugins `composer.json` file. For 6.7, you should change the composer constraint to this:
-
-```json
-{
-    "minimum-stability": "dev",
-    "require": {
-        "shopware/core": "~6.7.0"
-    }
-}
-```
-
 ### Missing classes in a Storefront/Elasticsearch bundle
 
-Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle, and they are required, you have to add `shopware/storefront` or `shopware/elasticsearch` also to the `require` in the composer.json. If those features are optional with `class_exists` checks, you want to add them into `require-dev`, so the dependencies are installed only for development and PHPStan can recognize the files.
+Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle and they are required, add `shopware/storefront` or `shopware/elasticsearch` to `require` in `composer.json`. If those integrations are optional and guarded by checks such as `class_exists`, add the packages to `require-dev` so PHPStan can resolve the classes during development.
 
 ### PHPStan uses my own configuration instead of the Shopware one
 
-If a `phpstan.neon`, `phpstan.neon.dist`, or `phpstan.dist.neon` exists in the validated root directory, it takes precedence over the configuration shipped with Shopware CLI. Remove or rename it to validate with the default rule set.
+If `phpstan.neon`, `phpstan.neon.dist`, or `phpstan.dist.neon` exists in the validated root directory, PHPStan uses it instead of the default configuration shipped with Shopware CLI. Remove or rename the file if you want to validate with the default rule set.
