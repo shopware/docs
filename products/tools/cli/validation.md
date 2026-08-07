@@ -9,16 +9,14 @@ nav:
 
 Shopware CLI has built-in validation for extensions. It is meant to be run locally and in CI/CD pipelines, so that you can find technical problems in an extension version before you upload it to the [Shopware Store](https://store.shopware.com/de/).
 
+Validation covers the technical criteria of an extension that can be automated: metadata, packaging, static analysis, and code style. It is not a one-to-one replica of the complete Shopware Store review, which also includes checks that cannot be automated locally (for example functional testing, store page content, and manual review). Treat a green local run as "the automatable technical criteria pass", not as a guaranteed Store approval. See [Checking a release before uploading it to the Store](#checking-a-release-before-uploading-it-to-the-store).
+
 Validation has two modes:
 
 - **Basic (default)**: The built-in `sw-cli` checks: metadata, icon, license, snippets, PHP lint, packaging. Does not need PHP or Node.js.
 - **Full (`--full`)**: Involves everything from basic, plus PHPStan, ESLint, Stylelint, Prettier, PHP-CS-Fixer, Rector, Twig linters. **_Does_** need PHP and Node.js.
 
-Some validation tools, especially when using `--full`, run PHP and Node.js tooling under the hood. The Docker examples are recommended because the image already contains the required runtime dependencies. If PHP and Node.js are available locally, you can run the `shopware-cli` commands directly instead.
-
-:::info
-Validation covers the automatable technical criteria of an extension: metadata, packaging, static analysis, and code style. It is not a one-to-one replica of the complete Shopware Store review, which also includes checks that cannot be automated locally (for example functional testing, store page content, and manual review). Treat a green local run as "the automatable technical criteria pass", not as a guaranteed Store approval. See [Checking a release before uploading it to the Store](#checking-a-release-before-uploading-it-to-the-store).
-:::
+Some validation tools, especially when using `--full`, run PHP and Node.js tooling under the hood. Running Shopware CLI through the `ghcr.io/shopware/shopware-cli` Docker image is therefore the recommended way to validate an extension: the image already ships the required runtime dependencies, and the same command behaves identically on a developer machine and in CI. The examples on this page use Docker. If PHP and Node.js are available locally, the equivalent `shopware-cli` command is shown under **Without Docker**.
 
 ## Validating an extension
 
