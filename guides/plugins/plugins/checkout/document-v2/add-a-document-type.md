@@ -137,7 +137,7 @@ return static function (ContainerConfigurator $container): void {
 
 ## Add the template
 
-The HTML renderer resolves `@Framework/documents/<technical_name>.html.twig` for the technical name you declared. The DTO's `noteText` from above renders as `config.noteText`.
+The HTML renderer resolves `@Framework/documents/<technical_name>.html.twig` for the technical name you declared. The DTOs `noteText` from above renders as `config.noteText`.
 
 ::: code-group
 
