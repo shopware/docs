@@ -7,6 +7,10 @@ nav:
 
 # Add Custom Document
 
+::: warning Deprecated for 6.9
+This page documents the v1 document system. It is deprecated and will be removed with Shopware 6.9. Its successor, the Document System (v2), is available as an experimental feature since Shopware 6.7. See the [Document System (v2) concept](../../../../../concepts/commerce/checkout-concept/document/) and the [v2 guides](../document-v2/).
+:::
+
 ## Overview
 
 Using the Shopware Administration, you can easily create new documents. This guide explains how to create a new document using a plugin.
