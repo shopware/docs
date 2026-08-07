@@ -137,3 +137,21 @@ services:
 ```
 
 After enabling OpenSearch, update your application and reindex your data. See [How to set up OpenSearch](../guides/opensearch.md) for the full steps.
+
+### `services.fastly`
+
+Configures the Fastly CDN integration.
+
+```yaml
+services:
+  fastly:
+    disable_default_snippets: false
+    snippets_path: config/fastly
+```
+
+| Option                     | Default | Description                                                                                                |
+|----------------------------|---------|------------------------------------------------------------------------------------------------------------|
+| `snippets_path`            | unset   | Directory (relative to the repository root) containing your custom VCL snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
+| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services |
+
+The directory must contain one sub-directory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.
