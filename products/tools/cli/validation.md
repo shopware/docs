@@ -7,7 +7,7 @@ nav:
 
 ## Validation
 
-Shopware CLI has built-in validation for extensions. It is meant to be run locally and in CI/CD pipelines, so that you can find technical problems in an extension version before you upload it to the Shopware Store.
+Shopware CLI has built-in validation for extensions. It is meant to be run locally and in CI/CD pipelines, so that you can find technical problems in an extension version before you upload it to the [Shopware Store](https://store.shopware.com/de/).
 
 Validation has two modes:
 
