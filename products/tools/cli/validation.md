@@ -187,7 +187,7 @@ This can be faster on large extensions and keeps generated dependency or cache f
 
 ## Checking a release before uploading it to the Store
 
-For the strongest pre-upload signal available from Shopware CLI, validate the same package that you intend to upload with `--full`. This runs the CLI's full validator set against the packaged artifact. It does not guarantee that every Store-review criterion is represented in the CLI or that passing validation guarantees Store approval.
+For the strongest pre-upload signal available from Shopware CLI, validate the same package that you intend to upload with `--full`. This runs the full validator set used by the CLI against the packaged artifact. It does not guarantee that every Store-review criterion is represented in the CLI or that passing validation guarantees Store approval.
 
 `extension package` is the current packaging command. `extension zip` remains available as a deprecated alias.
 

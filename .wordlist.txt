@@ -521,6 +521,7 @@ IsNewCustomerRule
 ItemFacade
 ItemsFacade
 JSON
+JUnit
 JVM
 JWT
 JavaScript
