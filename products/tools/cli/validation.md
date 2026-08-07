@@ -11,10 +11,8 @@ Shopware CLI has built-in validation for extensions. It is meant to be run local
 
 Validation has two modes:
 
-| Mode                            | What runs                                                                                             | Needs PHP/Node.js |
-|---------------------------------|-------------------------------------------------------------------------------------------------------|-------------------|
-| Basic (default)                 | The built-in `sw-cli` checks: metadata, icon, license, snippets, PHP lint, packaging                    | No                |
-| Full (`--full`)                 | Everything from basic **plus** PHPStan, ESLint, Stylelint, Prettier, PHP-CS-Fixer, Rector, Twig linters | Yes               |
+- **Basic (default)**: The built-in `sw-cli` checks: metadata, icon, license, snippets, PHP lint, packaging. Does not need PHP or Node.js.
+- **Full (`--full`)**: Involves everything from basic, plus PHPStan, ESLint, Stylelint, Prettier, PHP-CS-Fixer, Rector, Twig linters. **_Does_** need PHP and Node.js.
 
 Some validation tools, especially when using `--full`, run PHP and Node.js tooling under the hood. The Docker examples are recommended because the image already contains the required runtime dependencies. If PHP and Node.js are available locally, you can run the `shopware-cli` commands directly instead.
 
