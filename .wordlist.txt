@@ -131,6 +131,7 @@ BuyButton
 CDN
 CDNs
 CHANGELOG
+CII
 CKEditor
 CLI
 CMS
@@ -350,6 +351,7 @@ Dockerfile
 Dockware
 DomainException
 DomainExceptions
+Dompdf
 Dotenv
 DynamoDB
 ECDSA
@@ -420,6 +422,7 @@ FLAC
 FPM
 FQCN
 FQDN
+Factur
 FastRoute
 Fastly
 Fastly's
@@ -1172,6 +1175,7 @@ XLIFF
 XMLHttpRequest
 XPath
 XQuartz
+XRechnung
 XSS
 XVFB
 Xdebug
@@ -1181,6 +1185,7 @@ XorRule
 YYYY
 YamlFileLoader
 ZSH
+ZUGFeRD
 accel
 acl
 aclfacade
@@ -2174,3 +2179,4 @@ zipignore
 zlib
 zsh
 zstd
+zugferd
