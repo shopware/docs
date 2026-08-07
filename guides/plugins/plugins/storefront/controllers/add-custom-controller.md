@@ -18,7 +18,7 @@ Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
 ::: info
 Refer to this video on **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)** explaining the basics about Storefront controllers.
-Available also on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Available also on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
 :::
 
 ## Adding custom Storefront controller
