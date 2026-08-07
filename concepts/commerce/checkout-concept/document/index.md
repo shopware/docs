@@ -30,6 +30,17 @@ flowchart TB
     G --> O["Stored document<br>one file per format"]
 ```
 
+## Availability
+
+The Document System (v2) rolls out over three releases: it starts as an opt-in feature, becomes the default, and finally replaces v1.
+
+```mermaid
+flowchart LR
+    A["<b>6.7 — Opt-in</b><br><i>enable</i> DOCUMENT_GENERATION_REWORK<br>v1 stays the default"] --> B["<b>6.8 — Default</b><br>flag on by default, API stabilizes<br>v1 still available"] --> C["<b>6.9 — Only system</b><br>v1 removed"]
+```
+
+The [migration strategy ADR](../../../../resources/references/adr/2026-08-05-document-generation-v1-to-v2-migration-strategy.md) covers how v1 and v2 coexist during this window.
+
 ## ADRs
 
 - [Refactor of document generation](../../../../resources/references/adr/2026-03-17-refactor-of-document-generation.md): why v1 needed a rewrite and the goals for the new implementation.

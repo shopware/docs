@@ -422,7 +422,6 @@ FLAC
 FPM
 FQCN
 FQDN
-Factur
 FastRoute
 Fastly
 Fastly's
