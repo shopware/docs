@@ -10,12 +10,13 @@ The `Writer` objects will get the converted data from the `swag_migration_data` 
 
 When creating a writer, register it like this:
 
-```html
-<service id="SwagMigrationAssistant\Migration\Writer\ProductWriter"
-         parent="SwagMigrationAssistant\Migration\Writer\AbstractWriter">
-    <!-- ... -->
-    <tag name="shopware.migration.writer"/>
-</service>
+```php
+$services->set(ProductWriter::class)
+    ->parent(AbstractWriter::class)
+    ->args([
+        // ...
+    ])
+    ->tag('shopware.migration.writer');
 ```
 
 In most cases, you should extend `AbstractWriter`, which provides most behavior. You only need to implement the `supports` method.

@@ -61,10 +61,6 @@ class Migration1616418675AddMailTemplate extends MigrationStep
         $this->createMailTemplate($connection, $mailTemplateTypeId);
     }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
-
     private function getMailTemplateTypeId(Connection $connection): string
     {
         $sql = <<<SQL

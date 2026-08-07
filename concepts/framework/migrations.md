@@ -7,7 +7,7 @@ nav:
 
 # Migrations
 
-Migrations are PHP classes containing database schema changesets. These changesets can be applied or reverted to bring the database into a certain state. You might know the concept of migrations from other Frameworks or Symfony as well.
+Migrations are PHP classes containing database schema changesets. You might know the concept of migrations from other frameworks or Symfony as well.
 
 ## Adding migrations to a plugin
 
@@ -17,6 +17,12 @@ Each migration filename follows a specific pattern. To ease plugin development, 
 
 ## Modifying the database
 
-Each migration can have two methods. The `update` and `updateDestructive`. The `update` method must contain only non-destructive changes which can be rolled back at any time. The `updateDestructive` method can contain destructive changes, like dropping columns or tables, which cannot be reversed. For examples of database migrations, refer to the below guide:
+Each migration implements an `update()` method. That is where you put schema and data changes for your plugin. On plugin install and update, Shopware runs `update()` for every new migration once. There is no automatic rollback of migrations; remove plugin data in the plugin lifecycle `uninstall` method when appropriate.
+
+::: info
+Shopware core migrations also define an optional `updateDestructive()` method for delayed destructive changes across major versions. Plugin install and update never execute it, and it is not useful for plugin development. See the [Database migration](../../guides/plugins/plugins/database/database-migrations) guide for the full plugin workflow.
+:::
+
+For examples of database migrations, refer to the guide below:
 
 <PageRef page="../../guides/plugins/plugins/database/database-migrations" title="Database migration" />

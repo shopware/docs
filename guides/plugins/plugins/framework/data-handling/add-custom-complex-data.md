@@ -59,10 +59,6 @@ CREATE TABLE IF NOT EXISTS `swag_example` (
 SQL;
         $connection->executeStatement($sql);
     }
-
-    public function updateDestructive(Connection $connection): void
-    {
-    }
 }
 ```
 

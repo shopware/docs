@@ -19,9 +19,9 @@ POST /api/search/product
 ```
 
 ::: info
-Shopware only populates a translatable field if there is an explicit translation for that field. Instead, the `translated` object always contains values, with fallbacks if necessary.
+Shopware only populates a translatable field if there is an explicit translation for that field. The nested `translated` object always contains values, with language inheritance applied when necessary.
 
-**Example:** You instruct Shopware to fetch the French translation of a product using the `sw-language-id` header, but there's no French translation for the product's name. The resulting field `product.name` will be `null`. When building applications, always use `product.translated.[value]` to access translated values, ensuring you always get a valid translation or a fallback value.
+**Example:** You instruct Shopware to fetch the French translation of a product using the `sw-language-id` header, but there's no French translation for the product's name. The resulting field `product.name` will be `null`. When building storefronts or other display-only clients, always use `product.translated.[value]` so you get a resolved translation or fallback. Prefer the plain field only in Admin/CRUD flows where you need the language-specific stored value. See [Plain vs translated entity fields](../../../concepts/framework/translations/plain-vs-translated-fields.md).
 :::
 
 ## sw-version-id

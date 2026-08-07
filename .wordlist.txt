@@ -280,6 +280,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+CycloneDX
 DAL
 DBAL
 DDL
@@ -848,6 +849,7 @@ RDB
 RDBMS
 README
 RHEL
+RPC
 RSA
 RabbitMQ
 RabbitMq
@@ -889,6 +891,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBOM
 SBP
 SCSS
 SDK
@@ -1120,6 +1123,7 @@ Validator
 Valkey
 VariantListingConfigField
 Vercel
+Verkaufskanal
 VersionDataPayload
 VersionDataPayloadField
 VersionField
@@ -1286,6 +1290,7 @@ cartfacade
 cartpricefacade
 catchable
 catched
+cdx
 cetera
 changelog
 changelogs
@@ -1924,6 +1929,7 @@ saleschannelrepositoryfacade
 salutationId
 sandboxed
 sarven
+sbom
 scalability
 scalable
 schemas
@@ -1978,6 +1984,8 @@ slotConfig
 slowlog
 sm
 smartbar
+snackbar
+snackbars
 snakeCase
 sortings
 sourcemaps
@@ -2057,6 +2065,8 @@ toggleable
 tokenized
 tokenizer
 toolchain
+toolset
+toolsets
 tooltip
 tooltips
 totalAmount

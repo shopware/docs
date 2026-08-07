@@ -33,11 +33,19 @@ By default, Shopware CLI will try to lock the table before dumping the data. Thi
 
 ## Anonymizing data
 
-The `--anonymize` flag will anonymize known user data tables. The following tables are anonymized:
+The `--anonymize` flag will anonymize known user data tables. This is widely used to make production database dumps safe for local development:
 
-[See here for the complete list](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go#L246)
+```bash
+shopware-cli project dump --anonymize
+```
 
-It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `shopware-cli.yml` file.
+Production databases can be very large (100GB+ of MySQL data), making it impractical to use complete unmodified production data locally. The `--anonymize` flag removes sensitive customer information while preserving database structure and relationships for realistic local testing.
+
+The following tables are anonymized:
+
+[Find the complete list here](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go#L246)
+
+It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `.shopware-project.yml` file.
 
 ```yaml
 # .shopware-project.yml
