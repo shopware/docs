@@ -65,10 +65,6 @@ class Migration1615363012MakeInheritedColumnsNullable extends MigrationStep
         
         $connection->executeStatement($query);
     }
-
-    public function updateDestructive(Connection $connection): void
-    {
-    }
 }
 ```
 
@@ -283,7 +279,6 @@ class Migration1615363013AddInheritedAssociation extends MigrationStep
         
         $this->updateInheritance($connection, 'swag_example', 'tax');
     }
-
 }
 ```
 

@@ -720,8 +720,7 @@ class SwagBasicExample extends Plugin
             // if true, payment method will also be available after the order
             // is created, e.g. if payment fails and the user wants to try again
             'afterOrderEnabled' => true,
-            // the technicalName helps you to identify the payment method uniquely
-            // it is best practice to use a plugin specific prefix to avoid conflicts
+            // Required from Shopware 6.7. Use a plugin-specific prefix to avoid conflicts.
             'technicalName' => 'swag_example-example_payment',
         ];
 
@@ -759,6 +758,15 @@ class SwagBasicExample extends Plugin
 }
 ```
 
+:::
+
+::: warning
+The `technicalName` is required for plugin-provided payment methods starting with
+Shopware 6.7. See the [Shopware 6.7 release notes](https://developer.shopware.com/release-notes/6.7/6.7.0.0.html#new-technicalname-property-for-payment-and-shipping-methods)
+for the platform change. It must be unique and should use a plugin-specific prefix.
+Older versions may allow the field to be omitted, so check existing payment plugins
+when migrating them to 6.7 or later. An omitted technical name can prevent the plugin
+from being installed or activated, depending on where it is validated.
 :::
 
 In the `install` method, you start by creating a new payment method, if it doesn't exist yet.
