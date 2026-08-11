@@ -25,5 +25,5 @@ jobs:
       with:
         config: 'markdown-style-config.yml'
         args: './'
-        ignore: './resources/references/adr/* ./assets/adr/* ./resources/guidelines/code/core/* ./snippets/guide/*'
+        ignore: './resources/references/adr/* ./assets/adr/* ./resources/guidelines/code/core/* ./snippets/guide/* ./resources/references/app-reference/script-reference/*'
       continue-on-error: false

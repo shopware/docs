@@ -410,8 +410,12 @@ Generating the skeletons and essential files needed to create and structure a Sh
 |:----------------------|:-------------------------------------------------------------------------------------------------------------------------------|
 | `translation:extract` | Extracts missing translations keys from code to translation files                                                              |
 | `translation:install` | Downloads and installs translations from the translations GitHub repository for the specified locales or all available locales |
+| `translation:lint-filenames` | Ensures translations have a country-agnostic translation file as a base and renames them with `--fix`                    |
+| `translation:list`    | Lists all locales that are configured for `translation:install` and `translation:update`                                        |
 | `translation:pull`    | Pulls translations from a given provider.                                                                                      |
 | `translation:push`    | Pushes translations to a given provider.                                                                                       |
+| `translation:update`  | Updates all installed translations from the translations GitHub repository                                                      |
+| `translation:validate` | Validates completeness and correct pluralization of snippets                                                                   |
 
 ### User
 

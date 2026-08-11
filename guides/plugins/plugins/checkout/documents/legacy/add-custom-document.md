@@ -79,10 +79,6 @@ class Migration1616668698AddDocument extends MigrationStep
         ]);
     }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
-
     private function getDocumentTypeId(Connection $connection): string
     {
         $sql = <<<SQL

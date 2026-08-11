@@ -83,10 +83,6 @@ CREATE TABLE IF NOT EXISTS `swag_example_translation` (
 SQL;
         $connection->executeStatement($query);
     }
-
-    public function updateDestructive(Connection $connection): void
-    {
-    }
 }
 ```
 

@@ -64,10 +64,6 @@ class Migration1616677952AddDocumentType extends MigrationStep
         $this->addDocumentBaseConfig($connection, $documentTypeId);
     }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
-
     private function addTranslations(Connection $connection, string $documentTypeId): void
     {
         $englishName = 'Example document type name';
@@ -469,10 +465,6 @@ class Migration1616974646AddDocumentNumberRange extends MigrationStep
         $this->insertNumberRange($connection, $numberRangeId, $numberRangeTypeId);
         $this->insertTranslations($connection, $numberRangeId, $numberRangeTypeId);
 
-    }
-
-    public function updateDestructive(Connection $connection): void
-    {
     }
 
     private function insertNumberRange(Connection $connection, string $numberRangeId, string $numberRangeTypeId): void
