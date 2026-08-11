@@ -374,6 +374,23 @@ SHOPWARE_CDN_STRATEGY_DEFAULT=id
 Changing the strategy on a shop with existing media changes the generated paths for those files, which will break existing URLs unless the files are moved to match. Choose a strategy before going live, or plan a migration of the affected paths.
 :::
 
+### Media path cache busting
+
+By default, Shopware appends the upload timestamp to the physical media path and includes the media update timestamp as a `ts` query parameter in its public URL. You can disable the path timestamp and use query-string cache busting only:
+
+```yaml
+# <project root>/config/packages/prod/shopware.yml
+shopware:
+  cdn:
+    path_cache_buster: false
+```
+
+With this setting, media uploaded or replaced after the configuration change keeps the same physical path. Its `ts` query parameter changes when the media changes, so newly rendered pages request the new version while older URLs continue to resolve.
+
+::: warning
+Your CDN must include query strings in its cache key. The configuration does not migrate existing media paths. Do not run `media:update-path --force` after changing it, because the command updates database paths without moving the existing files.
+:::
+
 ## Restricting uploadable file types
 
 Shopware whitelists the file extensions that may be uploaded. Public and private filesystems have separate lists.
