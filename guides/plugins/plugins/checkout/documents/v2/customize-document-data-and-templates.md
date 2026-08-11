@@ -107,4 +107,4 @@ The example below appends the note from the provider above to the invoice footer
 
 The ZUGFeRD XML templates under `@Framework/documents/zugferd/` are overridden the same way.
 
-Templates are shared with the v1 document system during the transition, overrides apply to both systems.
+Templates are shared with the legacy document system during the transition, overrides apply to both systems.

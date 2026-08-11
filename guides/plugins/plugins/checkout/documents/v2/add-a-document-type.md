@@ -158,4 +158,4 @@ Types that offer the `zugferd_xml` format additionally need an XML template at `
 
 Two database rows are still required outside of the code above: a `document_type` row whose `technical_name` matches your type, since the `document` table has a foreign key on it, and a number range of type `document_example_document` to number the generated documents.
 
-The migration code is identical to v1. Reuse the [document type migration](../document/add-custom-document-type#adding-a-custom-document-type-and-its-own-base-configuration-to-the-database) and the [number range migration](../document/add-custom-document-type#adding-a-number-range) from the v1 guide, and swap in your own technical name.
+The migration code is identical to the legacy system. Reuse the [document type migration](../legacy/add-custom-document-type#adding-a-custom-document-type-and-its-own-base-configuration-to-the-database) and the [number range migration](../legacy/add-custom-document-type#adding-a-number-range) from the legacy guide, and swap in your own technical name.

@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Document (v2)
-  position: 25
+  title: v2
+  position: 10
 ---
 
-# Document (v2) in plugins
+# Document System (v2)
 
 ::: warning This page documents the new Document System (v2)
 The reworked document generation is an experimental feature. Activate it with the `DOCUMENT_GENERATION_REWORK` feature flag. Its API can change until it becomes the default with Shopware 6.8.
@@ -12,7 +12,7 @@ The reworked document generation is an experimental feature. Activate it with th
 
 These guides show how to extend the Document System (v2) as a plugin developer.
 
-**Prerequisites**: a running plugin (see the [plugin base guide](../../plugin-base-guide)) and the `DOCUMENT_GENERATION_REWORK` feature flag enabled for testing.
+**Prerequisites**: a running plugin (see the [plugin base guide](../../../plugin-base-guide)) and the `DOCUMENT_GENERATION_REWORK` feature flag enabled for testing.
 
 ## Add a document type
 

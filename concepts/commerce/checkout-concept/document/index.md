@@ -18,7 +18,7 @@ Each document can be generated in one or more file formats: HTML, PDF, ZUGFeRD X
 
 ## Why a rewrite
 
-The previous document system (v1) coupled document type and file format, so every combination of type and format needed its own renderer. Adding a format meant touching every type, and adding a type meant touching every format.
+The legacy document system coupled document type and file format, so every combination of type and format needed its own renderer. Adding a format meant touching every type, and adding a type meant touching every format.
 
 The Document System (v2) splits generation into three independent axes instead:
 
@@ -32,18 +32,18 @@ flowchart TB
 
 ## Availability
 
-The Document System (v2) rolls out over three releases: it starts as an opt-in feature, becomes the default, and finally replaces v1.
+The Document System (v2) rolls out over three releases: it starts as an opt-in feature, becomes the default, and finally replaces the legacy system.
 
 ```mermaid
 flowchart LR
-    A["<b>6.7 — Opt-in</b><br><i>enable</i> DOCUMENT_GENERATION_REWORK<br>v1 stays the default"] --> B["<b>6.8 — Default</b><br>flag on by default, API stabilizes<br>v1 still available"] --> C["<b>6.9 — Only system</b><br>v1 removed"]
+    A["<b>6.7 — Opt-in</b><br><i>enable</i> DOCUMENT_GENERATION_REWORK<br>legacy stays the default"] --> B["<b>6.8 — Default</b><br>flag on by default, API stabilizes<br>legacy still available"] --> C["<b>6.9 — Only system</b><br>legacy removed"]
 ```
 
-The [migration strategy ADR](../../../../resources/references/adr/2026-08-05-document-generation-v1-to-v2-migration-strategy.md) covers how v1 and v2 coexist during this window.
+The [migration strategy ADR](../../../../resources/references/adr/2026-08-05-document-generation-v1-to-v2-migration-strategy.md) covers how the legacy system and v2 coexist during this window.
 
 ## ADRs
 
-- [Refactor of document generation](../../../../resources/references/adr/2026-03-17-refactor-of-document-generation.md): why v1 needed a rewrite and the goals for the new implementation.
+- [Refactor of document generation](../../../../resources/references/adr/2026-03-17-refactor-of-document-generation.md): why the legacy system needed a rewrite and the goals for the new implementation.
 - [New document generation architecture](../../../../resources/references/adr/2026-03-18-new-document-generation-architecture.md): the entity model and generation flow behind the v2 architecture.
 - [New document generation extension points](../../../../resources/references/adr/2026-03-19-new-document-generation-extension-points.md): how plugins and apps add document types, data providers, and renderers.
-- [Document generation v1 to v2 migration strategy](../../../../resources/references/adr/2026-08-05-document-generation-v1-to-v2-migration-strategy.md): how v1 and v2 coexist until v1 is removed in Shopware 6.9.
+- [Document generation v1 to v2 migration strategy](../../../../resources/references/adr/2026-08-05-document-generation-v1-to-v2-migration-strategy.md): how the two systems coexist until the legacy one is removed in Shopware 6.9.

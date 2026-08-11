@@ -82,7 +82,7 @@ A format only becomes selectable once a document type lists it in `getSupportedF
 
 The renderer registry keeps the first renderer registered per format. Renderers are ordered by tag priority. Register your renderer for the same format string with a higher priority to replace a built-in one.
 
-This replaces v1's `getDecorated()` decoration chains.
+This replaces the legacy system's `getDecorated()` decoration chains.
 
 ```php
 $container->services()

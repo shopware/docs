@@ -129,4 +129,4 @@ A `document` row represents one logical document: one order, one order version, 
 
 <PageRef page="./extension-points" title="Document extension points" />
 
-<PageRef page="../../../../guides/plugins/plugins/checkout/document-v2/" title="Document System (v2) guides" />
+<PageRef page="../../../../guides/plugins/plugins/checkout/documents/v2/" title="Document System (v2) guides" />

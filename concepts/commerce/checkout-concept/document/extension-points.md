@@ -38,7 +38,7 @@ Each extension point attaches to one stage of the pipeline: a document type shap
 
 Plugins register the tagged services and override the templates directly:
 
-<PageRef page="../../../../guides/plugins/plugins/checkout/document-v2/" title="Document System (v2) plugin guides" />
+<PageRef page="../../../../guides/plugins/plugins/checkout/documents/v2/" title="Document System (v2) plugin guides" />
 
 ## Extend with an app
 
