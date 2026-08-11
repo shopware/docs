@@ -52,6 +52,18 @@ declared name: "sync-orders"
 
 Names must only contain `a-zA-Z0-9_-` (no dots). The `shopware-` prefix is reserved for core tools; app names that would produce a `shopware-` prefixed capability are silently skipped.
 
+## Tool groups and discovery
+
+Shopware automatically groups all tools from an active app into a toolset named after the app's technical name. No additional field in `mcp.xml` is required. An MCP client can find the tools with `shopware-tool-search` or enable the complete app toolset with `shopware-toolset-enable`. The toolset title is generated from the app name by replacing hyphens with spaces and capitalizing the first letter, so an app named `my-integration` produces the title "My integration tools".
+
+When an app is installed, updated, activated, deactivated, or deleted, Shopware queues the relevant `notifications/*/list_changed` message for the active MCP sessions, and only for the capability types the app actually declares. Clients can then refresh their tools, prompts, or resources.
+
+:::info How notifications reach the client
+Notifications are queued into the MCP session rather than pushed. A client receives them with the response to its next request, or immediately over an open streaming connection. A client that neither keeps a stream open nor sends another request sees nothing. Queuing also requires a configured session store — see [Session store](../../../products/tools/mcp-server/configuration.md#session-store).
+
+Only the app lifecycle emits these notifications. Plugins and Symfony bundles register their capabilities at container build time, so their changes are not announced to running sessions.
+:::
+
 ## `mcp.xml` structure
 
 Place `Resources/mcp.xml` in your app bundle:
@@ -277,7 +289,7 @@ The resolved `<label>` value is forwarded to the MCP protocol as the capability'
 
 ## Installing the app
 
-Apps are installed through the standard Shopware app lifecycle (Settings → Extensions → My Apps, or via the Shopware CLI). After installation, your MCP capabilities appear automatically in the server's tool list.
+Apps are installed through the standard Shopware app lifecycle (**Settings → Extensions → My Apps**, or via the **Shopware CLI**). After installation, your MCP capabilities appear automatically in the server catalogue. Tools are initially deferred until the client discovers them or enables the app's toolset.
 
 Verify with:
 

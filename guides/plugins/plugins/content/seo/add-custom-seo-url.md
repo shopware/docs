@@ -103,10 +103,6 @@ class Migration1619094740AddStaticSeoUrl extends MigrationStep
         ), $connection);
     }
 
-    public function updateDestructive(Connection $connection): void
-    {
-    }
-
     private function getSeoMetaArray(Connection $connection): array
     {
         return [
@@ -401,10 +397,6 @@ class Migration1619514731AddExampleSeoUrlTemplate extends MigrationStep
             'template' => ExamplePageSeoUrlRoute::DEFAULT_TEMPLATE,
             'created_at' => (new \DateTimeImmutable())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
         ]);
-    }
-
-    public function updateDestructive(Connection $connection): void
-    {
     }
 }
 ```

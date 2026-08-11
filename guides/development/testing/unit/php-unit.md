@@ -156,10 +156,6 @@ class Migration1611740369ExampleDescriptionTest extends TestCase
         $migration->update($conn);
         $actualSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
         static::assertSame($expectedSchema, $actualSchema, 'Schema changed!. Run init again to have clean state');
-
-        $migration->updateDestructive($conn);
-        $actualSchema = $conn->fetchAssoc('SHOW CREATE TABLE `swag_basic_example_general_settings`')['Create Table'];
-        static::assertSame($expectedSchema, $actualSchema, 'Schema changed!. Run init again to have clean state');
  }
 
     public function testNoTable(): void

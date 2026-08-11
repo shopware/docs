@@ -158,9 +158,9 @@ The Shopware MCP Server is currently available as an experimental feature.
 
 :::info
 Introduced in Shopware 6.7.11.0
-Behind the MCP_SERVER feature flag
+Progressive tool discovery and the removal of the `MCP_SERVER` feature flag in Shopware 6.7.14.0
 Based on the MCP specification
-Available through the /api/_mcp endpoint
+Available through the `/api/_mcp` and `/store-api/_mcp` endpoints
 :::
 
 As the feature evolves, APIs, capabilities, and extension points may change based on community and partner feedback.
