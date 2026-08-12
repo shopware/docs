@@ -48,7 +48,7 @@ After the automatic review completes, check the version status in your Shopware 
 Two things are worth keeping in mind:
 
 - A first submission requires additional review. A brand-new extension also goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store Review and Quality guide](../../../../guides/development/testing/store/index.md).
-- The automatic review is not the full Store review. Passing the automatic code review does not guarantee final Store approval. See the [Validation guide](../validation.md) for what the automated checks do and do not cover. 
+- The automatic review is not the full Store review. Passing the automatic code review does not guarantee final Store approval. See the [Validation guide](../validation.md) for what the automated checks do and do not cover.
 
 You can verify the state at any time in your Shopware Account under the extension's version overview, which shows the version status, the analyses that ran (basic extension analysis, code quality analysis), and the most recent review result.
 
