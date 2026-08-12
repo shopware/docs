@@ -9,10 +9,10 @@ nav:
 
 ## Prerequisites
 
-- You are logged into the Shopware Store. Check out the [Authentication](./authentication.md) guide for more information.
-- You have a zip file of your extension with all assets. Check out the [Building Extensions and Creating Archives](../extension-commands/build.md) guide for more information.
+- You are logged into the Shopware Store. Check out the [Authentication guide](./authentication.md) for more information.
+- You have a zip file of your extension with all assets. Check out the [Building Extensions and Creating Archives guide](../extension-commands/build.md) for more information.
 - The zip file contains a `CHANGELOG*.md` file with a changelog entry for the new version. Having a German changelog is optional.
-- You have validated the zip file with `shopware-cli extension validate <zip-path>`. See the [Validation](../validation.md) guide for more information.
+- You have validated the zip file with `shopware-cli extension validate <zip-path>`. See the [Validation guide](../validation.md) for more information.
 
 ## Releasing the extension
 
@@ -47,7 +47,7 @@ After the automatic review completes, check the version status in your Shopware 
 
 Two things are worth keeping in mind:
 
-- A first submission requires additional review. A brand-new extension also goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store review and quality](../../../../guides/development/testing/store/index.md).
+- A first submission requires additional review. A brand-new extension also goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store Review and Quality guide](../../../../guides/development/testing/store/index.md).
 - The automatic review is not the full Store review. Passing the automatic code review does not guarantee final Store approval. See the [Validation guide](../validation.md) for what the automated checks do and do not cover. 
 
 You can verify the state at any time in your Shopware Account under the extension's version overview, which shows the version status, the analyses that ran (basic extension analysis, code quality analysis), and the most recent review result.
