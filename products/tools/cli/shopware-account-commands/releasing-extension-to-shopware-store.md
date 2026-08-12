@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Releasing Automated Extension to Shopware Store
+  title: Automatically Release an Extension to the Shopware Store
   position: 2
 
 ---
 
-# Releasing Automated Extension to Shopware Store
+# Automatically Release an Extension to the Shopware Store
 
 ## Prerequisites
 
@@ -37,16 +37,18 @@ If a version is already published in the Store, its binary can no longer be repl
 
 ## What happens after the upload
 
-There is no separate release, publish, or approve command—`upload` is the release. Once the automatic code review passes, the version status in your Shopware Account switches to **Approved** and the version becomes available to customers. Nothing has to be flipped manually in the Account afterwards, and the CLI has no follow-up step:
+There is no separate release, publish, or approve command in Shopware CLI. The `upload` command submits the extension version, triggers the automatic code review, and waits for its result by default, unless waiting is skipped with `--skip-for-review-result`.
 
 ```bash
-shopware-cli account producer extension release <name> --version <version>  # does not exist, not needed
+shopware-cli account producer extension release <name> --version <version>  # does not exist
 ```
+
+After the automatic review completes, check the version status in your Shopware Account to see whether any further approval or publication steps remain.
 
 Two things are worth keeping in mind:
 
-- **A first submission is not covered by this.** The automatic code review gates *versions* of an extension that is already listed. A brand-new extension additionally goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store review and quality](../../../../guides/development/testing/store/index.md).
-- **Approval is per version, and the automatic review is not the full review.** A version that passes the automatic code review can still be rejected later on manual-review grounds. See the [Validation guide](../validation.md) for what the automated checks do and do not cover.
+- A first submission requires additional review. A brand-new extension also goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store review and quality](../../../../guides/development/testing/store/index.md).
+- The automatic review is not the full Store review. Passing the automatic code review does not guarantee final Store approval. See the [Validation guide](../validation.md) for what the automated checks do and do not cover. 
 
 You can verify the state at any time in your Shopware Account under the extension's version overview, which shows the version status, the analyses that ran (basic extension analysis, code quality analysis), and the most recent review result.
 
