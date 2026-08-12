@@ -33,7 +33,7 @@ The upload process:
 
 If the code review fails, the command exits with an error. Fix the issues and upload again.
 
-If a version is already published in the Store, its binary can no longer be replaced. The command detects this, logs `Binary version is already published. Skipping upload`, and exits successfully. Upload a new version instead.
+If a version is already published in the Store, its binary can no longer be replaced. The command detects this, logs a message indicating the binary/version is already published and skips the upload, and exits successfully. Upload a new version instead.
 
 ## What happens after the upload
 
