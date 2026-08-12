@@ -46,13 +46,13 @@ shopware-cli account producer extension release <name> --version <version>  # do
 Two things are worth keeping in mind:
 
 - **A first submission is not covered by this.** The automatic code review gates *versions* of an extension that is already listed. A brand-new extension additionally goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store review and quality](../../../../guides/development/testing/store/index.md).
-- **Approval is per version, and the automatic review is not the full review.** A version that passes the automatic code review can still be rejected later on manual-review grounds. See [Validating the zip](../validation.md) for what the automated checks do and do not cover.
+- **Approval is per version, and the automatic review is not the full review.** A version that passes the automatic code review can still be rejected later on manual-review grounds. See the [Validation guide](../validation.md) for what the automated checks do and do not cover.
 
 You can verify the state at any time in your Shopware Account under the extension's version overview, which shows the version status, the analyses that ran (basic extension analysis, code quality analysis), and the most recent review result.
 
 ## Waiting for the review result in CI
 
-By default, the command waits 10 seconds and then polls the review result up to 10 times with a 15-second interval (roughly two and a half minutes in total). If the review has not finished by then, the command logs `Skipping waiting for code review result as it took too long` and exits **successfully**—a green pipeline therefore does not by itself prove that the review passed. Check the result in the Account, or poll it in a later job.
+By default, the command waits 10 seconds and then polls the review result up to 10 times with a 15-second interval (roughly two and a half minutes in total). If the review has not finished by then, the command logs `Skipping waiting for code review result as it took too long` and exits successfully. A green pipeline does not by itself prove that the review passed. Check the result in the Account, or poll it in a later job.
 
 Use `--skip-for-review-result` to return immediately after triggering the review, for pipelines that report the outcome separately:
 
