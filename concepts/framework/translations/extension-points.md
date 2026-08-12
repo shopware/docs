@@ -121,10 +121,11 @@ page for the `translation:install` and `translation:update` details:
 | `translation:update` | Update all installed translations from the repository |
 | `translation:list` | List the locales configured for installation and update |
 | `translation:lint-filenames` | Validate (and with `--fix` migrate) snippet file names |
-| `snippet:validate` | Validate snippet files for missing or extraneous keys |
+| `translation:validate` | Validate snippet files for missing or extraneous keys |
 
-Updates also run automatically through the `UpdateTranslationsTask` scheduled task
-(`Shopware\Core\System\Snippet\ScheduledTask`), so installations stay current without manual intervention.
+Updates also run automatically through the `translation.update` scheduled task
+(`Shopware\Core\System\Snippet\ScheduledTask\UpdateTranslationsTask`), so installations stay current without manual
+intervention. See [Automated translation updates](automated-translation-updates.md#the-translationupdate-scheduled-task).
 
 ## Storage backend (Flysystem)
 
