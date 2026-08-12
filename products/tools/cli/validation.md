@@ -42,10 +42,10 @@ For direct CLI execution, relative paths are resolved from the current working d
 
 `extension validate` accepts both a source directory and a built zip file, and the two are not equivalent:
 
-| Input     | Behavior |
-|-----------|----------|
+| Input     | Behavior                                                                                                                                                                                                               |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Directory | Intended for feedback during development. `zip.disallowed_file` findings are automatically ignored for directory input. With `--full`, the files are copied to a temporary directory first unless `--no-copy` is used. |
-| zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed. |
+| zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed.                                                                                                                         |
 
 For day-to-day development, validate the source directory. Before uploading a release, validate the packaged zip so the checks run against the artifact you intend to submit.
 
@@ -136,14 +136,14 @@ If `--reporter` is not set, the format is detected automatically: `github` in Gi
 
 With `--full`, `extension validate` calls the validation check implemented by each registered tool. The tools that currently add validation findings are:
 
-| Tool              | Validation performed |
-|-------------------|----------------------|
-| `sw-cli`          | Built-in Shopware CLI checks for metadata, snippets, structure, and packaging |
+| Tool              | Validation performed                                                             |
+|-------------------|----------------------------------------------------------------------------------|
+| `sw-cli`          | Built-in Shopware CLI checks for metadata, snippets, structure, and packaging    |
 | `phpstan`         | PHP static analysis; skipped for apps because they do not have a `composer.json` |
-| `eslint`          | JavaScript and TypeScript linting |
-| `stylelint`       | CSS/SCSS linting |
-| `admin-twig`      | Administration Twig checks |
-| `storefront-twig` | Storefront Twig checks |
+| `eslint`          | JavaScript and TypeScript linting                                                |
+| `stylelint`       | CSS/SCSS linting                                                                 |
+| `admin-twig`      | Administration Twig checks                                                       |
+| `storefront-twig` | Storefront Twig checks                                                           |
 
 The shared tool registry also contains `rector`, `php-cs-fixer`, `prettier`, and `symfony-xml`. These tools currently do not add findings during `extension validate`; they are used by `extension fix` or `extension format` instead.
 
@@ -287,7 +287,7 @@ shopware-cli project validate /path/to/your/project
 
 `project validate` discovers project extensions and configured bundles and runs the registered validation tools against the project. Project-level validation settings are read from `.shopware-project.yml` under `validation`.
 
-For example, project validation ignores use the same identifier, path, and message fields:
+For example, project validation ignores using the same identifier, path, and message fields:
 
 ```yaml
 validation:
