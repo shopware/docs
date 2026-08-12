@@ -214,4 +214,10 @@ Also check out these useful videos:
 
 * [Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)
 * [Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)
-* The free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-essentials)
+
+For related Academy background on plugin lifecycle and services, see
+
+- **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)**
+- **[Dependency Injection and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)**
+
+from the free **Shopware Backend Development Intermediate** learning path.

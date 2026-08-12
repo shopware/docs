@@ -18,7 +18,7 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), so
 You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
 
 ::: info
-Refer to this video on **[Using repositories](https://www.youtube.com/watch?v=b3wOs_OWvP0)** that covers the basics of repositories. Also available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
+For Academy learning content on events, subscribers, and dependency injection, see the **[Data Abstraction Layer](https://hub.shopware.com/learn/course/data-abstraction-layer)** course in the free **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Writing data

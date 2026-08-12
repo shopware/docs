@@ -16,7 +16,7 @@ In this guide, you will learn how to create your own event. You can read more ab
 To create your own event for your plugin, you first need a plugin as base. Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide).
 
 ::: info
-Refer to this video on **[Event dispatching and handling](https://www.youtube.com/watch?v=JBpa5nBoC78)** which is a live coding example on custom events. Also available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/course/events-and-di).
+For Academy learning content on events, subscribers, and dependency injection, see the **[Events and DI](https://hub.shopware.com/learn/course/events-and-di)** course in the free **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Event interfaces and classes
