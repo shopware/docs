@@ -87,7 +87,7 @@ Before adding a dependency, consider whether one of these structures fits better
 - Use a Composer library or project bundle for reusable code that does not need to be a separately installed Shopware plugin.
 - Use [theme inheritance](../../themes/inheritance/add-theme-inheritance.md) when the shared layer is presentation-specific.
 
-See [Code structure](../../../development/extensions/code-structure.md) for broader guidance on organizing related extensions for upgradeability.
+See [Code structure](../../../development/extensions/code-structure.md) for broader guidance on organizing related extensions and minimizing upgrade friction.
 
 ## More interesting topics
 
