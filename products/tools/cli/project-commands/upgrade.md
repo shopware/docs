@@ -136,7 +136,7 @@ The report includes:
 
 The final wizard screen links to the report and execution log and summarizes the local-first handoff:
 
-![Shopware CLI project upgrade report and next steps](/assets/project-upgrade-report.png)
+![Shopware CLI project upgrade report and next steps](../../../../assets/project-upgrade-report.png)
 
 The upgrade also writes its execution log below `.shopware-cli/upgrade/`. The report and log can be shared with a colleague, agency, extension vendor, hosting provider, Shopware support, or a coding agent when investigating an upgrade problem.
 
