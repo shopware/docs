@@ -57,7 +57,7 @@ Use these entry points for common development and maintenance tasks:
 - **Validate extensions assembled in a project**: Use [`project validate`](../../../products/tools/cli/validation.md#scanning-a-project) to discover and validate the extensions and configured bundles in a Shopware project.
 - **Manage a Store listing as code**: Keep Store metadata and images in Git with [`extension info pull` and `extension info push`](../../../products/tools/cli/shopware-account-commands/updating-store-page.md).
 - **Release to the Shopware Store**: Follow the [Store release workflow](../../../products/tools/cli/shopware-account-commands/releasing-extension-to-shopware-store.md) to validate the release artifact, upload it, and understand which review stages still happen in the Store.
-- **Design for upgrades**: Review [code structure](code-structure.md) and [Upgrades and Migrations](../../upgrades-migrations/index.md) before introducing new cross-extension dependencies or compatibility constraints.
+- **Design for upgrades**: Review the [Code Structure](code-structure.md) and [Upgrades and Migrations](../../upgrades-migrations/index.md) guides before introducing new cross-extension dependencies or compatibility constraints.
 
 ## MCP Server extensibility
 
