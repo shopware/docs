@@ -10,16 +10,21 @@ nav:
 Shopware provides a Docker image to run Shopware 6 in a containerized environment for production intent. The Docker image is based on the official PHP image and includes the required PHP extensions and configurations to run Shopware 6. But it does not contain Shopware itself.
 It's intended to be used together with your existing Shopware project, copy the project into the image, build it, and run it.
 
-If you don't have a Shopware project yet, you can create a new one with:
+If you don't have a Shopware project yet, create one with [Shopware CLI](../../../products/tools/cli/index.md):
 
 ::: info
-You can create a Project with a specific Shopware version by specifying the version like: `composer create-project shopware/production:6.6.7.0 <folder>`
+You can create a project with a specific Shopware version by specifying the version like: `shopware-cli project create <folder> 6.6.7.0`
 :::
 
 ```bash
-composer create-project shopware/production <folder>
+shopware-cli project create <folder>
 cd <folder>
-composer require shopware/docker
+```
+
+Alternatively, you can run the CLI without a separate installation via:
+
+```bash
+npx @shopware-ag/shopware-cli project create <folder>
 ```
 
 The typical Dockerfile in your project would look like this:
@@ -52,10 +57,6 @@ COPY --from=build --chown=82 --link /src /var/www/html
 ```
 
 The Dockerfile uses the `shopware-cli` image to build the project and then copies the built project into the `base-image` image. The `base-image` is the Shopware Docker image.
-
-::: info
-Instead of copying the Dockerfile to your project, rather run `composer req shopware/docker` to add the Dockerfile to your project. This keeps the Dockerfile up-to-date with the latest changes using Symfony Flex recipes.
-:::
 
 ## Available Tags / Versioning
 
@@ -127,7 +128,7 @@ In a very basic setup when all files are stored locally you need 5 volumes:
 | image thumbnails       | `/var/www/html/public/thumbnail` |
 | generated sitemap      | `/var/www/html/public/sitemap`   |
 
-Shopware logs by default to `var/log`, but when `shopware/docker` Composer package is installed, we change it to stdout. This means you can use `docker logs` to see the logs or use logging driver to forward the logs to a logging service.
+Shopware logs by default to `var/log`. In Docker, configure Monolog to write to stdout or stderr so you can use `docker logs` or a logging driver to forward the logs to a logging service.
 
 ## Ideal Setup
 
