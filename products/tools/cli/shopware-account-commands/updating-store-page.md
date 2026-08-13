@@ -34,7 +34,7 @@ The `.shopware-extension.yml` file contains the extension's Store metadata, such
 - Reuse the same review and CI/CD controls you apply to extension code.
 - Automate Store page updates instead of copying content manually into the Store UI.
 
-This workflow is especially useful when you maintain several extensions or localized listings. Keep each extension's Store metadata with that extension so its listing history stays reviewable and reproducible.
+This workflow is especially useful when you maintain several extensions or localized listings. Keep each extension's Store metadata with that extension so its listing history remains reproducible and accessible for review.
 
 ## How this fits into an extension release
 
