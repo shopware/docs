@@ -134,7 +134,7 @@ The report includes:
 - the package changes predicted by Composer resolution;
 - raw Composer conflict output when dependency resolution fails.
 
-The final wizard screen links to the report and execution log and summarizes the local-first handoff:
+The final wizard screen links to the report and execution log and summarizes the local-first outcome and next steps:
 
 ![Shopware CLI project upgrade report and next steps](../../../../assets/project-upgrade-report.png)
 
