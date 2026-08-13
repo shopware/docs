@@ -1,26 +1,22 @@
 ---
 nav:
-  title: Releasing extension to Shopware Store
+  title: Automatically Release an Extension to the Shopware Store
   position: 2
 
 ---
 
-# Releasing an extension to the Shopware Store
-
-Shopware CLI can automate packaging checks, the extension upload, and waiting for the Store's automatic code review. It does not replace the complete Shopware Store review process.
+# Automatically Release an Extension to the Shopware Store
 
 ## Prerequisites
 
-- You are logged into the Shopware Store. Check out the [Authentication](./authentication.md) guide for more information.
-- You have a ZIP file of your extension with all assets. Check out the [Creating a ZIP](../extension-commands/build.md) guide for more information.
-- The ZIP file contains a `CHANGELOG*.md` file with a changelog entry for the new version. Having a German changelog is optional.
-- You have validated the same ZIP file you intend to upload with `shopware-cli extension validate --full <zip-path>`. See [Validation](../validation.md#checking-a-release-before-uploading-it-to-the-store) for more information.
-
-If you also maintain the extension's Store listing in Git, review and push those changes separately with the [Store page workflow](./updating-store-page.md).
+- You are logged into the Shopware Store. Check out the [Authentication guide](./authentication.md) for more information.
+- You have a zip file of your extension with all assets. Check out the [Building Extensions and Creating Archives guide](../extension-commands/build.md) for more information.
+- The zip file contains a `CHANGELOG*.md` file with a changelog entry for the new version. Having a German changelog is optional.
+- You have validated the zip file with `shopware-cli extension validate <zip-path>`. See the [Validation guide](../validation.md) for more information.
 
 ## Releasing the extension
 
-Upload the ZIP file with the `shopware-cli account producer extension upload` command. The command is designed for CI/CD pipelines and automates the upload and automatic code-review step:
+To release the extension to the Shopware Store, upload the zip file using the `shopware-cli account producer extension upload` command. This is primarily designed for CI/CD pipelines to automate extension releases:
 
 ```bash
 shopware-cli account producer extension upload <zip-path>
@@ -28,24 +24,42 @@ shopware-cli account producer extension upload <zip-path>
 
 The upload process:
 
-1. Checks for an existing version and verifies that the same extension version does not already exist in the Store.
-2. Uploads the package to the Shopware Store.
-3. Determines compatibility from the Composer constraint in `composer.json` or `manifest.xml`.
-4. Waits for the Store's automatic code review to complete. This can take several minutes.
-5. Reports whether the automatic code review passed or failed.
+1. Reads name and version: Both are taken from the zip file, so the extension must already exist in your producer account
+2. Creates or reuses the version: Creates a new binary for that version, or updates the existing binary if that version was already uploaded and is not published yet
+3. Pushes metadata: Sends the changelog entries and the list of compatible Shopware versions, derived from the Composer constraint in `composer.json` or `manifest.xml`
+4. Uploads the package: Sends your zip file to the Shopware Store
+5. Triggers the automatic code review and waits for its result (may take several minutes)
+6. Reports results: Shows whether the code review passed, passed with warnings, or failed
 
-If the automatic code review fails, fix the reported issues and upload the extension again. Use `--skip-for-review-result` when your CI/CD workflow should upload the package without waiting for that result. This option skips waiting in the CLI; it does not skip Store review.
+If the code review fails, the command exits with an error. Fix the issues and upload again.
 
-## Where CLI validation and upload fit into Store review
+If a version is already published in the Store, its binary can no longer be replaced. The command detects this, logs a message indicating the binary/version is already published and skips the upload, and exits successfully. Upload a new version instead.
 
-Use the release workflow as a sequence of separate checks and actions:
+## What happens after the upload
 
-1. **Validate locally or in CI** with `extension validate`. This covers automatable technical criteria.
-2. **Package and upload** the release artifact you validated.
-3. **Automatic Store code review** runs after upload. The upload command can wait for this result.
-4. **Remaining Store review** can still include functional testing, Store page content checks, or manual review that local validation does not cover.
-5. **Release the version** after all applicable Store requirements are satisfied.
+This workflow does not require a separate CLI release, publish, or approve step. The `upload` command submits the extension version, triggers the automatic code review, and waits for its result by default, unless waiting is skipped with `--skip-for-review-result`.
 
-A successful local validation and automatic code review are strong technical signals, but they do not guarantee Store approval. See [Validation](../validation.md) for the detailed boundary between CLI checks and the complete Store review.
+```bash
+shopware-cli account producer extension release <name> --version <version>
+```
 
-For a fully version-controlled release workflow, combine this page with [Updating the Store page of an extension](./updating-store-page.md) so code, release artifacts, and Store listing changes can all be reviewed before publishing.
+After the automatic review completes, check the version status in your Shopware Account to see whether any further approval or publication steps remain.
+
+Two things are worth keeping in mind:
+
+- A first submission requires additional review. A brand-new extension also goes through Shopware's functional test and manual code review before it appears in the Store. See [Shopware Store Review and Quality guide](../../../../guides/development/testing/store/index.md).
+- The automatic review is not the full Store review. Passing the automatic code review does not guarantee final Store approval. See the [Validation guide](../validation.md) for what the automated checks do and do not cover.
+
+You can verify the state at any time in your Shopware Account under the extension's version overview, which shows the version status, the analyses that ran (basic extension analysis, code quality analysis), and the most recent review result.
+
+## Waiting for the review result in CI
+
+By default, the command waits 10 seconds and then polls the review result up to 10 times with a 15-second interval (roughly two and a half minutes in total). If the review has not finished by then, the command logs `Skipping waiting for code review result as it took too long` and exits successfully. A green pipeline does not by itself prove that the review passed. Check the result in the Account, or handle the review result separately in your CI/CD workflow.
+
+Use `--skip-for-review-result` to return immediately after triggering the review, for pipelines that report the outcome separately:
+
+```bash
+shopware-cli account producer extension upload <zip-path> --skip-for-review-result
+```
+
+This workflow lets you automate uploading an extension version and triggering its automatic code review from your CI/CD pipeline. Check the version status in your Shopware Account for any remaining review or publication steps.
