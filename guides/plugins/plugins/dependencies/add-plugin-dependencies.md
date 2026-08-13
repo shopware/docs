@@ -15,7 +15,7 @@ Keep required plugin dependencies intentional and few. Every dependency adds ano
 
 ## Setup
 
-Every Shopware plugin has a `composer.json` file. If you have not created a plugin yet, start with the [Plugin base guide](../plugin-base-guide.md).
+Every Shopware 6 plugin has a `composer.json` file. If you have not created a plugin yet, start with the [Plugin base guide](../plugin-base-guide.md).
 
 Composer dependencies use the package name from the other plugin's `composer.json`, not its human-readable Store label or PHP class name.
 
