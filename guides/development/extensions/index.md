@@ -48,6 +48,17 @@ This comparison table helps you decide which Shopware extension type best fits y
 Extensions must explicitly support target Shopware versions. Review the [Upgrades and Migrations](../../upgrades-migrations/index.md) section before releasing updates to ensure compatibility with upcoming core changes.
 :::
 
+## Common extension workflows
+
+Use these entry points for common development and maintenance tasks:
+
+- **Create a plugin**: Start with the [Plugin base guide](../../plugins/plugins/plugin-base-guide.md). If you use PHPStorm, the [Shopware 6 Toolbox](../tooling/shopware-toolbox.md) can generate plugins and common extension components directly from the IDE.
+- **Validate one extension**: Use [`extension validate`](../../../products/tools/cli/validation.md#validating-an-extension) during development and against the packaged ZIP before a Store upload.
+- **Validate extensions assembled in a project**: Use [`project validate`](../../../products/tools/cli/validation.md#scanning-a-project) to discover and validate the extensions and configured bundles in a Shopware project.
+- **Manage a Store listing as code**: Keep Store metadata and images in Git with [`extension info pull` and `extension info push`](../../../products/tools/cli/shopware-account-commands/updating-store-page.md).
+- **Release to the Shopware Store**: Follow the [Store release workflow](../../../products/tools/cli/shopware-account-commands/releasing-extension-to-shopware-store.md) to validate the release artifact, upload it, and understand which review stages still happen in the Store.
+- **Design for upgrades**: Review [Code structure](code-structure.md) and [Upgrades and Migrations](../../upgrades-migrations/index.md) before introducing new cross-extension dependencies or compatibility constraints.
+
 ## MCP Server extensibility
 
 Both plugins and apps can contribute custom tools, prompts, and resources to Shopware's built-in [MCP Server](../../../products/tools/mcp-server/index.md). This lets AI clients access your extension's capabilities alongside core platform tools.
