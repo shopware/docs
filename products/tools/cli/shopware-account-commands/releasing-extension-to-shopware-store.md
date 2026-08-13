@@ -26,7 +26,7 @@ The upload process:
 
 1. Reads name and version: Both are taken from the zip file, so the extension must already exist in your producer account
 2. Creates or reuses the version: Creates a new binary for that version, or updates the existing binary if that version was already uploaded and is not published yet
-3. Pushes metadata: Sends the German and English changelog entries and the list of compatible Shopware versions, derived from the Composer constraint in `composer.json` or `manifest.xml`
+3. Pushes metadata: Sends the changelog entries and the list of compatible Shopware versions, derived from the Composer constraint in `composer.json` or `manifest.xml`
 4. Uploads the package: Sends your zip file to the Shopware Store
 5. Triggers the automatic code review and waits for its result (may take several minutes)
 6. Reports results: Shows whether the code review passed, passed with warnings, or failed
