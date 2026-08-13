@@ -72,7 +72,7 @@ If you look for the old documentation and examples, you can find it [here](https
 
 ::: info
 Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box.
-Create a Symfony configuration to make it configurable again:
+Create `config/packages/trusted_env.yaml` to make it configurable again:
 :::
 
 ```yaml
