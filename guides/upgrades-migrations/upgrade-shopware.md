@@ -91,7 +91,7 @@ bin/console sales-channel:maintenance:disable --all
 * Test upgrades locally or on staging with production-like data before production rollout.
 * Review release notes, changelogs, and UPGRADE files for the target version.
 * Check extension compatibility and investigate items that need vendor or manual review.
-* Track deprecations early and use official tooling (Rector, Administration codemods referenced in [Performing updates](../hosting/installation-updates/performing-updates.md)) to reduce manual work.
+* Track deprecations early and use official tooling (Rector, Administration codemods referenced in [Performing Shopware Updates](../hosting/installation-updates/performing-updates.md)) to reduce manual work.
 * Avoid skipping major versions unless you have explicitly tested the full upgrade path.
 * Commit `composer.json`, `composer.lock`, and reviewed recipe/configuration changes.
 * Run post-upgrade smoke tests and your automated test suite.
