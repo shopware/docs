@@ -1,5 +1,11 @@
 name: Weekly Announcement Generator
 
+- name: Upload Announcement
+  uses: actions/upload-artifact@v4
+  with:
+    name: weekly-announcement
+    path: announcement.md
+
 on:
 
   workflow_dispatch:

@@ -80,26 +80,43 @@ async function githubGet(url) {
     // Output
     //--------------------------------------------------
 
-    console.log("");
+    //--------------------------------------------------
+// Generate Markdown
+//--------------------------------------------------
 
-    console.log(
-        `Found ${announcementPRs.length} announcement PR(s).`
-    );
+let markdown = `# Weekly Developer Announcement
 
-    console.log("");
+Generated on ${new Date().toDateString()}
 
-    for (const pr of announcementPRs) {
+---
 
-        console.log("--------------------------------");
+`;
 
-        console.log(`#${pr.number}`);
+for (const pr of announcementPRs) {
 
-        console.log(pr.title);
+    markdown += `## ${pr.title}
 
-        console.log(pr.html_url);
+**PR:** #${pr.number}
 
-        console.log("");
+**Link:** ${pr.html_url}
 
-    }
+**Summary**
+
+${pr.body || "_No description provided._"}
+
+---
+
+`;
+
+}
+
+console.log(markdown);
+
+fs.writeFileSync(
+    "announcement.md",
+    markdown
+);
+
+console.log("announcement.md generated.");
 
 })();
