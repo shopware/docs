@@ -17,7 +17,7 @@ The upgrade wizard prepares and applies the upgrade to your local project. It do
 Run the upgrade on a Git branch or a disposable copy of the project. The wizard checks these prerequisites before continuing:
 
 - `composer.lock` exists and contains the installed `shopware/core` version.
-- The Git working tree is clean. If the directory is not a Git repository, the wizard warns instead of blocking.
+- The Git working tree is clean. If the directory is not a Git repository, the wizard warns instead of blocking. Use `--disable-git` to skip Git-related checks.
 - All discovered extensions are managed through Composer.
 - PHP and Composer are available through the project's configured environment.
 - The Deployment Helper workflow is available. If `shopware/deployment-helper` is not required yet, the wizard can add it during the upgrade.
