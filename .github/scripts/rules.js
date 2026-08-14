@@ -36,40 +36,31 @@ module.exports = [
   // ==================================================
 
   {
-      id: "new-api",
+    id: "new-api",
 
-      name: "New API Documentation",
+    name: "New API Documentation",
 
-      description:
-          "Introduces a new Store API or Admin API capability.",
+    description:
+        "Introduces a new Store API or Admin API capability for developers.",
 
-      priority: "high",
+    priority: "high",
 
-      detect: {
+    detect: {
 
-          // New documentation page
-          status: [
-              "added"
-          ],
+        // New documentation page
+        status: [
+            "added"
+        ],
 
-          // API documentation folders
-          paths: [
-              /store-api/i,
-              /admin-api/i,
-              /api/i
-          ],
+        // API documentation locations
+        paths: [
+            /store-api/i,
+            /admin-api/i,
+            /resources\/references\/api/i
+        ]
 
-          // PR title or description
-          keywords: [
-              /\bnew api\b/i,
-              /\badd api\b/i,
-              /\bintroduce api\b/i,
-              /\bstore api\b/i,
-              /\badmin api\b/i
-          ]
+    }
 
-      }
-
-  }
+}
 
 ];
