@@ -10,18 +10,6 @@ nav:
 Shopware provides a Docker image to run Shopware 6 in a containerized environment for production intent. The Docker image is based on the official PHP image and includes the required PHP extensions and configurations to run Shopware 6. But it does not contain Shopware itself.
 It's intended to be used together with your existing Shopware project, copy the project into the image, build it, and run it.
 
-If you don't have a Shopware project yet, you can create a new one with:
-
-::: info
-You can create a Project with a specific Shopware version by specifying the version like: `composer create-project shopware/production:6.6.7.0 <folder>`
-:::
-
-```bash
-composer create-project shopware/production <folder>
-cd <folder>
-composer require shopware/docker
-```
-
 The typical Dockerfile in your project would look like this:
 
 ::: info
