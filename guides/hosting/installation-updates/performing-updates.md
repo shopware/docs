@@ -32,6 +32,8 @@ shopware-cli project upgrade \
   --dry-run
 ```
 
+If you're following older guides that mention `shopware-cli project upgrade-check`, use the dry-run command above instead.
+
 For an interactive target picker and guided workflow, run:
 
 ```bash
