@@ -67,28 +67,15 @@ async function githubGet(url) {
     // Fetch merged PRs
     //--------------------------------------------------
 
-    const pulls = await githubGet(
-        `${API}/pulls?state=closed&per_page=100`
-    );
-
-    const announcementPRs = pulls.filter(pr => {
-
-        if (!pr.merged_at)
-            return false;
-
-        const mergedDate = new Date(
-            pr.merged_at
-        );
-
-        if (mergedDate < sevenDaysAgo)
-            return false;
-
-        return pr.labels.some(label =>
-            label.name === "Announcement"
-        );
-
-    });
-
+    const searchQuery = encodeURIComponent(
+      `repo:${owner}/${repo} is:pr is:merged label:Announcement merged:>=${sevenDaysAgo.toISOString().split("T")[0]}`
+  );
+  
+  const result = await githubGet(
+      `https://api.github.com/search/issues?q=${searchQuery}`
+  );
+  
+  const announcementPRs = result.items;
     //--------------------------------------------------
     // Output
     //--------------------------------------------------
