@@ -76,5 +76,6 @@ environments:
 
 ## Further reading
 
+- [Local Proxy](./local-proxy.md) — run several shops at once, each on its own stable HTTPS hostname
 - [Development Environment guide](../../../../guides/development/dev-environment.md) — full workflow, setup wizard, service overview, troubleshooting
 - [Start Developing](../../../../guides/development/start-developing.md) — next steps after your environment is running

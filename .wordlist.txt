@@ -243,6 +243,7 @@ ContextTokenAware
 ContextTokenStorer
 CookiePermission
 CookieProviderInterface
+CoreDNS
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -1053,6 +1054,7 @@ ToOne
 Tooltips
 Topseller
 Topsellers
+Traefik
 TransactionalAction
 TranslatedField
 TranslationConfig
@@ -1148,6 +1150,7 @@ WCAG
 WMA
 WMV
 WSL
+WSL2
 WarehouseGroup
 WarehouseGroups
 WebAIM
