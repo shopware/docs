@@ -61,7 +61,7 @@ The version picker offers a recommended release, the latest patch in the current
 
 After you choose a target, the wizard combines two kinds of compatibility information:
 
-- Extension and repository metadata provides an early compatibility signal.
+- Extension and repository metadata provide an early compatibility signal.
 - A Composer dry run verifies whether the target dependency set can actually be resolved for this project.
 
 Composer resolution is the final gate for the dependency set. Repository or Store metadata can be missing or incomplete; when Composer successfully resolves a previously uncertain extension, the wizard reflects the resolved result instead of keeping a stale compatibility blocker.
