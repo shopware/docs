@@ -14,58 +14,84 @@ function detect(pr, files) {
 
     const detectedSignals = [];
 
-    // Build searchable text once
+    // Search only PR title and description
     const searchableText = [
         pr.title || "",
-        pr.body || "",
-        ...files.map(f => f.patch || "")
+        pr.body || ""
     ].join("\n");
 
     for (const rule of RULES) {
 
         let matched = false;
 
-        //--------------------------------------------------
-        // 1. File Status
-        //--------------------------------------------------
+        // --------------------------------------------------
+        // Check each changed file individually
+        // --------------------------------------------------
 
-        if (!matched && rule.detect.status) {
+        for (const file of files) {
 
-            matched = files.some(file =>
-                rule.detect.status.includes(file.status)
-            );
+            let ruleMatches = true;
 
-        }
+            // ----------------------------------------------
+            // 1. File Status
+            // ----------------------------------------------
 
-        //--------------------------------------------------
-        // 2. File Paths
-        //--------------------------------------------------
+            if (rule.detect.status) {
 
-        if (!matched && rule.detect.paths) {
+                if (!rule.detect.status.includes(file.status)) {
+                    ruleMatches = false;
+                }
 
-            matched = files.some(file =>
-                rule.detect.paths.some(regex =>
+            }
+
+            // ----------------------------------------------
+            // 2. File Path
+            // ----------------------------------------------
+
+            if (ruleMatches && rule.detect.paths) {
+
+                const pathMatched = rule.detect.paths.some(regex =>
                     regex.test(file.filename)
-                )
-            );
+                );
+
+                if (!pathMatched) {
+                    ruleMatches = false;
+                }
+
+            }
+
+            // ----------------------------------------------
+            // 3. Keywords (PR title + description only)
+            // ----------------------------------------------
+
+            if (ruleMatches && rule.detect.keywords) {
+
+                const keywordMatched = rule.detect.keywords.some(regex =>
+                    regex.test(searchableText)
+                );
+
+                if (!keywordMatched) {
+                    ruleMatches = false;
+                }
+
+            }
+
+            // ----------------------------------------------
+            // Rule matched
+            // ----------------------------------------------
+
+            if (ruleMatches) {
+
+                matched = true;
+                break;
+
+            }
 
         }
 
-        //--------------------------------------------------
-        // 3. Keywords
-        //--------------------------------------------------
-
-        if (!matched && rule.detect.keywords) {
-
-            matched = rule.detect.keywords.some(regex =>
-                regex.test(searchableText)
-            );
-
-        }
-
-        //--------------------------------------------------
-        // Rule matched
-        //--------------------------------------------------
+        // ----------------------------------------------
+        // Save detected signal
+        // ----------------------------------------------
 
         if (matched) {
 
@@ -80,11 +106,13 @@ function detect(pr, files) {
 
     }
 
-    //--------------------------------------------------
+    // --------------------------------------------------
     // Recommendation
-    //--------------------------------------------------
+    // --------------------------------------------------
 
-    const recommendation = detectedSignals.length > 0;
+    const recommendation = detectedSignals.some(
+        signal => signal.priority === "high"
+    );
 
     return {
 
