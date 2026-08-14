@@ -14,27 +14,31 @@ function detect(pr, files) {
 
     const detectedSignals = [];
 
-    // Search only PR title and description
+    // Searchable text (used only if a rule defines keywords)
     const searchableText = [
         pr.title || "",
         pr.body || ""
     ].join("\n");
 
+    //--------------------------------------------------
+    // Evaluate each rule
+    //--------------------------------------------------
+
     for (const rule of RULES) {
 
         let matched = false;
 
-        // --------------------------------------------------
-        // Check each changed file individually
-        // --------------------------------------------------
+        //--------------------------------------------------
+        // Check each changed file
+        //--------------------------------------------------
 
         for (const file of files) {
 
             let ruleMatches = true;
 
-            // ----------------------------------------------
-            // 1. File Status
-            // ----------------------------------------------
+            //--------------------------------------------------
+            // File Status
+            //--------------------------------------------------
 
             if (rule.detect.status) {
 
@@ -44,9 +48,9 @@ function detect(pr, files) {
 
             }
 
-            // ----------------------------------------------
-            // 2. File Path
-            // ----------------------------------------------
+            //--------------------------------------------------
+            // File Path
+            //--------------------------------------------------
 
             if (ruleMatches && rule.detect.paths) {
 
@@ -60,9 +64,9 @@ function detect(pr, files) {
 
             }
 
-            // ----------------------------------------------
-            // 3. Keywords (PR title + description only)
-            // ----------------------------------------------
+            //--------------------------------------------------
+            // Keywords (Optional)
+            //--------------------------------------------------
 
             if (ruleMatches && rule.detect.keywords) {
 
@@ -76,9 +80,9 @@ function detect(pr, files) {
 
             }
 
-            // ----------------------------------------------
+            //--------------------------------------------------
             // Rule matched
-            // ----------------------------------------------
+            //--------------------------------------------------
 
             if (ruleMatches) {
 
@@ -89,9 +93,9 @@ function detect(pr, files) {
 
         }
 
-        // ----------------------------------------------
-        // Save detected signal
-        // ----------------------------------------------
+        //--------------------------------------------------
+        // Store matched rule
+        //--------------------------------------------------
 
         if (matched) {
 
@@ -106,20 +110,17 @@ function detect(pr, files) {
 
     }
 
-    // --------------------------------------------------
-    // Recommendation
-    // --------------------------------------------------
+    //--------------------------------------------------
+    // Recommend only if a HIGH priority rule matched
+    //--------------------------------------------------
 
     const recommendation = detectedSignals.some(
         signal => signal.priority === "high"
     );
 
     return {
-
         recommendation,
-
         signals: detectedSignals
-
     };
 
 }

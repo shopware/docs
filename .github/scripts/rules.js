@@ -5,37 +5,31 @@ module.exports = [
   // ==================================================
 
   {
-      id: "migration-guide",
+    id: "migration-guide",
 
-      name: "New Migration Guide",
+    name: "New Migration Guide",
 
-      description:
-          "Introduces a new migration or upgrade guide for developers.",
+    description:
+        "Introduces a new migration or upgrade guide for developers.",
 
-      priority: "high",
+    priority: "high",
 
-      detect: {
+    detect: {
 
-          // File must be newly added
-          status: [
-              "added"
-          ],
+        // File must be newly added
+        status: [
+            "added"
+        ],
 
-          // Must live in migration/upgrade documentation
-          paths: [
-              /guides\/upgrade/i,
-              /migration/i
-          ],
+        // Actual Shopware documentation location
+        paths: [
+            /guides\/upgrades-migrations/i,
+            /upgrades-migrations/i
+        ]
 
-          // PR title or description should indicate migration work
-          keywords: [
-              /\bmigration\b/i,
-              /\bupgrade\b/i
-          ]
+    }
 
-      }
-
-  },
+},
 
   // ==================================================
   // Rule 2 - New API Documentation
