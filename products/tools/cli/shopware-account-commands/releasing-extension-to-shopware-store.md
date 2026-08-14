@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Automatically Release an Extension to the Shopware Store
+  title: Upload an Extension to the Shopware Store
   position: 2
 
 ---
