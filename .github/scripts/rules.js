@@ -61,6 +61,47 @@ module.exports = [
 
     }
 
+},
+
+// ==================================================
+  // Rule 3 - New Extension Point
+  // ==================================================
+
+{
+  id: "extension-point",
+
+  name: "New Extension Point",
+
+  description:
+      "Introduces a new extension point for app or plugin developers.",
+
+  priority: "high",
+
+  detect: {
+
+      // New documentation page
+      status: [
+          "added"
+      ],
+
+      // Extension-related documentation
+      paths: [
+          /extensions/i,
+          /plugins/i,
+          /extension-points/i
+      ],
+
+      // Optional keywords inside PR title/body
+      keywords: [
+          /\bextension point\b/i,
+          /\bevent\b/i,
+          /\bhook\b/i,
+          /\bsubscriber\b/i,
+          /\bdecorator\b/i
+      ]
+
+  }
+
 }
 
 ];
