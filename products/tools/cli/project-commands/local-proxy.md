@@ -92,15 +92,15 @@ shopware-cli project proxy down
 
 ## Command reference
 
-| Command | Description |
-| --- | --- |
-| `project proxy setup` | One-time machine setup: DNS routing and HTTPS trust. Flags: `--domain`, `--skip-trust` |
-| `project proxy up` | Register the current project with the shared proxy and start it |
-| `project proxy down` | Remove the current project from the proxy, stop it, and restore its URLs |
-| `project proxy status` | Report whether the current project is registered |
-| `project proxy list` | List every registered project with its URLs and running state |
-| `project proxy verify` | Health-check the whole chain (Docker, DNS, resolver, Traefik, HTTPS) |
-| `project proxy teardown` | Remove every project and stop the shared proxy and DNS. Flag: `--force` |
+| Command                  | Description                                                                            |
+|--------------------------|----------------------------------------------------------------------------------------|
+| `project proxy setup`    | One-time machine setup: DNS routing and HTTPS trust. Flags: `--domain`, `--skip-trust` |
+| `project proxy up`       | Register the current project with the shared proxy and start it                        |
+| `project proxy down`     | Remove the current project from the proxy, stop it, and restore its URLs               |
+| `project proxy status`   | Report whether the current project is registered                                       |
+| `project proxy list`     | List every registered project with its URLs and running state                          |
+| `project proxy verify`   | Health-check the whole chain (Docker, DNS, resolver, Traefik, HTTPS)                   |
+| `project proxy teardown` | Remove every project and stop the shared proxy and DNS. Flag: `--force`                |
 
 ### Example: see what is running
 
