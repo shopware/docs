@@ -93,7 +93,7 @@ bin/console sales-channel:maintenance:disable --all
 * Check extension compatibility and investigate items that need vendor or manual review.
 * Track deprecations early and use official tooling (Rector, Administration codemods referenced in [Performing Shopware Updates](../hosting/installation-updates/performing-updates.md)) to reduce manual work.
 * Avoid skipping major versions unless you have explicitly tested the full upgrade path.
-* Commit `composer.json`, `composer.lock`, and reviewed recipe/configuration changes.
+* Commit `composer.json`, `composer.lock`, and review recipe/configuration changes.
 * Run post-upgrade smoke tests and your automated test suite.
 
 ## After the update
