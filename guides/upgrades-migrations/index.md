@@ -60,7 +60,7 @@ A consistent architecture, centralized CI, and controlled extension strategy hel
 To reduce long-term upgrade cost:
 
 * Avoid internal APIs and undocumented features.
-* Keep dependencies aligned with Shopware core.
+* Keep dependencies aligned with the Shopware core.
 * Maintain automated test coverage.
 * Keep database migrations idempotent.
 * Track deprecations continuously—do not batch them.

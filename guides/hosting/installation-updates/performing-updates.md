@@ -80,7 +80,7 @@ shopware-cli project upgrade
 
 The wizard performs read-only readiness and compatibility checks first, lets you review the planned project changes, then runs the Composer update, refreshes Symfony Flex recipes, runs Shopware Deployment Helper, and writes `.shopware-cli/upgrade/report.md`.
 
-If an essential execution step fails or the run is cancelled, Shopware CLI restores `composer.json` and `composer.lock` and writes a failure report. Always start from a clean Git state so you can review or restore any other changed files as well.
+If an essential execution step fails or the run is canceled, Shopware CLI restores `composer.json` and `composer.lock` and writes a failure report. Always start from a clean Git state, so you can review or restore any other changed files as well.
 
 After a successful local run:
 
@@ -191,7 +191,7 @@ The web updater will automatically enable maintenance mode, download the update,
 
 ## Final steps
 
-Before you remove maintenance mode, verify the update was successful:
+Before you remove the maintenance mode, verify the update was successful:
 
 - **Check the Administration**: Make sure the Administration is working correctly.
 - **Check the Storefront**: Make sure your main processes are working correctly (e.g., adding products to the cart, checkout, etc.).
