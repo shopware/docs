@@ -128,6 +128,40 @@ The following example shows how to assign cookies to the **Marketing group**:
 </manifest>
 ```
 
+## Showing cookies conditionally
+
+Cookies declared in the `manifest.xml` are shown on every sales channel. If your cookies are only relevant under certain conditions, for example a payment provider cookie that is only needed when the corresponding payment method is active in the current sales channel, you can remove them again with an app script for the `cookie-group-collect` hook.
+
+The hook is triggered whenever the cookie consent groups are collected. It gives you access to the collected cookie groups of all extensions, so your script can remove your own groups and entries based on any condition you can express in a script:
+
+```twig
+// Resources/scripts/cookie-group-collect/filter-payment-cookies.twig
+{% set criteria = {
+    'filter': [
+        { 'type': 'equals', 'field': 'active', 'value': true },
+        { 'type': 'equals', 'field': 'handlerIdentifier', 'value': 'app\\MyApp_myPaymentMethod' }
+    ]
+} %}
+
+{% if services.store.search('payment_method', criteria).total == 0 %}
+    {% set group = hook.cookieGroups.get('myapp.cookie-group.name') %}
+
+    {% if group is not null and group.entries is not null %}
+        {% do group.entries.remove('myapp_payment_cookie') %}
+    {% endif %}
+{% endif %}
+```
+
+Since the script runs after all cookies were collected, the entries declared in your `manifest.xml` are already present and can be removed by their cookie name. Groups are indexed by their `snippet-name`, entries by their cookie name.
+
+The `store` service searches within the current sales channel, so the example above does not need an explicit sales channel filter. The handler identifier of an app payment method follows the pattern `app\{AppName}_{identifier}`, where `identifier` is the `<identifier>` of the payment method in your `manifest.xml`.
+
+::: info
+The `cookie-group-collect` hook was introduced in Shopware 6.7.14.0. Older versions ignore scripts for unknown hooks, so an app using this script stays installable on earlier versions, where the cookies are always shown.
+:::
+
+Any condition available in scripts can be used here, such as system configuration values (`services.config`) or entity lookups (`services.repository` and `services.store`). For the available services and data, see the [script hook reference](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#cookie-group-collect).
+
 ## Snippet handling
 
 As already mentioned in the previous sections, both the `cookie` and the `group` elements can contain `snippet-name` and `snippet-description` child elements. Although their values can be strings that will be displayed in the Storefront, the preferred way to set up cookie names and descriptions is to provide Storefront snippets. It gives you and the shop owner the possibility to add translations for your cookie's name and description.
