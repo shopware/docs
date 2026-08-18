@@ -180,7 +180,7 @@ public function uninstall(UninstallContext $context): void
 ```
 
 ::: info
-For Academy learning content on plugin lifecycle methods, updates, migrations, and uninstall cleanup, see the **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)** in the free **Shopware Backend Development Intermediate** learning path.
+For Academy learning content on plugin lifecycle methods, updates, migrations, and uninstall cleanup, refer to this free course **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)** from **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Next steps

@@ -18,7 +18,7 @@ This guide is built upon the [Plugin base guide](../../plugin-base-guide.md), so
 You also might want to have a look at the concept behind the [Data abstraction layer](../../../../../concepts/framework/data-abstraction-layer.md) first to get a better grasp of how it works.
 
 ::: info
-For Academy learning content on events, subscribers, and dependency injection, see the **[Data Abstraction Layer](https://hub.shopware.com/learn/course/data-abstraction-layer)** course in the free **Shopware Backend Development Intermediate** learning path.
+For Academy learning content on events, subscribers, and dependency injection, refer to this free course **[Data Abstraction Layer](https://hub.shopware.com/learn/course/data-abstraction-layer)** from **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Writing data

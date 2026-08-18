@@ -18,7 +18,7 @@ This guide explains how to adjust a service using decoration. For more details, 
 This guide builds on the [Plugin Base Guide](../plugin-base-guide.md).
 
 ::: info
-For Academy learning content on dependency injection, services, and service decoration, see **[Dependency Injection  and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)** in the free **Shopware Backend Development Intermediate learning path.
+For Academy learning content on dependency injection, services, and service decoration, refer to this free course **[Dependency Injection  and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)** from **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Decorating the service

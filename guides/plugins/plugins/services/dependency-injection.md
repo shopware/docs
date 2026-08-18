@@ -14,8 +14,7 @@ This guide explains how to inject services into other services. For more details
 This guide builds on the [Plugin Base Guide](../plugin-base-guide.md) and requires a working service — see [Add Custom Service](add-custom-service.md).
 
 ::: info
-Refer to this video on **[Injecting services into a command](https://www.youtube.com/watch?v=Z4kyx9J1xaQ)** explaining DI based on the example of a custom CLI command.
-It is also available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/course/events-and-di).
+For Academy learning content on dependency injection, service registration, constructor injection, and service decoration, refer to this free course **[Dependency Injection and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)** from **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Injecting another service

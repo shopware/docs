@@ -17,8 +17,7 @@ In order to add your own controller for your plugin, you first need a plugin as 
 Therefore, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
 ::: info
-Refer to this video on **[Common Storefront controller tasks](https://www.youtube.com/watch?v=5eXXNh4cQG0)** explaining the basics about Storefront controllers.
-Available also on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
+For current Academy learning content on connecting a Storefront controller with routes, service registration, and Twig template output, refer to this free course **[Storefront Controller: Routes, Services, and Template](https://hub.shopware.com/learn/unit/storefront-controller-routes-services-and-template)** from **Shopware Backend Development Essentials** learning path.
 :::
 
 ## Adding custom Storefront controller

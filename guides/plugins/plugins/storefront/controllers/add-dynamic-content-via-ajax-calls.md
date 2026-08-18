@@ -16,9 +16,12 @@ It combines and builds upon the guides about [adding custom JavaScript](../javas
 
 For this guide we will use a very simple controller that returns a timestamp wrapped in the JSON format.
 
-::: info
-Refer to this video on **[Creating a JSON controller](https://www.youtube.com/watch?v=VzREUDdpZ3E)** dealing with the creation of a controller that returns JSON data.
-Available also on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
+::: info 
+For related free Academy courses, see:
+
+- **[Storefront Controller: Routes, Services, and Template](https://hub.shopware.com/learn/unit/storefront-controller-routes-services-and-template)** from the **Shopware Backend Development Essentials** learnign path.
+- **[Custom JavaScript](https://hub.shopware.com/learn/unit/custom-js)** from the **Shopware Frontend Development Essentials** learning path.
+- **[Storefront Core Features](https://hub.shopware.com/learn/unit/storefront-core-features)** from the **Shopware Frontend Development Intermediate** learning path.
 :::
 
 As mentioned before this guide builds up upon the [adding a custom controller](../controllers/add-custom-controller.md) guide.
