@@ -233,4 +233,16 @@ Rules:
     console.log("");
     console.log(markdown);
 
+    //--------------------------------------------------
+    // Write announcement file
+    //--------------------------------------------------
+
+    fs.writeFileSync(
+        "announcement.md",
+        markdown,
+        "utf8"
+    );
+
+    console.log("announcement.md generated.");
+
 })();
