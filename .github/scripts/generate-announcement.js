@@ -13,8 +13,6 @@ const event = JSON.parse(
 const owner = event.repository.owner.login;
 const repo = event.repository.name;
 
-const API = `https://api.github.com/repos/${owner}/${repo}`;
-
 const headers = {
     Authorization: `Bearer ${token}`,
     Accept: "application/vnd.github+json"
@@ -48,7 +46,6 @@ async function githubGet(url) {
 
 (async () => {
 
-    console.log("");
     console.log("==========================================");
     console.log("Weekly Announcement Generator");
     console.log("==========================================");
@@ -64,59 +61,71 @@ async function githubGet(url) {
     );
 
     //--------------------------------------------------
-    // Fetch merged PRs
+    // Search Announcement PRs
     //--------------------------------------------------
 
     const searchQuery = encodeURIComponent(
-      `repo:${owner}/${repo} is:pr is:merged label:Announcement merged:>=${sevenDaysAgo.toISOString().split("T")[0]}`
-  );
-  
-  const result = await githubGet(
-      `https://api.github.com/search/issues?q=${searchQuery}`
-  );
-  
-  const announcementPRs = result.items;
-    //--------------------------------------------------
-    // Output
-    //--------------------------------------------------
+        `repo:${owner}/${repo} is:pr is:merged label:Announcement merged:>=${sevenDaysAgo.toISOString().split("T")[0]}`
+    );
+
+    const searchResult = await githubGet(
+        `https://api.github.com/search/issues?q=${searchQuery}`
+    );
+
+    const announcementPRs = [];
 
     //--------------------------------------------------
-// Generate Markdown
-//--------------------------------------------------
+    // Fetch complete PR details
+    //--------------------------------------------------
 
-let markdown = `# Weekly Developer Announcement
+    for (const item of searchResult.items) {
 
-Generated on ${new Date().toDateString()}
+        const prNumber = item.number;
 
----
+        const pr = await githubGet(
+            `https://api.github.com/repos/${owner}/${repo}/pulls/${prNumber}`
+        );
 
-`;
+        const files = await githubGet(
+            `https://api.github.com/repos/${owner}/${repo}/pulls/${prNumber}/files`
+        );
 
-for (const pr of announcementPRs) {
+        announcementPRs.push({
 
-    markdown += `## ${pr.title}
+            number: pr.number,
 
-**PR:** #${pr.number}
+            title: pr.title,
 
-**Link:** ${pr.html_url}
+            body: pr.body || "",
 
-**Summary**
+            author: pr.user.login,
 
-${pr.body || "_No description provided._"}
+            merged_at: pr.merged_at,
 
----
+            url: pr.html_url,
 
-`;
+            files: files.map(file => ({
+                filename: file.filename,
+                status: file.status,
+                patch: file.patch || ""
+            }))
 
-}
+        });
 
-console.log(markdown);
+    }
 
-fs.writeFileSync(
-    "announcement.md",
-    markdown
-);
+    //--------------------------------------------------
+    // Print collected data
+    //--------------------------------------------------
 
-console.log("announcement.md generated.");
+    console.log("");
+
+    console.log(
+        JSON.stringify(
+            announcementPRs,
+            null,
+            2
+        )
+    );
 
 })();
