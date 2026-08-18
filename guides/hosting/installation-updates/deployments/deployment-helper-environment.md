@@ -45,7 +45,7 @@ Note: You need to create additional admin users, sales channels, or custom confi
 
 ## Environment variables
 
-Configure the Shopware installation and Deployment Helper via environment variables. On Platform.sh, use the [Vault service](https://docs.platform.sh/user_guide/services/vault.html) for sensitive values (email, password, tokens).
+Configure the Shopware installation and Deployment Helper via environment variables. On Shopware PaaS, use the [Vault](../../../../products/paas/shopware/guides/secrets-vault-guide.md) for sensitive values (email, password, tokens).
 
 ### Installation and initial setup
 
