@@ -27,13 +27,11 @@ Pass the query as an argument:
 shopware-cli project sql "SELECT id, tax_rate FROM tax"
 ```
 
-## Piping a script
+## Providing a script via stdin
 
-A SQL script can also be piped via stdin:
+A SQL script can also be provided via stdin:
 
-```bash
-shopware-cli project sql < script.sql
-```
+    shopware-cli project sql < script.sql
 
 ## Output format
 
