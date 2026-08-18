@@ -71,7 +71,7 @@ Deployment Helper workflow for apps in staging:
 1. Deploy code with apps configured in `custom/apps` or Composer
 2. Enable staging: `export SHOPWARE_DEPLOYMENT_STAGING=1`
 3. DH runs, installs apps
-4. Post-deploy listener runs `system:setup:staging`, which deletes installed apps with external connections
+4. PostDeploy listener runs `system:setup:staging`, which deletes installed apps with external connections
 5. On next deployment, apps are reinstalled with fresh instance IDs
 6. Configure apps to use staging/test API keys and webhooks
 
