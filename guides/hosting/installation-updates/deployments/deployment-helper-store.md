@@ -25,7 +25,7 @@ When Shopware installs or updates an [app](../../../../concepts/extensions/apps-
 2. The license domain for that account
 3. A shop ID (unique per Shopware instance)
 
-Without a license domain, app installation fails. If you only use [plugins](../../../plugins/index.md), you don't need a license domain, but you cannot install any official Shopware apps.
+Without a license domain, app installation fails. If you only use [plugins](../../../../plugins/plugins/index.md), you don't need a license domain, but you cannot install any official Shopware apps.
 
 ## Configuring store credentials
 
