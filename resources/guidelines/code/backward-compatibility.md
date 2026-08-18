@@ -101,13 +101,14 @@ This section lists every BC-change attribute, who is affected, and how to write 
 | `#[ParameterTypeWidening]` | Parameter type becomes wider                         | Extenders              | ✅ Declare the announced type in your override now                             |
 | `#[NewOptionalParameter]` | A new optional parameter is added                     | Extenders              | ✅ Add the parameter to your override now                                      |
 | `#[NewRequiredParameter]` | A new required parameter is added                     | Call sites & extenders | ✅ Pass the parameter now / add it (optional) to your override now             |
+| `#[ParameterDefaultValueChange]` | A parameter default value changes               | Call sites             | ✅ Pass the current value explicitly now                                        |
 | `#[ParameterNameChange]`  | A parameter is renamed                                | Call sites (named args) | ✅ Use positional arguments now                                               |
 | `#[ParameterRemoval]`     | An (optional) parameter is removed                    | Call sites             | ✅ Stop passing it now                                                         |
 | `#[ExceptionChange]`      | The thrown exception types change                     | Call sites             | ✅ Catch the current and the announced exceptions now                          |
 | `#[BecomesAbstract]`      | A method loses its default implementation             | Extenders              | ✅ Implement the method in your subclass now                                   |
-| `#[BecomesFinal]`         | A class or method becomes final                       | Extenders              | ⚠️ Switch from inheritance to decoration/composition — works on both versions |
+| `#[BecomesFinal]`         | A class becomes final                                 | Extenders              | ⚠️ Switch from inheritance to decoration/composition — works on both versions |
 | `#[BecomesInternal]`      | A symbol becomes `@internal`                          | Call sites & extenders | ✅ Stop using it now                                                           |
-| `#[VisibilityChange]`     | Visibility is reduced (e.g., public → protected)      | Call sites & extenders | ✅ Stop calling it from outside the announced scope now                        |
+| `#[VisibilityChange]`     | Visibility is reduced (e.g., public → protected)      | Call sites & extenders | ⚠️ Stop external calls now; narrow overrides in the next major                |
 | `#[ClassHierarchyChange]` | The inheritance chain of a class changes              | Call sites & extenders | ⚠️ Depends on the change — stop relying on ancestors that go away             |
 
 ### Quick guides per attribute
@@ -246,6 +247,22 @@ class MyRoute extends CoreRoute
 }
 ```
 
+#### ParameterDefaultValueChange
+
+```php
+#[ParameterDefaultValueChange(version: 'v6.8.0', parameterName: 'allowedWriteScopes', newDefaultValue: [Context::SYSTEM_SCOPE, Context::CRUD_API_SCOPE])]
+public function __construct(array $allowedWriteScopes = [Context::SYSTEM_SCOPE])
+```
+
+**Call sites**: Omitting the parameter uses the announced default value after the change. Pass the current value explicitly to retain today's behavior on both versions:
+
+```php
+// works on both versions
+new CreatedByField([Context::SYSTEM_SCOPE]);
+```
+
+**Extending classes**: Nothing to do — calls that pass the parameter explicitly and overriding declarations are unaffected.
+
 #### ParameterNameChange
 
 ```php
@@ -327,7 +344,7 @@ public function getNextExecutionTime(): ?\DateTimeInterface
 class RuleConditionRegistry
 ```
 
-**Call sites**: Nothing to do — calling a final class or method is unaffected.
+**Call sites**: Nothing to do — calling a final class is unaffected.
 
 **Extending classes**: Extending stops working at the announced version, so this is the one change that usually requires a refactor: replace inheritance with [decoration](../../../guides/plugins/plugins/plugin-fundamentals/adjusting-service.md) or composition. The refactored code works on both versions — do it now rather than at upgrade time.
 
@@ -351,7 +368,7 @@ public function buildName(string $id): string
 
 **Call sites**: Stop calling the method from outside the announced scope now — inline the logic or use the replacement named in the description. That code works on both versions.
 
-**Extending classes**: Your override may keep its current visibility (PHP allows an override to be more visible than its parent), so the signature needs no change. But treat the method as having the announced visibility: do not rely on it being callable from outside, and do not build new public API on top of it.
+**Extending classes**: PHP allows an override to be more visible than its parent, so the current public signature remains valid during the transition. Before the announced version, stop relying on external calls to the override; then narrow its visibility to the announced one in the next major. Do not build new public API on top of it.
 
 #### ClassHierarchyChange
 
@@ -385,7 +402,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | Change the return the type of a method.                                                                       | ⚪ PARTIAL | Announce it with `#[ReturnTypeNarrowing]` / `#[ReturnTypeWidening]` and apply the change in the next major version. For changes that are neither a narrowing nor a widening, create a new method and deprecate the old one.       |
 | Change the value of a public constant.                                                                        | 🔴 NO      | You should add a new constant. Annotate the old constant as deprecated and remove it in the next major version.                                                                                                                |
 | Change the value of a private constant.                                                                       | ✅ YES     | Check all potential usages of the constant. Maybe it is used somewhere to be stored in the database. In that case, you must write a migration for it which ensures every use of the constant in a db-value is updated as well. |
-| Change a class or method to final.                                                                            | 🔴 NO      | Announce it with `#[BecomesFinal]` and apply the change in the next major version.                                                                                                                                             |
+| Change a class to final.                                                                                      | 🔴 NO      | Announce it with `#[BecomesFinal]` and apply the change in the next major version.                                                                                                                                               |
 | Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO      | Announce it with `#[VisibilityChange]` and change the visibility in the next major version.                                                                                                                                    |
 | Change the namespace of a class.                                                                              | 🔴 NO      | Duplicate the class and mark the old one as deprecated.                                                                                                                                                                        |
 | Change static state (remove static or delete static keyword).                                                 | 🔴 NO      | Annotate it as deprecated and add or remove the static keyword in the next major version.                                                                                                                                      |
