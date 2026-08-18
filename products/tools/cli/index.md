@@ -15,6 +15,8 @@ nav:
 - uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
 
+**CI/CD workflow:** Shopware CLI builds and prepares your deployment artifact. Then, the [Deployment Helper](../../../guides/hosting/installation-updates/deployments/deployment-helper.md) handles the deploy phase: installing Shopware, managing extensions, and running migrations on the target environment.
+
 For GitHub Actions, GitLab CI, and Docker examples, see [CI/CD and development environments](installation.md#cicd-and-development-environments).
 
 Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [System Requirements](../../../guides/installation/system-requirements.md). Windows users should use WSL 2 or Docker. (See [Installation Options](installation.md) page for Windows details.)

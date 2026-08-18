@@ -111,3 +111,11 @@ shopware:
 ```
 
 Next, clear the cache once. After doing this, the Extension Manager in the Administration will become read-only, allowing access only to the extension configuration. Additionally, the First Run Wizard will no longer download extensions such as PayPal or the Shopware Store.
+
+## Automating extension management during deployment
+
+Once your extensions are installed via Composer, the [Deployment Helper](deployments/deployment-helper.md) automatically manages them during deployments: installing new extensions, updating outdated ones, activating/deactivating as configured, and removing unwanted extensions.
+
+This eliminates the need for manual extension management steps in your deployment pipeline. The Deployment Helper reads your `.shopware-project.yml` configuration and ensures the deployed environment's extension state matches your codebase automatically.
+
+See [Deployment Helper: Extensions and Apps](deployments/deployment-helper-extensions.md) for configuration options.
