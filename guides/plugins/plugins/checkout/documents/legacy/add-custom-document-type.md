@@ -7,13 +7,17 @@ nav:
 
 # Add Custom Document Type
 
+::: warning Deprecated for 6.9
+This page documents the legacy document system. It is deprecated and will be removed with Shopware 6.9. Its successor, the Document System (v2), is available as an experimental feature since Shopware 6.7. See the [Document System (v2) concept](../../../../../../concepts/commerce/checkout-concept/document/) and the [v2 guides](../v2/).
+:::
+
 ## Overview
 
 This guide will show you how to add a custom document type to your plugin. This includes adding a new document type to the database, creating a renderer for it, and adding a number range.
 
 ## Prerequisites
 
-Reviewing the [plugin base guide](../../plugin-base-guide) and the guide on [plugin database migrations](../../database/database-migrations.md) is advisable.
+Reviewing the [plugin base guide](../../../plugin-base-guide) and the guide on [plugin database migrations](../../../database/database-migrations.md) is advisable.
 
 ## Adding a custom document type and its own base configuration to the database
 
@@ -164,7 +168,7 @@ Your custom document renderer has to implement the `Shopware\Core\Checkout\Docum
 * `supports`: Has to return a string of the document type it supports. We named our document type "**example**", so our renderer has to return "**example**".
 * `render`: This needs to return the instance `Shopware\Core\Checkout\Document\Renderer\RendererResult`, which will contain the instance of `Shopware\Core\Checkout\Document\Renderer\RenderedDocument` based on each `orderId`. You will have access to the array of `DocumentGenerateOperation` which contains all respective orderIds, the context and the instance of `Shopware\Core\Checkout\Document\Renderer\DocumentRendererConfig` (additional configuration).
 
-Furthermore, your renderer has to be registered to the [service container](../../services/dependency-injection.md) using the tag `document.renderer`.
+Furthermore, your renderer has to be registered to the [service container](../../../services/dependency-injection.md) using the tag `document.renderer`.
 
 An example renderer:
 
@@ -413,13 +417,13 @@ In there, you should extend from the default document base template:
 
 :::
 
-The [base.html.twig](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a default templating, which you can now override by using blocks. The guide on [customizing templates](../../storefront/templates/customize-templates.md) provides more details.
+The [base.html.twig](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Framework/Resources/views/documents/base.html.twig) template comes with a default templating, which you can now override by using blocks. The guide on [customizing templates](../../../storefront/templates/customize-templates.md) provides more details.
 
 ## Adding a number range
 
 You are almost done here. You have a new document type in the database, a renderer for your new document type, and it even uses a custom template. However, you also need to add a new number range for your documents; otherwise, a new number wouldn't be generated for your documents.
 
-Adding a new number range is also done by using a [plugin database migration](../../database/database-migrations.md).
+Adding a new number range is also done by using a [plugin database migration](../../../database/database-migrations.md).
 
 For this we need a few more things:
 
