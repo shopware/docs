@@ -90,8 +90,8 @@ class Migration1611740369ExampleDescription extends MigrationStep
 
 As you can see, your migration contains two methods:
 
-* `getCreationTimestamp()`
-* `update()`
+- `getCreationTimestamp()`
+- `update()`
 
 There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. Implement **all** schema and data changes for the plugin in `update()`. That method is what Shopware runs automatically when the plugin is installed or updated.
 

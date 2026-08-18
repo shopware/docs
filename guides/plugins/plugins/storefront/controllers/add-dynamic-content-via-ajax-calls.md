@@ -16,7 +16,7 @@ It combines and builds upon the guides about [adding custom JavaScript](../javas
 
 For this guide we will use a very simple controller that returns a timestamp wrapped in the JSON format.
 
-::: info 
+::: info
 For related free Academy courses, see:
 
 - **[Storefront Controller: Routes, Services, and Template](https://hub.shopware.com/learn/unit/storefront-controller-routes-services-and-template)** from the **Shopware Backend Development Essentials** learning path.

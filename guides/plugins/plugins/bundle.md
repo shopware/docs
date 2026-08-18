@@ -217,7 +217,7 @@ Also check out these useful videos:
 
 For related Academy learnings on plugin lifecycle and services, see
 
-- **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)**
-- **[Dependency Injection and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)**
+* **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)**
+* **[Dependency Injection and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)**
 
 from the free **Shopware Backend Development Intermediate** learning path.
