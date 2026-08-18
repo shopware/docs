@@ -106,7 +106,7 @@ This launches the Development TUI. The dashboard starts your Docker containers, 
 For details, see the [Development Environment guide](../development/dev-environment.md).
 
 ::: tip Composer and PHP with Docker
-If you chose Docker, run Composer and PHP tools **inside** the `web` container (`docker compose exec web composer …`). Host PHP often has only `128M` memory and cannot reach the database; Shopware needs `memory_limit ≥ 512M`. See [Running Composer, PHP, and npm](../development/dev-environment.md#running-composer-php-and-npm).
+If you chose Docker, run Composer and PHP tools **inside** the `web` container (`docker compose exec web composer <command>`). Host PHP often has only `128M` memory and cannot reach the database; Shopware needs `memory_limit ≥ 512M`. See [Running Composer, PHP, and npm](../development/dev-environment.md#running-composer-php-and-npm).
 :::
 
 ### Accessing your shop

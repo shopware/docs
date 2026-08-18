@@ -36,12 +36,12 @@ In day-to-day development, you'll mostly interact with:
 - **`shopware-cli project dev`**: starts and manages the Docker-based development environment, including containers, logs, watchers, credentials, and service URLs.
 - **`shopware-cli project console <command>`**: runs Shopware application commands from your host without opening an interactive container shell.
 - **`swx <command>`**: shortcut for `shopware-cli project console <command>`, for example `swx cache:clear`.
-- **`docker compose exec web …`**: runs Composer, PHP, or npm inside the web container (required for Docker projects; do not use host Composer by default).
+- **`docker compose exec web <command>`**: runs Composer, PHP, or npm inside the web container (required for Docker projects; do not use host Composer by default).
 - **`custom/`**: where you build your own plugins and themes.
 
 `bin/console` is the application CLI that ships with Shopware (Symfony console). Use it for Shopware application commands such as migrations, plugin installation, cache clearing, or configuration changes. In Docker-based setups, run those commands through `shopware-cli project console` or `swx` so they execute in the correct container context.
 
-For Composer and other PHP tools in Docker setups, use `docker compose exec web composer …`. The project files are bind-mounted for editing on the host, but host PHP does not share the container's memory limit or service network. Shopware requires `memory_limit ≥ 512M`. See [Running Composer, PHP, and npm](../development/dev-environment.md#running-composer-php-and-npm).
+For Composer and other PHP tools in Docker setups, use `docker compose exec web composer <command>`. The project files are bind-mounted for editing on the host, but host PHP does not share the container's memory limit or service network. Shopware requires `memory_limit ≥ 512M`. See [Running Composer, PHP, and npm](../development/dev-environment.md#running-composer-php-and-npm).
 
 The standalone [Shopware CLI](https://github.com/shopware/shopware-cli) is different from `bin/console`: it manages project workflows such as the development environment, helper commands, extension builds, and CI workflows.
 
