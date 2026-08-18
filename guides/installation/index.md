@@ -7,7 +7,7 @@ nav:
 # Shopware 6 Community Edition Installation
 
 :::info
-The recommended way for developers to build Shopware is with the Docker setup, made simple as of **March 2026** with a [Shopware CLI](../../products/tools/cli/index.md) installation path. Docker provides a consistent, production-like environment for development. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
+The recommended way for developers to build Shopware is with the Docker setup, made simple by the [Shopware CLI](../../products/tools/cli/index.md) installation path. Docker provides a consistent, production-like environment for development. Previous installation methods are available in the [Legacy Setups](./legacy-setups/index.md) section.
 :::
 
 Welcome to the Installation Guide for Shopware 6 Community Edition (CE)! This guide will help you set up a local Shopware 6 development environment, whether you’re:
@@ -48,6 +48,8 @@ Alternatively, you can run the CLI without a separate installation via:
 npx @shopware-ag/shopware-cli project create my-shop
 ```
 
+If you already have a target directory, see [Installing into an existing directory](./advanced-options.md#installing-into-an-existing-directory).
+
 ### Select Shopware version
 
 The latest version will always be the top option. At the bottom of the terminal window are prompts for moving through and selecting menu options.
@@ -59,6 +61,20 @@ This is a yes/no question about whether to run Shopware locally using Docker, ou
 :::info
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
 :::
+
+### Do you need a Shopware account?
+
+To install Shopware, develop locally, build the Storefront or Administration, write your own extensions, or run a store, you do not need a Shopware account. Everything above works without signing in.
+
+If you are just trying things out, you may skip the account and Store steps in the browser's `First Run Wizard` and continue from the terminal.
+
+A Shopware account is needed when you:
+
+- install extensions from the Shopware Store. This applies to free extensions too, because Store installations are tied to an account and a license.
+- pull licensed or commercial packages from Shopware's private Composer registry; see [Shopware account and Composer](../development/start-developing.md#shopware-account-and-composer-private-packages).
+- book or manage a commercial Shopware plan, or use account-bound Shopware-hosted services or commercial offerings; see [Shopware pricing](https://www.shopware.com/en/pricing/).
+
+To use a specific extension without the Store, install it from source or via Composer instead.
 
 ### Customize options (optional)
 
@@ -76,57 +92,32 @@ If the summary looks good, choose `proceed` to start the process of setting up S
 
 When it finishes, users who did not install with Docker will receive guidance to continue.
 
-### Finish Docker setup (optional)
+### Start your development environment
 
-When setup finishes, users who installed with Docker will see this prompt:
+Once the project is created, start the development environment with:
 
-- Start containers:  `cd <project name> && make up`
-- Set up Shopware:  `make setup`
-- Stop containers:  `make down` (do this later)
+```bash
+cd my-shop
+shopware-cli project dev
+```
 
-Running `make up` starts Shopware and all required services (web server, database, search, Mailpit, etc.) in the background. Docker images already include all required PHP extensions and services, so the system-check step of the installer is always fulfilled.
+This launches the Development TUI. The dashboard starts your Docker containers, runs the Shopware installer (first time only), and gives you an overview of your environment - Shop URLs, credentials, watchers, logs, and service configuration - all in one place.
 
-Running `make setup` is necessary to access the new shop.
+For details, see the [Development Environment guide](../development/dev-environment.md).
 
-:::info
-What happens during `make setup`:
+### Accessing your shop
 
-- The Makefile runs the Shopware installer inside the web container
-- Shopware is installed automatically (no browser wizard required)
-- A MariaDB database is created
-- An admin user is created, with username `admin` and password `shopware`
-- Required services (database, search, mail, etc.) are preconfigured and run inside Docker
-- The Shopware project is configured to connect to the database via the Docker service name `database`
-- Database credentials are defined in the `compose.yaml`
-- If Elasticsearch was enabled during project creation, a compatible search service runs as part of the Docker stack.
-:::
+When the environment is running, your shop is accessible at:
 
-Check the container status anytime with the following command:
+- Storefront: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- Admin: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+- Default credentials: `admin` / `shopware`
+
+Check container status anytime with:
 
 ```bash
 docker compose ps
 ```
-
-### Accessing the new shop (all setups)
-
-The prompt also provides links to access the new shop in the browser:
-
-- Storefront: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-- Admin: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
-- Credentials: `admin` / `shopware`
-
-Users who do not install with Docker can also use the Storefront and Administration URLs to continue.
-
-If you're setting up Shopware for the very first time, you may prefer to complete Shopware installation from the Administration UI using the First Run Wizard:
-
-- Sign in or create a Shopware account; this is necessary when you want to install Store extensions
-- Connect to the **Shopware Store**
-- Install plugins or themes from the Store
-- Configure payment methods if you need them (not required for local development)
-
-Basic shop settings such as shop name, default language, and currency can be changed later in the Admin under **`Settings > Shop > Basic information`**.
-
-However, most developers will want to continue from the terminal.
 
 ### Next steps
 

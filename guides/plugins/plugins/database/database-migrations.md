@@ -7,7 +7,7 @@ nav:
 
 # Database Migrations
 
-Migrations are PHP classes used to manage incremental and reversible database schema changes. Shopware comes with a pre-built migration system to take away most of the work for you. Throughout this guide, you will find the `$` symbol representing your command line.
+Migrations are PHP classes used to manage incremental database schema changes. Shopware comes with a pre-built migration system to take away most of the work for you. Throughout this guide, you will find the `$` symbol representing your command line.
 
 ## Prerequisites
 
@@ -37,19 +37,6 @@ As you can see, there is one file in the `<plugin root>/src/Migration` directory
 | Migration          | Each migration file has to start with Migration |
 | 1546422281         | A Timestamp used to make migrations incremental |
 | ExampleDescription | A descriptive name for your migration           |
-
-### Customizing the migration path / namespace
-
-You are also able to change the migration directory. This is done by choosing another namespace for your migrations, which can be changed by overwriting your plugin's `getMigrationNamespace()` method in the plugin base class:
-
-```php
-public function getMigrationNamespace(): string
-{
-    return 'Swag\BasicExample\MyMigrationNamespace';
-}
-```
-
-Since the path is read from the namespace, your Migration directory would have to be named `MyMigrationNamespace` now.
 
 ## Generate migration skeleton
 
@@ -81,6 +68,9 @@ namespace Swag\BasicExample\Migration;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Migration\MigrationStep;
 
+/**
+ * @internal
+ */
 class Migration1611740369ExampleDescription extends MigrationStep
 {
     public function getCreationTimestamp(): int
@@ -92,27 +82,25 @@ class Migration1611740369ExampleDescription extends MigrationStep
     {
         // implement update
     }
-
-    public function updateDestructive(Connection $connection): void
-    {
-        // implement update destructive
-    }
 }
 ```
 
-As you can see, your migration contains three methods:
+As you can see, your migration contains two methods:
 
 * `getCreationTimestamp()`
 * `update()`
-* `updateDestructive()`
 
-There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. In the `update()` method you implement non-destructive changes which should always be **reversible**. The `updateDestructive()` method is the follow-up step, that is run after `update()` and used for **destructive non-reversible changes**, like dropping columns or tables. Destructive migrations are only executed explicitly.
+There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. Implement **all** schema and data changes for the plugin in `update()`. That method is what Shopware runs automatically when the plugin is installed or updated.
 
 ::: info
-You do not add instructions to revert your migrations within the migration class itself. `updateDestructive` is not meant to revert instructions in `update`. Reverting changes in the database is done explicitly in plugin lifecycle method `uninstall`, as explained in the [Plugin Lifecycle guide](../plugin-fundamentals/plugin-lifecycle.md#uninstall).
+There is no migration rollback. You do not add instructions to reverse your migrations inside the migration class. Cleaning up the database when the plugin is removed belongs in the plugin lifecycle method `uninstall`, as explained in the [Plugin Lifecycle guide](../plugin-fundamentals/plugin-lifecycle.md#uninstall).
 :::
 
-Here's an example of a non-destructive migration, creating a new table:
+::: warning
+`MigrationStep` also defines an optional `updateDestructive()` method. Shopware core uses it for delayed, major-version destructive changes. **Plugin install and update never run `updateDestructive()`.** In practice, merchants and platforms also do not run `database:migrate-destructive` for plugins. Put every change your plugin needs into `update()`, and handle uninstall cleanup in `uninstall()`.
+:::
+
+Here's an example of a migration creating a new table:
 
 ```php
 // <plugin root>/src/Migration/Migration1611740369ExampleDescription.php
@@ -123,6 +111,9 @@ namespace Swag\BasicExample\Migration;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Migration\MigrationStep;
 
+/**
+ * @internal
+ */
 class Migration1611740369ExampleDescription extends MigrationStep
 {
     public function getCreationTimestamp(): int
@@ -144,10 +135,6 @@ CREATE TABLE IF NOT EXISTS `swag_basic_example_general_settings` (
 SQL;
 
         $connection->executeStatement($query);
-    }
-
-    public function updateDestructive(Connection $connection): void
-    {
     }
 }
 ```
@@ -171,22 +158,21 @@ _Note: Your plugin has to be activated, otherwise your custom entity definition 
 
 ## Execute migration
 
-When you install your plugin, the migration directory is added to a MigrationCollection and all migrations are executed. Also, when you update a plugin via the Plugin Manager, all **new** migrations are executed. If you want to perform a migration manually as part of your development process, simply create it after installing your plugin. This way, your plugin migration directory will already be registered during the installation process and you can run any newly created migration by hand using one of the following commands.
+When you install your plugin, the migration directory is added to a MigrationCollection and all migrations' `update()` methods are executed. Also, when you update a plugin via the Plugin Manager, all **new** migrations are executed the same way. If you want to perform a migration manually as part of your development process, simply create it after installing your plugin. This way, your plugin migration directory will already be registered during the installation process and you can run any newly created migration by hand:
+
+```bash
+$ ./bin/console database:migrate SwagBasicExample --all
+```
 
 ::: warning
 When updating a plugin, do not change a migration that was already executed, since every migration is only run once.
 :::
 
-| Command                      | Arguments               | Usage                                                           |
-|:-----------------------------|:------------------------|:----------------------------------------------------------------|
-| database:migrate             | identifier \(optional\) | Calls the update\(\) methods of unhandled migrations            |
-| database:migrate-destructive | identifier \(optional\) | Calls the updateDestructive\(\) methods of unhandled migrations |
+| Command          | Arguments               | Usage                                                |
+|:-----------------|:------------------------|:-----------------------------------------------------|
+| database:migrate | identifier \(optional\) | Calls the `update()` methods of unhandled migrations |
 
-The identifier argument is used to decide which migrations should be executed. Per default, the identifier is set to run Shopware Core migrations. To run your plugin migrations, set the identifier argument to your plugin's bundle name, in this example `SwagBasicExample`.
-
-```bash
-$ ./bin/console database:migrate SwagBasicExample --all
-```
+The identifier argument decides which migrations should be executed. Per default, the identifier is set to run Shopware Core migrations. To run your plugin migrations, set the identifier argument to your plugin's bundle name, in this example `SwagBasicExample`.
 
 ## Advanced migration control
 
@@ -201,12 +187,22 @@ Therefore, a typical update method might look more like this:
 
         $migrationCollection = $updateContext->getMigrationCollection();
 
-        // execute all DESTRUCTIVE migrations until and including 2019-11-01T00:00:00+00:00
-        $migrationCollection->migrateDestructiveInPlace(1572566400);
-
         // execute all UPDATE migrations until and including 2019-12-12T09:30:51+00:00
         $migrationCollection->migrateInPlace(1576143014);
     }
 ```
 
 If you don't use the Shopware migration system, an empty collection (`NullObject`) will be in the context.
+
+### Customizing the migration path / namespace
+
+Most plugins should keep the default `src/Migration` directory — the tooling and examples in this guide assume it. If you have a specific reason to relocate your migrations, you can choose another namespace for them by overwriting your plugin's `getMigrationNamespace()` method in the plugin base class:
+
+```php
+public function getMigrationNamespace(): string
+{
+    return 'Swag\BasicExample\MyMigrationNamespace';
+}
+```
+
+Since the path is read from the namespace, your Migration directory would have to be named `MyMigrationNamespace` now.

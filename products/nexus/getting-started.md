@@ -8,14 +8,13 @@ nav:
 
 ## Prerequisites
 
-- Shopware 6.7 or newer  
-- Active Shopware subscription  
+- Shopware 6.7 or newer
 - Early Access granted by Shopware
 - Nexus service activated
 - Active Shopware services
     - Accept Shopware Service T&C's
     - Activate Nexus service
-    - Register shop in SBP if not already done
+    - Register shop in your Shopware Account if not already done
 
 ## Accessing Nexus
 

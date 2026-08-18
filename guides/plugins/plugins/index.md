@@ -70,6 +70,8 @@ Shopware supports multiple plugin models, which differ in their folder structure
 
 ### Static plugins (recommended)
 
+For new developers building custom project logic, static plugins are the recommended starting point. Use managed plugins mainly for marketplace or Administration-managed extensions, and use bundles when you deliberately do not need the Shopware plugin lifecycle or Administration management.
+
 Project-specific static plugins live in `<shopware project root>/custom/static-plugins`, which contains all project-specific plugins that are typically committed to the Git repository. The Shopware Administration does not detect static plugins. They must be required via Composer before they can be installed and activated:
 
 ```bash

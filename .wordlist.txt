@@ -134,6 +134,7 @@ BuyButton
 CDN
 CDNs
 CHANGELOG
+CII
 CKEditor
 CLI
 CMS
@@ -284,6 +285,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+CycloneDX
 DAL
 DBAL
 DDL
@@ -337,6 +339,7 @@ Deployer
 Deprecations
 Deutsch
 DevOps
+DevTUI
 DevTools
 Devenv
 DeviceHelper
@@ -352,6 +355,7 @@ Dockerfile
 Dockware
 DomainException
 DomainExceptions
+Dompdf
 Dotenv
 DynamoDB
 ECDSA
@@ -497,6 +501,7 @@ IDEs
 IETF
 IPV
 IPv
+ISR
 IdField
 IdSearchResult
 Ideate
@@ -524,6 +529,7 @@ IsNewCustomerRule
 ItemFacade
 ItemsFacade
 JSON
+JUnit
 JVM
 JWT
 JavaScript
@@ -545,6 +551,7 @@ LONGTEXT
 LUA
 LandingPage
 LastNameRule
+LavinMQ
 Lerna
 Lifecycle
 LineItemClearanceSaleRule
@@ -858,6 +865,7 @@ RDB
 RDBMS
 README
 RHEL
+RPC
 RSA
 RabbitMQ
 RabbitMq
@@ -902,6 +910,7 @@ Roadmap
 RouteResponse
 RuleConditionService
 RuntimeException
+SBOM
 SBP
 SCSS
 SDK
@@ -1038,6 +1047,8 @@ TCP
 TLS
 TTL
 TTLs
+TUI
+TUI's
 TaxFreeConfigField
 TaxProvider
 TaxProviderStruct
@@ -1131,6 +1142,7 @@ Validator
 Valkey
 VariantListingConfigField
 Vercel
+Verkaufskanal
 VersionDataPayload
 VersionDataPayloadField
 VersionField
@@ -1180,6 +1192,7 @@ XLIFF
 XMLHttpRequest
 XPath
 XQuartz
+XRechnung
 XSS
 XVFB
 Xdebug
@@ -1189,6 +1202,7 @@ XorRule
 YYYY
 YamlFileLoader
 ZSH
+ZUGFeRD
 accel
 acl
 aclfacade
@@ -1196,6 +1210,7 @@ actionAmount
 actionType
 actionability
 activateShopwareTheme
+adminer
 adr
 afterSort
 ag
@@ -1297,6 +1312,7 @@ cartfacade
 cartpricefacade
 catchable
 catched
+cdx
 cetera
 changelog
 changelogs
@@ -1657,8 +1673,10 @@ jwks
 jwt
 kebabCase
 keyframes
+keypress
 landingpage
 lang
+lavinmq
 lazysizes
 libxml
 lifecycle
@@ -1669,6 +1687,7 @@ lineItemId
 linter
 linters
 linux
+liveness
 llms
 localVue
 localhost
@@ -1782,6 +1801,7 @@ org's
 organizationUnitIds
 otel
 otlp
+overridable
 overrideComponentSetup
 oversales
 paas
@@ -1923,6 +1943,7 @@ rollout
 routeName
 routeScope
 routeScopes
+runnable
 runtime
 runtimes
 salesChannel
@@ -1935,6 +1956,7 @@ saleschannelrepositoryfacade
 salutationId
 sandboxed
 sarven
+sbom
 scalability
 scalable
 schemas
@@ -1989,8 +2011,11 @@ slotConfig
 slowlog
 sm
 smartbar
+snackbar
+snackbars
 snakeCase
 sortings
+sourcemaps
 sql
 src
 srcset
@@ -2068,6 +2093,8 @@ toggleable
 tokenized
 tokenizer
 toolchain
+toolset
+toolsets
 tooltip
 tooltips
 totalAmount
@@ -2160,6 +2187,7 @@ wishlist
 wordlist
 www
 xasjkyld
+xdebug
 xhost's
 xkeys
 xl
@@ -2174,3 +2202,4 @@ zipignore
 zlib
 zsh
 zstd
+zugferd

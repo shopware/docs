@@ -171,7 +171,7 @@ docker run \
 
 ## Building from source
 
-If you prefer to compile the CLI yourself (requires Go 1.20+ and Git):
+If you prefer to compile the CLI yourself (requires Go 1.26.4+ and Git):
 
 ```bash
 git clone https://github.com/shopware/shopware-cli

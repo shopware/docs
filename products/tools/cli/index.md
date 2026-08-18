@@ -10,11 +10,14 @@ nav:
 [Shopware CLI](https://github.com/shopware/shopware-cli) is the open-source command-line interface for working with Shopware 6. It's a standalone developer tool that you install and configure separately from your Shopware instance. Once set up, it helps you automate and speed up common tasks such as:
 
 - managing and configuring Shopware projects
+- starting and operating an integrated Docker-based development environment
 - building, validating, and packaging extensions
 - uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
 
-Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [General Requirements](../../../guides/installation/system-requirements.md). Windows users should use WSL 2 or Docker. (See full [installation](installation.md) page for Windows details.)
+For GitHub Actions, GitLab CI, and Docker examples, see [CI/CD and development environments](installation.md#cicd-and-development-environments).
+
+Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [System Requirements](../../../guides/installation/system-requirements.md). Windows users should use WSL 2 or Docker. (See [Installation Options](installation.md) page for Windows details.)
 
 ## Quickstart
 
@@ -64,3 +67,9 @@ COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopw
 </Tabs>
 
 **Binary & releases:** Prebuilt packages and archives are published at [shopware/shopware-cli · Releases](https://github.com/shopware/shopware-cli/releases).
+
+## Telemetry
+
+Shopware CLI collects limited usage telemetry to help us improve the tool and understand which features are most valuable to you. No personal data, credentials, or file contents are collected. You can opt out anytime by setting the `DO_NOT_TRACK` environment variable.
+
+See [Telemetry & Privacy](../../../resources/references/telemetry.md#shopware-cli) for full details about what data is collected and how to disable telemetry.

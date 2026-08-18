@@ -21,6 +21,8 @@ Typical use cases include:
 
 This section follows a practical development workflow. Start with registering a module and route, then build the components, connect data, and refine permissions and UI behavior.
 
+For stable cross-version extension points, use the [Meteor Admin SDK](../../apps/administration/meteor-admin-sdk.md). The SDK can be used by both apps and plugins.
+
 ## Developer workflow
 
 When extending the Administration inside a plugin, follow this sequence:

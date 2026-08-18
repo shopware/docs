@@ -9,17 +9,24 @@ nav:
 
 ## Overview
 
-A way to listen to events in Symfony projects is via an [event subscriber,](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber) which is a class that defines one or more methods that listen to one or various events.
-It is thus the same in Shopware, so this article will guide you on how to create event subscriber in your Shopware extension.
+A way to listen to events in Symfony projects is via an [event subscriber,](https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber) which is a class that defines one or more methods that listen to one or various events. This guide explains how to create event subscriber in your Shopware extension.
+
+Use an event subscriber when your plugin needs to react to an event that Shopware
+already dispatches, for example, after an entity was loaded or written. Subscribers
+are intended for observation and enrichment; they are not a replacement for
+decorating a service when you need to change the existing control flow. If you only
+need to listen to one event, an event listener can be simpler. See the
+[plugin fundamentals](../plugin-fundamentals/index.md) for a feature-selection
+overview.
 
 ## Prerequisites
 
-In order to build your own subscriber for your plugin, of course you first need a plugin as base.
-To create an own plugin, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
+In order to build your own subscriber for your plugin, of course, you first need a plugin as a base.
+To create your own plugin, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
 ::: info
 Refer to this video on **[Live coding example with product.loaded event](https://www.youtube.com/watch?v=cJDaiuyjKJk)**.
-Also available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
 :::
 
 ## Creating your own subscriber
@@ -37,7 +44,7 @@ Don't worry, we got you covered here as well.
 To start creating a subscriber, we need to create a class first implementing EventSubscriberInterface.
 As mentioned above, such a subscriber for Shopware 6 looks exactly the same as in Symfony itself.
 
-Therefore, this is how your subscriber could then look like:
+Therefore, this is what your subscriber could then look like:
 
 ```php
 // <plugin root>/src/Subscriber/MySubscriber.php
@@ -106,6 +113,13 @@ class MySubscriber implements EventSubscriberInterface
 ```
 
 Unfortunately, your subscriber is not even loaded yet - this will be done in the previously registered `services.php` file.
+
+::: warning
+Creating the subscriber class alone is not enough. It must be registered in the
+dependency injection container and tagged with `kernel.event_subscriber`. If the
+class is missing from `services.php`, Shopware will not call it and there may be no
+obvious error indicating that the event was not handled.
+:::
 
 ### Registering your subscriber via services.php
 

@@ -17,6 +17,10 @@ Use a plugin when:
 
 For remote/webhook-based capabilities, see [Extending via App](../apps/mcp-server.md). For a side-by-side comparison of all three extension types, see [Extending the MCP Server](../../../products/tools/mcp-server/extending.md).
 
+:::info Version requirements
+This guide describes Shopware 6.7.14.0 and later. Earlier 6.7 versions need `MCP_SERVER=1` in the environment and have no tool groups or toolsets, so skip [Step 2](#step-2-assign-a-tool-group) there. See [Configuration](../../../products/tools/mcp-server/configuration.md) for details.
+:::
+
 ## Naming convention
 
 All capability names must only contain `a-zA-Z0-9_-` (no dots). Use a hyphen-separated vendor prefix to avoid conflicts:
@@ -39,7 +43,7 @@ custom/plugins/SwagMyPlugin/
  │       └── MyTool.php            # MCP tool class
  └── Resources/
  └── config/
- └── services.xml          # Service registration
+ └── services.php          # Service registration
 ```
 
 ## Step 1: Create the tool class
@@ -55,11 +59,13 @@ use Mcp\Capability\Attribute\McpTool;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolDependsOn;
+use Shopware\Core\Framework\Mcp\Attribute\McpToolGroup;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolRequires;
 use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
 use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
 
 #[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders for a given customer email.')]
+#[McpToolGroup('swag-my-plugin')]
 #[McpToolDependsOn('shopware-entity-schema')]
 #[McpToolRequires('order:read')]
 class MyTool extends McpToolResponse
@@ -103,7 +109,23 @@ class MyTool extends McpToolResponse
 - Return a `string` from `__invoke()`. The MCP SDK automatically wraps the return value into the protocol response.
 - Extend `McpToolResponse` to use `$this->success()` and `$this->error()` helpers.
 
-## Step 2: Declare dependencies and privileges
+## Step 2: Assign a tool group
+
+For in-process extensions, including plugins and Symfony bundles, assign every tool to a focused group with `#[McpToolGroup]`:
+
+```php
+#[McpToolGroup('swag-my-plugin')]
+```
+
+Groups organize tools in the Administration allowlist and `debug:mcp`. Each group also becomes a toolset that an MCP client can enable for its current session. Use a stable, hyphenated name that keeps related tools together without loading unrelated schemas. A tool belongs to exactly one group, so the attribute cannot be repeated. The toolset title is generated from the group name — `swag-my-plugin` becomes "Swag my plugin tools".
+
+The attribute is optional. Without it, Shopware uses the longest hyphen-separated name prefix that the tool shares with another tool that also has no explicit group. For example, `swag-my-plugin-orders` and `swag-my-plugin-products` form the group `swag-my-plugin`. A tool without a longer shared prefix falls back to its first name segment, such as `swag`. Prefixes are compared segment by segment and case-insensitively, so `swagfoo-orders` and `swag-orders` share nothing.
+
+Because the inferred group depends on which other tools are registered without a group, declare the group explicitly when you need a stable toolset name or want a different grouping. An explicit group also takes precedence over the group Shopware derives for app tools.
+
+The special `discovery` group places an allowed tool in the initial session surface. Such a tool is always advertised and never appears in `shopware-toolsets-list`, so it can be neither enabled nor disabled. Use it only for an intentional discovery meta-tool; regular domain tools should remain deferred.
+
+## Step 3: Declare dependencies and privileges
 
 ### Tool dependencies
 
@@ -132,28 +154,32 @@ Declare the [ACL privileges](../../../products/tools/mcp-server/configuration.md
 
 The attribute is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output. You still must call `$this->requirePrivilege($context, 'order:read')` inside `__invoke()` for actual runtime enforcement.
 
-## Step 3: Register the service
+## Step 4: Register the service
 
-In `src/Resources/config/services.xml`, tag the service with `shopware.mcp.tool`:
+In `src/Resources/config/services.php`, tag the service with `shopware.mcp.tool`:
 
-```xml
-<?xml version="1.0" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services
- http://symfony.com/schema/dic/services/services-1.0.xsd">
+```php
+<?php declare(strict_types=1);
 
-    <services>
-        <service id="Swag\MyPlugin\Mcp\Tool\MyTool">
-            <argument type="service" id="order.repository"/>
-            <argument type="service" id="Shopware\Core\Framework\Mcp\Context\McpContextProvider"/>
-            <tag name="shopware.mcp.tool"/>
-        </service>
-    </services>
-</container>
+use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
+use Swag\MyPlugin\Mcp\Tool\MyTool;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
+return static function (ContainerConfigurator $configurator): void {
+    $services = $configurator->services();
+
+    $services->set(MyTool::class)
+        ->args([
+            service('order.repository'),
+            service(McpContextProvider::class),
+        ])
+        ->tag('shopware.mcp.tool');
+};
 ```
 
-Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag; the MCP feature flag gates the server endpoint itself, and once it is enabled, all registered tools are available.
+Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag.
 
 ### Available tags
 
@@ -163,7 +189,7 @@ Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps t
 | `shopware.mcp.prompt`   | Register a prompt   |
 | `shopware.mcp.resource` | Register a resource |
 
-## Step 4: Install and verify
+## Step 5: Install and verify
 
 ```bash
 bin/console plugin:refresh
@@ -177,10 +203,10 @@ Verify the tool is registered:
 bin/console debug:mcp
 ```
 
-If the tool appears here, it is available in the live HTTP endpoint. If it does not appear, check:
+If the tool appears here, it is registered in the live HTTP endpoint and can be discovered through its toolset. If it does not appear, check:
 
 - Plugin is installed and active
-- Service has `<tag name="shopware.mcp.tool"/>`
+- Service is tagged with `shopware.mcp.tool`
 - `#[McpTool]` is on the class, not on `__invoke()`
 
 ## Adding prompts
@@ -229,17 +255,15 @@ Symfony bundles (not Shopware plugins) follow the same `shopware.mcp.tool` tag m
 
 - The bundle class extends `Symfony\Component\HttpKernel\Bundle\Bundle`, not `Shopware\Core\Framework\Plugin`
 - No Shopware install/activate lifecycle; the bundle is always active when registered in `config/bundles.php`
-- Load services unconditionally in the bundle's `build()` method — no feature flag gate is required, because the MCP feature flag gates the HTTP endpoint, not the service registration:
+- Load services unconditionally in the bundle's `build()` method:
 
 ```php
 public function build(ContainerBuilder $container): void
 {
-    $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/Resources/config'));
-    $loader->load('services.xml');
+    $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/Resources/config'));
+    $loader->load('services.php');
 }
 ```
-
-If you only want to register the bundle itself when the MCP feature is active, gate the entry in `config/bundles.php` instead — see [Optional bundles](./bundle.md#optional-bundles).
 
 ## Common pitfalls
 

@@ -238,10 +238,6 @@ CREATE TABLE IF NOT EXISTS `swag_example_extension` (
 SQL;
         $connection->executeStatement($sql);
     }
-
-    public function updateDestructive(Connection $connection): void
-    {
-    }
 }
 ```
 

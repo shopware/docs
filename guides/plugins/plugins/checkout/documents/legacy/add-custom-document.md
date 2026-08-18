@@ -7,13 +7,17 @@ nav:
 
 # Add Custom Document
 
+::: warning Deprecated for 6.9
+This page documents the legacy document system. It is deprecated and will be removed with Shopware 6.9. Its successor, the Document System (v2), is available as an experimental feature since Shopware 6.7. See the [Document System (v2) concept](../../../../../../concepts/commerce/checkout-concept/document/) and the [v2 guides](../v2/).
+:::
+
 ## Overview
 
 Using the Shopware Administration, you can easily create new documents. This guide explains how to create a new document using a plugin.
 
 ## Prerequisites
 
-Reviewing the [plugin base guide](../../plugin-base-guide) and the guide on [plugin database migrations](../../database/database-migrations.md) is advisable.
+Reviewing the [plugin base guide](../../../plugin-base-guide) and the guide on [plugin database migrations](../../../database/database-migrations.md) is advisable.
 
 ## Adding a custom document
 
@@ -73,10 +77,6 @@ class Migration1616668698AddDocument extends MigrationStep
             'document_type_id' => $documentTypeId,
             'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)
         ]);
-    }
-
-    public function updateDestructive(Connection $connection): void
-    {
     }
 
     private function getDocumentTypeId(Connection $connection): string
