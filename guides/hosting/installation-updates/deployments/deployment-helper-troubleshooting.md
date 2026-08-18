@@ -138,17 +138,16 @@ To manage snippets manually, use the `fastly:snippet:*` commands. See [Fastly in
 
 If you skipped the staging mode setup, your staging instance is running in production mode. After copying the database, you **must** enable staging mode:
 
-```bash
-# Manually, once:
-./bin/console system:setup:staging
+    # Manually, once:
+    ./bin/console system:setup:staging
 
-# Or, automatically on every deployment, set:
-export SHOPWARE_DEPLOYMENT_STAGING=1
-# or in .shopware-project.yml:
-deployment:
-  staging:
-    enabled: true
-```
+    # Or, automatically on every deployment, set:
+    export SHOPWARE_DEPLOYMENT_STAGING=1
+
+    # .shopware-project.yml
+    deployment:
+      staging:
+        enabled: true
 
 See [Staging Mode Integration](deployment-helper-staging.md) for details on what staging mode does.
 
