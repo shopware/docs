@@ -14,6 +14,12 @@ const event = JSON.parse(
 const owner = event.repository.owner.login;
 const repo = event.repository.name;
 
+// ======================================================
+// GitHub API
+// ======================================================
+
+const API = `https://api.github.com/repos/${owner}/${repo}`;
+
 const headers = {
     Authorization: `Bearer ${token}`,
     Accept: "application/vnd.github+json"
@@ -38,7 +44,6 @@ async function githubGet(url) {
     }
 
     return response.json();
-
 }
 
 // ======================================================
@@ -113,7 +118,7 @@ Rules:
             error.message
         );
 
-        // Fallback to existing summary extraction
+        // Fallback
         if (!pr.body || pr.body.trim() === "") {
             return pr.title;
         }
@@ -173,11 +178,11 @@ Rules:
         const prNumber = item.number;
 
         const pr = await githubGet(
-            `https://api.github.com/repos/${owner}/${repo}/pulls/${prNumber}`
+            `${API}/pulls/${prNumber}`
         );
 
         const files = await githubGet(
-            `https://api.github.com/repos/${owner}/${repo}/pulls/${prNumber}/files`
+            `${API}/pulls/${prNumber}/files`
         );
 
         announcementPRs.push({
@@ -234,7 +239,7 @@ Rules:
     console.log(markdown);
 
     //--------------------------------------------------
-    // Write announcement file
+    // Create downloadable file
     //--------------------------------------------------
 
     fs.writeFileSync(
@@ -243,6 +248,10 @@ Rules:
         "utf8"
     );
 
-    console.log("announcement.md generated.");
+    console.log("");
+    console.log("==========================================");
+    console.log("Announcement file generated successfully");
+    console.log("==========================================");
+    console.log("File: announcement.md");
 
 })();
