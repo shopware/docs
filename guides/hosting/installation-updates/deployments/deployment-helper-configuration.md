@@ -82,7 +82,7 @@ deployment:
     license-domain: 'example.com'
 
   # Automatically runs `system:setup:staging --no-interaction --force` after deployment
-  # and extension management has completed, as a `PostDeploy` event listener.
+  # and extension management has completed, as a PostDeploy event listener.
   # Use this on staging environments, so the instance is switched into staging mode
   # on every deployment. See "Staging Mode Integration" below.
   staging:
