@@ -1565,6 +1565,7 @@ guid
 gz
 gzip
 handleFlow
+hardcode
 hardcoded
 hasError
 hasOwnProperty

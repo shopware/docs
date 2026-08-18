@@ -94,7 +94,7 @@ deployment:
   maintenance:
     enabled: false
 
-  # Clear the HTTP and object cache after every deployment (via PostDeploy listener).
+  # Clear the HTTP and object cache after every deployment (via post-deploy listener).
   # This is independent of the maintenance-mode cache clears.
   cache:
     always_clear: false
@@ -120,7 +120,7 @@ Hook execution order (both install and update flows):
 3. *(system:install or system:update:finish runs here)*
 4. *(extension management runs here)*
 5. **`post-install` or `post-update`**: After Shopware is set up and extensions are managed
-6. **`post`**: Last, after all deployment steps and PostDeploy listeners (cache clear, Fastly update) have run
+6. **`post`**: Last, after all deployment steps and post-deploy listeners (cache clear, Fastly update) have run
 
 ## Multi-step hooks
 

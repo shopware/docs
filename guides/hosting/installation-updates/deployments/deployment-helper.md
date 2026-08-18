@@ -94,7 +94,7 @@ graph TD
 2. If same version redeployed, skips migrations entirely
 3. Refreshes plugins and apps from codebase
 4. Installs new extensions, updates outdated ones, deactivates/removes as configured
-5. Recompiles themes (unless skipped)
+5. Compiles themes (unless skipped)
 6. Runs one-time tasks (if any)
 7. Runs post-update hooks
 
