@@ -135,7 +135,7 @@ Cookies declared in the `manifest.xml` are shown on every sales channel. If your
 The hook is triggered whenever the cookie consent groups are collected. It gives you access to the collected cookie groups of all extensions, so your script can remove your own groups and entries based on any condition you can express in a script:
 
 ```twig
-// Resources/scripts/cookie-group-collect/filter-payment-cookies.twig
+{# Resources/scripts/cookie-group-collect/filter-payment-cookies.twig #}
 {% set criteria = {
     'filter': [
         { 'type': 'equals', 'field': 'active', 'value': true },
