@@ -120,12 +120,5 @@ async function githubGet(url) {
 
     console.log("");
 
-    console.log(
-        JSON.stringify(
-            announcementPRs,
-            null,
-            2
-        )
-    );
-
+    console.log(markdown);
 })();
