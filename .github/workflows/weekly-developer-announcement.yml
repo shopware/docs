@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
+  copilot-requests: write
 
 jobs:
   generate:
@@ -24,3 +25,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-announcement.js
+
+      - name: Test Copilot CLI
+        run: |
+          npm install -g @github/copilot
+          copilot -p "In one sentence, explain what this repository is about." -s --no-ask-user
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
