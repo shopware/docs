@@ -29,8 +29,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-announcement.js
 
+      - name: Verify announcement file
+        run: |
+          echo "Checking generated file..."
+          ls -la announcement.md
+          echo "File size:"
+          wc -c announcement.md
+
       - name: Upload Announcement
         uses: actions/upload-artifact@v4
         with:
           name: weekly-developer-announcement
           path: announcement.md
+          if-no-files-found: error
