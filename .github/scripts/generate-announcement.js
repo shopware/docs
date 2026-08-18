@@ -115,10 +115,32 @@ async function githubGet(url) {
     }
 
     //--------------------------------------------------
-    // Print collected data
-    //--------------------------------------------------
+// Build Weekly Announcement
+//--------------------------------------------------
 
-    console.log("");
+function summarizePR(pr) {
+    return pr.body && pr.body.trim() !== ""
+        ? pr.body
+        : pr.title;
+}
 
-    console.log(markdown);
+let markdown = "# Weekly Developer Announcement\n\n";
+
+for (const pr of announcementPRs) {
+
+    markdown += `## ${pr.title}\n\n`;
+
+    markdown += `${summarizePR(pr)}\n\n`;
+
+    markdown += "---\n\n";
+
+}
+
+//--------------------------------------------------
+// Print announcement
+//--------------------------------------------------
+
+console.log("");
+console.log(markdown);
+
 })();
