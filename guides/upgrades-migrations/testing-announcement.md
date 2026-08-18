@@ -10,4 +10,4 @@ This release introduces breaking changes for plugins.
 
 Follow these steps to migrate.
 
-check for this addition 
+check for this addition
