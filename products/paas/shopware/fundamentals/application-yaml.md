@@ -72,7 +72,7 @@ app:
     version: "8.3"
 ```
 
-#### PHP supported versions:
+#### PHP supported versions
 
 - `8.1`
 - `8.2`
@@ -124,7 +124,7 @@ For more details, see the [Environment variables](./environment-variables.md) pa
 
 ### `services.mysql`
 
-Configures the managed MySQL database. 
+Configures the managed MySQL database.
 
 ```yaml
 services:
@@ -132,7 +132,7 @@ services:
     version: "8.4"
 ```
 
-#### MySQL supported versions:
+#### MySQL supported versions
 
 - `8.0`
 - `8.4`
