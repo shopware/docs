@@ -22,10 +22,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-announcement.js
-
-      - name: Upload Announcement
-        uses: actions/upload-artifact@v4
-        with:
-          name: weekly-announcement
-          path: announcement.md
-          
+        
