@@ -169,6 +169,20 @@ docker run \
     extension build FroshPlatformAdminer
 ```
 
+## Update notifications
+
+Shopware CLI checks in the background for newer releases and prints a short notification to stderr when an update is available. To silence this for a single command, pass `--no-update-hint`:
+
+```bash
+shopware-cli --no-update-hint <command>
+```
+
+To disable it for the current shell session (or persistently, by adding it to your shell profile), set:
+
+```bash
+export SHOPWARE_CLI_NO_UPDATE_NOTIFICATION=true
+```
+
 ## Building from source
 
 If you prefer to compile the CLI yourself (requires Go 1.26.4+ and Git):
