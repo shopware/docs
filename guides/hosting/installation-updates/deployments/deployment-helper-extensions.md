@@ -11,7 +11,7 @@ Deployment Helper automatically manages extensions found in `custom/plugins`, `c
 
 ## Apps vs Plugins
 
-Deployment Helper manages two types of extensions: [apps](../../../plugins/apps/) and [plugins](../../../plugins/). They follow the same lifecycle but differ in how they're loaded and what they require.
+Deployment Helper manages two types of extensions: [apps][apps](../../../plugins/apps/index.md) and (../../../plugins/plugins/index.md). They follow the same lifecycle but differ in how they're loaded and what they require.
 
 | Aspect | Plugin | App |
 |--------|--------|-----|
