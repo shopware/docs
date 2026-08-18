@@ -250,6 +250,8 @@ environments:
       password: shopware
 ```
 
+Select an environment with the global `-e`/`--env` flag, for example `shopware-cli project extension list -e local`. This flag is honored by all commands that talk to the shop, including Admin API commands such as [`extension list`/`extension uninstall`](../../products/tools/cli/project-commands/remote-extension-management.md), not just the executor commands above. An unknown environment name causes the command to fail rather than silently using the default configuration.
+
 ## Ports
 
 The web container exposes these ports by default:
