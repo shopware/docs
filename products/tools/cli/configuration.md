@@ -7,8 +7,7 @@ nav:
 
 # Configuration
 
-You can configure Shopware CLI to match your workflow. This page explains how to customize CLI behavior using command flags and
-environment variables.
+You can configure Shopware CLI to match your workflow. This page explains how to customize CLI behavior using command flags and environment variables.
 
 ## Update notifications
 
