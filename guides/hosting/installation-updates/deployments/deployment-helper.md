@@ -79,6 +79,7 @@ graph TD
 ### Fresh install vs update flow
 
 **Fresh install** (Shopware not yet installed):
+
 1. Creates database schema via `system:install`
 2. Creates one admin user with credentials from environment variables
 3. Creates one Storefront sales channel
@@ -88,6 +89,7 @@ graph TD
 7. Runs post-install hooks
 
 **Update** (Shopware already installed):
+
 1. Runs `system:update:finish` (migrations) **only if Shopware version changed**
 2. If same version redeployed, skips migrations entirely
 3. Refreshes plugins and apps from codebase
