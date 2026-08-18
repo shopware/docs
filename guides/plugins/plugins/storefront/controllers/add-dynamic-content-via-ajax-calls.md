@@ -19,7 +19,7 @@ For this guide we will use a very simple controller that returns a timestamp wra
 ::: info 
 For related free Academy courses, see:
 
-- **[Storefront Controller: Routes, Services, and Template](https://hub.shopware.com/learn/unit/storefront-controller-routes-services-and-template)** from the **Shopware Backend Development Essentials** learnign path.
+- **[Storefront Controller: Routes, Services, and Template](https://hub.shopware.com/learn/unit/storefront-controller-routes-services-and-template)** from the **Shopware Backend Development Essentials** learning path.
 - **[Custom JavaScript](https://hub.shopware.com/learn/unit/custom-js)** from the **Shopware Frontend Development Essentials** learning path.
 - **[Storefront Core Features](https://hub.shopware.com/learn/unit/storefront-core-features)** from the **Shopware Frontend Development Intermediate** learning path.
 :::
