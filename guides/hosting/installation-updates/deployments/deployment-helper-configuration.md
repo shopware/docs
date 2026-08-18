@@ -94,7 +94,7 @@ deployment:
   maintenance:
     enabled: false
 
-  # Clear the HTTP and object cache after every deployment (via post-deploy listener).
+  # Clear the HTTP and object cache after every deployment (via `PostDeploy` listener).
   # This is independent of the maintenance-mode cache clears.
   cache:
     always_clear: false
