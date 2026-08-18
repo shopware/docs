@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { execFileSync } = require("child_process");
 
 // ======================================================
 // Configuration
@@ -38,6 +39,95 @@ async function githubGet(url) {
 
     return response.json();
 
+}
+
+// ======================================================
+// Copilot Summarization
+// ======================================================
+
+function summarizePR(pr) {
+
+    const changes = pr.files
+        .map(file => {
+            return `File: ${file.filename}
+Status: ${file.status}
+Changes:
+${file.patch || "No patch available."}`;
+        })
+        .join("\n\n");
+
+    const prompt = `
+You are writing a weekly developer announcement for Shopware developers.
+
+Analyze this merged documentation PR.
+
+PR title:
+${pr.title}
+
+PR description:
+${pr.body || "No description provided."}
+
+Changed files:
+${changes}
+
+Write a concise, developer-focused summary.
+
+Focus on:
+- What changed
+- What developers need to know
+- Why the change matters to developers
+- Any API, CLI, migration, compatibility, configuration, or workflow impact
+
+Rules:
+- Write 2-3 sentences only.
+- Do not mention the PR number.
+- Do not mention that you are an AI.
+- Do not reproduce the PR checklist.
+- Do not reproduce links or HTML comments.
+- Do not simply repeat the PR description.
+- Focus on the actual developer impact.
+`;
+
+    try {
+
+        const summary = execFileSync(
+            "copilot",
+            [
+                "-p",
+                prompt,
+                "-s",
+                "--no-ask-user"
+            ],
+            {
+                encoding: "utf8",
+                maxBuffer: 1024 * 1024
+            }
+        );
+
+        return summary.trim();
+
+    } catch (error) {
+
+        console.error(
+            `Copilot summarization failed for PR #${pr.number}:`,
+            error.message
+        );
+
+        // Fallback to existing summary extraction
+        if (!pr.body || pr.body.trim() === "") {
+            return pr.title;
+        }
+
+        const summaryMatch = pr.body.match(
+            /## Summary\s*([\s\S]*?)(?=\n## |\n---|$)/i
+        );
+
+        if (summaryMatch) {
+            return summaryMatch[1].trim();
+        }
+
+        return pr.body.split("\n")[0].trim();
+    }
 }
 
 // ======================================================
@@ -115,43 +205,32 @@ async function githubGet(url) {
     }
 
     //--------------------------------------------------
-// Build Weekly Announcement
-//--------------------------------------------------
+    // Build Weekly Announcement
+    //--------------------------------------------------
 
-function summarizePR(pr) {
+    let markdown = "# Weekly Developer Announcement\n\n";
 
-    if (!pr.body || pr.body.trim() === "") {
-        return pr.title;
+    for (const pr of announcementPRs) {
+
+        console.log(
+            `Generating AI summary for PR #${pr.number}...`
+        );
+
+        const summary = summarizePR(pr);
+
+        markdown += `## ${pr.title}\n\n`;
+
+        markdown += `${summary}\n\n`;
+
+        markdown += "---\n\n";
+
     }
 
-    const summaryMatch = pr.body.match(
-        /## Summary\s*([\s\S]*?)(?=\n## |\n---|$)/i
-    );
+    //--------------------------------------------------
+    // Print announcement
+    //--------------------------------------------------
 
-    if (summaryMatch) {
-        return summaryMatch[1].trim();
-    }
-
-    return pr.body.split("\n")[0].trim();
-}
-
-let markdown = "# Weekly Developer Announcement\n\n";
-
-for (const pr of announcementPRs) {
-
-    markdown += `## ${pr.title}\n\n`;
-
-    markdown += `${summarizePR(pr)}\n\n`;
-
-    markdown += "---\n\n";
-
-}
-
-//--------------------------------------------------
-// Print announcement
-//--------------------------------------------------
-
-console.log("");
-console.log(markdown);
+    console.log("");
+    console.log(markdown);
 
 })();

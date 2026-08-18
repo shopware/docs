@@ -21,14 +21,10 @@ jobs:
         with:
           node-version: 20
 
+      - name: Setup Copilot CLI
+        run: npm install -g @github/copilot
+
       - name: Generate Weekly Announcement
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-announcement.js
-
-      - name: Test Copilot CLI
-        run: |
-          npm install -g @github/copilot
-          copilot -p "In one sentence, explain what this repository is about." -s --no-ask-user
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
