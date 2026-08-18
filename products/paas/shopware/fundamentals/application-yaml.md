@@ -72,6 +72,14 @@ app:
     version: "8.3"
 ```
 
+#### PHP supported versions:
+
+- `8.1`
+- `8.2`
+- `8.3`
+- `8.4`
+- `8.5`
+
 ### `app.php.extensions`
 
 The PHP extensions to install during build time. We use [this](https://github.com/mlocati/docker-php-extension-installer) installer to install extensions.
@@ -116,7 +124,7 @@ For more details, see the [Environment variables](./environment-variables.md) pa
 
 ### `services.mysql`
 
-Configures the managed MySQL database. Shopware PaaS Native supports MySQL versions `8.0` and `8.4`.
+Configures the managed MySQL database. 
 
 ```yaml
 services:
@@ -124,7 +132,14 @@ services:
     version: "8.4"
 ```
 
+#### MySQL supported versions:
+
+- `8.0`
+- `8.4`
+
+::: warning
 Once MySQL `8.4` has been configured, downgrading to MySQL `8.0` is not possible.
+:::
 
 ### `services.opensearch`
 
