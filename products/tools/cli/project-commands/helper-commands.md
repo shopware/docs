@@ -196,6 +196,10 @@ This generates a basic configuration file for your Shopware project. The file is
 
 ## Generate JWT secret
 
+::: warning
+`shopware-cli project generate-jwt` is deprecated and will be removed in October 2026.
+:::
+
 ```bash
 shopware-cli project generate-jwt <path-to-project>
 ```
