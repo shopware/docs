@@ -16,10 +16,6 @@ For details on endpoints, authentication methods, schemas, and request formats, 
 
 Shopware provides [Composable Frontends](/frontends/) as a headless frontend implementation based on the Store API.
 
-## GET /store-api/products/{id}/reviews
+## Product reviews endpoint
 
-Returns all reviews for a product.
-
-### Response
-
-200 OK
+For details about `GET /store-api/products/{id}/reviews`, refer to the Stoplight reference above.
