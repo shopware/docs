@@ -119,9 +119,20 @@ async function githubGet(url) {
 //--------------------------------------------------
 
 function summarizePR(pr) {
-    return pr.body && pr.body.trim() !== ""
-        ? pr.body
-        : pr.title;
+
+    if (!pr.body || pr.body.trim() === "") {
+        return pr.title;
+    }
+
+    const summaryMatch = pr.body.match(
+        /## Summary\s*([\s\S]*?)(?=\n## |\n---|$)/i
+    );
+
+    if (summaryMatch) {
+        return summaryMatch[1].trim();
+    }
+
+    return pr.body.split("\n")[0].trim();
 }
 
 let markdown = "# Weekly Developer Announcement\n\n";
