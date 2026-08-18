@@ -1,13 +1,6 @@
 name: Weekly Announcement Generator
 
-- name: Upload Announcement
-  uses: actions/upload-artifact@v4
-  with:
-    name: weekly-announcement
-    path: announcement.md
-
 on:
-
   workflow_dispatch:
 
 permissions:
@@ -15,13 +8,10 @@ permissions:
   pull-requests: read
 
 jobs:
-
   generate:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v5
@@ -32,3 +22,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-announcement.js
+
+      - name: Upload Announcement
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-announcement
+          path: announcement.md
+          
