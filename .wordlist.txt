@@ -100,6 +100,9 @@ BackedEnum
 Backend
 BaseContext
 BasicExample
+BecomesAbstract
+BecomesFinal
+BecomesInternal
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
 BeforeLineItemQuantityChangedEvent
@@ -131,6 +134,7 @@ BuyButton
 CDN
 CDNs
 CHANGELOG
+CII
 CKEditor
 CLI
 CMS
@@ -204,6 +208,7 @@ ChildCountField
 ChildrenAssociation
 ChildrenAssociationField
 CircleCI
+ClassHierarchyChange
 ClientInterface
 Cloudflare
 Cmd
@@ -350,6 +355,7 @@ Dockerfile
 Dockware
 DomainException
 DomainExceptions
+Dompdf
 Dotenv
 DynamoDB
 ECDSA
@@ -413,7 +419,9 @@ ExamplePageletLoadedEvent
 ExamplePageletLoader
 ExamplePlugin
 ExampleTranslationDefinition
+ExceptionChange
 ExcludeMultiWarehouseStockUpdateFilter
+Extenders
 Extensibility
 ExtensionAPI
 FLAC
@@ -665,7 +673,9 @@ NameStorer
 NavigationPage
 NelmioCorsBundle
 NewFeature
+NewOptionalParameter
 NewRelic
+NewRequiredParameter
 NewsletterRecipientAware
 NewsletterRecipientStorer
 Nginx
@@ -765,6 +775,11 @@ Pagelet
 PageletLoader
 Pagelets
 Pageloaders
+ParameterDefaultValueChange
+ParameterNameChange
+ParameterRemoval
+ParameterTypeNarrowing
+ParameterTypeWidening
 ParentAssociation
 ParentAssociationField
 ParentFk
@@ -857,6 +872,7 @@ RabbitMq
 Readonly
 RecipientsAware
 RecipientsStorer
+Rector
 RecurringPaymentHandlerInterface
 RedHat
 Redict
@@ -881,6 +897,8 @@ ResolveListingExtension
 ResolverContext
 RestAPI
 RestrictDelete
+ReturnTypeNarrowing
+ReturnTypeWidening
 Reusability
 ReverseInherited
 ReviewFormDataAware
@@ -1129,6 +1147,7 @@ VersionDataPayload
 VersionDataPayloadField
 VersionField
 VirtualHosts
+VisibilityChange
 Vite
 Vite's
 VitePress
@@ -1173,6 +1192,7 @@ XLIFF
 XMLHttpRequest
 XPath
 XQuartz
+XRechnung
 XSS
 XVFB
 Xdebug
@@ -1182,6 +1202,7 @@ XorRule
 YYYY
 YamlFileLoader
 ZSH
+ZUGFeRD
 accel
 acl
 aclfacade
@@ -1334,12 +1355,15 @@ const's
 contactFormData
 containerfacade
 contextToken
+contravariance
+contravariant
 control
 cookieGroups
 copyToClipboard
 copyable
 cors
 countryId
+covariant
 createActionResponse
 createCategoryFixture
 createCmsFixture
@@ -1475,6 +1499,8 @@ exampler
 explainer
 explainers
 extendability
+extender
+extenders
 extensibility
 externalReference
 failover
@@ -2019,6 +2045,7 @@ stylelintrc
 stylesheet
 stylesheets
 stylings
+subclass
 subclasses
 subcomponents
 subcontent
@@ -2176,3 +2203,4 @@ zipignore
 zlib
 zsh
 zstd
+zugferd
