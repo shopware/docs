@@ -155,7 +155,7 @@ To install licensed extensions from Shopware's private Composer registry, config
 
 ```bash
 # Writes auth.json in the project root (bind-mounted into the web container)
-composer config --auth http-basic.packages.shopware.com <username> <token>
+docker compose exec web composer config --auth http-basic.packages.shopware.com <username> <token>
 ```
 
 Then install packages with Composer **inside** the container:
