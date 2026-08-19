@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Upload an Extension to the Shopware Store
+  title: Automatically Release an Extension to the Shopware Store
   position: 2
 
 ---
@@ -39,7 +39,9 @@ If a version is already published in the Store, its binary can no longer be repl
 
 This workflow does not require a separate CLI release, publish, or approve step. The `upload` command submits the extension version, triggers the automatic code review, and waits for its result by default, unless waiting is skipped with `--skip-for-review-result`.
 
-No additional CLI command is required after `extension upload`.
+```bash
+shopware-cli account producer extension release <name> --version <version>
+```
 
 After the automatic review completes, check the version status in your Shopware Account to see whether any further approval or publication steps remain.
 
