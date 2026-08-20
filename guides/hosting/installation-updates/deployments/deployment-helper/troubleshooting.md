@@ -23,7 +23,7 @@ Check if:
 
 - `DATABASE_URL` is correct and reachable from the deploy environment (host, port, credentials).
 - the database service is actually up before the helper runs. In container setups, order startup so the database is ready, or add your own wait.
-- TLS is required, and `DATABASE_SSL_CA` / `DATABASE_SSL_CERT` / `DATABASE_SSL_KEY` are set. Verify the certificate paths are correct and readable by the PHP process. To bypass server-certificate verification (non-production only), set `DATABASE_SSL_DONT_VERIFY_SERVER_CERT`. See [SSL/TLS Connection guide](../../infrastructure/database.md#ssltls-connection) and [Environment variables](deployment-helper-environment.md#environment-variables).
+- TLS is required, and `DATABASE_SSL_CA` / `DATABASE_SSL_CERT` / `DATABASE_SSL_KEY` are set. Verify the certificate paths are correct and readable by the PHP process. To bypass server-certificate verification (non-production only), set `DATABASE_SSL_DONT_VERIFY_SERVER_CERT`. See [SSL/TLS Connection guide](../../infrastructure/database.md#ssltls-connection) and [Environment variables](environment.md#environment-variables).
 
 ## A step times out on a large shop
 
@@ -96,7 +96,7 @@ Or set environment variable:
 export SHOPWARE_DEPLOYMENT_TIMEOUT=900
 ```
 
-See [One-time task timeout](deployment-helper-one-time-tasks.md#one-time-task-timeout) for details.
+See [One-time task timeout](one-time-tasks.md#one-time-task-timeout) for details.
 
 ## A config setting seems to have no effect
 
@@ -107,13 +107,13 @@ Check if:
 - Your editor is using the schema and does not report any validation errors.
 - The key is nested under the correct section, for example `deployment:`.
 - You are editing the file the helper actually loads. If `SHOPWARE_PROJECT_CONFIG_FILE` or `--project-config` is set, that file wins over the auto-discovered one.
-- A `.shopware-project.local.yml` is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](deployment-helper-configuration.md#local-configuration-overrides).
+- A `.shopware-project.local.yml` is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](configuration.md#local-configuration-overrides).
 
 ## Extensions aren't being installed or updated as expected
 
 - Confirm `deployment.extension-management.enabled` is `true`.
 - Check the extension isn't listed under `exclude`, or set to `state: ignore` / `inactive` in `overrides`.
-- If extensions are managed by the Store or Administration instead, extension management may be intentionally disabled — reconcile the two so they don't fight. Prefer managing extensions from code (via Composer) or via the helper, not both. See [Store-installed plugins and conflicts](deployment-helper-extensions.md#store-installed-plugins-and-conflicts).
+- If extensions are managed by the Store or Administration instead, extension management may be intentionally disabled — reconcile the two so they don't fight. Prefer managing extensions from code (via Composer) or via the helper, not both. See [Store-installed plugins and conflicts](extensions.md#store-installed-plugins-and-conflicts).
 
 ## Store login or license refresh fails
 
@@ -130,7 +130,7 @@ Automatic snippet deployment during `run` only happens when:
 - `FASTLY_API_TOKEN` and `FASTLY_SERVICE_ID` are set, and
 - `FASTLY_DISABLE_SNIPPET_UPDATE` is **not** set to `1`.
 
-To manage snippets manually, use the `fastly:snippet:*` commands. See [Fastly integration](deployment-helper-hosting.md#fastly-integration).
+To manage snippets manually, use the `fastly:snippet:*` commands. See [Fastly integration](hosting.md#fastly-integration).
 
 ## Staging setup issues after database copy
 
@@ -149,7 +149,7 @@ If you skipped the staging mode setup, your staging instance is running in produ
       staging:
         enabled: true
 
-See [Staging Mode Integration](deployment-helper-staging.md) for details on what staging mode does.
+See [Staging Mode Integration](staging.md) for details on what staging mode does.
 
 ## Cache clearing is not smart by default
 

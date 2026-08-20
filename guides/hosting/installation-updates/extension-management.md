@@ -118,4 +118,4 @@ Once your extensions are installed via Composer, the [Deployment Helper](deploym
 
 This eliminates the need for manual extension management steps in your deployment pipeline. The Deployment Helper reads your `.shopware-project.yml` configuration and ensures the deployed environment's extension state matches your codebase automatically.
 
-See [Deployment Helper: Extensions and Apps](deployments/deployment-helper-extensions.md) for configuration options.
+See [Deployment Helper: Extensions and Apps](deployments/deployment-helper/extensions.md) for configuration options.

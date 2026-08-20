@@ -21,7 +21,7 @@ Beyond installing or updating Shopware, it also simplifies common tasks that are
 - Compiling the theme
 - Running custom and one-time commands
 
-For common failures and how to resolve them, see [Deployment Helper Troubleshooting](deployment-helper-troubleshooting.md).
+For common failures and how to resolve them, see [Deployment Helper Troubleshooting](troubleshooting.md).
 
 ### Why Deployment Helper exists outside the core
 
@@ -160,18 +160,18 @@ The Deployment Helper sets up Shopware when it is not installed, installs the ex
 
 ## Getting started
 
-- [Environment and Database Setup](deployment-helper-environment.md): Prerequisites, database, environment variables
-- [Store Authentication and License](deployment-helper-store.md): If using apps, set up store credentials first
-- [Extensions and Apps](deployment-helper-extensions.md): Understanding apps vs. plugins and extension lifecycle
+- [Environment and Database Setup](environment.md): Prerequisites, database, environment variables
+- [Store Authentication and License](store.md): If using apps, set up store credentials first
+- [Extensions and Apps](extensions.md): Understanding apps vs. plugins and extension lifecycle
 
 ## Configuration and operation
 
-- [YAML Configuration](deployment-helper-configuration.md): Hooks, extension management, theme compilation
-- [One-Time Tasks](deployment-helper-one-time-tasks.md): Migrations, data fixes, one-off commands
-- [Staging Mode](deployment-helper-staging.md): Safe staging environment setup
+- [YAML Configuration](configuration.md): Hooks, extension management, theme compilation
+- [One-Time Tasks](one-time-tasks.md): Migrations, data fixes, one-off commands
+- [Staging Mode](staging.md): Safe staging environment setup
 
 ## Advanced topics
 
-- [Hosting Integration](deployment-helper-hosting.md): Platform.sh, PaaS Native, Kubernetes, Fastly
-- [Commands and Reference](deployment-helper-reference.md): Full command reference and best practices
-- [Troubleshooting](deployment-helper-troubleshooting.md): Common errors and solutions
+- [Hosting Integration](hosting.md): Platform.sh, PaaS Native, Kubernetes, Fastly
+- [Commands and Reference](reference.md): Full command reference and best practices
+- [Troubleshooting](troubleshooting.md): Common errors and solutions
