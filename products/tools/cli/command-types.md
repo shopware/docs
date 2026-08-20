@@ -44,7 +44,7 @@ shopware-cli project ci          # Build Shopware in the CI
 shopware-cli project sbom        # Generate a CycloneDX SBOM from composer.lock
 ```
 
-**During CI/CD:** Use `shopware-cli project ci` to build and prepare your deployment artifact (dependencies, compiled theme, built assets). Then, use the [Deployment Helper](../../../guides/hosting/installation-updates/deployments/deployment-helper.md) at deploy time to install Shopware, manage extensions, and run database migrations on the target environment.
+**During CI/CD:** Use `shopware-cli project ci` to build and prepare your deployment artifact (dependencies, compiled theme, built assets). Then, use the [Deployment Helper](../../../guides/hosting/installation-updates/deployments/deployment-helper/index.md) at deploy time to install Shopware, manage extensions, and run database migrations on the target environment.
 
 ### Extension commands
 
