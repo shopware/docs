@@ -34,9 +34,10 @@ These tasks are registered by default:
 | shopware.sitemap_generate           | 86400                  |
 | cart.cleanup                        | 86400                  |
 | shopware.elasticsearch.create.alias | 300                    |
+| translation.update                  | 86400                  |
 
 ::: info
-Some tasks like `shopware.elasticsearch.create.alias` and `shopware.invalidate_cache` are only running when necessary. Elasticsearch task only runs when an Elasticsearch server is configured and enabled.
+Some tasks like `shopware.elasticsearch.create.alias` and `shopware.invalidate_cache` only run when necessary. The Elasticsearch task only runs when an Elasticsearch server is configured and enabled. The `translation.update` task only does work when at least one translation is installed through the [built-in translation handling](../../../concepts/framework/translations/built-in-translation-system.md). For details on that task, see [Automated translation updates](../../../concepts/framework/translations/automated-translation-updates.md).
 :::
 
 ## Creating a scheduled task

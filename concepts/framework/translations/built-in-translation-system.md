@@ -26,6 +26,9 @@ This repository is managed using [Crowdin](https://crowdin.com/project/shopware6
 as well as for some official plugins. The repository syncs with Crowdin every day to ensure that the latest translations
 are always available.
 
+For the full chain from a snippet change to an updated shop, including how to contribute translations in Crowdin, see
+[Automated translation updates](automated-translation-updates.md).
+
 ## How to install and update translations?
 
 To use the built-in translation system, you can use the following console commands:
@@ -52,6 +55,10 @@ configured GitHub repository.
 ```bash
 $ php bin/console translation:update
 ```
+
+The same update runs automatically once a day through the `translation.update` scheduled task. See
+[Automated translation updates](automated-translation-updates.md#the-translationupdate-scheduled-task) for its behavior,
+requirements, and how to deactivate it.
 
 ## Language activation
 
