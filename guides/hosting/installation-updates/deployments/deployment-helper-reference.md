@@ -11,16 +11,16 @@ nav:
 
 The [Deployment Helper](deployment-helper.md) ships with the following commands:
 
-| Command | Description |
-|---|---|
-| `run` | Install or update Shopware (the main deployment command) |
-| `is-installed` | Check whether Shopware is installed; exits `0` if installed, `1` if not. Useful as a guard in shell scripts |
-| `one-time-task:list` | List all one-time tasks and their execution status |
-| `one-time-task:mark <id>` | Mark a one-time task as executed without running it |
-| `one-time-task:unmark <id>` | Remove the mark from a one-time task so it runs again on the next deployment |
-| `fastly:snippet:list` | List all deployed Fastly VCL snippets |
-| `fastly:snippet:deploy` | Deploy all Fastly VCL snippets manually |
-| `fastly:snippet:remove <name>` | Remove a Fastly VCL snippet by name |
+| Command                        | Description                                                                                                 |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `run`                          | Install or update Shopware (the main deployment command)                                                    |
+| `is-installed`                 | Check whether Shopware is installed; exits `0` if installed, `1` if not. Useful as a guard in shell scripts |
+| `one-time-task:list`           | List all one-time tasks and their execution status                                                          |
+| `one-time-task:mark <id>`      | Mark a one-time task as executed without running it                                                         |
+| `one-time-task:unmark <id>`    | Remove the mark from a one-time task so it runs again on the next deployment                                |
+| `fastly:snippet:list`          | List all deployed Fastly VCL snippets                                                                       |
+| `fastly:snippet:deploy`        | Deploy all Fastly VCL snippets manually                                                                     |
+| `fastly:snippet:remove <name>` | Remove a Fastly VCL snippet by name                                                                         |
 
 ### Using the `is-installed` command
 
@@ -48,19 +48,19 @@ fi
 Exit codes:
 
 - `0` – Shopware is installed (user + sales channel exist)
-- `1` – Shopware is not installed or database unreachable
+- `1` – Shopware is not installed or the database is unreachable
 
 ## Run command options
 
 The `run` command accepts the following options:
 
-| Option | Description |
-|---|---|
-| `--skip-theme-compile` | Skip theme compilation (use when the theme was already compiled in CI/CD) |
-| `--skip-assets-install` | Skip asset installation (use when assets were already copied in CI/CD) |
-| `--skip-asset-install` | Deprecated alias for `--skip-assets-install` |
-| `--timeout=<seconds>` | Set script execution timeout in seconds. Set to `null` to disable. Takes precedence over `SHOPWARE_DEPLOYMENT_TIMEOUT`, which in turn defaults to `300` (see [`RunCommand`](https://github.com/shopware/deployment-helper/blob/main/src/Command/RunCommand.php)). |
-| `--project-config=<path>` | Path to a custom `.shopware-project.yml` file (absolute or relative to project root) |
+| Option                    | Description                                                                                                                                                                                                                                                       |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--skip-theme-compile`    | Skip theme compilation (use when the theme was already compiled in CI/CD)                                                                                                                                                                                         |
+| `--skip-assets-install`   | Skip asset installation (use when assets were already copied in CI/CD)                                                                                                                                                                                            |
+| `--skip-asset-install`    | Deprecated alias for `--skip-assets-install`                                                                                                                                                                                                                      |
+| `--timeout=<seconds>`     | Set script execution timeout in seconds. Set to `null` to disable. Takes precedence over `SHOPWARE_DEPLOYMENT_TIMEOUT`, which in turn defaults to `300` (see [`RunCommand`](https://github.com/shopware/deployment-helper/blob/main/src/Command/RunCommand.php)). |
+| `--project-config=<path>` | Path to a custom `.shopware-project.yml` file (absolute or relative to project root)                                                                                                                                                                              |
 
 `run` returns a non-zero exit code if any step fails. In CI/CD, treat a non-zero exit as a failed deployment and stop the rollout.
 
@@ -91,7 +91,7 @@ export SHOPWARE_DEPLOYMENT_STAGING=1
 # export SHOPWARE_DEPLOYMENT_STAGING=0
 ```
 
-This avoids multiple YAML files and keeps configuration close to where it's used (CI/CD platform).
+This avoids multiple YAML files and keeps the configuration close to where it's used (CI/CD platform).
 
 ### Avoid data leaks after production copy
 
@@ -136,4 +136,4 @@ Include one-time tasks in your `.shopware-project.yml` and commit them to Git. T
 - The task runs automatically on production with no manual steps.
 - History is tracked (when it ran, what it did).
 
-Avoid running migrations manually on production; let Deployment Helper and CI/CD handle it.
+Avoid running migrations manually in production; let Deployment Helper and CI/CD handle it.

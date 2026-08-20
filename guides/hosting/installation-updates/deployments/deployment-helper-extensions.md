@@ -7,19 +7,19 @@ nav:
 
 # Extensions and Apps
 
-Deployment Helper automatically manages extensions found in `custom/plugins`, `custom/apps`, and via Composer. This page explains how apps and plugins differ, how extension state is managed, and how to handle them during deployment.
+Deployment Helper automatically manages extensions found in `custom/plugins`, `custom/apps`, and via Composer. This page explains how apps and plugins differ, how the extension state is managed, and how to handle them during deployment.
 
-## Apps vs Plugins
+## Apps vs. Plugins
 
 Deployment Helper manages two types of extensions: [apps](../../../plugins/apps/index.md) and [plugins](../../../plugins/plugins/index.md). They follow the same lifecycle but differ in how they're loaded and what they require.
 
-| Aspect | Plugin | App |
-|--------|--------|-----|
-| **Location** | `custom/plugins/` or Composer | `custom/apps/` or Composer type `shopware-app` |
-| **Definition** | Directory with `plugin.xml` or PHP class | Directory/package with `manifest.xml` |
-| **License requirement** | None | **Requires license domain to register** with Shopware |
-| **Built-in extensions** | Payment, analytics plugins | Payment apps (official integrations) |
-| **Lifecycle** | Installed via `plugin:install` | Installed via `app:install`, requires handshake with Shopware registration server |
+| Aspect                  | Plugin                                   | App                                                                               |
+|-------------------------|------------------------------------------|-----------------------------------------------------------------------------------|
+| **Location**            | `custom/plugins/` or Composer            | `custom/apps/` or Composer type `shopware-app`                                    |
+| **Definition**          | Directory with `plugin.xml` or PHP class | Directory/package with `manifest.xml`                                             |
+| **License requirement** | None                                     | **Requires license domain to register** with Shopware                             |
+| **Built-in extensions** | Payment, analytics plugins               | Payment apps (official integrations)                                              |
+| **Lifecycle**           | Installed via `plugin:install`           | Installed via `app:install`, requires handshake with Shopware registration server |
 
 If installing apps, you must set a license domain. Plugins work without one.
 
@@ -27,12 +27,12 @@ If installing apps, you must set a license domain. Plugins work without one.
 
 When `extension-management` is enabled (default), each extension's desired state can be controlled via the `overrides` section or `exclude` list (shorthand). The `state` field acts as a state machine:
 
-| State | Behavior | Use Case |
-|-------|----------|----------|
-| **(default, not set)** | Install if not present, update if installed and outdated, activate if not active | Treat extension as part of the codebase; always keep it deployed |
-| `inactive` | Install if not present, update if installed, but **keep inactive** | Extension is deployed but disabled (e.g., a feature branch plugin, beta testing, or toggle-able features) |
-| `ignore` | Skip entirely; do not manage this extension | Manual control; use when you manage this extension separately via console commands |
-| `remove` | **Uninstall** if installed; do not install | Permanently remove an extension (see [Removing an extension](#removing-an-extension)) |
+| State                  | Behavior                                                                         | Use Case                                                                                                  |
+|------------------------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| **(default, not set)** | Install if not present, update if installed and outdated, activate if not active | Treat extension as part of the codebase; always keep it deployed                                          |
+| `inactive`             | Install if not present, update if installed, but **keep inactive**               | Extension is deployed but disabled (e.g., a feature branch plugin, beta testing, or toggle-able features) |
+| `ignore`               | Skip entirely; do not manage this extension                                      | Manual control; use when you manage this extension separately via console commands                        |
+| `remove`               | **Uninstall** if installed; do not install                                       | Permanently remove an extension (see [Removing an extension](#removing-an-extension))                     |
 
 ### Exclude list shorthand
 
@@ -44,7 +44,7 @@ deployment:
     # These two are equivalent:
     exclude:
       - MyPlugin
-    
+
     overrides:
       MyPlugin:
         state: ignore
@@ -166,6 +166,6 @@ Deployment Helper is designed to work across multiple Shopware versions (6.4+) w
 - **Theme compilation**: Uses `theme:compile --only` (6.5.6+) for parallel compilation, falls back to serial on older versions
 - **Async compilation**: Uses `--sync` flag (6.6.1+) to force synchronous compile when async is enabled
 - **Command options**: Detects which console commands and flags are available before executing them
-- **Database schema**: Reads directly from database to discover installed extensions and configuration, not relying on potentially unstable console command output
+- **Database schema**: Reads directly from the database to discover installed extensions and configuration, not relying on potentially unstable console command output
 
 This means you can use a single Deployment Helper version across projects running different Shopware versions, and it will work correctly.

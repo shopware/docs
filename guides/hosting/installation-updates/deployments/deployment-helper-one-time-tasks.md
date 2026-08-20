@@ -78,8 +78,8 @@ vendor/bin/shopware-deployment-helper run --timeout=null
 ## Best practices for one-time tasks
 
 - **Keep them short**. If a task takes > 60s, consider moving it to a post-deploy webhook or scheduled task.
-- **Fail loudly**. Exit with a non-zero code if something goes wrong so the deployment fails and the task is retried.
-- **Idempotent**. Make sure re-running the task is safe. If it's marked done but you re-run it, it should not corrupt data.
+- **Fail loudly**. Exit with a non-zero code if something goes wrong, so the deployment fails and the task is retried.
+- **Idempotent**. Make sure re-running the task is safe. If it's marked done, but you re-run it, it should not corrupt data.
 - **Test in staging first**. Run the task in a staging deployment before pushing to production.
 - **Remove completed tasks**. Once a task is done and verified safe, remove it from the config to keep the task list clean for future developers.
 

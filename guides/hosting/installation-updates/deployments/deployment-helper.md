@@ -76,7 +76,7 @@ graph TD
     T --> U[End];
 ```
 
-### Fresh install vs update flow
+### Fresh install vs. update flow
 
 **Fresh install** (Shopware not yet installed):
 
@@ -91,21 +91,21 @@ graph TD
 **Update** (Shopware already installed):
 
 1. Runs `system:update:finish` (migrations) **only if Shopware version changed**
-2. If same version redeployed, skips migrations entirely
-3. Refreshes plugins and apps from codebase
+2. If the same version is redeployed, skips migrations entirely
+3. Refreshes plugins and apps from the codebase
 4. Installs new extensions, updates outdated ones, deactivates/removes as configured
 5. Compiles themes (unless skipped)
 6. Runs one-time tasks (if any)
 7. Runs post-update hooks
 
-**Detection**: Shopware is considered installed if database has `system_config` table, at least one user, and at least one sales channel.
+**Detection**: Shopware is considered installed if the database has `system_config` table, at least one user, and at least one sales channel.
 
 ### Maintenance mode scope and duration
 
 When `deployment.maintenance.enabled: true`, maintenance mode is **toggled only during the update step** (`system:update:finish`):
 
 1. **Enabled before** `system:update:finish` runs
-2. **Cache cleared** to ensure banner is visible
+2. **Cache cleared** to ensure the banner is visible
 3. Migrations/updates run
 4. **Disabled after** updates complete
 5. **Cache cleared again** to restore storefront visibility
@@ -162,7 +162,7 @@ The Deployment Helper sets up Shopware when it is not installed, installs the ex
 
 - [Environment and Database Setup](deployment-helper-environment.md): Prerequisites, database, environment variables
 - [Store Authentication and License](deployment-helper-store.md): If using apps, set up store credentials first
-- [Extensions and Apps](deployment-helper-extensions.md): Understanding apps vs plugins and extension lifecycle
+- [Extensions and Apps](deployment-helper-extensions.md): Understanding apps vs. plugins and extension lifecycle
 
 ## Configuration and operation
 

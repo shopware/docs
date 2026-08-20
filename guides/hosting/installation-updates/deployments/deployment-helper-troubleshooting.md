@@ -66,7 +66,7 @@ A one-time task is only recorded as done after it **succeeds completely**. If it
 
 Returns a table showing which tasks completed, which failed, and when.
 
-If the task's logic has already been applied manually and you want to stop it from re-running:
+If the task's logic has already been applied manually, and you want to stop it from re-running:
 
 ```bash
 ./vendor/bin/shopware-deployment-helper one-time-task:mark <id>
