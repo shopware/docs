@@ -72,8 +72,18 @@ If you look for the old documentation and examples, you can find it [here](https
 
 ::: info
 Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box.
-Make sure to create a Symfony configuration to make it configurable again, as shown in the [trusted_env.yaml example](https://github.com/shopware/recipes/blob/main/shopware/docker/0.1/config/packages/trusted_env.yaml).
+Set `SYMFONY_TRUSTED_PROXIES` in your `.env` file instead:
 :::
+
+```bash
+SYMFONY_TRUSTED_PROXIES=127.0.0.1,10.0.0.0/8
+```
+
+To trust the immediately connecting address, use `REMOTE_ADDR`:
+
+```bash
+SYMFONY_TRUSTED_PROXIES=REMOTE_ADDR
+```
 
 For the most part, using Symfony and Varnish doesn't cause any problem.
 But when a request passes through a proxy, certain request information is sent using either the *standard Forwarded* header or *X-Forwarded* headers.
