@@ -14,7 +14,10 @@ Migrations are PHP classes used to manage incremental database schema changes. S
 To add your own database migrations for your plugin, you first need a plugin as a base. Therefore, you can refer to the [Plugin Base Guide](../plugin-base-guide.md).
 
 ::: info
-Refer to this video on **[Database migrations](https://www.youtube.com/watch?v=__pWwaK6lxw)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+For more free learning, refer to our learning path - **Shopware Backend Development Intermediate**
+
+- **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)** for plugin lifecycle and migration handling,
+- **[Creating Entities](https://hub.shopware.com/learn/unit/creating-entities)** for migrations generated from custom entity definitions.
 :::
 
 ## File structure
@@ -87,8 +90,8 @@ class Migration1611740369ExampleDescription extends MigrationStep
 
 As you can see, your migration contains two methods:
 
-* `getCreationTimestamp()`
-* `update()`
+- `getCreationTimestamp()`
+- `update()`
 
 There is no need to change `getCreationTimestamp()`, it returns the timestamp that's also part of the file name. Implement **all** schema and data changes for the plugin in `update()`. That method is what Shopware runs automatically when the plugin is installed or updated.
 
