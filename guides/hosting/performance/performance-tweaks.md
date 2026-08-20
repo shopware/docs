@@ -303,7 +303,7 @@ By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#t
 This can be an overhead when the system is under load.
 Therefore, make sure that you disable the `auto_setup` in the connection URL like so: `redis://localhost?auto_setup=false`.
 That query parameter can be passed to all transports.
-After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
+After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper/index.md) it will do that for you.
 
 ## Disable Product Stream Indexer
 

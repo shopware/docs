@@ -47,7 +47,7 @@ As a rule of thumb: use raw `bin/console` commands for direct local or diagnosti
 
 - `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../../resources/references/core-reference/commands-reference.md).
 
-- [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md): Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
+- [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper/index.md): Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
 
 - [Fixture Bundle](../../../guides/development/tooling/fixture-bundle.md): Seed development environments with demo and test data.
 

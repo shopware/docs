@@ -15,7 +15,7 @@ nav:
 - uploading and maintaining extensions in the Shopware Store
 - running CI/CD pipelines for Shopware-based solutions
 
-**CI/CD workflow:** Shopware CLI builds and prepares your deployment artifact. Then, the [Deployment Helper](../../../guides/hosting/installation-updates/deployments/deployment-helper.md) handles the deploy phase: installing Shopware, managing extensions, and running migrations on the target environment.
+**CI/CD workflow:** Shopware CLI builds and prepares your deployment artifact. Then, the [Deployment Helper](../../../guides/hosting/installation-updates/deployments/deployment-helper/index.md) handles the deploy phase: installing Shopware, managing extensions, and running migrations on the target environment.
 
 For GitHub Actions, GitLab CI, and Docker examples, see [CI/CD and development environments](installation.md#cicd-and-development-environments).
 

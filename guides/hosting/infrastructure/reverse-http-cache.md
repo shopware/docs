@@ -200,7 +200,7 @@ shopware:
 
 ### Fastly VCL Snippets
 
-You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets and keep them up to date](../installation-updates//deployments/deployment-helper.md).
+You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets and keep them up to date](../installation-updates//deployments/deployment-helper/index.md).
 
 For manual deployment, you can find the VCL Snippets here:
 
