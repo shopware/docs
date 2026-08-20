@@ -130,7 +130,7 @@ The following example shows how to assign cookies to the **Marketing group**:
 
 ## Showing cookies conditionally
 
-Cookies declared in the `manifest.xml` are shown on every sales channel. If your cookies are only relevant under certain conditions, for example a payment provider cookie that is only needed when the corresponding payment method is active in the current sales channel, you can remove them again with an app script for the `cookie-group-collect` hook.
+Cookies declared in `manifest.xml` are shown across all sales channels. If your cookies are only relevant under certain conditions, for example, a payment provider cookie that is only needed when the corresponding payment method is active in the current sales channel, you can remove them again with an app script for the `cookie-group-collect` hook.
 
 The hook is triggered whenever the cookie consent groups are collected. It gives you access to the collected cookie groups of all extensions, so your script can remove your own groups and entries based on any condition you can express in a script:
 
@@ -152,7 +152,7 @@ The hook is triggered whenever the cookie consent groups are collected. It gives
 {% endif %}
 ```
 
-Since the script runs after all cookies were collected, the entries declared in your `manifest.xml` are already present and can be removed by their cookie name. Groups are indexed by their `snippet-name`, entries by their cookie name.
+Since the script runs after all cookies have been collected, the entries declared in your `manifest.xml` are already present and can be removed by their cookie names. Groups are indexed by their `snippet-name`, entries by their cookie name.
 
 The `store` service searches within the current sales channel, so the example above does not need an explicit sales channel filter. The handler identifier of an app payment method follows the pattern `app\{AppName}_{identifier}`, where `identifier` is the `<identifier>` of the payment method in your `manifest.xml`.
 
