@@ -53,7 +53,7 @@ Your environment at a glance:
 
 - **Shop** - Shopware version, environment type (`docker`, `local`, or `symfony-cli`), shop and admin URLs, and security update expiry date
 - **Access** - URLs, usernames, and passwords for Shop Admin, Adminer, and Mailpit
-- **Setup health** - runtime checks (PHP version, memory limit), local behavior warnings, and debug settings, each showing the current value against the recommended one
+- **Setup health** - runtime checks (PHP version and memory limit of the project executor — the web container for Docker projects), local behavior warnings, and debug settings, each showing the current value against the recommended one. Runtime memory is not the same as host PHP used by a local `composer` binary
 
 **Right panel:**
 
@@ -122,10 +122,10 @@ After you confirm, the wizard:
 
 ### After the wizard completes
 
-If `shopware/deployment-helper` was added to `composer.json`, you'll be prompted to run:
+If `shopware/deployment-helper` was added to `composer.json`, you'll be prompted to install dependencies. With the Docker environment type, run Composer **inside** the web container so PHP uses the container memory limit and database connection:
 
 ```bash
-composer install
+docker compose exec web composer install
 ```
 
 This pulls in the helper package, which the dashboard uses to run the Shopware installer. After that, the environment starts automatically.
@@ -172,6 +172,46 @@ swx cache:clear
 swx plugin:refresh
 swx dal:refresh:index
 ```
+
+## Running Composer, PHP, and npm
+
+The project directory is bind-mounted into the `web` container (`.:/var/www/html`), so you can edit files on the host. That mount does **not** mean host PHP and Composer share the container environment.
+
+With the Docker-based development environment (`environments.local.type: docker`), run Composer, PHP, and npm **inside** the `web` container. The container has the correct PHP version, `memory_limit`, extensions, and network access to services such as the database.
+
+```bash
+# Open an interactive shell in the web container
+docker compose exec web bash
+
+# Or run a single command without an interactive shell
+docker compose exec web composer require shopware/docker
+docker compose exec web composer install
+docker compose exec web php -i | grep memory_limit
+```
+
+Prefer a higher-level Shopware CLI command when one exists. For example, use `shopware-cli project console` instead of calling `bin/console` yourself, and use `shopware-cli project admin-watch` / `storefront-watch` instead of npm watch scripts.
+
+::: warning
+Running `composer` on the host with a typical local PHP install often fails. Host PHP commonly defaults to `memory_limit=128M`, while Shopware needs **at least 512M**. Composer scripts may also try to boot Shopware and connect to the database, which is only available inside the Docker network.
+
+The **Setup health → Runtime → Memory limit** check in the development TUI reports the PHP used by the project executor (the container for Docker projects), not your host PHP. A green runtime check does not mean host-side Composer is safe.
+:::
+
+### PHP memory limit (when you run PHP on the host)
+
+If you use a local or Symfony CLI environment instead of Docker, or you intentionally run Composer on the host, configure CLI PHP with:
+
+```ini
+memory_limit = 512M
+```
+
+Verify with:
+
+```bash
+php -i | grep memory_limit
+```
+
+See the [recommended stack and supported versions](../hosting/index.md#recommended-stack-and-supported-versions) for the full PHP requirements (`memory_limit ≥ 512M`, extensions, and related settings).
 
 ## Docker services
 
@@ -313,6 +353,18 @@ Check logs with `shopware-cli project logs -f` or from the Instance tab in the T
 ### Shopware isn't installed
 
 The development TUI's initialization wizard, which mirrors steps in Shopware's in-browser First Run Wizard, prompts you to run the installer. It uses `shopware/deployment-helper` to install Shopware with your chosen locale, currency, and Admin credentials.
+
+### Composer fails with "Allowed memory size of 134217728 bytes exhausted"
+
+`134217728` bytes is **128M** — the default host PHP memory limit. You almost certainly ran Composer on the host instead of in the web container.
+
+Use:
+
+```bash
+docker compose exec web composer <your-command>
+```
+
+If you must run Composer on the host, raise CLI `memory_limit` to at least `512M`. See [Running Composer, PHP, and npm](#running-composer-php-and-npm).
 
 ### Compatibility date error
 
