@@ -21,7 +21,7 @@ Beyond installing or updating Shopware, it also simplifies common tasks that are
 - Compiling the theme
 - Running custom and one-time commands
 
-For common failures and how to resolve them, see [Deployment Helper Troubleshooting](./troubleshooting.md).
+For common failures and how to resolve them, see [Troubleshooting](./troubleshooting.md).
 
 ### Why Deployment Helper exists outside the core
 
