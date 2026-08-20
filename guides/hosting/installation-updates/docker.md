@@ -292,7 +292,7 @@ The tags like `8.3-frankenphp` are *rolling* tags: over time, the same tag point
 
 ### Updating Shopware
 
-Updating Shopware itself (the `shopware/core` package and your extensions) works the same as with any other hosting method: you update the Composer dependencies in your project, rebuild the image, and redeploy. During deployment the [Deployment Helper](./deployments/deployment-helper.md) automatically runs the database migrations (`system:update:finish`) for you.
+Updating Shopware itself (the `shopware/core` package and your extensions) works the same as with any other hosting method: you update the Composer dependencies in your project, rebuild the image, and redeploy. During deployment the [Deployment Helper](./deployments/deployment-helper/index.md) automatically runs the database migrations (`system:update:finish`) for you.
 
 For the full step-by-step procedure — including backups, maintenance mode, checking extension compatibility, and the difference between small (minor) and yearly (major) updates — follow the dedicated guide:
 
