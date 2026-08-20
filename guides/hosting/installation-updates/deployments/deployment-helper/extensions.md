@@ -11,7 +11,7 @@ Deployment Helper automatically manages extensions found in `custom/plugins`, `c
 
 ## Apps vs. Plugins
 
-Deployment Helper manages two types of extensions: [apps](../../../plugins/apps/index.md) and [plugins](../../../plugins/plugins/index.md). They follow the same lifecycle but differ in how they're loaded and what they require.
+Deployment Helper manages two types of extensions: [apps](../../../../plugins/apps/index.md) and [plugins](../../../../plugins/plugins/index.md). They follow the same lifecycle but differ in how they're loaded and what they require.
 
 | Aspect                  | Plugin                                   | App                                                                               |
 |-------------------------|------------------------------------------|-----------------------------------------------------------------------------------|
@@ -106,7 +106,7 @@ shopware:
         runtime_extension_management: false
 ```
 
-See [Extension Management](../extension-management.md) for details on installing extensions via Composer.
+See [Extension Management](../../extension-management.md) for details on installing extensions via Composer.
 
 ### Option 2: Disable the Deployment Helper's extension management
 

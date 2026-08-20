@@ -28,7 +28,7 @@ When using [Shopware's Kubernetes operator](https://github.com/shopware/shopware
 
 ## Fastly integration
 
-The Deployment Helper can also deploy [Fastly VCL Snippets](../../../../products/paas/shopware/cdn/fastly-snippets.md) and keep them up to date. After installing the Deployment Helper, install the [Fastly meta package](https://github.com/shopware/fastly-meta):
+The Deployment Helper can also deploy [Fastly VCL Snippets](../../../../../products/paas/shopware/cdn/fastly-snippets.md) and keep them up to date. After installing the Deployment Helper, install the [Fastly meta package](https://github.com/shopware/fastly-meta):
 
 ```bash
 composer require shopware/fastly-meta

@@ -19,13 +19,13 @@ When you purchase a Shopware license or SaaS plan, you register a primary domain
 
 ## Why the Deployment Helper needs it
 
-When Shopware installs or updates an [app](../../../../concepts/extensions/apps-concept.md), it must register with the Shopware registration server. This registration handshake proves that you own the license domain and are authorized to use the app. The handshake requires:
+When Shopware installs or updates an [app](../../../../../concepts/extensions/apps-concept.md), it must register with the Shopware registration server. This registration handshake proves that you own the license domain and are authorized to use the app. The handshake requires:
 
 1. Valid Shopware Account credentials (email + password, or shop secret)
 2. The license domain for that account
 3. A shop ID (unique per Shopware instance)
 
-Without a license domain, app installation fails. If you only use [plugins](../../../plugins/plugins/index.md), you don't need a license domain, but you cannot install any official Shopware apps.
+Without a license domain, app installation fails. If you only use [plugins](../../../../plugins/plugins/index.md), you don't need a license domain, but you cannot install any official Shopware apps.
 
 ## Configuring store credentials
 

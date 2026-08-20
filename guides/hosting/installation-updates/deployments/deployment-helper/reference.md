@@ -9,7 +9,7 @@ nav:
 
 ## Available commands
 
-The [Deployment Helper](deployment-helper.md) ships with the following commands:
+The [Deployment Helper](index.md) ships with the following commands:
 
 | Command                        | Description                                                                                                 |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------|
