@@ -25,8 +25,7 @@ In order to build your own subscriber for your plugin, of course, you first need
 To create your own plugin, you can refer to the [Plugin Base Guide](../../plugin-base-guide.md).
 
 ::: info
-Refer to this video on **[Live coding example with product.loaded event](https://www.youtube.com/watch?v=cJDaiuyjKJk)**.
-Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+For Academy learning content on Shopware events, subscribers, and dependency injection, refer to our free course **[Events and DI](https://hub.shopware.com/learn/course/events-and-di)** from **Shopware Backend Development Intermediate** learning path.
 :::
 
 ## Creating your own subscriber
