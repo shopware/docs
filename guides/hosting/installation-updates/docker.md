@@ -128,7 +128,7 @@ In a very basic setup when all files are stored locally you need 5 volumes:
 | image thumbnails       | `/var/www/html/public/thumbnail` |
 | generated sitemap      | `/var/www/html/public/sitemap`   |
 
-Shopware logs by default to `var/log`. In Docker, configure Monolog to write to stderr so you can use `docker logs` or a logging driver to forward the logs to a logging service.
+Shopware logs by default to `var/log`. In Docker, configure Monolog to write to `stderr` so you can use `docker logs` or a logging driver to forward the logs to a logging service.
 
 Create `config/packages/prod/monolog.yaml`:
 
