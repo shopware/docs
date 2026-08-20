@@ -105,7 +105,7 @@ To apply OpenSearch globally for supported Admin API searches and listings in Ad
 Supported since Shopware `6.7.9.0`. This is an experimental feature. For implementation details and supported entities, refer to the ADR [Apply OpenSearch globally for admin-api](../../../resources/references/adr/2026-01-28-apply-opensearch-in-admin-api.md).
 :::
 
-Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup.md)
+Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup.md).
 
 ## Reduced product data in listings
 
