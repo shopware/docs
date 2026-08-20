@@ -19,7 +19,9 @@ nav:
 
 For GitHub Actions, GitLab CI, and Docker examples, see [CI/CD and development environments](installation.md#cicd-and-development-environments).
 
-Shopware CLI runs on macOS, Linux, and via Docker. For system-level requirements (PHP, DB, memory, etc.) see the [System Requirements](../../../guides/installation/system-requirements.md). Windows users should use WSL 2 or Docker. (See [Installation Options](installation.md) page for Windows details.)
+Shopware CLI runs on macOS, Linux, and via Docker. For workstation hardware requirements, see the [System Requirements](../../../guides/installation/system-requirements.md). For PHP and stack requirements — including **`memory_limit ≥ 512M`** — see the [recommended stack](../../../guides/hosting/index.md#recommended-stack-and-supported-versions). Windows users should use WSL 2 or Docker. (See [Installation Options](installation.md) page for Windows details.)
+
+When you use the Docker-based development environment, run Composer and PHP tools inside the web container rather than on the host. See [Running Composer, PHP, and npm](../../../guides/development/dev-environment.md#running-composer-php-and-npm).
 
 ## Quickstart
 
