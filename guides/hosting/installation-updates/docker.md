@@ -137,7 +137,7 @@ Additionally, Redis is required for the session storage and the cache, so the Br
 
 ## Typical Setup
 
-The docker image starts in the entry point PHP-FPM / Caddy. So you will need to start a extra container to run maintenance tasks like to install Shopware, install plugins, or run the update. This can be done by installing the [Deployment Helper](./deployments/deployment-helper.md) and creating one container and running as entry point `/setup`
+The docker image starts in the entry point PHP-FPM / Caddy. So you will need to start a extra container to run maintenance tasks like to install Shopware, install plugins, or run the update. This can be done by installing the [Deployment Helper](./deployments/deployment-helper/index.md) and creating one container and running as entry point `/setup`
 
 Here we have an example of a `compose.yaml`, what the services could look like:
 
