@@ -75,7 +75,7 @@ Change `INSTALL_ADMIN_PASSWORD` from the default immediately. The default is a s
 | `DATABASE_SSL_KEY`                     | No       | Path to TLS client key                                                   |
 | `DATABASE_SSL_DONT_VERIFY_SERVER_CERT` | No       | Set to any value to skip server-certificate verification (dev/test only) |
 
-See [SSL/TLS Setup](../../infrastructure/database.md#ssltls-connection) for certificate details.
+See [SSL/TLS Setup](../../../infrastructure/database.md#ssltls-connection) for certificate details.
 
 ### Deployment control
 
