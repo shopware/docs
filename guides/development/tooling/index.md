@@ -55,4 +55,4 @@ As a rule of thumb: use raw `bin/console` commands for direct local or diagnosti
 
 - [Shopware CLI](../../../products/tools/cli/index.md): The central command-line tool for working with Shopware projects and extensions, including scaffolding, builds, validation, packaging, Store interaction, CI support, and development workflows such as watchers and [formatting](../../../products/tools/cli/formatter.md).
 
-- [MCP Server](./mcp-server/index.md): A native Model Context Protocol server that lets AI clients (Claude Desktop, Cursor, Claude Code) interact with a Shopware shop through tools, resources, and prompts. Extensible via plugins and apps.
+- [MCP Server](../../../products/tools/mcp-server/index.md): A native Model Context Protocol server that lets AI clients (Claude Desktop, Cursor, Claude Code) interact with a Shopware shop through tools, resources, and prompts. Extensible via plugins and apps.
