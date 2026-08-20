@@ -72,15 +72,17 @@ If you look for the old documentation and examples, you can find it [here](https
 
 ::: info
 Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box.
-Create `config/packages/trusted_env.yaml` to make it configurable again:
+Set `SYMFONY_TRUSTED_PROXIES` in your `.env` file instead:
 :::
 
-```yaml
-parameters:
-    env(TRUSTED_PROXIES): ''
+```bash
+SYMFONY_TRUSTED_PROXIES=127.0.0.1,10.0.0.0/8
+```
 
-framework:
-    trusted_proxies: '%env(TRUSTED_PROXIES)%'
+To trust the immediately connecting address, use `REMOTE_ADDR`:
+
+```bash
+SYMFONY_TRUSTED_PROXIES=REMOTE_ADDR
 ```
 
 For the most part, using Symfony and Varnish doesn't cause any problem.
