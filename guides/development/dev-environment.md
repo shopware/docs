@@ -290,6 +290,10 @@ environments:
       password: shopware
 ```
 
+## Local domains
+
+Instead of a fixed port, a project can be reached at a stable hostname like `https://my-shop.shopware.local` through a shared local proxy. Pass `--local-domain` to `shopware-cli project create`, or run `shopware-cli project proxy up` to opt an existing project in. See [Local Proxy](../../products/tools/cli/project-commands/local-proxy.md) for setup and details.
+
 ## Ports
 
 The web container exposes these ports by default:
