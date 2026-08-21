@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Scaffolding and generator troubleshooting
+  title: Scaffolding and Generator Troubleshooting
   position: 25
 
 ---
 
-# Scaffolding and generator troubleshooting
+# Scaffolding and Generator Troubleshooting
 
 Shopware's plugin scaffolding is designed to give developers a useful starting point, but generated files are often part of a larger feature. A PHP class, JavaScript module, configuration entry, route import, or service definition may each be valid on its own while the feature still is not discoverable or usable.
 
