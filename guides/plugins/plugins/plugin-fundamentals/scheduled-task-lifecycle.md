@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Scheduled task lifecycle
+  title: Scheduled Task Lifecycle
   position: 105
 ---
 
-# Scheduled task lifecycle
+# Scheduled Task Lifecycle
 
 A scheduled task must be discovered, registered, persisted, scheduled, and eventually executed through Shopware's task runner and message queue.
 

@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Storefront JavaScript plugin lifecycle
+  title: Storefront JavaScript Plugin Lifecycle
   position: 45
 ---
 
-# Storefront JavaScript plugin lifecycle
+# Storefront JavaScript Plugin Lifecycle
 
 A Storefront JavaScript plugin connects a plugin class, the Storefront entry point, `PluginManager`, a DOM selector, a Twig hook, the asset build, and runtime initialization.
 

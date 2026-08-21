@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Administration module lifecycle
+  title: Administration Module Lifecycle
   position: 15
 ---
 
-# Administration module lifecycle
+# Administration Module Lifecycle
 
 An Administration module connects an entry point, module registration, routes, page components or templates, snippets, the Administration build, and the UI.
 
