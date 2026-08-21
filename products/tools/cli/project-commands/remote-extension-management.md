@@ -12,7 +12,7 @@ Shopware CLI provides a CLI wrapper around Shopware's built-in extension managem
 This is one of the most commonly used command families in Shopware CLI, especially with Shopware SaaS customers who use it to automate extension uploads and lifecycle management directly to their hosted shops without needing the Admin UI.
 
 ::: info
-This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer](../../../../guides/hosting/installation-updates/deployments/deployment-helper.md)
+This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer](../../../../guides/hosting/installation-updates/deployments/deployment-helper/index.md)
 :::
 
 To use the extension manager, you need a `.shopware-project.yml` or set environment variables. See here for more information about the [Fixture Bundle](../../../../guides/development/tooling/fixture-bundle.md).

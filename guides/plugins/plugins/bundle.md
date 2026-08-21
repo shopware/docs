@@ -176,7 +176,7 @@ Since bundles don't have a lifecycle, migrations aren't automatically executed. 
 bin/console database:migrate <BundleName> --all
 ```
 
-If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md), you can add it to the `.shopware-project.yaml` file:
+If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper/index.md), you can add it to the `.shopware-project.yaml` file:
 
 ```yaml
 deployment:
@@ -214,4 +214,10 @@ Also check out these useful videos:
 
 * [Bundle Methods in a plugin](https://www.youtube.com/watch?v=cUXcDwQwmPk)
 * [Symfony services in Shopware 6](https://www.youtube.com/watch?v=l5QJ8EtilaY)
-* The free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma)
+
+For related Academy learnings on plugin lifecycle and services, see
+
+* **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)**
+* **[Dependency Injection and Services](https://hub.shopware.com/learn/unit/dependency-injection-and-services)**
+
+from the free **Shopware Backend Development Intermediate** learning path.
