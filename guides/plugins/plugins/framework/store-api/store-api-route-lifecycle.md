@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Store API route lifecycle
+  title: Store API Route Lifecycle
   position: 15
 ---
 
-# Store API route lifecycle
+# Store API Route Lifecycle
 
 A Store API route crosses several independent boundaries:
 

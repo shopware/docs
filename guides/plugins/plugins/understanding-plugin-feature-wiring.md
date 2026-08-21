@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Understanding plugin feature wiring
+  title: Understanding Plugin Feature Wiring
   position: 25
 ---
 
-# Understanding plugin feature wiring
+# Understanding Plugin Feature Wiring
 
 A Shopware plugin feature is usually a chain of coordinated pieces rather than one file. Understanding that chain makes generated code easier to adapt and failures much faster to localize.
 
@@ -70,10 +70,10 @@ Build commands compile assets. Cache clears refresh runtime-discovered configura
 
 The following pages explain how the pieces of larger extension points connect from source to runtime:
 
-- [Storefront JavaScript plugin lifecycle](./storefront/javascript/storefront-javascript-plugin-lifecycle.md)
-- [Administration module lifecycle](./administration/module-component-management/administration-module-lifecycle.md)
-- [Store API route lifecycle](./framework/store-api/store-api-route-lifecycle.md)
-- [Scheduled task lifecycle](./plugin-fundamentals/scheduled-task-lifecycle.md)
+- [Storefront JavaScript Plugin Lifecycle](./storefront/javascript/storefront-javascript-plugin-lifecycle.md)
+- [Administration Module Lifecycle](./administration/module-component-management/administration-module-lifecycle.md)
+- [Store API Route Lifecycle](./framework/store-api/store-api-route-lifecycle.md)
+- [Scheduled Task Lifecycle](./plugin-fundamentals/scheduled-task-lifecycle.md)
 
 Each lifecycle page links to the corresponding implementation guide and includes troubleshooting at the boundaries where failures commonly occur.
 
