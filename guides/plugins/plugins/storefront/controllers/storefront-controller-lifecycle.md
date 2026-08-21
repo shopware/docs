@@ -10,7 +10,7 @@ nav:
 A Storefront controller becomes a working URL only after several independent pieces agree: the controller class, its route attributes, a routing import, a service definition, and a cleared container.
 
 ```text
-controller class â route attributes â routes.php import â service registration â router â cache â request
+controller class → route attributes → routes.php import → service registration → router → cache → request
 ```
 
 For implementation, see [Add Custom Controller](./add-custom-controller.md).
@@ -30,10 +30,10 @@ A discovered route still does not prove that the controller can be constructed. 
 ## Troubleshooting by boundary
 
 ```text
-route absent from debug:router â route attributes or missing routes.php import
-route discovered, HTTP 500 with no container â controller not registered as a service
-service registered, container error â missing service() import or wrong class reference
-route reachable, wrong output â controller implementation or Twig template
+route absent from debug:router → route attributes or missing routes.php import
+route discovered, HTTP 500 with no container → controller not registered as a service
+service registered, container error → missing service() import or wrong class reference
+route reachable, wrong output → controller implementation or Twig template
 ```
 
 Clear the cache after changing routing or service configuration:
