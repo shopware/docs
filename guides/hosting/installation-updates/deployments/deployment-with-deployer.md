@@ -40,7 +40,7 @@ The structure looks like this:
 
 Suppose you haven't used such a structure yet, it is recommended to move the current document root contents to a different location because you will have to copy some existing files into the `shared` folder after your first deployment with [Deployer](https://deployer.org/).
 
-For more information, refer to [Migrating existing instance to Deployer structure](deployment-with-deployer.md#migrating-existing-instance-to-deployer-structure).
+For more information, refer to [Migrating existing instance to Deployer structure](deployment-with-deployer.md#migrating-an-existing-instance-to-deployer-structure).
 
 ### Webserver configuration
 
@@ -179,7 +179,7 @@ $ dep deploy env=prod
 Successfully deployed!
 ```
 
-## Migrating existing instance to Deployer structure
+## Migrating an existing instance to Deployer structure
 
 After the very first deployment with Deployer, you have to copy some files and directories from your existing Shopware instance into the directory structure, that was created by Deployer.
 

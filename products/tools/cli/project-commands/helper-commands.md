@@ -50,6 +50,8 @@ shopware-cli project dev stop
 shopware-cli project logs
 ```
 
+With Docker projects, run Composer and other PHP tools **inside** the web container (`docker compose exec web composer <command>`), not on the host. Host PHP often has a too-low `memory_limit` (Shopware needs at least `512M`). Details: [Running Composer, PHP, and npm](../../../../guides/development/dev-environment.md#running-composer-php-and-npm).
+
 ## Replacements to include in shell scripts
 
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.

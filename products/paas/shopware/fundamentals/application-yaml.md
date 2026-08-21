@@ -72,6 +72,13 @@ app:
     version: "8.3"
 ```
 
+#### PHP supported versions
+
+- `8.2`
+- `8.3`
+- `8.4`
+- `8.5`
+
 ### `app.php.extensions`
 
 The PHP extensions to install during build time. We use [this](https://github.com/mlocati/docker-php-extension-installer) installer to install extensions.
@@ -116,7 +123,7 @@ For more details, see the [Environment variables](./environment-variables.md) pa
 
 ### `services.mysql`
 
-Configures the managed MySQL database. Shopware PaaS Native supports MySQL versions `8.0` and `8.4`.
+Configures the managed MySQL database.
 
 ```yaml
 services:
@@ -124,7 +131,14 @@ services:
     version: "8.4"
 ```
 
+#### MySQL supported versions
+
+- `8.0`
+- `8.4`
+
+::: warning
 Once MySQL `8.4` has been configured, downgrading to MySQL `8.0` is not possible.
+:::
 
 ### `services.opensearch`
 
@@ -137,3 +151,21 @@ services:
 ```
 
 After enabling OpenSearch, update your application and reindex your data. See [How to set up OpenSearch](../guides/opensearch.md) for the full steps.
+
+### `services.fastly`
+
+Configures the Fastly CDN integration.
+
+```yaml
+services:
+  fastly:
+    disable_default_snippets: false
+    snippets_path: config/fastly
+```
+
+| Option                     | Default | Description                                                                                                |
+|----------------------------|---------|------------------------------------------------------------------------------------------------------------|
+| `snippets_path`            | unset   | Directory (relative to the repository root) containing your custom VCL snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
+| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services |
+
+The directory must contain one sub-directory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.

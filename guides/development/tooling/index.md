@@ -47,7 +47,7 @@ As a rule of thumb: use raw `bin/console` commands for direct local or diagnosti
 
 - `bin/console`: Shopware's built-in CLI, used for installing and activating plugins, running database migrations, clearing caches, executing scheduled tasks, and inspecting system state. See [command reference guide](../../../resources/references/core-reference/commands-reference.md).
 
-- [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md): Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
+- [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper/index.md): Supports database and maintenance operations for deployments (e.g., migrations, cache handling).
 
 - [Fixture Bundle](../../../guides/development/tooling/fixture-bundle.md): Seed development environments with demo and test data.
 
@@ -55,4 +55,4 @@ As a rule of thumb: use raw `bin/console` commands for direct local or diagnosti
 
 - [Shopware CLI](../../../products/tools/cli/index.md): The central command-line tool for working with Shopware projects and extensions, including scaffolding, builds, validation, packaging, Store interaction, CI support, and development workflows such as watchers and [formatting](../../../products/tools/cli/formatter.md).
 
-- [MCP Server](./mcp-server/index.md): A native Model Context Protocol server that lets AI clients (Claude Desktop, Cursor, Claude Code) interact with a Shopware shop through tools, resources, and prompts. Extensible via plugins and apps.
+- [MCP Server](../../../products/tools/mcp-server/index.md): A native Model Context Protocol server that lets AI clients (Claude Desktop, Cursor, Claude Code) interact with a Shopware shop through tools, resources, and prompts. Extensible via plugins and apps.
