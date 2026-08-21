@@ -59,7 +59,7 @@ For extension validation, see [Validation](./validation.md).
 
 ## Limitations
 
-The Administration migration rules are deliberately bounded.
+The [Administration migration](../../../guides/upgrades-migrations/administration/index.md) rules are deliberately bounded.
 
 The CLI does not attempt to:
 
@@ -70,8 +70,3 @@ The CLI does not attempt to:
 
 Manual review is still required for Administration changes that are not covered by a deterministic rule.
 
-## Related documentation
-
-- [Automatic refactoring](./automatic-refactoring.md)
-- [Validation](./validation.md)
-- [Administration migrations](../../../guides/upgrades-migrations/administration/index.md)
