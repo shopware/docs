@@ -207,7 +207,7 @@ SHOPWARE_ADMIN_ES_THROW_EXCEPTION=1
 ```
 
 ::: info
-`SHOPWARE_ADMIN_ES_REFRESH_INDICES=1` makes Shopware create missing administration indices and aliases on the fly when an indexed entity is written, instead of relying on `bin/console es:admin:index`. Enable it in environments where nobody runs CLI commands after installing an extension or replacing the search cluster. It adds one alias check per indexer to every write, and an index created this way stays empty until a full reindex, so prefer `0` together with `bin/console es:admin:index` in your deployment pipeline.
+`SHOPWARE_ADMIN_ES_REFRESH_INDICES=1` makes Shopware create missing administration indices and aliases on the fly when an indexed entity is written, instead of relying on `bin/console es:admin:index`. Enable it in environments where nobody runs CLI commands after installing an extension or replacing the search cluster. It adds one alias check per indexer on every write, and an index created this way stays empty until a full reindex, so prefer `0` together with `bin/console es:admin:index` in your deployment pipeline.
 :::
 
 Also, the CLI commands can be used as below:
