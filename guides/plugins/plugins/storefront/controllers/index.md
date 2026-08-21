@@ -50,3 +50,7 @@ Caching:
 
 * Use Symfony flash bags for error reporting.
 * Storefront functionality should be available inside the Store API too.
+
+## Next steps
+
+For implementation, see [Add Custom Controller](add-custom-controller.md). The [Storefront Controller Lifecycle](storefront-controller-lifecycle.md) explains how the controller class, route attributes, routing import, service registration, and cache connect, and where a controller can exist without being reachable.

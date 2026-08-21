@@ -28,7 +28,7 @@ This guide outlines the typical development flow when creating a Shopware plugin
 
 Most steps above can be generated instead of written by hand:
 
-* `bin/console plugin:create` scaffolds the plugin; see the [Creating Plugins guide](creating-plugins.md)
+* `bin/console plugin:create` scaffolds the plugin; see the [Creating Plugins guide](creating-plugins.md); [Understanding Plugin Feature Wiring](understanding-plugin-feature-wiring.md) explains how generated pieces connect
 * The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) generates plugins, subscribers, scheduled tasks, migrations, and Administration modules from PHPStorm, using file templates you can adapt to your own conventions
 
 ## Upgrade readiness

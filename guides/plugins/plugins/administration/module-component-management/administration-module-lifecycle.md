@@ -2,6 +2,7 @@
 nav:
   title: Administration Module Lifecycle
   position: 15
+
 ---
 
 # Administration Module Lifecycle
@@ -30,8 +31,8 @@ A successful build proves compilation. After rebuilding, refresh the Administrat
 
 ## Troubleshooting by boundary
 
-If the build succeeds but the module is missing, inspect the `main.js` import, module registration, navigation path, and snippets before changing the page component.
+When the build succeeds and the module is still missing, inspect the `main.js` import, module registration, navigation path, and snippets before changing the page component.
 
-If the module appears but its route fails, inspect route-to-component wiring.
+When the module appears and its route fails, inspect route-to-component wiring.
 
 When adding generated code to an existing plugin, preserve existing imports, routes, snippets, and unrelated modules rather than replacing the module graph.

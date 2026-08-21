@@ -2,6 +2,7 @@
 nav:
   title: Understanding Plugin Feature Wiring
   position: 25
+
 ---
 
 # Understanding Plugin Feature Wiring
@@ -54,9 +55,13 @@ When a class is not found, compare the Composer PSR-4 prefix, PHP namespace, and
 
 Many plugin features are services. Tags such as `kernel.event_subscriber`, `console.command`, and `shopware.scheduled.task` tell Symfony and Shopware how the service participates in the framework.
 
+Service configuration is a separate boundary from the class itself. A correct PHP class whose service definition references a different class name fails at registration, and Shopware may only surface that mismatch later, when the plugin is activated.
+
 ### Routes
 
 Use `debug:router` to prove route discovery, then make a real request to prove reachability. A missing route, container-construction error, authentication response, and endpoint exception are different failure boundaries.
+
+A plugin does not have routing configuration until something adds it. A controller class can be present and correct while its route is undiscoverable because no `routes.php` imports it.
 
 ### Configuration
 
@@ -70,6 +75,7 @@ Build commands compile assets. Cache clears refresh runtime-discovered configura
 
 The following pages explain how the pieces of larger extension points connect from source to runtime:
 
+- [Storefront Controller Lifecycle](./storefront/controllers/storefront-controller-lifecycle.md)
 - [Storefront JavaScript Plugin Lifecycle](./storefront/javascript/storefront-javascript-plugin-lifecycle.md)
 - [Administration Module Lifecycle](./administration/module-component-management/administration-module-lifecycle.md)
 - [Store API Route Lifecycle](./framework/store-api/store-api-route-lifecycle.md)
