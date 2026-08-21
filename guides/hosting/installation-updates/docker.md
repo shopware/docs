@@ -110,7 +110,7 @@ The Docker image contains the following PHP extensions: `bcmath`, `gd`, `intl`, 
 
 This table contains only the environment variables that are specific to the Shopware Docker image. You can see all Shopware specific environment variables [here](../configurations/shopware/environment-variables.md)
 
-Additionally, you can use also the [Deployment Helper environment variables](./deployments/deployment-helper.md#environment-variables) to specify default administration credentials, locale, currency, and sales channel URL.
+Additionally, you can use also the [Deployment Helper environment variables](./deployments/deployment-helper/environment.md#environment-variables) to specify default administration credentials, locale, currency, and sales channel URL.
 
 ## Possible Mounts
 
@@ -164,7 +164,7 @@ Additionally, Redis is required for the session storage and the cache, so the Br
 
 ## Typical Setup
 
-The docker image starts in the entry point PHP-FPM / Caddy. So you will need to start a extra container to run maintenance tasks like to install Shopware, install plugins, or run the update. This can be done by installing the [Deployment Helper](./deployments/deployment-helper.md) and creating one container and running as entry point `/setup`
+The docker image starts in the entry point PHP-FPM / Caddy. So you will need to start a extra container to run maintenance tasks like to install Shopware, install plugins, or run the update. This can be done by installing the [Deployment Helper](./deployments/deployment-helper/index.md) and creating one container and running as entry point `/setup`
 
 Here we have an example of a `compose.yaml`, what the services could look like:
 
@@ -319,7 +319,7 @@ The tags like `8.3-frankenphp` are *rolling* tags: over time, the same tag point
 
 ### Updating Shopware
 
-Updating Shopware itself (the `shopware/core` package and your extensions) works the same as with any other hosting method: you update the Composer dependencies in your project, rebuild the image, and redeploy. During deployment the [Deployment Helper](./deployments/deployment-helper.md) automatically runs the database migrations (`system:update:finish`) for you.
+Updating Shopware itself (the `shopware/core` package and your extensions) works the same as with any other hosting method: you update the Composer dependencies in your project, rebuild the image, and redeploy. During deployment the [Deployment Helper](./deployments/deployment-helper/index.md) automatically runs the database migrations (`system:update:finish`) for you.
 
 For the full step-by-step procedure — including backups, maintenance mode, checking extension compatibility, and the difference between small (minor) and yearly (major) updates — follow the dedicated guide:
 

@@ -804,6 +804,7 @@ PluginManager
 PositionID
 PositionIDs
 PositionIdentifier
+PostDeploy
 PostInstall
 PostMessage
 PostUpdate
@@ -1588,6 +1589,7 @@ guid
 gz
 gzip
 handleFlow
+hardcode
 hardcoded
 hasError
 hasOwnProperty

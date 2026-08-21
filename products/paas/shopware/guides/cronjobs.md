@@ -256,7 +256,7 @@ The short alias `cron` is also supported:
 sw-paas application cron logs
 ```
 
-The command prints a Grafana Explore URL at the end so you can continue investigating the same cron job run in Grafana. For advanced log filters and Grafana access, see [Logs](../monitoring/logs).
+The command prints a Grafana Explore URL at the end so you can continue investigating the same cron job run in Grafana. For advanced log filters and Grafana access, see [Logs](../monitoring/logs.md).
 
 ## Specifying Organization, Project, and Application
 

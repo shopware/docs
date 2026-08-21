@@ -21,7 +21,7 @@ To enable this, set `SHOPWARE_HTTP_CACHE_ENABLED=1` in the `.env`
 
 ### Reverse proxy cache
 
-When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache) like Varnish.
+When you have many app servers, you should consider using a [reverse proxy cache](../infrastructure/reverse-http-cache.md) like Varnish.
 Shopware offers a default configuration for Varnish out-of-the-box and a [Varnish Docker image](https://github.com/shopware/varnish-shopware) for development.
 
 ### Logged-in / cart-filled
@@ -86,7 +86,7 @@ The DAL (Data Abstraction Layer) has been designed suitably to provide developer
 However, features in such a system come at the cost of performance.
 Therefore, using DBAL (plain SQL) is much faster than using the DAL in many scenarios, especially when it comes to internal processes, where often only one ID of an entity is needed.
 
-Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal).
+Refer to this article to know more on [when to use plain SQL and DAL](../../../resources/references/adr/2021-05-14-when-to-use-plain-sql-or-dal.md).
 
 ## Elasticsearch/OpenSearch
 
@@ -105,7 +105,7 @@ To apply OpenSearch globally for supported Admin API searches and listings in Ad
 Supported since Shopware `6.7.9.0`. This is an experimental feature. For implementation details and supported entities, refer to the ADR [Apply OpenSearch globally for admin-api](../../../resources/references/adr/2026-01-28-apply-opensearch-in-admin-api.md).
 :::
 
-Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup)
+Read more on [Elasticsearch setup](../infrastructure/elasticsearch/elasticsearch-setup.md).
 
 ## Reduced product data in listings
 
@@ -138,27 +138,27 @@ If you ever wonder why it is in `prod`, take a look into the [Symfony configurat
 
 ## Increment storage
 
-The [Increment storage](../performance/increment) is used to store the state and display it in the Administration.
+The [Increment storage](./increment.md) is used to store the state and display it in the Administration.
 This storage increments or decrements a given key in a transaction-safe way, which causes locks upon the storage.
-Therefore, we recommend moving this source of server load to a separate Redis, as described in [Increment storage Redis configuration](./increment#redis-configuration).  
+Therefore, we recommend moving this source of server load to a separate Redis, as described in [Increment storage Redis configuration](./increment.md#redis-configuration).  
 If you don't need such functionality, it is highly recommended that you disable this behavior by using `array` as a type.
 
 ## Lock storage
 
 Shopware uses [Symfony's Lock component](https://symfony.com/doc/5.x/lock.html) to implement locking functionality.
-By default, Symfony will use a local file-based [lock store](../performance/lock-store), which breaks into multi-machine (cluster) setups.
+By default, Symfony will use a local file-based [lock store](./lock-store.md), which breaks into multi-machine (cluster) setups.
 This is avoided using one of the [supported remote stores](https://symfony.com/doc/5.x/components/lock.html#available-stores).
-For more information on how to configure the lock store, refer to the [Lock storage guide](./lock-store).
+For more information on how to configure the lock store, refer to the [Lock storage guide](./lock-store.md).
 
 ## Number ranges
 
-[Number Ranges](../performance/number-ranges) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
+[Number Ranges](./number-ranges.md) provide a consistent way to generate a consecutive number sequence that is used for order numbers, invoice numbers, etc.
 The generation of the number ranges is an **atomic** operation, which guarantees that the sequence is consecutive and no number is generated twice.
 
 By default, the number range states are stored in the database.
 In scenarios where high throughput is required (e.g., thousands of orders per minute), the database can become a performance bottleneck because of the requirement for atomicity.
 Redis offers better support for atomic increments than the database.
-Therefore, the number ranges should be [stored in Redis](./number-ranges#using-redis-as-storage) in such scenarios.
+Therefore, the number ranges should be [stored in Redis](./number-ranges.md#using-redis-as-storage) in such scenarios.
 
 ## Sending mails with the Queue
 
@@ -303,7 +303,7 @@ By default, [Symfony Messenger](https://symfony.com/doc/current/messenger.html#t
 This can be an overhead when the system is under load.
 Therefore, make sure that you disable the `auto_setup` in the connection URL like so: `redis://localhost?auto_setup=false`.
 That query parameter can be passed to all transports.
-After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper.md) it will do that for you.
+After disabling `auto_setup`, make sure you are running `bin/console messenger:setup-transports` during deployment to make sure that the transports exist, or when you use the [Deployment Helper](../installation-updates/deployments/deployment-helper/index.md) it will do that for you.
 
 ## Disable Product Stream Indexer
 

@@ -176,7 +176,7 @@ Since bundles don't have a lifecycle, migrations aren't automatically executed. 
 bin/console database:migrate <BundleName> --all
 ```
 
-If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper.md), you can add it to the `.shopware-project.yaml` file:
+If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper/index.md), you can add it to the `.shopware-project.yaml` file:
 
 ```yaml
 deployment:
