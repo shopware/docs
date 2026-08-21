@@ -4,7 +4,7 @@ user := "$(shell id -u):$(shell id -g)"
 ignored = '/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/*'
 image = ghcr.io/rojopolis/spellcheck-github-actions:0.49.0
 
-lychee_image = lycheeverse/lychee:latest
+lychee_image = lycheeverse/lychee:0.24.2
 # Keep HTTPS args in sync with .github/workflows/validate-external-links.yml.
 # --root-dir points at a non-existent path so portal root-relative links
 # (/frontends/, /docs/, /resources/…) are skipped instead of failing as local files.
