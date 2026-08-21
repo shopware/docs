@@ -2,6 +2,7 @@
 nav:
   title: Store API Route Lifecycle
   position: 15
+
 ---
 
 # Store API Route Lifecycle

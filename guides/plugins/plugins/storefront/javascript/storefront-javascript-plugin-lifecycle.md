@@ -1,7 +1,8 @@
 ---
 nav:
   title: Storefront JavaScript Plugin Lifecycle
-  position: 45
+  position: 55
+
 ---
 
 # Storefront JavaScript Plugin Lifecycle
@@ -55,7 +56,7 @@ shopware-cli project storefront-build
 When Twig changed, also clear Shopware's cache:
 
 ```bash
-shopware-cli project console cache:clear
+bin/console cache:clear
 ```
 
 Then verify the rendered HTML or DOM before debugging the class:

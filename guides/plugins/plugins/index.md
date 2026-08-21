@@ -132,4 +132,5 @@ It is perfectly valid to ship multiple separate plugins, but keeping them in a s
 ## Next steps
 
 * Review the [Plugin base guide](./plugin-base-guide.md) to learn how to create plugins
+* Read [Understanding Plugin Feature Wiring](./understanding-plugin-feature-wiring.md) to see how a plugin feature connects from source files to runtime
 * Make note of [CI](../../development/testing/ci.md) and other testing guidance to prevent upgrade-related regressions
