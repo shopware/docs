@@ -69,4 +69,3 @@ The CLI does not attempt to:
 - automatically resolve ambiguous migration patterns
 
 Manual review is still required for Administration changes that are not covered by a deterministic rule.
-
