@@ -119,6 +119,12 @@ The Symfony Bundle handles all verification automatically.
 </Tab>
 </Tabs>
 
+## Validating re-registration signatures
+
+When a shop re-registers an app it already knows — to rotate the app secret, or after a shop-URL change — the registration request carries a second signature in addition to the normal one. Alongside the signature made with your app's secret, Shopware adds a signature made with the **previous secret** the app already holds. Your app **must validate both** before accepting the re-registration: the first proves the request is for your app, the second proves it comes from the shop that registered before.
+
+Validate each signature with the same HMAC check used for a normal request, using the matching secret. For when this happens and how to roll the secret over without dropping in-flight requests, see [Secret rotation and shop-url changes](app-registration-setup.md#secret-rotation-and-shop-url-changes).
+
 ## Signing responses
 
 Shopware expects a signature in the response to verify that the response is coming from your app server.
