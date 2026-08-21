@@ -21,7 +21,7 @@ The tool uses:
 - [ESLint](https://eslint.org/) for JavaScript
 - Custom rules for Admin Twig files
 
-For the supported Administration migration rules, see [Administration migrations](./administration-migrations.md).
+For the supported Administration migration rules, see [Administration Migrations](./administration-migrations.md).
 
 The refactoring command runs PHP and Node.js tooling under the hood. The Docker examples are recommended because the image already contains the required runtime dependencies. If PHP and Node.js are available locally, you can run the `shopware-cli` commands directly instead.
 
