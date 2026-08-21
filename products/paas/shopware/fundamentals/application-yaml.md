@@ -152,6 +152,18 @@ services:
 
 After enabling OpenSearch, update your application and reindex your data. See [How to set up OpenSearch](../guides/opensearch.md) for the full steps.
 
+### `services.blackfire`
+
+Enables or disables Blackfire profiling.
+
+```yaml
+services:
+  blackfire:
+    enabled: true
+```
+
+Requires the `BLACKFIRE_SERVER_ID` and `BLACKFIRE_SERVER_TOKEN` secrets to be set. See [Blackfire](../monitoring/blackfire.md) for the full steps.
+
 ### `services.fastly`
 
 Configures the Fastly CDN integration.
