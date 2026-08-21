@@ -1852,6 +1852,7 @@ precompile
 preconfigured
 prefetch
 prefixer
+preflight
 preload
 preloaded
 preloading
