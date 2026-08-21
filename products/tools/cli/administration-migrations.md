@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Administration migrations
+  title: Administration Migrations
   position: 5003
 
 ---
 
-# Administration migrations
+# Administration Migrations
 
 Shopware CLI includes built-in checks and fixes for known Shopware Administration migration patterns.
 
