@@ -9,12 +9,14 @@ nav:
 
 Plugin fundamentals are the building blocks for adding behavior to a Shopware plugin. Use this page to jump directly to the task you want to solve.
 
+If you are adding generated or manually created components to an existing plugin, [Understanding Plugin Feature Wiring](../understanding-plugin-feature-wiring.md) explains how source files, framework registration, discovery, build/cache, and runtime fit together.
+
 ## What do you want to do?
 
 - Run code when a plugin is installed, updated, activated, deactivated, or uninstalled: [Plugin lifecycle](plugin-lifecycle.md)
 - Add configurable settings that appear in the Administration: [Plugin configuration](add-plugin-configuration.md)
 - Add a custom Symfony console command: [CLI commands](add-custom-commands.md)
-- Run recurring background work: [Scheduled tasks](add-scheduled-task.md)
+- Run recurring background work: [Scheduled tasks](add-scheduled-task.md) and understand the [Scheduled Task Lifecycle](scheduled-task-lifecycle.md)
 - Add diagnostics and write plugin logs: [Logging](logging.md)
 - Register services or inject dependencies: [Services and dependency injection](../services/index.md)
 - React to Shopware events: [Listening to events](../framework/event/listening-to-events.md)

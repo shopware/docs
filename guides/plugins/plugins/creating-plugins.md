@@ -105,6 +105,11 @@ related files and service definitions; deleting only one file later can leave br
 references or an invalid service configuration. If you are unsure whether you need
 an option, use `--no-scaffold` and add the feature from its focused guide instead.
 
+When a generated feature does not behave as expected, [Understanding Plugin Feature
+Wiring](./understanding-plugin-feature-wiring.md) explains how source files, framework
+registration, discovery, build/cache, and runtime fit together, and links to focused
+lifecycle guides for the larger extension points.
+
 ::: info
 Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as a starting point and verify it against the version you target.
 :::
@@ -192,6 +197,17 @@ At a minimum, it must define:
 * [PSR-4](https://www.php-fig.org/psr/psr-4/) autoload configuration
 
 The `extra.shopware-plugin-class` value must reference your plugin’s base PHP class (e.g. `Swag\\BasicExample\\SwagBasicExample`).
+
+::: warning
+`bin/console plugin:create` reporting success does not prove the plugin is installable.
+If the plugin name and namespace do not follow `UpperCamelCase`, the generated
+`extra.shopware-plugin-class` can reference a class that does not exist. The plugin is
+still discovered by `bin/console plugin:refresh`, but `bin/console plugin:install` then
+fails with `PluginBaseClassNotFoundException`. Check that
+`extra.shopware-plugin-class` matches the PSR-4 namespace and the base class file name
+before installing, and run `shopware-cli extension validate` to catch the remaining
+metadata gaps.
+:::
 
 `shopware-platform-plugin` is the only Composer type Shopware treats as a plugin. A package with any other type — `library`, `project`, or the `shopware-app` type used for apps — is not picked up as a plugin and never appears in the Administration, even if everything else is set up correctly. Shopware also rejects a plugin whose `extra.shopware-plugin-class` or `extra.label` is missing.
 

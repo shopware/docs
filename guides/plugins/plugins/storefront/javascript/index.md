@@ -6,9 +6,10 @@ nav:
 
 # Storefront JavaScript
 
-This section explains how to extend and customize the Storefront using JavaScript plugins. It covers creating custom plugins, overriding existing functionality, reacting to events, loading external scripts, and interacting with the Store API.
+This section explains how to extend and customize the Storefront using JavaScript plugins. It covers creating custom plugins, understanding how registration and DOM initialization fit together, overriding existing functionality, reacting to events, loading external scripts, and interacting with the Store API.
 
 * [Add Custom JavaScript](./add-custom-javascript.md)
+* [Storefront JavaScript Plugin Lifecycle](./storefront-javascript-plugin-lifecycle.md)
 * [Add JavaScript as Script Tag](./add-javascript-as-script-tag.md)
 * [Fetching Data with JavaScript](./fetching-data-with-javascript.md)
 * [Override Existing JavaScript](./override-existing-javascript.md)
