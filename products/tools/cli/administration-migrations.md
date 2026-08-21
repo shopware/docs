@@ -59,7 +59,7 @@ For extension validation, see [Validation](./validation.md).
 
 ## Limitations
 
-The [Administration migration](../../../guides/upgrades-migrations/administration/index.md) rules are deliberately bounded.
+The Administration migration rules are deliberately bounded. For background and manual migration guidance, see the [Administration migration guide](../../../guides/upgrades-migrations/administration/index.md).
 
 The CLI does not attempt to:
 
