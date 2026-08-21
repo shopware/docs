@@ -20,7 +20,7 @@ Create one secret for each, using the type `env`:
 sw-paas vault create
 ```
 
-The keys must be named exactly:
+The following table lists the required secret keys and their values.
 
 | Key | Value |
 |-----|-------|
