@@ -59,9 +59,9 @@ Service configuration is a separate boundary from the class itself. A correct PH
 
 ### Routes
 
-Use `debug:router` to prove route discovery, then make a real request to prove reachability. A missing route, container-construction error, authentication response, and endpoint exception are different failure boundaries.
+Use `debug:router` to prove route discovery, then make a real request to verify the route is accessible. A missing route, container-construction error, authentication response, and endpoint exception are different failure boundaries.
 
-A plugin does not have routing configuration until something adds it. A controller class can be present and correct while its route is undiscoverable because no `routes.php` imports it.
+A plugin does not have routing configuration until something adds it. A controller class can be present and correct while its route is invisible because no `routes.php` imports it.
 
 ### Configuration
 
