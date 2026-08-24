@@ -129,6 +129,29 @@ shopware-cli project console <command>
 
 A shorter `swx` alias is also available. See [Running Shopware commands](../../../../guides/development/dev-environment.md#running-shopware-commands).
 
+## SQL shell
+
+The `project sql` command connects to the configured database and executes SQL, without needing to look up connection details manually:
+
+```bash
+shopware-cli project sql "SELECT * FROM sales_channel"
+```
+
+Without a query argument, it starts an interactive SQL shell. It also accepts a script from stdin:
+
+```bash
+shopware-cli project sql < script.sql
+```
+
+Or from a file with `--file`:
+
+```bash
+shopware-cli project sql --file script.sql
+shopware-cli project sql --file script.sql --format json
+```
+
+`--file` cannot be combined with a query argument.
+
 ## Admin API
 
 The `project admin-api` command is a pre-authenticated curl wrapper for the Shopware Admin API. Instead of manually handling JWT token generation and headers, this command handles authentication automatically:
