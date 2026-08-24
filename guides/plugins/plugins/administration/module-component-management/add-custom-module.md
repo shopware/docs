@@ -14,8 +14,7 @@ Inside the `module` directory lies the list of several modules, each having thei
 
 ## Prerequisites
 
-This guide **does not** explain how to create a new plugin for Shopware 6.
-Head over to our Plugin base guide to learn how to create a plugin at first:
+This guide **does not** explain how to create a new plugin for Shopware 6. Review our Plugin base guide to learn how to create a plugin:
 
 <PageRef page="../../plugin-base-guide" />
 
