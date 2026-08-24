@@ -102,11 +102,13 @@ components use paths such as:
 
 Treat generated examples as starting points. Selecting an option can create several
 related files and service definitions; deleting only one file later can leave broken
-references or an invalid service configuration. If you are unsure whether you need
-an option, use `--no-scaffold` and add the feature from its focused guide instead.
+references or an invalid service configuration. If you are unsure whether you need an
+option, use `--no-scaffold` and add the feature from its focused guide instead.
+
+If generated output does not behave as expected, use [Understanding Generated Plugin Feature Wiring](./understanding-plugin-feature-wiring.md) as a troubleshooting reference. It explains how generated artifacts connect to registration, discovery, builds, and runtime without replacing the normal scaffolding workflow.
 
 ::: info
-Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as a starting point and verify it against the version you target.
+Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as an example for that version and compare it with the focused guide when adapting it.
 :::
 
 Make sure to adjust the namespace in the generated files as per your needs.
