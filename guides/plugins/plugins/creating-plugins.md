@@ -43,7 +43,7 @@ can generate an event subscriber, scheduled task, migration, Administration modu
 or other component directly inside an existing plugin. AI coding tools can also help
 you create or adapt these components, but always verify their namespaces, generated
 paths, service registration, and Shopware-version compatibility against the linked
- guides.
+guides.
 :::
 
 The command asks for a plugin name and namespace (both UpperCamelCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
