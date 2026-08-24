@@ -408,3 +408,15 @@ export default class ExamplePlugin extends PluginBaseClass {
     }
 }
 ```
+
+## Verify route discovery and execution
+
+A route class on disk does not prove that the route is usable. Check the boundaries separately:
+
+1. Confirm the route attribute uses the Store API scope and that the route class is registered as a service.
+2. Confirm that `src/Resources/config/routes.php` imports the route.
+3. Run `bin/console debug:router store-api.example.search` (or your route name) to prove discovery.
+4. Make an authenticated Store API request to verify execution.
+
+A response requiring `sw-access-key` means that routing reached Store API authentication; it is not evidence that the route is missing. Treat route absence, container errors, authentication responses, and endpoint-specific errors as different failure boundaries.
+

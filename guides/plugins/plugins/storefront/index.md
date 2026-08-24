@@ -45,7 +45,6 @@ Infrastructure and optimization topics.
 Create new routes and pages, or extend existing ones.
 
 * [Add custom controller](../storefront/controllers/add-custom-controller.md)
-* [Storefront Controller Lifecycle](../storefront/controllers/storefront-controller-lifecycle.md)
 * [Add custom page](../storefront/controllers/add-custom-page.md)
 * [Add custom pagelet](../storefront/controllers/add-custom-pagelet.md)
 * [Add data to a storefront page](../storefront/controllers/add-data-to-storefront-page.md)
@@ -69,7 +68,6 @@ Feature-specific examples and focused use-cases.
 Extend or override frontend behavior.
 
 * [Add custom JavaScript](../storefront/javascript/add-custom-javascript.md)
-* [Storefront JavaScript Plugin Lifecycle](../storefront/javascript/storefront-javascript-plugin-lifecycle.md)
 * [Add JavaScript as script tag](../storefront/javascript/add-javascript-as-script-tag.md)
 * [Fetch data dynamically](../storefront/javascript/fetching-data-with-javascript.md)
 * [Override existing JavaScript](../storefront/javascript/override-existing-javascript.md)

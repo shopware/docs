@@ -71,17 +71,17 @@ A valid `config.xml` proves structural validity. The stronger user-facing check 
 
 Build commands compile assets. Cache clears refresh runtime-discovered configuration and templates. They are related but not interchangeable; for example, a successful Storefront build does not itself guarantee that changed Twig output is rendered.
 
-## Focused lifecycle guides
+## Focused implementation guides
 
-The following pages explain how the pieces of larger extension points connect from source to runtime:
+Use the feature-specific guides for implementation details and verification steps:
 
-- [Storefront Controller Lifecycle](./storefront/controllers/storefront-controller-lifecycle.md)
-- [Storefront JavaScript Plugin Lifecycle](./storefront/javascript/storefront-javascript-plugin-lifecycle.md)
-- [Administration Module Lifecycle](./administration/module-component-management/administration-module-lifecycle.md)
-- [Store API Route Lifecycle](./framework/store-api/store-api-route-lifecycle.md)
-- [Scheduled Task Lifecycle](./plugin-fundamentals/scheduled-task-lifecycle.md)
+- [Add Custom Controller](./storefront/controllers/add-custom-controller.md)
+- [Add Custom JavaScript](./storefront/javascript/add-custom-javascript.md)
+- [Add Custom Module](./administration/module-component-management/add-custom-module.md)
+- [Add Store API Route](./framework/store-api/add-store-api-route.md)
+- [Add Scheduled Task](./plugin-fundamentals/add-scheduled-task.md)
 
-Each lifecycle page links to the corresponding implementation guide and includes troubleshooting at the boundaries where failures commonly occur.
+This page provides the shared model; the implementation guides provide the feature-specific wiring and runtime checks.
 
 ## Generated code and Shopware versions
 

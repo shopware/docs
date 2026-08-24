@@ -16,7 +16,7 @@ If you are adding generated or manually created components to an existing plugin
 - Run code when a plugin is installed, updated, activated, deactivated, or uninstalled: [Plugin lifecycle](plugin-lifecycle.md)
 - Add configurable settings that appear in the Administration: [Plugin configuration](add-plugin-configuration.md)
 - Add a custom Symfony console command: [CLI commands](add-custom-commands.md)
-- Run recurring background work: [Scheduled tasks](add-scheduled-task.md) and understand the [Scheduled Task Lifecycle](scheduled-task-lifecycle.md)
+- Run recurring background work: [Scheduled tasks](add-scheduled-task.md)
 - Add diagnostics and write plugin logs: [Logging](logging.md)
 - Register services or inject dependencies: [Services and dependency injection](../services/index.md)
 - React to Shopware events: [Listening to events](../framework/event/listening-to-events.md)

@@ -35,4 +35,4 @@ Storefront integration:
 
 ## Next steps
 
-Review our guides for [adding routes](add-store-api-route.md), understanding the [Store API Route Lifecycle](store-api-route-lifecycle.md), and [overriding existing routes](override-existing-route.md).
+Review our guides for [adding routes](add-store-api-route.md) and [overriding existing routes](override-existing-route.md).

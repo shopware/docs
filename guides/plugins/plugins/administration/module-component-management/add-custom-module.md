@@ -293,6 +293,18 @@ Shopware.Module.register('swag-example', {
 });
 ```
 
+## Verify module discovery
+
+An Administration build proves compilation, not that the module is discoverable or navigable. Check the boundaries separately:
+
+1. Confirm that the plugin Administration `main.js` imports the module.
+2. Confirm that the module is registered with `Shopware.Module.register()`.
+3. Confirm that navigation paths resolve to registered module routes and components.
+4. Confirm that labels and titles use existing snippet keys.
+5. Run `shopware-cli project admin-build`, refresh the Administration, and open the initial route.
+
+If the build succeeds but the module is missing, inspect the entry-point import, module registration, navigation path, and snippets before changing the page component. Preserve existing imports, routes, snippets, and unrelated modules when adding generated code.
+
 ## Next steps
 
 As you might have noticed, we are just adding a custom module to the module.

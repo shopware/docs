@@ -19,7 +19,7 @@ Typical use cases include:
 * Injecting services
 * Customizing templates and styling
 
-This section follows a practical development workflow. Start with registering a module and route, then build the components, connect data, and refine permissions and UI behavior. The [Administration Module Lifecycle](module-component-management/administration-module-lifecycle.md) explains how the entry point, module registration, routes, components, snippets, build, and UI discovery connect.
+This section follows a practical development workflow. Start with registering a module and route, then build the components, connect data, and refine permissions and UI behavior.
 
 For stable cross-version extension points, use the [Meteor Admin SDK](../../apps/administration/meteor-admin-sdk.md). The SDK can be used by both apps and plugins.
 

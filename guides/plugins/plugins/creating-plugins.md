@@ -106,9 +106,9 @@ references or an invalid service configuration. If you are unsure whether you ne
 an option, use `--no-scaffold` and add the feature from its focused guide instead.
 
 When a generated feature does not behave as expected, [Understanding Plugin Feature
-Wiring](./understanding-plugin-feature-wiring.md) explains how source files, framework
-registration, discovery, build/cache, and runtime fit together, and links to focused
-lifecycle guides for the larger extension points.
+Wiring](./understanding-plugin-feature-wiring.md) explains the shared boundaries to
+check. The focused implementation guides contain the feature-specific verification
+steps.
 
 ::: info
 Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as a starting point and verify it against the version you target.

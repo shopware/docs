@@ -266,6 +266,17 @@ composer run build:js:storefront
 
 If you now scroll to the bottom of your page an alert should appear.
 
+## Verify registration and runtime
+
+An asset build proves compilation, not initialization. Check the boundaries separately:
+
+1. Confirm that the plugin class is imported and registered from `main.js`.
+2. Confirm that the selector passed to `PluginManager.register()` is present in the rendered HTML.
+3. Run the Storefront build and reload the page.
+4. Check the browser console and use a temporary log in `init()` to prove runtime initialization.
+
+If the selector is absent, inspect the Twig template and cache. If the selector is present but `init()` does not run, inspect the entry-point import, registration, and the generated asset.
+
 ## Next steps
 
 With your own first JavaScript plugin now running, you might want to start [listening to JavaScript events](./reacting-to-javascript-events.md) or [overriding other JavaScript plugins](./override-existing-javascript.md).

@@ -162,6 +162,18 @@ Now you still need to run the command `bin/console messenger:consume` to actuall
 
 <!--@include: ../../../../snippets/guide/debugging_scheduled_tasks.md-->
 
+## Verify the complete task lifecycle
+
+A scheduled task needs both the task definition and its handler. Check the boundaries separately:
+
+1. Confirm that the task is tagged with `shopware.scheduled.task`.
+2. Confirm that the handler is registered with `messenger.message_handler` and handles the task message.
+3. Run `bin/console scheduled-task:register`, then use `bin/console scheduled-task:list | grep your-task-name` to confirm the persisted task.
+4. Run `bin/console scheduled-task:run` to dispatch due tasks.
+5. Run `bin/console messenger:consume` (unless the Administration worker is handling the queue) and verify that the handler executes.
+
+A task appearing in `scheduled-task:list` proves registration and persistence, not execution. If it is registered but does not run, check its status, schedule, handler registration, runner, and message queue separately.
+
 ## Next steps
 
 [Adding a custom command](add-custom-commands.md)

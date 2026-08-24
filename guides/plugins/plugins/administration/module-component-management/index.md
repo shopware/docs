@@ -11,7 +11,6 @@ This guide covers how to create, extend, and customize Administration modules an
 * [Add Custom Fields](add-custom-field.md)
 * [Add Custom Components](add-custom-component.md)
 * [Add Custom Modules](add-custom-module.md)
-* [Administration Module Lifecycle](administration-module-lifecycle.md)
 * [Customize Components](customizing-components.md)
 * [Customize Modules](customizing-modules.md)
 * [Use Base Components](using-base-components.md)
