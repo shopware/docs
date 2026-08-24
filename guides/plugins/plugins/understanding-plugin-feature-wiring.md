@@ -1,10 +1,3 @@
----
-nav:
-  title: Understanding Generated Plugin Feature Wiring
-  position: 25
-
----
-
 # Understanding Generated Plugin Feature Wiring
 
 Use this page when a generated plugin feature is present but does not behave as expected. It is a troubleshooting reference for generated output, not a replacement for the normal plugin scaffolding workflow.
@@ -93,9 +86,9 @@ Generators encode conventions from the Shopware version they run against. File l
 
 When generated output looks different from an older guide, prefer the output from the generator you are actually using and use the focused documentation to understand the relevant concept. Do not assume that a generated example from another Shopware version is interchangeable.
 
-## When you need the implementation details
+## Where to read more
 
-Use the focused feature guides when you intentionally need to understand or modify the generated implementation:
+The focused feature guides explain the underlying concepts represented by generated output. Use them when the generated result needs closer inspection or deliberate modification:
 
 - [Add Custom Controller](./storefront/controllers/add-custom-controller.md)
 - [Add Custom JavaScript](./storefront/javascript/add-custom-javascript.md)
@@ -103,4 +96,4 @@ Use the focused feature guides when you intentionally need to understand or modi
 - [Add Store API Route](./framework/store-api/add-store-api-route.md)
 - [Add Scheduled Task](./plugin-fundamentals/add-scheduled-task.md)
 
-Those guides explain the underlying feature conventions. This page is the shorter map for understanding why generated pieces have to work together and where to look when they do not.
+These are implementation references; the normal scaffolding workflow remains the preferred way to create the feature.
