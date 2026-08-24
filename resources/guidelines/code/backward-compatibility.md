@@ -109,6 +109,9 @@ This section lists every BC-change attribute, who is affected, and how to write 
 | `#[BecomesFinal]`                | A class becomes final                            | Extenders               | ⚠️ Switch from inheritance to decoration/composition — works on both versions |
 | `#[BecomesInternal]`             | A symbol becomes `@internal`                     | Call sites & extenders  | ✅ Stop using it now                                                          |
 | `#[VisibilityChange]`            | Visibility is reduced (e.g., public → protected) | Call sites & extenders  | ⚠️ Stop external calls now; narrow overrides in the next major                |
+| `#[PropertyTypeNarrowing]`       | A property type becomes narrower                 | Call sites & extenders  | ✅ Assign only values of the announced type; stop redeclaring the property    |
+| `#[PropertyTypeWidening]`        | A property type becomes wider                    | Call sites & extenders  | ✅ Handle the announced type when reading; stop redeclaring the property      |
+| `#[BecomesReadonly]`             | A property becomes `readonly`                    | Call sites & extenders  | ✅ Stop assigning it outside the declaring class; stop redeclaring it         |
 | `#[ClassHierarchyChange]`        | The inheritance chain of a class changes         | Call sites & extenders  | ⚠️ Depends on the change — stop relying on ancestors that go away             |
 
 ### Quick guides per attribute
@@ -366,9 +369,54 @@ class ImitateCustomerTokenGenerator
 public function buildName(string $id): string
 ```
 
-**Call sites**: Stop calling the method from outside the announced scope now — inline the logic or use the replacement named in the description. That code works on both versions.
+**Call sites**: Stop accessing the symbol from outside the announced scope now — inline the logic or use the replacement named in the description. For a property, this includes reads and writes. That code works on both versions.
 
-**Extending classes**: PHP allows an override to be more visible than its parent, so the current public signature remains valid during the transition. Before the announced version, stop relying on external calls to the override; then narrow its visibility to the announced one in the next major. Do not build new public API on top of it.
+**Extending classes**: For methods, PHP allows an override to be more visible than its parent, so the current public signature remains valid during the transition. Before the announced version, stop relying on external calls to the override; then narrow its visibility to the announced one in the next major. Do not build new public API on top of it. For properties, stop accessing the property from outside the announced scope; a property that becomes private must also not be redeclared in a subclass.
+
+#### PropertyTypeNarrowing
+
+```php
+#[PropertyTypeNarrowing(version: 'v6.8.0', newType: 'string')]
+public string|int $externalId;
+```
+
+**Call sites**: Reading the property is unchanged: every future value is already covered by the current type. Assign only values of the announced type now:
+
+```php
+// works on both versions
+$entity->externalId = (string) $externalId;
+```
+
+**Extending classes**: Stop redeclaring the property. PHP property types are invariant, so no redeclaration can use both the current and announced type. Move the extension state to a differently named property or a separate object.
+
+#### PropertyTypeWidening
+
+```php
+#[PropertyTypeWidening(version: 'v6.8.0', newType: 'string|null')]
+public string $externalId;
+```
+
+**Call sites**: Assignments remain compatible because every value accepted today remains accepted. Prepare reads for every announced value now:
+
+```php
+// works on both versions
+$externalId = $entity->externalId ?? '';
+```
+
+**Extending classes**: Stop redeclaring the property. PHP property types are invariant, so no redeclaration can use both the current and announced type. Move the extension state to a differently named property or a separate object.
+
+#### BecomesReadonly
+
+```php
+#[BecomesReadonly(version: 'v6.8.0')]
+public string $externalId;
+```
+
+**Call sites**: Stop assigning to the property outside its declaring class. Pass the value to the constructor or use the replacement mutation method instead. Reading the property remains compatible.
+
+**Extending classes**: Stop redeclaring the property. A `readonly` property cannot be made compatible with a mutable redeclaration across both versions; keep extension state in a differently named property or a separate object.
+
+`#[BecomesReadonly]` intentionally applies to properties, not classes. If a class is made readonly only because all of its properties become readonly, announce the change on each affected property. Making a whole class readonly can also affect dynamic properties, untyped or static properties, and inheritance, so it needs a separate BC assessment.
 
 #### ClassHierarchyChange
 
