@@ -108,7 +108,7 @@ shopware-cli project proxy down
 shopware-cli project proxy list
 ```
 
-```text
+```bash
 my-shop.shopware.local   running   ~/projects/my-shop
     Shop    https://my-shop.shopware.local
     Admin   https://my-shop.shopware.local/admin
