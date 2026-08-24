@@ -160,8 +160,6 @@ In order to properly test your scheduled task, you first have to run the command
 
 Now you still need to run the command `bin/console messenger:consume` to actually execute the dispatched messages. Make sure, that the `status` of your scheduled task is set to `scheduled` in the `scheduled_task` table, otherwise it won't be executed. This is not necessary, when you're using the admin worker.
 
-<!--@include: ../../../../snippets/guide/debugging_scheduled_tasks.md-->
-
 ## Verify the complete task lifecycle
 
 A scheduled task needs both the task definition and its handler. Check the boundaries separately:
