@@ -17,7 +17,7 @@ For implementation, see [Add Custom Controller](./add-custom-controller.md).
 
 ## What each stage proves
 
-A controller class on disk proves nothing about reachability. Shopware discovers Storefront routes through the plugin's routing configuration, and a freshly created plugin does not have one. Its `src/Resources/config` directory typically contains `services.php`, `services.xml`, and `config.xml`, but no `routes.php` until a generator or the developer adds it.
+A controller class on disk proves nothing about availability. Shopware discovers Storefront routes through the plugin's routing configuration, and a freshly created plugin does not have one. Its `src/Resources/config` directory typically contains `services.php`, `services.xml`, and `config.xml`, but no `routes.php` until a generator or the developer adds it.
 
 Prove route discovery with the Symfony router:
 
