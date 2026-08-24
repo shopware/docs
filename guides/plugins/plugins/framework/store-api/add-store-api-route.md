@@ -419,4 +419,3 @@ A route class on disk does not prove that the route is usable. Check the boundar
 4. Make an authenticated Store API request to verify execution.
 
 A response requiring `sw-access-key` means that routing reached Store API authentication; it is not evidence that the route is missing. Treat route absence, container errors, authentication responses, and endpoint-specific errors as different failure boundaries.
-
