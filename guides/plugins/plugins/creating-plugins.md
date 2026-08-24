@@ -43,7 +43,7 @@ can generate an event subscriber, scheduled task, migration, Administration modu
 or other component directly inside an existing plugin. AI coding tools can also help
 you create or adapt these components, but always verify their namespaces, generated
 paths, service registration, and Shopware-version compatibility against the linked
-guides.
+ guides.
 :::
 
 The command asks for a plugin name and namespace (both UpperCamelCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
@@ -105,7 +105,7 @@ related files and service definitions; deleting only one file later can leave br
 references or an invalid service configuration. If you are unsure whether you need an
 option, use `--no-scaffold` and add the feature from its focused guide instead.
 
-If generated output does not behave as expected, use [Understanding Generated Plugin Feature Wiring](./understanding-plugin-feature-wiring.md) as a troubleshooting reference. It explains how generated artifacts connect to registration, discovery, builds, and runtime without replacing the normal scaffolding workflow.
+If generated output does not behave as expected, use the existing feature guide to understand the generated pieces in context. The generator connects source files with registration, discovery, and build/runtime wiring; a generated file being present does not by itself mean that Shopware can use it.
 
 ::: info
 Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as an example for that version and compare it with the focused guide when adapting it.
