@@ -50,7 +50,3 @@ Caching:
 
 * Use Symfony flash bags for error reporting.
 * Storefront functionality should be available inside the Store API too.
-
-## Next steps
-
-For implementation and troubleshooting, see [Add Custom Controller](add-custom-controller.md).

@@ -311,18 +311,6 @@ public function showExample(Request $request, SalesChannelContext $context): Res
 }
 ```
 
-## Verify the feature wiring
-
-A controller class alone does not make a URL available. Verify the boundaries in order:
-
-1. Confirm that the controller has the expected route attributes.
-2. Confirm that `src/Resources/config/routes.php` imports the controller.
-3. Confirm that the controller is registered as a public service and that its container is injected.
-4. Run `bin/console debug:router | grep your-route` to prove route discovery.
-5. Clear the cache with `bin/console cache:clear`, then make a real request and check the response.
-
-A route appearing in `debug:router` proves discovery, not that the controller can be constructed. If a plugin already has routing or service configuration, extend the existing files instead of replacing them.
-
 ## Next steps
 
 Since you've already created a controller now, which is also part of creating a so-called "page" in Shopware, you might want to head over to our guide about [creating a page](../controllers/add-custom-page.md).

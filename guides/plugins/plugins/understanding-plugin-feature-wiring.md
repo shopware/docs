@@ -1,16 +1,18 @@
 ---
 nav:
-  title: Understanding Plugin Feature Wiring
+  title: Understanding Generated Plugin Feature Wiring
   position: 25
 
 ---
 
-# Understanding Plugin Feature Wiring
+# Understanding Generated Plugin Feature Wiring
 
-A Shopware plugin feature is usually a chain of coordinated pieces rather than one file. Understanding that chain makes generated code easier to adapt and failures much faster to localize.
+Use this page when a generated plugin feature is present but does not behave as expected. It is a troubleshooting reference for generated output, not a replacement for the normal plugin scaffolding workflow.
+
+Generators create several coordinated artifacts. The exact files and conventions depend on the generator and the Shopware version, but the runtime path usually looks like this:
 
 ```text
-feature intent
+generator output
     ↓
 source artifacts
     ↓
@@ -21,59 +23,79 @@ discovery
 build / cache
     ↓
 runtime
-    ↓
-verification
 ```
 
-A feature can be correct at one boundary and broken at the next. A PHP class existing on disk does not prove that Symfony registered it. A route appearing in `debug:router` does not prove that its service can be constructed. A successful asset build does not prove that a browser can initialize the feature.
+A generated file being present does not prove that the feature is registered, discovered, built, or usable at runtime. When something is broken, identify the first boundary that fails instead of changing later layers blindly.
 
-## Scaffolding is a starting point
+## What generated features usually connect
 
-The Core `bin/console plugin:create` command can create a minimal plugin or optional example components. Those examples encode conventions for the Shopware version running the command, but they are still starting points for your implementation.
+### PHP features
 
-If you already know which feature you need, a minimal plugin plus the focused feature guide is often easier to reason about than generating every optional example.
+Generated commands, subscribers, services, and similar PHP features typically combine a class with service-container configuration. The service tag is what tells Symfony or Shopware how the class participates in the framework.
 
-Generated features also differ in size. A command or subscriber may need a class and service registration. An Administration module or Storefront JavaScript plugin coordinates several source, build, and runtime layers.
-
-## The five boundaries to check
-
-1. **Code** — Is the class or component present, and does its namespace/path match autoloading?
-2. **Registration** — Is the service, route, module, task, or entry point registered?
-3. **Discovery** — Can Shopware prove that it found the feature?
-4. **Build/cache** — Did the relevant container, Twig cache, Administration build, or Storefront build refresh?
-5. **Runtime** — Can the feature actually execute, open, or initialize?
-
-Checking these boundaries in order prevents changes to working code when the failure is really registration, authentication, cache, or runtime wiring.
-
-## Common framework wiring
-
-### Composer and PSR-4
-
-When a class is not found, compare the Composer PSR-4 prefix, PHP namespace, and filesystem path. All three must describe the same class.
-
-### Symfony services
-
-Many plugin features are services. Tags such as `kernel.event_subscriber`, `console.command`, and `shopware.scheduled.task` tell Symfony and Shopware how the service participates in the framework.
-
-Service configuration is a separate boundary from the class itself. A correct PHP class whose service definition references a different class name fails at registration, and Shopware may only surface that mismatch later, when the plugin is activated.
+For example, `console.command`, `kernel.event_subscriber`, and `shopware.scheduled.task` describe different kinds of participation. A correct class with missing or mismatched service wiring can therefore look complete on disk while remaining invisible to the framework.
 
 ### Routes
 
-Use `debug:router` to prove route discovery, then make a real request to verify the route is accessible. A missing route, container-construction error, authentication response, and endpoint exception are different failure boundaries.
+Generated Storefront and Store API routes usually involve both the route class and routing configuration. The route can exist on disk without being imported into the application's routing configuration.
 
-A plugin does not have routing configuration until something adds it. A controller class can be present and correct while its route is invisible because no `routes.php` imports it.
+`debug:router` is useful here because it separates route discovery from request handling. A route that is discovered can still fail later because its service cannot be constructed, authentication rejects the request, or the endpoint itself throws an exception.
 
-### Configuration
+### Scheduled tasks
 
-A valid `config.xml` proves structural validity. The stronger user-facing check is that the field appears and behaves correctly in the Administration.
+A generated scheduled task has two distinct runtime roles: the scheduled-task definition and its handler. Registration of the task explains why it appears in the scheduled-task storage; handler registration and the message queue explain whether the work actually executes.
 
-### Builds and caches
+A task appearing in `scheduled-task:list` therefore proves persistence, not successful execution. If a generated task is registered but does not run, the handler, task status, runner, and message consumer are separate things to investigate.
 
-Build commands compile assets. Cache clears refresh runtime-discovered configuration and templates. They are related but not interchangeable; for example, a successful Storefront build does not itself guarantee that changed Twig output is rendered.
+### Administration modules
 
-## Focused implementation guides
+A generated Administration module crosses several layers: the plugin's Administration entry point, module registration, routes and components, snippets, and the Administration build.
 
-Use the feature-specific guides for implementation details and verification steps:
+A successful build only proves that the assets compile. It does not prove that the module was imported, registered, or reachable through its navigation and routes.
+
+### Storefront JavaScript
+
+A generated Storefront JavaScript plugin also crosses several layers. The entry point imports and registers the plugin, the generated template or markup provides any selector it depends on, and the Storefront build produces the asset that the browser loads.
+
+A successful build therefore does not prove that the browser initialized the plugin. If the generated asset exists but `init()` never runs, look at the entry-point registration, selector, rendered markup, and cache separately.
+
+### Plugin configuration
+
+Generated `config.xml` output has a similar distinction. XML validation or successful loading proves that the configuration is structurally understood; it does not by itself prove that the expected field is visible and behaves correctly in the Administration.
+
+## The troubleshooting boundaries
+
+When generated output is not working, use these boundaries in order:
+
+1. **Source** — Does the generated class or component exist, and do its path and namespace match the generated references?
+2. **Registration** — Did the generator create the service, route, module entry point, task handler, or other registration that the feature requires?
+3. **Discovery** — Can Shopware or the underlying framework show that it found the generated feature?
+4. **Build / cache** — Has the relevant container, Twig cache, Administration build, or Storefront build caught up with the generated files?
+5. **Runtime** — Can the feature actually execute, initialize, open, or respond?
+
+The important distinction is between **discovery** and **runtime**. For example, a route appearing in `debug:router` proves that routing found it, but not that its service can be constructed. Likewise, a compiled JavaScript asset proves compilation, but not that a browser can initialize the generated plugin.
+
+## Common generator failure patterns
+
+| Symptom | Useful context |
+| --- | --- |
+| `plugin:refresh` finds the plugin but installation fails with a base-class error | Compare the generated plugin class, `extra.shopware-plugin-class`, and PSR-4 namespace/path. |
+| A generated command or subscriber is present but never appears to run | The PHP class is only one part of the feature; inspect its service registration and tag. |
+| A generated route is missing from `debug:router` | Focus on route imports and route registration before debugging the endpoint itself. |
+| A scheduled task is listed but never executes | Task persistence and handler execution are separate boundaries; inspect the handler and message processing. |
+| Administration assets build successfully but the generated module is missing | Compilation does not prove entry-point import, module registration, or navigation wiring. |
+| Storefront assets build successfully but generated JavaScript does not initialize | Check registration, the selector/markup used by the plugin, the generated asset, and cache. |
+| Generated configuration loads but a field is not visible as expected | Structural validity and Administration rendering are different checks. |
+
+## Generated output is version-specific
+
+Generators encode conventions from the Shopware version they run against. File locations, entry points, registration patterns, and generated examples can change between versions.
+
+When generated output looks different from an older guide, prefer the output from the generator you are actually using and use the focused documentation to understand the relevant concept. Do not assume that a generated example from another Shopware version is interchangeable.
+
+## When you need the implementation details
+
+Use the focused feature guides when you intentionally need to understand or modify the generated implementation:
 
 - [Add Custom Controller](./storefront/controllers/add-custom-controller.md)
 - [Add Custom JavaScript](./storefront/javascript/add-custom-javascript.md)
@@ -81,10 +103,4 @@ Use the feature-specific guides for implementation details and verification step
 - [Add Store API Route](./framework/store-api/add-store-api-route.md)
 - [Add Scheduled Task](./plugin-fundamentals/add-scheduled-task.md)
 
-This page provides the shared model; the implementation guides provide the feature-specific wiring and runtime checks.
-
-## Generated code and Shopware versions
-
-Generated files are tied to the Shopware version whose generator produced them. When a framework convention matters, compare generated output with the corresponding Core scaffolding generator and stubs for the version you target.
-
-The newer `shopware-cli extension create ...` generator work is developed separately from Core `plugin:create`. Verify CLI generator availability and behavior against `shopware/shopware-cli` rather than assuming the two generator systems are equivalent.
+Those guides explain the underlying feature conventions. This page is the shorter map for understanding why generated pieces have to work together and where to look when they do not.
