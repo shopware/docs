@@ -23,6 +23,10 @@ A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a 
 
 Here's an example `services.php` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
 
+::: info
+A scheduled task has two related runtime roles. The task definition describes when work is due, while the handler processes the message that Shopware dispatches. Generators create both sides and their service wiring together; seeing one generated class on disk does not mean the whole feature has been connected.
+:::
+
 ```php
 // <plugin root>/src/Resources/config/services.php
 <?php declare(strict_types=1);
@@ -53,6 +57,8 @@ Note the tags required for both the task and its respective handler, `shopware.s
 ## ScheduledTask and its handler
 
 The `services.php` file references both the task and its handler from `Service/ScheduledTask`. This directory name is a convention — you can use a different path as long as the namespace matches.
+
+The distinction between the two classes is important when working with generated output: the task is registered with `shopware.scheduled.task`, while the handler is the Messenger consumer for that task. Registration of the task explains why it can be persisted and scheduled; the handler is what ultimately executes `run()`.
 
 Here's an example `ScheduledTask`:
 

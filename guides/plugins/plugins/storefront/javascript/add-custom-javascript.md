@@ -68,6 +68,8 @@ Next you have to tell Shopware that your plugin should be loaded and executed. T
 
 Shopware is automatically looking for a `main.js` file in a directory `<plugin root>/src/Resources/app/storefront/src`, which then will be loaded automatically. Consider this to be your main storefront JavaScript entrypoint.
 
+The entry point, plugin class, and optional DOM selector form one runtime chain. A generator creates these pieces together: `main.js` imports and registers the class, the selector connects it to rendered markup when one is used, and the Storefront build produces the asset the browser loads. Keeping that relationship in mind makes generated output easier to adapt without treating each file as an independent feature.
+
 Create a `main.js` file inside your `<plugin root>/src/Resources/app/storefront/src` folder and get the PluginManager from the global window object. Then register your own plugin:
 
 ```javascript
@@ -75,7 +77,7 @@ Create a `main.js` file inside your `<plugin root>/src/Resources/app/storefront/
 // Import all necessary Storefront plugins
 import ExamplePlugin from './example-plugin/example-plugin.plugin';
 
-// Register your plugin via the existing PluginManager
+// Register your custom Storefront plugin
 const PluginManager = window.PluginManager;
 PluginManager.register('ExamplePlugin', ExamplePlugin);
 ```
@@ -91,7 +93,7 @@ You can also bind your plugin to a DOM element by providing a css selector:
 // Import all necessary Storefront plugins
 import ExamplePlugin from './example-plugin/example-plugin.plugin';
 
-// Register your plugin via the existing PluginManager
+// Register your custom Storefront plugin
 const PluginManager = window.PluginManager;
 PluginManager.register('ExamplePlugin', ExamplePlugin, '[data-example-plugin]');
 ```
@@ -106,7 +108,7 @@ The import path can remain the same as the synchronous import.
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/main.js
 
-// Register your plugin via the existing PluginManager using a dynamic import
+// Register your own Storefront plugin using a dynamic import
 const PluginManager = window.PluginManager;
 PluginManager.register('ExamplePlugin', () => import('./example-plugin/example-plugin.plugin'), '[data-example-plugin]');
 ```

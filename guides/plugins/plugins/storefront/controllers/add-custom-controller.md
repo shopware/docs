@@ -30,6 +30,10 @@ Furthermore, we have to define our `Route` with `defaults` and `_routeScope` via
 In our case the scope is `storefront`.
 
 ::: info
+The controller class is only one part of the feature. The route attributes describe the HTTP endpoint, while the service and route configuration shown below connect that class to Shopware's container and routing system. Generators create these pieces together; this guide explains their roles so you can recognize how the generated files fit together.
+:::
+
+::: info
 Prior to Shopware 6.4.11.0 the `_routeScope` was configured by a dedicated annotation: `@RouteScope`.
 This way of defining the route scope is deprecated for the 6.5 major version.
 :::
@@ -138,6 +142,8 @@ class ExampleController extends StorefrontController
 
 Next, we need to register our controller in the DI-container and make it public.
 
+The generated service definition is the container half of the same feature: it tells Symfony how to construct the controller. If an existing `services.php` already contains other services, generated output belongs alongside those definitions rather than replacing them.
+
 ::: code-group
 
 ```php [PLUGIN_ROOT/src/Resources/config/services.php]
@@ -166,6 +172,8 @@ Please also note the `call` method, which is necessary in order to set the DI co
 Once we've registered our new controller, we have to tell Shopware how we want it to search for new routes in our plugin.
 This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location.
 Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
+
+The route import is the discovery half of the feature: it tells Shopware which controller files to inspect for route attributes. A controller can therefore exist and be a valid service while still not expose a URL until its route is imported.
 
 ::: code-group
 
