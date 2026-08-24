@@ -51,7 +51,7 @@ abstract class AbstractExampleRoute
 Now we can create a new class `ExampleRoute` which uses our previously created `AbstractExampleRoute`.
 
 ::: info
-A generated Store API route is normally more than the route class itself. The class defines the endpoint and response, the service definition makes the route constructible, and `routes.php` imports it for discovery. These pieces form one feature; the generator creates them together so you do not normally need to assemble the wiring by hand.
+A generated Store API route is normally more than the route class itself. The class defines the endpoint and response, the service definition registers it with the dependency injection container, and `routes.php` imports it for discovery. These pieces form one feature; the generator creates them together so you do not normally need to assemble the wiring by hand.
 :::
 
 ```php
