@@ -85,15 +85,9 @@ The CLI runs Rector and ESLint automatically. After completion, review all chang
 
 Make sure the `shopware/core` requirement in your `composer.json` file reflects the version you're targeting. Shopware CLI determines which upgrade rules to apply based on that version constraint.
 
-### Detecting and fixing breaking changes in custom code
+### Detecting breaking changes before refactoring
 
-Before automatic refactoring, first validate your project to identify all breaking changes in your custom code. This ensures you understand what needs to be addressed before fixing begins:
-
-```shell
-shopware-cli project validate --full /path/to/your/project
-```
-
-The validation step uses PHPStan to detect removed or renamed Shopware PHP types in your custom plugins and project code. Once you understand what breaks, refactoring can address compatible issues automatically, while other breaking changes can be handled manually.
+Run [project validation](./validation.md#detecting-breaking-changes-before-upgrading) with `--full` before refactoring. Refactoring fixes the breaking changes that have Rector or ESLint rules; validation shows you the remainder, which has to be handled manually.
 
 ### Project fix options
 

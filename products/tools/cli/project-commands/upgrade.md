@@ -26,23 +26,7 @@ For Docker and other configured environments, PHP and Composer are checked throu
 
 ### Check for breaking changes in custom code
 
-Before upgrading, scan your custom plugins and project code for references to Shopware PHP types that were removed or renamed in the target version. This prevents discovering incompatibilities one error at a time during testing.
-
-Run project validation with PHPStan to detect these breaking changes:
-
-```bash
-shopware-cli project validate --full
-```
-
-PHPStan's Shopware configuration includes rules that catch removed and renamed Shopware classes, interfaces, and traits. The output pinpoints affected files and explains the migration path where available.
-
-For Docker, use:
-
-```bash
-docker run --rm -v "$(pwd)":/project -w /project ghcr.io/shopware/shopware-cli project validate --full /project
-```
-
-Review the validation results before starting the upgrade wizard. Address any breaking changes in your custom code first, or confirm they are acceptable for the target version.
+Before starting the wizard, run `shopware-cli project validate --full` to find references to Shopware PHP types that were removed or renamed. This surfaces incompatibilities in your custom plugins and project code up front, rather than one test failure at a time. See [Detecting breaking changes before upgrading](../validation.md#detecting-breaking-changes-before-upgrading) for the command variants and for how to check against the target version.
 
 ### Migrate local extensions to Composer first
 

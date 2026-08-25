@@ -287,18 +287,6 @@ shopware-cli project validate /path/to/your/project
 
 `project validate` discovers project extensions and configured bundles and runs the registered validation tools against the project. Project-level validation settings are read from `.shopware-project.yml` under `validation`.
 
-### Detecting breaking changes before upgrading
-
-When preparing to upgrade Shopware to a new major or minor version, use `project validate --full` to scan your custom code for references to Shopware PHP types that were removed or renamed in the target version:
-
-```shell
-shopware-cli project validate --full /path/to/your/project
-```
-
-PHPStan's Shopware configuration includes rules for removed and renamed classes, interfaces, and traits. The output identifies affected files, explains the breaking change, and provides migration guidance where available.
-
-This validation is especially useful before running the [Upgrade wizard](./project-commands/upgrade.md) to identify code that needs fixes in advance. Address any breaking changes detected by validation, or confirm they are acceptable for your use case, before starting the upgrade.
-
 For example, project validation ignores using the same identifier, path, and message fields:
 
 ```yaml
@@ -309,6 +297,24 @@ validation:
 ```
 
 You can also exclude extensions from project validation with `validation.ignore_extensions` in `.shopware-project.yml`.
+
+### Detecting breaking changes before upgrading
+
+`project validate --full` runs PHPStan against the project, including the Shopware rules for removed and renamed classes, interfaces, and traits. The output identifies the affected files, explains the breaking change, and provides migration guidance where available.
+
+To check custom code against a Shopware version you have not upgraded to yet, first point the `shopware/core` requirement in `composer.json` at the target version and install that dependency set. PHPStan resolves Shopware types from the installed dependencies, so a project that still has the current version installed reports only the breaking changes up to that version.
+
+```shell
+docker run --rm -v "$(pwd)":/project -w /project ghcr.io/shopware/shopware-cli project validate --full /project
+```
+
+If you run Shopware CLI directly:
+
+```shell
+shopware-cli project validate --full /path/to/your/project
+```
+
+Run this before the [Upgrade wizard](./project-commands/upgrade.md) so that custom code needing fixes is known in advance. Address the reported breaking changes, or confirm they are acceptable for the target version, before starting the upgrade. [Automatic Refactoring](./automatic-refactoring.md) can then handle the subset of findings covered by Rector or ESLint rules.
 
 ## Common issues
 
