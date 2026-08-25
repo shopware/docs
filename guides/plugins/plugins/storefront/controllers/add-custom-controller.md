@@ -173,7 +173,7 @@ Once we've registered our new controller, we have to tell Shopware how we want i
 This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location.
 Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
-The route import is the discovery half of the feature: it tells Shopware which controller files to inspect for route attributes. A controller can therefore exist and be a valid service while still not expose a URL until its route is imported.
+The route import is the discovery half of the feature: it tells Shopware which controller files to inspect for route attributes. A controller can therefore exist and be a valid service while still not exposing a URL until its route is imported.
 
 ::: code-group
 
