@@ -66,7 +66,7 @@ Well, and then we check if this sum is bigger or equal the total size of your we
 
 Next you have to tell Shopware that your plugin should be loaded and executed. Therefore you have to register your plugin in the PluginManager.
 
-Shopware is automatically looking for a `main.js` file in a directory `<plugin root>/src/Resources/app/storefront/src`, which then will be loaded automatically. Consider this to be your main storefront JavaScript entrypoint.
+Shopware is automatically looking for a `main.js` file in a directory `<plugin root>/src/Resources/app/storefront/src`, which then will be loaded automatically. Consider this to be your main storefront JavaScript entry point.
 
 The entry point, plugin class, and optional DOM selector form one runtime chain. A generator creates these pieces together: `main.js` imports and registers the class, the selector connects it to rendered markup when one is used, and the Storefront build produces the asset the browser loads. Keeping that relationship in mind makes generated output easier to adapt without treating each file as an independent feature.
 
