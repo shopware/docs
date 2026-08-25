@@ -91,7 +91,11 @@ class Migration1615470599ExampleSorting extends MigrationStep
 
 ## Create individual sorting at runtime
 
-You can subscribe to the `ProductListingCriteriaEvent` to add a `ProductSortingEntity` as available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../../framework/event/listening-to-events.md) guide.
+You can subscribe to the `ProductListingCollectSortingEvent` to add a `ProductSortingEntity` as an available sorting on the fly. If you don't know how to do this, head over to our [Listening to events](../../framework/event/listening-to-events.md) guide.
+
+::: info
+This event is available since Shopware 6.7.15.0.
+:::
 
 ::: info
 While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the Administration, create a migration and set the parameter `locked` to be `true`.
@@ -105,8 +109,7 @@ Here's an example how your subscriber could look like:
 
 namespace Swag\BasicExample\Subscriber;
 
-use Shopware\Core\Content\Product\Events\ProductListingCriteriaEvent;
-use Shopware\Core\Content\Product\SalesChannel\Sorting\ProductSortingCollection;
+use Shopware\Core\Content\Product\Events\ProductListingCollectSortingEvent;
 use Shopware\Core\Content\Product\SalesChannel\Sorting\ProductSortingEntity;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -117,17 +120,12 @@ class ExampleListingSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            // be sure to subscribe with high priority to add you sorting before the default shopware logic applies
-            // otherwise storefront will throw a ProductSortingNotFoundException
-            ProductListingCriteriaEvent::class => ['addMyCustomSortingToStorefront', 500],
+            ProductListingCollectSortingEvent::class => 'addMyCustomSortingToStorefront',
         ];
     }
 
-    public function addMyCustomSortingToStorefront(ProductListingCriteriaEvent $event): void
+    public function addMyCustomSortingToStorefront(ProductListingCollectSortingEvent $event): void
     {
-        /** @var ProductSortingCollection $availableSortings */
-        $availableSortings = $event->getCriteria()->getExtension('sortings') ?? new ProductSortingCollection();
-
         $myCustomSorting = new ProductSortingEntity();
         $myCustomSorting->setId(Uuid::randomHex());
         $myCustomSorting->setActive(true);
@@ -143,9 +141,7 @@ class ExampleListingSubscriber implements EventSubscriberInterface
             ],
         ]);
 
-        $availableSortings->add($myCustomSorting);
-
-        $event->getCriteria()->addExtension('sortings', $availableSortings);
+        $event->getSortings()->add($myCustomSorting);
     }
 }
 ```
