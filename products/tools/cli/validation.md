@@ -287,6 +287,18 @@ shopware-cli project validate /path/to/your/project
 
 `project validate` discovers project extensions and configured bundles and runs the registered validation tools against the project. Project-level validation settings are read from `.shopware-project.yml` under `validation`.
 
+### Detecting breaking changes before upgrading
+
+When preparing to upgrade Shopware to a new major or minor version, use `project validate --full` to scan your custom code for references to Shopware PHP types that were removed or renamed in the target version:
+
+```shell
+shopware-cli project validate --full /path/to/your/project
+```
+
+PHPStan's Shopware configuration includes rules for removed and renamed classes, interfaces, and traits. The output identifies affected files, explains the breaking change, and provides migration guidance where available.
+
+This validation is especially useful before running the [Upgrade wizard](./project-commands/upgrade.md) to identify code that needs fixes in advance. Address any breaking changes detected by validation, or confirm they are acceptable for your use case, before starting the upgrade.
+
 For example, project validation ignores using the same identifier, path, and message fields:
 
 ```yaml
