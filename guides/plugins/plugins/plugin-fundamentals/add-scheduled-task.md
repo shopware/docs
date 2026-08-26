@@ -24,7 +24,7 @@ A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a 
 Here's an example `services.php` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
 
 ::: info
-A scheduled task has two related runtime roles. The task definition describes when work is due, while the handler processes the message that Shopware dispatches. Generators create both sides and their service wiring together; seeing one generated class on disk does not mean the whole feature has been connected.
+A scheduled task has two related runtime roles. The task definition describes when work is due, while the handler processes the message that Shopware dispatches. Generators create both sides and their service wiring together; seeing the generated PHP class in the filesystem does not mean the whole feature has been connected.
 :::
 
 ```php
