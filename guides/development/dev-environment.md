@@ -342,9 +342,9 @@ docker:
 
 ## Testing multiple Shopware versions in parallel
 
-Verifying a plugin, theme, or app against several Shopware versions - for example before a release, or to confirm whether a bug is version-specific - normally means stopping one environment, switching branches or dependencies, and starting again for every version you check. Running one project per version at the same time removes that back-and-forth: each version stays up, installed, and ready to compare.
+Verifying a plugin, theme, or app against several Shopware versions - for example, before a release, or to confirm whether a bug is version-specific - normally means stopping one environment, switching branches or dependencies, and starting again for every version you check. Running one project per version at the same time removes that back-and-forth: each version stays up, installed, and ready to compare.
 
-By default this is blocked by fixed host ports - a second `project dev` collides with the first on `8000`, `9080`, and the rest. The [local proxy](../../products/tools/cli/project-commands/local-proxy.md) removes that limit by giving every shop its own stable HTTPS hostname instead of a host port, so any number of versions can run side by side.
+By default, this is blocked by fixed host ports - a second `project dev` collides with the first on `8000`, `9080`, and the rest. The [local proxy](../../products/tools/cli/project-commands/local-proxy.md) removes that limit by giving every shop its own stable HTTPS hostname instead of a host port, so any number of versions can run side by side.
 
 ### 1. Create one project per version
 
@@ -368,7 +368,7 @@ Both come up at once, each at its own hostname - `https://my-shop-6-6.shopware.l
 
 ### 3. Install the extension under test into each version
 
-Each project is an independent Composer-managed install, so add and activate the extension the same way in every one:
+Each project is an independent Composer-managed installation, so add and activate the extension the same way in every one:
 
 ```bash
 cd my-shop-6-6
