@@ -248,6 +248,7 @@ ContextTokenAware
 ContextTokenStorer
 CookiePermission
 CookieProviderInterface
+CoreDNS
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -804,6 +805,7 @@ PluginManager
 PositionID
 PositionIDs
 PositionIdentifier
+PostDeploy
 PostInstall
 PostMessage
 PostUpdate
@@ -1071,6 +1073,7 @@ ToOne
 Tooltips
 Topseller
 Topsellers
+Traefik
 TransactionalAction
 TranslatedField
 TranslationConfig
@@ -1167,6 +1170,7 @@ WCAG
 WMA
 WMV
 WSL
+WSL2
 WarehouseGroup
 WarehouseGroups
 WebAIM
@@ -1588,6 +1592,7 @@ guid
 gz
 gzip
 handleFlow
+hardcode
 hardcoded
 hasError
 hasOwnProperty
@@ -1850,6 +1855,7 @@ precompile
 preconfigured
 prefetch
 prefixer
+preflight
 preload
 preloaded
 preloading
