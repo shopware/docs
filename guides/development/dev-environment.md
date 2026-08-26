@@ -340,6 +340,67 @@ docker:
     blackfire_server_token: "your-server-token"
 ```
 
+## Testing multiple Shopware versions in parallel
+
+Verifying a plugin, theme, or app against several Shopware versions - for example, before a release, or to confirm whether a bug is version-specific - normally means stopping one environment, switching branches or dependencies, and starting again for every version you check. Running one project per version at the same time removes that back-and-forth: each version stays up, installed, and ready to compare.
+
+By default, this is blocked by fixed host ports - a second `project dev` collides with the first on `8000`, `9080`, and the rest. The [local proxy](../../products/tools/cli/project-commands/local-proxy.md) removes that limit by giving every shop its own stable HTTPS hostname instead of a host port, so any number of versions can run side by side.
+
+### 1. Create one project per version
+
+Pass the Shopware version as the second argument to `project create`, and opt each project into a local domain so it gets a conflict-free hostname. Include `--docker` - the local proxy only works with the Docker executor:
+
+```bash
+shopware-cli project create my-shop-6-6 6.6.7.0 --docker --local-domain --no-interaction
+shopware-cli project create my-shop-6-7 6.7.0.0 --docker --local-domain --no-interaction
+```
+
+The first local-domain project on a machine triggers the [one-time proxy setup](../../products/tools/cli/project-commands/local-proxy.md#one-time-setup) (DNS routing and HTTPS trust); later projects reuse it.
+
+### 2. Start every version
+
+```bash
+(cd my-shop-6-6 && shopware-cli project dev start)
+(cd my-shop-6-7 && shopware-cli project dev start)
+```
+
+Both come up at once, each at its own hostname - `https://my-shop-6-6.shopware.local` and `https://my-shop-6-7.shopware.local` - with no port conflict and nothing to stop in between.
+
+### 3. Install the extension under test into each version
+
+Each project is an independent Composer-managed installation, so add and activate the extension the same way in every one:
+
+```bash
+cd my-shop-6-6
+docker compose exec web composer require my-vendor/my-plugin
+shopware-cli project console plugin:refresh
+shopware-cli project console plugin:install --activate MyPlugin
+```
+
+Repeat for `my-shop-6-7` (and any other version you added).
+
+### 4. Compare behavior side by side
+
+With every environment running, open each hostname in its own browser tab and reproduce the same steps in each - no editing `.env`, `APP_URL`, or ports to switch versions. `shopware-cli project proxy list` shows every registered shop and its running state at a glance:
+
+```bash
+shopware-cli project proxy list
+```
+
+### 5. Tear down what you no longer need
+
+If you are just done with **one** version but still need the others, stop that project on its own - the rest keep running:
+
+```bash
+(cd my-shop-6-6 && shopware-cli project dev stop)
+```
+
+If you are done testing **entirely**, remove every registered project and the shared proxy in one step:
+
+```bash
+shopware-cli project proxy teardown
+```
+
 ## Troubleshooting
 
 ### `compose.yaml` keeps getting reset
@@ -375,3 +436,4 @@ Set `compatibility_date: '2026-03-01'` in `.shopware-project.yml`. For more cont
 - [Start Developing](./start-developing.md) - What to do once your environment is running
 - [Build Extensions](./extensions/index.md) - Create plugins, apps, and themes
 - [Using Watchers](./tooling/using-watchers.md) - Hot Module Replacement for Admin and Storefront
+- [Local Proxy](../../products/tools/cli/project-commands/local-proxy.md) - CLI reference for running shops on stable hostnames instead of ports
