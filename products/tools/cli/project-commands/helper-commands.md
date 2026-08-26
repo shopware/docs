@@ -129,6 +129,25 @@ shopware-cli project console <command>
 
 A shorter `swx` alias is also available. See [Running Shopware commands](../../../../guides/development/dev-environment.md#running-shopware-commands).
 
+`project console` / `swx` also runs custom scripts defined in the project's `composer.json`, so you don't need a separate Composer invocation for day-to-day scripts:
+
+```bash
+swx phpstan
+swx phpstan -- --memory-limit=2G
+```
+
+Arguments after `--` are passed through to the script. Built-in `bin/console` commands always take precedence over a script with the same name, and lifecycle hooks (for example `post-install-cmd` or `auto-scripts`) are not exposed this way. `swx` / `swx list` shows a `composer` section listing the available scripts.
+
+To proxy the full Composer CLI itself (not just project scripts) through the same executor (local, Docker, or Symfony CLI) as `console`, use:
+
+```bash
+swx composer install
+shopware-cli project composer require shopware/dev-tools
+shopware-cli project composer update --with-all-dependencies
+```
+
+Tab completion for `swx composer <tab>` and `shopware-cli project composer <tab>` is supported, based on a cached command dump.
+
 ## Admin API
 
 The `project admin-api` command is a pre-authenticated curl wrapper for the Shopware Admin API. Instead of manually handling JWT token generation and headers, this command handles authentication automatically:
