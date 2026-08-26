@@ -181,11 +181,7 @@ This should be your snippet file now:
 
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin.
 Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory.
-Given this plugin would be named "AdministrationNewModule", the bundled and minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the command following command in your shopware root directory:
-
-::: info
-The Administration build is the build boundary, not the whole feature lifecycle. A successful build means the generated assets compiled; the module still depends on its entry-point import, registration, routes/components, and snippets being connected correctly at runtime.
-:::
+Given this plugin would be named "AdministrationNewModule", the bundled and minified JavaScript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the following command in your shopware root directory:
 
 <Tabs>
 <Tab title="Template">
@@ -207,6 +203,10 @@ composer run build:js:admin
 
 ::: info
 Your plugin has to be activated for this to work.
+:::
+
+::: info
+The Administration build is the build boundary, not the whole feature lifecycle. A successful build means the generated assets are compiled; the module still depends on its entry-point import, registration, routes/components, and snippets being connected correctly at runtime.
 :::
 
 Make sure to also include that file when publishing your plugin!

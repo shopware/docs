@@ -115,7 +115,7 @@ return static function (ContainerConfigurator $configurator): void {
 };
 ```
 
-The service definition is what connects the route class to the dependency injection container. If generated code already added this definition, treat it as part of the route rather than as unrelated boilerplate.
+The service definition is what connects the route class to the dependency injection container. If generated code already added this definition, treat it as part of the route rather than as an unrelated boilerplate.
 
 ### Route response
 
