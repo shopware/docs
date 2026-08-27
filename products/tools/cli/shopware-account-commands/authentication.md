@@ -3,6 +3,8 @@ nav:
   title: Authentication
   position: 1
 
+product: tools
+lifecycle: reference
 ---
 
 # Authentication

@@ -2,6 +2,8 @@
 nav:
   title: Routing and Navigation
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Routing and Navigation

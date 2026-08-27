@@ -3,6 +3,8 @@ nav:
   title: Add Cookies to the Consent Manager
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add Cookies to the Consent Manager

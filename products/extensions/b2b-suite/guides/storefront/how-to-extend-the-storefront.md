@@ -3,6 +3,8 @@ nav:
   title: Extending the Storefront
   position: 70
 
+product: extensions
+lifecycle: implementation
 ---
 
 # How to Extend the Storefront (Shopware 6)

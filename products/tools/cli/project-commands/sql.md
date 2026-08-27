@@ -3,6 +3,8 @@ nav:
   title: SQL Shell
   position: 8
 
+product: tools
+lifecycle: reference
 ---
 
 # SQL Shell

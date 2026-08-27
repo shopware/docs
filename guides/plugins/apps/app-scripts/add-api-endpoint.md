@@ -3,6 +3,8 @@ nav:
   title: Add an API endpoint
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add an API Endpoint

@@ -3,6 +3,8 @@ nav:
   title: Add Store API Route
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Add Store API Route

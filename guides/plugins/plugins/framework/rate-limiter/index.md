@@ -3,6 +3,8 @@ nav:
   title: Rate Limiter
   position: 90
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Rate Limiter

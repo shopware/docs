@@ -3,6 +3,8 @@ nav:
   title: Stock
   position: 60
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Stock

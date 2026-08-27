@@ -3,6 +3,8 @@ nav:
   title: Monetization
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Monetization

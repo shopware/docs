@@ -3,6 +3,8 @@ nav:
   title: Add Rule Assignment Configuration
   position: 330
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Rule Assignment Configuration

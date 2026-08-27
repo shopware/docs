@@ -2,6 +2,8 @@
 nav:
   title: Page Objects
   position: 14
+product: shopware
+lifecycle: implementation
 ---
 
 # Page Objects

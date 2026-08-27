@@ -3,6 +3,8 @@ nav:
   title: Context Gateway Command Reference
   position: 11
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Context Gateway Command Reference

@@ -3,6 +3,8 @@ nav:
   title: Prevent Deletion of Media Files Referenced in Plugins
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Prevent Deletion of Media Files Referenced in Plugins

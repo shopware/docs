@@ -3,6 +3,8 @@ nav:
   title: Create a Product and Complete Checkout
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Create a Product and Complete Checkout

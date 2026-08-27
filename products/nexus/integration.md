@@ -2,6 +2,8 @@
 nav:
     title: Integration
     position: 4
+product: nexus
+lifecycle: implementation
 ---
 
 # Business Central Integration

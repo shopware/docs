@@ -3,6 +3,8 @@ nav:
   title: Add Custom Flow Action from App System
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Flow Actions

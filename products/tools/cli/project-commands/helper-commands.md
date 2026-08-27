@@ -3,6 +3,8 @@ nav:
   title: Helper Commands
   position: 5
 
+product: tools
+lifecycle: implementation
 ---
 
 # Helper Commands

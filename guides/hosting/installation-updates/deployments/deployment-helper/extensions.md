@@ -3,6 +3,8 @@ nav:
   title: Extensions and Apps
   position: 18
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Extensions and Apps

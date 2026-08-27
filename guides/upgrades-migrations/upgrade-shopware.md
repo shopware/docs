@@ -2,6 +2,8 @@
 nav:
   title: Upgrade Shopware
   position: 10
+product: shopware
+lifecycle: maintenance
 ---
 
 # Upgrade Shopware

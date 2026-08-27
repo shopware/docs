@@ -3,6 +3,8 @@ nav:
   title: Prerequisites
   position: 10
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Prerequisites

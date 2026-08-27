@@ -3,6 +3,8 @@ nav:
   title: Local Proxy
   position: 2
 
+product: tools
+lifecycle: maintenance
 ---
 
 # Local Proxy — Run Multiple Shops in Parallel (CLI Reference)

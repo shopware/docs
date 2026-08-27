@@ -3,6 +3,8 @@ nav:
   title: Add Custom Controller
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Controller

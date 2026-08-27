@@ -3,6 +3,8 @@ nav:
   title: Add Custom JavaScript
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom JavaScript

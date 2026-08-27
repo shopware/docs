@@ -2,6 +2,8 @@
 nav:
   title: Language Pack Migration
   position: 10
+product: shopware
+lifecycle: maintenance
 ---
 
 # Migration Guide: Language Pack Plugin → Integrated Translation Handling

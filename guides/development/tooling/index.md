@@ -3,6 +3,8 @@ nav:
   title: Tooling
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Tooling

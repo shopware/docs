@@ -3,6 +3,8 @@ nav:
   title: Add Rate Limiter to API Route
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Rate Limiter to API Route

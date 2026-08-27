@@ -3,6 +3,8 @@ nav:
   title: Tools Reference
   position: 70
 
+product: tools
+lifecycle: reference
 ---
 
 # Tools Reference

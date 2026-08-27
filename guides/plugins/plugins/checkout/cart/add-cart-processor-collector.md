@@ -3,6 +3,8 @@ nav:
   title: Add Cart Collector/Processor
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add Cart Collector/Processor

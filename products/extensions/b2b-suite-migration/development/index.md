@@ -3,6 +3,8 @@ nav:
   title: Development
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Development

@@ -3,6 +3,8 @@ nav:
   title: Partial Data Loading
   position: 50
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Partial Data Loading

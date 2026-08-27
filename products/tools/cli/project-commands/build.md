@@ -3,6 +3,8 @@ nav:
   title: Build a Complete Project
   position: 3
 
+product: tools
+lifecycle: maintenance
 ---
 
 # Build a Complete Project

@@ -3,6 +3,8 @@ nav:
   title: Mixed checkout
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 # Mixed subscription checkout
 

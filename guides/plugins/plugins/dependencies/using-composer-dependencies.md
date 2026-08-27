@@ -3,6 +3,8 @@ nav:
   title: Adding Composer Dependencies
   position: 130
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Composer Dependencies

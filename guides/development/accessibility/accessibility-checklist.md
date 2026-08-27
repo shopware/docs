@@ -2,6 +2,8 @@
 nav:
   title: Accessibility Checklist
   position: 31
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront Accessibility

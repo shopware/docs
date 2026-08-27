@@ -2,6 +2,8 @@
 nav:
   title: Databases
   position: 20
+product: hosting
+lifecycle: reference
 ---
 
 # Databases

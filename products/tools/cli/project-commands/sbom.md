@@ -3,6 +3,8 @@ nav:
   title: Generate a Project SBOM
   position: 6
 
+product: tools
+lifecycle: onboarding
 ---
 
 # Generate a Project SBOM

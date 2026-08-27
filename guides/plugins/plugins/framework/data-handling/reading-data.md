@@ -3,6 +3,8 @@ nav:
   title: Reading Data
   position: 100
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Reading Data

@@ -3,6 +3,8 @@ nav:
   title: Add Custom SEO URLs
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Add Custom SEO URLs

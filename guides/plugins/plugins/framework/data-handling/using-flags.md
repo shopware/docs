@@ -3,6 +3,8 @@ nav:
   title: Using Flags
   position: 130
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Flags

@@ -3,6 +3,8 @@ nav:
   title: Shopware 6 Toolbox
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Shopware 6 Toolbox

@@ -3,6 +3,8 @@ nav:
   title: Storefront
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Storefront

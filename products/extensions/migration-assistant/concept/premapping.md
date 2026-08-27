@@ -2,6 +2,8 @@
 nav:
   title: Premapping
   position: 40
+product: extensions
+lifecycle: reference
 ---
 
 # Premapping

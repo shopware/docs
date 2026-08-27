@@ -3,6 +3,8 @@ nav:
   title: Deployment Helper
   position: 15
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Deployment Helper

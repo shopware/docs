@@ -3,6 +3,8 @@ nav:
   title: System architecture
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 # System Architecture

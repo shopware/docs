@@ -3,6 +3,8 @@ nav:
   title: Final and Internal Annotation
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Final and Internal Annotation

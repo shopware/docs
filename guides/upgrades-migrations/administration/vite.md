@@ -2,6 +2,8 @@
 nav:
   title: Changing from Webpack to Vite
   position: 13
+product: shopware
+lifecycle: maintenance
 ---
 
 # Future Development Roadmap: Changing from Webpack to Vite

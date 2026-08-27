@@ -3,6 +3,8 @@ nav:
   title: Adding Services
   position: 90
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Services

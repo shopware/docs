@@ -3,6 +3,8 @@ nav:
   title: Generating MySQL Dumps
   position: 1
 
+product: tools
+lifecycle: reference
 ---
 
 # Generating MySQL Dumps

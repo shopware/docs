@@ -3,6 +3,8 @@ nav:
    title: Frontend app installation
    position: 30
 
+product: digital-sales-rooms
+lifecycle: deployment
 ---
 
 # Frontend App Installation

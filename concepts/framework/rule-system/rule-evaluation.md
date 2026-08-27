@@ -2,6 +2,8 @@
 nav:
   title: Rule evaluation
   position: 30
+product: shopware
+lifecycle: reference
 ---
 
 # Rule evaluation

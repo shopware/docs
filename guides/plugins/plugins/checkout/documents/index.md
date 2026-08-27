@@ -2,6 +2,8 @@
 nav:
   title: Documents
   position: 20
+product: shopware
+lifecycle: implementation
 ---
 
 # Documents

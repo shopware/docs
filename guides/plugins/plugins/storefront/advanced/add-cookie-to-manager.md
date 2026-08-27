@@ -3,6 +3,8 @@ nav:
   title: Add Cookie to Manager
   position: 160
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Add Cookie to Manager

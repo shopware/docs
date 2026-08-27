@@ -3,6 +3,8 @@ nav:
   title: Automated translation updates
   position: 55
 
+product: shopware
+lifecycle: reference
 ---
 
 # Automated translation updates

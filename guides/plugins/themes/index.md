@@ -3,6 +3,8 @@ nav:
   title: Storefront Themes
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Storefront Themes

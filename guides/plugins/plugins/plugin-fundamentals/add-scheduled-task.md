@@ -3,6 +3,8 @@ nav:
   title: Add Scheduled Task
   position: 100
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Scheduled Task

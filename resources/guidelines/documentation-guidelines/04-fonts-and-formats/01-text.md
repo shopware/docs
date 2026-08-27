@@ -3,6 +3,8 @@ nav:
   title: Text
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Fonts and Format for Text

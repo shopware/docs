@@ -2,6 +2,8 @@
 nav:
   title: Hosting
   position: 80
+product: shopware
+lifecycle: deployment
 ---
 
 # Hosting

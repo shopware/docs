@@ -3,6 +3,8 @@ nav:
   title: MCP Concepts
   position: 15
 
+product: tools
+lifecycle: reference
 ---
 
 # MCP Concepts

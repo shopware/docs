@@ -3,6 +3,8 @@ nav:
   title: Payments
   position: 30
 
+product: shopware
+lifecycle: reference
 ---
 
 # Payments

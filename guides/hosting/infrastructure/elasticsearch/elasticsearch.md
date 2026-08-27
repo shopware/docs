@@ -2,6 +2,8 @@
 nav:
   title: Elasticsearch
   position: 40
+product: shopware
+lifecycle: deployment
 ---
 
 # Elasticsearch

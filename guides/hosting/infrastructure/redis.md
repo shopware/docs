@@ -3,6 +3,8 @@ nav:
   title: Redis
   position: 80
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Redis

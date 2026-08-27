@@ -3,6 +3,8 @@ nav:
   title: Cypress
   position: 11
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Cypress

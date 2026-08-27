@@ -3,6 +3,8 @@ nav:
   title: Fixture Bundle
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Fixture Bundle

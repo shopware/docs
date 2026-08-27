@@ -2,6 +2,8 @@
 nav:
   title: Test Data Service
   position: 19
+product: shopware
+lifecycle: implementation
 ---
 
 # Services

@@ -3,6 +3,8 @@ nav:
   title: Webhook
   position: 60
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Webhook

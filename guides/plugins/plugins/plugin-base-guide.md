@@ -3,6 +3,8 @@ nav:
   title: Plugin Base Guide
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Plugin Base Guide

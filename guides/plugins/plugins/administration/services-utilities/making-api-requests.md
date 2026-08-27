@@ -3,6 +3,8 @@ nav:
   title: Making API Requests
   position: 70
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Making API Requests

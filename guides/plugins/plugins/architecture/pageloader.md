@@ -3,6 +3,8 @@ nav:
   title: Page Loader Extension Architecture
   position: 80
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Page Loader Extension Architecture

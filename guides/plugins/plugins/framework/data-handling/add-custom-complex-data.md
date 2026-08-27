@@ -3,6 +3,8 @@ nav:
   title: Adding Custom Complex Data
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Custom Complex Data

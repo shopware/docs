@@ -3,6 +3,8 @@ nav:
   title: Add Custom Sorting for Product Listing
   position: 220
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Add Custom Sorting for Product Listing

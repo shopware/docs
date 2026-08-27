@@ -3,6 +3,8 @@ nav:
   title: Replacing Associated Data
   position: 110
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Replacing Associated Data

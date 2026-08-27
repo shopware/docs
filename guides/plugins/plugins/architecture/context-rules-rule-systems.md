@@ -3,6 +3,8 @@ nav:
   title: Rule System Extension Architecture
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Rule System Extension Architecture

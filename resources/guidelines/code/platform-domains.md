@@ -3,6 +3,8 @@ nav:
   title: Platform Domains
   position: 90
 
+product: shopware
+lifecycle: reference
 ---
 
 # Platform Domains

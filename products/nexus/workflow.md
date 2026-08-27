@@ -2,6 +2,8 @@
 nav:
     title: Nexus
     position: 3
+product: nexus
+lifecycle: implementation
 ---
 
 # Workflow Builder

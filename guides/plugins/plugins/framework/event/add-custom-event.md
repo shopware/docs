@@ -3,6 +3,8 @@ nav:
   title: Add Custom Event
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Event

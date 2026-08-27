@@ -3,6 +3,8 @@ nav:
   title: Installation & Updates
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Installation and Updates

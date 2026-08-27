@@ -3,6 +3,8 @@ nav:
   title: Running Actions Inside Transactions
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Running Actions Inside Transactions

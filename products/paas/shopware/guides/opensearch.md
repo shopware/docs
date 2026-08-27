@@ -2,6 +2,8 @@
 nav:
   title: How to set up OpenSearch
   position: 60
+product: hosting
+lifecycle: implementation
 ---
 
 ## Enable OpenSearch

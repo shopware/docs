@@ -3,6 +3,8 @@ nav:
   title: Migration Assistant
   position: 10
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Migration Assistant

@@ -3,6 +3,8 @@ nav:
   title: SameSite protection
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # SameSite protection

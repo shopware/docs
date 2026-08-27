@@ -2,6 +2,8 @@
 nav:
   title: Quality Guidelines for Store Extensions
   position: 10
+product: shopware
+lifecycle: onboarding
 ---
 
 # Quality Guidelines for Store Extensions

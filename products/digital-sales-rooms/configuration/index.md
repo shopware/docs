@@ -3,6 +3,8 @@ nav:
   title: Configuration
   position: 30
 
+product: digital-sales-rooms
+lifecycle: implementation
 ---
 
 # Digital Sales Rooms Configuration

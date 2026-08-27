@@ -3,6 +3,8 @@ nav:
   title: Using Base Components
   position: 210
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Base Components

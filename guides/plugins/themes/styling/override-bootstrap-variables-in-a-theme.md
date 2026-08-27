@@ -3,6 +3,8 @@ nav:
   title: Override Bootstrap variables in a Theme
   position: 60
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Override Bootstrap Variables in a Theme

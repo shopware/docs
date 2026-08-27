@@ -2,6 +2,8 @@
 nav:
   title: Update Shopware in PaaS Native
   position: 40
+product: hosting
+lifecycle: implementation
 ---
 
 # Guide: Update Shopware version in PaaS Native

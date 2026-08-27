@@ -3,6 +3,8 @@ nav:
   title: Role and Permission Mapping
   position: 20
 
+product: extensions
+lifecycle: reference
 ---
 
 # Role and Permission Mapping

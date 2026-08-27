@@ -2,6 +2,8 @@
 nav:
   title: Accessibility
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Accessibility

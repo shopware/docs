@@ -3,6 +3,8 @@ nav:
   title: Add Custom Input Field to Existing Component
   position: 200
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Input Field to Existing Component

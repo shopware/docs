@@ -3,6 +3,8 @@ nav:
   title: Technical Terms and Concepts
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Technical Terms and Concepts

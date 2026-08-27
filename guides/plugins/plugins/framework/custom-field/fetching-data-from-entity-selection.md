@@ -3,6 +3,8 @@ nav:
   title: Fetching data from "entity selection" custom field
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Fetching Data from "Entity Selection" Custom Field

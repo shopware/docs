@@ -3,6 +3,8 @@ nav:
   title: Finding Events
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Finding Events

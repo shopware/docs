@@ -3,6 +3,8 @@ nav:
   title: Using Assets
   position: 180
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Assets

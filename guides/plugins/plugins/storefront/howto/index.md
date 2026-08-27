@@ -2,6 +2,8 @@
 nav:
   title: How-To Guides
   position: 300
+product: shopware
+lifecycle: implementation
 ---
 
 # How-To Guides

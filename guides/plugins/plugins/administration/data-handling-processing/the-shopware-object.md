@@ -3,6 +3,8 @@ nav:
   title: The Shopware Object
   position: 270
 
+product: shopware
+lifecycle: implementation
 ---
 
 # The Shopware Object

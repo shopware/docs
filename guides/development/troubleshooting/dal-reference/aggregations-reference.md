@@ -3,6 +3,8 @@ nav:
   title: Aggregations Reference
   position: 40
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Aggregations Reference

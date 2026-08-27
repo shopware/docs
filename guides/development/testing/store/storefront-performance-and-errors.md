@@ -2,6 +2,8 @@
 nav:
   title: Storefront, performance, and errors
   position: 40
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront, performance, and errors

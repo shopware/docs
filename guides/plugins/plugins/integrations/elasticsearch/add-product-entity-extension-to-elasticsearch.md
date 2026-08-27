@@ -3,6 +3,8 @@ nav:
   title: Add Product Entity Extension to Elasticsearch
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Product Entity Extension to Elasticsearch

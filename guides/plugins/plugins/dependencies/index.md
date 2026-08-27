@@ -2,6 +2,8 @@
 nav:
   title: Dependencies
   position: 70
+product: shopware
+lifecycle: implementation
 ---
 
 # Dependencies

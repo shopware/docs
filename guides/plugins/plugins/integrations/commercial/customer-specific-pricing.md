@@ -3,6 +3,8 @@ nav:
   title: Custom Pricing
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customer-Specific Pricing

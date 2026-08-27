@@ -3,6 +3,8 @@ nav:
   title: Complex views
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Complex Views

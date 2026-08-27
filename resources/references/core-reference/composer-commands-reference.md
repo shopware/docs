@@ -3,6 +3,8 @@ nav:
   title: Composer Commands Reference
   position: 5
 
+product: shopware
+lifecycle: reference
 ---
 
 # Composer Commands Reference

@@ -3,6 +3,8 @@ nav:
   title: B2B Suite
   position: 20
 
+product: extensions
+lifecycle: reference
 ---
 
 # B2B Suite

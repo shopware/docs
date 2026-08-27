@@ -2,6 +2,8 @@
 nav:
   title: Performing Shopware Updates
   position: 20
+product: shopware
+lifecycle: deployment
 ---
 
 # Performing Shopware Updates

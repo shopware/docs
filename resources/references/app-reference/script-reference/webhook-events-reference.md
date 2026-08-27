@@ -1,3 +1,8 @@
+---
+product: shopware
+lifecycle: reference
+---
+
 # Webhook Event Reference
 
 | Event | Description | Permissions needed | Payload

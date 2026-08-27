@@ -3,6 +3,8 @@ nav:
   title: Order Approval
   position: 20
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Order approval component

@@ -1,3 +1,8 @@
+---
+product: extensions
+lifecycle: implementation
+---
+
 # Subscription concept
 
 To use subscriptions, you will need to be familiar with three core concepts: **Subscription Plans**, **Subscription Intervals**, and the **Checkout Processes**.

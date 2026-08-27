@@ -3,6 +3,8 @@ nav:
   title: Adding Responsive Behavior
   position: 260
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Adding Responsive Behavior

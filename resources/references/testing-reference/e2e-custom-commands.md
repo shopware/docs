@@ -3,6 +3,8 @@ nav:
   title: Custom E2E Commands
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Custom E2E Commands

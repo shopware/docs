@@ -3,6 +3,8 @@ nav:
   title: Using Utility Functions
   position: 250
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Utility Functions

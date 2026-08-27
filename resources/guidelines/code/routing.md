@@ -3,6 +3,8 @@ nav:
   title: Routing
   position: 110
 
+product: shopware
+lifecycle: reference
 ---
 
 # Routing

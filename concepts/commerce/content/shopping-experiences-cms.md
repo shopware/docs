@@ -3,6 +3,8 @@ nav:
   title: Shopping Experiences (CMS)
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Shopping Experiences \(CMS\)

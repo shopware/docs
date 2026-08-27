@@ -3,6 +3,8 @@ nav:
   title: Line Item List
   position: 40
 
+product: extensions
+lifecycle: reference
 ---
 
 # Line Item List

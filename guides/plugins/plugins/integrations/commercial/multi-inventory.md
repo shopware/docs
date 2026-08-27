@@ -3,6 +3,8 @@ nav:
   title: Multi-Inventory
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Multi-Inventory

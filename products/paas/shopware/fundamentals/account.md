@@ -2,6 +2,8 @@
 nav:
   title: Account
   position: 70
+product: hosting
+lifecycle: reference
 ---
 
 # Account

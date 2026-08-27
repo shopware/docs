@@ -3,6 +3,8 @@ nav:
   title: Continuous Integration
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Continuous Integration

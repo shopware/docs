@@ -2,6 +2,8 @@
 nav:
   title: Clone Application
   position: 70
+product: hosting
+lifecycle: onboarding
 ---
 
 # Clone Application in PaaS Native

@@ -2,6 +2,8 @@
 nav:
   title: Migration Process
   position: 5
+product: extensions
+lifecycle: maintenance
 ---
 
 # Migration Process

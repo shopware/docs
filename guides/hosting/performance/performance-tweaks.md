@@ -3,6 +3,8 @@ nav:
   title: Performance Tweaks
   position: 70
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Performance Tweaks

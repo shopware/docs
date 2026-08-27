@@ -3,6 +3,8 @@ nav:
   title: Creating Plugins
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Creating Plugins

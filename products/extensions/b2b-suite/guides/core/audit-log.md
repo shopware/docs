@@ -3,6 +3,8 @@ nav:
   title: Audit Log
   position: 70
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Audit Log

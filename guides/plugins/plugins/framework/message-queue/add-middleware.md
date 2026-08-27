@@ -3,6 +3,8 @@ nav:
   title: Add Middleware
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Middleware

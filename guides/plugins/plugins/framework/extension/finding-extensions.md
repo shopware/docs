@@ -3,6 +3,8 @@ nav:
   title: Finding Extension Points
   position: 20
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Finding Extension Points

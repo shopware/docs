@@ -3,6 +3,8 @@ nav:
   title: Twig Functions Reference
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Twig Functions Reference

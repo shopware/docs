@@ -3,6 +3,8 @@ nav:
   title: Add custom action button
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add custom action button

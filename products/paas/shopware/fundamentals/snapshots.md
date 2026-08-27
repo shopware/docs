@@ -2,6 +2,8 @@
 nav:
   title: Snapshots
   position: 65
+product: hosting
+lifecycle: implementation
 ---
 
 # Snapshots

@@ -3,6 +3,8 @@ nav:
   title: Modify search logic
   position: 80
 
+product: extensions
+lifecycle: reference
 ---
 
 # Modify Search Logic

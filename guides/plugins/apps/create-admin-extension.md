@@ -2,6 +2,8 @@
 nav:
   title: Build an Admin UI App Locally
   position: 30
+product: shopware
+lifecycle: maintenance
 ---
 
 # Build an Admin UI App Locally

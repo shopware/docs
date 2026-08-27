@@ -3,6 +3,8 @@ nav:
   title: Create permissions via App
   position: 40
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Create Permissions via App

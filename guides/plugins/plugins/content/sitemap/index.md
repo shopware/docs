@@ -3,6 +3,8 @@ nav:
   title: Sitemap
   position: 50
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Sitemap

@@ -3,6 +3,8 @@ nav:
   title: Working with Media and Thumbnails
   position: 190
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Working with Media and Thumbnails

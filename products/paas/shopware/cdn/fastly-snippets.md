@@ -2,6 +2,8 @@
 nav:
   title: Fastly Snippets
   position: 43
+product: hosting
+lifecycle: implementation
 ---
 
 # Fastly Snippets

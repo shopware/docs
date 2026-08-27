@@ -3,6 +3,8 @@ nav:
   title: About MCP
   position: 30
 
+product: tools
+lifecycle: implementation
 ---
 
 # MCP Support in Shopware

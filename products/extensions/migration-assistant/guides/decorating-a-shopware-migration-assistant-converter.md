@@ -3,6 +3,8 @@ nav:
   title: Decorating a Shopware Migration Assistant converter
   position: 30
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Decorating a Shopware Migration Assistant Converter

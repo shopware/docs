@@ -2,6 +2,8 @@
 nav:
   title: Migration Context
   position: 30
+product: extensions
+lifecycle: maintenance
 ---
 
 # Migration Context

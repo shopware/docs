@@ -3,6 +3,8 @@ nav:
   title: Basic conventions
   position: 20
 
+product: extensions
+lifecycle: reference
 ---
 
 # Basic Conventions

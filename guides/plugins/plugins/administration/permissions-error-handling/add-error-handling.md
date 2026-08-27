@@ -3,6 +3,8 @@ nav:
   title: Adding Error Handling
   position: 130
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Adding Error Handling

@@ -2,6 +2,8 @@
 nav:
   title: CMS
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # CMS

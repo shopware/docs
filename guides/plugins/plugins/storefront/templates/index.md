@@ -2,6 +2,8 @@
 nav:
   title: Templates
   position: 20
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront Templates

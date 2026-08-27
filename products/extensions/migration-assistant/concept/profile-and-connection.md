@@ -2,6 +2,8 @@
 nav:
   title: Profile and Connection
   position: 10
+product: extensions
+lifecycle: reference
 ---
 
 # Profile and Connection

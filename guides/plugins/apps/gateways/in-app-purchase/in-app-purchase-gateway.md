@@ -2,6 +2,8 @@
 nav:
   title: In-App Purchase Gateway
   position: 50
+product: shopware
+lifecycle: onboarding
 ---
 
 # In-App Purchase Gateway

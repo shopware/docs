@@ -2,6 +2,8 @@
 nav:
   title: v2
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Document System (v2)

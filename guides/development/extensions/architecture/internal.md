@@ -3,6 +3,8 @@ nav:
   title: Public API and Internal Annotation
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Public API and Internal Annotation

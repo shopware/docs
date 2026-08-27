@@ -3,6 +3,8 @@ nav:
   title: Exception
   position: 80
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Exception

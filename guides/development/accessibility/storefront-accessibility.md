@@ -2,6 +2,8 @@
 nav:
   title: Storefront Accessibility
   position: 30
+product: shopware
+lifecycle: deployment
 ---
 
 # Accessibility in the Storefront

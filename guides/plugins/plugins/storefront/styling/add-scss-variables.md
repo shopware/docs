@@ -3,6 +3,8 @@ nav:
   title: Add SCSS Variables
   position: 230
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add SCSS Variables

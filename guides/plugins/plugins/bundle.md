@@ -3,6 +3,8 @@ nav:
   title: Symfony Bundles
   position: 20
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Using Symfony Bundles Instead of Plugins

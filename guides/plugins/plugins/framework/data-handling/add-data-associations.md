@@ -3,6 +3,8 @@ nav:
   title: Adding Data Associations
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Data Associations

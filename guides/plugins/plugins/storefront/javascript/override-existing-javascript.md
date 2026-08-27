@@ -3,6 +3,8 @@ nav:
   title: Override Existing JavaScript
   position: 60
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Override Existing JavaScript

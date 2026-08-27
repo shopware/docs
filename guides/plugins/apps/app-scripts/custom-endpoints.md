@@ -3,6 +3,8 @@ nav:
   title: Custom Endpoints
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Custom Endpoints with App Scripts

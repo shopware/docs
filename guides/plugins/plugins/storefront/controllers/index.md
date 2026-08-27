@@ -3,6 +3,8 @@ nav:
   title: Storefront Controllers
   position: 140
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront Controllers

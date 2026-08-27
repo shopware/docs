@@ -3,6 +3,8 @@ nav:
   title: In-App Purchases (IAP)
   position: 50
 
+product: shopware
+lifecycle: implementation
 ---
 
 # In-App Purchases

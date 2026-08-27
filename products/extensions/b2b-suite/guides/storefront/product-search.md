@@ -3,6 +3,8 @@ nav:
   title: Product Search
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Product Search

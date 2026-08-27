@@ -3,6 +3,8 @@ nav:
   title: Rules Reference
   position: 40
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Rules Reference

@@ -3,6 +3,8 @@ nav:
   title: Cart Extension Architecture
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Cart Extension Architecture

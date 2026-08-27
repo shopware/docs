@@ -1,3 +1,8 @@
+---
+product: shopware
+lifecycle: reference
+---
+
 # Nginx
 
 ::: info

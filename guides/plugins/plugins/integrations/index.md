@@ -2,6 +2,8 @@
 nav:
   title: Integrations
   position: 30
+product: shopware
+lifecycle: implementation
 ---
 
 # Integrations

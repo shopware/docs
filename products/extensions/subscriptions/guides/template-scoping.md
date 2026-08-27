@@ -3,6 +3,8 @@ nav:
   title: Template scoping
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Subscription template scoping

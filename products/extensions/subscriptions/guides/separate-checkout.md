@@ -3,6 +3,8 @@ nav:
   title: Separate checkout
   position: 10
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Separate subscription checkout

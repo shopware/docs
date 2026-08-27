@@ -3,6 +3,8 @@ nav:
   title: Using Data Handling
   position: 120
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Data Handling

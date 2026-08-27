@@ -2,6 +2,8 @@
 nav:
   title: Services
   position: 50
+product: shopware
+lifecycle: implementation
 ---
 
 # Services

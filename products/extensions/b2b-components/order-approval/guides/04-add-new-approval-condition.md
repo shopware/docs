@@ -3,6 +3,8 @@ nav:
   title: How to add a new approval condition
   position: 40
 
+product: extensions
+lifecycle: implementation
 ---
 
 # How to add a new approval condition

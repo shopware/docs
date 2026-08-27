@@ -2,6 +2,8 @@
 nav:
   title: Upgrade a Shopware Project
   position: 8
+product: tools
+lifecycle: maintenance
 ---
 
 # Upgrade a Shopware Project

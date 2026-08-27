@@ -3,6 +3,8 @@ nav:
   title: System Requirements
   position: 3
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # System Requirements

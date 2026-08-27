@@ -2,6 +2,8 @@
 nav:
   title: Not allowed store behaviors
   position: 20
+product: shopware
+lifecycle: implementation
 ---
 
 # Not allowed behaviors in the Shopware Store

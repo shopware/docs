@@ -3,6 +3,8 @@ nav:
   title: Extensions
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Extensions

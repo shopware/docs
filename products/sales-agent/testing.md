@@ -3,6 +3,8 @@ nav:
    title: Testing
    position: 50
 
+product: sales-agent
+lifecycle: implementation
 ---
 
 # Testing

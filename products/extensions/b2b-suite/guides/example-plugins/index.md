@@ -3,6 +3,8 @@ nav:
   title: Example Plugins
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Example Plugins

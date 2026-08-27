@@ -3,6 +3,8 @@ nav:
   title: Add Cart Items
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Cart Items

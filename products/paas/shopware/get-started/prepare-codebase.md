@@ -2,6 +2,8 @@
 nav:
   title: Prepare Shopware codebase
   position: 20
+product: hosting
+lifecycle: onboarding
 ---
 
 # Prepare Shopware codebase

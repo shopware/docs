@@ -2,6 +2,8 @@
 nav:
   title: Permissions and Error Handling
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Permissions and Error Handling

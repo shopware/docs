@@ -3,6 +3,8 @@ nav:
   title: Flow Action Reference
   position: 60
 
+product: shopware
+lifecycle: reference
 ---
 
 # Flow Action Reference

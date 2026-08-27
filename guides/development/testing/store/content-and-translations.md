@@ -2,6 +2,8 @@
 nav:
   title: Content and translations
   position: 70
+product: shopware
+lifecycle: implementation
 ---
 
 # Content and translations

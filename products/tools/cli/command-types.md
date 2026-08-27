@@ -3,6 +3,8 @@ nav:
   title: Command Types
   position: 30
 
+product: tools
+lifecycle: reference
 ---
 
 # Command Types

@@ -2,6 +2,8 @@
 nav:
   title: Removing Vue Migration Build
   position: 14
+product: shopware
+lifecycle: maintenance
 ---
 
 # Future Development Roadmap: Removing Vue Migration Build

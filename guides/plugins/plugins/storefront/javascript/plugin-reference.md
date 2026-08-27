@@ -3,6 +3,8 @@ nav:
   title: Storefront Plugins and Helper Reference
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront Plugins and Helper Reference

@@ -2,6 +2,8 @@
 nav:
   title: Cookies and privacy
   position: 60
+product: shopware
+lifecycle: implementation
 ---
 
 # Cookies and privacy

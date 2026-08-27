@@ -3,6 +3,8 @@ nav:
   title: Directives
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Directives Reference

@@ -3,6 +3,8 @@ nav:
   title: Project Structure Overview
   position: 4
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Understanding Your Shopware Project

@@ -3,6 +3,8 @@ nav:
   title: DAL Reference
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # DAL Reference

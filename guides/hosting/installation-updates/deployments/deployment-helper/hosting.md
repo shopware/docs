@@ -3,6 +3,8 @@ nav:
   title: Hosting and Integrations
   position: 22
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Hosting Integration and Deployment

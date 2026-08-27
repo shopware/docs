@@ -3,6 +3,8 @@ nav:
   title: SEO
   position: 40
 
+product: shopware
+lifecycle: implementation
 ---
 
 # SEO

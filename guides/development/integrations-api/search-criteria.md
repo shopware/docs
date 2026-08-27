@@ -3,6 +3,8 @@ nav:
   title: Search Criteria
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Search Criteria

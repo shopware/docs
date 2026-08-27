@@ -3,6 +3,8 @@ nav:
   title: Shipping Methods
   position: 100
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Shipping Methods

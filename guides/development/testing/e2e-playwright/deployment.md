@@ -2,6 +2,8 @@
 nav:
   title: Deployment
   position: 12
+product: shopware
+lifecycle: maintenance
 ---
 
 # Deployment Process

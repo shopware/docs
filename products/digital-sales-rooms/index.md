@@ -3,6 +3,8 @@ nav:
   title: Digital Sales Rooms
   position: 30
 
+product: digital-sales-rooms
+lifecycle: onboarding
 ---
 
 # Digital Sales Rooms Overview

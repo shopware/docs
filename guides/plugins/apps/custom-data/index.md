@@ -3,6 +3,8 @@ nav:
   title: Custom Data
   position: 70
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Custom data

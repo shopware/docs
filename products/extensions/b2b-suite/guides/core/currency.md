@@ -3,6 +3,8 @@ nav:
   title: Currency
   position: 90
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Currency

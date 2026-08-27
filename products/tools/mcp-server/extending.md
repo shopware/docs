@@ -3,6 +3,8 @@ nav:
   title: Extending the MCP Server
   position: 55
 
+product: tools
+lifecycle: implementation
 ---
 
 # Extending the MCP Server

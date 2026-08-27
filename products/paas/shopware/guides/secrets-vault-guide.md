@@ -2,6 +2,8 @@
 nav:
   title: Using the Vault
   position: 30
+product: hosting
+lifecycle: deployment
 ---
 
 # Guide: Using the Shopware PaaS Vault

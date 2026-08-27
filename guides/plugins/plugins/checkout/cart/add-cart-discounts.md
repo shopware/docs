@@ -3,6 +3,8 @@ nav:
   title: Add Cart Discounts
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Cart Discounts

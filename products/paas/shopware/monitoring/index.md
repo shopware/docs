@@ -2,6 +2,8 @@
 nav:
   title: Monitoring
   position: 40
+product: hosting
+lifecycle: reference
 ---
 
 # Monitoring

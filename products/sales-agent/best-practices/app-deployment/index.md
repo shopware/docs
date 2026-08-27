@@ -2,6 +2,8 @@
 nav:
   title: Frontend App Deployment
   position: 10
+product: sales-agent
+lifecycle: deployment
 ---
 
 # Frontend App Deployment

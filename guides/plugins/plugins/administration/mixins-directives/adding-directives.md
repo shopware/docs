@@ -3,6 +3,8 @@ nav:
   title: Using Directives
   position: 190
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Directives

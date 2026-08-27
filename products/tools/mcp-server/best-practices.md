@@ -3,6 +3,8 @@ nav:
   title: Best Practices
   position: 40
 
+product: tools
+lifecycle: implementation
 ---
 
 # Best Practices

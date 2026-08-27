@@ -3,6 +3,8 @@ nav:
   title: Frontend App Deployment
   position: 10
 
+product: digital-sales-rooms
+lifecycle: deployment
 ---
 
 # Frontend App Deployment

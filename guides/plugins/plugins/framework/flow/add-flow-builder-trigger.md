@@ -3,6 +3,8 @@ nav:
   title: Add Flow Builder Trigger
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Flow Trigger

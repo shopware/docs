@@ -3,6 +3,8 @@ nav:
   title: Lifecycle
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Lifecycle

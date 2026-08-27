@@ -3,6 +3,8 @@ nav:
   title: Cluster Setup
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Cluster Setup

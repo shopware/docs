@@ -2,6 +2,8 @@
 nav:
   title: Logging
   position: 70
+product: extensions
+lifecycle: reference
 ---
 
 # Logging

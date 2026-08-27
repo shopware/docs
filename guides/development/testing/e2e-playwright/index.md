@@ -2,6 +2,8 @@
 nav:
   title: Playwright E2E testing
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Shopware Acceptance Test Suite: Playwright

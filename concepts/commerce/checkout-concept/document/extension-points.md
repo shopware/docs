@@ -2,6 +2,8 @@
 nav:
   title: Extension Points
   position: 30
+product: shopware
+lifecycle: reference
 ---
 
 # Document extension points

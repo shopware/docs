@@ -3,6 +3,8 @@ nav:
   title: Extending Migration
   position: 40
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Extending an Existing Migration

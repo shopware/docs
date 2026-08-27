@@ -3,6 +3,8 @@ nav:
   title: ACL and Routing
   position: 60
 
+product: extensions
+lifecycle: implementation
 ---
 
 # ACL and Routing

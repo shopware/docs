@@ -2,6 +2,8 @@
 nav:
   title: Rule concepts
   position: 20
+product: shopware
+lifecycle: reference
 ---
 
 # Rule concepts

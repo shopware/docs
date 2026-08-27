@@ -3,6 +3,8 @@ nav:
   title: Best practices on writing end-to-end tests
   position: 12
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Best practices for writing end-to-end tests

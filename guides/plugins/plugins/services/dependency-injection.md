@@ -3,6 +3,8 @@ nav:
   title: Dependency Injection
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Dependency Injection

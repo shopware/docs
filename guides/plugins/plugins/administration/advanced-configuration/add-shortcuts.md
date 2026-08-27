@@ -3,6 +3,8 @@ nav:
   title: Add Shortcuts
   position: 320
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Shortcuts

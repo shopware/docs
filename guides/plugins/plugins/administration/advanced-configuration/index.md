@@ -2,6 +2,8 @@
 nav:
   title: Advanced Configuration
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Advanced Configuration

@@ -2,6 +2,8 @@
 nav:
   title: Upgrades and Migrations
   position: 100
+product: shopware
+lifecycle: maintenance
 ---
 
 # Version Upgrades and Migrations

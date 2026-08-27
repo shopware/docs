@@ -2,6 +2,8 @@
 nav:
   title: Styling
   position: 30
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront Styling

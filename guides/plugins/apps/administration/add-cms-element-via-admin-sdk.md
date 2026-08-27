@@ -3,6 +3,8 @@ nav:
   title: Add CMS element
   position: 25
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add CMS Element

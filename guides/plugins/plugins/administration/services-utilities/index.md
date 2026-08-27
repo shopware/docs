@@ -2,6 +2,8 @@
 nav:
   title: Services and Utilities
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Services and Utilities

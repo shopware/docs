@@ -3,6 +3,8 @@ nav:
   title: Adding Permissions
   position: 110
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Permissions

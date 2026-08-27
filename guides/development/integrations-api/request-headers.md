@@ -3,6 +3,8 @@ nav:
   title: Request Headers
   position: 40
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Request Headers

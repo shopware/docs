@@ -2,6 +2,8 @@
 nav:
   title: Best Practices
   position: 20
+product: shopware
+lifecycle: maintenance
 ---
 
 # Best practices

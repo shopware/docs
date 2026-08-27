@@ -3,6 +3,8 @@ nav:
   title: Theme Inheritance
   position: 90
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Theme Inheritance

@@ -3,6 +3,8 @@ nav:
   title: Add more fields to product search
   position: 30
 
+product: extensions
+lifecycle: reference
 ---
 
 # Add more Fields to Product Search

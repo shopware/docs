@@ -3,6 +3,8 @@ nav:
   title: Debugging and Troubleshooting Elasticsearch
   position: 20
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Debugging and Troubleshooting Elasticsearch

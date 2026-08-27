@@ -2,6 +2,8 @@
 nav:
   title: Add a Format Renderer
   position: 30
+product: shopware
+lifecycle: implementation
 ---
 
 # Add a format renderer

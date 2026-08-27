@@ -3,6 +3,8 @@ nav:
   title: Apps as Themes
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Apps as Themes

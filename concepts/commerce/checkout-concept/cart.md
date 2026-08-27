@@ -3,6 +3,8 @@ nav:
   title: Cart
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Cart

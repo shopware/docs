@@ -3,6 +3,8 @@ nav:
   title: Adjusting a Service
   position: 70
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adjusting a Service

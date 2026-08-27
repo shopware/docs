@@ -2,6 +2,8 @@
 nav:
     title: Nexus
     position: 1
+product: nexus
+lifecycle: reference
 ---
 
 # Shopware Nexus Overview

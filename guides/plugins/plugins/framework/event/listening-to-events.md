@@ -3,6 +3,8 @@ nav:
   title: Listening to Events
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Listening to Events

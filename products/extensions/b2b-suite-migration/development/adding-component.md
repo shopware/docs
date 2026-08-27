@@ -3,6 +3,8 @@ nav:
   title: Adding Component
   position: 10
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Adding a New Component

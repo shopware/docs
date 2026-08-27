@@ -3,6 +3,8 @@ nav:
   title: Composable-Frontends Performance
   position: 10
 
+product: composable-frontends
+lifecycle: implementation
 ---
 
 # Composable-Frontends Performance

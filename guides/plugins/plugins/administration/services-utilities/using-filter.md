@@ -3,6 +3,8 @@ nav:
   title: Using Filter
   position: 290
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Filter

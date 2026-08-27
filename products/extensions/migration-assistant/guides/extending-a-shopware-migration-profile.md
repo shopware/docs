@@ -3,6 +3,8 @@ nav:
   title: Extending a Shopware migration profile
   position: 10
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Extending a Shopware Migration Profile

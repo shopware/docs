@@ -3,6 +3,8 @@ nav:
   title: Data Abstraction Layer
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Data Abstraction Layer

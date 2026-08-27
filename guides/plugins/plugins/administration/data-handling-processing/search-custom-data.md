@@ -3,6 +3,8 @@ nav:
   title: Add Custom Data to the Search
   position: 310
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Data to the Search

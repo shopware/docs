@@ -3,6 +3,8 @@ nav:
   title: Checkout Gateway
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Checkout Gateway

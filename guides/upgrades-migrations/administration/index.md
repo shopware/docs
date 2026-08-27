@@ -3,6 +3,8 @@ nav:
   title: Administration
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Administration

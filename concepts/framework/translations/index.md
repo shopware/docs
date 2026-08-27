@@ -3,6 +3,8 @@ nav:
   title: Translations
   position: 50
 
+product: shopware
+lifecycle: reference
 ---
 
 # Translations

@@ -2,6 +2,8 @@
 nav:
   title: Resources
   position: 30
+product: hosting
+lifecycle: reference
 ---
 
 # Resources

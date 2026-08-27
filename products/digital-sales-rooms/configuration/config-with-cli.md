@@ -3,6 +3,8 @@ nav:
    title: Configuration with CLI
    position: 30
 
+product: digital-sales-rooms
+lifecycle: implementation
 ---
 
 ## Configuration with CLI

@@ -3,6 +3,8 @@ nav:
   title: B2B Roles
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # B2B Roles

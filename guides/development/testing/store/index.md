@@ -2,6 +2,8 @@
 nav:
   title: Extensions for Store
   position: 5
+product: shopware
+lifecycle: implementation
 ---
 
 # Shopware Store review and quality

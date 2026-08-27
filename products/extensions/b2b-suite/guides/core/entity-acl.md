@@ -3,6 +3,8 @@ nav:
   title: Entity based ACL
   position: 100
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Entity based ACL

@@ -3,6 +3,8 @@ nav:
   title: HTTP Cache
   position: 50
 
+product: shopware
+lifecycle: reference
 ---
 
 # HTTP Cache

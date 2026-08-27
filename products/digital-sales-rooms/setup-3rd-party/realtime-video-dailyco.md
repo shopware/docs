@@ -3,6 +3,8 @@ nav:
    title: Realtime Video Call - Daily.co
    position: 10
 
+product: digital-sales-rooms
+lifecycle: reference
 ---
 
 # Realtime Video Call - Daily.co

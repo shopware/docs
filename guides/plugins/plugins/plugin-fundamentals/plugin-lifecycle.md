@@ -3,6 +3,8 @@ nav:
   title: Plugin Lifecycle Methods
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Plugin Lifecycle Methods

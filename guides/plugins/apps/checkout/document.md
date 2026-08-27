@@ -2,6 +2,8 @@
 nav:
   title: Document (v2)
   position: 120
+product: shopware
+lifecycle: implementation
 ---
 
 # Documents (v2) in apps

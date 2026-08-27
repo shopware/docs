@@ -2,6 +2,8 @@
 nav:
   title: Add CMS Elements
   position: 20
+product: shopware
+lifecycle: implementation
 ---
 
 # Add CMS Elements

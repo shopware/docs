@@ -3,6 +3,8 @@ nav:
   title: SaaS
   position: 10
 
+product: hosting
+lifecycle: reference
 ---
 
 # Cloud

@@ -2,6 +2,8 @@
 nav:
   title: Error Resolution
   position: 75
+product: extensions
+lifecycle: maintenance
 ---
 
 # Error Resolution

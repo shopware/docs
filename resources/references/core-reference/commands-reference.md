@@ -3,6 +3,8 @@ nav:
   title: Commands Reference
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Commands Reference

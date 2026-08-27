@@ -2,6 +2,8 @@
 nav:
   title: Modify Dynamic Product Groups Blacklist
   position: 20
+product: shopware
+lifecycle: onboarding
 ---
 
 # Modify Dynamic Product Groups Blacklist

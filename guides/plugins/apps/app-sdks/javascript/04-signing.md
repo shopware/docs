@@ -3,6 +3,8 @@ nav:
   title: Signing Responses
   position: 40
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Signing Responses

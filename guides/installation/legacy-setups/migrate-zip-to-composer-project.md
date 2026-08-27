@@ -2,6 +2,8 @@
 nav:
   title: Migrate Zip Installation to Composer Project
   position: 100
+product: shopware
+lifecycle: onboarding
 ---
 
 # Migrate from Zip Installation to Composer Project Template

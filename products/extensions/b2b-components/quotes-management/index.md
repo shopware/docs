@@ -3,6 +3,8 @@ nav:
   title: Quotes Management
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 # Quotes Management

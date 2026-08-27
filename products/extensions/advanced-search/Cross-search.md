@@ -3,6 +3,8 @@ nav:
   title: Cross search
   position: 60
 
+product: extensions
+lifecycle: reference
 ---
 
 # Cross Search

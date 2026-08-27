@@ -3,6 +3,8 @@ nav:
    title: Branding Customization
    position: 10
 
+product: sales-agent
+lifecycle: implementation
 ---
 ::: warning
 All customization instructions will refer to changes made within your customization layer folder.

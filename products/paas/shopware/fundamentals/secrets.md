@@ -2,6 +2,8 @@
 nav:
   title: Secrets
   position: 60
+product: hosting
+lifecycle: implementation
 ---
 
 # Secrets

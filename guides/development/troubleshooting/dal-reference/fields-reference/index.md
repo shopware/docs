@@ -3,6 +3,8 @@ nav:
   title: Fields Reference
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Fields Reference

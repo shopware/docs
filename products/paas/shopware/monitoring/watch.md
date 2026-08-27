@@ -2,6 +2,8 @@
 nav:
   title: Monitor events
   position: 40
+product: hosting
+lifecycle: reference
 ---
 
 # Monitor events

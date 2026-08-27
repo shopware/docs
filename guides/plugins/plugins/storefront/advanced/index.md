@@ -2,6 +2,8 @@
 nav:
   title: Advanced Storefront Customization
   position: 100
+product: shopware
+lifecycle: implementation
 ---
 
 # Advanced Storefront Customization

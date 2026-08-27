@@ -3,6 +3,8 @@ nav:
   title: Set up Elasticsearch
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Set up Elasticsearch

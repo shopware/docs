@@ -3,6 +3,8 @@ nav:
   title: Organization unit
   position: 20
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Organization unit component

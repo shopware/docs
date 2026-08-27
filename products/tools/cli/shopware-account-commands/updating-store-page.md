@@ -3,6 +3,8 @@ nav:
   title: Updating Store Page of Extension
   position: 3
 
+product: tools
+lifecycle: deployment
 ---
 
 # Updating the Store page of an extension

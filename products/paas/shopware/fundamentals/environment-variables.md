@@ -2,6 +2,8 @@
 nav:
   title: Environment variables
   position: 50
+product: hosting
+lifecycle: implementation
 ---
 
 # Setting environment variables

@@ -2,6 +2,8 @@
 nav:
   title: Mixins and Directives
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Mixins and Directives

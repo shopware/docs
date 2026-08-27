@@ -3,6 +3,8 @@ nav:
   title: How to identify the organization unit from the context
   position: 50
 
+product: extensions
+lifecycle: implementation
 ---
 
 # How to identify the organization unit from the context

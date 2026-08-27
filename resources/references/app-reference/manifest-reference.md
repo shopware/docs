@@ -3,6 +3,8 @@ nav:
   title: Manifest Reference
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Manifest Reference

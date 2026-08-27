@@ -3,6 +3,8 @@ nav:
   title: Create permissions via plugin
   position: 50
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Creating own permissions via plugin

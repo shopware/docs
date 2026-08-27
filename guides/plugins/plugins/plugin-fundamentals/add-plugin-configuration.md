@@ -3,6 +3,8 @@ nav:
   title: Add Plugin Configuration
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Plugin Configuration

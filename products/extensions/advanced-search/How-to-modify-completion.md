@@ -3,6 +3,8 @@ nav:
   title: Completion
   position: 100
 
+product: extensions
+lifecycle: reference
 ---
 
 # Add / Modify Completion

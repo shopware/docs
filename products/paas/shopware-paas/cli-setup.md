@@ -3,6 +3,8 @@ nav:
   title: PaaS CLI Setup
   position: 10
 
+product: hosting
+lifecycle: onboarding
 ---
 
 # PaaS CLI Setup

@@ -3,6 +3,8 @@ nav:
   title: Creating Custom Extension Points
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Creating Custom Extension Points

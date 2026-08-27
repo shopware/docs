@@ -3,6 +3,8 @@ nav:
   title: Vue 3 upgrade
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Vue 3 Upgrade

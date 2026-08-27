@@ -3,6 +3,8 @@ nav:
   title: Search and suggest routes
   position: 90
 
+product: extensions
+lifecycle: reference
 ---
 
 # Search and Suggest Routes

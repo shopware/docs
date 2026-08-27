@@ -3,6 +3,8 @@ nav:
   title: Automatic refactoring
   position: 5002
 
+product: tools
+lifecycle: reference
 ---
 
 # Automatic refactoring

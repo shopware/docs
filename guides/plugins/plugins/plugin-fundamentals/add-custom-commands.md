@@ -3,6 +3,8 @@ nav:
   title: Add Custom CLI Commands
   position: 90
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add Custom CLI Commands

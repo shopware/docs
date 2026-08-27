@@ -2,6 +2,8 @@
 nav:
   title: Employee Invitation
   position: 20
+product: extensions
+lifecycle: implementation
 ---
 
 # Employee Invitation

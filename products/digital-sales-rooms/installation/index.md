@@ -3,6 +3,8 @@ nav:
   title: Installation
   position: 10
 
+product: digital-sales-rooms
+lifecycle: onboarding
 ---
 
 # Digital Sales Rooms Installation

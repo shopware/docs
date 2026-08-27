@@ -2,6 +2,8 @@
 nav:
   title: Remove Sitemap Entries
   position: 30
+product: shopware
+lifecycle: implementation
 ---
 
 # Remove Sitemap Entries

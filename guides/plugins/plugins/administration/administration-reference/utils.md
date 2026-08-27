@@ -3,6 +3,8 @@ nav:
   title: Utils
   position: 40
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Utils Reference

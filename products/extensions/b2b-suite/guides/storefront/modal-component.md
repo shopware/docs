@@ -3,6 +3,8 @@ nav:
   title: Modal component
   position: 40
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Modal Component

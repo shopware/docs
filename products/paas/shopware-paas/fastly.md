@@ -3,6 +3,8 @@ nav:
   title: Fastly
   position: 80
 
+product: hosting
+lifecycle: onboarding
 ---
 
 # Fastly

@@ -3,6 +3,8 @@ nav:
   title: Mail
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Mail

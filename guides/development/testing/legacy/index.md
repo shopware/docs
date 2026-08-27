@@ -3,6 +3,8 @@ nav:
   title: Legacy
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Legacy

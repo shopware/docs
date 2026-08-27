@@ -3,6 +3,8 @@ nav:
   title: Remote Thumbnail Generation
   position: 40
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Remote Thumbnail Generation

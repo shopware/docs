@@ -3,6 +3,8 @@ nav:
   title: Adding Data Translations
   position: 60
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Adding Data Translations

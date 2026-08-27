@@ -3,6 +3,8 @@ nav:
   title: Commercial Plugins
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Commercial Plugins

@@ -3,6 +3,8 @@ nav:
   title: Filesystem
   position: 70
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Filesystem

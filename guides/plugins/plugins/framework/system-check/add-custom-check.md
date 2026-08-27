@@ -3,6 +3,8 @@ nav:
   title: Add Custom Check
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add Custom Check

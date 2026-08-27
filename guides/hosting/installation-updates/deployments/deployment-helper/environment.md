@@ -3,6 +3,8 @@ nav:
   title: Environment and Database
   position: 16
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Environment Setup and Database Requirements

@@ -3,6 +3,8 @@ nav:
   title: Development Environment
   position: 1
 
+product: tools
+lifecycle: implementation
 ---
 
 # Development Environment (CLI Reference)

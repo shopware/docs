@@ -3,6 +3,8 @@ nav:
   title: Execution
   position: 20
 
+product: extensions
+lifecycle: reference
 ---
 
 # Execution

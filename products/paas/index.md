@@ -2,6 +2,8 @@
 nav:
     title: PaaS
     position: 10
+product: hosting
+lifecycle: reference
 ---
 
 # Introduction to PaaS

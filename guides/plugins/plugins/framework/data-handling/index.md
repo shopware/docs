@@ -3,6 +3,8 @@ nav:
   title: Data Handling / Data Abstraction Layer
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Data Handling/Data Abstraction Layer

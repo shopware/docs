@@ -3,6 +3,8 @@ nav:
   title: Customize Modules
   position: 140
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customize Modules

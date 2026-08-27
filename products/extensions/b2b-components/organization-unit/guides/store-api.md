@@ -3,6 +3,8 @@ nav:
   title: Store API
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 ## Store API

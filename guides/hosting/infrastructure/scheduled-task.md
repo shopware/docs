@@ -3,6 +3,8 @@ nav:
   title: Scheduled Task
   position: 100
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Scheduled Task

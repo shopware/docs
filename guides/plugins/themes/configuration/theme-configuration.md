@@ -3,6 +3,8 @@ nav:
   title: Theme Configuration
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Theme Configuration

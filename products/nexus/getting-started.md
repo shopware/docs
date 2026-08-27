@@ -2,6 +2,8 @@
 nav:
     title: Getting Started
     position: 2
+product: nexus
+lifecycle: onboarding
 ---
 
 # Getting Started

@@ -3,6 +3,8 @@ nav:
   title: Automatically Release an Extension to the Shopware Store
   position: 2
 
+product: tools
+lifecycle: deployment
 ---
 
 # Automatically Release an Extension to the Shopware Store

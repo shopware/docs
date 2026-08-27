@@ -3,6 +3,8 @@ nav:
   title: Custom Entities
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Custom Entities

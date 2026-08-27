@@ -3,6 +3,8 @@ nav:
   title: Storefront Components
   position: 90
 
+product: shopware
+lifecycle: reference
 ---
 
 # Storefront Components

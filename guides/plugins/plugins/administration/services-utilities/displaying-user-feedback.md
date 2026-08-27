@@ -3,6 +3,8 @@ nav:
   title: Displaying User Feedback
   position: 120
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Displaying user feedback

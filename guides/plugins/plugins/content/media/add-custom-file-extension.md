@@ -3,6 +3,8 @@ nav:
   title: Add Custom Media File Extensions
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Media File Extensions

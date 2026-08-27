@@ -3,6 +3,8 @@ nav:
   title: Extensibility - Events, Messages, and Extensions
   position: 10
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Extensibility - Events, Messages, and Extensions

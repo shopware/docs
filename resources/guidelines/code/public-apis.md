@@ -3,6 +3,8 @@ nav:
   title: Public APIs
   position: 100
 
+product: shopware
+lifecycle: reference
 ---
 
 # Public APIs

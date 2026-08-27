@@ -3,6 +3,8 @@ nav:
   title: Core
   position: 10
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Core

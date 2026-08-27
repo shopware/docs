@@ -3,6 +3,8 @@ nav:
   title: Define a Custom Elasticsearch Definition
   position: 20
 
+product: extensions
+lifecycle: reference
 ---
 
 # Define a Custom Elasticsearch Definition

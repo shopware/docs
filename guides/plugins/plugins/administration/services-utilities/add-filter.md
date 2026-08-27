@@ -3,6 +3,8 @@ nav:
   title: Add Filter
   position: 280
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Filter

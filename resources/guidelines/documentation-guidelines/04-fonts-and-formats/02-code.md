@@ -3,6 +3,8 @@ nav:
   title: Code
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Fonts and Format for Code

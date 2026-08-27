@@ -3,6 +3,8 @@ nav:
   title: Examples
   position: 50
 
+product: tools
+lifecycle: implementation
 ---
 
 # Examples

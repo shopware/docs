@@ -3,6 +3,8 @@ nav:
   title: Injecting Services
   position: 110
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Injecting Services

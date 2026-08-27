@@ -2,6 +2,8 @@
 nav:
   title: Document (v2)
   position: 40
+product: shopware
+lifecycle: reference
 ---
 
 # Document (v2)

@@ -2,6 +2,8 @@
 nav:
   title: Upgrading to Meteor Components
   position: 11
+product: meteor
+lifecycle: maintenance
 ---
 
 # Future Development Roadmap: Upgrading to Meteor Components

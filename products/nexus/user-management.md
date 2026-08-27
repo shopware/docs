@@ -2,6 +2,8 @@
 nav:
     title: User Management
     position: 5
+product: nexus
+lifecycle: reference
 ---
 
 # User Management

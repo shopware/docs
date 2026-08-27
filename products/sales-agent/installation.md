@@ -2,6 +2,8 @@
 nav:
   title: Local installation
   position: 20
+product: sales-agent
+lifecycle: maintenance
 ---
 
 # Local installation

@@ -3,6 +3,8 @@ nav:
   title: Plugin Architecture
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Plugin Architecture

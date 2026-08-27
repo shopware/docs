@@ -3,6 +3,8 @@ nav:
   title: Storefront Authentication
   position: 120
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Storefront Authentication

@@ -3,6 +3,8 @@ nav:
   title: Language & Grammar
   position: 30
 
+product: shopware
+lifecycle: reference
 ---
 
 # Language and Grammar

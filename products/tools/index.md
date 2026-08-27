@@ -3,6 +3,8 @@ nav:
   title: Tools
   position: 20
 
+product: tools
+lifecycle: reference
 ---
 
 # Tools

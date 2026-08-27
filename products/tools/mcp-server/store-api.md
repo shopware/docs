@@ -3,6 +3,8 @@ nav:
   title: Store API MCP
   position: 75
 
+product: tools
+lifecycle: implementation
 ---
 
 # Store API MCP

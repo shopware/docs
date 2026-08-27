@@ -3,6 +3,8 @@ nav:
   title: Overloading classes
   position: 110
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Overloading Classes

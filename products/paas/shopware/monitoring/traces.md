@@ -2,6 +2,8 @@
 nav:
   title: Traces
   position: 30
+product: hosting
+lifecycle: reference
 ---
 
 # Traces

@@ -3,6 +3,8 @@ nav:
   title: Entities Reference
   position: 50
 
+product: shopware
+lifecycle: reference
 ---
 
 # Entities Reference

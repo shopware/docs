@@ -3,6 +3,8 @@ nav:
   title: SaaS
   position: 20
 
+product: digital-sales-rooms
+lifecycle: maintenance
 ---
 
 # Digital Sales Rooms with SaaS

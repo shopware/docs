@@ -3,6 +3,8 @@ nav:
   title: MCP Server Extension
   position: 80
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Extending the MCP Server via App

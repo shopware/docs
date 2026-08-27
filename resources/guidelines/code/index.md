@@ -3,6 +3,8 @@ nav:
   title: Code
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Code

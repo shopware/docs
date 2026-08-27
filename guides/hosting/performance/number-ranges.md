@@ -3,6 +3,8 @@ nav:
   title: Number Ranges
   position: 60
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Number Ranges

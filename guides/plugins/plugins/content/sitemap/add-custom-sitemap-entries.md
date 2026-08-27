@@ -3,6 +3,8 @@ nav:
   title: Add Custom Sitemap Entries
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add Custom Sitemap Entries

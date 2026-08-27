@@ -3,6 +3,8 @@ nav:
   title: Language analyzers
   position: 50
 
+product: extensions
+lifecycle: reference
 ---
 
 # Add / Modify language analyzers, stopwords, stemmer

@@ -3,6 +3,8 @@ nav:
   title: Dependency injection
   position: 10
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Dependency Injection

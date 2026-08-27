@@ -3,6 +3,8 @@ nav:
   title: Signing & Verification in the App System
   position: 50
   
+product: shopware
+lifecycle: onboarding
 ---
 
 # Signing & Verification in the App System

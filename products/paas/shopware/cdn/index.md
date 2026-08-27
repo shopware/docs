@@ -2,6 +2,8 @@
 nav:
   title: CDN
   position: 41
+product: hosting
+lifecycle: maintenance
 ---
 
 # CDN

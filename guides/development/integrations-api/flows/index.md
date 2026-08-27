@@ -3,6 +3,8 @@ nav:
   title: API Flows
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # API Flows

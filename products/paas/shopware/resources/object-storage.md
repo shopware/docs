@@ -2,6 +2,8 @@
 nav:
   title: Object Storage
   position: 30
+product: hosting
+lifecycle: reference
 ---
 
 # Object Storage

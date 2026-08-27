@@ -3,6 +3,8 @@ nav:
   title: Create Admin Extensions
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Create an Admin Extension

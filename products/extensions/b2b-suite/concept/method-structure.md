@@ -3,6 +3,8 @@ nav:
   title: Method structure
   position: 30
 
+product: extensions
+lifecycle: reference
 ---
 
 # Method Structure

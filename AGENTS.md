@@ -1,3 +1,8 @@
+---
+product: shopware
+lifecycle: onboarding
+---
+
 # AGENTS.md
 
 This file provides guidance to coding agents like CursorAI or Claude Code.

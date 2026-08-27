@@ -3,6 +3,8 @@ nav:
   title: Message Queue
   position: 50
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Message Queue

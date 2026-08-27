@@ -3,6 +3,8 @@ nav:
   title: Document
   position: 40
 
+product: shopware
+lifecycle: reference
 ---
 
 # Documentation Guidelines

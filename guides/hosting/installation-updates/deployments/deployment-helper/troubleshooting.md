@@ -3,6 +3,8 @@ nav:
   title: Troubleshooting
   position: 24
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Deployment Helper Troubleshooting

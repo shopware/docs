@@ -3,6 +3,8 @@ nav:
   title: Integrations
   position: 60
 
+product: shopware
+lifecycle: implementation
 ---
 
 The SDK offers many optional integrations into several JavaScript ecosystems, so you can easily integrate your app into your existing project.

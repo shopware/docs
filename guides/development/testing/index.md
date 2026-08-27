@@ -3,6 +3,8 @@ nav:
   title: Testing
   position: 80
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Testing

@@ -3,6 +3,8 @@ nav:
    title: Admin side installation
    position: 20
 
+product: digital-sales-rooms
+lifecycle: onboarding
 ---
 
 # Admin Side Installation

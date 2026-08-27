@@ -3,6 +3,8 @@ nav:
   title: Orders
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Orders

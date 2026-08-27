@@ -3,6 +3,8 @@ nav:
   title: Reacting to JavaScript Events
   position: 180
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Reacting to Javascript Events on Storefront

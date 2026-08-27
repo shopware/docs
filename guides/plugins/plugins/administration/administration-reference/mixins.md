@@ -3,6 +3,8 @@ nav:
   title: Mixins
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Mixins Reference

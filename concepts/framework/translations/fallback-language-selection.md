@@ -3,6 +3,8 @@ nav:
   title: Fallback language selection
   position: 50
 
+product: shopware
+lifecycle: reference
 ---
 
 # Fallback language selection

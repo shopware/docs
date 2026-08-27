@@ -3,6 +3,8 @@ nav:
   title: Add SCSS Styling and JavaScript to a Theme
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add SCSS Styling and JavaScript to a Theme

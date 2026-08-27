@@ -3,6 +3,8 @@ nav:
   title: Using the Datepicker Plugin
   position: 260
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using the Datepicker Plugin

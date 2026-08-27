@@ -3,6 +3,8 @@ nav:
   title: Extending the Migration Connector
   position: 20
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Extending the Migration Connector

@@ -2,6 +2,8 @@
 nav:
   title: Meteor Admin SDK
   position: 5
+product: meteor
+lifecycle: implementation
 ---
 
 # Meteor Admin SDK

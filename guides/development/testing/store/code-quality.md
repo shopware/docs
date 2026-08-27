@@ -2,6 +2,8 @@
 nav:
   title: Code quality
   position: 90
+product: shopware
+lifecycle: onboarding
 ---
 
 # Code quality

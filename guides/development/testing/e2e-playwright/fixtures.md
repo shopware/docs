@@ -2,6 +2,8 @@
 nav:
   title: Fixtures
   position: 13
+product: shopware
+lifecycle: implementation
 ---
 
 # General fixtures

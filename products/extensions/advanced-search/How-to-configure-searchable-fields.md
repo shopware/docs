@@ -3,6 +3,8 @@ nav:
   title: Configure Searchable Fields
   position: 40
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Configure Searchable Fields

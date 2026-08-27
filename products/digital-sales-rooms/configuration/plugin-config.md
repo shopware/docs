@@ -3,6 +3,8 @@ nav:
    title: Plugin Configuration
    position: 20
 
+product: digital-sales-rooms
+lifecycle: implementation
 ---
 
 # Plugin Configuration

@@ -3,6 +3,8 @@ nav:
   title: B2B Components
   position: 30
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Introduction

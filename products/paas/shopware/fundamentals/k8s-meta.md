@@ -2,6 +2,8 @@
 nav:
   title: K8s Meta Package
   position: 90
+product: hosting
+lifecycle: onboarding
 ---
 
 # K8s Meta Package

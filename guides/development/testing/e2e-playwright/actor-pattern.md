@@ -2,6 +2,8 @@
 nav:
   title: Actor Pattern
   position: 15
+product: shopware
+lifecycle: implementation
 ---
 
 # Actor pattern

@@ -3,6 +3,8 @@ nav:
   title: Create a Theme
   position: 20
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Create a Theme

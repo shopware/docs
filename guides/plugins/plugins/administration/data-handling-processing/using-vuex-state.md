@@ -3,6 +3,8 @@ nav:
   title: Using Vuex Stores
   position: 110
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Vuex Stores

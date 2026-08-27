@@ -3,6 +3,8 @@ nav:
   title: Configuration
   position: 19
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Deployment Helper Configuration

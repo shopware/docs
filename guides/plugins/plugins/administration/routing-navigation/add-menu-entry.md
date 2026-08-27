@@ -3,6 +3,8 @@ nav:
   title: Add Menu Entry
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Menu Entry

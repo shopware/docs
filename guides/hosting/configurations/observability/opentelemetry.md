@@ -3,6 +3,8 @@ nav:
   title: OpenTelemetry
   position: 30
 
+product: shopware
+lifecycle: deployment
 ---
 
 # OpenTelemetry

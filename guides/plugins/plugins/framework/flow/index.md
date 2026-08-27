@@ -3,6 +3,8 @@ nav:
   title: Flow
   position: 80
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Flow

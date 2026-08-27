@@ -3,6 +3,8 @@ nav:
   title: Migration Table
   position: 10
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Migration Tables

@@ -3,6 +3,8 @@ nav:
   title: Shopware Extensions
   position: 80
 
+product: tools
+lifecycle: onboarding
 ---
 
 # Shopware MCP Extensions

@@ -3,6 +3,8 @@ nav:
   title: B2B Employee Integration
   position: 40
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # B2B Employee Integration for Subscriptions

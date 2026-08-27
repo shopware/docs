@@ -2,6 +2,8 @@
 nav:
   title: Installation
   position: 20
+product: shopware
+lifecycle: onboarding
 ---
 
 # Shopware 6 Community Edition Installation

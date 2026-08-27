@@ -2,6 +2,8 @@
 nav:
   title: Configuration
   position: 40
+product: shopware
+lifecycle: implementation
 ---
 
 # Theme Configuration

@@ -3,6 +3,8 @@ nav:
   title: Storefront
   position: 70
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront

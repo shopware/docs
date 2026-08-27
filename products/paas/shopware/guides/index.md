@@ -2,6 +2,8 @@
 nav:
   title: Guides
   position: 50
+product: hosting
+lifecycle: implementation
 ---
 
 # Guides

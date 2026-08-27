@@ -3,6 +3,8 @@ nav:
   title: Commerce
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Commerce

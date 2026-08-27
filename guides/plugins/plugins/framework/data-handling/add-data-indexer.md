@@ -3,6 +3,8 @@ nav:
   title: Adding Data Indexer
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Data Indexer

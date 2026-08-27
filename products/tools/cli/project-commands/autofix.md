@@ -3,6 +3,8 @@ nav:
   title: Autofixer
   position: 7
 
+product: tools
+lifecycle: maintenance
 ---
 
 # Autofixer

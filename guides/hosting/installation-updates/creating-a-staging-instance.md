@@ -3,6 +3,8 @@ nav:
   title: Creating Staging Instance
   position: 30
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Staging

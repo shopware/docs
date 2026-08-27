@@ -2,6 +2,8 @@
 nav:
   title: AWS
   position: 20
+product: sales-agent
+lifecycle: deployment
 ---
 
 # Deploy with AWS Amplify

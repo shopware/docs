@@ -3,6 +3,8 @@ nav:
   title: Add Custom Components
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Components

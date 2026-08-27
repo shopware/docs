@@ -3,6 +3,8 @@ nav:
   title: Custom routes
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Custom routes

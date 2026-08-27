@@ -2,6 +2,8 @@
 nav:
   title: Adding Translations
   position: 30
+product: shopware
+lifecycle: implementation
 ---
 
 # Adding Translations

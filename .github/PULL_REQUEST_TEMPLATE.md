@@ -1,3 +1,8 @@
+---
+product: shopware
+lifecycle: reference
+---
+
 ## Summary
 
 <!-- Describe the documentation change in a few sentences or bullet points. -->

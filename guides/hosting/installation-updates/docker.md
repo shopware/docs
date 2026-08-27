@@ -3,6 +3,8 @@ nav:
   title: Docker Image
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Docker Image

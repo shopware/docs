@@ -3,6 +3,8 @@ nav:
   title: Static System Configuration
   position: 30
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Static System Configuration

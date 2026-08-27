@@ -3,6 +3,8 @@ nav:
   title: Adding NPM Dependencies
   position: 120
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding NPM Dependencies

@@ -3,6 +3,8 @@ nav:
   title: Generated Reference
   position: 60
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Generated Reference

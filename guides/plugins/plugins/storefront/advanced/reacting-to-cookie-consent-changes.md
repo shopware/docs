@@ -3,6 +3,8 @@ nav:
   title: Reacting to Cookie Consent Changes
   position: 170
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Reacting to Cookie Consent Changes

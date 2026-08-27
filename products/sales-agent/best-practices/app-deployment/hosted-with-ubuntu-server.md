@@ -2,6 +2,8 @@
 nav:
   title: Ubuntu Server with PM2
   position: 10
+product: sales-agent
+lifecycle: deployment
 ---
 
 # Deploy with Ubuntu Server with PM2

@@ -3,6 +3,8 @@ nav:
   title: Extension Management
   position: 20
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Extension Management

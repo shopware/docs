@@ -3,6 +3,8 @@ nav:
   title: Quotes conversion
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Quotes conversion

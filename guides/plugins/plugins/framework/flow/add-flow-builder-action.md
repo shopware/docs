@@ -3,6 +3,8 @@ nav:
   title: Add Flow Builder Action
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Flow Builder Action

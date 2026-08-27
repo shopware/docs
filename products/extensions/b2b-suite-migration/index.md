@@ -3,6 +3,8 @@ nav:
   title: B2B Suite Migration
   position: 30
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # B2B Suite Migration

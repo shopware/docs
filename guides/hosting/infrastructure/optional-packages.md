@@ -2,6 +2,8 @@
 nav:
   title: Optional Packages
   position: 60
+product: shopware
+lifecycle: deployment
 ---
 
 # Optional Packages

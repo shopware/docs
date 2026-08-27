@@ -3,6 +3,8 @@ nav:
   title: Add Cart Validator
   position: 40
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Cart Validator

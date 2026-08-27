@@ -2,6 +2,8 @@
 nav:
   title: JavaScript
   position: 40
+product: shopware
+lifecycle: implementation
 ---
 
 # Storefront JavaScript

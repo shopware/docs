@@ -3,6 +3,8 @@ nav:
   title: Add Custom Styles
   position: 220
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Styles

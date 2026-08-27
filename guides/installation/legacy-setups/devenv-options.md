@@ -3,6 +3,8 @@ nav:
   title: Additional Devenv Config
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Additional Devenv Options

@@ -3,6 +3,8 @@ nav:
   title: Architecture
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Shopware Architecture

@@ -3,6 +3,8 @@ nav:
   title: Adding Mixins
   position: 70
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Mixins

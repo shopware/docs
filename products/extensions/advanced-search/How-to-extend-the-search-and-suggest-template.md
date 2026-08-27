@@ -3,6 +3,8 @@ nav:
   title: Extending search template
   position: 70
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Extend Search Template

@@ -3,6 +3,8 @@ nav:
   title: Session
   position: 30
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Shopware Session

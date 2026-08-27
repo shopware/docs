@@ -3,6 +3,8 @@ nav:
   title: Flags Reference
   position: 20
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Flags Reference

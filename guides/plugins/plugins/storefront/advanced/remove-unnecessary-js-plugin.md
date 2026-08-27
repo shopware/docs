@@ -3,6 +3,8 @@ nav:
   title: Remove JavaScript Plugin
   position: 200
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Remove JavaScript Plugin

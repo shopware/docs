@@ -3,6 +3,8 @@ nav:
   title: Flow
   position: 70
 
+product: shopware
+lifecycle: reference
 ---
 
 # Flow Builder

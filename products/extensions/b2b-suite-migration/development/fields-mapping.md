@@ -3,6 +3,8 @@ nav:
   title: Fields Mapping
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Fields Mapping

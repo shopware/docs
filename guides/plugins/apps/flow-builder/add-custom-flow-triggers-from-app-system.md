@@ -3,6 +3,8 @@ nav:
   title: Add custom flow trigger from app system
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add custom flow trigger

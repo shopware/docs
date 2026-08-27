@@ -3,6 +3,8 @@ nav:
   title: Add Payment Plugin
   position: 10
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Add Payment Plugin

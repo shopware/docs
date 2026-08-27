@@ -2,6 +2,8 @@
 nav:
   title: Frequently Asked Questions
   position: 50
+product: hosting
+lifecycle: deployment
 ---
 
 # Frequently Asked Questions

@@ -3,6 +3,8 @@ nav:
   title: Code Structure
   position: 20
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Code Structure

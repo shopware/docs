@@ -3,6 +3,8 @@ nav:
   title: Add Custom Field in the Storefront
   position: 210
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Field in the Storefront

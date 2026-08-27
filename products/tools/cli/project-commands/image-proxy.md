@@ -2,6 +2,8 @@
 nav:
   title: Image Proxy
   position: 90
+product: tools
+lifecycle: deployment
 ---
 
 # Image Proxy

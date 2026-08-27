@@ -3,6 +3,8 @@ nav:
   title: Session and State
   position: 120
 
+product: shopware
+lifecycle: reference
 ---
 
 # Session and State

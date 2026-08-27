@@ -3,6 +3,8 @@ nav:
   title: Install with Docker
   position: 3
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Install Shopware with Docker

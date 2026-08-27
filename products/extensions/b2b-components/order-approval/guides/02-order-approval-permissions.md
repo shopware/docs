@@ -3,6 +3,8 @@ nav:
   title: Order approval permissions
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Order approval permissions

@@ -3,6 +3,8 @@ nav:
   title: Extendability
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Extendability

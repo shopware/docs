@@ -3,6 +3,8 @@ nav:
   title: Shopping lists
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 # Shopping Lists

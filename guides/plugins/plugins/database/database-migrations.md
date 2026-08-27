@@ -3,6 +3,8 @@ nav:
   title: Database Migrations
   position: 30
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Database Migrations

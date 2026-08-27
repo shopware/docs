@@ -3,6 +3,8 @@ nav:
   title: Lock Storage
   position: 50
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Lock Storage

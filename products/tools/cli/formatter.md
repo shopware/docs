@@ -3,6 +3,8 @@ nav:
   title: Formatter
   position: 5001
 
+product: tools
+lifecycle: implementation
 ---
 
 # Formatter

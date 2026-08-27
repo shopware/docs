@@ -3,6 +3,8 @@ nav:
   title: Stock
   position: 20
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Stock Configuration

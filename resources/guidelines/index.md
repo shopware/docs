@@ -3,6 +3,8 @@ nav:
   title: Guidelines
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Guidelines

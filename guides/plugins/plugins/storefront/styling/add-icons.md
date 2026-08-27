@@ -3,6 +3,8 @@ nav:
   title: Add Custom Icons
   position: 90
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Icons

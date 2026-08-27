@@ -3,6 +3,8 @@ nav:
   title: Sales Channels
   position: 30
 
+product: shopware
+lifecycle: reference
 ---
 
 # Sales Channels

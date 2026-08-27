@@ -3,6 +3,8 @@ nav:
   title: Employee Management
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 # Employee Management

@@ -3,6 +3,8 @@ nav:
   title: Backward Compatibility
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Backward Compatibility

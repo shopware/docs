@@ -2,6 +2,8 @@
 nav:
     title: Shopware PaaS Native
     position: 10
+product: hosting
+lifecycle: reference
 ---
 
 # Introduction to Shopware PaaS Native

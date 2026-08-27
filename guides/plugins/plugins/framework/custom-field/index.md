@@ -3,6 +3,8 @@ nav:
   title: Custom Fields
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Custom Fields

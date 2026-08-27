@@ -3,6 +3,8 @@ nav:
   title: Order
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Order

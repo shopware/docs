@@ -2,6 +2,8 @@
 nav:
   title: Organizations
   position: 20
+product: hosting
+lifecycle: reference
 ---
 
 # Organizations

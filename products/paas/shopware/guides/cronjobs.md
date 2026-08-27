@@ -2,6 +2,8 @@
 nav:
   title: Manage Cron Jobs
   position: 80
+product: hosting
+lifecycle: implementation
 ---
 
 # Manage Cron Jobs

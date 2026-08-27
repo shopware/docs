@@ -2,6 +2,8 @@
 nav:
   title: Application YAML
   position: 80
+product: hosting
+lifecycle: implementation
 ---
 
 # Application YAML Configuration

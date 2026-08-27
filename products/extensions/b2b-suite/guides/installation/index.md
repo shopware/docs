@@ -3,6 +3,8 @@ nav:
   title: Installation
   position: 10
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Installation

@@ -3,6 +3,8 @@ nav:
   title: Customization
   position: 30
 
+product: sales-agent
+lifecycle: implementation
 ---
 
 # Sales Agent Customization

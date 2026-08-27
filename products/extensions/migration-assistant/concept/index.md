@@ -2,6 +2,8 @@
 nav:
   title: Concept
   position: 10
+product: extensions
+lifecycle: maintenance
 ---
 
 # Concept

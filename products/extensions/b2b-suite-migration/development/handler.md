@@ -3,6 +3,8 @@ nav:
   title: Handlers
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Handlers

@@ -3,6 +3,8 @@ nav:
   title: Testing Reference
   position: 70
 
+product: shopware
+lifecycle: reference
 ---
 
 # Testing Reference

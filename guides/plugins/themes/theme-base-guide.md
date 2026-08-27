@@ -3,6 +3,8 @@ nav:
   title: Theme Base Guide
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Theme Base Guide

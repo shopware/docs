@@ -3,6 +3,8 @@ nav:
   title: Shopware PaaS
   position: 20
 
+product: hosting
+lifecycle: deployment
 ---
 
 # Shopware PaaS

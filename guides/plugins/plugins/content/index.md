@@ -3,6 +3,8 @@ nav:
   title: Content
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Content

@@ -2,6 +2,8 @@
 nav:
   title: Extension points
   position: 60
+product: shopware
+lifecycle: reference
 ---
 
 # Extension points of the translation system

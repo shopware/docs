@@ -3,6 +3,8 @@ nav:
   title: Sanitizer Helper
   position: 130
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Sanitizer Helper

@@ -2,6 +2,8 @@
 nav:
   title: Test Suite
   position: 17
+product: shopware
+lifecycle: implementation
 ---
 
 # Testing within the Test Suite

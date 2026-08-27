@@ -3,6 +3,8 @@ nav:
   title: External Frontend
   position: 60
 
+product: shopware
+lifecycle: implementation
 ---
 
 Some times apps consists of a frontend to render the admin interface using the admin-extension-sdk. Mostly it is easier to create an second application and use that as the frontend. This way you can use the full power of the frontend frameworks like Next.js, Nuxt.js, Angular, React, Vue.js, etc.

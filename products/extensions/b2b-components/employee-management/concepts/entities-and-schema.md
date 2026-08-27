@@ -3,6 +3,8 @@ nav:
   title: Entities & Schema
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 # Entities and schema

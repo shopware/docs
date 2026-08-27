@@ -3,6 +3,8 @@ nav:
   title: Theme with Bootstrap styling
   position: 100
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Theme with Bootstrap Styling

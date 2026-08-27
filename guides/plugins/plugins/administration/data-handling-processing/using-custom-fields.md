@@ -3,6 +3,8 @@ nav:
   title: Using Custom Fields
   position: 300
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Custom Fields

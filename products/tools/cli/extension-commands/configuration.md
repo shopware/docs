@@ -3,6 +3,8 @@ nav:
   title: Configuration
   position: 5
 
+product: tools
+lifecycle: implementation
 ---
 
 # Configuration

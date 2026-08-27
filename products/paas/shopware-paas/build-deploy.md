@@ -3,6 +3,8 @@ nav:
   title: Build & Deploy
   position: 30
 
+product: hosting
+lifecycle: deployment
 ---
 
 # Build and Deploy

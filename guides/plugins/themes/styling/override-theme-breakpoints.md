@@ -3,6 +3,8 @@ nav:
   title: Override responsive breakpoints in a Theme
   position: 65
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Override responsive breakpoints in a Theme

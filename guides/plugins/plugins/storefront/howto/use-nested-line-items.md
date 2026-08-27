@@ -3,6 +3,8 @@ nav:
   title: Use Nested Line Items
   position: 270
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Use Nested Line Items

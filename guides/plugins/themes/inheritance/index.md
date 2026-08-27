@@ -2,6 +2,8 @@
 nav:
   title: Inheritance
   position: 50
+product: shopware
+lifecycle: implementation
 ---
 
 # Theme Inheritance

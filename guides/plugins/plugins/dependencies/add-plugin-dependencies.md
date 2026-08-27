@@ -3,6 +3,8 @@ nav:
   title: Add Plugin Dependencies
   position: 80
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Plugin Dependencies

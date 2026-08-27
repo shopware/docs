@@ -3,6 +3,8 @@ nav:
   title: Assignment service
   position: 60
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Assignment Service

@@ -3,6 +3,8 @@ nav:
   title: Profiling / Tracing
   position: 20
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Profiling

@@ -3,6 +3,8 @@ nav:
   title: Customization
   position: 40
 
+product: digital-sales-rooms
+lifecycle: implementation
 ---
 
 # Digital Sales Rooms Customization

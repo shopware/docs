@@ -3,6 +3,8 @@ nav:
   title: Add Mail Templates
   position: 20
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Add Mail Templates

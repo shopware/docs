@@ -3,6 +3,8 @@ nav:
   title: Configuration
   position: 80
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Configuration

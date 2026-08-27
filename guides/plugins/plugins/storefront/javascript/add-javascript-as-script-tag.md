@@ -3,6 +3,8 @@ nav:
   title: Add JavaScript as Script Tag
   position: 65
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add JavaScript as Script Tag

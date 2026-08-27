@@ -3,6 +3,8 @@ nav:
   title: Standalone Admin Watcher
   position: 3
 
+product: tools
+lifecycle: reference
 ---
 
 # Standalone Admin Watcher

@@ -2,6 +2,8 @@
 nav:
 title: Migrating Extensions
 position: 20
+product: shopware
+lifecycle: maintenance
 ---
 
 # Migrating Extension Translations to the Country-Independent Snippet Layer

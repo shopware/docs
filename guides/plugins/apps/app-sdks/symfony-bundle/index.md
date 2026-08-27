@@ -3,6 +3,8 @@ nav:
   title: Official Symfony Bundle
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Official Symfony Bundle

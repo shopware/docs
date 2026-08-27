@@ -3,6 +3,8 @@ nav:
    title: Realtime Service - Mercure
    position: 20
 
+product: digital-sales-rooms
+lifecycle: onboarding
 ---
 
 # Realtime Service - Mercure

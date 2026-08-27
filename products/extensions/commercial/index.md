@@ -3,6 +3,8 @@ nav:
   title: Commercial
   position: 30
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Commercial

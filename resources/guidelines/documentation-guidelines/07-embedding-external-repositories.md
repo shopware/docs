@@ -1,3 +1,8 @@
+---
+product: shopware
+lifecycle: reference
+---
+
 # Embedding external repositories
 
 This guide will explain how to embed project documentation from your repository into the [Developer documentation](https://developer.shopware.com/).

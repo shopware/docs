@@ -3,6 +3,8 @@ nav:
   title: Troubleshooting
   position: 60
 
+product: tools
+lifecycle: maintenance
 ---
 
 # Troubleshooting

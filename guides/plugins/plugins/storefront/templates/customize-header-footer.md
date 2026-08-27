@@ -3,6 +3,8 @@ nav:
   title: Customize Header/Footer
   position: 160
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customize Header/Footer

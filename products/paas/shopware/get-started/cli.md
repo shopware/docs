@@ -2,6 +2,8 @@
 nav:
   title: CLI
   position: 30
+product: hosting
+lifecycle: onboarding
 ---
 
 The Shopware PaaS Native CLI makes it easy to manage your shops and resources in the cloud.

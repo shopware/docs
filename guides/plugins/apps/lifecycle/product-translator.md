@@ -3,6 +3,8 @@ nav:
   title: Read and write data
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Read and Write Data

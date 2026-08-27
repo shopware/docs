@@ -3,6 +3,8 @@ nav:
   title: System Checks
   position: 100
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Overview

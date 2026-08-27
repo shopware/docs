@@ -2,6 +2,8 @@
 nav:
   title: Development
   position: 40
+product: shopware
+lifecycle: maintenance
 ---
 
 # Development

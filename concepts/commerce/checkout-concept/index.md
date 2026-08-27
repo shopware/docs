@@ -3,6 +3,8 @@ nav:
   title: Checkout
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Checkout

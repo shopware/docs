@@ -3,6 +3,8 @@ nav:
   title: Override Existing Routes
   position: 150
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Override Existing Routes

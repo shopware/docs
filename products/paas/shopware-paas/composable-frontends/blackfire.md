@@ -3,6 +3,8 @@ nav:
   title: Blackfire Continuous Profiling of Nuxt.js
   position: 20
 
+product: composable-frontends
+lifecycle: reference
 ---
 
 # Blackfire Continuous Profiling of Nuxt.js

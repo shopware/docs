@@ -2,6 +2,8 @@
 nav:
   title: Client-Side App Backend Communication
   position: 70
+product: shopware
+lifecycle: implementation
 ---
 
 # Client-Side App Backend Communication

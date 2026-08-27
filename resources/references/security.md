@@ -3,6 +3,8 @@ nav:
   title: Security
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Security

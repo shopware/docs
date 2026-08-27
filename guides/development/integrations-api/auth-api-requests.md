@@ -2,6 +2,8 @@
 nav:
   title: Authentication and API Requests
   position: 20
+product: shopware
+lifecycle: maintenance
 ---
 
 

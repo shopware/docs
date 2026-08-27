@@ -2,6 +2,8 @@
 nav:
   title: Fundamentals
   position: 20
+product: hosting
+lifecycle: reference
 ---
 
 # Fundamentals

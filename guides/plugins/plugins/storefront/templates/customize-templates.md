@@ -3,6 +3,8 @@ nav:
   title: Customize Templates
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customize Templates

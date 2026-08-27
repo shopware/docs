@@ -2,6 +2,8 @@
 nav:
   title: Troubleshooting
   position: 10
+product: shopware
+lifecycle: maintenance
 ---
 
 # Troubleshooting

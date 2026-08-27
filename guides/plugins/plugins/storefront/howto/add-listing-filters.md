@@ -3,6 +3,8 @@ nav:
   title: Add Custom Listing Filters
   position: 130
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Listing Filters

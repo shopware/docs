@@ -3,6 +3,8 @@ nav:
   title: CMS Reference
   position: 40
 
+product: shopware
+lifecycle: reference
 ---
 
 # CMS Reference

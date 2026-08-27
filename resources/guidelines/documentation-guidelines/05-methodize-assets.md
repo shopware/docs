@@ -3,6 +3,8 @@ nav:
   title: Methodize Assets
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Methodize Assets

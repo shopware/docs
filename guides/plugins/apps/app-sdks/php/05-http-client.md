@@ -3,6 +3,8 @@ nav:
   title: HTTP-client
   position: 50
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Making HTTP requests to the Shop

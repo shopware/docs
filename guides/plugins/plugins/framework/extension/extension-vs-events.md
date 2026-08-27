@@ -3,6 +3,8 @@ nav:
   title: Extension Points vs Events
   position: 50
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Extension Points vs Events

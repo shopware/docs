@@ -2,6 +2,8 @@
 nav:
   title: Gateways
   position: 100
+product: shopware
+lifecycle: implementation
 ---
 
 # Gateways

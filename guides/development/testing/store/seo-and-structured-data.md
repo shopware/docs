@@ -2,6 +2,8 @@
 nav:
   title: SEO and structured data
   position: 50
+product: shopware
+lifecycle: implementation
 ---
 
 # SEO and structured data

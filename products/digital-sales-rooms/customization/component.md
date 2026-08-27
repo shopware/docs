@@ -3,6 +3,8 @@ nav:
    title: Component Customization
    position: 30
 
+product: digital-sales-rooms
+lifecycle: implementation
 ---
 ::: warning
 All customization instructions will refer to changes made within your customization layer folder.

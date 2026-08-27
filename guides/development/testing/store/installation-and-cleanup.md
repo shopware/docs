@@ -2,6 +2,8 @@
 nav:
   title: Uninstallation and data cleanup
   position: 80
+product: shopware
+lifecycle: onboarding
 ---
 
 # Uninstallation and data cleanup

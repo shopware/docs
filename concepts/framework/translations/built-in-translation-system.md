@@ -3,6 +3,8 @@ nav:
   title: Built-in Translation Handling
   position: 50
 
+product: shopware
+lifecycle: reference
 ---
 
 # Built-in Translation Handling

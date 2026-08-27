@@ -3,6 +3,8 @@ nav:
   title: Plain vs translated entity fields
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Plain vs translated entity fields

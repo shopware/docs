@@ -3,6 +3,8 @@ nav:
   title: Using Database Events
   position: 120
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using Database Events

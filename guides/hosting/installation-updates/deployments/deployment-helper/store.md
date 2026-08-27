@@ -3,6 +3,8 @@ nav:
   title: Store and License
   position: 17
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Store Authentication and License Domain

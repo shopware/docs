@@ -3,6 +3,8 @@ nav:
   title: API Route Restriction for Employees
   position: 20
 
+product: extensions
+lifecycle: implementation
 ---
 
 # API Route Restriction for Employees

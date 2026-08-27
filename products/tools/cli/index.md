@@ -3,6 +3,8 @@ nav:
   title: Shopware CLI
   position: 10
 
+product: tools
+lifecycle: reference
 ---
 
 # Shopware CLI

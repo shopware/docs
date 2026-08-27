@@ -3,6 +3,8 @@ nav:
   title: Extend robots.txt Configuration
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Extend robots.txt Configuration

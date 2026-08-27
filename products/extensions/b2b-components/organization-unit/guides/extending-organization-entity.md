@@ -3,6 +3,8 @@ nav:
   title: Extending the Organization entity
   position: 50
 
+product: extensions
+lifecycle: implementation
 ---
 
 # What is an Attribute Entity

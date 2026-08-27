@@ -2,6 +2,8 @@
 nav:
   title: Data Handling and Processing
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Data Handling and Processing

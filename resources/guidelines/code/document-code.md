@@ -3,6 +3,8 @@ nav:
   title: Document Code
   position: 60
 
+product: shopware
+lifecycle: reference
 ---
 
 # Document Code

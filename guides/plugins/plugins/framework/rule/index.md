@@ -3,6 +3,8 @@ nav:
   title: Rule
   position: 50
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Rule

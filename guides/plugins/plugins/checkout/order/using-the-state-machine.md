@@ -3,6 +3,8 @@ nav:
   title: Using the State Machine
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Using the State Machine

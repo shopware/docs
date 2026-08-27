@@ -2,6 +2,8 @@
 nav:
   title: How to set up repository access
   position: 20
+product: hosting
+lifecycle: deployment
 ---
 
 ## Setting Up Repository Access via Deploy Keys

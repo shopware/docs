@@ -3,6 +3,8 @@ nav:
   title: Commands and Reference
   position: 23
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Commands, Options, and Best Practices

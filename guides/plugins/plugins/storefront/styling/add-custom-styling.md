@@ -3,6 +3,8 @@ nav:
   title: Add Custom Styling
   position: 80
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Styling

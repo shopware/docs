@@ -3,6 +3,8 @@ nav:
   title: Fetching Data with JavaScript
   position: 140
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Fetching Data with JavaScript

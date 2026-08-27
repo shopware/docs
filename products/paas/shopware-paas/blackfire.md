@@ -3,6 +3,8 @@ nav:
   title: Blackfire
   position: 90
 
+product: hosting
+lifecycle: reference
 ---
 
 ::: info

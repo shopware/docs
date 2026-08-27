@@ -2,6 +2,8 @@
 nav:
   title: Media Processing
   position: 90
+product: extensions
+lifecycle: reference
 ---
 
 # Media Processing

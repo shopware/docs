@@ -3,6 +3,8 @@ nav:
   title: App Scripts
   position: 30
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # App Scripts

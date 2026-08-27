@@ -2,6 +2,8 @@
 nav:
   title: Templates and Styling
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Templates and Styling

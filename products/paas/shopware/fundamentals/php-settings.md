@@ -2,6 +2,8 @@
 nav:
   title: PHP settings
   position: 85
+product: hosting
+lifecycle: implementation
 ---
 
 # PHP settings configuration

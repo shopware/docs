@@ -3,6 +3,8 @@ nav:
   title: References
   position: 40
 
+product: extensions
+lifecycle: reference
 ---
 
 # References

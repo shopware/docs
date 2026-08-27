@@ -3,6 +3,8 @@ nav:
   title: Remote Extension Management
   position: 4
 
+product: tools
+lifecycle: onboarding
 ---
 
 # Remote Extension Management

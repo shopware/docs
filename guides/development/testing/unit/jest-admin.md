@@ -3,6 +3,8 @@ nav:
   title: Jest Unit Tests in Shopware's Administration
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Jest Unit Tests in Shopware's Administration

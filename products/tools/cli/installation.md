@@ -3,6 +3,8 @@ nav:
   title: Other Installation Options
   position: 20
 
+product: tools
+lifecycle: deployment
 ---
 
 # Other Installation Options

@@ -2,6 +2,8 @@
 nav:
   title: Composable Frontends
   position: 42
+product: composable-frontends
+lifecycle: deployment
 ---
 
 # Composable Frontends

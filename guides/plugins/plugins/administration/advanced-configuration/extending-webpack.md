@@ -3,6 +3,8 @@ nav:
   title: Extending Webpack
   position: 240
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Extending Webpack

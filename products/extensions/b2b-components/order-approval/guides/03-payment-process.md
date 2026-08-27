@@ -3,6 +3,8 @@ nav:
   title: Payment Process
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Order approval's payment process

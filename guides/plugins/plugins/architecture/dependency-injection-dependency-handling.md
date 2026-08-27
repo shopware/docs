@@ -3,6 +3,8 @@ nav:
   title: Dependency Injection & Dependency Handling
   position: 50
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Dependency Injection and Dependency Handling

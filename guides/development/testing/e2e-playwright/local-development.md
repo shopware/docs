@@ -2,6 +2,8 @@
 nav:
   title: Local development
   position: 18
+product: shopware
+lifecycle: implementation
 ---
 
 # Local development with ATS

@@ -3,6 +3,8 @@ nav:
   title: Validation
   position: 5000
 
+product: tools
+lifecycle: deployment
 ---
 
 ## Validation

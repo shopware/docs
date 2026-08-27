@@ -3,6 +3,8 @@ nav:
   title: Subscriptions
   position: 40
 
+product: extensions
+lifecycle: reference
 ---
 
 # Subscriptions

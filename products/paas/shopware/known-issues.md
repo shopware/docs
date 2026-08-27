@@ -2,6 +2,8 @@
 nav:
   title: Known issues
   position: 60
+product: hosting
+lifecycle: maintenance
 ---
 
 # Known Issues

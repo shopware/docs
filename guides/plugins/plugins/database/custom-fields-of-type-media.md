@@ -2,6 +2,8 @@
 nav:
   title: Using Custom Fields of Type Media
   position: 110
+product: shopware
+lifecycle: implementation
 ---
 
 # Using Custom Fields of Type Media

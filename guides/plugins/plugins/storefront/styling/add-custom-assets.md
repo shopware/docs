@@ -3,6 +3,8 @@ nav:
   title: Add Custom Assets
   position: 70
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Assets

@@ -3,6 +3,8 @@ nav:
   title: Setup 3rd parties
   position: 20
 
+product: digital-sales-rooms
+lifecycle: onboarding
 ---
 
 # Setup 3rd parties

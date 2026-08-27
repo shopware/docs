@@ -3,6 +3,8 @@ nav:
   title: Development Environment
   position: 3
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Development Environment

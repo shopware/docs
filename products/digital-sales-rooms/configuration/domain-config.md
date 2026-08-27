@@ -3,6 +3,8 @@ nav:
    title: Domain Configuration
    position: 10
 
+product: digital-sales-rooms
+lifecycle: onboarding
 ---
 
 ::: warning

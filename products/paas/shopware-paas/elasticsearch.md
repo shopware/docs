@@ -3,6 +3,8 @@ nav:
   title: Elasticsearch
   position: 60
 
+product: hosting
+lifecycle: implementation
 ---
 
 # Elasticsearch

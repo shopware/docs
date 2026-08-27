@@ -3,6 +3,8 @@ nav:
   title: App Registration & Backend Setup
   position: 40
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # App Registration & Backend Setup

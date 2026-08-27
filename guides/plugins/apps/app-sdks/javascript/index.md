@@ -3,6 +3,8 @@ nav:
   title: JavaScript App Server SDK
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # JavaScript App Server SDK

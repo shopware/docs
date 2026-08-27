@@ -3,6 +3,8 @@ nav:
   title: Agentic Files
   position: 15
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Agentic Files

@@ -2,6 +2,8 @@
 nav:
   title: DataSelection and DataSet
   position: 20
+product: extensions
+lifecycle: reference
 ---
 
 # DataSelection and DataSet

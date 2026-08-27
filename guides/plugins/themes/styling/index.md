@@ -2,6 +2,8 @@
 nav:
   title: Styling
   position: 45
+product: shopware
+lifecycle: implementation
 ---
 
 # Theme Styling

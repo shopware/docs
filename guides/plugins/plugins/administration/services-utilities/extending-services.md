@@ -3,6 +3,8 @@ nav:
   title: Extending Services
   position: 100
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Extending Services

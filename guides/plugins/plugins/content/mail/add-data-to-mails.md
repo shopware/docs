@@ -3,6 +3,8 @@ nav:
   title: Add Data to Mails
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Data to Mails

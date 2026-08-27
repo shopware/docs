@@ -3,6 +3,8 @@ nav:
   title: Plugins
   position: 10
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Plugins

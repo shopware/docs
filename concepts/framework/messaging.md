@@ -3,6 +3,8 @@ nav:
   title: Messaging
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Messaging

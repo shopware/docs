@@ -3,6 +3,8 @@ nav:
   title: Ajax Panel
   position: 10
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Ajax Panel

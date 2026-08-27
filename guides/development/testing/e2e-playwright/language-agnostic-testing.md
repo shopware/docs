@@ -2,6 +2,8 @@
 nav:
     title: Language Agnostic Testing
     position: 19
+product: shopware
+lifecycle: onboarding
 ---
 
 # Language Agnostic Testing

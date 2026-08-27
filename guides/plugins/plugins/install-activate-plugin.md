@@ -3,6 +3,8 @@ nav:
   title: Install and Activate Plugins
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Install and Activate Plugins

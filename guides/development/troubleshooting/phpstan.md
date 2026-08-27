@@ -2,6 +2,8 @@
 nav:
   title: PHPStan
   position: 30
+product: shopware
+lifecycle: maintenance
 ---
 
 # PHPStan

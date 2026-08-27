@@ -3,6 +3,8 @@ nav:
   title: Loading Stock Information from a Different Source
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Loading Stock Information from a Different Source

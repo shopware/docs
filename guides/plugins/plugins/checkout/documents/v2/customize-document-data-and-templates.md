@@ -2,6 +2,8 @@
 nav:
   title: Customize Document Data and Templates
   position: 40
+product: shopware
+lifecycle: implementation
 ---
 
 # Customize document data and templates

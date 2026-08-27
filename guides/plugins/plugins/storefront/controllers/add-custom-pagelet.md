@@ -3,6 +3,8 @@ nav:
   title: Add Custom Pagelet
   position: 110
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Pagelet

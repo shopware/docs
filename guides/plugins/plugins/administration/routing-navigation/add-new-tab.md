@@ -3,6 +3,8 @@ nav:
   title: Add Tab to Existing Module
   position: 160
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Tab to Existing Module

@@ -3,6 +3,8 @@ nav:
   title: Getting started
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Getting Started

@@ -2,6 +2,8 @@
 nav:
   title: Architecture
   position: 20
+product: shopware
+lifecycle: reference
 ---
 
 # Document generation architecture

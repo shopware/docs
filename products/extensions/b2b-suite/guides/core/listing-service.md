@@ -3,6 +3,8 @@ nav:
   title: Listing service
   position: 40
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Listing Service

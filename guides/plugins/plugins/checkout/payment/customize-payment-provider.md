@@ -3,6 +3,8 @@ nav:
   title: Customize Payment Provider
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customize Payment Provider

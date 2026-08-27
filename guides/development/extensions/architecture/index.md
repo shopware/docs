@@ -2,6 +2,8 @@
 nav:
   title: Extension Architecture
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Extension Architecture

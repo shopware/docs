@@ -3,6 +3,8 @@ nav:
   title: Start Developing
   position: 2
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Start Developing

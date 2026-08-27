@@ -3,6 +3,8 @@ nav:
   title: Add Custom Document Type
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Document Type

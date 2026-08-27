@@ -3,6 +3,8 @@ nav:
   title: Using the Data Grid Component
   position: 230
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using the Data Grid Component

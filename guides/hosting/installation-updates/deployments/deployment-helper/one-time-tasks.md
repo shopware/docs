@@ -3,6 +3,8 @@ nav:
   title: One-Time Tasks
   position: 20
 
+product: shopware
+lifecycle: deployment
 ---
 
 # One-Time Tasks

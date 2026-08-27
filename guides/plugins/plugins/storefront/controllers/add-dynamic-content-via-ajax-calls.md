@@ -3,6 +3,8 @@ nav:
   title: Add Dynamic Content via AJAX Calls
   position: 40
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Add Dynamic Content via AJAX Calls

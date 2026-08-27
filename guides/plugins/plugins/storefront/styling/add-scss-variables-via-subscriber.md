@@ -3,6 +3,8 @@ nav:
   title: Add SCSS Variables via Subscriber
   position: 240
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add SCSS Variables via Subscriber

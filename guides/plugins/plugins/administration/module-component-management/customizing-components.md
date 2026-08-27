@@ -2,6 +2,8 @@
 nav:
   title: Customizing Components
   position: 170
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customizing Components

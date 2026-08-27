@@ -3,6 +3,8 @@ nav:
   title: Deployment with Deployer
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Deployment with Deployer

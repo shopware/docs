@@ -3,6 +3,8 @@ nav:
   title: Tax Provider
   position: 110
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Tax Provider

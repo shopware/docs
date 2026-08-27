@@ -3,6 +3,8 @@ nav:
   title: PHP Unit Testing
   position: 40
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # PHP Unit Testing

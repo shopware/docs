@@ -2,6 +2,8 @@
 nav:
   title: Modules and Components
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Modules and Components

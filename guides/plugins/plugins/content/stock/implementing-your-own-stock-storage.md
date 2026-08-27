@@ -3,6 +3,8 @@ nav:
   title: Implementing Your Own Stock Storage
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Implementing Your Own Stock Storage

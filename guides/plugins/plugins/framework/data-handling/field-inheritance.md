@@ -3,6 +3,8 @@ nav:
   title: Field Inheritance
   position: 90
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Field Inheritance

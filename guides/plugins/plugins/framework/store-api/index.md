@@ -3,6 +3,8 @@ nav:
   title: Store API
   position: 60
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Store API

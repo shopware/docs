@@ -3,6 +3,8 @@ nav:
   title: EnumField Reference
   position: 100
 
+product: shopware
+lifecycle: implementation
 ---
 
 # EnumField Reference

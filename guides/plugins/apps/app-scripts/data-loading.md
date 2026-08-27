@@ -3,6 +3,8 @@ nav:
   title: Data Loading
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Load Additional Data for the Storefront with App Scripts

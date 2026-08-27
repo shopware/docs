@@ -2,6 +2,8 @@
 nav:
   title: Adding users to the Organization
   position: 10
+product: hosting
+lifecycle: implementation
 ---
 
 # Adding users to the Organization

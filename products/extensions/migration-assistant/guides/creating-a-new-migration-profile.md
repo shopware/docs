@@ -3,6 +3,8 @@ nav:
   title: Creating a new migration profile
   position: 40
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Creating a New Migration Profile

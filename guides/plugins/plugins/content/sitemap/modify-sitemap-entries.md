@@ -3,6 +3,8 @@ nav:
   title: Modifying Sitemap Entries
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Modify Sitemap Entries

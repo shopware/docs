@@ -3,6 +3,8 @@ nav:
   title: Caching
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Caching

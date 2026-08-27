@@ -2,6 +2,8 @@
 nav:
   title: Add CMS block
   position: 10
+product: shopware
+lifecycle: implementation
 ---
 
 # Add CMS Blocks

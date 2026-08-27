@@ -3,6 +3,8 @@ nav:
   title: Filters Reference
   position: 30
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Filters Reference

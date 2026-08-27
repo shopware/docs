@@ -3,6 +3,8 @@ nav:
   title: Add Custom Page
   position: 100
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Page

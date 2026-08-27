@@ -3,6 +3,8 @@ nav:
   title: Cart Manipulation
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Manipulate the Cart with App Scripts

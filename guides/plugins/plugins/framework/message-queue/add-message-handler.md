@@ -3,6 +3,8 @@ nav:
   title: Add Message Handler
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Message Handler

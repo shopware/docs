@@ -2,6 +2,8 @@
 nav:
   title: Database
   position: 40
+product: shopware
+lifecycle: implementation
 ---
 
 # Database

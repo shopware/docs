@@ -3,6 +3,8 @@ nav:
   title: Repository
   position: 20
 
+product: hosting
+lifecycle: maintenance
 ---
 
 ::: info

@@ -2,6 +2,8 @@
 nav:
   title: Native Vue
   position: 15
+product: shopware
+lifecycle: maintenance
 ---
 
 # Moving Towards Native Vue

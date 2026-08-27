@@ -2,6 +2,8 @@
 nav:
   title: Applications
   position: 40
+product: hosting
+lifecycle: deployment
 ---
 
 # Applications

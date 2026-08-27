@@ -3,6 +3,8 @@ nav:
   title: Command Reference
   position: 11
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Checkout Gateway Command Reference

@@ -2,6 +2,8 @@
 nav:
   title: Rule system
   position: 10
+product: shopware
+lifecycle: reference
 ---
 
 # Rule system

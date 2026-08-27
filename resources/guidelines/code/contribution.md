@@ -3,6 +3,8 @@ nav:
   title: Contribution Guidelines
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Contribution Guidelines

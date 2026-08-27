@@ -3,6 +3,8 @@ nav:
   title: Advanced Docker Config
   position: 6
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Advanced Options

@@ -3,6 +3,8 @@ nav:
   title: Payment
   position: 90
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Payment

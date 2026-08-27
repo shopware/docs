@@ -3,6 +3,8 @@ nav:
   title: Staging Mode Integration
   position: 21
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Staging Mode Integration

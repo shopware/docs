@@ -3,6 +3,8 @@ nav:
   title: Environment Variables
   position: 50
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Environment Variables

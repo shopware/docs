@@ -3,6 +3,8 @@ nav:
   title: Logging
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Logging

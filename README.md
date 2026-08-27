@@ -1,6 +1,8 @@
 ---
 nav:
   hidden: true
+product: shopware
+lifecycle: implementation
 ---
 
 # Shopware Developer Documentation

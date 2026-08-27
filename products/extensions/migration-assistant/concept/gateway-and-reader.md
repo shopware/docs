@@ -2,6 +2,8 @@
 nav:
   title: Gateway and Reader
   position: 50
+product: extensions
+lifecycle: reference
 ---
 
 # Gateway and Reader

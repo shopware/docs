@@ -3,6 +3,8 @@ nav:
   title: Validation and Run
   position: 50
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Configuration Validation and Migration Execution

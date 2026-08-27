@@ -2,6 +2,8 @@
 nav:
   title: Plugin Store Authentication
   position: 100
+product: hosting
+lifecycle: reference
 ---
 
 # Plugin Store Authentication

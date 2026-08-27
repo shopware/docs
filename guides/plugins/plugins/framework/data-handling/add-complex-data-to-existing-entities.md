@@ -3,6 +3,8 @@ nav:
   title: Adding Complex Data to Existing Entities
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Adding Complex Data to Existing Entities

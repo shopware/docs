@@ -2,6 +2,8 @@
 nav:
   title: Convert and Mapping
   position: 60
+product: extensions
+lifecycle: reference
 ---
 
 # Convert and Mapping

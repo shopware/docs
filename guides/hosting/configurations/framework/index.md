@@ -3,6 +3,8 @@ nav:
   title: Framework
   position: 20
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Framework configurations

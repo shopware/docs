@@ -3,6 +3,8 @@ nav:
   title: Listen to Order Changes
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Listen to Order Changes

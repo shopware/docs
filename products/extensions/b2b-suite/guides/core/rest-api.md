@@ -3,6 +3,8 @@ nav:
   title: REST API
   position: 30
 
+product: extensions
+lifecycle: implementation
 ---
 
 # REST API

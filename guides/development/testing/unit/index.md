@@ -2,6 +2,8 @@
 nav:
   title: Unit Testing
   position: 60
+product: shopware
+lifecycle: implementation
 ---
 
 # Unit Testing

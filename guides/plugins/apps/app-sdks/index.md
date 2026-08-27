@@ -3,6 +3,8 @@ nav:
   title: App SDKs
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # App SDKs

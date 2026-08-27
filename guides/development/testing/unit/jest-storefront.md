@@ -3,6 +3,8 @@ nav:
   title: Jest Unit Tests in Shopware's Storefront
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Jest Unit Tests in Shopware's Storefront

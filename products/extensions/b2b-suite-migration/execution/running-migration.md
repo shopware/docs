@@ -3,6 +3,8 @@ nav:
   title: Running Migration
   position: 20
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Running Migration

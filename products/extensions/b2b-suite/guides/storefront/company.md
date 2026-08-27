@@ -3,6 +3,8 @@ nav:
   title: Company
   position: 50
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Company

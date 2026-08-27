@@ -3,6 +3,8 @@ nav:
   title: Concepts
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 # Concepts

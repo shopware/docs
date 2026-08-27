@@ -2,6 +2,8 @@
 nav:
     title: Security and Troubleshooting
     position: 6
+product: nexus
+lifecycle: maintenance
 ---
 
 # Security & Data Handling

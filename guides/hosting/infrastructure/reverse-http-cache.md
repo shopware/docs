@@ -3,6 +3,8 @@ nav:
   title: Reverse HTTP Cache
   position: 90
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Reverse HTTP Cache

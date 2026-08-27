@@ -2,6 +2,8 @@
 nav:
   title: Quickstart
   position: 40
+product: hosting
+lifecycle: deployment
 ---
 
 # Quickstart

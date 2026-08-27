@@ -3,6 +3,8 @@ nav:
   title: Add Custom Route
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Route

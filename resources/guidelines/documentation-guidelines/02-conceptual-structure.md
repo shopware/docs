@@ -3,6 +3,8 @@ nav:
   title: Conceptual Structure
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Conceptual Outline

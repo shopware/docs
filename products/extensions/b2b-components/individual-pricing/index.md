@@ -3,6 +3,8 @@ nav:
   title: Individual Pricing
   position: 40
 
+product: extensions
+lifecycle: onboarding
 ---
 
 # Individual Pricing

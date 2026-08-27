@@ -1,3 +1,8 @@
+---
+product: shopware
+lifecycle: reference
+---
+
 # Shopware Tools Telemetry
 
 Shopware gathers limited telemetry about usage of its open-source developer tools to improve product quality and user experience. This telemetry is designed not to include personal data, secrets, file contents, or credentials.

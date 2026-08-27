@@ -3,6 +3,8 @@ nav:
   title: Add Custom CMS Blocks
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom CMS Blocks

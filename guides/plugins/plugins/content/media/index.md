@@ -3,6 +3,8 @@ nav:
   title: Media
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Media

@@ -3,6 +3,8 @@ nav:
   title: App Base Guide
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # App Base Guide

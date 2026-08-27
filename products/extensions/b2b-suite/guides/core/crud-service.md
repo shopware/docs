@@ -3,6 +3,8 @@ nav:
   title: CRUD service
   position: 50
 
+product: extensions
+lifecycle: implementation
 ---
 
 # CRUD Service

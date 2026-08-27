@@ -3,6 +3,8 @@ nav:
    title: Ubuntu Server with PM2
    position: 10
 
+product: digital-sales-rooms
+lifecycle: deployment
 ---
 
 # Deploy with Ubuntu Server with PM2

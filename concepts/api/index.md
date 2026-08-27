@@ -3,6 +3,8 @@ nav:
   title: API
   position: 40
 
+product: shopware
+lifecycle: reference
 ---
 
 # API

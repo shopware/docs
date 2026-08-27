@@ -3,6 +3,8 @@ nav:
   title: Performance
   position: 30
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Performance

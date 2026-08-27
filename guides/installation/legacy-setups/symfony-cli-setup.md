@@ -3,6 +3,8 @@ nav:
   title: Install with Symfony CLI
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Install Shopware with Symfony CLI

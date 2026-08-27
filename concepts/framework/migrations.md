@@ -3,6 +3,8 @@ nav:
   title: Migrations
   position: 30
 
+product: shopware
+lifecycle: reference
 ---
 
 # Migrations

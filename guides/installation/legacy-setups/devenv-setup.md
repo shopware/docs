@@ -3,6 +3,8 @@ nav:
   title: Install with Devenv
   position: 20
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Install Shopware with Devenv

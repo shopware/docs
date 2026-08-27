@@ -3,6 +3,8 @@ nav:
   title: System Check
   position: 80
 
+product: shopware
+lifecycle: reference
 ---
 
 # System Checks

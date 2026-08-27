@@ -3,6 +3,8 @@ nav:
   title: Script Reference
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Script Reference

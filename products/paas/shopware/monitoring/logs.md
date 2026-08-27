@@ -2,6 +2,8 @@
 nav:
   title: Logs
   position: 20
+product: hosting
+lifecycle: reference
 ---
 
 # Logs

@@ -3,6 +3,8 @@ nav:
   title: Building Without Database
   position: 25
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Building Administration and Storefront Assets Without a Database

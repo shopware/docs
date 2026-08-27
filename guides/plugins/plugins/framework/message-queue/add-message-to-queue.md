@@ -3,6 +3,8 @@ nav:
   title: Add Message to Queue
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Message to Queue

@@ -3,6 +3,8 @@ nav:
   title: Extension Points
   position: 40
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Extension Points

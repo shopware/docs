@@ -2,6 +2,8 @@
 nav:
   title: Cloudflare
   position: 30
+product: sales-agent
+lifecycle: deployment
 ---
 
 # Deploy with Cloudflare

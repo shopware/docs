@@ -3,6 +3,8 @@ nav:
   title: Events
   position: 60
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Events

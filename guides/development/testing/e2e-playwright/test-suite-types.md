@@ -2,6 +2,8 @@
 nav:
   title: Test Suite Types
   position: 16
+product: shopware
+lifecycle: implementation
 ---
 
 # Types in the Test Suite

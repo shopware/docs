@@ -2,6 +2,8 @@
 nav:
   title: Writer
   position: 80
+product: extensions
+lifecycle: reference
 ---
 
 # Writer

@@ -3,6 +3,8 @@ nav:
   title: Extracting Meta Data
   position: 4
 
+product: tools
+lifecycle: implementation
 ---
 
 # Extracting Meta Data

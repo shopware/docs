@@ -3,6 +3,8 @@ nav:
   title: Using a Modal Window
   position: 250
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Using a Modal Window

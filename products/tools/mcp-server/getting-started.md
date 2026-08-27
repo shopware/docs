@@ -3,6 +3,8 @@ nav:
   title: Getting Started
   position: 20
 
+product: tools
+lifecycle: onboarding
 ---
 
 # Getting Started

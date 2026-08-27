@@ -3,6 +3,8 @@ nav:
   title: HTML sanitizer
   position: 10
 
+product: shopware
+lifecycle: deployment
 ---
 
 # HTML Sanitizer

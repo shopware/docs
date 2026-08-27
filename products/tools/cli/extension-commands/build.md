@@ -3,6 +3,8 @@ nav:
   title: Building Extensions and Creating Archives
   position: 2
 
+product: tools
+lifecycle: deployment
 ---
 
 # Building Extensions and Creating Archives

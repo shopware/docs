@@ -3,6 +3,8 @@ nav:
   title: Customize Price Calculation
   position: 60
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Customize Price Calculation

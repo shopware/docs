@@ -3,6 +3,8 @@ nav:
   title: Rule Builder
   position: 90
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Rule Builder

@@ -2,6 +2,8 @@
 nav:
   title: Upgrading to Pinia
   position: 12
+product: shopware
+lifecycle: maintenance
 ---
 
 # Migration from Vuex in Shopware to Pinia

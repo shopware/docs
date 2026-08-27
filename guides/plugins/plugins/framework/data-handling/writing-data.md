@@ -3,6 +3,8 @@ nav:
   title: Writing Data
   position: 150
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Writing Data

@@ -3,6 +3,8 @@ nav:
   title: Official PHP SDK
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # PHP

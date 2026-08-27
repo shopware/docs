@@ -2,6 +2,8 @@
 nav:
   title: Functionality and integration
   position: 30
+product: shopware
+lifecycle: implementation
 ---
 
 # Functionality and integration

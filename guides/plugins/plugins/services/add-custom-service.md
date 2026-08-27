@@ -3,6 +3,8 @@ nav:
   title: Add Custom Service
   position: 60
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Service

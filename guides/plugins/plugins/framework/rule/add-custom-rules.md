@@ -3,6 +3,8 @@ nav:
   title: Add Custom Rules
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Rules

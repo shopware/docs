@@ -3,6 +3,8 @@ nav:
   title: Hot Module Replacement
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Hot Module Replacement

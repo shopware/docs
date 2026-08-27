@@ -3,6 +3,8 @@ nav:
   title: Add Data to Storefront Page
   position: 150
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Data to Storefront Page

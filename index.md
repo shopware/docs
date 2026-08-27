@@ -1,5 +1,7 @@
 ---
 description: Welcome to the official Shopware 6 Developer Documentation
+product: shopware
+lifecycle: reference
 ---
 
 # Home

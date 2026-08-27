@@ -3,6 +3,8 @@ nav:
   title: Cart Storage
   position: 65
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Cart Storage

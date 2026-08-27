@@ -3,6 +3,8 @@ nav:
   title: Context Gateway
   position: 11
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Context Gateway

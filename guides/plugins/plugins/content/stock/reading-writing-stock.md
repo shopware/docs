@@ -3,6 +3,8 @@ nav:
   title: Reading and Writing Stock
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Reading and Writing Stock

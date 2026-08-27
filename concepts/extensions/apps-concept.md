@@ -3,6 +3,8 @@ nav:
   title: Apps
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Apps

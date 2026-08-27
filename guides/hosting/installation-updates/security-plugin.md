@@ -3,6 +3,8 @@ nav:
   title: Security Plugin
   position: 25
 
+product: shopware
+lifecycle: deployment
 ---
 
 # Security Plugin

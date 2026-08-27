@@ -3,6 +3,8 @@ nav:
   title: Versioning Entities
   position: 140
 
+product: shopware
+lifecycle: maintenance
 ---
 
 # Versioning Entities

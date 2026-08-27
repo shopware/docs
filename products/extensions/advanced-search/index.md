@@ -3,6 +3,8 @@ nav:
   title: Advanced Search
   position: 40
 
+product: extensions
+lifecycle: reference
 ---
 
 # Advanced Search

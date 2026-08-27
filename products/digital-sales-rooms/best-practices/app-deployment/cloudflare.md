@@ -3,6 +3,8 @@ nav:
    title: Cloudflare
    position: 30
 
+product: digital-sales-rooms
+lifecycle: deployment
 ---
 
 # Deploy with Cloudflare

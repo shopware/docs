@@ -3,6 +3,8 @@ nav:
   title: Store Review Errors
   position: 25
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Common Store Review Errors

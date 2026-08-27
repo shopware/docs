@@ -3,6 +3,8 @@ nav:
   title: Entities via Attributes
   position: 80
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Entities via Attributes

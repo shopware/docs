@@ -3,6 +3,8 @@ nav:
   title: Sales Agent
   position: 10
 
+product: sales-agent
+lifecycle: onboarding
 ---
 
 # Sales Agent Overview

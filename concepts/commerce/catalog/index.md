@@ -3,6 +3,8 @@ nav:
   title: Catalog
   position: 10
 
+product: shopware
+lifecycle: reference
 ---
 
 # Catalog

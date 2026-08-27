@@ -3,6 +3,8 @@ nav:
   title: Guides
   position: 10
 
+product: extensions
+lifecycle: implementation
 ---
 
 # Guides

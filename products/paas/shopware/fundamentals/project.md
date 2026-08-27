@@ -2,6 +2,8 @@
 nav:
   title: Projects
   position: 30
+product: hosting
+lifecycle: implementation
 ---
 
 # Projects

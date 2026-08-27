@@ -2,6 +2,8 @@
 nav:
   title: Handling Media
   position: 100
+product: shopware
+lifecycle: implementation
 ---
 
 # Handling Media

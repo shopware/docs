@@ -3,6 +3,8 @@ nav:
   title: RabbitMQ
   position: 70
 
+product: hosting
+lifecycle: reference
 ---
 
 # RabbitMQ

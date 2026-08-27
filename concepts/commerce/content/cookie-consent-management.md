@@ -3,6 +3,8 @@ nav:
   title: Cookie Consent Management
   position: 40
 
+product: shopware
+lifecycle: reference
 ---
 
 # Cookie Consent Management

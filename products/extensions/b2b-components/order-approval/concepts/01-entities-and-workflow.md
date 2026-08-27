@@ -3,6 +3,8 @@ nav:
   title: Entities and workflow
   position: 10
 
+product: extensions
+lifecycle: reference
 ---
 
 

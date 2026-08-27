@@ -3,6 +3,8 @@ nav:
   title: Setup Template
   position: 40
 
+product: hosting
+lifecycle: deployment
 ---
 
 # Setup Template

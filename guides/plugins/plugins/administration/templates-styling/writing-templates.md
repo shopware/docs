@@ -3,6 +3,8 @@ nav:
   title: Writing templates
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Writing templates

@@ -2,6 +2,8 @@
 nav:
   title: Security Features
   position: 42
+product: hosting
+lifecycle: reference
 ---
 
 # Web Application Firewall

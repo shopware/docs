@@ -3,6 +3,8 @@ nav:
   title: Filesystem - Flysystem
   position: 10
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Filesystem - Flysystem

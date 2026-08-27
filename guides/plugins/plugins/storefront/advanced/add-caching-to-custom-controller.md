@@ -3,6 +3,8 @@ nav:
   title: Add Caching to Custom Controller
   position: 30
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Caching to Custom Controller

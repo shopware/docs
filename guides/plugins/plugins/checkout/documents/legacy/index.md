@@ -3,6 +3,8 @@ nav:
   title: Legacy
   position: 20
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Legacy document system

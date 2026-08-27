@@ -3,6 +3,8 @@ nav:
   title: MCP Server
   position: 30
 
+product: tools
+lifecycle: reference
 ---
 
 # MCP Server

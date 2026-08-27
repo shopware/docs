@@ -3,6 +3,8 @@ nav:
   title: Pricing workflow
   position: 20
 
+product: extensions
+lifecycle: maintenance
 ---
 
 # Pricing workflow

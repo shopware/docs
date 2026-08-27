@@ -3,6 +3,8 @@ nav:
   title: Doc Process
   position: 20
 
+product: shopware
+lifecycle: reference
 ---
 
 # Documentation Process

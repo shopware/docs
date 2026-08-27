@@ -3,6 +3,8 @@ nav:
   title: Add Custom Twig Functions
   position: 280
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Add Custom Twig Functions

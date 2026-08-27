@@ -2,6 +2,8 @@
 nav:
   title: FAQ
   position: 100
+product: shopware
+lifecycle: onboarding
 ---
 
 

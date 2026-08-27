@@ -3,6 +3,8 @@ nav:
   title: Webhook Events Reference
   position: 20
 aside: false
+product: shopware
+lifecycle: reference
 ---
 
 # Webhook Event Reference

@@ -3,6 +3,8 @@ nav:
   title: Legacy Setups
   position: 10000
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Legacy Setups

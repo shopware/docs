@@ -3,6 +3,8 @@ nav:
    title: AWS
    position: 20
 
+product: digital-sales-rooms
+lifecycle: deployment
 ---
 
 # Deploy with AWS Amplify

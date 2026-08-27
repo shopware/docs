@@ -3,6 +3,8 @@ nav:
   title: Context
   position: 30
 
+product: shopware
+lifecycle: implementation
 ---
 
 # Context

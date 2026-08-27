@@ -2,6 +2,8 @@
 nav:
   title: Add a Document Type
   position: 20
+product: shopware
+lifecycle: implementation
 ---
 
 # Add a document type

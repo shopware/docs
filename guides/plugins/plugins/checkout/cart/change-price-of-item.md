@@ -3,6 +3,8 @@ nav:
   title: Change Price of Items in Cart
   position: 50
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Change Price of Items in Cart

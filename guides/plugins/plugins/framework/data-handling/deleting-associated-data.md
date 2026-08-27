@@ -3,6 +3,8 @@ nav:
   title: Removing Associated Data
   position: 70
 
+product: shopware
+lifecycle: onboarding
 ---
 
 # Removing Associated Data

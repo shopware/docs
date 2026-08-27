@@ -2,6 +2,8 @@
 nav:
   title: Install & Configure
   position: 11
+product: shopware
+lifecycle: onboarding
 ---
 
 # Overview
