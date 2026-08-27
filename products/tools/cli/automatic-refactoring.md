@@ -87,7 +87,7 @@ Make sure the `shopware/core` requirement in your `composer.json` file reflects 
 
 ### Detecting breaking changes before refactoring
 
-Run [project validation](./validation.md#detecting-breaking-changes-before-upgrading) with `--full` before refactoring. Refactoring fixes the breaking changes that have Rector or ESLint rules; validation shows you the remainder, which has to be handled manually.
+Run [project validation](./validation.md#detecting-breaking-changes-before-upgrading) before refactoring. Refactoring fixes the breaking changes covered by Rector or ESLint rules; validation shows you the remaining incompatibilities that must be handled manually.
 
 ### Project fix options
 
