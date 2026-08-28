@@ -112,13 +112,13 @@ dump:
 
 ## Limiting the number of rows
 
-Use the `--limit` flag to cap the number of rows exported for a table, for example to keep only the newest orders:
+Use the `--limit` flag to cap the number of rows exported for a table, for example, to keep only the newest orders:
 
 ```bash
 shopware-cli project dump --limit order=100
 ```
 
-Tables referencing the limited table via foreign keys (including transitively) are filtered automatically, so they only contain rows belonging to the kept rows. A second limit on a table that is already filtered this way is rejected. When the limited table references itself (for example `product.parent_id`), the ancestors of the kept rows are exported too, so the dump stays importable. This requires the `CREATE` and `DROP` privileges, since the kept rows are frozen into staging tables.
+Tables referencing the limited table via foreign keys (including transitively) are automatically filtered to contain only rows belonging to the kept rows. A second limit on a table that is already filtered this way is rejected. When the limited table references itself (for example, `product.parent_id`), the ancestors of the kept rows are also exported, so the dump remains importable. This requires the `CREATE` and `DROP` privileges, since the rows kept are frozen in staging tables.
 
 The same behavior can be configured persistently in `.shopware-project.yml`:
 
