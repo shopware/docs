@@ -101,7 +101,7 @@ This event is available since Shopware 6.7.15.0.
 While possible, it is not recommended adding an individual sorting at runtime. If you just wish for your individual sorting to be not editable by users in the Administration, create a migration and set the parameter `locked` to be `true`.
 :::
 
-Here's an example how your subscriber could look like:
+Here's an example of what your subscriber could look like:
 
 ```php
 // <plugin root>/src/Subscriber/ExampleListingSubscriber.php
@@ -148,4 +148,4 @@ class ExampleListingSubscriber implements EventSubscriberInterface
 
 ## Next steps
 
-To [add a custom filter](./add-listing-filters.md) to your listing in the Storefront head over to the corresponding guide.
+To [add a custom filter](./add-listing-filters.md) to your listing in the Storefront, head over to the corresponding guide.
