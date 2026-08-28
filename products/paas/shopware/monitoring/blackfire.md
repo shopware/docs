@@ -22,9 +22,9 @@ sw-paas vault create
 
 The following table lists the required secret keys and their values.
 
-| Key | Value |
-|-----|-------|
-| `BLACKFIRE_SERVER_ID` | Your Blackfire Server ID |
+| Key                      | Value                       |
+|--------------------------|-----------------------------|
+| `BLACKFIRE_SERVER_ID`    | Your Blackfire Server ID    |
 | `BLACKFIRE_SERVER_TOKEN` | Your Blackfire Server Token |
 
 See [Secrets](../fundamentals/secrets.md) for more details on managing secrets.
@@ -60,7 +60,7 @@ Enabling Blackfire does three things for you:
 Install the [Blackfire browser extension](https://blackfire.io/docs/integrations/browsers/index) or the [Blackfire CLI](https://blackfire.io/docs/up-and-running/installation) and sign in with your personal Client ID and Client Token. Open your storefront and start a profile from the extension. The resulting profiles appear in your Blackfire account.
 
 ::: info
-Pages served from the CDN cache never reach PHP, so they cannot be profiled. If a profile does not appear, request the page in a way that bypasses the cache, for example by profiling a page that is not cacheable.
+Pages served from the CDN cache never reach PHP, so they cannot be profiled. If a profile does not appear, request the page in a way that bypasses the cache, for example, by profiling a page that is not cacheable.
 :::
 
 ## Blackfire and tracing
