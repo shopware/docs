@@ -2185,6 +2185,7 @@ vue
 vuex
 walkthrough
 wav
+webfonts
 webhook
 webhooks
 webkit
