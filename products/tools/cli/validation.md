@@ -119,7 +119,7 @@ Dependency resolution only runs when the validated copy does not already contain
 
 ### Reporters
 
-Use `--reporter` to specify the output format:
+Use `--format` to specify the output format:
 
 | Format     | Description                             |
 |------------|-----------------------------------------|
@@ -130,7 +130,11 @@ Use `--reporter` to specify the output format:
 | `gitlab`   | GitLab Code Quality output              |
 | `markdown` | Markdown output                         |
 
-If `--reporter` is not set, the format is detected automatically: `github` in GitHub Actions, `gitlab` in GitLab CI, and `summary` otherwise.
+If `--format` is not set, the format is detected automatically: `github` in GitHub Actions, `gitlab` in GitLab CI, and `summary` otherwise.
+
+:::warning
+The previous `--reporter` flag is deprecated but still works as a hidden alias for `--format`. You cannot pass both flags at the same time.
+:::
 
 ## Running specific validation tools
 
