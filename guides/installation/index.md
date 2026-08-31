@@ -56,10 +56,10 @@ The latest version will always be the top option. At the bottom of the terminal 
 
 ### Choose Docker or skip
 
-This prompt asks how you want to run Shopware locally:
+This prompt asks, "How do you want to run Shopware?":
 
-- **Yes — Run Shopware with Docker**: our recommended setup option. Choosing this lets you continue with optional customization, or you can complete the installation immediately for a quick start.
-- **No — Use PHP and Composer; Shopware CLI handles the installation**: skips Docker and sets up Shopware directly with a local PHP and Composer installation instead.
+- **Run Shopware with Docker**: our recommended setup option. Choosing this lets you continue with optional customization, or you can complete the installation immediately for a quick start.
+- **Use PHP and Composer; Shopware CLI handles the installation**: skips Docker and sets up Shopware directly with a local PHP and Composer installation instead.
 
 :::info
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
