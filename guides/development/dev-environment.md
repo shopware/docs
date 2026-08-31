@@ -112,13 +112,13 @@ After you confirm, the wizard:
 
 ### What happens to existing files
 
-| File | What changes |
-|------|-------------|
-| `.shopware-project.yml` | Updated with `compatibility_date`, `environments`, and `docker` config |
-| `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways) |
-| `compose.yaml` | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
-| `Makefile` | **Not touched** - you can delete it once you've migrated, or keep it around |
-| `composer.json` | If `shopware/deployment-helper` isn't already present, it's added to `require` |
+| File                          | What changes                                                                                                                                         |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `.shopware-project.yml`       | Updated with `compatibility_date`, `environments`, and `docker` config                                                                               |
+| `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways)                                                                               |
+| `compose.yaml`                | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
+| `Makefile`                    | **Not touched** - you can delete it once you've migrated, or keep it around                                                                          |
+| `composer.json`               | If `shopware/deployment-helper` isn't already present, it's added to `require`                                                                       |
 
 ### After the wizard completes
 
@@ -217,16 +217,16 @@ See the [recommended stack and supported versions](../hosting/index.md#recommend
 
 The CLI generates a `compose.yaml` tailored to your project:
 
-| Service | Description | URL |
-|---------|-------------|-----|
-| **web** | PHP + Node.js with Caddy | `http://127.0.0.1:8000` |
-| **database** | MariaDB 11.8 | internal |
-| **adminer** | Database management UI | `http://127.0.0.1:9080` |
-| **mailer** | Mailpit (email testing) | `http://127.0.0.1:8025` |
-| **lavinmq** | Message queue * | `http://127.0.0.1:15672` |
-| **opensearch** | Search engine * | `http://127.0.0.1:9200` |
-| **blackfire** | Blackfire agent * | internal |
-| **tideways-daemon** | Tideways agent * | internal |
+| Service             | Description              | URL                      |
+|---------------------|--------------------------|--------------------------|
+| **web**             | PHP + Node.js with Caddy | `http://127.0.0.1:8000`  |
+| **database**        | MariaDB 11.8             | internal                 |
+| **adminer**         | Database management UI   | `http://127.0.0.1:9080`  |
+| **mailer**          | Mailpit (email testing)  | `http://127.0.0.1:8025`  |
+| **lavinmq**         | Message queue *          | `http://127.0.0.1:15672` |
+| **opensearch**      | Search engine *          | `http://127.0.0.1:9200`  |
+| **blackfire**       | Blackfire agent *        | internal                 |
+| **tideways-daemon** | Tideways agent *         | internal                 |
 
 \* *Auto-detected from `composer.lock` or enabled via configuration.*
 
@@ -274,11 +274,11 @@ The compose file inspects your `composer.lock` at generation time:
 
 The CLI abstracts command execution across environment types, configured per environment in `.shopware-project.yml`:
 
-| Type | Behavior |
-|------|----------|
-| `docker` | Executes commands inside the web container via `docker compose exec` |
-| `local` | Executes commands directly on the host |
-| `symfony-cli` | Uses the Symfony CLI binary (auto-detected) |
+| Type          | Behavior                                                             |
+|---------------|----------------------------------------------------------------------|
+| `docker`      | Executes commands inside the web container via `docker compose exec` |
+| `local`       | Executes commands directly on the host                               |
+| `symfony-cli` | Uses the Symfony CLI binary (auto-detected)                          |
 
 ```yaml
 environments:
@@ -290,18 +290,20 @@ environments:
       password: shopware
 ```
 
+Select an environment with the global `-e`/`--env` flag, for example `shopware-cli project extension list -e local`. This flag is honored by all commands that talk to the shop, including Admin API commands such as [`extension list`/`extension uninstall`](../../products/tools/cli/project-commands/remote-extension-management.md), not just the executor commands above. An unknown environment name causes the command to fail rather than silently using the default configuration.
+
 ## Ports
 
 The web container exposes these ports by default:
 
-| Port | Purpose |
-|------|---------|
-| `8000` | Storefront |
-| `8080` | HTTP (alternative) |
+| Port   | Purpose              |
+|--------|----------------------|
+| `8000` | Storefront           |
+| `8080` | HTTP (alternative)   |
 | `5173` | Admin Watcher (Vite) |
-| `9998` | Storefront Watcher |
-| `9999` | Storefront Proxy |
-| `5773` | IDE debugging |
+| `9998` | Storefront Watcher   |
+| `9999` | Storefront Proxy     |
+| `5773` | IDE debugging        |
 
 ## Configuration reference
 
