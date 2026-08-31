@@ -126,6 +126,93 @@ Build the Storefront using:
 shopware-cli project storefront-build
 ```
 
+## Using npm packages in a pure-SCSS theme (no JS entry point)
+
+If your plugin is a **theme** and only consumes npm packages from SCSS (for example `@fortawesome/fontawesome-free` or any other package referenced via `@import` in your `theme.json` `style` entries), you will run into a chicken-and-egg problem with `shopware-cli project storefront-build`:
+
+* `shopware-cli` only runs `npm install` for a storefront extension when it has a JavaScript entry point (`src/Resources/app/storefront/src/main.js`).
+* Even when a `main.js` is present, `shopware-cli` runs the asset build (webpack) first and **then deletes the storefront-root `node_modules` directory** before `theme:compile` runs.
+
+The result is that a `theme.json`/`SCSS` `@import` like `app/storefront/node_modules/@fortawesome/fontawesome-free/scss/fontawesome` cannot be resolved, and `theme:compile` aborts with:
+
+```text
+Unable to compile the theme "MyTheme". Unable to resolve file
+"Resources/app/storefront/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss".
+```
+
+### Workaround: copy required assets out via `postinstall`
+
+Because the `postinstall` script of a storefront extension's `package.json` runs **before** the root `node_modules` directory is deleted, you can copy the parts of the package that `theme:compile` needs into a persistent (git-ignored) folder inside the theme. After that, the SCSS imports and `theme.json` `style` entries must point at that folder instead of `node_modules`.
+
+The nested folder must contain a `node_modules` path segment, because `shopware-cli project format` / `validate` only ignore the storefront-**root** `node_modules` and `shopware-cli` only deletes that one level. A nested copy survives both steps.
+
+#### 1. Provide an empty JS entry point
+
+Add an empty `src/Resources/app/storefront/src/main.js` so `shopware-cli` installs the theme's npm dependencies and runs its lifecycle scripts:
+
+```javascript
+// <plugin root>/src/Resources/app/storefront/src/main.js
+// Intentionally empty. Present so shopware-cli installs this theme's npm
+// dependencies and runs the package.json "postinstall" below.
+```
+
+#### 2. Copy the needed files out of `node_modules` in `postinstall`
+
+```json
+// <plugin root>/src/Resources/app/storefront/package.json
+{
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.1.1"
+    },
+    "scripts": {
+        "postinstall": "rm -rf .vendor && mkdir -p .vendor/node_modules/@fortawesome/fontawesome-free && cp -R node_modules/@fortawesome/fontawesome-free/scss .vendor/node_modules/@fortawesome/fontawesome-free/ && mkdir -p ../../public/static/fonts && cp node_modules/@fortawesome/fontawesome-free/webfonts/fa-* ../../public/static/fonts/"
+    }
+}
+```
+
+The script does three things:
+
+* Copies the package's **SCSS** into `.vendor/node_modules/@fortawesome/fontawesome-free/scss/` so `theme:compile` can still resolve it after the root `node_modules` is removed.
+* Copies the package's **webfonts** into `public/static/fonts/` so the compiled theme can serve the font files at runtime.
+* Keeps the copy nested under a `node_modules` path segment so the format/validate check does not flag the copied files.
+
+#### 3. Update the theme to reference the copied files
+
+```jsonc
+// <plugin root>/src/Resources/theme.json
+{
+    "style": [
+        "app/storefront/.vendor/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+        "app/storefront/src/scss/base.scss"
+    ]
+}
+```
+
+```scss
+// <plugin root>/src/Resources/app/storefront/src/scss/base.scss
+@import '../../.vendor/node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+```
+
+If the package ships runtime assets (webfonts, images, …) that you previously exposed through the `asset` block in `theme.json` via a `node_modules/...` path, point those entries at the `public/static/...` copy instead.
+
+#### 4. Ignore the generated files
+
+Add the generated folders to your `.gitignore`:
+
+```gitignore
+/.vendor/
+/public/static/fonts/fa-*
+```
+
+### Why this works and what to expect
+
+* `shopware-cli project storefront-build` runs `npm install` for the theme (because `main.js` exists), which triggers `postinstall` and copies the files into `.vendor/` and `public/static/fonts/`.
+* The webpack build runs, the storefront-root `node_modules` is deleted, and then `theme:compile` runs against the persistent `.vendor/node_modules/...` copy. The build exits 0.
+* `shopware-cli project format` / `validate` do not flag the copied files because they live under a nested `node_modules/` path.
+* The webfonts end up under `public/bundles/<theme>/static/fonts/` after compilation, which is what the SCSS expects at runtime.
+
+This workaround is known to be fragile: it depends on `shopware-cli` running npm lifecycle scripts and on the cleanup deleting only the storefront-root `node_modules`. If you do not need npm packages in your theme, prefer keeping the theme free of `node_modules` imports. A longer-term fix (installing npm dependencies for a JS-less theme and deferring the `node_modules` cleanup until after `theme:compile`) is being discussed in [shopware/shopware-cli#1466](https://github.com/shopware/shopware-cli/issues/1466).
+
 ## Next steps
 
 Now that you know how to include new `npm` dependencies you might want to create a service with them. Learn how to do that in this guide: [How to add a custom-service](../administration/services-utilities/add-custom-service.md)
