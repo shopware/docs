@@ -1065,6 +1065,7 @@ TestCase
 TestDataService
 TestSecret
 TestStockUpdateFilter
+Tideways
 TimeRangeRule
 TimeZoneField
 Timezones
@@ -2099,6 +2100,7 @@ textarea
 th
 theming
 themself
+tideways
 timeframe
 timeframes
 tinyint
