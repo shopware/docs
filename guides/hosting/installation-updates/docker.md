@@ -343,7 +343,7 @@ FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 
 Take a **backup of your database and files before you start**, then do these steps one after another, testing after each:
 
-1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md).
+1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md). This command is deprecated and will be removed in October 2026; use `shopware-cli project upgrade` instead.
 2. **Raise PHP to an in-between version — still on old Shopware.** Change `PHP_VERSION` to a version both 6.6 and 6.7 support (here: `8.3`), then rebuild, and redeploy. Because both versions support it, this is safe while still on 6.6. Test the shop.
 3. **Update Shopware.** Now do the Shopware 6.6 → 6.7 update by following [Performing Shopware Updates](./performing-updates.md). Rebuild, redeploy, test the shop.
 4. **Raise PHP to the final version.** Now that you are on 6.7, change `PHP_VERSION` to the final target (`8.5`), rebuild, redeploy, and test one last time.
