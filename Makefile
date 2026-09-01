@@ -10,7 +10,7 @@ lychee_image = lycheeverse/lychee:0.24.2
 # (/frontends/, /docs/, /resources/…) are skipped instead of failing as local files.
 lychee_args = --retry-wait-time 10 --max-retries 3 --timeout 30 --accept=200,403,429,408 -s "https" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --root-dir /var/empty
 
-.PHONY : help spellcheck spellcheck-local fix linkcheck
+.PHONY : help spellcheck fix linkcheck
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -21,9 +21,6 @@ help: ## Show this help
 spellcheck: ## Runs the spellcheck tool (via Docker)
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -w /docs -e INPUT_IGNORE=${ignored} ${image} \
 	    --config /docs/markdown-style-config.yml /docs
-
-spellcheck-local: ## Deprecated alias for spellcheck
-	@$(MAKE) spellcheck
 
 fix: ## Runs the linting tool and fixes simple mistakes
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -e INPUT_FIX=true -e INPUT_IGNORE=${ignored} avtodev/markdown-lint:v1.5 \
