@@ -29,8 +29,9 @@ Since Shopware 6.7, the Administration build system has been migrated from Webpa
 
 You can import npm packages directly in your code without any additional build configuration:
 
-```javascript
-// <plugin root>/src/Resources/app/administration/src/example-component.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/administration/src/example-component.js]
 import { log } from 'missionlog';
 
 // Initializing the logger
@@ -39,10 +40,13 @@ log.init({ initializer: 'INFO' }, (level, tag, msg, params) => {
 });
 ```
 
+:::
+
 If you need custom Vite configuration (for example, path aliases), create a `vite.config.mts` file in the `<plugin root>/src/Resources/app/administration/src/` directory (alongside your entry file, e.g., `main.js`). Note that `package.json` stays in `<plugin root>/src/Resources/app/administration/`:
 
-```typescript
-// <plugin root>/src/Resources/app/administration/src/vite.config.mts
+::: code-group
+
+```typescript [PLUGIN_ROOT/src/Resources/app/administration/src/vite.config.mts]
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -53,6 +57,8 @@ export default defineConfig({
     },
 });
 ```
+
+:::
 
 Build the Administration using:
 
@@ -66,8 +72,9 @@ For more information on migrating from Webpack to Vite, see the [Webpack to Vite
 
 The Storefront build system continues to use [Webpack](https://webpack.js.org/). To make Webpack aware of the npm packages installed in your plugin, create a `webpack.config.js` file in the `<plugin root>/src/Resources/app/storefront/build/` directory:
 
-```javascript
-// <plugin root>/src/Resources/app/storefront/build/webpack.config.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/storefront/build/webpack.config.js]
 module.exports = (params) => {
     return {
         resolve: {
@@ -79,14 +86,17 @@ module.exports = (params) => {
 }
 ```
 
+:::
+
 This tells Webpack to also search for modules in your plugin's `node_modules` folder, in addition to Shopware's own `node_modules`.
 
 ### Using the dependency in the Storefront
 
 Once you have installed all the dependencies and registered the plugin's `node_modules` path in the build system, you can import and use the package in your code:
 
-```javascript
-// <plugin root>/src/Resources/app/storefront/src/example.plugin.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/storefront/src/example.plugin.js]
 const { PluginBaseClass } = window;
 
 // Import logger
@@ -108,10 +118,13 @@ export default class ExamplePlugin extends PluginBaseClass {
 }
 ```
 
+:::
+
 Register the plugin in your `main.js` file so it can be loaded by the plugin system:
 
-```javascript
-// <plugin root>/src/Resources/app/storefront/src/main.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/storefront/src/main.js]
 import ExamplePlugin from './example.plugin';
 
 PluginManager.register(
@@ -119,6 +132,8 @@ PluginManager.register(
     ExamplePlugin
 );
 ```
+
+:::
 
 Build the Storefront using:
 
@@ -150,16 +165,20 @@ The nested folder must contain a `node_modules` path segment, because `shopware-
 
 Add an empty `src/Resources/app/storefront/src/main.js` so `shopware-cli` installs the theme's npm dependencies and runs its lifecycle scripts:
 
-```javascript
-// <plugin root>/src/Resources/app/storefront/src/main.js
+::: code-group
+
+```javascript [PLUGIN_ROOT/src/Resources/app/storefront/src/main.js]
 // Intentionally empty. Present so shopware-cli installs this theme's npm
 // dependencies and runs the package.json "postinstall" below.
 ```
 
-#### 2. Copy the needed files out of `node_modules` in `postinstall`
+:::
 
-```json
-// <plugin root>/src/Resources/app/storefront/package.json
+#### 2. Copy the necessary files out of `node_modules` in `postinstall`
+
+::: code-group
+
+```json [PLUGIN_ROOT/src/Resources/app/storefront/package.json]
 {
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.1.1"
@@ -170,6 +189,8 @@ Add an empty `src/Resources/app/storefront/src/main.js` so `shopware-cli` instal
 }
 ```
 
+:::
+
 The script does three things:
 
 * Copies the package's **SCSS** into `.vendor/node_modules/@fortawesome/fontawesome-free/scss/` so `theme:compile` can still resolve it after the root `node_modules` is removed.
@@ -178,8 +199,9 @@ The script does three things:
 
 #### 3. Update the theme to reference the copied files
 
-```jsonc
-// <plugin root>/src/Resources/theme.json
+::: code-group
+
+```json [PLUGIN_ROOT/src/Resources/theme.json]
 {
     "style": [
         "app/storefront/.vendor/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
@@ -188,10 +210,11 @@ The script does three things:
 }
 ```
 
-```scss
-// <plugin root>/src/Resources/app/storefront/src/scss/base.scss
+```scss [PLUGIN_ROOT/src/Resources/app/storefront/src/scss/base.scss]
 @import '../../.vendor/node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 ```
+
+:::
 
 If the package ships runtime assets (webfonts, images, …) that you previously exposed through the `asset` block in `theme.json` via a `node_modules/...` path, point those entries at the `public/static/...` copy instead.
 
@@ -199,10 +222,14 @@ If the package ships runtime assets (webfonts, images, …) that you previously 
 
 Add the generated folders to your `.gitignore`:
 
-```gitignore
+::: code-group
+
+```gitignore [PLUGIN_ROOT/.gitignore]
 /.vendor/
 /public/static/fonts/fa-*
 ```
+
+:::
 
 ### Why this works and what to expect
 
