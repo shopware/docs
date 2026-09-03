@@ -312,8 +312,6 @@ The web container exposes these ports by default:
 ```yaml
 compatibility_date: '2026-03-01'
 
-url: http://127.0.0.1:8000
-
 docker:
   php:
     version: "8.3"              # 8.2, 8.3, 8.4, 8.5
@@ -330,6 +328,8 @@ environments:
       username: admin
       password: shopware
 ```
+
+Shop URL and Admin API credentials belong under `environments` (an empty `-e`/`--env` defaults to `environments.local`). Top-level `url` and `admin_api` keys are deprecated: existing config files that still use them keep working and log a deprecation warning, but `project create` and `project config init` only write `environments.local`.
 
 ### `.shopware-project.local.yml`
 
