@@ -20,7 +20,7 @@ Playwright provides:
 * API clients
 * Test data helpers
 
-<PageRef page="../testing/e2e-playwright/index" title="E2E playwright" />
+<PageRef page="../testing/e2e-playwright/" />
 
 ## Unit testing
 
@@ -56,7 +56,7 @@ To publish your extension in the Shopware Store, follow the testing criteria use
 
 Detailed Shopware Store QA topics (scope, code quality, storefront, SEO, cookies, content, installation):
 
-<PageRef page="../testing/store/index" title="Store" />
+<PageRef page="../testing/store/" />
 
 For the official publication requirements, legal conditions, and compliance rules, see:
 
