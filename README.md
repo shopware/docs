@@ -54,14 +54,6 @@ The markdown files are checked with [py-spelling](https://facelessuser.github.io
 make spellcheck
 ```
 
-#### Locally (requires `aspell` and `py-spelling`)
-
-```bash
-make spellcheck-local
-```
-
-This will automatically create a virtual environment and install the required dependencies if needed.
-
 #### Excluding words
 
 To exclude a word from being spellchecked, add it to the [`.wordlist.txt`](./.wordlist.txt) file.

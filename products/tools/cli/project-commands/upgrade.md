@@ -24,6 +24,10 @@ Run the upgrade on a Git branch or a disposable copy of the project. The wizard 
 
 For Docker and other configured environments, PHP and Composer are checked through the project executor rather than only on the host machine.
 
+### Check for breaking changes in custom code
+
+Before starting the wizard, run `shopware-cli project validate` to find references to Shopware PHP types that were removed or renamed. This surfaces incompatibilities in your custom plugins and configured bundles up front, rather than one test failure at a time. See [Detecting breaking changes before upgrading](../validation.md#detecting-breaking-changes-before-upgrading) for the command variants and for how to check against the target version.
+
 ### Migrate local extensions to Composer first
 
 The wizard resolves and pins extension versions with Composer. Extensions living outside `vendor/`, for example in `custom/plugins`, cannot participate in that resolution and therefore block the upgrade readiness check.

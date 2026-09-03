@@ -103,6 +103,7 @@ BasicExample
 BecomesAbstract
 BecomesFinal
 BecomesInternal
+BecomesReadonly
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
 BeforeLineItemQuantityChangedEvent
@@ -856,6 +857,8 @@ ProductWarehouses
 ProductsFacade
 Profiler
 PropertyGroupOptionDataSet
+PropertyTypeNarrowing
+PropertyTypeWidening
 ProseMirror
 Prosemirror
 ProxySQL
@@ -1902,12 +1905,16 @@ reCAPTCHA
 readAsArrayBuffer
 readAsDataURL
 readAsText
+readonly
 realtime
 rebase
 rebasing
 rebranded
 rebuildable
 recalculable
+redeclaration
+redeclared
+redeclaring
 redis
 refactorings
 referenceField
