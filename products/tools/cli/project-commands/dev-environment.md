@@ -27,6 +27,25 @@ shopware-cli project dev status
 shopware-cli project dev stop
 ```
 
+### Install Shopware non-interactively
+
+```bash
+shopware-cli project dev install \
+  --locale de-DE --currency EUR \
+  --admin-username admin --admin-password mysecret123
+```
+
+Starts the development environment (if not already running), runs the deployment helper to install Shopware, and saves the admin credentials to `.shopware-project.yml`. Intended for CI, scripts, and agents as a non-interactive counterpart to the TUI's install wizard. If the shop is already installed, the command prints a notice and exits successfully.
+
+Available flags:
+
+| Flag                | Default    | Description                                          |
+| ------------------- | ---------- | ----------------------------------------------------- |
+| `--locale`           | `en-GB`    | Default storefront language, e.g. `en-GB`, `de-DE`     |
+| `--currency`         | `EUR`      | Default currency, e.g. `EUR`, `USD`                    |
+| `--admin-username`   | `admin`    | Admin account username                                 |
+| `--admin-password`   | `shopware` | Admin account password (at least 8 characters)         |
+
 The interactive dashboard has three tabs:
 
 - **Overview** — shop info, access credentials, setup health checks, and watcher toggles
@@ -73,6 +92,17 @@ environments:
       username: admin
       password: shopware
 ```
+
+## Testing multiple versions in parallel
+
+Combine a version argument on `project create` with the [local proxy](./local-proxy.md) to run several Shopware versions side by side, each on its own hostname instead of colliding on the same host ports:
+
+```bash
+shopware-cli project create my-shop-6-6 6.6.7.0 --docker --local-domain --no-interaction
+shopware-cli project create my-shop-6-7 6.7.0.0 --docker --local-domain --no-interaction
+```
+
+See [Testing multiple Shopware versions in parallel](../../../../guides/development/dev-environment.md#testing-multiple-shopware-versions-in-parallel) for the full workflow — installing the same extension into each version and comparing them side by side.
 
 ## Further reading
 

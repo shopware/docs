@@ -213,7 +213,9 @@ To create a new `.shopware-project.yml` configuration file interactively:
 shopware-cli project config init
 ```
 
-This generates a basic configuration file for your Shopware project. The file is also referenced in development environment setup and deployment configurations.
+This generates a basic configuration file for your Shopware project. Shop URL and Admin API credentials are written under `environments.local` (omit `-e`/`--env` on other project commands to target it). The file is also referenced in development environment setup and deployment configurations.
+
+Top-level `url` and `admin_api` keys are deprecated: config files that still use them keep working, but the CLI logs a deprecation warning telling you to move these values under `environments`.
 
 ## Generate JWT secret
 

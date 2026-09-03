@@ -112,13 +112,13 @@ After you confirm, the wizard:
 
 ### What happens to existing files
 
-| File | What changes |
-|------|-------------|
-| `.shopware-project.yml` | Updated with `compatibility_date`, `environments`, and `docker` config |
-| `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways) |
-| `compose.yaml` | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
-| `Makefile` | **Not touched** - you can delete it once you've migrated, or keep it around |
-| `composer.json` | If `shopware/deployment-helper` isn't already present, it's added to `require` |
+| File                          | What changes                                                                                                                                         |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `.shopware-project.yml`       | Updated with `compatibility_date`, `environments`, and `docker` config                                                                               |
+| `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways)                                                                               |
+| `compose.yaml`                | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
+| `Makefile`                    | **Not touched** - you can delete it once you've migrated, or keep it around                                                                          |
+| `composer.json`               | If `shopware/deployment-helper` isn't already present, it's added to `require`                                                                       |
 
 ### After the wizard completes
 
@@ -217,16 +217,16 @@ See the [recommended stack and supported versions](../hosting/index.md#recommend
 
 The CLI generates a `compose.yaml` tailored to your project:
 
-| Service | Description | URL |
-|---------|-------------|-----|
-| **web** | PHP + Node.js with Caddy | `http://127.0.0.1:8000` |
-| **database** | MariaDB 11.8 | internal |
-| **adminer** | Database management UI | `http://127.0.0.1:9080` |
-| **mailer** | Mailpit (email testing) | `http://127.0.0.1:8025` |
-| **lavinmq** | Message queue * | `http://127.0.0.1:15672` |
-| **opensearch** | Search engine * | `http://127.0.0.1:9200` |
-| **blackfire** | Blackfire agent * | internal |
-| **tideways-daemon** | Tideways agent * | internal |
+| Service             | Description              | URL                      |
+|---------------------|--------------------------|--------------------------|
+| **web**             | PHP + Node.js with Caddy | `http://127.0.0.1:8000`  |
+| **database**        | MariaDB 11.8             | internal                 |
+| **adminer**         | Database management UI   | `http://127.0.0.1:9080`  |
+| **mailer**          | Mailpit (email testing)  | `http://127.0.0.1:8025`  |
+| **lavinmq**         | Message queue *          | `http://127.0.0.1:15672` |
+| **opensearch**      | Search engine *          | `http://127.0.0.1:9200`  |
+| **blackfire**       | Blackfire agent *        | internal                 |
+| **tideways-daemon** | Tideways agent *         | internal                 |
 
 \* *Auto-detected from `composer.lock` or enabled via configuration.*
 
@@ -274,11 +274,11 @@ The compose file inspects your `composer.lock` at generation time:
 
 The CLI abstracts command execution across environment types, configured per environment in `.shopware-project.yml`:
 
-| Type | Behavior |
-|------|----------|
-| `docker` | Executes commands inside the web container via `docker compose exec` |
-| `local` | Executes commands directly on the host |
-| `symfony-cli` | Uses the Symfony CLI binary (auto-detected) |
+| Type          | Behavior                                                             |
+|---------------|----------------------------------------------------------------------|
+| `docker`      | Executes commands inside the web container via `docker compose exec` |
+| `local`       | Executes commands directly on the host                               |
+| `symfony-cli` | Uses the Symfony CLI binary (auto-detected)                          |
 
 ```yaml
 environments:
@@ -290,18 +290,20 @@ environments:
       password: shopware
 ```
 
+Select an environment with the global `-e`/`--env` flag, for example `shopware-cli project extension list -e local`. This flag is honored by all commands that talk to the shop, including Admin API commands such as [`extension list`/`extension uninstall`](../../products/tools/cli/project-commands/remote-extension-management.md), not just the executor commands above. An unknown environment name causes the command to fail rather than silently using the default configuration.
+
 ## Ports
 
 The web container exposes these ports by default:
 
-| Port | Purpose |
-|------|---------|
-| `8000` | Storefront |
-| `8080` | HTTP (alternative) |
+| Port   | Purpose              |
+|--------|----------------------|
+| `8000` | Storefront           |
+| `8080` | HTTP (alternative)   |
 | `5173` | Admin Watcher (Vite) |
-| `9998` | Storefront Watcher |
-| `9999` | Storefront Proxy |
-| `5773` | IDE debugging |
+| `9998` | Storefront Watcher   |
+| `9999` | Storefront Proxy     |
+| `5773` | IDE debugging        |
 
 ## Configuration reference
 
@@ -309,8 +311,6 @@ The web container exposes these ports by default:
 
 ```yaml
 compatibility_date: '2026-03-01'
-
-url: http://127.0.0.1:8000
 
 docker:
   php:
@@ -329,6 +329,8 @@ environments:
       password: shopware
 ```
 
+Shop URL and Admin API credentials belong under `environments` (an empty `-e`/`--env` defaults to `environments.local`). Top-level `url` and `admin_api` keys are deprecated: existing config files that still use them keep working and log a deprecation warning, but `project create` and `project config init` only write `environments.local`.
+
 ### `.shopware-project.local.yml`
 
 Sensitive credentials are stored in `.shopware-project.local.yml` (add to `.gitignore`):
@@ -338,6 +340,67 @@ docker:
   php:
     blackfire_server_id: "your-server-id"
     blackfire_server_token: "your-server-token"
+```
+
+## Testing multiple Shopware versions in parallel
+
+Verifying a plugin, theme, or app against several Shopware versions - for example, before a release, or to confirm whether a bug is version-specific - normally means stopping one environment, switching branches or dependencies, and starting again for every version you check. Running one project per version at the same time removes that back-and-forth: each version stays up, installed, and ready to compare.
+
+By default, this is blocked by fixed host ports - a second `project dev` collides with the first on `8000`, `9080`, and the rest. The [local proxy](../../products/tools/cli/project-commands/local-proxy.md) removes that limit by giving every shop its own stable HTTPS hostname instead of a host port, so any number of versions can run side by side.
+
+### 1. Create one project per version
+
+Pass the Shopware version as the second argument to `project create`, and opt each project into a local domain so it gets a conflict-free hostname. Include `--docker` - the local proxy only works with the Docker executor:
+
+```bash
+shopware-cli project create my-shop-6-6 6.6.7.0 --docker --local-domain --no-interaction
+shopware-cli project create my-shop-6-7 6.7.0.0 --docker --local-domain --no-interaction
+```
+
+The first local-domain project on a machine triggers the [one-time proxy setup](../../products/tools/cli/project-commands/local-proxy.md#one-time-setup) (DNS routing and HTTPS trust); later projects reuse it.
+
+### 2. Start every version
+
+```bash
+(cd my-shop-6-6 && shopware-cli project dev start)
+(cd my-shop-6-7 && shopware-cli project dev start)
+```
+
+Both come up at once, each at its own hostname - `https://my-shop-6-6.shopware.local` and `https://my-shop-6-7.shopware.local` - with no port conflict and nothing to stop in between.
+
+### 3. Install the extension under test into each version
+
+Each project is an independent Composer-managed installation, so add and activate the extension the same way in every one:
+
+```bash
+cd my-shop-6-6
+docker compose exec web composer require my-vendor/my-plugin
+shopware-cli project console plugin:refresh
+shopware-cli project console plugin:install --activate MyPlugin
+```
+
+Repeat for `my-shop-6-7` (and any other version you added).
+
+### 4. Compare behavior side by side
+
+With every environment running, open each hostname in its own browser tab and reproduce the same steps in each - no editing `.env`, `APP_URL`, or ports to switch versions. `shopware-cli project proxy list` shows every registered shop and its running state at a glance:
+
+```bash
+shopware-cli project proxy list
+```
+
+### 5. Tear down what you no longer need
+
+If you are just done with **one** version but still need the others, stop that project on its own - the rest keep running:
+
+```bash
+(cd my-shop-6-6 && shopware-cli project dev stop)
+```
+
+If you are done testing **entirely**, remove every registered project and the shared proxy in one step:
+
+```bash
+shopware-cli project proxy teardown
 ```
 
 ## Troubleshooting
@@ -375,3 +438,4 @@ Set `compatibility_date: '2026-03-01'` in `.shopware-project.yml`. For more cont
 - [Start Developing](./start-developing.md) - What to do once your environment is running
 - [Build Extensions](./extensions/index.md) - Create plugins, apps, and themes
 - [Using Watchers](./tooling/using-watchers.md) - Hot Module Replacement for Admin and Storefront
+- [Local Proxy](../../products/tools/cli/project-commands/local-proxy.md) - CLI reference for running shops on stable hostnames instead of ports

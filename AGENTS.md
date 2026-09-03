@@ -39,9 +39,6 @@ pnpm run docs:preview
 
 ```bash
 # Run spellcheck via docker
-make spellcheck-local
-
-# Run spellcheck with installed sources (aspell and pyspelling)
 make spellcheck
 
 # Auto-fix markdown issues (be aware that it can only fix certain issues)
