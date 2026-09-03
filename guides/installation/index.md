@@ -83,7 +83,7 @@ To use a specific extension without the Store, install it from source or via Com
 
 The customization options currently offered by the CLI include:
 
-- **Deployment Method**: none (default), PaaS powered by Shopware, PaaS powered by Platform.sh, or Deployer PHP (SSH-based zero-downtime, for users not working with Docker)
+- **Deployment Method**: none (default), PaaS powered by Shopware, PaaS powered by Platform.sh, Deployer PHP (SSH-based zero-downtime, for users not working with Docker), or Docker (Container), which generates a production-ready `Dockerfile` and `.dockerignore` pinned to the PHP version resolved for the project
 - **CI/CD System**: none (default), GitHub Actions, or GitLab CI; choosing an option triggers creation of boilerplate pipeline templates
 - **Initialize Git repository**: yes/no, for version control (`yes` by default)
 - **OpenSearch**: yes/no (`no` is default), choose yes for large product catalogues and advanced search
