@@ -298,6 +298,30 @@ validation:
 
 You can also exclude extensions from project validation with `validation.ignore_extensions` in `.shopware-project.yml`.
 
+### Detecting breaking changes before upgrading
+
+`project validate` runs the registered validation tools against the project, including PHPStan. PHPStan can detect references to Shopware classes, interfaces, and traits that were removed or renamed. The output identifies the affected files and provides migration guidance where available.
+
+To check custom code against a Shopware version you have not upgraded to yet, point the `shopware/core` requirement in `composer.json` at the target version. By default, `project validate` works on a temporary copy of the project and installs the dependency set required by that constraint when needed, allowing PHPStan to resolve types from the target Shopware version without upgrading the original project.
+
+```shell
+docker run --rm -v "$(pwd)":/project -w /project ghcr.io/shopware/shopware-cli project validate /project
+```
+
+If you run Shopware CLI directly:
+
+```shell
+shopware-cli project validate /path/to/your/project
+```
+
+To run only the PHPStan validation:
+
+```shell
+shopware-cli project validate --only phpstan /path/to/your/project
+```
+
+Run this before the [Upgrade wizard](./project-commands/upgrade.md) so that custom code needing fixes is known in advance. Address the reported breaking changes, or confirm they are acceptable for the target version, before starting the upgrade. [Automatic Refactoring](./automatic-refactoring.md) can then handle the subset of findings covered by Rector or ESLint rules.
+
 ## Common issues
 
 ### Missing classes in a Storefront/Elasticsearch bundle
