@@ -74,7 +74,20 @@ environments:
       password: shopware
 ```
 
+## Testing multiple versions in parallel
+
+Combine a version argument on `project create` with the [local proxy](./local-proxy.md) to run several Shopware versions side by side, each on its own hostname instead of colliding on the same host ports:
+
+```bash
+shopware-cli project create my-shop-6-6 6.6.7.0 --docker --local-domain --no-interaction
+shopware-cli project create my-shop-6-7 6.7.0.0 --docker --local-domain --no-interaction
+```
+
+See [Testing multiple Shopware versions in parallel](../../../../guides/development/dev-environment.md#testing-multiple-shopware-versions-in-parallel) for the full workflow — installing the same extension into each version and comparing them side by side.
+
 ## Further reading
 
+- [Local Proxy](./local-proxy.md) — run several shops at once, each on its own stable HTTPS hostname
 - [Development Environment guide](../../../../guides/development/dev-environment.md) — full workflow, setup wizard, service overview, troubleshooting
+- [Running Composer, PHP, and npm](../../../../guides/development/dev-environment.md#running-composer-php-and-npm) — run tools inside the web container; PHP `memory_limit ≥ 512M`
 - [Start Developing](../../../../guides/development/start-developing.md) — next steps after your environment is running

@@ -103,6 +103,7 @@ BasicExample
 BecomesAbstract
 BecomesFinal
 BecomesInternal
+BecomesReadonly
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
 BeforeLineItemQuantityChangedEvent
@@ -248,6 +249,7 @@ ContextTokenAware
 ContextTokenStorer
 CookiePermission
 CookieProviderInterface
+CoreDNS
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -804,6 +806,7 @@ PluginManager
 PositionID
 PositionIDs
 PositionIdentifier
+PostDeploy
 PostInstall
 PostMessage
 PostUpdate
@@ -854,6 +857,8 @@ ProductWarehouses
 ProductsFacade
 Profiler
 PropertyGroupOptionDataSet
+PropertyTypeNarrowing
+PropertyTypeWidening
 ProseMirror
 Prosemirror
 ProxySQL
@@ -1071,6 +1076,7 @@ ToOne
 Tooltips
 Topseller
 Topsellers
+Traefik
 TransactionalAction
 TranslatedField
 TranslationConfig
@@ -1167,6 +1173,7 @@ WCAG
 WMA
 WMV
 WSL
+WSL2
 WarehouseGroup
 WarehouseGroups
 WebAIM
@@ -1358,6 +1365,7 @@ contextToken
 contravariance
 contravariant
 control
+cookieGroups
 copyToClipboard
 copyable
 cors
@@ -1587,6 +1595,7 @@ guid
 gz
 gzip
 handleFlow
+hardcode
 hardcoded
 hasError
 hasOwnProperty
@@ -1678,6 +1687,7 @@ landingpage
 lang
 lavinmq
 lazysizes
+learnings
 libxml
 lifecycle
 lifecycles
@@ -1848,6 +1858,7 @@ precompile
 preconfigured
 prefetch
 prefixer
+preflight
 preload
 preloaded
 preloading
@@ -1894,12 +1905,16 @@ reCAPTCHA
 readAsArrayBuffer
 readAsDataURL
 readAsText
+readonly
 realtime
 rebase
 rebasing
 rebranded
 rebuildable
 recalculable
+redeclaration
+redeclared
+redeclaring
 redis
 refactorings
 referenceField

@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Automatic refactoring
+  title: Automatic Refactoring
   position: 5002
 
 ---
 
-# Automatic refactoring
+# Automatic Refactoring
 
 Shopware CLI includes a built-in automatic refactoring tool with pre-configured rules for Shopware projects. Instead of manually configuring and managing multiple linters and fixers, this tool automatically handles breaking changes and code modernization when you upgrade Shopware versions.
 
@@ -85,7 +85,11 @@ The CLI runs Rector and ESLint automatically. After completion, review all chang
 
 Make sure the `shopware/core` requirement in your `composer.json` file reflects the version you're targeting. Shopware CLI determines which upgrade rules to apply based on that version constraint.
 
-### Project fix options
+### Detecting breaking changes before refactoring
+
+Run [project validation](./validation.md#detecting-breaking-changes-before-upgrading) before refactoring. Refactoring fixes the breaking changes covered by Rector or ESLint rules; validation shows you the remaining incompatibilities that must be handled manually.
+
+### `project fix` options
 
 Run only specific tools:
 
@@ -101,6 +105,14 @@ shopware-cli project fix /path/to/your/project --allow-non-git
 ```
 
 By default, `project fix` requires a Git repository to safely track changes.
+
+### Administration migration rules
+
+The fixer also includes deterministic rules for known Administration migration patterns, including Administration Twig component migrations and component property or event changes. These rules apply when running `project fix` or `extension fix` as described above.
+
+The rules only cover cases where the old pattern and its replacement can be identified without ambiguity. They are not a general-purpose Administration migration engine and do not guarantee full compatibility with a target Shopware version. Manual review is still required for changes that are not covered by a deterministic rule.
+
+For manual migration guidance, see the [Administration migration guide](../../../guides/upgrades-migrations/administration/index.md).
 
 ## After running refactoring
 

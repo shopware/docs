@@ -36,6 +36,10 @@ Create a new application to a project:
 sw-paas application create
 ```
 
+:::warning
+Application names must be unique within a project and can only be used once. After an application is deleted, its name remains reserved and cannot be reused for another application in the same project.
+:::
+
 ## Build your application
 
 To trigger a new build for the application via CLI, use the following command:
@@ -88,7 +92,7 @@ Deployment setup and migration logs are available with:
 sw-paas application deploy logs
 ```
 
-Both commands print a Grafana Explore URL at the end so you can continue investigating the same logs in Grafana. For more log filtering options, see [Logs](../monitoring/logs).
+Both commands print a Grafana Explore URL at the end so you can continue investigating the same logs in Grafana. For more log filtering options, see [Logs](../monitoring/logs.md).
 
 ## Deploy a specific build of your application
 
@@ -119,7 +123,7 @@ To back up and restore application assets and database data, see [Snapshots](./s
 
 ## Plugin Management
 
-Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-management#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
+Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-management.md#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
 
 In such setups, local changes aren't feasible, as all instances must remain identical and stateless. This ensures consistency across all deployments.
 

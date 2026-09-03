@@ -56,7 +56,10 @@ The latest version will always be the top option. At the bottom of the terminal 
 
 ### Choose Docker or skip
 
-This is a yes/no question about whether to run Shopware locally using Docker, our recommended setup option. Choosing `yes` lets you continue with optional customization, or you can complete the installation immediately for a quick start.
+This prompt asks, "How do you want to run Shopware?":
+
+- **Run Shopware with Docker**: our recommended setup option. Choosing this lets you continue with optional customization, or you can complete the installation immediately for a quick start.
+- **Use PHP and Composer; Shopware CLI handles the installation**: skips Docker and sets up Shopware directly with a local PHP and Composer installation instead.
 
 :::info
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
@@ -104,6 +107,10 @@ shopware-cli project dev
 This launches the Development TUI. The dashboard starts your Docker containers, runs the Shopware installer (first time only), and gives you an overview of your environment - Shop URLs, credentials, watchers, logs, and service configuration - all in one place.
 
 For details, see the [Development Environment guide](../development/dev-environment.md).
+
+::: tip Composer and PHP with Docker
+If you chose Docker, run Composer and PHP tools **inside** the `web` container (`docker compose exec web composer <command>`). Host PHP often has only `128M` memory and cannot reach the database; Shopware needs `memory_limit ≥ 512M`. See [Running Composer, PHP, and npm](../development/dev-environment.md#running-composer-php-and-npm).
+:::
 
 ### Accessing your shop
 

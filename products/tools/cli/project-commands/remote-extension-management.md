@@ -12,7 +12,7 @@ Shopware CLI provides a CLI wrapper around Shopware's built-in extension managem
 This is one of the most commonly used command families in Shopware CLI, especially with Shopware SaaS customers who use it to automate extension uploads and lifecycle management directly to their hosted shops without needing the Admin UI.
 
 ::: info
-This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer](../../../../guides/hosting/installation-updates/deployments/deployment-helper.md)
+This functionality was designed for Shopware SaaS and should not be used for self-hosted installations. [The recommendation is to use the Deployment Helper and install all plugins via Composer](../../../../guides/hosting/installation-updates/deployments/deployment-helper/index.md)
 :::
 
 To use the extension manager, you need a `.shopware-project.yml` or set environment variables. See here for more information about the [Fixture Bundle](../../../../guides/development/tooling/fixture-bundle.md).
@@ -20,6 +20,14 @@ To use the extension manager, you need a `.shopware-project.yml` or set environm
 ::: warning
 Make sure you log in using your username and password to the CLI. The extension API can be used **only by users**.
 :::
+
+## Targeting an environment
+
+All commands in this family accept the global `-e`/`--env` flag to target a named environment from the `environments` section of `.shopware-project.yml` (see the [Environment executors](../../../../guides/development/dev-environment.md#environment-executors) reference). When set, the command uses that environment's `url` and `admin_api` credentials instead of the top-level configuration. An unknown environment name causes the command to fail instead of silently falling back to the default configuration.
+
+```bash
+shopware-cli project extension list -e staging
+```
 
 ## Commands
 
