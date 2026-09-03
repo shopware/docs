@@ -2,8 +2,11 @@
   "name": "shopware/docs",
   "version": "6.7.0-dev",
   "scripts": {
+    "check:links": "sh -c 'PATTERN=\"${DIR:+$DIR/**/*.md}\"; PATTERN=\"${PATTERN:-**/*.md}\"; docker run --init --rm -w /input -v \"$(pwd):/input\" lycheeverse/lychee:0.24.2 --retry-wait-time 10 --max-retries 3 --timeout 30 --accept=200,403,429,408 -s https --exclude \"https://github.com/\\[your*\" --exclude https://localhost:9200 --root-dir /var/empty --no-progress \"$PATTERN\"'",
+    "check:spelling": "docker run --rm -u \"$(id -u):$(id -g)\" -v \"$(pwd):/docs\" -w /docs -e INPUT_IGNORE='/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/* /docs/resources/references/app-reference/*' ghcr.io/rojopolis/spellcheck-github-actions:0.49.0 --config /docs/markdown-style-config.yml /docs",
     "docs:env": "[ -d \"../developer-portal\" ] && ../developer-portal/docs-cli.cjs pull || (git clone git@github.com:shopware/developer-portal.git ../developer-portal && pnpm i -C ../developer-portal)",
     "docs:link": "../developer-portal/docs-cli.cjs link --src . --dst docs --symlink",
-    "docs:preview": "../developer-portal/docs-cli.cjs preview"
+    "docs:preview": "../developer-portal/docs-cli.cjs preview",
+    "fix:markdown": "docker run --rm -u \"$(id -u):$(id -g)\" -v \"$(pwd):/docs\" -e INPUT_FIX=true -e INPUT_IGNORE='/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/* /docs/resources/references/app-reference/*' avtodev/markdown-lint:v1.5 --config /docs/markdown-style-config.yml /docs"
   }
 }

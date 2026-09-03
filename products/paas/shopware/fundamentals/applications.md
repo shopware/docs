@@ -36,6 +36,10 @@ Create a new application to a project:
 sw-paas application create
 ```
 
+:::warning
+Application names must be unique within a project and can only be used once. After an application is deleted, its name remains reserved and cannot be reused for another application in the same project.
+:::
+
 ## Build your application
 
 To trigger a new build for the application via CLI, use the following command:
