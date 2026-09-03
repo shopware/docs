@@ -1,12 +1,24 @@
 // deno run --allow-read .github/scripts/broken-pageref.js
 
-import { resolve, dirname, fromFileUrl } from "https://deno.land/std/path/mod.ts";
+import { resolve, dirname } from "https://deno.land/std/path/mod.ts";
 import { walk } from "https://deno.land/std/fs/mod.ts";
 
 const rootDir = resolve(Deno.cwd());
 
-async function findBrokenLinks() {
+function indexFormSuggestion(relativePath) {
+  const segments = relativePath.split('/');
+  const lastSegment = segments.pop();
+
+  if (!['index', 'index.md', 'index.html'].includes(lastSegment)) {
+    return null;
+  }
+
+  return segments.length ? `${segments.join('/')}/` : './';
+}
+
+async function findPageRefIssues() {
   const brokenLinks = [];
+  const indexLinks = [];
 
   for await (const entry of walk(rootDir, { exts: ['.md'], followSymlinks: true })) {
     if (entry.isFile) {
@@ -14,21 +26,22 @@ async function findBrokenLinks() {
       const matches = [...content.matchAll(/<PageRef page="([^"]+)"/g)];
 
       for (const match of matches) {
-        let relativePath = match[1];
+        const page = match[1];
 
-        if (relativePath.startsWith('http')) {
+        if (page.startsWith('http')) {
           continue
         }
 
-        if (relativePath.includes('#')) {
-          relativePath = relativePath.split('#')[0]
+        let relativePath = page.includes('#') ? page.split('#')[0] : page;
+
+        const suggestion = indexFormSuggestion(relativePath);
+        if (suggestion) {
+          indexLinks.push({ file: entry.path, page, suggestion });
         }
 
         if (relativePath.endsWith('/')) {
-          relativePath = `${relativePath}/index.md`
-        }
-
-        if (relativePath.endsWith('.html')) {
+          relativePath = `${relativePath}index.md`
+        } else if (relativePath.endsWith('.html')) {
           relativePath = `${relativePath.substring(0, relativePath.length - '.html'.length)}.md`
         } else if (!relativePath.endsWith('.md')) {
           relativePath = `${relativePath}.md`
@@ -45,10 +58,11 @@ async function findBrokenLinks() {
     }
   }
 
-  return brokenLinks;
+  return { brokenLinks, indexLinks };
 }
 
-const brokenLinks = await findBrokenLinks();
+const { brokenLinks, indexLinks } = await findPageRefIssues();
+
 if (brokenLinks.length) {
   console.log('Broken links found:');
   brokenLinks.forEach(link => {
@@ -57,6 +71,19 @@ if (brokenLinks.length) {
     console.log(`Resolved Path: ${link.resolvedPath}`);
     console.log('---');
   });
+}
+
+if (indexLinks.length) {
+  console.log('PageRef links naming an index file found (use the directory form so the card resolves the target title):');
+  indexLinks.forEach(link => {
+    console.log(`File: ${link.file}`);
+    console.log(`Found: <PageRef page="${link.page}" />`);
+    console.log(`Use: <PageRef page="${link.suggestion}" />`);
+    console.log('---');
+  });
+}
+
+if (brokenLinks.length || indexLinks.length) {
   Deno.exit(1)
 }
 
