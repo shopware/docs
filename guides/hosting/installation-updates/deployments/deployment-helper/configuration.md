@@ -103,6 +103,12 @@ deployment:
   theme-compile:
     parallel: false
     workers: null  # auto-detected if not set
+
+  # OpenSearch actions during deployment
+  opensearch:
+    # When enabled, OpenSearch indexes are created after a fresh installation.
+    # "shopware-cli project create --deployment shopware-paas" enables this by default.
+    index-on-install: false
 ```
 
 ## Hooks: timing and use cases
@@ -229,6 +235,16 @@ Deployment Helper then:
 3. Compiles sales channels in parallel (up to `workers` at a time)
 
 This significantly speeds up deployment for shops with many sales channels.
+
+## OpenSearch index creation on install
+
+The `opensearch.index-on-install` key controls whether OpenSearch indexes are created automatically right after a fresh installation. When creating a new Shopware PaaS project with `shopware-cli project create --deployment shopware-paas`, the generated `.shopware-project.yml` sets this to `true` so OpenSearch indexing is enabled from the first deployment. For other deployment targets, the key defaults to `false` and can be enabled manually if needed:
+
+```yaml
+deployment:
+  opensearch:
+    index-on-install: true
+```
 
 ## Local configuration overrides
 
