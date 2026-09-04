@@ -40,4 +40,40 @@ Benefits of using Composer:
 - Automatic updates: easily update extensions to new versions
 - Less manual work: no need to manually clone and manage extensions in custom directories
 
-You need a Shopware Packages Token. Get it from your Shopware Account: "Shops" > "Licenses" > "..." of one extension > "Install via Composer".
+### What the migration does
+
+For each extension in `custom/`, `project autofix composer-plugins` prefers a repository-backed installation that matches the locally installed version:
+
+- **Shopware Store plugins** are required from `packages.shopware.com` when a valid `SHOPWARE_PACKAGIST_TOKEN` is available and the installed version exists there. Their local copy is removed after the require succeeds.
+- **Extensions available from Packagist or another configured Composer repository** at the exact installed version are required from that repository and their local copy is removed.
+- **Other extensions with a Composer package name** are registered as Composer path repositories, so their files stay in place but Composer manages them locally. These path repositories do not provide repository-driven updates.
+- Extensions without a Composer package name are skipped because they cannot be migrated automatically.
+
+The command does not take a path argument. It operates on the closest Shopware project found from the current directory.
+
+### Interactive and headless modes
+
+In a terminal, the command runs as an interactive wizard that walks you through the plan.
+
+With `--no-interaction`, or when no terminal is attached (typically CI), it runs headless. In headless mode, set `SHOPWARE_PACKAGIST_TOKEN` so Store plugins can be resolved from `packages.shopware.com`:
+
+```bash
+export SHOPWARE_PACKAGIST_TOKEN=your-token-here
+shopware-cli project autofix composer-plugins --no-interaction
+```
+
+::: warning
+Without `SHOPWARE_PACKAGIST_TOKEN`, the headless run skips the Shopware Store lookup. Packagist and other configured Composer repositories are still checked, and extensions that cannot be resolved there fall back to path repositories when possible. Set the token in CI if you want Store plugins to remain repository-backed and continue to receive updates from `packages.shopware.com`.
+:::
+
+Get the token from your Shopware Account under "Shops" > "Licenses" > "..." on any extension > "Install via Composer".
+
+### Options
+
+| Flag | Description |
+|------|-------------|
+| `--dry-run` | Print the migration plan without modifying the project (headless mode only) |
+
+```bash
+shopware-cli project autofix composer-plugins --no-interaction --dry-run
+```

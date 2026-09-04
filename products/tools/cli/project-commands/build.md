@@ -7,147 +7,130 @@ nav:
 
 # Build a Complete Project
 
-Usually, when you want to deploy your project, you have to run `composer install` and compile the project's assets. Shopware CLI provides a single command that does all of this for you.
-
-::: warning
-This command modifies the given directory and deletes files. Make sure you have committed all your changes before running this command.
-:::
+Deploying a project usually requires running `composer install` and compiling the project's assets. Shopware CLI can prepare a project for deployment in one step by installing dependencies, compiling required assets, and removing files that are not needed in the final artifact:
 
 ```bash
 shopware-cli project ci <path>
 ```
 
-One of the most-used commands in the Shopware CLI. After cloning a repository, this command prepares a complete artifact that can be deployed with all dependencies installed and assets compiled. It is widely used in PaaS and SaaS deployments.
+::: warning
+This command modifies the target directory and deletes files. Make sure you have committed all changes before running it.
+:::
 
-## What does it do?
+After cloning a repository, you can use this command to create a artifact that you can deploy with its dependencies installed and assets compiled. It is commonly used in PaaS and SaaS deployment workflows.
 
-- It runs `composer install` (by default, only installs the production dependencies, use `--with-dev-dependencies` to install the dev dependencies as well)
-- Looks for missing assets of extensions and only compiles the missing assets to speed up the build process
-- Deletes unnecessary files like `node_modules` and many more to save disk space
-- Deletes source code of compiled assets to save disk space
-- Merges snippets of extensions to speed up Administration
-- Writes a CycloneDX 1.7 SBOM (`sbom.cdx.json`) from `composer.lock`
+## What the command does
+
+- Runs `composer install`. By default, only production dependencies are installed; use `--with-dev-dependencies` to include development dependencies.
+- Compiles missing extension assets to avoid unnecessary rebuilds.
+- Removes unnecessary files such as `node_modules` to reduce the artifact size.
+- Removes source files for compiled assets to reduce the artifact size.
+- Merges extension snippets to speed up the Administration.
+- Generates a CycloneDX 1.7 Software Bill of Materials (SBOM) (`sbom.cdx.json`) from `composer.lock`.
 
 If you only need the SBOM and not a full CI build, use [`shopware-cli project sbom`](sbom.md) instead.
 
-- Generates a Software Bill of Materials (SBOM) listing all deployed dependencies
+## Software Bill of Materials (SBOM)
 
-## CI system
+The `project ci` command automatically generates an SBOM containing the dependencies recorded for your project. It can be used for:
 
-The CI system is detected automatically from the environment, so you don't need to configure anything.
+- **Container scanning**: Identify dependencies in Docker images and check them for vulnerabilities.
+- **Security scanning**: Track which package versions are deployed to production.
+- **Compliance tracking**: Document the software components included in a deployment artifact.
+- **Supply chain security**: Keep a record of the components included in each release.
 
-If you want to override the detection — for example, to disable CI-specific output — pass `--ci`:
+The SBOM is included in the build artifact automatically and can be consumed by tools such as Grype and other container security scanners.
+
+## CI environment detection
+
+Shopware CLI detects the CI environment automatically, so no configuration is required in most cases.
+
+To override the detected environment, for example to disable CI-specific output, pass `--ci`:
 
 ```bash
 shopware-cli project ci <path> --ci none
 ```
 
-Accepted values: `github`, `gitlab`, `none`.
+Accepted values are `github`, `gitlab`, and `none`.
 
-## Using private Composer repositories
+## Private Composer repositories
 
-If you want to use `packages.shopware.com` as a private Composer repository, make sure you have set the `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. This can be found in your Shopware Account.
+To use `packages.shopware.com` as a private Composer repository, set the `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. You can obtain this token from your Shopware Account.
 
-For other private Composer repositories, you can use the `auth.json` file in the root of your project or set the `COMPOSER_AUTH` environment variable with the content of the `auth.json` file.
+For other private Composer repositories, add an `auth.json` file to the project root or set `COMPOSER_AUTH` to the contents of that file.
 
-For more information, see the [Composer documentation](https://getcomposer.org/doc/articles/authentication-for-private-packages.md).
+For more information, see the [Composer authentication documentation](https://getcomposer.org/doc/articles/authentication-for-private-packages.md).
 
-## Reducing JavaScript in the Storefront
+## Build configuration
 
-Shopware's default `browserlist` still supports older browsers, such as Internet Explorer 11. If you want to reduce JavaScript polyfill and CSS prefixes, you can adjust the `browserlist` configuration in the `.shopware-project.yml` file.
+Configure the build in `.shopware-project.yml`. The following sections cover commonly used build settings.
+
+### Reducing JavaScript in the Storefront
+
+Shopware's default Browserslist configuration supports a broad range of browsers. To reduce JavaScript polyfills and CSS prefixes, set a narrower `browserslist` query in `.shopware-project.yml`:
 
 ```yaml
 build:
-  # Browserlist configuration for Storefront
+  # Browserslist configuration for the Storefront
   browserslist: 'defaults'
 ```
 
-You can check [here which browsers would be affected](https://browsersl.ist/#q=defaults).
+Use the [Browserslist query tool](https://browsersl.ist/#q=defaults) to see which browsers a query targets.
 
-## MJML Email Template Compilation
+### MJML email template compilation
 
-Starting with Shopware CLI 0.6.32, the `project ci` command can compile MJML email templates during the build process
-for projects using the [FroshPlatformTemplateMail](https://github.com/FriendsOfShopware/FroshPlatformTemplateMail) plugin.
-[MJML](https://mjml.io) is a markup language designed to reduce the pain of coding responsive emails by providing
-semantic components that compile to responsive HTML.
+The [FroshPlatformTemplateMail](https://github.com/FriendsOfShopware/FroshPlatformTemplateMail) plugin stores email templates as source files in the project. For projects using it, `project ci` can compile [MJML](https://mjml.io) email templates at build time. This requires the `mjml` package to be installed through npm in the build environment.
 
-### Prerequisites
+By default, FroshPlatformTemplateMail compiles MJML templates at runtime when emails are sent. Compiling them during CI instead:
 
-This feature is designed specifically for projects that use the **FroshPlatformTemplateMail** plugin. The primary purpose of this plugin is to manage email templates as source files in your codebase, rather than storing them in the database. This approach enables:
+- Catches MJML syntax errors before deployment.
+- Avoids runtime compilation overhead and failures.
+- Removes the need for MJML compilation services in production.
 
-- **Version control**: Email templates can be tracked in Git alongside your code
-- **Deployment consistency**: Templates are deployed with your code, ensuring consistency across environments
-- **MJML support**: Optionally write templates in MJML (Mailjet Markup Language) format for responsive emails
-- **Build-time compilation**: Since templates are in source files, they can be compiled during the build process
+#### Configuration
 
-Having email templates in source files is essential for the shopware-cli MJML compilation feature to work, as it processes these files during the build phase.
-
-### Why compile MJML during build-time?
-
-By default, FroshPlatformTemplateMail compiles MJML templates at runtime when emails are sent. The shopware-cli build-time compilation offers several advantages:
-
-- **Early error detection**: Catch MJML syntax errors during CI/CD instead of when sending emails
-- **Better performance**: Eliminate runtime compilation overhead
-- **Improved reliability**: Remove potential runtime failures in production
-- **Reduced dependencies**: No need for MJML compilation services in production
-
-### Configuration
-
-Enable MJML compilation in your `.shopware-project.yml` file:
+Enable MJML compilation in `.shopware-project.yml`:
 
 ```yaml
 build:
   mjml:
-    # Enable MJML compilation during build-time
+    # Enable MJML compilation at build time
     enabled: true
-    # Directories to search for MJML templates (defaults to custom/plugins and custom/static-plugins if not specified)
-    searchPaths:
+    # Directories to search for MJML templates
+    search_paths:
       - custom/plugins
       - custom/static-plugins
 ```
 
-### How it works
+If `search_paths` is omitted, Shopware CLI searches `custom/plugins` and `custom/static-plugins` by default.
+
+#### How it works
 
 When MJML compilation is enabled:
 
-1. The CLI searches for `html.mjml` files in the configured search paths (defaults to `custom/plugins` and `custom/static-plugins`)
-2. Each `html.mjml` file is compiled to HTML and saved as `html.twig`
-3. The original `html.mjml` files are removed after successful compilation to prevent runtime re-compilation attempts
-4. Any compilation errors are reported and cause the build to fail, ensuring broken templates don't reach production
+1. Shopware CLI searches for `html.mjml` files in the configured search paths.
+2. Each `html.mjml` file is compiled to HTML and saved as `html.twig`.
+3. The original `html.mjml` file is removed after successful compilation to prevent runtime recompilation.
+4. Compilation errors cause the build to fail so broken templates do not reach production.
 
-### Requirements
+### Build hooks
 
-MJML compilation requires the `mjml` package to be installed via NPM in your build environment. The CLI uses local compilation to convert MJML templates to HTML.
+Build hooks let you run custom shell commands at specific stages of the CI build. Use them to generate configuration files, run custom build steps, or integrate external tools.
 
-## Software Bill of Materials (SBOM)
+#### Available hooks
 
-The `project ci` command automatically generates a Software Bill of Materials (SBOM) file containing a list of all dependencies installed in your project. This file is useful for:
+| Hook | Execution point |
+|------|-----------------|
+| `pre` | Before the build starts |
+| `pre-composer` | Before `composer install` runs |
+| `post-composer` | After `composer install` completes |
+| `pre-assets` | Before asset building begins |
+| `post-assets` | After asset building completes |
+| `post` | After the entire build completes |
 
-- **Docker images**: Container scanning tools can read SBOM files to identify dependencies and check for vulnerabilities
-- **Security scanning**: Understand exactly which packages and versions are deployed in production
-- **Compliance tracking**: Document all software components in your deployment artifact
-- **Supply chain security**: Maintain a record of what's included in each release
+#### Configuration
 
-The SBOM is included in the build artifact automatically and can be consumed by tools like Grype and other container security scanners.
-
-## Build Hooks
-
-Build hooks let you run custom shell commands at specific stages of the CI build process. This is useful for tasks like generating configuration files, running custom build steps, or integrating with external tools.
-
-### Available hooks
-
-| Hook            | Execution point                         |
-|-----------------|-----------------------------------------|
-| `pre` | Before the build process starts         |
-| `pre-composer` | Before `composer install` is executed   |
-| `post-composer` | After `composer install` completes      |
-| `pre-assets` | Before asset building begins            |
-| `post-assets` | After asset building completes          |
-| `post` | After the entire build process finishes |
-
-### Configuration
-
-Define hooks in your `.shopware-project.yml` file:
+Define hooks in `.shopware-project.yml`:
 
 ```yaml
 build:
@@ -166,58 +149,142 @@ build:
       - 'echo "Build complete"'
 ```
 
-Each hook accepts an array of shell commands. Commands are executed sequentially using `sh -c`, and the build fails immediately if any hook command exits with a non-zero status.
+Each hook accepts an array of shell commands. Commands are executed sequentially using `sh -c`, and the build fails immediately if a command exits with a non-zero status.
 
-### Environment variables
+#### Environment variables
 
 The following environment variable is available in all hooks:
 
-| Variable       | Description                                 |
-|----------------|---------------------------------------------|
+| Variable | Description |
+|----------|-------------|
 | `PROJECT_ROOT` | Absolute path to the project root directory |
 
-All existing environment variables from the parent process are also inherited, so any CI/CD variables (e.g., `SHOPWARE_PACKAGES_TOKEN`) are accessible within hooks.
+Hooks also inherit environment variables from the parent process, so CI/CD variables such as `SHOPWARE_PACKAGES_TOKEN` remain available.
 
-## Configuration options
+### Compatibility date
 
-You can configure the build process with a `.shopware-project.yml` file. The following options are available:
+You can define a `compatibility_date` in `.shopware-project.yml`:
+
+```yaml
+compatibility_date: '2026-02-11'
+```
+
+The `compatibility_date` lets Shopware CLI introduce behavior changes without changing existing projects by default. New or potentially breaking behavior is activated only for configurations that opt in with a date at or after the feature's rollout date.
+
+- Format: `YYYY-MM-DD`
+- If the field is missing, Shopware CLI uses `2026-02-11` as a fallback.
+- When the field is missing, Shopware CLI logs a warning while loading the configuration.
+
+### Supporting bundles
+
+Shopware CLI automatically detects plugins and apps. Custom bundles (classes that extend Shopware's bundle class) cannot be detected automatically because Shopware CLI does not execute PHP code.
+
+Declare custom bundles in `.shopware-project.yml`. The older `extra.shopware-bundles` configuration in the project's `composer.json` is deprecated but remains supported for compatibility.
+
+#### Declaring bundles in `.shopware-project.yml`
+
+The recommended approach is to declare bundles in the `build` section of `.shopware-project.yml`:
+
+```yaml
+build:
+  bundles:
+    - path: src/MyBundle
+    - path: src/MyFancyBundle
+      name: MyGreatFancyBundle  # optional: defaults to the directory name
+```
+
+The `path` is relative to the project root. The `name` field is optional; when omitted, the bundle name defaults to the directory basename.
+
+#### Legacy `composer.json` configuration
+
+::: warning
+Declaring bundles through `extra.shopware-bundles` in `composer.json` is deprecated. Existing configurations continue to work, but Shopware CLI emits a deprecation warning when they are loaded. Migrate bundle declarations to `build.bundles` in `.shopware-project.yml`.
+:::
+
+A legacy bundle declaration in `composer.json` looks like this:
+
+```json5
+{
+  "extra": {
+    "shopware-bundles": {
+      // The key is the path relative to the project root
+      "src/MyBundle": {}
+    }
+  }
+}
+```
+
+If the bundle directory name does not match the bundle name, set `name` explicitly:
+
+```json
+{
+  "extra": {
+    "shopware-bundles": {
+      "src/MyBundle": {
+        "name": "MyFancyBundle"
+      }
+    }
+  }
+}
+```
+
+Both configuration sources are merged. If the same bundle path appears in both, it is processed only once.
+
+#### Bundle packaged in its own Composer package
+
+If a bundle is distributed as its own Composer package, set its Composer type to `shopware-bundle` and define `shopware-bundle-name` under `extra`:
+
+```json
+{
+  "name": "my-vendor/my-bundle",
+  "type": "shopware-bundle",
+  "extra": {
+    "shopware-bundle-name": "MyBundle"
+  }
+}
+```
+
+With this Composer type, you can also use `shopware-cli extension build` to build assets for the bundle.
+
+### Configuration example
+
+The following example combines several commonly used project build settings. It is not an exhaustive list of all available options.
 
 ```yaml
 compatibility_date: '2026-02-11'
 
 build:
-  # Browserlist configuration for Storefront
+  # Browserslist configuration for the Storefront
   browserslist: 'defaults'
-  # Paths that should be deleted
+  # Paths to delete from the final artifact
   cleanup_paths:
     - 'node_modules'
-  # At the end of the process, bin/console asset:install is executed, this can be disabled here
+  # Disable copying assets with bin/console asset:install at the end of the build
   disable_asset_copy: false
-  # Exclude the following extensions from the build process
+  # Extensions to exclude from the build
   exclude_extensions:
     - 'SwagExample'
-  # Keep the extension Administration and Storefront source code
+  # Keep Administration and Storefront source code for extensions
   keep_extension_source: false
-  # Keep the source maps of the compiled assets
+  # Keep source maps for compiled assets
   keep_source_maps: false
-  # After bin/console asset:install, remove all asset files from the extension directories so that assets only exist in the public folder.
-  # Note: This option should only be enabled if assets are served directly from the public folder.
+  # Remove extension asset files after bin/console asset:install so assets remain only in public/
   remove_extension_assets: false
-  # Allows force building an extension even when the assets exist. A use case could be using composer patches for a specific extension.
+  # Force selected extensions to build even when compiled assets already exist
   force_extension_build:
     - name: 'SomePlugin'
-  # Shopware bundles to include in the build
+  # Custom Shopware bundles to include in the build
   bundles:
     - path: src/MyBundle
     - path: src/MyFancyBundle
       name: MyGreatFancyBundle
-  # MJML compilation configuration (see the MJML section above for details)
+  # MJML compilation configuration
   mjml:
     enabled: false
-    searchPaths:
+    search_paths:
       - custom/plugins
       - custom/static-plugins
-  # Build hooks (see the Build Hooks section above for details)
+  # Build hooks
   hooks:
     pre: []
     post: []
@@ -227,103 +294,18 @@ build:
     post-assets: []
 ```
 
-## Compatibility date
+## Example Docker image
 
-You can define a `compatibility_date` in `.shopware-project.yml`:
-
-```yaml
-compatibility_date: '2026-02-11'
-```
-
-The `compatibility_date` lets Shopware CLI introduce behavior changes without breaking existing projects by default. New or potentially breaking changes are activated only for configurations that opt in with a date at or after the feature's rollout date.
-
-- Format: `YYYY-MM-DD`
-- If the field is missing, Shopware CLI uses `2026-02-11` as a fallback
-- When missing, Shopware CLI logs a warning during config loading
-
-## Supporting bundles
-
-Shopware CLI automatically detects plugins and Apps. Custom bundles (classes that extend the bundle class from Shopware) cannot be automatically detected as Shopware CLI does not execute any PHP code.
-Use .shopware-project.yml to declare bundles. The alternative declaration in the project's composer.json is deprecated and no longer recommended.
-
-### Declaring bundles in `.shopware-project.yml`
-
-The recommended approach is to declare bundles in the `build` section of your `.shopware-project.yml`:
-
-```yaml
-build:
-  bundles:
-    - path: src/MyBundle
-    - path: src/MyFancyBundle
-      name: MyGreatFancyBundle  # optional: override the bundle name (defaults to the directory name)
-```
-
-The `path` is relative to the project root. The `name` field is optional, and when omitted, the bundle name defaults to the directory basename.
-
-### Declaring bundles in `composer.json` (deprecated)
-
-:::danger
-**Deprecated:** Declaring bundles via `composer.json` is deprecated and will be removed in a future version. Please migrate to the `.shopware-project.yml` approach described above. Shopware CLI will emit a deprecation warning when bundles are configured this way.
-:::
-
-Alternatively, you can add the bundle path to the `extra` section of your `composer.json`:
-
-```json5
-{
-    "extra": {
-        "shopware-bundles": {
-            // The key is the relative path from the project root to the bundle
-            "src/MyBundle": {}
- }
- }
-}
-```
-
-If your bundle folder name does not match your bundle name, you can use the `name` key:
-
-```json
-{
-    "extra": {
-        "shopware-bundles": {
-            "src/MyBundle": {
-                "name": "MyFancyBundle"
- }
- }
- }
-}
-```
-
-Both sources are merged automatically. If the same bundle path appears in both, it is only processed once.
-
-### Bundle packaged in its own composer package
-
-If your bundle is its own composer package, make sure your composer type is `shopware-bundle` and that you have set a `shopware-bundle-name` in the extra part of the config like this:
-
-```json
-{
-    "name": "my-vendor/my-bundle",
-    "type": "shopware-bundle",
-    "extra": {
-        "shopware-bundle-name": "MyBundle"
- }
-}
-```
-
-With this Composer type, `shopware-cli extension build` also works for your bundle if you want to distribute compiled assets.
-
-## Example Docker Image
-
-This is an example Dockerfile that builds a Shopware project and copies the source code to the `/var/www/html` folder.
+The following Dockerfile builds a Shopware project and copies the resulting artifact to `/var/www/html`:
 
 ```dockerfile
 #syntax=docker/dockerfile:1.4
 
-# pin versions
+# Pin versions
 FROM ghcr.io/shopware/docker-base:8.3 AS base-image
 FROM ghcr.io/shopware/shopware-cli:latest-php-8.3 AS shopware-cli
 
-# build
-
+# Build
 FROM shopware-cli AS build
 
 ARG SHOPWARE_PACKAGES_TOKEN
@@ -341,4 +323,4 @@ FROM base-image
 COPY --from=build --chown=82 --link /src /var/www/html
 ```
 
-Besides Docker, it is also a perfect fit for any deployment variant.
+The same build command can also be used in non-Docker deployment workflows.
