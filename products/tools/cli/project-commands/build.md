@@ -17,7 +17,7 @@ shopware-cli project ci <path>
 This command modifies the target directory and deletes files. Make sure you have committed all changes before running it.
 :::
 
-After cloning a repository, you can use this command to create a artifact that you can deploy with its dependencies installed and assets compiled. It is commonly used in PaaS and SaaS deployment workflows.
+After cloning a repository, you can use this command to create an artifact that you can deploy with its dependencies installed and assets compiled. It is commonly used in PaaS and SaaS deployment workflows.
 
 ## What the command does
 
