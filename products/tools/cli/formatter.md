@@ -25,7 +25,7 @@ Without `--only`, a `format` command invokes every registered verifier tool. The
 | Tool | What it formats | Implementation |
 |---|---|---|
 | `php-cs-fixer` | PHP source files using the Shopware Coding Standard | [`phpcsfixer.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/phpcsfixer.go) |
-| `prettier` | Prettier-supported files in source directories using Shopware CLI's bundled configuration | [`prettier.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/prettier.go) |
+| `prettier` | Prettier-supported files in source directories using the Shopware CLI bundled configuration | [`prettier.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/prettier.go) |
 | `admin-twig` | Administration Twig templates | [`admin_twig.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/admin_twig.go) |
 
 Other registered verifier tools do not modify files in `format` mode.
@@ -135,4 +135,4 @@ PHP-CS-Fixer uses a `.php-cs-fixer.dist.php` from the target root when one is pr
 
 Prettier uses the configuration bundled with Shopware CLI. A project or extension `.prettierrc` is not used by the `format` commands.
 
-Administration Twig formatting uses Shopware CLI's built-in formatter and has no separate configuration file.
+Administration Twig formatting uses the Shopware CLI built-in formatter and has no separate configuration file.
