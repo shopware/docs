@@ -143,7 +143,7 @@ If `--format` is not set, the format is detected automatically: `github` in GitH
 With `--full`, `extension validate` calls the validation check implemented by each registered tool. The tools that currently add validation findings are:
 
 | Tool | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes |
-|-------------------|---|---|---|---|
+|---|---|---|---|---|
 | `sw-cli` | ✅ (extensions only) | — | — | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation** |
 | `phpstan` | ✅ | — | — | PHP static analysis; skipped for apps (no `composer.json`) |
 | `eslint` | ✅ | ✅ | — | JavaScript, Vue, TypeScript with Shopware-specific rules |
