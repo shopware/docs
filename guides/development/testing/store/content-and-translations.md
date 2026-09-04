@@ -39,7 +39,7 @@ There must be no advertising for your own services or contact information in the
 * Show the extension in use in Storefront and Administration, including configuration and how-to detail.
 * Prefer screenshots for mobile and desktop.
 * Images must be high quality; at least one storefront and one admin screenshot should show main features.
-* Store a valid favicon named `plugin.png` (84–256 px in both dimensions) under `src/Resources/config/` so the extension is identifiable under **Administration > Extension Manager**.
+* Store a valid favicon named `plugin.png` (84–256px in both dimensions) under `src/Resources/config/` so the extension is identifiable under **Administration > Extension Manager**.
 * [Themes](../../../plugins/themes/index.md) require a preview image in the Theme Manager.
 * [Shopping Experiences CMS elements](../../../../concepts/commerce/content/shopping-experiences-cms.md#elements) must include an element icon.
 * [How to request a preview](https://docs.shopware.com/en/account-en/extension-partner/extensions?category=account-en/extension-partner#how-can-i-request-a-preview)
