@@ -164,6 +164,20 @@ services:
 
 Requires the `BLACKFIRE_SERVER_ID` and `BLACKFIRE_SERVER_TOKEN` secrets to be set. See [Blackfire](../monitoring/blackfire.md) for the full steps.
 
+### `services.tideways`
+
+Enables or disables Tideways monitoring.
+
+```yaml
+services:
+  tideways:
+    enabled: true
+```
+
+Requires the `TIDEWAYS_API_KEY` secret to be set. See [Tideways](../monitoring/tideways.md) for the full steps.
+
+Blackfire and Tideways cannot be enabled at the same time.
+
 ### `services.fastly`
 
 Configures the Fastly CDN integration.
