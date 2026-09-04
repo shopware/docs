@@ -32,11 +32,13 @@ async function findPageRefIssues() {
           continue
         }
 
-        let relativePath = page.includes('#') ? page.split('#')[0] : page;
+        const hashIndex = page.indexOf('#');
+        const fragment = hashIndex === -1 ? '' : page.slice(hashIndex);
+        let relativePath = hashIndex === -1 ? page : page.slice(0, hashIndex);
 
         const suggestion = indexFormSuggestion(relativePath);
         if (suggestion) {
-          indexLinks.push({ file: entry.path, page, suggestion });
+          indexLinks.push({ file: entry.path, page, suggestion: `${suggestion}${fragment}` });
         }
 
         if (relativePath.endsWith('/')) {
