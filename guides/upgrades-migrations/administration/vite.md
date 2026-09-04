@@ -61,6 +61,92 @@ export default defineConfig({
 
 This is a very basic example. The Vite config can be much more complex and powerful. You can find more information about the Vite config in the [Vite documentation](https://vite.dev/config/). Depending on your webpack config, the migration can vary greatly.
 
+### Use native Vue overrides with legacy Twig components
+
+During the Administration migration, a plugin can use native Vue `*.override.vue` files even when the targeted core component still uses a Twig template.
+
+Use this approach when:
+
+- your extension is written as native Vue SFCs
+- the core Administration component you want to override is still Twig-based
+- a plain `*.override.vue` file would otherwise render nothing
+
+#### How to create the override
+
+1. Create an override component that targets the existing component name.
+2. Implement the desired block override in the SFC template.
+3. Build or watch the Administration as usual.
+
+Example structure:
+
+```text
+src/Resources/app/administration/src/
+├── component/
+│   └── sw-product-list/
+│       └── sw-product-list.override.vue
+└── main.ts
+```
+
+Example override:
+
+```vue
+<template>
+    <sw-block name="sw_product_list_smart_bar_actions">
+        <template #default="{ blockProps }">
+            <mt-button variant="primary">
+                My custom action
+            </mt-button>
+        </template>
+    </sw-block>
+</template>
+```
+
+Build the Administration:
+
+```bash
+composer build:js:admin
+```
+
+Or run the watcher:
+
+```bash
+composer watch:admin
+```
+
+If the targeted Twig block is supported, the override is injected into the legacy Twig component automatically.
+
+#### When to use Twig overrides instead
+
+Keep using legacy Twig-based overrides if your target block structure cannot be mapped safely into a native `sw-block` host.
+
+A known unsupported pattern is a Twig block that contains multiple named slot templates:
+
+```twig
+{% block sw_order_list_content %}
+    <template #content>
+        ...
+    </template>
+
+    <template #sidebar>
+        <sw-sidebar>
+            ...
+        </sw-sidebar>
+    </template>
+{% endblock %}
+```
+
+For structures like this, continue using the legacy Twig extension technique for that component.
+
+#### Troubleshooting native overrides against Twig components
+
+If your `*.override.vue` file is loaded but nothing is rendered:
+
+1. Confirm that the core target component is still Twig-based.
+2. Confirm that your override uses the correct Twig block name.
+3. Rebuild the Administration to ensure block detection runs again.
+4. Check whether the target block contains multiple named slot templates. If so, use a Twig-based override instead.
+5. Test with `composer watch:admin` and reload the Administration to verify the override is registered in development mode.
+
 ## Implementation details
 
 In this section, we'll document the implementation details of the new Vite setup.
@@ -90,6 +176,7 @@ The script will do the following:
 1. Get all bundles/plugins from the `<shopwareRoot>/var/plugins.json`
 2. Call `build` from Vite for each plugin
 3. The `build` function of Vite will automatically load `vite.config` files from the path of the entry file.
+4. During override processing, `*.override.vue` files are scanned for target block usage so mixed native-Vue-to-Twig override scenarios can be prepared before runtime template resolution.
 
 ### Dev mode/HMR server
 
@@ -143,7 +230,30 @@ const { ref } = window['Shopware']['Vue'];
 
 ### override-component
 
-Registering `*.override.vue` files automatically. It will search for all files matching the override pattern and automatically import them into the bundle/plugin entry file. Additionally, these imports will be registered as override components by calling `Shopware.Component.registerOverrideComponent`. This ensures that all overrides are loaded immediately when the bundle/plugin script is injected. To learn more about the new overrides, take a look at the Vue native docs right next to this file.
+Registering `*.override.vue` files automatically. It will search for all files matching the override pattern and automatically import them into the bundle/plugin entry file. Additionally, these imports will be registered as override components by calling `Shopware.Component.registerOverrideComponent`. This ensures that all overrides are loaded immediately when the bundle/plugin script is injected.
+
+When an override targets a legacy Twig-based component, the build step also analyzes the override template for referenced block names. Those targets are registered before runtime so the Twig template system can attach `sw-block` hosts where supported.
+
+Use this behavior as follows:
+
+1. Create a `*.override.vue` file for the component you want to extend.
+2. Reference the intended block explicitly in the template.
+3. Run `composer build:js:admin` or `composer watch:admin`.
+4. Verify the block is rendered in Administration.
+
+Example:
+
+```vue
+<template>
+    <sw-block name="sw_dashboard_index_content_intro_content_headline">
+        <template #default>
+            <h1>Custom headline</h1>
+        </template>
+    </sw-block>
+</template>
+```
+
+If the target is unsupported by the Twig compatibility layer, use the legacy Twig override approach for that specific component. To learn more about the new overrides, take a look at the Vue native docs right next to this file.
 
 ### twigjs
 
