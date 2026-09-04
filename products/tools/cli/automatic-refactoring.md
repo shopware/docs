@@ -103,6 +103,8 @@ Available options:
 | `--only <tools>` | Run only the specified comma-separated tools |
 | `--allow-non-git` | Allow the command to run when the extension directory is not a Git repository |
 
+For `extension fix`, the extension directory itself must contain `.git`; being inside a parent Git-managed Shopware project is not sufficient. Use `--allow-non-git` when you intentionally want to fix such an extension. `project fix` checks the project root instead.
+
 ## Refactor a project
 
 Use `project fix` to apply fixers across a Shopware project:

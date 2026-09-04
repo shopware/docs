@@ -14,7 +14,7 @@ Shopware CLI provides code formatting through two `format` commands:
 
 The formatter covers PHP and Administration Twig files, along with files supported by Prettier such as JavaScript, TypeScript, Vue, CSS, and SCSS. PHP formatting uses the Shopware [Coding Standard](https://developer.shopware.com/docs/resources/guidelines/code/).
 
-A `--dry-run` mode is available to check formatting without rewriting the target files.
+A `--dry-run` mode is available to check formatting without rewriting the target files. Shopware CLI propagates the formatter exit status, so a non-zero dry run can mean that formatting changes are required rather than that the formatter crashed.
 
 The Docker examples are recommended because the image already contains the required runtime dependencies. For local execution, the formatter tooling requires PHP 8.2 or later and Node.js 20 or later. Composer and npm are used when Shopware CLI initializes its local tool cache.
 

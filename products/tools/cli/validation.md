@@ -16,6 +16,10 @@ Validation has two modes:
 - **Basic (default)**: Runs the built-in `sw-cli` checks, including metadata, icon, snippets, PHP linting, and packaging-related checks. It does not require a locally installed PHP or Node.js runtime.
 - **Full (`--full`)**: Runs the basic checks plus validation tools such as PHPStan, ESLint, Stylelint, and the Administration and Storefront Twig linters.
 
+:::warning
+`--only` does not enable full validation. Without `--full`, `extension validate` runs only the built-in `sw-cli` checks. For example, `extension validate --only phpstan` does not run PHPStan; use `extension validate --full --only phpstan`.
+:::
+
 ### Recommended setup: Docker
 
 Run Shopware CLI through the `ghcr.io/shopware/shopware-cli` Docker image for a consistent validation environment without managing the required runtimes on the host. The primary examples on this page use Docker.
@@ -97,7 +101,9 @@ shopware-cli extension validate --full /path/to/your/extension
 
 For direct execution, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. If the validated extension has no `vendor` directory, full validation also resolves its Composer dependencies; packages listed under `suggest` are included so optional integrations can be analyzed. Private Composer packages require appropriate Composer authentication.
 
-By default, Composer dependency resolution uses the highest versions allowed by the extension constraints. To test the other end of the supported range, use `--check-against lowest`:
+On a clean full-validation run, dependency resolution can take some time. Composer progress is not streamed while this step runs, so the command can remain quiet until dependency resolution completes.
+
+`--check-against` controls Composer dependency resolution within the extension's declared constraints; it is not an arbitrary target-version selector. By default, Composer dependency resolution uses the highest versions allowed by the extension constraints. To test the other end of the supported range, use `--check-against lowest`:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --check-against lowest
@@ -206,7 +212,7 @@ For direct CLI execution, the equivalent option is:
 shopware-cli extension validate --full --no-copy /path/to/your/extension
 ```
 
-This can be faster on large extensions and keeps generated dependency or cache files in the source directory, but it also means validation tools can modify or add files there.
+This can be faster on large extensions and keeps generated dependency or cache files, such as `vendor/` and `composer.lock`, in the source directory, but it also means validation tools can modify or add files there.
 
 ## Checking a release before uploading it to the Store
 
@@ -292,6 +298,8 @@ The identifier of a finding is shown in the validation output.
 
 Validation ignores are applied by the `validate` command. `extension fix` does not use `validation.ignore` to decide which fixes to apply.
 
+Ignored findings are removed from the reported result; they do not make the underlying condition valid. A run can therefore report `0 problems` when all relevant findings are intentionally suppressed.
+
 When a directory rather than a zip file is validated, `zip.disallowed_file` findings are automatically ignored independently of your configuration.
 
 ## Scanning a project
@@ -309,6 +317,10 @@ shopware-cli project validate /path/to/your/project
 ```
 
 `project validate` gathers local extension source directories and configured bundles and runs the registered validation tools against them. Composer-managed extensions resolved under `vendor/` are skipped. Project-level validation settings are read from `.shopware-project.yml` under `validation`.
+
+:::warning
+`project validate` does not run extension metadata and packaging validation for every contained extension. The `sw-cli` verifier only runs with a single-extension context. Run `extension validate` for an individual extension when you also need its Composer or manifest metadata, icon, snippet, and package checks.
+:::
 
 If you omit the path, `project validate` discovers the nearest Shopware project by walking up from the current directory. A directory is recognized when its Composer metadata references `shopware/core` and `bin/console` exists; `PROJECT_ROOT` overrides this discovery.
 
