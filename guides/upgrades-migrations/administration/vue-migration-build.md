@@ -142,6 +142,174 @@ this.myObject.key = 'value';
 delete this.myObject.key;
 ```
 
+## Using native `.vue` overrides with legacy Twig-based administration components
+
+During the administration migration, you can write native Vue single-file component overrides even when the targeted core administration component still renders its template through Twig.
+
+Use this approach when you want to keep your extension in native `.vue` format instead of maintaining a Twig override.
+
+### When to use this approach
+
+Use a native `.vue` override if all of the following are true:
+
+- your extension is already migrated to Vue 3
+- the core administration component is still Twig-based
+- you only need to replace or extend supported Twig blocks
+- the override template renders a normal component structure without unsupported multi-slot Twig block layouts
+
+If the target Twig block is not supported by the compatibility layer, keep using the legacy Twig override technique for that component.
+
+### Basic override structure
+
+Create your administration override component in `.vue` format and target the same component name you would use for other administration overrides.
+
+Example registration:
+
+```js
+import template from './sw-product-list-override.vue';
+
+Shopware.Component.override('sw-product-list', {
+    template,
+});
+```
+
+Example override template:
+
+```vue
+<template>
+    {% block sw_product_list_grid %}
+    <div class="my-product-list-grid">
+        <sw-data-grid
+            v-bind="$attrs"
+            v-on="$attrs"
+        />
+    </div>
+    {% endblock %}
+</template>
+```
+
+### How block targeting works
+
+When you use a native `.vue` override against a Twig-based core component, the override must still target Twig block names that exist in the original core template.
+
+Use the original Twig component template to identify the correct block name:
+
+```twig
+{% block sw_product_list_grid %}
+    <sw-data-grid
+        :data-source="products"
+    />
+{% endblock %}
+```
+
+Then reference that same block in your `.vue` override:
+
+```vue
+<template>
+    {% block sw_product_list_grid %}
+    <div class="my-product-list-grid">
+        <sw-data-grid
+            :data-source="products"
+        />
+    </div>
+    {% endblock %}
+</template>
+```
+
+If the block name does not match a block in the target Twig template, your override is not rendered.
+
+### Recommended migration workflow
+
+1. Check whether the target administration component is still Twig-based.
+2. Inspect the core template and identify the block you want to override.
+3. Create a native `.vue` override and wrap your replacement content in the matching Twig block.
+4. Rebuild the administration.
+5. Verify the rendered output in the browser.
+6. If the override is not rendered, confirm that:
+   - the component name in `Shopware.Component.override(...)` is correct
+   - the Twig block name matches the core template exactly
+   - the target block does not use an unsupported slot structure
+
+### Unsupported Twig block structures
+
+Some Twig blocks cannot be targeted reliably through a native `.vue` override.
+
+In particular, avoid this approach for blocks that contain multiple named slot templates, for example:
+
+```twig
+{% block sw_order_list_content %}
+    <template #content>
+        ...
+    </template>
+
+    <template #sidebar>
+        <sw-sidebar>
+            ...
+        </sw-sidebar>
+    </template>
+{% endblock %}
+```
+
+For blocks like this, continue using a Twig-based override.
+
+### Troubleshooting native-to-Twig overrides
+
+If your native override is not rendered:
+
+- verify the override is registered with the correct component name
+- verify the targeted Twig block exists in the core component
+- verify the block is not one of the unsupported multi-slot structures
+- rebuild the administration so the override template is processed again
+- test with a minimal override first to confirm the block is reachable
+
+Minimal test override:
+
+```vue
+<template>
+    {% block sw_product_list_grid %}
+    <div style="padding: 16px; background: #ffe9a8;">
+        Override reached
+    </div>
+    {% endblock %}
+</template>
+```
+
+If the test override renders, the block is supported and your original implementation should be reviewed for template or runtime errors.
+
+## Build-time handling of override templates
+
+Administration override templates are processed during the build.
+
+For native `.vue` overrides that target Twig-based core components, the build step analyzes the override template for Twig block usage. To make this work reliably:
+
+- keep the targeted Twig block names directly inside the override template
+- avoid generating block names dynamically
+- rebuild the administration after changing block names or moving override templates
+
+A typical extension setup looks like this:
+
+```js
+import overrideTemplate from './sw-order-list-override.vue';
+
+Shopware.Component.override('sw-order-list', {
+    template: overrideTemplate,
+});
+```
+
+```vue
+<template>
+    {% block sw_order_list_actions %}
+    <div class="my-order-list-actions">
+        <sw-button size="small" variant="primary">
+            Custom action
+        </sw-button>
+    </div>
+    {% endblock %}
+</template>
+```
+
+Because block detection happens from the override template source, use explicit Twig block declarations in the file that you pass as `template`.
+
 ## Conclusion
 
 In Shopware 6.7, the Vue migration build was removed entirely. To ensure compatibility, all plugins must be updated to Vue 3 following the official migration guide. If you encounter challenges during migration, refer to the official Vue 3 documentation or seek assistance from the Shopware developer community.
