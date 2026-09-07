@@ -18,6 +18,7 @@ This command modifies the target directory and deletes files. Make sure you have
 :::
 
 After cloning a repository, you can use this command to create an artifact that you can deploy with its dependencies installed and assets compiled. It is commonly used in PaaS and SaaS deployment workflows.
+Outside a CI environment the command refuses to run if the Git working tree has uncommitted changes. Pass `--force` to run anyway.
 
 ## What the command does
 
