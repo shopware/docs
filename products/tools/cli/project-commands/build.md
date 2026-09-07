@@ -45,14 +45,6 @@ The SBOM is included in the build artifact automatically and can be consumed by 
 
 Shopware CLI detects the CI environment automatically, so no configuration is required in most cases.
 
-To override the detected environment, for example to disable CI-specific output, pass `--ci`:
-
-```bash
-shopware-cli project ci <path> --ci none
-```
-
-Accepted values are `github`, `gitlab`, and `none`.
-
 ## Private Composer repositories
 
 To use `packages.shopware.com` as a private Composer repository, set the `SHOPWARE_PACKAGES_TOKEN` environment variable to your Composer token. You can obtain this token from your Shopware Account.
