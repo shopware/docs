@@ -3,7 +3,7 @@
 user := "$(shell id -u):$(shell id -g)"
 ignored = '/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/* /docs/resources/references/app-reference/*'
 image = ghcr.io/rojopolis/spellcheck-github-actions:0.49.0
-# Keep in sync with the version pin in .github/workflows/markdown-rumdl-check.yml.
+# Keep in sync with the version pin in package.json and .github/workflows/markdown-rumdl-check.yml.
 rumdl_version = rumdl@0.2.67
 
 lychee_image = lycheeverse/lychee:0.24.2
