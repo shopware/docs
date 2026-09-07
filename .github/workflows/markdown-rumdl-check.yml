@@ -1,0 +1,22 @@
+name: markdown-rumdl-check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+jobs:
+  lint-docs-rumdl:
+    name: Documentation Markdown Linter (rumdl)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v6
+
+    - name: Lint all files
+      uses: rvben/rumdl@v0
+      with:
+        version: "0.2.67"
+        config: '.rumdl.toml'
+        report-type: annotations
+      continue-on-error: false
