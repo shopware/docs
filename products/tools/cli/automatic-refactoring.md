@@ -36,13 +36,13 @@ Automatic refactoring is one part of an upgrade workflow rather than a complete 
 
 Without `--only`, a `fix` command invokes every registered verifier tool. The following tools currently implement changes in `Fix()`:
 
-| Tool | What it fixes | Version-aware | Implementation |
-|---|---|---|---|
-| `rector` | PHP breaking changes and modernization using Shopware Rector | Yes | [`rector.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/rector.go) |
-| `eslint` | Auto-fixable JavaScript, TypeScript, and Vue rules for Administration and Storefront code | Yes | [`eslint.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/eslint.go) |
-| `admin-twig` | Shopware-specific Administration Twig component migrations | Yes | [`admin_twig.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/admin_twig.go) |
-| `stylelint` | Auto-fixable Administration and Storefront SCSS rules using bundled Stylelint configurations | No | [`stylelint.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/stylelint.go) |
-| `symfony-xml` | Deprecated plugin `services.xml` and `routes.xml` configuration to YAML | No | [`symfony_xml.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/symfony_xml.go) |
+| Tool          | What it fixes                                                                                | Version-aware | Implementation                                                                                          |
+|---------------|----------------------------------------------------------------------------------------------|---------------|---------------------------------------------------------------------------------------------------------|
+| `rector`      | PHP breaking changes and modernization using Shopware Rector                                 | Yes           | [`rector.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/rector.go)           |
+| `eslint`      | Auto-fixable JavaScript, TypeScript, and Vue rules for Administration and Storefront code    | Yes           | [`eslint.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/eslint.go)           |
+| `admin-twig`  | Shopware-specific Administration Twig component migrations                                   | Yes           | [`admin_twig.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/admin_twig.go)   |
+| `stylelint`   | Auto-fixable Administration and Storefront SCSS rules using bundled Stylelint configurations | No            | [`stylelint.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/stylelint.go)     |
+| `symfony-xml` | Deprecated plugin `services.xml` and `routes.xml` configuration to YAML                      | No            | [`symfony_xml.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/symfony_xml.go) |
 
 The Administration Twig migrations are implemented as individual fixers under [`internal/verifier/twiglinter/admintwiglinter`](https://github.com/shopware/shopware-cli/tree/main/internal/verifier/twiglinter/admintwiglinter). They cover deterministic migrations such as replacing removed Administration components. For migration cases that require manual changes, see the [Administration migration guide](../../../guides/upgrades-migrations/administration/index.md).
 
@@ -98,9 +98,9 @@ shopware-cli extension fix /path/to/your/extension --only "rector,eslint,admin-t
 
 Available options:
 
-| Flag | Description |
-|---|---|
-| `--only <tools>` | Run only the specified comma-separated tools |
+| Flag              | Description                                                                   |
+|-------------------|-------------------------------------------------------------------------------|
+| `--only <tools>`  | Run only the specified comma-separated tools                                  |
 | `--allow-non-git` | Allow the command to run when the extension directory is not a Git repository |
 
 For `extension fix`, the extension directory itself must contain `.git`; being inside a parent Git-managed Shopware project is not sufficient. Use `--allow-non-git` when you intentionally want to fix such an extension. `project fix` checks the project root instead.

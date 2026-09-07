@@ -19,7 +19,7 @@ nav:
 
 For GitHub Actions, GitLab CI, and Docker examples, see [CI/CD and development environments](installation.md#cicd-and-development-environments).
 
-Shopware CLI runs on macOS, Linux, and via Docker. For workstation hardware requirements, see the [System Requirements](../../../guides/installation/system-requirements.md). For PHP and stack requirements — including **`memory_limit ≥ 512M`** — see the [recommended stack](../../../guides/hosting/index.md#recommended-stack-and-supported-versions). Windows users should use WSL 2 or Docker. (See [Installation Options](installation.md) page for Windows details.)
+Shopware CLI runs on macOS, Linux, and via Docker. For workstation hardware requirements, see the [System Requirements](../../../guides/installation/system-requirements.md). For PHP and stack requirements — including **`memory_limit ≥ 512M`** — see the [recommended stack](../../../guides/hosting/index.md#recommended-stack-and-supported-versions). Windows users should use WSL 2 or Docker. (See the [Other Installation Options](installation.md) page for Windows details.)
 
 ## Verifier tooling requirements
 

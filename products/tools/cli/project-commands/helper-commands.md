@@ -63,7 +63,7 @@ Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/bu
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-The `admin-build` command runs npm install on first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
+The `admin-build` command runs `npm install` on the first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
 
 The `admin-watch` command: faster than `admin-build` because it monitors changes and rebuilds only what changed. See changes in real-time during development without waiting for a full rebuild.
 

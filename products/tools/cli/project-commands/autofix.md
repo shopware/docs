@@ -44,8 +44,8 @@ Benefits of using Composer:
 
 For each extension in `custom/`, `project autofix composer-plugins` prefers a repository-backed installation that matches the locally installed version:
 
-- **Shopware Store plugins** are required from `packages.shopware.com` when a valid `SHOPWARE_PACKAGIST_TOKEN` is available and the installed version exists there. Their local copy is removed after the require succeeds.
-- **Extensions available from Packagist or another configured Composer repository** at the exact installed version are required from that repository and their local copy is removed.
+- **Shopware Store plugins** are required from `packages.shopware.com` when a valid `SHOPWARE_PACKAGIST_TOKEN` is available and the installed version exists there. Their local copy is removed after the `require` succeeds.
+- **Extensions available from Packagist or another configured Composer repository** at the exact installed version are required from that repository, and their local copy is removed.
 - **Other extensions with a Composer package name** are registered as Composer path repositories, so their files stay in place but Composer manages them locally. These path repositories do not provide repository-driven updates.
 - Extensions without a Composer package name are skipped because they cannot be migrated automatically.
 
@@ -70,8 +70,8 @@ Get the token from your Shopware Account under "Shops" > "Licenses" > "..." on a
 
 ### Options
 
-| Flag | Description |
-|------|-------------|
+| Flag        | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
 | `--dry-run` | Print the migration plan without modifying the project (headless mode only) |
 
 ```bash

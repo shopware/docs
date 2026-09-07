@@ -142,29 +142,29 @@ If `--format` is not set, the format is detected automatically: `github` in GitH
 
 With `--full`, `extension validate` calls the validation check implemented by each registered tool. The tools that currently add validation findings are:
 
-| Tool | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes |
-|---|---|---|---|---|
-| `sw-cli` | ✅ (extensions only) | — | — | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation** |
-| `phpstan` | ✅ | — | — | PHP static analysis; skipped for apps (no `composer.json`) |
-| `eslint` | ✅ | ✅ | — | JavaScript, Vue, TypeScript with Shopware-specific rules |
-| `stylelint` | ✅ | ✅ | — | CSS/SCSS with Shopware standards |
-| `admin-twig` | ✅ | ✅ | ✅ | Administration Twig component checks and migrations |
-| `storefront-twig` | ✅ | — | — | Storefront Twig checks (accessibility, inline styles); reports only |
-| `rector` | — | ✅ | — | PHP breaking-change and upgrade rules. **Rewrites without reporting** — nothing appears in `validate` |
-| `symfony-xml` | — | ✅ | — | Converts deprecated `services.xml` / `routes.xml` to YAML |
-| `php-cs-fixer` | — | — | ✅ | PHP code style (Shopware Coding Standard) |
-| `prettier` | — | — | ✅ | JavaScript, Vue, TypeScript, CSS, SCSS formatting |
+| Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                             |
+|-------------------|-----------------------|-------------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `sw-cli`          | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation** |
+| `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; skipped for apps (no `composer.json`)                                                                        |
+| `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                          |
+| `stylelint`       | ✅                    | ✅                | —                   | CSS/SCSS with Shopware standards                                                                                                  |
+| `admin-twig`      | ✅                    | ✅                | ✅                  | Administration Twig component checks and migrations                                                                               |
+| `storefront-twig` | ✅                    | —                 | —                   | Storefront Twig checks (accessibility, inline styles); reports only                                                               |
+| `rector`          | —                     | ✅                | —                   | PHP breaking-change and upgrade rules. **Rewrites without reporting** — nothing appears in `validate`                             |
+| `symfony-xml`     | —                     | ✅                | —                   | Converts deprecated `services.xml` / `routes.xml` to YAML                                                                         |
+| `php-cs-fixer`    | —                     | —                 | ✅                  | PHP code style (Shopware Coding Standard)                                                                                         |
+| `prettier`        | —                     | —                 | ✅                  | JavaScript, Vue, TypeScript, CSS, SCSS formatting                                                                                 |
 
 Every tool is registered for all three verbs, but the unmarked combinations above are implemented as no-ops. Passing such a tool to `--only` is therefore silently ineffective — `fix --only phpstan` and `fix --only prettier` both do nothing.
 
 ### Which tools each command actually runs
 
-| Command | Tools that do work |
-|---|---|
-| `extension validate` | `sw-cli`, `phpstan`, `eslint`, `stylelint`, `admin-twig`, `storefront-twig` |
-| `project validate` | the same, minus `sw-cli` |
-| `extension fix` / `project fix` | `rector`, `admin-twig`, `eslint`, `stylelint`, `symfony-xml` |
-| `extension format` / `project format` | `admin-twig`, `php-cs-fixer`, `prettier` |
+| Command                               | Tools that do work                                                          |
+|---------------------------------------|-----------------------------------------------------------------------------|
+| `extension validate`                  | `sw-cli`, `phpstan`, `eslint`, `stylelint`, `admin-twig`, `storefront-twig` |
+| `project validate`                    | the same, minus `sw-cli`                                                    |
+| `extension fix` / `project fix`       | `rector`, `admin-twig`, `eslint`, `stylelint`, `symfony-xml`                |
+| `extension format` / `project format` | `admin-twig`, `php-cs-fixer`, `prettier`                                    |
 
 ### Shopware-specific validation rules
 
@@ -326,13 +326,13 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 
 ### Project validation options
 
-| Flag | Description |
-|------|-------------|
-| `--local-only` | Only discover extensions from `custom/*` folders |
-| `--only <tools>` | Run only selected tools (comma-separated) |
-| `--exclude <tools>` | Run all tools except the listed ones |
-| `--no-copy` | Analyze the project in place instead of copying it to a temporary directory first |
-| `--format` | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`) |
+| Flag                | Description                                                                       |
+|---------------------|-----------------------------------------------------------------------------------|
+| `--local-only`      | Only discover extensions from `custom/*` folders                                  |
+| `--only <tools>`    | Run only selected tools (comma-separated)                                         |
+| `--exclude <tools>` | Run all tools except the listed ones                                              |
+| `--no-copy`         | Analyze the project in place instead of copying it to a temporary directory first |
+| `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
 
 `project validate` has no `--full` flag — it runs its registered validation tools by default. It also has no `--check-against`; that flag exists only on `extension validate`.
 
@@ -377,13 +377,13 @@ To run only the PHPStan validation:
 shopware-cli project validate --only phpstan /path/to/your/project
 ```
 
-Run this before the [Upgrade wizard](./project-commands/upgrade.md) so that custom code needing fixes is known in advance. Address the reported breaking changes, or confirm they are acceptable for the target version, before starting the upgrade. [Automatic Refactoring](./automatic-refactoring.md) can then apply the available Rector, ESLint, Stylelint, Twig, and Symfony XML refactorings.
+Run this before the [Upgrade wizard](./project-commands/upgrade.md) so that custom code needing fixes is known in advance. Address the reported breaking changes or confirm they are acceptable for the target version before starting the upgrade. [Automatic Refactoring](./automatic-refactoring.md) can then apply the available Rector, ESLint, Stylelint, Twig, and Symfony XML refactorings.
 
 ## Common issues
 
 ### Missing classes in a Storefront/Elasticsearch bundle
 
-Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle and they are required, add `shopware/storefront` or `shopware/elasticsearch` to `require` in `composer.json`. If those integrations are optional and guarded by checks such as `class_exists`, add the packages to `require-dev` so PHPStan can resolve the classes during development.
+Your plugin typically requires only `shopware/core`, but when you use classes from Storefront or the Elasticsearch Bundle, and they are required, add `shopware/storefront` or `shopware/elasticsearch` to `require` in `composer.json`. If those integrations are optional and guarded by checks such as `class_exists`, add the packages to `require-dev` so PHPStan can resolve the classes during development.
 
 ### PHPStan uses my own configuration instead of the Shopware one
 
