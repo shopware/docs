@@ -1,12 +1,9 @@
-# rumdl configuration, the planned successor to markdown-style-config.yml.
-# Both linters run in CI during the migration: markdown-style-check.yml drives
-# markdownlint, markdown-rumdl-check.yml drives rumdl.
+# Markdown linting for this repository. Driven by markdown-rumdl-check.yml.
 
 [global]
-# Mirrors "default: false" in markdown-style-config.yml, so only the rules
-# listed here run. Left out on purpose, as in the markdownlint config: MD007,
-# MD010, MD013, MD014, MD028, MD033, MD035, MD036, MD043, MD044 and MD046.
-# MD006 has no counterpart: upstream markdownlint never implemented it.
+# Only the rules listed here run. Left out on purpose: MD007, MD010, MD013,
+# MD014, MD028, MD033, MD035, MD036, MD043, MD044 and MD046.
+# MD006 has no counterpart in rumdl.
 enable = [
     # Headings
     "MD001", "MD003", "MD018", "MD019", "MD020", "MD021", "MD022", "MD023",

@@ -12,7 +12,7 @@ lychee_image = lycheeverse/lychee:0.24.2
 # (/frontends/, /docs/, /resources/…) are skipped instead of failing as local files.
 lychee_args = --retry-wait-time 10 --max-retries 3 --timeout 30 --accept=200,403,429,408 -s "https" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --root-dir /var/empty
 
-.PHONY : help spellcheck fix linkcheck rumdl-check rumdl-fix
+.PHONY : help spellcheck check fix linkcheck
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -22,16 +22,12 @@ help: ## Show this help
 
 spellcheck: ## Runs the spellcheck tool (via Docker)
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -w /docs -e INPUT_IGNORE=${ignored} ${image} \
-	    --config /docs/markdown-style-config.yml /docs
+	    --config /docs/.spellcheck.yml /docs
 
-fix: ## Runs the linting tool and fixes simple mistakes
-	docker run --rm -u ${user} -v "$(shell pwd):/docs" -e INPUT_FIX=true -e INPUT_IGNORE=${ignored} avtodev/markdown-lint:v1.5 \
-	    --config /docs/markdown-style-config.yml /docs
-
-rumdl-check: ## Runs the linting tool (via rumdl). Optional: DIR=path/to/folder
+check: ## Runs the linting tool (via rumdl). Optional: DIR=path/to/folder
 	pnpm dlx ${rumdl_version} check $(if $(DIR),$(DIR),.)
 
-rumdl-fix: ## Runs the linting tool (via rumdl) and fixes what it can. Optional: DIR=path/to/folder
+fix: ## Runs the linting tool (via rumdl) and fixes what it can. Optional: DIR=path/to/folder
 	pnpm dlx ${rumdl_version} check --fix $(if $(DIR),$(DIR),.)
 
 linkcheck: ## Check HTTPS links in Markdown (via Docker / Lychee). Optional: DIR=path/to/folder
