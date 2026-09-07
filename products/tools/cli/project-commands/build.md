@@ -76,9 +76,9 @@ The [FroshPlatformTemplateMail](https://github.com/FriendsOfShopware/FroshPlatfo
 
 By default, FroshPlatformTemplateMail compiles MJML templates at runtime when emails are sent. Compiling them during CI instead:
 
-- Catches MJML syntax errors before deployment.
-- Avoids runtime compilation overhead and failures.
-- Removes the need for MJML compilation services in production.
+- Surfaces MJML syntax errors during the build.
+- Avoids runtime compilation overhead for successfully compiled templates.
+- Reduces the need for MJML compilation services in production.
 
 #### Configuration
 
@@ -104,7 +104,7 @@ When MJML compilation is enabled:
 1. Shopware CLI searches for `html.mjml` files in the configured search paths.
 2. Each `html.mjml` file is compiled to HTML and saved as `html.twig`.
 3. The original `html.mjml` file is removed after successful compilation to prevent runtime recompilation.
-4. Compilation errors cause the build to fail so broken templates do not reach production.
+4. Templates that fail to compile are logged and left as `html.mjml`; the build continues.
 
 ### Build hooks
 
