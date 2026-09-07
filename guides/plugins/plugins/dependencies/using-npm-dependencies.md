@@ -211,6 +211,7 @@ The script does three things:
 ```
 
 ```scss [PLUGIN_ROOT/src/Resources/app/storefront/src/scss/base.scss]
+$fa-font-path: "../static/fonts";
 @import '../../.vendor/node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 ```
 
