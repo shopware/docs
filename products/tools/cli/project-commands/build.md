@@ -148,8 +148,8 @@ Each hook accepts an array of shell commands. Commands are executed sequentially
 
 The following environment variable is available in all hooks:
 
-| Variable | Description |
-|----------|-------------|
+| Variable       | Description                                 |
+| -------------- | ------------------------------------------- |
 | `PROJECT_ROOT` | Absolute path to the project root directory |
 
 Hooks also inherit environment variables from the parent process, so CI/CD variables such as `SHOPWARE_PACKAGES_TOKEN` remain available.
