@@ -121,9 +121,18 @@ The Symfony Bundle handles all verification automatically.
 
 ## Validating re-registration signatures
 
-When a shop re-registers an app it already knows — to rotate the app secret, or after a shop-URL change — the registration request carries a second signature in addition to the normal one. Alongside the signature made with your app's secret, Shopware adds a signature made with the **previous secret** the app already holds. Your app **must validate both** before accepting the re-registration: the first proves the request is for your app, the second proves it comes from the shop that registered before.
+When a shop re-registers an app it already knows — to rotate the app secret, or after a shop-ID change — both requests of the handshake carry a second signature. One proves the request belongs to your app, the other proves it comes from the shop that registered before, so your app **must validate both** on each request:
 
-Validate each signature with the same HMAC check used for a normal request, using the matching secret. For when this happens and how to roll the secret over without dropping in-flight requests, see [Secret rotation and shop-url changes](app-registration-setup.md#secret-rotation-and-shop-url-changes).
+| request | header | signed with |
+|---|---|---|
+| registration (`GET`, over the query string) | `shopware-app-signature` | your app's identity secret — the manifest `<setup><secret>` for a private app |
+| registration (`GET`, over the query string) | `shopware-shop-signature` | the app secret the shop believes your app currently holds |
+| confirmation (`POST`, over the request body) | `shopware-shop-signature` | the new secret your app returned during the handshake |
+| confirmation (`POST`, over the request body) | `shopware-shop-signature-previous` | the app secret your app held before this re-registration |
+
+Both `shopware-shop-signature` variants are absent on a first registration, where the app holds no secret yet. Validate each one with the same HMAC-SHA256 check used for a normal request, passing the matching secret.
+
+For when this happens and how to roll the secret over without dropping in-flight requests, see [Secret rotation and shop-url changes](app-registration-setup.md#secret-rotation-and-shop-url-changes).
 
 ## Signing responses
 

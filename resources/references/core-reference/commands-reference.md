@@ -41,8 +41,8 @@ $ bin/console [command] [parameters]
 | `app:install`            | Installs the app in the folder with the given name                       |
 | `app:list`               | Lists all apps                                                           |
 | `app:refresh`            | \[app:update\] Refreshes the installed apps                              |
-| `app:secret:rotate`      | Rotate the shared app secret and integration credentials for one or all apps. |
-| `app:shop-id:change`     | \[app:url-change:resolve\] Change the shop ID by choosing a resolution strategy. |
+| `app:secret:rotate`      | Rotate the shared app secret and integration credentials for one or all apps |
+| `app:shop-id:change`     | \[app:url-change:resolve\] Change the shop ID by choosing a resolution strategy |
 | `app:uninstall`          | Uninstalls the app                                                       |
 | `app:validate`           | Checks manifests for errors                                              |
 

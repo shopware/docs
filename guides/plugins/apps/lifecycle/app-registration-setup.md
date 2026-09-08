@@ -269,7 +269,7 @@ To prevent failure of in-flight requests during the secret rotation, your app **
 :::
 
 ::: info
-On the Shopware side, a rotation or install whose confirmation is interrupted stays recoverable. See [App Secret Rotation & Recovery](app-secret-recovery.md) for the operator command `app:secret:rotate`, recovery by re-running `app:install`, and what to do when a secret has been claimed by another shop.
+On the Shopware side, a rotation or install whose confirmation is interrupted stays recoverable: re-running either `app:install` or `app:secret:rotate` re-registers the app with the secrets it might still hold. See [App Secret Rotation & Recovery](app-secret-recovery.md) for the state model, the possible outcomes, and what to do when no secret is accepted.
 :::
 
 ## Requirements
@@ -499,7 +499,7 @@ That is why simple themes are not affected by shop migrations, and they will con
 Every time a request is made against an app backend, Shopware checks whether the current APP_URL differs from the one used when Shopware generated an ID for this shop.
 If the APP_URL differs, Shopware will stop sending requests to the installed apps to prevent data corruption on the apps' side.
 Now the user can resolve the issue using one of the following strategies.
-The user can either run a strategy with the `bin/console app:shop-id:change` command (formerly `app:url-change:resolve`), or with a modal that pops up when the Administration is opened.
+The user can either run a strategy with the `bin/console app:shop-id:change` command, or with a modal that pops up when the Administration is opened. The former command name `app:url-change:resolve` still works as an alias and is deprecated for removal in v6.8.0.
 
 ### APP_URL change resolver
 
