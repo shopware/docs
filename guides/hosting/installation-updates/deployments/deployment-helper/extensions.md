@@ -14,7 +14,7 @@ Deployment Helper automatically manages extensions found in `custom/plugins`, `c
 Deployment Helper manages two types of extensions: [apps](../../../../plugins/apps/index.md) and [plugins](../../../../plugins/plugins/index.md). They follow the same lifecycle but differ in how they're loaded and what they require.
 
 | Aspect                  | Plugin                                   | App                                                                               |
-|-------------------------|------------------------------------------|-----------------------------------------------------------------------------------|
+| ----------------------- | ---------------------------------------- | --------------------------------------------------------------------------------- |
 | **Location**            | `custom/plugins/` or Composer            | `custom/apps/` or Composer type `shopware-app`                                    |
 | **Definition**          | Directory with `plugin.xml` or PHP class | Directory/package with `manifest.xml`                                             |
 | **License requirement** | None                                     | **Requires license domain to register** with Shopware                             |
@@ -28,7 +28,7 @@ If installing apps, you must set a license domain. Plugins work without one.
 When `extension-management` is enabled (default), each extension's desired state can be controlled via the `overrides` section or `exclude` list (shorthand). The `state` field acts as a state machine:
 
 | State                  | Behavior                                                                         | Use Case                                                                                                  |
-|------------------------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| ---------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | **(default, not set)** | Install if not present, update if installed and outdated, activate if not active | Treat extension as part of the codebase; always keep it deployed                                          |
 | `inactive`             | Install if not present, update if installed, but **keep inactive**               | Extension is deployed but disabled (e.g., a feature branch plugin, beta testing, or toggle-able features) |
 | `ignore`               | Skip entirely; do not manage this extension                                      | Manual control; use when you manage this extension separately via console commands                        |

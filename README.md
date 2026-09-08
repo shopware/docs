@@ -82,7 +82,7 @@ The `/docs/assets` folder stores images, videos, and other files linked in markd
 Certain files within the `shopware/shopware` repository are duplicated in the `shopware/docs` repository for reference purposes. Any modifications made to the former files will automatically synchronize with the corresponding files in the latter repository by the [`update-adrs`](./.github/workflows/update-adrs.yml) workflow.
 
 | `shopware/shopware` files                                                                  | `shopware/docs` files                     |
-|--------------------------------------------------------------------------------------------|-------------------------------------------|
+| ------------------------------------------------------------------------------------------ | ----------------------------------------- |
 | [shopware's adr](https://github.com/shopware/shopware/tree/trunk/adr)                      | [adr folder](./resources/references/adr/) |
 | [adr assets](https://github.com/shopware/shopware/tree/trunk/adr/assets)                   | [assets adr folder](./assets/adr/)        |
 | [coding guideline](https://github.com/shopware/shopware/tree/trunk/coding-guidelines/core) | [core](./resources/guidelines/code/core)  |

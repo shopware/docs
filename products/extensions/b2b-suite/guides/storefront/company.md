@@ -11,11 +11,11 @@ The company component acts as a container for role related entities by providing
 
 ![image](../../../../../assets/b2bSuite-storefront-companyComponents.svg)
 
-| Icon                                      |Description|
-|---------------------------------------------|------------|
-| <SwagIcon icon="layer-group" type="solid" /> | Represents component |
-| <SwagIcon icon="database" type="solid" /> | Represent context objects that contain the component specific information |
-| <SwagIcon icon="bars-square" type="solid" /> | Represents child components |
+| Icon                                         | Description                                                               |
+| -------------------------------------------- | ------------------------------------------------------------------------- |
+| <SwagIcon icon="layer-group" type="solid" /> | Represents component                                                      |
+| <SwagIcon icon="database" type="solid" />    | Represent context objects that contain the component specific information |
+| <SwagIcon icon="bars-square" type="solid" /> | Represents child components                                               |
 
 ## Context
 
@@ -29,8 +29,8 @@ To create a new entity (managed in the company component), you have to pass the 
 
 The `CompanyFilterStruct` is used by the company module to filter and search for entities. It extends the `SearchStruct` by the `companyFilterType` and `aclGrantContext`. The correct filter type can be applied by the `CompanyFilterHelper`. Possible filter types are in the list below:
 
-| Filter name   |                        What it applies                         |
-|:---------------:|:--------------------------------------------------------------:|
-| acl           |  Shows only entities which are visible to this `grantContext`  |
-| assignment    |      Shows only entities assigned to this `grantContext`       |
-| inheritance   | Shows only entities which are visible to this or inherited `grantContext`s                          |
+| Filter name |                              What it applies                               |
+| :---------: | :------------------------------------------------------------------------: |
+|     acl     |        Shows only entities which are visible to this `grantContext`        |
+| assignment  |            Shows only entities assigned to this `grantContext`             |
+| inheritance | Shows only entities which are visible to this or inherited `grantContext`s |

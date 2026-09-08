@@ -14,19 +14,19 @@ The DAL knows two types of aggregations:
 * `metric` aggregation - This type of aggregation applies a mathematical formula to a field. A metric aggregation always has a calculated result. These are aggregations to calculate sums or maximum values.
 * `bucket` aggregation - With this type of aggregation, a list of keys is determined. Further aggregations can then be determined for each key.
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| avg | metric | Average of all numeric values for the specified field |
-| count | metric | Number of records for the specified field |
-| max | metric | Maximum value for the specified field |
-| min | metric | Minimal value for the specified field |
-| stats | metric | Stats overall numeric values for the specified field |
-| sum | metric | Sum of all numeric values for the specified field |
-| entity | bucket | Groups the result for each value of the provided field and fetches the entities for this field |
-| filter | bucket | Allows to filter the aggregation result |
-| terms | bucket | Groups the result for each value of the provided field and fetches the count of affected documents |
+| Name      | Type   | Description                                                                                                                                                      |
+| :-------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| avg       | metric | Average of all numeric values for the specified field                                                                                                            |
+| count     | metric | Number of records for the specified field                                                                                                                        |
+| max       | metric | Maximum value for the specified field                                                                                                                            |
+| min       | metric | Minimal value for the specified field                                                                                                                            |
+| stats     | metric | Stats overall numeric values for the specified field                                                                                                             |
+| sum       | metric | Sum of all numeric values for the specified field                                                                                                                |
+| entity    | bucket | Groups the result for each value of the provided field and fetches the entities for this field                                                                   |
+| filter    | bucket | Allows to filter the aggregation result                                                                                                                          |
+| terms     | bucket | Groups the result for each value of the provided field and fetches the count of affected documents                                                               |
 | histogram | bucket | Groups the result for each value of the provided field and fetches the count of affected documents. Although allows to provide date interval \(day, month, ...\) |
-| range | bucket | Groups the result for each defined set of ranges into each bucket - bucket of numerical data and a count of items/documents for each bucket |
+| range     | bucket | Groups the result for each defined set of ranges into each bucket - bucket of numerical data and a count of items/documents for each bucket                      |
 
 ## Avg aggregation
 

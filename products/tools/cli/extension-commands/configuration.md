@@ -67,7 +67,7 @@ The `compatibility_date` lets Shopware CLI introduce behavior changes without br
 Additionally, you can set environment variables to change the behavior of the CLI. The following environment variables are available:
 
 | Environment Variable            | Description                                                                           |
-|---------------------------------|---------------------------------------------------------------------------------------|
+| ------------------------------- | ------------------------------------------------------------------------------------- |
 | CI                              | Detect CI environment                                                                 |
 | SHOPWARE_CLI_PREVIOUS_TAG       | Override previous Git tag detection with a previous tag used for Changelog generation |
 | CI_PROJECT_URL                  | GitLab CI project URL used for Changelog generation                                   |

@@ -87,7 +87,7 @@ shopware:
 ## Command Options
 
 | Option           | Description                                                       | Default                   |
-|------------------|-------------------------------------------------------------------|---------------------------|
+| ---------------- | ----------------------------------------------------------------- | ------------------------- |
 | `--url`          | Upstream server URL (overrides config)                            | From config               |
 | `--port`         | Port to listen on                                                 | `8080`                    |
 | `--clear`        | Clear cache before starting                                       | `false`                   |

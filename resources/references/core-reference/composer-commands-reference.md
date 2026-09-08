@@ -22,7 +22,7 @@ $ composer [command] [parameters]
 ### Setup & build
 
 | Command                      | Description                                                                                                                   |
-|------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `setup`                      | Resets and re-installs this Shopware instance - Database will be purged!                                                      |
 | `build:js`                   | Builds Administration & Storefront - Combination of `build:js:admin` & `build:js:storefront`                                  |
 | `build:js:admin`             | Builds the Administration - Includes `bundle:dump`, `feature:dump`, `admin:generate-entity-schema-types` and `assets:install` |
@@ -35,7 +35,7 @@ $ composer [command] [parameters]
 ### Administration
 
 | Command                              | Description                                                                   |
-|:-------------------------------------|:------------------------------------------------------------------------------|
+| :----------------------------------- | :---------------------------------------------------------------------------- |
 | `admin:create:test`                  | Generate a test boilerplate                                                   |
 | `admin:generate-entity-schema-types` | Convert entity schemas to data types                                          |
 | `admin:unit`                         | Launches the jest unit test-suite for the Admin                               |
@@ -49,7 +49,7 @@ $ composer [command] [parameters]
 ### Storefront
 
 | Command                        | Description                                                                                     |
-|:-------------------------------|:------------------------------------------------------------------------------------------------|
+| :----------------------------- | :---------------------------------------------------------------------------------------------- |
 | `build:js:storefront`          | Builds the Storefront's JavaScript - Includes `bundle:dump`, `feature:dump` and `theme:compile` |
 | `npm:storefront:check-license` | Check third-party dependency licenses for storefront                                            |
 | `watch:storefront`             | Build storefront with hot module reloading                                                      |
@@ -57,7 +57,7 @@ $ composer [command] [parameters]
 ### Testsuite & Development
 
 | Command                 | Description                                                                                           |
-|:------------------------|:------------------------------------------------------------------------------------------------------|
+| :---------------------- | :---------------------------------------------------------------------------------------------------- |
 | `bc-check`              | Checks for backwards compatibility breaks in the current branch                                       |
 | `e2e:setup`             | Installs a clean shopware instance for E2E environment and launches `e2e:prepare`                     |
 | `e2e:open`              | Launches the Cypress E2E test-suite UI                                                                |

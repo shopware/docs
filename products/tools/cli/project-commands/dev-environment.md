@@ -39,12 +39,12 @@ Starts the development environment (if not already running), runs the deployment
 
 Available flags:
 
-| Flag                | Default    | Description                                          |
-| ------------------- | ---------- | ----------------------------------------------------- |
-| `--locale`           | `en-GB`    | Default storefront language, e.g. `en-GB`, `de-DE`     |
-| `--currency`         | `EUR`      | Default currency, e.g. `EUR`, `USD`                    |
-| `--admin-username`   | `admin`    | Admin account username                                 |
-| `--admin-password`   | `shopware` | Admin account password (at least 8 characters)         |
+| Flag               | Default    | Description                                        |
+| ------------------ | ---------- | -------------------------------------------------- |
+| `--locale`         | `en-GB`    | Default storefront language, e.g. `en-GB`, `de-DE` |
+| `--currency`       | `EUR`      | Default currency, e.g. `EUR`, `USD`                |
+| `--admin-username` | `admin`    | Admin account username                             |
+| `--admin-password` | `shopware` | Admin account password (at least 8 characters)     |
 
 The interactive dashboard has three tabs:
 

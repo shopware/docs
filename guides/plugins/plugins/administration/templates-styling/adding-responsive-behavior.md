@@ -38,13 +38,13 @@ this.$device.removeResizeListener(component);
 
 It also provides many helper functions, e.g., to get the screen dimensions. Although there are many more, as seen below:
 
-| Function | Description |
-| :--- | :--- |
-| `this.$device.getViewportWidth();` | Gets the viewport width |
-| `this.$device.getViewportHeight();` | Gets the viewport height |
-| `this.$device.getDevicePixelRatio();` | Gets the device pixel ratio |
-| `this.$device.getScreenWidth();` | Gets the screen width |
-| `this.$device.getScreenHeight();` | Gets screen height |
+| Function                               | Description                 |
+| :------------------------------------- | :-------------------------- |
+| `this.$device.getViewportWidth();`     | Gets the viewport width     |
+| `this.$device.getViewportHeight();`    | Gets the viewport height    |
+| `this.$device.getDevicePixelRatio();`  | Gets the device pixel ratio |
+| `this.$device.getScreenWidth();`       | Gets the screen width       |
+| `this.$device.getScreenHeight();`      | Gets screen height          |
 | `this.$device.getScreenOrientation();` | Gets the screen orientation |
 
 ## v-responsive directive

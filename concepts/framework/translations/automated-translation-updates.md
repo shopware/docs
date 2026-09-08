@@ -35,12 +35,12 @@ flowchart TD
 
 The following table lists where each step of that chain runs and when it is triggered.
 
-| Step                                  | Where it runs                                | Schedule                     |
-|---------------------------------------|----------------------------------------------|------------------------------|
-| Collect source snippets from the code | `shopware/translations`, `update-translations.yml` | Daily, 18:00 UTC        |
-| Upload sources to Crowdin             | `shopware/translations`, `crowdin-upload.yml`     | Daily, 20:00 UTC        |
-| Download translations from Crowdin    | `shopware/translations`, `crowdin-download.yml`   | Daily, 22:00 UTC        |
-| Update the installed translations     | Your installation, `translation.update` task      | Daily, by default       |
+| Step                                  | Where it runs                                      | Schedule          |
+| ------------------------------------- | -------------------------------------------------- | ----------------- |
+| Collect source snippets from the code | `shopware/translations`, `update-translations.yml` | Daily, 18:00 UTC  |
+| Upload sources to Crowdin             | `shopware/translations`, `crowdin-upload.yml`      | Daily, 20:00 UTC  |
+| Download translations from Crowdin    | `shopware/translations`, `crowdin-download.yml`    | Daily, 22:00 UTC  |
+| Update the installed translations     | Your installation, `translation.update` task       | Daily, by default |
 
 ::: info
 Expect roughly one to two workdays between approving a translation in Crowdin and seeing it in a shop: the download
@@ -57,11 +57,11 @@ project, and German is uploaded as an already existing translation, so neither o
 reword such a string, change the snippet file in the respective repository, for example in `shopware/shopware`, and
 create a pull request:
 
-| Bundle         | Source file                                                       | File in the translations repository                       |
-|----------------|-------------------------------------------------------------------|-----------------------------------------------------------|
-| Administration | `src/**/Resources/app/administration/src/**/{en,de}.json`          | `translations/en-GB/Platform/Administration/administration.json` |
-| Core           | `src/Core/Framework/Resources/snippet/messages.{en,de}.base.json`  | `translations/en-GB/Platform/Core/messages.json`           |
-| Storefront     | `src/Storefront/Resources/snippet/storefront.{en,de}.json`         | `translations/en-GB/Platform/Storefront/storefront.json`   |
+| Bundle         | Source file                                                       | File in the translations repository                              |
+| -------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Administration | `src/**/Resources/app/administration/src/**/{en,de}.json`         | `translations/en-GB/Platform/Administration/administration.json` |
+| Core           | `src/Core/Framework/Resources/snippet/messages.{en,de}.base.json` | `translations/en-GB/Platform/Core/messages.json`                 |
+| Storefront     | `src/Storefront/Resources/snippet/storefront.{en,de}.json`        | `translations/en-GB/Platform/Storefront/storefront.json`         |
 
 The collect workflow merges these files into the `en-GB` and `de-DE` directories of the translations repository every
 day at 18:00 UTC and does the same for the official plugins listed in its workflow configuration, which end up under
@@ -123,13 +123,13 @@ before that release, the task updates every installed translation.
 The task keeps the translations that are installed in a shop in sync with the translations repository, without anyone
 having to run a command. The following table lists its registration details.
 
-| Property               | Value                                                                  |
-|------------------------|------------------------------------------------------------------------|
-| Task name              | `translation.update`                                                   |
-| Default interval       | `86400` seconds (daily)                                                |
-| Task                   | `Shopware\Core\System\Snippet\ScheduledTask\UpdateTranslationsTask`     |
+| Property               | Value                                                                      |
+| ---------------------- | -------------------------------------------------------------------------- |
+| Task name              | `translation.update`                                                       |
+| Default interval       | `86400` seconds (daily)                                                    |
+| Task                   | `Shopware\Core\System\Snippet\ScheduledTask\UpdateTranslationsTask`        |
 | Handler                | `Shopware\Core\System\Snippet\ScheduledTask\UpdateTranslationsTaskHandler` |
-| Reschedules on failure | Yes                                                                    |
+| Reschedules on failure | Yes                                                                        |
 
 ### What the task does
 
@@ -202,11 +202,11 @@ leaves the previous state intact and the next run retries the same locales.
 
 The following table lists the symptoms you are most likely to run into, together with their cause and solution.
 
-| Symptom                                       | Cause and solution                                                                                                                                                                               |
-|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| The task never runs                           | No background worker is consuming the queue. See [Scheduled Task](../../../guides/hosting/infrastructure/scheduled-task.md)                                                                       |
+| Symptom                                       | Cause and solution                                                                                                                                                                                                                                     |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| The task never runs                           | No background worker is consuming the queue. See [Scheduled Task](../../../guides/hosting/infrastructure/scheduled-task.md)                                                                                                                            |
 | The task runs but nothing changes             | No installed locale has a newer remote `updatedAt` timestamp, the language has `translationAutoUpdate` disabled, or no translation is installed at all. Run `bin/console translation:list` — locales without a **Last update** value are not installed |
-| A translation approved in Crowdin is missing  | The download workflow has not run yet, or its pull request is still open. Check the open pull requests on `shopware/translations`                                                                  |
-| The task fails with a network error           | The shop cannot reach `repository-url` or `metadata-url`. Check outbound HTTPS access or point the URLs at a mirror                                                                               |
-| A language shows a progress below 100 percent | Strings are translated but not approved, or new source strings were added. Both are resolved in Crowdin                                                                                           |
-| A storefront text is broken after an update   | Most likely a snippet with HTML markup. Report it on [shopware/translations](https://github.com/shopware/translations/issues) and fix it in Crowdin                                               |
+| A translation approved in Crowdin is missing  | The download workflow has not run yet, or its pull request is still open. Check the open pull requests on `shopware/translations`                                                                                                                      |
+| The task fails with a network error           | The shop cannot reach `repository-url` or `metadata-url`. Check outbound HTTPS access or point the URLs at a mirror                                                                                                                                    |
+| A language shows a progress below 100 percent | Strings are translated but not approved, or new source strings were added. Both are resolved in Crowdin                                                                                                                                                |
+| A storefront text is broken after an update   | Most likely a snippet with HTML markup. Report it on [shopware/translations](https://github.com/shopware/translations/issues) and fix it in Crowdin                                                                                                    |

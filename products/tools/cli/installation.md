@@ -133,7 +133,7 @@ Add a file `.ddev/web-build/Dockerfile.shopware-cli`
 # .ddev/web-build/Dockerfile.shopware-cli
 COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
-  
+
 </details>
 
 ### Docker image

@@ -23,10 +23,10 @@ Furthermore you should have a look at our [Listening to Events](../../framework/
 
 The events below are dispatched during certain DAL operations. They are not necessarily associated with a particular entity, but are triggered with batches of commands.
 
-| Event                                                                   | Description                                                                                        |
-|:------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
-| `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWriteEvent`   | Before a batch of commands has been written to storage. Written means inserted, updated or deleted |
-| `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent`  | Before a batch of delete commands has been executed                                                |
+| Event                                                                  | Description                                                                                        |
+| :--------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWriteEvent`  | Before a batch of commands has been written to storage. Written means inserted, updated or deleted |
+| `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityDeleteEvent` | Before a batch of delete commands has been executed                                                |
 
 ### `Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWriteEvent`
 
@@ -146,14 +146,14 @@ After creating the event subscriber, you have to register it. If you don't know 
 
 The events below are dispatched for every entity in Shopware. The first part before the dot \(.\) equals your entity name. The examples are based on the `product` entity.
 
-| Event | Description |
-| :--- | :--- |
-| `product.written` | After the data has been written to storage |
-| `product.deleted` | After the data has been deleted in storage |
-| `product.loaded` | After the data has been hydrated into objects |
-| `product.search.result.loaded` | After the search returned data |
-| `product.aggregation.result.loaded` | After the aggregations have been loaded |
-| `product.id.search.result.loaded` | After the search for ids only has been finished |
+| Event                               | Description                                     |
+| :---------------------------------- | :---------------------------------------------- |
+| `product.written`                   | After the data has been written to storage      |
+| `product.deleted`                   | After the data has been deleted in storage      |
+| `product.loaded`                    | After the data has been hydrated into objects   |
+| `product.search.result.loaded`      | After the search returned data                  |
+| `product.aggregation.result.loaded` | After the aggregations have been loaded         |
+| `product.id.search.result.loaded`   | After the search for ids only has been finished |
 
 ### product.written
 

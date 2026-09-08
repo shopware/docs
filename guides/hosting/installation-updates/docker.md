@@ -82,7 +82,7 @@ The Docker image contains the following PHP extensions: `bcmath`, `gd`, `intl`, 
 ## Environment Variables
 
 | Variable                              | Default Value | Description                                                                              |
-|---------------------------------------|---------------|------------------------------------------------------------------------------------------|
+| ------------------------------------- | ------------- | ---------------------------------------------------------------------------------------- |
 | `PHP_SESSION_COOKIE_LIFETIME`         | 0             | [See PHP FPM documentation](https://www.php.net/manual/en/session.configuration.php)     |
 | `PHP_SESSION_GC_MAXLIFETIME`          | 1440          | [See PHP FPM documentation](https://www.php.net/manual/en/session.configuration.php)     |
 | `PHP_SESSION_HANDLER`                 | files         | Set to `redis` for redis session                                                         |
@@ -121,7 +121,7 @@ Our recommendation is to store all files in an external storage provider to not 
 In a very basic setup when all files are stored locally you need 5 volumes:
 
 | Usage                  | Path                             |
-|------------------------|----------------------------------|
+| ---------------------- | -------------------------------- |
 | invoices/private files | `/var/www/html/files`            |
 | theme files            | `/var/www/html/public/theme`     |
 | images                 | `/var/www/html/public/media`     |
@@ -261,7 +261,7 @@ This is the most common mistake with Docker-based shops, so if you read only one
 The following table summarizes the three separate things that get updated and how you update them. Do not mix them up.
 
 | What                     | What it means                                      | How you update it                                           | How often                           |
-|--------------------------|----------------------------------------------------|-------------------------------------------------------------|-------------------------------------|
+| ------------------------ | -------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------- |
 | **PHP (the base image)** | The runtime your shop runs on, with security fixes | **Rebuild and redeploy** your image — no code change needed | When a scan finds a vulnerability   |
 | **Shopware**             | The shop software itself, plus extensions          | Update with Composer, then rebuild and redeploy             | When a version you want is released |
 | **Your own code**        | Your project and any custom extensions             | Update with Composer/npm, then rebuild and redeploy         | When you change something           |
