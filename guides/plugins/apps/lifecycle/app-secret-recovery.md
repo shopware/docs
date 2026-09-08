@@ -30,7 +30,7 @@ A (re-)registration moves them as follows:
 
 | step or outcome | `app_secret` | `unconfirmed_app_secrets` |
 |---|---|---|
-| handshake (app generates a secret), **before** confirm | unchanged | the new secret is prepended |
+| handshake (app generates a secret), **before** confirm | unchanged | the new secret is added at the front |
 | confirm returns **2xx** (confirmed) | set to the new secret | cleared |
 | confirm returns **4xx** (app rejected it) | unchanged | the rejected secret is removed |
 | confirm returns an HTTP **5xx** or times out (unknown) | unchanged | left as-is — kept for recovery |
@@ -39,7 +39,7 @@ A (re-)registration moves them as follows:
 `unconfirmed_app_secrets` is `NULL` whenever there is nothing pending. A non-null value means a rotation or install did not get a clear answer, and the app may already hold one of the listed secrets — that is the signal recovery acts on.
 :::
 
-A list (rather than a single value) matters because recovery can itself be interrupted: each attempt prepends a freshly generated secret ahead of the ones it is still trying. The list is capped at five entries. When it is full, the newest of the *older* entries is evicted — never the oldest one, which in a repeatedly interrupted loop is the secret the app most likely still holds.
+A list (rather than a single value) matters because recovery can itself be interrupted: each attempt adds a freshly generated secret ahead of the ones it is still trying. The list is capped at five entries, and the oldest one always survives that cap — in a repeatedly interrupted loop it is the secret the app most likely still holds.
 
 ## Rotating a secret — `app:secret:rotate`
 
@@ -106,7 +106,7 @@ A recovery that keeps reporting **no candidate was accepted** against a healthy 
 | step | what happens |
 |---|---|
 | 1 | Production *Shop A* is cloned to *staging* — the clone copies Shop A's shop ID **and** its app secrets. |
-| 2 | Staging rotates MyApp's secret; the app now binds that shop ID to *staging's* new secret. |
+| 2 | Staging rotates the secret for MyApp; the app now binds that shop ID to *staging's* new secret. |
 | 3 | Shop A re-runs `app:install MyApp`, but the app trusts only staging's secret, so every candidate is rejected. |
 | 4 | Recovery reverts cleanly and reports **no candidate was accepted**, so Shop A runs `bin/console app:shop-id:change reinstall-apps` to take a fresh, distinct identity and re-register. |
 
