@@ -112,14 +112,14 @@ Build hooks let you run custom shell commands at specific stages of the CI build
 
 #### Available hooks
 
-| Hook | Execution point |
-|------|-----------------|
-| `pre` | Before the build starts |
-| `pre-composer` | Before `composer install` runs |
+| Hook            | Execution point                    |
+| --------------- | ---------------------------------- |
+| `pre`           | Before the build starts            |
+| `pre-composer`  | Before `composer install` runs     |
 | `post-composer` | After `composer install` completes |
-| `pre-assets` | Before asset building begins |
-| `post-assets` | After asset building completes |
-| `post` | After the entire build completes |
+| `pre-assets`    | Before asset building begins       |
+| `post-assets`   | After asset building completes     |
+| `post`          | After the entire build completes   |
 
 #### Configuration
 
