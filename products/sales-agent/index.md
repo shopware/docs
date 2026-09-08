@@ -9,7 +9,7 @@ nav:
 
 This project is designed to streamline the communication and sales processes between sales representatives and their customers. By integrating Shopware, it enables sales representatives to handle various tasks in an optimized environment, without the overhead added by the Shopware Administration.
 
-![](../../assets/sales-agent-overview.jpg)
+![Sales Agent Overview](../../assets/sales-agent-overview.jpg)
 
 :::info
 **Sales Agent** is a licensed application and not available as open source.
@@ -38,7 +38,7 @@ Review the below minimum operating requirements before you install *Sales Agent*
 
 ## Architecture
 
-![](../../assets/sales-agent-architecture.jpg)
+![Sales Agent Architecture](../../assets/sales-agent-architecture.jpg)
 
 The architecture depicted in the image shows a system with the following components:
 

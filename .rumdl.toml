@@ -29,6 +29,7 @@ exclude = [
     "resources/guidelines/code/core/**",
     "snippets/guide/**",
     "resources/references/app-reference/script-reference/**",
+    ".github/**",
 ]
 
 # Multiple headings with the same content.
