@@ -1848,6 +1848,7 @@ pluginlogger
 png
 pnpm
 polyfill
+polyfills
 pos
 positionID
 positionIDs
@@ -2201,6 +2202,7 @@ whoami
 wil
 wishlist
 wordlist
+worktree
 www
 xasjkyld
 xdebug
