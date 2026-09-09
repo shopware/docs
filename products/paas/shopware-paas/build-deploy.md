@@ -26,7 +26,7 @@ First, we stage all changes and then add them as a new commit. Then, we push the
 This will trigger a new build with a subsequent deploy consisting of the following steps:
 
 | Build                                         | Deploy                                          |
-|-----------------------------------------------|-------------------------------------------------|
+| --------------------------------------------- | ----------------------------------------------- |
 | Configuration validation                      | Hold app requests                               |
 | Build container image                         | Unmount live containers                         |
 | Installing dependencies                       | Mount file systems                              |
@@ -42,7 +42,7 @@ The first time the site is deployed, Shopware's command line installer will run 
 The installer will create an administrator account with the default credentials.
 
 | username | password   |
-|----------|------------|
+| -------- | ---------- |
 | `admin`  | `shopware` |
 
 Make sure to change this password immediately in your Administration account settings. Not doing so is a security risk.

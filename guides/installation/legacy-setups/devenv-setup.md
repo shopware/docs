@@ -324,12 +324,12 @@ Direnv will now automatically activate the Devenv environment whenever you enter
 When you start Devenv with `devenv up`, Shopware automatically provides several core services. You can access them using the following addresses:
 
 | Service        | Default address                            | Description                           |
-|----------------|--------------------------------------------|---------------------------------------|
+| -------------- | ------------------------------------------ | ------------------------------------- |
 | MySQL          | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware.        |
-| Mailhog (SMTP) | `smtp://127.0.0.1:1025` | Local mail capture for testing email. |
-| Redis (TCP)    | `tcp://127.0.0.1:6379` | Used for caching and sessions.        |
-| Caddy          | `http://127.0.0.1:8000` | Web server.                           |
-| Adminer        | `http://127.0.0.1:9080` | Database management tool.             |
+| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                    | Local mail capture for testing email. |
+| Redis (TCP)    | `tcp://127.0.0.1:6379`                     | Used for caching and sessions.        |
+| Caddy          | `http://127.0.0.1:8000`                    | Web server.                           |
+| Adminer        | `http://127.0.0.1:9080`                    | Database management tool.             |
 
 ::: tip
 The MySQL service listens on port `3306` and stores its data in `<PROJECT_ROOT>/.devenv/state/mysql`. Use `127.0.0.1` instead of `localhost` when connecting to MySQL.

@@ -12,7 +12,7 @@ nav:
 The [Deployment Helper](index.md) ships with the following commands:
 
 | Command                        | Description                                                                                                 |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | `run`                          | Install or update Shopware (the main deployment command)                                                    |
 | `is-installed`                 | Check whether Shopware is installed; exits `0` if installed, `1` if not. Useful as a guard in shell scripts |
 | `one-time-task:list`           | List all one-time tasks and their execution status                                                          |
@@ -55,7 +55,7 @@ Exit codes:
 The `run` command accepts the following options:
 
 | Option                    | Description                                                                                                                                                                                                                                                       |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--skip-theme-compile`    | Skip theme compilation (use when the theme was already compiled in CI/CD)                                                                                                                                                                                         |
 | `--skip-assets-install`   | Skip asset installation (use when assets were already copied in CI/CD)                                                                                                                                                                                            |
 | `--skip-asset-install`    | Deprecated alias for `--skip-assets-install`                                                                                                                                                                                                                      |

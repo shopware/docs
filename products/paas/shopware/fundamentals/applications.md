@@ -19,7 +19,7 @@ The number of projects and applications available to an organization depends on 
 Applications are provisioned with a default resource profile for the main Shopware workloads:
 
 | Component    | Default replicas | CPU request | Memory request | Memory limit |
-|--------------|------------------|-------------|----------------|--------------|
+| ------------ | ---------------- | ----------- | -------------- | ------------ |
 | `storefront` | `2`              | `50m`       | `256Mi`        | `2Gi`        |
 | `admin`      | `1`              | `25m`       | `128Mi`        | `2Gi`        |
 | `worker`     | `1`              | `50m`       | `256Mi`        | `1Gi`        |

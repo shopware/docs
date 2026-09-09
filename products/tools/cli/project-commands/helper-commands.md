@@ -57,7 +57,7 @@ With Docker projects, run Composer and other PHP tools **inside** the web contai
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
 | Shell Script                | Shopware Command                        |
-|-----------------------------|-----------------------------------------|
+| --------------------------- | --------------------------------------- |
 | bin/build-storefront.sh     | `shopware-cli project storefront-build` |
 | bin/build-administration.sh | `shopware-cli project admin-build`      |
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |

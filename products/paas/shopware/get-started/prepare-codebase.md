@@ -55,7 +55,7 @@ cd <your-project-folder>
 Install the `shopware/k8s-meta` package that prepares your project for PaaS Native. Use the version that matches your Shopware installation:
 
 | Shopware version | k8s-meta version |
-|------------------|------------------|
+| ---------------- | ---------------- |
 | 6.6              | `^1.0`           |
 | 6.7              | `^2.0`           |
 

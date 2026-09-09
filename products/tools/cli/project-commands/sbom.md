@@ -40,7 +40,7 @@ By default, packages from `packages-dev` are **excluded**, matching `project ci`
 ## Command options
 
 | Option                       | Description                                 | Default                             |
-|------------------------------|---------------------------------------------|-------------------------------------|
+| ---------------------------- | ------------------------------------------- | ----------------------------------- |
 | `[path]`                     | Shopware project directory                  | Nearest project / working directory |
 | `--format`                   | SBOM format (`cyclonedx-json` only)         | `cyclonedx-json`                    |
 | `--output` / `-o`            | Output file path                            | `sbom.cdx.json` in the project root |

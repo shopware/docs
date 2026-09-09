@@ -13,7 +13,7 @@ There are a lot of settings on the configuration page, but most of them are alre
 
 Open Shopware CMS, select **Marketing** > **Digital Sales Rooms** > **Configuration**
 
-![ ](../../../assets/products-digitalSalesRooms-configuration.png)
+![Digital Sales Room Sidemenu Entry](../../../assets/products-digitalSalesRooms-configuration.png)
 
 ## Fill the settings
 

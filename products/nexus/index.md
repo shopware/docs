@@ -32,23 +32,23 @@ It empowers merchants to orchestrate systems visually using low-code simplicity,
 
 ## Available in Early Access
 
-| Feature | Description |
-|----------|------------|
-| Visual Workflow Builder | Drag-and-drop interface |
-| Shopware Event Triggers | React to entity events |
-| Schedule Triggers | Cron-based execution |
-| Business Central Integration | CRUD for 3 entities `items`, `customers`, `salesOrders`|
-| Shopware API Actions | Call any endpoint in your store|
-| API requests | Call any external endpoint |
-| Slack Notifications | Send Slack messages |
-| Conditional Logic | If/else and switch branching |
-| S3 Storage | Store data on S3 |
-| Data Transformation | Map and filter data |
-| Expression Placeholders | Placeholders to insert event data into templates |
-| Execution Monitoring | Track runs & metrics, including per-node timeline and payloads |
-| Delay Node | Add timed delays between steps |
-| Workflow Versioning | Published version history with compare and restore |
-| User Management & Roles | Admin, Builder, and Viewer roles per company |
+| Feature                      | Description                                                    |
+| ---------------------------- | -------------------------------------------------------------- |
+| Visual Workflow Builder      | Drag-and-drop interface                                        |
+| Shopware Event Triggers      | React to entity events                                         |
+| Schedule Triggers            | Cron-based execution                                           |
+| Business Central Integration | CRUD for 3 entities `items`, `customers`, `salesOrders`        |
+| Shopware API Actions         | Call any endpoint in your store                                |
+| API requests                 | Call any external endpoint                                     |
+| Slack Notifications          | Send Slack messages                                            |
+| Conditional Logic            | If/else and switch branching                                   |
+| S3 Storage                   | Store data on S3                                               |
+| Data Transformation          | Map and filter data                                            |
+| Expression Placeholders      | Placeholders to insert event data into templates               |
+| Execution Monitoring         | Track runs & metrics, including per-node timeline and payloads |
+| Delay Node                   | Add timed delays between steps                                 |
+| Workflow Versioning          | Published version history with compare and restore             |
+| User Management & Roles      | Admin, Builder, and Viewer roles per company                   |
 
 ## Limitations in Early Access
 
@@ -63,10 +63,10 @@ Nexus is a managed cloud service. On-premise and self-hosted deployment are not 
 
 ## Coming after Early Access
 
-| Feature | Planned For | Description |
-|----------|------------|------------|
-| AI-Assisted Authoring | GA | Intelligent suggestions |
-| Advanced Analytics | GA | Performance insights |
-| Per-Tenant Quotas | GA | Usage & billing |
-| Additional ERP Connectors | Post-GA | SAP, Oracle, etc. |
-| Custom Node Development | Post-GA | Custom workflow nodes |
+| Feature                   | Planned For | Description             |
+| ------------------------- | ----------- | ----------------------- |
+| AI-Assisted Authoring     | GA          | Intelligent suggestions |
+| Advanced Analytics        | GA          | Performance insights    |
+| Per-Tenant Quotas         | GA          | Usage & billing         |
+| Additional ERP Connectors | Post-GA     | SAP, Oracle, etc.       |
+| Custom Node Development   | Post-GA     | Custom workflow nodes   |

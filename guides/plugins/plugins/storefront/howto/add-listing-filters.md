@@ -38,14 +38,14 @@ New listing filters, e.g. for your product listing, can be registered via the ev
 
 After that, you can start to actually add your custom filters. Arguably an important step is to define your filter. Therefore, you're able to use the `Filter` class, including the parameters below:
 
-| Parameter | Description |
-| :--- | :--- |
-| `name` | Unique name of the filter |
-| `filtered` | Set this option to `true` if this filter is active |
+| Parameter      | Description                                                                                             |
+| :------------- | :------------------------------------------------------------------------------------------------------ |
+| `name`         | Unique name of the filter                                                                               |
+| `filtered`     | Set this option to `true` if this filter is active                                                      |
 | `aggregations` | Defines aggregations behind a filter. Sometimes a filter contains multiple aggregations like properties |
-| `filter` | Sets the DAL filter which should be added to the criteria |
-| `values` | Defines the values which will be added as `currentFilter` to the result |
-| `exclude` | Configure exclusions |
+| `filter`       | Sets the DAL filter which should be added to the criteria                                               |
+| `values`       | Defines the values which will be added as `currentFilter` to the result                                 |
+| `exclude`      | Configure exclusions                                                                                    |
 
 As a result, an example filter could look like this:
 
@@ -150,13 +150,13 @@ Including our filter will be done as seen below, please take the comments into a
 
 As we want to filter a boolean value, we choose the `filter-boolean` component here. Sure, there are some more you can use - dependent on your filter's values:
 
-| Name | Description |
-| :--- | :--- |
-| `filter-boolean` | A filter to display boolean values |
-| `filter-multi-select` | Filters with multiple values |
-| `filter-property-select` | A filter tailored specifically for properties |
-| `filter-range` | Displays a range which can be used for filtering |
-| `filter-rating-select` and `filter-rating-select-item` | Filter component for rating |
+| Name                                                   | Description                                      |
+| :----------------------------------------------------- | :----------------------------------------------- |
+| `filter-boolean`                                       | A filter to display boolean values               |
+| `filter-multi-select`                                  | Filters with multiple values                     |
+| `filter-property-select`                               | A filter tailored specifically for properties    |
+| `filter-range`                                         | Displays a range which can be used for filtering |
+| `filter-rating-select` and `filter-rating-select-item` | Filter component for rating                      |
 
 Extending `component_filter_panel_items` as shown above puts our filter *after* the already existing ones. We could put it at the beginning by moving the `parent()` call to the end of the block.
 
