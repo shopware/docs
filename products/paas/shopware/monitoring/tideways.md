@@ -44,7 +44,7 @@ Enabling Tideways does three things for you:
 - A Tideways daemon is deployed next to your application.
 - Your application containers are configured to send data to that daemon.
 
-Tideways is only available for shop applications. Enabling it on a custom or Composable Frontends application is rejected when the configuration is validated.
+Tideways is only available for shop applications. Enabling it on Composable Frontends application is rejected when the configuration is validated.
 
 ## View your data
 
