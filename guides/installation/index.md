@@ -56,7 +56,10 @@ The latest version will always be the top option. At the bottom of the terminal 
 
 ### Choose Docker or skip
 
-This is a yes/no question about whether to run Shopware locally using Docker, our recommended setup option. Choosing `yes` lets you continue with optional customization, or you can complete the installation immediately for a quick start.
+This prompt asks, "How do you want to run Shopware?":
+
+- **Run Shopware with Docker**: our recommended setup option. Choosing this lets you continue with optional customization, or you can complete the installation immediately for a quick start.
+- **Use PHP and Composer; Shopware CLI handles the installation**: skips Docker and sets up Shopware directly with a local PHP and Composer installation instead.
 
 :::info
 If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
@@ -80,7 +83,7 @@ To use a specific extension without the Store, install it from source or via Com
 
 The customization options currently offered by the CLI include:
 
-- **Deployment Method**: none (default), PaaS powered by Shopware, PaaS powered by Platform.sh, or Deployer PHP (SSH-based zero-downtime, for users not working with Docker)
+- **Deployment Method**: none (default), PaaS powered by Shopware, PaaS powered by Platform.sh, Deployer PHP (SSH-based zero-downtime, for users not working with Docker), or Docker (Container), which generates a production-ready `Dockerfile` and `.dockerignore` pinned to the PHP version resolved for the project
 - **CI/CD System**: none (default), GitHub Actions, or GitLab CI; choosing an option triggers creation of boilerplate pipeline templates
 - **Initialize Git repository**: yes/no, for version control (`yes` by default)
 - **OpenSearch**: yes/no (`no` is default), choose yes for large product catalogues and advanced search

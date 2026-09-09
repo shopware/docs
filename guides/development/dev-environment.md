@@ -72,10 +72,11 @@ Use the sidebar to switch sources. Toggle follow mode with `Enter`.
 ### 3. Config Tab
 
 The following table lists the settings you can change in the Config tab:
-| Setting | Options |
-|---------|---------|
-| **PHP Version** | `8.2`, `8.3`, `8.4`, `8.5` |
-| **Profiler** | `none`, `xdebug`, `blackfire`, `tideways`, `pcov`, `spx` |
+
+| Setting         | Options                                                  |
+| --------------- | -------------------------------------------------------- |
+| **PHP Version** | `8.2`, `8.3`, `8.4`, `8.5`                               |
+| **Profiler**    | `none`, `xdebug`, `blackfire`, `tideways`, `pcov`, `spx` |
 
 When selecting `blackfire` or `tideways`, additional credential fields appear. Sensitive credentials are stored in `.shopware-project.local.yml` (excluded from version control).
 
@@ -113,7 +114,7 @@ After you confirm, the wizard:
 ### What happens to existing files
 
 | File                          | What changes                                                                                                                                         |
-|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.shopware-project.yml`       | Updated with `compatibility_date`, `environments`, and `docker` config                                                                               |
 | `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways)                                                                               |
 | `compose.yaml`                | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
@@ -218,7 +219,7 @@ See the [recommended stack and supported versions](../hosting/index.md#recommend
 The CLI generates a `compose.yaml` tailored to your project:
 
 | Service             | Description              | URL                      |
-|---------------------|--------------------------|--------------------------|
+| ------------------- | ------------------------ | ------------------------ |
 | **web**             | PHP + Node.js with Caddy | `http://127.0.0.1:8000`  |
 | **database**        | MariaDB 11.8             | internal                 |
 | **adminer**         | Database management UI   | `http://127.0.0.1:9080`  |
@@ -275,7 +276,7 @@ The compose file inspects your `composer.lock` at generation time:
 The CLI abstracts command execution across environment types, configured per environment in `.shopware-project.yml`:
 
 | Type          | Behavior                                                             |
-|---------------|----------------------------------------------------------------------|
+| ------------- | -------------------------------------------------------------------- |
 | `docker`      | Executes commands inside the web container via `docker compose exec` |
 | `local`       | Executes commands directly on the host                               |
 | `symfony-cli` | Uses the Symfony CLI binary (auto-detected)                          |
@@ -297,7 +298,7 @@ Select an environment with the global `-e`/`--env` flag, for example `shopware-c
 The web container exposes these ports by default:
 
 | Port   | Purpose              |
-|--------|----------------------|
+| ------ | -------------------- |
 | `8000` | Storefront           |
 | `8080` | HTTP (alternative)   |
 | `5173` | Admin Watcher (Vite) |
@@ -311,8 +312,6 @@ The web container exposes these ports by default:
 
 ```yaml
 compatibility_date: '2026-03-01'
-
-url: http://127.0.0.1:8000
 
 docker:
   php:
@@ -330,6 +329,8 @@ environments:
       username: admin
       password: shopware
 ```
+
+Shop URL and Admin API credentials belong under `environments` (an empty `-e`/`--env` defaults to `environments.local`). Top-level `url` and `admin_api` keys are deprecated: existing config files that still use them keep working and log a deprecation warning, but `project create` and `project config init` only write `environments.local`.
 
 ### `.shopware-project.local.yml`
 

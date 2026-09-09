@@ -23,7 +23,7 @@ sw-paas vault create
 The following table lists the required secret keys and their values.
 
 | Key                      | Value                       |
-|--------------------------|-----------------------------|
+| ------------------------ | --------------------------- |
 | `BLACKFIRE_SERVER_ID`    | Your Blackfire Server ID    |
 | `BLACKFIRE_SERVER_TOKEN` | Your Blackfire Server Token |
 

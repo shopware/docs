@@ -29,5 +29,5 @@ matrix:
             - open: '# {'
               close: '}'
     sources:
-      - '**/*.md|!resources/references/adr/*|!resources/guidelines/code/core/*|!CLAUDE.md|!AGENTS.md'
+      - '**/*.md|!resources/references/adr/*|!resources/guidelines/code/core/*|!resources/references/app-reference/script-reference/*|!CLAUDE.md|!AGENTS.md'
     default_encoding: utf-8

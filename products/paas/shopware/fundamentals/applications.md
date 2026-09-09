@@ -19,7 +19,7 @@ The number of projects and applications available to an organization depends on 
 Applications are provisioned with a default resource profile for the main Shopware workloads:
 
 | Component    | Default replicas | CPU request | Memory request | Memory limit |
-|--------------|------------------|-------------|----------------|--------------|
+| ------------ | ---------------- | ----------- | -------------- | ------------ |
 | `storefront` | `2`              | `50m`       | `256Mi`        | `2Gi`        |
 | `admin`      | `1`              | `25m`       | `128Mi`        | `2Gi`        |
 | `worker`     | `1`              | `50m`       | `256Mi`        | `1Gi`        |
@@ -35,6 +35,10 @@ Create a new application to a project:
 ```sh
 sw-paas application create
 ```
+
+:::warning
+Application names must be unique within a project and can only be used once. After an application is deleted, its name remains reserved and cannot be reused for another application in the same project.
+:::
 
 ## Build your application
 

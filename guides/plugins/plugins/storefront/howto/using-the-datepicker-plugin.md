@@ -176,15 +176,15 @@ Here is an example which shows all three selectors in action.
 
 ## More options
 
-| Option | Default | Description |
-| :--- | :--- | :--- |
-| `dateFormat` | 'Y-m-dTH:i:S+00:00' | Pattern for the date string representation
-| `altInput` | true | Hides your original input and creates a new one.
-| `altFormat` | 'j. FY, H:i' | Alternative pattern for the date string representation if `altInput` is enabled. The value of the input field gets still formatted by `dateFormat`
-| `time_24hr` | true |
-| `enableTime` | true |
-| `noCalendar` |false |
-| `weekNumbers` | true |
-| `allowInput` | true |
-| `minDate` | null | Specifies the minimum/earliest date (inclusively) allowed for selection
-| `maxDate` | null | Specifies the maximum/latest date (inclusively) allowed for selection.
+| Option        | Default             | Description                                                                                                                                        |
+| :------------ | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dateFormat`  | 'Y-m-dTH:i:S+00:00' | Pattern for the date string representation                                                                                                         |
+| `altInput`    | true                | Hides your original input and creates a new one.                                                                                                   |
+| `altFormat`   | 'j. FY, H:i'        | Alternative pattern for the date string representation if `altInput` is enabled. The value of the input field gets still formatted by `dateFormat` |
+| `time_24hr`   | true                |                                                                                                                                                    |
+| `enableTime`  | true                |                                                                                                                                                    |
+| `noCalendar`  | false               |                                                                                                                                                    |
+| `weekNumbers` | true                |                                                                                                                                                    |
+| `allowInput`  | true                |                                                                                                                                                    |
+| `minDate`     | null                | Specifies the minimum/earliest date (inclusively) allowed for selection                                                                            |
+| `maxDate`     | null                | Specifies the maximum/latest date (inclusively) allowed for selection.                                                                             |

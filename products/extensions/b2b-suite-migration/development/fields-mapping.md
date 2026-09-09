@@ -69,7 +69,7 @@ This is the example on how to define a basic relational mapping in the XML confi
 - `foreign_field`: The field in the source table used to join to the foreign table.
 - `foreign_table`: The related table to join.
 - `field_of_foreign_table`: The field to retrieve from the foreign table.
-  
+
 #### 2. Multiple Joins
 
 Chain joins for deeper relationships
@@ -81,7 +81,7 @@ Chain joins for deeper relationships
 **Explanation**:
 
 Joins `source_table.foo_id` to `foo.id`, then `foo.bar_id` to `bar.id`, and retrieves `bar.name`.
-  
+
 #### 3. Custom Join Field
 
 By default, joins use the `id` field of the foreign table. To use a different field, specify it in square brackets:  
@@ -93,7 +93,7 @@ By default, joins use the `id` field of the foreign table. To use a different fi
 **Explanation**:
 
 Joins `source_table.foo_id` to `foo.custom_field` instead of `foo.id`.
-  
+
 ::: info
 Ensure the foreign key relationships are valid to avoid errors during migration.
 :::

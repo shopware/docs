@@ -18,7 +18,7 @@ The HTTP Cache is a *must-have* for every production system. With an enabled cac
 Basic HTTP cache configuration takes place in the `.env.local` file.
 
 | Name                          | Description                    |
-|:------------------------------|:-------------------------------|
+| :---------------------------- | :----------------------------- |
 | `SHOPWARE_HTTP_CACHE_ENABLED` | Enables the HTTP cache         |
 | `SHOPWARE_HTTP_DEFAULT_TTL`   | Defines the default cache time |
 

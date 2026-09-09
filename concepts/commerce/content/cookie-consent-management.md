@@ -154,10 +154,10 @@ Multiple related cookies grouped together for easier management.
 
 The cookie consent system itself uses special cookies:
 
-| Cookie | Purpose | Lifetime |
-|--------|---------|----------|
-| `cookie-preference` | Stores user's consent choices | 30 days |
-| `cookie-config-hash` | Tracks configuration changes per language | 30 days |
+| Cookie               | Purpose                                   | Lifetime |
+| -------------------- | ----------------------------------------- | -------- |
+| `cookie-preference`  | Stores user's consent choices             | 30 days  |
+| `cookie-config-hash` | Tracks configuration changes per language | 30 days  |
 
 ### Protected Cookies
 

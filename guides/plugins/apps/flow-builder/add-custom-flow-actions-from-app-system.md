@@ -45,13 +45,13 @@ To get started with your app, create an `apps` folder inside the `custom` folder
     └── plugins
 ```
 
-| File name            | Description                                                                                                            |
-|:---------------------|:-----------------------------------------------------------------------------------------------------------------------|
-| FlowBuilderActionApp | Your app's technical name                                                                                              |
-| app-icon.png         | The app's icon                                                                                                         |
-| slack-icon.png       | Your action icon will be defined for each action in the `flow.xml` file. (optional, icons will default to a fallback)  |
-| flow.xml             | Place to define your new actions                                                                                       |
-| manifest.xml         | Base information about your app                                                                                        |
+| File name            | Description                                                                                                           |
+| :------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| FlowBuilderActionApp | Your app's technical name                                                                                             |
+| app-icon.png         | The app's icon                                                                                                        |
+| slack-icon.png       | Your action icon will be defined for each action in the `flow.xml` file. (optional, icons will default to a fallback) |
+| flow.xml             | Place to define your new actions                                                                                      |
+| manifest.xml         | Base information about your app                                                                                       |
 
 ### Manifest file
 
@@ -130,7 +130,7 @@ A single flow action would look like this:
 ```
 
 | Key          | Required | Description                                                                                                                                         |
-|:-------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
+| :----------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name         | yes      | The technical name of your action, unique for all actions                                                                                           |
 | label        | yes      | A name to be shown for your action in the actions list or action modal title                                                                        |
 | badge        | no       | An attached badge shown behind the label in the action modal title                                                                                  |
@@ -150,7 +150,7 @@ For each value when you define, it'll represent one of the `aware` interfaces fr
 To fulfill the requirements, refer to a subset of action triggers aware:
 
 | Value              | Interface                                        |
-|:-------------------|:-------------------------------------------------|
+| :----------------- | :----------------------------------------------- |
 | customerAware      | Shopware\Core\Framework\Event\CustomerAware      |
 | customerGroupAware | Shopware\Core\Framework\Event\CustomerGroupAware |
 | delayAware         | Shopware\Core\Framework\Event\DelayAware         |
@@ -174,7 +174,7 @@ To fulfill the requirements, refer to a subset of action triggers aware:
  ```
 
 | Key   | Description                                        |
-|:------|:---------------------------------------------------|
+| :---- | :------------------------------------------------- |
 | type  | Parameter type - currently only `string` supported |
 | name  | The header key                                     |
 | value | The header value                                   |
@@ -199,7 +199,7 @@ To fulfill the requirements, refer to a subset of action triggers aware:
 Define the `parameter` for the URL body based on your URL webhook services.
 
 | Key                                        | Description                                                                                                                                                            |
-|:-------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :----------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type                                       | Type of parameter, only support `string` type.                                                                                                                         |
 | name                                       | The body key for your URL.                                                                                                                                             |
 | value                                      | The content message for your URL; free to design your content message here.                                                                                            |
@@ -250,7 +250,7 @@ You can make your flow action configurable in the Administration by adding input
 Available input field attributes:
 
 | Key          | Required |
-|:-------------|:---------|
+| :----------- | :------- |
 | name         | Yes      |
 | label        | Yes      |
 | place-holder | No       |
@@ -264,7 +264,7 @@ To get more information on how to create configuration forms, see [Plugin Config
 :::
 
 | Type          | Shopware component     |
-|:--------------|:-----------------------|
+| :------------ | :--------------------- |
 | text          | `<sw-text-field/>`     |
 | textarea      | `<sw-textarea-field/>` |
 | text-editor   | `<sw-text-editor/>`    |

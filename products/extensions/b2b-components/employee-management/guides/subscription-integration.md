@@ -33,7 +33,7 @@ This integration enables:
 Employees can view subscriptions based on their assigned permissions:
 
 | Permission                            | Access Level                                                           |
-|---------------------------------------|------------------------------------------------------------------------|
+| ------------------------------------- | ---------------------------------------------------------------------- |
 | `subscription.read.all`               | View all subscriptions in the system                                   |
 | `organization_unit.subscription.read` | View subscriptions from assigned organization unit + own subscriptions |
 | (no permission)                       | View only own subscriptions                                            |
@@ -126,7 +126,7 @@ new OneToOneAssociationField(
 This table links subscriptions to the employees who created them:
 
 | Column            | Type        | Description                            |
-|-------------------|-------------|----------------------------------------|
+| ----------------- | ----------- | -------------------------------------- |
 | `id`              | BINARY(16)  | Primary key                            |
 | `subscription_id` | BINARY(16)  | Foreign key to `subscription` (UNIQUE) |
 | `employee_id`     | BINARY(16)  | Foreign key to `b2b_employee`          |

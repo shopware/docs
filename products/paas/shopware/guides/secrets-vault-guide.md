@@ -20,11 +20,11 @@ Secrets stored in the Vault are reusable across all applications in your organiz
 
 ## Secret Types
 
-| Type       | Description                                      |
-|------------|--------------------------------------------------|
-| `env`      | Runtime environment variables for your app       |
-| `buildenv` | Build-time environment variables                 |
-| `ssh`      | SSH keys for secure Git access                   |
+| Type       | Description                                |
+| ---------- | ------------------------------------------ |
+| `env`      | Runtime environment variables for your app |
+| `buildenv` | Build-time environment variables           |
+| `ssh`      | SSH keys for secure Git access             |
 
 ## Creating a Secret
 
@@ -114,14 +114,14 @@ The Shopware PaaS Vault contains both system-managed and user-managed secrets. U
 
 ### Common Secrets Reference
 
-| Secret Name | Description | Managed By | Editable by User | Notes |
-|-------------|-------------|------------|------------------|-------|
-| `STOREFRONT_CREDENTIALS` | Internal storefront credentials | System | No | **Do not delete** - Required for storefront functionality |
-| `GRAFANA_CREDENTIALS` | Grafana dashboard login credentials | System | No | **Do not delete** - Needed for `sw-paas open grafana` |
-| `NATS_USER_CREDENTIALS` | NATS messaging user credentials | System | No | **Do not delete** - Required for internal messaging |
-| `STOREFRONT_PROXY_KEY` | Storefront proxy authentication | System | No | **Do not delete** - Required for routing |
-| `SSH_PRIVATE_KEY` | Deploy SSH key for repository access | User | Yes | See [SSH key workflow](#example-workflow-using-ssh-keys) |
-| `SHOPWARE_PACKAGES_TOKEN` | Token for accessing Shopware packages | User | Yes | Watch for typo variants (e.g. missing underscore: `SHOPWAREPACKAGES_TOKEN`) |
+| Secret Name               | Description                           | Managed By | Editable by User | Notes                                                                       |
+| ------------------------- | ------------------------------------- | ---------- | ---------------- | --------------------------------------------------------------------------- |
+| `STOREFRONT_CREDENTIALS`  | Internal storefront credentials       | System     | No               | **Do not delete** - Required for storefront functionality                   |
+| `GRAFANA_CREDENTIALS`     | Grafana dashboard login credentials   | System     | No               | **Do not delete** - Needed for `sw-paas open grafana`                       |
+| `NATS_USER_CREDENTIALS`   | NATS messaging user credentials       | System     | No               | **Do not delete** - Required for internal messaging                         |
+| `STOREFRONT_PROXY_KEY`    | Storefront proxy authentication       | System     | No               | **Do not delete** - Required for routing                                    |
+| `SSH_PRIVATE_KEY`         | Deploy SSH key for repository access  | User       | Yes              | See [SSH key workflow](#example-workflow-using-ssh-keys)                    |
+| `SHOPWARE_PACKAGES_TOKEN` | Token for accessing Shopware packages | User       | Yes              | Watch for typo variants (e.g. missing underscore: `SHOPWAREPACKAGES_TOKEN`) |
 
 ::: info
 System-managed secrets use the same retrieval mechanism as user-managed secrets, which is why they appear in your vault list. This is intentional to provide transparency into the credentials your environment is using.

@@ -74,7 +74,7 @@ This is the recommended starting point when you already know what your plugin ne
 To generate a specific example instead of all of them, pass its option. Each option can also be answered interactively:
 
 | Option                           | Generates                                                                                         |
-|----------------------------------|---------------------------------------------------------------------------------------------------|
+| -------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `--create-storefront-controller` | Example Storefront controller, its template, and a `routes.php` entry                             |
 | `--create-store-api-route`       | Example Store API route with abstract class and response class                                    |
 | `--create-event-subscriber`      | Example event subscriber                                                                          |
@@ -91,7 +91,7 @@ The generated files are placed below the plugin root. For example, the optional
 components use paths such as:
 
 | Component                    | Typical generated location                                                                  |
-|------------------------------|---------------------------------------------------------------------------------------------|
+| ---------------------------- | ------------------------------------------------------------------------------------------- |
 | Console command              | `src/Command/` and `src/Resources/config/services.php`                                      |
 | Scheduled task               | `src/ScheduledTask/` and `src/Resources/config/services.php`                                |
 | Event subscriber             | `src/Subscriber/` and `src/Resources/config/services.php`                                   |

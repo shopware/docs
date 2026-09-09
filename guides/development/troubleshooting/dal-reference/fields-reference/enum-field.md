@@ -75,7 +75,7 @@ class BatchOrderEntity extends Entity {
 
 </Tab>
 <Tab title="RDBMS definition">
-  
+
 ```sql
 CREATE TABLE `batch_order` (
     `id` BINARY(16) NOT NULL,

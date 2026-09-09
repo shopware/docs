@@ -799,7 +799,7 @@ Instead of implementing multiple interfaces of `Shopware\Core\Checkout\Payment\C
 extend the `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\AbstractPaymentHandler` class and implement the necessary methods.
 
 | Old interface                         | Method used in payment handler                                                                            | Checks for `supports` method    |
-|---------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------|
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | `SynchronousPaymentHandlerInterface`  | `pay`: always called during checkout                                                                      | -                               |
 | `AsynchronousPaymentHandlerInterface` | `finalize`: only called, if `pay` returns a `RedirectResponse`                                            | -                               |
 | `PreparedPaymentHandlerInterface`     | `validate`: be aware that this method is always called and can be used to validate a cart during checkout | -                               |

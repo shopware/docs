@@ -33,6 +33,16 @@ A SQL script can also be provided via stdin:
 
     shopware-cli project sql < script.sql
 
+## Running a script from a file
+
+Use the `--file` flag to execute a SQL script from disk:
+
+```bash
+shopware-cli project sql --file script.sql
+```
+
+`--file` cannot be combined with a query argument. A missing file is reported before the database connection opens.
+
 ## Output format
 
 Use the `--format` flag to control the output format: `table`, `tsv`, or `json`.

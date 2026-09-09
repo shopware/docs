@@ -56,4 +56,4 @@ For submission logistics, timelines, and readiness questions that do not fit a s
 
 For automated and manual testing strategies to complement your Store submission, see the broader testing section:
 
-<PageRef page="../index" title="Testing" />
+<PageRef page="../" />
