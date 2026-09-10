@@ -2,6 +2,7 @@
 nav:
   title: Mixed checkout
   position: 20
+min_version: "6.7.4.0"
 
 ---
 # Mixed subscription checkout

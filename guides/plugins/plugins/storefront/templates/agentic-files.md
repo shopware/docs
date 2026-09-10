@@ -2,6 +2,7 @@
 nav:
   title: Agentic Files
   position: 15
+min_version: "6.7.12.0"
 
 ---
 

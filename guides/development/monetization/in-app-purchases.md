@@ -2,6 +2,7 @@
 nav:
   title: In-App Purchases (IAP)
   position: 50
+min_version: "6.6.9.0"
 
 ---
 

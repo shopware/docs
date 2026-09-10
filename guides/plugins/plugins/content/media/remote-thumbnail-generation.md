@@ -2,6 +2,7 @@
 nav:
   title: Remote Thumbnail Generation
   position: 40
+min_version: "6.6.4.0"
 
 ---
 

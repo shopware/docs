@@ -2,6 +2,7 @@
 nav:
   title: Static System Configuration
   position: 30
+min_version: "6.6.4.0"
 
 ---
 

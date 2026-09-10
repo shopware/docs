@@ -2,6 +2,7 @@
 nav:
   title: In-App Purchases
   position: 90
+min_version: "6.6.9.0"
 
 ---
 

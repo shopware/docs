@@ -2,6 +2,7 @@
 nav:
   title: Individual Pricing
   position: 40
+min_version: "6.7.8.0"
 
 ---
 
