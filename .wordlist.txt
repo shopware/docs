@@ -1351,6 +1351,7 @@ colorpicker
 compatability
 componentSectionRenderer
 composable
+composables
 config
 configComponent
 configs
