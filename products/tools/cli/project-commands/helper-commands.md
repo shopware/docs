@@ -235,6 +235,10 @@ Top-level `url` and `admin_api` keys are deprecated: config files that still use
 
 ## Generate JWT secret
 
+::: warning
+`shopware-cli project generate-jwt` is deprecated and will be removed in October 2026.
+:::
+
 ```bash
 shopware-cli project generate-jwt <path-to-project>
 ```
