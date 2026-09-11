@@ -12,7 +12,7 @@ nav:
 Everything a Single File Component in an extension can use. The [tutorial](../tutorial/) introduces these in the order you need them; this section is for looking one up.
 
 <PageRef page="macros/" title="Macros" sub="swDefinePublic and swDefineOverride: what a file declares about itself" />
-<PageRef page="composables/" title="Composables" sub="The override composables, and the mixin replacements" />
+<PageRef page="composables/" title="Composables" sub="The override composables, and the ones the Administration ships" />
 <PageRef page="block-components/" title="Block components" sub="sw-block and sw-block-parent: the extension points themselves" />
 
 ## Filenames
