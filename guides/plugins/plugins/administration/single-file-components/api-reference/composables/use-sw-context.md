@@ -1,7 +1,7 @@
 ---
 nav:
   title: useSwContext()
-  position: 50
+  position: 30
 
 ---
 

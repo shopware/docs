@@ -1,7 +1,7 @@
 ---
 nav:
   title: useSwProps()
-  position: 40
+  position: 20
 
 ---
 
