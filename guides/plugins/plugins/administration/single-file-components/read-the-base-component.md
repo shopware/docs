@@ -180,7 +180,7 @@ Edit the purchase price and watch the percentage follow along.
 
 A base component needs none of them: it reads its own props from `defineProps()` and emits through `defineEmits()`, because its `<script setup>` runs the ordinary way. That is [Chapter 4](build-your-own-component).
 
-*Reference: **composables API reference** - page planned, [#20196](https://github.com/shopware/shopware/issues/20196).*
+*Reference: [the override composables](api-reference#composables).*
 
 ## What this replaces
 

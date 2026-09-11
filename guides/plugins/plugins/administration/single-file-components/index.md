@@ -29,8 +29,9 @@ The fastest way in is to build something. The five chapters below are one contin
 <PageRef page="build-your-own-component" title="4. Build your own component" sub="A base SFC with props and state of its own" />
 <PageRef page="make-it-extensible" title="5. Make your component extensible" sub="sw-block, swDefinePublic and swDefineOverride" />
 
-When something goes wrong, the error catalogue is on its own page:
+Two pages back it up:
 
+<PageRef page="api-reference" title="API reference" sub="The macros, the composables and the two components, in one place" />
 <PageRef page="troubleshooting" title="Troubleshooting" sub="Every build error and console message, with its fix" />
 
 ## Building blocks
@@ -115,7 +116,6 @@ The rest of this chapter is still being written. These pages are planned as part
 | Page | Covers | Issue |
 | --- | --- | --- |
 | Introduction to SFC extensions | The high-level before and after, and why `sw-block` exists | [#20192](https://github.com/shopware/shopware/issues/20192) |
-| API reference | `sw-block`, `sw-block-parent`, `swDefinePublic`, `swDefineOverride`, `useSwPreviousState`, `useSwProps`, `useSwContext` | [#20196](https://github.com/shopware/shopware/issues/20196) |
 | Migration guide | Converting an existing Twig and Options API extension, block by block | [#20186](https://github.com/shopware/shopware/issues/20186) |
 | Timeline and roadmap | What is supported today, what is planned, what is still experimental and why | [#20198](https://github.com/shopware/shopware/issues/20198) |
 | Internals | How `sw-block` and the setup transform work | [#20199](https://github.com/shopware/shopware/issues/20199) |

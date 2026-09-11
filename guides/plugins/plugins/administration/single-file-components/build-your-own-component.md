@@ -58,7 +58,7 @@ What it means: **a base component is private by default.** Every top-level bindi
 
 [Chapter 5](make-it-extensible) is where that list gets used.
 
-*Reference: **`swDefinePublic` API reference** - page planned, [#20196](https://github.com/shopware/shopware/issues/20196).*
+*Reference: [`swDefinePublic`](api-reference#swdefinepublicbindings).*
 
 ## The component
 
