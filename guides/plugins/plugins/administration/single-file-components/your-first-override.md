@@ -199,9 +199,12 @@ swDefineOverride({});
 </Tab>
 <Tab title="Twig / Options API">
 
-```javascript
-// main.js
-import './override/sw-product-detail-base';
+```twig
+{# override/sw-product-detail-base/sw-product-detail-base.html.twig #}
+{% block sw_product_detail_base_price_form %}
+    {% parent %}
+    <mt-banner title="Margin check">This is where the margin will go.</mt-banner>
+{% endblock %}
 ```
 
 ```javascript
@@ -213,12 +216,9 @@ Shopware.Component.override('sw-product-detail-base', {
 });
 ```
 
-```twig
-{# override/sw-product-detail-base/sw-product-detail-base.html.twig #}
-{% block sw_product_detail_base_price_form %}
-    {% parent %}
-    <mt-banner title="Margin check">This is where the margin will go.</mt-banner>
-{% endblock %}
+```javascript
+// main.js
+import './override/sw-product-detail-base';
 ```
 
 </Tab>

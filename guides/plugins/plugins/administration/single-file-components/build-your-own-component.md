@@ -164,11 +164,8 @@ Reload the product. The banner now has a colour and a heading, because the compo
 <Tabs>
 <Tab title="Single File Component">
 
-```text
-component/swag-margin-hint.vue
-```
-
 ```vue
+<!-- component/swag-margin-hint.vue -->
 <template>
     <div class="swag-margin-hint">
         <mt-banner :variant="isTooLow ? 'critical' : 'positive'" :title="title">
@@ -194,15 +191,13 @@ swDefinePublic({ margin, isTooLow, title, message });
 </Tab>
 <Tab title="Twig / Options API">
 
-```text
-main.js
-component/swag-margin-hint/index.js
-component/swag-margin-hint/swag-margin-hint.html.twig
-```
-
-```javascript
-// main.js
-Shopware.Component.register('swag-margin-hint', () => import('./component/swag-margin-hint'));
+```twig
+{# component/swag-margin-hint/swag-margin-hint.html.twig #}
+<div class="swag-margin-hint">
+    <mt-banner :variant="isTooLow ? 'critical' : 'positive'" :title="title">
+        {{ message }}
+    </mt-banner>
+</div>
 ```
 
 ```javascript
@@ -233,13 +228,9 @@ export default Shopware.Component.wrapComponentConfig({
 });
 ```
 
-```twig
-{# component/swag-margin-hint/swag-margin-hint.html.twig #}
-<div class="swag-margin-hint">
-    <mt-banner :variant="isTooLow ? 'critical' : 'positive'" :title="title">
-        {{ message }}
-    </mt-banner>
-</div>
+```javascript
+// main.js
+Shopware.Component.register('swag-margin-hint', () => import('./component/swag-margin-hint'));
 ```
 
 </Tab>

@@ -126,7 +126,16 @@ swDefineOverride({ message });
 </Tab>
 <Tab title="Twig / Options API">
 
+```twig
+{# swag-margin-hint.html.twig #}
+{% block swag_margin_hint_banner %}
+    {% parent %}
+    <p>Tip: raise the price or renegotiate the purchase price.</p>
+{% endblock %}
+```
+
 ```javascript
+// index.js
 import template from './swag-margin-hint.html.twig';
 
 Shopware.Component.override('swag-margin-hint', {
@@ -138,13 +147,6 @@ Shopware.Component.override('swag-margin-hint', {
         },
     },
 });
-```
-
-```twig
-{% block swag_margin_hint_banner %}
-    {% parent %}
-    <p>Tip: raise the price or renegotiate the purchase price.</p>
-{% endblock %}
 ```
 
 </Tab>
