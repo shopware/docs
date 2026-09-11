@@ -1,13 +1,13 @@
 ---
 nav:
   title: 4. Build your own component
-  position: 50
+  position: 40
 
 ---
 
 # Chapter 4: Build your own component
 
-<!--@include: ../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 The override file from [Chapter 3](read-the-base-component) does three jobs at once: it decides where the banner goes, it works out the margin, and it renders the markup. In this chapter the last two move into a component of your own.
 
@@ -157,7 +157,7 @@ swDefineOverride({});
 
 Reload the product. The banner now has a colour and a heading, because the component can style itself on values the block content could not touch.
 
-![The margin hint as its own component](../../../../../assets/administration-sfc-tutorial-component.png)
+![The margin hint as its own component](../../../../../../assets/administration-sfc-tutorial-component.png)
 
 ## What this replaces
 
@@ -264,8 +264,8 @@ Shopware.Component.register('swag-margin-hint', async () => {
 
 Import that `index.ts` once from `main.ts`, and the tag resolves everywhere.
 
-`_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component - see the [troubleshooting page](troubleshooting#in-the-browser-console).
+`_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component - see the [troubleshooting page](../troubleshooting#in-the-browser-console).
 
-<PageRef page="../module-component-management/add-custom-component" title="Add custom components" sub="Registration itself, for Twig and Options API components" />
+<PageRef page="../../module-component-management/add-custom-component" title="Add custom components" sub="Registration itself, for Twig and Options API components" />
 
 Next: [Make your component extensible](make-it-extensible).

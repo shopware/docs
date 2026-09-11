@@ -1,13 +1,13 @@
 ---
 nav:
   title: 1. Set up your environment
-  position: 20
+  position: 10
 
 ---
 
 # Chapter 1: Set up your environment
 
-<!--@include: ../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 At the end of this chapter you have a running shop in Docker, an installed plugin that does nothing yet, and a build command that works. The Vue starts in [Chapter 2](your-first-override).
 
@@ -21,7 +21,7 @@ shopware-cli project dev
 
 That starts the containers, installs Shopware if it is not installed yet, and opens a dashboard with the shop URL, the admin URL and the credentials.
 
-<PageRef page="../../../../development/dev-environment" title="Development environment" sub="The full Shopware CLI Docker setup, its dashboard and its options" />
+<PageRef page="../../../../../development/dev-environment" title="Development environment" sub="The full Shopware CLI Docker setup, its dashboard and its options" />
 
 ::: warning You need a shop built from `trunk`
 Single File Component support is not part of any 6.7 release. Point your project at the `trunk` branch of [shopware/shopware](https://github.com/shopware/shopware) before you start.
@@ -128,7 +128,7 @@ class SwagProductMargin extends Plugin
 ```
 
 ::: info More on the PHP side
-This tutorial keeps the PHP to the absolute minimum. Plugin metadata, versioning, lifecycle methods and services are covered in the [Plugin base guide](../../plugin-base-guide).
+This tutorial keeps the PHP to the absolute minimum. Plugin metadata, versioning, lifecycle methods and services are covered in the [Plugin base guide](../../../plugin-base-guide).
 :::
 
 Install and switch it on:
@@ -168,7 +168,7 @@ Compiles the Administration and every extension into static assets, the way a pr
 </Tab>
 </Tabs>
 
-<PageRef page="../../../../development/tooling/using-watchers" title="Hot module replacement" sub="Watchers and build commands for the Administration and the Storefront" />
+<PageRef page="../../../../../development/tooling/using-watchers" title="Hot module replacement" sub="Watchers and build commands for the Administration and the Storefront" />
 
 ## Turn on editor support
 
@@ -200,6 +200,6 @@ Both commands were newly introduced and their usage may still change. Feel free 
 
 Open the Administration and go to **Extensions → My extensions**. Search for `Product margin`: it is listed and switched on.
 
-![The plugin listed and active under My extensions](../../../../../assets/administration-sfc-tutorial-plugin-installed.png)
+![The plugin listed and active under My extensions](../../../../../../assets/administration-sfc-tutorial-plugin-installed.png)
 
 Nothing else is visible yet, because the plugin has no Administration code. That is [Chapter 2](your-first-override).

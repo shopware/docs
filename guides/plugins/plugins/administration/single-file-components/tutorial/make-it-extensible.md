@@ -1,13 +1,13 @@
 ---
 nav:
   title: 5. Make your component extensible
-  position: 60
+  position: 50
 
 ---
 
 # Chapter 5: Make your component extensible
 
-<!--@include: ../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 Your component works. Now give it the same courtesy the core page gave you in [Chapter 2](your-first-override): let other extensions change it without forking it.
 
@@ -73,6 +73,7 @@ The quickest way to see what you just built is to extend it yourself. Write a se
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 
@@ -96,7 +97,7 @@ Anywhere under your Administration source directory. `override-demo/` only keeps
 
 Reload the product:
 
-![The banner with the message replaced and a tip appended by a second override](../../../../../assets/administration-sfc-tutorial-extended.png)
+![The banner with the message replaced and a tip appended by a second override](../../../../../../assets/administration-sfc-tutorial-extended.png)
 
 Three files are on screen at once: a core Twig component providing the price card, your component providing the banner, and an override changing the banner's text and adding a line under it. None of them knows the others exist - which is the whole point of declaring the block and the public API rather than editing the component directly.
 
@@ -115,6 +116,7 @@ Three files are on screen at once: a core Twig component providing the price car
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 const message = computed(() => `${previousState.message.value} Check your purchasing conditions.`);
@@ -167,4 +169,4 @@ You have written every kind of file the system has:
 * a component of your own, with props and state,
 * and an override of *your* component, driven by the extension points you chose to declare.
 
-When something breaks, start at the [troubleshooting page](troubleshooting).
+When something breaks, start at the [troubleshooting page](../troubleshooting).

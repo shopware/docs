@@ -17,17 +17,13 @@ Shopware is moving towards native Vue. Components can now be written as Vue [Sin
 
 You do not have to wait for core to be migrated. A `.vue` override works against components that still ship a Twig template and an Options API configuration, which is most of the Administration today.
 
-## The tutorial
+## Start here
 
-The fastest way in is to build something. The five chapters below are one continuous tutorial: you start with an empty directory and end with a plugin that warns a merchant when a product's profit margin is too low.
+The fastest way in is to build something. The tutorial takes you from an empty directory to a plugin that warns a merchant when a product's profit margin is too low, on the product detail page:
+
+<PageRef page="tutorial/" title="Tutorial" sub="Five chapters, one plugin, from an empty directory to a working override" />
 
 ![The finished plugin on the product detail page](../../../../../assets/administration-sfc-tutorial-extended.png)
-
-<PageRef page="set-up-your-environment" title="1. Set up your environment" sub="Docker, the plugin skeleton, and the build" />
-<PageRef page="your-first-override" title="2. Your first override" sub="Put your own markup on the product detail page" />
-<PageRef page="read-the-base-component" title="3. Read the component you extend" sub="useSwPreviousState() and real product data" />
-<PageRef page="build-your-own-component" title="4. Build your own component" sub="A base SFC with props and state of its own" />
-<PageRef page="make-it-extensible" title="5. Make your component extensible" sub="sw-block, swDefinePublic and swDefineOverride" />
 
 When something goes wrong, the error catalogue is on its own page:
 
@@ -50,7 +46,7 @@ The key concepts you will meet throughout this chapter:
 
 * **Native blocks (`sw-block` and `sw-block-parent`)** replace TwigJS blocks with plain Vue components. A block is defined with the `name` prop, extended with the `extends` prop, and `<sw-block-parent />` renders the previous content of the chain.
 * **`<script setup>` dialect.** Every `.vue` file needs a `<script setup>` block. The base component declares its public API with the `swDefinePublic()` macro, and an override declares which bindings it replaces with `swDefineOverride()`. Both macros are mandatory - pass an empty object when there is nothing to declare.
-* **Override composables.** Inside an override, `useSwPreviousState()`, `useSwProps()` and `useSwContext()` give access to the base component's public state, props and setup context.
+* **Override composables.** Inside an override, `useSwPreviousState()`, `useSwProps()` and `useSwContext()` give access to the base component's public state, props and setup context. They come from `shopware:composables/*`.
 * **Build-time transform.** The transform runs in the extension build and in the ESLint rule `valid-shopware-setup`, so invalid files are rejected in your editor and in the build with the same error.
 
 ## Before and after
@@ -97,6 +93,7 @@ Shopware.Component.override('sw-my-component', {
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 const count = computed(() => previousState.count.value * 2);
