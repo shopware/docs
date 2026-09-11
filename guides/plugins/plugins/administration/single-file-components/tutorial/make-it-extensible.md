@@ -73,7 +73,6 @@ The quickest way to see what you just built is to extend it yourself. Write a se
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 
@@ -116,7 +115,6 @@ Three files are on screen at once: a core Twig component providing the price car
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 const message = computed(() => `${previousState.message.value} Check your purchasing conditions.`);

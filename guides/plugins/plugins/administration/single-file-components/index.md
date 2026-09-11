@@ -47,7 +47,7 @@ The key concepts you will meet throughout this chapter:
 
 * **Native blocks (`sw-block` and `sw-block-parent`)** replace TwigJS blocks with plain Vue components. A block is defined with the `name` prop, extended with the `extends` prop, and `<sw-block-parent />` renders the previous content of the chain.
 * **`<script setup>` dialect.** Every `.vue` file needs a `<script setup>` block. The base component declares its public API with the `swDefinePublic()` macro, and an override declares which bindings it replaces with `swDefineOverride()`. Both macros are mandatory - pass an empty object when there is nothing to declare.
-* **Override composables.** Inside an override, `useSwPreviousState()`, `useSwProps()` and `useSwContext()` give access to the base component's public state, props and setup context. They come from `shopware:composables/*`.
+* **Override composables.** Inside an override, `useSwPreviousState()`, `useSwProps()` and `useSwContext()` give access to the base component's public state, props and setup context.
 * **Build-time transform.** The transform runs in the extension build and in the ESLint rule `valid-shopware-setup`, so invalid files are rejected in your editor and in the build with the same error.
 
 ## Before and after
@@ -94,7 +94,6 @@ Shopware.Component.override('sw-my-component', {
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 const count = computed(() => previousState.count.value * 2);
