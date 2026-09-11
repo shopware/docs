@@ -1,7 +1,7 @@
 ---
 nav:
   title: Single File Components
-  position: 10
+  position: 20
 
 ---
 
@@ -25,10 +25,11 @@ The fastest way in is to build something. The tutorial takes you from an empty d
 
 ![The finished plugin on the product detail page](../../../../../assets/administration-sfc-tutorial-extended.png)
 
-Two pages back it up:
+Three pages back it up:
 
 <PageRef page="api-reference/" title="API reference" sub="The macros, the composables and the two components, in one place" />
 <PageRef page="troubleshooting" title="Troubleshooting" sub="Every build error and console message, with its fix" />
+<PageRef page="roadmap" title="Roadmap" sub="What works today, what is still coming, and where to give feedback" />
 
 ## Building blocks
 

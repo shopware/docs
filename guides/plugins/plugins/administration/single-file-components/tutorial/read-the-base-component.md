@@ -99,7 +99,7 @@ Your override's bindings are available inside its `<sw-block extends>` content, 
 ```
 
 ::: warning Mutating a binding in the template
-Mutating a binding inside a template - `@click="counter++"` - is not supported yet. Wrap the mutation in a function and call that from the event handler instead: `@click="increment()"`.
+Mutating a binding inside a template - `@click="counter++"` - is not supported. Wrap the mutation in a function and call that from the event handler instead: `@click="increment()"`.
 :::
 
 ## The whole file
