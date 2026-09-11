@@ -1345,6 +1345,7 @@ cmss
 codebase
 codeblock
 codeblocks
+codemod
 codemods
 codereview
 colorpicker
