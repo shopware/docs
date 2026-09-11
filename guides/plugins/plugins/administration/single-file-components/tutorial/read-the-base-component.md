@@ -183,7 +183,7 @@ Edit the purchase price and watch the percentage follow along.
 
 A base component needs none of them: it reads its own props from `defineProps()` and emits through `defineEmits()`, because its `<script setup>` runs the ordinary way. That is [Chapter 4](build-your-own-component).
 
-*Reference: [`useSwPreviousState()`](../api-reference/use-sw-previous-state), [`useSwProps()`](../api-reference/use-sw-props), [`useSwContext()`](../api-reference/use-sw-context).*
+*Reference: [`useSwPreviousState()`](../api-reference/composables/use-sw-previous-state), [`useSwProps()`](../api-reference/composables/use-sw-props), [`useSwContext()`](../api-reference/composables/use-sw-context).*
 
 ## What this replaces
 

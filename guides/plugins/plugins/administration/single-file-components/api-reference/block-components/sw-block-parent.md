@@ -7,7 +7,7 @@ nav:
 
 # `sw-block-parent`
 
-<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```html
 <sw-block-parent />

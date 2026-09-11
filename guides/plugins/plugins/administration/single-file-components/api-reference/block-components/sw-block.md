@@ -7,7 +7,7 @@ nav:
 
 # `sw-block`
 
-<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 The extension point. Globally registered, so you write the tag without importing anything. Which prop you pass decides what it does.
 

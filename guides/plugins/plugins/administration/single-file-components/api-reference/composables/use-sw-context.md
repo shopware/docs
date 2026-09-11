@@ -7,7 +7,7 @@ nav:
 
 # `useSwContext()`
 
-<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
 import { useSwContext } from 'shopware:composables/use-sw-context';

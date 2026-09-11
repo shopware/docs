@@ -38,7 +38,7 @@ The `<script setup>` block is unchanged.
 
 A block you find in core is covered by the backwards-compatibility promise, so you can rely on it until the next major version.
 
-*Reference: [`sw-block`](../api-reference/sw-block).*
+*Reference: [`sw-block`](../api-reference/block-components/sw-block).*
 
 ## Open the state with `swDefinePublic`
 

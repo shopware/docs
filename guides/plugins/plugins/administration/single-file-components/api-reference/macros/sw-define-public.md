@@ -7,7 +7,7 @@ nav:
 
 # `swDefinePublic()`
 
-<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
 function swDefinePublic<T extends Record<PropertyKey, unknown>>(bindings: T): void;
@@ -45,4 +45,4 @@ swDefinePublic({});
 
 **Base files only.** In an `.override.vue` file this macro is rejected; use [`swDefineOverride()`](sw-define-override).
 
-**A binding must not share a declared prop's name.** See [troubleshooting](../troubleshooting#markup-that-silently-does-not-work).
+**A binding must not share a declared prop's name.** See [troubleshooting](../../troubleshooting#markup-that-silently-does-not-work).

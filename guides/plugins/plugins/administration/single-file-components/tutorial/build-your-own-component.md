@@ -58,7 +58,7 @@ What it means: **a base component is private by default.** Every top-level bindi
 
 [Chapter 5](make-it-extensible) is where that list gets used.
 
-*Reference: [`swDefinePublic()`](../api-reference/sw-define-public).*
+*Reference: [`swDefinePublic()`](../api-reference/macros/sw-define-public).*
 
 ## The component
 

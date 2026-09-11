@@ -7,7 +7,7 @@ nav:
 
 # `useSwProps()`
 
-<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
 import { useSwProps } from 'shopware:composables/use-sw-props';
@@ -26,6 +26,6 @@ const props = useSwProps();
 const label = computed(() => `Editing ${props.name}`);
 ```
 
-Read only. Props come from whoever renders the component, so [`swDefineOverride()`](sw-define-override) rejects a prop name with a console error. To change what a prop-derived value produces, override the binding that derives it.
+Read only. Props come from whoever renders the component, so [`swDefineOverride()`](../macros/sw-define-override) rejects a prop name with a console error. To change what a prop-derived value produces, override the binding that derives it.
 
 A base component does not need this: it declares its own props with `defineProps()`.

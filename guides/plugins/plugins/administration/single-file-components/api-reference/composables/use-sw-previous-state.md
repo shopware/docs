@@ -7,7 +7,7 @@ nav:
 
 # `useSwPreviousState()`
 
-<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
 import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
@@ -19,7 +19,7 @@ Override files only. Returns the state of the component being overridden.
 
 ## What you get
 
-Everything that component exposes: its `data`, `computed`, `methods` and `props` while it is still an Options API component, or the names it passed to [`swDefinePublic()`](sw-define-public) once it has been migrated.
+Everything that component exposes: its `data`, `computed`, `methods` and `props` while it is still an Options API component, or the names it passed to [`swDefinePublic()`](../macros/sw-define-public) once it has been migrated.
 
 ```ts
 import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
