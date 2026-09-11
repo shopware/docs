@@ -10,16 +10,13 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSwProps } from 'shopware:composables/use-sw-props';
-
 function useSwProps<T extends Record<PropertyKey, any>>(): T;
 ```
 
-Override files only. Returns the props the overridden component was given.
+Auto-imported, override files only. Returns the props the overridden component was given.
 
 ```ts
 import { computed } from 'vue';
-import { useSwProps } from 'shopware:composables/use-sw-props';
 
 const props = useSwProps();
 

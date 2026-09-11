@@ -9,16 +9,16 @@ nav:
 
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-Every composable the Administration publishes comes from a `shopware:composables/*` module, named after the composable in `kebab-case` - `useNotification()` from `shopware:composables/use-notification`, and so on:
+The Administration publishes its composables as `shopware:composables/*` modules, one module per composable, named after it in `kebab-case`:
 
 ```ts
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 import { useNotification } from 'shopware:composables/use-notification';
+import { useListing } from 'shopware:composables/use-listing';
 ```
 
 ## Override composables
 
-Three of them exist only inside an `.override.vue` file. They are how an override reaches the component it overrides.
+Three composables are not on that list. They are injected by the build like the macros are, so you never import them, and they exist only inside an `.override.vue` file. They are how an override reaches the component it overrides.
 
 <PageRef page="use-sw-previous-state" title="useSwPreviousState()" sub="The state of the component you override" />
 <PageRef page="use-sw-props" title="useSwProps()" sub="That component's props, read only" />

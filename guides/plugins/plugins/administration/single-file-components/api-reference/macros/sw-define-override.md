@@ -22,8 +22,6 @@ A compile-time macro: you do not import it, it produces no runtime code, and it 
 Each name replaces the binding of that name in the component being overridden - a `computed`, a `ref` and a function alike. Read the original through [`useSwPreviousState()`](../composables/use-sw-previous-state) to build on it rather than discard it.
 
 ```ts
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
-
 const previousState = useSwPreviousState();
 const greeting = computed(() => `${previousState.greeting.value}!`);
 

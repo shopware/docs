@@ -10,17 +10,12 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSwContext } from 'shopware:composables/use-sw-context';
-
 function useSwContext<T = SetupContext>(): T;
 ```
 
-Override files only. Returns the overridden component's Vue `SetupContext`: `emit`, `attrs`, `slots` and `expose`.
+Auto-imported, override files only. Returns the overridden component's Vue `SetupContext`: `emit`, `attrs`, `slots` and `expose`.
 
 ```ts
-import { useSwContext } from 'shopware:composables/use-sw-context';
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
-
 const context = useSwContext();
 const previousState = useSwPreviousState();
 

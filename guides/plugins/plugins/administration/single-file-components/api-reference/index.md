@@ -54,13 +54,14 @@ One Shopware-specific rule in base components: a top-level binding must not shar
 | Name | Where it comes from |
 | --- | --- |
 | `swDefinePublic`, `swDefineOverride` | Compile-time macros, like Vue's own `defineProps` |
+| `useSwPreviousState`, `useSwProps`, `useSwContext` | Injected by the build into every `.override.vue` file |
 | `sw-block`, `sw-block-parent` | Globally registered components, resolved by tag name |
 | `Shopware` | The Administration's global object. Read it freely; `Shopware` is a reserved binding name |
 
-Everything else comes from a `shopware:*` virtual module - the composables, plus stores, utilities, mixins and DAL helpers:
+Everything else comes from a `shopware:*` virtual module - the published composables, plus stores, utilities, mixins and DAL helpers:
 
 ```ts
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
+import { useNotification } from 'shopware:composables/use-notification';
 import useSwProductDetailStore from 'shopware:stores/swProductDetail';
 import { Criteria } from 'shopware:data';
 import { createId } from 'shopware:utils';

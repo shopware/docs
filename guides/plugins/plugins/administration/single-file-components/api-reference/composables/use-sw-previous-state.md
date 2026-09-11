@@ -10,20 +10,16 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
-
 function useSwPreviousState<T extends Record<PropertyKey, any>>(): T;
 ```
 
-Override files only. Returns the state of the component being overridden.
+Auto-imported, override files only. Returns the state of the component being overridden.
 
 ## What you get
 
 Everything that component exposes: its `data`, `computed`, `methods` and `props` while it is still an Options API component, or the names it passed to [`swDefinePublic()`](../macros/sw-define-public) once it has been migrated.
 
 ```ts
-import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
-
 const previousState = useSwPreviousState();
 
 previousState.product.value;   // read a value
