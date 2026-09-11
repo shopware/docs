@@ -13,16 +13,23 @@ Everything a Single File Component in an extension can use: the two macros, the 
 
 ## Filenames
 
-A `.vue` file needs no registration call. Its name decides what it is.
+A `.vue` file needs no registration call. Its name decides both what the component is called and whether it is a base component or an override.
 
-| File | Resolves to | Role |
-| --- | --- | --- |
-| `sw-my-component.vue` | `sw-my-component` | Base component |
-| `sw-my-component/index.vue` | `sw-my-component` | Base component |
-| `sw-my-component.override.vue` | `sw-my-component` | Override |
-| `sw-my-component/index.override.vue` | `sw-my-component` | Override |
+**A base component** declares the name. Either layout works:
 
-Two base files resolving to the same name fail the build. Any number of overrides may target the same component, from any number of plugins; within one plugin they need separate directories, because the filename is the whole identity.
+| File | Declares |
+| --- | --- |
+| `sw-my-component.vue` | `sw-my-component` |
+| `sw-my-component/index.vue` | `sw-my-component` |
+
+**An override** targets the name, with `.override` before the extension:
+
+| File | Overrides |
+| --- | --- |
+| `sw-my-component.override.vue` | `sw-my-component` |
+| `sw-my-component/index.override.vue` | `sw-my-component` |
+
+Two base files declaring the same name fail the build. Any number of overrides may target the same component, from any number of plugins; within one plugin they need separate directories, because the filename is the whole identity.
 
 Every `.vue` file in an extension is compiled by the Shopware setup transform. It must have a `<script setup>` block, and that block must declare its role with one of the two macros below.
 
@@ -68,7 +75,13 @@ swDefineOverride({ greeting });
 
 ## Composables
 
-All three are auto-imported and exist **only inside an override file**. A base component reads its props from `defineProps()` and its context from Vue directly.
+All three exist **only inside an override file**. A base component reads its props from `defineProps()` and its context from Vue directly.
+
+```ts
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
+import { useSwProps } from 'shopware:composables/use-sw-props';
+import { useSwContext } from 'shopware:composables/use-sw-context';
+```
 
 | Composable | Returns |
 | --- | --- |
@@ -87,6 +100,8 @@ Gives you everything the component you override exposes: its `data`, `computed`,
 With several overrides on one component, each sees the result of the ones registered before it, so overrides compose rather than compete.
 
 ```ts
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
+
 const previousState = useSwPreviousState();
 
 previousState.product.value;   // read a value: .value in your script
@@ -103,6 +118,14 @@ function useSwProps<T extends Record<PropertyKey, any>>(): T;
 
 The props the overridden component was given. Read only - to change what a prop-derived value produces, override the binding that derives it.
 
+```ts
+import { useSwProps } from 'shopware:composables/use-sw-props';
+
+const props = useSwProps();
+
+const label = computed(() => `Editing ${props.name}`);
+```
+
 ### `useSwContext()`
 
 ```ts
@@ -112,6 +135,8 @@ function useSwContext<T = SetupContext>(): T;
 The overridden component's setup context, so an override can emit its events or read its slots.
 
 ```ts
+import { useSwContext } from 'shopware:composables/use-sw-context';
+
 const context = useSwContext();
 
 function onSave(): void {
@@ -175,14 +200,14 @@ One Shopware-specific rule in base components: a top-level binding must not shar
 
 | Name | Where it comes from |
 | --- | --- |
-| `swDefinePublic`, `swDefineOverride` | Auto-imported macros |
-| `useSwPreviousState`, `useSwProps`, `useSwContext` | Auto-imported, override files only |
+| `swDefinePublic`, `swDefineOverride` | Compile-time macros, like Vue's own `defineProps` |
 | `sw-block`, `sw-block-parent` | Globally registered components, resolved by tag name |
 | `Shopware` | The Administration's global object. Read it freely; `Shopware` is a reserved binding name |
 
-Stores, utilities, mixins and DAL helpers come from the `shopware:*` virtual modules:
+Everything else comes from a `shopware:*` virtual module - the composables above, plus stores, utilities, mixins and DAL helpers:
 
 ```ts
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 import useSwProductDetailStore from 'shopware:stores/swProductDetail';
 import { Criteria } from 'shopware:data';
 import { createId } from 'shopware:utils';
