@@ -198,7 +198,7 @@ Both commands were newly introduced and their usage may still change. Feel free 
 
 ## Checkpoint
 
-Open the Administration and go to **Extensions → My extensions**. `Product margin` is listed and switched on:
+Open the Administration and go to **Extensions → My extensions**. Search for `Product margin`: it is listed and switched on.
 
 ![The plugin listed and active under My extensions](../../../../../assets/administration-sfc-tutorial-plugin-installed.png)
 
