@@ -96,12 +96,3 @@ The mixins stay where they are, so an Options API component that has not been mi
 ### Block system
 
 <PageRef page="use-block-context" title="useBlockContext()" sub="The registry behind sw-block" />
-
-## Vue's own composables
-
-`ref`, `computed`, `watch`, `onMounted` and the rest come from `vue` and behave exactly as they do in any
-Vue 3 project:
-
-```ts
-import { computed, ref } from 'vue';
-```
