@@ -1,13 +1,13 @@
 ---
 nav:
   title: 2. Your first override
-  position: 30
+  position: 20
 
 ---
 
 # Chapter 2: Your first override
 
-<!--@include: ../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 The plugin from [Chapter 1](set-up-your-environment) does nothing. In this chapter it puts a banner of your own onto the product detail page, right under the price fields.
 
@@ -15,7 +15,7 @@ The plugin from [Chapter 1](set-up-your-environment) does nothing. In this chapt
 
 In the Administration, go to **Catalogues → Products**, click any product, stay on the **General** tab and scroll down to the **Prices** card. The price fields inside it are what this chapter puts a banner under:
 
-![The Prices card with the price form outlined and labelled with its block name](../../../../../assets/administration-sfc-tutorial-block-location.png)
+![The Prices card with the price form outlined and labelled with its block name](../../../../../../assets/administration-sfc-tutorial-block-location.png)
 
 That card is rendered by the core component `sw-product-detail-base`, and its template marks the places extensions may hook into. The outlined area above is one of them:
 
@@ -165,7 +165,7 @@ shopware-cli project admin-watch
 
 Go back to the product you opened at the start of this chapter and scroll to **Prices**:
 
-![The banner rendered under the price fields on the product detail page](../../../../../assets/administration-sfc-tutorial-static-banner.png)
+![The banner rendered under the price fields on the product detail page](../../../../../../assets/administration-sfc-tutorial-static-banner.png)
 
 ::: info About the spacing
 Block content sits flush against the content above it, with no gap. We will address that later on.
@@ -173,7 +173,7 @@ Block content sits flush against the content above it, with no gap. We will addr
 
 Your plugin is on a core page, and the core page has not been touched.
 
-If nothing appears, the [troubleshooting page](troubleshooting) lists the usual causes.
+If nothing appears, the [troubleshooting page](../troubleshooting) lists the usual causes.
 
 ## What this replaces
 

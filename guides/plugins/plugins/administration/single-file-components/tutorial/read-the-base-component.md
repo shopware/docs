@@ -1,13 +1,13 @@
 ---
 nav:
   title: 3. Read the component you extend
-  position: 40
+  position: 30
 
 ---
 
 # Chapter 3: Read the component you extend
 
-<!--@include: ../../../../../snippets/guide/administration_sfc_experimental.md-->
+<!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 The banner says the same thing on every product. In this chapter it reads the product out of the component it extends and works out the actual margin.
 
@@ -38,10 +38,12 @@ computed: {
 Your override is not that component and has no `this` of its own to reach it through. It asks for the state instead:
 
 ```ts
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
+
 const previousState = useSwPreviousState();
 ```
 
-Like the macros, `useSwPreviousState` is auto-imported, and it exists only inside an `.override.vue` file. What it gives you is everything the component you override exposes: its `data`, `computed`, `methods` and `props` - or, once that component has been migrated to a Single File Component, everything it published for extensions.
+It exists only inside an `.override.vue` file, and what it gives you is everything the component you override exposes: its `data`, `computed`, `methods` and `props` - or, once that component has been migrated to a Single File Component, everything it published for extensions.
 
 So `previousState.product` is the product currently open in the form, including unsaved edits.
 
@@ -124,6 +126,7 @@ The margin and the verdict are computed in the script; the template just reads t
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 
@@ -164,7 +167,7 @@ swDefineOverride({});
 
 Reload a product that has a purchase price set:
 
-![The margin calculated from the product's own prices](../../../../../assets/administration-sfc-tutorial-margin.png)
+![The margin calculated from the product's own prices](../../../../../../assets/administration-sfc-tutorial-margin.png)
 
 Edit the purchase price and watch the percentage follow along.
 
@@ -172,15 +175,15 @@ Edit the purchase price and watch the percentage follow along.
 
 `useSwPreviousState()` has two companions, and all three exist only inside an override:
 
-| Composable | Returns |
-| --- | --- |
-| `useSwPreviousState()` | The state of the component you override. Refs are **not** unwrapped |
-| `useSwProps()` | The props that component was given, read only |
-| `useSwContext()` | Its Vue setup context: `emit`, `attrs`, `slots`, `expose` |
+| Composable | Imported from | Returns |
+| --- | --- | --- |
+| `useSwPreviousState()` | `shopware:composables/use-sw-previous-state` | The state of the component you override. Refs are **not** unwrapped |
+| `useSwProps()` | `shopware:composables/use-sw-props` | The props that component was given, read only |
+| `useSwContext()` | `shopware:composables/use-sw-context` | Its Vue setup context: `emit`, `attrs`, `slots`, `expose` |
 
 A base component needs none of them: it reads its own props from `defineProps()` and emits through `defineEmits()`, because its `<script setup>` runs the ordinary way. That is [Chapter 4](build-your-own-component).
 
-*Reference: [the override composables](api-reference#composables).*
+*Reference: [`useSwPreviousState()`](../api-reference/use-sw-previous-state), [`useSwProps()`](../api-reference/use-sw-props), [`useSwContext()`](../api-reference/use-sw-context).*
 
 ## What this replaces
 
@@ -190,6 +193,7 @@ A base component needs none of them: it reads its own props from `defineProps()`
 ```vue
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useSwPreviousState } from 'shopware:composables/use-sw-previous-state';
 
 const previousState = useSwPreviousState();
 

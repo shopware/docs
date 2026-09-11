@@ -2075,6 +2075,8 @@ substring
 supervisord
 svg
 sw
+swDefineOverride
+swDefinePublic
 swSelect
 sw_extends
 swoole
@@ -2162,6 +2164,9 @@ upsert
 uri
 url
 urls
+useSwContext
+useSwPreviousState
+useSwProps
 useValidityRange
 userAware
 userRecovery
