@@ -228,6 +228,7 @@ Codestyle
 Cognito
 CommercialB
 CommercialBundle
+CommonJS
 ComponentFactory
 Composables
 ConfigJson
@@ -1444,6 +1445,7 @@ dereference
 dereferenced
 describeFeatures
 destructure
+destructured
 destructuring
 dev
 devenv
@@ -1515,6 +1517,7 @@ externalReference
 failover
 fallback
 fallbacks
+fallthrough
 fastly
 favicon
 fetchable
@@ -1638,10 +1641,12 @@ init
 initialisms
 initializer
 initializers
+inlines
 installable
 instantiation
 integrations
 interceptable
+interop
 intl
 invalidations
 io
@@ -1815,6 +1820,7 @@ otel
 otlp
 overridable
 overrideComponentSetup
+overrideable
 oversales
 paas
 packagist
@@ -2032,6 +2038,7 @@ snackbar
 snackbars
 snakeCase
 sortings
+sourcemap
 sourcemaps
 sql
 src
@@ -2149,9 +2156,11 @@ unhandled
 uninstallation
 uniqBy
 unminified
+unmount
 unmounting
 unprefixed
 unregister
+unregisters
 unrequested
 unsecure
 unserialize

@@ -17,6 +17,32 @@ Shopware is moving towards native Vue. Components can now be written as Vue [Sin
 
 You do not have to wait for core to be migrated. A `.vue` override works against components that still ship a Twig template and an Options API configuration, which is most of the Administration today.
 
+## What an override looks like
+
+This is the new syntax:
+
+```vue
+<!-- sw-product-detail-base.override.vue -->
+<script setup lang="ts">
+import { computed } from 'vue';
+
+const previousState = useSwPreviousState();
+
+const productName = computed(() => `${previousState.productName.value} (needs review)`);
+
+swDefineOverride({ productName });
+</script>
+```
+
+From now on the component renders your `productName` everywhere it rendered its own.
+
+Two things are doing the work, and neither needs an import or a registration call:
+
+* **`useSwPreviousState()`** hands you the state of the component you are overriding - here, its own `productName`.
+* **`swDefineOverride()`** names which of your bindings replace the original ones. Anything you do not name is left alone.
+
+Markup works the same way: `<sw-block ...>` hooks take the place of the `{% block ... %}` ones. [Before and after](#before-and-after) puts the same override next to the Twig and Options API version of itself.
+
 ## Start here
 
 The fastest way in is to build something. The tutorial takes you from an empty directory to a plugin that warns a merchant when a product's profit margin is too low, on the product detail page:
@@ -25,31 +51,12 @@ The fastest way in is to build something. The tutorial takes you from an empty d
 
 ![The finished plugin on the product detail page](../../../../../assets/administration-sfc-tutorial-extended.png)
 
-Three pages back it up:
+Four pages back it up:
 
 <PageRef page="api-reference/" title="API reference" sub="The macros, the composables and the two components, in one place" />
 <PageRef page="troubleshooting" title="Troubleshooting" sub="Every build error and console message, with its fix" />
 <PageRef page="roadmap" title="Roadmap" sub="What works today, what is still coming, and where to give feedback" />
-
-## Building blocks
-
-| Concern | Twig / Options API | Single File Components |
-| --- | --- | --- |
-| Component file | `index.js` + `component.html.twig` | `sw-my-component.vue` |
-| Registration | `Shopware.Component.register()` | Filename decides identity: `sw-my-component.vue` or `sw-my-component/index.vue` declares `sw-my-component` |
-| Override | `Shopware.Component.override()` | Filename decides role: `sw-my-component.override.vue` overrides `sw-my-component` |
-| Extension point in template | `{% block name %}...{% endblock %}` | `<sw-block name="...">...</sw-block>` |
-| Extending a block | `{% block name %}...{% endblock %}` in an override template | `<sw-block extends="...">...</sw-block>` |
-| Parent content | `{% parent %}` | `<sw-block-parent />` |
-| Public state of a component | Everything on `this` | Only what is listed in `swDefinePublic({ ... })` |
-| Overriding state | Redefine `data`, `computed`, `methods` | `swDefineOverride({ ... })` together with `useSwPreviousState()` |
-
-The key concepts you will meet throughout this chapter:
-
-* **Native blocks (`sw-block` and `sw-block-parent`)** replace TwigJS blocks with plain Vue components. A block is defined with the `name` prop, extended with the `extends` prop, and `<sw-block-parent />` renders the previous content of the chain.
-* **`<script setup>` dialect.** Every `.vue` file needs a `<script setup>` block. The base component declares its public API with the `swDefinePublic()` macro, and an override declares which bindings it replaces with `swDefineOverride()`. Both macros are mandatory - pass an empty object when there is nothing to declare.
-* **Override composables.** Inside an override, `useSwPreviousState()`, `useSwProps()` and `useSwContext()` give access to the base component's public state, props and setup context.
-* **Build-time transform.** The transform runs in the extension build and in the ESLint rule `valid-shopware-setup`, so invalid files are rejected in your editor and in the build with the same error.
+<PageRef page="internals" title="Internals" sub="What the build does to your file, and what the block components do at runtime" />
 
 ## Before and after
 
@@ -105,14 +112,3 @@ swDefineOverride({ count });
 
 </Tab>
 </Tabs>
-
-## Reference pages
-
-The rest of this chapter is still being written. These pages are planned as part of the [SFC documentation epic](https://github.com/shopware/shopware/issues/20186):
-
-| Page | Covers | Issue |
-| --- | --- | --- |
-| Introduction to SFC extensions | The high-level before and after, and why `sw-block` exists | [#20192](https://github.com/shopware/shopware/issues/20192) |
-| Migration guide | Converting an existing Twig and Options API extension, block by block | [#20186](https://github.com/shopware/shopware/issues/20186) |
-| Timeline and roadmap | What is supported today, what is planned, what is still experimental and why | [#20198](https://github.com/shopware/shopware/issues/20198) |
-| Internals | How `sw-block` and the setup transform work | [#20199](https://github.com/shopware/shopware/issues/20199) |

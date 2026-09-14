@@ -15,16 +15,6 @@ Five chapters, one continuous build. You start with an empty directory and end w
 
 Three lines of that banner come from three different files, and telling them apart is what the tutorial is for: markup your component owns, state an override replaced, and markup a second override added.
 
-## Before you start
-
-| Requirement | Notes |
-| --- | --- |
-| A Shopware installation from `trunk` | SFC support is not in any 6.7 release |
-| Docker | [Chapter 1](set-up-your-environment) sets the shop up with Shopware CLI |
-| Vue 3 and the Composition API | `computed` and `<script setup>` are used from the first chapter and are not explained here |
-
-Previous Administration experience is not needed. If you have it, the "What this replaces" section at the end of each chapter puts the new way next to the Twig and Options API way you already know.
-
 ## Chapters
 
 <PageRef page="set-up-your-environment" title="1. Set up your environment" sub="Docker, the plugin skeleton, and the build" />

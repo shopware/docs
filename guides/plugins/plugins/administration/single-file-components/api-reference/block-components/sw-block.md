@@ -53,3 +53,9 @@ swag_greeting_card_body
 ## Bindings in block content
 
 Your override's bindings are available inside its `<sw-block extends>` content and read like any other Vue template binding. Mutating one from the template - `@click="counter++"` - is not supported; wrap the mutation in a function and call that instead.
+
+## Order, when several extensions meet
+
+Native `<sw-block extends>` contributions render in registration order, and all of them render after a TwigJS override of the same block. A legacy override is therefore always the parent of a native one, whichever order the plugins load in.
+
+<PageRef page="../../internals" title="Internals" sub="How the chain is assembled, and why the order is what it is" />
