@@ -43,6 +43,21 @@ Two things are doing the work, and neither needs an import or a registration cal
 
 Markup works the same way: `<sw-block ...>` hooks take the place of the `{% block ... %}` ones. [Before and after](#before-and-after) puts the same override next to the Twig and Options API version of itself.
 
+## Timeline
+
+| When | What happens |
+| --- | --- |
+| Today | The extension system is available, and experimental. Build something with it and tell us what you find. |
+| 6.8 | The Administration's private components are converted, and run in production for the first time. |
+| 6.9 | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it. |
+| Later | The remaining components follow. The shims keep working for a while after that. |
+
+Converting the Administration's own components is the larger half of the work, and it is why the
+experimental phase lasts as long as it does: every component that changes shape is one more chance for
+an extension to break, and we would rather find those now than in a major.
+
+See the full roadmap [here](./roadmap.md)
+
 ## Start here
 
 The fastest way in is to build something. The tutorial takes you from an empty directory to a plugin that warns a merchant when a product's profit margin is too low, on the product detail page:
