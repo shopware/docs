@@ -138,7 +138,7 @@ is meant for plugin developers too, not only for the Administration's own compon
 This is what the experimental phase is for. Tell us what you tried to extend and where the system got
 in your way, what an API made awkward, and what you could not do at all.
 
-`<insert link here>`
+`<insert future link to github discussion here>` 
 
 If you have a reproducible defect rather than feedback, an issue on
 [shopware/shopware](https://github.com/shopware/shopware/issues) is the faster route.
