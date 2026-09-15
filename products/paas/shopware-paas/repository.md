@@ -70,10 +70,10 @@ shopware	<paas-url>.git (fetch)
 shopware	<paas-url>.git (push)
 ```
 
-| Remote     | Function          | Description                                                             |
-|------------|-------------------|-------------------------------------------------------------------------|
-| `origin`   | Project Code      | This remote contains all your project specific source code              |
-| `shopware` | PaaS Environment  | Changes pushed to this remote will be synced with your PaaS environment |
+| Remote     | Function         | Description                                                             |
+| ---------- | ---------------- | ----------------------------------------------------------------------- |
+| `origin`   | Project Code     | This remote contains all your project specific source code              |
+| `shopware` | PaaS Environment | Changes pushed to this remote will be synced with your PaaS environment |
 
 ## Migrating from the old template to the new template
 

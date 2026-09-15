@@ -31,15 +31,15 @@ A Shopware plugin goes through several lifecycle stages:
 * Update
 * Uninstall
 
-| Lifecycle | Description |
-| :--- | :--- |
-| `install()` | Executed on plugin install |
-| `activate()` | Executed **before** plugin activation |
-| `deactivate()` | Executed **before** plugin deactivation |
-| `update()` | Executed on plugin update |
+| Lifecycle       | Description                                  |
+| :-------------- | :------------------------------------------- |
+| `install()`     | Executed on plugin install                   |
+| `activate()`    | Executed **before** plugin activation        |
+| `deactivate()`  | Executed **before** plugin deactivation      |
+| `update()`      | Executed on plugin update                    |
 | `postInstall()` | Executed **after** successful plugin install |
-| `postUpdate()` | Executed **after** successful plugin update |
-| `uninstall()` | Executed on plugin uninstallation |
+| `postUpdate()`  | Executed **after** successful plugin update  |
+| `uninstall()`   | Executed on plugin uninstallation            |
 
 Each stage allows you to prepare, modify, or clean up your plugin’s integration with the system.
 

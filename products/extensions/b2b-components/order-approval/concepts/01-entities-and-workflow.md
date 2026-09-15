@@ -5,7 +5,6 @@ nav:
 
 ---
 
-
 # Entities and workflow
 
 ## Entities

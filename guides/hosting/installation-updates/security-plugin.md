@@ -16,11 +16,11 @@ The plugin does not replace regular Shopware updates. It is meant to bridge the 
 The following table shows which plugin version covers each major Shopware version.
 
 | Plugin version | Shopware versions | Maintained |
-|----------------|-------------------|------------|
+| -------------- | ----------------- | ---------- |
 | 4.x            | 6.7.x             | ✔️         |
 | 3.x            | 6.6.x             | ✔️         |
 | 2.x            | 6.5.x             | ✔️         |
-| 1.x            | 6.4.x             | ❌          |
+| 1.x            | 6.4.x             | ❌         |
 
 Within a plugin version, every fix declares the Shopware version range it applies to. A fix is only loaded when your Shopware version is affected: if your version already contains the official patch or is older than the first affected version, the fix stays inactive automatically. Installing the plugin on a fully patched installation is therefore safe. It simply does nothing until a new vulnerability is published.
 

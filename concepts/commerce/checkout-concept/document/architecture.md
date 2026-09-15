@@ -80,12 +80,12 @@ The `RendersReferencedSnapshot` interface goes one step further: a provider impl
 
 Every document type supports a fixed set of formats. `storno` is the technical name for the cancellation invoice type:
 
-| Document type   | Purpose                                                                       | Formats                                      |
-| --------------- | ----------------------------------------------------------------------------- | -------------------------------------------- |
-| `invoice`       | Bills the order                                                               | html, pdf, zugferd_xml, zugferd_embedded_pdf |
+| Document type   | Purpose                                                                      | Formats                                      |
+| --------------- | ---------------------------------------------------------------------------- | -------------------------------------------- |
+| `invoice`       | Bills the order                                                              | html, pdf, zugferd_xml, zugferd_embedded_pdf |
 | `delivery_note` | Accompanies the shipment. Requires a delivery date in the generation request | html, pdf                                    |
-| `credit_note`   | Credits the credit line items of a referenced invoice                         | html, pdf, zugferd_xml, zugferd_embedded_pdf |
-| `storno`        | Cancels a referenced invoice by inverting its amounts                         | html, pdf, zugferd_xml, zugferd_embedded_pdf |
+| `credit_note`   | Credits the credit line items of a referenced invoice                        | html, pdf, zugferd_xml, zugferd_embedded_pdf |
+| `storno`        | Cancels a referenced invoice by inverting its amounts                        | html, pdf, zugferd_xml, zugferd_embedded_pdf |
 
 `DocumentTypeRegistry` in code is the source of truth for this table and is the successor to the `document_type` database row for a type that remains to satisfy the foreign key.
 

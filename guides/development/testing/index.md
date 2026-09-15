@@ -29,7 +29,7 @@ Shopware supports both PHP backend logic and JavaScript components (for Storefro
 ### PHP (PHPUnit)
 
 Use PHPUnit to write and run backend unit tests for your PHP code.
-  
+
 <PageRef page="../testing/unit/php-unit" />
 
 ### JavaScript (Jest)

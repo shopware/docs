@@ -36,9 +36,9 @@ To create a workflow, follow the instructions in the [user documentation](https:
 
 ## Known Limitations - Early Access
 
-| Limitation | Workaround |
-|------------|------------|
-| No test mode | Use staging shops |
-| Limited error details | Add Log nodes |
-| No undo / redo | Save frequently |
+| Limitation             | Workaround                  |
+| ---------------------- | --------------------------- |
+| No test mode           | Use staging shops           |
+| Limited error details  | Add Log nodes               |
+| No undo / redo         | Save frequently             |
 | At-least-once delivery | Design idempotent workflows |

@@ -112,7 +112,7 @@ symfony console cache:clear
 Shopware creates a default Administration user during installation:
 
 | Username | Password   |
-|:---------|:-----------|
+| :------- | :--------- |
 | `admin`  | `shopware` |
 
 :::warning

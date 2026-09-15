@@ -41,8 +41,11 @@ pnpm run docs:preview
 # Run spellcheck via docker
 make spellcheck
 
+# Run markdown linting (via rumdl)
+pnpm run check:markdown
+
 # Auto-fix markdown issues (be aware that it can only fix certain issues)
-make fix
+pnpm run fix:markdown
 
 # Sort spellcheck wordlist
 LC_ALL=C sort .wordlist.txt -o .wordlist.txt
@@ -92,7 +95,7 @@ The repository has extensive automated quality control:
 
 ### Markdown Style
 
-- Configuration in `markdown-style-config.yml`
+- Configuration in `.rumdl.toml`
 - 40+ linting rules enabled
 - Consistent formatting enforced via CI/CD
 
@@ -139,13 +142,13 @@ Check the current branch against main. There should be two files to be moved. Cr
 - **Follow repository conventions**: Adhere to the existing documentation structure, markdown style rules, and asset naming conventions.
 - **Respect synced content**: When changes are needed in synced areas (`/resources/references/adr/`, `/assets/adr/`, `/resources/guidelines/code/core/`), propose edits against the `shopware/shopware` repository instead of changing them here.
 - **Keep redirects consistent**: When pages are moved or removed, compare your branch against `main`, identify changed paths, and add redirects to `.gitbook.yaml` following the existing patterns.
-- **Use quality checks when appropriate**: Run `make lint`, `make fix`, or the configured spellcheck tasks when you make non-trivial documentation changes, especially if CI feedback suggests issues.
+- **Use quality checks when appropriate**: Run `pnpm run check:markdown`, `pnpm run fix:markdown`, or the configured spellcheck tasks when you make non-trivial documentation changes, especially if CI feedback suggests issues.
 - **Prefer incremental, focused changes**: Keep pull requests small and well-scoped so they are easy to review and reason about.
 
 ### Don't
 
 - **Don't edit synced files directly**: Avoid modifying files that are automatically synchronized from `shopware/shopware`, as those changes will be overwritten.
 - **Don't break existing URLs**: Avoid renaming or moving pages without adding a corresponding redirect entry in `.gitbook.yaml`.
-- **Don't bypass style and spelling rules**: Do not introduce Markdown formatting that conflicts with `markdown-style-config.yml`, or ignore repeated spelling issues that should be added to `.wordlist.txt`.
+- **Don't bypass style and spelling rules**: Do not introduce Markdown formatting that conflicts with `.rumdl.toml`, or ignore repeated spelling issues that should be added to `.wordlist.txt`.
 - **Don't change repository tooling lightly**: Avoid editing CI workflows, configuration files, or build tooling unless explicitly requested, and always keep changes minimal and well-documented.
 - **Don't mix unrelated changes**: Do not bundle large, unrelated modifications (for example, structural moves plus extensive content rewrites) into a single change set.

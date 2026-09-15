@@ -19,7 +19,7 @@ sw-paas application update
 The file consists of two main sections:
 
 | Section    | Description                                                        |
-|------------|--------------------------------------------------------------------|
+| ---------- | ------------------------------------------------------------------ |
 | `app`      | Application settings such as PHP version and environment variables |
 | `services` | Infrastructure services like MySQL and OpenSearch                  |
 
@@ -95,11 +95,11 @@ app:
 
 A list of environment variables is passed to the application. Each entry requires:
 
-| Field   | Description                          | Values         |
-|---------|--------------------------------------|----------------|
-| `name`  | The variable name                    | Any string     |
-| `scope` | When the variable is available       | `RUN`, `BUILD` |
-| `value` | The variable value                   | Any string     |
+| Field   | Description                    | Values         |
+| ------- | ------------------------------ | -------------- |
+| `name`  | The variable name              | Any string     |
+| `scope` | When the variable is available | `RUN`, `BUILD` |
+| `value` | The variable value             | Any string     |
 
 - **`RUN`** -- available at runtime (passed to the Shopware application).
 - **`BUILD`** -- available during the build step.
@@ -175,9 +175,9 @@ services:
     snippets_path: config/fastly
 ```
 
-| Option                     | Default | Description                                                                                                |
-|----------------------------|---------|------------------------------------------------------------------------------------------------------------|
+| Option                     | Default | Description                                                                                                                                                      |
+| -------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `snippets_path`            | unset   | Directory (relative to the repository root) containing your custom VCL snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
-| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services |
+| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services                                                           |
 
 The directory must contain one sub-directory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.
