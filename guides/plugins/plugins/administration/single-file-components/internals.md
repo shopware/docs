@@ -56,10 +56,10 @@ Two Vite plugins and one transform, all of them in
 
 There is no registration argument to get wrong, because the transform reads the identity off the path:
 
-| File | Mode | Component |
-| --- | --- | --- |
-| `swag-margin-hint.vue` | base | `swag-margin-hint` |
-| `swag-margin-hint/index.vue` | base | `swag-margin-hint` |
+| File                                  | Mode     | Component                |
+| ------------------------------------- | -------- | ------------------------ |
+| `swag-margin-hint.vue`                | base     | `swag-margin-hint`       |
+| `swag-margin-hint/index.vue`          | base     | `swag-margin-hint`       |
 | `sw-product-detail-base.override.vue` | override | `sw-product-detail-base` |
 
 That name is baked into the generated code as a string literal, which is why renaming the file changes
@@ -115,10 +115,10 @@ stack trace and a breakpoint land in your file rather than in generated code.
 The transform is a plain CommonJS module, and that is deliberate - it has three consumers that all need
 it synchronously:
 
-| Consumer | What it gives you |
-| --- | --- |
-| The Vite build | The code that actually runs |
-| The Jest transformer | Tests that see the same code |
+| Consumer                               | What it gives you                               |
+| -------------------------------------- | ----------------------------------------------- |
+| The Vite build                         | The code that actually runs                     |
+| The Jest transformer                   | Tests that see the same code                    |
 | The `valid-shopware-setup` ESLint rule | The same error in your editor, before you build |
 
 So an invalid file fails the same way in all three places, with the same message. The rules the
@@ -489,11 +489,11 @@ through that one argument, its own locals included.
 
 The chain is then resolved by position:
 
-| Position | Who |
-| --- | --- |
-| First | The block's own default content |
-| Middle | Legacy Twig overrides, through the [shim](#twig-interop) |
-| Last | Native `<sw-block extends>` contributions, in registration order |
+| Position | Who                                                              |
+| -------- | ---------------------------------------------------------------- |
+| First    | The block's own default content                                  |
+| Middle   | Legacy Twig overrides, through the [shim](#twig-interop)         |
+| Last     | Native `<sw-block extends>` contributions, in registration order |
 
 The **last** entry is what the block renders. Everything before it is provided to the descendants
 under an injection key, for `sw-block-parent` to pick up.

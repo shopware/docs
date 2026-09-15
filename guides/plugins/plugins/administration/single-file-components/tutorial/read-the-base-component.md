@@ -172,11 +172,11 @@ Edit the purchase price and watch the percentage follow along.
 
 `useSwPreviousState()` has two companions, and all three exist only inside an override:
 
-| Composable | Returns |
-| --- | --- |
+| Composable             | Returns                                                             |
+| ---------------------- | ------------------------------------------------------------------- |
 | `useSwPreviousState()` | The state of the component you override. Refs are **not** unwrapped |
-| `useSwProps()` | The props that component was given, read only |
-| `useSwContext()` | Its Vue setup context: `emit`, `attrs`, `slots`, `expose` |
+| `useSwProps()`         | The props that component was given, read only                       |
+| `useSwContext()`       | Its Vue setup context: `emit`, `attrs`, `slots`, `expose`           |
 
 A base component needs none of them: it reads its own props from `defineProps()` and emits through `defineEmits()`, because its `<script setup>` runs the ordinary way. That is [Chapter 4](build-your-own-component).
 

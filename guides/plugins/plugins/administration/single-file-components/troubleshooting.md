@@ -33,56 +33,56 @@ Your override compiles, the build is clean, and the page is unchanged. In order 
 
 ## The file itself
 
-| Message | Cause | Fix |
-| --- | --- | --- |
-| `A Shopware setup component needs a <script setup> block. …` | The file has a plain `<script>` (Options API) or only a template | Every `.vue` file in an extension needs `<script setup>`. Keep Options API components as `index.js` + `.html.twig` |
-| `A Shopware setup block cannot be combined with another <script> block.` | A second `<script>` next to `<script setup>` | Move that code into the setup block or into a separate module |
-| `Unsupported <script setup lang="…"> …` | A language other than `js`, `jsx`, `ts` or `tsx` | Use one of the four |
-| `Top-level await is not supported inside Shopware setup blocks.` | `await` at the top level of `<script setup>` | Move it into a function, or use `watchEffect` / `onMounted` |
+| Message                                                                  | Cause                                                            | Fix                                                                                                                |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `A Shopware setup component needs a <script setup> block. …`             | The file has a plain `<script>` (Options API) or only a template | Every `.vue` file in an extension needs `<script setup>`. Keep Options API components as `index.js` + `.html.twig` |
+| `A Shopware setup block cannot be combined with another <script> block.` | A second `<script>` next to `<script setup>`                     | Move that code into the setup block or into a separate module                                                      |
+| `Unsupported <script setup lang="…"> …`                                  | A language other than `js`, `jsx`, `ts` or `tsx`                 | Use one of the four                                                                                                |
+| `Top-level await is not supported inside Shopware setup blocks.`         | `await` at the top level of `<script setup>`                     | Move it into a function, or use `watchEffect` / `onMounted`                                                        |
 
 ## The macros
 
-| Message | Cause | Fix |
-| --- | --- | --- |
+| Message                                                                                                            | Cause                                                             | Fix                                                            |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- |
 | `A base Shopware setup component must declare its extension surface. Add swDefinePublic({ … }) at the top level …` | No `swDefinePublic()`, or it is nested inside a function or block | Add it as a top-level statement. `swDefinePublic({})` is valid |
-| `swDefineOverride() must be called exactly once at the top level of an override Shopware setup block.` | Same, for an `.override.vue` file | Add `swDefineOverride({})` |
-| `Only one swDefinePublic() call is allowed in a base Shopware setup block.` | Two marker calls | Merge them into one |
-| `swDefinePublic() only supports shorthand bindings such as { a, b }. …` | A renamed, string or computed key | Rename the binding itself so key and binding match |
-| `Spread properties are not supported inside swDefinePublic().` | `swDefinePublic({ ...state })` | List the names explicitly |
-| `swDefinePublic() is a compile-time marker and returns nothing. …` | `const x = swDefinePublic({})` | Call it as a statement |
-| `swDefinePublic() is a Shopware setup compile-time macro for base components. …` | `swDefinePublic` used in an `.override.vue` file | Use `swDefineOverride()` |
+| `swDefineOverride() must be called exactly once at the top level of an override Shopware setup block.`             | Same, for an `.override.vue` file                                 | Add `swDefineOverride({})`                                     |
+| `Only one swDefinePublic() call is allowed in a base Shopware setup block.`                                        | Two marker calls                                                  | Merge them into one                                            |
+| `swDefinePublic() only supports shorthand bindings such as { a, b }. …`                                            | A renamed, string or computed key                                 | Rename the binding itself so key and binding match             |
+| `Spread properties are not supported inside swDefinePublic().`                                                     | `swDefinePublic({ ...state })`                                    | List the names explicitly                                      |
+| `swDefinePublic() is a compile-time marker and returns nothing. …`                                                 | `const x = swDefinePublic({})`                                    | Call it as a statement                                         |
+| `swDefinePublic() is a Shopware setup compile-time macro for base components. …`                                   | `swDefinePublic` used in an `.override.vue` file                  | Use `swDefineOverride()`                                       |
 
 ## Right macro, wrong file
 
-| Message | Cause | Fix |
-| --- | --- | --- |
-| `defineProps() is only supported in base Shopware setup blocks.` | A Vue macro in an override. Same for `withDefaults`, `defineEmits`, `defineExpose`, `defineSlots`, `defineOptions` | Use `useSwProps()` / `useSwContext()` instead |
-| `useSwPreviousState() is only supported in override Shopware setup blocks.` | An override composable in a base component. Same for `useSwProps`, `useSwContext` | A base component reads its own props and context directly |
-| `Vue macro defineModel() is not supported inside Shopware setup blocks.` | `defineModel()` in either mode | Declare the prop and the `update:` event by hand |
+| Message                                                                     | Cause                                                                                                              | Fix                                                       |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| `defineProps() is only supported in base Shopware setup blocks.`            | A Vue macro in an override. Same for `withDefaults`, `defineEmits`, `defineExpose`, `defineSlots`, `defineOptions` | Use `useSwProps()` / `useSwContext()` instead             |
+| `useSwPreviousState() is only supported in override Shopware setup blocks.` | An override composable in a base component. Same for `useSwProps`, `useSwContext`                                  | A base component reads its own props and context directly |
+| `Vue macro defineModel() is not supported inside Shopware setup blocks.`    | `defineModel()` in either mode                                                                                     | Declare the prop and the `update:` event by hand          |
 
 ## Reserved names
 
-| Message | Cause | Fix |
-| --- | --- | --- |
-| `"…" uses the reserved "__swSetup" prefix …` | A binding or import starting with `__swSetup` | Rename it |
-| `"Shopware" is reserved …` | A top-level binding named `Shopware` | Rename it. Reading the global `Shopware` object is fine; declaring the name is not |
-| Reserved: `__swOverride`, `__proto__` | Used internally by the override channel and the generated state map | Rename |
+| Message                                      | Cause                                                               | Fix                                                                                |
+| -------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `"…" uses the reserved "__swSetup" prefix …` | A binding or import starting with `__swSetup`                       | Rename it                                                                          |
+| `"Shopware" is reserved …`                   | A top-level binding named `Shopware`                                | Rename it. Reading the global `Shopware` object is fine; declaring the name is not |
+| Reserved: `__swOverride`, `__proto__`        | Used internally by the override channel and the generated state map | Rename                                                                             |
 
 ## Blocks
 
-| Message | Cause | Fix |
-| --- | --- | --- |
-| `The data binding of <sw-block> is generated by the Shopware setup transform and must not be authored.` | You wrote `:data`, `v-bind` or `#default` on an `sw-block` | Write only `name` or `extends` |
-| `Cannot assign to "…" inside <sw-block extends> content …` | A template write to one of your override's bindings inside block content | The binding arrives there as a copy. Change it in a function in your `<script setup>` and call that function |
-| `Duplicate native setup base component name "…": "…" and "…" resolve to the same extendable component.` | Two base `.vue` files in one build resolve to the same name | Rename one file or its directory |
+| Message                                                                                                 | Cause                                                                    | Fix                                                                                                          |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `The data binding of <sw-block> is generated by the Shopware setup transform and must not be authored.` | You wrote `:data`, `v-bind` or `#default` on an `sw-block`               | Write only `name` or `extends`                                                                               |
+| `Cannot assign to "…" inside <sw-block extends> content …`                                              | A template write to one of your override's bindings inside block content | The binding arrives there as a copy. Change it in a function in your `<script setup>` and call that function |
+| `Duplicate native setup base component name "…": "…" and "…" resolve to the same extendable component.` | Two base `.vue` files in one build resolve to the same name              | Rename one file or its directory                                                                             |
 
 ## In the browser console
 
-| Message | Cause | Fix |
-| --- | --- | --- |
-| `[…] Override result value not working. Cannot override props. Following prop should be changed: "…"` | `swDefineOverride` returned a name that is a prop of the component | Props come from the parent and cannot be overridden. Read them with `useSwProps()` |
-| `[sw-block] The "name" prop changed from "…" to "…" after mount.` | A dynamic `name` on an `sw-block` | Block names must be static |
-| `[ComponentFactory] The component "…" needs a template to be functional.` | An SFC handed to `Shopware.Component.register()` without `_renderedBySfcTemplate: true` | Return `{ ...component, _renderedBySfcTemplate: true }` from the registration callback. A production build moves the render function inside `setup()`, where the component factory does not find it |
+| Message                                                                                               | Cause                                                                                   | Fix                                                                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[…] Override result value not working. Cannot override props. Following prop should be changed: "…"` | `swDefineOverride` returned a name that is a prop of the component                      | Props come from the parent and cannot be overridden. Read them with `useSwProps()`                                                                                                                  |
+| `[sw-block] The "name" prop changed from "…" to "…" after mount.`                                     | A dynamic `name` on an `sw-block`                                                       | Block names must be static                                                                                                                                                                          |
+| `[ComponentFactory] The component "…" needs a template to be functional.`                             | An SFC handed to `Shopware.Component.register()` without `_renderedBySfcTemplate: true` | Return `{ ...component, _renderedBySfcTemplate: true }` from the registration callback. A production build moves the render function inside `setup()`, where the component factory does not find it |
 
 ## Markup that silently does not work
 

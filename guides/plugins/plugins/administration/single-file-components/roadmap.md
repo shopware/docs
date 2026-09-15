@@ -45,25 +45,25 @@ the override composables instead.
 
 | Macro                                                                 | Base | Override                 |
 | --------------------------------------------------------------------- | ---- | ------------------------ |
-| `defineProps()`, `withDefaults()`                                     | ✅    | `useSwProps()` instead   |
-| `defineEmits()`, `defineSlots()`, `defineExpose()`, `defineOptions()` | ✅    | `useSwContext()` instead |
-| `defineModel()`                                                       | ❌    | ❌                        |
+| `defineProps()`, `withDefaults()`                                     | ✅   | `useSwProps()` instead   |
+| `defineEmits()`, `defineSlots()`, `defineExpose()`, `defineOptions()` | ✅   | `useSwContext()` instead |
+| `defineModel()`                                                       | ❌   | ❌                       |
 
 ### Blocks
 
 | Feature                                                           | Supported |
 | ----------------------------------------------------------------- | --------- |
-| `<sw-block name="...">` to declare an extension point             | ✅         |
-| `<sw-block extends="...">` to contribute to one                   | ✅         |
-| `<sw-block-parent />` to render the previous content of the chain | ✅         |
-| Several plugins extending the same block                          | ✅         |
+| `<sw-block name="...">` to declare an extension point             | ✅        |
+| `<sw-block extends="...">` to contribute to one                   | ✅        |
+| `<sw-block-parent />` to render the previous content of the chain | ✅        |
+| Several plugins extending the same block                          | ✅        |
 
 ### Reaching the component you override
 
 | Feature                                                  | Supported                                                      |
 | -------------------------------------------------------- | -------------------------------------------------------------- |
-| `useSwPreviousState()`, `useSwProps()`, `useSwContext()` | ✅                                                              |
-| Replacing a binding with `swDefineOverride()`            | ✅                                                              |
+| `useSwPreviousState()`, `useSwProps()`, `useSwContext()` | ✅                                                             |
+| Replacing a binding with `swDefineOverride()`            | ✅                                                             |
 | Writing to the previous state                            | Read only; replace a binding with `swDefineOverride()` instead |
 | Overriding a prop                                        | Props are always declared by the base component                |
 
@@ -73,15 +73,15 @@ Both directions work, so a converted component and an unconverted one extend the
 outside. Coverage is not complete, though: the shims handle the shapes components actually use, and an
 unusual one can still fall through.
 
-| What you write    | What it extends                                                               | Supported       |
-| ----------------- | ----------------------------------------------------------------------------- | --------------- |
+| What you write    | What it extends                                                               | Supported        |
+| ----------------- | ----------------------------------------------------------------------------- | ---------------- |
 | A `.vue` override | A component that still ships a Twig template and an Options API configuration | ⚠️ in most cases |
 | A Twig override   | A component that has been converted to a Single File Component                | ⚠️ in most cases |
 
 ### Tooling
 
-| Feature                                                                  | Supported |
-| ------------------------------------------------------------------------ | --------- |
+| Feature                                                                  | Supported  |
+| ------------------------------------------------------------------------ | ---------- |
 | Type checking and editor support through the extension tooling           | ✅         |
 | Build-time validation, in the build and in your editor                   | ✅         |
 | Importing stores, utilities, mixins and DAL helpers through `shopware:*` | ✅         |
@@ -93,8 +93,8 @@ unusual one can still fall through.
 A Single File Component cannot use a mixin, so every mixin a plugin may reasonably use is getting a
 composable counterpart:
 
-| Mixin                         | Composable                                                                                 |
-| ----------------------------- | ------------------------------------------------------------------------------------------ |
+| Mixin                         | Composable                                                                                  |
+| ----------------------------- | ------------------------------------------------------------------------------------------- |
 | `cart-notification`           | ❌ being worked on                                                                          |
 | `cms-element`                 | ✅ [`useCmsElement()`](api-reference/composables/use-cms-element)                           |
 | `cms-state`                   | ✅ [`useCmsState()`](api-reference/composables/use-cms-state)                               |

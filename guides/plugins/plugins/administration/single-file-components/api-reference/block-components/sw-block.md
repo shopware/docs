@@ -11,9 +11,9 @@ nav:
 
 The extension point. Globally registered, so you write the tag without importing anything. Which prop you pass decides what it does.
 
-| Prop | Type | Meaning |
-| --- | --- | --- |
-| `name` | `string` | **Declares** an extension point. Its children are the default content |
+| Prop      | Type     | Meaning                                                                              |
+| --------- | -------- | ------------------------------------------------------------------------------------ |
+| `name`    | `string` | **Declares** an extension point. Its children are the default content                |
 | `extends` | `string` | **Contributes** to the extension point of that name. Renders nothing where it stands |
 
 `name` and `extends` are the only props you write. The component has others - your editor may offer them - and they are internal: the build rejects an authored `data`, `v-bind` or `#default` on an `sw-block`.
