@@ -17,14 +17,14 @@ Two settings make this possible:
 
 The directory containing the `application.yaml` is the **application root**. Every path an application configuration references is resolved relative to it, so an application in a monorepo sub-directory addresses its files without repeating that prefix:
 
-| Setting                        | Resolved relative to  |
-| ------------------------------ | --------------------- |
-| `app.build.context`            | The application root  |
-| `app.build.dockerfile_path`    | The application root  |
-| `services.fastly.snippets_path`| The application root  |
-| `composer.lock`                | The build context     |
+| Setting                         | Resolved relative to |
+| ------------------------------- | -------------------- |
+| `app.build.context`             | The application root |
+| `app.build.dockerfile_path`     | The application root |
+| `services.fastly.snippets_path` | The application root |
+| `composer.lock`                 | The build context    |
 
-When no `--application-yaml-path` is given, the application root is the repository root and everything behaves exactly as you put your application.yaml to the root of your repository.
+When no `--application-yaml-path` is given, the application root is the repository root and every path resolves against it.
 
 All resolved paths must stay inside the repository. `..` segments are allowed as long as the result does not leave it.
 
@@ -54,8 +54,8 @@ For a repository laid out like this:
 create one application per sub-directory, each pointing at its own file:
 
 ```sh
-sw-paas application create --name storefront --application-yaml-path apps/shopware/application.yaml
-sw-paas application create --name frontend   --application-yaml-path apps/frontend/application.yaml
+sw-paas application create --name shopware --application-yaml-path apps/shopware/application.yaml
+sw-paas application create --name frontend --application-yaml-path apps/frontend/application.yaml
 ```
 
 ::: info
@@ -76,7 +76,7 @@ app:
     version: "8.3"
 ```
 
-With the layout above and an `application.yaml` in `apps/storefront/`, `context: ".."` builds from `apps/`.
+With the layout above and an `application.yaml` in `apps/shopware/`, `context: ".."` builds from `apps/`.
 
 Keep in mind when choosing a context:
 
