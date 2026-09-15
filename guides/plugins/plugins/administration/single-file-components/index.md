@@ -19,12 +19,12 @@ Components can now be written as Vue [Single File Components](https://vuejs.org/
 
 ## Timeline
 
-| When | What happens |
-| --- | --- |
-| Today | The extension system is available, and experimental. Build something with it and tell us what you find. |
-| 6.8 | The Administration's private components are converted, and run in production for the first time. |
-| 6.9 | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it. |
-| Later | The remaining components follow. The shims keep working for a while after that. |
+| When  | What happens                                                                                                        |
+| ----- | ------------------------------------------------------------------------------------------------------------------- |
+| Today | The extension system is available, and experimental. Build something with it and tell us what you find.             |
+| 6.8   | The Administration's private components are converted, and run in production for the first time.                    |
+| 6.9   | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it. |
+| Later | The remaining components follow. The shims keep working for a while after that.                                     |
 
 Converting the Administration's own components is the larger half of the work, and it is why the
 experimental phase lasts as long as it does: every component that changes shape is one more chance for
