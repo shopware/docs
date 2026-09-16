@@ -40,6 +40,14 @@ sw-paas application create
 Application names must be unique within a project and can only be used once. After an application is deleted, its name remains reserved and cannot be reused for another application in the same project.
 :::
 
+By default, the application is created from the `application.yaml` at the root of the project repository. If the file lives in a sub-directory, for example because several applications share one repository, pass its path:
+
+```sh
+sw-paas application create --application-yaml-path apps/shopware/application.yaml
+```
+
+The path is stored on the application, so later updates reuse it. See [Deploy from a monorepo](../guides/monorepo.md) for the details.
+
 ## Build your application
 
 To trigger a new build for the application via CLI, use the following command:

@@ -127,7 +127,7 @@ No. Single sign-on for tools such as Grafana and OpenSearch is not available at 
 
 ## Are Blackfire or Tideways included?
 
-No. Tideways and Blackfire are not currently supported as part of the platform.
+Both are supported, but you need to bring your own account. The platform runs the agent for you once you store the credentials as secrets and enable the service in your `application.yaml`. Only one of them can be enabled at a time. See [Blackfire](./monitoring/blackfire.md) and [Tideways](./monitoring/tideways.md).
 
 ## Are load tests provided by Shopware PaaS Native?
 
