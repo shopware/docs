@@ -39,6 +39,14 @@ A (re-)registration moves them as follows:
 `unconfirmed_app_secrets` is `NULL` whenever there is nothing pending. A non-null value means a rotation or install did not get a clear answer, and the app may already hold one of the listed secrets — that is the signal recovery acts on.
 :::
 
+Shopware never guesses which of them the app kept. On a re-registration it walks them in order — **unconfirmed newest-first, then the committed `app_secret` last**:
+
+1. Shopware builds the candidate list — every unconfirmed secret, newest first, then the committed `app_secret`.
+2. It re-registers, signing the request with the next candidate.
+3. Any failure — a rejected signature, an HTTP `5xx`, a timeout — moves on to the next candidate.
+4. On the first candidate the app accepts, a fresh secret is confirmed and committed as `app_secret`, the unconfirmed list is cleared, and the run stops — the remaining candidates are never tried.
+5. If no candidate is accepted, every candidate is kept and the run reports `FRAMEWORK__APP_SECRET_RECOVERY_FAILED`.
+
 A list (rather than a single value) matters because recovery can itself be interrupted: each attempt adds a freshly generated secret ahead of the ones it is still trying. The list is capped at five entries, and the oldest one always survives that cap — in a repeatedly interrupted loop it is the secret the app most likely still holds.
 
 ## Rotating a secret — `app:secret:rotate`
@@ -53,7 +61,7 @@ bin/console app:secret:rotate
 
 Rotation re-registers the app with a freshly generated secret; the new secret becomes active only once the app confirms it. If the confirmation is interrupted, the new secret is retained in `unconfirmed_app_secrets` and the rotation reports a failure, leaving the active secret untouched.
 
-A pending unconfirmed secret does **not** block a later rotation. Rotation reconciles it instead of rotating over it: the pending secrets become signing candidates, exactly as they do for `app:install`. So `app:secret:rotate <app-name>` is itself a recovery path: the candidate order and the outcomes described below apply to both commands.
+A pending unconfirmed secret does **not** block a later rotation. Rotation reconciles it instead of rotating over it: the pending secrets become signing candidates, exactly as they do for `app:install`. So `app:secret:rotate <app-name>` is itself a recovery path: the candidate order above and the outcomes below apply to both commands.
 
 ::: warning
 Rotation **refuses to run** on an app whose installation never finished — a manifest with a `<setup>` block, and either no committed secret or a secret still parked in `deleted_apps`. It reports `FRAMEWORK__APP_INSTALLATION_INCOMPLETE`, because committing a secret would clear the only marker that tells `app:install` an installation is left to resume. Run `bin/console app:install <app-name>` instead: that finishes the installation and repairs the credentials in one step.
