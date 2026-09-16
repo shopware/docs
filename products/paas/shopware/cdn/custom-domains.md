@@ -30,6 +30,8 @@ Custom domains allow you to serve your Shopware shop through your own branded do
 | `AAAA`      |     **Yes**      |          No          | Fastly IPv6 addresses  |   4   | Routes apex domain traffic (IPv6)      |
 | `TXT`       |     **Yes**      |          No          | Domain ownership proof |   1   | Validates domain ownership             |
 
+The `TXT` challenge record applies to apex domains only. If your custom domain is a subdomain, the `CNAME` record is the only record you need and you can skip Step 2.
+
 ## Step 1: Configure DNS Records
 
 Configure DNS records at your domain registrar or DNS provider. The required records differ based on whether you're using an apex domain or a subdomain.
@@ -70,18 +72,19 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 2a04:4e42:600::820
 ```
 
-## Step 2: Domain ownership - Create a `TXT` record to prove domain ownership
+## Step 2: Domain ownership (apex domains only)
+
+Apex domains additionally require a `TXT` record to prove domain ownership. Skip this step if your custom domain is a subdomain.
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
 ```
 
-Replace `<domain>` with your actual domain and `<organization id>` with your organization ID from `sw-paas org list`.
+Replace `<domain>` with your apex domain and `<organization id>` with your organization ID from `sw-paas org list`.
 
 Example with the following setup:
 
-- your application FQDN is `myshop.example.com`
-- then your domain is `example.com`
+- your apex domain is `example.com`
 - your organization ID is `abc123`
 
 Create the following record:
@@ -118,7 +121,7 @@ dig example.com A
 dig example.com AAAA
 ```
 
-**For challenge record:**
+**For the challenge record (apex domains only):**
 
 ```bash
 # Verify TXT record
@@ -190,7 +193,7 @@ The domain should now serve traffic through the Fastly CDN.
    - For non-apex domains: Ensure CNAME points to `cdn.shopware.shop`
 
 2. **Check DNS propagation**
-   - Use `dig` commands (see Step 2) to verify records are resolvable
+   - Use `dig` commands (see Step 3) to verify records are resolvable
    - Try querying from different DNS servers: `dig @8.8.8.8 example.com A`
    - Use online tools like [whatsmydns.net](https://www.whatsmydns.net) to check global propagation
 
@@ -198,7 +201,7 @@ The domain should now serve traffic through the Fastly CDN.
    - If records appear correct in your DNS provider but aren't resolving, wait longer for propagation
    - DNS changes can take up to 48 hours in some cases
 
-4. **Verify organization ID**
+4. **Verify organization ID (apex domains)**
    - Run `sw-paas org list` to confirm your organization ID
    - Ensure the TXT record value exactly matches: `shopware-challenge=<your-org-id>`
 
