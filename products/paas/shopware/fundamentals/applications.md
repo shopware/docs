@@ -70,11 +70,13 @@ This command initiates the build process, waits until it's done, and runs the de
 
 ## Deployment behavior
 
-Deployments are designed to be zero downtime and use Kubernetes rolling updates.
+Deployments use Kubernetes rolling updates and are zero downtime **when no database migrations are involved**.
 
 During deployment, database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper#execution-flow).
 
-This works well for regular Shopware deployments because breaking database changes are expected only during major Shopware upgrades. When upgrading across major versions, make sure your deployment remains backward compatible throughout the rollout.
+When a deployment includes migrations, zero downtime cannot be guaranteed: schema changes can temporarily break compatibility with the code still serving traffic, which may cause errors or instability during the rollout.
+
+Breaking database changes are expected only during major Shopware upgrades. When upgrading across major versions, make sure your deployment remains backward compatible throughout the rollout, and plan the upgrade for a low-traffic window.
 
 Pre-deployment and post-deployment hooks are supported through the [deployment helper configuration](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).
 
@@ -193,15 +195,9 @@ Follow the prompts to specify your domain name and application. You can attach m
 
 #### DNS Configuration
 
-After creating a custom domain, you must configure your DNS settings to point to the PaaS CDN endpoint:
+DNS records must be configured and fully propagated **before** you create the domain, because the platform validates them in real time.
 
-**Configure your custom domain's DNS to point to:**
-
-```dns
-cdn.shopware.shop
-```
-
-This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
+The required records differ between subdomains and apex domains — a `CNAME` is only valid for a subdomain, while an apex domain needs `A` and `AAAA` records plus a `TXT` ownership challenge. See [Custom Domains](../cdn/index.md#custom-domains) for the exact record values and for commands to verify propagation.
 
 #### Application Deployment
 
