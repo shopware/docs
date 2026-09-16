@@ -108,6 +108,126 @@ The following table shows the current status of both systems and the direction t
 | Twig.js blocks             | Standard     | Will be deprecated and removed once the migration to native blocks is complete |
 | Native blocks (`sw-block`) | Experimental | Will become the standard for core components and extensions                    |
 
+#### Overriding Twig-based core components from native `.vue` files
+
+During the migration period, you can write Administration overrides as native `.vue` files even when the core component you target still uses Twig.js.
+
+Use this approach when:
+
+- your plugin already uses native Vue SFC overrides
+- the core component has not yet been migrated to native blocks
+- you want to keep your extension on the native override path where possible
+
+A native override still follows the same `*.override.vue` convention:
+
+```vue
+<template>
+    <sw-block extends="sw-text-field">
+        <sw-block-parent />
+
+        <span class="my-help-text">{{ helpText }}</span>
+    </sw-block>
+</template>
+
+<script setup>
+defineProps({
+    helpText: {
+        type: String,
+        required: false,
+        default: '',
+    },
+});
+</script>
+```
+
+If the targeted Twig component contains a matching block, the override is mounted into that block during template resolution.
+
+#### How to choose the correct target block
+
+For Twig-based core components, the `extends` value must match the original Twig block name you want to replace or extend.
+
+Example Twig core template:
+
+```twig
+{% block sw-text-field %}
+    <input type="text" v-model="value" @change="onChange">
+{% endblock %}
+```
+
+Matching native override:
+
+```vue
+<template>
+    <sw-block extends="sw-text-field">
+        <sw-block-parent />
+        <span class="my-help-text">Extra content</span>
+    </sw-block>
+</template>
+```
+
+If your override does not render, verify the following first:
+
+1. The file name matches `*.override.vue`
+2. The block name in `extends` matches the Twig block name exactly
+3. Your override file is part of the Administration build
+4. The target block structure is supported by the compatibility bridge described below
+
+#### Supported migration scenario
+
+This hybrid setup is intended for the migration period:
+
+- **Core component:** Twig.js template
+- **Plugin override:** native `*.override.vue`
+
+You can use this to migrate plugin overrides incrementally instead of waiting until every core component has been converted to native Vue blocks.
+
+#### Limitations of native overrides against Twig templates
+
+This bridge does not provide full parity with native-to-native overrides.
+
+Use a legacy Twig override instead if the target Twig block uses a structure that cannot host a single `sw-block` insertion point.
+
+In particular, blocks that contain multiple named slot templates are not supported.
+
+Example of an unsupported Twig block structure:
+
+```twig
+{% block sw_order_list_content %}
+    <template #content>
+        ...the whole order list
+    </template>
+
+    <template #sidebar>
+        <sw-sidebar>
+            ... filter-panel ...
+        </sw-sidebar>
+    </template>
+{% endblock %}
+```
+
+For blocks like this, keep using the legacy Twig-based extension technique until the core component is migrated.
+
+#### Troubleshooting native overrides for Twig components
+
+If your native override renders nothing, work through this checklist:
+
+1. **Check the file name**
+   - Use the `*.override.vue` suffix
+
+2. **Check the block name**
+   - `extends="..."` must match the Twig block exactly
+
+3. **Check whether the target is Twig or native**
+   - For native core components, use the native override path as usual
+   - For Twig core components, only supported block structures can be bridged
+
+4. **Inspect the original Twig template**
+   - Look for a single block content area
+   - If the block contains several sibling `<template #...>` slot templates, use a Twig override instead
+
+5. **Rebuild the Administration**
+   - Override target detection happens during the Administration build process
+
 ### 3. Vuex to Pinia
 
 #### Why Make This Change?
@@ -282,6 +402,34 @@ const props = defineProps({
 </script>
 ```
 
+#### Extension override against a legacy Twig core component
+
+If the core component still uses Twig.js, you can still keep the native override file format as long as the targeted Twig block is supported by the bridge.
+
+```vue
+<template>
+    <sw-block extends="sw-text-field">
+        <sw-block-parent />
+
+        <span class="my-help-text">{{ helpText }}</span>
+    </sw-block>
+</template>
+
+<script setup>
+const props = defineProps({
+    helpText: {
+        type: String,
+        required: false,
+        default: '',
+    },
+});
+</script>
+```
+
+Use this pattern when you want to migrate extension overrides to SFCs before the corresponding core component has been migrated.
+
+If the target Twig block uses unsupported structures, fall back to a classic Twig override.
+
 #### Extension new component
 
 ```javascript
@@ -302,11 +450,45 @@ Shopware.Component.register('your-crazy-ai-field', {
 
 Once the migration is complete and the new systems have left the experimental state, registering components via `Shopware.Component.register` with the Options API or Twig.js templates will no longer be possible. This will only happen in a future major version.
 
+## Build behavior for native override files
+
+Administration override files following the `*.override.vue` naming convention are processed during the Administration build.
+
+For native overrides that target Twig-based core components, the build scans the override template for referenced block targets and registers those targets before runtime template resolution.
+
+You do not need to register those targets manually.
+Your task as an extension author is to:
+
+1. create the override as `*.override.vue`
+2. reference the target block through `<sw-block extends="...">`
+3. rebuild the Administration so the override target is detected
+
+Example:
+
+```vue
+<template>
+    <sw-block extends="sw-product-detail-base__advanced-prices">
+        <sw-block-parent />
+        <div class="my-plugin-extra-content">...</div>
+    </sw-block>
+</template>
+```
+
+Because target detection is build-time based, keep these recommendations in mind:
+
+- use explicit `extends="block-name"` values
+- avoid patterns that hide the target block name from template analysis
+- rebuild after renaming override files or changing block targets
+
 ## FAQ
 
 **Will existing extensions built with the Options API continue to work?**
 
 When you only use `Shopware.Component.register`, yes. If you use `Shopware.Component.extend`/`Shopware.Component.override` on components that have been migrated to the Composition API, you need to use the Composition API extension approach for those.
+
+**Can I write a native `*.override.vue` file for a core component that still uses Twig?**
+
+Yes, for supported Twig block structures. Use `<sw-block extends="...">` with the original Twig block name. If the block structure is unsupported, use a legacy Twig override.
 
 **How can I prepare my development team for the transition to Composition API?**
 
@@ -322,7 +504,7 @@ Yes, as long as you stick to the limitations from the migration paths above.
 
 **How will the migration from Twig.js templates to .vue files affect my existing component overrides?**
 
-You will need to migrate your overrides to the native block implementation once the components you are overriding have been migrated to `.vue` files.
+You will need to migrate your overrides to the native block implementation once the components you are overriding have been migrated to `.vue` files. During the migration period, supported Twig core components can also be targeted by native `*.override.vue` files.
 
 **What tools or resources will be available to help migrate existing components?**
 
@@ -342,7 +524,11 @@ They will stop working once Twig.js support is removed. This will only happen in
 
 **Can I already use the native blocks and Composition API in my extensions today?**
 
-Yes! Both systems are available as experimental features. You can add new components using SFC and native blocks. But you can't extend core components using the old systems or vice versa. Keep in mind that experimental APIs can still change.
+Yes. You can add new components using SFC and native blocks. You can also use native `*.override.vue` files for migrated core components and for many legacy Twig-based core components with supported block structures. Keep in mind that experimental APIs can still change.
+
+**Which Twig blocks are not good candidates for native overrides yet?**
+
+Blocks containing multiple named slot templates, or similar structures without a single safe insertion point, should still be overridden through legacy Twig techniques.
 
 **Which extensions are affected by these changes?**
 
