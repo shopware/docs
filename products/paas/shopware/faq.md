@@ -29,7 +29,7 @@ Roles exist at organization, project and application level, so an agency or an e
 
 ### How does the platform get access to my repository?
 
-Create the project with `--create-ssh-key` and add the generated public key to your repository as a deploy key. See [How to set up repository access](./guides/setting-up-repository-access.md).
+Create the project with `--create-ssh-key` and add the generated public key to your repository as a read-only deploy key. See [How to set up repository access](./guides/setting-up-repository-access.md).
 
 ### Can a partner agency have its own organization?
 
@@ -133,7 +133,7 @@ You can see the status of your PaaS application by running `sw-paas application 
 
 ### Can I roll back a deployment?
 
-You can point the application at an earlier commit with `sw-paas application update --commit-sha <sha>`, or redeploy an existing build with `sw-paas application deploy create --application-build-id <id>`.
+You can point the application at an earlier commit with `sw-paas application update --commit-sha <sha>`, or redeploy an existing build with `sw-paas application deploy create --application-build-id <build-id>`.
 
 Three limits to be aware of:
 
@@ -186,7 +186,7 @@ A `kind: cfe` application must meet three runtime contracts, and none of them is
 - Expose a health endpoint at **`/api/healthz`** that returns success when ready
 - Write any runtime temporary files to **`/app/tmp`** — the container filesystem is read-only
 
-If the port or the health endpoint is missing, the build succeeds and the deployment then fails readiness, so the application never serves. Writing to disk at runtime fails only under real traffic.
+If the port or the health endpoint is missing, the build succeeds, and the deployment then fails readiness, so the application never serves. Writing to disk at runtime fails only under real traffic.
 
 If you use a custom Dockerfile via `app.build.dockerfile_path`, it must run as non-root with `UID` and `GID` set to `1000`.
 
@@ -284,10 +284,10 @@ No. Cloning restores an exact copy of the source application's database and obje
 
 Snapshots are tied to a specific deployment, and `snapshot list` shows the snapshots of the current deployment only. If a new deployment has been applied in the meantime, a snapshot created against the previous one will not appear.
 
-Pass the deployment explicitly to find it:
+Pass the deployment explicitly to find it, using the deployment ID that was shown when the snapshot was created:
 
 ```bash
-sw-paas snapshot list --deployment-id <the id shown when the snapshot was created>
+sw-paas snapshot list --deployment-id <deployment-id>
 ```
 
 ### Do I stay in control of my code and data?
@@ -456,7 +456,7 @@ No. Managed load testing is not part of the platform, and Shopware does not run 
 
 **Load testing your own application before going live is strongly recommended**, and it is your responsibility. Your traffic profile, catalogue size and custom code determine how the application behaves under load, and only a test against your own shop will show that.
 
-Run load tests against a non-production application rather than your live shop, and tell us in advance when you plan a test at significant volume so that we are not responding to it as an incident. For traffic peaks you can plan for, such as a campaign or Black Friday, let us know early so capacity can be reviewed.
+Run load tests against a non-production application rather than your live shop, and tell us in advance when you plan a test at significant volume so that we are not responding to it as an incident. For traffic peaks you can plan for, such as a campaign or Black Friday, let us know early, so capacity can be reviewed.
 
 ## Availability, incidents and maintenance
 
@@ -478,7 +478,7 @@ Shopware aims to achieve or exceed a **Monthly Uptime Percentage of 99.9%** for 
 
 Three scoping points are worth knowing before you rely on the figure:
 
-- **Production only.** Development, staging and sandbox environments are not covered, and neither is your own code, configuration or third-party extensions.
+- **Production only.** Development, staging and sandbox environments are excluded, as are your own code, your configuration and third-party extensions.
 - **The shop, not the tooling.** The target covers the Production Environment serving traffic. The CLI, deployment pipelines, provisioning, logging and monitoring access, backup and restore tools and the database tunnel are explicitly *not* covered by it (Clause 2.3).
 - **It starts at go-live.** Uptime measurement and service credits apply from the point you have notified Shopware in writing of your productive go-live (Clause 3.1).
 
@@ -490,7 +490,7 @@ Service Credits apply, calculated as a percentage of the Hosting Fees for the af
 
 Shopware targets a recovery time objective and a recovery point objective of **24 hours** for the hosting and platform layer.
 
-These are **operational objectives, not guaranteed recovery times**. Actual recovery duration depends on the nature of the incident and the volume of data to be restored. The technical backup configuration described under [Data, backups and recovery](#data-backups-and-recovery) is designed to meet them, and in practice the available recovery point is usually far more recent.
+These are **operational objectives, not guaranteed recovery times**. Actual recovery duration depends on the nature of the incident and on how much data has to be restored. The technical backup configuration described under [Data, backups and recovery](#data-backups-and-recovery) is designed to meet these objectives. In practice the available recovery point is usually far more recent.
 
 ### How and when is the platform patched?
 
@@ -526,7 +526,7 @@ Infrastructure change requests go through the same ticket process.
 
 **Slack is for speed. Tickets are the record.**
 
-Use **Slack**, where a channel exists, for quick questions and coordination. It is best effort during business hours.
+Use **Slack**, where a channel exists, for quick questions and coordination. It is best-effort during business hours.
 
 Open a **ticket** whenever something is broken, needs investigation, or may need escalating later. Anything with a commercial project behind it belongs in a ticket, even if the conversation started in Slack. Only tickets are handled under the support terms in your agreement.
 
@@ -540,9 +540,9 @@ As a rule of thumb, **HTTP 500 errors** almost always originate in application c
 
 Horizontally and automatically, within the capacity configured for your plan. Automatic scaling applies to production applications.
 
-What your plan currently accounts for is **resource consumption** — compute, memory and database capacity — rather than requests or bandwidth. A busy shop is only a problem when it needs more of those than your plan provides, and at that point requests can become slow or fail. Data already stored is not affected.
+What your plan currently accounts for is **resource consumption** — compute, memory and database capacity — rather than requests or bandwidth. A busy shop is only a problem when it needs more of those than your plan provides. Beyond that point requests can become slow or fail. Data already stored is not affected.
 
-For peaks you can plan for, such as a campaign or Black Friday, tell us in advance so the capacity requirement can be reviewed and, where technically possible, prepared.
+For peaks you can plan for, such as a campaign or Black Friday, tell us in advance, so the capacity requirement can be reviewed and, where technically possible, prepared.
 
 ### What counts as resource overage?
 
