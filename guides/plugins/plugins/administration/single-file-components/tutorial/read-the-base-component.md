@@ -55,6 +55,12 @@ const name = previousState.product.value?.name;
 In a template Vue unwraps it for you, as it does with any ref.
 :::
 
+::: info What you can rely on
+Today every `data`, `computed` and `method` of a Twig component is visible through `previousState`, because the Options API has no notion of private state. Once a core component is converted, only what core lists in `swDefinePublic()` remains visible. That list is being decided component by component during the experimental phase, so a value you read today may not be public tomorrow.
+
+Two ways to stay safe: read data from a store or the DAL instead of from the component whenever you can - [Chapter 4](build-your-own-component#where-the-data-comes-from) does exactly that with `shopware:stores/swProductDetail` - and check the changelog for `swDefinePublic` changes when you update.
+:::
+
 ## Work out the margin
 
 A product carries its selling price in `price` and, optionally, what it cost you in `purchasePrices`. Both are arrays with one entry per currency, so the first entry is the one shown in the form:
@@ -159,6 +165,8 @@ const message = computed(() => {
 swDefineOverride({});
 </script>
 ```
+
+The strings stay hardcoded for now; [Chapter 4](build-your-own-component#where-the-strings-come-from) moves them into snippet files.
 
 ## Checkpoint
 

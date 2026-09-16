@@ -32,7 +32,7 @@ Single File Component support is not part of any 6.7 release. Point your project
 PHP runs in the `web` container, not on your host, and a host PHP usually has too little memory and no route to the database. Two ways to reach it:
 
 <Tabs>
-<Tab title="bin/console">
+<Tab title="Console commands">
 
 ```bash
 shopware-cli project console cache:clear
@@ -60,7 +60,7 @@ docker compose exec web bash
 </Tab>
 </Tabs>
 
-Everywhere below, a `bin/console …` line means "run this through `shopware-cli project console`", and a `composer …` line means "run this inside the `web` container".
+Everywhere below, console commands are written as `shopware-cli project console …`. If you already have a shell inside the `web` container, `bin/console …` is the same thing. A `composer …` line means "run this inside the `web` container".
 
 ## The plugin
 
@@ -163,7 +163,7 @@ Serves the Administration with hot module replacement. Save a file, the browser 
 shopware-cli project admin-build
 ```
 
-Compiles the Administration and every extension into static assets, the way a production install runs it. Slower, but it is what your users will actually get, so run it at least once before you ship.
+Compiles the Administration and every extension into static assets, the way a production install runs it. Slower, but it is what your users will actually get, so run it at least once before you hand it to anyone.
 
 </Tab>
 </Tabs>
@@ -193,7 +193,7 @@ composer admin:check-extensions -- --only=SwagProductMargin
 The `--` is required; without it Composer eats the option.
 
 ::: info Experimental
-Both commands were newly introduced and their usage may still change. Feel free to give us feedback.
+Both commands were newly introduced and their usage may still change. [Give us feedback](../roadmap#give-us-feedback).
 :::
 
 ## Checkpoint

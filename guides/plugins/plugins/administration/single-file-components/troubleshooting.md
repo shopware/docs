@@ -127,6 +127,35 @@ const count = ref(0);   // ✗ collides with the prop `count`
 
 The standard `vue/no-dupe-keys` ESLint rule reports this for an inline prop object and for a type declared in the same file. It cannot see through an **imported** prop type, and neither can the build - so when your props come from an import, check the names against your top-level bindings yourself.
 
+## `useI18n()` does not work in a plugin
+
+```ts
+import { useI18n } from 'vue-i18n';   // ✗ not available to an extension
+```
+
+The extension build aliases only `vue` to the Administration's own copy. `vue-i18n` is not aliased, so this import either fails to resolve when you build - or, if your plugin declares `vue-i18n` as a dependency of its own, pulls in a second copy of the library that was never installed on the Administration's Vue app. The second case fails at runtime, inside `setup()`, with ``Need to install with `app.use` function``.
+
+Read snippets through the Administration instead:
+
+| Where                                 | Use                                                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------- |
+| A template                            | `$t('key')` and `$tc('key', n)`, Vue global properties with nothing to import   |
+| A `<script setup>` block              | `tWithFallback('key')` from `useTranslateWithFallback()`                        |
+| A key with a placeholder, in a script | `Shopware.Snippet.t('key', { … })`, because `tWithFallback()` takes only a key  |
+
+See [Chapter 4](tutorial/build-your-own-component#where-the-strings-come-from) for the snippet files themselves.
+
+## `previousState.<name>` is `undefined` after a Shopware update
+
+Your override read a value out of the component it extends, it worked, and after an update the binding is gone. Two causes:
+
+1. **The component was converted to a Single File Component.** A Twig component puts everything on `this`, so `previousState` sees all of it. A converted component exposes only the names core lists in `swDefinePublic()`, and that list is decided component by component during the experimental phase - a value that was readable before the conversion is not automatically part of it.
+2. **The binding was renamed.** Unlike a block name, the internal state of a component is not covered by the backwards-compatibility promise, so a `computed` can change its name in a minor release.
+
+The fix in both cases is to stop reading the value from the component: take it from a store or from the DAL instead, the way [Chapter 4](tutorial/build-your-own-component#where-the-data-comes-from) takes the product from `shopware:stores/swProductDetail`.
+
+If there is no other source and you think the value belongs in the component's public surface, open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) with `[Admin SFC]` in front of the title, naming the component and the binding. That is exactly the kind of feedback the experimental phase is for - see [Give us feedback](roadmap#give-us-feedback).
+
 ## Still stuck
 
 The whole system is experimental so that it can still change based on what breaks for you. If something is impossible, surprising, or only works by accident, open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) and describe what you were trying to extend.

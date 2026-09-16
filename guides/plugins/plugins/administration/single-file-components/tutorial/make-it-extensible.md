@@ -36,7 +36,7 @@ The `<script setup>` block is unchanged.
 
 **Name it after the component and the spot.** The convention is a prefix identifying the owner, then the path through the component, in `snake_case` - core uses `sw_`, so `swag_margin_hint_banner` for a plugin block reads unambiguously next to it. Block names must be unique per component.
 
-A block you find in core is covered by the backwards-compatibility promise, so you can rely on it until the next major version.
+Core blocks carry the compatibility promise described in [Chapter 2](your-first-override#pick-the-spot); yours should too once you publish your plugin.
 
 *Reference: [`sw-block`](../api-reference/block-components/sw-block).*
 
@@ -66,22 +66,37 @@ The quickest way to see what you just built is to extend it yourself. Write a se
         <sw-block-parent />
 
         <p class="swag-margin-hint__tip">
-            Tip: raise the price or renegotiate the purchase price.
+            {{ $t('swag-margin.hint.tip') }}
         </p>
     </sw-block>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
 
 const previousState = useSwPreviousState();
+const { tWithFallback } = useTranslateWithFallback();
 
-const message = computed(() => `${previousState.message.value} Check your purchasing conditions.`);
+const message = computed(() => `${previousState.message.value} ${tWithFallback('swag-margin.hint.checkConditions')}`);
 
 swDefineOverride({
     message,
 });
 </script>
+```
+
+Both strings are snippets, the same way [Chapter 4](build-your-own-component#where-the-strings-come-from) did it - `$t()` in the template, `tWithFallback()` in the script. Add the two keys to the files you already have, or to a `snippet/` directory next to this override; Shopware merges every snippet file it finds under your Administration source directory:
+
+```json
+{
+    "swag-margin": {
+        "hint": {
+            "tip": "Tip: raise the price or renegotiate the purchase price.",
+            "checkConditions": "Check your purchasing conditions."
+        }
+    }
+}
 ```
 
 This is the first time `swDefineOverride` is given something. Every name in it replaces the binding of that name in the component being overridden - a `computed`, a `ref` or a function alike. So `message` here wins over the `message` your component computed, and `previousState.message.value` is that original, which is how the override builds on it instead of throwing it away.
@@ -109,15 +124,17 @@ Three files are on screen at once: a core Twig component providing the price car
 <template>
     <sw-block extends="swag_margin_hint_banner">
         <sw-block-parent />
-        <p>Tip: raise the price or renegotiate the purchase price.</p>
+        <p>{{ $t('swag-margin.hint.tip') }}</p>
     </sw-block>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
 
 const previousState = useSwPreviousState();
-const message = computed(() => `${previousState.message.value} Check your purchasing conditions.`);
+const { tWithFallback } = useTranslateWithFallback();
+const message = computed(() => `${previousState.message.value} ${tWithFallback('swag-margin.hint.checkConditions')}`);
 
 swDefineOverride({ message });
 </script>
@@ -130,7 +147,7 @@ swDefineOverride({ message });
 {# swag-margin-hint.html.twig #}
 {% block swag_margin_hint_banner %}
     {% parent %}
-    <p>Tip: raise the price or renegotiate the purchase price.</p>
+    <p>{{ $tc('swag-margin.hint.tip') }}</p>
 {% endblock %}
 ```
 
@@ -143,7 +160,7 @@ Shopware.Component.override('swag-margin-hint', {
 
     computed: {
         message() {
-            return `${this.$super('message')} Check your purchasing conditions.`;
+            return `${this.$super('message')} ${this.$tc('swag-margin.hint.checkConditions')}`;
         },
     },
 });
@@ -157,6 +174,7 @@ The mapping is close to one to one:
 * `this.$super('message')` becomes `previousState.message.value`
 * <code v-pre>{% parent %}</code> becomes `<sw-block-parent />`
 * the `computed` block of the override config becomes the object you pass to `swDefineOverride`
+* `$tc()` stays `$t()` in the template, and `this.$tc()` becomes `tWithFallback()` in the script - the snippet files themselves are identical
 
 ## Done
 

@@ -22,6 +22,10 @@ to become a stable, deprecation-protected API in **6.9** - a plan rather than a 
 much it still has to change depends on what you run into and on how the Administration's own migration
 goes.
 
+Try it out and tell us what you find, but do not ship an extension built on it to customers or to the
+Shopware Store until the API is declared stable. Until then, an SFC extension written today may need
+changes with every trunk update.
+
 ## Timeline
 
 | When  | What happens                                                                                                        |
@@ -138,7 +142,6 @@ is meant for plugin developers too, not only for the Administration's own compon
 This is what the experimental phase is for. Tell us what you tried to extend and where the system got
 in your way, what an API made awkward, and what you could not do at all.
 
-`<insert future link to github discussion here>`
-
-If you have a reproducible defect rather than feedback, an issue on
-[shopware/shopware](https://github.com/shopware/shopware/issues) is the faster route.
+Open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) and start the title
+with `[Admin SFC]`, for feedback and defects alike. A dedicated discussion thread will follow and be
+linked here.

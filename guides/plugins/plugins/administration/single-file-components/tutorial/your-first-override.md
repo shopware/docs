@@ -34,8 +34,14 @@ That card is rendered by the core component `sw-product-detail-base`, and its te
 
 Every `{% block %}` name is an extension point. `sw_product_detail_base_price_form` is the one that wraps the price fields, so that is where the banner goes.
 
+The block can be declared either way. Most core components today still use a Twig template, so the extension point is a `{% block %}`. A component that has already been converted to a Single File Component declares the same extension point as `<sw-block name="sw_product_detail_base_price_form">`. Your override does not care which one it is: `<sw-block extends="…">` targets the name, and the name stays the same when a component is converted.
+
+Block names are part of the backwards-compatibility promise: a block you find in core stays until the next major version, and it keeps its name when the component is converted to a Single File Component. If a block disappears in a major, the changelog names it.
+
+Extending across the two forms is handled by shims in most cases - the roadmap section [Alongside Twig](../roadmap#alongside-twig) has the caveat.
+
 ::: tip Finding a block
-Block names are stable identifiers, and the fastest way to a name is the component's template in [shopware/shopware](https://github.com/shopware/shopware). Search for a piece of the text or a CSS class you can see on screen, then take the enclosing block.
+Block names are stable identifiers, and the fastest way to a name is the component's template in [shopware/shopware](https://github.com/shopware/shopware). Search for a piece of the text or a CSS class you can see on screen, then take the enclosing `{% block %}` or `<sw-block name>`. A block inspector for the Vue devtools is planned in [shopware/shopware#20484](https://github.com/shopware/shopware/issues/20484).
 :::
 
 ## One file, and its name is the registration

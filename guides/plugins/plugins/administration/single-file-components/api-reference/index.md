@@ -33,7 +33,7 @@ A `.vue` file needs no registration call. Its name decides both what the compone
 | `sw-my-component.override.vue`       | `sw-my-component` |
 | `sw-my-component/index.override.vue` | `sw-my-component` |
 
-Two base files declaring the same name fail the build. Any number of overrides may target the same component, from any number of plugins; within one plugin they need separate directories, because the filename is the whole identity.
+Two base files declaring the same name fail the build. Any number of overrides may target the same component, from any number of plugins. Within one plugin, two overrides of the same component cannot share a directory: both would have to be called `sw-my-component.override.vue`, because the filename is what names the target. Put them in different directories, for example `override/sw-my-component.override.vue` and `override-demo/sw-my-component.override.vue`. In practice one override per component per plugin is almost always enough; the tutorial only uses two to demonstrate the chain. See [internals](../internals#the-filename-is-the-identity) for the mechanism.
 
 Every `.vue` file in an extension is compiled by the Shopware setup transform. It must have a `<script setup>` block, and that block must declare its role with one of the two [macros](macros/).
 
@@ -51,12 +51,13 @@ One Shopware-specific rule in base components: a top-level binding must not shar
 
 ## What you never import
 
-| Name                                               | Where it comes from                                                                       |
-| -------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `swDefinePublic`, `swDefineOverride`               | Compile-time macros, like Vue's own `defineProps`                                         |
-| `useSwPreviousState`, `useSwProps`, `useSwContext` | Injected by the build into every `.override.vue` file                                     |
-| `sw-block`, `sw-block-parent`                      | Globally registered components, resolved by tag name                                      |
-| `Shopware`                                         | The Administration's global object. Read it freely; `Shopware` is a reserved binding name |
+| Name                                               | Where it comes from                                                                                                                                                                    |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `swDefinePublic`, `swDefineOverride`               | Compile-time macros, like Vue's own `defineProps`                                                                                                                                      |
+| `useSwPreviousState`, `useSwProps`, `useSwContext` | Injected by the build into every `.override.vue` file                                                                                                                                  |
+| `sw-block`, `sw-block-parent`                      | Globally registered components, resolved by tag name                                                                                                                                   |
+| `$t`, `$tc`                                        | Vue global properties, available in every template. In `<script setup>` use [`useTranslateWithFallback()`](composables/use-translate-with-fallback); a plugin cannot import `vue-i18n` |
+| `Shopware`                                         | The Administration's global object. Read it freely; `Shopware` is a reserved binding name                                                                                              |
 
 Everything else comes from a `shopware:*` virtual module - the published composables, plus stores, utilities, mixins and DAL helpers:
 

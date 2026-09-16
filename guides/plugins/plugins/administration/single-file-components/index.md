@@ -99,5 +99,9 @@ Four pages back it up:
 
 <PageRef page="api-reference/" title="API reference" sub="The macros, the composables and the two components, in one place" />
 <PageRef page="troubleshooting" title="Troubleshooting" sub="Every build error and console message, with its fix" />
-<PageRef page="roadmap" title="Roadmap" sub="What works today, what is still coming, and where to give feedback" />
+<PageRef page="roadmap" title="Roadmap" sub="What works today and what is still coming" />
 <PageRef page="internals" title="Internals" sub="What the build does to your file, and what the block components do at runtime" />
+
+## Give us feedback
+
+This is what the experimental phase is for. Tell us what you tried to extend and where the system got in your way - the roadmap has [the details and the channel](roadmap#give-us-feedback).
