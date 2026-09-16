@@ -40,13 +40,25 @@ nav:
 * Separate app backend (API/webhook handlers) from UI assets.
 * Avoid stateful coupling to shop runtime; design for multi-tenant hosting.
 
+## Shared foundations and extension families
+
+When several extensions belong to the same product family or customer portfolio, decide deliberately where shared functionality lives.
+
+* Put maintenance-heavy domain or integration logic in a shared foundation only when several extensions genuinely need the same behavior.
+* Keep dependent plugins and themes thin so most Shopware-version-specific changes remain in one place.
+* Declare a [plugin dependency](../../plugins/plugins/dependencies/add-plugin-dependencies.md) when a plugin cannot operate without the shared foundation.
+* Prefer [theme inheritance](../../plugins/themes/inheritance/add-theme-inheritance.md) for shared presentation and styling instead of coupling themes through unrelated business-logic plugins.
+* Avoid dependency chains added only for convenience. Each dependency expands the set of version combinations you need to test during upgrades.
+
+A shared foundation can reduce duplicated maintenance, but it also coordinates the release lifecycle of the extensions that depend on it. Choose the boundary based on what changes together, not only on what can technically be reused.
+
 ## Upgrade-oriented structure
 
 To reduce upgrade friction:
 
 * Avoid scattering related logic across multiple independent plugins.
-* Prefer a single repository with consistent tooling.
+* Prefer a single repository with consistent tooling when related extensions are maintained together.
 * Keep integration points (events, decorators, DAL extensions) isolated behind service classes.
-* Minimize cross-plugin dependencies.
+* Minimize unnecessary cross-plugin dependencies and document the compatibility range of dependencies you intentionally keep.
 
 The more surface area exposed to the platform, the more upgrade effort is created.

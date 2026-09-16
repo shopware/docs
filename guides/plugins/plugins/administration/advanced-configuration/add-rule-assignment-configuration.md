@@ -152,7 +152,7 @@ getRuleAssignmentConfig()
 Let's go through the most important entries, how to configure your rule assignment:
 
 | Option                    | Description                                                                                                                                                                                    |
-|:--------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id                        | Required identifier for the assignment, which is arbitrary but unique                                                                                                                          |
 | entityName, criteria, api | Required for data loading of the assignment                                                                                                                                                    |
 | gridColumns               | To define the columns, which are shown in your assignment card. Have a look into the [data grid component](../data-handling-processing/using-the-data-grid-component.md) for more information. |

@@ -17,15 +17,15 @@ The translation system is made up of several cooperating parts, each with its ow
 The right extension point depends on what you want to achieve. The table below lists them from the lightest
 option to the most involved.
 
-| Goal | Mechanism |
-|------|-----------|
-| Override individual translations, or ship them with an extension | [Snippets](#override-snippets-the-snippet-module) |
-| Change the storefront snippets programmatically | [Storefront snippet module](#change-storefront-snippets-programmatically) |
-| React when a language is installed or removed | [Translation events](#react-to-translation-events) |
-| Automate installation and updates | [CLI commands and scheduled task](#automate-installation-and-updates) |
-| Store downloaded translations somewhere other than the local disk | [Storage backend](#storage-backend-flysystem) |
-| Point the download system at a different repository or language set | [Configure the download system](#configure-the-download-system) |
-| Replace the loading or validation logic | [Service decoration](#service-decoration) |
+| Goal                                                                | Mechanism                                                                 |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Override individual translations, or ship them with an extension    | [Snippets](#override-snippets-the-snippet-module)                         |
+| Change the storefront snippets programmatically                     | [Storefront snippet module](#change-storefront-snippets-programmatically) |
+| React when a language is installed or removed                       | [Translation events](#react-to-translation-events)                        |
+| Automate installation and updates                                   | [CLI commands and scheduled task](#automate-installation-and-updates)     |
+| Store downloaded translations somewhere other than the local disk   | [Storage backend](#storage-backend-flysystem)                             |
+| Point the download system at a different repository or language set | [Configure the download system](#configure-the-download-system)           |
+| Replace the loading or validation logic                             | [Service decoration](#service-decoration)                                 |
 
 ## Override snippets (the snippet module)
 
@@ -98,10 +98,10 @@ considered used or unused when resolving storefront snippets for a sales channel
 
 The download system dispatches two events you can subscribe to:
 
-| Event                     | Dispatched                                                                                | Payload                     |
-|---------------------------|-------------------------------------------------------------------------------------------|-----------------------------|
-| `TranslationLoadedEvent`  | After a locale has been installed (`TranslationLoader::load()`)                           | `locale`, `Context`         |
-| `TranslationRemovedEvent` | After a locale has been removed (`TranslationRemover`)                                     | `locale`                    |
+| Event                     | Dispatched                                                      | Payload             |
+| ------------------------- | --------------------------------------------------------------- | ------------------- |
+| `TranslationLoadedEvent`  | After a locale has been installed (`TranslationLoader::load()`) | `locale`, `Context` |
+| `TranslationRemovedEvent` | After a locale has been removed (`TranslationRemover`)          | `locale`            |
 
 Both live in `Shopware\Core\System\Snippet\Event`. Subscribe to them to trigger follow-up work such as cache
 warming, notifications, or synchronizing a downstream system when the set of installed languages changes.
@@ -115,13 +115,13 @@ The download system can be driven entirely from the command line, which suits ma
 deployment or image builds. See the [built-in translation handling](built-in-translation-system.md#how-to-install-and-update-translations)
 page for the `translation:install` and `translation:update` details:
 
-| Command | Purpose |
-|---------|---------|
-| `translation:install` | Download and install translations for the given `--locales` or `--all` |
-| `translation:update` | Update all installed translations from the repository |
-| `translation:list` | List the locales configured for installation and update |
-| `translation:lint-filenames` | Validate (and with `--fix` migrate) snippet file names |
-| `translation:validate` | Validate snippet files for missing or extraneous keys |
+| Command                      | Purpose                                                                |
+| ---------------------------- | ---------------------------------------------------------------------- |
+| `translation:install`        | Download and install translations for the given `--locales` or `--all` |
+| `translation:update`         | Update all installed translations from the repository                  |
+| `translation:list`           | List the locales configured for installation and update                |
+| `translation:lint-filenames` | Validate (and with `--fix` migrate) snippet file names                 |
+| `translation:validate`       | Validate snippet files for missing or extraneous keys                  |
 
 Updates also run automatically through the `translation.update` scheduled task
 (`Shopware\Core\System\Snippet\ScheduledTask\UpdateTranslationsTask`), so installations stay current without manual
@@ -157,12 +157,12 @@ To change behavior that configuration and events do not cover, the loading and v
 replaced through Shopware's [decoration pattern](../../../guides/plugins/plugins/services/adjusting-service.md).
 Decorate the **service ID** in the first column and delegate to the injected inner instance.
 
-| Service ID to decorate | Base type | Responsibility |
-|------------------------|-----------|----------------|
-| `Shopware\Core\System\Snippet\Service\AbstractTranslationConfigLoader` | abstract class, uses `getDecorated()` | Reads and validates the translation configuration into a `TranslationConfig` |
-| `Shopware\Core\System\Snippet\Service\TranslationLoader` | extends `AbstractTranslationLoader`, uses `getDecorated()` | Downloads translation files for a locale and creates the language and snippet set |
-| `Shopware\Core\System\Snippet\Files\SnippetFileLoader` | implements `SnippetFileLoaderInterface` | Discovers the snippet files shipped by bundles and apps |
-| `Shopware\Core\System\Snippet\SnippetValidatorInterface` | interface | Validates snippet files for missing or superfluous keys |
+| Service ID to decorate                                                 | Base type                                                  | Responsibility                                                                    |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `Shopware\Core\System\Snippet\Service\AbstractTranslationConfigLoader` | abstract class, uses `getDecorated()`                      | Reads and validates the translation configuration into a `TranslationConfig`      |
+| `Shopware\Core\System\Snippet\Service\TranslationLoader`               | extends `AbstractTranslationLoader`, uses `getDecorated()` | Downloads translation files for a locale and creates the language and snippet set |
+| `Shopware\Core\System\Snippet\Files\SnippetFileLoader`                 | implements `SnippetFileLoaderInterface`                    | Discovers the snippet files shipped by bundles and apps                           |
+| `Shopware\Core\System\Snippet\SnippetValidatorInterface`               | interface                                                  | Validates snippet files for missing or superfluous keys                           |
 
 The two abstract-class services use the `getDecorated()` convention: your decorator extends the abstract class
 and returns the injected inner instance from `getDecorated()`. The interface-based services only require

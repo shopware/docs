@@ -4,7 +4,6 @@ nav:
   position: 100
 ---
 
-
 # FAQ
 
 ## Why do I need to implement requirements that are not provided by Shopware?

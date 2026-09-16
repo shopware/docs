@@ -23,7 +23,7 @@ The **fallback code** is the plain language code (e.g. `en` or `de`), and the **
 The table shows some examples of common cases:
 
 | Fallback code | Standard variant (defining dialect) | Example dialects          |
-|---------------|-------------------------------------|---------------------------|
+| ------------- | ----------------------------------- | ------------------------- |
 | **`en`**      | `en-GB` (British English)           | `en-US`, `en-CA`, `en-IN` |
 | **`de`**      | `de-DE` (German in Germany)         | `de-AT`, `de-CH`          |
 | **`es`**      | `es-ES` (Castilian Spanish)         | `es-AR`, `es-MX`          |

@@ -14,7 +14,7 @@ Quite often one might want to run any type of code on a regular basis, e.g. to c
 This guide builds on the [Plugin Base Guide](../plugin-base-guide.md). Familiarity with `services.php` is helpful — see [Dependency Injection](../services/dependency-injection.md) and [Creating a service](../services/add-custom-service.md).
 
 ::: info
-Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?v=88S9P3x6wYE)**. Also, available on our free online training ["Shopware 6 Backend Development"](https://hub.shopware.com/learn/path/shopware-backend-development-intermediate).
 :::
 
 ## Registering a scheduled task in the DI container
@@ -22,6 +22,10 @@ Refer to this video on **[Adding scheduled tasks](https://www.youtube.com/watch?
 A `ScheduledTask` and its respective `ScheduledTaskHandler` are registered in a plugin's `services.php`. For it to be found by Shopware 6 automatically, you need to place the `services.php` file in a `Resources/config/` directory, relative to the location of your plugin's base class. The path could look like this: `<plugin root>/src/Resources/config/services.php`.
 
 Here's an example `services.php` containing a new `ScheduledTask` as well as a new `ScheduledTaskHandler`:
+
+::: info
+A scheduled task has two related runtime roles. The task definition describes when work is due, while the handler processes the message that Shopware dispatches. Generators create both sides and their service wiring together; seeing the generated PHP class in the filesystem does not mean the whole feature has been connected.
+:::
 
 ```php
 // <plugin root>/src/Resources/config/services.php
@@ -53,6 +57,8 @@ Note the tags required for both the task and its respective handler, `shopware.s
 ## ScheduledTask and its handler
 
 The `services.php` file references both the task and its handler from `Service/ScheduledTask`. This directory name is a convention — you can use a different path as long as the namespace matches.
+
+The distinction between the two classes is important when working with generated output: the task is registered with `shopware.scheduled.task`, while the handler is the Messenger consumer for that task. Registration of the task explains why it can be persisted and scheduled; the handler is what ultimately executes `run()`.
 
 Here's an example `ScheduledTask`:
 

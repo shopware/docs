@@ -388,11 +388,11 @@ Apps can also register for lifecycle events of their own, namely installation, u
 For example, they may be used to delete user-relevant data from your data stores once somebody removes your app from their shop.
 
 | Event             | Description                              |
-|:------------------|:-----------------------------------------|
-| `app.installed` | Triggers once the app is installed       |
-| `app.updated` | Triggers if the app is updated           |
-| `app.deleted` | Triggers once the app is removed         |
-| `app.activated` | Triggers if an inactive app is activated |
+| :---------------- | :--------------------------------------- |
+| `app.installed`   | Triggers once the app is installed       |
+| `app.updated`     | Triggers if the app is updated           |
+| `app.deleted`     | Triggers once the app is removed         |
+| `app.activated`   | Triggers if an inactive app is activated |
 | `app.deactivated` | Triggers if an active app is deactivated |
 
 <Tabs>

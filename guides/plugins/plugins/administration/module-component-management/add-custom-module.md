@@ -40,6 +40,10 @@ import './module/swag-example';
 
 Now your module's `index.js` will be executed.
 
+::: info
+For generated Administration modules, `main.js`, module registration, routes/components, snippets, and the Administration build are parts of the same feature. The generated entry point connects the module to the build; `Shopware.Module.register()` describes the module; its routes and components provide the UI; and snippets provide the text. This guide shows the pieces separately so their relationship is clear.
+:::
+
 ## Registering the module
 
 Your `index.js` is still empty now, so let's get going to actually create a new module.
@@ -177,7 +181,7 @@ This should be your snippet file now:
 
 As mentioned above, Shopware 6 is looking for a `main.js` file in your plugin.
 Its contents get minified into a new file named after your plugin and will be moved to the `public` directory of Shopware 6 root directory.
-Given this plugin would be named "AdministrationNewModule", the bundled and minified javascript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the command following command in your shopware root directory:
+Given this plugin would be named "AdministrationNewModule", the bundled and minified JavaScript code for this example would be located under `<plugin root>/src/Resources/public/administration/js/administration-new-module.js`, once you run the following command in your shopware root directory:
 
 <Tabs>
 <Tab title="Template">
@@ -199,6 +203,10 @@ composer run build:js:admin
 
 ::: info
 Your plugin has to be activated for this to work.
+:::
+
+::: info
+The Administration build is the build boundary, not the whole feature lifecycle. A successful build means the generated assets are compiled; the module still depends on its entry-point import, registration, routes/components, and snippets being connected correctly at runtime.
 :::
 
 Make sure to also include that file when publishing your plugin!

@@ -81,7 +81,7 @@ The transformation will happen gradually to give all of us enough time to adapt.
 The following table shows the current status of both systems and the direction they are heading in:
 
 | System                           | Status today | Long-term direction                                                                  |
-|----------------------------------|--------------|--------------------------------------------------------------------------------------|
+| -------------------------------- | ------------ | ------------------------------------------------------------------------------------ |
 | Options API                      | Standard     | Will be deprecated and removed once the migration to the Composition API is complete |
 | Composition API extension system | Experimental | Will become the standard for core components and extensions                          |
 
@@ -104,7 +104,7 @@ We will gradually transform all component templates from external `*.html.twig` 
 The following table shows the current status of both systems and the direction they are heading in:
 
 | System                     | Status today | Long-term direction                                                            |
-|----------------------------|--------------|--------------------------------------------------------------------------------|
+| -------------------------- | ------------ | ------------------------------------------------------------------------------ |
 | Twig.js blocks             | Standard     | Will be deprecated and removed once the migration to native blocks is complete |
 | Native blocks (`sw-block`) | Experimental | Will become the standard for core components and extensions                    |
 
@@ -121,7 +121,7 @@ We will move all core Vuex states to Pinia stores. The public API will change fr
 #### Upgrade Path
 
 | Shopware Version | Vuex                            | Pinia                        |
-|:----------------:|---------------------------------|------------------------------|
+| :--------------: | ------------------------------- | ---------------------------- |
 |       6.7        | Still supported for extensions* | Standard for Core components |
 |       6.8        | Removed completely              | Standard                     |
 

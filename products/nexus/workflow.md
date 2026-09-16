@@ -26,29 +26,29 @@ Typical structure:
 
 ## Workflow builder interface
 
-| Element | Description |
-|--------|-------------|
-| Canvas | Visual workspace |
-| Node Palette | Available nodes |
-| Node Configuration | Params, Credentials, Notes, Debug |
-| Config Templates | Save and reuse node configurations across workflows |
-| Toolbar | Save, Publish, Run, Undeploy, Import/Export |
-| Execution Tab | Run history and metrics |
+| Element            | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| Canvas             | Visual workspace                                    |
+| Node Palette       | Available nodes                                     |
+| Node Configuration | Params, Credentials, Notes, Debug                   |
+| Config Templates   | Save and reuse node configurations across workflows |
+| Toolbar            | Save, Publish, Run, Undeploy, Import/Export         |
+| Execution Tab      | Run history and metrics                             |
 
 A workflow can also be run manually with an optional input payload, and
 workflows can be exported to or imported from JSON for backup and sharing.
 
 ## Workflow states
 
-| State | Description | Available Actions |
-|-------|------------|------------------|
-| Draft | Editing | Save, Publish |
-| Published | Built and ready | Execute |
-| Deploying | Creating deployment | - |
-| Active | Running | Undeploy |
-| Inactive | Deployed but stopped | Execute, Delete |
-| Undeploying | Removing deployment | - |
-| Failed | Deployment or execution failed | Retry, Delete |
+| State       | Description                    | Available Actions |
+| ----------- | ------------------------------ | ----------------- |
+| Draft       | Editing                        | Save, Publish     |
+| Published   | Built and ready                | Execute           |
+| Deploying   | Creating deployment            | -                 |
+| Active      | Running                        | Undeploy          |
+| Inactive    | Deployed but stopped           | Execute, Delete   |
+| Undeploying | Removing deployment            | -                 |
+| Failed      | Deployment or execution failed | Retry, Delete     |
 
 Workflows move through these states from creation to active execution.
 
@@ -79,44 +79,44 @@ A workflow must be deactivated before you can restore a version.
 
 ### Trigger nodes
 
-| Node | Description | Configuration |
-|------|------------|--------------|
-| Shopware Event Trigger | React to entity events | Shop, event |
-| Schedule Trigger | Time-based execution | Cron, timezone |
+| Node                   | Description            | Configuration  |
+| ---------------------- | ---------------------- | -------------- |
+| Shopware Event Trigger | React to entity events | Shop, event    |
+| Schedule Trigger       | Time-based execution   | Cron, timezone |
 
 ### Action nodes
 
-| Node | Description | Configuration |
-|------|------------|--------------|
-| Business Central | CRUD on BC entities | Entity, operation |
-| Shopware API Call | Call any Shopware API | Method, endpoint |
-| Send Slack Message | Slack notification | Channel, template |
-| API Request | Generic HTTP | URL, headers |
-| Send Shopware Email | Email via Shopware | Recipient, content |
+| Node                | Description           | Configuration      |
+| ------------------- | --------------------- | ------------------ |
+| Business Central    | CRUD on BC entities   | Entity, operation  |
+| Shopware API Call   | Call any Shopware API | Method, endpoint   |
+| Send Slack Message  | Slack notification    | Channel, template  |
+| API Request         | Generic HTTP          | URL, headers       |
+| Send Shopware Email | Email via Shopware    | Recipient, content |
 
 ### Transform nodes
 
-| Node | Description |
-|------|------------|
+| Node   | Description        |
+| ------ | ------------------ |
 | Filter | Filter array items |
 
 ### Condition nodes
 
-| Node | Description |
-|------|------------|
-| If | True/False Conditional branching |
-| Switch | Complex Conditional branching |
+| Node   | Description                      |
+| ------ | -------------------------------- |
+| If     | True/False Conditional branching |
+| Switch | Complex Conditional branching    |
 
 ### Control nodes
 
-| Node | Description |
-|------|------------|
+| Node  | Description             |
+| ----- | ----------------------- |
 | Delay | Delay before continuing |
 
 ### Output nodes
 
-| Node | Description |
-|------|------------|
+| Node       | Description   |
+| ---------- | ------------- |
 | S3 Storage | Store payload |
 
 ## Expression syntax

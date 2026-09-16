@@ -208,7 +208,7 @@ public function onOrderCompleted(OrderCompletedEvent $event): void
 Before extension points existed, replacing core behavior meant [decorating a service](../../services/adjusting-service.md). Decoration still works and is still the only option where no extension point is available, but it has structural drawbacks that extension points were introduced to avoid:
 
 | Aspect                                   | Extension Points                                                     | Service Decoration                                                            |
-|------------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| ---------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Multiple extensions on the same logic    | Independent subscribers on the same extension event                  | Nested decorator chain; each link must call the next one                      |
 | One extension misbehaving                | Affects its own subscriber                                           | Breaks the whole chain and silently drops other extensions' behavior          |
 | Adding a parameter to the extended logic | Extension object gains a property; existing subscribers keep working | Signature change in every decorator, so a new plugin major per Shopware major |
@@ -219,7 +219,7 @@ Prefer an extension point when one exists for the logic you want to change, and 
 ## Comparison Table
 
 | Aspect                     | Extension Points              | Events               |
-|----------------------------|-------------------------------|----------------------|
+| -------------------------- | ----------------------------- | -------------------- |
 | **Purpose**                | Replace/Extend functionality  | Notify about actions |
 | **Return Values**          | Yes (via `result` property)   | No                   |
 | **Flow Control**           | Yes (via `stopPropagation()`) | No                   |

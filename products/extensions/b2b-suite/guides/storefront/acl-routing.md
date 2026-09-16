@@ -49,7 +49,7 @@ So the resource `contingentgroup` needs a translation named `_acl_contingentgrou
 The default privileges are:
 
 | Privilege name |                                    What it means                                    |
-|:--------------:|:-----------------------------------------------------------------------------------:|
+| :------------: | :---------------------------------------------------------------------------------: |
 |     `list`     |                   Entity listing (e.g. indexActions, gridActions)                   |
 |    `detail`    | Disabled forms, lists of assignments, but only the inspection, not the modification |
 |    `create`    |                              Creation of new entities                               |

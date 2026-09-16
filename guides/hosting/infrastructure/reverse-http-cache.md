@@ -72,8 +72,18 @@ If you look for the old documentation and examples, you can find it [here](https
 
 ::: info
 Since Shopware 6.6, the `TRUSTED_PROXIES` environment variable is no longer taken into account out of the box.
-Make sure to create a Symfony configuration to make it configurable again, as shown in the [trusted_env.yaml example](https://github.com/shopware/recipes/blob/main/shopware/docker/0.1/config/packages/trusted_env.yaml).
+Set `SYMFONY_TRUSTED_PROXIES` in your `.env` file instead:
 :::
+
+```bash
+SYMFONY_TRUSTED_PROXIES=127.0.0.1,10.0.0.0/8
+```
+
+To trust the immediately connecting address, use `REMOTE_ADDR`:
+
+```bash
+SYMFONY_TRUSTED_PROXIES=REMOTE_ADDR
+```
 
 For the most part, using Symfony and Varnish doesn't cause any problem.
 But when a request passes through a proxy, certain request information is sent using either the *standard Forwarded* header or *X-Forwarded* headers.
@@ -111,7 +121,7 @@ shopware:
           - 'varnish-host'
 ```
 
-<PageRef page="https://github.com/shopware/varnish-shopware/blob/main/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
+<PageRef page="https://github.com/shopware/varnish-shopware/blob/main/6.7/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
 
 Make sure to replace the `__XXX__` placeholders with your actual values.
 
@@ -200,7 +210,7 @@ shopware:
 
 ### Fastly VCL Snippets
 
-You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets and keep them up to date](../installation-updates//deployments/deployment-helper.md).
+You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets and keep them up to date](../installation-updates//deployments/deployment-helper/index.md).
 
 For manual deployment, you can find the VCL Snippets here:
 

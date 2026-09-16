@@ -53,7 +53,7 @@ The shopping list price will be included in the API for getting the shopping lis
 GET {url}/store-api/shopping-list/{id}/summary
 ```
 
-For more details, refer to [B2B Shopping Lists](https://shopware.stoplight.io/docs/store-api/c9849725606fd-create-new-shopping-list) from Store API docs.
+For more details, refer to [B2B Shopping Lists](https://shopware.stoplight.io/docs/store-api/0789edb2e95b6-create-new-shopping-list) from Store API docs.
 
 ## Admin API
 

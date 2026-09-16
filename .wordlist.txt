@@ -100,6 +100,10 @@ BackedEnum
 Backend
 BaseContext
 BasicExample
+BecomesAbstract
+BecomesFinal
+BecomesInternal
+BecomesReadonly
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
 BeforeLineItemQuantityChangedEvent
@@ -205,6 +209,7 @@ ChildCountField
 ChildrenAssociation
 ChildrenAssociationField
 CircleCI
+ClassHierarchyChange
 ClientInterface
 Cloudflare
 Cmd
@@ -244,6 +249,7 @@ ContextTokenAware
 ContextTokenStorer
 CookiePermission
 CookieProviderInterface
+CoreDNS
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -415,7 +421,9 @@ ExamplePageletLoadedEvent
 ExamplePageletLoader
 ExamplePlugin
 ExampleTranslationDefinition
+ExceptionChange
 ExcludeMultiWarehouseStockUpdateFilter
+Extenders
 Extensibility
 ExtensionAPI
 FLAC
@@ -667,7 +675,9 @@ NameStorer
 NavigationPage
 NelmioCorsBundle
 NewFeature
+NewOptionalParameter
 NewRelic
+NewRequiredParameter
 NewsletterRecipientAware
 NewsletterRecipientStorer
 Nginx
@@ -767,6 +777,11 @@ Pagelet
 PageletLoader
 Pagelets
 Pageloaders
+ParameterDefaultValueChange
+ParameterNameChange
+ParameterRemoval
+ParameterTypeNarrowing
+ParameterTypeWidening
 ParentAssociation
 ParentAssociationField
 ParentFk
@@ -791,6 +806,7 @@ PluginManager
 PositionID
 PositionIDs
 PositionIdentifier
+PostDeploy
 PostInstall
 PostMessage
 PostUpdate
@@ -841,6 +857,8 @@ ProductWarehouses
 ProductsFacade
 Profiler
 PropertyGroupOptionDataSet
+PropertyTypeNarrowing
+PropertyTypeWidening
 ProseMirror
 Prosemirror
 ProxySQL
@@ -859,6 +877,7 @@ RabbitMq
 Readonly
 RecipientsAware
 RecipientsStorer
+Rector
 RecurringPaymentHandlerInterface
 RedHat
 Redict
@@ -883,6 +902,8 @@ ResolveListingExtension
 ResolverContext
 RestAPI
 RestrictDelete
+ReturnTypeNarrowing
+ReturnTypeWidening
 Reusability
 ReverseInherited
 ReviewFormDataAware
@@ -1055,6 +1076,7 @@ ToOne
 Tooltips
 Topseller
 Topsellers
+Traefik
 TransactionalAction
 TranslatedField
 TranslationConfig
@@ -1131,6 +1153,7 @@ VersionDataPayload
 VersionDataPayloadField
 VersionField
 VirtualHosts
+VisibilityChange
 Vite
 Vite's
 VitePress
@@ -1150,6 +1173,7 @@ WCAG
 WMA
 WMV
 WSL
+WSL2
 WarehouseGroup
 WarehouseGroups
 WebAIM
@@ -1338,11 +1362,15 @@ const's
 contactFormData
 containerfacade
 contextToken
+contravariance
+contravariant
 control
+cookieGroups
 copyToClipboard
 copyable
 cors
 countryId
+covariant
 createActionResponse
 createCategoryFixture
 createCmsFixture
@@ -1478,6 +1506,8 @@ exampler
 explainer
 explainers
 extendability
+extender
+extenders
 extensibility
 externalReference
 failover
@@ -1565,6 +1595,7 @@ guid
 gz
 gzip
 handleFlow
+hardcode
 hardcoded
 hasError
 hasOwnProperty
@@ -1656,6 +1687,7 @@ landingpage
 lang
 lavinmq
 lazysizes
+learnings
 libxml
 lifecycle
 lifecycles
@@ -1816,6 +1848,7 @@ pluginlogger
 png
 pnpm
 polyfill
+polyfills
 pos
 positionID
 positionIDs
@@ -1826,6 +1859,7 @@ precompile
 preconfigured
 prefetch
 prefixer
+preflight
 preload
 preloaded
 preloading
@@ -1872,12 +1906,16 @@ reCAPTCHA
 readAsArrayBuffer
 readAsDataURL
 readAsText
+readonly
 realtime
 rebase
 rebasing
 rebranded
 rebuildable
 recalculable
+redeclaration
+redeclared
+redeclaring
 redis
 refactorings
 referenceField
@@ -1921,6 +1959,7 @@ rollout
 routeName
 routeScope
 routeScopes
+rumdl
 runnable
 runtime
 runtimes
@@ -2022,6 +2061,7 @@ stylelintrc
 stylesheet
 stylesheets
 stylings
+subclass
 subclasses
 subcomponents
 subcontent
@@ -2147,6 +2187,7 @@ vue
 vuex
 walkthrough
 wav
+webfonts
 webhook
 webhooks
 webkit
@@ -2162,6 +2203,7 @@ whoami
 wil
 wishlist
 wordlist
+worktree
 www
 xasjkyld
 xdebug

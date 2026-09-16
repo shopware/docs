@@ -18,7 +18,7 @@ Some permissions in B2B Suite do not actually exist in B2B Commercial, because s
 :::
 
 | B2B Suite Role          | B2B Commercial Role                         | Dependencies                                                                                       | Category        |
-|-------------------------|---------------------------------------------|----------------------------------------------------------------------------------------------------|-----------------|
+| ----------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------- |
 | `address_assign`        | `organization_unit.shipping_address.create` | `organization_unit.billing_address.create`, `organization_unit.create`, `organization_unit.update` | Address         |
 | `address_create`        | `organization_unit.shipping_address.create` | `organization_unit.billing_address.create`, `organization_unit.create`, `organization_unit.update` | Address         |
 | `address_delete`        | `organization_unit.shipping_address.delete` | `organization_unit.billing_address.delete`                                                         | Address         |
