@@ -1870,6 +1870,7 @@ preprocessor
 preprocessors
 preselect
 preselection
+presigned
 prettierrc
 previewComponent
 previewable
