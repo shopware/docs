@@ -57,7 +57,7 @@ With Docker projects, run Composer and other PHP tools **inside** the web contai
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
 | Shell Script                | Shopware Command                        |
-|-----------------------------|-----------------------------------------|
+| --------------------------- | --------------------------------------- |
 | bin/build-storefront.sh     | `shopware-cli project storefront-build` |
 | bin/build-administration.sh | `shopware-cli project admin-build`      |
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
@@ -234,6 +234,10 @@ This generates a basic configuration file for your Shopware project. Shop URL an
 Top-level `url` and `admin_api` keys are deprecated: config files that still use them keep working, but the CLI logs a deprecation warning telling you to move these values under `environments`.
 
 ## Generate JWT secret
+
+:::danger
+**Deprecated:** `shopware-cli project generate-jwt` is deprecated and planned to be removed in October 2026. The command remains functional during the deprecation window.
+:::
 
 ```bash
 shopware-cli project generate-jwt <path-to-project>

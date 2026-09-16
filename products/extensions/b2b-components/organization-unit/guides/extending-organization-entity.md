@@ -24,8 +24,8 @@ The entity name is the value provided in the #[Entity(...)] attribute. For `Orga
 
 Even though `OrganizationEntity` does not have a traditional EntityDefinition class, Shopware still generates the definition and repository using the entity name.
 
-| Type                        | Service name                                  |
-|-----------------------------|-----------------------------------------------|
+| Type       | Service name                             |
+| ---------- | ---------------------------------------- |
 | Definition | `b2b_components_organization.definition` |
 | Repository | `b2b_components_organization.repository` |
 

@@ -23,7 +23,7 @@ The Docker examples are recommended because the image already contains the requi
 Without `--only`, a `format` command invokes every registered verifier tool. The following tools currently implement formatting in `Format()`:
 
 | Tool           | What it formats                                                                             | Implementation                                                                                        |
-|----------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `php-cs-fixer` | PHP source files using the Shopware Coding Standard                                         | [`phpcsfixer.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/phpcsfixer.go) |
 | `prettier`     | Prettier-supported files in source directories using the Shopware CLI bundled configuration | [`prettier.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/prettier.go)     |
 | `admin-twig`   | Administration Twig templates                                                               | [`admin_twig.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/admin_twig.go) |
@@ -117,7 +117,7 @@ If you omit the path, `project format` discovers the nearest Shopware project by
 ### Project format options
 
 | Flag             | Description                                  |
-|------------------|----------------------------------------------|
+| ---------------- | -------------------------------------------- |
 | `--dry-run`      | Check formatting without modifying files     |
 | `--only <tools>` | Run only the specified comma-separated tools |
 

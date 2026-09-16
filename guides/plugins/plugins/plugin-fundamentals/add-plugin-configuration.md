@@ -103,8 +103,8 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 Unless defined otherwise, your `<input-field>` will be a text field.
 Below you'll find a list of all available `<input-field type="?">`.
 
-| Type          | Configuration settings                                                                                                                                                              | Renders           | Default value example                   |
-|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
+| Type          | Configuration settings                                                                                                                                                                       | Renders           | Default value example                   |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------- | :-------------------------------------- |
 | text          | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | Text field        | Some text                               |
 | textarea      | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                 | Text area         | Some more text                          |
 | text-editor   | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                                                                   | HTML editor       | Some text with HTML `<div>`tags`</div>` |

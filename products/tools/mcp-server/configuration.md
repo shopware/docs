@@ -28,10 +28,10 @@ shopware:
 
 These two keys are the complete `shopware.mcp` configuration:
 
-| Key                | Type            | Default | Description                                                             |
-|--------------------|-----------------|---------|-------------------------------------------------------------------------|
-| `allowed_tools`    | list of strings | `[]`    | Installation-wide tool allowlist applied at compile time. Empty = all.  |
-| `app_tool_timeout` | integer         | `10`    | Timeout in seconds for app webhook tool calls. Minimum `1`.             |
+| Key                | Type            | Default | Description                                                            |
+| ------------------ | --------------- | ------- | ---------------------------------------------------------------------- |
+| `allowed_tools`    | list of strings | `[]`    | Installation-wide tool allowlist applied at compile time. Empty = all. |
+| `app_tool_timeout` | integer         | `10`    | Timeout in seconds for app webhook tool calls. Minimum `1`.            |
 
 Everything else — the endpoint path, server instructions, and list pagination — is configured on the `symfony/mcp-bundle` extension, not under `shopware.mcp`.
 
@@ -59,7 +59,7 @@ Removing the discovery tools at compile time prevents clients from finding and e
 Shopware applies a per-principal MCP allowlist depending on how the client authenticates:
 
 | Auth mode                                | Allowlist source                                                                          |
-|------------------------------------------|-------------------------------------------------------------------------------------------|
+| ---------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist**          |
 | User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP tool allowlist** |
 | Bearer JWT, password / refresh grant     | Per-user allowlist of the authenticated user                                              |
@@ -93,7 +93,7 @@ If the header is absent or invalid (i.e., not a valid UUID), Shopware ignores it
 When this header is present, and a valid user UUID is provided, Shopware applies the **intersection** of the integration allowlist and the user allowlist. A tool is only available if both the integration and the user have it enabled:
 
 | Integration allowlist | User allowlist        | Effective allowlist |
-|-----------------------|-----------------------|---------------------|
+| --------------------- | --------------------- | ------------------- |
 | `null` (unrestricted) | `null` (unrestricted) | unrestricted        |
 | `null`                | `[tool-b]`            | `[tool-b]`          |
 | `[tool-a, tool-b]`    | `null`                | `[tool-a, tool-b]`  |
@@ -135,7 +135,7 @@ Shopware defaults to a file-based session store that writes to `%kernel.cache_di
 Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only — not per user and not per integration. Rows are deleted when the client ends the session with `DELETE /api/_mcp`. Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, so the scheduler must run in production.
 
 | Store                                           | Multi-worker | Multi-server | Backend                                                                       |
-|-------------------------------------------------|--------------|--------------|-------------------------------------------------------------------------------|
+| ----------------------------------------------- | ------------ | ------------ | ----------------------------------------------------------------------------- |
 | `file` (default)                                | No           | No           | `%kernel.cache_dir%/mcp-sessions/`                                            |
 | `memory`                                        | No           | No           | Per-process RAM                                                               |
 | `cache` (avoid)                                 | No in dev    | No           | `cache.app` (ArrayAdapter in dev)                                             |
@@ -236,9 +236,9 @@ If a tool is missing from this output, it is also missing from the live endpoint
 
 Both MCP endpoints are rate limited with their own buckets, configured under `shopware.api.rate_limiter` in `config/packages/shopware.yaml`. Rate limiting protects the endpoints from brute-force attempts and runaway agent loops.
 
-| Bucket           | Endpoint          | Keyed on                                    | Limits                                |
-|------------------|-------------------|---------------------------------------------|---------------------------------------|
-| `mcp_admin_api`  | `/api/_mcp`       | Access token, falling back to client IP     | 300 per minute, 1000 per 10 minutes   |
-| `mcp_store_api`  | `/store-api/_mcp` | Sales channel and context token, plus client IP | 120 per minute, 600 per 10 minutes |
+| Bucket          | Endpoint          | Keyed on                                        | Limits                              |
+| --------------- | ----------------- | ----------------------------------------------- | ----------------------------------- |
+| `mcp_admin_api` | `/api/_mcp`       | Access token, falling back to client IP         | 300 per minute, 1000 per 10 minutes |
+| `mcp_store_api` | `/store-api/_mcp` | Sales channel and context token, plus client IP | 120 per minute, 600 per 10 minutes  |
 
 Both use the `time_backoff` policy and reset after one hour. Exceeding a limit returns HTTP 429 with the remaining wait time in the response body; no `Retry-After` header is sent.

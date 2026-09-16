@@ -47,7 +47,7 @@ For direct CLI execution, relative paths are resolved from the current working d
 `extension validate` accepts both a source directory and a built zip file, and the two are not equivalent:
 
 | Input     | Behavior                                                                                                                                                                                                               |
-|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Directory | Intended for feedback during development. `zip.disallowed_file` findings are automatically ignored for directory input. With `--full`, the files are copied to a temporary directory first unless `--no-copy` is used. |
 | zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed.                                                                                                                         |
 
@@ -127,14 +127,14 @@ Dependency resolution only runs when the validated copy does not already contain
 
 Use `--format` to specify the output format (the older `--reporter` flag is deprecated; use `--format` instead):
 
-| Format     | Description                             |
-|------------|-----------------------------------------|
-| `summary`  | List of errors and warnings             |
-| `json`     | JSON output                             |
-| `junit`    | JUnit output                            |
-| `github`   | GitHub Actions output                   |
-| `gitlab`   | GitLab Code Quality output              |
-| `markdown` | Markdown output                         |
+| Format     | Description                 |
+| ---------- | --------------------------- |
+| `summary`  | List of errors and warnings |
+| `json`     | JSON output                 |
+| `junit`    | JUnit output                |
+| `github`   | GitHub Actions output       |
+| `gitlab`   | GitLab Code Quality output  |
+| `markdown` | Markdown output             |
 
 If `--format` is not set, the format is detected automatically: `github` in GitHub Actions, `gitlab` in GitLab CI, and `summary` otherwise.
 
@@ -143,7 +143,7 @@ If `--format` is not set, the format is detected automatically: `github` in GitH
 With `--full`, `extension validate` calls the validation check implemented by each registered tool. The tools that currently add validation findings are:
 
 | Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                             |
-|-------------------|-----------------------|-------------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| ----------------- | --------------------- | ----------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `sw-cli`          | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation** |
 | `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; skipped for apps (no `composer.json`)                                                                        |
 | `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                          |
@@ -160,7 +160,7 @@ Every tool is registered for all three verbs, but the unmarked combinations abov
 ### Which tools each command actually runs
 
 | Command                               | Tools that do work                                                          |
-|---------------------------------------|-----------------------------------------------------------------------------|
+| ------------------------------------- | --------------------------------------------------------------------------- |
 | `extension validate`                  | `sw-cli`, `phpstan`, `eslint`, `stylelint`, `admin-twig`, `storefront-twig` |
 | `project validate`                    | the same, minus `sw-cli`                                                    |
 | `extension fix` / `project fix`       | `rector`, `admin-twig`, `eslint`, `stylelint`, `symfony-xml`                |
@@ -327,7 +327,7 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 ### Project validation options
 
 | Flag                | Description                                                                       |
-|---------------------|-----------------------------------------------------------------------------------|
+| ------------------- | --------------------------------------------------------------------------------- |
 | `--local-only`      | Only discover extensions from `custom/*` folders                                  |
 | `--only <tools>`    | Run only selected tools (comma-separated)                                         |
 | `--exclude <tools>` | Run all tools except the listed ones                                              |

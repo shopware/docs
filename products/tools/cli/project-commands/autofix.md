@@ -71,7 +71,7 @@ Get the token from your Shopware Account under "Shops" > "Licenses" > "..." on a
 ### Options
 
 | Flag        | Description                                                                 |
-|-------------|-----------------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------------- |
 | `--dry-run` | Print the migration plan without modifying the project (headless mode only) |
 
 ```bash

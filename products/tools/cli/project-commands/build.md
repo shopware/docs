@@ -112,14 +112,14 @@ Build hooks let you run custom shell commands at specific stages of the CI build
 
 #### Available hooks
 
-| Hook | Execution point |
-|------|-----------------|
-| `pre` | Before the build starts |
-| `pre-composer` | Before `composer install` runs |
+| Hook            | Execution point                    |
+| --------------- | ---------------------------------- |
+| `pre`           | Before the build starts            |
+| `pre-composer`  | Before `composer install` runs     |
 | `post-composer` | After `composer install` completes |
-| `pre-assets` | Before asset building begins |
-| `post-assets` | After asset building completes |
-| `post` | After the entire build completes |
+| `pre-assets`    | Before asset building begins       |
+| `post-assets`   | After asset building completes     |
+| `post`          | After the entire build completes   |
 
 #### Configuration
 
@@ -148,8 +148,8 @@ Each hook accepts an array of shell commands. Commands are executed sequentially
 
 The following environment variable is available in all hooks:
 
-| Variable | Description |
-|----------|-------------|
+| Variable       | Description                                 |
+| -------------- | ------------------------------------------- |
 | `PROJECT_ROOT` | Absolute path to the project root directory |
 
 Hooks also inherit environment variables from the parent process, so CI/CD variables such as `SHOPWARE_PACKAGES_TOKEN` remain available.
