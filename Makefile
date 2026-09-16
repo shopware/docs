@@ -1,8 +1,10 @@
 #! /usr/bin/env make
 
 user := "$(shell id -u):$(shell id -g)"
-ignored = '/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/*'
+ignored = '/docs/resources/references/adr/* /docs/assets/adr/* /docs/resources/guidelines/code/core/* /docs/snippets/guide/* /docs/resources/references/app-reference/*'
 image = ghcr.io/rojopolis/spellcheck-github-actions:0.49.0
+# Keep in sync with the version pin in package.json and .github/workflows/markdown-rumdl-check.yml.
+rumdl_version = rumdl@0.2.67
 
 lychee_image = lycheeverse/lychee:0.24.2
 # Keep HTTPS args in sync with .github/workflows/validate-external-links.yml.
@@ -10,7 +12,7 @@ lychee_image = lycheeverse/lychee:0.24.2
 # (/frontends/, /docs/, /resources/…) are skipped instead of failing as local files.
 lychee_args = --retry-wait-time 10 --max-retries 3 --timeout 30 --accept=200,403,429,408 -s "https" --exclude "https://github.com/\[your*" --exclude "https://localhost:9200" --root-dir /var/empty
 
-.PHONY : help spellcheck spellcheck-local fix linkcheck
+.PHONY : help spellcheck check fix linkcheck
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -20,19 +22,13 @@ help: ## Show this help
 
 spellcheck: ## Runs the spellcheck tool (via Docker)
 	docker run --rm -u ${user} -v "$(shell pwd):/docs" -w /docs -e INPUT_IGNORE=${ignored} ${image} \
-	    --config /docs/markdown-style-config.yml /docs
+	    --config /docs/.spellcheck.yml /docs
 
-spellcheck-local: ## Runs the spellcheck tool locally (requires aspell and pyspelling)
-	@if [ ! -d ".venv-spellcheck" ]; then \
-		echo "Creating virtual environment and installing dependencies..."; \
-		python3 -m venv .venv-spellcheck && \
-		.venv-spellcheck/bin/pip install -q pyspelling pymdown-extensions markdown; \
-	fi
-	@.venv-spellcheck/bin/pyspelling -c .spellcheck.yml
+check: ## Runs the linting tool (via rumdl). Optional: DIR=path/to/folder
+	pnpm dlx ${rumdl_version} check $(if $(DIR),$(DIR),.)
 
-fix: ## Runs the linting tool and fixes simple mistakes
-	docker run --rm -u ${user} -v "$(shell pwd):/docs" -e INPUT_FIX=true -e INPUT_IGNORE=${ignored} avtodev/markdown-lint:v1.5 \
-	    --config /docs/markdown-style-config.yml /docs
+fix: ## Runs the linting tool (via rumdl) and fixes what it can. Optional: DIR=path/to/folder
+	pnpm dlx ${rumdl_version} check --fix $(if $(DIR),$(DIR),.)
 
 linkcheck: ## Check HTTPS links in Markdown (via Docker / Lychee). Optional: DIR=path/to/folder
 	docker run --init --rm -w /input -v "$(shell pwd):/input" ${lychee_image} \

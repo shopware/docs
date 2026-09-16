@@ -56,7 +56,7 @@ Custom domains allow you to serve your Shopware shop through your own branded do
 ### Quick Reference: DNS Records
 
 | Record Type | For Apex Domains | For Non-Apex Domains | Target                 | Count | Purpose                                |
-|-------------|:----------------:|:--------------------:|------------------------|:-----:|----------------------------------------|
+| ----------- | :--------------: | :------------------: | ---------------------- | :---: | -------------------------------------- |
 | `CNAME`     |        No        |       **Yes**        | `cdn.shopware.shop`    |   1   | Routes subdomain traffic to Fastly CDN |
 | `A`         |     **Yes**      |          No          | Fastly IPv4 addresses  |   4   | Routes apex domain traffic (IPv4)      |
 | `AAAA`      |     **Yes**      |          No          | Fastly IPv6 addresses  |   4   | Routes apex domain traffic (IPv6)      |

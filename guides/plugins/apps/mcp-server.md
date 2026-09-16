@@ -33,12 +33,12 @@ sequenceDiagram
 
 All three capability types (tools, prompts, resources) follow the same lifecycle:
 
-| Step | Tools | Prompts | Resources |
-|---|---|---|---|
-| Declared in | `mcp.xml` | `mcp.xml` | `mcp.xml` |
-| Persisted on install | `app_mcp_tool` | `app_mcp_prompt` | `app_mcp_resource` |
-| Loaded at runtime | `AppMcpToolLoader` | `AppMcpPromptLoader` | `AppMcpResourceLoader` |
-| Executed via | HMAC-signed POST | HMAC-signed POST | HMAC-signed POST |
+| Step                 | Tools              | Prompts              | Resources              |
+| -------------------- | ------------------ | -------------------- | ---------------------- |
+| Declared in          | `mcp.xml`          | `mcp.xml`            | `mcp.xml`              |
+| Persisted on install | `app_mcp_tool`     | `app_mcp_prompt`     | `app_mcp_resource`     |
+| Loaded at runtime    | `AppMcpToolLoader` | `AppMcpPromptLoader` | `AppMcpResourceLoader` |
+| Executed via         | HMAC-signed POST   | HMAC-signed POST     | HMAC-signed POST       |
 
 ## Naming convention
 
@@ -111,12 +111,12 @@ Place `Resources/mcp.xml` in your app bundle:
 
 Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
 
-| Attribute | Required | Description |
-|---|---|---|
-| `name` | yes | Parameter name |
-| `type` | yes | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
-| `description` | no | Description shown to the AI client |
-| `required` | no | Whether the parameter is required (default: `false`) |
+| Attribute     | Required | Description                                                                                       |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `name`        | yes      | Parameter name                                                                                    |
+| `type`        | yes      | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
+| `description` | no       | Description shown to the AI client                                                                |
+| `required`    | no       | Whether the parameter is required (default: `false`)                                              |
 
 ### Required privileges
 
@@ -189,13 +189,13 @@ When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared
 }
 ```
 
-| Field | Description |
-|---|---|
-| `tool` | The full tool name (app prefix + declared name) |
-| `arguments` | The arguments provided by the AI client |
-| `source.url` | The shop's base URL |
-| `source.shopId` | Unique shop identifier. Use this for multi-tenant app backends |
-| `source.appVersion` | Installed version of the app |
+| Field               | Description                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `tool`              | The full tool name (app prefix + declared name)                |
+| `arguments`         | The arguments provided by the AI client                        |
+| `source.url`        | The shop's base URL                                            |
+| `source.shopId`     | Unique shop identifier. Use this for multi-tenant app backends |
+| `source.appVersion` | Installed version of the app                                   |
 
 For prompts, the request body uses `prompt` instead of `tool`, and arguments are omitted:
 

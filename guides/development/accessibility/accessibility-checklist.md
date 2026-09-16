@@ -78,7 +78,7 @@ Headings and titles provide structure and orientation. It helps users understand
 Help keyboard users skip repetitive content:
 
 - Include a skip link at the top of the page:
-  
+
  ```html
   <a href="#main-content" class="skip-link">Skip to main content</a>
  ```

@@ -4,7 +4,6 @@ nav:
   position: 20
 ---
 
-
 # Authentication and API Requests
 
 This guide builds on the [APIs](./index.md) guide and covers additional authentication details, practical request patterns, and troubleshooting for local development.

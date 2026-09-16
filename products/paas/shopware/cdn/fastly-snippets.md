@@ -39,10 +39,10 @@ services:
     snippets_path: config/fastly
 ```
 
-| Option                     | Default | Description                                                                                              |
-|----------------------------|---------|----------------------------------------------------------------------------------------------------------|
+| Option                     | Default | Description                                                                                                                                                  |
+| -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `snippets_path`            | unset   | Directory (relative to the repository root) containing your custom snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
-| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services |
+| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services                                                       |
 
 Apply the change with:
 
@@ -112,7 +112,7 @@ Shopware PaaS Native runs two Fastly services (see [CDN](./index.md)):
 Which service a snippet is deployed to is decided by the beginning of its file name:
 
 | File name                  | Deployed to                |
-|----------------------------|----------------------------|
+| -------------------------- | -------------------------- |
 | `recv/test.vcl`            | `storefront` **and** `cdn` |
 | `recv/storefront-test.vcl` | `storefront` only          |
 | `recv/cdn-test.vcl`        | `cdn` only                 |

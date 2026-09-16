@@ -14,9 +14,9 @@ Check out the [Using Directives](../mixins-directives/adding-directives.md) guid
 ## Overview of directives
 
 | Name         | Task                                                        |
-|--------------|-------------------------------------------------------------|
-| `autofocus` | Focuses an `<input>` in an element on insertion.            |
-| `dragdrop` | Enables the drag and drop functionality of the CMS.         |
-| `popover` | Directive for automatic edge detection of the element place |
+| ------------ | ----------------------------------------------------------- |
+| `autofocus`  | Focuses an `<input>` in an element on insertion.            |
+| `dragdrop`   | Enables the drag and drop functionality of the CMS.         |
+| `popover`    | Directive for automatic edge detection of the element place |
 | `responsive` | Adds methods to add responsive element classes              |
-| `tooltip` | Provides utility functions to display tooltips.             |
+| `tooltip`    | Provides utility functions to display tooltips.             |

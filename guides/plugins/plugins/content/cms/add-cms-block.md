@@ -106,15 +106,15 @@ Shopware.Service('cmsService').registerCmsBlock({
 });
 ```
 
-| Property         | Description                                                                                   |
-|------------------|----------------------------------------------------------------------------------------------|
-| `name`           | Technical name of your block                                                                 |
-| `category`       | Which category it appears under (`text`, `image`, `text-image`, `commerce`, `form`, `video`, `sidebar`) |
-| `label`          | Display name in the UI                                                                       |
-| `component`      | Vue component for rendering the block in the designer                                        |
-| `previewComponent` | Vue component for the block thumbnail preview                                              |
-| `defaultConfig`  | Default styling values                                                                       |
-| `slots`          | Defines which element types go in which slots (key = slot name, value = element type)        |
+| Property           | Description                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------- |
+| `name`             | Technical name of your block                                                                            |
+| `category`         | Which category it appears under (`text`, `image`, `text-image`, `commerce`, `form`, `video`, `sidebar`) |
+| `label`            | Display name in the UI                                                                                  |
+| `component`        | Vue component for rendering the block in the designer                                                   |
+| `previewComponent` | Vue component for the block thumbnail preview                                                           |
+| `defaultConfig`    | Default styling values                                                                                  |
+| `slots`            | Defines which element types go in which slots (key = slot name, value = element type)                   |
 
 ### Step 3: Create the Block Component
 

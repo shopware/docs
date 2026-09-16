@@ -92,7 +92,7 @@ This command modifies the database for staging use. Pass `--no-interaction --for
 ## Staging mode: scope and limitations
 
 | Category                              | Behavior                                                                             |
-|---------------------------------------|--------------------------------------------------------------------------------------|
+| ------------------------------------- | ------------------------------------------------------------------------------------ |
 | **What the staging mode does**        | Deletes all apps with active connections to external services and their integrations |
 |                                       | Resets the instance ID used for app registration                                     |
 |                                       | Disables email sending                                                               |

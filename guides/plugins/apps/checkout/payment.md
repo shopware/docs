@@ -265,7 +265,7 @@ This second request is only provided with the `orderTransaction` for identificat
 The response `status` value determines the outcome of the payment, e.g.:
 
 | Status      | Description                                                     |
-|:------------|:----------------------------------------------------------------|
+| :---------- | :-------------------------------------------------------------- |
 | `cancel`    | Customer has aborted the payment at the payment provider's site |
 | `fail`      | Payment has failed \(e.g. missing funds\)                       |
 | `paid`      | Successful immediate payment                                    |

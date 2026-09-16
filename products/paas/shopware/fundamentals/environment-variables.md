@@ -12,11 +12,11 @@ This page explains how to configure environment variables in Shopware PaaS Nativ
 
 There are three ways to define environment variables, listed here from lowest to highest priority:
 
-| Source                                      | Description                                          |
-|---------------------------------------------|------------------------------------------------------|
-| `.env` file                                 | Committed to your repository, lowest priority        |
+| Source                                    | Description                                          |
+| ----------------------------------------- | ---------------------------------------------------- |
+| `.env` file                               | Committed to your repository, lowest priority        |
 | [`application.yaml`](application-yaml.md) | Defined in `app.environment_variables`               |
-| [Vault secrets](./secrets.md)               | Created via `sw-paas vault create`, highest priority |
+| [Vault secrets](./secrets.md)             | Created via `sw-paas vault create`, highest priority |
 
 When the same variable is defined in multiple sources, the higher-priority source wins. For example, a variable set in `application.yaml` overwrites the same variable from `.env`, and a vault secret overwrites both.
 
@@ -28,10 +28,10 @@ Environment variables are defined in the `app.environment_variables` array of yo
 
 Each variable needs a `name`, `value`, and `scope`:
 
-| Scope      | Description                                           |
-|------------|-------------------------------------------------------|
-| `RUN`      | The value is passed to Shopware application (runtime) |
-| `BUILD`    | Build-time environment variables                      |
+| Scope   | Description                                           |
+| ------- | ----------------------------------------------------- |
+| `RUN`   | The value is passed to Shopware application (runtime) |
+| `BUILD` | Build-time environment variables                      |
 
 You can define the same variable name with different scopes to use different values at build-time and runtime.
 

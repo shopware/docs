@@ -21,6 +21,14 @@ To use the extension manager, you need a `.shopware-project.yml` or set environm
 Make sure you log in using your username and password to the CLI. The extension API can be used **only by users**.
 :::
 
+## Targeting an environment
+
+All commands in this family accept the global `-e`/`--env` flag to target a named environment from the `environments` section of `.shopware-project.yml` (see the [Environment executors](../../../../guides/development/dev-environment.md#environment-executors) reference). When set, the command uses that environment's `url` and `admin_api` credentials instead of the top-level configuration. An unknown environment name causes the command to fail instead of silently falling back to the default configuration.
+
+```bash
+shopware-cli project extension list -e staging
+```
+
 ## Commands
 
 ### List all extensions

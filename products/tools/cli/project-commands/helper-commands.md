@@ -57,13 +57,13 @@ With Docker projects, run Composer and other PHP tools **inside** the web contai
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
 | Shell Script                | Shopware Command                        |
-|-----------------------------|-----------------------------------------|
+| --------------------------- | --------------------------------------- |
 | bin/build-storefront.sh     | `shopware-cli project storefront-build` |
 | bin/build-administration.sh | `shopware-cli project admin-build`      |
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-The `admin-build` command runs npm install on first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
+The `admin-build` command runs `npm install` on the first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
 
 The `admin-watch` command: faster than `admin-build` because it monitors changes and rebuilds only what changed. See changes in real-time during development without waiting for a full rebuild.
 
@@ -129,6 +129,25 @@ shopware-cli project console <command>
 
 A shorter `swx` alias is also available. See [Running Shopware commands](../../../../guides/development/dev-environment.md#running-shopware-commands).
 
+`project console` / `swx` also runs custom scripts defined in the project's `composer.json`, so you don't need a separate Composer invocation for day-to-day scripts:
+
+```bash
+swx phpstan
+swx phpstan -- --memory-limit=2G
+```
+
+Arguments after `--` are passed through to the script. Built-in `bin/console` commands always take precedence over a script with the same name, and lifecycle hooks (for example `post-install-cmd` or `auto-scripts`) are not exposed this way. `swx` / `swx list` shows a `composer` section listing the available scripts.
+
+To proxy the full Composer CLI itself (not just project scripts) through the same executor (local, Docker, or Symfony CLI) as `console`, use:
+
+```bash
+swx composer install
+shopware-cli project composer require shopware/dev-tools
+shopware-cli project composer update --with-all-dependencies
+```
+
+Tab completion for `swx composer <tab>` and `shopware-cli project composer <tab>` is supported, based on a cached command dump.
+
 ## Admin API
 
 The `project admin-api` command is a pre-authenticated curl wrapper for the Shopware Admin API. Instead of manually handling JWT token generation and headers, this command handles authentication automatically:
@@ -150,21 +169,37 @@ This outputs the token that you can use in your own curl commands or scripts.
 
 ## Project validation
 
-To validate your entire Shopware project and all its extensions, use:
+To run validation tools across the local extensions and configured bundles in a Shopware project, use:
 
 ```bash
-shopware-cli project validate
+shopware-cli project validate [path]
 ```
 
-This runs validation checks on all extensions in your project. Available flags:
+If no path is provided, Shopware CLI uses the closest Shopware project. Extensions resolved from `vendor/` and extensions listed in `validation.ignore_extensions` are skipped.
+
+Available options:
 
 ```bash
-shopware-cli project validate --reporter json
+# Set the report format: summary, json, github, gitlab, junit, or markdown
+shopware-cli project validate --format json
+
+# Run only specific validation tools
 shopware-cli project validate --only phpstan
-shopware-cli project validate --exclude rector
+shopware-cli project validate --only phpstan,eslint
+
+# Exclude specific validation tools
+shopware-cli project validate --exclude eslint
+
+# Validate the project in place instead of copying it to a temporary directory
+shopware-cli project validate --no-copy
+
+# Restrict extension discovery to custom/* directories
+shopware-cli project validate --local-only
 ```
 
-See [Validation](../validation.md) for more details on validation tools.
+`--only` and `--exclude` accept comma-separated tool names.
+
+See [Validation](../validation.md) for the available validation tools.
 
 ## Project diagnostics
 
@@ -194,7 +229,9 @@ To create a new `.shopware-project.yml` configuration file interactively:
 shopware-cli project config init
 ```
 
-This generates a basic configuration file for your Shopware project. The file is also referenced in development environment setup and deployment configurations.
+This generates a basic configuration file for your Shopware project. Shop URL and Admin API credentials are written under `environments.local` (omit `-e`/`--env` on other project commands to target it). The file is also referenced in development environment setup and deployment configurations.
+
+Top-level `url` and `admin_api` keys are deprecated: config files that still use them keep working, but the CLI logs a deprecation warning telling you to move these values under `environments`.
 
 ## Generate JWT secret
 

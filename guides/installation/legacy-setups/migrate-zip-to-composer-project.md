@@ -144,7 +144,7 @@ composer recipe:install --force --reset
 Adjusting environment variables may be necessary as the names have changed:
 
 | **Old name**      | **New name**   |
-|-------------------|----------------|
+| ----------------- | -------------- |
 | MAILER_URL        | MAILER_DSN     |
 | SHOPWARE_ES_HOSTS | OPENSEARCH_URL |
 

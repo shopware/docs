@@ -15,12 +15,12 @@ The Store API MCP server was introduced in Shopware 6.7.11.0 and, like the Admin
 
 ## Endpoint
 
-| Property    | Value                                     |
-|-------------|-------------------------------------------|
-| Path        | `/store-api/_mcp`                         |
-| Methods     | `GET`, `POST`, `DELETE`, `OPTIONS`         |
-| Transport   | Streamable HTTP transport                  |
-| Route scope | `store-api`                                |
+| Property    | Value                              |
+| ----------- | ---------------------------------- |
+| Path        | `/store-api/_mcp`                  |
+| Methods     | `GET`, `POST`, `DELETE`, `OPTIONS` |
+| Transport   | Streamable HTTP transport          |
+| Route scope | `store-api`                        |
 
 `POST` carries the JSON-RPC messages, `GET` opens a stream for server-initiated messages such as `notifications/tools/list_changed`, and `DELETE` ends the MCP session and releases its state.
 
@@ -30,11 +30,11 @@ If `symfony/mcp-bundle` is not installed, the endpoint answers with HTTP 404.
 
 The endpoint uses standard Store API authentication:
 
-| Header             | Required | Purpose                                                                     |
-|--------------------|----------|-----------------------------------------------------------------------------|
-| `sw-access-key`    | yes      | Sales channel access key, as for any other Store API route                   |
+| Header             | Required | Purpose                                                                                        |
+| ------------------ | -------- | ---------------------------------------------------------------------------------------------- |
+| `sw-access-key`    | yes      | Sales channel access key, as for any other Store API route                                     |
 | `sw-context-token` | no       | Continues an existing sales-channel context. Without it, Shopware creates an anonymous context |
-| `Mcp-Session-Id`   | no       | Returned by `initialize`; required for session-scoped features such as toolsets |
+| `Mcp-Session-Id`   | no       | Returned by `initialize`; required for session-scoped features such as toolsets                |
 
 No customer login is required. Whether a customer is logged in only changes what the context reports and what the sales-channel context permits.
 
@@ -122,11 +122,11 @@ The endpoint itself has no toggle: it is reachable for every sales channel with 
 
 Registering a Store API capability works like the Admin API equivalent, but with its own service tags:
 
-| Tag                             | Registers                          |
-|---------------------------------|------------------------------------|
-| `shopware.store_api_mcp.tool`   | A tool on `/store-api/_mcp`        |
-| `shopware.store_api_mcp.prompt` | A prompt on `/store-api/_mcp`      |
-| `shopware.store_api_mcp.resource` | A resource on `/store-api/_mcp`   |
+| Tag                               | Registers                       |
+| --------------------------------- | ------------------------------- |
+| `shopware.store_api_mcp.tool`     | A tool on `/store-api/_mcp`     |
+| `shopware.store_api_mcp.prompt`   | A prompt on `/store-api/_mcp`   |
+| `shopware.store_api_mcp.resource` | A resource on `/store-api/_mcp` |
 
 Notes for extension developers:
 
