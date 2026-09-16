@@ -123,12 +123,12 @@ The Symfony Bundle handles all verification automatically.
 
 When a shop re-registers an app it already knows — to rotate the app secret, or after a shop-ID change — both requests of the handshake carry a second signature. One proves the request belongs to your app, the other proves it comes from the shop that registered before, so your app **must validate both** on each request:
 
-| request | header | signed with |
-|---|---|---|
-| registration (`GET`, over the query string) | `shopware-app-signature` | your app's identity secret — the manifest `<setup><secret>` for a private app |
-| registration (`GET`, over the query string) | `shopware-shop-signature` | the app secret the shop believes your app currently holds |
-| confirmation (`POST`, over the request body) | `shopware-shop-signature` | the new secret your app returned during the handshake |
-| confirmation (`POST`, over the request body) | `shopware-shop-signature-previous` | the app secret your app held before this re-registration |
+| request                                      | header                             | signed with                                                                   |
+| -------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------- |
+| registration (`GET`, over the query string)  | `shopware-app-signature`           | your app's identity secret — the manifest `<setup><secret>` for a private app |
+| registration (`GET`, over the query string)  | `shopware-shop-signature`          | the app secret the shop believes your app currently holds                     |
+| confirmation (`POST`, over the request body) | `shopware-shop-signature`          | the new secret your app returned during the handshake                         |
+| confirmation (`POST`, over the request body) | `shopware-shop-signature-previous` | the app secret your app held before this re-registration                      |
 
 Both `shopware-shop-signature` variants are absent on a first registration, where the app holds no secret yet. Validate each one with the same HMAC-SHA256 check used for a normal request, passing the matching secret.
 
