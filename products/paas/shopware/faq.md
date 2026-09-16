@@ -188,7 +188,7 @@ A `kind: cfe` application must meet three runtime contracts, and none of them is
 
 If the port or the health endpoint is missing, the build succeeds and the deployment then fails readiness, so the application never serves. Writing to disk at runtime fails only under real traffic.
 
-If you use a custom Dockerfile via `app.build.dockerfile_path`, it must run as non-root with UID and GID 1000.
+If you use a custom Dockerfile via `app.build.dockerfile_path`, it must run as non-root with `UID` and `GID` set to `1000`.
 
 See [Composable Frontends](./composable-frontends/index.md) for the full setup — [Runtime requirements](./composable-frontends/index.md#runtime-requirements), [Custom Dockerfile](./composable-frontends/index.md#custom-dockerfile), and the sections on environment variables, Fastly and ISR caching.
 
@@ -258,7 +258,7 @@ For databases, the platform creates one full snapshot per day within a backup wi
 
 Backups are retained for **7 days**, for both databases and object storage buckets.
 
-You can restore a database to any point in time between five minutes ago and seven days ago. For object storage, the recovery point objective is approximately 30 minutes, so the most recent restorable state may be up to 30 minutes before the incident.
+You can restore a database to any point in time between five minutes ago and seven days ago. For object storage, the recovery point objective is approximately 30 minutes, so the most recent state available for restore may be up to 30 minutes before the incident.
 
 ### Who performs a restore — can I do it myself?
 
@@ -350,7 +350,7 @@ There is no single migration command, and the approach is project-specific. In o
 4. **Import media through Shopware** — the Admin media manager for small volumes, or the Shopware API at scale. Object storage cannot be written from outside the container, so there is no `s3 sync` shortcut.
 5. **Reindex and verify.** Run `bin/console dal:refresh:index --use-queue`, then check the storefront, the admin, payment and any integration that talks to an external system from the [egress IP addresses](#what-ip-addresses-does-paas-use-for-outbound-traffic).
 
-**Plan the media step first.** It is usually the longest part of a migration and the most frequently underestimated. Run the whole sequence once against a development application and measure how long media import takes before committing to a cutover date.
+**Plan the media step first.** It is usually the longest part of a migration and the most frequently underestimated. Run the whole sequence once against a development application and measure how long media import takes before committing to a go-live date.
 
 :::info
 This is an outline, not a procedure. A detailed migration guide is in preparation. Until it is published, plan the migration with your implementation partner or your contact at Shopware.
@@ -456,7 +456,7 @@ No. Managed load testing is not part of the platform, and Shopware does not run 
 
 **Load testing your own application before going live is strongly recommended**, and it is your responsibility. Your traffic profile, catalogue size and custom code determine how the application behaves under load, and only a test against your own shop will show that.
 
-Run load tests against a non-production application rather than your live shop, and tell us in advance when you plan a test at significant volume so that we are not responding to it as an incident. For plannable traffic peaks such as a campaign or Black Friday, let us know early so capacity can be reviewed.
+Run load tests against a non-production application rather than your live shop, and tell us in advance when you plan a test at significant volume so that we are not responding to it as an incident. For traffic peaks you can plan for, such as a campaign or Black Friday, let us know early so capacity can be reviewed.
 
 ## Availability, incidents and maintenance
 
@@ -538,11 +538,11 @@ As a rule of thumb, **HTTP 500 errors** almost always originate in application c
 
 ### How does the platform scale when my application gets busy?
 
-Horizontally and automatically, within the capacity configured for your plan. Autoscaling applies to production applications.
+Horizontally and automatically, within the capacity configured for your plan. Automatic scaling applies to production applications.
 
 What your plan currently accounts for is **resource consumption** — compute, memory and database capacity — rather than requests or bandwidth. A busy shop is only a problem when it needs more of those than your plan provides, and at that point requests can become slow or fail. Data already stored is not affected.
 
-For plannable peaks such as a campaign or Black Friday, tell us in advance so the capacity requirement can be reviewed and, where technically possible, prepared.
+For peaks you can plan for, such as a campaign or Black Friday, tell us in advance so the capacity requirement can be reviewed and, where technically possible, prepared.
 
 ### What counts as resource overage?
 
@@ -580,7 +580,7 @@ Notification obligations for personal data breaches follow the GDPR and the term
 
 Every incident is assessed for security relevance during triage. Where exposure of customer data, loss of data integrity or unauthorised access cannot be ruled out, the incident is handled as a security incident: Shopware's Information Security Officer is involved immediately, the Data Protection Officer where applicable, and evidence is preserved before remediation.
 
-Security incidents are treated at the highest severity level and follow Shopware's information security management process. Root cause analysis and a documented post-mortem are mandatory at that level.
+Security incidents are treated at the highest severity level and follow Shopware's information security management process. Root cause analysis and a documented review after the event are mandatory at that level.
 
 ### Is the platform covered by security certifications?
 
