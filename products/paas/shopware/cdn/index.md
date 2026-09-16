@@ -36,3 +36,6 @@ We configure two different Fastly services:
 - `storefront`: Service that proxies the storefront and admin Shopware instances.
 - `cdn`: Service that proxies all the CDN assets hosted on S3 (public bucket).
 
+## Custom Domains
+
+Custom domain configuration has moved to its own page. See [Custom Domains](./custom-domains.md) for prerequisites, DNS records, and the step-by-step setup.
