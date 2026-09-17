@@ -225,7 +225,7 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 
 ## Test your tool
 
-Follow the below steps to verify that Copilot discovers and calls your tool correctly:
+Follow these steps to verify that Copilot discovers and calls your tool correctly:
 
 1. Confirm that your tool is registered. The following command lists your tool with its group and privileges:
 
