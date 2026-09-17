@@ -211,7 +211,7 @@ A read tool has the same class shape without the `dryRun` parameter. Declare the
 
 ### App-based tools
 
-Tools that an app exposes over a webhook follow the same contract. Declare `dryRun` as a boolean property with `"default": true` in the tool's JSON input schema, and branch on it in your webhook handler exactly as the plugin example does.
+Tools that an app exposes over a webhook follow the same contract. Declare `dryRun` as an optional boolean property with `"default": true` in the tool's JSON input schema. Because JSON Schema defaults do not populate omitted request properties, the webhook handler must treat a missing value as `true` (for example, `$dryRun = $args['dryRun'] ?? true`) before branching.
 
 ## Requirements and limits
 
