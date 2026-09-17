@@ -447,7 +447,7 @@ No. Only one can be active, and a profiler also displaces tracing:
 - **Blackfire and Tideways are mutually exclusive.** Setting both to `true` is rejected with the error `blackfire and tideways cannot be enabled at the same time`.
 - **A profiler suppresses OpenTelemetry tracing.** While either one is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for that period.
 
-To return to tracing, set the profiler's `enabled` flag back to `false` and update the application. See [Traces](./monitoring/traces.md).
+To return to tracing, set `enabled` back to `false` for whichever profiler is active, then update the application. See [Traces](./monitoring/traces.md).
 
 ### Why is a page missing from my profiler?
 
@@ -507,7 +507,7 @@ Updating the Shopware software and your own application remains your responsibil
 
 Routine, required and scheduled maintenance is announced **at least 7 days in advance** at [status.shopware.com](https://status.shopware.com/) or in writing, and is capped at **no more than eight hours per month in total**. Announced maintenance within that cap is excluded from the uptime calculation.
 
-Emergency maintenance — security-critical measures, patches or changes to mitigate acute risks or stabilise operations — may be carried out with shorter notice or none.
+Emergency maintenance — security-critical measures, patches or changes to mitigate acute risks or stabilize operations — may be carried out with shorter notice or none.
 
 Subscribe on the status page so the announcements reach you.
 
@@ -519,7 +519,7 @@ Proactive individual notification within a fixed time window is not part of the 
 
 ### How do I report an incident?
 
-Open a support ticket at [support.shopware.com](https://support.shopware.com), or through the ticket system in your Shopware Account. Incidents are triaged to determine whether the cause is infrastructure, your application, or a third-party service, and routed accordingly.
+Open a support ticket at [support.shopware.com](https://support.shopware.com), or through the ticket system in your Shopware Account. Each incident is assessed to determine whether the cause is infrastructure, your application, or a third-party service, then routed accordingly.
 
 If you are a partner raising a ticket on behalf of a customer, the form asks for **your customer's customer number** — that is what identifies the right support entitlement for the shop in question. Agencies and customers can coordinate a request together.
 
@@ -581,7 +581,7 @@ Notification obligations for personal data breaches follow the GDPR and the term
 
 ### How does Shopware handle a security incident?
 
-Every incident is assessed for security relevance during triage. Where exposure of customer data, loss of data integrity or unauthorised access cannot be ruled out, the incident is handled as a security incident: Shopware's Information Security Officer is involved immediately, the Data Protection Officer where applicable, and evidence is preserved before remediation.
+Every incident is also assessed for security relevance. Where exposure of customer data, loss of data integrity or unauthorized access cannot be ruled out, the incident is handled as a security incident: Shopware's Information Security Officer is involved immediately, the Data Protection Officer where applicable, and evidence is preserved before remediation.
 
 Security incidents are treated at the highest severity level and follow Shopware's information security management process. Root cause analysis and a documented review after the event are mandatory at that level.
 
