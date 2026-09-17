@@ -19,7 +19,7 @@ The `dryRun` contract is a temporary solution. A future Shopware release is expe
 
 ## Prerequisites
 
-This guide assumes that you know how to extend the Shopware MCP server. For more information, see [MCP Support in Shopware](../index.md).
+This guide assumes that you know how to extend the Shopware MCP server. For more information, see [MCP Support in Shopware](./index.md).
 
 You need the following:
 
