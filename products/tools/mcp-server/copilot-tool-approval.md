@@ -116,7 +116,7 @@ The preview and commit steps happen in separate MCP sessions, possibly minutes a
 
 ## Implement a write tool in a plugin
 
-The example below is a complete write tool. It extends `McpToolResponse`, which every MCP tool must do, and follows rules R1 to R3.
+The example below is a complete write tool for a plugin. It extends `McpToolResponse` to use Shopware's standard response envelope and helpers, and follows rules R1 to R3.
 
 ```php
 <?php declare(strict_types=1);
