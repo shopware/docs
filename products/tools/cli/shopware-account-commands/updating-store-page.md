@@ -21,13 +21,13 @@ Start with the current Store page and update only the parts you want to change. 
 shopware-cli account producer extension info pull <path-to-extension-folder>
 ```
 
-This downloads all uploaded Store images and creates a `.shopware-extension.yml` file with the extension's Store metadata.
+This downloads all uploaded Store images and creates a `.config/shopware-extension.yml` file with the extension's Store metadata.
 
 The file can be checked into version control and is automatically removed when you create a ZIP file using Shopware CLI.
 
 ## Managing Store metadata locally with Git
 
-The `.shopware-extension.yml` file contains the extension's Store metadata, such as descriptions, tags, installation instructions, and image configuration. By checking this file into Git, you can:
+The `.config/shopware-extension.yml` file contains the extension's Store metadata, such as descriptions, tags, installation instructions, and image configuration. By checking this file into Git, you can:
 
 - Track Store listing changes together with code changes.
 - Review and approve localized or marketing content through pull requests.
@@ -41,12 +41,12 @@ This workflow is especially useful when you maintain several extensions or local
 Store listing updates and extension package uploads are separate actions. A typical version-controlled workflow is:
 
 1. Pull the current Store metadata with `extension info pull` when you first adopt the workflow.
-2. Edit `.shopware-extension.yml` and the referenced images in the extension repository.
+2. Edit `.config/shopware-extension.yml` and the referenced images in the extension repository.
 3. Review the Store listing changes in Git like any other content change.
 4. Push approved Store metadata with `extension info push`.
 5. Validate and upload the release package using the [Store release workflow](./releasing-extension-to-shopware-store.md).
 
-Because `.shopware-extension.yml` is not included in the extension ZIP created by Shopware CLI, keeping Store metadata in the repository does not add the listing configuration to the distributed package.
+Because `.config/shopware-extension.yml` is not included in the extension ZIP created by Shopware CLI, keeping Store metadata in the repository does not add the listing configuration to the distributed package.
 
 ## Updating the Store page
 

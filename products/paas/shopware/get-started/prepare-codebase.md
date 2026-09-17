@@ -24,7 +24,7 @@ To uninstall plugins in the PaaS environment, use the [Deployment Helper](../../
 
 The uninstallation process involves two steps:
 
-1. **Set the extension to remove**: Configure the extension state as `remove` in your `.shopware-project.yml` file and deploy the changes to uninstall the extension.
+1. **Set the extension to remove**: Configure the extension state as `remove` in your `.config/shopware-project.yml` file and deploy the changes to uninstall the extension.
 
 2. **Remove from source code**: After the deployment, remove the extension from your source code and deploy again.
 
