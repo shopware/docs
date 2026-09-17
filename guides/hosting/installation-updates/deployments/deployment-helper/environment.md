@@ -79,12 +79,12 @@ See [SSL/TLS Setup](../../../infrastructure/database.md#ssltls-connection) for c
 
 ### Deployment control
 
-| Variable                              | Values                   | Purpose                                                                              |
-| ------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------ |
-| `SHOPWARE_DEPLOYMENT_TIMEOUT`         | Seconds (default: `300`) | Max time a single deployment step can run; set to `null` to disable                  |
-| `SHOPWARE_DEPLOYMENT_FORCE_REINSTALL` | `1` or unset             | Set to `1` to force fresh install with `--drop-database` (destroys existing data!)   |
-| `SHOPWARE_DEPLOYMENT_STAGING`         | `1` or unset             | Set to `1` to enable staging mode on every deployment                                |
-| `SHOPWARE_PROJECT_CONFIG_FILE`        | File path                | Custom project configuration path (absolute or relative to project root)                 |
+| Variable                              | Values                   | Purpose                                                                            |
+| ------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------- |
+| `SHOPWARE_DEPLOYMENT_TIMEOUT`         | Seconds (default: `300`) | Max time a single deployment step can run; set to `null` to disable                |
+| `SHOPWARE_DEPLOYMENT_FORCE_REINSTALL` | `1` or unset             | Set to `1` to force fresh install with `--drop-database` (destroys existing data!) |
+| `SHOPWARE_DEPLOYMENT_STAGING`         | `1` or unset             | Set to `1` to enable staging mode on every deployment                              |
+| `SHOPWARE_PROJECT_CONFIG_FILE`        | File path                | Custom project configuration path (absolute or relative to project root)           |
 
 ### Store authentication
 
