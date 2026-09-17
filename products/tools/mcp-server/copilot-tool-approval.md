@@ -247,7 +247,7 @@ To trace what Copilot does, inject a logger into the tool and log every invocati
 
 The `dryRun` contract is Copilot's first mechanism for safely running tools it hasn't seen before. It has two known gaps:
 
-* Tools that change data but can't offer a meaningful preview, such as file uploads, don't fit the contract yet. You can publish them, but Copilot doesn't execute them until a dedicated flow exists.
+* Tools that change data but can't offer a meaningful preview, such as file uploads, cannot use this approval flow. If published without `dryRun`, they are treated as read-only and may execute immediately without merchant approval, so expose them only when that behavior is acceptable.
 * The contract relies on a naming convention. A future Shopware release is expected to expose the standard MCP tool annotations, including `readOnlyHint`, and Copilot honors those when present. Declaring `dryRun` remains supported, so tools written against this guide don't need changes.
 
 ## Checklist before you publish
