@@ -107,7 +107,7 @@ Check if:
 - Your editor is using the schema and does not report any validation errors.
 - The key is nested under the correct section, for example `deployment:`.
 - You are editing the file the helper actually loads. If `SHOPWARE_PROJECT_CONFIG_FILE` or `--project-config` is set, that file wins over the auto-discovered one.
-- A `.config/shopware-project.local.yml` is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](configuration.md#local-configuration-overrides).
+- The local override alongside the resolved project configuration (for example, `.config/shopware-project.local.yml`) is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](configuration.md#local-configuration-overrides).
 
 ## Extensions aren't being installed or updated as expected
 
