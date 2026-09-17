@@ -52,7 +52,7 @@ If you already have a target directory, see [Installing into an existing directo
 
 ### Select Shopware version
 
-The latest version will always be the top option. At the bottom of the terminal window are prompts for moving through and selecting menu options.
+The latest version will always be the top option. Below the released minor versions, a **trunk (development version)** option is listed for installing Shopware's latest development state (`dev-trunk`); like `latest`, selecting it skips the patch-version step. At the bottom of the terminal window are prompts for moving through and selecting menu options.
 
 ### Choose Docker or skip
 
