@@ -91,6 +91,8 @@ services:
 
 For the full configuration reference, see the [Application YAML Configuration](../fundamentals/application-yaml.md) page.
 
+If your repository holds more than one project, the `application.yaml` can also live in a sub-directory. See [Deploy from a monorepo](../guides/monorepo.md).
+
 ## Hooks Configuration
 
 Shopware PaaS Native uses the deployment helper to execute custom hooks for your application. To see how these hooks are configured, refer to the [Deployment Helper documentation](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).
