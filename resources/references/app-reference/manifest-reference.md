@@ -42,7 +42,7 @@ Validates that the Shopware instance is publicly reachable, which is necessary f
 
 ## Storefront
 
-Can be omitted if your app template needs higher load priority than other plugins/apps. For more details, follow the [storefront guide](../../../guides/plugins/apps/storefront/index.md).
+Configure the template load priority of your app and declare SEO URLs for pages rendered by your storefront scripts. For more details, follow the [storefront guide](../../../guides/plugins/apps/storefront/index.md) and the [SEO URLs for App Routes](../../../guides/plugins/apps/storefront/seo-urls.md) guide.
 
 <<< @/docs/snippets/config/app/storefront.xml
 
