@@ -10,7 +10,7 @@ nav:
 Shopware Copilot can use the MCP tools that your plugin or app registers on a merchant's shop. This guide explains how Copilot discovers those tools and describes the `dryRun` contract a tool must follow so that the merchant gets an approval step before the tool changes data.
 
 ::: info
-This functionality is available starting with Shopware 6.7. The MCP server is experimental.
+This functionality is available starting with Shopware 6.7.14.0, which provides the tool groups and progressive discovery used by this guide. The MCP server is experimental.
 :::
 
 ::: warning
