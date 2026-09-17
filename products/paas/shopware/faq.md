@@ -432,23 +432,26 @@ No. Single sign-on for tools such as Grafana and OpenSearch is not available at 
 
 ### Are Blackfire or Tideways supported?
 
-Both are supported as application performance monitoring integrations.
+Both are supported as application performance monitoring integrations. Each needs an account of your own — the platform does not provide one.
 
-**Blackfire** — you need your own Blackfire account; the platform does not provide one. Store `BLACKFIRE_SERVER_ID` and `BLACKFIRE_SERVER_TOKEN` as `env` secrets in the vault, then set `services.blackfire.enabled` to `true` in [`application.yaml`](./fundamentals/application-yaml.md) and update your application. Both secrets must exist before you enable it, or the deployment fails. The probe is added to your image automatically — do not list it under `app.php.extensions`. See [Blackfire](./monitoring/blackfire.md).
+The setup pattern is the same for both. Store the credentials as `env` secrets in the vault, enable the service in [`application.yaml`](./fundamentals/application-yaml.md), then update your application. The secret must exist **before** you enable the service, otherwise the deployment fails. The probe or extension is added to your image automatically, so do not list it under `app.php.extensions`.
 
-**Tideways** — supported.
+**Blackfire** — store `BLACKFIRE_SERVER_ID` and `BLACKFIRE_SERVER_TOKEN`, then set `services.blackfire.enabled` to `true`. See [Blackfire](./monitoring/blackfire.md).
 
-:::info
-The Tideways setup documentation is in preparation.
-:::
+**Tideways** — store `TIDEWAYS_API_KEY`, then set `services.tideways.enabled` to `true`. Your shop reports under the service name `shopware`. Tideways runs on shop applications only; enabling it on a composable frontend is rejected when the configuration is validated. See [Tideways](./monitoring/tideways.md).
 
-### Can I use Blackfire and tracing at the same time?
+### Can I run more than one profiler at a time?
 
-No. While Blackfire is enabled, your application does not send OpenTelemetry traces, and the Tempo data source in Grafana stays empty for that period. Set `services.blackfire.enabled` to `false` and update the application to return to tracing. See [Traces](./monitoring/traces.md).
+No. Only one can be active, and a profiler also displaces tracing:
 
-### Why does my Blackfire profile not appear?
+- **Blackfire and Tideways are mutually exclusive.** Setting both to `true` is rejected with the error `blackfire and tideways cannot be enabled at the same time`.
+- **A profiler suppresses OpenTelemetry tracing.** While either one is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for that period.
 
-Pages served from the CDN cache never reach PHP and cannot be profiled. Request the page in a way that bypasses the cache, or profile a page that is not cacheable.
+To return to tracing, set the profiler's `enabled` flag back to `false` and update the application. See [Traces](./monitoring/traces.md).
+
+### Why is a page missing from my profiler?
+
+Pages served from the CDN cache never reach PHP, so neither Blackfire nor Tideways sees them. Request the page in a way that bypasses the cache, or look at a page that is not cacheable.
 
 ### Does Shopware run load tests for me?
 
