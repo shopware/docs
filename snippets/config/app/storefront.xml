@@ -5,5 +5,14 @@
     </meta>
     <storefront>
         <template-load-priority>100</template-load-priority>
+        <seo-url name="imprint">
+            <label>Imprint</label>
+            <path>imprint</path>
+            <path lang="de-DE">impressum</path>
+        </seo-url>
+        <seo-url name="blog-detail" entity="ce_blog">
+            <label>Blog post</label>
+            <default-template>blog/{{ ceBlog.translated.title }}</default-template>
+        </seo-url>
     </storefront>
 </manifest>
