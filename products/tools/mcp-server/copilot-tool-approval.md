@@ -1,7 +1,7 @@
 ---
 nav:
   title: Copilot tool approval
-  position: 40
+  position: 65
 
 ---
 
