@@ -118,7 +118,7 @@ The preview and commit steps happen in separate MCP sessions, possibly minutes a
 
 The example below is a complete write tool for a plugin. It extends `McpToolResponse` to use Shopware's standard response envelope and helpers, and follows rules R1 to R3.
 
-```php
+```PHP
 <?php declare(strict_types=1);
 
 namespace Vendor\MyExtension\Mcp\Tool;
@@ -134,7 +134,7 @@ use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
     title: 'Pause Promotion',
     description: 'Pause an active promotion so it stops applying to new orders. '
         . 'Use dryRun=true (default) to preview which promotion would be paused; '
-        . 'set dryRun=false only to execute an approved change. Returns the promotion id and new state.'
+        . 'set dryRun=false only to execute an approved change. Returns the promotion ID and new state.'
 )]
 #[McpToolGroup('myext-promotions')]
 #[McpToolRequires('promotion:update')]
@@ -186,7 +186,7 @@ final class PromotionPauseTool extends McpToolResponse
 
 Register the class as a service tagged `shopware.mcp.tool`. Shopware derives the input schema from the `__invoke()` signature, so the `bool $dryRun = true` parameter is all that is needed to satisfy rule R1.
 
-```php
+```PHP
 // Resources/config/services.php
 $services->set(PromotionPauseTool::class)
     ->args([
@@ -200,7 +200,7 @@ $services->set(PromotionPauseTool::class)
 
 The preview payload is rendered to the merchant, so shape it for a person rather than for a machine:
 
-* Name the affected records by something the merchant recognizes, such as a product number or promotion name, alongside the technical id.
+* Name the affected records by something the merchant recognizes, such as a product number or promotion name, alongside the technical ID.
 * Describe the change as *from* and *to* values where possible.
 * Keep it small. Summarize bulk operations with counts and a few examples instead of listing every record.
 * Return `error()` for anything the commit would reject. A preview that succeeds and a commit that fails is the worst experience for the merchant.
@@ -219,7 +219,7 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 * **Idempotent commits where possible** - Copilot executes an approval once, but network retries can repeat a call. Design the commit so that running it twice with the same arguments is harmless.
 * **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilege()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
 * **Response envelope** - Always return through `success()` or `error()`. Copilot treats `success: false` as a tool error and doesn't proceed to the commit.
-* **Response size** - Responses larger than 100 KB are returned through a resource URI instead of inline. Keep previews and results compact so Copilot can use them directly.
+* **Response size** - Responses larger than 100 KB are returned through a resource URI instead of inline. Keep previews and results compact, so Copilot can use them directly.
 * **Timeouts** - Copilot waits a few seconds for a tool call. Long-running work should return quickly and continue asynchronously, reporting a reference the merchant can check.
 * **No preview-only side effects** - Logging is fine. Creating draft records, reserving stock, or sending notifications during a preview is not.
 
