@@ -100,14 +100,14 @@ See [One-time task timeout](one-time-tasks.md#one-time-task-timeout) for details
 
 ## A config setting seems to have no effect
 
-Deployment Helper provides a configuration schema for `.shopware-project.yml`. Use it in your editor to validate the file while editing, so misspelled or misplaced keys are reported before deployment.
+Deployment Helper provides a configuration schema for `.config/shopware-project.yml`. Use it in your editor to validate the file while editing, so misspelled or misplaced keys are reported before deployment.
 
 Check if:
 
 - Your editor is using the schema and does not report any validation errors.
 - The key is nested under the correct section, for example `deployment:`.
 - You are editing the file the helper actually loads. If `SHOPWARE_PROJECT_CONFIG_FILE` or `--project-config` is set, that file wins over the auto-discovered one.
-- A `.shopware-project.local.yml` is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](configuration.md#local-configuration-overrides).
+- A `.config/shopware-project.local.yml` is overriding your value. Local files merge on top of the base file. See [Local configuration overrides](configuration.md#local-configuration-overrides).
 
 ## Extensions aren't being installed or updated as expected
 
@@ -144,7 +144,7 @@ If you skipped the staging mode setup, your staging instance is running in produ
     # Or, automatically on every deployment, set:
     export SHOPWARE_DEPLOYMENT_STAGING=1
 
-    # .shopware-project.yml
+    # .config/shopware-project.yml
     deployment:
       staging:
         enabled: true

@@ -10,7 +10,7 @@ nav:
 Shopware CLI provides a fully integrated Docker-based development environment. A single command launches your entire stack, streams logs, manages watchers, and lets you configure PHP and profiling - all without manually editing Docker files.
 
 :::info
-The development environment requires a compatibility date of `2026-03-01` or later in your `.shopware-project.yml`. Projects created with `shopware-cli project create` have this set automatically.
+The development environment requires a compatibility date of `2026-03-01` or later in your `.config/shopware-project.yml`. Projects created with `shopware-cli project create` have this set automatically. See the [Shopware CLI configuration file lookup priority](../../products/tools/cli/configuration.md) for the preferred path and legacy fallbacks.
 :::
 
 ## Starting the environment
@@ -78,7 +78,7 @@ The following table lists the settings you can change in the Config tab:
 | **PHP Version** | `8.2`, `8.3`, `8.4`, `8.5`                               |
 | **Profiler**    | `none`, `xdebug`, `blackfire`, `tideways`, `pcov`, `spx` |
 
-When selecting `blackfire` or `tideways`, additional credential fields appear. Sensitive credentials are stored in `.shopware-project.local.yml` (excluded from version control).
+When selecting `blackfire` or `tideways`, additional credential fields appear. Sensitive credentials are stored in `.config/shopware-project.local.yml` (excluded from version control).
 
 :::info
 The profiler is now configured via the Config tab.
@@ -92,7 +92,7 @@ If your project was created before March 2026 and uses the older `make up`/`make
 
 ### What triggers the wizard
 
-The wizard appears when your project's `compatibility_date` in `.shopware-project.yml` is before `2026-03-01` (or missing entirely). This signals that the project hasn't been configured for the new development environment yet.
+The wizard appears when your project's `compatibility_date` in `.config/shopware-project.yml` is before `2026-03-01` (or missing entirely). This signals that the project hasn't been configured for the new development environment yet.
 
 ### What the wizard does
 
@@ -100,12 +100,12 @@ Walking through the setup wizard takes about a minute. Here's what happens at ea
 
 1. **Welcome** - explains what the wizard will do and asks you to proceed
 2. **Admin user** - pre-fills `admin` (you can change it) for the Shopware admin account
-3. **Admin password** - pre-fills `shopware` (you can change it); stored as credentials in `.shopware-project.yml`
+3. **Admin password** - pre-fills `shopware` (you can change it); stored as credentials in `.config/shopware-project.yml`
 4. **PHP version** - reads your `composer.lock` to determine compatible PHP versions and offers the highest supported one as the default (e.g., `8.5`)
 
 After you confirm, the wizard:
 
-- Sets `compatibility_date` to `2026-03-01` in `.shopware-project.yml`
+- Sets `compatibility_date` to `2026-03-01` in `.config/shopware-project.yml`
 - Adds a `local` environment with type `docker` and your chosen URL/credentials
 - Configures the Docker PHP version
 - Generates a new `compose.yaml` tailored to your project's dependencies
@@ -113,13 +113,13 @@ After you confirm, the wizard:
 
 ### What happens to existing files
 
-| File                          | What changes                                                                                                                                         |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.shopware-project.yml`       | Updated with `compatibility_date`, `environments`, and `docker` config                                                                               |
-| `.shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways)                                                                               |
-| `compose.yaml`                | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
-| `Makefile`                    | **Not touched** - you can delete it once you've migrated, or keep it around                                                                          |
-| `composer.json`               | If `shopware/deployment-helper` isn't already present, it's added to `require`                                                                       |
+| File                                 | What changes                                                                                                                                         |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.config/shopware-project.yml`       | Updated with `compatibility_date`, `environments`, and `docker` config                                                                               |
+| `.config/shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways)                                                                               |
+| `compose.yaml`                       | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
+| `Makefile`                           | **Not touched** - you can delete it once you've migrated, or keep it around                                                                          |
+| `composer.json`                      | If `shopware/deployment-helper` isn't already present, it's added to `require`                                                                       |
 
 ### After the wizard completes
 
@@ -273,7 +273,7 @@ The compose file inspects your `composer.lock` at generation time:
 
 ## Environment executors
 
-The CLI abstracts command execution across environment types, configured per environment in `.shopware-project.yml`:
+The CLI abstracts command execution across environment types, configured per environment in `.config/shopware-project.yml`:
 
 | Type          | Behavior                                                             |
 | ------------- | -------------------------------------------------------------------- |
@@ -308,7 +308,7 @@ The web container exposes these ports by default:
 
 ## Configuration reference
 
-### `.shopware-project.yml`
+### `.config/shopware-project.yml`
 
 ```yaml
 compatibility_date: '2026-03-01'
@@ -332,9 +332,9 @@ environments:
 
 Shop URL and Admin API credentials belong under `environments` (an empty `-e`/`--env` defaults to `environments.local`). Top-level `url` and `admin_api` keys are deprecated: existing config files that still use them keep working and log a deprecation warning, but `project create` and `project config init` only write `environments.local`.
 
-### `.shopware-project.local.yml`
+### `.config/shopware-project.local.yml`
 
-Sensitive credentials are stored in `.shopware-project.local.yml` (add to `.gitignore`):
+Sensitive credentials are stored in `.config/shopware-project.local.yml` (add to `.gitignore`):
 
 ```yaml
 docker:
@@ -432,7 +432,7 @@ If you must run Composer on the host, raise CLI `memory_limit` to at least `512M
 
 ### Compatibility date error
 
-Set `compatibility_date: '2026-03-01'` in `.shopware-project.yml`. For more context, see the [build command docs](../../products/tools/cli/project-commands/build.md#compatibility-date).
+Set `compatibility_date: '2026-03-01'` in `.config/shopware-project.yml`. For more context, see the [build command docs](../../products/tools/cli/project-commands/build.md#compatibility-date).
 
 ## Next steps
 
