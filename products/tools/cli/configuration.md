@@ -14,15 +14,19 @@ Shopware CLI uses separate configuration files for projects and extensions. The 
 .config/shopware-extension.yml
 ```
 
+## Why `.config`
+
+The [`.config` convention](https://dot-config.github.io/) keeps project root directories uncluttered and provides a standard location that other tools can adopt. Shopware CLI and Deployment Helper are the first official Shopware tools to use it.
+
 ## Lookup priority
 
-When no explicit project-config path is supplied, Shopware CLI looks for project configuration in this order:
+When no explicit project-config path is supplied, Shopware CLI and Deployment Helper look for project configuration in this order:
 
 1. `.config/shopware-project.yml`
 2. `.shopware-project.yaml`
 3. `.shopware-project.yml`
 
-For extension configuration, it looks relative to the extension directory in this order:
+For extension configuration, the CLI looks relative to the extension directory in this order:
 
 1. `.config/shopware-extension.yml`
 2. `.shopware-extension.yml`

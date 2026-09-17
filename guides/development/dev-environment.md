@@ -118,7 +118,7 @@ After you confirm, the wizard:
 | `.config/shopware-project.yml`       | Updated with `compatibility_date`, `environments`, and `docker` config                                                                               |
 | `.config/shopware-project.local.yml` | Created if you chose a profiler with credentials (Blackfire, Tideways)                                                                               |
 | `compose.yaml`                       | **Replaced** with the CLI-managed version - your old file is overwritten, so back it up first and move any customizations to `compose.override.yaml` |
-| `Makefile`                           | **Not touched** - you can delete it once you've migrated, or keep it around                                                                          |
+| `Makefile`                           | **Not touched** - you can delete it once you've migrated                                                                                             |
 | `composer.json`                      | If `shopware/deployment-helper` isn't already present, it's added to `require`                                                                       |
 
 ### After the wizard completes
