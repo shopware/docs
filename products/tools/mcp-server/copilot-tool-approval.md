@@ -79,12 +79,12 @@ A tool with side effects but without a `dryRun` parameter is indistinguishable f
 
 The following table summarizes how Copilot treats each tool shape:
 
-| Tool shape | How Copilot calls it | Merchant approval |
-| :--- | :--- | :--- |
-| No `dryRun` in schema | Directly, during the conversation | Not shown |
-| Has `dryRun`, called with `true` | Directly, to obtain the preview | Not needed |
-| Has `dryRun`, called with `false` | Only after the merchant approves the preview | Required |
-| Has side effects, no `dryRun` | Directly, treated as read-only | Bypassed |
+| Tool shape                        | How Copilot calls it                         | Merchant approval |
+| :-------------------------------- | :------------------------------------------- | :---------------- |
+| No `dryRun` in schema             | Directly, during the conversation            | Not shown         |
+| Has `dryRun`, called with `true`  | Directly, to obtain the preview              | Not needed        |
+| Has `dryRun`, called with `false` | Only after the merchant approves the preview | Required          |
+| Has side effects, no `dryRun`     | Directly, treated as read-only               | Bypassed          |
 
 ## What the merchant sees
 
