@@ -113,6 +113,7 @@ This section lists every BC-change attribute, who is affected, and how to write 
 | `#[PropertyTypeWidening]`        | A property type becomes wider                    | Call sites & extenders  | ✅ Handle the announced type when reading; stop redeclaring the property      |
 | `#[BecomesReadonly]`             | A property becomes `readonly`                    | Call sites & extenders  | ✅ Stop assigning it outside the declaring class; stop redeclaring it         |
 | `#[ClassHierarchyChange]`        | The inheritance chain of a class changes         | Call sites & extenders  | ⚠️ Depends on the change — stop relying on ancestors that go away             |
+| `#[ClassMoved]`                  | A class moves to another namespace               | Call sites & extenders  | ✅ Use the new fully qualified class name now                                 |
 
 ### Quick guides per attribute
 
@@ -429,6 +430,30 @@ class ProductListingResult extends EntitySearchResult
 
 **Extending classes**: The same applies to your subclass, plus one more thing: methods and properties your subclass inherits *through* a leaving ancestor disappear with it. Stop using them, or implement them yourself — both work on both versions.
 
+#### ClassMoved
+
+```php
+use Shopware\Core\Framework\Deprecation\BCChange\ClassMoved;
+
+#[ClassMoved(
+    version: 'v6.8.0',
+    previousClassName: 'Shopware\OldNamespace\ExampleClass',
+)]
+class ExampleClass
+{
+}
+```
+
+`#[ClassMoved]` marks the class in its new, canonical namespace. Until the announced version, Shopware registers the previous fully qualified name as an eager `class_alias()`, so both names resolve to the same runtime class. This preserves construction, type declarations, static access, and inheritance without creating a compatibility subclass or a second class identity. Reflection reports the canonical declaration, so do not rely on the previous name being a distinct class.
+
+**Call sites**: Import and use the canonical class name now. The previous name remains available only for backward compatibility and is removed in the announced version.
+
+**Extending classes**: Extend the canonical class name now. The alias preserves the same inheritance behavior during the transition, but disappears in the announced version.
+
+When moving a supported Core class, move its single implementation to the canonical namespace, add `#[ClassMoved]` there, and register the previous name in `src/Core/Framework/Deprecation/class_aliases.php`. Use a string literal for `previousClassName`, update all Core references to the canonical name, and, if the class is a service, register the previous service ID as a deprecated alias of the canonical service. Remove the runtime alias, attribute, and service alias together in the announced version.
+
+Use this mechanism only when the implementation survives under a new fully qualified name. If the class is removed or replaced with different behavior, use the regular deprecation workflow instead.
+
 ## Compatibility sheet
 
 To ensure backward compatibility, it is important to know what you are allowed to do and what not. The following sheet should give you an orientation on common changes and how they could affect the backward compatibility. Although a lot of effort went into this list, it is not guaranteed to be 100% complete. Always keep the persona of third-party developers in mind and challenge your changes against external needs.
@@ -452,7 +477,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | Change the value of a private constant.                                                                       | ✅ YES     | Check all potential usages of the constant. Maybe it is used somewhere to be stored in the database. In that case, you must write a migration for it which ensures every use of the constant in a db-value is updated as well.            |
 | Change a class to final.                                                                                      | 🔴 NO      | Announce it with `#[BecomesFinal]` and apply the change in the next major version.                                                                                                                                                        |
 | Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO      | Announce it with `#[VisibilityChange]` and change the visibility in the next major version.                                                                                                                                               |
-| Change the namespace of a class.                                                                              | 🔴 NO      | Duplicate the class and mark the old one as deprecated.                                                                                                                                                                                   |
+| Change the namespace of a class.                                                                              | ⚪ PARTIAL | Mark the canonical class with `#[ClassMoved]`, eagerly register the previous name as a class alias, and remove the alias in the announced major version. See [ClassMoved](#classmoved).                                                   |
 | Change static state (remove static or delete static keyword).                                                 | 🔴 NO      | Annotate it as deprecated and add or remove the static keyword in the next major version.                                                                                                                                                 |
 | Add parameter to interface or abstract class function.                                                        | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br> Code Example: [Add an argument](#add-an-argument) |
 | Add new public function to interface.                                                                         | 🔴 NO      |                                                                                                                                                                                                                                           |
