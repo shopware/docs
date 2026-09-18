@@ -61,7 +61,7 @@ When there is no option via the container you can use additional helper function
 
 ```php
 use Shopware\Core\Framework\Feature;
- 
+
 class ApiController
 {
 
@@ -83,7 +83,7 @@ You can also do it in a callback:
 
 ```php
 use Shopware\Core\Framework\Feature;
- 
+
 class ApiController
 {
   public function indexAction(Request $request)
@@ -101,7 +101,7 @@ And you can use it for conditions:
 
 ```php
 use Shopware\Core\Framework\Feature;
- 
+
 class ApiController
 {
   public function indexAction(Request $request)
@@ -121,7 +121,7 @@ And you can use it simply to throw exceptions:
 
 ```php
 use Shopware\Core\Framework\Feature;
- 
+
 /**
  * @deprecated tag:v6.5.0 - Class is deprecated, use ... instead
  */
@@ -133,6 +133,36 @@ class ApiController
   }
 }
 ```
+
+### Announcing a deprecation before its replacement is stable
+
+A deprecation whose replacement only ships behind a major flag would warn about something that
+cannot be migrated to yet. Announce it anyway and mark it with `silentUntil`, naming the flag that
+makes the replacement available:
+
+```php
+use Shopware\Core\Framework\Feature;
+
+/**
+ * @deprecated tag:v6.9.0 - Remove with the legacy document implementation
+ */
+public function getDocumentMediaFile(): ?MediaEntity
+{
+    Feature::triggerDeprecationOrThrow(
+        'v6.9.0.0',
+        Feature::deprecatedMethodMessage(self::class, __METHOD__, 'v6.9.0.0', 'getDocumentFiles()'),
+        silentUntil: 'v6.8.0.0',
+    );
+
+    return $this->documentMediaFile;
+}
+```
+
+Until `v6.8.0.0` is active the call returns without doing anything, so there is no need to exclude
+the method from `DeprecatedMethodsThrowDeprecationRule` via a `reason:*` annotation. Once the flag
+is active the deprecation is emitted, and it throws as usual as soon as `v6.9.0.0` is active. A
+marked deprecation may name a major flag that is not registered yet, it only warns until that flag
+exists.
 
 ## Planning public API changes
 
@@ -204,7 +234,7 @@ Also in the JavaScript code of the administration the flags can be used in vario
 You can also hide complete admin modules behind a flag:
 
 ```javascript
- 
+
 Module.register('sw-awesome', {
     flag: 'v6.5.0.0',
     ...
