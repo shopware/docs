@@ -89,7 +89,7 @@ The `$context` is usually passed through to your method, starting from a control
 
 #### Labeling queries for debugging
 
-Give a criteria a descriptive title to identify its generated SQL in database logs and profiling tools:
+Give a `Criteria` instance a descriptive title to identify the generated SQL in database logs and profiling tools:
 
 ```php
 $criteria = new Criteria();
