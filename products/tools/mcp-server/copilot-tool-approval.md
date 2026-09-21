@@ -215,8 +215,6 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 
 ## Requirements and limits
 
-
-
 * **Stateless between calls** - Preview and commit arrive in different sessions. Never store the preview and replay it on commit. Recompute from the arguments.
 * **Idempotent commits where possible** - Copilot executes an approval once, but network retries can repeat a call. Design the commit so that running it twice with the same arguments is harmless.
 * **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilege()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
