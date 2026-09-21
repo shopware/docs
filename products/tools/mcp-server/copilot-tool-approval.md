@@ -246,7 +246,7 @@ To trace what Copilot does, inject a logger into the tool and log every invocati
 ## Known limitations
 
 ::: warning
-Copilot as a service does not have access to tables created by your plugin/app. If you need such functionality, a custom acl with the required permissions should be added via Copilot Settings -> Use custom roles for Copilot, by the Copilot users.
+Copilot as a service does not have access to tables created by your plugin/app. If you need such functionality, Copilot users must add a custom ACL with the required permissions in Copilot Settings -> Use custom roles for Copilot.
 :::
 
 The `dryRun` contract is Copilot's first mechanism for safely running tools it hasn't seen before. It has two known gaps:
