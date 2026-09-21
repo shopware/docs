@@ -27,7 +27,7 @@ You need the following:
 * A plugin or app that registers at least one MCP tool
 * Access to Shopware Copilot in the Administration
 
-## Summary
+## Introduction
 
 You don't need to register your tools with Copilot. Copilot finds them through the shop's own MCP catalog.
 
