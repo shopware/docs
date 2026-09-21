@@ -44,7 +44,10 @@ POST /api/search/product
 
 ## sw-skip-trigger-flow
 
-Flows are an essential part of Shopware and are triggered by events such as customer creation. When migrating from another ecommerce platform to shopware, you might import hundreds of thousands of customers via the sync API. In that case, you don't want to trigger the `send email on customer creation` flow. To avoid this behavior, you can pass the `sw-skip-trigger-flow` header.
+Flows are an essential part of Shopware and are triggered by events such as customer creation.
+When migrating from another ecommerce platform to shopware, you might import hundreds of thousands of customers via the [Sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads).
+In that case, you don't want to trigger the `send email on customer creation` flow.
+To avoid this behavior, you can pass the `sw-skip-trigger-flow` header.
 
 ```bash
 POST /api/_action/sync
