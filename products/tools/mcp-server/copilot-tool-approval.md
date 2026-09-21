@@ -215,6 +215,8 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 
 ## Requirements and limits
 
+
+
 * **Stateless between calls** - Preview and commit arrive in different sessions. Never store the preview and replay it on commit. Recompute from the arguments.
 * **Idempotent commits where possible** - Copilot executes an approval once, but network retries can repeat a call. Design the commit so that running it twice with the same arguments is harmless.
 * **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilege()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
@@ -244,6 +246,10 @@ To trace what Copilot does, inject a logger into the tool and log every invocati
 :::
 
 ## Known limitations
+
+::: warning
+Copilot as a service does not have access to tables created by your plugin/app. If you need such functionality, a custom acl with the required permissions should be added via Copilot Settings -> Use custom roles for Copilot, by the Copilot users.
+:::
 
 The `dryRun` contract is Copilot's first mechanism for safely running tools it hasn't seen before. It has two known gaps:
 
