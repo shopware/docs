@@ -263,4 +263,4 @@ The `dryRun` contract is Copilot's first mechanism for safely running tools it h
 * Descriptions explain when to use the tool and mention the `dryRun` behavior.
 * Privileges are declared and checked.
 
-Now that your tools follow the approval contract, see [MCP Support in Shopware](../index.md) for the full list of tool, resource, and prompt extension points the MCP server offers.
+Now that your tools follow the approval contract, see [MCP Support in Shopware](./index.md) for the full list of tool, resource, and prompt extension points the MCP server offers.
