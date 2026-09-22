@@ -33,25 +33,21 @@ You might consider [activating this feature](../../../guides/hosting/performance
 While using certain APIs or e.g. the `EntityRepository` it might happen that the memory usage is increasing constantly.
 First, you should make sure that you have set the `APP_ENV` variable to `prod` in your `.env` file.
 If the `APP_ENV` is set to `dev` Shopware keeps many objects for debugging purposes, which will lead to high memory usage.
-<<<<<<< HEAD
-If the memory usage issue persists after setting `APP_ENV` to `prod`, check if you are using the [sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads).
-When syncing many entities through the Admin REST API, use the `indexing-behavior` request header to control indexing:
+If the memory usage issue persists after setting `APP_ENV` to `prod`, consider using the [Sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads) for large imports.
+Its dedicated guide also explains how to adjust the indexing behavior when syncing many entities.
+For Shopware 6.7.15.0 and newer, you can use the `indexing-behavior` request header on Admin REST API write requests:
 
 ```http
 indexing-behavior: use-queue-indexing
 ```
 
-This queues indexing asynchronously. To skip indexing for the request, use `disable-indexing` instead:
+This queues indexing asynchronously. To skip indexing for a request, use `disable-indexing` instead:
 
 ```http
 indexing-behavior: disable-indexing
 ```
 
 If you omit the header, indexing remains synchronous. Unsupported header values are ignored.
-=======
-If the memory usage issue persists after setting `APP_ENV` to `prod`, consider using the [Sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads) for large imports.
-Its dedicated guide also explains how to adjust the indexing behavior when syncing many entities.
->>>>>>> origin/main
 Another reason for high memory usage might be the logging within the application.
 See the logging section in the [performance guide](../../../guides/hosting/performance/performance-tweaks.md#logging) for more information.
 After all, you still can make use of tools like blackfire.io to find the root cause of the memory usage.
