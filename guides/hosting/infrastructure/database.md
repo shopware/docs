@@ -45,7 +45,7 @@ The following options should be set:
 After this change, you can set also `SQL_SET_DEFAULT_SESSION_VARIABLES=0` in the `.env` file so Shopware does not check for those variables at runtime.
 
 ::: warning
-`SQL_SET_DEFAULT_SESSION_VARIABLES=0` has no effect in Shopware 6.7.0.0 through 6.7.15.x. Support for disabling the session variables is restored in Shopware 6.7.16.0.
+In Shopware 6.7.0.0 through 6.7.15.x, ProxySQL cannot multiplex Shopware connections because `SQL_SET_DEFAULT_SESSION_VARIABLES=0` has no effect. Support for disabling the session variables, and therefore connection multiplexing, is restored in Shopware 6.7.16.0.
 :::
 
 ### Configure the database cluster
