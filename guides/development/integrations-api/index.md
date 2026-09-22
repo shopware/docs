@@ -11,7 +11,7 @@ This guide helps you make your first successful API request. Your Shopware insta
 
 Shopware provides two HTTP APIs:
 
-- **Admin API** for backend operations such as products, orders, customers, plugins, and — via the Sync API — bulk operations (for example, mass imports)
+- **Admin API** for backend operations such as products, orders, customers, plugins, and — via the [Sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads) — bulk operations (for example, mass imports)
 - **Store API** for storefront-facing interactions such as headless frontends, mobile apps, carts, checkout, and sales channel access
 
 For the complete endpoint reference and schemas, use the official Stoplight documentation:
