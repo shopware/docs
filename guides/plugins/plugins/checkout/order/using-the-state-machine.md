@@ -58,8 +58,7 @@ So now let's start with the explanations for each state.
 ### Order state
 
 The order state is plain simple the state of the order.
-Is it still open, or in progress?
-Was it cancelled or is it even done? Those are the possible transition values here:
+Those are the possible transition values here:
 
 * `reopen`: Will result in "open"
 * `process`: Will result in "in\_progress"
