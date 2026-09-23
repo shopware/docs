@@ -46,8 +46,6 @@ Store listing updates and extension package uploads are separate actions. A typi
 4. Push approved Store metadata with `extension info push`.
 5. Validate and upload the release package using the [Store release workflow](./releasing-extension-to-shopware-store.md).
 
-Because `.config/shopware-extension.yml` is not included in the extension ZIP created by Shopware CLI, keeping Store metadata in the repository does not add the listing configuration to the distributed package.
-
 ## Updating the Store page
 
 Push changes to the Store page with the following command:
