@@ -9,8 +9,11 @@ nav:
 
 ## Overview
 
-With the introduction of ESI loading for the header and footer, the way how to customize the header and footer has changed.
-E.g. it is no longer possible to customize the header and footer depending on the current page data.
+With the introduction of ESI loading for the header and footer in Shopware 6.7.0.0, the way how to customize the header and footer has changed.
+As of Shopware 6.7.0.0, it is no longer possible to customize the header and footer depending on the current page data using the same request that renders the page.
+
+If you are on Shopware 6.5 or 6.6.x, this ESI-based restriction does not apply to you, see [Shopware 6.5 and 6.6.x (pre-ESI)](#shopware-65-and-66x-pre-esi) below.
+If you are on Shopware 6.7.0 or later, see [Shopware 6.7.0 and later (ESI-based)](#shopware-670-and-later-esi-based) below.
 
 This guide will show you how to customize the header and footer in your plugin.
 
@@ -18,7 +21,9 @@ This guide will show you how to customize the header and footer in your plugin.
 
 Refer to the [Plugin Base Guide](../../plugin-base-guide.md). Knowing [Twig](https://twig.symfony.com/) is an advantage but not necessary.
 
-## Customizing by bypassing the ESI loading
+## Shopware 6.7.0 and later (ESI-based)
+
+### Customizing by bypassing the ESI loading
 
 The ESI loading of header and footer was introduced as they are parts of the page that usually do not change that often and could therefore stay cached for a longer time.
 The header and footer are now loaded with sub-requests and are therefore no longer dependent on the current page data.
@@ -101,3 +106,14 @@ See e.g. the [checkout confirm page](https://github.com/shopware/shopware/blob/6
 Please be aware, that this will overwrite customizations from every other extension.
 You also need to make sure, that the `header` and `footer` data is available, if your custom template extends from the original header or footer template.
 See e.g. the [checkout confirm controller](https://github.com/shopware/shopware/blob/6.7.0.0/src/Storefront/Controller/CheckoutController.php#L152-L159).
+
+## Shopware 6.5 and 6.6.x (pre-ESI)
+
+Before Shopware 6.7.0.0, the header and footer were not loaded via a separate ESI sub-request.
+Instead, `GenericPageLoader::load()` called `HeaderPageletLoader::load()` and `FooterPageletLoader::load()` synchronously, in the same request that rendered the rest of the page, and attached the results directly onto the `Page` object via `$page->setHeader()` and `$page->setFooter()`.
+Because of this, the `page` variable available to your Twig templates during that render carried both the header/footer data and whatever page-specific data belonged to the page being rendered, for example a product page, a listing page, or a category page, all in the same template scope.
+
+To customize the header or footer depending on the current page data on Shopware 6.5 or 6.6.x, you can:
+
+* Extend `base.html.twig` in your plugin and override the `base_header` / `base_header_inner` / `base_navigation` / `base_navigation_inner` / `base_offcanvas_navigation` / `base_offcanvas_navigation_inner` blocks, or the equivalent `base_footer` / `base_footer_inner` blocks, reading `page` directly inside the block to branch the output on the current page's data.
+* Or extend/decorate `GenericPageLoader`, `HeaderPageletLoader`, or `FooterPageletLoader`, or listen for the page-loaded event dispatched after `$page->setHeader()` / `$page->setFooter()`, to mutate the header or footer data using the full request and page context before the template renders.
