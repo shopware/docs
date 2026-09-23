@@ -11,7 +11,7 @@ This guide walks you through connecting an AI client to a Shopware shop using th
 
 ## Prerequisites
 
-- Shopware 6.7.14.0 or later. On 6.7.11.0 to 6.7.13.x, set `MCP_SERVER=1` in your `.env` file first and skip the discovery section below — see [Configuration](./configuration.md).
+- Shopware 6.7.14.0 or later. On 6.7.11.0 to 6.7.13.x, set `MCP_SERVER=1` in your `.env` file first and skip the discovery section below — see [Configuration](./configuration.md). Selecting toolsets in the connection URL requires 6.7.15.0 or later.
 - `symfony/mcp-bundle` installed — verify with `composer show symfony/mcp-bundle`. If it is missing, ensure it is listed as a dependency in `composer.json` and run `composer install`.
 
 ## Step 1: Create an integration
@@ -31,6 +31,8 @@ SHOPWARE_SECRET_ACCESS_KEY=...
 
 :::info Restrict access
 The `--admin` flag grants full Admin API access. For production use, omit `--admin`, create a dedicated ACL role with only the required permissions, and assign it to the integration. See [Configuration](./configuration.md#acl-and-permissions) for details.
+
+The `--admin` flag does not bypass the MCP allowlist. Starting with Shopware 6.7.16.0, select the integration's capabilities before the client can use any tool, see [Controlling which capabilities are available](#controlling-which-capabilities-are-available).
 :::
 
 ## Step 2: Configure your AI client
@@ -124,7 +126,7 @@ Verify the server is working with the CLI:
 bin/console debug:mcp
 ```
 
-This lists the complete registered capability catalogue. A fresh AI client session initially receives only the discovery tools described in the following section.
+This lists every registered tool of both MCP servers. Use `bin/console debug:mcp --native` to list prompts and resources. A fresh AI client session initially receives only the discovery tools described in the following section.
 
 ## Discover tools on demand
 
@@ -147,6 +149,27 @@ Enabled toolsets remain active only for the current MCP session and are tracked 
 
 The toolset names shipped by core are listed in the [Tools Reference](./tools-reference.md#toolsets).
 
+### Select toolsets when connecting
+
+Some clients read `tools/list` only once per connection and ignore `notifications/tools/list_changed`. claude.ai is one of them. In these clients, a toolset enabled during the conversation never becomes visible.
+
+Since Shopware 6.7.15.0, you can name toolsets in the URL the client connects to. Their tools are then part of the first `tools/list`:
+
+```text
+https://your-shop.example.com/api/_mcp?toolsets=order,media
+https://your-shop.example.com/api/_mcp?toolsets=all
+```
+
+- Separate toolset names with commas. `all` selects every toolset the principal may see.
+- Unknown names are ignored. A malformed parameter never makes `tools/list` fail.
+- The selection is read from every request and is not stored. No session is required, and nothing expires.
+- The parameter only changes which tools are advertised. The MCP allowlist and the ACL role still decide what may be called, so a toolset outside the allowlist stays hidden.
+- Without the parameter, the endpoint behaves as before.
+
+The Store API endpoint accepts the same parameter, for example `/store-api/_mcp?toolsets=store-api`.
+
+Prefer a short list of focused toolsets over `all`. Every advertised tool uses space in the agent's context window, and `tools/list` is paginated with 50 entries per page. A client that ignores `nextCursor` sees only the first page.
+
 ## Authentication methods
 
 ### Integration credentials (recommended)
@@ -157,15 +180,22 @@ Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are
 
 Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients. When authenticated via bearer token, the user's per-user allowlist applies (configured under **Settings → Users & Permissions → [user] → MCP tool allowlist**).
 
+A missing, invalid, or expired token is answered with HTTP 401 and the JSON-RPC error code `-32001`. The message includes the reason, such as `Access token is expired`, so the client can refresh the token. Before Shopware 6.7.15.0, `/api/_mcp` answered these cases with HTTP 500 and `-32000`.
+
 ## Controlling which capabilities are available
 
-By default, an admin integration is permitted to call all registered tools, resources, and prompts. Only the discovery tools are advertised at the start of a session. To restrict which capabilities can be discovered and called:
+Which capabilities an integration may call depends on its allowlist and on the Shopware version:
+
+- **6.7.16.0 and later:** An integration without an allowlist may call nothing. Only the three discovery tools are available, and they return nothing until you select capabilities. The same applies to non-admin users. Admin users bypass the allowlist.
+- **Before 6.7.16.0:** An integration without an allowlist may call all registered tools, resources, and prompts.
+
+In both cases, only the discovery tools are advertised at the start of a session. To select which capabilities can be discovered and called:
 
 **Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
    <img src="../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
 
-Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use:
+Select the tools, resources, and prompts this integration should use. On versions before 6.7.16.0, disable the **All** toggle of a capability type first:
 
    <img src="../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 

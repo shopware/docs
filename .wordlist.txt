@@ -756,6 +756,7 @@ PHPUnit
 PHPunit
 PII
 PIM
+PKCE
 POC
 POS
 PRs
@@ -1334,6 +1335,7 @@ checksums
 ci
 classmap
 classname
+claude
 cleanUp
 cleanUpPreviousState
 clearTypeAndCheck

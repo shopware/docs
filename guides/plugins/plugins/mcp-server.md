@@ -103,6 +103,7 @@ class MyTool extends McpToolResponse
 - `title` is optional. When set, MCP clients (Claude Desktop, Cursor, etc.) display it in their tool list instead of the machine-readable `name`. Omit it if you have no better label to offer.
 - Names must only contain `a-zA-Z0-9_-`.
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
+- Describe each parameter with a `@param` docblock on `__invoke()`. The MCP SDK copies the text into the parameter's `description` in `inputSchema`, see [Best Practices](../../../products/tools/mcp-server/best-practices.md#write-tool-descriptions-for-agent-routing).
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
 - `requirePrivilege()` returns an error string on failure; check its return value with `if ($error = $this->requirePrivilege(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
 - Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use `McpContextProvider::getContext()` instead.
@@ -179,7 +180,7 @@ return static function (ContainerConfigurator $configurator): void {
 };
 ```
 
-Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps this tag to `mcp.tool` at compile time and registers the tool with the MCP server builder. You do not need a `shopware.feature` flag tag.
+Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps this tag to `mcp.tool` at compile time and assigns the tool to the Admin API server (`/api/_mcp`). You do not need a `shopware.feature` flag tag, and you do not need to list your plugin's namespace or directory in any MCP configuration.
 
 ### Available tags
 
@@ -208,6 +209,10 @@ If the tool appears here, it is registered in the live HTTP endpoint and can be 
 - Plugin is installed and active
 - Service is tagged with `shopware.mcp.tool`
 - `#[McpTool]` is on the class, not on `__invoke()`
+
+Since Shopware 6.7.15.0, `debug:mcp` lists tools only. Use `bin/console debug:mcp --native` to verify prompts and resources.
+
+Starting with Shopware 6.7.16.0, integrations and non-admin users can only call your tool after it is selected in their MCP allowlist. Tell operators which tools to select, or group them so that one toolset covers the use case.
 
 ## Adding prompts
 
