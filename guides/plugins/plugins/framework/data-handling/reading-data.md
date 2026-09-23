@@ -87,6 +87,21 @@ This example assumes that you're using / calling a method called `readData` on y
 
 The `$context` is usually passed through to your method, starting from a controller or an event.
 
+#### Labeling queries for debugging
+
+Give a `Criteria` instance a descriptive title to identify the generated SQL in database logs and profiling tools:
+
+```php
+$criteria = new Criteria();
+$criteria->setTitle('acme-plugin::product-export');
+
+$products = $this->productRepository->search($criteria, $context);
+```
+
+The DAL adds the title as an SQL comment and appends the operation, for example `-- acme-plugin::product-export::search-ids`.
+Queries for loaded associations inherit the title.
+This makes related queries easier to find when diagnosing problems.
+
 #### Filtering
 
 Now let's get into actually filtering your search result to get more precise results.
