@@ -7,9 +7,9 @@ nav:
 
 # Configuration
 
-Many configurations can be changed using a `.shopware-extension.yml` file in the root of your extension.
+Many configurations can be changed using a `.config/shopware-extension.yml` file in the root of your extension. See the [Shopware CLI configuration file lookup priority](../configuration.md) for the preferred path and legacy fallbacks.
 
-Here is an example of a `.shopware-extension.yml` file:
+Here is an example of a `.config/shopware-extension.yml` file:
 
 ```yaml
 compatibility_date: '2026-02-11'
@@ -50,7 +50,7 @@ To programmatically access the configuration schema, use `shopware-cli extension
 
 ## Compatibility date
 
-You can define a `compatibility_date` in `.shopware-extension.yml`:
+You can define a `compatibility_date` in `.config/shopware-extension.yml`:
 
 ```yaml
 compatibility_date: '2026-02-11'

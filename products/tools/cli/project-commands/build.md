@@ -56,11 +56,11 @@ For more information, see the [Composer authentication documentation](https://ge
 
 ## Build configuration
 
-Configure the build in `.shopware-project.yml`. The following sections cover commonly used build settings.
+Configure the build in `.config/shopware-project.yml`. The following sections cover commonly used build settings.
 
 ### Reducing JavaScript in the Storefront
 
-Shopware's default Browserslist configuration supports a broad range of browsers. To reduce JavaScript polyfills and CSS prefixes, set a narrower `browserslist` query in `.shopware-project.yml`:
+Shopware's default Browserslist configuration supports a broad range of browsers. To reduce JavaScript polyfills and CSS prefixes, set a narrower `browserslist` query in `.config/shopware-project.yml`:
 
 ```yaml
 build:
@@ -82,7 +82,7 @@ By default, FroshPlatformTemplateMail compiles MJML templates at runtime when em
 
 #### Configuration
 
-Enable MJML compilation in `.shopware-project.yml`:
+Enable MJML compilation in `.config/shopware-project.yml`:
 
 ```yaml
 build:
@@ -123,7 +123,7 @@ Build hooks let you run custom shell commands at specific stages of the CI build
 
 #### Configuration
 
-Define hooks in `.shopware-project.yml`:
+Define hooks in `.config/shopware-project.yml`:
 
 ```yaml
 build:
@@ -156,7 +156,7 @@ Hooks also inherit environment variables from the parent process, so CI/CD varia
 
 ### Compatibility date
 
-You can define a `compatibility_date` in `.shopware-project.yml`:
+You can define a `compatibility_date` in `.config/shopware-project.yml`:
 
 ```yaml
 compatibility_date: '2026-02-11'
@@ -172,11 +172,11 @@ The `compatibility_date` lets Shopware CLI introduce behavior changes without ch
 
 Shopware CLI automatically detects plugins and apps. Custom bundles (classes that extend Shopware's bundle class) cannot be detected automatically because Shopware CLI does not execute PHP code.
 
-Declare custom bundles in `.shopware-project.yml`. The older `extra.shopware-bundles` configuration in the project's `composer.json` is deprecated but remains supported for compatibility.
+Declare custom bundles in `.config/shopware-project.yml`. The older `extra.shopware-bundles` configuration in the project's `composer.json` is deprecated but remains supported for compatibility.
 
-#### Declaring bundles in `.shopware-project.yml`
+#### Declaring bundles in `.config/shopware-project.yml`
 
-The recommended approach is to declare bundles in the `build` section of `.shopware-project.yml`:
+The recommended approach is to declare bundles in the `build` section of `.config/shopware-project.yml`:
 
 ```yaml
 build:
@@ -191,7 +191,7 @@ The `path` is relative to the project root. The `name` field is optional; when o
 #### Legacy `composer.json` configuration
 
 ::: warning
-Declaring bundles through `extra.shopware-bundles` in `composer.json` is deprecated. Existing configurations continue to work, but Shopware CLI emits a deprecation warning when they are loaded. Migrate bundle declarations to `build.bundles` in `.shopware-project.yml`.
+Declaring bundles through `extra.shopware-bundles` in `composer.json` is deprecated. Existing configurations continue to work, but Shopware CLI emits a deprecation warning when they are loaded. Migrate bundle declarations to `build.bundles` in `.config/shopware-project.yml`.
 :::
 
 A legacy bundle declaration in `composer.json` looks like this:

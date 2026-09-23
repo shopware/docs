@@ -116,6 +116,6 @@ Next, clear the cache once. After doing this, the Extension Manager in the Admin
 
 Once your extensions are installed via Composer, the [Deployment Helper](deployments/deployment-helper/index.md) automatically manages them during deployments: installing new extensions, updating outdated ones, activating/deactivating as configured, and removing unwanted extensions.
 
-This eliminates the need for manual extension management steps in your deployment pipeline. The Deployment Helper reads your `.shopware-project.yml` configuration and ensures the deployed environment's extension state matches your codebase automatically.
+This eliminates the need for manual extension management steps in your deployment pipeline. The Deployment Helper reads your `.config/shopware-project.yml` configuration and ensures the deployed environment's extension state matches your codebase automatically.
 
 See [Deployment Helper: Extensions and Apps](deployments/deployment-helper/extensions.md) for configuration options.
