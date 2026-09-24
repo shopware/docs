@@ -12,7 +12,7 @@ nav:
 Storefront pages rendered by [app scripts](../app-scripts/custom-endpoints.md#storefront-endpoints) live under `/storefront/script/{hook}`. That path is technical and cannot carry an entity id. With `<seo-url>` elements in the `<storefront>` section of your `manifest.xml`, Shopware gives those pages SEO URLs, the same way it does for products and categories.
 
 ::: info
-This feature was introduced in Shopware 6.7.15.0 and is not available in earlier versions.
+This feature was introduced in Shopware 6.7.16.0 and is not available in earlier versions.
 :::
 
 There are two kinds of SEO URLs:
