@@ -129,6 +129,8 @@ Additionally, it is also possible to redirect to an existing route:
 
 For a complete overview of the available data and services, refer to the [reference documentation](../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#storefront-hook).
 
+To make such a page reachable under a readable path like `/imprint` or `/blog/my-post`, declare a SEO URL for it in your manifest. See the [SEO URLs for App Routes](../storefront/seo-urls.md) guide.
+
 ## Manipulate HTTP-headers to API responses
 
 ::: info
