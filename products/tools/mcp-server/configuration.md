@@ -239,6 +239,34 @@ framework:
 
 If you already have a Redis/Valkey connection configured for Shopware, set `provider` to the same DSN to avoid opening a second connection.
 
+A configuration that is not picked up leaves the file store in place, and the endpoints keep working. To confirm the switch, inspect the store of each server:
+
+```bash
+bin/console debug:container mcp.server.admin.session.store --show-arguments
+bin/console debug:container mcp.server.store_api.session.store --show-arguments
+```
+
+Both must report the class `Mcp\Server\Session\Psr16SessionStore`, with the prefixes `mcp-admin-` and `mcp-store_api-`. Switching the store discards the sessions that exist at that moment, so connected clients initialize again.
+
+#### Active session registry
+
+When an app with MCP capabilities is installed, updated, activated, deactivated, or deleted, Shopware sends `notifications/tools/list_changed` to every active session of both servers. It finds those sessions in an active session registry, which it keeps in `cache.system`. That cache is local to each server, so on several servers the notification only reaches sessions that were initialized on the server that processed the app change. Point both registries at the shared pool as well:
+
+**`config/services.yaml`:**
+
+```yaml
+services:
+    shopware.mcp.session_registry_cache:
+        class: Symfony\Component\Cache\Psr16Cache
+        arguments: ['@cache.mcp_sessions']
+
+    mcp.store_api.session_registry_cache:
+        class: Symfony\Component\Cache\Psr16Cache
+        arguments: ['@cache.mcp_sessions']
+```
+
+The two registries use different cache keys, so they can share the pool with the session stores. They serialize their updates with a lock from `lock.factory`. Configure a shared [lock store](../../../guides/hosting/performance/lock-store.md) when you run more than one server. These service IDs are the same on 6.7.14.x.
+
 On 6.7.14.x, the bundle has no per-server session options. There, override the `mcp.session.store` service with a `Mcp\Server\Session\Psr16SessionStore` that receives `@mcp.session.cache_psr16` and a TTL. Remove that override when you update to 6.7.15.0, because Shopware no longer uses the `mcp.session.store` service.
 
 ## ACL and permissions
