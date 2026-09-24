@@ -265,7 +265,7 @@ services:
         arguments: ['@cache.mcp_sessions']
 ```
 
-The two registries use different cache keys, so they can share the pool with the session stores. They serialize their updates with a lock from `lock.factory`. Configure a shared [lock store](../../../guides/hosting/performance/lock-store.md) when you run more than one server. These service IDs are the same on 6.7.14.x.
+The two registries use different cache keys, so they can share the pool with the session stores. A registry is written without a TTL, so it expires after the pool's `default_lifetime`. Shopware rewrites it on every MCP request, so it outlives its sessions as long as `default_lifetime` is not shorter than `session.ttl` or is left unset. They serialize their updates with a lock from `lock.factory`. Configure a shared [lock store](../../../guides/hosting/performance/lock-store.md) when you run more than one server. These service IDs are the same on 6.7.14.x.
 
 On 6.7.14.x, the bundle has no per-server session options. There, override the `mcp.session.store` service with a `Mcp\Server\Session\Psr16SessionStore` that receives `@mcp.session.cache_psr16` and a TTL. Remove that override when you update to 6.7.15.0, because Shopware no longer uses the `mcp.session.store` service.
 
