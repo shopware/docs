@@ -296,6 +296,8 @@ validation:
 
 The identifier of a finding is shown in the validation output.
 
+Identifiers are matched hierarchically: an `identifier` ignore also matches any more specific identifier that starts with it followed by a dot. For example, ignoring `metadata.description` suppresses `metadata.description.required`, `metadata.description.translation.de-DE`, `metadata.description.translation.en-GB`, `metadata.description.length.de-DE`, and `metadata.description.length.en-GB`. To suppress only one of these, use the full, specific identifier instead, for example `metadata.description.translation.de-DE`.
+
 Validation ignores are applied by the `validate` command. `extension fix` does not use `validation.ignore` to decide which fixes to apply.
 
 Ignored findings are removed from the reported result; they do not make the underlying condition valid. A run can therefore report `0 problems` when all relevant findings are intentionally suppressed.
