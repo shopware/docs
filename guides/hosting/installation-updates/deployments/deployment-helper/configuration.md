@@ -124,8 +124,8 @@ Hooks allow you to run custom scripts at defined points in the deployment flow. 
 Hook execution order for a fresh installation:
 
 1. **`pre`**: Before any deployment step (general setup, notifications)
-2. **`pre-install` or `pre-update`**: Just before Shopware install/update begins
-3. *(system:install or system:update:finish runs here)*
+2. **`pre-install`**: Just before Shopware install begins
+3. *(system:install runs here)*
 4. *(extension management runs here)*
 5. **`post-extension-on-project-install`**: After all plugin and app lifecycle operations have run (install, update, deactivate, and remove). This hook runs only during a fresh installation.
 6. *(optional OpenSearch indexing runs here)*
