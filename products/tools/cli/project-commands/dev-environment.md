@@ -35,7 +35,7 @@ shopware-cli project dev install \
   --admin-username admin --admin-password mysecret123
 ```
 
-Starts the development environment (if not already running), runs the deployment helper to install Shopware, and saves the admin credentials to `.shopware-project.yml`. Intended for CI, scripts, and agents as a non-interactive counterpart to the TUI's install wizard. If the shop is already installed, the command prints a notice and exits successfully.
+Starts the development environment (if not already running), runs the deployment helper to install Shopware, and saves the admin credentials to `.config/shopware-project.yml`. Intended for CI, scripts, and agents as a non-interactive counterpart to the TUI's install wizard. If the shop is already installed, the command prints a notice and exits successfully.
 
 Available flags:
 
@@ -73,10 +73,10 @@ shopware-cli project logs --lines 50
 
 ## Configuration
 
-The environment is configured in `.shopware-project.yml`. See the [full configuration reference](../../../../guides/development/dev-environment.md#configuration-reference) for all options.
+The environment is configured in `.config/shopware-project.yml`. See the [full configuration reference](../../../../guides/development/dev-environment.md#configuration-reference) for all options.
 
 ```yaml
-# .shopware-project.yml
+# .config/shopware-project.yml
 compatibility_date: '2026-03-01'
 
 docker:

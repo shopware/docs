@@ -78,7 +78,7 @@ Shopware CLI uses an embedded Go-based PHP linter. It does not download or execu
 
 The underlying linter supports PHP language profiles from PHP 7.2 through PHP 8.5, with PHP 8.6 available as a preview profile. Shopware CLI currently normalizes a derived PHP 7.2 profile to PHP 7.3 for linting.
 
-By default, Shopware CLI derives the PHP language profile from the extension's Shopware version constraint. To select a specific profile instead, set `validation.php_version` in `.shopware-extension.yml`:
+By default, Shopware CLI derives the PHP language profile from the extension's Shopware version constraint. To select a specific profile instead, set `validation.php_version` in `.config/shopware-extension.yml`. See the [Shopware CLI configuration file lookup priority](./configuration.md) for the preferred path and legacy fallbacks:
 
 ```yaml
 validation:
@@ -277,7 +277,7 @@ Local or CI validation cannot replace the Store review completely. It does not i
 
 ## Validation ignores
 
-To ignore selected errors or warnings for an extension, create a `.shopware-extension.yml` file in the extension root:
+To ignore selected errors or warnings for an extension, create a `.config/shopware-extension.yml` file in the extension root:
 
 ```yaml
 validation:
@@ -316,7 +316,7 @@ If you run Shopware CLI directly:
 shopware-cli project validate /path/to/your/project
 ```
 
-`project validate` gathers local extension source directories and configured bundles and runs the registered validation tools against them. Composer-managed extensions resolved under `vendor/` are skipped. Project-level validation settings are read from `.shopware-project.yml` under `validation`.
+`project validate` gathers local extension source directories and configured bundles and runs the registered validation tools against them. Composer-managed extensions resolved under `vendor/` are skipped. Project-level validation settings are read from `.config/shopware-project.yml` under `validation`.
 
 :::warning
 `project validate` does not run extension metadata and packaging validation for every contained extension. The `sw-cli` verifier only runs with a single-extension context. Run `extension validate` for an individual extension when you also need its Composer or manifest metadata, icon, snippet, and package checks.
@@ -351,7 +351,7 @@ validation:
       path: 'custom/plugins/MyPlugin/src/Example.php'
 ```
 
-You can also exclude extensions from project validation with `validation.ignore_extensions` in `.shopware-project.yml`.
+You can also exclude extensions from project validation with `validation.ignore_extensions` in `.config/shopware-project.yml`.
 
 ### Detecting breaking changes before upgrading {#detecting-breaking-changes-before-upgrading}
 
