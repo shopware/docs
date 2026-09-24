@@ -37,7 +37,38 @@ Example response:
 }
 ```
 
-Use this only as a local shortcut. For integrations and reproducible setups, prefer `client_credentials` as described in the [APIs](./index.md) guide.
+Use this only as a local shortcut.
+For integrations and reproducible setups, prefer `client_credentials` as described in the [APIs](./index.md) guide.
+
+## Impersonate a customer
+
+Support tooling can open a Store API context as an existing customer without knowing the customer's password.
+
+1. With an Admin API token belonging to a user with `api_proxy_imitate-customer` ACL privilege, request a short-lived token:
+
+   ```http
+   POST /api/_proxy/generate-imitate-customer-token
+   {
+     "salesChannelId": "SALES_CHANNEL_ID",
+     "customerId": "CUSTOMER_ID"
+   }
+   ```
+
+2. Redeem that token through the Store API and use the returned context token for subsequent requests:
+
+   ```http
+   POST /store-api/account/login/imitate-customer
+   {
+     "token": "IMPERSONATION_TOKEN_FROM_STEP_1",
+     "customerId": "CUSTOMER_ID",
+     "userId": "ADMIN_USER_ID"
+   }
+   ```
+
+::: warning
+Impersonation performs a real customer login, so login events fire, and cart changes affect the customer's cart.
+Grant the ACL privilege only to trusted users and use this flow only for support or testing.
+:::
 
 ## Prefer search endpoints for real requests
 
@@ -69,7 +100,8 @@ Search endpoints support:
 
 ## Download the OpenAPI schema
 
-Shopware exposes OpenAPI schema endpoints for both Admin API and Store API. If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
+Shopware exposes OpenAPI schema endpoints for both Admin API and Store API.
+If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
 
 ### OpenAPI specification
 
