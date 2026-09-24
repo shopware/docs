@@ -101,6 +101,19 @@ The `description` field on `#[McpTool]` is the only signal the agent uses to pic
 
 **Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user rarely provides (e.g., a sales channel UUID or a tax ID), set it to `''` or `null` and validate it in the method. Required-but-missing parameters cause some agents to refuse the tool call entirely rather than ask the user.
 
+**Describe every parameter with a `@param` docblock.** The MCP SDK renders the `@param` descriptions of `__invoke()` into `inputSchema.properties[*].description`, which is where a client reads the argument contract. Without them, a parameter reaches the client as a bare `{"type": "string"}`. This matters most for JSON-encoded string parameters: state whether an object or an array is expected, and give a short example.
+
+```php
+/**
+ * @param string $aggregations A JSON ARRAY of aggregation definitions, as a string.
+ *                             Each element needs "name", "type" and "field", e.g.
+ *                             [{"name":"order_count","type":"count","field":"id"}].
+ */
+public function __invoke(string $entity, string $aggregations): string
+```
+
+**Return the reason for rejecting invalid input.** An exception that escapes `__invoke()` reaches the client as a generic `Error while executing tool`, so the agent has nothing to correct on its retry. Catch the exceptions you expect and return a message that names the rejected part. Tools that extend `McpToolResponse` and parse Admin API criteria can pass a `SearchRequestException` to `$this->invalidCriteriaError()`, which lists every rejected element by its JSON pointer. Let unexpected exceptions propagate so that they are logged.
+
 **Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is that the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
 
 **Use automated checks as the regression net for descriptions and prompt wording.** Tool descriptions, system-prompt recipes, and resource lists are written in natural language. Changes to any of them can silently break routing on prompts that used to work. Maintain a small library of representative prompts ("how many products?", "ship order 10042", "upload this image as a product cover") with the expected tool selection, and run it before merging description changes the same way you run unit tests before merging behavior changes.

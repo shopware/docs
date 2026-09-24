@@ -53,6 +53,10 @@ The Store API server uses the same progressive discovery flow as the Admin API s
 Since Shopware 6.7.14.0, a bare `tools/list` on `/store-api/_mcp` no longer returns the full catalogue. Even `shopware-store-api-context` is deferred behind the `store-api` toolset. Clients that expected the complete list must either follow the discovery flow or enable the toolset explicitly.
 :::
 
+Since Shopware 6.7.15.0, clients can also select toolsets in the connection URL, for example `/store-api/_mcp?toolsets=store-api`. The tools of the named toolsets are part of the first `tools/list`, without a `shopware-toolset-enable` call. See [Select toolsets when connecting](./getting-started.md#select-toolsets-when-connecting).
+
+The Store API server keeps its sessions in its own session store, separate from the Admin API server. An `Mcp-Session-Id` from `/api/_mcp` is not valid on `/store-api/_mcp`. See [Session store](./configuration.md#session-store).
+
 The server advertises `instructions` during `initialize` that state the same thing:
 
 > This MCP server exposes Store API capabilities. All operations run in the current sales-channel context and use Store API authentication headers. The advertised tool list is not the full catalogue: if no advertised tool matches the requested action, call shopware-tool-search first instead of assuming the action is unsupported, then use shopware-toolsets-list and shopware-toolset-enable to make a matched tool callable if your client cannot invoke it inline.
@@ -133,4 +137,5 @@ Notes for extension developers:
 - Use `StoreApiMcpContextProvider` to obtain the sales-channel context. There is no Admin API context and no `requirePrivilege()` equivalent.
 - Assign a group with `#[McpToolGroup]` so clients can discover and enable your tools — the same grouping rules apply as for the Admin API. See [Assign a tool group](../../../guides/plugins/plugins/mcp-server.md#step-2-assign-a-tool-group).
 - Registering the same tool name for both scopes requires two classes. The MCP SDK binds a tool to the class that carries the `#[McpTool]` attribute, which is why core has separate Admin API and Store API discovery tool classes.
-- `bin/console debug:mcp` covers the Admin API server only. Store API capabilities do not appear in its output.
+- `bin/console debug:mcp` lists the tools of both servers. Use `bin/console debug:mcp --scope=store-api` to show only the Store API server, and `bin/console debug:mcp --native` for prompts and resources.
+- Capabilities are assigned to the Store API server by their `shopware.store_api_mcp.*` tag. No namespace or directory configuration is required.
