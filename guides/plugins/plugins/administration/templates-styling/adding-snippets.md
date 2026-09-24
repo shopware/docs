@@ -63,6 +63,8 @@ Component.register('my-custom-page', {
 
 Or use `Shopware.Snippet.tc('swag-example.general.myCustomText')` when `this` doesn't point to a component (see also [Vue3 upgrade](../../../../upgrades-migrations/administration/vue3.md)).
 
+In an experimental Single File Component you instead use `$t` in the template and [`useTranslateWithFallback()`](../single-file-components/api-reference/composables/use-translate-with-fallback.md) in the script.
+
 ## Using the snippets in templates
 
 The same `$tc` helper function can be used in the templates to access translations.
