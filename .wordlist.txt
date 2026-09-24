@@ -2,6 +2,7 @@ AAAA
 AAC
 ACL
 ACLs
+ACU
 ADDR
 ADR
 ADRs
@@ -149,6 +150,7 @@ CSPs
 CSRF
 CSV
 CVEs
+CVSS
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -468,6 +470,7 @@ GBP
 GCM
 GDPR
 GHSA
+GID
 GIFs
 GLB
 GPT
@@ -872,7 +875,9 @@ RDBMS
 README
 RHEL
 RPC
+RPO
 RSA
+RTO
 RabbitMQ
 RabbitMq
 Readonly
@@ -1133,6 +1138,7 @@ UpperCamelCase
 Upserting
 Upstash
 Upsun
+Uptime
 UrlAware
 UrlStorer
 UserAware
@@ -2165,6 +2171,7 @@ updateDestructive
 updateViaAdminApi
 uploadable
 upsert
+uptime
 uri
 url
 urls
@@ -2174,6 +2181,7 @@ userRecovery
 userland
 utils
 uuid
+vCPU
 validFrom
 validUntil
 validator
