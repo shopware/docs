@@ -66,7 +66,7 @@ Declare an `<entity-seo-url>` with an `entity` attribute and a `<default-templat
 </storefront>
 ```
 
-Shopware generates one SEO URL per entity and language from the template and keeps it up to date whenever the entity is written. Like the SEO URLs of products and categories, this follows the indexing behaviour of the write (for example the `indexing-behavior` header of the Sync API), and `bin/console dal:refresh:index` rebuilds them. The template context exposes the entity under its camel-cased name, so `ce_blog` becomes `ceBlog` and `product` becomes `product`. Every field of the entity is available, translated fields through `translated`.
+Shopware generates one SEO URL per entity and language from the template and keeps it up to date whenever the entity is written. Like the SEO URLs of products and categories, this follows the indexing behaviour of the write (for example the `indexing-behavior` header of the Sync API, or `indexing-skip: app_seo_url.seo-url` to skip it), and `bin/console dal:refresh:index` rebuilds them. The template context exposes the entity under its camel-cased name, so `ce_blog` becomes `ceBlog` and `product` becomes `product`. Every field of the entity is available, translated fields through `translated`.
 
 The generated URL resolves to `/storefront/script/blog-detail?id=<entity-id>`, so your script receives the id as `hook.query.id`:
 
@@ -83,7 +83,7 @@ The generated URL resolves to `/storefront/script/blog-detail?id=<entity-id>`, s
 
 ### Merchant configuration
 
-Entity-bound routes appear in the Administration under *Settings > SEO* as `storefront.app.<app name>.<name>`, for example `storefront.app.SwagBlog.blog-detail`. Merchants can adjust the template per sales channel and override single URLs like they do for products. Changing a template regenerates the URLs automatically. Your `<default-template>` is only the initial value: app updates don't overwrite a template that already exists, so declare a new `name` if a route needs a fresh template.
+Entity-bound routes appear in the Administration under *Settings > SEO* as `storefront.app.<app name>.<name>`, for example `storefront.app.SwagBlog.blog-detail`. Merchants can adjust the template per sales channel and override single URLs like they do for products. Changing a template regenerates the URLs automatically. Your `<default-template>` is only the initial value: app updates don't overwrite a template that already exists, unless the route now points to a different entity. Declare a new `name` if a route needs a fresh template for the same entity.
 
 ## Linking to your pages
 
