@@ -9,7 +9,7 @@ nav:
 
 ## Overview
 
-Storefront pages rendered by [app scripts](../app-scripts/custom-endpoints.md#storefront-endpoints) live under `/storefront/script/{hook}`. That path is technical and cannot carry an entity id. With `<seo-url>` elements in the `<storefront>` section of your `manifest.xml`, Shopware gives those pages SEO URLs, the same way it does for products and categories.
+Storefront pages rendered by [app scripts](../app-scripts/custom-endpoints.md#storefront-endpoints) live under `/storefront/script/{hook}`. That path is technical and cannot carry an entity id. With `<seo-url>` and `<entity-seo-url>` elements in the `<storefront>` section of your `manifest.xml`, Shopware gives those pages SEO URLs, the same way it does for products and categories.
 
 ::: info
 This feature was introduced in Shopware 6.7.16.0 and is not available in earlier versions.
@@ -17,8 +17,8 @@ This feature was introduced in Shopware 6.7.16.0 and is not available in earlier
 
 There are two kinds of SEO URLs:
 
-- A **static** SEO URL maps a fixed path such as `/imprint` to one of your storefront scripts.
-- An **entity-bound** SEO URL generates one URL per entity from a Twig template, for example `/blog/{{ ceBlog.translated.title }}`, and passes the entity id to your script.
+- A **static** SEO URL (`<seo-url>`) maps a fixed path such as `/imprint` to one of your storefront scripts.
+- An **entity-bound** SEO URL (`<entity-seo-url>`) generates one URL per entity from a Twig template, for example `/blog/{{ ceBlog.translated.title }}`, and passes the entity id to your script.
 
 ## Prerequisites
 
@@ -37,8 +37,6 @@ Declare a `<seo-url>` with one or more `<path>` elements. The `name` identifies 
     </meta>
     <storefront>
         <seo-url name="imprint">
-            <label>Imprint</label>
-            <label lang="de-DE">Impressum</label>
             <path>imprint</path>
             <path lang="de-DE">impressum</path>
         </seo-url>
@@ -46,7 +44,7 @@ Declare a `<seo-url>` with one or more `<path>` elements. The `name` identifies 
 </manifest>
 ```
 
-With this manifest, `/imprint` and `/impressum` run the scripts in `Resources/scripts/storefront-imprint/`. Shopware writes one SEO URL per storefront sales channel domain and picks the `<path>` matching the domain language, falling back to the `en-GB` path. Query parameters of the request stay available as `hook.query`.
+With this manifest, `/imprint` and `/impressum` run the scripts in `Resources/scripts/storefront-imprint/`. Shopware writes one SEO URL per storefront sales channel domain and picks the `<path>` of the domain language, falling back to its parent language and then to the shop's default language. Query parameters of the request stay available as `hook.query`.
 
 Set the `hook` attribute when the script folder should differ from the route name:
 
@@ -58,18 +56,17 @@ Set the `hook` attribute when the script folder should differ from the route nam
 
 ## Entity-bound SEO URLs
 
-Declare a `<seo-url>` with an `entity` attribute and a `<default-template>`. The entity can be one of your [custom entities](../custom-data/custom-entities.md) or a core entity such as `product`.
+Declare an `<entity-seo-url>` with an `entity` attribute and a `<default-template>`. The entity can be one of your [custom entities](../custom-data/custom-entities.md) or a core entity such as `product`.
 
 ```xml
 <storefront>
-    <seo-url name="blog-detail" entity="ce_blog">
-        <label>Blog post</label>
+    <entity-seo-url name="blog-detail" entity="ce_blog">
         <default-template>blog/{{ ceBlog.translated.title }}</default-template>
-    </seo-url>
+    </entity-seo-url>
 </storefront>
 ```
 
-Shopware generates one SEO URL per entity and language from the template and keeps it up to date whenever the entity is written. The template context exposes the entity under its camel-cased name, so `ce_blog` becomes `ceBlog` and `product` becomes `product`. Every field of the entity is available, translated fields through `translated`.
+Shopware generates one SEO URL per entity and language from the template and keeps it up to date whenever the entity is written. Like the SEO URLs of products and categories, this follows the indexing behaviour of the write (for example the `indexing-behavior` header of the Sync API), and `bin/console dal:refresh:index` rebuilds them. The template context exposes the entity under its camel-cased name, so `ce_blog` becomes `ceBlog` and `product` becomes `product`. Every field of the entity is available, translated fields through `translated`.
 
 The generated URL resolves to `/storefront/script/blog-detail?id=<entity-id>`, so your script receives the id as `hook.query.id`:
 
@@ -86,7 +83,7 @@ The generated URL resolves to `/storefront/script/blog-detail?id=<entity-id>`, s
 
 ### Merchant configuration
 
-Entity-bound routes appear in the Administration under *Settings > SEO* as `storefront.app.<app name>.<name>`, for example `storefront.app.SwagBlog.blog-detail`. Merchants can adjust the template per sales channel and override single URLs like they do for products. Your `<default-template>` is only the initial value. An app update replaces it only when the merchant has not changed it.
+Entity-bound routes appear in the Administration under *Settings > SEO* as `storefront.app.<app name>.<name>`, for example `storefront.app.SwagBlog.blog-detail`. Merchants can adjust the template per sales channel and override single URLs like they do for products. Changing a template regenerates the URLs automatically. Your `<default-template>` is only the initial value: app updates don't overwrite a template that already exists, so declare a new `name` if a route needs a fresh template.
 
 ## Linking to your pages
 
@@ -104,19 +101,20 @@ Use the `seoUrl` Twig function with the technical route and parameters in your s
 
 ## Lifecycle
 
-- **Install and update**: Shopware stores the declared routes and creates the default SEO URL template for entity-bound routes.
-- **Activation**: The static SEO URLs are written and the entity-bound URLs are generated. This runs through the message queue, so make sure a [worker](../../../hosting/infrastructure/message-queue.md) processes messages.
-- **Deactivation and uninstall**: The app's SEO URLs are marked as deleted and stop resolving. Uninstalling also removes the SEO URL templates.
+- **Install and update**: Shopware stores the declared routes and creates the default SEO URL template for entity-bound routes that don't have one yet. Routes that an update no longer declares lose their SEO URLs and templates.
+- **Activation and update**: The static SEO URLs are written and the entity-bound URLs are generated. This runs through the message queue, so make sure a [worker](../../../hosting/infrastructure/message-queue.md) processes messages.
+- **Deactivation and uninstall**: The app's SEO URLs are marked as deleted and stop resolving. Uninstalling also removes the SEO URL templates, unless the merchant keeps the app data.
 - **New sales channel domains**: Static SEO URLs are written for new domains automatically.
 
 ## Validation rules
 
-Shopware validates the `<seo-url>` elements when the app is installed:
+The manifest schema checks the structure of both elements:
 
-- `name` and `hook` must match `[a-z0-9]+(-[a-z0-9]+)*` and `name` must be unique within the manifest.
-- A `<seo-url>` declares either an `entity` or at least one `<path>`, never both.
-- Entity-bound routes require a non-empty `<default-template>`. Static routes must not declare one.
-- Static paths must only contain characters allowed in URLs and must not collide with an existing route such as `/account` or `/checkout`.
+- `name` and `hook` must match `[a-z0-9]+(-[a-z0-9]+)*`, and `name` must be unique across all `<seo-url>` and `<entity-seo-url>` elements of the app.
+- A `<seo-url>` needs at least one non-empty `<path>`.
+- An `<entity-seo-url>` needs an `entity` attribute and a non-empty `<default-template>`.
+
+On install and update, Shopware rejects static paths that contain characters not allowed in URLs, or that are already used by a storefront route such as `/account`, by another app or by an existing SEO URL.
 
 ## Limitations
 
