@@ -16,15 +16,13 @@ Validation has two modes:
 - **Basic (default)**: Runs the built-in `sw-cli` checks, including metadata, icon, snippets, PHP linting, and packaging-related checks. It does not require a locally installed PHP or Node.js runtime.
 - **Full (`--full`)**: Runs the basic checks plus validation tools such as PHPStan, ESLint, Stylelint, and the Administration and Storefront Twig linters.
 
-:::warning
-`--only` does not enable full validation. Without `--full`, `extension validate` runs only the built-in `sw-cli` checks. For example, `extension validate --only phpstan` does not run PHPStan; use `extension validate --full --only phpstan`.
-:::
+`--only` selects checkers independently of `--full`. For example, `extension validate /ext --only phpstan` runs PHPStan without the built-in `sw-cli` checks.
 
 ### Recommended setup: Docker
 
 Run Shopware CLI through the `ghcr.io/shopware/shopware-cli` Docker image for a consistent validation environment without managing the required runtimes on the host. The primary examples on this page use Docker.
 
-If you already run Shopware CLI directly in an existing development or CI environment, the same CLI commands continue to work. For full validation, the host environment must provide PHP 8.2 or newer, Node.js 20 or newer, Composer, and npm.
+If you already run Shopware CLI directly in an existing development or CI environment, the same CLI commands continue to work. Full validation, or selecting PHPStan, ESLint, or Stylelint with `--only`, requires PHP 8.2 or newer, Node.js 20 or newer, Composer, and npm on the host.
 
 ## Validating an extension
 
@@ -46,10 +44,10 @@ For direct CLI execution, relative paths are resolved from the current working d
 
 `extension validate` accepts both a source directory and a built zip file, and the two are not equivalent:
 
-| Input     | Behavior                                                                                                                                                                                                               |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Directory | Intended for feedback during development. `zip.disallowed_file` findings are automatically ignored for directory input. With `--full`, the files are copied to a temporary directory first unless `--no-copy` is used. |
-| zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed.                                                                                                                         |
+| Input     | Behavior                                                                                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Directory | Development input. Ignores `zip.disallowed_file`; copied to a temporary directory when PHPStan, ESLint, or Stylelint is selected, unless `--no-copy` is used. |
+| Zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed.                                                                |
 
 For day-to-day development, validate the source directory. Before uploading a release, validate the packaged zip so the checks run against the artifact you intend to submit.
 
@@ -99,7 +97,7 @@ If you run Shopware CLI directly on the host, the equivalent command is:
 shopware-cli extension validate --full /path/to/your/extension
 ```
 
-For direct execution, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. If the validated extension has no `vendor` directory, full validation also resolves its Composer dependencies; packages listed under `suggest` are included so optional integrations can be analyzed. Private Composer packages require appropriate Composer authentication.
+For direct execution with PHPStan, ESLint, or Stylelint selected, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. If the validated extension has no `vendor` directory, PHPStan also resolves its Composer dependencies; packages listed under `suggest` are included so optional integrations can be analyzed. Private Composer packages require appropriate Composer authentication.
 
 On a clean full-validation run, dependency resolution can take some time. Composer progress is not streamed while this step runs, so the command can remain quiet until dependency resolution completes.
 
@@ -138,14 +136,16 @@ Use `--format` to specify the output format (the older `--reporter` flag is depr
 
 If `--format` is not set, the format is detected automatically: `github` in GitHub Actions, `gitlab` in GitLab CI, and `summary` otherwise.
 
+`extension validate` also reports which checkers were `invoked` or `skipped`. `Invoked` means the checker was called, not that it analyzed files or produced findings; a checker can have no applicable files. Summary and GitHub logs show a checker table before the closing summary. Markdown includes the table, JSON includes a `tools` array, and JUnit includes checker test cases. GitLab and JUnit write the human-readable table to stderr so stdout remains machine-readable. If a checker returns an execution error, the report is still emitted and the command fails.
+
 ## Running specific validation tools
 
-With `--full`, `extension validate` calls the validation check implemented by each registered tool. The tools that currently add validation findings are:
+With `--full`, `extension validate` calls every registered checker. Without `--full`, it calls `sw-cli` by default, or the checkers named with `--only`. The available tool capabilities are:
 
 | Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                             |
 | ----------------- | --------------------- | ----------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `sw-cli`          | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation** |
-| `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; skipped for apps (no `composer.json`)                                                                        |
+| `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; returns without analyzing apps (no `composer.json`)                                                          |
 | `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                          |
 | `stylelint`       | ✅                    | ✅                | —                   | CSS/SCSS with Shopware standards                                                                                                  |
 | `admin-twig`      | ✅                    | ✅                | ✅                  | Administration Twig component checks and migrations                                                                               |
@@ -155,16 +155,7 @@ With `--full`, `extension validate` calls the validation check implemented by ea
 | `php-cs-fixer`    | —                     | —                 | ✅                  | PHP code style (Shopware Coding Standard)                                                                                         |
 | `prettier`        | —                     | —                 | ✅                  | JavaScript, Vue, TypeScript, CSS, SCSS formatting                                                                                 |
 
-Every tool is registered for all three verbs, but the unmarked combinations above are implemented as no-ops. Passing such a tool to `--only` is therefore silently ineffective — `fix --only phpstan` and `fix --only prettier` both do nothing.
-
-### Which tools each command actually runs
-
-| Command                               | Tools that do work                                                          |
-| ------------------------------------- | --------------------------------------------------------------------------- |
-| `extension validate`                  | `sw-cli`, `phpstan`, `eslint`, `stylelint`, `admin-twig`, `storefront-twig` |
-| `project validate`                    | the same, minus `sw-cli`                                                    |
-| `extension fix` / `project fix`       | `rector`, `admin-twig`, `eslint`, `stylelint`, `symfony-xml`                |
-| `extension format` / `project format` | `admin-twig`, `php-cs-fixer`, `prettier`                                    |
+Each command selects only tools that support its operation. An unsupported `--only` name is an error that lists the available tools for that command; for example, `validate --only prettier` and `fix --only phpstan` are errors.
 
 ### Shopware-specific validation rules
 
@@ -179,28 +170,28 @@ Additional plugins enforce accessibility (`eslint-plugin-vuejs-accessibility`), 
 You can run only selected validation tools:
 
 ```shell
-docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only phpstan
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate /ext --only phpstan
 ```
 
 Or run multiple validation tools by separating them with commas:
 
 ```shell
-docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --only "phpstan,eslint,stylelint"
+docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate /ext --only "phpstan,eslint,stylelint"
 ```
 
 If you run Shopware CLI directly, use the same flags with the local extension path.
 
-The inverse is `--exclude`, which runs all registered tools except the listed names:
+Use `--exclude` to remove tools from the selected set. With `--full`, that set contains every checker:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full /ext --exclude "eslint,stylelint"
 ```
 
-Both flags accept a comma-separated list and fail with an error if a tool name does not exist.
+Both flags accept a comma-separated list. `--only` fails if a name is not a checker; `--exclude` fails if a name is not in the selected set.
 
 ### Running without copying the sources
 
-With `--full`, a directory input is copied to a temporary directory before the tools run. Use `--no-copy` to run directly in the mounted source directory instead:
+When PHPStan, ESLint, or Stylelint is selected, a directory input is copied to a temporary directory before the tools run. Basic validation and Twig-only checks stay in place. Use `--no-copy` to run directly in the mounted source directory instead:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --full --no-copy /ext
@@ -334,7 +325,7 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 | `--no-copy`         | Analyze the project in place instead of copying it to a temporary directory first |
 | `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
 
-`project validate` has no `--full` flag — it runs its registered validation tools by default. It also has no `--check-against`; that flag exists only on `extension validate`.
+`project validate` has no `--full` flag — it runs its registered checkers by default. `sw-cli` is included in that registry but returns immediately without a single-extension context; `--only sw-cli` therefore reports no metadata findings. Use `extension validate` to check an individual extension. `project validate` also has no `--check-against`; that flag exists only on `extension validate`.
 
 Use `--local-only` when you want extension discovery limited to the `custom/*` folders:
 

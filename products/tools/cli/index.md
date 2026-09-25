@@ -23,14 +23,14 @@ Shopware CLI runs on macOS, Linux, and via Docker. For workstation hardware requ
 
 ## Verifier tooling requirements
 
-The Shopware CLI binary itself does not require PHP or Node.js for every command. When you run verifier tooling directly on the host — such as `extension validate --full`, `project validate`, `extension fix`, `project fix`, or the format commands — provide:
+The Shopware CLI binary itself does not require PHP or Node.js for every command. When you run external verifier tooling directly on the host — such as `extension validate --full`, `extension validate --only phpstan`, `project validate`, the fix commands, or the format commands — provide:
 
 - **PHP 8.2.0** or newer
 - **Node.js 20.0.0** or newer
 - **Composer** when the CLI prepares PHP verifier dependencies or resolves project/extension dependencies
 - **npm** when the CLI prepares its JavaScript verifier dependencies
 
-Basic `extension validate` uses the built-in `sw-cli` checks and does not require a local PHP or Node.js runtime. The [Docker images](installation.md#docker-image) include the verifier runtime dependencies and are recommended for consistent validation, refactoring, and formatting environments.
+Basic `extension validate` uses the built-in `sw-cli` checks and does not require a local PHP or Node.js runtime. Selecting only a native Twig checker also skips external tool setup. The [Docker images](installation.md#docker-image) include the verifier runtime dependencies and are recommended for consistent validation, refactoring, and formatting environments.
 
 When you use the Docker-based development environment, run Composer and PHP tools inside the web container rather than on the host. See [Running Composer, PHP, and npm](../../../guides/development/dev-environment.md#running-composer-php-and-npm).
 
