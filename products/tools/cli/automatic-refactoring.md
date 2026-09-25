@@ -34,7 +34,7 @@ Automatic refactoring is one part of an upgrade workflow rather than a complete 
 
 ## Automatic refactoring tools
 
-Without `--only`, a `fix` command invokes every registered fixer. The following tools support fixing:
+By default, a `fix` command invokes every registered fixer. The following tools support fixing:
 
 | Tool          | What it fixes                                                                                | Version-aware | Implementation                                                                                          |
 | ------------- | -------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------- |
@@ -53,7 +53,7 @@ Other tools support validation or formatting instead:
 
 Selecting one of these tools with `fix --only` is an error; the command lists the available fixers.
 
-`extension fix` prints a `Fixers:` table after running. `Invoked` means the fixer was called, not that it changed a file; `skipped` means it was not selected by `--only`. `project fix` does not print this table.
+`extension fix` prints a `Fixers:` table after running. `Invoked` means the fixer was called, not that it changed a file; `skipped` means it was not selected by `--only` or was removed by `--exclude`. `project fix` does not print this table.
 
 ::: warning
 Rector applies PHP migrations during `fix`, but does not support validation. There is no Rector preview before files are rewritten, so always review the resulting `git diff`.
@@ -98,12 +98,22 @@ shopware-cli extension fix /path/to/your/extension --only rector
 shopware-cli extension fix /path/to/your/extension --only "rector,eslint,admin-twig"
 ```
 
+Use `--exclude` to skip fixers. It removes tools from the set selected by `--only`, or from all fixers when `--only` is omitted:
+
+```shell
+shopware-cli extension fix /path/to/your/extension --exclude eslint
+shopware-cli extension fix /path/to/your/extension --only "rector,eslint" --exclude eslint
+```
+
+Both flags accept comma-separated names. An unknown name, an excluded fixer outside the selected set, or excluding every selected fixer is an error.
+
 Available options:
 
-| Flag              | Description                                                                   |
-| ----------------- | ----------------------------------------------------------------------------- |
-| `--only <tools>`  | Run only the specified comma-separated tools                                  |
-| `--allow-non-git` | Allow the command to run when the extension directory is not a Git repository |
+| Flag                | Description                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `--only <tools>`    | Run only the specified comma-separated tools                                  |
+| `--exclude <tools>` | Skip the specified comma-separated fixers after applying `--only`             |
+| `--allow-non-git`   | Allow the command to run when the extension directory is not a Git repository |
 
 For `extension fix`, the extension directory itself must contain `.git`; being inside a parent Git-managed Shopware project is not sufficient. Use `--allow-non-git` when you intentionally want to fix such an extension. `project fix` checks the project root instead.
 
