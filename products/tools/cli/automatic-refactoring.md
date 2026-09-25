@@ -34,7 +34,7 @@ Automatic refactoring is one part of an upgrade workflow rather than a complete 
 
 ## Automatic refactoring tools
 
-Without `--only`, a `fix` command invokes every registered verifier tool. The following tools currently implement changes in `Fix()`:
+Without `--only`, a `fix` command invokes every registered fixer. The following tools support fixing:
 
 | Tool          | What it fixes                                                                                | Version-aware | Implementation                                                                                          |
 | ------------- | -------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------- |
@@ -46,15 +46,17 @@ Without `--only`, a `fix` command invokes every registered verifier tool. The fo
 
 The Administration Twig migrations are implemented as individual fixers under [`internal/verifier/twiglinter/admintwiglinter`](https://github.com/shopware/shopware-cli/tree/main/internal/verifier/twiglinter/admintwiglinter). They cover deterministic migrations such as replacing removed Administration components. For migration cases that require manual changes, see the [Administration migration guide](../../../guides/upgrades-migrations/administration/index.md).
 
-Other registered tools do not modify files in `fix` mode:
+Other tools support validation or formatting instead:
 
 - `php-cs-fixer` and `prettier` are used for [formatting](./formatter.md).
 - `phpstan`, `storefront-twig`, and `sw-cli` report findings during [validation](./validation.md).
 
-Selecting one of these tools with `fix --only` therefore does not modify anything.
+Selecting one of these tools with `fix --only` is an error; the command lists the available fixers.
+
+`extension fix` prints a `Fixers:` table after running. `Invoked` means the fixer was called, not that it changed a file; `skipped` means it was not selected by `--only`. `project fix` does not print this table.
 
 ::: warning
-Rector applies PHP migrations during `fix`, but its `Check()` implementation does not report findings during validation. There is no Rector preview before files are rewritten, so always review the resulting `git diff`.
+Rector applies PHP migrations during `fix`, but does not support validation. There is no Rector preview before files are rewritten, so always review the resulting `git diff`.
 :::
 
 ## Refactor an extension

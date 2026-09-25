@@ -20,7 +20,7 @@ The Docker examples are recommended because the image already contains the requi
 
 ## Formatting tools
 
-Without `--only`, a `format` command invokes every registered verifier tool. The following tools currently implement formatting in `Format()`:
+Without `--only`, a `format` command invokes every registered formatter. The following tools support formatting:
 
 | Tool           | What it formats                                                                             | Implementation                                                                                        |
 | -------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -28,7 +28,9 @@ Without `--only`, a `format` command invokes every registered verifier tool. The
 | `prettier`     | Prettier-supported files in source directories using the Shopware CLI bundled configuration | [`prettier.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/prettier.go)     |
 | `admin-twig`   | Administration Twig templates                                                               | [`admin_twig.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/admin_twig.go) |
 
-Other registered verifier tools do not modify files in `format` mode.
+Tools without formatting support cannot be selected with `format --only`; the command reports an error and lists the available formatters.
+
+`extension format` prints a `Formatters:` table after running. `Invoked` means the formatter was called, not that it changed a file; `skipped` means it was not selected by `--only`. `project format` does not print this table.
 
 ## Format an extension
 
