@@ -77,4 +77,4 @@ Therefore, changes in core templates which are imported via \{\% sw_use \%\} mig
 | :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Control flow | `foreach`, `break`, `continue`, and `return`                                                                                                         |
 | Operators    | `===`, `!==`, `&&`, and `\|\|`                                                                                                                       |
-| Type tests   | `{% if value is <type> %}` with `true`, `false`, `array`, `bool`, `boolean`, `callable`, `float`, `int`, `integer`, `object`, `scalar`, and `string` |
+| Type tests   | `{% if value is <type> %}` with `true`, `false`, `array`, `bool`, `boolean`, `callable`, `float`, `int`, `integer`, `instanceof`, `object`, `scalar`, and `string` |
