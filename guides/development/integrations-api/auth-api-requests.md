@@ -57,10 +57,13 @@ Support tooling can open a Store API context as an existing customer without kno
    }
    ```
 
-2. Redeem that token through the Store API and use the returned context token for subsequent requests:
+2. Redeem the token through the Store API. The response returns the new context token in the `sw-context-token` response header; use that header value for subsequent requests:
 
    ```http
    POST /store-api/account/login/imitate-customer
+   sw-access-key: SALES_CHANNEL_ACCESS_KEY
+   Content-Type: application/json
+
    {
      "token": "IMPERSONATION_TOKEN_FROM_STEP_1",
      "customerId": "CUSTOMER_ID",
