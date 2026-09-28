@@ -48,6 +48,9 @@ Support tooling can open a Store API context as an existing customer without kno
 
    ```http
    POST /api/_proxy/generate-imitate-customer-token
+   Authorization: Bearer ADMIN_API_TOKEN
+   Content-Type: application/json
+
    {
      "salesChannelId": "SALES_CHANNEL_ID",
      "customerId": "CUSTOMER_ID"
