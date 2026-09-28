@@ -70,6 +70,16 @@ shopware-cli extension format /path/to/your/extension --dry-run
 
 The extension path is required.
 
+### Select formatters
+
+Use `--only` to run one or more specific formatters, and `--exclude` to remove tools from the selection (applied to the `--only` selection, or to all registered formatters when `--only` is omitted):
+
+```shell
+shopware-cli extension format /path/to/your/extension --only php-cs-fixer
+shopware-cli extension format /path/to/your/extension --exclude prettier
+shopware-cli extension format /path/to/your/extension --only "php-cs-fixer,prettier" --exclude prettier
+```
+
 ## Format a project
 
 <Tabs>

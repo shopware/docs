@@ -89,19 +89,22 @@ The extension path is required.
 
 ### Select fixers
 
-Use `--only` to run one or more specific fixers:
+Use `--only` to run one or more specific fixers, and `--exclude` to remove tools from the selection (applied to the `--only` selection, or to all registered fixers when `--only` is omitted):
 
 ```shell
 shopware-cli extension fix /path/to/your/extension --only rector
 shopware-cli extension fix /path/to/your/extension --only "rector,eslint,admin-twig"
+shopware-cli extension fix /path/to/your/extension --exclude stylelint
+shopware-cli extension fix /path/to/your/extension --only "rector,eslint,admin-twig" --exclude eslint
 ```
 
 Available options:
 
-| Flag              | Description                                                                   |
-| ----------------- | ----------------------------------------------------------------------------- |
-| `--only <tools>`  | Run only the specified comma-separated tools                                  |
-| `--allow-non-git` | Allow the command to run when the extension directory is not a Git repository |
+| Flag                | Description                                                                    |
+| ------------------- | ------------------------------------------------------------------------------- |
+| `--only <tools>`    | Run only the specified comma-separated tools                                   |
+| `--exclude <tools>` | Exclude the specified comma-separated tools after applying `--only`            |
+| `--allow-non-git`   | Allow the command to run when the extension directory is not a Git repository  |
 
 For `extension fix`, the extension directory itself must contain `.git`; being inside a parent Git-managed Shopware project is not sufficient. Use `--allow-non-git` when you intentionally want to fix such an extension. `project fix` checks the project root instead.
 
