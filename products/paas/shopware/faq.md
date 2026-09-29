@@ -10,7 +10,7 @@ nav:
 
 ### How is my organization created?
 
-Your organization is provisioned for you after your contract is in place. It is created against an identity that has accepted membership of your company in the Shopware Business Platform, so the nominated first administrator must have a Shopware account and must accept that invitation before provisioning can complete.
+Your organization is provisioned for you after your contract is in place. It is created against a nominated first administrator, who must have a Shopware account and must have accepted the invitation to your company's account before provisioning can complete.
 
 Once the organization exists, install the CLI, authenticate with `sw-paas auth`, and confirm your role with `sw-paas account whoami`.
 
@@ -388,7 +388,7 @@ The platform runs the scheduler every 5 minutes.
 
 ### How do I add or change a cron job?
 
-Cron jobs are declared in [`application.yaml`](./fundamentals/application-yaml.md) and then have to be **enabled separately**, so adding one is a three-step sequence: deploy the configuration, enable the job with `sw-paas application cronjob update --enable`, then deploy again.
+Cron jobs are declared in [`application.yaml`](./fundamentals/application-yaml.md) and then have to be **enabled separately**, so adding one is a three-step sequence: deploy the configuration, enable the job with `sw-paas application cronjob update --id <cronjob-id> --enable`, then deploy again. Run `cronjob update` without arguments for an interactive menu, or add `--all` instead of `--id` to enable every job at once.
 
 Use `sw-paas application cronjob list` to see the current state and `cronjob logs` to inspect runs. See [Manage Cron Jobs](./guides/cronjobs.md).
 
@@ -489,17 +489,11 @@ Three scoping points are worth knowing before you rely on the figure:
 
 Service Credits apply, calculated as a percentage of the Hosting Fees for the affected month. The scale, the claim procedure and the deadlines are set out in [Clause 3 of the Supplementary Agreement](https://www.shopware.com/en/legal/paas-native/) — talk to your contact at Shopware if you think a claim applies.
 
-### What are the recovery objectives (RTO and RPO)?
-
-Shopware targets a recovery time objective and a recovery point objective of **24 hours** for the hosting and platform layer.
-
-These are **operational objectives, not guaranteed recovery times**. Actual recovery duration depends on the nature of the incident and on how much data has to be restored. The technical backup configuration described under [Data, backups and recovery](#data-backups-and-recovery) is designed to meet these objectives. In practice the available recovery point is usually far more recent.
-
 ### How and when is the platform patched?
 
 Updating the hosting and platform infrastructure is Shopware's responsibility. Patching is **continuous and risk-based** rather than tied to a fixed cycle: the need for updates is assessed on an ongoing basis against criticality, available patches and impact on security, stability and operation.
 
-Security-relevant assessment is not deferred to a scheduled maintenance date. For vulnerabilities with a CVSS base score above 9.0, analysis and mitigation begin within one working day of confirmed knowledge that the platform layer is affected.
+Security-relevant assessment is not deferred to a scheduled maintenance date.
 
 Updating the Shopware software and your own application remains your responsibility.
 
