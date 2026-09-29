@@ -7,7 +7,7 @@ nav:
 
 # Deployment Helper Configuration
 
-The Deployment Helper can be configured via a `.shopware-project.yml` file in the root of your project. Configure only the keys you use. Every section is optional.
+The Deployment Helper can be configured via a `.config/shopware-project.yml` file in the root of your project. Configure only the keys you use. Every section is optional. See the [Shopware CLI configuration file lookup priority](../../../../../products/tools/cli/configuration.md) for the preferred path and legacy fallbacks.
 
 ## Basic configuration
 
@@ -238,7 +238,7 @@ This significantly speeds up deployment for shops with many sales channels.
 
 ## OpenSearch index creation on install
 
-The `opensearch.index-on-install` key controls whether OpenSearch indexes are created automatically right after a fresh installation. When creating a new Shopware PaaS project with `shopware-cli project create --deployment shopware-paas`, the generated `.shopware-project.yml` sets this to `true` so OpenSearch indexing is enabled from the first deployment. For other deployment targets, the key defaults to `false` and can be enabled manually if needed:
+The `opensearch.index-on-install` key controls whether OpenSearch indexes are created automatically right after a fresh installation. When creating a new Shopware PaaS project with `shopware-cli project create --deployment shopware-paas`, the generated `.config/shopware-project.yml` sets this to `true` so OpenSearch indexing is enabled from the first deployment. For other deployment targets, the key defaults to `false` and can be enabled manually if needed:
 
 ```yaml
 deployment:
@@ -248,16 +248,16 @@ deployment:
 
 ## Local configuration overrides
 
-You can create a `.shopware-project.local.yml` file alongside your `.shopware-project.yml` to override configuration values for local development without modifying the base config. This file should be added to your `.gitignore`.
+You can create a `.config/shopware-project.local.yml` file alongside your `.config/shopware-project.yml` to override configuration values for local development without modifying the base config. This file should be added to your `.gitignore`.
 
 The local file is deep-merged on top of the base configuration:
 
 - **Scalar values** (strings, numbers) are replaced by the local value.
 - **Maps** (associative arrays) are deep-merged recursively.
-- **Lists** (indexed arrays): for each list-valued key, the list from `.shopware-project.local.yml` is appended to the end of the list from `.shopware-project.yml`. The relative order of items within each list is preserved, nested lists are treated the same way, and no automatic deduplication is performed.
+- **Lists** (indexed arrays): for each list-valued key, the list from `.config/shopware-project.local.yml` is appended to the end of the list from `.config/shopware-project.yml`. The relative order of items within each list is preserved, nested lists are treated the same way, and no automatic deduplication is performed.
 
 ```yaml
-# .shopware-project.local.yml
+# .config/shopware-project.local.yml
 deployment:
   hooks:
     pre: |
@@ -275,14 +275,14 @@ deployment:
 
 The local config file supports custom YAML tags to control how values are merged. These tags (such as `!reset` and `!override`) are interpreted by the Deployment Helper itself and are not part of the YAML standard.
 
-> Note: Generic YAML parsers or linters that are not configured to allow custom tags may emit errors or warnings when loading `.shopware-project.local.yml`. Ensure your tooling supports custom tags or excludes this file, and use a Deployment Helper version that documents support for `!reset` and `!override` (see the Deployment Helper changelog for the minimum supported version).
+> Note: Generic YAML parsers or linters that are not configured to allow custom tags may emit errors or warnings when loading `.config/shopware-project.local.yml`. Ensure your tooling supports custom tags or excludes this file, and use a Deployment Helper version that documents support for `!reset` and `!override` (see the Deployment Helper changelog for the minimum supported version).
 
 #### `!reset`: clear and replace a field
 
 Use `!reset` on a single field to ignore the value from the base configuration and use only the tagged value. It can be applied to scalars, lists, or maps, and it affects only that one field: the parent object is still merged as usual, but the value for this key is completely replaced. For lists, all inherited items are dropped; for maps, only the keys you define remain for that field.
 
 ```yaml
-# .shopware-project.local.yml
+# .config/shopware-project.local.yml
 deployment:
   extension-management:
     # Resets just this exclude field: the base exclude list is discarded and replaced
@@ -300,7 +300,7 @@ deployment:
 Use `!override` on a mapping/section to disable deep-merging for that whole mapping. The tagged section completely replaces the corresponding section from the base configuration: nested keys are not merged recursively, and any keys that are not listed in the overriding section are removed.
 
 ```yaml
-# .shopware-project.local.yml
+# .config/shopware-project.local.yml
 deployment:
   # Overrides the entire hooks section: all hooks from the base config are removed
   hooks: !override
