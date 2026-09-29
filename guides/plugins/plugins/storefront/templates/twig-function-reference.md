@@ -73,8 +73,8 @@ Therefore, changes in core templates which are imported via \{\% sw_use \%\} mig
 
 ## PHP-like syntax
 
-| Type         | Syntax                                                                                                                                               |
-| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Control flow | `foreach`, `break`, `continue`, and `return`                                                                                                         |
-| Operators    | `===`, `!==`, `&&`, and `\|\|`                                                                                                                       |
+| Type         | Syntax                                                                                                                                                             |
+| :----------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Control flow | `foreach`, `break`, `continue`, and `return`                                                                                                                       |
+| Operators    | `===`, `!==`, `&&`, and `\|\|`                                                                                                                                     |
 | Type tests   | `{% if value is <type> %}` with `true`, `false`, `array`, `bool`, `boolean`, `callable`, `float`, `int`, `integer`, `instanceof`, `object`, `scalar`, and `string` |
