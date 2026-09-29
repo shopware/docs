@@ -32,7 +32,7 @@ Before cloning an application, ensure that:
 
 - Both the source and target applications are within the same organization
 - You have access to both the source and target projects
-- The target application already exists (or you have permissions to create it)
+- The target application already exists and has been deployed, ideally on the same commit as the source
 - The latest deployment of the source application was successful (state: `DEPLOYING_STORE_SUCCESS`)
 
 You can check the deployment status with the following command:

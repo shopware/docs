@@ -62,13 +62,9 @@ Monitor the deployment progress:
 sw-paas watch
 ```
 
-Confirm that the deployment succeeded:
+This streams live and does not exit on its own. Wait for the status `DEPLOYING_STORE_SUCCESS`, then press `Ctrl+C` to stop it.
 
-```sh
-sw-paas application deploy list
-```
-
-Wait for the status `DEPLOYING_STORE_SUCCESS`, then open your shop:
+Open your shop:
 
 ```sh
 sw-paas open storefront

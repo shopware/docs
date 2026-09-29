@@ -39,5 +39,5 @@ After you enable OpenSearch and update your application, you need to index your 
 - Once the exec session is ready, run the following command: `bin/console dal:refresh:index --use-queue`
 
 :::info
-The deployment reports success before the index is built. Search returns no results until the indexing command above has run.
+The deployment reports success before the index is built. The command above queues the indexing work rather than performing it, so it returns immediately while the worker processes the queue in the background. Search keeps returning no results until that queue has been worked through — on a large catalog this takes a while.
 :::
