@@ -32,6 +32,8 @@ deployment:
       echo "After deployment general"
     pre-install: |
       echo "Before running system:install"
+    post-extension-on-project-install: |
+      echo "After installing and managing extensions on a fresh installation"
     post-install: |
       echo "After running system:install"
     pre-update: |
@@ -119,14 +121,20 @@ Hooks allow you to run custom scripts at defined points in the deployment flow. 
 - Triggering external systems (Slack notifications, deployment webhooks)
 - Custom health checks or warm-up steps
 
-Hook execution order (both install and update flows):
+Hook execution order for a fresh installation:
 
 1. **`pre`**: Before any deployment step (general setup, notifications)
-2. **`pre-install` or `pre-update`**: Just before Shopware install/update begins
-3. *(system:install or system:update:finish runs here)*
+2. **`pre-install`**: Just before Shopware install begins
+3. *(system:install runs here)*
 4. *(extension management runs here)*
-5. **`post-install` or `post-update`**: After Shopware is set up and extensions are managed
-6. **`post`**: Last, after all deployment steps and PostDeploy listeners (cache clear, Fastly update) have run
+5. **`post-extension-on-project-install`**: After all plugin and app lifecycle operations have run (install, update, deactivate, and remove). This hook runs only during a fresh installation.
+6. *(optional OpenSearch indexing runs here)*
+7. **`post-install`**: After the fresh installation is complete, including extension management and optional OpenSearch indexing
+8. **`post`**: Last, after all deployment steps and PostDeploy listeners (cache clear, Fastly update) have run
+
+During an update, use **`post-update`** for commands that should run after the update flow. The `post-extension-on-project-install` hook does not run during updates.
+
+Use `post-extension-on-project-install` when a command needs all extensions from the project to have completed their installation and lifecycle operations, but should run before the final `post-install` hook. For example, use it to prepare extension-dependent data before OpenSearch indexes are created or to perform setup that must happen immediately after extensions are managed.
 
 ## Multi-step hooks
 
