@@ -46,6 +46,8 @@ How a typical Shopware 6 project structure looks when bundles are used:
 
 ```text
 project-root/
+├── .config/
+│   └── shopware-project.yml
 ├── bin/
 │   └── console
 ├── config/
@@ -76,7 +78,6 @@ project-root/
 ├── vendor/
 ├── composer.json
 ├── composer.lock
-└── .shopware-project.yaml
 ```
 
 The bundle is typically placed in a project's `src/` folder, which is the standard location for custom code. You will still need to register the bundle in the project's `config/bundles.php` file.
@@ -176,7 +177,7 @@ Since bundles don't have a lifecycle, migrations aren't automatically executed. 
 bin/console database:migrate <BundleName> --all
 ```
 
-If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper/index.md), you can add it to the `.shopware-project.yaml` file:
+If you use [Deployment Helper](../../hosting/installation-updates/deployments/deployment-helper/index.md), you can add it to the `.config/shopware-project.yml` file:
 
 ```yaml
 deployment:

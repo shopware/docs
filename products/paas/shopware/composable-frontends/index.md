@@ -19,13 +19,13 @@ Before deploying a composable frontend, make sure you have:
 - A Git repository that contains your composable frontend source code
 - Access to Shopware PaaS Native and the [`sw-paas` CLI](../get-started/cli.md)
 - A project that is connected to your Git repository
-- An `application.yaml` file in the root of your repository
+- An `application.yaml` file in your repository, by default at its root
 
 If you have not connected a repository yet, follow the repository setup steps in the [Quickstart](../get-started/quickstart.md).
 
 ## Application YAML
 
-Composable frontends require an `application.yaml` file in the root of the repository.
+Composable frontends require an `application.yaml` file, by default in the root of the repository.
 The main difference compared to a Shopware application is the application kind and the Node.js runtime configuration.
 
 A minimal configuration looks like this:
@@ -74,6 +74,8 @@ app:
     version: "24"
 ```
 
+The `dockerfile_path` is relative to the directory containing the `application.yaml`, not to the repository root.
+
 When you use a custom Dockerfile, follow these additional requirements:
 
 - Run the container as a non-root user with `UID` and `GID` set to `1000`
@@ -82,6 +84,29 @@ When you use a custom Dockerfile, follow these additional requirements:
 - Follow general security and performance best practices
 
 Shopware PaaS Native still handles the build and deployment workflow for the application.
+
+## Monorepo layouts
+
+A composable frontend often lives next to other projects in one repository. Pass the path of its `application.yaml` when you create the application:
+
+```sh
+sw-paas application create --application-yaml-path apps/frontend/application.yaml
+```
+
+The directory holding the `application.yaml` becomes the application root, and `dockerfile_path` as well as the build context resolve against it. If the frontend needs files from outside its own directory, such as a shared workspace package, widen the build context:
+
+```yaml
+apiVersion: v1
+kind: cfe
+
+app:
+  build:
+    context: ".."
+  node:
+    version: "24"
+```
+
+See [Deploy from a monorepo](../guides/monorepo.md) for the full rules.
 
 ## Environment variables
 

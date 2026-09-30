@@ -210,6 +210,7 @@ ChildrenAssociation
 ChildrenAssociationField
 CircleCI
 ClassHierarchyChange
+ClassMoved
 ClientInterface
 Cloudflare
 Cmd
@@ -1065,6 +1066,7 @@ TestCase
 TestDataService
 TestSecret
 TestStockUpdateFilter
+Tideways
 TimeRangeRule
 TimeZoneField
 Timezones
@@ -1870,6 +1872,7 @@ preprocessor
 preprocessors
 preselect
 preselection
+presigned
 prettierrc
 previewComponent
 previewable
@@ -1946,6 +1949,7 @@ resetUrl
 resolver's
 resolvers
 resubmittable
+rethrow
 rethrown
 retryability
 returnUrl
@@ -2099,6 +2103,7 @@ textarea
 th
 theming
 themself
+tideways
 timeframe
 timeframes
 tinyint

@@ -63,8 +63,11 @@ Install the [Blackfire browser extension](https://blackfire.io/docs/integrations
 Pages served from the CDN cache never reach PHP, so they cannot be profiled. If a profile does not appear, request the page in a way that bypasses the cache, for example, by profiling a page that is not cacheable.
 :::
 
-## Blackfire and tracing
+## Blackfire, Tideways, and tracing
 
-Blackfire and OpenTelemetry tracing cannot be used at the same time. While Blackfire is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for the affected time range. See [Traces](./traces.md) for details on tracing.
+Only one profiler can be active at a time:
+
+- Blackfire and [Tideways](./tideways.md) cannot be enabled together. If both are set to `true`, the configuration is rejected with the error `blackfire and tideways cannot be enabled at the same time`.
+- Blackfire and OpenTelemetry tracing cannot be used at the same time. While Blackfire is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for the affected time range. See [Traces](./traces.md) for details on tracing.
 
 To go back to tracing, set `services.blackfire.enabled` to `false` and update your application again.

@@ -10,6 +10,6 @@ Shopware PaaS Native provides comprehensive monitoring capabilities to help you 
 
 Grafana access is currently provided through credentials returned by the CLI via the `sw-paas open grafana` command. Single sign-on for Grafana and similar tools is not available at this stage.
 
-Blackfire is supported for profiling PHP requests, see [Blackfire](./blackfire.md). Other application performance monitoring tools such as Tideways are not currently supported as part of the platform, but we are working on it.
+Two profilers are supported for PHP requests: [Blackfire](./blackfire.md) and [Tideways](./tideways.md). Only one of them can be enabled at a time, and each requires your own account with the respective vendor. Other application performance monitoring tools are not currently supported as part of the platform.
 
 Shopware PaaS Native does not currently provide managed load testing as part of the platform.
