@@ -29,6 +29,33 @@ For development purposes you can use the Administration component to configure p
 
 If an app configuration value changes cached Storefront output, mark the corresponding `<input-field>` or `<component>` with `cache-relevant="true"` in the `config.xml`. See [Cache relevant fields](../../plugins/plugin-fundamentals/add-plugin-configuration.md#cache-relevant-fields) for details.
 
+## Grouping configuration cards into tabs
+
+Starting with Shopware 6.7.16.0, apps can also group configuration cards into tabs without enabling a feature flag.
+
+For example, put this content inside the `<config>` element of your app's `Resources/config/config.xml`:
+
+```xml
+<tab>
+    <name>connection</name>
+    <title>Connection</title>
+    <title lang="de-DE">Verbindung</title>
+    <card>
+        <title>API settings</title>
+        <input-field type="password">
+            <name>apiToken</name>
+            <label>API token</label>
+        </input-field>
+    </card>
+</tab>
+```
+
+Cards outside explicit tabs appear in **General**, and tab navigation is shown only when the configuration has more than one tab.
+
+The example's stored key is still `DemoApp.config.apiToken`, without the tab name.
+
+See [Tabs in your configuration](../../plugins/plugin-fundamentals/add-plugin-configuration.md#tabs-in-your-configuration) for a complete XML example and [Reading the configuration form schema](../../plugins/plugin-fundamentals/use-plugin-configuration.md#reading-the-configuration-form-schema) for the Admin API response structure.
+
 ## Reading the configuration values
 
 The configuration values are saved as part of the `SystemConfig` and you can use the key `{appName}.config.{fieldName}` to identify the values. There are two possibilities to access the configuration values from your app. If you need those values on your app-backend server, you can read them over the API. If you need the configuration values in your Storefront twig templates you can use the `systemConfig()`-twig function.
