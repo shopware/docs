@@ -370,13 +370,15 @@ Secrets are stored in the PaaS secret store and can be applied at the organizati
 
 ### Can I purge the CDN cache without deploying new code?
 
-Yes. Create a new deployment from the existing build:
+For composable frontends, yes. Create a new deployment from the existing build without changing the commit SHA:
 
 ```bash
 sw-paas application deploy create
 ```
 
-A full cache purge runs after every deployment.
+This redeploys the same build and runs the CDN purge action. A full cache purge also runs after every composable frontend deployment. See [Composable Frontends](./composable-frontends/index.md#fastly).
+
+This behavior is specific to composable frontends. For Shopware storefronts, Fastly is fully integrated and cache invalidation is handled automatically by the platform — see [CDN](./cdn/index.md#integration).
 
 ### Why does search return no results after I enable OpenSearch?
 
