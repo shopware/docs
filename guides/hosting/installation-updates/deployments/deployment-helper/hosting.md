@@ -20,11 +20,11 @@ No additional configuration is required; the helper detects Platform.sh from the
 
 ## PaaS Native
 
-PaaS Native environments invoke Deployment Helper during the deploy step of your CI/CD pipeline. Simply configure your `.shopware-project.yml` as usual and DH will execute with the same flow as Platform.sh or manual deployments.
+PaaS Native environments invoke Deployment Helper during the deploy step of your CI/CD pipeline. Simply configure your `.config/shopware-project.yml` as usual and DH will execute with the same flow as Platform.sh or manual deployments.
 
 ## Kubernetes / Operators
 
-When using [Shopware's Kubernetes operator](https://github.com/shopware/shopware-operator), deployment is triggered via a one-time job that invokes Deployment Helper. The operator does not run DH directly; it spawns it as a pod job. Configure your `.shopware-project.yml` and Deployment Helper will behave as normal.
+When using [Shopware's Kubernetes operator](https://github.com/shopware/shopware-operator), deployment is triggered via a one-time job that invokes Deployment Helper. The operator does not run DH directly; it spawns it as a pod job. Configure your `.config/shopware-project.yml` and Deployment Helper will behave as normal.
 
 ## Fastly integration
 

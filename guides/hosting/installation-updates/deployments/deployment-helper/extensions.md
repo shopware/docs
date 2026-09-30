@@ -110,7 +110,7 @@ See [Extension Management](../../extension-management.md) for details on install
 
 ### Option 2: Disable the Deployment Helper's extension management
 
-If you prefer to manage extensions manually through the Store or Administration, disable the extension management in your `.shopware-project.yml`:
+If you prefer to manage extensions manually through the Store or Administration, disable the extension management in your `.config/shopware-project.yml`:
 
 ```yaml
 deployment:
@@ -139,7 +139,7 @@ Shopware Plugin Service
 
 Removing an extension requires you to follow two steps:
 
-First, set the extension to `remove` in the `.shopware-project.yml` file:
+First, set the extension to `remove` in the `.config/shopware-project.yml` file:
 
 ```yaml
 deployment:
@@ -157,7 +157,7 @@ deployment:
 
 and deploy the changes. The extension will be uninstalled and is inactive.
 
-Secondly, remove the extension from source code, remove the entry from the `.shopware-project.yml` file, and deploy the changes again.
+Secondly, remove the extension from source code, remove the entry from the `.config/shopware-project.yml` file, and deploy the changes again.
 
 ## How Deployment Helper adapts to different Shopware versions
 
