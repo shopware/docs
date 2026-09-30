@@ -30,7 +30,7 @@ The Shopware CLI binary itself does not require PHP or Node.js for every command
 - **Composer** when the CLI prepares PHP verifier dependencies or resolves project/extension dependencies
 - **npm** when the CLI prepares its JavaScript verifier dependencies
 
-Basic `extension validate` uses the built-in `sw-cli` checks and does not require a local PHP or Node.js runtime. The [Docker images](installation.md#docker-image) include the verifier runtime dependencies and are recommended for consistent validation, refactoring, and formatting environments.
+Basic `extension validate` uses the built-in `builtin` checks and does not require a local PHP or Node.js runtime. The [Docker images](installation.md#docker-image) include the verifier runtime dependencies and are recommended for consistent validation, refactoring, and formatting environments.
 
 When you use the Docker-based development environment, run Composer and PHP tools inside the web container rather than on the host. See [Running Composer, PHP, and npm](../../../guides/development/dev-environment.md#running-composer-php-and-npm).
 

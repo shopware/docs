@@ -13,11 +13,15 @@ Validation covers technical criteria that can be automated, such as metadata, pa
 
 Validation has two modes:
 
-- **Basic (default)**: Runs the built-in `sw-cli` checks, including metadata, icon, snippets, PHP linting, and packaging-related checks. It does not require a locally installed PHP or Node.js runtime.
+- **Basic (default)**: Runs the built-in `builtin` checks, including metadata, icon, snippets, PHP linting, and packaging-related checks. It does not require a locally installed PHP or Node.js runtime.
 - **Full (`--full`)**: Runs the basic checks plus validation tools such as PHPStan, ESLint, Stylelint, and the Administration and Storefront Twig linters.
 
 :::warning
-`--only` does not enable full validation. Without `--full`, `extension validate` runs only the built-in `sw-cli` checks. For example, `extension validate --only phpstan` does not run PHPStan; use `extension validate --full --only phpstan`.
+`--only` does not enable full validation. Without `--full`, `extension validate` runs only the built-in `builtin` checks. For example, `extension validate --only phpstan` does not run PHPStan; use `extension validate --full --only phpstan`.
+:::
+
+:::info
+The built-in checker was previously named `sw-cli`. That name is still accepted by `--only` and `--exclude` as a legacy alias, but it now prints a deprecation warning. Use `builtin` in new commands and configuration.
 :::
 
 ### Recommended setup: Docker
@@ -55,7 +59,7 @@ For day-to-day development, validate the source directory. Before uploading a re
 
 ## What is validated in basic mode?
 
-Basic mode runs the `sw-cli` tool. It includes checks such as the following; this list is not exhaustive. The identifier in brackets is the value you can use in [validation ignores](#validation-ignores).
+Basic mode runs the `builtin` tool. It includes checks such as the following; this list is not exhaustive. The identifier in brackets is the value you can use in [validation ignores](#validation-ignores).
 
 Metadata and extension structure checks include:
 
@@ -144,7 +148,7 @@ With `--full`, `extension validate` calls the validation check implemented by ea
 
 | Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                             |
 | ----------------- | --------------------- | ----------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `sw-cli`          | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation** |
+| `builtin`         | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. Returns immediately for a project, so **projects get no metadata validation**. Legacy alias: `sw-cli` |
 | `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; skipped for apps (no `composer.json`)                                                                        |
 | `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                          |
 | `stylelint`       | ✅                    | ✅                | —                   | CSS/SCSS with Shopware standards                                                                                                  |
@@ -161,8 +165,8 @@ Every tool is registered for all three verbs, but the unmarked combinations abov
 
 | Command                               | Tools that do work                                                          |
 | ------------------------------------- | --------------------------------------------------------------------------- |
-| `extension validate`                  | `sw-cli`, `phpstan`, `eslint`, `stylelint`, `admin-twig`, `storefront-twig` |
-| `project validate`                    | the same, minus `sw-cli`                                                    |
+| `extension validate`                  | `builtin`, `phpstan`, `eslint`, `stylelint`, `admin-twig`, `storefront-twig` |
+| `project validate`                    | the same, minus `builtin`                                                    |
 | `extension fix` / `project fix`       | `rector`, `admin-twig`, `eslint`, `stylelint`, `symfony-xml`                |
 | `extension format` / `project format` | `admin-twig`, `php-cs-fixer`, `prettier`                                    |
 
@@ -319,7 +323,7 @@ shopware-cli project validate /path/to/your/project
 `project validate` gathers local extension source directories and configured bundles and runs the registered validation tools against them. Composer-managed extensions resolved under `vendor/` are skipped. Project-level validation settings are read from `.config/shopware-project.yml` under `validation`.
 
 :::warning
-`project validate` does not run extension metadata and packaging validation for every contained extension. The `sw-cli` verifier only runs with a single-extension context. Run `extension validate` for an individual extension when you also need its Composer or manifest metadata, icon, snippet, and package checks.
+`project validate` does not run extension metadata and packaging validation for every contained extension. The `builtin` verifier only runs with a single-extension context. Run `extension validate` for an individual extension when you also need its Composer or manifest metadata, icon, snippet, and package checks.
 :::
 
 If you omit the path, `project validate` discovers the nearest Shopware project by walking up from the current directory. A directory is recognized when its Composer metadata references `shopware/core` and `bin/console` exists; `PROJECT_ROOT` overrides this discovery.

@@ -49,7 +49,7 @@ The Administration Twig migrations are implemented as individual fixers under [`
 Other registered tools do not modify files in `fix` mode:
 
 - `php-cs-fixer` and `prettier` are used for [formatting](./formatter.md).
-- `phpstan`, `storefront-twig`, and `sw-cli` report findings during [validation](./validation.md).
+- `phpstan`, `storefront-twig`, and `builtin` report findings during [validation](./validation.md).
 
 Selecting one of these tools with `fix --only` therefore does not modify anything.
 
