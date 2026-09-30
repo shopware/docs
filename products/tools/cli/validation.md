@@ -18,6 +18,14 @@ By default, `extension validate` runs every checker:
 
 Use `--only` to select specific checkers. For example, `extension validate /ext --only phpstan` runs PHPStan without the built-in `builtin` checks. To run only the built-in checks, use `--only builtin`; `--only sw-cli` remains supported for backwards compatibility and emits a deprecation warning. The deprecated `--full` flag is still accepted, but has no effect because all checkers run by default.
 
+Existing scripts and CI jobs that previously omitted `--full` now also run PHPStan, ESLint, Stylelint, and the Twig checkers. They can report additional findings and require external runtime dependencies. To preserve the previous default, select the built-in checker explicitly:
+
+```shell
+shopware-cli extension validate /path/to/your/extension --only builtin
+```
+
+The legacy name `sw-cli` is accepted in both `--only` and `--exclude` for extension and project validation, with a deprecation warning. Use `builtin` in new configurations. Reports, tool statuses, and selection errors use the canonical name `builtin`.
+
 ### Recommended setup: Docker
 
 Run Shopware CLI through the `ghcr.io/shopware/shopware-cli` Docker image for a consistent validation environment without managing the required runtimes on the host. The primary examples on this page use Docker.
@@ -142,18 +150,18 @@ If `--format` is not set, the format is detected automatically: `github` in GitH
 
 By default, `extension validate` calls every registered checker. Use `--only` or `--exclude` to narrow the selection. The available tool capabilities are:
 
-| Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                             |
-| ----------------- | --------------------- | ----------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                                                                     |
+| ----------------- | --------------------- | ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `builtin`         | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. `sw-cli` is accepted as a legacy alias. Returns immediately for a project, so **projects get no metadata validation** |
-| `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; returns without analyzing apps (no `composer.json`)                                                          |
-| `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                          |
-| `stylelint`       | ✅                    | ✅                | —                   | CSS/SCSS with Shopware standards                                                                                                  |
-| `admin-twig`      | ✅                    | ✅                | ✅                  | Administration Twig component checks and migrations                                                                               |
-| `storefront-twig` | ✅                    | —                 | —                   | Storefront Twig checks (accessibility, inline styles); reports only                                                               |
-| `rector`          | —                     | ✅                | —                   | PHP breaking-change and upgrade rules. **Rewrites without reporting** — nothing appears in `validate`                             |
-| `symfony-xml`     | —                     | ✅                | —                   | Converts deprecated `services.xml` / `routes.xml` to YAML                                                                         |
-| `php-cs-fixer`    | —                     | —                 | ✅                  | PHP code style (Shopware Coding Standard)                                                                                         |
-| `prettier`        | —                     | —                 | ✅                  | JavaScript, Vue, TypeScript, CSS, SCSS formatting                                                                                 |
+| `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; returns without analyzing apps (no `composer.json`)                                                                                                  |
+| `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                                                                  |
+| `stylelint`       | ✅                    | ✅                | —                   | CSS/SCSS with Shopware standards                                                                                                                                          |
+| `admin-twig`      | ✅                    | ✅                | ✅                  | Administration Twig component checks and migrations                                                                                                                       |
+| `storefront-twig` | ✅                    | —                 | —                   | Storefront Twig checks (accessibility, inline styles); reports only                                                                                                       |
+| `rector`          | —                     | ✅                | —                   | PHP breaking-change and upgrade rules. **Rewrites without reporting** — nothing appears in `validate`                                                                     |
+| `symfony-xml`     | —                     | ✅                | —                   | Converts deprecated `services.xml` / `routes.xml` to YAML                                                                                                                 |
+| `php-cs-fixer`    | —                     | —                 | ✅                  | PHP code style (Shopware Coding Standard)                                                                                                                                 |
+| `prettier`        | —                     | —                 | ✅                  | JavaScript, Vue, TypeScript, CSS, SCSS formatting                                                                                                                         |
 
 Each command selects only tools that support its operation. An unsupported `--only` name is an error that lists the available tools for that command; for example, `validate --only prettier` and `fix --only phpstan` are errors.
 
@@ -189,9 +197,17 @@ docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validat
 
 Both flags accept a comma-separated list. `--only` fails if a name is not a checker; `--exclude` fails if a name is not in the selected set.
 
+When combined, `--only` selects the checkers first and `--exclude` removes checkers from that selection:
+
+```shell
+shopware-cli extension validate /path/to/your/extension --only "builtin,phpstan,eslint" --exclude eslint
+```
+
+This runs only `builtin` and `phpstan`. Excluding every selected checker is an error for `extension validate`.
+
 ### Running without copying the sources
 
-When PHPStan, ESLint, or Stylelint is selected, a directory input is copied to a temporary directory before the tools run. Basic validation and Twig-only checks stay in place. Use `--no-copy` to run directly in the mounted source directory instead:
+When PHPStan, ESLint, or Stylelint is selected, a directory input is copied to a temporary directory before the tools run. Selecting only `builtin` and/or Twig checkers skips copying and external tool setup. Use `--no-copy` to run directly in the mounted source directory instead:
 
 ```shell
 docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --no-copy /ext
@@ -321,11 +337,13 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 | ------------------- | --------------------------------------------------------------------------------- |
 | `--local-only`      | Only discover extensions from `custom/*` folders                                  |
 | `--only <tools>`    | Run only selected tools (comma-separated)                                         |
-| `--exclude <tools>` | Run all tools except the listed ones                                              |
+| `--exclude <tools>` | Remove the listed checkers from the selection after applying `--only`             |
 | `--no-copy`         | Analyze the project in place instead of copying it to a temporary directory first |
 | `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
 
 `project validate` also runs its registered checkers by default. It has no `--full` flag. `builtin` is included in that registry but returns immediately without a single-extension context; `--only builtin` therefore reports no metadata findings. The legacy `--only sw-cli` alias is also accepted. Use `extension validate` to check an individual extension. `project validate` also has no `--check-against`; that flag exists only on `extension validate`.
+
+Project validation uses the same checker names and applies `--exclude` after `--only`, rejecting names outside the selected set. It does not include checker invocation statuses in its reports. Unlike extension validation, it initializes external tooling even when only native checkers are selected.
 
 Use `--local-only` when you want extension discovery limited to the `custom/*` folders:
 

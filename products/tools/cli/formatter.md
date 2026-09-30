@@ -72,6 +72,13 @@ shopware-cli extension format /path/to/your/extension --dry-run
 
 The extension path is required.
 
+Use `--only` to select one or more formatters:
+
+```shell
+shopware-cli extension format /path/to/your/extension --only php-cs-fixer
+shopware-cli extension format /path/to/your/extension --only "php-cs-fixer,admin-twig"
+```
+
 Use `--exclude` to skip formatters. It removes tools from the set selected by `--only`, or from all formatters when `--only` is omitted:
 
 ```shell

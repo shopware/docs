@@ -49,7 +49,7 @@ The Administration Twig migrations are implemented as individual fixers under [`
 Other tools support validation or formatting instead:
 
 - `php-cs-fixer` and `prettier` are used for [formatting](./formatter.md).
-- `phpstan`, `storefront-twig`, and `builtin` report findings during [validation](./validation.md). The legacy `sw-cli` name remains accepted as an input alias.
+- `phpstan`, `storefront-twig`, and `builtin` report findings during [validation](./validation.md).
 
 Selecting one of these tools with `fix --only` is an error; the command lists the available fixers.
 

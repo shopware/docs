@@ -197,7 +197,7 @@ shopware-cli project validate --no-copy
 shopware-cli project validate --local-only
 ```
 
-`--only` and `--exclude` accept comma-separated tool names.
+`--only` and `--exclude` accept comma-separated checker names. `--exclude` removes checkers after applying `--only`; names outside the selected set are errors. Tools without validation support, such as `prettier` or `rector`, cannot be selected. The built-in checker is named `builtin`; the legacy `sw-cli` alias is accepted with a deprecation warning. It only checks individual extensions, so use `extension validate` for metadata and packaging checks.
 
 See [Validation](../validation.md) for the available validation tools.
 
