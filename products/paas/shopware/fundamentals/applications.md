@@ -53,7 +53,7 @@ The path is stored on the application, so later updates reuse it. See [Deploy fr
 To trigger a new build for the application via CLI, use the following command:
 
 ```sh
-sw-paas application build start
+sw-paas application build create
 ```
 
 This command initiates the build process, packaging your application and preparing it for deployment. While the build is running, you can monitor its progress and view real-time output by following the logs:
