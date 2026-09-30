@@ -95,7 +95,7 @@ A **build** turns a commit into a runnable image. It installs Composer dependenc
 A **deployment** takes an existing build and puts it live. It runs your database migrations, then rolls the new version out. This is the part that affects production.
 
 ```sh
-sw-paas application build start     # build only, nothing goes live
+sw-paas application build create    # build only, nothing goes live
 sw-paas application build list      # see the builds you have available
 sw-paas application deploy create   # pick a build and deploy it
 ```
