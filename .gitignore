@@ -18,5 +18,14 @@ CLAUDE.md
 .cursor/
 .venv-spellcheck
 
+# Local AI/LLM overrides
+# Claude.local.md
+*.local.md
+# AGENTS.override.md
+*.override.md
+*.cursorignore.local
+*.cursorindexingignore.local
+*.tabnineignore.local
+
 # Deno (broken-pageref.js)
 /deno.lock

@@ -9,7 +9,7 @@ nav:
 
 In a staging environment, you usually want Shopware's staging mode to be re-applied every time the database is refreshed from production, so that emails remain disabled, app connections are reset, URLs are rewritten, and so on. The Deployment Helper can do this for you automatically.
 
-Enable it either in `.shopware-project.yml`:
+Enable it either in `.config/shopware-project.yml`:
 
 ```yaml
 deployment:
@@ -17,7 +17,7 @@ deployment:
     enabled: true
 ```
 
-Or, via the environment variable `SHOPWARE_DEPLOYMENT_STAGING=1`. The latter is convenient when the same `.shopware-project.yml` is shared between production and staging. Set the env variable only on the staging environment.
+Or, via the environment variable `SHOPWARE_DEPLOYMENT_STAGING=1`. The latter is convenient when the same `.config/shopware-project.yml` is shared between production and staging. Set the env variable only on the staging environment.
 
 When enabled, the Deployment Helper runs `system:setup:staging --no-interaction --force` as a `PostDeploy` event listener after extensions have been managed, for both the installation and update flows. To configure what staging mode actually changes (banners, URL rewriting, email delivery, ElasticSearch checks, etc.), see [Creating a Staging Instance](../../creating-a-staging-instance.md#configuring-staging-mode).
 
@@ -51,7 +51,7 @@ This has caused real data leaks in the past. Always enable or run staging mode a
 Shopware does not automatically detect whether an instance is staging or production. The system runs in whatever mode is configured. You must explicitly enable staging mode via:
 
 - Environment variable: `SHOPWARE_DEPLOYMENT_STAGING=1`
-- Or configuration: `deployment.staging.enabled: true` in `.shopware-project.yml`
+- Or configuration: `deployment.staging.enabled: true` in `.config/shopware-project.yml`
 - Or manual command: `bin/console system:setup:staging`
 
 If you skip this step after copying production data, the instance behaves like production (real email, real app connections, production URLs). There is no automatic safeguard.

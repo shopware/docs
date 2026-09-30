@@ -212,6 +212,7 @@ ChildrenAssociation
 ChildrenAssociationField
 CircleCI
 ClassHierarchyChange
+ClassMoved
 ClientInterface
 Cloudflare
 Cmd
@@ -1954,6 +1955,7 @@ resetUrl
 resolver's
 resolvers
 resubmittable
+rethrow
 rethrown
 retryability
 returnUrl

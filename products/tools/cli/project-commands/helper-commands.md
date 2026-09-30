@@ -117,7 +117,7 @@ It is just a shortcut for `bin/console cache:clear` without having to be in the 
 shopware-cli project clear-cache
 ```
 
-If an API connection is configured in the `.shopware-project.yml`, it will clear the remote instance cache.
+If an API connection is configured in the `.config/shopware-project.yml`, it will clear the remote instance cache. See the [Shopware CLI configuration file lookup priority](../configuration.md) for the preferred path and legacy fallbacks.
 
 ## Console
 
@@ -213,17 +213,17 @@ This is useful when you encounter problems with your setup and need to understan
 
 ## Project configuration schema
 
-To view the JSON schema for the `.shopware-project.yml` configuration file:
+To view the JSON schema for the `.config/shopware-project.yml` configuration file:
 
 ```bash
 shopware-cli project config-schema
 ```
 
-This outputs the JSON schema describing all available configuration options in `.shopware-project.yml`. Useful for automation and understanding the project configuration structure.
+This outputs the JSON schema describing all available configuration options in `.config/shopware-project.yml`. Useful for automation and understanding the project configuration structure.
 
 ## Initialize project configuration
 
-To create a new `.shopware-project.yml` configuration file interactively:
+To create a new `.config/shopware-project.yml` configuration file interactively:
 
 ```bash
 shopware-cli project config init

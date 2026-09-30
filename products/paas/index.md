@@ -1,6 +1,6 @@
 ---
 nav:
-    title: PaaS
+    title: Shopware PaaS
     position: 10
 ---
 
