@@ -81,9 +81,27 @@ The generated URL resolves to `/storefront/script/blog-detail?id=<entity-id>`, s
 ) %}
 ```
 
+### Permissions
+
+Your app needs `<read>` permission for the entity and for every association your `<default-template>` uses. A template that reads `product.manufacturer.name` needs both entities:
+
+```xml
+<storefront>
+    <entity-seo-url name="product-detail" entity="product">
+        <default-template>{{ product.manufacturer.name }}/{{ product.translated.name }}</default-template>
+    </entity-seo-url>
+</storefront>
+<permissions>
+    <read>product</read>
+    <read>product_manufacturer</read>
+</permissions>
+```
+
+Your own [custom entities](../custom-data/custom-entities.md#permissions) need no extra permission: your app has full access to them anyway. The generated paths are public, so only use fields in the template that may appear in a URL.
+
 ### Merchant configuration
 
-Entity-bound routes appear in the Administration under *Settings > SEO* as `storefront.app.<app name>.<name>`, for example `storefront.app.SwagBlog.blog-detail`. Merchants can adjust the template per sales channel and override single URLs like they do for products. Changing a template regenerates the URLs automatically. Your `<default-template>` is only the initial value: app updates don't overwrite a template that already exists, unless the route now points to a different entity. Declare a new `name` if a route needs a fresh template for the same entity.
+Entity-bound routes appear in the Administration under *Settings > SEO* as `storefront.app.<app name>.<name>`, for example `storefront.app.SwagBlog.blog-detail`. Merchants can adjust the template per sales channel and override single URLs like they do for products. Changing a template regenerates the URLs automatically. Your `<default-template>` is only the initial value: app updates don't overwrite a template that already exists. Changing the `entity` of a route resets every template of that route, including sales channel overrides. Declare a new `name` if a route needs a fresh template for the same entity.
 
 ## Linking to your pages
 
@@ -103,6 +121,7 @@ Use the `seoUrl` Twig function with the technical route and parameters in your s
 
 - **Install and update**: Shopware stores the declared routes and creates the default SEO URL template for entity-bound routes that don't have one yet. Routes that an update no longer declares lose their SEO URLs and templates.
 - **Activation and update**: The static SEO URLs are written and the entity-bound URLs are generated. This runs through the message queue, so make sure a [worker](../../../hosting/infrastructure/message-queue.md) processes messages.
+- **Hook changes**: Changing the `hook` of a route keeps its SEO URLs, including the merchant's edits, and points them at the new script.
 - **Deactivation and uninstall**: The app's SEO URLs are marked as deleted and stop resolving. Uninstalling also removes the SEO URL templates, unless the merchant keeps the app data.
 - **New sales channel domains**: Static SEO URLs are written for new domains automatically.
 
@@ -114,7 +133,11 @@ The manifest schema checks the structure of both elements:
 - A `<seo-url>` needs at least one non-empty `<path>`.
 - An `<entity-seo-url>` needs an `entity` attribute and a non-empty `<default-template>`.
 
-On install and update, Shopware rejects static paths that contain characters not allowed in URLs, or that are already used by a storefront route such as `/account`, by another app or by an existing SEO URL.
+On install and update, Shopware also checks:
+
+- Static paths must not contain characters that aren't allowed in URLs, and must not already be used by a storefront route such as `/account`, by another app or by an existing SEO URL.
+- A script hook belongs to the first app that declares it in an SEO URL. Within your app, a hook can be used by at most one `<seo-url>` and at most one `<entity-seo-url>`.
+- The `entity` of an `<entity-seo-url>` must exist and must not be a mapping or translation entity, and your app needs the [permissions](#permissions) described above.
 
 ## Limitations
 
