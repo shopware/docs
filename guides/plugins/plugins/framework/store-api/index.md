@@ -24,7 +24,8 @@ Route design:
 * A route represents a single, focused functionality.
 * A route must return a `StoreApiResponse`, to convert to JSON.
 * A route response can only contain one object.
-* Routes may be decorated to extend behavior.
+* New routes expose extension events through `ExtensionDispatcher` and do not introduce abstract route classes.
+* Existing routes may still be decorated through their supported abstract route contracts, including after an extension event is added.
 
 Storefront integration:
 

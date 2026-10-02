@@ -8,6 +8,7 @@ nav:
 # Adjusting a Service
 
 Service decoration is one of the main ways to extend Shopware behavior from a plugin, alongside reacting to events. Prefer events when you need to react to something Shopware does. Prefer service decoration when you need to change how an existing service behaves.
+For Store API routes that expose extension events, use those events to change route behavior; [existing abstract route contracts](../framework/store-api/override-existing-route.md) remain supported for decoration.
 
 Shopware services that are designed for decoration often expose an abstract class as their contract instead of a PHP interface. The abstract class provides the `getDecorated()` chain and allows new non-abstract methods to be added without immediately breaking existing decorators.
 
@@ -64,7 +65,7 @@ namespace Swag\BasicExample\Service;
 
 abstract class AbstractExampleService
 {
-    abstract public function getDecorated(): AbstractExampleService; 
+    abstract public function getDecorated(): AbstractExampleService;
 
     abstract public function doSomething(): string;
 }
@@ -183,7 +184,7 @@ namespace Swag\BasicExample\Service;
 
 abstract class AbstractExampleService
 {
-    abstract public function getDecorated(): AbstractExampleService; 
+    abstract public function getDecorated(): AbstractExampleService;
 
     abstract public function doSomething(): string;
 
