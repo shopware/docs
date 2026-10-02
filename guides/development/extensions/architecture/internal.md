@@ -48,6 +48,75 @@ Classes where we want to reserve a complete **refactoring** or where we only imp
 
 Classes with this annotation may change completely with each release and are therefore not intended for use by third-party developers.
 
+### Compiler passes are not an extension point
+
+Core **compiler passes** are framework infrastructure and should be treated as implementation details.
+
+Do not:
+
+- depend on Shopware core compiler-pass classes in your plugin or app
+- subclass core compiler passes
+- decorate core compiler passes
+- rely on the execution order or internal logic of core compiler passes
+
+If you need to adjust the Symfony service container in your extension, use your **own** compiler pass and keep its logic limited to your own services.
+
+Example:
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\Example\Core\Framework\DependencyInjection\CompilerPass;
+
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
+final class RegisterExampleServicesCompilerPass implements CompilerPassInterface
+{
+    public function process(ContainerBuilder $container): void
+    {
+        if (!$container->hasDefinition('Swag\Example\Service\ExampleService')) {
+            return;
+        }
+
+        $definition = $container->getDefinition('Swag\Example\Service\ExampleService');
+        $definition->setPublic(true);
+    }
+}
+```
+
+Register your compiler pass in your bundle class:
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\Example;
+
+use Swag\Example\Core\Framework\DependencyInjection\CompilerPass\RegisterExampleServicesCompilerPass;
+use Shopware\Core\Framework\Plugin;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
+final class SwagExample extends Plugin
+{
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new RegisterExampleServicesCompilerPass());
+    }
+}
+```
+
+Prefer documented extension mechanisms before reaching for container compilation logic:
+
+- service decoration
+- tagged services
+- event subscribers
+- abstract service contracts intended for extension
+- Symfony DI configuration in your own extension
+
+Use a compiler pass only when container compilation is actually required.
+
 ## Internal interfaces
 
 We declare interfaces as `@internal` when we want to implement multiple implementations of a feature or adapter, but do not want third-party developers to interfere in this area of the software. A good example of this is the Data Abstraction layer and the Field and FieldSerializer classes. In such areas of the domain, we want to reserve optimizations and breaks within minor versions, but still be able to work with interfaces and abstract classes.
