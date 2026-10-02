@@ -153,6 +153,8 @@ Set `salesChannelId` to `null` to apply the configuration to all Sales Channels,
 
 In the Administration, use `systemConfigApiService` (wraps system-config endpoints).
 
+Use `getValues()` to read saved values and `getSchema()` to read the tabs, cards, and fields that define the configuration form.
+
 ### Using injection in Vue components
 
 ```javascript
@@ -202,6 +204,91 @@ async function getPluginConfig() {
 Your plugin needs the `system_config:read` permission to access this API endpoint.
 :::
 
+### Reading the configuration form schema
+
+Starting with Shopware 6.7.16.0, use `systemConfigApiService.getSchema(domain)` to load the form definition:
+
+```javascript
+const systemConfigApiService = Shopware.Service('systemConfigApiService');
+const domain = 'SwagBasicExample.config';
+const schema = await systemConfigApiService.getSchema(domain);
+const values = await systemConfigApiService.getValues(domain);
+
+for (const tab of schema) {
+    for (const card of tab.cards) {
+        for (const element of card.elements) {
+            const value = values[element.name] ?? element.config.defaultValue;
+            console.log(tab.name, card.title, element.name, value);
+        }
+    }
+}
+```
+
+The schema is an array of tabs, each containing `cards`, whose `elements` contain the field definitions.
+
+Field names are fully qualified configuration keys, while labels, defaults, and component options are inside `element.config`.
+
+The schema endpoint supplies definitions; read saved values separately with `getValues()` as above.
+
+API clients can retrieve the same schema with this request:
+
+```http
+GET /api/_action/system-config/get-schema?domain=SwagBasicExample.config
+```
+
+Both the schema endpoint and the values endpoint require the `system_config:read` privilege.
+
+A response excerpt for the [tab example](add-plugin-configuration.md#tabs-in-your-configuration) looks like this:
+
+```json
+[
+    {
+        "name": null,
+        "title": null,
+        "cards": [
+            {
+                "title": { "en-GB": "Basic settings" },
+                "elements": [
+                    {
+                        "name": "SwagBasicExample.config.enabled",
+                        "type": "bool",
+                        "config": {
+                            "label": { "en-GB": "Enable integration" },
+                            "defaultValue": false
+                        },
+                        "value": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "shipping",
+        "title": { "en-GB": "Shipping", "de-DE": "Versand" },
+        "cards": [
+            {
+                "title": { "en-GB": "Delivery settings" },
+                "elements": [
+                    {
+                        "name": "SwagBasicExample.config.deliveryDays",
+                        "type": "int",
+                        "config": {
+                            "label": { "en-GB": "Delivery time in days" },
+                            "defaultValue": 3
+                        },
+                        "value": null
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+The tab with `name: null` and `title: null` represents root-level cards and is displayed as **General** when tab navigation is visible.
+
+Even configurations without explicit `<tab>` elements return a tab array containing their cards.
+
 </Tab>
 <Tab title="Storefront">
 
@@ -250,3 +337,83 @@ export default class ExamplePlugin extends PluginBaseClass {
 
 </Tab>
 </Tabs>
+
+## Migrating custom configuration form consumers
+
+Starting with Shopware 6.7.16.0, migrate code that loads or modifies configuration form definitions to the tab structure before the legacy APIs are removed in Shopware 6.8.
+
+### Administration and API clients
+
+| Legacy API                                 | Replacement                                  |
+| :----------------------------------------- | :------------------------------------------- |
+| `systemConfigApiService.getConfig(domain)` | `systemConfigApiService.getSchema(domain)`   |
+| `GET /api/_action/system-config/schema`    | `GET /api/_action/system-config/get-schema`  |
+| `sw-system-config` data property `config`  | `sw-system-config` data property `schema`    |
+| Iteration over `config[].elements[]`       | Iteration over `schema[].cards[].elements[]` |
+
+The legacy schema endpoint also requires `system_config:read`, so integrations that previously called it without that privilege must update their ACL role.
+
+Shopware 6.7 retains compatibility for the component's legacy `config` property and decorated `getConfig()` methods, but new customizations should use `schema` and `getSchema()`.
+
+For example, an override of `sw-system-config` can modify a field after the parent loads the schema:
+
+```javascript
+Shopware.Component.override('sw-system-config', {
+    methods: {
+        async readConfig() {
+            await this.$super('readConfig');
+
+            for (const tab of this.schema) {
+                for (const card of tab.cards) {
+                    const field = card.elements.find(
+                        (element) => element.name === 'SwagBasicExample.config.deliveryDays',
+                    );
+
+                    if (field) {
+                        field.config.disabled = true;
+                    }
+                }
+            }
+        },
+    },
+});
+```
+
+### PHP configuration definitions
+
+Continue injecting `Shopware\Core\System\SystemConfig\Service\ConfigurationService` and replace its legacy getters:
+
+| Deprecated method                                              | Replacement                                                             |
+| :------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| `getConfiguration($domain, $context)`                          | `getSystemConfigDefinition($domain, $context)`                          |
+| `getResolvedConfiguration($domain, $context, $salesChannelId)` | `getResolvedSystemConfigDefinition($domain, $context, $salesChannelId)` |
+
+The replacement methods return a list of `SystemConfigTab` DTOs containing `SystemConfigCard` and `SystemConfigElement` DTOs from the `Shopware\Core\System\SystemConfig\DTO` namespace.
+
+Access DTO properties and traverse tabs before cards, instead of reading the legacy array of cards.
+
+With an injected `$configurationService`, a Shopware `$context`, and an optional `$salesChannelId`, read resolved field values like this:
+
+```php
+$tabs = $configurationService->getResolvedSystemConfigDefinition(
+    'SwagBasicExample.config',
+    $context,
+    $salesChannelId,
+);
+
+$values = [];
+
+foreach ($tabs as $tab) {
+    foreach ($tab->cards as $card) {
+        foreach ($card->elements as $element) {
+            $values[$element->name] = $element->value;
+        }
+    }
+}
+```
+
+Use `getSystemConfigDefinition()` when you only need definitions, and `getResolvedSystemConfigDefinition()` when field values should include saved values for the selected sales channel with fallback to XML defaults.
+
+Field options remain available through `$element->config`, for example `$element->config['defaultValue']`.
+
+Reading saved values through `SystemConfigService::get()`, `systemConfigApiService.getValues()`, or the Twig `config()` function uses the same configuration keys as before.
