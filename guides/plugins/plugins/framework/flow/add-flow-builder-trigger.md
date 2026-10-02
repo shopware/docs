@@ -118,23 +118,23 @@ We have created many Aware interfaces. These Aware are the conditions to restore
 
 You could read here more about the [Storer](../../../../../concepts/framework/flow-concept.md#storer-concept) concept.
 
-| Aware interface | Storer respective |
-| :--- | :--- |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ScalarValuesAware | Shopware\Core\Content\Flow\Dispatching\Storer\ScalarValuesStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ConfirmUrlAware | Shopware\Core\Content\Flow\Dispatching\Storer\ConfirmUrlStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ContactFormDataAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContactFormDataStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ContentsAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContentsStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\ContextTokenAware | Shopware\Core\Content\Flow\Dispatching\Storer\ContextTokenStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\CustomerGroupAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerGroupStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\CustomerRecoveryAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerRecoveryStorer |
-| Shopware\Core\Framework\Event\CustomerAware | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerStorer |
-| Shopware\Core\Framework\Event\MailAware | Shopware\Core\Content\Flow\Dispatching\Storer\MailStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\MessageAware | Shopware\Core\Content\Flow\Dispatching\Storer\MessageStorer |
+| Aware interface                                                       | Storer respective                                                       |
+| :-------------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ScalarValuesAware        | Shopware\Core\Content\Flow\Dispatching\Storer\ScalarValuesStorer        |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ConfirmUrlAware          | Shopware\Core\Content\Flow\Dispatching\Storer\ConfirmUrlStorer          |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ContactFormDataAware     | Shopware\Core\Content\Flow\Dispatching\Storer\ContactFormDataStorer     |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ContentsAware            | Shopware\Core\Content\Flow\Dispatching\Storer\ContentsStorer            |
+| Shopware\Core\Content\Flow\Dispatching\Aware\ContextTokenAware        | Shopware\Core\Content\Flow\Dispatching\Storer\ContextTokenStorer        |
+| Shopware\Core\Content\Flow\Dispatching\Aware\CustomerGroupAware       | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerGroupStorer       |
+| Shopware\Core\Content\Flow\Dispatching\Aware\CustomerRecoveryAware    | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerRecoveryStorer    |
+| Shopware\Core\Framework\Event\CustomerAware                           | Shopware\Core\Content\Flow\Dispatching\Storer\CustomerStorer            |
+| Shopware\Core\Framework\Event\MailAware                               | Shopware\Core\Content\Flow\Dispatching\Storer\MailStorer                |
+| Shopware\Core\Content\Flow\Dispatching\Aware\MessageAware             | Shopware\Core\Content\Flow\Dispatching\Storer\MessageStorer             |
 | Shopware\Core\Content\Flow\Dispatching\Aware\NewsletterRecipientAware | Shopware\Core\Content\Flow\Dispatching\Storer\NewsletterRecipientStorer |
-| Shopware\Core\Framework\Event\OrderAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderStorer |
-| Shopware\Core\Content\Flow\Dispatching\Aware\OrderTransactionAware | Shopware\Core\Content\Flow\Dispatching\Storer\OrderTransactionStorer |
-| Shopware\Core\Framework\Event\ProductAware | Shopware\Core\Content\Flow\Dispatching\Storer\ProductStorer |
-| Shopware\Core\Framework\Event\UserAware | Shopware\Core\Content\Flow\Dispatching\Storer\UserStorer |
+| Shopware\Core\Framework\Event\OrderAware                              | Shopware\Core\Content\Flow\Dispatching\Storer\OrderStorer               |
+| Shopware\Core\Content\Flow\Dispatching\Aware\OrderTransactionAware    | Shopware\Core\Content\Flow\Dispatching\Storer\OrderTransactionStorer    |
+| Shopware\Core\Framework\Event\ProductAware                            | Shopware\Core\Content\Flow\Dispatching\Storer\ProductStorer             |
+| Shopware\Core\Framework\Event\UserAware                               | Shopware\Core\Content\Flow\Dispatching\Storer\UserStorer                |
 
 ```php
 <?php declare(strict_types=1);

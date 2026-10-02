@@ -159,6 +159,6 @@ When the app is successfully installed, you will see the notification pop up onc
 
 This example showed end-to-end how to create a local dev environment and connect it with your Shopware Store. There is a lot more to learn and try out, so why not move on with one of those topics:
 
-* Add [new sections](https://developer.shopware.com/resources/admin-extension-sdk/api-reference/ui/component-section.html) or [entire modules](https://developer.shopware.com/resources/admin-extension-sdk/api-reference/ui/mainModule.html) to the UI
-* The Meteor Admin SDK also offers [TypeScript support](https://developer.shopware.com/resources/admin-extension-sdk/getting-started/installation.html#using-npm-require-bundling), including autocompletion
+* Add [new sections](https://developer.shopware.com/resources/admin-extension-sdk/api-reference/ui/component-sections.html) or [entire modules](https://developer.shopware.com/resources/admin-extension-sdk/api-reference/ui/mainModule.html) to the UI
+* The Meteor Admin SDK also offers [TypeScript support](https://developer.shopware.com/resources/admin-extension-sdk/getting-started/#install-the-sdk), including autocompletion
 * Don't want to extend the admin panel? Have a look at [App Scripts](../app-scripts/index.md)

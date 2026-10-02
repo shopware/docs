@@ -77,20 +77,20 @@ The privilege service is used to handle privileges in the Administration. Those 
 
 Privileges can be added or extended with the Method `addPrivilegeMappingEntry` of the privilege service:
 
-| Property | Description |
-| :--- | :--- |
-| category | Where the privilege should be visible in the `permissions` grid or in the `additional_permissions` |
-| parent | For nesting and gaining a better overview, you can add a parent key. If the privilege does not have a parent then use `null`. |
-| key | All privileges with the same key will be grouped together. For normal `permissions` each role will be in the same row. |
-| roles | When category is `permissions`: Use `viewer`, `editor`, `creator` and `deleter`. |
-|  | When category is `additional_permissions`: Use a custom key because the additional permissions don´t enforce a structure. |
+| Property | Description                                                                                                                   |
+| :------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| category | Where the privilege should be visible in the `permissions` grid or in the `additional_permissions`                            |
+| parent   | For nesting and gaining a better overview, you can add a parent key. If the privilege does not have a parent then use `null`. |
+| key      | All privileges with the same key will be grouped together. For normal `permissions` each role will be in the same row.        |
+| roles    | When category is `permissions`: Use `viewer`, `editor`, `creator` and `deleter`.                                              |
+|          | When category is `additional_permissions`: Use a custom key because the additional permissions don´t enforce a structure.     |
 
 Each role in roles:
 
-| Property | Description |
-| :--- | :--- |
-| privileges | You need to add all API permissions here which are required for an working admin privilege. The structure is `entity_name:operation`, e.g. 'product:read'. |
-| dependencies | In some cases it is necessary to automatically check another role. To do this, you need to add the identifier, e.g. `product.viewer`. |
+| Property     | Description                                                                                                                                                |
+| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| privileges   | You need to add all API permissions here which are required for an working admin privilege. The structure is `entity_name:operation`, e.g. 'product:read'. |
+| dependencies | In some cases it is necessary to automatically check another role. To do this, you need to add the identifier, e.g. `product.viewer`.                      |
 
 Here's an example how this can look like for the review functionality in the Administration:
 

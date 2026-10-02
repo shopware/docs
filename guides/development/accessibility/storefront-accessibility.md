@@ -115,7 +115,7 @@ We are using the [WCAG 2.1 Level AA](https://www.w3.org/TR/WCAG21/) standard and
 * Enable the feature flag `ACCESSIBILITY_TWEAKS` to activate all breaking accessibility changes.
 
 | Topic                                                                                           | Breaking changes | Changelog                                                                                                                                                 | Release versions                                                                                 |
-|-------------------------------------------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| ----------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | Missing semantic markup of form address headings                                                | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.6.0/changelog/release-6-6-6-0/2024-08-13-registration-form-fieldset-improvement.md)            | [v6.6.6.0](https://github.com/shopware/shopware/releases/tag/v6.6.6.0)                           |
 | Product image zoom modal keyboard accessibility                                                 | No               | [Changelog](https://github.com/shopware/shopware/blob/v6.6.6.0/changelog/release-6-6-6-0/2024-08-08-improve-image-zoom-modal-accessibility.md)            | [v6.6.6.0](https://github.com/shopware/shopware/releases/tag/v6.6.6.0)                           |
 | Focused slides in the carousel are not being moved into the visible area                        | Yes              | [Changelog](https://github.com/shopware/shopware/blob/v6.6.6.0/changelog/release-6-6-6-0/2024-08-05-improve-slider-element-accessibility.md)              | [v6.6.6.0](https://github.com/shopware/shopware/releases/tag/v6.6.6.0)                           |
@@ -140,11 +140,11 @@ We are using the [WCAG 2.1 Level AA](https://www.w3.org/TR/WCAG21/) standard and
 | Content functionality operable through keyboard                                                 | Yes              | [Multiple changes](https://github.com/search?q=repo%3Ashopware%2Fshopware+NEXT-26705&type=commits)                                                        | [Multiple releases](https://github.com/search?q=repo%3Ashopware%2Fshopware+NEXT-26705&type=code) |
 | No keyboard traps should occur in the Storefront                                                | -                | Verification work without released code changes                                                                                                           | -                                                                                                |
 | Mechanism for the user to pause, stop, or hide moving content                                   | -                | Verification work without released code changes                                                                                                           | -                                                                                                |
-| Add text to components that only work with icons to identify their purpose                      | -                | -                                                                                                                                                         |
-| Check if all non-text content has a text alternative and provide if necessary                     | -                | -                                                                                                                                                         |
-| Provide error correction suggestions                                                            | -                | -                                                                                                                                                         |
-| Text styles need to be adjusted (line height, paragraph spacing)                               | -                | -                                                                                                                                                         |
-| Keyboard/Tabs should work for nav main-navigation-menu                                          | -                | -                                                                                                                                                         |
+| Add text to components that only work with icons to identify their purpose                      | -                | -                                                                                                                                                         |                                                                                                  |
+| Check if all non-text content has a text alternative and provide if necessary                   | -                | -                                                                                                                                                         |                                                                                                  |
+| Provide error correction suggestions                                                            | -                | -                                                                                                                                                         |                                                                                                  |
+| Text styles need to be adjusted (line height, paragraph spacing)                                | -                | -                                                                                                                                                         |                                                                                                  |
+| Keyboard/Tabs should work for nav main-navigation-menu                                          | -                | -                                                                                                                                                         |                                                                                                  |
 
 ### Overview of known accessibility issues
 
@@ -211,11 +211,11 @@ While automation helps, **manual checks** ensure real-world usability:
 
 ### 4. Accessibility support in Shopware versions
 
-| **Shopware version** | **Accessibility support** |
-|---------------------|------------------------|
-| **6.7+** | Full A11y improvements available for testing |
-| **6.6+** | Accessibility features introduced (use `ACCESSIBILITY_TWEAKS` feature flag) |
-| **Shopware 5** | **No accessibility support** |
+| **Shopware version** | **Accessibility support**                                                   |
+| -------------------- | --------------------------------------------------------------------------- |
+| **6.7+**             | Full A11y improvements available for testing                                |
+| **6.6+**             | Accessibility features introduced (use `ACCESSIBILITY_TWEAKS` feature flag) |
+| **Shopware 5**       | **No accessibility support**                                                |
 
 ### 5. Getting help with accessibility
 

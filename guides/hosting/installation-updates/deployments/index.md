@@ -32,12 +32,12 @@ Across project types and deployment models, apply the following principles to ma
 
 Apply this approach to keep deployments deterministic and reduce environment-specific drift:
 
-- Follow the structured flow provided by the [Deployment helper](deployment-helper.md) to keep steps ordered and reversible.
-- Adopt a repeatable deployment strategy (for example, by integrating the [Deployment helper](deployment-helper.md) into your automation pipeline) and keep environment configuration and secrets outside the repository.
+- Follow the structured flow provided by the [Deployment helper](deployment-helper/index.md) to keep steps ordered and reversible.
+- Adopt a repeatable deployment strategy (for example, by integrating the [Deployment helper](deployment-helper/index.md) into your automation pipeline) and keep environment configuration and secrets outside the repository.
 
 ## Custom/Store plugins
 
-Treat plugins as versioned deliverables that integrate cleanly into your deployment workflow (for e.g., via the [Deployment helper](deployment-helper.md)):
+Treat plugins as versioned deliverables that integrate cleanly into your deployment workflow (for e.g., via the [Deployment helper](deployment-helper/index.md)):
 
 - Manage extensions via Composer whenever possible. Composer ensures versioned, reproducible installs during deployment.
 - For Store submission or custom distribution workflows, build versioned ZIP artifacts from CI using the [Extension build command](../../../../products/tools/cli/extension-commands/build.md). Install and activate them via CLI or deployment automation.

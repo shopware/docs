@@ -55,21 +55,21 @@ A typical **search criteria** looks like this:
 
 In the following, we will go through the different parameters that can be used to assemble criteria.
 
-| Parameter | Usage |
-| :--- | :--- |
-| `associations` | Allows loading additional data to the standard data of an entity |
-| `includes` | Restricts the output to the defined fields |
-| `ids` | Limits the search to a list of IDs |
-| `total-count-mode` | Defines whether a total must be determined |
-| `page` | Defines at which page the search result should start |
-| `limit` | Defines the number of entries to be determined |
-| `filter` | Allows you to filter the result and aggregations |
-| `post-filter` | Allows you to filter the result but not the aggregations |
-| `query` | Enables you to determine a ranking for the search result |
-| `term` | Enables you to determine a ranking for the search result |
-| `sort` | Defines the sorting of the search result |
-| `aggregations` | Specify aggregations to be computed on-the-fly |
-| `grouping` | Let's you group records by fields |
+| Parameter          | Usage                                                            |
+| :----------------- | :--------------------------------------------------------------- |
+| `associations`     | Allows loading additional data to the standard data of an entity |
+| `includes`         | Restricts the output to the defined fields                       |
+| `ids`              | Limits the search to a list of IDs                               |
+| `total-count-mode` | Defines whether a total must be determined                       |
+| `page`             | Defines at which page the search result should start             |
+| `limit`            | Defines the number of entries to be determined                   |
+| `filter`           | Allows you to filter the result and aggregations                 |
+| `post-filter`      | Allows you to filter the result but not the aggregations         |
+| `query`            | Enables you to determine a ranking for the search result         |
+| `term`             | Enables you to determine a ranking for the search result         |
+| `sort`             | Defines the sorting of the search result                         |
+| `aggregations`     | Specify aggregations to be computed on-the-fly                   |
+| `grouping`         | Let's you group records by fields                                |
 
 ## Parameters
 
@@ -336,7 +336,7 @@ The `sort` parameter allows controlling the sorting of the result. Several sorts
 ```
 
 ### `count` sorting behavior
-  
+
 For demonstration purposes, see the following request payload, which also includes a `count` aggregation.
 
 ::: info

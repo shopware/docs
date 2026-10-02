@@ -158,9 +158,9 @@ Shopware will now recognise your new image extension and handle your new file li
 
 Shopware uses **two separate extension allowlists** depending on whether the media is public or private:
 
-| Allowlist | Configuration parameter | When used |
-|-----------|-------------------------|-----------|
-| **Public** | `shopware.filesystem.allowed_extensions` | Media stored in the public filesystem (product images, CMS assets, etc.). Files are accessible via URL. |
+| Allowlist   | Configuration parameter                          | When used                                                                                                                                                              |
+| ----------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Public**  | `shopware.filesystem.allowed_extensions`         | Media stored in the public filesystem (product images, CMS assets, etc.). Files are accessible via URL.                                                                |
 | **Private** | `shopware.filesystem.private_allowed_extensions` | Media stored in the private filesystem (digital product downloads, documents, etc.). Files are not directly accessible via URL and require authentication to download. |
 
 The `MediaFileExtensionWhitelistEvent` is dispatched with one of these allowlists depending on whether the media being uploaded is marked as private. Your subscriber receives the appropriate allowlist each time.
@@ -171,13 +171,13 @@ If your custom extension should work for both public and private media, add it t
 
 When implementing a `TypeDetector`, you must return the correct `MediaType` for your extension. The following types are available:
 
-| MediaType class | Purpose |
-|-----------------|---------|
-| `ImageType` | Images (jpg, png, etc.). Supports thumbnails and flags such as `transparent`, `animated`, and `vectorGraphic`. |
-| `VideoType` | Video files (mp4, webm, etc.). **Note:** Not all browsers support all video formats. Shopware displays a warning in the Administration about formats that may not be playable everywhere (e.g., MOV, AVI, WMV). |
-| `AudioType` | Audio files (mp3, wav, etc.). **Note:** Not all browsers support all audio formats. Shopware displays a warning in the Administration about formats that may not be playable everywhere (e.g., FLAC, AAC, WMA). |
-| `DocumentType` | Documents (PDF, DOC, etc.). |
-| `SpatialObjectType` | 3D/spatial files (e.g. GLB). |
-| `BinaryType` | Fallback for unknown or generic file types. |
+| MediaType class     | Purpose                                                                                                                                                                                                         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ImageType`         | Images (jpg, png, etc.). Supports thumbnails and flags such as `transparent`, `animated`, and `vectorGraphic`.                                                                                                  |
+| `VideoType`         | Video files (mp4, webm, etc.). **Note:** Not all browsers support all video formats. Shopware displays a warning in the Administration about formats that may not be playable everywhere (e.g., MOV, AVI, WMV). |
+| `AudioType`         | Audio files (mp3, wav, etc.). **Note:** Not all browsers support all audio formats. Shopware displays a warning in the Administration about formats that may not be playable everywhere (e.g., FLAC, AAC, WMA). |
+| `DocumentType`      | Documents (PDF, DOC, etc.).                                                                                                                                                                                     |
+| `SpatialObjectType` | 3D/spatial files (e.g. GLB).                                                                                                                                                                                    |
+| `BinaryType`        | Fallback for unknown or generic file types.                                                                                                                                                                     |
 
 Choose the type that best matches how Shopware should handle your custom extension (e.g., image thumbnails, document previews).

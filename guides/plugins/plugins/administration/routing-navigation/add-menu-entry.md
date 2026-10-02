@@ -50,13 +50,13 @@ navigation: [{
 
 As you see, you are able to configure several things in there:
 
-| Configuration | Description |
-| :--- | :--- |
-| label | The label to be shown with this menu entry. |
-| color | This  is the theme color of the module. This color may differ from the module's color itself. |
-| path | Which one of your configured routes shall be used when clicking this menu entry? The path is composed of the module id and the path name. Dashes become dots, for example module 'swag-example' and path 'index' become 'swag.example.index'. |
-| icon | Also you can set a separate icon, which can make sense e.g. when having multiple menu entries for a single module, such as a special icon for 'Create bundle'. This example does not have this and it's only going to have a single menu entry, so use the icon from the main module here. |
-| position | The position of the menu entry. The higher the value, the more likely it is that your menu entry appears in the bottom. |
+| Configuration | Description                                                                                                                                                                                                                                                                                |
+| :------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| label         | The label to be shown with this menu entry.                                                                                                                                                                                                                                                |
+| color         | This  is the theme color of the module. This color may differ from the module's color itself.                                                                                                                                                                                              |
+| path          | Which one of your configured routes shall be used when clicking this menu entry? The path is composed of the module id and the path name. Dashes become dots, for example module 'swag-example' and path 'index' become 'swag.example.index'.                                              |
+| icon          | Also you can set a separate icon, which can make sense e.g. when having multiple menu entries for a single module, such as a special icon for 'Create bundle'. This example does not have this and it's only going to have a single menu entry, so use the icon from the main module here. |
+| position      | The position of the menu entry. The higher the value, the more likely it is that your menu entry appears in the bottom.                                                                                                                                                                    |
 
 Of course there's more to be configured here, but more's not necessary for this example.
 

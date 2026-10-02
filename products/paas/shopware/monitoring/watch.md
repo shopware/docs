@@ -61,18 +61,18 @@ This contains events from the underlying PaaS infrastructure as well as events f
 
 The following table lists the most common event types and their descriptions:
 
-| Event | Description |
-|-------|-------------|
-| `UNSPECIFIED` | Default or unspecified deployment status |
-| `PENDING` | Deployment is queued and waiting to start |
-| `BASE` | Infrastructure: Base infrastructure components are being deployed |
-| `BASE_FAILED` | Infrastructure: Base infrastructure deployment has failed |
-| `BASE_SUCCESS` | Infrastructure: Base infrastructure deployment completed successfully |
-| `SHOP` | Infrastructure: Shop-specific infrastructure components are being deployed |
-| `SHOP_FAILED` | Infrastructure: Shop infrastructure deployment has failed |
-| `SHOP_SUCCESS` | Infrastructure: Shop infrastructure deployment completed successfully |
-| `DEPLOYING_STORE` | Store: Shopware store application is being deployed |
-| `DEPLOYING_STORE_FAILED` | Store: Shopware store deployment has failed |
-| `DEPLOYING_STORE_SUCCESS` | Store: Shopware store deployment completed successfully |
-| `DEPLOYMENT_SUCCESS` | Complete deployment finished successfully |
-| `DEPLOYMENT_FAILED` | Complete deployment has failed |
+| Event                     | Description                                                                |
+| ------------------------- | -------------------------------------------------------------------------- |
+| `UNSPECIFIED`             | Default or unspecified deployment status                                   |
+| `PENDING`                 | Deployment is queued and waiting to start                                  |
+| `BASE`                    | Infrastructure: Base infrastructure components are being deployed          |
+| `BASE_FAILED`             | Infrastructure: Base infrastructure deployment has failed                  |
+| `BASE_SUCCESS`            | Infrastructure: Base infrastructure deployment completed successfully      |
+| `SHOP`                    | Infrastructure: Shop-specific infrastructure components are being deployed |
+| `SHOP_FAILED`             | Infrastructure: Shop infrastructure deployment has failed                  |
+| `SHOP_SUCCESS`            | Infrastructure: Shop infrastructure deployment completed successfully      |
+| `DEPLOYING_STORE`         | Store: Shopware store application is being deployed                        |
+| `DEPLOYING_STORE_FAILED`  | Store: Shopware store deployment has failed                                |
+| `DEPLOYING_STORE_SUCCESS` | Store: Shopware store deployment completed successfully                    |
+| `DEPLOYMENT_SUCCESS`      | Complete deployment finished successfully                                  |
+| `DEPLOYMENT_FAILED`       | Complete deployment has failed                                             |

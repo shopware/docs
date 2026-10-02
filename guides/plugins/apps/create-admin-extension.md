@@ -152,14 +152,14 @@ At this point, Shopware loads the Admin module from your local Vite server.
 
 ## Troubleshooting
 
-| Issue | What to check |
-|-------|---------------|
-| `app:list` shows no apps | Run `bin/console app:refresh`. Confirm `custom/apps/<Name>` exists inside the container. |
-| `app:refresh` fails | Check that `<author>` and `<copyright>` are present and not empty. |
-| App does not appear in **My Extensions** | Confirm the folder name matches `<meta><name>` and refresh the app registry again. |
-| App appears but is inactive | Activate it in **Extensions → My Extensions → Apps** or run `bin/console app:activate MyAdminTestApp`. |
-| Blank iframe | Make sure Vite is running, exposed with `--host`, and using the same port as the `source` URL in `manifest.xml`. From the container, test access to `http://host.docker.internal:5173`. |
-| `host.docker.internal` does not work on Linux | Your Docker setup may require additional host mapping or network configuration. |
+| Issue                                         | What to check                                                                                                                                                                           |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `app:list` shows no apps                      | Run `bin/console app:refresh`. Confirm `custom/apps/<Name>` exists inside the container.                                                                                                |
+| `app:refresh` fails                           | Check that `<author>` and `<copyright>` are present and not empty.                                                                                                                      |
+| App does not appear in **My Extensions**      | Confirm the folder name matches `<meta><name>` and refresh the app registry again.                                                                                                      |
+| App appears but is inactive                   | Activate it in **Extensions → My Extensions → Apps** or run `bin/console app:activate MyAdminTestApp`.                                                                                  |
+| Blank iframe                                  | Make sure Vite is running, exposed with `--host`, and using the same port as the `source` URL in `manifest.xml`. From the container, test access to `http://host.docker.internal:5173`. |
+| `host.docker.internal` does not work on Linux | Your Docker setup may require additional host mapping or network configuration.                                                                                                         |
 
 ## Next steps
 

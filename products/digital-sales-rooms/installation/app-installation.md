@@ -30,14 +30,14 @@ cd ./templates/dsr-frontends
 cp .env.template .env
 ```
 
-| Key | Required? | Description                     |
-|-----|-----------| --------------------------------|
-| ORIGIN | Yes | This is current frontend app domain. E.g: `https://dsr.shopware.io` |
-| SHOPWARE_STOREFRONT_URL | Yes | This is default Shopware storefront domain. E.g: `https://shopware.store` |
-| SHOPWARE_ADMIN_API | Yes | This is Shopware admin-api domain server. E.g: `https://shopware.store/admin-api` |
-| SHOPWARE_STORE_API | Yes | This is the Shopware store-api domain server. E.g: `https://shopware.store/store-api` |
-| SHOPWARE_STORE_API_ACCESS_TOKEN | Yes | This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign the *Digital Sales Rooms* domain, find the `API access` section, and copy the `API access key` |
-| ALLOW_ANONYMOUS_MERCURE | No | This is the flag for development only. When the value = 1, it means your app is running with unsecured Mercure. |
+| Key                             | Required? | Description                                                                                                                                                                                   |
+| ------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ORIGIN                          | Yes       | This is current frontend app domain. E.g: `https://dsr.shopware.io`                                                                                                                           |
+| SHOPWARE_STOREFRONT_URL         | Yes       | This is default Shopware storefront domain. E.g: `https://shopware.store`                                                                                                                     |
+| SHOPWARE_ADMIN_API              | Yes       | This is Shopware admin-api domain server. E.g: `https://shopware.store/admin-api`                                                                                                             |
+| SHOPWARE_STORE_API              | Yes       | This is the Shopware store-api domain server. E.g: `https://shopware.store/store-api`                                                                                                         |
+| SHOPWARE_STORE_API_ACCESS_TOKEN | Yes       | This is the Shopware Access Token to connect to Shopware API. Head to sales channel you assign the *Digital Sales Rooms* domain, find the `API access` section, and copy the `API access key` |
+| ALLOW_ANONYMOUS_MERCURE         | No        | This is the flag for development only. When the value = 1, it means your app is running with unsecured Mercure.                                                                               |
 
 Example .env:
 

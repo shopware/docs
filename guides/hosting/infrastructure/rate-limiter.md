@@ -22,7 +22,7 @@ These rate limiters are always active. You do not need to add the `shopware.api.
 The following limiters are enabled by default. The values listed here reflect the current Shopware core configuration and may change between versions. When in doubt, the source of truth is `src/Core/Framework/Resources/config/packages/shopware.yaml` in the version you are running.
 
 | Limiter                       | Protects                                                            | Since    | Policy           | Reset    | Limits                                                     |
-|-------------------------------|---------------------------------------------------------------------|----------|------------------|----------|------------------------------------------------------------|
+| ----------------------------- | ------------------------------------------------------------------- | -------- | ---------------- | -------- | ---------------------------------------------------------- |
 | `login`                       | Storefront / Store-API customer authentication                      | 6.4.6.0  | `time_backoff`   | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s                               |
 | `guest_login`                 | Storefront / Store-API after-order guest authentication             | 6.4.6.0  | `time_backoff`   | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s                               |
 | `oauth`                       | API OAuth authentication / Administration login                     | 6.4.6.0  | `time_backoff`   | 24 hours | 10 / 10s, 15 / 30s, 20 / 60s                               |

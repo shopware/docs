@@ -110,7 +110,7 @@ You can use the static method `Shopware\Core\Content\Product\Stock::fromArray()`
 There are several required values and some optional values.
 
 | Attribute   | Type    | Description                                                     | Optional/Required |
-|-------------|---------|-----------------------------------------------------------------|-------------------|
+| ----------- | ------- | --------------------------------------------------------------- | ----------------- |
 | productId   | string  | The product ID                                                  | Required          |
 | stock       | int     | The stock amount                                                | Required          |
 | available   | boolean | Whether the product is considered available                     | Required          |

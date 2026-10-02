@@ -17,7 +17,7 @@ Shopware uses it to run cleanup tasks, update tasks, and other non-time critical
 These tasks are registered by default:
 
 | Name                                | Run interval (seconds) |
-|-------------------------------------|------------------------|
+| ----------------------------------- | ---------------------- |
 | log_entry.cleanup                   | 86400                  |
 | shopware.invalidate_cache           | 20                     |
 | app_update                          | 86400                  |

@@ -2,6 +2,7 @@ AAAA
 AAC
 ACL
 ACLs
+ACU
 ADDR
 ADR
 ADRs
@@ -103,6 +104,7 @@ BasicExample
 BecomesAbstract
 BecomesFinal
 BecomesInternal
+BecomesReadonly
 BeforeCartMergeEvent
 BeforeLineItemAddedEvent
 BeforeLineItemQuantityChangedEvent
@@ -148,6 +150,7 @@ CSPs
 CSRF
 CSV
 CVEs
+CVSS
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -209,6 +212,7 @@ ChildrenAssociation
 ChildrenAssociationField
 CircleCI
 ClassHierarchyChange
+ClassMoved
 ClientInterface
 Cloudflare
 Cmd
@@ -248,6 +252,7 @@ ContextTokenAware
 ContextTokenStorer
 CookiePermission
 CookieProviderInterface
+CoreDNS
 CountryStateDataPagelet
 CreateFromTrait
 CreateTagAction
@@ -465,6 +470,7 @@ GBP
 GCM
 GDPR
 GHSA
+GID
 GIFs
 GLB
 GPT
@@ -804,6 +810,7 @@ PluginManager
 PositionID
 PositionIDs
 PositionIdentifier
+PostDeploy
 PostInstall
 PostMessage
 PostUpdate
@@ -854,6 +861,8 @@ ProductWarehouses
 ProductsFacade
 Profiler
 PropertyGroupOptionDataSet
+PropertyTypeNarrowing
+PropertyTypeWidening
 ProseMirror
 Prosemirror
 ProxySQL
@@ -866,7 +875,9 @@ RDBMS
 README
 RHEL
 RPC
+RPO
 RSA
+RTO
 RabbitMQ
 RabbitMq
 Readonly
@@ -1060,6 +1071,7 @@ TestCase
 TestDataService
 TestSecret
 TestStockUpdateFilter
+Tideways
 TimeRangeRule
 TimeZoneField
 Timezones
@@ -1071,6 +1083,7 @@ ToOne
 Tooltips
 Topseller
 Topsellers
+Traefik
 TransactionalAction
 TranslatedField
 TranslationConfig
@@ -1125,6 +1138,7 @@ UpperCamelCase
 Upserting
 Upstash
 Upsun
+Uptime
 UrlAware
 UrlStorer
 UserAware
@@ -1167,6 +1181,7 @@ WCAG
 WMA
 WMV
 WSL
+WSL2
 WarehouseGroup
 WarehouseGroups
 WebAIM
@@ -1358,6 +1373,7 @@ contextToken
 contravariance
 contravariant
 control
+cookieGroups
 copyToClipboard
 copyable
 cors
@@ -1587,6 +1603,7 @@ guid
 gz
 gzip
 handleFlow
+hardcode
 hardcoded
 hasError
 hasOwnProperty
@@ -1678,6 +1695,7 @@ landingpage
 lang
 lavinmq
 lazysizes
+learnings
 libxml
 lifecycle
 lifecycles
@@ -1838,6 +1856,7 @@ pluginlogger
 png
 pnpm
 polyfill
+polyfills
 pos
 positionID
 positionIDs
@@ -1848,6 +1867,7 @@ precompile
 preconfigured
 prefetch
 prefixer
+preflight
 preload
 preloaded
 preloading
@@ -1858,6 +1878,7 @@ preprocessor
 preprocessors
 preselect
 preselection
+presigned
 prettierrc
 previewComponent
 previewable
@@ -1894,12 +1915,16 @@ reCAPTCHA
 readAsArrayBuffer
 readAsDataURL
 readAsText
+readonly
 realtime
 rebase
 rebasing
 rebranded
 rebuildable
 recalculable
+redeclaration
+redeclared
+redeclaring
 redis
 refactorings
 referenceField
@@ -1930,6 +1955,7 @@ resetUrl
 resolver's
 resolvers
 resubmittable
+rethrow
 rethrown
 retryability
 returnUrl
@@ -1943,6 +1969,7 @@ rollout
 routeName
 routeScope
 routeScopes
+rumdl
 runnable
 runtime
 runtimes
@@ -2082,6 +2109,7 @@ textarea
 th
 theming
 themself
+tideways
 timeframe
 timeframes
 tinyint
@@ -2143,6 +2171,7 @@ updateDestructive
 updateViaAdminApi
 uploadable
 upsert
+uptime
 uri
 url
 urls
@@ -2152,6 +2181,7 @@ userRecovery
 userland
 utils
 uuid
+vCPU
 validFrom
 validUntil
 validator
@@ -2170,6 +2200,7 @@ vue
 vuex
 walkthrough
 wav
+webfonts
 webhook
 webhooks
 webkit
@@ -2185,6 +2216,7 @@ whoami
 wil
 wishlist
 wordlist
+worktree
 www
 xasjkyld
 xdebug

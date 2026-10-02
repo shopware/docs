@@ -8,6 +8,10 @@ nav:
 
 This section covers version-based upgrades and the required migration effort for Shopware core and extensions. When upgrading to a new minor or major Shopware version, review it to understand breaking changes, required adjustments, and compatibility requirements.
 
+:::info
+For a guided local upgrade, use [`shopware-cli project upgrade`](../../products/tools/cli/project-commands/upgrade.md). It checks project readiness and Composer-managed extensions, verifies the selected target with Composer before modifying project files, runs the upgrade locally, and writes a shareable report.
+:::
+
 ## Scope of this section
 
 Upgrades typically fall into one of these categories:
@@ -27,13 +31,13 @@ Administration framework upgrades (Vue, Pinia, Vite, Meteor) may introduce break
 
 When targeting a new Shopware version:
 
-1. Review [release notes](https://www.shopware.com/de/changelog/) and UPGRADE files
-2. Check breaking changes per layer (Core / Admin / Storefront / API)
-3. Validate extension compatibility
-4. Apply required migrations
-5. Rebuild Admin/Storefront assets if needed
-6. Test critical flows
-7. Update extension versions if required
+1. Review [release notes](https://www.shopware.com/de/changelog/) and UPGRADE files.
+2. Check breaking changes per layer (Core / Admin / Storefront / API).
+3. Run the [Shopware CLI upgrade preflight](../../products/tools/cli/project-commands/upgrade.md#run-a-non-interactive-preflight) or otherwise validate extension compatibility and Composer resolution.
+4. Apply required migrations and project changes.
+5. Rebuild Admin/Storefront assets if needed.
+6. Test critical flows and extension behavior.
+7. Commit the reviewed project changes and deploy through your normal process.
 
 :::info Upgrade impact in real projects
 Upgrade complexity depends on the installation:
@@ -47,7 +51,7 @@ A consistent architecture, centralized CI, and controlled extension strategy hel
 
 ### Custom projects
 
-* Follow the ([Performing updates guide](../hosting/installation-updates/performing-updates.md)) to stage, test, and execute upgrades in order.
+* Follow the [Performing updates guide](../hosting/installation-updates/performing-updates.md) to stage, test, and execute upgrades in order.
 * Review [RELEASE_INFO](https://github.com/shopware/shopware/blob/trunk/RELEASE_INFO-6.7.md) and UPGRADE files ([example](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md)) per release.
 * Use feature toggles to decouple risky changes from the deployment.
 
@@ -55,11 +59,13 @@ A consistent architecture, centralized CI, and controlled extension strategy hel
 
 To reduce long-term upgrade cost:
 
-* Avoid internal APIs and undocumented features
-* Keep dependencies aligned with Shopware core
-* Maintain automated test coverage
-* Keep database migrations idempotent
-* Track deprecations continuously—do not batch them
+* Avoid internal APIs and undocumented features.
+* Keep dependencies aligned with the Shopware core.
+* Maintain automated test coverage.
+* Keep database migrations idempotent.
+* Track deprecations continuously—do not batch them.
+
+The Shopware CLI upgrade wizard can also be useful when you maintain extensions: assemble the extensions in a representative Composer-managed test project, select the target Shopware version, and use the extension queue and generated report to identify updates, blockers, and items that need manual review. This does not replace testing the extension itself against the target Shopware version.
 
 ### Custom plugins
 
@@ -81,6 +87,8 @@ To reduce long-term upgrade cost:
 
 ## Next steps
 
-For the operational update procedure, continue with [Upgrade Shopware](./upgrade-shopware.md).
+For the guided local workflow, continue with [Upgrade a Shopware Project](../../products/tools/cli/project-commands/upgrade.md).
+
+For the wider operational update procedure, continue with [Upgrade Shopware](./upgrade-shopware.md) and [Performing Shopware Updates](../hosting/installation-updates/performing-updates.md).
 
 For general development best practices that reduce upgrade friction, see the [Development guide](../development/index.md).

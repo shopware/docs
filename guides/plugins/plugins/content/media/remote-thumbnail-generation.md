@@ -32,11 +32,11 @@ shopware:
         - { width: 640, height: 640 }
 ```
 
-| Key                                        | Type   | Default                                                    | Description                                                                                                                                                                                            |
-|--------------------------------------------|--------|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `shopware.media.remote_thumbnails.enable`  | bool   | `false`                                                    | Master switch. When `true`, Shopware stops creating, persisting, and deleting thumbnail files and database records and instead synthesizes thumbnail URLs from the configured pattern at request time. |
-| `shopware.media.remote_thumbnails.pattern` | string | `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}` | Template used to build thumbnail URLs. Variables are listed below.                                                                                                                                     |
-| `shopware.media.remote_thumbnails.fallback_sizes` | array | `[]` | Optional list of `{ width, height }` thumbnail sizes used when an enabled media folder has no assigned thumbnail sizes. |
+| Key                                               | Type   | Default                                                    | Description                                                                                                                                                                                            |
+| ------------------------------------------------- | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shopware.media.remote_thumbnails.enable`         | bool   | `false`                                                    | Master switch. When `true`, Shopware stops creating, persisting, and deleting thumbnail files and database records and instead synthesizes thumbnail URLs from the configured pattern at request time. |
+| `shopware.media.remote_thumbnails.pattern`        | string | `{mediaUrl}/{mediaPath}?width={width}&ts={mediaUpdatedAt}` | Template used to build thumbnail URLs. Variables are listed below.                                                                                                                                     |
+| `shopware.media.remote_thumbnails.fallback_sizes` | array  | `[]`                                                       | Optional list of `{ width, height }` thumbnail sizes used when an enabled media folder has no assigned thumbnail sizes.                                                                                |
 
 ### Fallback sizes
 
@@ -116,7 +116,7 @@ shopware:
 ```
 
 | Key                                              | Type        | Default | Description                                                                                                                                                                               |
-|--------------------------------------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------ | ----------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `shopware.cdn.fastly.api_key`                    | string      | `''`    | Personal Fastly token. **Setting this to a non-empty value is what activates media invalidation** — there is no separate `enabled` flag. With an empty key, the listener silently no-ops. |
 | `shopware.cdn.fastly.soft_purge`                 | bool/string | `false` | Sent verbatim as the `fastly-soft-purge` request header. Set to `true` (or `'1'`) to keep serving stale content while purges propagate.                                                   |
 | `shopware.cdn.fastly.max_parallel_invalidations` | int         | `2`     | Guzzle pool concurrency for purge requests. Bounds how many `POST https://api.fastly.com/purge/{url}` calls are in flight simultaneously.                                                 |

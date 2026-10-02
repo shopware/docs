@@ -1,0 +1,62 @@
+# Markdown linting for this repository. Driven by markdown-rumdl-check.yml.
+
+[global]
+# Only the rules listed here run. Left out on purpose: MD007, MD010, MD013,
+# MD014, MD028, MD033, MD035, MD036, MD043, MD044 and MD046.
+# MD006 has no counterpart in rumdl.
+enable = [
+    # Headings
+    "MD001", "MD003", "MD018", "MD019", "MD020", "MD021", "MD022", "MD023",
+    "MD024", "MD025", "MD026", "MD041",
+    # Lists
+    "MD004", "MD005", "MD029", "MD030", "MD032",
+    # Whitespace and blank lines
+    "MD009", "MD012", "MD027", "MD031", "MD047",
+    # Links, images and inline formatting
+    "MD011", "MD034", "MD037", "MD038", "MD039", "MD042", "MD045",
+    # Code blocks
+    "MD040", "MD048",
+    # Tables
+    "MD055", "MD056", "MD058", "MD075",
+]
+
+# MD060 is opt-in upstream and has to be added on top of the enabled set.
+extend-enable = ["MD060"]
+
+exclude = [
+    "resources/references/adr/**",
+    "assets/adr/**",
+    "resources/guidelines/code/core/**",
+    "snippets/guide/**",
+    "resources/references/app-reference/script-reference/**",
+    ".github/**",
+]
+
+# Multiple headings with the same content.
+[MD024]
+allow-different-nesting = true
+
+# Multiple top level headings. The empty pattern stops the nav title in the
+# front matter from counting as the document's H1.
+[MD025]
+front-matter-title = ""
+
+# Ordered list item prefix.
+[MD029]
+style = "ordered"
+
+# Code fence style.
+[MD048]
+style = "backtick"
+
+# Table pipe style: every row starts and ends with a pipe.
+[MD055]
+style = "leading-and-trailing"
+
+# Table column style: pad cells so columns line up in the source.
+[MD060]
+enabled = true
+style = "aligned"
+# MD013 is not enabled, so wide tables stay aligned instead of being
+# auto-compacted to a line-length limit.
+max-width = 0

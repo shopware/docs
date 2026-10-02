@@ -37,7 +37,7 @@ This section guides developers on adding a new component to the migration proces
     ...
   }
   ```
-  
+
   - The `priority` attribute in the tag determines the order of execution among multiple configurator. Higher values execute first.
     :::info
     You can run this command to see the order of execution:
@@ -52,7 +52,7 @@ This section guides developers on adding a new component to the migration proces
     - `ShoppingListMigrationConfigurator` has a priority of `7000`.
     - `BudgetManagementMigrationConfigurator` has a priority of `5000`.
     :::
-  
+
 ## Create XML Mapping File
 
 ### Entity Definition

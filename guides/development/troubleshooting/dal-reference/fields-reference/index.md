@@ -8,7 +8,7 @@ nav:
 # Fields Reference
 
 | Name                         | Description                  | Extends                   | StorageAware |
-|:-----------------------------|:-----------------------------|:--------------------------|:-------------|
+| :--------------------------- | :--------------------------- | :------------------------ | :----------- |
 | AssociationField             | Stores a association value   | Field                     |              |
 | AutoIncrementField           | Stores an integer value      | IntField                  |              |
 | BlobField                    | Stores a blob value          | Field                     | x            |

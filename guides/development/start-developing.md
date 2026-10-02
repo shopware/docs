@@ -26,7 +26,7 @@ Common development areas:
 
 ## Running commands
 
-Use `shopware-cli project console` to run `bin/console` commands from your host - no need to enter the container:
+Use `shopware-cli project console` to run `bin/console` commands from your host — Shopware CLI routes them into the web container for Docker projects:
 
 ```bash
 # Clear caches
@@ -41,15 +41,31 @@ shopware-cli project console database:migrate --all
 
 For the shorter `swx` alias, see [Running Shopware commands](./dev-environment.md#running-shopware-commands).
 
-:::info Legacy workflow
-If your project uses the older `make`-based setup and you need to shell into the container manually:
+### Composer, PHP, and npm
+
+There is no Shopware CLI wrapper for arbitrary Composer commands yet. For Docker projects, run them **inside** the `web` container so you use the container PHP (`memory_limit ≥ 512M`) and can reach the database and other services:
+
+```bash
+# Interactive shell
+docker compose exec web bash
+
+# One-off Composer commands
+docker compose exec web composer require some/package
+docker compose exec web composer install
+```
+
+Do not run `composer` on the host against a Docker project unless your host PHP meets Shopware's requirements (`memory_limit ≥ 512M` and the needed extensions). The TUI **Setup health** memory check reflects the container runtime, not host PHP. Details: [Running Composer, PHP, and npm](./dev-environment.md#running-composer-php-and-npm).
+
+:::info Older make-based setups
+If your project still uses the older `make`-based workflow:
 
 ```bash
 make shell
+# or
 docker compose exec web bash
 ```
 
-Most tasks are now easier with `shopware-cli project console` and the development TUI.
+Prefer `shopware-cli project console` and the development TUI for console and day-to-day environment tasks.
 :::
 
 ## Frontend development
@@ -135,13 +151,20 @@ Create a `.env` file in the project root to override defaults. Most changes appl
 
 ## Shopware account and private Composer packages
 
-To install licensed extensions from Shopware's private Composer registry:
+To install licensed extensions from Shopware's private Composer registry, configure Composer authentication. Prefer a project-level `auth.json` in the project root so both host tooling and the bind-mounted web container can use it:
 
 ```bash
-composer config --global http-basic.packages.shopware.com <username> <token>
+# Writes auth.json in the project root (bind-mounted into the web container)
+docker compose exec web composer config --auth http-basic.packages.shopware.com <username> <token>
 ```
 
-Create an access token in your Shopware account under **Shops > Licenses**.
+Then install packages with Composer **inside** the container:
+
+```bash
+docker compose exec web composer require <package>
+```
+
+Create an access token in your Shopware account under **Shops > Licenses**. Do not commit `auth.json`.
 
 ## Next steps
 

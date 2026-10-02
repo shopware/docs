@@ -54,23 +54,23 @@ Learn more about them here: [Creating administration module](../module-component
 
 We now have discussed the most commonly used parts of the `Shopware` object, but there is much more to discover. Take a look at all these options in a brief overview below:
 
-| Property   | Description                                                                                 |
-| :--------- | :------------------------------------------------------------------------------------------ |
-| ApiService | Registry which holds services to fetch data from the api                                    |
-| Component  | A registry for VueJS `components`                                                           |
-| Context    | A set of contexts for the `app` and the `api`                                               |
-| Defaults   | A collection of default values                                                              |
-| Directive  | A registry for [VueJS `directives`](https://vuejs.org/guide/reusability/custom-directives.html)       |
-| Filter     | A registry for [VueJS template `filters`](https://v2.vuejs.org/v2/guide/filters.html?redirect=true)          |
-| Helper     | A collection of helpers, e.g. the `DeviceHelper` where you can listen on the `resize` event |
-| Locale     | A registry for `locales`                                                                    |
-| Mixin      | A registry for `mixins`                                                                     |
-| Module     | A registry for `modules`                                                                    |
-| Plugin     | An interface to add `promise`based hooks to run when the Administration launches            |
-| Service    | A helper to get quick access to service, e.g. `Shopware.Service('snippetService')`          |
-| Shortcut   | A registry for keyboard shortcuts                                                           |
-| State      | A wrapper for the [VueX](https://vuex.vuejs.org/) store to manage state                     |
-| Utils      | A collection of utility methods like `createId`                                             |
+| Property   | Description                                                                                         |
+| :--------- | :-------------------------------------------------------------------------------------------------- |
+| ApiService | Registry which holds services to fetch data from the api                                            |
+| Component  | A registry for VueJS `components`                                                                   |
+| Context    | A set of contexts for the `app` and the `api`                                                       |
+| Defaults   | A collection of default values                                                                      |
+| Directive  | A registry for [VueJS `directives`](https://vuejs.org/guide/reusability/custom-directives.html)     |
+| Filter     | A registry for [VueJS template `filters`](https://v2.vuejs.org/v2/guide/filters.html?redirect=true) |
+| Helper     | A collection of helpers, e.g. the `DeviceHelper` where you can listen on the `resize` event         |
+| Locale     | A registry for `locales`                                                                            |
+| Mixin      | A registry for `mixins`                                                                             |
+| Module     | A registry for `modules`                                                                            |
+| Plugin     | An interface to add `promise`based hooks to run when the Administration launches                    |
+| Service    | A helper to get quick access to service, e.g. `Shopware.Service('snippetService')`                  |
+| Shortcut   | A registry for keyboard shortcuts                                                                   |
+| State      | A wrapper for the [VueX](https://vuex.vuejs.org/) store to manage state                             |
+| Utils      | A collection of utility methods like `createId`                                                     |
 
 ## TypeScript declarations
 

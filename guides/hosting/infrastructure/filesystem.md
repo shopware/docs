@@ -19,7 +19,7 @@ Shopware uses [Flysystem](https://flysystem.thephpleague.com/docs/) to talk to a
 ### Which storage should I use?
 
 | Scenario                                               | Recommended storage                                              |
-|--------------------------------------------------------|------------------------------------------------------------------|
+| ------------------------------------------------------ | ---------------------------------------------------------------- |
 | Local development / single server, small media library | `local` (the default — no setup needed)                          |
 | Single server, want backups & redundancy               | S3 or an S3-compatible bucket                                    |
 | Multiple app servers (cluster)                         | **Required:** S3 or S3-compatible shared bucket                  |
@@ -30,7 +30,7 @@ Shopware uses [Flysystem](https://flysystem.thephpleague.com/docs/) to talk to a
 The filesystem is split into separate **adapters**, one per purpose. Each adapter can point at a different storage backend, but in practice you usually configure them all the same way. The following table lists the adapters and their default visibility and paths.
 
 | Filesystem | Visibility | What it holds                                           | Default local path |
-|------------|------------|---------------------------------------------------------|--------------------|
+| ---------- | ---------- | ------------------------------------------------------- | ------------------ |
 | `public`   | public     | Product images, media files, generally accessible files | `public/`          |
 | `private`  | private    | Invoices, delivery notes, downloadable product files    | `files/`           |
 | `theme`    | public     | Compiled theme files (CSS, JS)                          | inherits `public`  |
@@ -56,7 +56,7 @@ The filesystem configuration lives in the bundle configuration:
 To use a non-default storage, add a `filesystem:` map under the `shopware:` key. Each adapter accepts the following keys:
 
 | Key          | Description                                                                                                                                         |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`       | The adapter to use: `local`, `amazon-s3`, or `google-storage`. **Required**                                                                         |
 | `url`        | Public base URL under which the files are reachable. If omitted, Shopware derives it from `APP_URL`. Use this to point public files at a CDN domain |
 | `visibility` | `public` (default) or `private`. Only `private` is meaningful for the `private` filesystem                                                          |
@@ -76,6 +76,7 @@ shopware:
       config:
         # adapter-specific options
 ```
+
 <!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
 
 ### Avoiding repetition with YAML anchors
@@ -145,7 +146,7 @@ shopware:
 ```
 
 | `config` key               | Description                                                                                           |
-|----------------------------|-------------------------------------------------------------------------------------------------------|
+| -------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `root`                     | Directory the files are stored in. **Required.**                                                      |
 | `file` / `dir`             | Optional permission overrides, e.g. `file: { public: 0644 }`. Defaults derive from the process umask. |
 | `enforce_file_permissions` | Apply the permissions above on write. Defaults to `true`.                                             |
@@ -179,7 +180,7 @@ shopware:
 ```
 
 | `config` key                             | Description                                                                                                    |
-|------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `bucket`                                 | Bucket name (**Required**)                                                                                     |
 | `region`                                 | Bucket region, e.g. `eu-central-1` (**Required**)                                                              |
 | `endpoint`                               | Custom endpoint URL. Optional for AWS; required for most S3-compatible providers                               |
@@ -190,6 +191,12 @@ shopware:
 
 ::: warning
 Omit the `credentials` block on AWS infrastructure (EC2, ECS, EKS) and grant access through an **IAM role** instead. This keeps long-lived secrets out of your configuration.
+:::
+
+::: warning Browser access to private S3 downloads
+Shopware redirects browsers to temporary, signed URLs (presigned URLs) when downloading Import/Export files, private Administration media, and purchased digital products from S3 storage. The storage endpoint must therefore be reachable by both Shopware and the client browser. An internal endpoint such as `http://minio:9000`, which only resolves inside the application network, causes these downloads to fail.
+
+Configure `shopware.filesystem.private.config.endpoint` with a browser-accessible endpoint, using HTTPS when the storefront or Administration uses HTTPS. The bucket can remain private: the signed URL authorizes the download. Changing the filesystem `url` does not change the endpoint used to sign these URLs.
 :::
 
 ### Google Cloud Storage
@@ -213,7 +220,7 @@ shopware:
 ```
 
 | `config` key  | Description                                                                |
-|---------------|----------------------------------------------------------------------------|
+| ------------- | -------------------------------------------------------------------------- |
 | `bucket`      | Bucket name (**Required**)                                                 |
 | `projectId`   | Google Cloud project ID (**Required**)                                     |
 | `keyFilePath` | Path to a service account key JSON file.                                   |
@@ -243,7 +250,7 @@ Run the migration during low-traffic hours or in maintenance mode. Files uploade
 With the default `local` adapter the files live in the project directory:
 
 | Filesystem | Default location                                                                       |
-|------------|----------------------------------------------------------------------------------------|
+| ---------- | -------------------------------------------------------------------------------------- |
 | `public`   | `public/media`, `public/thumbnail`, `public/theme`, `public/bundles`, `public/sitemap` |
 | `private`  | `files/`                                                                               |
 
@@ -359,7 +366,7 @@ Note the **prod** in the config path above — CDNs are typically used in produc
 Shopware can lay out media paths using different strategies. The strategy affects how predictable a file's URL is and how well it caches. It is set via the `SHOPWARE_CDN_STRATEGY_DEFAULT` environment variable (mapped to `cdn.strategy`).
 
 | Strategy            | Behavior                                                                               |
-|---------------------|----------------------------------------------------------------------------------------|
+| ------------------- | -------------------------------------------------------------------------------------- |
 | `id` (default)      | Path is derived from a hash of the media ID. URLs are not guessable from the filename. |
 | `filename`          | Path is derived from a hash of the filename.                                           |
 | `physical_filename` | Path includes a timestamp and the physical filename.                                   |
@@ -413,6 +420,8 @@ Shopware ships with a sensible default list (common image, video, audio, and doc
 
 ## Private file download strategy
 
+These settings do not disable presigned S3 download URLs or force S3 downloads through PHP. When Shopware generates a temporary URL, it redirects the browser before applying the local download strategy. See [Amazon S3](#amazon-s3-and-s3-compatible-providers) for the endpoint requirements.
+
 For private files served from **local** storage (e.g. downloadable products and invoices), you can choose how the file is delivered to the client:
 
 ```yaml
@@ -423,7 +432,7 @@ shopware:
 ```
 
 | Strategy        | Description                                                                                                                                                                                                                                       |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `php` (default) | Streamed through PHP as `application/octet-stream`. Works everywhere, but PHP handles the whole transfer.                                                                                                                                         |
 | `x-sendfile`    | Apache offloads the file transfer. Requires the [`mod_xsendfile`](https://github.com/nmaier/mod_xsendfile) module.                                                                                                                                |
 | `x-accel`       | Nginx offloads the transfer via internal redirect. Configure the matching `internal` location and set `private_local_path_prefix` accordingly. See the [Nginx X-Accel docs](https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/). |

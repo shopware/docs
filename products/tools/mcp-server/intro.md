@@ -22,14 +22,14 @@ The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` featu
 The following table summarizes the MCP server's core capabilities.
 
 | Capability         | Details                                                                                               |
-|--------------------|-------------------------------------------------------------------------------------------------------|
+| ------------------ | ----------------------------------------------------------------------------------------------------- |
 | **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP transport                             |
-| **Authentication** | Integration or OAuth credentials for Admin API; Store API authentication headers for Store API       |
+| **Authentication** | Integration or OAuth credentials for Admin API; Store API authentication headers for Store API        |
 | **Authorization**  | Admin API ACL enforcement or the current Store API sales-channel context                              |
 | **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id` |
 | **Rate limiting**  | Per-principal rate limiting                                                                           |
 | **Discovery**      | A small default tool surface with search and session-scoped toolsets                                  |
-| **Extensibility**  | Extensions can contribute custom tools, prompts, and resources                                         |
+| **Extensibility**  | Extensions can contribute custom tools, prompts, and resources                                        |
 
 ## Architecture
 
@@ -59,12 +59,12 @@ Shopware's MCP server is built on `symfony/mcp-bundle` (currently `~0.11.0` with
 
 Shopware supports cursor pagination for capability lists and emits `listChanged` notifications when capabilities change. The following table lists the remaining known gaps.
 
-| Area                                          | Status                                                                  |
-|-----------------------------------------------|-------------------------------------------------------------------------|
-| Resource subscriptions                        | Not implemented (resource templates are supported)                      |
-| Completion utility for prompt/URI arguments   | Not implemented                                                         |
-| `structuredContent` and `isError` in results  | Not used; Shopware uses its own `{"success": bool, ...}` envelope       |
-| ACL checks on resources                       | Not implemented (resources are public within the authenticated session) |
+| Area                                         | Status                                                                  |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| Resource subscriptions                       | Not implemented (resource templates are supported)                      |
+| Completion utility for prompt/URI arguments  | Not implemented                                                         |
+| `structuredContent` and `isError` in results | Not used; Shopware uses its own `{"success": bool, ...}` envelope       |
+| ACL checks on resources                      | Not implemented (resources are public within the authenticated session) |
 
 If a feature you need is missing from `symfony/mcp-bundle`, check its [repository](https://github.com/symfony/mcp-bundle) for open issues and pending releases before building a workaround.
 
@@ -73,7 +73,7 @@ If a feature you need is missing from `symfony/mcp-bundle`, check its [repositor
 The following table lists the pages included in this section.
 
 | Page                                            | What you will find                                                       |
-|-------------------------------------------------|--------------------------------------------------------------------------|
+| ----------------------------------------------- | ------------------------------------------------------------------------ |
 | [MCP Concepts](./mcp-concepts.md)               | What tools, resources, and prompts are and when to use each              |
 | [Getting Started](./getting-started.md)         | Connect your first AI client to a Shopware shop                          |
 | [Tools Reference](./tools-reference.md)         | All built-in tools, resources, and prompts with parameters               |

@@ -174,7 +174,7 @@ const store = Shopware.Store.register('<storeName>', function() {
 ```
 
 You can also use a composable function defined outside the store. This allows you to encapsulate and reuse logic across different stores or components, promoting better code organization and modularity:
-  
+
 ```typescript
 // composables/myComposable.ts
 export function useMyComposable() {

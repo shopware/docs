@@ -470,11 +470,11 @@ It will default on the General group if it is not defined.
 Here is a list of group names you should take a look at:
 
 | Group Name | Group Headline |
-| :--- | :--- |
-| general | General|
-| tag | Tag |
-| customer | Customer |
-| order | Order |
+| :--------- | :------------- |
+| general    | General        |
+| tag        | Tag            |
+| customer   | Customer       |
+| order      | Order          |
 
 ### Step 2: Add configuration for action
 

@@ -237,18 +237,18 @@ The key of each config field item is also the technical name which you use to ac
 
 The following parameters can be defined for a config field item:
 
-| Name | Meaning |
-| :--- | :--- |
-| `label` | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
-| `helpText` | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
-| `type` | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url |
-| `editable` | If set to false, the config option will not be displayed \(e.g. in the Administration\) |
-| `tab` | Name of a tab to organize the config options |
-| `block` | Name of a block to organize the config options |
-| `section` | Name of a section to organize the config options |
-| `custom` | The defined data will not be processed but is available via API |
-| `scss` | If set to false, the config option will not be injected as a SCSS variable |
-| `fullWidth` | If set to true, the Administration component width will be displayed in full width |
+| Name        | Meaning                                                                                                                          |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `label`     | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
+| `helpText`  | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
+| `type`      | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url                            |
+| `editable`  | If set to false, the config option will not be displayed \(e.g. in the Administration\)                                          |
+| `tab`       | Name of a tab to organize the config options                                                                                     |
+| `block`     | Name of a block to organize the config options                                                                                   |
+| `section`   | Name of a section to organize the config options                                                                                 |
+| `custom`    | The defined data will not be processed but is available via API                                                                  |
+| `scss`      | If set to false, the config option will not be injected as a SCSS variable                                                       |
+| `fullWidth` | If set to true, the Administration component width will be displayed in full width                                               |
 
 ### Translations in Theme Manager
 

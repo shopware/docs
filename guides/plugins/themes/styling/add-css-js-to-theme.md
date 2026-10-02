@@ -123,6 +123,10 @@ composer run watch:storefront
 
 This command starts a NodeJS web server on port `9998`. If you open the Storefront of your Shopware installation on `localhost:9998`, this page will be automatically updated when you make changes to your theme.
 
+### Referencing npm packages in SCSS
+
+If you need to consume an npm package directly from your theme's SCSS (for example `@fortawesome/fontawesome-free`), `shopware-cli project storefront-build` will not install it for you unless the theme also has a JavaScript entry point, and even then the storefront-root `node_modules` is removed before `theme:compile` runs. See [Using npm packages in a pure-SCSS theme](../../plugins/dependencies/using-npm-dependencies.md#using-npm-packages-in-a-pure-scss-theme-no-js-entry-point) for the `postinstall` copy-out workaround.
+
 ## Next steps
 
 Now that you know how to customize the styling via SCSS and add JavaScript, here is a list of things you can do.

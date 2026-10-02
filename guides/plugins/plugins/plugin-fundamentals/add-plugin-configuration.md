@@ -20,7 +20,7 @@ A running plugin. Review the [Plugin Base Guide](../plugin-base-guide.md) for in
 ## Create your plugin configuration
 
 ::: info
-This video is part of the free Shopware Academy online training ["Backend Development"](https://academy.shopware.com/courses/shopware-6-backend-development-with-jisse-reitsma).
+For Academy learning content on defining plugin configuration with `config.xml`, refer to this free course **[Plugin Configuration](https://hub.shopware.com/learn/unit/plugin-configuration)** from **Shopware Backend Development Essentials** learning path.
 :::
 
 Create `src/Resources/config/config.xml` inside your plugin. The content of the `config.xml` will be dynamically rendered in the Administration. Start with a simple text field first; the available field types and advanced options are listed below.
@@ -103,8 +103,8 @@ Your `<input-field>` can be of different types, this is managed via the `type` a
 Unless defined otherwise, your `<input-field>` will be a text field.
 Below you'll find a list of all available `<input-field type="?">`.
 
-| Type          | Configuration settings                                                                                                                                                              | Renders           | Default value example                   |
-|:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|:----------------------------------------|
+| Type          | Configuration settings                                                                                                                                                                       | Renders           | Default value example                   |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------- | :-------------------------------------- |
 | text          | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text), [length](add-plugin-configuration.md#text-length-restrictions) | Text field        | Some text                               |
 | textarea      | [copyable](add-plugin-configuration.md#copyable), [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                 | Text area         | Some more text                          |
 | text-editor   | [placeholder](add-plugin-configuration.md#label-placeholder-and-help-text)                                                                                                                   | HTML editor       | Some text with HTML `<div>`tags`</div>` |

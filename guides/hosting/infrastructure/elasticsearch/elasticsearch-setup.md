@@ -80,7 +80,7 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 ### Variables in your *.env*
 
 | Variable                       | Possible values  | Description                                                                                                                                                                                                                      |
-|--------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `APP_ENV`                      | `prod` / `dev`   | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use Elasticsearch in a productive system. |
 | `OPENSEARCH_URL`               | `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)                                |
 | `SHOPWARE_ES_INDEXING_ENABLED` | `0` / `1`        | This variable activates the indexing to Elasticsearch                                                                                                                                                                            |
@@ -202,9 +202,13 @@ ADMIN_OPENSEARCH_URL=YOUR OPENSEARCH URL
 SHOPWARE_ADMIN_ES_ENABLED=1
 SHOPWARE_ADMIN_ES_INDEX_PREFIX=sw-admin
 SHOPWARE_ADMIN_ES_INDEXING_BATCH_SIZE=1000
-SHOPWARE_ADMIN_ES_REFRESH_INDICES=1
+SHOPWARE_ADMIN_ES_REFRESH_INDICES=0
 SHOPWARE_ADMIN_ES_THROW_EXCEPTION=1
 ```
+
+::: info
+`SHOPWARE_ADMIN_ES_REFRESH_INDICES=1` makes Shopware create missing administration indices and aliases on the fly when an indexed entity is written, instead of relying on `bin/console es:admin:index`. Enable it in environments where nobody runs CLI commands after installing an extension or replacing the search cluster. It adds one alias check per indexer on every write, and an index created this way stays empty until a full reindex, so prefer `0` together with `bin/console es:admin:index` in your deployment pipeline.
+:::
 
 Also, the CLI commands can be used as below:
 

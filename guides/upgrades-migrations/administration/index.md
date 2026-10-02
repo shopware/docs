@@ -15,3 +15,5 @@ These guides cover architectural changes and migration paths affecting Administr
 * [Vite migration](./vite)
 * [Vue migration build removal](./vue-migration-build)
 * [Native Vue implementation](./vue-native)
+
+For automated detection and fixing of supported Administration migration patterns, see the [Shopware CLI automatic refactoring](../../../products/tools/cli/automatic-refactoring.md) guide.

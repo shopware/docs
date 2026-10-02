@@ -52,7 +52,7 @@ Data is sent via UDP to `udp.usage.shopware.io:9000`, which is operated in Frank
 ### Tracked events
 
 | Event                              | Description                                           |
-|------------------------------------|-------------------------------------------------------|
+| ---------------------------------- | ----------------------------------------------------- |
 | `deployment_helper.php_version`    | PHP version at the time of a deployment run           |
 | `deployment_helper.mysql_version`  | MySQL/MariaDB version at the time of a deployment run |
 | `deployment_helper.installed`      | A fresh Shopware installation completed               |
@@ -79,7 +79,7 @@ Data is sent via UDP to `udp.usage.shopware.io:9000`. The anonymized user identi
 ### Tracked events
 
 | Event                             | Description                    |
-|-----------------------------------|--------------------------------|
+| --------------------------------- | ------------------------------ |
 | `web_installer.visit`             | First visit to the installer   |
 | `web_installer.install.started`   | Installation process initiated |
 | `web_installer.install.completed` | Installation succeeded         |
@@ -127,7 +127,7 @@ This follows the `Console Do Not Track` convention used by many CLI tools.
 ## Data flow summary
 
 | Aspect                  | Detail                                                     |
-|-------------------------|------------------------------------------------------------|
+| ----------------------- | ---------------------------------------------------------- |
 | **Protocol**            | UDP (fire-and-forget)                                      |
 | **Endpoint**            | `udp.usage.shopware.io:9000`                               |
 | **Encryption**          | UDP is unencrypted by nature                               |

@@ -12,13 +12,13 @@ data integrity during migration.
 
 ## Key Components
 
-| Component | Namespace | Purpose |
-|-----------|-----------|---------|
-| `MigrationEntityValidationService` | `Migration\Validation` | Validates entire converted entities including nested associations |
-| `MigrationFieldValidationService` | `Migration\Validation` | Validates individual field values using DAL field serializers |
-| `MigrationErrorResolutionService` | `Migration\ErrorResolution` | Loads and applies fixes from database to migration data |
-| `MigrationFix` | `Migration\ErrorResolution` | Value object representing a single fix with path-based application logic |
-| `ErrorResolutionController` | `Controller` | API controller providing validation and example value endpoints |
+| Component                          | Namespace                   | Purpose                                                                  |
+| ---------------------------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `MigrationEntityValidationService` | `Migration\Validation`      | Validates entire converted entities including nested associations        |
+| `MigrationFieldValidationService`  | `Migration\Validation`      | Validates individual field values using DAL field serializers            |
+| `MigrationErrorResolutionService`  | `Migration\ErrorResolution` | Loads and applies fixes from database to migration data                  |
+| `MigrationFix`                     | `Migration\ErrorResolution` | Value object representing a single fix with path-based application logic |
+| `ErrorResolutionController`        | `Controller`                | API controller providing validation and example value endpoints          |
 
 ## Migration Flow Integration
 
@@ -99,14 +99,14 @@ for association fields. It provides detailed error information for each invalid 
 
 ### Validation Log Types
 
-| Log Class | User Fixable | Description |
-|-----------|--------------|-------------|
-| `MigrationValidationRequiredFieldMissingLog` | Yes | Required field is missing from converted data |
-| `MigrationValidationRequiredFieldValueInvalidLog` | Yes | Required field has invalid value |
-| `MigrationValidationOptionalFieldValueInvalidLog` | Yes | Optional field has invalid value |
-| `MigrationValidationAssociationInvalidLog` | Yes | Association structure is invalid |
-| `MigrationValidationRequiredTranslationInvalidLog` | No | Translation structure is invalid |
-| `MigrationValidationExceptionLog` | No | Generic validation exception |
+| Log Class                                          | User Fixable | Description                                   |
+| -------------------------------------------------- | ------------ | --------------------------------------------- |
+| `MigrationValidationRequiredFieldMissingLog`       | Yes          | Required field is missing from converted data |
+| `MigrationValidationRequiredFieldValueInvalidLog`  | Yes          | Required field has invalid value              |
+| `MigrationValidationOptionalFieldValueInvalidLog`  | Yes          | Optional field has invalid value              |
+| `MigrationValidationAssociationInvalidLog`         | Yes          | Association structure is invalid              |
+| `MigrationValidationRequiredTranslationInvalidLog` | No           | Translation structure is invalid              |
+| `MigrationValidationExceptionLog`                  | No           | Generic validation exception                  |
 
 ## Fix creation and storage
 
@@ -139,14 +139,14 @@ class SwagMigrationFixDefinition extends EntityDefinition
 
 ### Fix Properties
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `id` | UUID | Unique identifier for the fix |
-| `connectionId` | UUID | Reference to the migration connection |
-| `value` | JSON | The fix value to apply (JSON encoded) |
-| `path` | String | Dot-notation path to the field (e.g., `category.translations.name`) |
-| `entityId` | UUID | ID of the entity being fixed |
-| `entityName` | String | Name of the entity being fixed |
+| Property       | Type   | Description                                                         |
+| -------------- | ------ | ------------------------------------------------------------------- |
+| `id`           | UUID   | Unique identifier for the fix                                       |
+| `connectionId` | UUID   | Reference to the migration connection                               |
+| `value`        | JSON   | The fix value to apply (JSON encoded)                               |
+| `path`         | String | Dot-notation path to the field (e.g., `category.translations.name`) |
+| `entityId`     | UUID   | ID of the entity being fixed                                        |
+| `entityName`   | String | Name of the entity being fixed                                      |
 
 ### Migration Fix Value Object
 
@@ -188,12 +188,12 @@ their defined paths.
 
 The `MigrationFix::apply()` method uses dot-notation paths to apply fixes to nested data structures:
 
-| Path | Target | Description |
-|------|--------|-------------|
-| `name` | `$item['name']` | Root level field |
-| `translations.name` | `$item['translations'][*]['name']` | All translation names |
+| Path                           | Target                                              | Description           |
+| ------------------------------ | --------------------------------------------------- | --------------------- |
+| `name`                         | `$item['name']`                                     | Root level field      |
+| `translations.name`            | `$item['translations'][*]['name']`                  | All translation names |
 | `categories.translations.name` | `$item['categories'][*]['translations'][*]['name']` | Nested list traversal |
-| `manufacturer.name` | `$item['manufacturer']['name']` | Single association |
+| `manufacturer.name`            | `$item['manufacturer']['name']`                     | Single association    |
 
 ### Integration with Writer
 

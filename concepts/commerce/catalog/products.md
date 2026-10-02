@@ -16,13 +16,13 @@ Let's delve into a more detailed understanding of products using the example of 
 * **Product details**: General information about a Product.
 
 | Title              | Product Id | Manufacturer | Prices | .... |
-|--------------------|------------|--------------|--------|------|
+| ------------------ | ---------- | ------------ | ------ | ---- |
 | Levis Ocean Hoodie | SW1001     | CA           | 40     | ...  |
 
 * **Product properties**: Product properties encapsulate property groups and options. They are displayed in a table on product details page, in listings, or even be used for filtering. A product can have arbitrarily many property group options.
 
 | Property Group | Property Group Options          |
-|----------------|---------------------------------|
+| -------------- | ------------------------------- |
 | Size           | *S*, *M*, *L*, *XL*, etc        |
 | Color          | *Red*, *Blue*, *Green*, *Black* |
 | Material       | *Leather*, *Cotton*, *Jeans*    |
@@ -32,7 +32,7 @@ Let's delve into a more detailed understanding of products using the example of 
 * **Packaging dimensions**: Physical dimensions and weight of the product packaging. These values are stored in standardized units: weight in kilograms (kg) and dimensions (width, length, height) in millimeters (mm). This information is crucial for shipping calculations, storage planning, and logistics operations. However, these units can be configured to be displayed differently on storefront and APIs depending on the sales channel context.
 
 | Dimension | Stored Value | Display Value (configurable) |
-|-----------|--------------|------------------------------|
+| --------- | ------------ | ---------------------------- |
 | Weight    | 1.5          | 3.3 lbs/1500g/1.5kg          |
 | Width     | 300          | 11.8 in/300mm/0.3m           |
 | Length    | 400          | 15.7 in/400mm/0.4m           |
@@ -111,7 +111,7 @@ Opposed to that, **options** are considered variant defining, as they are the fa
 It is important to understand the difference between those two because both provide a relation between the *product* and the *property group option* entity. However, only one constitutes to *product variants*.
 
 | Variant   | Product            | Category          | Product Group | Product Group Option |
-|-----------|--------------------|-------------------|---------------|----------------------|
+| --------- | ------------------ | ----------------- | ------------- | -------------------- |
 | Variant 1 | Levis Ocean Hoodie | Hoodie & Sweaters | Color         | Red                  |
 | Variant 2 | Levis Ocean Hoodie | Hoodie & Sweaters | Color         | Black                |
 

@@ -184,7 +184,7 @@ Plugin tools use `shopware.mcp.tool` (not `mcp.tool`). The MCP compiler remaps t
 ### Available tags
 
 | Shopware tag            | Purpose             |
-|-------------------------|---------------------|
+| ----------------------- | ------------------- |
 | `shopware.mcp.tool`     | Register a tool     |
 | `shopware.mcp.prompt`   | Register a prompt   |
 | `shopware.mcp.resource` | Register a resource |

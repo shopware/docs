@@ -19,7 +19,7 @@ The number of projects and applications available to an organization depends on 
 Applications are provisioned with a default resource profile for the main Shopware workloads:
 
 | Component    | Default replicas | CPU request | Memory request | Memory limit |
-|--------------|------------------|-------------|----------------|--------------|
+| ------------ | ---------------- | ----------- | -------------- | ------------ |
 | `storefront` | `2`              | `50m`       | `256Mi`        | `2Gi`        |
 | `admin`      | `1`              | `25m`       | `128Mi`        | `2Gi`        |
 | `worker`     | `1`              | `50m`       | `256Mi`        | `1Gi`        |
@@ -36,12 +36,24 @@ Create a new application to a project:
 sw-paas application create
 ```
 
+:::warning
+Application names must be unique within a project and can only be used once. After an application is deleted, its name remains reserved and cannot be reused for another application in the same project.
+:::
+
+By default, the application is created from the `application.yaml` at the root of the project repository. If the file lives in a sub-directory, for example because several applications share one repository, pass its path:
+
+```sh
+sw-paas application create --application-yaml-path apps/shopware/application.yaml
+```
+
+The path is stored on the application, so later updates reuse it. See [Deploy from a monorepo](../guides/monorepo.md) for the details.
+
 ## Build your application
 
 To trigger a new build for the application via CLI, use the following command:
 
 ```sh
-sw-paas application build start
+sw-paas application build create
 ```
 
 This command initiates the build process, packaging your application and preparing it for deployment. While the build is running, you can monitor its progress and view real-time output by following the logs:
@@ -66,11 +78,13 @@ This command initiates the build process, waits until it's done, and runs the de
 
 ## Deployment behavior
 
-Deployments are designed to be zero downtime and use Kubernetes rolling updates.
+Deployments use Kubernetes rolling updates and are zero downtime **when no database migrations are involved**.
 
 During deployment, database migrations run first. After that, the remaining deployment flow is handled by the [deployment helper](../../../../guides/hosting/installation-updates/deployments/deployment-helper#execution-flow).
 
-This works well for regular Shopware deployments because breaking database changes are expected only during major Shopware upgrades. When upgrading across major versions, make sure your deployment remains backward compatible throughout the rollout.
+When a deployment includes migrations, zero downtime cannot be guaranteed: schema changes can temporarily break compatibility with the code still serving traffic, which may cause errors or instability during the rollout.
+
+Breaking database changes are expected only during major Shopware upgrades. When upgrading across major versions, make sure your deployment remains backward compatible throughout the rollout, and plan the upgrade for a low-traffic window.
 
 Pre-deployment and post-deployment hooks are supported through the [deployment helper configuration](../../../../guides/hosting/installation-updates/deployments/deployment-helper#configuration).
 
@@ -88,7 +102,7 @@ Deployment setup and migration logs are available with:
 sw-paas application deploy logs
 ```
 
-Both commands print a Grafana Explore URL at the end so you can continue investigating the same logs in Grafana. For more log filtering options, see [Logs](../monitoring/logs).
+Both commands print a Grafana Explore URL at the end so you can continue investigating the same logs in Grafana. For more log filtering options, see [Logs](../monitoring/logs.md).
 
 ## Deploy a specific build of your application
 
@@ -119,7 +133,7 @@ To back up and restore application assets and database data, see [Snapshots](./s
 
 ## Plugin Management
 
-Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-management#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
+Plugin management is done [via Composer](../../../../guides/hosting/installation-updates/extension-management.md#installing-extensions-with-composer) because the platform runs in a high-availability and clustered environment.
 
 In such setups, local changes aren't feasible, as all instances must remain identical and stateless. This ensures consistency across all deployments.
 
@@ -189,15 +203,9 @@ Follow the prompts to specify your domain name and application. You can attach m
 
 #### DNS Configuration
 
-After creating a custom domain, you must configure your DNS settings to point to the PaaS CDN endpoint:
+DNS records must be configured and fully propagated **before** you create the domain, because the platform validates them in real time.
 
-**Configure your custom domain's DNS to point to:**
-
-```dns
-cdn.shopware.shop
-```
-
-This configuration ensures that all traffic to your custom domain is routed through the Fastly CDN for optimal performance and caching.
+The required records differ between subdomains and apex domains — a `CNAME` is only valid for a subdomain, while an apex domain needs `A` and `AAAA` records plus a `TXT` ownership challenge. See [Custom Domains](../cdn/index.md#custom-domains) for the exact record values and for commands to verify propagation.
 
 #### Application Deployment
 

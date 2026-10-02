@@ -45,10 +45,10 @@ The following tables are anonymized:
 
 [Find the complete list here](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go#L246)
 
-It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `.shopware-project.yml` file.
+It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `.config/shopware-project.yml` file.
 
 ```yaml
-# .shopware-project.yml
+# .config/shopware-project.yml
 dump:
   rewrite:
     <table-name>:
@@ -79,10 +79,10 @@ Some tables are not relevant for dumps, like log tables. To ignore some default 
 - `version_commit_data`
 - `webhook_event_log`
 
-To ignore additional tables, use the `dump.ignore` configuration in the `shopware-project.yml` file.
+To ignore additional tables, use the `dump.ignore` configuration in the `.config/shopware-project.yml` file.
 
 ```yaml
-# .shopware-project.yml
+# .config/shopware-project.yml
 dump:
   nodata:
     - <table-name>
@@ -93,7 +93,7 @@ dump:
 It is also possible to completely ignore a table **not only the content**.
 
 ```yaml
-# .shopware-project.yml
+# .config/shopware-project.yml
 dump:
   ignore:
     - <table-name>
@@ -104,8 +104,30 @@ dump:
 It is possible to add a where clause to the export of a table. So only rows matching the where clause will be exported.
 
 ```yaml
-# .shopware-project.yml
+# .config/shopware-project.yml
 dump:
   where:
     <table-name>: 'id > 5'
+```
+
+## Limiting the number of rows
+
+Use the `--limit` flag to cap the number of rows exported for a table, for example, to keep only the newest orders:
+
+```bash
+shopware-cli project dump --limit order=100
+```
+
+Tables referencing the limited table via foreign keys (including transitively) are automatically filtered to contain only rows belonging to the kept rows. A second limit on a table that is already filtered this way is rejected. When the limited table references itself (for example, `product.parent_id`), the ancestors of the kept rows are also exported, so the dump remains importable. This requires the `CREATE` and `DROP` privileges, since the rows kept are frozen in staging tables.
+
+The same behavior can be configured persistently in `.config/shopware-project.yml`:
+
+```yaml
+# .config/shopware-project.yml
+dump:
+  limit:
+    <table-name>:
+      rows: 100
+      # Defaults to "created_at DESC" when the table has a created_at column
+      order_by: 'created_at DESC'
 ```

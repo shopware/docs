@@ -262,4 +262,5 @@ redirects:
     products/cli/: products/tools/cli/
     guides/installation/start-developing.html: guides/development/start-developing.html
     concepts/translations/: concepts/framework/translations/
+    guides/hosting/installation-updates/deployments/deployment-helper.html: guides/hosting/installation-updates/deployments/deployment-helper/index.html
     

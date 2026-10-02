@@ -50,6 +50,10 @@ abstract class AbstractExampleRoute
 
 Now we can create a new class `ExampleRoute` which uses our previously created `AbstractExampleRoute`.
 
+::: info
+A generated Store API route is normally more than the route class itself. The class defines the endpoint and response, the service definition registers it with the dependency injection container, and `routes.php` imports it for discovery. These pieces form one feature; the generator creates them together so you do not normally need to assemble the wiring by hand.
+:::
+
 ```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
 <?php declare(strict_types=1);
@@ -111,6 +115,8 @@ return static function (ContainerConfigurator $configurator): void {
 };
 ```
 
+The service definition is what connects the route class to the dependency injection container. If generated code already added this definition, treat it as part of the route rather than as an unrelated boilerplate.
+
 ### Route response
 
 After we have created our route, we need to create the mentioned `ExampleRouteResponse`. This class should extend from `Shopware\Core\System\SalesChannel\StoreApiResponse`, consequently inheriting a property `$object` of type `Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult`. The `StoreApiResponse` parent constructor takes accepts one argument `$object` in order to set the value for the `$object` property (currently we provide this parameter our `ExampleRoute`). Finally, we add a method `getExamples` in which we return our entity collection that we got from the object.
@@ -142,6 +148,8 @@ class ExampleRouteResponse extends StoreApiResponse
 
 The last thing we need to do now is to tell Shopware how to look for new routes in our plugin. This is done with a `routes.php` file at `<plugin root>/src/Resources/config/` location. Take a look at the official [Symfony documentation](https://symfony.com/doc/current/routing.html) about routes and how they are registered.
 
+The route import is the discovery boundary: a route class can be present and correctly registered as a service without becoming a Store API endpoint until Shopware imports its route attributes.
+
 ```php
 // <plugin root>/src/Resources/config/routes.php
 <?php declare(strict_types=1);
@@ -161,6 +169,8 @@ To check if your route was registered correctly, you can use the [Symfony route 
 //
 $ ./bin/console debug:router store-api.example.search
 ```
+
+The route debugger tells you whether routing discovered the endpoint; it does not by itself prove that the route's service can be constructed or that a request will succeed. Keep discovery, authentication, and endpoint behavior as separate concerns when interpreting generated output.
 
 ## Add a route to the OpenAPI schema
 

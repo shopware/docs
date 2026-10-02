@@ -134,11 +134,11 @@ The Shopware CMS distinguishes between two concepts:
 
 The registration method you call determines where your addition is reachable:
 
-| What you call                 | Where it appears                                                                                                                            |
-|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `registerCmsElement` only     | Element-replacement modal only (the <SwagIcon icon="repeat" style="display:inline-block;vertical-align:middle" /> icon on an existing slot) |
-| `registerCmsBlock` only       | Block picker under the chosen category — but the slot renders nothing until an element is also registered                                   |
-| Both                          | Block picker **and** element-replacement modal                                                                                              |
+| What you call             | Where it appears                                                                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `registerCmsElement` only | Element-replacement modal only (the <SwagIcon icon="repeat" style="display:inline-block;vertical-align:middle" /> icon on an existing slot) |
+| `registerCmsBlock` only   | Block picker under the chosen category — but the slot renders nothing until an element is also registered                                   |
+| Both                      | Block picker **and** element-replacement modal                                                                                              |
 
 To make your CMS addition fully discoverable and functional, call both.
 

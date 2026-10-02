@@ -9,35 +9,35 @@ nav:
 
 ## Overview
 
-Shopware 6 supports declaring dependencies on other plugins that must be installed in the system. This is done using Composer’s `require` feature. More information is available in the [official Composer documentation](https://getcomposer.org/doc/04-schema.md#package-links).
+Declare a dependency when your plugin cannot work without another plugin. Shopware uses Composer's `require` section for these dependencies. See the [Composer package links documentation](https://getcomposer.org/doc/04-schema.md#package-links) for the underlying Composer behavior.
+
+Keep required plugin dependencies intentional and few. Every dependency adds another version relationship that you need to test when Shopware, the shared plugin, or the dependent plugin changes.
 
 ## Setup
 
-Each plugin for Shopware 6 has to own a `composer.json` file for it to be a valid plugin. Creating a plugin is not explained here, make sure to read our [Plugin base guide](../plugin-base-guide.md) first.
+Every Shopware 6 plugin has a `composer.json` file. If you have not created a plugin yet, start with the [Plugin Base Guide](../plugin-base-guide.md).
 
-Since every plugin has to own a `composer.json` file, you can simply refer to this plugin by its technical name and its version mentioned in the respective plugin's `composer.json`.
-
-So, those are example lines of the `SwagBasicExample` plugin's `composer.json`:
+Composer dependencies use the package name from the other plugin's `composer.json`, not its human-readable Store label or PHP class name. For example, a shared plugin can contain:
 
 ```json
 {
-    "name": "swag/swag-basic-example",
-    "description": "Plugin quick start plugin",
-    "version": "v1.0.0",
-    ...
+    "name": "swag/basic-example",
+    "description": "Shared functionality for related extensions",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "require": {
+        "shopware/core": "~6.7.0"
+    }
 }
 ```
 
-Important to note is the `name` as well as the `version` mentioned here, the rest of the file is not important for this case here. You're going to need those two information to require them in your own plugin.
+Require that package from another plugin with a compatible version constraint:
 
-In order to require the `SwagBasicExample` plugin now, you simply have to add these two information to your own `composer.json` as a key value pair:
-
-```javascript
-// <plugin root>/composer.json
+```json
 {
     "name": "swag/plugin-dependency",
-    "description": "Plugin requiring other plugins",
-    "version": "v1.0.0",
+    "description": "Plugin requiring shared functionality",
+    "version": "1.0.0",
     "type": "shopware-platform-plugin",
     "license": "MIT",
     "authors": [
@@ -47,8 +47,8 @@ In order to require the `SwagBasicExample` plugin now, you simply have to add th
         }
     ],
     "require": {
-        "shopware/core": "6.1.*",
-        "swag/SwagBasicExample": "v1.0.0"
+        "shopware/core": "~6.7.0",
+        "swag/basic-example": "^1.0"
     },
     "extra": {
         "shopware-plugin-class": "Swag\\PluginDependency\\PluginDependency",
@@ -69,11 +69,25 @@ In order to require the `SwagBasicExample` plugin now, you simply have to add th
 }
 ```
 
-Have a detailed look at the `require` keyword, which now requires both the Shopware 6 version, which **always** has to be mentioned in your `composer.json`, as well as the previously mentioned plugin and its version. Just as in composer itself, you can also use version wildcards, such as `v1.0.*` to only require the other plugin's minor version to be 1.1, not taking the patch version into account when it comes to find the matching plugin version.
+The `require` section now constrains both the supported Shopware version and the required plugin version. Use normal Composer version constraints so the dependency accepts the range you actually support. Avoid pinning an exact patch version unless the dependent plugin truly requires it.
 
-Now your plugin isn't installable anymore, until that requirement is fulfilled.
+Shopware cannot install the dependent plugin until its Composer requirements are fulfilled.
+
+## Shared foundations and extension families
+
+A shared foundation plugin can be useful when several related extensions intentionally reuse maintenance-heavy domain logic, integrations, or services. Keep the dependent plugins or themes thin and make the dependency explicit when they cannot work without the foundation.
+
+The trade-off is coordinated maintenance. A change to the foundation can require compatibility testing and releases across every dependent extension, and Shopware upgrades add another dimension to that compatibility matrix.
+
+Before adding a dependency, consider whether one of these structures fits better:
+
+- Consolidate tightly related functionality into one plugin when the features always ship and change together.
+- Use a Composer library or project bundle for reusable code that does not need to be a separately installed Shopware plugin.
+- Use [theme inheritance](../../themes/inheritance/add-theme-inheritance.md) when the shared layer is presentation-specific.
+
+See [Code structure](../../../development/extensions/code-structure.md) for broader guidance on organizing related extensions and minimizing upgrade friction.
 
 ## More interesting topics
 
-* [Using Composer dependencies](using-composer-dependencies.md)
-* [Using NPM dependencies](using-npm-dependencies.md)
+- [Using Composer dependencies](using-composer-dependencies.md)
+- [Using NPM dependencies](using-npm-dependencies.md)

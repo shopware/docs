@@ -19,17 +19,17 @@ Our documentation categorizes visuals into different types, including screenshot
 
 ### Diagram specifications
 
-| Image attributes | Specification | Notes|
-|------------------|---------------|---------|
-| File type| Only .png, .svg and .gif| Use a lossless image format for screenshots (i.e., PNG) and vector format (i.e., SVG) for drawings (diagram, chart, logos, ...).|
-|File size | max. 5 MB | It is best to upload high-quality images. |
-|File name | Only use letters and hyphens `<topicName>-<subtopicName>-<meaningfulImageName>.md.` | Use the naming convention documented below in naming conventions for images.|
-|Image size | Width: max 768px, Height: max 576px | This is automatically taken care by the inbuilt functions in our docs.|
-|Aspect ratio | 4:3 | This is automatically taken care by the inbuilt functions in our docs. |
-|Copyright| - |Determine if an image or diagram is protected by copyright. If it is, you must obtain permission and acknowledge credit.|
-|Personal identifiable information (PII) | - | Make sure to mask, modify, or remove any PII such as passwords, logins, account details, or other information that could compromise security.|
-|Alt tags| `![Alt](/path/to/img.jpg “image title”)` | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and image SEOs.|
-|Borders|-|No borders are added to the images|
+| Image attributes                        | Specification                                                                       | Notes                                                                                                                                         |
+| --------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| File type                               | Only .png, .svg and .gif                                                            | Use a lossless image format for screenshots (i.e., PNG) and vector format (i.e., SVG) for drawings (diagram, chart, logos, ...).              |
+| File size                               | max. 5 MB                                                                           | It is best to upload high-quality images.                                                                                                     |
+| File name                               | Only use letters and hyphens `<topicName>-<subtopicName>-<meaningfulImageName>.md.` | Use the naming convention documented below in naming conventions for images.                                                                  |
+| Image size                              | Width: max 768px, Height: max 576px                                                 | This is automatically taken care by the inbuilt functions in our docs.                                                                        |
+| Aspect ratio                            | 4:3                                                                                 | This is automatically taken care by the inbuilt functions in our docs.                                                                        |
+| Copyright                               | -                                                                                   | Determine if an image or diagram is protected by copyright. If it is, you must obtain permission and acknowledge credit.                      |
+| Personal identifiable information (PII) | -                                                                                   | Make sure to mask, modify, or remove any PII such as passwords, logins, account details, or other information that could compromise security. |
+| Alt tags                                | `![Alt](/path/to/img.jpg “image title”)`                                            | Make sure to include alt text for every image. The text is used in situations where the image isn’t visible and image SEOs.                   |
+| Borders                                 | -                                                                                   | No borders are added to the images                                                                                                            |
 
 ### Considerations for Visual Diagrams
 
@@ -39,7 +39,7 @@ Our documentation categorizes visuals into different types, including screenshot
 
 * Use the below naming convention for the images:
 
-  * *`<topicName>-<meaningfulImageName>.svg`*. For example,
+    * *`<topicName>-<meaningfulImageName>.svg`*. For example,
 
 ```markdown
 storefront-pages.svg

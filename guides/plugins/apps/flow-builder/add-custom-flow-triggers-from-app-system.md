@@ -49,7 +49,7 @@ To get started with your app, create an `apps` folder inside the `custom` folder
 ```
 
 | File name             | Description                                        |
-|:----------------------|:---------------------------------------------------|
+| :-------------------- | :------------------------------------------------- |
 | FlowBuilderTriggerApp | Your app's technical name                          |
 | flow.xml              | Place to define your new triggers                  |
 | de-DE.json            | Snippet to translate your trigger name for Deutsch |
@@ -117,10 +117,10 @@ A single flow trigger would look like this:
 </flow-event>
 ```
 
-| Key          | Required | Description                                                 |
-|:-------------|:---------|:------------------------------------------------------------|
-| name         | yes      | The technical name of your trigger, unique for all actions. |
-| aware        | no       | Filter actions for your trigger, read more below.           |
+| Key   | Required | Description                                                 |
+| :---- | :------- | :---------------------------------------------------------- |
+| name  | yes      | The technical name of your trigger, unique for all actions. |
+| aware | no       | Filter actions for your trigger, read more below.           |
 
 **aware**
 
@@ -154,7 +154,7 @@ Each value defined, it represents one of the `aware` interfaces from the `core`.
 To fulfill the `aware`, refer to a subset of action triggers aware:
 
 | Value              | Interface                                        |
-|:-------------------|:-------------------------------------------------|
+| :----------------- | :----------------------------------------------- |
 | customerAware      | Shopware\Core\Framework\Event\CustomerAware      |
 | customerGroupAware | Shopware\Core\Framework\Event\CustomerGroupAware |
 | delayAware         | Shopware\Core\Framework\Event\DelayAware         |
@@ -204,11 +204,11 @@ You can define snippets to translate your custom trigger to show the trigger tre
 
 Snippet keys should be defined based on your trigger name defined at `<name>` in your `flow.xml`.
 
-| Fixed key            | Description                                                          |
-|:---------------------|:---------------------------------------------------------------------|
-| sw-flow-custom-event | All the keys related to the custom trigger will be defined inside    |
-| event-tree           | All the keys used to trigger the tree will be defined inside         |
-| flow-list            | All the keys used to flow list will be defined inside                |
+| Fixed key            | Description                                                       |
+| :------------------- | :---------------------------------------------------------------- |
+| sw-flow-custom-event | All the keys related to the custom trigger will be defined inside |
+| event-tree           | All the keys used to trigger the tree will be defined inside      |
+| flow-list            | All the keys used to flow list will be defined inside             |
 
 ***Example***
 

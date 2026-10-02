@@ -13,13 +13,13 @@ nav:
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Workflow stuck deploying | Redeploy |
-| Unauthorized errors | Re-authenticate |
-| Missing event data | Inspect payload with Log node |
-| BC filter returns empty | Validate OData syntax |
-| Slack message not sent | Re-authorize Slack |
+| Issue                    | Solution                      |
+| ------------------------ | ----------------------------- |
+| Workflow stuck deploying | Redeploy                      |
+| Unauthorized errors      | Re-authenticate               |
+| Missing event data       | Inspect payload with Log node |
+| BC filter returns empty  | Validate OData syntax         |
+| Slack message not sent   | Re-authorize Slack            |
 
 ### Activating the Nexus ingestion service
 

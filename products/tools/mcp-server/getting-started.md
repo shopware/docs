@@ -40,7 +40,7 @@ The `--admin` flag grants full Admin API access. For production use, omit `--adm
 Both clients use `"type": "streamable-http"`. Add the following config to the appropriate file:
 
 | Client                   | Config file                                                       |
-|--------------------------|-------------------------------------------------------------------|
+| ------------------------ | ----------------------------------------------------------------- |
 | Claude Desktop (macOS)   | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json`                     |
 | Cursor (project)         | `.cursor/mcp.json` in your project root                           |

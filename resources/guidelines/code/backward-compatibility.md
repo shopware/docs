@@ -67,13 +67,13 @@ See [Announced API changes](#announced-api-changes-bc-change-attributes) for eve
 
 When developing new features, the goal should always be to do this in a backward compatible way. This ensures that the feature can be shipped with a minor release to provide value for customers as soon as possible. The following table should help you to use the correct approach for each type of change.
 
-| Case                   | During development                                                                                                                                                                                                                                                                                                                                                             | On feature release                                                                                                                                       | Next major release                              |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| 🚩 **Feature Flag**    | Hide code behind normal [feature flag](https://developer.shopware.com/docs/resources/references/adr/2020-08-10-feature-flag-system.html).                                                                                                                                                                                                                                      | Remove the feature flag.                                                                                                                                 |                                                 |
-| ➕ **New code**        | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                                                                                                                 | Remove `@internal` annotation.                                                                                                                           |                                                 |
-| ⚪ **Obsolete code**   | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                                                                                                          | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                        | Remove old code.                                |
-| 🔴 **Breaking change** | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](https://developer.shopware.com/docs/resources/references/adr/2020-08-10-feature-flag-system.html). Also, create a separate [changelog](https://developer.shopware.com/docs/resources/references/adr/2020-08-03-implement-new-changelog.html) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
-| 🔍 **Tests**           | Add new tests behind a feature flag.                                                                                                                                                                                                                                                                                                                                           | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                            |
+| Case                   | During development                                                                                                                                                                                                                                                                                                                                                                                 | On feature release                                                                                                                                       | Next major release                              |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 🚩 **Feature Flag**    | Hide code behind normal [feature flag](https://developer.shopware.com/docs/resources/references/adr/2022-01-20-feature-flags-for-major-versions.html).                                                                                                                                                                                                                                             | Remove the feature flag.                                                                                                                                 |                                                 |
+| ➕ **New code**        | Add `@internal annotation` for new public API.                                                                                                                                                                                                                                                                                                                                                     | Remove `@internal` annotation.                                                                                                                           |                                                 |
+| ⚪ **Obsolete code**   | Add `@feature-deprecated` annotation.                                                                                                                                                                                                                                                                                                                                                              | Replace @feature-deprecated with normal `@deprecated` annotation.                                                                                        | Remove old code.                                |
+| 🔴 **Breaking change** | Add `@major-deprecated` annotation. Hide breaking code behind additional major [feature flag](https://developer.shopware.com/docs/resources/references/adr/2022-01-20-feature-flags-for-major-versions.html). Also, create a separate [changelog](https://developer.shopware.com/docs/resources/references/adr/2025-10-28-changelog-release-info-process.html) for the change with the major flag. |                                                                                                                                                          | Remove old code. Remove the major feature flag. |
+| 🔍 **Tests**           | Add new tests behind a feature flag.                                                                                                                                                                                                                                                                                                                                                               | Remove feature flags from new tests. Declare old tests as [legacy](https://symfony.com/doc/current/components/phpunit_bridge.html#mark-tests-as-legacy). | Remove legacy tests.                            |
 
 You can also find more detailed information and code examples in the corresponding **[ADR](https://github.com/shopware/shopware/tree/trunk/adr)** for the deprecation strategy.
 
@@ -82,7 +82,7 @@ You can also find more detailed information and code examples in the correspondi
 The first goal should always be to make your changes backward compatible. But there might be some special cases where it isn't possible in any way. In this case, the change can only be released with a major version. As we develop all changes in the same code base, the `trunk` branch, the changes have to stay behind a special feature flag, which is especially marked as a major feature flag.
 
 | Case                   | During development                                                                                                                                             | Next major release (feature release) |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | 🚩 **Feature Flag**    | Hide code behind a major feature flag.                                                                                                                         | Remove major feature flag.           |
 | ➕ **New code**        | Add `@internal` annotation for new public API.                                                                                                                 | Remove `@internal` annotation.       |
 | ⚪ **Obsolete code**   | Add `@major-deprecated` annotation.                                                                                                                            | Remove old code.                     |
@@ -94,7 +94,7 @@ The first goal should always be to make your changes backward compatible. But th
 This section lists every BC-change attribute, who is affected, and how to write extension code **today** that keeps working after the announced change. The directional naming is deliberate: PHP's variance rules make one direction of every change safe to anticipate, so in almost all cases a single code path is compatible with the current *and* the next major version — no version checks needed.
 
 | Attribute                        | Announces                                        | Affects                 | Safe opt-in today                                                             |
-|----------------------------------|--------------------------------------------------|-------------------------|-------------------------------------------------------------------------------|
+| -------------------------------- | ------------------------------------------------ | ----------------------- | ----------------------------------------------------------------------------- |
 | `#[ReturnTypeNarrowing]`         | Return type becomes narrower                     | Extenders               | ✅ Declare the announced type in your override now                            |
 | `#[ReturnTypeWidening]`          | Return type becomes wider                        | Call sites              | ✅ Handle the announced type now                                              |
 | `#[ParameterTypeNarrowing]`      | Parameter type becomes narrower                  | Call sites              | ✅ Pass only values of the announced type now                                 |
@@ -109,7 +109,11 @@ This section lists every BC-change attribute, who is affected, and how to write 
 | `#[BecomesFinal]`                | A class becomes final                            | Extenders               | ⚠️ Switch from inheritance to decoration/composition — works on both versions |
 | `#[BecomesInternal]`             | A symbol becomes `@internal`                     | Call sites & extenders  | ✅ Stop using it now                                                          |
 | `#[VisibilityChange]`            | Visibility is reduced (e.g., public → protected) | Call sites & extenders  | ⚠️ Stop external calls now; narrow overrides in the next major                |
+| `#[PropertyTypeNarrowing]`       | A property type becomes narrower                 | Call sites & extenders  | ✅ Assign only values of the announced type; stop redeclaring the property    |
+| `#[PropertyTypeWidening]`        | A property type becomes wider                    | Call sites & extenders  | ✅ Handle the announced type when reading; stop redeclaring the property      |
+| `#[BecomesReadonly]`             | A property becomes `readonly`                    | Call sites & extenders  | ✅ Stop assigning it outside the declaring class; stop redeclaring it         |
 | `#[ClassHierarchyChange]`        | The inheritance chain of a class changes         | Call sites & extenders  | ⚠️ Depends on the change — stop relying on ancestors that go away             |
+| `#[ClassMoved]`                  | A class moves to another namespace               | Call sites & extenders  | ✅ Use the new fully qualified class name now                                 |
 
 ### Quick guides per attribute
 
@@ -366,9 +370,54 @@ class ImitateCustomerTokenGenerator
 public function buildName(string $id): string
 ```
 
-**Call sites**: Stop calling the method from outside the announced scope now — inline the logic or use the replacement named in the description. That code works on both versions.
+**Call sites**: Stop accessing the symbol from outside the announced scope now — inline the logic or use the replacement named in the description. For a property, this includes reads and writes. That code works on both versions.
 
-**Extending classes**: PHP allows an override to be more visible than its parent, so the current public signature remains valid during the transition. Before the announced version, stop relying on external calls to the override; then narrow its visibility to the announced one in the next major. Do not build new public API on top of it.
+**Extending classes**: For methods, PHP allows an override to be more visible than its parent, so the current public signature remains valid during the transition. Before the announced version, stop relying on external calls to the override; then narrow its visibility to the announced one in the next major. Do not build new public API on top of it. For properties, stop accessing the property from outside the announced scope; a property that becomes private must also not be redeclared in a subclass.
+
+#### PropertyTypeNarrowing
+
+```php
+#[PropertyTypeNarrowing(version: 'v6.8.0', newType: 'string')]
+public string|int $externalId;
+```
+
+**Call sites**: Reading the property is unchanged: every future value is already covered by the current type. Assign only values of the announced type now:
+
+```php
+// works on both versions
+$entity->externalId = (string) $externalId;
+```
+
+**Extending classes**: Stop redeclaring the property. PHP property types are invariant, so no redeclaration can use both the current and announced type. Move the extension state to a differently named property or a separate object.
+
+#### PropertyTypeWidening
+
+```php
+#[PropertyTypeWidening(version: 'v6.8.0', newType: 'string|null')]
+public string $externalId;
+```
+
+**Call sites**: Assignments remain compatible because every value accepted today remains accepted. Prepare reads for every announced value now:
+
+```php
+// works on both versions
+$externalId = $entity->externalId ?? '';
+```
+
+**Extending classes**: Stop redeclaring the property. PHP property types are invariant, so no redeclaration can use both the current and announced type. Move the extension state to a differently named property or a separate object.
+
+#### BecomesReadonly
+
+```php
+#[BecomesReadonly(version: 'v6.8.0')]
+public string $externalId;
+```
+
+**Call sites**: Stop assigning to the property outside its declaring class. Pass the value to the constructor or use the replacement mutation method instead. Reading the property remains compatible.
+
+**Extending classes**: Stop redeclaring the property. A `readonly` property cannot be made compatible with a mutable redeclaration across both versions; keep extension state in a differently named property or a separate object.
+
+`#[BecomesReadonly]` intentionally applies to properties, not classes. If a class is made readonly only because all of its properties become readonly, announce the change on each affected property. Making a whole class readonly can also affect dynamic properties, untyped or static properties, and inheritance, so it needs a separate BC assessment.
 
 #### ClassHierarchyChange
 
@@ -381,6 +430,28 @@ class ProductListingResult extends EntitySearchResult
 
 **Extending classes**: The same applies to your subclass, plus one more thing: methods and properties your subclass inherits *through* a leaving ancestor disappear with it. Stop using them, or implement them yourself — both work on both versions.
 
+#### ClassMoved
+
+```php
+use Shopware\Core\Framework\Deprecation\BCChange\ClassMoved;
+
+#[ClassMoved(
+    version: 'v6.8.0',
+    previousClassName: 'Shopware\OldNamespace\ExampleClass',
+)]
+class ExampleClass
+{
+}
+```
+
+`#[ClassMoved]` marks the class in its new, canonical namespace. Until the announced version, Shopware registers the previous fully qualified name as an eager `class_alias()`, so both names resolve to the same runtime class. This preserves construction, type declarations, static access, and inheritance without creating a compatibility subclass or a second class identity. Reflection reports the canonical declaration, so do not rely on the previous name being a distinct class.
+
+**Call sites**: Import and use the canonical class name now. If the class is a dependency-injection service, use the canonical class name as the service ID as well. The previous class and service names remain available only for backward compatibility and are removed in the announced version.
+
+**Extending classes**: Extend the canonical class name now. The alias preserves the same inheritance behavior during the transition, but disappears in the announced version.
+
+The attribute means that the implementation survives under a new fully qualified name. It does not announce that the class's behavior is removed or replaced.
+
 ## Compatibility sheet
 
 To ensure backward compatibility, it is important to know what you are allowed to do and what not. The following sheet should give you an orientation on common changes and how they could affect the backward compatibility. Although a lot of effort went into this list, it is not guaranteed to be 100% complete. Always keep the persona of third-party developers in mind and challenge your changes against external needs.
@@ -392,7 +463,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 **[Symfony Backward Compatibility Promise](https://symfony.com/doc/current/contributing/code/bc.html)**
 
 | Use Case                                                                                                      | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                      |
-|---------------------------------------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Change the typehint of a class, interface or trait.                                                           | 🔴 NO      | Add the new typehint as an abstract class. <br>Code Example: [Extend class with abstract class](#extend-class-with-abstract-class)                                                                                                        |
 | Change the constructor of a service.                                                                          | ✅ YES     | Services have to be instantiated over the container, so the changes should not break anything.                                                                                                                                            |
 | Change the constructor of a class, that is not a service. (Instantiated with new Class())                     | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br> Code Example: [Add an argument](#add-an-argument) |
@@ -404,7 +475,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 | Change the value of a private constant.                                                                       | ✅ YES     | Check all potential usages of the constant. Maybe it is used somewhere to be stored in the database. In that case, you must write a migration for it which ensures every use of the constant in a db-value is updated as well.            |
 | Change a class to final.                                                                                      | 🔴 NO      | Announce it with `#[BecomesFinal]` and apply the change in the next major version.                                                                                                                                                        |
 | Change the visibility of a class, method or property from public to private/protected or protected to private | 🔴 NO      | Announce it with `#[VisibilityChange]` and change the visibility in the next major version.                                                                                                                                               |
-| Change the namespace of a class.                                                                              | 🔴 NO      | Duplicate the class and mark the old one as deprecated.                                                                                                                                                                                   |
+| Change the namespace of a class.                                                                              | ⚪ PARTIAL | When Shopware marks the canonical class with `#[ClassMoved]`, switch imports and class-name service IDs to the canonical name. See [ClassMoved](#classmoved).                                                                             |
 | Change static state (remove static or delete static keyword).                                                 | 🔴 NO      | Annotate it as deprecated and add or remove the static keyword in the next major version.                                                                                                                                                 |
 | Add parameter to interface or abstract class function.                                                        | ⚪ PARTIAL | Only optional arguments are allowed to be added and this should be made via `func_get_args()`. Announce the parameter with `#[NewOptionalParameter]` or `#[NewRequiredParameter]`. <br> Code Example: [Add an argument](#add-an-argument) |
 | Add new public function to interface.                                                                         | 🔴 NO      |                                                                                                                                                                                                                                           |
@@ -421,7 +492,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### TWIG templates
 
 | Use Case                                                          | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                                                               |
-|-------------------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Removing TWIG blocks.                                             | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate TWIG block](#deprecate-twig-block)                                                                                                                                                                                       |
 | Renaming TWIG blocks.                                             | 🔴 NO      | Use the deprecation workflow. Create a new surrounding block with the new name and deprecate the old one. All variables which are defined in the scope of the old block must be moved to the new surrounding block scope.<br>Code Example: [Rename TWIG block](#rename-twig-block) |
 | Moving TWIG blocks within the same file.                          | ⚪ PARTIAL | Only within the same scope/parent block.                                                                                                                                                                                                                                           |
@@ -435,7 +506,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### HTML
 
 | Use Case                                   | Allowed?   | Notes / Alternatives                                                                               |
-|--------------------------------------------|------------|----------------------------------------------------------------------------------------------------|
+| ------------------------------------------ | ---------- | -------------------------------------------------------------------------------------------------- |
 | Removing HTML sections.                    | 🔴 NO      |                                                                                                    |
 | Moving HTML sections within the same file. | ⚪ PARTIAL | Only within the same TWIG Block.                                                                   |
 | Renaming of removing CSS selectors.        | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate CSS selectors](#deprecate-css-selectors) |
@@ -443,7 +514,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### JavaScript
 
 | Use Case                                           | Allowed? | Notes / Alternatives                                                                                                 |
-|----------------------------------------------------|----------|----------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
 | Renaming or removing JS services.                  | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Renaming or removing JS services](#renaming-or-removing-js-services) |
 | Renaming or removing JS plugins.                   | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Renaming or removing JS plugins](#renaming-or-removing-js-plugins)   |
 | Changing the public API of a JS plugin or service. | 🔴 NO    | Use the deprecation workflow.<br>Code Example: [Add new public function](#add-new-public-function)                   |
@@ -454,7 +525,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### Styling / CSS
 
 | Use Case                                                  | Allowed?   | Notes / Alternatives                                                                                                                                                                                        |
-|-----------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Renaming or removing CSS definitions.                     | ⚪ PARTIAL | Only CSS properties that have a visual effect but no structure or functional CSS properties. Not allowed are: <br>`display`, `position`, `visibility`, `z-index`, `pointer-events`, `overflow`, `transform` |
 | Changing generic selectors of the Bootstrap framework.    | ⚪ PARTIAL | Be aware of what you are doing. Fixing a small styling issue might be ok. Changing structural properties might have a big impact on the layout and functionality.                                           |
 | Changing the CSS properties of generic Bootstrap classes. | ⚪ PARTIAL | Be aware of what you are doing. Fixing a small styling issue might be ok. Changing structural properties might have a big impact on the layout and functionality.                                           |
@@ -466,7 +537,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### Component Templates
 
 | Use Case                                                                       | Allowed?   | Notes / Alternatives                                                                         |
-|--------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------------------------ | ---------- | -------------------------------------------------------------------------------------------- |
 | Renaming or removing TWIG blocks.                                              | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate TWIG block](#deprecate-twig-block) |
 | Moving TWIG blocks within the same file.                                       | ⚪ PARTIAL | Only within the same scope/parent block.                                                     |
 | Changing the "ref" attribute of elements.                                      | 🔴 NO      |                                                                                              |
@@ -479,7 +550,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### JavaScript Modules & Components
 
 | Use Case                                                     | Allowed?   | Notes / Alternatives                                                                                                                                                                                                                                             |
-|--------------------------------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Renaming or removing base components.                        | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                                         |
 | Renaming or removing module components.                      | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Deprecate admin components](#deprecate-admin-components)                                                                                                                                                         |
 | Renaming or removing methods                                 | 🔴 NO      | Use the deprecation workflow.<br>Code Example: [Rename a method](#rename-a-method)                                                                                                                                                                               |
@@ -500,7 +571,7 @@ As Shopware is based on the PHP framework Symfony, we also have to make sure to 
 #### Component Styling
 
 | Use Case                                                 | Allowed?   | Notes / Alternatives                                                                                                                                                                                        |
-|----------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Renaming or removing CSS definitions.                    | ⚪ PARTIAL | Only CSS properties that have a visual effect but no structure or functional CSS properties. Not allowed are: <br>`display`, `position`, `visibility`, `z-index`, `pointer-events`, `overflow`, `transform` |
 | Renaming or removing functional selectors, like `is--*`. | 🔴 NO      |                                                                                                                                                                                                             |
 | Renaming or removing root CSS selectors.                 | 🔴 NO      |                                                                                                                                                                                                             |

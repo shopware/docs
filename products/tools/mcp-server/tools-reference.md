@@ -35,10 +35,10 @@ With core alone, a fresh MCP session advertises only the three discovery tools b
 
 Search the tool catalogue using a free-text query. The search covers every registered tool, including tools that are not currently advertised, and drops everything the effective allowlist does not permit.
 
-| Name         | Type   | Required | Default | Description                                    |
-|--------------|--------|----------|---------|--------------------------------------------------|
+| Name         | Type   | Required | Default | Description                                              |
+| ------------ | ------ | -------- | ------- | -------------------------------------------------------- |
 | `query`      | string | yes      | —       | Free-text search query, such as `upload a product image` |
-| `maxResults` | int    | no       | 3       | Maximum number of results, capped at 20        |
+| `maxResults` | int    | no       | 3       | Maximum number of results, capped at 20                  |
 
 Each result contains the complete `tool` definition, a `score`, and `matchedIn` — the places the query matched, such as `name:prefix`, `description`, or `parameter`. The `_meta` field reports the echoed `query`, the number of `totalCandidates` considered, and a `usage` hint describing the next step.
 
@@ -56,8 +56,8 @@ This tool has no parameters. Without an `Mcp-Session-Id` header, every entry rep
 
 Enable one toolset for the current MCP session.
 
-| Name      | Type   | Required | Description                                      |
-|-----------|--------|----------|--------------------------------------------------|
+| Name      | Type   | Required | Description                                       |
+| --------- | ------ | -------- | ------------------------------------------------- |
 | `toolset` | string | yes      | Toolset name returned by `shopware-toolsets-list` |
 
 Enable one toolset per call. There is no counterpart for disabling a toolset, and enabling the same toolset twice is a no-op. The call needs an active MCP session; without one it fails with `Cannot enable an MCP toolset without an active MCP session.` An unknown or non-visible name fails with `Unknown MCP toolset "<name>". Call shopware-toolsets-list first to list available toolsets.`
@@ -68,14 +68,14 @@ The response sets `_meta.listChanged` to `true` and Shopware emits `notification
 
 Every tool belongs to exactly one group, and every group except `discovery` becomes a toolset that a client can enable. Core ships these toolsets:
 
-| Toolset         | Title                | Tools                                                                                                                                                    |
-|-----------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `entity`        | Entity tools         | `shopware-entity-schema`, `shopware-entity-search`, `shopware-entity-read`, `shopware-entity-aggregate`, `shopware-entity-upsert`, `shopware-entity-delete` |
-| `system-config` | System config tools  | `shopware-system-config-read`, `shopware-system-config-write`                                                                                            |
-| `media`         | Media tools          | `shopware-media-upload`                                                                                                                                  |
-| `order`         | Order tools          | `shopware-order-state`                                                                                                                                   |
-| `theme`         | Theme tools          | `shopware-theme-config` (Storefront bundle)                                                                                                              |
-| `store-api`     | Store api tools      | `shopware-store-api-context` — [Store API endpoint](./store-api.md) only                                                                                 |
+| Toolset         | Title               | Tools                                                                                                                                                       |
+| --------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `entity`        | Entity tools        | `shopware-entity-schema`, `shopware-entity-search`, `shopware-entity-read`, `shopware-entity-aggregate`, `shopware-entity-upsert`, `shopware-entity-delete` |
+| `system-config` | System config tools | `shopware-system-config-read`, `shopware-system-config-write`                                                                                               |
+| `media`         | Media tools         | `shopware-media-upload`                                                                                                                                     |
+| `order`         | Order tools         | `shopware-order-state`                                                                                                                                      |
+| `theme`         | Theme tools         | `shopware-theme-config` (Storefront bundle)                                                                                                                 |
+| `store-api`     | Store api tools     | `shopware-store-api-context` — [Store API endpoint](./store-api.md) only                                                                                    |
 
 The `discovery` group holds `shopware-tool-search`, `shopware-toolsets-list`, and `shopware-toolset-enable`. It is always advertised and never appears in `shopware-toolsets-list`, so it cannot be enabled or disabled.
 
@@ -101,7 +101,7 @@ Pass `dryRun=false` explicitly to commit the change.
 When you enable a tool in the integration's tool allowlist, its declared dependencies are automatically included:
 
 | Tool                           | Depends on                    |
-|--------------------------------|-------------------------------|
+| ------------------------------ | ----------------------------- |
 | `shopware-entity-read`         | `shopware-entity-schema`      |
 | `shopware-entity-search`       | `shopware-entity-schema`      |
 | `shopware-entity-aggregate`    | `shopware-entity-schema`      |
@@ -120,7 +120,7 @@ Get the field and association schema of any Shopware entity. Use this first to d
 **Parameters:**
 
 | Name     | Type   | Required | Description                                        |
-|----------|--------|----------|----------------------------------------------------|
+| -------- | ------ | -------- | -------------------------------------------------- |
 | `entity` | string | yes      | Entity name (e.g., `product`, `order`, `customer`) |
 
 **Example:**
@@ -140,7 +140,7 @@ Search entity records using Admin API criteria. Returns entity rows with paginat
 **Parameters:**
 
 | Name       | Type   | Required | Default | Description           |
-|------------|--------|----------|---------|-----------------------|
+| ---------- | ------ | -------- | ------- | --------------------- |
 | `entity`   | string | yes      | —       | Entity name           |
 | `criteria` | string | no       | `{}`    | JSON criteria object  |
 | `limit`    | int    | no       | 25      | Results per page      |
@@ -172,7 +172,7 @@ Use this instead of `shopware-entity-search` when you need counts, averages, sum
 **Parameters:**
 
 | Name           | Type   | Required | Default | Description                           |
-|----------------|--------|----------|---------|---------------------------------------|
+| -------------- | ------ | -------- | ------- | ------------------------------------- |
 | `entity`       | string | yes      | —       | Entity name                           |
 | `aggregations` | string | yes      | —       | JSON array of aggregation definitions |
 | `filters`      | string | no       | `[]`    | JSON array of filter definitions      |
@@ -204,7 +204,7 @@ Read a single entity by its UUID. Use when you already have an entity ID; for se
 **Parameters:**
 
 | Name       | Type   | Required | Description                    |
-|------------|--------|----------|--------------------------------|
+| ---------- | ------ | -------- | ------------------------------ |
 | `entity`   | string | yes      | Entity name                    |
 | `id`       | string | yes      | Entity UUID                    |
 | `criteria` | string | no       | JSON criteria for associations |
@@ -218,7 +218,7 @@ Read system configuration values. Pass a domain prefix to retrieve all keys unde
 **Parameters:**
 
 | Name             | Type   | Required | Description                                        |
-|------------------|--------|----------|----------------------------------------------------|
+| ---------------- | ------ | -------- | -------------------------------------------------- |
 | `key`            | string | yes      | Config key or domain prefix (e.g., `core.listing`) |
 | `salesChannelId` | string | no       | Scope the read to a specific sales channel         |
 
@@ -239,7 +239,7 @@ ACL is checked per item: payloads **without** an `id` require `{entity}:create`;
 **Parameters:**
 
 | Name      | Type   | Required | Default | Description                                                                   |
-|-----------|--------|----------|---------|-------------------------------------------------------------------------------|
+| --------- | ------ | -------- | ------- | ----------------------------------------------------------------------------- |
 | `entity`  | string | yes      | —       | Entity name                                                                   |
 | `payload` | string | yes      | —       | JSON object or array of objects. Omit `id` to create; include `id` to update. |
 | `dryRun`  | bool   | no       | `true`  | Preview without persisting                                                    |
@@ -253,7 +253,7 @@ Delete entities by their UUIDs. Returns a cascade impact preview in dry-run mode
 **Parameters:**
 
 | Name     | Type   | Required | Default | Description             |
-|----------|--------|----------|---------|-------------------------|
+| -------- | ------ | -------- | ------- | ----------------------- |
 | `entity` | string | yes      | —       | Entity name             |
 | `ids`    | string | yes      | —       | JSON array of UUIDs     |
 | `dryRun` | bool   | no       | `true`  | Preview cascade effects |
@@ -271,7 +271,7 @@ Update a system configuration value. Shows a before/after diff in dry-run mode.
 **Parameters:**
 
 | Name             | Type   | Required | Default | Description                                |
-|------------------|--------|----------|---------|--------------------------------------------|
+| ---------------- | ------ | -------- | ------- | ------------------------------------------ |
 | `key`            | string | yes      | —       | Full config key                            |
 | `value`          | string | yes      | —       | New value (JSON-encoded for complex types) |
 | `salesChannelId` | string | no       | —       | Scope to a sales channel                   |
@@ -286,7 +286,7 @@ Change the state of an order, its transactions, and/or its deliveries in one cal
 **Parameters:**
 
 | Name                | Type   | Required | Default | Description                                                            |
-|---------------------|--------|----------|---------|------------------------------------------------------------------------|
+| ------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------- |
 | `orderNumber`       | string | one of   | —       | Order number (e.g., `10001`). Mutually exclusive with `orderId`        |
 | `orderId`           | string | one of   | —       | Order UUID. Mutually exclusive with `orderNumber`                      |
 | `orderAction`       | string | no       | —       | Action for the order (e.g., `cancel`, `process`, `complete`, `reopen`) |
@@ -313,7 +313,7 @@ Upload a media file from a public URL. Optionally, assign it as the product's co
 **Parameters:**
 
 | Name            | Type   | Required | Description                                                          |
-|-----------------|--------|----------|----------------------------------------------------------------------|
+| --------------- | ------ | -------- | -------------------------------------------------------------------- |
 | `url`           | string | yes      | Public URL of the file to download                                   |
 | `fileName`      | string | no       | Desired file name (defaults to basename of URL)                      |
 | `mediaFolderId` | string | no       | UUID of the media folder                                             |
@@ -332,7 +332,7 @@ Read or update the theme configuration for a sales channel. Manages brand colors
 **Parameters:**
 
 | Name             | Type   | Required                   | Default | Description                                                                                                                                                          |
-|------------------|--------|----------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | ------ | -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `salesChannelId` | string | yes (validated at runtime) | `""`    | Sales channel UUID. Optional in the JSON schema, so agents do not refuse the call when the user has not provided one; the tool returns an actionable error if empty. |
 | `action`         | string | no                         | `"get"` | `get` or `update`                                                                                                                                                    |
 | `config`         | string | no                         | `"{}"`  | For `update`: JSON key-value pairs, e.g., `{"sw-color-brand-primary": {"value": "#0000ff"}}`                                                                         |
@@ -345,7 +345,7 @@ Read or update the theme configuration for a sales channel. Manages brand colors
 Resources are static reference data available via MCP resource URIs. They require no tool call and do not consume tool-call budget.
 
 | URI                          | Description                                                                                     |
-|------------------------------|-------------------------------------------------------------------------------------------------|
+| ---------------------------- | ----------------------------------------------------------------------------------------------- |
 | `shopware://entities`        | All registered entity names                                                                     |
 | `shopware://sales-channels`  | All sales channels with IDs, names, types, and domains                                          |
 | `shopware://currencies`      | All currencies with ISO codes, symbols, and factors                                             |
