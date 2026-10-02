@@ -19,7 +19,7 @@ You'll need:
 
 ## 1. Choose a name
 
-Use **UpperCamelCase**, which means that your plugin name must begin with a capital letter too. Whenever possible, begin it with a company prefix to avoid duplicate names (e.g., `SwagBasicExample`). Choose a name that describes your plugin as succinctly and clearly as possible.
+Use **PascalCase**, which means that your plugin name must begin with a capital letter too. Whenever possible, begin it with a company prefix to avoid duplicate names (e.g., `SwagBasicExample`). Choose a name that describes your plugin as succinctly and clearly as possible.
 
 ::: info
 A vendor prefix is required if you plan to publish your plugin in the [Shopware Community Store](https://store.shopware.com/en).
@@ -32,7 +32,7 @@ Plugins are located in `<shopware project root>/custom/plugins` and managed via 
 From your Shopware project's root directory, run:
 
 ```bash
-bin/console plugin:create SwagBasicExample
+bin/console plugin:create BasicExample
 ```
 
 ::: tip Choose the workflow that fits your environment
@@ -46,7 +46,7 @@ paths, service registration, and Shopware-version compatibility against the link
 guides.
 :::
 
-The command asks for a plugin name and namespace (both UpperCamelCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
+The command asks for a plugin name and namespace (both PascalCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `.gitignore`, and the PHPUnit setup.
 
 Use `--static` to create the plugin in `custom/static-plugins` instead of `custom/plugins`:
 
@@ -59,15 +59,13 @@ bin/console plugin:create SwagBasicExample --static
 Pass the `--no-scaffold` flag to skip all optional scaffold files and generate only the required plugin skeleton:
 
 ```bash
-bin/console plugin:create SwagBasicExample 'Swag\BasicExample' --no-scaffold
+bin/console plugin:create BasicExample Swag --no-scaffold
 ```
+When running the command interactively without the flag, you will be asked, "Add additional scaffolding?". Answering "no" has the same effect.
 
-The namespace is passed as a quoted argument because the backslash is part of the
-namespace. The plugin name and namespace must use `UpperCamelCase`; do not enter a
+The plugin name and namespace must use `PascalCase`; do not enter a
 human-readable name with spaces. The plugin name becomes the technical name used by
 Shopware to identify the plugin.
-
-When running the command interactively without the flag, you will be asked, "Would you like to scaffold optional plugin files?". Answering "no" has the same effect.
 
 This is the recommended starting point when you already know what your plugin needs. The optional scaffolding generates example code across several directories, which is useful as a reference but leaves files behind that you have to read and delete.
 
@@ -79,6 +77,7 @@ To generate a specific example instead of all of them, pass its option. Each opt
 | `--create-store-api-route` | Example Store API route with abstract class and response class |
 | `--create-event-subscriber` | Example event subscriber |
 | `--create-command` | Example console command |
+| `--create-plugin-config` | Example plugin config |
 | `--create-scheduled-task` | Example scheduled task |
 | `--create-admin-module` | Example Administration module with snippets |
 | `--create-javascript-plugin` | Example Storefront JavaScript plugin |
@@ -99,6 +98,7 @@ components use paths such as:
 | Administration module | `src/Resources/app/administration/` |
 | Storefront JavaScript plugin | `src/Resources/app/storefront/src/` |
 | Custom field set | `src/Resources/config/custom-fields.xml` |
+| Plugin config | `src/Resources/config/config.xml/` |
 
 Treat generated examples as starting points. Selecting an option can create several
 related files and service definitions; deleting only one file later can leave broken
