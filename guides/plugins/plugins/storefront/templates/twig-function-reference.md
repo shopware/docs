@@ -7,14 +7,15 @@ nav:
 
 # Twig Functions Reference
 
-In Shopware, Twig functionality is extended with custom tags, functions, filters, and extensions.
+In Shopware, Twig functionality is extended with custom tags, functions, filters, extensions, and additional syntax.
 
 ::: info
 Official support for complete Twig multi inheritance using sw_* equivalents available since 6.7
 :::
 
 ::: warning
-Templates which are imported via \{\% sw_use \%\} are not allowed to have additional twig statements outside of twig blocks. Therefore, changes in core templates which are imported via \{\% sw_use \%\} might break your app or plugin.
+Templates which are imported via \{\% sw_use \%\} are not allowed to have additional twig statements outside of twig blocks.
+Therefore, changes in core templates which are imported via \{\% sw_use \%\} might break your app or plugin.
 :::
 
 ## Tags
@@ -32,13 +33,15 @@ Templates which are imported via \{\% sw_use \%\} are not allowed to have additi
 
 ## Functions
 
-| Function       | Description                                                                                                                                                   | Notes                                                                                             |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------ |
-| `config`       | Gets a value from the system config (used by plugins and global settings) for the given sales channel                                                         | See [Reading the configuration values](../../../apps/lifecycle/configuration.md)                  |
-| `theme_config` | Gets a value from the current theme                                                                                                                           | See [Theme configuration](../../../themes/configuration/theme-configuration.md)                   |
-| `sw_block`     | Renders a block of the same or another file with support for multi-inheritance. This is the same as in Twig's default `block`                                 | See [Twig 3 documentation for `block`](https://twig.symfony.com/doc/3.x/functions/block.html)     |
-| `sw_source`    | Prints the content of a template file with support for multi-inheritance. This is the same as in Twig's default `source`                                      | See [Twig 3 documentation for  `source`](https://twig.symfony.com/doc/3.x/functions/source.html)  |
-| `sw_include`   | Renders the content of another template file with support for multi-inheritance. This is the same as in Twig's default `include` and the new `sw_include` tag | See [Twig 3 documentation for `include`](https://twig.symfony.com/doc/3.x/functions/include.html) |
+| Function          | Description                                                                                                                                                   | Notes                                                                                             |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------ |
+| `config`          | Gets a value from the system config (used by plugins and global settings) for the given sales channel                                                         | See [Reading the configuration values](../../../apps/lifecycle/configuration.md)                  |
+| `theme_config`    | Gets a value from the current theme                                                                                                                           | See [Theme configuration](../../../themes/configuration/theme-configuration.md)                   |
+| `sw_block`        | Renders a block of the same or another file with support for multi-inheritance. This is the same as in Twig's default `block`                                 | See [Twig 3 documentation for `block`](https://twig.symfony.com/doc/3.x/functions/block.html)     |
+| `sw_source`       | Prints the content of a template file with support for multi-inheritance. This is the same as in Twig's default `source`                                      | See [Twig 3 documentation for  `source`](https://twig.symfony.com/doc/3.x/functions/source.html)  |
+| `sw_include`      | Renders the content of another template file with support for multi-inheritance. This is the same as in Twig's default `include` and the new `sw_include` tag | See [Twig 3 documentation for `include`](https://twig.symfony.com/doc/3.x/functions/include.html) |
+| `array`           | Wraps an array in an `ArrayFacade`                                                                                                                            | ---                                                                                               |
+| `version_compare` | Compares two version strings                                                                                                                                  | ---                                                                                               |
 
 ## Filter
 
@@ -46,6 +49,13 @@ Templates which are imported via \{\% sw_use \%\} are not allowed to have additi
 | :------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `replace_recursive` | Enables recursive replacement in addition to twig's default `replace` filter                                                                                            | To see an example, see the guide on [add custom JavaScript](../javascript/add-custom-javascript.md)                                                                   |
 | `currency`          | Adopts currency formatting: The currency symbol and the comma setting.                                                                                                  | ---                                                                                                                                                                   |
+| `intval`            | Casts a scalar or stringable value to an integer                                                                                                                        | ---                                                                                                                                                                   |
+| `floatval`          | Casts a scalar or stringable value to a float                                                                                                                           | ---                                                                                                                                                                   |
+| `strval`            | Casts a scalar or stringable value to a string                                                                                                                          | ---                                                                                                                                                                   |
+| `boolval`           | Casts a scalar or stringable value to a boolean                                                                                                                         | ---                                                                                                                                                                   |
+| `json_encode`       | Encodes values as JSON while preserving zero fractions and respecting entity field visibility                                                                           | ---                                                                                                                                                                   |
+| `md5`               | Hashes a string or array with MD5                                                                                                                                       | ---                                                                                                                                                                   |
+| `sha256`            | Hashes a string or array with SHA-256                                                                                                                                   | ---                                                                                                                                                                   |
 | `sw_sanitize`       | Filters tags and attributes from a given string. By default, Twig's auto escaping is on, so this filter explicitly allows basic HTML tags like &lt;i%gt;, &lt;b&gt;,... | ---                                                                                                                                                                   |
 | `sw_convert_unit`   | Convert between measurement units                                                                                                                                       | Available since 6.7.1.0, to see examples, see the [adr on the measurement system](../../../../../resources/references/adr/2025-05-12-implement-measurement-system.md) |
 
@@ -60,3 +70,11 @@ Templates which are imported via \{\% sw_use \%\} are not allowed to have additi
 | `seoUrl()`                    | Returns seo URL of given route                                                                                      | ---                                                                                                                |
 | `searchMedia()`               | Resolves media ids to media objects                                                                                 | See [Add media](../../../../../guides/plugins/plugins/storefront/howto/use-media-thumbnails.md) guide for details. |
 | `rawUrl()`                    | Returns full URL                                                                                                    | ---                                                                                                                |
+
+## PHP-like syntax
+
+| Type         | Syntax                                                                                                                                                             |
+| :----------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Control flow | `foreach`, `break`, `continue`, and `return`                                                                                                                       |
+| Operators    | `===`, `!==`, `&&`, and `\|\|`                                                                                                                                     |
+| Type tests   | `{% if value is <type> %}` with `true`, `false`, `array`, `bool`, `boolean`, `callable`, `float`, `int`, `integer`, `instanceof`, `object`, `scalar`, and `string` |
