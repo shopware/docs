@@ -58,6 +58,80 @@ Use these entry points for common development and maintenance tasks:
 - **Manage a Store listing as code**: Keep Store metadata and images in Git with [`extension info pull` and `extension info push`](../../../products/tools/cli/shopware-account-commands/updating-store-page.md).
 - **Release to the Shopware Store**: Follow the [Store release workflow](../../../products/tools/cli/shopware-account-commands/releasing-extension-to-shopware-store.md) to validate the release artifact, upload it, and understand which review stages still happen in the Store.
 - **Design for upgrades**: Review the [Code Structure](code-structure.md) and [Upgrades and Migrations](../../upgrades-migrations/index.md) guides before introducing new cross-extension dependencies or compatibility constraints.
+- **Use stable extension points**: Prefer documented events, hooks, DAL extension points, decorators, app actions, and standard Symfony service configuration over depending on Shopware core implementation details such as internal framework classes or core compiler passes.
+
+## Dependency injection best practices
+
+When wiring your extension, use native Symfony dependency injection features in your own extension instead of relying on Shopware core compiler-pass classes.
+
+Recommended approaches include:
+
+- define services in `services.xml` or `services.yaml`
+- use `tags` for Symfony- or Shopware-documented extension points
+- use constructor injection
+- use service decoration where explicitly supported
+- create compiler passes only for your own plugin when you need to transform your own container configuration
+
+### Example: register and tag a service
+
+```xml
+<!-- src/Resources/config/services.xml -->
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="Swag\Example\Service\ExampleHandler">
+            <tag name="shopware.event_subscriber" />
+        </service>
+    </services>
+</container>
+```
+
+### Example: use constructor injection
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\Example\Service;
+
+use Psr\Log\LoggerInterface;
+
+class ExampleService
+{
+    public function __construct(
+        private readonly LoggerInterface $logger
+    ) {
+    }
+
+    public function run(): void
+    {
+        $this->logger->info('Example service executed');
+    }
+}
+```
+
+### Example: decorate a Shopware service
+
+Use decoration only where replacing or extending a service is a documented customization pattern.
+
+```xml
+<service id="Swag\Example\Core\Content\Product\SalesChannel\Listing\ExampleRouteDecorator"
+         decorates="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingRoute">
+    <argument type="service" id="Swag\Example\Core\Content\Product\SalesChannel\Listing\ExampleRouteDecorator.inner" />
+</service>
+```
+
+### Avoid coupling to core compiler passes
+
+Do not subclass, reference, or depend on Shopware core compiler-pass implementations. Treat them as framework internals.
+
+Instead of reusing a core compiler pass:
+
+1. identify the actual extension point you need
+2. register your own service or tag
+3. decorate the target service if decoration is supported
+4. add your own compiler pass only for processing services defined by your extension
+
+This keeps your extension portable across Shopware updates and avoids coupling to non-public container internals.
 
 ## MCP Server extensibility
 

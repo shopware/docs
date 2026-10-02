@@ -16,7 +16,7 @@ Generally speaking, the maintenance effort is the same whether you wait a long p
 
 There are two Shopware update types:
 
-- **Minor/Patch updates**: These updates contain new features, bug fixes and security patches. They are released every month for the active supported versions. They don't require special attention if your extensions are not using internal/experimental APIs. You can find more details in the [Backwards Compatibility Promise](../../../resources/guidelines/code/backward-compatibility.md).
+- **Minor/Patch updates**: These updates contain new features, bug fixes and security patches. They are released every month for the active supported versions. They don't require special attention if your extensions are not using internal/experimental APIs. You can find more details in the [Backwards Compatibility Promise](../../../resources/guidelines/code/backward-compatibility.md). If you maintain custom code, review whether it depends on Shopware implementation details such as core compiler passes or other internal framework classes, and refactor those usages to documented extension points before upgrading further.
 - **Major updates**: These updates clean up the codebase and introduce breaking changes. They are released once a year. They require special attention, as extensions, themes or system configurations might not be compatible with the new version.
 
 ## Preparations
@@ -44,6 +44,8 @@ See [Upgrade a Shopware Project](../../../products/tools/cli/project-commands/up
 
 Managing extensions through Composer is required by the upgrade wizard and gives Composer the information it needs to resolve extension versions together with Shopware. If the readiness check finds locally managed plugins, the CLI points you to `shopware-cli project autofix composer-plugins` where migration is possible.
 
+If you maintain custom extensions, use the dry-run result as a prompt to review your dependency-injection integration as well. In particular, do not rely on Shopware core compiler-pass classes as reusable extension points. Prefer your own Symfony compiler pass, service tags, decoration, event subscribers, or other documented extension points in your plugin.
+
 ### Create backups
 
 Before doing the actual update, create a backup of your database and files. This ensures you can restore your Shopware installation if something goes wrong during the update process.
@@ -69,6 +71,7 @@ For major updates, consider the following additional preparations:
 - **Update PHP version**: Update the PHP version to the minimum required version for the new Shopware version *before* updating Shopware. Shopware versions always support an overlapping PHP version, so this is safe to do beforehand. You can find the minimum required PHP version in the [System Requirements guide](../../installation/system-requirements.md).
 - **Check upgrade changes**: Review the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown) for all breaking changes and migration instructions.
 - **Review extension updates**: Use the upgrade wizard's extension queue and report to identify compatible releases, updates, blockers, and items that still need manual or vendor review.
+- **Review internal API usage in custom code**: Search your project for dependencies on internal framework classes and other implementation details. If your extension references Shopware core compiler-pass classes, replace that usage with native Symfony dependency-injection mechanisms in your own plugin before proceeding.
 
 ## Prepare the update locally with Shopware CLI (recommended)
 
@@ -126,7 +129,19 @@ composer recipes:update
 
 Review the changes carefully before applying them.
 
-### 4. Commit and deploy
+### 4. Review custom extension integration points
+
+Before committing the update, review any custom plugins or app-related helper packages in your project for dependencies on non-public Shopware internals. If your code uses core compiler-pass classes from Shopware, replace that integration with your own Symfony compiler pass or another documented extension point.
+
+Typical alternatives include:
+
+- defining your own compiler pass in the plugin
+- using Symfony service tags
+- decorating existing services
+- subscribing to documented events
+- configuring services in `services.xml` or `services.yaml` without reusing Shopware internal infrastructure classes
+
+### 5. Commit and deploy
 
 Commit the changes to your Git repository:
 
@@ -199,6 +214,7 @@ Before you remove the maintenance mode, verify the update was successful:
 - **Check the Performance**: Make sure there is no major performance degradation.
 - **Check the Logs**: Check your error logs for any issues.
 - **Review the upgrade report**: If you used Shopware CLI, keep the report with the upgrade context or attach a redacted copy when asking another developer, extension vendor, hosting provider, or Shopware support for help.
+- **Review custom code against BC rules**: If you maintain custom extensions, confirm that they only depend on documented extension points and not on internal framework classes such as Shopware core compiler passes.
 
 ## Tools for extension developers
 

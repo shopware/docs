@@ -72,6 +72,82 @@ The Shopware CLI upgrade wizard can also be useful when you maintain extensions:
 * Provide migration code for schema/config changes.
 * Ship defaults that work on older core versions until you deliberately drop support.
 * Test against the target Shopware version matrix before rollout; note breaking changes in the plugin README.
+* Prefer documented extension points and native Symfony dependency injection patterns over relying on Shopware framework internals such as core compiler pass classes.
+
+#### Review service-container customizations during upgrades
+
+If your plugin customizes the Symfony container, validate that it only depends on supported extension mechanisms:
+
+1. Search your plugin for references to Shopware core compiler pass classes under `Shopware\Core\...\DependencyInjection\CompilerPass\`.
+2. Remove direct usage such as:
+   * subclassing a core compiler pass
+   * decorating or replacing a core compiler pass service
+   * calling methods on a core compiler pass from your own bundle or plugin bootstrapping
+3. Replace those usages with supported Symfony mechanisms:
+   * define your own services in `services.xml` or `services.yaml`
+   * use Symfony tags for collection/registration use cases
+   * register your own compiler pass in your plugin bundle only for your own container logic
+   * use Shopware's documented events, decorators, DAL extensions, and other public extension points for business behavior
+
+Example: register your own compiler pass instead of depending on a Shopware core compiler pass implementation:
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\Example;
+
+use Shopware\Core\Framework\Plugin;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
+class SwagExample extends Plugin
+{
+    public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new DependencyInjection\Compiler\RegisterExampleServicesPass());
+    }
+}
+```
+
+Example compiler pass for your own tagged services:
+
+```php
+<?php declare(strict_types=1);
+
+namespace Swag\Example\DependencyInjection\Compiler;
+
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
+class RegisterExampleServicesPass implements CompilerPassInterface
+{
+    public function process(ContainerBuilder $container): void
+    {
+        $services = $container->findTaggedServiceIds('swag_example.handler');
+
+        foreach (array_keys($services) as $serviceId) {
+            // collect, validate, or wire your own services here
+        }
+    }
+}
+```
+
+Service definition with a native Symfony tag:
+
+```xml
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="Swag\Example\Handler\ExampleHandler">
+            <tag name="swag_example.handler"/>
+        </service>
+    </services>
+</container>
+```
+
+If your extension still relies on core implementation details, refactor that code before the upgrade so your plugin remains compatible with future core versions.
 
 ### Store plugins
 
