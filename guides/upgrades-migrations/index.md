@@ -55,6 +55,50 @@ A consistent architecture, centralized CI, and controlled extension strategy hel
 * Review [RELEASE_INFO](https://github.com/shopware/shopware/blob/trunk/RELEASE_INFO-6.7.md) and UPGRADE files ([example](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.7.md)) per release.
 * Use feature toggles to decouple risky changes from the deployment.
 
+#### Major-upgrade review checklist
+
+For major upgrades, validate these areas before changing the production environment:
+
+1. **Runtime stack**
+   * Verify that your target PHP version is available in all environments.
+   * Verify that your database engine and version are supported by the target Shopware version.
+   * Align local development, CI, staging, and production so you test against the same runtime combination.
+
+2. **Composer and framework dependencies**
+   * Resolve Composer dependencies against the target Shopware version before deployment.
+   * Check custom plugins and third-party extensions for framework constraints such as Symfony, Twig, and related packages.
+   * Rebuild assets in the same environment class you use for deployment.
+
+3. **Locale-sensitive behavior**
+   * Test formatting and parsing flows that depend on locale configuration, for example dates, numbers, currency formatting, exports, and imports.
+   * If your project relied on implicit locale fallback behavior, configure and test the exact locale values you require.
+
+4. **Request parameter handling in custom code**
+   * Review controllers, subscribers, route handlers, and storefront code that reads request data.
+   * Do not rely on helper-based access to request attributes.
+   * Read from the explicit request bag that matches the source of your data:
+     * query string: `$request->query`
+     * submitted form/request body: `$request->request`
+     * route attributes: `$request->attributes`
+
+Example:
+
+```php
+use Symfony\Component\HttpFoundation\Request;
+
+public function example(Request $request): void
+{
+    $page = $request->query->getInt('page', 1);
+    $search = $request->query->get('search');
+
+    $postedEmail = $request->request->get('email');
+
+    $productId = $request->attributes->get('productId');
+}
+```
+
+If your project uses `RequestParamHelper::get()`, review each call site and replace it with explicit bag access where the source matters. This is especially important when the same key may exist in both the query string and submitted form data.
+
 ## Upgrade strategy for extension developers
 
 To reduce long-term upgrade cost:
@@ -72,6 +116,28 @@ The Shopware CLI upgrade wizard can also be useful when you maintain extensions:
 * Provide migration code for schema/config changes.
 * Ship defaults that work on older core versions until you deliberately drop support.
 * Test against the target Shopware version matrix before rollout; note breaking changes in the plugin README.
+
+#### Request data access in plugins
+
+When reading request input in plugin code, prefer explicit source-specific access instead of generic parameter lookup.
+
+```php
+use Symfony\Component\HttpFoundation\Request;
+
+public function handle(Request $request): void
+{
+    // URL parameter: /example?sort=name
+    $sort = $request->query->get('sort', 'name');
+
+    // POST form field or request body parameter
+    $token = $request->request->get('token');
+
+    // Route placeholder or manually assigned attribute
+    $orderId = $request->attributes->get('orderId');
+}
+```
+
+This avoids ambiguous lookups and makes behavior predictable during upgrades and framework changes.
 
 ### Store plugins
 
