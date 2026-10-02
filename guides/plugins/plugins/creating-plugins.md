@@ -98,7 +98,7 @@ components use paths such as:
 | Administration module | `src/Resources/app/administration/` |
 | Storefront JavaScript plugin | `src/Resources/app/storefront/src/` |
 | Custom field set | `src/Resources/config/custom-fields.xml` |
-| Plugin config | `src/Resources/config/config.xml/` |
+| Plugin config | `src/Resources/config/config.xml` |
 
 Treat generated examples as starting points. Selecting an option can create several
 related files and service definitions; deleting only one file later can leave broken
