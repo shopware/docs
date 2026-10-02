@@ -142,6 +142,8 @@ is meant for plugin developers too, not only for the Administration's own compon
 This is what the experimental phase is for. Tell us what you tried to extend and where the system got
 in your way, what an API made awkward, and what you could not do at all.
 
-Open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) and start the title
-with `[Admin SFC]`, for feedback and defects alike. A dedicated discussion thread will follow and be
-linked here.
+Share your feedback in the
+[GitHub discussion on Single File Components](https://github.com/shopware/shopware/discussions/21162).
+
+If you have a reproducible defect, open an issue on
+[shopware/shopware](https://github.com/shopware/shopware/issues) and start the title with `[Admin SFC]`.
