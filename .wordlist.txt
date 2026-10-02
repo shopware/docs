@@ -2063,6 +2063,7 @@ stopwords
 storages
 storefrontApiRequest
 storer
+stringable
 strlen
 struct
 structs
