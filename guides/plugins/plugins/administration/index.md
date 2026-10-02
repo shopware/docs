@@ -23,6 +23,8 @@ This section follows a practical development workflow. Start with registering a 
 
 For stable cross-version extension points, use the [Meteor Admin SDK](../../apps/administration/meteor-admin-sdk.md). The SDK can be used by both apps and plugins.
 
+Components can also be written as native Vue [Single File Components](single-file-components/index.md). This is the experimental alternative on `trunk` to the Options API and TwigJS templates described in this section, which stay the stable way today. The fastest way in is the [SFC tutorial](single-file-components/tutorial/index.md).
+
 ## Developer workflow
 
 When extending the Administration inside a plugin, follow this sequence:
@@ -35,6 +37,7 @@ When extending the Administration inside a plugin, follow this sequence:
 6. [Inject services](services-utilities/injecting-services.md) and [extend services](services-utilities/extending-services.md)
 7. [Customize templates](templates-styling/writing-templates.md) and [add custom styles](templates-styling/add-custom-styles.md)
 8. Manage state using [Vuex](data-handling-processing/using-vuex-state.md) or [Pinia](../../../upgrades-migrations/administration/pinia.md)
+9. Optional: try the experimental [Single File Component extension system](single-file-components/index.md) by following its [tutorial](single-file-components/tutorial/index.md)
 
 Advanced topics such as [mixins and directives](mixins-directives/using-mixins.md) or [extending webpack](advanced-configuration/extending-webpack.md) are covered separately.
 

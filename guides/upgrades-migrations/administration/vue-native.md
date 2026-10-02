@@ -8,19 +8,21 @@ nav:
 
 :::info
 This article was updated. It previously described the migration as a fixed roadmap tied to specific Shopware versions.
-Those version-based timelines have been removed because the new systems are still experimental and no release version is committed yet.
-The article now describes the direction of the migration rather than when each step will happen.
+Those version-based timelines have been removed because the new systems are still experimental.
+The article now describes the direction of the migration; the current plan, including the versions it targets, lives on the [Single File Components roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md).
 :::
 
 :::warning
 The Composition API extension system and the native block system (`sw-block`) described in this article are **experimental**.
-Their APIs can still change, and there is no committed timeline or release version for when they will become the standard.
+Their APIs can still change; see the [roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md) for the current plan on when they become stable.
 :::
 
 ## Introduction
 
 We are planning a significant shift in our development approach, moving towards a more native Vue.js implementation.
 This document outlines the reasons for this change and provides an overview of the migration path. It serves as a general guideline for our development direction.
+
+For how to try it today, see the [Single File Components guide](../../plugins/plugins/administration/single-file-components/index.md), which documents the experimental extension system in practice.
 
 ## Current status
 
@@ -74,7 +76,7 @@ This also aligns with Vue's best practices, as highlighted in the official [Comp
 #### What Will Change?
 
 We will gradually transform our components from Options API to Composition API. Together with native blocks, this lays the foundation for using Single File Components (SFCs).
-The transformation will happen gradually to give all of us enough time to adapt. Breaking changes, like removing the Options API, will only happen in a future major version. There is no committed timeline or release version for this transition.
+The transformation will happen gradually to give all of us enough time to adapt. Breaking changes, like removing the Options API, will only happen in a future major version. The [roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md) tracks the current plan for this transition.
 
 #### Migration Path
 

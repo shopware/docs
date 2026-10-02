@@ -6,6 +6,10 @@ nav:
 
 # Customizing Components
 
+::: info
+`Component.override()` with TwigJS blocks, as shown on this page, is the stable way to customize a component today. Its counterpart in the experimental Single File Component system on `trunk` is an `.override.vue` file using `<sw-block extends>`. See [Chapter 2: Your first override](../single-file-components/tutorial/your-first-override.md).
+:::
+
 ## Overview
 
 The Shopware 6 Administration allows you to override and extend components to change its content and its behavior.

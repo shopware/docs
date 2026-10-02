@@ -7,6 +7,10 @@ nav:
 
 # Using Mixins
 
+::: info
+Mixins are the stable way to share component logic today. A Single File Component cannot use them, so the experimental system on `trunk` replaces each of them with a composable. See [Composables replacing mixins](../single-file-components/roadmap.md#composables-replacing-mixins) for the current state of that list.
+:::
+
 ## Overview
 
 This guide covers how to use an existing Administration mixin in a plugin. Generally, mixins behave the same as they do in Vue normally, differing only in the registration and the way mixins are included in a component.

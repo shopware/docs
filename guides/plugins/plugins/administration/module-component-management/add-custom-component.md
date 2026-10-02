@@ -7,6 +7,10 @@ nav:
 
 # Add Custom Components
 
+::: info
+The Options API registration shown on this page is the stable way to build a component today. On `trunk` a component can also be written as a native Vue [Single File Component](../single-file-components/index.md), the experimental alternative. See the [SFC tutorial](../single-file-components/tutorial/index.md) if you want to try it.
+:::
+
 ## Overview
 
 Since the Shopware 6 Administration is using [VueJS](https://vuejs.org/) as its framework, it also supports creating custom components. This guide will teach you how to register your own custom component with your plugin.
@@ -156,5 +160,6 @@ You've now added a custom component, including a little template. However, there
 * [More about templates](../templates-styling/writing-templates.md)
 * [Add some styling to your component](../templates-styling/add-custom-styles.md)
 * [Use shortcuts for your component](../advanced-configuration/add-shortcuts.md)
+* [Build the same component as an experimental Single File Component](../single-file-components/tutorial/build-your-own-component.md)
 
 Furthermore, what about [customizing other components](customizing-components.md), instead of creating new ones?
