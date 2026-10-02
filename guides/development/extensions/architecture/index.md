@@ -35,7 +35,27 @@ Extensions must respect these principles to avoid:
 
 ## Public API and stability
 
-When extending Shopware, it is critical to understand what is part of the stable Public API and what is not:
+When extending Shopware, it is critical to understand what is part of the stable Public API and what is not.
+
+Use documented extension points such as:
+
+* events
+* service decoration
+* tagged services
+* DAL extension mechanisms
+* app scripts and app APIs
+* Symfony dependency injection features in your own extension
+
+Do **not** build extensions around Shopware core infrastructure classes that are not documented as extension points. In particular, core compiler passes are framework implementation details and must not be treated as reusable extension APIs.
+
+If you need to influence the container of your own plugin or bundle, prefer native Symfony mechanisms in your extension, for example:
+
+* registering your own services in `services.xml`
+* using autowiring and autoconfiguration in your own code
+* adding your own compiler pass in your extension if Symfony requires it
+* decorating public Shopware services instead of depending on Shopware’s internal compiler-pass logic
+
+For details about API guarantees, see:
 
 * [Public API and Internal Annotation](internal.md)
 * [Final and Internal Annotation](final-and-internal.md)
