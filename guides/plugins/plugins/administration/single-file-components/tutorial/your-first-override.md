@@ -13,7 +13,7 @@ The plugin from [Chapter 1](set-up-your-environment) does nothing. In this chapt
 
 ## Pick the spot
 
-In the Administration, go to **Catalogues → Products**, click any product, stay on the **General** tab and scroll down to the **Prices** card. The price fields inside it are what this chapter puts a banner under:
+In the Administration, go to **Products → Overview**, click any product, stay on the **General** tab and scroll down to the **Prices** card. The price fields inside it are what this chapter puts a banner under:
 
 ![The Prices card with the price form outlined and labelled with its block name](../../../../../../assets/administration-sfc-tutorial-block-location.png)
 
