@@ -13,7 +13,7 @@ Every message the Shopware setup transform can produce, and what to do about it.
 
 ## One validator, three places
 
-There is a single validator for `.vue` files in extensions. The build runs it, and the ESLint rule `sw-core-rules/valid-shopware-setup` runs the *same* code against the file in your editor. So a message below reaches you as you type, from `composer admin:check-extensions`, and from the build - always with the same wording and on the same line.
+There is a single validator for `.vue` files in extensions. The build runs it, and the ESLint rule `sw-core-rules/valid-shopware-setup` runs the *same* code against the file in your editor. So a message below reaches you as you type, from `administration:check-extensions`, and from the build - always with the same wording and on the same line.
 
 ```text
 custom/plugins/SwagProductMargin/src/.../swag-margin-hint.override.vue

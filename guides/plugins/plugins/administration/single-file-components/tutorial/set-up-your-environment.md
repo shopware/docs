@@ -175,13 +175,13 @@ Compiles the Administration and every extension into static assets, the way a pr
 Everything the build rejects is also reported by ESLint, on the exact line, as you type. Setting that up before you write the first component is worth the one command:
 
 ```bash
-composer admin:setup-extension-tooling
+shopware-cli project console administration:setup-extension-tooling
 ```
 
 It writes a `tsconfig.json` and an `eslint.config.mjs` into your plugin - commit those two - and prints the settings your editor needs. You can run the same checks by hand at any point:
 
 ```bash
-composer admin:check-extensions -- --only=SwagProductMargin
+shopware-cli project console administration:check-extensions -- --only=SwagProductMargin
 ```
 
 ```text
@@ -190,7 +190,11 @@ composer admin:check-extensions -- --only=SwagProductMargin
     ESLint     ✔ passed       managed · 3.6s
 ```
 
-The `--` is required; without it Composer eats the option.
+The `--` is required: everything after it is passed on to the checker, and without it the console rejects `--only` as an unknown option.
+
+Both commands run on the Administration's own Node dependencies, which `shopware-cli project admin-watch` installs. A full build installs only part of them, so if the check reports that `vue-tsc` is not installed, start the watcher once, or run `npm ci` in `vendor/shopware/administration/Resources/app/administration` inside the `web` container.
+
+Working inside the [shopware/shopware](https://github.com/shopware/shopware) repository itself? There, `composer admin:setup-extension-tooling` and `composer admin:check-extensions` do the same.
 
 ::: info Experimental
 Both commands were newly introduced and their usage may still change. [Give us feedback](../roadmap#give-us-feedback).
