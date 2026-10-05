@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSnackbar } from 'shopware:composables/use-snackbar';
+import { useSnackbar } from 'shopware:composables';
 
 function useSnackbar(): {
     addSnackbar: (config: Omit<Snackbar, 'id'>) => Snackbar;

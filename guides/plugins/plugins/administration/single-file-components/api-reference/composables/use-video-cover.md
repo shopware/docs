@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useVideoCover } from 'shopware:composables/use-video-cover';
+import { useVideoCover } from 'shopware:composables';
 
 function useVideoCover(options: { item: () => VideoCoverMedia | null | undefined }): {
     showCoverSelectionModal: Ref<boolean>;

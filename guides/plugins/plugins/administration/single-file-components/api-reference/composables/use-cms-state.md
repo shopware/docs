@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useCmsState } from 'shopware:composables/use-cms-state';
+import { useCmsState } from 'shopware:composables';
 
 function useCmsState(): {
     cmsPageState: ComputedRef<CmsPageStore>;

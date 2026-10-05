@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSalutation } from 'shopware:composables/use-salutation';
+import { useSalutation } from 'shopware:composables';
 
 function useSalutation(): {
     salutation: (entity: SalutationFilterEntityType, fallbackSnippet?: string) => string;

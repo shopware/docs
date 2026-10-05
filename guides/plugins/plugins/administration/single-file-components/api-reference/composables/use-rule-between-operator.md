@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useRuleBetweenOperator } from 'shopware:composables/use-rule-between-operator';
+import { useRuleBetweenOperator } from 'shopware:composables';
 
 function useRuleBetweenOperator(options: {
     condition: () => RuleCondition | null | undefined;

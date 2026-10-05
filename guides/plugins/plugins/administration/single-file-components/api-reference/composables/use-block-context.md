@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useBlockContext } from 'shopware:composables/use-block-context';
+import { useBlockContext } from 'shopware:composables';
 
 function useBlockContext(): {
     blockContext: Record<string, Slot[]>;

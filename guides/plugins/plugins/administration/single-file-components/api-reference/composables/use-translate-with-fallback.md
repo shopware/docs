@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
+import { useTranslateWithFallback } from 'shopware:composables';
 
 function useTranslateWithFallback(): {
     tWithFallback: (key: string) => string;

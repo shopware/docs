@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useValidation } from 'shopware:composables/use-validation';
+import { useValidation } from 'shopware:composables';
 
 function useValidation(options: { validation: () => ValidationRules }): {
     validationService: ValidationService;

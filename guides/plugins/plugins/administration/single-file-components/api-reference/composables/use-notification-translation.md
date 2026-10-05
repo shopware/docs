@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useNotificationTranslation } from 'shopware:composables/use-notification-translation';
+import { useNotificationTranslation } from 'shopware:composables';
 
 function useNotificationTranslation(): {
     getTranslatedTitle: (notification: NotificationType) => string;

@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useTheme } from 'shopware:composables/use-theme';
+import { useTheme } from 'shopware:composables';
 
 function useTheme(): {
     theme: Ref<'light' | 'dark' | 'system'>;

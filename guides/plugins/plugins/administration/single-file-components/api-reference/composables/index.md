@@ -27,11 +27,14 @@ with `defineEmits()`.
 
 ## Administration composables
 
-Everything else is imported, one module per composable, named after it in `kebab-case`:
+Everything else is imported by name from the `shopware:composables` virtual module:
 
 ```ts
-import { useNotification } from 'shopware:composables/use-notification';
+import { useNotification } from 'shopware:composables';
 ```
+
+Each composable is also available as a default export of its own subpath, named after it in `camelCase`
+(`import useNotification from 'shopware:composables/useNotification'`).
 
 Most of them are the Composition API side of a mixin. A mixin declared its own props and read them off
 `this`; a composable has neither, so whatever the mixin used to take from its host is passed in, and

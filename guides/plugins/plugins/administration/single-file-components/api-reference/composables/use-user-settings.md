@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useUserSettings } from 'shopware:composables/use-user-settings';
+import { useUserSettings } from 'shopware:composables';
 
 function useUserSettings(): {
     getUserSettingsEntity: (identifier: string, userId?: string | null) => Promise<UserSettingsEntity | null>;

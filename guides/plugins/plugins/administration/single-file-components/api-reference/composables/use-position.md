@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { usePosition } from 'shopware:composables/use-position';
+import { usePosition } from 'shopware:composables';
 
 function usePosition(): {
     getNewPosition: (repository, criteria, context, field?) => Promise<number>;

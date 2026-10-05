@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useInlineSnippet } from 'shopware:composables/use-inline-snippet';
+import { useInlineSnippet } from 'shopware:composables';
 
 function useInlineSnippet(): {
     getInlineSnippet: (value: { [locale: string]: string }) => string | { [locale: string]: string };

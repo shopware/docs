@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSystem } from 'shopware:composables/use-system';
+import { useSystem } from 'shopware:composables';
 
 function useSystem(): {
     locales: Ref<string[]>;

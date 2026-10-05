@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useModuleIconColors } from 'shopware:composables/use-module-icon-colors';
+import { useModuleIconColors } from 'shopware:composables';
 
 function useModuleIconColors(): {
     enabled: Ref<boolean>;

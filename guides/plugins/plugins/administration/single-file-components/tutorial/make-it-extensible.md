@@ -73,7 +73,7 @@ The quickest way to see what you just built is to extend it yourself. Write a se
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
+import { useTranslateWithFallback } from 'shopware:composables';
 
 const previousState = useSwPreviousState();
 const { tWithFallback } = useTranslateWithFallback();
@@ -130,7 +130,7 @@ Three files are on screen at once: a core Twig component providing the price car
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
+import { useTranslateWithFallback } from 'shopware:composables';
 
 const previousState = useSwPreviousState();
 const { tWithFallback } = useTranslateWithFallback();

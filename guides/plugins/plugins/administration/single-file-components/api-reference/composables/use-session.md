@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useSession } from 'shopware:composables/use-session';
+import { useSession } from 'shopware:composables';
 
 function useSession(): {
     currentUser: Ref<Entity<'user'> | null>;

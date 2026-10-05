@@ -62,7 +62,7 @@ One Shopware-specific rule in base components: a top-level binding must not shar
 Everything else comes from a `shopware:*` virtual module - the published composables, plus stores, utilities, mixins and DAL helpers:
 
 ```ts
-import { useNotification } from 'shopware:composables/use-notification';
+import { useNotification } from 'shopware:composables';
 import useSwProductDetailStore from 'shopware:stores/swProductDetail';
 import { Criteria } from 'shopware:data';
 import { createId } from 'shopware:utils';

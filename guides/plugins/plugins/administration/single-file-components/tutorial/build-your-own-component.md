@@ -92,7 +92,7 @@ In a template you read a key with `$t()`. It is a Vue global property, so there 
 A `<script setup>` block has no `this` to reach `$t` through, and an extension cannot `import { useI18n } from 'vue-i18n'` - see [troubleshooting](../troubleshooting#usei18n-does-not-work-in-a-plugin). Use the composable instead:
 
 ```ts
-import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
+import { useTranslateWithFallback } from 'shopware:composables';
 
 const { tWithFallback } = useTranslateWithFallback();
 
@@ -146,7 +146,7 @@ What it means: **a base component is private by default.** Every top-level bindi
 <script setup lang="ts">
 import { computed } from 'vue';
 import useSwProductDetailStore from 'shopware:stores/swProductDetail';
-import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
+import { useTranslateWithFallback } from 'shopware:composables';
 
 const { warnBelow = 0.2 } = defineProps<{
     warnBelow?: number;
@@ -250,7 +250,7 @@ Reload the product. The banner now has a colour and a heading, because the compo
 <script setup lang="ts">
 import { computed } from 'vue';
 import useSwProductDetailStore from 'shopware:stores/swProductDetail';
-import { useTranslateWithFallback } from 'shopware:composables/use-translate-with-fallback';
+import { useTranslateWithFallback } from 'shopware:composables';
 
 const { warnBelow = 0.2 } = defineProps<{ warnBelow?: number }>();
 const { tWithFallback } = useTranslateWithFallback();

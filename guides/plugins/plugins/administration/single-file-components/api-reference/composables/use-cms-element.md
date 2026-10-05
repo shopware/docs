@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useCmsElement } from 'shopware:composables/use-cms-element';
+import { useCmsElement } from 'shopware:composables';
 
 function useCmsElement(options: {
     element: () => RuntimeSlot;

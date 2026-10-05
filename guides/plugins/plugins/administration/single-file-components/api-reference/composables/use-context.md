@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useContext } from 'shopware:composables/use-context';
+import { useContext } from 'shopware:composables';
 
 function useContext(): ContextState['app'] & ContextState['api'] & {
     addAppValue: <K>(payload: { key: K; value: ContextState['app'][K] }) => void;

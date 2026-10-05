@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useNotification } from 'shopware:composables/use-notification';
+import { useNotification } from 'shopware:composables';
 
 function useNotification(): {
     createNotification: (notification: NotificationType) => string | null;

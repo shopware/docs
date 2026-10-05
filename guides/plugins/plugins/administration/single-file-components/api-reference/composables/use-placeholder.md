@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { usePlaceholder } from 'shopware:composables/use-placeholder';
+import { usePlaceholder } from 'shopware:composables';
 
 function usePlaceholder(): {
     placeholder: (entity: Entity<EntityName>, field: keyof Entity<EntityName>, fallbackSnippet: string) => string;

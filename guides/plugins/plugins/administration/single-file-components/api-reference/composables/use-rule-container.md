@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useRuleContainer } from 'shopware:composables/use-rule-container';
+import { useRuleContainer } from 'shopware:composables';
 
 function useRuleContainer(options: {
     condition: () => RuleConditionNode;

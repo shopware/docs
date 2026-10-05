@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useMediaGridListener } from 'shopware:composables/use-media-grid-listener';
+import { useMediaGridListener } from 'shopware:composables';
 
 function useMediaGridListener(options: {
     selectableItems: () => MediaGridItem[];

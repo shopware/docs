@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useCmsElementDeprecated } from 'shopware:composables/use-cms-element-deprecated';
+import { useCmsElementDeprecated } from 'shopware:composables';
 
 function useCmsElementDeprecated(options: {
     element: () => RuntimeSlot;

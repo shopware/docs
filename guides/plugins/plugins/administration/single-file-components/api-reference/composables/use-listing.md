@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 ```ts
-import { useListing } from 'shopware:composables/use-listing';
+import { useListing } from 'shopware:composables';
 
 function useListing(options: {
     getList: () => void | Promise<void>;
