@@ -215,42 +215,29 @@ Once components are migrated, the core will use single-file components with the 
 The core component is added via a single-file component `*.vue` file.
 
 ```vue
+<!-- sw-text-field.vue -->
 <template>
- {# Notice native block component instead of twig blocks #}
- <sw-block name="sw-text-field">
- <input type=text v-model="value" @change="onChange">
- </sw-block>
+    <!-- Notice the native block component instead of Twig blocks -->
+    <sw-block name="sw_text_field_input">
+        <input v-model="value" type="text" @change="onChange">
+    </sw-block>
 </template>
 
 <script setup>
-// Notice Composition API imports
-import { ref, defineEmits } from 'vue';
+// Notice the Composition API imports
+import { ref } from 'vue';
 
-// Notice the new Shopware extension system.Component.createExtendableSetup
-const {value, onChange, privateExample} = Shopware.Component.createExtendableSetup({
- props,
- context,
- name: 'originalComponent',
-}, () => {
- const emit = defineEmits(['update:value']);
+const emit = defineEmits(['update:value']);
 
- const value = ref(null);
- const onChange = () => {
- emit('update:value', value.value)
- }
+const value = ref(null);
+const onChange = () => {
+    emit('update:value', value.value);
+};
 
- const privateExample = ref('This is a private property');
+const privateExample = ref('This is a private property');
 
- return {
- public: {
- value,
- onChange,
- },
- private: {
- privateExample,
- }
- };
-});
+// Notice the compile-time macro: only these bindings can be replaced by an override
+swDefinePublic({ value, onChange });
 </script>
 ```
 
@@ -260,27 +247,21 @@ For overrides, we created a new convention. They must match the `*.override.vue`
 `*.override.vue` files will be loaded automatically in your main entry file.
 
 ```vue
+<!-- sw-text-field.override.vue -->
 <template>
-{# Notice the native block components #}
-<sw-block extends="sw-text-field">
- <sw-block-parent/>
+    <!-- Notice the native block components -->
+    <sw-block extends="sw_text_field_input">
+        <sw-block-parent />
 
- {{ helpText}}
-</sw-block>
+        {{ helpText }}
+    </sw-block>
 </template>
 
 <script setup>
-// Notice Composition API imports
-import { defineProps } from 'vue';
+const helpText = 'Press enter to save';
 
-// This file would also use Shopware.Component.overrideComponentSetup
-// if it would change the existing public API
-const props = defineProps({
- helpText: {
- type: String,
- required: false,
- },
-});
+// Mandatory in every override. List bindings here to replace those of the core component
+swDefineOverride({});
 </script>
 ```
 
