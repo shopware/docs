@@ -44,7 +44,7 @@ Declare a `<seo-url>` with one or more `<path>` elements. The `name` identifies 
 </manifest>
 ```
 
-With this manifest, `/imprint` and `/impressum` run the scripts in `Resources/scripts/storefront-imprint/`. Shopware writes one SEO URL per storefront sales channel domain and picks the `<path>` of the domain language, falling back to its parent language and then to the shop's default language. Query parameters of the request stay available as `hook.query`.
+With this manifest, `/imprint` and `/impressum` run the scripts in `Resources/scripts/storefront-imprint/`. Shopware writes one SEO URL per storefront sales channel domain. It picks the `<path>` of the domain language and falls back to the shop's default language. Query parameters of the request stay available as `hook.query`.
 
 Set the `hook` attribute when the script folder should differ from the route name:
 
@@ -120,10 +120,10 @@ Use the `seoUrl` Twig function with the technical route and parameters in your s
 ## Lifecycle
 
 - **Install and update**: Shopware stores the declared routes and creates the default SEO URL template for entity-bound routes that don't have one yet. Routes that an update no longer declares lose their SEO URLs and templates.
-- **Activation and update**: The static SEO URLs are written and the entity-bound URLs are generated. This runs through the message queue, so make sure a [worker](../../../hosting/infrastructure/message-queue.md) processes messages.
+- **Activation and update**: The static SEO URLs are written right away. The entity-bound URLs are generated through the message queue, so make sure a [worker](../../../hosting/infrastructure/message-queue.md) processes messages.
 - **Hook changes**: Changing the `hook` of a route keeps its SEO URLs, including the merchant's edits, and points them at the new script.
 - **Deactivation and uninstall**: The app's SEO URLs are marked as deleted and stop resolving. Uninstalling also removes the SEO URL templates, unless the merchant keeps the app data.
-- **New sales channel domains**: Static SEO URLs are written for new domains automatically.
+- **New sales channel domains**: Like product URLs, the static SEO URLs for a new domain show up on the next activation or update of the app, or after `bin/console dal:refresh:index`.
 
 ## Validation rules
 
