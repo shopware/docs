@@ -174,7 +174,7 @@ Go back to the product you opened at the start of this chapter and scroll to **P
 ![The banner rendered under the price fields on the product detail page](../../../../../../assets/administration-sfc-tutorial-static-banner.png)
 
 ::: info About the spacing
-Block content sits flush against the content above it, with no gap. We will address that later on.
+Block content sits flush against the content above it, with no gap. [Chapter 4](build-your-own-component#checkpoint) adds the spacing.
 :::
 
 Your plugin is on a core page, and the core page has not been touched.

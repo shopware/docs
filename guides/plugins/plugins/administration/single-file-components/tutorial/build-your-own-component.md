@@ -234,7 +234,7 @@ swDefineOverride({});
 
 ## Checkpoint
 
-Reload the product. The banner now has a colour and a heading, because the component can style itself on values the block content could not touch.
+Reload the product. The banner looks as it did in Chapter 3 except for one thing: it no longer sits flush against the price fields. That is the gap [Chapter 2](your-first-override#checkpoint) promised, and it comes from the component's own `<style scoped>` block. Everything else changed underneath: the markup, the arithmetic and the strings now live in a component that reads the product from the store, so you can render it anywhere.
 
 ![The margin hint as its own component](../../../../../../assets/administration-sfc-tutorial-component.png)
 
