@@ -99,6 +99,8 @@ Both strings are snippets, the same way [Chapter 4](build-your-own-component#whe
 }
 ```
 
+As in [Chapter 4](build-your-own-component#where-the-strings-come-from), run `shopware-cli project console cache:clear` before you reload, or the banner shows the bare keys.
+
 This is the first time `swDefineOverride` is given something. Every name in it replaces the binding of that name in the component being overridden - a `computed`, a `ref` or a function alike. So `message` here wins over the `message` your component computed, and `previousState.message.value` is that original, which is how the override builds on it instead of throwing it away.
 
 The one thing you cannot override is a **prop**: it comes from whoever renders the component, so an override returning a prop name is rejected with a console error.

@@ -127,6 +127,13 @@ const count = ref(0);   // ✗ collides with the prop `count`
 
 The standard `vue/no-dupe-keys` ESLint rule reports this for an inline prop object and for a type declared in the same file. It cannot see through an **imported** prop type, and neither can the build - so when your props come from an import, check the names against your top-level bindings yourself.
 
+## A snippet key shows instead of the text
+
+The banner reads `swag-margin.hint.tooLow` rather than "Margin too low". In order of likelihood:
+
+1. **The snippet cache is stale.** The Administration caches the snippet files it collected, and only activating a plugin starts a fresh cache. After you add or change a snippet file in an active plugin, run `shopware-cli project console cache:clear` and reload.
+2. **The key does not match.** `$t()` and `tWithFallback()` return the key itself when no snippet file has an entry for it. Compare the key with the nesting in your `en-GB.json`.
+
 ## `useI18n()` does not work in a plugin
 
 ```ts

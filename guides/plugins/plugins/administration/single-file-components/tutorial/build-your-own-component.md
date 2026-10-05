@@ -83,6 +83,12 @@ Reading the store here is a deliberate move rather than a detour. A component th
 
 There is nothing to import and nothing to register. Shopware collects every `en-GB.json`, `de-DE.json` and friends from anywhere under `src/Resources/app/administration/src/` when your plugin is activated. That happens on the PHP side and does not touch the JavaScript build, so the existing [Adding snippets](../../templates-styling/adding-snippets) guide applies to a Single File Component unchanged.
 
+Apply the changes by clearing the cache and reloading the page:
+
+```bash
+shopware-cli project console cache:clear
+```
+
 In a template you read a key with `$t()`. It is a Vue global property, so there is nothing to import:
 
 ```html
