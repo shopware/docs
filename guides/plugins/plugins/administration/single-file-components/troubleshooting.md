@@ -104,7 +104,7 @@ Nothing warns about these. An `sw-block` is a real component and leaves a node i
 
 **An `sw-block` between `v-if` and `v-else` breaks the chain**, because `v-else` must directly follow its `v-if` sibling. The same applies between a `<template #slot>` and the component it belongs to.
 
-**`<sw-block extends>` inside `v-for`** registers one override per list item, so your content renders several times. A `v-if` on an `sw-block extends` is fine - it registers on mount and removes itself again when the component is unmounted.
+**`<sw-block extends>` inside `v-for`** registers one override per list item, so your content renders several times. A `v-if` on an `sw-block extends` fails the build - put the condition inside the block instead.
 
 **`<sw-block-parent />` must render unconditionally, exactly once** per extending block. It claims its position in the chain when it is created, so putting it in a `v-for`, in a `v-if`, or giving it a `v-if` / `v-else` of its own corrupts the chain.
 
