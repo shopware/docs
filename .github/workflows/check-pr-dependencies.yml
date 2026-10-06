@@ -209,7 +209,12 @@ jobs:
               const currentNames = currentLabels.map(label => label.name);
 
               if (ready) {
-                if (!currentNames.includes(READY_LABEL)) {
+                // The ready label only marks the switch from pending to ready,
+                // so PRs that never had pending dependencies stay unlabeled.
+                if (
+                  currentNames.includes(PENDING_LABEL) &&
+                  !currentNames.includes(READY_LABEL)
+                ) {
                   await github.rest.issues.addLabels({
                     owner,
                     repo: docsRepo,
