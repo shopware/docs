@@ -24,9 +24,48 @@ Run the upgrade on a Git branch or a disposable copy of the project. The wizard 
 
 For Docker and other configured environments, PHP and Composer are checked through the project executor rather than only on the host machine.
 
+### Check target-environment readiness for a major upgrade
+
+Before selecting a new major target, verify that the environment you plan to run after the upgrade can satisfy that target's runtime stack. In practice, check:
+
+- the PHP version configured for the project runtime and CLI;
+- the database engine and version used locally, in CI, and in production;
+- extension compatibility with the target PHP, Symfony, and Twig stack.
+
+Use the upgrade command as a preflight first:
+
+```bash
+shopware-cli project upgrade \
+  --no-interaction \
+  --target latest-patch \
+  --dry-run
+```
+
+Then compare the generated report with the target version's upgrade guide and system requirements. For the planned 6.8 major-upgrade track, explicitly review:
+
+- PHP runtime planning;
+- supported MySQL or MariaDB versions across all environments;
+- extension compatibility with the Symfony and Twig versions expected by that target.
+
+If your project runs in Docker or another managed executor, validate these versions inside that environment, not only on the host machine.
+
 ### Check for breaking changes in custom code
 
 Before starting the wizard, run `shopware-cli project validate` to find references to Shopware PHP types that were removed or renamed. This surfaces incompatibilities in your custom plugins and configured bundles up front, rather than one test failure at a time. See [Detecting breaking changes before upgrading](../validation.md#detecting-breaking-changes-before-upgrading) for the command variants and for how to check against the target version.
+
+For major upgrades, extend that review to custom code that depends on framework behavior outside simple type references. In particular, verify:
+
+- request-parameter access patterns in controllers, subscribers, and storefront handlers;
+- locale-sensitive formatting, parsing, and fallback assumptions;
+- custom Twig and Symfony integrations used by apps, plugins, or bundles.
+
+If your code uses helper-based request lookup, test the target behavior with explicit request bags such as:
+
+- `$request->query` for query-string parameters;
+- `$request->request` for submitted form data;
+- `$request->attributes` for route attributes.
+
+Do not assume one helper call will continue to search all sources in the same order across major versions.
 
 ### Migrate local extensions to Composer first
 
@@ -74,6 +113,17 @@ The extension queue distinguishes extensions that are ready, need an update, nee
 
 If Composer cannot resolve the target dependency set, the wizard stops before modifying the project and includes the Composer conflict output in the report.
 
+### Review major-upgrade migration topics before you continue
+
+When you plan a major upgrade, use the target-selection phase to verify more than package resolution. Before applying the upgrade, review the target version's migration topics for:
+
+- runtime and infrastructure requirements such as PHP and database versions;
+- extension and custom-code compatibility with the target Symfony and Twig stack;
+- locale behavior that can affect formatting, parsing, or fallback logic;
+- request-parameter handling in custom code, especially where parameters may come from query strings, submitted form data, or route attributes.
+
+A successful Composer resolution does not confirm that these application-level assumptions are valid. Keep the target upgrade guide open while reviewing the plan.
+
 ## Review what will change
 
 Before execution, the wizard shows the planned project changes and a summary of the extension results. Starting the upgrade then performs the local workflow:
@@ -112,6 +162,16 @@ With `--dry-run`, Shopware CLI performs the readiness checks, extension analysis
 
 Remove `--dry-run` to execute the upgrade non-interactively after a successful preflight.
 
+### Use preflight output for major-upgrade review
+
+For major upgrades, treat `--dry-run` as the first mandatory step. After the command finishes, review the report for:
+
+- environment readiness findings that affect planned PHP or database upgrades;
+- blocked or uncertain extensions that must support the target runtime stack;
+- Composer conflicts that indicate indirect Symfony, Twig, or related dependency constraints.
+
+Then separately validate custom application behavior that Composer cannot prove, such as request lookup logic and locale-dependent output.
+
 ### Security advisory blocking
 
 Composer may refuse a dependency set because packages are affected by known security advisories. The `--no-audit` option allows the upgrade to continue by disabling that Composer audit block for the workflow.
@@ -143,6 +203,25 @@ The final wizard screen links to the report and execution log and summarizes the
 ![Shopware CLI project upgrade report and next steps](../../../../assets/project-upgrade-report.png)
 
 The upgrade also writes its execution log below `.shopware-cli/upgrade/`. The report and log can be shared with a colleague, agency, extension vendor, hosting provider, Shopware support, or a coding agent when investigating an upgrade problem.
+
+### What to review in the report for a major upgrade
+
+Use the report as a working checklist, not only as a log archive. Before continuing with a major upgrade, confirm that you have reviewed:
+
+- whether the target environment can satisfy the runtime requirements identified during preflight;
+- whether every required extension is compatible with the target dependency stack;
+- whether any custom code must be adapted for locale-sensitive behavior;
+- whether request-parameter handling in custom code uses the correct request bag for the intended source.
+
+For example, when reviewing request handling, prefer explicit access such as:
+
+```php
+$queryValue = $request->query->get('page');
+$formValue = $request->request->get('email');
+$routeValue = $request->attributes->get('productId');
+```
+
+Use the report together with your code review and test suite to decide what must be adapted before deployment.
 
 ## What the wizard does not guarantee
 
