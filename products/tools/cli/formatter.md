@@ -89,11 +89,11 @@ Both flags accept comma-separated names. An unknown name, an excluded formatter 
 
 The following table summarizes the extension format options:
 
-| Flag                | Description                                                    |
-| ------------------- | -------------------------------------------------------------- |
-| `--only <tools>`    | Run only the specified comma-separated formatters              |
+| Flag                | Description                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `--only <tools>`    | Run only the specified comma-separated formatters                |
 | `--exclude <tools>` | Exclude formatters from all formatters or the `--only` selection |
-| `--dry-run`         | Check formatting without modifying files                       |
+| `--dry-run`         | Check formatting without modifying files                         |
 
 ## Format a project
 
@@ -141,10 +141,10 @@ If you omit the path, `project format` discovers the nearest Shopware project by
 
 ### Project format options
 
-| Flag                | Description                                                     |
-| ------------------- | --------------------------------------------------------------- |
-| `--dry-run`         | Check formatting without modifying files                        |
-| `--only <tools>`    | Run only the specified comma-separated formatters               |
+| Flag                | Description                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `--dry-run`         | Check formatting without modifying files                         |
+| `--only <tools>`    | Run only the specified comma-separated formatters                |
 | `--exclude <tools>` | Exclude formatters from all formatters or the `--only` selection |
 
 The path argument is optional for `project format` but required for `extension format`.
