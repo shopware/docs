@@ -396,7 +396,27 @@ jobs:
              * ------------------------------------------------------------
              */
 
+            /*
+             * The status lives on the head SHA, but the dependency block
+             * lives in the mutable PR body. Editing the body keeps the SHA,
+             * so a previous success would stay mergeable until this run
+             * finishes. Mark the SHA pending before any slow lookups. This
+             * narrows the window to workflow startup latency; it does not
+             * remove it.
+             */
+
+            if (context.eventName === "pull_request_target") {
+              const triggeringPr = context.payload.pull_request;
+
+              await setStatus(
+                triggeringPr.head.sha,
+                "pending",
+                "Re-checking dependent PRs"
+              );
+            }
+
             const MAX_ATTEMPTS = 3;
+            const MAX_DEPENDENCIES = 5;
 
             for (const pr of prs) {
               const prNumber = pr.number;
@@ -491,6 +511,41 @@ jobs:
                     ])
                   ).values()
                 );
+
+                /*
+                 * The block comes from a public, user-editable PR body, and
+                 * every entry costs an API call on every run, including the
+                 * hourly scan of all open PRs. Refuse oversized blocks before
+                 * any dependency lookup so one PR cannot drain the token's
+                 * quota for every other docs PR.
+                 */
+
+                if (uniqueDependencies.length > MAX_DEPENDENCIES) {
+                  console.log(
+                    `Too many dependent PRs: ${uniqueDependencies.length} (limit ${MAX_DEPENDENCIES}).`
+                  );
+
+                  const published = await publishResult(
+                    prNumber,
+                    snapshot,
+                    false,
+                    `Too many dependent PRs: ${uniqueDependencies.length} (limit ${MAX_DEPENDENCIES})`
+                  );
+
+                  if (published || attempt === MAX_ATTEMPTS) {
+                    if (published) {
+                      console.log(
+                        `\n✗ Docs PR #${prNumber} is NOT ready.`
+                      );
+                    }
+                    break;
+                  }
+
+                  console.log(
+                    `Retrying #${prNumber} (${attempt + 1}/${MAX_ATTEMPTS}).`
+                  );
+                  continue;
+                }
 
                 const results = [];
 
