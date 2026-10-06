@@ -40,11 +40,10 @@ By default, a `fix` command invokes every registered fixer. The following tools 
 | ------------- | -------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------- |
 | `rector`      | PHP breaking changes and modernization using Shopware Rector                                 | Yes           | [`rector.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/rector.go)           |
 | `eslint`      | Auto-fixable JavaScript, TypeScript, and Vue rules for Administration and Storefront code    | Yes           | [`eslint.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/eslint.go)           |
-| `admin-twig`  | Shopware-specific Administration Twig component migrations                                   | Yes           | [`admin_twig.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/admin_twig.go)   |
 | `stylelint`   | Auto-fixable Administration and Storefront SCSS rules using bundled Stylelint configurations | No            | [`stylelint.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/stylelint.go)     |
 | `symfony-xml` | Deprecated plugin `services.xml` and `routes.xml` configuration to YAML                      | No            | [`symfony_xml.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/symfony_xml.go) |
 
-The Administration Twig migrations are implemented as individual fixers under [`internal/verifier/twiglinter/admintwiglinter`](https://github.com/shopware/shopware-cli/tree/main/internal/verifier/twiglinter/admintwiglinter). They cover deterministic migrations such as replacing removed Administration components. For migration cases that require manual changes, see the [Administration migration guide](../../../guides/upgrades-migrations/administration/index.md).
+For Administration migrations, see the [Administration migration guide](../../../guides/upgrades-migrations/administration/index.md).
 
 Other tools support validation or formatting instead:
 
@@ -53,7 +52,7 @@ Other tools support validation or formatting instead:
 
 Selecting one of these tools with `fix --only` is an error; the command lists the available fixers.
 
-`extension fix` prints a `Fixers:` table after running. `Invoked` means the fixer was called, not that it changed a file; `skipped` means it was not selected by `--only` or was removed by `--exclude`. `project fix` does not print this table.
+`extension fix` and `project fix` print a `Fixers:` table after running. `invoked` means the fixer was called, but does not guarantee that it analyzed or changed files; `skipped` means it was not selected by `--only` or was removed by `--exclude`. The table is also printed when a fixer returns an execution error, and the command exits with a non-zero status.
 
 ::: warning
 Rector applies PHP migrations during `fix`, but does not support validation. There is no Rector preview before files are rewritten, so always review the resulting `git diff`.
@@ -95,7 +94,7 @@ Use `--only` to run one or more specific fixers:
 
 ```shell
 shopware-cli extension fix /path/to/your/extension --only rector
-shopware-cli extension fix /path/to/your/extension --only "rector,eslint,admin-twig"
+shopware-cli extension fix /path/to/your/extension --only "rector,eslint"
 ```
 
 Use `--exclude` to skip fixers. It removes tools from the set selected by `--only`, or from all fixers when `--only` is omitted:
@@ -112,7 +111,7 @@ Available options:
 | Flag                | Description                                                                   |
 | ------------------- | ----------------------------------------------------------------------------- |
 | `--only <tools>`    | Run only the specified comma-separated tools                                  |
-| `--exclude <tools>` | Skip the specified comma-separated fixers after applying `--only`             |
+| `--exclude <tools>` | Exclude fixers from all fixers or the `--only` selection                      |
 | `--allow-non-git`   | Allow the command to run when the extension directory is not a Git repository |
 
 For `extension fix`, the extension directory itself must contain `.git`; being inside a parent Git-managed Shopware project is not sufficient. Use `--allow-non-git` when you intentionally want to fix such an extension. `project fix` checks the project root instead.
@@ -147,18 +146,22 @@ The project path is optional. If you omit it, Shopware CLI searches upward from 
 shopware-cli project fix
 ```
 
-For projects, Shopware CLI applies the selected fixers to local extensions and configured bundles. Extensions resolved under `vendor/` are skipped. Individual fixers can have a narrower scope; for example, `symfony-xml` only converts configuration belonging to platform plugins.
+For projects, Shopware CLI applies the selected fixers to local extensions and configured bundles. Extensions resolved under `vendor/` and extensions listed in `validation.ignore_extensions` are skipped. Individual fixers can have a narrower scope; for example, `symfony-xml` only converts configuration belonging to platform plugins.
 
-Use the same `--only` and `--allow-non-git` options as `extension fix`:
+Use the same `--only`, `--exclude`, and `--allow-non-git` options as `extension fix`:
 
 ```shell
 shopware-cli project fix --only rector
-shopware-cli project fix --only "rector,eslint,admin-twig"
+shopware-cli project fix --only "rector,eslint"
+shopware-cli project fix --exclude eslint
+shopware-cli project fix --only "rector,eslint" --exclude eslint
 ```
+
+Without `--only`, exclusions apply to all registered fixers. When both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, and empty final selections fail before tool setup or file changes.
 
 ## Version-aware fixes
 
-Some fixers select rules according to the Shopware version supported by the extension or project. `rector`, `eslint`, and `admin-twig` use the minimum Shopware version resolved by the verifier configuration. Stylelint and `symfony-xml` do not select rules based on a Shopware version.
+Some fixers select rules according to the Shopware version supported by the extension or project. `rector` and `eslint` use the minimum Shopware version resolved by the verifier configuration. Stylelint and `symfony-xml` do not select rules based on a Shopware version.
 
 For a Shopware project, the version range comes from the `shopware/core` constraint in `composer.json`. For an extension, it comes from the extension's declared Shopware compatibility. Shopware CLI retrieves the available Shopware releases and selects the **lowest released version matching that constraint**.
 
@@ -188,6 +191,8 @@ Keep these details in mind:
 The version-resolution logic is implemented in [`internal/verifier/extension.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/extension.go) and [`internal/verifier/project.go`](https://github.com/shopware/shopware-cli/blob/main/internal/verifier/project.go).
 
 ## Execution and safety
+
+Use `--verbose` with either `fix` command to log source directories, selected extension names, and external tool commands and arguments.
 
 The selected tools run concurrently, and the command waits for them to finish before returning. If one tool fails, the others are not cancelled and may still write changes. A failed run can therefore leave partial modifications.
 

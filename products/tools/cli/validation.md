@@ -14,7 +14,7 @@ Validation covers technical criteria that can be automated, such as metadata, pa
 By default, `extension validate` runs every checker:
 
 - The built-in `builtin` checks cover metadata, icon, snippets, PHP linting, and packaging-related checks. The legacy name `sw-cli` remains accepted as an input alias.
-- PHPStan, ESLint, Stylelint, and the Administration and Storefront Twig linters provide additional checks.
+- PHPStan, ESLint, Stylelint, and the Storefront Twig linter provide additional checks.
 
 Use `--only` to select specific checkers. For example, `extension validate /ext --only phpstan` runs PHPStan without the built-in `builtin` checks. To run only the built-in checks, use `--only builtin`; `--only sw-cli` remains supported for backwards compatibility and emits a deprecation warning. The deprecated `--full` flag is still accepted, but has no effect because all checkers run by default.
 
@@ -25,6 +25,8 @@ shopware-cli extension validate /path/to/your/extension --only builtin
 ```
 
 The legacy name `sw-cli` is accepted in both `--only` and `--exclude` for extension and project validation, with a deprecation warning. Use `builtin` in new configurations. Reports, tool statuses, and selection errors use the canonical name `builtin`.
+
+The `admin-twig` tool has been removed. Remove it from `--only` and `--exclude`; both now reject it as an unknown tool. It also didn't do anything before.
 
 ### Recommended setup: Docker
 
@@ -144,7 +146,7 @@ Use `--format` to specify the output format (the older `--reporter` flag is depr
 
 If `--format` is not set, the format is detected automatically: `github` in GitHub Actions, `gitlab` in GitLab CI, and `summary` otherwise.
 
-`extension validate` also reports which checkers were `invoked` or `skipped`. `Invoked` means the checker was called, not that it analyzed files or produced findings; a checker can have no applicable files. Summary and GitHub logs show a checker table before the closing summary. Markdown includes the table, JSON includes a `tools` array, and JUnit includes checker test cases. GitLab and JUnit write the human-readable table to stderr so stdout remains machine-readable. If a checker returns an execution error, the report is still emitted and the command fails.
+`extension validate` and `project validate` also report which checkers were `invoked` or `skipped`. `invoked` means the checker was called, not that it analyzed files or produced findings; a checker can have no applicable files. Summary and GitHub logs show a checker table before the closing summary. Markdown includes the table, JSON includes a `tools` array, and JUnit includes checker test cases. GitLab and JUnit write the human-readable table to stderr so stdout remains machine-readable. If a checker returns an execution error, the report is still emitted and the command fails.
 
 ## Running specific validation tools
 
@@ -152,11 +154,10 @@ By default, `extension validate` calls every registered checker. Use `--only` or
 
 | Tool              | Reports in `validate` | Rewrites in `fix` | Formats in `format` | Notes                                                                                                                                                                     |
 | ----------------- | --------------------- | ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `builtin`         | ✅ (extensions only)  | —                 | —                   | Extension metadata, snippets, structure, packaging. `sw-cli` is accepted as a legacy alias. Returns immediately for a project, so **projects get no metadata validation** |
+| `builtin`         | ✅                     | —                 | —                   | Extension metadata, snippets, structure, packaging. Runs for each eligible project extension. `sw-cli` is accepted as a deprecated alias.                                 |
 | `phpstan`         | ✅                    | —                 | —                   | PHP static analysis; returns without analyzing apps (no `composer.json`)                                                                                                  |
 | `eslint`          | ✅                    | ✅                | —                   | JavaScript, Vue, TypeScript with Shopware-specific rules                                                                                                                  |
 | `stylelint`       | ✅                    | ✅                | —                   | CSS/SCSS with Shopware standards                                                                                                                                          |
-| `admin-twig`      | ✅                    | ✅                | ✅                  | Administration Twig component checks and migrations                                                                                                                       |
 | `storefront-twig` | ✅                    | —                 | —                   | Storefront Twig checks (accessibility, inline styles); reports only                                                                                                       |
 | `rector`          | —                     | ✅                | —                   | PHP breaking-change and upgrade rules. **Rewrites without reporting** — nothing appears in `validate`                                                                     |
 | `symfony-xml`     | —                     | ✅                | —                   | Converts deprecated `services.xml` / `routes.xml` to YAML                                                                                                                 |
@@ -203,7 +204,7 @@ When combined, `--only` selects the checkers first and `--exclude` removes check
 shopware-cli extension validate /path/to/your/extension --only "builtin,phpstan,eslint" --exclude eslint
 ```
 
-This runs only `builtin` and `phpstan`. Excluding every selected checker is an error for `extension validate`.
+This runs only `builtin` and `phpstan`. Excluding every selected checker is an error for both `extension validate` and `project validate`.
 
 ### Running without copying the sources
 
@@ -323,11 +324,9 @@ If you run Shopware CLI directly:
 shopware-cli project validate /path/to/your/project
 ```
 
-`project validate` gathers local extension source directories and configured bundles and runs the registered validation tools against them. Composer-managed extensions resolved under `vendor/` are skipped. Project-level validation settings are read from `.config/shopware-project.yml` under `validation`.
+`project validate` gathers local extension source directories and configured bundles and runs the registered validation tools against them. Composer-managed extensions resolved under `vendor/` and extensions listed in `validation.ignore_extensions` are skipped. Project-level validation settings are read from `.config/shopware-project.yml` under `validation`.
 
-:::warning
-`project validate` does not run extension metadata and packaging validation for every contained extension. The `builtin` verifier only runs with a single-extension context. Run `extension validate` for an individual extension when you also need its Composer or manifest metadata, icon, snippet, and package checks.
-:::
+The `builtin` checker validates each eligible extension separately, including its metadata, icon, snippets, and structure. Each extension's `validation.ignore` rules apply only to that extension; project-level `validation.ignore` rules are then applied to the combined findings. Findings use paths relative to the project root. As with extension directory validation, `zip.disallowed_file` findings are suppressed. Use `extension validate` on a built zip file to check the release artifact.
 
 If you omit the path, `project validate` discovers the nearest Shopware project by walking up from the current directory. A directory is recognized when its Composer metadata references `shopware/core` and `bin/console` exists; `PROJECT_ROOT` overrides this discovery.
 
@@ -337,13 +336,25 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 | ------------------- | --------------------------------------------------------------------------------- |
 | `--local-only`      | Only discover extensions from `custom/*` folders                                  |
 | `--only <tools>`    | Run only selected tools (comma-separated)                                         |
-| `--exclude <tools>` | Remove the listed checkers from the selection after applying `--only`             |
+| `--exclude <tools>` | Exclude checkers from all checkers or the `--only` selection                      |
 | `--no-copy`         | Analyze the project in place instead of copying it to a temporary directory first |
 | `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
 
-`project validate` also runs its registered checkers by default. It has no `--full` flag. `builtin` is included in that registry but returns immediately without a single-extension context; `--only builtin` therefore reports no metadata findings. The legacy `--only sw-cli` alias is also accepted. Use `extension validate` to check an individual extension. `project validate` also has no `--check-against`; that flag exists only on `extension validate`.
+`project validate` runs every registered checker by default, including `builtin` for each eligible extension. Use `--only builtin` to run only the built-in extension checks. The legacy `--only sw-cli` alias is accepted with a deprecation warning. Project validation has no `--full` or `--check-against` flag; `--check-against` exists only on `extension validate`.
 
-Project validation uses the same checker names and applies `--exclude` after `--only`, rejecting names outside the selected set. It does not include checker invocation statuses in its reports. Unlike extension validation, it initializes external tooling even when only native checkers are selected.
+Project validation uses the same checker names as extension validation. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, empty final selections, and invalid report formats fail before tool setup or copying. Reports include checker invocation statuses as described in [Output formats](#output-formats). Unlike extension validation, project validation initializes external tooling even when only native checkers are selected.
+
+```shell
+shopware-cli project validate --only builtin
+shopware-cli project validate --exclude "eslint,stylelint"
+shopware-cli project validate --only "builtin,phpstan,eslint" --exclude eslint
+```
+
+Use `--verbose` with `project validate`, `project fix`, or `project format` to log source directories, extension names, and external tool commands and arguments. For example:
+
+```shell
+shopware-cli project validate --only phpstan --verbose
+```
 
 Use `--local-only` when you want extension discovery limited to the `custom/*` folders:
 
