@@ -33,7 +33,7 @@ Everything else is imported by name from the `shopware:composables` virtual modu
 import { useNotification } from 'shopware:composables';
 ```
 
-Each composable is also available as a default export of its own subpath, named after it in `camelCase`
+Each composable is also available as a default export of its own import path, named after it in `camelCase`
 (`import useNotification from 'shopware:composables/useNotification'`).
 
 Most of them are the Composition API side of a mixin. A mixin declared its own props and read them off
