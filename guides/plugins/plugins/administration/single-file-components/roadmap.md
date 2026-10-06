@@ -18,9 +18,8 @@ The system is available now. There is no feature flag to enable and nothing to o
 in your plugin is compiled by the extension build as it is.
 
 Experimental means the API can still change, at any time and without a deprecation. The plan is for it
-to become a stable, deprecation-protected API in **6.9** - a plan rather than a promise, because how
-much it still has to change depends on what you run into and on how the Administration's own migration
-goes.
+to become a stable, deprecation-protected API in **6.9**. How much it still has to change depends on
+what you run into and on how the Administration's own migration goes.
 
 Try it out and tell us what you find, but do not ship an extension built on it to customers or to the
 Shopware Store until the API is declared stable. Until then, an SFC extension written today may need
@@ -28,16 +27,16 @@ changes with every trunk update.
 
 ## Timeline
 
-| When  | What happens                                                                                                        |
-| ----- | ------------------------------------------------------------------------------------------------------------------- |
-| Today | The extension system is available, and experimental. Build something with it and tell us what you find.             |
-| 6.8   | The Administration's private components are converted, and run in production for the first time.                    |
-| 6.9   | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it. |
-| Later | The remaining components follow. The shims keep working for a while after that.                                     |
+| When  | What happens                                                                                                                                             |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Today | The extension system is available, and experimental.                                                                                                     |
+| 6.8   | The Administration's `@private` components, which are not part of the public extension contract, are converted and run in production for the first time. |
+| 6.9   | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it.                                      |
+| Later | The remaining components follow. The shims keep working for a while after that.                                                                          |
 
-Converting the Administration's own components is the larger half of the work, and it is why the
-experimental phase lasts as long as it does: every component that changes shape is one more chance for
-an extension to break, and we would rather find those now than in a major.
+Most of the work is converting the Administration's own components, and that is why the experimental
+phase lasts as long as it does: every converted component can break an existing extension, and those
+breaks should surface during the experimental phase rather than after the API is declared stable.
 
 ## What is supported today
 
@@ -47,11 +46,12 @@ Base components compile as ordinary `<script setup>`, so Vue's macros behave as 
 project. An override has no props or emits of its own, and reaches the overridden component's through
 the override composables instead.
 
-| Macro                                                                 | Base | Override                 |
-| --------------------------------------------------------------------- | ---- | ------------------------ |
-| `defineProps()`, `withDefaults()`                                     | ✅   | `useSwProps()` instead   |
-| `defineEmits()`, `defineSlots()`, `defineExpose()`, `defineOptions()` | ✅   | `useSwContext()` instead |
-| `defineModel()`                                                       | ❌   | ❌                       |
+| Macro                                               | Base                                 | Override                 |
+| --------------------------------------------------- | ------------------------------------ | ------------------------ |
+| `defineProps()`, `withDefaults()`                   | ✅                                   | `useSwProps()` instead   |
+| `defineEmits()`, `defineSlots()`, `defineOptions()` | ✅                                   | `useSwContext()` instead |
+| `defineExpose()`                                    | ❌ generated from `swDefinePublic()` | ❌                       |
+| `defineModel()`                                     | ❌                                   | ❌                       |
 
 ### Blocks
 
@@ -94,7 +94,7 @@ unusual one can still fall through.
 
 ## Composables replacing mixins
 
-A Single File Component cannot use a mixin, so every mixin a plugin may reasonably use is getting a
+A Single File Component cannot use a mixin, so the mixins a plugin is likely to use are getting a
 composable counterpart:
 
 | Mixin                         | Composable                                                                                  |
@@ -139,8 +139,8 @@ is meant for plugin developers too, not only for the Administration's own compon
 
 ## Give us feedback
 
-This is what the experimental phase is for. Tell us what you tried to extend and where the system got
-in your way, what an API made awkward, and what you could not do at all.
+Tell us what you tried to extend and where the system got in your way, what an API made awkward, and
+what you could not do at all.
 
 Share your feedback in the
 [GitHub discussion on Single File Components](https://github.com/shopware/shopware/discussions/21162).

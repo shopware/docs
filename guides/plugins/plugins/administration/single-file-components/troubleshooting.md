@@ -9,11 +9,11 @@ nav:
 
 <!--@include: ../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-Every message the Shopware setup transform can produce, and what to do about it.
+The messages the Shopware setup transform produces most often, and what to do about each.
 
 ## One validator, three places
 
-There is a single validator for `.vue` files in extensions. The build runs it, and the ESLint rule `sw-core-rules/valid-shopware-setup` runs the *same* code against the file in your editor. So a message below reaches you as you type, from `administration:check-extensions`, and from the build - always with the same wording and on the same line.
+There is a single validator for `.vue` files in extensions. The build runs it, and the ESLint rule `sw-core-rules/valid-shopware-setup` runs the *same* code against the file in your editor. So a message below reaches you as you type, from `administration:check-extensions`, and from the build, always with the same wording and on the same line.
 
 ```text
 custom/plugins/SwagProductMargin/src/.../swag-margin-hint.override.vue
@@ -24,7 +24,7 @@ custom/plugins/SwagProductMargin/src/.../swag-margin-hint.override.vue
 
 ## Nothing happens at all
 
-Your override compiles, the build is clean, and the page is unchanged. In order of likelihood:
+Your override compiles, the build is clean, and the page is unchanged. The usual causes, most common first:
 
 1. **The block name is wrong.** It is a plain string and nothing checks it - a typo simply never matches. Copy the name from the component's template rather than typing it.
 2. **The file is not named after the component.** `sw-product-detail-base.override.vue` overrides `sw-product-detail-base`. A file named after the wrong component, or missing the `.override` part, registers nothing.
@@ -33,12 +33,14 @@ Your override compiles, the build is clean, and the page is unchanged. In order 
 
 ## The file itself
 
-| Message                                                                  | Cause                                                            | Fix                                                                                                                |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `A Shopware setup component needs a <script setup> block. …`             | The file has a plain `<script>` (Options API) or only a template | Every `.vue` file in an extension needs `<script setup>`. Keep Options API components as `index.js` + `.html.twig` |
-| `A Shopware setup block cannot be combined with another <script> block.` | A second `<script>` next to `<script setup>`                     | Move that code into the setup block or into a separate module                                                      |
-| `Unsupported <script setup lang="…"> …`                                  | A language other than `js`, `jsx`, `ts` or `tsx`                 | Use one of the four                                                                                                |
-| `Top-level await is not supported inside Shopware setup blocks.`         | `await` at the top level of `<script setup>`                     | Move it into a function, or use `watchEffect` / `onMounted`                                                        |
+| Message                                                                                           | Cause                                                                 | Fix                                                                                                                |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `A Shopware setup component needs a <script setup> block. …`                                      | The file has a plain `<script>` (Options API) or only a template      | Every `.vue` file in an extension needs `<script setup>`. Keep Options API components as `index.js` + `.html.twig` |
+| `A Shopware setup block cannot be combined with another <script> block.`                          | A second `<script>` next to `<script setup>`                          | Move that code into the setup block or into a separate module                                                      |
+| `Unsupported <script setup lang="…"> …`                                                           | A language other than `js`, `jsx`, `ts` or `tsx`                      | Use one of the four                                                                                                |
+| `Top-level await is not supported inside Shopware setup blocks.`                                  | `await` at the top level of `<script setup>`                          | Move it into a function, or use `watchEffect` / `onMounted`                                                        |
+| `Anonymous top-level declarations are not supported inside Shopware setup blocks.`                | A top-level `function` or `class` without a name                      | Give it a name                                                                                                     |
+| `"defineProps" is reserved by the Shopware setup transform and must not be declared or imported.` | `import { defineProps } from 'vue'`, or a binding named after a macro | Remove the import; the macros need none                                                                            |
 
 ## The macros
 
@@ -49,16 +51,19 @@ Your override compiles, the build is clean, and the page is unchanged. In order 
 | `Only one swDefinePublic() call is allowed in a base Shopware setup block.`                                        | Two marker calls                                                  | Merge them into one                                            |
 | `swDefinePublic() only supports shorthand bindings such as { a, b }. …`                                            | A renamed, string or computed key                                 | Rename the binding itself so key and binding match             |
 | `Spread properties are not supported inside swDefinePublic().`                                                     | `swDefinePublic({ ...state })`                                    | List the names explicitly                                      |
+| `Imported binding "…" cannot be exposed with swDefinePublic().`                                                    | An import passed to the macro                                     | Only bindings declared in this file can be exposed             |
+| `Duplicate … Shopware setup binding key "…".`                                                                      | The same name listed twice                                        | List it once                                                   |
 | `swDefinePublic() is a compile-time marker and returns nothing. …`                                                 | `const x = swDefinePublic({})`                                    | Call it as a statement                                         |
 | `swDefinePublic() is a Shopware setup compile-time macro for base components. …`                                   | `swDefinePublic` used in an `.override.vue` file                  | Use `swDefineOverride()`                                       |
 
 ## Right macro, wrong file
 
-| Message                                                                     | Cause                                                                                                              | Fix                                                       |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
-| `defineProps() is only supported in base Shopware setup blocks.`            | A Vue macro in an override. Same for `withDefaults`, `defineEmits`, `defineExpose`, `defineSlots`, `defineOptions` | Use `useSwProps()` / `useSwContext()` instead             |
-| `useSwPreviousState() is only supported in override Shopware setup blocks.` | An override composable in a base component. Same for `useSwProps`, `useSwContext`                                  | A base component reads its own props and context directly |
-| `Vue macro defineModel() is not supported inside Shopware setup blocks.`    | `defineModel()` in either mode                                                                                     | Declare the prop and the `update:` event by hand          |
+| Message                                                                     | Cause                                                                                              | Fix                                                                                                                      |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `defineProps() is only supported in base Shopware setup blocks.`            | A Vue macro in an override. Same for `withDefaults`, `defineEmits`, `defineSlots`, `defineOptions` | Use `useSwProps()` / `useSwContext()` instead                                                                            |
+| `defineExpose() is not supported inside Shopware setup blocks. …`           | `defineExpose()` in a base component or an override                                                | Base: list the bindings in `swDefinePublic()`, which generates the `defineExpose()` call. Override: `swDefineOverride()` |
+| `useSwPreviousState() is only supported in override Shopware setup blocks.` | An override composable in a base component. Same for `useSwProps`, `useSwContext`                  | A base component reads its own props and context directly                                                                |
+| `Vue macro defineModel() is not supported inside Shopware setup blocks.`    | `defineModel()` in either mode                                                                     | Declare the prop and the `update:` event by hand                                                                         |
 
 ## Reserved names
 
@@ -75,6 +80,9 @@ Your override compiles, the build is clean, and the page is unchanged. In order 
 | `The data binding of <sw-block> is generated by the Shopware setup transform and must not be authored.` | You wrote `:data`, `v-bind` or `#default` on an `sw-block`               | Write only `name` or `extends`                                                                               |
 | `Cannot assign to "…" inside <sw-block extends> content …`                                              | A template write to one of your override's bindings inside block content | The binding arrives there as a copy. Change it in a function in your `<script setup>` and call that function |
 | `Duplicate native setup base component name "…": "…" and "…" resolve to the same extendable component.` | Two base `.vue` files in one build resolve to the same name              | Rename one file or its directory                                                                             |
+| `Only a static "extends" attribute is allowed on <sw-block>; "v-if" is not supported. …`                | A directive, `class` or other attribute on an `sw-block`                 | Move the condition or attribute inside the block; `sw-block` renders a fragment and ignores attributes       |
+| `An override template may only contain <sw-block extends="..."> blocks at its top level. …`             | Markup outside a block in an override template                           | Move it into an `<sw-block extends>` block; an override renders only inside the blocks it extends            |
+| `A direct non-default named slot below <sw-block> is not supported. …`                                  | `<template #name>` directly inside an `sw-block`                         | Move the `sw-block` inside the named-slot template                                                           |
 
 ## In the browser console
 
@@ -104,7 +112,7 @@ Nothing warns about these. An `sw-block` is a real component and leaves a node i
 
 **An `sw-block` between `v-if` and `v-else` breaks the chain**, because `v-else` must directly follow its `v-if` sibling. The same applies between a `<template #slot>` and the component it belongs to.
 
-**`<sw-block extends>` inside `v-for`** registers one override per list item, so your content renders several times. A `v-if` on an `sw-block extends` fails the build - put the condition inside the block instead.
+**`<sw-block extends>` inside `v-for`** registers one override per list item, so your content renders several times. A `v-if` on an `sw-block extends` fails the build; put the condition inside the block instead.
 
 **`<sw-block-parent />` must render unconditionally, exactly once** per extending block. It claims its position in the chain when it is created, so putting it in a `v-for`, in a `v-if`, or giving it a `v-if` / `v-else` of its own corrupts the chain.
 
@@ -129,7 +137,7 @@ The standard `vue/no-dupe-keys` ESLint rule reports this for an inline prop obje
 
 ## A snippet key shows instead of the text
 
-The banner reads `swag-margin.hint.tooLow` rather than "Margin too low". In order of likelihood:
+The banner reads `swag-margin.hint.tooLow` rather than "Margin too low". Two causes, the first far more common:
 
 1. **The snippet cache is stale.** The Administration caches the snippet files it collected, and only activating a plugin starts a fresh cache. After you add or change a snippet file in an active plugin, run `shopware-cli project console cache:clear` and reload.
 2. **The key does not match.** `$t()` and `tWithFallback()` return the key itself when no snippet file has an entry for it. Compare the key with the nesting in your `en-GB.json`.
@@ -161,8 +169,8 @@ Your override read a value out of the component it extends, it worked, and after
 
 The fix in both cases is to stop reading the value from the component: take it from a store or from the DAL instead, the way [Chapter 4](tutorial/build-your-own-component#where-the-data-comes-from) takes the product from `shopware:stores/swProductDetail`.
 
-If there is no other source and you think the value belongs in the component's public surface, open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) with `[Admin SFC]` in front of the title, naming the component and the binding. That is exactly the kind of feedback the experimental phase is for - see [Give us feedback](roadmap#give-us-feedback).
+If there is no other source and you think the value belongs in the component's public surface, open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) with `[Admin SFC]` in front of the title, naming the component and the binding. See [Give us feedback](roadmap#give-us-feedback).
 
 ## Still stuck
 
-The whole system is experimental so that it can still change based on what breaks for you. If something is impossible, surprising, or only works by accident, open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) and describe what you were trying to extend.
+If something is impossible, surprising, or only works by accident, open an issue on [shopware/shopware](https://github.com/shopware/shopware/issues) and describe what you were trying to extend.

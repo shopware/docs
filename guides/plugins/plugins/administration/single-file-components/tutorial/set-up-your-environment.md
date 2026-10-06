@@ -9,7 +9,7 @@ nav:
 
 <!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-At the end of this chapter you have a running shop in Docker, an installed plugin that does nothing yet, and a build command that works. The Vue starts in [Chapter 2](your-first-override).
+At the end of this chapter you have a running shop in Docker, an installed plugin that does nothing yet, and a build command that works. The first `.vue` file comes in [Chapter 2](your-first-override).
 
 ## A shop to develop against
 
@@ -24,12 +24,12 @@ That starts the containers, installs Shopware if it is not installed yet, and op
 <PageRef page="../../../../../development/dev-environment" title="Development environment" sub="The full Shopware CLI Docker setup, its dashboard and its options" />
 
 ::: warning You need a shop built from `trunk`
-Single File Component support is not part of any 6.7 release. Point your project at the `trunk` branch of [shopware/shopware](https://github.com/shopware/shopware) before you start.
+Point your project at the `trunk` branch of [shopware/shopware](https://github.com/shopware/shopware) before you start.
 :::
 
 ### Running commands inside the container
 
-PHP runs in the `web` container, not on your host, and a host PHP usually has too little memory and no route to the database. Two ways to reach it:
+PHP and the database run inside the containers, and the service hostnames the shop is configured with only resolve there. So run console commands inside the `web` container. Two ways to do that:
 
 <Tabs>
 <Tab title="Console commands">
@@ -86,7 +86,7 @@ custom/plugins/SwagProductMargin/src/Resources/app/administration/src/
 
 and the rest of this tutorial calls it `<plugin root>/src/Resources/app/administration/src/`. Everything below it is yours to organise into whatever directories you like - the build searches the whole tree. This tutorial ends up with an `override/` and a `component/` directory, but nothing depends on those names.
 
-`main.ts` is the one file you create empty. This tutorial never puts anything in it - the build finds your code on its own - but it has to exist for the plugin to be picked up:
+`main.ts` is the one file you create empty. The main flow of this tutorial leaves it empty, because the build finds your code on its own, but it has to exist for the plugin to be picked up:
 
 ```typescript
 // <plugin root>/src/Resources/app/administration/src/main.ts
@@ -192,7 +192,7 @@ shopware-cli project console administration:check-extensions -- --only=SwagProdu
 
 The `--` is required: everything after it is passed on to the checker, and without it the console rejects `--only` as an unknown option.
 
-Both commands run on the Administration's own Node dependencies, which `shopware-cli project admin-watch` installs. A full build installs only part of them, so if the check reports that `vue-tsc` is not installed, start the watcher once, or run `npm ci` in `vendor/shopware/administration/Resources/app/administration` inside the `web` container.
+Both commands run on the Administration's own Node dependencies, which `shopware-cli project admin-watch` and `shopware-cli project admin-build` install. If the check reports that `vue-tsc` is not installed, run `npm ci` in `vendor/shopware/administration/Resources/app/administration` inside the `web` container.
 
 Working inside the [shopware/shopware](https://github.com/shopware/shopware) repository itself? There, `composer admin:setup-extension-tooling` and `composer admin:check-extensions` do the same.
 

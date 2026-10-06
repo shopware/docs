@@ -33,7 +33,7 @@ A `.vue` file needs no registration call. Its name decides both what the compone
 | `sw-my-component.override.vue`       | `sw-my-component` |
 | `sw-my-component/index.override.vue` | `sw-my-component` |
 
-Two base files declaring the same name fail the build. Any number of overrides may target the same component, from any number of plugins. Within one plugin, two overrides of the same component cannot share a directory: both would have to be called `sw-my-component.override.vue`, because the filename is what names the target. Put them in different directories, for example `override/sw-my-component.override.vue` and `override-demo/sw-my-component.override.vue`. In practice one override per component per plugin is almost always enough; the tutorial only uses two to demonstrate the chain. See [internals](../internals#the-filename-is-the-identity) for the mechanism.
+Two base files declaring the same name fail the build. Any number of overrides may target the same component, from any number of plugins. Within one plugin, two overrides of the same component cannot share a directory: both would have to be called `sw-my-component.override.vue`, because the filename is what names the target. Put them in different directories, for example `override/sw-my-component.override.vue` and `override-demo/sw-my-component.override.vue`. In practice one override per component per plugin is almost always enough. See [internals](../internals#the-filename-is-the-identity) for the mechanism.
 
 Every `.vue` file in an extension is compiled by the Shopware setup transform. It must have a `<script setup>` block, and that block must declare its role with one of the two [macros](macros/).
 
@@ -41,11 +41,12 @@ Every `.vue` file in an extension is compiled by the Shopware setup transform. I
 
 Base components are compiled as ordinary `<script setup>`, so Vue's macros behave exactly as in any Vue 3 project - including prop defaults, reactive destructuring and `withDefaults`.
 
-| Macro                                                         | Base | Override                                           |
-| ------------------------------------------------------------- | ---- | -------------------------------------------------- |
-| `defineProps`, `withDefaults`                                 | yes  | use [`useSwProps()`](composables/use-sw-props)     |
-| `defineEmits`, `defineSlots`, `defineExpose`, `defineOptions` | yes  | use [`useSwContext()`](composables/use-sw-context) |
-| `defineModel`                                                 | no   | no                                                 |
+| Macro                                         | Base                                                           | Override                                           |
+| --------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------- |
+| `defineProps`, `withDefaults`                 | yes                                                            | use [`useSwProps()`](composables/use-sw-props)     |
+| `defineEmits`, `defineSlots`, `defineOptions` | yes                                                            | use [`useSwContext()`](composables/use-sw-context) |
+| `defineExpose`                                | no, [`swDefinePublic()`](macros/sw-define-public) generates it | no                                                 |
+| `defineModel`                                 | no                                                             | no                                                 |
 
 One Shopware-specific rule in base components: a top-level binding must not share a declared prop's name. The extension runtime strips declared prop keys from the returned state, so the binding is deleted and the template renders `undefined`. See [troubleshooting](../troubleshooting#markup-that-silently-does-not-work).
 

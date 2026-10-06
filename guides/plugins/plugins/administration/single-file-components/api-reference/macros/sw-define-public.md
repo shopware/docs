@@ -45,4 +45,6 @@ swDefinePublic({});
 
 **Base files only.** In an `.override.vue` file this macro is rejected; use [`swDefineOverride()`](sw-define-override).
 
+**No `defineExpose()`.** The transform generates the component's `defineExpose()` call from this list, so an authored `defineExpose()` is rejected.
+
 **A binding must not share a declared prop's name.** See [troubleshooting](../../troubleshooting#markup-that-silently-does-not-work).

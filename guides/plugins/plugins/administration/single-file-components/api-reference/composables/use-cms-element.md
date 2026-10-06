@@ -50,5 +50,4 @@ components relied on that.
 
 `getDemoValue()` resolves a mapping path against the demo entity the editor is previewing with.
 
-Replaces the `cms-element` mixin - though a component the codemod migrated lands on
-[`useCmsElementDeprecated()`](use-cms-element-deprecated) first, and moves here in a second step.
+Replaces the `cms-element` mixin.

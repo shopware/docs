@@ -37,7 +37,7 @@ const product = computed(() => useSwProductDetailStore().product);
 
 `shopware:stores/*` is one of the virtual modules the Administration publishes for extensions: the part after the slash is the store's registry key, and the default export is its composable. There are `shopware:utils`, `shopware:data` and `shopware:mixins` alongside it.
 
-Reading the store here is a deliberate move rather than a detour. A component that fetches what it needs works wherever it is rendered, and a plugin often ends up rendering it in more than one place. It is also the more robust choice: the store is a public API, `previousState.product` is whatever the core component happens to expose.
+Reading the store has two advantages. A component that fetches what it needs works wherever it is rendered, and a plugin often ends up rendering it in more than one place. The store is also a public API, while `previousState.product` is whatever the core component happens to expose.
 
 ## Where the strings come from
 
@@ -322,7 +322,7 @@ Shopware.Component.register('swag-margin-hint', () => import('./component/swag-m
 </Tab>
 </Tabs>
 
-The Options API version has no equivalent of `swDefinePublic`, because everything on `this` was implicitly public. That is the trade: one extra line in exchange for knowing what your component actually promises.
+The Options API version has no equivalent of `swDefinePublic`, because everything on `this` was implicitly public. The extra line is what makes the component's contract explicit.
 
 The snippet files are the same in both columns, and so is where they sit: `this.$tc()` becomes `tWithFallback()` only because a `<script setup>` block has no `this`.
 
@@ -352,11 +352,7 @@ Shopware.Module.register('swag-product-margin', {
 });
 ```
 
-The `as never` is there for TypeScript only. The module manifest types `component` as `string | App<Element>`, and a `.vue` import is neither of those, so the cast is what gets you past the type check - nothing at runtime inspects it. It goes away once the manifest type accepts a component object.
-
-::: info Verified in source, not yet in every setup
-Everything that is not a string is passed on to Vue Router untouched, so this holds by construction. The Administration itself still points all of its own routes at component names, so the imported-component form is less travelled than the rest of this tutorial.
-:::
+The `as never` is there for TypeScript only. The module manifest types `component` as `string | App<Element>`, and a `.vue` import is neither of those, so the cast is what gets you past the type check. At runtime the router resolves only string names through the component registry and passes anything else on to Vue Router untouched.
 
 ### Using the tag without an import
 
@@ -379,7 +375,7 @@ Shopware.Component.register('swag-margin-hint', async () => {
 
 Import that `index.ts` once from `main.ts`, and the tag resolves everywhere.
 
-`_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component - see the [troubleshooting page](../troubleshooting#in-the-browser-console). The flag is an internal detail of the factory rather than a stable API, so expect a helper that sets it for you and this snippet to get shorter.
+`_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component, see the [troubleshooting page](../troubleshooting#in-the-browser-console). The flag is an internal detail of the factory rather than a stable API; it is documented here because there is no other way to register a `.vue` base component by name today.
 
 <PageRef page="../../module-component-management/add-custom-component" title="Add custom components" sub="Registration itself, for Twig and Options API components" />
 

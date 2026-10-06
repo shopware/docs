@@ -56,7 +56,7 @@ In a template Vue unwraps it for you, as it does with any ref.
 :::
 
 ::: info What you can rely on
-Today every `data`, `computed` and `method` of a Twig component is visible through `previousState`, because the Options API has no notion of private state. Once a core component is converted, only what core lists in `swDefinePublic()` remains visible. That list is being decided component by component during the experimental phase, so a value you read today may not be public tomorrow.
+Today every `data`, `computed`, `method` and `prop` of a Twig component is visible through `previousState`, because the Options API has no notion of private state. Once a core component is converted, only what core lists in `swDefinePublic()` remains visible. That list is being decided component by component during the experimental phase, so a value you read today may not be public tomorrow.
 
 Two ways to stay safe: read data from a store or the DAL instead of from the component whenever you can - [Chapter 4](build-your-own-component#where-the-data-comes-from) does exactly that with `shopware:stores/swProductDetail` - and check the changelog for `swDefinePublic` changes when you update.
 :::
@@ -87,7 +87,7 @@ const margin = computed(() => {
 ```
 
 ::: info Types for entity fields
-`firstNetPrice` narrows the price field by hand because the generated entity schema types it loosely. Better type safety for entity data out of the box is being worked on.
+`firstNetPrice` narrows the price field by hand because the generated entity schema types it loosely.
 :::
 
 ## Using values in the template

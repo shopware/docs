@@ -9,7 +9,7 @@ nav:
 
 <!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-Your component works. Now give it the same courtesy the core page gave you in [Chapter 2](your-first-override): let other extensions change it without forking it.
+Your component works. Now make it extensible the way the core page was in [Chapter 2](your-first-override), so other extensions can change it without forking it.
 
 There are two halves to that, and you have already met both from the other side.
 
@@ -115,7 +115,7 @@ Reload the product:
 
 ![The banner with the message replaced and a tip appended by a second override](../../../../../../assets/administration-sfc-tutorial-extended.png)
 
-Three files are on screen at once: a core Twig component providing the price card, your component providing the banner, and an override changing the banner's text and adding a line under it. None of them knows the others exist - which is the whole point of declaring the block and the public API rather than editing the component directly.
+Four files contribute to what is on screen: a core Twig component providing the price card, your override placing the banner in it, your component providing the banner, and a second override changing the banner's text and adding a line under it. None of them knows the others exist, because each one declares a block or a public API instead of editing another component directly.
 
 ## What this replaces
 

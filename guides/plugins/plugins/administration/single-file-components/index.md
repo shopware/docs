@@ -17,20 +17,9 @@ Shopware is now moving towards **native Vue**. This makes onboarding easier for 
 
 Components can now be written as Vue [Single File Components](https://vuejs.org/guide/scaling-up/sfc.html) (`.vue` files) using `<script setup>`. Extension points are declared with the native [`sw-block`](api-reference/block-components) component instead of TwigJS blocks.
 
-## Timeline
+## Where it stands
 
-| When  | What happens                                                                                                        |
-| ----- | ------------------------------------------------------------------------------------------------------------------- |
-| Today | The extension system is available, and experimental. Build something with it and tell us what you find.             |
-| 6.8   | The Administration's private components are converted, and run in production for the first time.                    |
-| 6.9   | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it. |
-| Later | The remaining components follow. The shims keep working for a while after that.                                     |
-
-Converting the Administration's own components is the larger half of the work, and it is why the
-experimental phase lasts as long as it does: every component that changes shape is one more chance for
-an extension to break, and we would rather find those now than in a major.
-
-See the full roadmap [here](./roadmap.md)
+The system is available on `trunk` today and is planned to become a stable API in 6.9. The [roadmap](./roadmap.md) has the timeline, what is supported, and the list of composables that replace mixins.
 
 ## Before and after
 
@@ -98,10 +87,10 @@ The fastest way in is to build something. The tutorial takes you from an empty d
 Four pages back it up:
 
 <PageRef page="api-reference/" title="API reference" sub="The macros, the composables and the two components, in one place" />
-<PageRef page="troubleshooting" title="Troubleshooting" sub="Every build error and console message, with its fix" />
+<PageRef page="troubleshooting" title="Troubleshooting" sub="The build errors and console messages you are most likely to meet, with their fixes" />
 <PageRef page="roadmap" title="Roadmap" sub="What works today and what is still coming" />
 <PageRef page="internals" title="Internals" sub="What the build does to your file, and what the block components do at runtime" />
 
 ## Give us feedback
 
-This is what the experimental phase is for. Tell us what you tried to extend and where the system got in your way - the roadmap has [the details and the channel](roadmap#give-us-feedback).
+Tell us what you tried to extend and where the system got in your way. The roadmap has [the details and the channel](roadmap#give-us-feedback).

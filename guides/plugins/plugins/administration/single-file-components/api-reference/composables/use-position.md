@@ -35,8 +35,7 @@ const position = await getNewPosition(repository, new Criteria(1, 1), Shopware.C
 collection. `lowerPositionValue()` and `raisePositionValue()` swap an item with its neighbour, and
 `renumberPositions()` renumbers the whole collection from `startIndex`.
 
-Every function takes the field name as its last-but-one argument and defaults to `'position'`, so a
-collection ordered by a differently named field works too. They sort the collection in place and hand it
-back.
+Every function takes an optional `field` argument that defaults to `'position'`, so a collection ordered
+by a differently named field works too. They sort the collection in place and hand it back.
 
 Replaces the `position` mixin.

@@ -41,7 +41,7 @@ Block names are part of the backwards-compatibility promise: a block you find in
 Extending across the two forms is handled by shims in most cases - the roadmap section [Alongside Twig](../roadmap#alongside-twig) has the caveat.
 
 ::: tip Finding a block
-Block names are stable identifiers, and the fastest way to a name is the component's template in [shopware/shopware](https://github.com/shopware/shopware). Search for a piece of the text or a CSS class you can see on screen, then take the enclosing `{% block %}` or `<sw-block name>`. A block inspector for the Vue devtools is planned in [shopware/shopware#20484](https://github.com/shopware/shopware/issues/20484).
+Block names are stable identifiers, and the fastest way to a name is the component's template in [shopware/shopware](https://github.com/shopware/shopware). Search for a piece of the text or a CSS class you can see on screen, then take the enclosing `{% block %}` or `<sw-block name>`. A block inspector for the Vue devtools is in progress in [shopware/shopware#20490](https://github.com/shopware/shopware/pull/20490).
 :::
 
 ## One file, and its name is the registration
@@ -52,7 +52,7 @@ Create a single file:
 <plugin root>/src/Resources/app/administration/src/override/sw-product-detail-base.override.vue
 ```
 
-That filename is doing two jobs, and there is no registration call anywhere to do them instead:
+The filename carries two pieces of information, and there is no registration call:
 
 * `sw-product-detail-base` - **which component** this file overrides.
 * `.override.vue` - **that** it is an override rather than a component of its own.
@@ -96,7 +96,7 @@ The `<template>` of an override file exists only to declare those targets. It re
 * **`<sw-block extends="…">`** replaces the target block with the content that goes in here. To keep the original content, use `<sw-block-parent />`.
 * **`<sw-block-parent />`** renders whatever was in that extension point before you: the original content, or the previous extension in the chain.
 
-If you do not use `<sw-block-parent />`, the original markup is removed - so be aware. These are the techniques you can use:
+Without `<sw-block-parent />` the original markup is removed. The three patterns:
 
 <Tabs>
 <Tab title="Append">
@@ -133,7 +133,7 @@ If you do not use `<sw-block-parent />`, the original markup is removed - so be 
 When several extensions target the same block they form a chain, and each one's `<sw-block-parent />` renders the previous one's output. That is why rendering the parent matters even when your own change looks additive: it is what keeps the other plugins on the page.
 
 ::: info Coming from TwigJS?
-`<sw-block extends>` is `{% block %}` in an override template, and `<sw-block-parent />` is `{% parent %}`. The section at the end of this page puts the two side by side, and the **migration guide** - *page planned, [#20186](https://github.com/shopware/shopware/issues/20186)* - will walk a whole extension through the change.
+`<sw-block extends>` is `{% block %}` in an override template, and `<sw-block-parent />` is `{% parent %}`. The section at the end of this page puts the two side by side.
 :::
 
 ## The whole file

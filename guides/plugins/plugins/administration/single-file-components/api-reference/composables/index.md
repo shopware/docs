@@ -10,7 +10,7 @@ nav:
 <!--@include: ../../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
 All composables the Administration offers are experimental. Their names, options and return values can
-still change without a deprecation, so pin down what you rely on and tell us when one of them does not
+still change without a deprecation, so note which ones you rely on and tell us when one of them does not
 fit what you are building.
 
 ## Override composables
@@ -55,16 +55,10 @@ The mixins stay where they are, so an Options API component that has not been mi
 
 <PageRef page="use-notification" title="useNotification()" sub="The notifications in the top right, and the system ones" />
 <PageRef page="use-notification-translation" title="useNotificationTranslation()" sub="Translate and sanitize a notification for rendering" />
-<PageRef page="use-snackbar" title="useSnackbar()" sub="Add and remove snackbars" />
 
-### Session and context
+### User settings
 
-<PageRef page="use-session" title="useSession()" sub="The logged-in user, their privileges and the admin locale" />
-<PageRef page="use-system" title="useSystem()" sub="The locales the Administration has registered" />
-<PageRef page="use-context" title="useContext()" sub="The app and API context behind Shopware.Context" />
 <PageRef page="use-user-settings" title="useUserSettings()" sub="Read and write per-user config" />
-<PageRef page="use-theme" title="useTheme()" sub="The light or dark appearance, and the user's preference" />
-<PageRef page="use-module-icon-colors" title="useModuleIconColors()" sub="The opt-in colored module icons" />
 
 ### Text and formatting
 
@@ -94,8 +88,3 @@ The mixins stay where they are, so an Options API component that has not been mi
 
 <PageRef page="use-cms-state" title="useCmsState()" sub="The CMS editor state a block or config panel works against" />
 <PageRef page="use-cms-element" title="useCmsElement()" sub="An element's resolved config, and the writes that change it" />
-<PageRef page="use-cms-element-deprecated" title="useCmsElementDeprecated()" sub="What the codemod targets, and how to move off it" />
-
-### Block system
-
-<PageRef page="use-block-context" title="useBlockContext()" sub="The registry behind sw-block" />

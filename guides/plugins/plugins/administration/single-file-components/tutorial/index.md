@@ -9,13 +9,11 @@ nav:
 
 <!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-Five chapters, one continuous build. You start with an empty directory and end with a plugin that warns a merchant when a product's profit margin is too low, on the product detail page every merchant already knows.
+Five chapters, one continuous build. You start with an empty directory and end with a plugin that warns a merchant when a product's profit margin is too low, on the product detail page.
 
 ![The finished plugin on the product detail page](../../../../../../assets/administration-sfc-tutorial-extended.png)
 
-Three lines of that banner come from three different files, and telling them apart is what the tutorial is for: markup your component owns, state an override replaced, and markup a second override added.
-
-Verified against trunk on 2026-09-16. If a step does not match what you see, check first whether the block or the `product` computed moved in core.
+Three lines of that banner come from three different files: markup your component owns, state an override replaced, and markup a second override added.
 
 ## Chapters
 
