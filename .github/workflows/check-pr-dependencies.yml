@@ -1,0 +1,433 @@
+name: Check documentation dependencies
+
+on:
+  # Re-check whenever a docs PR changes.
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+  # Re-check periodically so that merging a dependent PR eventually
+  # unblocks the docs PR without requiring any changes to the docs PR.
+  schedule:
+    - cron: "0 * * * *"
+
+  # Allow manual checks.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  check-dependencies:
+    name: Documentation dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check documentation dependencies
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const docsRepo = context.repo.repo;
+
+            /*
+             * ------------------------------------------------------------
+             * Configuration
+             * ------------------------------------------------------------
+             */
+
+            const READY_LABEL = "dependencies:ready";
+            const PENDING_LABEL = "dependencies:pending";
+
+            /*
+             * ------------------------------------------------------------
+             * Find the docs PR
+             * ------------------------------------------------------------
+             *
+             * Scheduled workflows don't have a pull_request context,
+             * so on a schedule we check ALL open PRs.
+             *
+             * For pull_request events, we only check that PR.
+             */
+
+            let prs;
+
+            if (context.eventName === "pull_request") {
+              prs = [context.payload.pull_request];
+            } else {
+              prs = await github.paginate(
+                github.rest.pulls.list,
+                {
+                  owner,
+                  repo: docsRepo,
+                  state: "open",
+                  per_page: 100,
+                }
+              );
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: extract dependent PR URLs
+             * ------------------------------------------------------------
+             *
+             * Only URLs between the markers count. Instructions and
+             * examples outside the markers are ignored. Missing markers
+             * mean this docs PR has no dependency.
+             */
+
+            function extractDependentPrs(body) {
+              if (!body) {
+                return [];
+              }
+
+              const match = body.match(
+                /<!--\s*docs-dependencies:start\s*-->([\s\S]*?)<!--\s*docs-dependencies:end\s*-->/i
+              );
+
+              if (!match) {
+                return [];
+              }
+
+              const urls = [];
+              const urlRegex =
+                /https:\/\/github\.com\/([^/\s]+)\/([^/\s]+)\/pull\/(\d+)/g;
+
+              let urlMatch;
+
+              while ((urlMatch = urlRegex.exec(match[1])) !== null) {
+                urls.push({
+                  url: urlMatch[0],
+                  owner: urlMatch[1],
+                  repo: urlMatch[2],
+                  number: Number(urlMatch[3]),
+                });
+              }
+
+              return urls;
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: create/update labels
+             * ------------------------------------------------------------
+             */
+
+            async function ensureLabel(name, color, description) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner,
+                  repo: docsRepo,
+                  name,
+                });
+              } catch (error) {
+                if (error.status !== 404) {
+                  throw error;
+                }
+
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo: docsRepo,
+                  name,
+                  color,
+                  description,
+                });
+              }
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: update labels
+             * ------------------------------------------------------------
+             */
+
+            async function updateLabels(prNumber, ready) {
+              await ensureLabel(
+                READY_LABEL,
+                "0e8a16",
+                "All Dependent PRs have been merged"
+              );
+
+              await ensureLabel(
+                PENDING_LABEL,
+                "fbca04",
+                "One or more Dependent PRs have not been merged"
+              );
+
+              // Get current labels.
+              const currentLabels = await github.paginate(
+                github.rest.issues.listLabelsOnIssue,
+                {
+                  owner,
+                  repo: docsRepo,
+                  issue_number: prNumber,
+                  per_page: 100,
+                }
+              );
+
+              const currentNames = currentLabels.map(label => label.name);
+
+              if (ready) {
+                if (!currentNames.includes(READY_LABEL)) {
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    labels: [READY_LABEL],
+                  });
+                }
+
+                if (currentNames.includes(PENDING_LABEL)) {
+                  await github.rest.issues.removeLabel({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    name: PENDING_LABEL,
+                  });
+                }
+              } else {
+                if (!currentNames.includes(PENDING_LABEL)) {
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    labels: [PENDING_LABEL],
+                  });
+                }
+
+                if (currentNames.includes(READY_LABEL)) {
+                  await github.rest.issues.removeLabel({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    name: READY_LABEL,
+                  });
+                }
+              }
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: publish commit status
+             * ------------------------------------------------------------
+             *
+             * This gives us a merge-protection mechanism that cannot
+             * simply be bypassed by manually adding a label.
+             */
+
+            async function setStatus(sha, state, description) {
+              await github.rest.repos.createCommitStatus({
+                owner,
+                repo: docsRepo,
+                sha,
+                state,
+                context: "Documentation dependencies",
+                description,
+              });
+            }
+
+            /*
+             * The commit status is the merge gate. Label updates are
+             * informational, so a label failure must not skip the status.
+             */
+
+            async function publishResult(prNumber, sha, ready, description) {
+              try {
+                await updateLabels(prNumber, ready);
+              } catch (error) {
+                console.log(
+                  `Could not update labels on #${prNumber}: ${error.message}`
+                );
+              }
+
+              await setStatus(sha, ready ? "success" : "failure", description);
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Check each docs PR
+             * ------------------------------------------------------------
+             */
+
+            for (const pr of prs) {
+              const prNumber = pr.number;
+
+              console.log(`\nChecking docs PR #${prNumber}`);
+
+              /*
+               * Get the latest PR body.
+               *
+               * This is important for scheduled runs because the
+               * pull_request event payload is not available there.
+               */
+
+              const currentPr = await github.rest.pulls.get({
+                owner,
+                repo: docsRepo,
+                pull_number: prNumber,
+              });
+
+              const body = currentPr.data.body || "";
+              const headSha = currentPr.data.head.sha;
+              const dependencies = extractDependentPrs(body);
+
+              /*
+               * No listed dependencies. Most docs PRs have none, and an
+               * empty marker block is ready to merge.
+               */
+
+              if (dependencies.length === 0) {
+                console.log("No dependent PRs listed.");
+
+                await publishResult(
+                  prNumber,
+                  headSha,
+                  true,
+                  "No dependent PRs"
+                );
+
+                continue;
+              }
+
+              /*
+               * Remove duplicates.
+               */
+
+              const uniqueDependencies = Array.from(
+                new Map(
+                  dependencies.map(dep => [
+                    `${dep.owner}/${dep.repo}#${dep.number}`,
+                    dep,
+                  ])
+                ).values()
+              );
+
+              const results = [];
+
+              /*
+               * ----------------------------------------------------------
+               * Check every dependent PR
+               * ----------------------------------------------------------
+               */
+
+              for (const dependency of uniqueDependencies) {
+                const name =
+                  `${dependency.owner}/${dependency.repo}#${dependency.number}`;
+
+                console.log(`Checking ${name}`);
+
+                try {
+                  const response = await github.rest.pulls.get({
+                    owner: dependency.owner,
+                    repo: dependency.repo,
+                    pull_number: dependency.number,
+                  });
+
+                  const sourcePr = response.data;
+
+                  if (sourcePr.merged_at !== null) {
+                    console.log(`  ✓ ${name} is MERGED`);
+
+                    results.push({
+                      ...dependency,
+                      name,
+                      state: "merged",
+                      ok: true,
+                    });
+                  } else if (sourcePr.state === "open") {
+                    console.log(`  ✗ ${name} is OPEN`);
+
+                    results.push({
+                      ...dependency,
+                      name,
+                      state: "open",
+                      ok: false,
+                    });
+                  } else {
+                    console.log(`  ✗ ${name} is CLOSED but NOT MERGED`);
+
+                    results.push({
+                      ...dependency,
+                      name,
+                      state: "closed-not-merged",
+                      ok: false,
+                    });
+                  }
+                } catch (error) {
+                  console.log(
+                    `  ✗ ${name} could not be checked: ${error.message}`
+                  );
+
+                  results.push({
+                    ...dependency,
+                    name,
+                    state: "error",
+                    ok: false,
+                    error: error.message,
+                  });
+                }
+              }
+
+              /*
+               * ----------------------------------------------------------
+               * Determine overall state
+               * ----------------------------------------------------------
+               */
+
+              const allMerged =
+                results.length > 0 &&
+                results.every(result => result.ok);
+
+              /*
+               * ----------------------------------------------------------
+               * Update labels
+               * ----------------------------------------------------------
+               */
+
+              console.log("\nDependency summary:");
+
+              for (const result of results) {
+                const icon = result.ok ? "✓" : "✗";
+                console.log(
+                  `${icon} ${result.name}: ${result.state}`
+                );
+              }
+
+              if (allMerged) {
+                await publishResult(
+                  prNumber,
+                  headSha,
+                  true,
+                  `All ${results.length} dependent PR(s) are merged`
+                );
+
+                console.log(
+                  `\n✓ Docs PR #${prNumber} is ready to merge.`
+                );
+              } else {
+                const pending = results
+                  .filter(result => !result.ok)
+                  .map(result => result.name);
+
+                await publishResult(
+                  prNumber,
+                  headSha,
+                  false,
+                  `${pending.length} dependent PR(s) not merged`
+                );
+
+                console.log(
+                  `\n✗ Docs PR #${prNumber} is NOT ready.`
+                );
+                console.log(
+                  `Pending: ${pending.join(", ")}`
+                );
+              }
+            }
