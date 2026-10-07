@@ -9,7 +9,7 @@ nav:
 
 <!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-The banner says the same thing on every product. In this chapter it reads the product out of the component it extends and works out the actual margin.
+In this chapter the banner gets dynamic text: it shows the actual margin of the product. For that, you fill the `<script setup>` block with TypeScript.
 
 ## Where that state lives
 
@@ -35,7 +35,7 @@ computed: {
 
 ## `useSwPreviousState()`
 
-Your override is not that component and has no `this` of its own to reach it through. It asks for the state instead:
+To access that state, you can't use `this.product`. A composable hands it to you instead:
 
 ```ts
 const previousState = useSwPreviousState();
@@ -53,12 +53,6 @@ const name = previousState.product.value?.name;
 ```
 
 In a template Vue unwraps it for you, as it does with any ref.
-:::
-
-::: info What you can rely on
-Today every `data`, `computed`, `method` and `prop` of a Twig component is visible through `previousState`, because the Options API has no notion of private state. Once a core component is converted, only what core lists in `swDefinePublic()` remains visible. That list is being decided component by component during the experimental phase, so a value you read today may not be public tomorrow.
-
-Two ways to stay safe: read data from a store or the DAL instead of from the component whenever you can - [Chapter 4](build-your-own-component#where-the-data-comes-from) does exactly that with `shopware:stores/swProductDetail` - and check the changelog for `swDefinePublic` changes when you update.
 :::
 
 ## Work out the margin
@@ -229,6 +223,6 @@ Shopware.Component.override('sw-product-detail-base', {
 </Tab>
 </Tabs>
 
-`this.<name>` becomes `previousState.<name>.value`, and the override config becomes plain setup code. What you gain is an explicit boundary: `previousState` is visibly *the other component*, where `this` silently mixed both.
+`this.<name>` becomes `previousState.<name>.value`, and the override config becomes plain setup code.
 
 Next: [Build your own component](build-your-own-component).

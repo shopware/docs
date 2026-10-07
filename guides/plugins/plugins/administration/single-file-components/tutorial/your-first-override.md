@@ -9,7 +9,7 @@ nav:
 
 <!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-The plugin from [Chapter 1](set-up-your-environment) does nothing. In this chapter it puts a banner of your own onto the product detail page, right under the price fields.
+The plugin from [Chapter 1](set-up-your-environment) does nothing. In this chapter it puts your own banner onto the product detail page, right under the price fields.
 
 ## Pick the spot
 
@@ -174,7 +174,7 @@ Go back to the product you opened at the start of this chapter and scroll to **P
 ![The banner rendered under the price fields on the product detail page](../../../../../../assets/administration-sfc-tutorial-static-banner.png)
 
 ::: info About the spacing
-Block content sits flush against the content above it, with no gap. [Chapter 4](build-your-own-component#checkpoint) adds the spacing.
+Block content sits flush against the content above it, with no gap. [Chapter 4](build-your-own-component#styles) adds the spacing.
 :::
 
 Your plugin is on a core page, and the core page has not been touched.

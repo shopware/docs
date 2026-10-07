@@ -9,13 +9,22 @@ nav:
 
 <!--@include: ../../../../../../snippets/guide/administration_sfc_experimental.md-->
 
-At the end of this chapter you have a running shop in Docker, an installed plugin that does nothing yet, and a build command that works. The first `.vue` file comes in [Chapter 2](your-first-override).
+At the end of this chapter you have a running shop in Docker and an installed plugin that does nothing yet. The first `.vue` file comes in [Chapter 2](your-first-override).
 
 ## A shop to develop against
 
-Shopware CLI ships a Docker-based development environment, so you need Docker and [Shopware CLI](https://developer.shopware.com/docs/products/cli/) and nothing else. From your project root:
+Before you start, install Docker and [Shopware CLI](https://developer.shopware.com/docs/products/cli/). The tutorial uses Shopware CLI throughout.
+
+In your terminal, go to the directory where the tutorial project should live, and create a shop from the `trunk` branch:
 
 ```bash
+shopware-cli project create swag-sfc-tutorial dev-trunk --docker
+```
+
+`dev-trunk` installs the current state of `trunk`, because Single File Components are not part of any release yet. Then start the shop:
+
+```bash
+cd swag-sfc-tutorial
 shopware-cli project dev
 ```
 
@@ -23,16 +32,12 @@ That starts the containers, installs Shopware if it is not installed yet, and op
 
 <PageRef page="../../../../../development/dev-environment" title="Development environment" sub="The full Shopware CLI Docker setup, its dashboard and its options" />
 
-::: warning You need a shop built from `trunk`
-Point your project at the `trunk` branch of [shopware/shopware](https://github.com/shopware/shopware) before you start.
-:::
-
 ### Running commands inside the container
 
-PHP and the database run inside the containers, and the service hostnames the shop is configured with only resolve there. So run console commands inside the `web` container. Two ways to do that:
+PHP and the database run inside the containers, and the service hostnames the shop is configured with only resolve there. So every command that touches the shop has to run inside the `web` container:
 
 <Tabs>
-<Tab title="Console commands">
+<Tab title="Shopware CLI">
 
 ```bash
 shopware-cli project console cache:clear
@@ -45,13 +50,13 @@ swx plugin:refresh
 ```
 
 </Tab>
-<Tab title="composer and anything else">
+<Tab title="Composer">
 
 ```bash
 docker compose exec web composer install
 ```
 
-Or open a shell and stay there:
+`docker compose exec web` runs any command inside the container, Composer included. To run several commands, open a shell there instead:
 
 ```bash
 docker compose exec web bash
@@ -60,7 +65,7 @@ docker compose exec web bash
 </Tab>
 </Tabs>
 
-Everywhere below, console commands are written as `shopware-cli project console …`. If you already have a shell inside the `web` container, `bin/console …` is the same thing. A `composer …` line means "run this inside the `web` container".
+Everywhere below, console commands are written as `shopware-cli project console …`. In a shell inside the `web` container, `bin/console …` does the same.
 
 ## The plugin
 
@@ -178,7 +183,9 @@ Everything the build rejects is also reported by ESLint, on the exact line, as y
 shopware-cli project console administration:setup-extension-tooling
 ```
 
-It writes a `tsconfig.json` and an `eslint.config.mjs` into your plugin - commit those two - and prints the settings your editor needs. You can run the same checks by hand at any point:
+It writes a `tsconfig.json` and an `eslint.config.mjs` into your plugin and shows you which settings to configure in your IDE.
+
+You can run the checks by hand with this command:
 
 ```bash
 shopware-cli project console administration:check-extensions -- --only=SwagProductMargin
@@ -192,7 +199,14 @@ shopware-cli project console administration:check-extensions -- --only=SwagProdu
 
 The `--` is required: everything after it is passed on to the checker, and without it the console rejects `--only` as an unknown option.
 
-Both commands run on the Administration's own Node dependencies, which `shopware-cli project admin-watch` and `shopware-cli project admin-build` install. If the check reports that `vue-tsc` is not installed, run `npm ci` in `vendor/shopware/administration/Resources/app/administration` inside the `web` container.
+::: info `vue-tsc` is not installed
+If the check reports that `vue-tsc` is not installed, run this command:
+
+```bash
+docker compose exec web npm ci --prefix vendor/shopware/administration/Resources/app/administration
+```
+
+:::
 
 Working inside the [shopware/shopware](https://github.com/shopware/shopware) repository itself? There, `composer admin:setup-extension-tooling` and `composer admin:check-extensions` do the same.
 

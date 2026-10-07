@@ -13,11 +13,17 @@ The override file from [Chapter 3](read-the-base-component) does three jobs at o
 
 ## A base component is a `.vue` file
 
+Create the component as a single file:
+
 ```text
 <plugin root>/src/Resources/app/administration/src/component/swag-margin-hint.vue
 ```
 
-The filename rule from Chapter 2 applies here too, minus the `.override` part: this file **is** the component `swag-margin-hint`. `swag-margin-hint/index.vue` would mean the same.
+The filename is the component's name: this file **is** the component `swag-margin-hint`. `swag-margin-hint/index.vue` would mean the same.
+
+::: info Same rule as for overrides
+This is the naming rule of an `.override.vue` file from [Chapter 2](your-first-override#one-file-and-its-name-is-the-registration), without the `.override` part, because this file is a component of its own.
+:::
 
 Your override imports it directly, so there is nothing else to do:
 
@@ -35,7 +41,7 @@ import useSwProductDetailStore from 'shopware:stores/swProductDetail';
 const product = computed(() => useSwProductDetailStore().product);
 ```
 
-`shopware:stores/*` is one of the virtual modules the Administration publishes for extensions: the part after the slash is the store's registry key, and the default export is its composable. There are `shopware:utils`, `shopware:data` and `shopware:mixins` alongside it.
+`shopware:stores/*` is one of the virtual modules the Administration publishes for extensions: the part after the slash is the store's registry key, and the default export is its composable. There are `shopware:composables`, `shopware:utils`, `shopware:data` and `shopware:mixins` alongside it.
 
 Reading the store has two advantages. A component that fetches what it needs works wherever it is rendered, and a plugin often ends up rendering it in more than one place. The store is also a public API, while `previousState.product` is whatever the core component happens to expose.
 
@@ -133,6 +139,20 @@ What it means: **a base component is private by default.** Every top-level bindi
 [Chapter 5](make-it-extensible) is where that list gets used.
 
 *Reference: [`swDefinePublic()`](../api-reference/macros/sw-define-public).*
+
+## Styles
+
+Until now, the banner sat flush against the price fields, because the content of a block gets no spacing of its own. A component brings its own styles in a `<style scoped>` block, so it can add the gap itself:
+
+```vue
+<style scoped>
+.swag-margin-hint {
+    margin-top: 24px;
+}
+</style>
+```
+
+`scoped` limits the rules to the markup of this component, so they cannot leak into the rest of the Administration. The template wraps the banner in a `div` with the class `swag-margin-hint`, which is what the rule targets.
 
 ## The component
 
