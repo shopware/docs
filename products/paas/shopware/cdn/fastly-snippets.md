@@ -39,10 +39,10 @@ services:
     snippets_path: config/fastly
 ```
 
-| Option                     | Default | Description                                                                                                                                                  |
-| -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `snippets_path`            | unset   | Directory (relative to the repository root) containing your custom snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
-| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services                                                       |
+| Option                     | Default | Description                                                                                                                                                                                                            |
+| -------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `snippets_path`            | unset   | Directory (relative to the application root, that is the directory containing the `application.yaml`) containing your custom snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
+| `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services                                                                                                                 |
 
 Apply the change with:
 

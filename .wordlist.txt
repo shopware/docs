@@ -2,6 +2,7 @@ AAAA
 AAC
 ACL
 ACLs
+ACU
 ADDR
 ADR
 ADRs
@@ -149,6 +150,7 @@ CSPs
 CSRF
 CSV
 CVEs
+CVSS
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -210,6 +212,7 @@ ChildrenAssociation
 ChildrenAssociationField
 CircleCI
 ClassHierarchyChange
+ClassMoved
 ClientInterface
 Cloudflare
 Cmd
@@ -468,6 +471,7 @@ GBP
 GCM
 GDPR
 GHSA
+GID
 GIFs
 GLB
 GPT
@@ -872,7 +876,9 @@ RDBMS
 README
 RHEL
 RPC
+RPO
 RSA
+RTO
 RabbitMQ
 RabbitMq
 Readonly
@@ -1066,6 +1072,7 @@ TestCase
 TestDataService
 TestSecret
 TestStockUpdateFilter
+Tideways
 TimeRangeRule
 TimeZoneField
 Timezones
@@ -1132,6 +1139,7 @@ UpperCamelCase
 Upserting
 Upstash
 Upsun
+Uptime
 UrlAware
 UrlStorer
 UserAware
@@ -1878,6 +1886,7 @@ preprocessor
 preprocessors
 preselect
 preselection
+presigned
 prettierrc
 previewComponent
 previewable
@@ -1954,6 +1963,7 @@ resetUrl
 resolver's
 resolvers
 resubmittable
+rethrow
 rethrown
 retryability
 returnUrl
@@ -2062,6 +2072,7 @@ stopwords
 storages
 storefrontApiRequest
 storer
+stringable
 strlen
 struct
 structs
@@ -2110,6 +2121,7 @@ textarea
 th
 theming
 themself
+tideways
 timeframe
 timeframes
 tinyint
@@ -2174,6 +2186,7 @@ updateDestructive
 updateViaAdminApi
 uploadable
 upsert
+uptime
 uri
 url
 urls
@@ -2203,6 +2216,7 @@ userRecovery
 userland
 utils
 uuid
+vCPU
 validFrom
 validUntil
 validator

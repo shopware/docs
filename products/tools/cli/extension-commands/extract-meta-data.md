@@ -43,10 +43,10 @@ It will output always the English changelog.
 
 ## Configuration schema
 
-To view the JSON schema for the `.shopware-extension.yml` configuration file, you can use:
+To view the JSON schema for the `.config/shopware-extension.yml` configuration file, you can use:
 
 ```bash
 shopware-cli extension config-schema
 ```
 
-This outputs the JSON schema that describes all available configuration options in `.shopware-extension.yml`. This is particularly useful for AI agents and automation tools that need to understand the extension configuration structure.
+This outputs the JSON schema that describes all available configuration options in `.config/shopware-extension.yml`. This is particularly useful for AI agents and automation tools that need to understand the extension configuration structure.

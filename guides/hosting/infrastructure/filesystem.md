@@ -193,6 +193,12 @@ shopware:
 Omit the `credentials` block on AWS infrastructure (EC2, ECS, EKS) and grant access through an **IAM role** instead. This keeps long-lived secrets out of your configuration.
 :::
 
+::: warning Browser access to private S3 downloads
+Shopware redirects browsers to temporary, signed URLs (presigned URLs) when downloading Import/Export files, private Administration media, and purchased digital products from S3 storage. The storage endpoint must therefore be reachable by both Shopware and the client browser. An internal endpoint such as `http://minio:9000`, which only resolves inside the application network, causes these downloads to fail.
+
+Configure `shopware.filesystem.private.config.endpoint` with a browser-accessible endpoint, using HTTPS when the storefront or Administration uses HTTPS. The bucket can remain private: the signed URL authorizes the download. Changing the filesystem `url` does not change the endpoint used to sign these URLs.
+:::
+
 ### Google Cloud Storage
 
 Install the adapter package first:
@@ -413,6 +419,8 @@ shopware:
 Shopware ships with a sensible default list (common image, video, audio, and document formats; the private list additionally allows `zip`, `rar`, and `xml`). Override these keys only to add or remove specific extensions.
 
 ## Private file download strategy
+
+These settings do not disable presigned S3 download URLs or force S3 downloads through PHP. When Shopware generates a temporary URL, it redirects the browser before applying the local download strategy. See [Amazon S3](#amazon-s3-and-s3-compatible-providers) for the endpoint requirements.
 
 For private files served from **local** storage (e.g. downloadable products and invoices), you can choose how the file is delivered to the client:
 
