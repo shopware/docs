@@ -15,7 +15,7 @@ function swDefinePublic<T extends Record<PropertyKey, unknown>>(bindings: T): vo
 
 Base components only. Declares which of the file's top-level bindings other extensions may replace.
 
-A compile-time macro: you do not import it, it produces no runtime code, and it is mandatory in every base component.
+A compile-time macro: you do not import it, the call itself is removed at build time, and it is mandatory in every base component.
 
 ## What it does
 
@@ -41,7 +41,7 @@ swDefinePublic({});
 
 **Shorthand bindings only.** The key always equals the local binding name. Renaming (`{ total: count }`), string keys, computed keys and spreads are rejected at build time.
 
-**Once, at the top level.** Two calls, or a call nested inside a function or block, are rejected.
+**Once, at the top level.** A second top-level call is rejected. A call nested inside a function or block is not recognised as the marker, so the file is treated as having none.
 
 **Base files only.** In an `.override.vue` file this macro is rejected; use [`swDefineOverride()`](sw-define-override).
 

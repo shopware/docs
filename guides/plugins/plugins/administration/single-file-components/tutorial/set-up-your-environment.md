@@ -83,13 +83,13 @@ custom/plugins/SwagProductMargin/
                     └── main.ts
 ```
 
-The path matters: Shopware finds your Administration code at `src/Resources/app/administration/src/`, and `main.ts` inside it is the entry point. Written out in full, that is
+The path matters: Shopware finds your Administration code at `src/Resources/app/administration/src/`, and `main.ts` inside it is the entry point. The rest of this tutorial writes `<plugin root>` for `custom/plugins/SwagProductMargin`, so that directory is:
 
 ```text
-custom/plugins/SwagProductMargin/src/Resources/app/administration/src/
+<plugin root>/src/Resources/app/administration/src/
 ```
 
-and the rest of this tutorial calls it `<plugin root>/src/Resources/app/administration/src/`. Everything below it is yours to organise into whatever directories you like - the build searches the whole tree. This tutorial ends up with an `override/` and a `component/` directory, but nothing depends on those names.
+Everything below it is yours to organise into whatever directories you like - the build searches the whole tree. This tutorial ends up with `override/`, `component/` and `override-demo/` directories, but nothing depends on those names.
 
 `main.ts` is the one file you create empty. The main flow of this tutorial leaves it empty, because the build finds your code on its own, but it has to exist for the plugin to be picked up:
 
@@ -146,7 +146,7 @@ shopware-cli project console plugin:refresh
 shopware-cli project console plugin:install --activate SwagProductMargin
 ```
 
-You repeat those two whenever you *add or remove* a plugin. Editing files inside an already-activated plugin does not need them.
+You need those two once for each new plugin. Editing files inside an already-activated plugin does not need them.
 
 ## Build the Administration
 

@@ -16,7 +16,7 @@ The extension point. Globally registered, so you write the tag without importing
 | `name`    | `string` | **Declares** an extension point. Its children are the default content                |
 | `extends` | `string` | **Contributes** to the extension point of that name. Renders nothing where it stands |
 
-`name` and `extends` are the only props you write. The component has others - your editor may offer them - and they are internal: the build rejects an authored `data`, `v-bind` or `#default` on an `sw-block`.
+Write `name` (base components only) or `extends` (overrides only) as a static attribute and nothing else. The component has other props - your editor may offer them - and they are internal. The build rejects any other attribute or directive on the tag, including `class`, `v-if`, a bound `:extends`, `data`, `v-bind` and an authored `#default`.
 
 ## Declaring an extension point
 

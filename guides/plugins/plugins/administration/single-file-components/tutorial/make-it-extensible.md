@@ -57,7 +57,7 @@ As a reminder of how the two halves fit together: `sw-block` lets an extension a
 
 ## Try it out on your own component
 
-The quickest way to see what you just built is to extend it yourself. Write a second override - against your own component this time - that replaces the message and adds a line of advice:
+The quickest way to see what you just built is to extend it yourself. Write a second override - against your own component this time - that extends the message and adds a line of advice:
 
 ```vue
 <!-- <plugin root>/src/Resources/app/administration/src/override-demo/swag-margin-hint.override.vue -->
@@ -86,7 +86,7 @@ swDefineOverride({
 </script>
 ```
 
-Both strings are snippets, the same way [Chapter 4](build-your-own-component#where-the-strings-come-from) did it - `$t()` in the template, `tWithFallback()` in the script. Add the two keys to the files you already have, or to a `snippet/` directory next to this override; Shopware merges every snippet file it finds under your Administration source directory:
+Both strings are snippets, the same way [Chapter 4](build-your-own-component#where-the-strings-come-from) did it - `$t()` in the template, `tWithFallback()` in the script. Add the two keys under `swag-margin.hint` in `component/snippet/en-GB.json`, next to the four from Chapter 4:
 
 ```json
 {
@@ -99,11 +99,26 @@ Both strings are snippets, the same way [Chapter 4](build-your-own-component#whe
 }
 ```
 
+And the German pair in `component/snippet/de-DE.json`:
+
+```json
+{
+    "swag-margin": {
+        "hint": {
+            "tip": "Tipp: Erhöhe den Preis oder verhandle den Einkaufspreis neu.",
+            "checkConditions": "Prüfe deine Einkaufskonditionen."
+        }
+    }
+}
+```
+
+A separate `snippet/` directory next to this override works as well, because Shopware merges every snippet file it finds under your Administration source directory.
+
 As in [Chapter 4](build-your-own-component#where-the-strings-come-from), run `shopware-cli project console cache:clear` before you reload, or the banner shows the bare keys.
 
 This is the first time `swDefineOverride` is given something. Every name in it replaces the binding of that name in the component being overridden - a `computed`, a `ref` or a function alike. So `message` here wins over the `message` your component computed, and `previousState.message.value` is that original, which is how the override builds on it instead of throwing it away.
 
-The one thing you cannot override is a **prop**: it comes from whoever renders the component, so an override returning a prop name is rejected with a console error.
+The one thing you cannot override is a **prop**: it comes from whoever renders the component, so listing a prop name in `swDefineOverride()` has no effect - the entry is skipped with a console error. To change `warnBelow`, pass a different value where the component is rendered.
 
 ::: info Where the file sits
 Anywhere under your Administration source directory. `override-demo/` only keeps this experiment visibly separate from the override that does the real work. The one constraint is that the filename is the whole identity, so two overrides of the *same* component need two directories.
@@ -113,7 +128,7 @@ Anywhere under your Administration source directory. `override-demo/` only keeps
 
 Reload the product:
 
-![The banner with the message replaced and a tip appended by a second override](../../../../../../assets/administration-sfc-tutorial-extended.png)
+![The banner with the message extended and a tip appended by a second override](../../../../../../assets/administration-sfc-tutorial-extended.png)
 
 Four files contribute to what is on screen: a core Twig component providing the price card, your override placing the banner in it, your component providing the banner, and a second override changing the banner's text and adding a line under it. None of them knows the others exist, because each one declares a block or a public API instead of editing another component directly.
 
@@ -176,7 +191,7 @@ The mapping is close to one to one:
 * `this.$super('message')` becomes `previousState.message.value`
 * <code v-pre>{% parent %}</code> becomes `<sw-block-parent />`
 * the `computed` block of the override config becomes the object you pass to `swDefineOverride`
-* `$tc()` stays `$t()` in the template, and `this.$tc()` becomes `tWithFallback()` in the script - the snippet files themselves are identical
+* `$tc()` becomes `$t()` in the template, and `this.$tc()` becomes `tWithFallback()` in the script - the snippet files themselves are identical
 
 ## Done
 

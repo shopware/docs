@@ -7,9 +7,7 @@ nav:
 # Moving Towards Native Vue
 
 :::info
-This article was updated. It previously described the migration as a fixed roadmap tied to specific Shopware versions.
-Those version-based timelines have been removed because the new systems are still experimental.
-The article now describes the direction of the migration; the current plan, including the versions it targets, lives on the [Single File Components roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md).
+This article describes the direction of the migration. For the current plan and the versions it targets, see the [Single File Components roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md).
 :::
 
 :::warning

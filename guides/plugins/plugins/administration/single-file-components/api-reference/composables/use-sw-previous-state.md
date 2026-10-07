@@ -13,7 +13,7 @@ nav:
 function useSwPreviousState<T extends Record<PropertyKey, any>>(): T;
 ```
 
-Auto-imported, override files only. Returns the state of the component being overridden.
+Provided by the build in every `.override.vue` file; you never import it. Returns the state of the component being overridden.
 
 ## What you get
 
@@ -30,7 +30,7 @@ Calling a method is how an override builds on behaviour instead of discarding it
 
 ## Reading values
 
-Entries are refs. Read them with `.value` in your script; a template unwraps them as it does any ref.
+Values are refs, methods are plain functions. Read a value with `.value` in your script; a template unwraps it as it does any ref.
 
 ```ts
 const name = previousState.product.value?.name;

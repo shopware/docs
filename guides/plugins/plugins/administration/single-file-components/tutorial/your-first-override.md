@@ -96,7 +96,7 @@ The `<template>` of an override file exists only to declare those targets. It re
 * **`<sw-block extends="…">`** replaces the target block with the content that goes in here. To keep the original content, use `<sw-block-parent />`.
 * **`<sw-block-parent />`** renders whatever was in that extension point before you: the original content, or the previous extension in the chain.
 
-Without `<sw-block-parent />` the original markup is removed. The three patterns:
+The three patterns:
 
 <Tabs>
 <Tab title="Append">

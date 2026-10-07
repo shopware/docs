@@ -20,9 +20,8 @@ function useTranslateWithFallback(): {
 Translates a snippet key against the active locale and, when there is no entry there, against the
 fallback locale.
 
-Plain `t()` only looks at the active locale, so a snippet that exists only in `en-GB` would otherwise
-render its raw key into the UI. Reach for this wherever a plugin's snippets may be incomplete for the
-locale a merchant is using.
+A plugin cannot import `vue-i18n`, so `<script setup>` has no `t()` of its own. This is how a script
+translates a key.
 
 ```ts
 const { tWithFallback } = useTranslateWithFallback();

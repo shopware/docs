@@ -13,7 +13,7 @@ nav:
 This page describes internals. Nothing on it is API: the generated code and every name in it change without a deprecation, and an extension must not depend on them. Write against the [API reference](api-reference/) instead.
 :::
 
-Vue has no extension mechanism of the kind this chapter describes. Nothing in Vue lets one file
+Vue has no extension mechanism of the kind this page describes. Nothing in Vue lets one file
 replace a binding of another, or lets a plugin drop markup into the middle of another component's template.
 
 Shopware adds that mechanism at build time. Before Vue sees your `.vue` file, a transform rewrites it into
@@ -61,6 +61,7 @@ There is no registration argument to get wrong, because the transform reads the 
 | `swag-margin-hint.vue`                | base     | `swag-margin-hint`       |
 | `swag-margin-hint/index.vue`          | base     | `swag-margin-hint`       |
 | `sw-product-detail-base.override.vue` | override | `sw-product-detail-base` |
+| `swag-margin-hint/index.override.vue` | override | `swag-margin-hint`       |
 
 That name is baked into the generated code as a string literal, which is why renaming the file changes
 what the component is called and what an override targets.
@@ -81,8 +82,8 @@ Shopware.Component.registerOverrideComponent(_swOverride0);
 The files are sorted because a directory walk follows filesystem order, which differs between machines,
 and the import numbering follows the walk. Sorting keeps the generated entry identical across builds.
 
-A **new base component** is different. Nothing scans for it, so you register it yourself, the way you
-would register any component:
+A **new base component** is different. Nothing scans for it. Usually an `import` is enough; to use its
+tag by name, you register it yourself:
 
 ```ts
 Shopware.Component.register('swag-margin-hint', async () => {
@@ -378,8 +379,8 @@ An override with no template locals gets no generated slot scope at all - there 
 ### 5. The template may only contain blocks
 
 An override's template is rejected if anything other than `<sw-block extends>` appears at its top
-level. The reason is the next page: the override file is mounted in a hidden container, so any markup
-outside a block would render there - invisibly, with its setup references resolving against the hidden
+level. The reason: the override file is mounted in a hidden container, so any markup outside a block
+would render there - invisibly, with its setup references resolving against the hidden
 component instead of the component you meant to extend.
 
 ### The whole file
@@ -525,8 +526,8 @@ ship a `.vue`. Both directions of the mix work, and each is a shim.
 
 ### A Twig base, extended by a `.vue` override
 
-The component's Twig template is compiled with an `sw-block` wrapped around every `{% block %}`, so
-what was a TwigJS extension point becomes a native one:
+The component's Twig template is compiled with an `sw-block` wrapped around each `{% block %}` that a
+`.vue` override extends, so what was a TwigJS extension point becomes a native one:
 
 ```twig
 {# what the component ships #}
@@ -604,7 +605,7 @@ to the override as the `this` a Twig template expects.
 
 ### The `v-if` shim
 
-Wrapping every `{% block %}` in a component has one consequence worth naming. A Twig template is free
+Wrapping a `{% block %}` in a component has one consequence worth naming. A Twig template is free
 to open a `v-if` in one block and close it with a `v-else` in another:
 
 ```twig
@@ -636,5 +637,9 @@ They translate the shapes templates actually take, not every shape a template co
 Twig comes through - blocks, `{% parent %}`, nesting, a condition split across blocks. A template that
 plays games with the block structure itself can still fall through, and there is no shim that will
 rescue it.
+
+A block whose content mixes a named slot template with other markup cannot host a native extension
+point at all. Your `.vue` override of that block is ignored, and a development build warns with
+`[TemplateFactory] The block "…" cannot host a native extension point: …`.
 
 <PageRef page="roadmap" title="Roadmap" sub="How long the shims stay, and what is still coming" />

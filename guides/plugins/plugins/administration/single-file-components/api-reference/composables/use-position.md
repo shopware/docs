@@ -13,13 +13,13 @@ nav:
 import { usePosition } from 'shopware:composables';
 
 function usePosition(): {
-    getNewPosition: (repository, criteria, context, field?) => Promise<number>;
-    lowerPositionValue: (collection, selectedItem, field?) => EntityCollection;
-    raisePositionValue: (collection, selectedItem, field?) => EntityCollection;
-    changePosition: (collection, selectedItem, field?, direction?) => EntityCollection;
-    getSiblingIndex: (collection, selectedItem, field?, direction?) => number;
-    getSibling: (collection, selectedItem, field?, direction?) => Entity | null;
-    renumberPositions: (collection, startIndex?, field?) => EntityCollection;
+    getNewPosition: (repository: Repository, criteria: Criteria, context: ApiContext, field?: string) => Promise<number>;
+    lowerPositionValue: (collection: EntityCollection, selectedItem: Entity, field?: string) => EntityCollection;
+    raisePositionValue: (collection: EntityCollection, selectedItem: Entity, field?: string) => EntityCollection;
+    changePosition: (collection: EntityCollection, selectedItem: Entity, field?: string, direction?: string) => EntityCollection;
+    getSiblingIndex: (collection: EntityCollection, selectedItem: Entity, field?: string, direction?: string) => number;
+    getSibling: (collection: EntityCollection, selectedItem: Entity, field?: string, direction?: string) => Entity | null;
+    renumberPositions: (collection: EntityCollection, startIndex?: number, field?: string) => EntityCollection;
 };
 ```
 
@@ -32,8 +32,9 @@ const position = await getNewPosition(repository, new Criteria(1, 1), Shopware.C
 ```
 
 `getNewPosition()` aggregates the current maximum and returns it plus one, starting at `1` for an empty
-collection. `lowerPositionValue()` and `raisePositionValue()` swap an item with its neighbour, and
-`renumberPositions()` renumbers the whole collection from `startIndex`.
+collection. It adds that aggregation and a sorting to the `criteria` you pass. `lowerPositionValue()` and
+`raisePositionValue()` swap an item with its neighbour, and `renumberPositions()` renumbers the whole
+collection from `startIndex`, which defaults to `0`.
 
 Every function takes an optional `field` argument that defaults to `'position'`, so a collection ordered
 by a differently named field works too. They sort the collection in place and hand it back.

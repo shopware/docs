@@ -41,7 +41,7 @@ To access that state, you can't use `this.product`. A composable hands it to you
 const previousState = useSwPreviousState();
 ```
 
-Like the macros, it is auto-imported, and it exists only inside an `.override.vue` file. What it gives you is everything the component you override exposes: its `data`, `computed`, `methods` and `props` - or, once that component has been migrated to a Single File Component, everything it published for extensions.
+Like `swDefineOverride()`, it is auto-imported, and it exists only inside an `.override.vue` file. What it gives you is everything the component you override exposes: its `data`, `computed`, `methods` and `props`.
 
 So `previousState.product` is the product currently open in the form, including unsaved edits.
 
@@ -86,11 +86,13 @@ const margin = computed(() => {
 
 ## Using values in the template
 
+The banner needs two more values from the script: `isTooLow` is true when the margin is below 25%, and `message` turns the margin into a sentence. The whole file below computes both.
+
 Your override's bindings are available inside its `<sw-block extends>` content, and they read like any other Vue template binding:
 
 ```html
 <sw-block extends="sw_product_detail_base_price_form">
-    <p>{{ message }}</p>
+    <sw-block-parent />
 
     <mt-banner :variant="isTooLow ? 'critical' : 'positive'">
         {{ message }}
@@ -99,7 +101,7 @@ Your override's bindings are available inside its `<sw-block extends>` content, 
 ```
 
 ::: warning Mutating a binding in the template
-Mutating a binding inside a template - `@click="counter++"` - is not supported. Wrap the mutation in a function and call that from the event handler instead: `@click="increment()"`.
+Inside the `<sw-block extends>` content of an override, assigning to a binding - `@click="counter++"` - is rejected at build time. Wrap the mutation in a function in the script and call that from the event handler instead: `@click="increment()"`.
 :::
 
 ## The whole file
@@ -179,8 +181,6 @@ Edit the purchase price and watch the percentage follow along.
 | `useSwPreviousState()` | The state of the component you override. Refs are **not** unwrapped |
 | `useSwProps()`         | The props that component was given, read only                       |
 | `useSwContext()`       | Its Vue setup context: `emit`, `attrs`, `slots`, `expose`           |
-
-A base component needs none of them: it reads its own props from `defineProps()` and emits through `defineEmits()`, because its `<script setup>` runs the ordinary way. That is [Chapter 4](build-your-own-component).
 
 *Reference: [`useSwPreviousState()`](../api-reference/composables/use-sw-previous-state), [`useSwProps()`](../api-reference/composables/use-sw-props), [`useSwContext()`](../api-reference/composables/use-sw-context).*
 

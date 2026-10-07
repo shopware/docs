@@ -8,7 +8,7 @@ nav:
 # Using Mixins
 
 ::: info
-Mixins are the stable way to share component logic today. A Single File Component cannot use them, so the experimental system on `trunk` replaces each of them with a composable. See [Composables replacing mixins](../single-file-components/roadmap.md#composables-replacing-mixins) for the current state of that list.
+Mixins are the stable way to share component logic today. A Single File Component cannot use them, so the experimental system on `trunk` is adding composables for the commonly used mixins. See [Composables replacing mixins](../single-file-components/roadmap.md#composables-replacing-mixins) for the current state of that list.
 :::
 
 ## Overview

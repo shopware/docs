@@ -15,8 +15,8 @@ fit what you are building.
 
 ## Override composables
 
-Three of them are injected by the build like the macros are, so you never import them, and they exist
-only inside an `.override.vue` file. They are how an override reaches the component it overrides.
+Three of them are provided by the build in every `.override.vue` file. Like the macros, you never import
+them, and they exist only inside an override file. They are how an override reaches the component it overrides.
 
 <PageRef page="use-sw-previous-state" title="useSwPreviousState()" sub="The state of the component you override" />
 <PageRef page="use-sw-props" title="useSwProps()" sub="That component's props, read only" />
@@ -36,7 +36,7 @@ import { useNotification } from 'shopware:composables';
 Each composable is also available as a default export of its own import path, named after it in `camelCase`
 (`import useNotification from 'shopware:composables/useNotification'`).
 
-Most of them are the Composition API side of a mixin. A mixin declared its own props and read them off
+Each of them is the Composition API side of a mixin. A mixin declared its own props and read them off
 `this`; a composable has neither, so whatever the mixin used to take from its host is passed in, and
 getters keep it reactive:
 

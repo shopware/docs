@@ -13,7 +13,7 @@ nav:
 function useSwContext<T = SetupContext>(): T;
 ```
 
-Auto-imported, override files only. Returns the overridden component's Vue `SetupContext`: `emit`, `attrs`, `slots` and `expose`.
+Provided by the build in every `.override.vue` file; you never import it. Returns the overridden component's Vue `SetupContext`: `emit`, `attrs`, `slots` and `expose`.
 
 ```ts
 const context = useSwContext();

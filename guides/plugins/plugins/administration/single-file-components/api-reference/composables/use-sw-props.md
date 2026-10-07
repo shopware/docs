@@ -13,11 +13,9 @@ nav:
 function useSwProps<T extends Record<PropertyKey, any>>(): T;
 ```
 
-Auto-imported, override files only. Returns the props the overridden component was given.
+Provided by the build in every `.override.vue` file; you never import it. Returns the props the overridden component was given.
 
 ```ts
-import { computed } from 'vue';
-
 const props = useSwProps();
 
 const label = computed(() => `Editing ${props.name}`);

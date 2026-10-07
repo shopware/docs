@@ -26,13 +26,15 @@ function useListing(options: {
     disableRouteParams?: boolean;
     searchConfigEntity?: string | null;
     entitySearchable?: boolean;
+    freshSearchTerm?: boolean;
     storeKey?: string;
     filterCriteria?: unknown[];
-}): UseListingReturn;
+}): UseListingReturn; // see "What you get back"
 ```
 
 Everything a list page needs: pagination, sorting, the search term, the active filters and the current
-selection, all kept in sync with the route query so a page survives a reload and a browser back.
+selection. Pagination, sorting and the search term are kept in sync with the route query, so they survive
+a reload and a browser back. Selection and filter criteria are not.
 
 ## Options
 
@@ -48,7 +50,8 @@ modal or a tab rather than a page of its own.
 ## What you get back
 
 The state as refs - `page`, `limit`, `total`, `sortBy`, `sortDirection`, `naturalSorting`, `term`,
-`selection`, `filterCriteria` and the rest.
+`selection`, `filterCriteria`, `disableRouteParams`, `searchConfigEntity`, `entitySearchable`,
+`freshSearchTerm`, `previousRouteName` and `storeKey`.
 
 The derived values - `maxPage`, `selectionCount`, `selectionArray`, `currentSortBy`, `routeName`,
 `searchRankingFields`.
@@ -57,10 +60,30 @@ The handlers a data grid expects - `onPageChange`, `onSearch`, `onSort`, `onSort
 `onRefresh`, `updateSelection`, `resetListing`, `updateCriteria`, and `addQueryScores()` for search
 ranking.
 
+The lower-level helpers - `getMainListingParams()`, which returns the current `page`, `limit`, `term` and
+sorting from the route query (or from the state when `disableRouteParams` is set), `updateData`,
+`updateRoute`, `isValidTerm` and `parseBooleanQueryParams`.
+
+Your loader reads the state refs and writes `total` back:
+
 ```ts
+import { Criteria } from 'shopware:data';
+
+const productRepository = Shopware.Service('repositoryFactory').create('product');
+
 const { page, limit, total, term, onPageChange, onSearch } = useListing({
     getList: () => loadProducts(),
 });
+
+async function loadProducts(): Promise<void> {
+    const criteria = new Criteria(page.value, limit.value);
+    if (term.value) {
+        criteria.setTerm(term.value);
+    }
+
+    const result = await productRepository.search(criteria);
+    total.value = result.total ?? 0;
+}
 ```
 
 ## One difference to the mixin

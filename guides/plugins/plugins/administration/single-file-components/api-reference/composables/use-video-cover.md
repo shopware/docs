@@ -38,10 +38,10 @@ const { isVideoMedia, hasVideoCover, openCoverSelectionModal, removeVideoCover }
 `item` is a getter so the media item stays reactive, and so the `isLoading` flag written during a save
 lands on the entity the caller passed in.
 
-`onCoverSelectionChange()` takes what the media modal selected, rejects anything that is not an image with
-an error notification, and persists the rest. Opening the modal is guarded by `media.editor`.
+`onCoverSelectionChange()` takes the first item the media modal selected, rejects it with an error
+notification unless it is an image, and otherwise persists it. Opening the modal is guarded by `media.editor`.
 
-Both writes notify on success and on failure, and emit `sw-media-library-item-updated` on the event bus so
-an open library refreshes.
+Both writes notify on success and on failure. On success they also emit `sw-media-library-item-updated` on
+the event bus, so an open library refreshes.
 
 Replaces the `video-cover` mixin.

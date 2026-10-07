@@ -21,9 +21,8 @@ Experimental means the API can still change, at any time and without a deprecati
 to become a stable, deprecation-protected API in **6.9**. How much it still has to change depends on
 what you run into and on how the Administration's own migration goes.
 
-Try it out and tell us what you find, but do not ship an extension built on it to customers or to the
-Shopware Store until the API is declared stable. Until then, an SFC extension written today may need
-changes with every trunk update.
+Until the API is declared stable, an SFC extension written today may need changes with every trunk
+update.
 
 ## Timeline
 

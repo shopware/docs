@@ -43,7 +43,7 @@ const product = computed(() => useSwProductDetailStore().product);
 
 `shopware:stores/*` is one of the virtual modules the Administration publishes for extensions: the part after the slash is the store's registry key, and the default export is its composable. There are `shopware:composables`, `shopware:utils`, `shopware:data` and `shopware:mixins` alongside it.
 
-Reading the store has two advantages. A component that fetches what it needs works wherever it is rendered, and a plugin often ends up rendering it in more than one place. The store is also a public API, while `previousState.product` is whatever the core component happens to expose.
+Reading the store has two advantages. The product detail page keeps the store filled, so the component works in any block of that page, not only in the one your override picks. And it does not depend on what one core component happens to expose through `previousState`.
 
 ## Where the strings come from
 
@@ -87,7 +87,7 @@ Reading the store has two advantages. A component that fetches what it needs wor
 }
 ```
 
-There is nothing to import and nothing to register. Shopware collects every `en-GB.json`, `de-DE.json` and friends from anywhere under `src/Resources/app/administration/src/` when your plugin is activated. That happens on the PHP side and does not touch the JavaScript build, so the existing [Adding snippets](../../templates-styling/adding-snippets) guide applies to a Single File Component unchanged.
+There is nothing to import and nothing to register. Shopware collects every `en-GB.json`, `de-DE.json` and friends from anywhere under `src/Resources/app/administration/src/` of every active plugin, and caches the result. That happens on the PHP side and does not touch the JavaScript build, so the existing [Adding snippets](../../templates-styling/adding-snippets) guide applies to a Single File Component unchanged.
 
 Apply the changes by clearing the cache and reloading the page:
 
@@ -111,10 +111,10 @@ const { tWithFallback } = useTranslateWithFallback();
 const title = computed(() => tWithFallback(isTooLow.value ? 'swag-margin.hint.tooLow' : 'swag-margin.hint.healthy'));
 ```
 
-`tWithFallback()` tries the active locale, then the fallback locale, and returns the key itself when neither has an entry - so a merchant on a language your plugin does not ship still sees English rather than a blank banner.
+`tWithFallback()` tries the active locale, then the fallback locale, and returns the key itself when neither has an entry. That makes it the script-side counterpart of `$t()`, which falls back to English the same way.
 
 ::: info Keys with a placeholder
-`tWithFallback()` takes a key and nothing else. For `"margin": "You earn {margin}% …"` you therefore either interpolate in the template, with `$t('swag-margin.hint.margin', { margin: … })`, or call `Shopware.Snippet.t(key, params)` in the script. The component below does the latter, because `message` is part of its public API and [Chapter 5](make-it-extensible) overrides it.
+`tWithFallback()` takes a key and nothing else. For `"margin": "You earn {margin}% …"` you therefore either interpolate in the template, with `$t('swag-margin.hint.margin', { margin: … })`, or call `Shopware.Snippet.t(key, params)` in the script. The component below does the latter, because the next section makes `message` available to extensions, and [Chapter 5](make-it-extensible) overrides it.
 :::
 
 *Reference: [`useTranslateWithFallback()`](../api-reference/composables/use-translate-with-fallback).*
@@ -153,6 +153,20 @@ Until now, the banner sat flush against the price fields, because the content of
 ```
 
 `scoped` limits the rules to the markup of this component, so they cannot leak into the rest of the Administration. The template wraps the banner in a `div` with the class `swag-margin-hint`, which is what the rule targets.
+
+## A prop for the threshold
+
+[Chapter 3](read-the-base-component) hardcoded the 25% threshold. Make it a prop instead, so whoever renders the component decides. A base component declares its props with Vue's `defineProps()`, as in any `<script setup>`:
+
+```ts
+const { warnBelow = 0.2 } = defineProps<{
+    warnBelow?: number;
+}>();
+
+const isTooLow = computed(() => margin.value !== null && margin.value < warnBelow);
+```
+
+Without a value, `warnBelow` is `0.2`. The override below passes `:warn-below="0.25"`, so the banner keeps the threshold from Chapter 3.
 
 ## The component
 
@@ -254,7 +268,7 @@ swDefineOverride({});
 
 ## Checkpoint
 
-Reload the product. The banner looks as it did in Chapter 3 except for one thing: it no longer sits flush against the price fields. That is the gap [Chapter 2](your-first-override#checkpoint) promised, and it comes from the component's own `<style scoped>` block. Everything else changed underneath: the markup, the arithmetic and the strings now live in a component that reads the product from the store, so you can render it anywhere.
+Reload the product. The banner looks as it did in Chapter 3 except for one thing: it no longer sits flush against the price fields. That is the gap [Chapter 2](your-first-override#checkpoint) promised, and it comes from the component's own `<style scoped>` block. Everything else changed underneath: the markup, the arithmetic and the strings now live in a component that reads the product from the store, so you can render it in any block of the product detail page.
 
 ![The margin hint as its own component](../../../../../../assets/administration-sfc-tutorial-component.png)
 
@@ -344,7 +358,7 @@ Shopware.Component.register('swag-margin-hint', () => import('./component/swag-m
 
 The Options API version has no equivalent of `swDefinePublic`, because everything on `this` was implicitly public. The extra line is what makes the component's contract explicit.
 
-The snippet files are the same in both columns, and so is where they sit: `this.$tc()` becomes `tWithFallback()` only because a `<script setup>` block has no `this`.
+The snippet files are the same in both tabs, and so is where they sit: `this.$tc()` becomes `tWithFallback()` only because a `<script setup>` block has no `this`.
 
 ## Registering a component by name
 
@@ -369,7 +383,14 @@ Shopware.Component.register('swag-margin-hint', async () => {
 });
 ```
 
-Import that `index.ts` once from `main.ts`, and the tag resolves everywhere.
+Import that `index.ts` once from `main.ts`, and the tag resolves everywhere:
+
+```typescript
+// <plugin root>/src/Resources/app/administration/src/main.ts
+import './component/swag-margin-hint';
+```
+
+The `.vue` file moved into the new directory, so if you keep the `import` in the override, its path becomes `'../component/swag-margin-hint/swag-margin-hint.vue'`.
 
 `_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component, see the [troubleshooting page](../troubleshooting#in-the-browser-console). The flag is an internal detail of the factory rather than a stable API; it is documented here because there is no other way to register a `.vue` base component by name today.
 

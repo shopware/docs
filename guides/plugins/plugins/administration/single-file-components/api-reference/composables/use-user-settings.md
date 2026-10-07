@@ -30,9 +30,10 @@ const columns = await getUserSettings('swag-margin.columns');
 await saveUserSettings('swag-margin.columns', { hidden: ['purchasePrice'] });
 ```
 
-An identifier without a dot is namespaced to `custom.`, so pick one with a dot and keep it yours.
+`saveUserSettings()` stores an identifier without a dot under `custom.<identifier>`, but the read
+functions do not add that prefix. Always use an identifier with a dot, and keep it yours.
 
-Every call is guarded by the `user_config` ACL privileges - a caller without `user_config:read`, or
+The three async functions are guarded by the `user_config` ACL privileges - a caller without `user_config:read`, or
 without `user_config:create` and `user_config:update` for a write, gets a rejected promise rather than a
 thrown error.
 

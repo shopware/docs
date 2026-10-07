@@ -39,26 +39,27 @@ Every `.vue` file in an extension is compiled by the Shopware setup transform. I
 
 ## Vue's own macros
 
-Base components are compiled as ordinary `<script setup>`, so Vue's macros behave exactly as in any Vue 3 project - including prop defaults, reactive destructuring and `withDefaults`.
+Base components are compiled as ordinary `<script setup>`, so Vue's macros behave as in any Vue 3 project - including prop defaults, reactive destructuring and `withDefaults` - with the exceptions in this table.
 
-| Macro                                         | Base                                                           | Override                                           |
-| --------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------- |
-| `defineProps`, `withDefaults`                 | yes                                                            | use [`useSwProps()`](composables/use-sw-props)     |
-| `defineEmits`, `defineSlots`, `defineOptions` | yes                                                            | use [`useSwContext()`](composables/use-sw-context) |
-| `defineExpose`                                | no, [`swDefinePublic()`](macros/sw-define-public) generates it | no                                                 |
-| `defineModel`                                 | no                                                             | no                                                 |
+| Macro                         | Base                                                           | Override                                           |
+| ----------------------------- | -------------------------------------------------------------- | -------------------------------------------------- |
+| `defineProps`, `withDefaults` | yes                                                            | use [`useSwProps()`](composables/use-sw-props)     |
+| `defineEmits`, `defineSlots`  | yes                                                            | use [`useSwContext()`](composables/use-sw-context) |
+| `defineOptions`               | yes                                                            | no                                                 |
+| `defineExpose`                | no, [`swDefinePublic()`](macros/sw-define-public) generates it | no                                                 |
+| `defineModel`                 | no                                                             | no                                                 |
 
 One Shopware-specific rule in base components: a top-level binding must not share a declared prop's name. The extension runtime strips declared prop keys from the returned state, so the binding is deleted and the template renders `undefined`. See [troubleshooting](../troubleshooting#markup-that-silently-does-not-work).
 
 ## What you never import
 
-| Name                                               | Where it comes from                                                                                                                                                                    |
-| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `swDefinePublic`, `swDefineOverride`               | Compile-time macros, like Vue's own `defineProps`                                                                                                                                      |
-| `useSwPreviousState`, `useSwProps`, `useSwContext` | Injected by the build into every `.override.vue` file                                                                                                                                  |
-| `sw-block`, `sw-block-parent`                      | Globally registered components, resolved by tag name                                                                                                                                   |
-| `$t`, `$tc`                                        | Vue global properties, available in every template. In `<script setup>` use [`useTranslateWithFallback()`](composables/use-translate-with-fallback); a plugin cannot import `vue-i18n` |
-| `Shopware`                                         | The Administration's global object. Read it freely; `Shopware` is a reserved binding name                                                                                              |
+| Name                                               | Where it comes from                                                                                                                                                                                               |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `swDefinePublic`, `swDefineOverride`               | Compile-time macros, like Vue's own `defineProps`                                                                                                                                                                 |
+| `useSwPreviousState`, `useSwProps`, `useSwContext` | Provided by the build in every `.override.vue` file                                                                                                                                                               |
+| `sw-block`, `sw-block-parent`                      | Globally registered components, resolved by tag name                                                                                                                                                              |
+| `$t`                                               | Vue global property, available in every template (`$t('key', n)` for plurals). In `<script setup>` use [`useTranslateWithFallback()`](composables/use-translate-with-fallback); a plugin cannot import `vue-i18n` |
+| `Shopware`                                         | The Administration's global object. Read it freely; `Shopware` is a reserved binding name                                                                                                                         |
 
 Everything else comes from a `shopware:*` virtual module - the published composables, plus stores, utilities, mixins and DAL helpers:
 

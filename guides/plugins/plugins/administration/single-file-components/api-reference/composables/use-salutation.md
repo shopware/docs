@@ -22,10 +22,12 @@ Formats the salutation of a customer-like entity - anything carrying a `salutati
 
 ```ts
 const { salutation } = useSalutation();
+const { tWithFallback } = useTranslateWithFallback();
 
-const greeting = computed(() => salutation(customer.value, 'sw-customer.detail.noSalutation'));
+const greeting = computed(() => salutation(customer.value, tWithFallback('sw-customer.detail.noSalutation')));
 ```
 
 It resolves the `salutation` filter on each call, so it behaves exactly as the filter does in a template.
+The fallback is returned as it is, so pass translated text, not a snippet key.
 
 Replaces the `salutation` mixin.

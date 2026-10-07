@@ -15,7 +15,7 @@ function swDefineOverride<T extends Record<PropertyKey, unknown>>(bindings: T): 
 
 Override files only. Declares which bindings of the component being overridden this file replaces.
 
-A compile-time macro: you do not import it, it produces no runtime code, and it is mandatory in every `.override.vue` file.
+A compile-time macro: you do not import it, the call itself is removed at build time, and it is mandatory in every `.override.vue` file.
 
 ## What it does
 
@@ -30,6 +30,8 @@ swDefineOverride({ greeting });
 
 A name the component does not have is added as new state.
 
+Each value must be a `ref`, a `computed` or a function. A `reactive()` object is merged into the original and must keep all of its keys. Any other value, such as a plain string or number, is ignored with a console error.
+
 Pass `{}` for an override that only contributes markup through [`sw-block`](../block-components/sw-block):
 
 ```ts
@@ -42,7 +44,7 @@ swDefineOverride({});
 
 **Shorthand bindings only.** The key always equals the local binding name. Renaming, string keys, computed keys and spreads are rejected at build time.
 
-**Once, at the top level.** Two calls, or a call nested inside a function or block, are rejected.
+**Once, at the top level.** A second top-level call is rejected. A call nested inside a function or block is not recognised as the marker, so the file is treated as having none.
 
 **Override files only.** In a base component this macro is rejected; use [`swDefinePublic()`](sw-define-public).
 
