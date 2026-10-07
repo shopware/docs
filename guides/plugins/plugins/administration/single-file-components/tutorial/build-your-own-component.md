@@ -350,9 +350,32 @@ The snippet files are the same in both columns, and so is where they sit: `this.
 
 Usually you do not need to register your own components anywhere: an `import` is enough, which is what this chapter does. There is one exception, the case where something has to find your component by a *string*: you want to write `<swag-margin-hint />` anywhere in the Administration without importing it first.
 
+### Using the tag without an import
+
+Put the component in its own directory with an `index.ts` beside it:
+
+```text
+component/swag-margin-hint/
+├── index.ts
+└── swag-margin-hint.vue
+```
+
+```typescript
+// <plugin root>/src/Resources/app/administration/src/component/swag-margin-hint/index.ts
+Shopware.Component.register('swag-margin-hint', async () => {
+    const component = (await import('./swag-margin-hint.vue')).default;
+
+    return { ...component, _renderedBySfcTemplate: true } as never;
+});
+```
+
+Import that `index.ts` once from `main.ts`, and the tag resolves everywhere.
+
+`_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component, see the [troubleshooting page](../troubleshooting#in-the-browser-console). The flag is an internal detail of the factory rather than a stable API; it is documented here because there is no other way to register a `.vue` base component by name today.
+
 ### Using a component in a route
 
-A route looks like such a case, but it is not one. `Shopware.Module.register()` takes the imported component itself, and the router only looks a name up in the component registry when you actually hand it a name:
+A route looks like another case for registering by name, but it is not one. `Shopware.Module.register()` takes the imported component itself, and the router only looks a name up in the component registry when you actually hand it a name:
 
 ```typescript
 // <plugin root>/src/Resources/app/administration/src/module/swag-product-margin/index.ts
@@ -373,29 +396,6 @@ Shopware.Module.register('swag-product-margin', {
 ```
 
 The `as never` is there for TypeScript only. The module manifest types `component` as `string | App<Element>`, and a `.vue` import is neither of those, so the cast is what gets you past the type check. At runtime the router resolves only string names through the component registry and passes anything else on to Vue Router untouched.
-
-### Using the tag without an import
-
-For that one, put the component in its own directory with an `index.ts` beside it:
-
-```text
-component/swag-margin-hint/
-├── index.ts
-└── swag-margin-hint.vue
-```
-
-```typescript
-// <plugin root>/src/Resources/app/administration/src/component/swag-margin-hint/index.ts
-Shopware.Component.register('swag-margin-hint', async () => {
-    const component = (await import('./swag-margin-hint.vue')).default;
-
-    return { ...component, _renderedBySfcTemplate: true } as never;
-});
-```
-
-Import that `index.ts` once from `main.ts`, and the tag resolves everywhere.
-
-`_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component, see the [troubleshooting page](../troubleshooting#in-the-browser-console). The flag is an internal detail of the factory rather than a stable API; it is documented here because there is no other way to register a `.vue` base component by name today.
 
 <PageRef page="../../module-component-management/add-custom-component" title="Add custom components" sub="Registration itself, for Twig and Options API components" />
 
