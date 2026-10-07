@@ -76,6 +76,10 @@ class MyTool extends McpToolResponse
     ) {
     }
 
+    /**
+     * @param string $email the customer's email address
+     * @param int $limit how many orders to return, newest first
+     */
     public function __invoke(string $email, int $limit = 10): string
     {
         $context = $this->contextProvider->getContext();
