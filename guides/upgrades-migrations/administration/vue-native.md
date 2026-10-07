@@ -287,7 +287,7 @@ Once the migration is complete and the new systems have left the experimental st
 
 **Will existing extensions built with the Options API continue to work?**
 
-When you only use `Shopware.Component.register`, yes. If you use `Shopware.Component.extend`/`Shopware.Component.override` on components that have been migrated to the Composition API, you need to use the Composition API extension approach for those.
+Yes. This includes overrides of components that have been migrated to Single File Components: a compatibility layer keeps them working and logs a deprecation warning. Migrate them to the new system before that layer is removed in a future major version. See the [Roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md#alongside-twig) for more details.
 
 **How can I prepare my development team for the transition to Composition API?**
 
@@ -303,19 +303,19 @@ Yes, as long as you stick to the limitations from the migration paths above.
 
 **How will the migration from Twig.js templates to .vue files affect my existing component overrides?**
 
-You will need to migrate your overrides to the native block implementation once the components you are overriding have been migrated to `.vue` files.
+They keep working for now, with a deprecation warning. Move them to the native block system before Twig.js support is removed in a future major version.
 
 **What tools or resources will be available to help migrate existing components?**
 
-We'll try to provide a code mod to transition your components into SFC. This will not work for all edge cases, so you need to check and transition them manually.
+A codemod that converts existing components into Single File Components is under development. It will not cover every case, so expect to finish some migrations manually. See the [Roadmap](../../plugins/plugins/administration/single-file-components/roadmap.md#the-migration-codemod) for its current status.
 
 **Will there be any performance impact during the transition period when both systems are supported?**
 
 During our tests, we didn't experience any performance issues.
 
-**How does the new `Shopware.Component.createExtendableSetup` function work with TypeScript?**
+**Do Single File Components work with TypeScript?**
 
-It has built-in TypeScript support.
+Yes, including type checking and editor support for your plugin. See [Turn on editor support](../../plugins/plugins/administration/single-file-components/tutorial/set-up-your-environment.md#turn-on-editor-support) in the tutorial.
 
 **What happens to existing extensions using Twig.js templates once the migration is complete?**
 
@@ -323,7 +323,7 @@ They will stop working once Twig.js support is removed. This will only happen in
 
 **Can I already use the native blocks and Composition API in my extensions today?**
 
-Yes! Both systems are available as experimental features. You can add new components using SFC and native blocks. But you can't extend core components using the old systems or vice versa. Keep in mind that experimental APIs can still change.
+Yes! Both systems are available as experimental features. You can add new components as Single File Components and use them to extend core components, including those that have not been migrated yet. Keep in mind that experimental APIs can still change. The [Single File Components guide](../../plugins/plugins/administration/single-file-components/index.md) shows how to start.
 
 **Which extensions are affected by these changes?**
 
