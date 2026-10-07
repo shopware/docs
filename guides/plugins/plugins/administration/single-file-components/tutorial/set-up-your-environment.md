@@ -67,6 +67,26 @@ docker compose exec web bash
 
 Everywhere below, console commands are written as `shopware-cli project console …`. In a shell inside the `web` container, `bin/console …` does the same.
 
+### Demo data
+
+A fresh shop has no products. The tutorial needs some: from [Chapter 2](your-first-override) on you open a product, and from [Chapter 3](read-the-base-component) on its purchase price matters. The demo data generator creates 1,000 products with random prices and purchase prices, plus customers, orders and categories. It ships with `shopware/dev-tools`, so install that first:
+
+```bash
+shopware-cli project composer require --dev shopware/dev-tools
+```
+
+Then generate the data and refresh the search indices:
+
+```bash
+shopware-cli project console framework:demodata --env=prod
+```
+
+```bash
+shopware-cli project console dal:refresh:index
+```
+
+All three take about two minutes together. `--env=prod` is required: the generator refuses to run in the `dev` environment.
+
 ## The plugin
 
 Create this structure below your shop's `custom/plugins` directory:

@@ -34,13 +34,11 @@ That card is rendered by the core component `sw-product-detail-base`, and its te
 
 Every `{% block %}` name is an extension point. `sw_product_detail_base_price_form` is the one that wraps the price fields, so that is where the banner goes.
 
-The block can be declared either way. Most core components today still use a Twig template, so the extension point is a `{% block %}`. A component that has already been converted to a Single File Component declares the same extension point as `<sw-block name="sw_product_detail_base_price_form">`. Your override does not care which one it is: `<sw-block extends="…">` targets the name, and the name stays the same when a component is converted.
+`<sw-block extends="…">` extends a Twig `{% block %}` and an `<sw-block name="…">` the same way, so it does not matter which of the two a component uses.
 
-Block names are covered by Shopware's backwards-compatibility promise, the same way they are for Twig overrides today: a block you find in core stays until the next major version, and if one is removed in a major, the changelog names it. When core converts a component to a Single File Component, its block names stay the same.
-
-What is still experimental is the system you target those blocks with: `<sw-block extends>`, `<sw-block-parent />` and the macros. Until it is declared stable (planned for 6.9), these can change without a deprecation. So an override may need adjusting after a Shopware update, even though the block it targets is still there.
-
+::: info Twig and Single File Components
 Extending across the two forms is handled by shims in most cases - the roadmap section [Alongside Twig](../roadmap#alongside-twig) has the caveat.
+:::
 
 ::: tip Finding a block
 Block names are stable identifiers, and the fastest way to a name is the component's template in [shopware/shopware](https://github.com/shopware/shopware). Search for a piece of the text or a CSS class you can see on screen, then take the enclosing `{% block %}` or `<sw-block name>`. A block inspector for the Vue devtools is in progress in [shopware/shopware#20490](https://github.com/shopware/shopware/pull/20490).

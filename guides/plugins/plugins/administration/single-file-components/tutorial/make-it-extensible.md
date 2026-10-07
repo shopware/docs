@@ -36,7 +36,7 @@ The `<script setup>` block is unchanged.
 
 **Name it after the component and the spot.** The convention is a prefix identifying the owner, then the path through the component, in `snake_case` - core uses `sw_`, so `swag_margin_hint_banner` for a plugin block reads unambiguously next to it. Block names must be unique per component.
 
-Treat your block names the way core treats its own, as described in [Chapter 2](your-first-override#pick-the-spot): every extension that targets a block depends on its name, so renaming the block breaks them.
+Treat your block names the way [core treats its own](../api-reference/block-components/#names): every extension that targets a block depends on its name, so renaming the block breaks them.
 
 *Reference: [`sw-block`](../api-reference/block-components/sw-block).*
 
