@@ -280,6 +280,7 @@ The CLI abstracts command execution across environment types, configured per env
 | `docker`      | Executes commands inside the web container via `docker compose exec` |
 | `local`       | Executes commands directly on the host                               |
 | `symfony-cli` | Uses the Symfony CLI binary (auto-detected)                          |
+| `ssh`         | Executes commands on a remote host over a multiplexed SSH connection |
 
 ```yaml
 environments:
@@ -292,6 +293,33 @@ environments:
 ```
 
 Select an environment with the global `-e`/`--env` flag, for example `shopware-cli project extension list -e local`. This flag is honored by all commands that talk to the shop, including Admin API commands such as [`extension list`/`extension uninstall`](../../products/tools/cli/project-commands/remote-extension-management.md), not just the executor commands above. An unknown environment name causes the command to fail rather than silently using the default configuration.
+
+### SSH environments
+
+The `ssh` type points an environment at a Shopware installation on a remote host, without Docker or the Symfony CLI. Every executor-backed command - console, sql, dump, and logs - then runs against that host through one multiplexed SSH connection:
+
+```yaml
+environments:
+  staging:
+    type: ssh
+    url: https://staging.example.com
+    ssh:
+      host: staging.example.com         # required
+      user: deploy                      # optional, defaults to ~/.ssh/config or the current user
+      port: 22                          # optional, defaults to 22
+      directory: /var/www/shop          # required, absolute path of the project root on the remote host
+      identity_file: ~/.ssh/id_ed25519  # optional, defaults to the ssh agent or default key files
+      php_binary: /usr/bin/php8.3       # optional, defaults to "php"
+```
+
+```bash
+shopware-cli project console cache:clear -e staging
+shopware-cli project sql -e staging
+shopware-cli project dump -e staging
+shopware-cli project logs -f -e staging
+```
+
+Database connections are tunneled through the same SSH connection automatically: `DATABASE_URL` is resolved on the remote host via `shopware-deployment-helper dump-env`, and MySQL connections (TCP or unix socket) are forwarded over SSH without a separate persistent tunnel process.
 
 ## Ports
 
