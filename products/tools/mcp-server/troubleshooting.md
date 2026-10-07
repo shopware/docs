@@ -12,7 +12,7 @@ nav:
 | Symptom                                                       | Likely cause                                           | Fix                                                                                            |
 | ------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
 | `Authentication failed. Configure your MCP client...`         | Wrong or missing credentials                           | Check `sw-access-key` / `sw-secret-access-key` in your client config                           |
-| HTTP 401 with JSON-RPC code `-32001`                          | Bearer token missing, invalid, or expired              | Refresh the token; the error message names the reason                                          |
+| HTTP 401 with JSON-RPC code `-32001`                          | Bearer token missing, invalid, or expired              | Send a bearer token if it is missing, otherwise get a new one; the message names the reason    |
 | `Tool "X" is not enabled in your MCP allowlist.`              | Tool not enabled for this integration                  | Settings → Integrations → Edit MCP Allowlist → enable the tool                                 |
 | `Resource "X" is not enabled in your MCP allowlist.`          | Resource not enabled for this integration              | Settings → Integrations → Edit MCP Allowlist → enable the resource                             |
 | `Prompt "X" is not enabled in your MCP allowlist.`            | Prompt not enabled for this integration                | Settings → Integrations → Edit MCP Allowlist → enable the prompt                               |
@@ -31,7 +31,7 @@ nav:
 | `Cannot enable an MCP toolset without an active MCP session.` | Client did not send the `Mcp-Session-Id` header        | Complete the `initialize` handshake and send the returned session ID with every request        |
 | `Invalid value for pagination parameter "cursor"`             | Cursor is stale, malformed, or from another principal  | Restart the list from the first page without a `cursor`                                        |
 | Toolsets are forgotten between requests                       | Session store is not shared across workers             | Use a Redis session store in multi-server setups                                               |
-| Store API session rejected after updating to 6.7.15.0         | Each server now has its own session store              | Send `initialize` again to get a new session                                                   |
+| Session rejected after updating to 6.7.15.0                   | Each server now has its own session store              | Send `initialize` again to get a new session                                                   |
 | Tool missing entirely                                         | Extension inactive or capability registration missing  | Check `bin/console debug:mcp`                                                                  |
 | Prompts and resources missing from `debug:mcp`                | Since 6.7.15.0, the command lists tools only           | Run `bin/console debug:mcp --native`                                                           |
 | `ECONNREFUSED` or "fetch failed"                              | Server not running or wrong URL                        | Start Shopware and verify the URL in your client config                                        |

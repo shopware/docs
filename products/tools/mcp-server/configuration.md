@@ -182,7 +182,7 @@ MCP sessions track an ongoing conversation across multiple requests. The client 
 
 Each MCP server has its own session store. Session IDs are not namespaced per server, so a shared store would make a session created on `/api/_mcp` valid on `/store-api/_mcp`. The bundle refuses to build the container when two servers share the same storage location.
 
-Shopware defaults to a file-based session store per server, which writes to `%kernel.cache_dir%/mcp-sessions/<server>`, for example `mcp-sessions/admin` and `mcp-sessions/store_api`. Before 6.7.15.0, both endpoints wrote to `%kernel.cache_dir%/mcp-sessions/`. Store API sessions that existed before the update are not carried over, so Store API clients initialize once more.
+Shopware defaults to a file-based session store per server, which writes to `%kernel.cache_dir%/mcp-sessions/<server>`, for example `mcp-sessions/admin` and `mcp-sessions/store_api`. Before 6.7.15.0, both endpoints wrote to `%kernel.cache_dir%/mcp-sessions/`. Sessions that existed before the update are not carried over, on either endpoint, so every MCP client initializes once more.
 
 Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only, not per user and not per integration. Rows are deleted when the client ends the session with `DELETE /api/_mcp` or `DELETE /store-api/_mcp`. Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, which checks the session stores of both servers. The scheduler must run in production.
 
@@ -354,14 +354,17 @@ Code that integrates with the MCP internals must be updated. These classes and s
 
 The bundle registers one set of services per server, so the flat service IDs were renamed:
 
-| Before               | Admin API                        | Store API                            |
-| -------------------- | -------------------------------- | ------------------------------------ |
-| `mcp.server`         | `mcp.server.admin`               | `mcp.server.store_api`               |
-| `mcp.server.builder` | `mcp.server.admin.builder`       | `mcp.server.store_api.builder`       |
-| `mcp.registry`       | `mcp.server.admin.registry`      | `mcp.server.store_api.registry`      |
-| `mcp.session.store`  | `mcp.server.admin.session.store` | `mcp.server.store_api.session.store` |
+| Before                         | After                                                                                     |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
+| `mcp.server`                   | `mcp.server.admin`                                                                        |
+| `mcp.server.builder`           | `mcp.server.admin.builder`                                                                |
+| `mcp.registry`                 | `mcp.server.admin.registry`                                                               |
+| `mcp.store_api.server`         | `mcp.server.store_api`                                                                    |
+| `mcp.store_api.server.builder` | `mcp.server.store_api.builder`                                                            |
+| `mcp.store_api.registry`       | `mcp.server.store_api.registry`                                                           |
+| `mcp.session.store`            | `mcp.server.admin.session.store` and `mcp.server.store_api.session.store` (shared before) |
 
-The `mcp.store_api.registry`, `mcp.store_api.server.builder`, and `mcp.store_api.server` services and the `StoreApiMcpServerBuilderCompilerPass` were removed.
+The `StoreApiMcpServerBuilderCompilerPass` was removed.
 
 Protocol request and notification handlers are scoped per server:
 

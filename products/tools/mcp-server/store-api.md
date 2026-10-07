@@ -95,7 +95,7 @@ Core registers no prompts or resources for the Store API scope.
 
 ## Sessions and rate limiting
 
-MCP sessions and enabled toolsets use the same storage as the Admin API server, including the `mcp_toolset_session` table and its daily cleanup task — see [Session store](./configuration.md#session-store). Toolset names are not namespaced per endpoint.
+MCP sessions live in the Store API server's own session store. Enabled toolsets are stored in the `mcp_toolset_session` table, which both endpoints share, including its daily cleanup task. See [Session store](./configuration.md#session-store). Toolset names are not namespaced per endpoint.
 
 Rate limiting uses its own bucket, `mcp_store_api`: 120 requests per minute and 600 per 10 minutes, keyed on the sales channel and context token, plus an additional per-client-IP limit. The limits are deliberately tighter than the Admin API's, because a context token is cheap to rotate. See [Rate limiting](./configuration.md#rate-limiting).
 
