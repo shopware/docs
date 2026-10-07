@@ -13,7 +13,7 @@ At the end of this chapter you have a running shop in Docker and an installed pl
 
 ## A shop to develop against
 
-Before you start, install Docker and [Shopware CLI](https://developer.shopware.com/docs/products/cli/). The tutorial uses Shopware CLI throughout.
+Before you start, install Docker and [Shopware CLI](https://developer.shopware.com/docs/products/cli/). Every step of this tutorial uses them.
 
 In your terminal, go to the directory where the tutorial project should live, and create a shop from the `trunk` branch:
 
@@ -69,7 +69,7 @@ Everywhere below, console commands are written as `shopware-cli project console 
 
 ### Demo data
 
-A fresh shop has no products. The tutorial needs some: from [Chapter 2](your-first-override) on you open a product, and from [Chapter 3](read-the-base-component) on its purchase price matters. The demo data generator creates 1,000 products with random prices and purchase prices, plus customers, orders and categories. It ships with `shopware/dev-tools`, so install that first:
+The tutorial needs at least one product with a purchase price. If you do not want to create one yourself, generate demo data instead. The generator ships with `shopware/dev-tools`, so install that first:
 
 ```bash
 shopware-cli project composer require --dev shopware/dev-tools
@@ -85,7 +85,7 @@ shopware-cli project console framework:demodata --env=prod
 shopware-cli project console dal:refresh:index
 ```
 
-All three take about two minutes together. `--env=prod` is required: the generator refuses to run in the `dev` environment.
+This creates 1,000 products with random prices and purchase prices, plus customers, orders and categories. All three commands take about two minutes together. `--env=prod` is required: the generator refuses to run in the `dev` environment.
 
 ## The plugin
 
@@ -228,7 +228,9 @@ docker compose exec web npm ci --prefix vendor/shopware/administration/Resources
 
 :::
 
-Working inside the [shopware/shopware](https://github.com/shopware/shopware) repository itself? There, `composer admin:setup-extension-tooling` and `composer admin:check-extensions` do the same.
+::: info Working inside shopware/shopware?
+In the [shopware/shopware](https://github.com/shopware/shopware) repository itself, `composer admin:setup-extension-tooling` and `composer admin:check-extensions` do the same.
+:::
 
 ::: info Experimental
 Both commands were newly introduced and their usage may still change. [Give us feedback](../roadmap#give-us-feedback).

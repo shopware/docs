@@ -84,9 +84,23 @@ const margin = computed(() => {
 `firstNetPrice` narrows the price field by hand because the generated entity schema types it loosely.
 :::
 
-## Using values in the template
+## Values for the template
 
-The banner needs two more values from the script: `isTooLow` is true when the margin is below 25%, and `message` turns the margin into a sentence. The whole file below computes both.
+The banner needs two more values: whether the margin is too low, and a sentence to show. Below 25% counts as too low:
+
+```ts
+const isTooLow = computed(() => margin.value !== null && margin.value < 0.25);
+
+const message = computed(() => {
+    if (margin.value === null) {
+        return 'This product has no purchase price, so no margin can be calculated.';
+    }
+
+    return `You earn ${(margin.value * 100).toFixed(1)}% on every sale of this product.`;
+});
+```
+
+## Using values in the template
 
 Your override's bindings are available inside its `<sw-block extends>` content, and they read like any other Vue template binding:
 
