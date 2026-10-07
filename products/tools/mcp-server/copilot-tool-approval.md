@@ -40,7 +40,7 @@ If your tool has side effects, declare `dryRun`. This is the whole contract.
 
 ## How Copilot uses your tools
 
-Copilot connects to the shop's MCP endpoint with the merchant's permissions. Your tools aren't visible to the AI model by default. Shopware groups tools into toolsets using the group you declare, and Copilot enables a toolset only when the conversation needs it.
+Copilot connects to the shop's MCP endpoint with the merchant's permissions. Starting with Shopware 6.7.16.0, your tool must also be selected in the MCP allowlist of the Copilot integration, and a non-admin merchant must select it in their own allowlist. See [Delegated user calls](./configuration.md#delegated-user-calls-sw-app-user-id). Your tools aren't visible to the AI model by default. Shopware groups tools into toolsets using the group you declare, and Copilot enables a toolset only when the conversation needs it.
 
 Two things matter for your tool to be picked at all:
 

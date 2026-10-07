@@ -14,7 +14,7 @@ Shopware ships a native MCP server with the core platform. It exposes an endpoin
 :::info Experimental
 The MCP server is considered experimental until Shopware 6.8. APIs and tool names may change before the stable release.
 
-The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` feature flag. Shopware 6.7.14.0 removes the flag and introduces progressive tool discovery. Shopware 6.7.15.0 moves to `symfony/mcp-bundle` 0.13 and adds connect-time toolset selection. See [Configuration](./configuration.md) for what applies to which version.
+The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` feature flag. Shopware 6.7.14.0 removes the flag and introduces progressive tool discovery. Shopware 6.7.15.0 moves to `symfony/mcp-bundle` 0.13 and adds connect-time toolset selection. Shopware 6.7.16.0 changes an unset MCP allowlist from "everything allowed" to "nothing allowed". See [Configuration](./configuration.md) for what applies to which version.
 :::
 
 ## What the MCP server provides

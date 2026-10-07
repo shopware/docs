@@ -27,6 +27,16 @@ All core tools return a consistent JSON envelope via `McpToolResponse`:
 
 The `_meta` field is optional and used for pagination context, dry-run status, and sales channel scope.
 
+The entity tools and `shopware-theme-config` describe each parameter in their `inputSchema`. Parameters that take a JSON-encoded string, such as `criteria` or `aggregations`, state whether an object or an array is expected and include an example.
+
+When `shopware-entity-search` or `shopware-entity-aggregate` receives criteria or aggregations it cannot parse, the error names every rejected element by its JSON pointer:
+
+```json
+{"success": false, "error": "Invalid criteria: /aggregations/0/avg/field: The aggregation should contain a \"field\"."}
+```
+
+Correct the named element and call the tool again.
+
 ## Discovery tools
 
 With core alone, a fresh MCP session advertises only the three discovery tools below; every other core tool becomes visible when its toolset is enabled for the session. A plugin or bundle can add its own tool to the `discovery` group, in which case that tool is advertised from the start as well — see [Assign a tool group](../../../guides/plugins/plugins/mcp-server.md#step-2-assign-a-tool-group).
@@ -135,7 +145,7 @@ Get the field and association schema of any Shopware entity. Use this first to d
 
 ### shopware-entity-search
 
-Search entity records using Admin API criteria. Returns entity rows with pagination metadata. Does **not** return aggregation results; use `shopware-entity-aggregate` for counts, averages, and other metrics.
+Search, list, and page through records of any entity type, such as orders, products, customers, or categories, using Admin API criteria. Returns entity rows with pagination metadata. Use `criteria.sort` for requests such as "the last 10 orders". Does **not** return aggregation results; use `shopware-entity-aggregate` for counts, averages, and other metrics.
 
 **Response optimization:** When no `includes` are specified in the criteria, responses are automatically trimmed to scalar fields and explicitly requested associations. This strips thumbnails, extensions, and translated duplicates, keeping responses well within the 100 KB limit.
 
@@ -173,11 +183,11 @@ Use this instead of `shopware-entity-search` when you need counts, averages, sum
 
 **Parameters:**
 
-| Name           | Type   | Required | Default | Description                                                                            |
-| -------------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------- |
-| `entity`       | string | yes      | —       | Entity name                                                                            |
-| `aggregations` | string | yes      | —       | JSON array of aggregation definitions. A single object instead of an array is rejected |
-| `filters`      | string | no       | `[]`    | JSON array of filter definitions                                                       |
+| Name           | Type   | Required | Default | Description                                                                                                                            |
+| -------------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `entity`       | string | yes      | —       | Entity name                                                                                                                            |
+| `aggregations` | string | yes      | —       | JSON array of aggregation definitions. Each element needs `name`, `type`, and `field`. A single object instead of an array is rejected |
+| `filters`      | string | no       | `[]`    | JSON array of filter definitions                                                                                                       |
 
 **Supported aggregation types:** `avg`, `sum`, `min`, `max`, `count`, `terms`, `date-histogram`, `range`, `filter`, `entity`
 
