@@ -11,7 +11,7 @@ This guide walks you through connecting an AI client to a Shopware shop using th
 
 ## Prerequisites
 
-- Shopware 6.7.14.0 or later. On 6.7.11.0 to 6.7.13.x, set `MCP_SERVER=1` in your `.env` file first and skip the discovery section below — see [Configuration](./configuration.md). Selecting toolsets in the connection URL requires 6.7.15.0 or later.
+- Shopware 6.7.14.0 or later. On 6.7.11.0 to 6.7.13.x, set `MCP_SERVER=1` in your `.env` file first and skip the discovery section below. See [Configuration](./configuration.md). Selecting toolsets in the connection URL requires 6.7.15.0 or later.
 - `symfony/mcp-bundle` installed — verify with `composer show symfony/mcp-bundle`. If it is missing, ensure it is listed as a dependency in `composer.json` and run `composer install`.
 
 ## Step 1: Create an integration
@@ -31,8 +31,6 @@ SHOPWARE_SECRET_ACCESS_KEY=...
 
 :::info Restrict access
 The `--admin` flag grants full Admin API access. For production use, omit `--admin`, create a dedicated ACL role with only the required permissions, and assign it to the integration. See [Configuration](./configuration.md#acl-and-permissions) for details.
-
-The `--admin` flag does not bypass the MCP allowlist. Starting with Shopware 6.7.16.0, select the integration's capabilities before the client can use any tool, see [Controlling which capabilities are available](#controlling-which-capabilities-are-available).
 :::
 
 ## Step 2: Configure your AI client
@@ -184,18 +182,13 @@ A missing, invalid, or expired token is answered with HTTP 401 and the JSON-RPC 
 
 ## Controlling which capabilities are available
 
-Which capabilities an integration may call depends on its allowlist and on the Shopware version:
-
-- **6.7.16.0 and later:** An integration without an allowlist may call nothing. Only the three discovery tools are available, and they return nothing until you select capabilities. The same applies to non-admin users. Admin users bypass the allowlist.
-- **Before 6.7.16.0:** An integration without an allowlist may call all registered tools, resources, and prompts.
-
-In both cases, only the discovery tools are advertised at the start of a session. To select which capabilities can be discovered and called:
+By default, an admin integration is permitted to call all registered tools, resources, and prompts. Only the discovery tools are advertised at the start of a session. To restrict which capabilities can be discovered and called:
 
 **Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
    <img src="../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
 
-Select the tools, resources, and prompts this integration should use. On versions before 6.7.16.0, disable the **All** toggle of a capability type first:
+Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use:
 
    <img src="../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 

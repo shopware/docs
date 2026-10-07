@@ -15,8 +15,6 @@ On Shopware 6.7.11.0 to 6.7.13.x, the MCP server is gated behind the `MCP_SERVER
 Starting with 6.7.14.0, the flag is removed and has no effect. Remove `MCP_SERVER` from your `.env` file. The MCP classes stay marked as experimental until 6.8.0.
 
 Starting with 6.7.15.0, Shopware runs on `symfony/mcp-bundle` 0.13. This changes the list page size setting, the session store configuration, the `debug:mcp` command, and some internal service IDs. See [Upgrading to 6.7.15.0](#upgrading-to-6-7-15-0).
-
-Starting with 6.7.16.0, an unset MCP allowlist grants nothing instead of everything. See [Per-principal allowlist](#per-principal-allowlist).
 :::
 
 ## Shopware MCP configuration
@@ -59,8 +57,7 @@ An empty list (the default) means no compile-time restriction; all registered to
 
 Removing the discovery tools at compile time prevents clients from finding and enabling the remaining tools. The per-integration and per-user allowlists in the Administration are the primary controls for day-to-day access management.
 
-### Per-principal allowlist
-
+:::info Per-principal allowlist
 Shopware applies a per-principal MCP allowlist depending on how the client authenticates:
 
 | Auth mode                                | Allowlist source                                                                          |
@@ -72,42 +69,11 @@ Shopware applies a per-principal MCP allowlist depending on how the client authe
 | Bearer JWT, client_credentials           | Per-integration allowlist                                                                 |
 | Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist                          |
 
-The allowlist is stored per capability type (`tools`, `resources`, `prompts`). A JSON array restricts access to the listed names, and an empty array `[]` denies access to that capability type. What an unset value means depends on the Shopware version:
+`null` per key means all capabilities of that type are allowed; a JSON array restricts access to the listed names; an empty array `[]` denies access to that capability type.
 
-| Stored value                                          | 6.7.16.0 and later            | Before 6.7.16.0                  |
-| ----------------------------------------------------- | ----------------------------- | -------------------------------- |
-| Column unset (`NULL`)                                 | Nothing allowed               | Everything allowed               |
-| Type key missing or `null`, such as `"prompts": null` | Nothing allowed for that type | Everything allowed for that type |
-| Array of names                                        | Only those names              | Only those names                 |
-| `[]`                                                  | Nothing allowed               | Nothing allowed                  |
-
-Starting with 6.7.16.0, there is no stored value that means "everything" for an integration or a non-admin user. A principal that Shopware cannot resolve, such as an unknown access key or an inactive user, is blocked as well. In the Administration, the **All** switch of an integration or non-admin user saves the list of capabilities that exist at that moment. Capabilities that a plugin or app adds later must be selected explicitly.
-
-The three server-owned discovery tools are the exception for tool allowlists. They remain available so that clients can use the discovery flow, but their search results and toolsets contain only tools permitted by the effective allowlist. A principal without any selection therefore sees the three discovery tools, and they return nothing.
+The three server-owned discovery tools are the exception for tool allowlists. They remain available so that clients can use the discovery flow, but their search results and toolsets contain only tools permitted by the effective allowlist.
 
 Admin user accounts (`admin = true`) always bypass the allowlist regardless of auth mode. This applies to user accounts, not to integrations created with `--admin` (which bypasses ACL but still respects the per-integration allowlist).
-
-:::warning Upgrading to 6.7.16.0
-Existing integrations and non-admin users without an allowlist lose MCP access after the update. They still authenticate, but `tools/list` returns only the discovery tools, and calling a domain tool fails with `Tool "<name>" is not enabled in your MCP allowlist.` Before updating, write down which capabilities each integration uses. Afterwards, select them under **Settings → Integrations → Edit MCP Allowlist** or on the user detail page, or send them to the API:
-
-```text
-POST /api/_action/integration/{integrationId}/mcp-allowlist
-POST /api/_action/user/{userId}/mcp-allowlist
-```
-
-```json
-{
-    "allowlist": {
-        "tools": ["shopware-entity-search", "shopware-entity-schema"],
-        "resources": ["shopware://entities"],
-        "prompts": []
-    }
-}
-```
-
-An allowlist stored as `{"tools": [...], "resources": null, "prompts": null}` keeps its tools and loses all resources and prompts. If you used the per-type **All** switch before, save the allowlist again.
-
-Both routes now also require the matching entity privilege, `user:update` or `integration:update`, and answer `403` without it. The `users_and_permissions.editor` role already grants `user:update`. A custom role that only has the action privilege must be extended.
 :::
 
 ### Delegated user calls (`sw-app-user-id`)
@@ -129,15 +95,15 @@ If the header is absent or invalid (i.e., not a valid UUID), Shopware ignores it
 
 When this header is present, and a valid user UUID is provided, Shopware applies the **intersection** of the integration allowlist and the user allowlist. A tool is only available if both the integration and the user have it enabled:
 
-| Integration allowlist | User allowlist     | Effective allowlist                            |
-| --------------------- | ------------------ | ---------------------------------------------- |
-| `[tool-a, tool-b]`    | admin user         | `[tool-a, tool-b]`                             |
-| `[tool-a, tool-b]`    | `[tool-b, tool-c]` | `[tool-b]`                                     |
-| `[tool-a]`            | `[]`               | `[]` (nothing)                                 |
-| `[tool-a, tool-b]`    | unset              | `[]` since 6.7.16.0, `[tool-a, tool-b]` before |
-| unset                 | `[tool-b]`         | `[]` since 6.7.16.0, `[tool-b]` before         |
+| Integration allowlist | User allowlist        | Effective allowlist |
+| --------------------- | --------------------- | ------------------- |
+| `null` (unrestricted) | `null` (unrestricted) | unrestricted        |
+| `null`                | `[tool-b]`            | `[tool-b]`          |
+| `[tool-a, tool-b]`    | `null`                | `[tool-a, tool-b]`  |
+| `[tool-a, tool-b]`    | `[tool-b, tool-c]`    | `[tool-b]`          |
+| `[tool-a]`            | `[]`                  | `[]` (nothing)      |
 
-Admin users bypass the user side of the intersection, so the integration allowlist alone applies. Integrations never bypass the allowlist. Starting with 6.7.16.0, an app that forwards `sw-app-user-id` therefore needs an explicit integration allowlist, and every non-admin user needs their own selection.
+Admin users bypass the user side of the intersection — if the user is an admin, their allowlist is treated as `null` (unrestricted), so the integration allowlist alone applies.
 
 This pattern lets the app owner control which tools the integration may ever call, while users control which of those tools they personally allow the app to use on their behalf. Neither side can grant more than what the other has permitted.
 
@@ -184,7 +150,7 @@ Each MCP server has its own session store. Session IDs are not namespaced per se
 
 Shopware defaults to a file-based session store per server, which writes to `%kernel.cache_dir%/mcp-sessions/<server>`, for example `mcp-sessions/admin` and `mcp-sessions/store_api`. Before 6.7.15.0, both endpoints wrote to `%kernel.cache_dir%/mcp-sessions/`. Store API sessions that existed before the update are not carried over, so Store API clients initialize once more.
 
-Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only — not per user and not per integration. Rows are deleted when the client ends the session with `DELETE /api/_mcp` or `DELETE /store-api/_mcp`. Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, which checks the session stores of both servers. The scheduler must run in production.
+Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only, not per user and not per integration. Rows are deleted when the client ends the session with `DELETE /api/_mcp` or `DELETE /store-api/_mcp`. Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, which checks the session stores of both servers. The scheduler must run in production.
 
 The `session` options of each server select the store:
 
