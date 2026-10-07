@@ -8,7 +8,7 @@ nav:
 # Add Custom Components
 
 ::: info
-The Options API registration shown on this page is the stable way to build a component today. On `trunk` a component can also be written as a native Vue [Single File Component](../single-file-components/index.md), the experimental alternative. See the [SFC tutorial](../single-file-components/tutorial/index.md) if you want to try it.
+The Options API registration shown on this page is the stable way to build a component today. Since Shopware 6.7.16.0, a component can also be written as a native Vue [Single File Component](../single-file-components/index.md), the experimental alternative. See the [SFC tutorial](../single-file-components/tutorial/index.md) if you want to try it.
 :::
 
 ## Overview

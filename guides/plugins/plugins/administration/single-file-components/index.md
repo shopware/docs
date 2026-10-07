@@ -19,7 +19,7 @@ Components can now be written as Vue [Single File Components](https://vuejs.org/
 
 ## Where it stands
 
-The system is available on `trunk` today and is planned to become a stable API in 6.9. The [roadmap](./roadmap.md) has the timeline, what is supported, and the list of composables that replace mixins.
+The system is available since Shopware 6.7.16.0 and is planned to become a stable API in 6.9. The [roadmap](./roadmap.md) has the timeline, what is supported, and the list of composables that replace mixins.
 
 ## Before and after
 

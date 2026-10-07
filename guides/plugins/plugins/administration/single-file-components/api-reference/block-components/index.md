@@ -44,7 +44,7 @@ sw_product_detail_base_price_form
 swag_greeting_card_body
 ```
 
-Core uses `sw_`; a plugin uses its own prefix. A block you find in core is covered by the backwards-compatibility promise, so you can rely on it until the next major version.
+Core uses `sw_`; a plugin uses its own prefix. A block name you find in core is covered by the backwards-compatibility promise and stays until the next major version. The block components themselves are experimental and can still change without a deprecation, see [Your first override](../../tutorial/your-first-override#pick-the-spot).
 
 ## Chains
 

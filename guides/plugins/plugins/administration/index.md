@@ -23,7 +23,7 @@ This section follows a practical development workflow. Start with registering a 
 
 For stable cross-version extension points, use the [Meteor Admin SDK](../../apps/administration/meteor-admin-sdk.md). The SDK can be used by both apps and plugins.
 
-Components can also be written as native Vue [Single File Components](single-file-components/index.md). This is the experimental alternative on `trunk` to the Options API and TwigJS templates described in this section, which stay the stable way today. The fastest way in is the [SFC tutorial](single-file-components/tutorial/index.md).
+Components can also be written as native Vue [Single File Components](single-file-components/index.md). This is the experimental alternative, available since Shopware 6.7.16.0, to the Options API and TwigJS templates described in this section, which stay the stable way today. The fastest way in is the [SFC tutorial](single-file-components/tutorial/index.md).
 
 ## Developer workflow
 

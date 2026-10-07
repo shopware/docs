@@ -36,7 +36,9 @@ Every `{% block %}` name is an extension point. `sw_product_detail_base_price_fo
 
 The block can be declared either way. Most core components today still use a Twig template, so the extension point is a `{% block %}`. A component that has already been converted to a Single File Component declares the same extension point as `<sw-block name="sw_product_detail_base_price_form">`. Your override does not care which one it is: `<sw-block extends="…">` targets the name, and the name stays the same when a component is converted.
 
-Block names are part of the backwards-compatibility promise: a block you find in core stays until the next major version, and it keeps its name when the component is converted to a Single File Component. If a block disappears in a major, the changelog names it.
+Block names are covered by Shopware's backwards-compatibility promise, the same way they are for Twig overrides today: a block you find in core stays until the next major version, and if one is removed in a major, the changelog names it. When core converts a component to a Single File Component, its block names stay the same.
+
+What is still experimental is the system you target those blocks with: `<sw-block extends>`, `<sw-block-parent />` and the macros. Until it is declared stable (planned for 6.9), these can change without a deprecation. So an override may need adjusting after a Shopware update, even though the block it targets is still there.
 
 Extending across the two forms is handled by shims in most cases - the roadmap section [Alongside Twig](../roadmap#alongside-twig) has the caveat.
 

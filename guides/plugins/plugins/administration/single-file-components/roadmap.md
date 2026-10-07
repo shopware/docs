@@ -14,24 +14,24 @@ still being worked on, and where to tell us when something does not fit.
 
 ## What experimental means here
 
-The system is available now. There is no feature flag to enable and nothing to opt into - a `.vue` file
+The system is available since Shopware 6.7.16.0. There is no feature flag to enable and nothing to opt into - a `.vue` file
 in your plugin is compiled by the extension build as it is.
 
 Experimental means the API can still change, at any time and without a deprecation. The plan is for it
 to become a stable, deprecation-protected API in **6.9**. How much it still has to change depends on
 what you run into and on how the Administration's own migration goes.
 
-Until the API is declared stable, an SFC extension written today may need changes with every trunk
+Until the API is declared stable, an SFC extension written today may need changes with every Shopware
 update.
 
 ## Timeline
 
-| When  | What happens                                                                                                                                             |
-| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Today | The extension system is available, and experimental.                                                                                                     |
-| 6.8   | The Administration's `@private` components, which are not part of the public extension contract, are converted and run in production for the first time. |
-| 6.9   | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it.                                      |
-| Later | The remaining components follow. The shims keep working for a while after that.                                                                          |
+| When   | What happens                                                                                                                                             |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 6.7.16 | The extension system is available, and experimental.                                                                                                     |
+| 6.8    | The Administration's `@private` components, which are not part of the public extension contract, are converted and run in production for the first time. |
+| 6.9    | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it.                                      |
+| Later  | The remaining components follow. The shims keep working for a while after that.                                                                          |
 
 Most of the work is converting the Administration's own components, and that is why the experimental
 phase lasts as long as it does: every converted component can break an existing extension, and those
@@ -127,9 +127,9 @@ taken away when one arrives: an Options API component keeps using the mixin it a
 
 ## The Twig shims
 
-The two directions above work through shims. They stay for as long as the migration needs, likely
-across several majors, and are removed once everything has stabilized and everyone has had the chance
-to migrate.
+The two directions above work through shims. They stay while the Administration's components are being
+converted. Like the rest of the system they are experimental, and their removal will be announced on
+this roadmap.
 
 ## The migration codemod
 

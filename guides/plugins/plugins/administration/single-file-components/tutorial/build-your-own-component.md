@@ -394,30 +394,6 @@ The `.vue` file moved into the new directory, so if you keep the `import` in the
 
 `_renderedBySfcTemplate: true` tells the component factory that this component brings its own markup. A production build moves the render function inside `setup()`, where the factory does not find it, and without the flag it refuses to build the component, see the [troubleshooting page](../troubleshooting#in-the-browser-console). The flag is an internal detail of the factory rather than a stable API; it is documented here because there is no other way to register a `.vue` base component by name today.
 
-### Using a component in a route
-
-A route looks like another case for registering by name, but it is not one. `Shopware.Module.register()` takes the imported component itself, and the router only looks a name up in the component registry when you actually hand it a name:
-
-```typescript
-// <plugin root>/src/Resources/app/administration/src/module/swag-product-margin/index.ts
-import SwagMarginPage from './page/swag-margin-page.vue';
-
-Shopware.Module.register('swag-product-margin', {
-    type: 'plugin',
-    name: 'SwagProductMargin',
-    title: 'swag-margin.module.title',
-
-    routes: {
-        index: {
-            component: SwagMarginPage as never,
-            path: 'index',
-        },
-    },
-});
-```
-
-The `as never` is there for TypeScript only. The module manifest types `component` as `string | App<Element>`, and a `.vue` import is neither of those, so the cast is what gets you past the type check. At runtime the router resolves only string names through the component registry and passes anything else on to Vue Router untouched.
-
 <PageRef page="../../module-component-management/add-custom-component" title="Add custom components" sub="Registration itself, for Twig and Options API components" />
 
 Next: [Make your component extensible](make-it-extensible).

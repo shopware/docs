@@ -8,7 +8,7 @@ nav:
 # Writing templates
 
 ::: info
-TwigJS blocks are the extension points in templates today, and the stable way to make a component extendable. Their native successor is the [`sw-block`](../single-file-components/api-reference/block-components/sw-block.md) component, part of the experimental Single File Component system on `trunk`.
+TwigJS blocks are the extension points in templates today, and the stable way to make a component extendable. Their native successor is the [`sw-block`](../single-file-components/api-reference/block-components/sw-block.md) component, part of the experimental Single File Component system available since Shopware 6.7.16.0.
 :::
 
 ## Overview

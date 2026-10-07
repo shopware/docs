@@ -21,7 +21,7 @@ In your terminal, go to the directory where the tutorial project should live, an
 shopware-cli project create swag-sfc-tutorial dev-trunk --docker
 ```
 
-`dev-trunk` installs the current state of `trunk`, because Single File Components are not part of any release yet. Then start the shop:
+`dev-trunk` installs the current state of `trunk`, so you get the newest state of the experimental API. Any release from 6.7.16.0 on works as well. Then start the shop:
 
 ```bash
 cd swag-sfc-tutorial
