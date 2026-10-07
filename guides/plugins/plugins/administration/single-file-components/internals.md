@@ -40,7 +40,7 @@ What follows is how that rewrite works, and what the block components do once th
    `<sw-block extends>` slots. It renders none of them.
 2. When a base component is set up, its own `setup()` runs first, then the `setup()` of each override,
    one after another, all inside the base component's own setup.
-3. Each `sw-block` of the base renders the last contribution registered for its name, and each
+3. Each `sw-block` of the base renders the last contribution registered for its component and name, and each
    `<sw-block-parent />` inside it renders the one before, recursively down to the base's own content.
 4. Because an override's markup is rendered by the base component, and its `setup()` has been folded
    into the base component's setup too, the bindings Vue would normally connect to a template cannot
@@ -131,7 +131,7 @@ linter that can drift out of sync with the compiler.
 A base component keeps its body. Nothing is hoisted, nothing is wrapped, every Vue macro stays where
 you put it. The transform only renames and appends.
 
-Everything below is the output of the real transform on this file:
+Everything below is the output of the real transform on this file, with blank lines collapsed:
 
 ```vue
 <!-- swag-margin-hint.vue -->
@@ -188,8 +188,8 @@ const {
 });
 ```
 
-`swDefinePublic()` itself is deleted - it is a compile-time marker and produces no runtime code. What
-it leaves behind is the `public` map. Every other top-level binding lands in `private`:
+The `swDefinePublic()` call itself is deleted. What it leaves behind is the `public` map, and the
+`defineExpose()` described below. Every other top-level binding lands in `private`:
 
 ```ts
 // a binding you did not publish
@@ -212,17 +212,38 @@ replaces.
 This is also why a top-level binding must not share a declared prop's name. The extension system
 strips declared prop keys from what it returns, so the destructured binding would be `undefined`.
 
-### 3. The template gains a data binding
+The footer ends with a generated `defineExpose()`:
+
+```ts
+defineExpose({
+    ...Shopware.Component.getExposedProps(),
+    margin,
+    variant,
+    message,
+});
+```
+
+It exposes the published names, after any override has replaced them, plus the component's props as
+read-only refs. So a parent that holds a template ref to the component reads the same things from it
+that it could read from an Options API component. That is why you never write `defineExpose()`
+yourself - the build rejects it.
+
+### 3. The template gains two attributes
 
 ```vue
-<sw-block :data="$dataScope" name="swag_margin_hint_banner">
+<sw-block sw-internal-component-name='swag-margin-hint' :data="$dataScope" name="swag_margin_hint_banner">
 ```
+
+`sw-internal-component-name` is the component the file belongs to, taken from its filename. A block is
+identified by that component name *and* its block name, the same way Twig scopes its blocks. So a block
+called `swag_margin_hint_banner` in another component never picks up overrides meant for this one.
 
 `$dataScope` is the component's state, resolved for this instance. It is what `sw-block` passes to
 every contributor of the block - see [Blocks at runtime](#blocks-at-runtime).
 
-Authoring `:data` yourself is rejected, and so is any other attribute or directive on `sw-block`. The
-transform owns that binding completely, so what a block receives is always exactly what it wired.
+Authoring either attribute yourself is rejected, and so is any other attribute or directive on
+`sw-block`. The transform owns them completely, so what a block receives is always exactly what it
+wired.
 
 ### The whole file
 
@@ -232,7 +253,7 @@ transform owns that binding completely, so what a block receives is always exact
 ```vue
 <template>
     <div class="swag-margin-hint">
-        <sw-block :data="$dataScope" name="swag_margin_hint_banner">
+        <sw-block sw-internal-component-name='swag-margin-hint' :data="$dataScope" name="swag_margin_hint_banner">
             <mt-banner :variant="variant">{{ message }}</mt-banner>
         </sw-block>
     </div>
@@ -259,6 +280,13 @@ const {
         message: __swSetupAuthor_message,
     },
     private: {},
+});
+
+defineExpose({
+    ...Shopware.Component.getExposedProps(),
+    margin,
+    variant,
+    message,
 });
 </script>
 ```
@@ -355,7 +383,7 @@ return {
 and generates the matching slot scope on the block:
 
 ```vue
-<sw-block extends="swag_margin_hint_banner" #default="{ __swOverride: { [__swSetupNamespace]: { hint } } }">
+<sw-block sw-internal-component-name='swag-margin-hint' extends="swag_margin_hint_banner" #default="{ __swOverride: { [__swSetupNamespace]: { hint } } }">
     <sw-block-parent />
     <p>{{ hint }}</p>
 </sw-block>
@@ -383,14 +411,38 @@ level. The reason: the override file is mounted in a hidden container, so any ma
 would render there - invisibly, with its setup references resolving against the hidden
 component instead of the component you meant to extend.
 
+### 6. The block targets are announced
+
+```ts
+Shopware.Component.registerNativeExtensionTargets?.({
+    component: 'swag-margin-hint',
+    blocks: [
+        'swag_margin_hint_banner',
+    ],
+});
+```
+
+The transform adds a second, plain `<script>` that lists every block the file extends. It runs when the
+file is loaded, before any component renders. A Twig component reads that list when its template is
+compiled, and wraps exactly those `{% block %}`s in an `sw-block` - see [Twig interop](#twig-interop).
+The `?.` keeps a plugin built today from failing on an Administration that does not have the function.
+
 ### The whole file
 
 <details>
 <summary>swag-margin-hint.override.vue, after the transform</summary>
 
 ```vue
+<script lang="ts">
+Shopware.Component.registerNativeExtensionTargets?.({
+    component: 'swag-margin-hint',
+    blocks: [
+        'swag_margin_hint_banner',
+    ],
+});
+</script>
 <template>
-    <sw-block extends="swag_margin_hint_banner" #default="{ __swOverride: { [__swSetupNamespace]: { hint } } }">
+    <sw-block sw-internal-component-name='swag-margin-hint' extends="swag_margin_hint_banner" #default="{ __swOverride: { [__swSetupNamespace]: { hint } } }">
         <sw-block-parent />
         <p>{{ hint }}</p>
     </sw-block>
@@ -435,12 +487,16 @@ content. Neither produces visible markup of its own.
 
 ### The registry
 
-One reactive object, shared by the whole application, mapping a block name to the slot functions
-registered for it:
+One reactive object, shared by the whole application, mapping a block to the slot functions registered
+for it:
 
 ```ts
 const blockContext: Record<string, Slot[]> = reactive({});
 ```
+
+The key is the component name plus the block name, `'swag-margin-hint swag_margin_hint_banner'`, built
+from the `sw-internal-component-name` the transform stamped on the block. That is why an override has to
+be named after the component that renders the block.
 
 An extension never touches it. The two modes of `sw-block` are its only writer and its only reader.
 
@@ -448,22 +504,27 @@ An extension never touches it. The two modes of `sw-block` are its only writer a
 
 ```ts
 if (props.extends) {
-    addBlock(props.extends, slots.default);
+    const extendsKey = componentBlockKey(props.swInternalComponentName, props.extends);
+    const overrideSlot: Slot = (data) => slots.default?.(data) ?? [];
 
-    onBeforeUnmount(() => removeBlock(props.extends, slots.default));
+    addBlock(extendsKey, overrideSlot);
+    onBeforeUnmount(() => removeBlock(extendsKey, overrideSlot));
 
     return { template: null };
 }
 ```
 
-That is the whole contribution path. `<sw-block extends>` hands its **default slot function** to the
-registry and renders nothing at its own position - which is why an override's markup appears where the
-base component declared the block, not where you wrote it.
+That is the whole contribution path. `<sw-block extends>` hands its **default slot** to the registry and
+renders nothing at its own position - which is why an override's markup appears where the base
+component declared the block, not where you wrote it.
+
+It registers a small wrapper rather than the slot function itself. Vue hands the component a new slot
+function whenever the surrounding scope changes, and the wrapper always calls the current one.
 
 ### `name` calls the chain
 
 ```ts
-const nativeBlocks = getBlocks(props.name);
+const nativeBlocks = getBlocks(componentBlockKey(props.swInternalComponentName, props.name));
 const blocksAndParent = [
     slots.default ?? (() => []),
     ...shimSlots,

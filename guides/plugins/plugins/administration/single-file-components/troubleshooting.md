@@ -27,7 +27,7 @@ custom/plugins/SwagProductMargin/src/.../swag-margin-hint.override.vue
 Your override compiles, the build is clean, and the page is unchanged. The usual causes, most common first:
 
 1. **The block name is wrong.** It is a plain string and nothing checks it - a typo simply never matches. Copy the name from the component's template rather than typing it.
-2. **The file is not named after the component.** `sw-product-detail-base.override.vue` overrides `sw-product-detail-base`. A file named after the wrong component, or missing the `.override` part, registers nothing.
+2. **The file is not named after the component.** `sw-product-detail-base.override.vue` overrides `sw-product-detail-base`. A file named after the wrong component, or missing the `.override` part, registers nothing. Blocks are scoped per component, so name the file after the component whose template contains the block, not after the page around it.
 3. **The file is outside your Administration source directory.** The build scans `src/Resources/app/administration/src/` for `*.override.vue`. A file above that directory is never found.
 4. **You are looking at a stale bundle.** With `shopware-cli project admin-watch` running, check its output for an error. Without a watcher, run `shopware-cli project admin-build` and reload.
 
