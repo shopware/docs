@@ -371,7 +371,7 @@ export LANG=en_US.UTF-8
 
 Use `127.0.0.1` rather than `localhost`: the installation stores `http://127.0.0.1:8000` as the Storefront's sales channel domain.
 
-Caddy also opens its [admin API](https://caddyserver.com/docs/api) on `127.0.0.1:2019`. This is expected and not a website. Several Devenv projects can run Caddy at the same time without conflicting on this port.
+Caddy also opens its [admin API](https://caddyserver.com/docs/api) on `127.0.0.1:2019`. This is expected and not a website. Several Devenv projects can run Caddy at the same time: on macOS and Linux, Caddy opens this port with `SO_REUSEPORT`, so the projects share it instead of failing to start.
 
 ### Adminer
 
