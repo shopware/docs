@@ -17,10 +17,10 @@ Shopware CLI allows you to easily build the assets of an extension. To build an 
 shopware-cli extension build <path>
 ```
 
-Shopware CLI reads the `shopware/core` requirement from `composer.json` or `manifest.xml` and builds the assets using the lowest compatible Shopware version. This ensures the extension remains usable across multiple Shopware versions. If the selected version is incorrect, you can override it using a `.shopware-extension.yml` file.
+Shopware CLI reads the `shopware/core` requirement from `composer.json` or `manifest.xml` and builds the assets using the lowest compatible Shopware version. This ensures the extension remains usable across multiple Shopware versions. If the selected version is incorrect, you can override it using a `.config/shopware-extension.yml` file. See the [Shopware CLI configuration file lookup priority](../configuration.md) for the preferred path and legacy fallbacks.
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   shopwareVersionConstraint: '6.6.9.0'
 ```
@@ -32,7 +32,7 @@ This only affects the build process and not on the installation of the extension
 If your plugin consists of multiple bundles, usually when you have implemented `getAdditionalBundles` in your `Plugin` class, you have to provide the path to the bundle you want to build in the config:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   extraBundles:
     # Assumes the bundle name is the same as the directory name
@@ -68,7 +68,7 @@ Building with esbuild works completely standalone without the Shopware codebase.
 An esbuild bundle can be used for JavaScript bundling, offering a significantly faster alternative to the standard Shopware bundling process, as it eliminates the need to involve Shopware for asset building.
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   zip:
     assets:
@@ -107,7 +107,7 @@ Before Shopware 6.5, bundling the Composer dependencies into the ZIP file is req
 To disable this behavior, you can adjust the configuration:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   zip:
     composer:
@@ -121,7 +121,7 @@ This is automatically disabled for plugins targeting Shopware 6.5 and above and 
 Shopware CLI deletes a lot of known files before packaging the extension into a ZIP file. If you want to delete more files, you can adjust the configuration:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   zip:
     pack:
@@ -135,7 +135,7 @@ build:
 If you bring additional NPM packages, make sure that you added only runtime dependencies to `dependencies` inside `package.json` and tooling to `devDependencies` and enabled `npm_strict` in the configuration:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   zip:
     assets:
@@ -148,10 +148,10 @@ This skips unnecessary `npm install` and `npm ci` commands and only installs the
 
 When creating an archive using `shopware-cli extension package`, a `checksum.json` file is automatically generated. This file contains checksums for all files in the extension, which can be used to verify the integrity of the extension after installation.
 
-If you want to exclude certain files or paths from the checksum calculation, you can configure this in your `.shopware-extension.yml` file:
+If you want to exclude certain files or paths from the checksum calculation, you can configure this in your `.config/shopware-extension.yml` file:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   zip:
     checksum:
@@ -163,7 +163,7 @@ build:
 For example, to exclude the `src/Resources/config/services.php` file from checksum calculation:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 build:
   zip:
     checksum:
@@ -191,7 +191,7 @@ This is important when distributing extensions because developers often commit c
 The changelog generation can be enabled with the configuration:
 
 ```yaml
-# .shopware-extension.yml
+# .config/shopware-extension.yml
 changelog:
   enabled: true
 ```
