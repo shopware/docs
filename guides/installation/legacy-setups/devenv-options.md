@@ -173,13 +173,15 @@ Make sure the domain resolves to your machine, for example with an `/etc/hosts` 
 </Tab>
 </Tabs>
 
-Shopware stores the Storefront URL in the database. If Shopware is already installed, update the sales channel domain as well, either in the Administration under **Sales Channels > Storefront > Domains**, or in the Devenv shell:
+Shopware stores the Storefront URL in the database. If Shopware is already installed, update the sales channel domain to the same URL as `APP_URL`, either in the Administration under **Sales Channels > Storefront > Domains**, or in the Devenv shell:
 
 ```bash
-mysql -u shopware -pshopware -h 127.0.0.1 shopware \
-  -e "UPDATE sales_channel_domain SET url = 'http://127.0.0.1:8001' WHERE url = 'http://127.0.0.1:8000'"
+mysql -u shopware -pshopware -h 127.0.0.1 -P "$MYSQL_TCP_PORT" shopware \
+  -e "UPDATE sales_channel_domain SET url = '${APP_URL:?Set env.APP_URL in devenv.local.nix first}' WHERE url = 'http://127.0.0.1:8000'"
 bin/console cache:clear
 ```
+
+Run the command in a new Devenv shell after changing `devenv.local.nix`, so that `APP_URL` and `MYSQL_TCP_PORT` contain the new values.
 
 :::info
 `bin/console sales-channel:update:domain` only replaces the host name and keeps the old port, so it can't be used to change the port.
@@ -225,7 +227,7 @@ Each Devenv project keeps its own databases and services, but all projects use t
 }
 ```
 
-`DATABASE_URL`, `MAILER_DSN`, and the Redis session configuration follow the new ports automatically. If Shopware is already installed in this project, update the sales channel domain as described in [Customize Caddy ports or virtual hosts](#customize-caddy-ports-or-virtual-hosts). With MySQL on port `3307`, add `-P 3307` to the `mysql` command shown there.
+`DATABASE_URL`, `MAILER_DSN`, and the Redis session configuration follow the new ports automatically. If Shopware is already installed in this project, update the sales channel domain as described in [Customize Caddy ports or virtual hosts](#customize-caddy-ports-or-virtual-hosts).
 
 ## Use Varnish
 
