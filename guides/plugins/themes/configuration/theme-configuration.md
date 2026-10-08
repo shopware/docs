@@ -267,7 +267,7 @@ Themes that still define `label` or `helpText` keep working: on every theme refr
 bin/console theme:migrate-translations <technicalName> --strip
 ```
 
-It writes `Resources/app/administration/src/snippet/<locale>.json`, keeps snippets you already maintain there, resolves inherited tabs, blocks, sections and fields through the parent themes, and warns about labels it cannot place or that would be shadowed by an existing `<language>.json`. Use `--dry-run` to preview. Afterwards rename the files to the language-agnostic `de.json` / `en.json` unless you ship different texts per region. App themes copy the generated files into `<app root>/Resources/app/administration/snippet` instead.
+It writes `Resources/app/administration/src/snippet/<locale>.json`, keeps snippets you already maintain there, resolves inherited tabs, blocks, sections and fields through the parent themes, and warns about labels it cannot place or that would be shadowed by an existing `<language>.json`. Use `--dry-run` to preview. Afterwards rename the files to the language-agnostic `de.json` / `en.json` unless you ship different texts per region. For app themes the command writes to `<app root>/Resources/app/administration/snippet`. Keep the locale file names there, make sure `en-GB.json` exists, and refresh the app afterwards so the snippets are imported.
 
 #### Snippet key structure
 
