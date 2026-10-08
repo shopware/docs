@@ -194,4 +194,4 @@ The export contains the decisions. To show the banner that a visitor saw, find t
 
 The Store API route publishes the extension `cookie-consent-log-route.log` with the payload, the request and the sales channel context. Plugins can react to it before and after a decision is logged.
 
-<PageRef page="../../../plugins/plugins/framework/extension/index" />
+<PageRef page="../../../plugins/plugins/framework/extension/" />
