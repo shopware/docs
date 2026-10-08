@@ -1789,6 +1789,7 @@ newQuantity
 newsletterRecipient
 ngrok
 nixos
+nixpkgs
 nl
 nofollow
 noindex

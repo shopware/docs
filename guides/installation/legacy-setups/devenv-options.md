@@ -7,6 +7,10 @@ nav:
 
 # Additional Devenv Options
 
+All examples on this page go into a `devenv.local.nix` file in your project root. Devenv merges it with the `devenv.nix` provided by `frosh/devenv-meta`, so you only need to specify what you want to change.
+
+After changing `devenv.local.nix`, restart your services with `devenv down` and `devenv up`. If you don't use Direnv, also leave and re-enter the Devenv shell.
+
 ## Enable Blackfire
 
 To enable [Blackfire](https://blackfire.io/) profiling in your Devenv setup, add the following configuration to your `devenv.local.nix` file:
@@ -16,11 +20,11 @@ To enable [Blackfire](https://blackfire.io/) profiling in your Devenv setup, add
 { pkgs, config, lib, ... }:
 
 {
- services.blackfire.enable = true;
- services.blackfire.server-id = "<SERVER_ID>";
- services.blackfire.server-token = "<SERVER_TOKEN>";
- services.blackfire.client-id = "<CLIENT_ID>";
- services.blackfire.client-token = "<CLIENT_TOKEN>";
+  services.blackfire.enable = true;
+  services.blackfire.server-id = "<SERVER_ID>";
+  services.blackfire.server-token = "<SERVER_TOKEN>";
+  services.blackfire.client-id = "<CLIENT_ID>";
+  services.blackfire.client-token = "<CLIENT_TOKEN>";
 }
 ```
 
@@ -33,30 +37,70 @@ To enable [Xdebug](https://xdebug.org/) for debugging or profiling, add the foll
 { pkgs, config, lib, ... }:
 
 {
- # XDebug
- languages.php.extensions = [ "xdebug" ];
- languages.php.ini = ''
- xdebug.mode = debug
- xdebug.discover_client_host = 1
- xdebug.client_host = 127.0.0.1
- '';
+  languages.php.extensions = [ "xdebug" ];
+  languages.php.ini = ''
+    xdebug.mode = debug
+    xdebug.discover_client_host = 1
+    xdebug.client_host = 127.0.0.1
+  '';
 }
 ```
 
-After modifying your `devenv.local.nix` file, reload your environment.
+## Enable RabbitMQ
 
-## Use MariaDB instead of MySQL
-
-To switch from MySQL to [MariaDB](https://mariadb.org/), update your `devenv.local.nix` file:
+To process messages with [RabbitMQ](https://www.rabbitmq.com/) instead of the database, enable the service:
 
 ```nix
 # <PROJECT_ROOT>/devenv.local.nix
 { pkgs, config, lib, ... }:
 
 {
- services.mysql.package = pkgs.mariadb;
+  services.rabbitmq.enable = true;
+  services.rabbitmq.managementPlugin.enable = true;
 }
 ```
+
+While RabbitMQ is enabled, Devenv also enables the `amqp` PHP extension and sets `MESSENGER_TRANSPORT_DSN` to `amqp://guest:guest@127.0.0.1:5672/%2f/messages`.
+
+Your project also needs the AMQP transport for Symfony Messenger. Install it inside the Devenv shell:
+
+```bash
+composer require symfony/amqp-messenger
+```
+
+## Enable OpenSearch
+
+To use [OpenSearch](https://opensearch.org/) for the product search, enable the service:
+
+```nix
+# <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.opensearch.enable = true;
+}
+```
+
+While OpenSearch is enabled, Devenv sets `OPENSEARCH_URL` to `http://127.0.0.1:9200` and enables indexing with `SHOPWARE_ES_ENABLED=1` and `SHOPWARE_ES_INDEXING_ENABLED=1`. After starting the services, build the search index:
+
+```bash
+bin/console es:index
+```
+
+## Use MariaDB instead of MySQL
+
+To switch from MySQL to [MariaDB](https://mariadb.org/), update your `devenv.local.nix` file. `lib.mkForce` is required because the default configuration sets the MySQL package explicitly:
+
+```nix
+# <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.mysql.package = lib.mkForce pkgs.mariadb;
+}
+```
+
+MySQL and MariaDB can't share a data directory. Before switching, remove `<PROJECT_ROOT>/.devenv/state/mysql`, which deletes your local database, and reinstall Shopware afterward.
 
 ## Use a custom MySQL port
 
@@ -67,20 +111,15 @@ You can change the default MySQL port if it conflicts with another service on yo
 { pkgs, config, lib, ... }:
 
 {
- services.mysql.settings = {
- mysqld = {
- port = 33881;
- };
- };
-
+  services.mysql.settings.mysqld.port = 3307;
 }
 ```
 
-After any change, run `devenv reload` to apply updates.
+`DATABASE_URL` follows the new port automatically.
 
 ## Customize Caddy ports or virtual hosts
 
-You can adjust the Caddy web server configuration to use a different port or virtual host.
+The default configuration serves Shopware on port `8000`. To serve it on a different port or domain, replace the default virtual host with `lib.mkForce`. Otherwise, Devenv adds your virtual host next to the default one, and Caddy still tries to listen on port `8000`.
 
 <Tabs>
 <Tab title="Change port only">
@@ -90,13 +129,16 @@ You can adjust the Caddy web server configuration to use a different port or vir
 { pkgs, config, lib, ... }:
 
 {
- services.caddy.virtualHosts.":8029" = {
- extraConfig = ''
- root * public
- php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
- file_server
- '';
- };
+  services.caddy.virtualHosts = lib.mkForce {
+    ":8001".extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      encode zstd gzip
+      file_server
+    '';
+  };
+
+  env.APP_URL = "http://127.0.0.1:8001";
 }
 ```
 
@@ -109,18 +151,41 @@ You can adjust the Caddy web server configuration to use a different port or vir
 { pkgs, config, lib, ... }:
 
 {
- services.caddy.virtualHosts."http://shopware.swag:8029" = {
- extraConfig = ''
- root * public
- php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
- file_server
- '';
- };
+  services.caddy.virtualHosts = lib.mkForce {
+    "http://shopware.swag:8001".extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      encode zstd gzip
+      file_server
+    '';
+  };
+
+  env.APP_URL = "http://shopware.swag:8001";
 }
+```
+
+Make sure the domain resolves to your machine, for example with an `/etc/hosts` entry:
+
+```text
+127.0.0.1 shopware.swag
 ```
 
 </Tab>
 </Tabs>
+
+Shopware stores the Storefront URL in the database. If Shopware is already installed, update the sales channel domain to the same URL as `APP_URL`, either in the Administration under **Sales Channels > Storefront > Domains**, or in the Devenv shell:
+
+```bash
+mysql -u shopware -pshopware -h 127.0.0.1 -P "$MYSQL_TCP_PORT" shopware \
+  -e "UPDATE sales_channel_domain SET url = '${APP_URL:?Set env.APP_URL in devenv.local.nix first}' WHERE url = 'http://127.0.0.1:8000'"
+bin/console cache:clear
+```
+
+Run the command in a new Devenv shell after changing `devenv.local.nix`, so that `APP_URL` and `MYSQL_TCP_PORT` contain the new values.
+
+:::info
+`bin/console sales-channel:update:domain` only replaces the host name and keeps the old port, so it can't be used to change the port.
+:::
 
 ## Use a custom Adminer port
 
@@ -131,11 +196,38 @@ If you need to change the default Adminer port (for example, to avoid conflicts 
 { pkgs, config, lib, ... }:
 
 {
- services.adminer.listen = "127.0.0.1:9084";
+  services.adminer.listen = "127.0.0.1:8011";
 }
 ```
 
-After modifying `devenv.local.nix`, reload your environment.
+## Run multiple projects at the same time
+
+Each Devenv project keeps its own databases and services, but all projects use the same default ports. To run a second project at the same time, move its services to free ports:
+
+```nix
+# <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, config, lib, ... }:
+
+{
+  services.caddy.virtualHosts = lib.mkForce {
+    ":8001".extraConfig = ''
+      root * public
+      php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+      encode zstd gzip
+      file_server
+    '';
+  };
+  env.APP_URL = "http://127.0.0.1:8001";
+
+  services.mysql.settings.mysqld.port = 3307;
+  services.redis.port = 6380;
+  services.mailpit.smtpListenAddress = "127.0.0.1:1026";
+  services.mailpit.uiListenAddress = "127.0.0.1:8026";
+  services.adminer.listen = "127.0.0.1:8011";
+}
+```
+
+`DATABASE_URL`, `MAILER_DSN`, and the Redis session configuration follow the new ports automatically. If Shopware is already installed in this project, update the sales channel domain as described in [Customize Caddy ports or virtual hosts](#customize-caddy-ports-or-virtual-hosts).
 
 ## Use Varnish
 
@@ -146,147 +238,112 @@ You can integrate [Varnish](https://varnish-cache.org/) into your local Shopware
 { pkgs, config, lib, ... }:
 
 {
- # caddy config
- services.caddy = {
- enable = true;
+  # caddy config
+  services.caddy = {
+    enable = true;
 
- # all traffic to localhost is redirected to Varnish
- virtualHosts."http://localhost" = {
- extraConfig = ''
- reverse_proxy 127.0.0.1:6081 {
- # header_up solves this issue: https://discord.com/channels/1308047705309708348/1309107911175176217
- header_up Host sw.localhost
- }
- '';
- };
+    # all traffic to localhost is redirected to Varnish
+    virtualHosts."http://localhost" = {
+      extraConfig = ''
+        reverse_proxy 127.0.0.1:6081 {
+          # header_up solves this issue: https://discord.com/channels/1308047705309708348/1309107911175176217
+          header_up Host sw.localhost
+        }
+      '';
+    };
 
- # the actual shopware application is served from sw.localhost,
- # choose any domain you want.
- # you may need to add the domain to /etc/hosts:
- # 127.0.0.1       sw.localhost
- virtualHosts."http://sw.localhost" = {
- extraConfig = ''
- # set header to avoid CORS errors
- header {
- Access-Control-Allow-Origin *
- Access-Control-Allow-Credentials true
- Access-Control-Allow-Methods *
- Access-Control-Allow-Headers *
- defer
- }
- root * public
- php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
- encode zstd gzip
- file_server
- log {
- output stderr
- format console
- level ERROR
- }
- '';
- };
- };
+    # the actual shopware application is served from sw.localhost,
+    # choose any domain you want.
+    # you may need to add the domain to /etc/hosts:
+    # 127.0.0.1       sw.localhost
+    virtualHosts."http://sw.localhost" = {
+      extraConfig = ''
+        # set header to avoid CORS errors
+        header {
+          Access-Control-Allow-Origin *
+          Access-Control-Allow-Credentials true
+          Access-Control-Allow-Methods *
+          Access-Control-Allow-Headers *
+          defer
+        }
+        root * public
+        php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
+        encode zstd gzip
+        file_server
+        log {
+          output stderr
+          format console
+          level ERROR
+        }
+      '';
+    };
+  };
 
- # varnish config
- services.varnish = {
- enable = true;
- package = pkgs.varnish;
- listen = "127.0.0.1:6081";
- # enables xkey module
- extraModules = [ pkgs.varnishPackages.modules ];
- # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
- vcl = ''
- # ...
- # Specify your app nodes here. Use round-robin balancing to add more than one.
- backend default {
- .host = "sw.localhost";
- .port = "80";
- }
- # ...
- # ACL for purgers IP. (This needs to contain app server IPs)
- acl purgers {
- "sw.localhost";
- "127.0.0.1";
- "localhost";
- "::1";
- }
- # ...
- '';
- };
+  # varnish config
+  services.varnish = {
+    enable = true;
+    package = pkgs.varnish;
+    listen = "127.0.0.1:6081";
+    # enables xkey module
+    extraModules = [ pkgs.varnishPackages.modules ];
+    # it's a slightly adjusted version from the [docs](https://developer.shopware.com/docs/guides/hosting/infrastructure/reverse-http-cache.html#configure-varnish)
+    vcl = ''
+      # ...
+      # Specify your app nodes here. Use round-robin balancing to add more than one.
+      backend default {
+        .host = "sw.localhost";
+        .port = "80";
+      }
+      # ...
+      # ACL for purgers IP. (This needs to contain app server IPs)
+      acl purgers {
+        "sw.localhost";
+        "127.0.0.1";
+        "localhost";
+        "::1";
+      }
+      # ...
+    '';
+  };
 }
-```
-
-After updating your `devenv.local.nix`, reload your development environment to apply the changes:
-
-```bash
-devenv reload
 ```
 
 ## Use an older package version
 
-Sometimes, you may want to pin a service to an older version, for example, to ensure compatibility with legacy components or reproduce a previous environment state.
+Sometimes, you may want to pin a service to an older version, for example, to match your production environment or to reproduce a previous environment state. If the version is no longer available in the nixpkgs revision your project uses, add an older nixpkgs revision as an additional input and take the package from there.
 
-Here are examples showing how to use older versions of MySQL and RabbitMQ in your `devenv.local.nix` configuration:
+Add the input to a `devenv.local.yaml` file in your project root:
 
-**Example: Use a specific MySQL version**:
+```yaml
+# <PROJECT_ROOT>/devenv.local.yaml
+inputs:
+  nixpkgs-mysql80:
+    url: github:NixOS/nixpkgs/nixos-25.05
+```
+
+Then use the package from that input in your `devenv.local.nix` file. This example uses MySQL 8.0, which current nixpkgs no longer provides:
 
 ```nix
+# <PROJECT_ROOT>/devenv.local.nix
+{ pkgs, lib, inputs, ... }:
+
+let
+  pkgs-mysql80 = import inputs.nixpkgs-mysql80 { system = pkgs.stdenv.system; };
+in
 {
- services.mysql = let
- mysql8033 = pkgs.mysql80.overrideAttrs (oldAttrs: {
- version = "8.0.33";
- # the final URL would look like this: https://github.com/mysql/mysql-server/archive/mysql-8.0.33.tar.gz
- # make sure the URL exists.
- # alternatively, you could use that URL directly via pkgs.fetchurl { url = "xyz"; hash="xyz";};
- # for reference see the [different fetchers](https://ryantm.github.io/nixpkgs/builders/fetchers/#chap-pkgs-fetchers)
- src = pkgs.fetchFromGitHub {
- owner = "mysql";
- repo = "mysql-server";
- rev = "mysql-8.0.33";
- # leave empty on the first run, you will get prompted with the expected hash
- sha256 = "sha256-s4llspXB+rCsGLEtI4WJiPYvtnWiKx51oAgxlg/lATg=";
- };
- });
- in
- {
- enable = true;
- package = mysql8033; # use the overridden package
- # ...
- };
+  services.mysql.package = lib.mkForce pkgs-mysql80.mysql80;
 }
 ```
 
-**Example**: Use a specific RabbitMQ version:
+The same approach works for any other package, for example, `services.rabbitmq.package`. To pin the version for your whole team, add the input to `devenv.yaml` and the package to `devenv.nix` instead, and commit both together with `devenv.lock`.
 
-```nix
-{
- services.rabbitmq = let
- rabbitmq3137 = pkgs.rabbitmq-server.overrideAttrs (oldAttrs: {
- version = "3.13.7";
- src = pkgs.fetchurl {
- url = "https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.7/rabbitmq-server-3.13.7.tar.xz";
- sha256 = "sha256-GDUyYudwhQSLrFXO21W3fwmH2tl2STF9gSuZsb3GZh0=";
- };
- });
- in
- {
- enable = true;
- package = rabbitmq3137; # use the overridden package
- };
-}
-```
-
-Pinning versions may increase build time; use only when necessary.
+MySQL can't open a data directory created by a newer version. When switching to an older version, remove `<PROJECT_ROOT>/.devenv/state/mysql` first, which deletes your local database.
 
 ## Maintenance
 
-Run `devenv gc` periodically to remove unused packages, services, and caches. This helps free disk space and keeps your environment clean.
+Use `devenv down` to stop all services of a project that you started with `devenv up -d`. If you started them with `devenv up` in the foreground, press `Ctrl+C` instead.
 
-Use `devenv down` to stop services first. If processes remain, as a last resort, terminate them manually:
-
-```bash
-kill $(ps -ax | grep /nix/store | grep -v "grep" | awk '{print $1}')
-```
+Run `devenv gc` periodically to remove old shell generations. To free up disk space in the Nix store afterward, run `nix store gc`.
 
 If you can’t access [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser, try [http://localhost:8000](http://localhost:8000) instead. This issue is common when using WSL2 on Windows.
 
