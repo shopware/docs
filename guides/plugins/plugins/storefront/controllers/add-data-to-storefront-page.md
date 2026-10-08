@@ -90,26 +90,31 @@ While the `ProductListRoute` could provide this data, it would return far more i
 Therefore, we will create a new `store-api` route tailored to our needs.
 
 First you should read our guide for [adding store-api routes](../../framework/store-api/add-store-api-route.md).
+New routes publish an extension event and do not need an abstract route class.
 
-Our new Route should look like this:
+Define the route extension and the route class:
 
 ```php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
+namespace Swag\BasicExample\Core\Content\Example\Extension;
 
-use Shopware\Core\PlatformRequest;
-use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Extensions\Extension;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Symfony\Component\Routing\Attribute\Route;
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ProductCountRouteResponse;
 
-#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
-abstract class AbstractProductCountRoute
+/** @extends Extension<ProductCountRouteResponse> */
+final class ProductCountRouteExtension extends Extension
 {
-    abstract public function getDecorated(): AbstractProductCountRoute;
+    public const NAME = 'product-count-route.load';
 
-    abstract public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse;
+    /** @internal The route owns construction; the properties are public API. */
+    public function __construct(
+        public readonly Criteria $criteria,
+        public readonly SalesChannelContext $context,
+    ) {
+    }
 }
 ```
 
@@ -124,24 +129,19 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\CountAggregation;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\CountResult;
-use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\Framework\Extensions\ExtensionDispatcher;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Swag\BasicExample\Core\Content\Example\Extension\ProductCountRouteExtension;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
-class ProductCountRoute extends AbstractProductCountRoute
+class ProductCountRoute
 {
-    protected EntityRepository $productRepository;
-
-    public function __construct(EntityRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
-
-    public function getDecorated(): AbstractProductCountRoute
-    {
-        throw new DecorationPatternException(self::class);
+    public function __construct(
+        private readonly EntityRepository $productRepository,
+        private readonly ExtensionDispatcher $extensions,
+    ) {
     }
 
     #[Route(
@@ -152,7 +152,15 @@ class ProductCountRoute extends AbstractProductCountRoute
     )]
     public function load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
     {
-        $criteria = new Criteria();
+        return $this->extensions->publish(
+            name: ProductCountRouteExtension::NAME,
+            extension: new ProductCountRouteExtension($criteria, $context),
+            function: $this->_load(...),
+        );
+    }
+
+    private function _load(Criteria $criteria, SalesChannelContext $context): ProductCountRouteResponse
+    {
         $criteria->addFilter(new EqualsFilter('product.active', true));
         $criteria->addAggregation(new CountAggregation('productCount', 'product.id'));
 
@@ -180,7 +188,10 @@ return static function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services->set(ProductCountRoute::class)
-        ->args([service('product.repository')]);
+        ->args([
+            service('product.repository'),
+            service(\Shopware\Core\Framework\Extensions\ExtensionDispatcher::class),
+        ]);
 };
 ```
 
@@ -288,7 +299,10 @@ return static function (ContainerConfigurator $configurator): void {
 
     $services->set(ProductCountRoute::class)
         ->public()
-        ->args([service('product.repository')]);
+        ->args([
+            service('product.repository'),
+            service(\Shopware\Core\Framework\Extensions\ExtensionDispatcher::class),
+        ]);
 
     $services->set(AddDataToPage::class)
         ->args([service(ProductCountRoute::class)])

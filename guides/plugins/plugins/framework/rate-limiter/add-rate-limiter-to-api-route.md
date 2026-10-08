@@ -122,25 +122,41 @@ namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
 use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\PlatformRequest;
 use Shopware\Core\Framework\RateLimiter\RateLimiter;
+use Shopware\Core\Framework\Extensions\ExtensionDispatcher;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Swag\BasicExample\Core\Content\Example\Extension\ExampleRouteExtension;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
 ...
 
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
-class ExampleRoute extends AbstractExampleRoute
+class ExampleRoute
 {
-    private RateLimiter $rateLimiter;
-
-    public function __construct(RateLimiter $rateLimiter)
-    {
-        $this->rateLimiter = $rateLimiter;
+    public function __construct(
+        private readonly RateLimiter $rateLimiter,
+        private readonly ExtensionDispatcher $extensions,
+    ) {
     }
 
-    ...
+    #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'])]
+    public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
+    {
+        return $this->extensions->publish(
+            name: ExampleRouteExtension::NAME,
+            extension: new ExampleRouteExtension($request, $context),
+            function: $this->_load(...),
+        );
+    }
+
+    // Add the private _load() method shown below.
 }
 ```
 
+This route's `ExampleRouteExtension` follows the [route extension pattern](../store-api/add-store-api-route.md#create-route-extension), with `Request` and `SalesChannelContext` as readonly public properties.
+
 ### Call the rate limiter
 
-After we've injected the service into our API route, we can call the limiter in our route method.
+After injecting the service into our API route, call the limiter in the private route body published through the extension event, as shown in the [Add Store API Route](../store-api/add-store-api-route.md) guide.
 
 To do this, we call the method `ensureAccepted` of the rate limiter which accepts the following arguments:
 
@@ -153,12 +169,11 @@ If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\E
 ```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
 
-#[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
-public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
+private function _load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
     // Limit ip address
     $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
-    
+
     ...
 }
 ```
@@ -171,17 +186,16 @@ We just have to call the `reset` method as you can see below.
 ```php
 // <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
 
-#[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
-public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
+private function _load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
     // Limit ip address for example
     $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
-    
+
     // if action was successfully, reset limit
     if ($this->doAction() === true) {
         $this->rateLimiter->reset('example_route', $request->getClientIp());
     }
-    
+
     ...
 }
 ```

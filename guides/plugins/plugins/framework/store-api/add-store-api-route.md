@@ -19,36 +19,48 @@ You also should have a look at our [Adding custom complex data](../data-handling
 
 ## Add Store API route
 
-As you may already know from the [Adjusting a service](../../../plugins/services/adjusting-service.md) guide, we use abstract classes to make our routes more decoratable.
+New Store API routes expose extension events instead of an abstract route class, as described in the [route extension ADR](../../../../../resources/references/adr/2026-09-24-replace-abstract-route-classes-with-extension-events.md).
+Existing routes with abstract classes remain supported and can still be decorated.
 
 ::: warning
 All fields that should be available through the API require the flag `ApiAware` in the definition.
 :::
 
-### Create abstract route class
+### Create route extension
 
-First of all, we create an abstract class called `AbstractExampleRoute`. This class has to contain a method `getDecorated` and a method `load` with a `Criteria` and `SalesChannelContext` as parameter. The `load` method has to return an instance of `ExampleRouteResponse`, which we will create later on.
+Create an `Extension` subclass for the route inputs and response type.
+Its `NAME` is the stable extension event name; its constructor belongs to the route, while its readonly properties are available to subscribers.
 
 ```php
-// <plugin root>/src/Core/Content/Example/SalesChannel/AbstractExampleRoute.php
+// <plugin root>/src/Core/Content/Example/Extension/ExampleRouteExtension.php
 <?php declare(strict_types=1);
 
-namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
+namespace Swag\BasicExample\Core\Content\Example\Extension;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Extensions\Extension;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRouteResponse;
 
-abstract class AbstractExampleRoute
+/**
+ * @extends Extension<ExampleRouteResponse>
+ */
+final class ExampleRouteExtension extends Extension
 {
-    abstract public function getDecorated(): AbstractExampleRoute;
+    public const NAME = 'example-route.load';
 
-    abstract public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse;
+    /** @internal The route owns construction; the properties are public API. */
+    public function __construct(
+        public readonly Criteria $criteria,
+        public readonly SalesChannelContext $context,
+    ) {
+    }
 }
 ```
 
 ### Create route class
 
-Now we can create a new class `ExampleRoute` which uses our previously created `AbstractExampleRoute`.
+Create `ExampleRoute` with its route attribute on the public method and publish the extension around the route body.
 
 ::: info
 A generated Store API route is normally more than the route class itself. The class defines the endpoint and response, the service definition registers it with the dependency injection container, and `routes.php` imports it for discovery. These pieces form one feature; the generator creates them together so you do not normally need to assemble the wiring by hand.
@@ -64,27 +76,31 @@ use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\PlatformRequest;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\Framework\Extensions\ExtensionDispatcher;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Swag\BasicExample\Core\Content\Example\Extension\ExampleRouteExtension;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
-class ExampleRoute extends AbstractExampleRoute
+class ExampleRoute
 {
-    protected EntityRepository $exampleRepository;
-
-    public function __construct(EntityRepository $exampleRepository)
-    {
-        $this->exampleRepository = $exampleRepository;
-    }
-
-    public function getDecorated(): AbstractExampleRoute
-    {
-        throw new DecorationPatternException(self::class);
+    public function __construct(
+        private readonly EntityRepository $exampleRepository,
+        private readonly ExtensionDispatcher $extensions,
+    ) {
     }
 
     #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'], defaults: ['_entity' => 'swag_example'])]
     public function load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
+    {
+        return $this->extensions->publish(
+            name: ExampleRouteExtension::NAME,
+            extension: new ExampleRouteExtension($criteria, $context),
+            function: $this->_load(...),
+        );
+    }
+
+    private function _load(Criteria $criteria, SalesChannelContext $context): ExampleRouteResponse
     {
         return new ExampleRouteResponse($this->exampleRepository->search($criteria, $context->getContext()));
     }
@@ -93,7 +109,8 @@ class ExampleRoute extends AbstractExampleRoute
 
 As you can see, our class has the attribute `Route` and the defined _routeScope `store-api`.
 
-In our class constructor we've injected our `swag_example.repository`. The method `getDecorated()` must throw a `DecorationPatternException` because it has no decoration yet and the method `load`, which fetches the data, returns a new `ExampleRouteResponse` with the respective repository search result as argument.
+The route publishes `ExampleRouteExtension` before running `_load`; subscribers can adjust `Criteria` in `.pre`, change the response in `.post`, or provide a fallback in `.error`.
+The route should have a test that verifies the extension name and input properties passed to the dispatcher.
 
 The `_entity` in the defaults of the `Route` attribute just marks the entity that the api will return.
 
@@ -111,7 +128,10 @@ return static function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services->set(ExampleRoute::class)
-        ->args([service('swag_example.repository')]);
+        ->args([
+            service('swag_example.repository'),
+            service(\Shopware\Core\Framework\Extensions\ExtensionDispatcher::class),
+        ]);
 };
 ```
 
@@ -320,16 +340,16 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
-use Swag\BasicExample\Core\Content\Example\SalesChannel\AbstractExampleRoute;
+use Swag\BasicExample\Core\Content\Example\SalesChannel\ExampleRoute;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
 class ExampleController extends StorefrontController
 {
-    private AbstractExampleRoute $route;
+    private ExampleRoute $route;
 
-    public function __construct(AbstractExampleRoute $route)
+    public function __construct(ExampleRoute $route)
     {
         $this->route = $route;
     }
@@ -360,7 +380,10 @@ return static function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
 
     $services->set(ExampleRoute::class)
-        ->args([service('swag_example.repository')]);
+        ->args([
+            service('swag_example.repository'),
+            service(\Shopware\Core\Framework\Extensions\ExtensionDispatcher::class),
+        ]);
 
     $services->set(ExampleController::class)
         ->args([service(ExampleRoute::class)])
