@@ -11,6 +11,26 @@ nav:
 
 This reference presents a comprehensive compilation of all security measures implemented in Shopware 6, along with instructions on how to configure them.
 
+## Security updates
+
+Keeping your installation on the latest patch version is the primary way to close known vulnerabilities in Shopware and its shipped dependencies.
+
+If you cannot upgrade immediately, install and keep the [Security Plugin](../../guides/hosting/installation-updates/security-plugin.md) up to date as a temporary mitigation layer until you can complete the Shopware update.
+
+## Published vulnerabilities
+
+Shopware publishes all security advisories on GitHub. Use the table below as your central entry point for vulnerability tracking:
+
+| Scope | Description | Link |
+|-------|-------------|------|
+| Published Shopware vulnerabilities | Complete list of published Shopware advisories, including affected version ranges, severity, and mitigation details | [Shopware security advisories (published)](https://github.com/shopware/shopware/security/advisories?state=published) |
+
+## Basic hardening checklist
+
+- Use strong, unique passwords for Administration users, database users, and all infrastructure accounts.
+- Set `APP_ENV=prod` in production environments. Do not run publicly reachable production systems with `APP_ENV=dev`.
+- Keep staging or preview environments private. Protect them with authentication, IP allowlists, or VPN access and do not expose them publicly on the internet.
+
 :::info
 If you have found a security vulnerability in Shopware, please report it to us following the instructions in our [Security Advisory Form](https://github.com/shopware/shopware/security/advisories/new).
 :::
@@ -74,7 +94,7 @@ SameSite prevents the browser from sending cookies along with cross-site request
 
 ## Security plugin
 
-Obtaining security fixes without version upgrades is possible through the [Security plugin](../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
+Obtaining security fixes without version upgrades is possible through the [Security plugin](../../guides/hosting/installation-updates/security-plugin.md).
 
 ## Storefront IP Whitelisting
 
