@@ -50,6 +50,10 @@ So your structure could then look like this:
 
 ### Snippet files in the private filesystem
 
+::: info
+Available starting with Shopware 6.7.16.0.
+:::
+
 Besides the files shipped by extensions, Shopware also loads Storefront snippet files from the private filesystem (`shopware.filesystem.private`, by default the `files/` directory of your installation). This allows integrations or deployments to provide snippets without shipping an extension.
 
 Place the files below `snippets/storefront/`, using the same `<domain>.<locale>.json` naming convention:

@@ -257,7 +257,11 @@ Store these snippet keys in Administration snippet files, for example, `<plugin 
 
 #### Migrating existing `label` and `helpText` translations
 
-Themes that still define `label` or `helpText` keep working: on every theme refresh (`bin/console theme:refresh`, plugin installation or update, app activation) Shopware converts them into Administration snippets under `files/snippets/administration/<technicalName>/<locale>.json`. These files are the lowest-priority snippet layer, so snippets shipped by your theme always win. This fallback stays, but ship the snippets with your extension instead. For plugin themes, one command does that and removes the deprecated properties:
+::: info
+Available starting with Shopware 6.7.16.0.
+:::
+
+Themes that still define `label` or `helpText` keep working: on every theme refresh (`bin/console theme:refresh`, plugin installation or update, app activation) Shopware converts them into Administration snippets under `snippets/administration/<technicalName>/<locale>.json` in the configured private filesystem (`shopware.filesystem.private`, by default the `files/` directory). These files are the lowest-priority snippet layer, so snippets shipped by your theme always win. This fallback stays, but ship the snippets with your extension instead. For plugin themes, one command does that and removes the deprecated properties:
 
 ```bash
 bin/console theme:migrate-translations <technicalName> --strip

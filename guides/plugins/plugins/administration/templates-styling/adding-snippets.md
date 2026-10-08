@@ -43,6 +43,10 @@ When you do not build a module and therefore do not fit into the suggested direc
 
 ### Snippet files in the private filesystem
 
+::: info
+Available starting with Shopware 6.7.16.0.
+:::
+
 Shopware also loads Administration snippet files from the private filesystem (`shopware.filesystem.private`, by default the `files/` directory of your installation). Every `de.json`, `de-DE.json`, `en.json`, `en-GB.json`, ... below `files/snippets/administration/` is picked up, directly in that directory or in any subdirectory:
 
 ```text
