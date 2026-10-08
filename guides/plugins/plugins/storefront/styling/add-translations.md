@@ -48,6 +48,30 @@ So your structure could then look like this:
         └─ SwagBasicExample.php
 ```
 
+### Snippet files in the private filesystem
+
+Besides the files shipped by extensions, Shopware also loads Storefront snippet files from the private filesystem (`shopware.filesystem.private`, by default the `files/` directory of your installation). This allows integrations or deployments to provide snippets without shipping an extension.
+
+Place the files below `snippets/storefront/`, using the same `<domain>.<locale>.json` naming convention:
+
+```text
+└── files
+    └── snippets
+        └── storefront
+            ├─ my-integration.en.json          // author "custom", technical name "my-integration"
+            └─ MyIntegration                   // optional source directory
+               ├─ storefront.de.json           // author and technical name "MyIntegration"
+               └─ storefront.de.base.json
+```
+
+Files placed directly in `snippets/storefront/` are attributed to the author `custom` and use their domain as technical name. Files inside a subdirectory use the directory name as author and technical name, which is how they show up in the snippet set overview of the Administration.
+
+These files are loaded as the lowest-priority snippet layer: snippet files shipped by the core, plugins or apps always override them. The Storefront caches its translation catalogues, so clear the cache after adding or changing files:
+
+```bash
+bin/console cache:clear
+```
+
 ## Creating translations
 
 Now that we know how the structure of snippets should be, we can create a new snippet file.

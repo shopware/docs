@@ -41,6 +41,22 @@ By default, Shopware 6 will collect those files automatically when your plugin i
 When you do not build a module and therefore do not fit into the suggested directory structure, you can still place the translation files anywhere in `<plugin root>/src/Resources/app/administration/src/`.
 :::
 
+### Snippet files in the private filesystem
+
+Shopware also loads Administration snippet files from the private filesystem (`shopware.filesystem.private`, by default the `files/` directory of your installation). Every `de.json`, `de-DE.json`, `en.json`, `en-GB.json`, ... below `files/snippets/administration/` is picked up, directly in that directory or in any subdirectory:
+
+```text
+└── files
+    └── snippets
+        └── administration
+            ├─ de.json
+            └─ SwagExampleTheme
+               ├─ de-DE.json
+               └─ en-GB.json
+```
+
+These files form the lowest-priority snippet layer, so snippet files shipped by plugins and apps always override them. Shopware itself uses this mechanism to provide generated fallback snippets for themes that still define `label` and `helpText` in their `theme.json`, see [Theme configuration](../../../themes/configuration/theme-configuration.md#translations-in-theme-manager).
+
 ## Using the snippets in JavaScript
 
 Since snippets are automatically registered in the scope of your module, you can use them directly:
