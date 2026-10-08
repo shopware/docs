@@ -469,6 +469,7 @@ FroshTools
 Fullstack
 GBP
 GCM
+GCS
 GDPR
 GHSA
 GID
