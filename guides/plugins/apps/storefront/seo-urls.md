@@ -133,9 +133,9 @@ The manifest schema checks the structure of both elements:
 - A `<seo-url>` needs at least one non-empty `<path>`.
 - An `<entity-seo-url>` needs an `entity` attribute and a non-empty `<default-template>`.
 
-On install and update, Shopware also checks:
+On app `install` and `update`, Shopware also checks:
 
-- Static paths must not contain characters that aren't allowed in URLs, and must not already be used by a storefront route such as `/account`, by another app or by an existing SEO URL.
+- Static paths must not contain characters that aren't allowed in URLs and must not yet be used by a storefront route such as `/account`, by another app or by an existing SEO URL.
 - A script hook belongs to the first app that declares it in an SEO URL. Within your app, a hook can be used by at most one `<seo-url>` and at most one `<entity-seo-url>`.
 - The `entity` of an `<entity-seo-url>` must exist and must not be a mapping or translation entity, and your app needs the [permissions](#permissions) described above.
 
