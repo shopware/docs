@@ -2,7 +2,6 @@
 nav:
   title: Theme Configuration
   position: 40
-
 ---
 
 # Theme Configuration
@@ -255,6 +254,22 @@ The following parameters can be defined for a config field item:
 Since the translations in `theme.config` are only used by the Theme Manager in the administration, we decided to use snippet keys for translating the configuration in order to ensure inheritance.
 
 Store these snippet keys in Administration snippet files, for example, `<plugin root>/src/Resources/app/administration/src/app/snippet/de.json` and `<plugin root>/src/Resources/app/administration/src/app/snippet/en.json`. Locale-specific files such as `de-DE.json` and `en-GB.json` are also supported and override the base language files.
+
+#### Migrating existing `label` and `helpText` translations
+
+::: info
+Available starting with Shopware 6.7.16.0.
+:::
+
+Themes that still define `label` or `helpText` keep working: on every theme refresh (`bin/console theme:refresh`, plugin installation or update, app activation) Shopware converts them into Administration snippets under `snippets/administration/<technicalName>/<locale>.json` in the configured private filesystem (`shopware.filesystem.private`, by default the `files/` directory). These files are the lowest-priority snippet layer, so snippets shipped by your theme always win. This fallback stays, but ship the snippets with your extension instead. For plugin themes, one command does that and removes the deprecated properties:
+
+```bash
+bin/console theme:migrate-translations <technicalName> --strip
+```
+
+It writes `Resources/app/administration/src/snippet/<locale>.json`, keeps snippets you already maintain there, resolves inherited tabs, blocks, sections and fields through the parent themes, and warns about labels it cannot place or that would be shadowed by an existing `<language>.json`. Use `--dry-run` to preview. Afterwards rename the files to the language-agnostic `de.json` / `en.json` unless you ship different texts per region. For app themes the command writes to `<app root>/Resources/app/administration/snippet`. Keep the locale file names there, make sure `en-GB.json` exists, and refresh the app afterwards so the snippets are imported.
+
+#### Snippet key structure
 
 Each snippet key begins with `sw-theme`, followed by the theme’s technical name, or its respective parent theme name, since snippets are inherited from the parent theme as well. It then includes the names of the relevant `tab`, `block`, `section`, and `field`. If you're translating field options, a numeric index is added to the snippet path. If any of these elements are unnamed, `default` will be used as the replacement in the key.
 
