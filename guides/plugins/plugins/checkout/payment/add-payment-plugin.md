@@ -37,8 +37,8 @@ You can create your payment handler by implementing one of the following interfa
 
 Depending on the interface, those methods are required:
 
-* `pay`: This method will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct` or a `Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, a return URL, payment method information and language information. Please be aware, Shopware 6 supports multiple transactions, and you have to use the amount provided and not the total order amount. If you're using the `AsynchronousPaymentHandlerInterface`, the `pay` method has to return a `RedirectResponse` to redirect the customer to an external payment provider. Note: The [AsyncPaymentTransactionStruct](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/Cart/AsyncPaymentTransactionStruct.php) contains a return URL. This represents the URL the external payment provider needs to know to redirect your customer back to your shop. If an error occurs while, e.g., calling the API of your external payment provider, you should throw an `AsyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state. The same happens if you use the `SynchronousPaymentHandlerInterface`: throw a `SyncPaymentProcessException` in an error case.
-* `finalize`: The `finalize` method is only required if you implemented the `AsynchronousPaymentHandlerInterface`, returned a `RedirectResponse` in your `pay` method, and the customer has been redirected from the payment provider back to Shopware 6. You must check here if the payment was successful and update the order transaction state accordingly. Similar to the pay action, you can throw exceptions if some error cases occur. Throw the `CustomerCanceledAsyncPaymentException` if the customer canceled the payment process on the payment provider site. If another general error occurs, throw the `AsyncPaymentFinalizeException` e.g., if your call to the payment provider API fails. Shopware 6 will handle these exceptions and set the transaction to the `cancelled` state.
+* `pay`: This method will be called after an order has been placed. You receive a `Shopware\Core\Checkout\Payment\Cart\AsyncPaymentTransactionStruct` or a `Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct` which contains the transactionId, order details, the amount of the transaction, a return URL, payment method information and language information. Please be aware, Shopware 6 supports multiple transactions, and you have to use the amount provided and not the total order amount. If you're using the `AsynchronousPaymentHandlerInterface`, the `pay` method has to return a `RedirectResponse` to redirect the customer to an external payment provider. Note: The [AsyncPaymentTransactionStruct](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Payment/Cart/AsyncPaymentTransactionStruct.php) contains a return URL. This represents the URL the external payment provider needs to know to redirect your customer back to your shop. If an error occurs while, e.g., calling the API of your external payment provider, you should throw an `AsyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `failed` state. The same happens if you use the `SynchronousPaymentHandlerInterface`: throw a `SyncPaymentProcessException` in an error case.
+* `finalize`: The `finalize` method is only required if you implemented the `AsynchronousPaymentHandlerInterface`, returned a `RedirectResponse` in your `pay` method, and the customer has been redirected from the payment provider back to Shopware 6. You must check here if the payment was successful and update the order transaction state accordingly. Similar to the pay action, you can throw exceptions if some error cases occur. Throw the `CustomerCanceledAsyncPaymentException` if the customer canceled the payment process on the payment provider site. If another general error occurs, throw the `AsyncPaymentFinalizeException` e.g., if your call to the payment provider API fails. Shopware 6 will handle these exceptions and set the transaction to the `cancelled` state if the customer canceled and to the `failed` state for any other error.
 * `validate`: This method will be called before an order was placed and should check if a given prepared payment is valid. The payment handler has to verify the given payload with the payment service because Shopware cannot ensure that the transaction created by the frontend is valid for the current cart. Throw a `ValidatePreparedPaymentException` to fail the validation in your implementation.
 * `capture`: This method will be called after an order was placed, but only if the validation did not fail and stop the payment flow before. At this point, the order was created, and the payment handler will be called again to charge the payment. When the charge was successful, the payment handler should update the transaction state to `paid`. The user will be forwarded to the finish page. Throw a `CapturePreparedPaymentException` on any errors to fail the capture process and, the after-order process will be active so that the customer can complete the payment again.
 * `refund`: This method is called whenever a successful transaction is claimed to be refunded. The implementation of the refund handler should validate the legitimacy of the refund and call the PSP to refund the given transaction. Throw a `RefundException` to let the refund fail.
@@ -78,7 +78,7 @@ Now, let's start with the actual examples.
 
 The following will be a synchronous example, so that no redirect will happen, and the payment can be handled in the shop. Therefore, you don't have to return a `RedirectResponse` in the `pay` method; no `finalize` method is necessary either.
 
-Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method. If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `cancelled` state.
+Therefore, changing the `stateId` of the order should already be done in the `pay` method since there will be no `finalize` method. If you have to execute some logic that might fail, e.g., a call to an external API, you should throw a `SyncPaymentProcessException`. Shopware 6 will handle this exception and set the transaction to the `failed` state.
 
 ```php
 // <plugin root>/src/Service/ExamplePayment.php
@@ -153,7 +153,7 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
         try {
             $redirectUrl = $this->sendReturnUrlToExternalGateway($transaction->getReturnUrl());
         } catch (\Exception $e) {
-            throw PaymentException::asyncProcess(
+            throw PaymentException::asyncProcessInterrupted(
                 $transaction->getOrderTransaction()->getId(),
                 'An error occurred during the communication with external payment gateway' . PHP_EOL . $e->getMessage()
             );
@@ -172,7 +172,7 @@ class ExamplePayment implements AsynchronousPaymentHandlerInterface
 
         // Example check if the user canceled. Might differ for each payment provider
         if ($request->query->getBoolean('cancel')) {
-            throw PaymentException::asyncCustomerCanceled(
+            throw PaymentException::customerCanceled(
                 $transactionId,
                 'Customer canceled the payment on the PayPal page'
             );
@@ -250,7 +250,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
     ): Struct {
         if (!$requestDataBag->has('my-payment-token')) {
             // this will fail the validation
-            throw PaymentException::preparedValidate('No token supplied');
+            throw PaymentException::validatePreparedPaymentInterrupted('No token supplied');
         }
 
         $token = $requestDataBag->get('my-payment-token');
@@ -258,7 +258,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
 
         if (!$paymentData) {
             // no payment data simulates an error response from our payment provider in this example
-            throw PaymentException::preparedValidate('Unknown payment for token ' . $token);
+            throw PaymentException::validatePreparedPaymentInterrupted('Unknown payment for token ' . $token);
         }
 
         // other checks could include comparing the cart value with the actual payload of your PSP
@@ -284,7 +284,7 @@ class ExamplePayment implements PreparedPaymentHandlerInterface
         
         // or in case of an error:
         $this->stateHandler->fail($orderTransaction->getId(), $context->getContext());
-        throw PaymentException::preparedCapture($orderTransaction->getId(), 'Capture failed.');
+        throw PaymentException::capturePreparedException($orderTransaction->getId(), 'Capture failed.');
     }
 
     private function getPaymentDataFromProvider(string $token): array
@@ -329,7 +329,7 @@ class ExamplePayment implements RefundPaymentHandlerInterface
     {
         if ($refund->getAmount() > 100.00) {
             // this will stop the refund process and set the refunds state to `failed`
-            throw PaymentException::refund($refund->getId(), 'Refunds over 100 € are not allowed');
+            throw PaymentException::refundInterrupted($refund->getId(), 'Refunds over 100 € are not allowed');
         }
 
         // a refund can have multiple positions, with different order line items and amounts
@@ -348,7 +348,7 @@ class ExamplePayment implements RefundPaymentHandlerInterface
                 } catch (\Exception $e) {
                     // something went wrong at PSP side, throw a refund exception
                     // this will set the refund state to `failed`
-                    throw PaymentException::refund($refund->getId(), 'Something went wrong');
+                    throw PaymentException::refundInterrupted($refund->getId(), 'Something went wrong');
                 }
             }
         }
@@ -380,7 +380,6 @@ Recurring orders and payments require the Subscriptions feature, available exclu
 namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Checkout\Payment\PaymentException;
-use Shopware\Core\Checkout\Payment\Exception\RecurringPaymentProcessException;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\RecurringPaymentHandlerInterface;
 use Shopware\Core\Checkout\Payment\Cart\RecurringPaymentTransactionStruct;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
@@ -397,7 +396,7 @@ class ExamplePayment implements RecurringPaymentHandlerInterface
     }
 
     /**
-     * @throws RecurringPaymentProcessException
+     * @throws PaymentException
      */
     public function captureRecurring(RecurringPaymentTransactionStruct $transaction, Context $context): void
     {
@@ -409,7 +408,7 @@ class ExamplePayment implements RecurringPaymentHandlerInterface
         try {
             // $this->callMyPsp();
         } catch (\Throwable $e) {
-            // throw a RecurringPaymentProcessException: this will set the transaction state to `failed` 
+            // throw a PaymentException: this will set the transaction state to `failed` 
             throw PaymentException::recurringInterrupted($transaction->getOrderTransaction()->getId(), 'Something went wrong', $e);
         }
     }
