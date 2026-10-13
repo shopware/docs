@@ -28,14 +28,14 @@ To get an overview of all the options, here is a list:
 | Property           | Function                                                                                                                        |
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------|
 | `source`           | The source that will be used for the internal `sw-media-preview-v2` if the component is not used in the `allowMultiSelect` mode |
-| `variant`          | This can be used to choose between the `regular` and the `compact` variants                                                     |
+| `variant`          | This can be used to choose between the `regular` (default), `compact` and `small` variants                                      |
 | `uploadTag`        | This is used to coordinate with the `sw-upload-listener` component                                                              |
 | `allowMultiSelect` | Sets whether multiple files can be uploaded at once                                                                             |
 | `label`            | The text that is displayed in the header                                                                                        |
 | `defaultFolder`    | The path where the file will be put                                                                                             |
 | `targetFolderId`   | The `targetFolderId` that will be used as a backup to the `defaultFolder`                                                       |
 | `helpText`         | Sets the `helpText` displayed in the header of the component                                                                    |
-| `fileAccept`       | Sets what the underlying <input>, accepts standard is `image/*`                                                                 |
+| `fileAccept`       | Sets what the underlying <input> accepts. The default is `*/*` (any file), use `image/*` to restrict it to images               |
 | `disabled`         | Disables the whole component                                                                                                    |
 
 ## Keeping track of uploads
