@@ -27,7 +27,7 @@ If the Elasticsearch query fails, the data is loaded using MySQL. You can disabl
 $criteria = new \Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria();
 $context = \Shopware\Core\Framework\Context::createDefaultContext();
 // Enables Elasticsearch for this search
-$context->addState(\Shopware\Core\Framework\Context::STATE_ELASTICSEARCH_AWARE);
+$criteria->addState(\Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria::STATE_ELASTICSEARCH_AWARE);
 
 $repository->search($criteria, $context);
 ```
