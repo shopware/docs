@@ -27,17 +27,16 @@ If the database has the schema but no users or sales channels, DH treats it as n
 
 ## What gets created on fresh install
 
-When Deployment Helper runs `system:install` on a fresh database, it creates:
+When Deployment Helper installs Shopware on a fresh database, it runs `system:install` (it creates the schema, applies the shop locale and currency, and runs core setup such as migrations, asset installation and theme compilation) and then creates the following with separate console commands:
 
-- Database schema (all Shopware tables)
 - One admin user with credentials from environment variables:
   - Username: `INSTALL_ADMIN_USERNAME` (default: `admin`)
   - Password: `INSTALL_ADMIN_PASSWORD` (default: `shopware`; change this!)
   - Email: `INSTALL_ADMIN_EMAIL` (optional, defaults to empty)
-- One Storefront sales channel (customer-facing shop):
+- One Storefront sales channel (customer-facing shop, only if the Storefront is installed and no sales channel with that URL exists yet):
   - Name: `Storefront`
-  - URL: `SALES_CHANNEL_URL` or `APP_URL` (defaults to `http://localhost`)
-- Default theme assignment (Shopware's Storefront theme)
+  - URL: `SALES_CHANNEL_URL` or `APP_URL`; if neither is set, an empty URL is passed to `sales-channel:create:storefront`
+- Default theme assignment (Shopware's Storefront theme, only if the Storefront is installed)
 - Messenger transport tables and queues
 - All configured plugins and apps (unless excluded)
 
@@ -58,7 +57,7 @@ These variables are read by Deployment Helper, not by `bin/console system:instal
 | `INSTALL_ADMIN_USERNAME` | `admin`            | Username of the initial admin user                            |
 | `INSTALL_ADMIN_PASSWORD` | `shopware`         | Password for the initial admin user                           |
 | `INSTALL_ADMIN_EMAIL`    | *(empty)*          | Email address of the admin user                               |
-| `SALES_CHANNEL_URL`      | `http://localhost` | URL of the Storefront sales channel                           |
+| `SALES_CHANNEL_URL`      | *(not set)*        | URL of the Storefront sales channel; falls back to `APP_URL`  |
 | `APP_URL`                | *(not set)*        | Fallback URL for Storefront if `SALES_CHANNEL_URL` is not set |
 
 :::warning
