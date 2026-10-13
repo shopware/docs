@@ -117,7 +117,7 @@ It is just a shortcut for `bin/console cache:clear` without having to be in the 
 shopware-cli project clear-cache
 ```
 
-If an API connection is configured in the `.shopware-project.yml`, it will clear the remote instance cache.
+If an API connection is configured in the `.config/shopware-project.yml`, it will clear the remote instance cache. See the [Shopware CLI configuration file lookup priority](../configuration.md) for the preferred path and legacy fallbacks.
 
 ## Console
 
@@ -197,7 +197,9 @@ shopware-cli project validate --no-copy
 shopware-cli project validate --local-only
 ```
 
-`--only` and `--exclude` accept comma-separated tool names.
+`--only` and `--exclude` accept comma-separated checker names. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, and empty final selections fail before tool setup or copying. Tools without validation support, such as `prettier` or `rector`, cannot be selected.
+
+The built-in checker, `builtin`, runs metadata and structure checks for each eligible extension, applying its own validation ignores. Use `--only builtin` to run these checks alone. The legacy `sw-cli` alias is accepted with a deprecation warning. Reports include checker invocation statuses; `invoked` means the checker was called, but does not guarantee that it analyzed files or produced findings. Use `--verbose` to see source directories, extension names, and external tool commands and arguments.
 
 See [Validation](../validation.md) for the available validation tools.
 
@@ -213,17 +215,17 @@ This is useful when you encounter problems with your setup and need to understan
 
 ## Project configuration schema
 
-To view the JSON schema for the `.shopware-project.yml` configuration file:
+To view the JSON schema for the `.config/shopware-project.yml` configuration file:
 
 ```bash
 shopware-cli project config-schema
 ```
 
-This outputs the JSON schema describing all available configuration options in `.shopware-project.yml`. Useful for automation and understanding the project configuration structure.
+This outputs the JSON schema describing all available configuration options in `.config/shopware-project.yml`. Useful for automation and understanding the project configuration structure.
 
 ## Initialize project configuration
 
-To create a new `.shopware-project.yml` configuration file interactively:
+To create a new `.config/shopware-project.yml` configuration file interactively:
 
 ```bash
 shopware-cli project config init
@@ -243,7 +245,7 @@ Top-level `url` and `admin_api` keys are deprecated: config files that still use
 shopware-cli project generate-jwt <path-to-project>
 ```
 
-Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Required only for Shopware versions before 6.5; in 6.5+, JWT secrets are generated automatically.
+Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Shopware 6.5 and 6.6 sign JWT tokens with these keys and create them during `system:install` by default, so you only need this command to create them yourself. Shopware 6.7 and later does not use these keys: JWT tokens are signed with the `APP_SECRET` environment variable (at least 32 characters), so this command is not needed.
 
 Output as environment variables:
 
