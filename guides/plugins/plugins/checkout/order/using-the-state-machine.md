@@ -78,7 +78,7 @@ The order transaction state represents the state of the transaction, or the paym
 * `remind`: Will result in "reminded"
 * `cancel`: Will result in "cancelled"
 
-Here's an example on how to set the order transaction from `open` to `in_progress` via the `pay` action:
+Here's an example on how to set the order transaction from `open` to `in_progress` via the `do_pay` action:
 
 ```php
 $this->stateMachineRegistry->transition(new Transition(
