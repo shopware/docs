@@ -245,7 +245,7 @@ Top-level `url` and `admin_api` keys are deprecated: config files that still use
 shopware-cli project generate-jwt <path-to-project>
 ```
 
-Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Required only for Shopware versions before 6.5; in 6.5+, JWT secrets are generated automatically.
+Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Shopware 6.5 and 6.6 sign JWTs with these keys and create them during `system:install` by default, so you only need this command to create them yourself. Shopware 6.7 and later does not use these keys: JWTs are signed with the `APP_SECRET` environment variable (at least 32 characters), so this command is not needed.
 
 Output as environment variables:
 
