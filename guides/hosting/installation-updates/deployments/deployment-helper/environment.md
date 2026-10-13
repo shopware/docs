@@ -49,7 +49,7 @@ Configure the Shopware installation and Deployment Helper via environment variab
 
 ### Installation and initial setup
 
-These variables apply only on **fresh installation** (`system:install`):
+These variables are read by Deployment Helper, not by `bin/console system:install` itself, and apply only on a **fresh installation**. Deployment Helper passes `INSTALL_LOCALE` and `INSTALL_CURRENCY` on to `system:install` as the `--shop-locale` and `--shop-currency` options. For the other options of the command, see the [commands reference](../../../../../resources/references/core-reference/commands-reference.md#system):
 
 | Variable                 | Default            | Purpose                                                       |
 | ------------------------ | ------------------ | ------------------------------------------------------------- |
