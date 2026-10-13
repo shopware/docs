@@ -15,7 +15,7 @@ Deployment Helper requires a working MySQL/MariaDB database that is:
 - **Writable** with permissions to create tables and insert data
 - **Compatible** with the Shopware version being deployed
 
-Deployment Helper does not require an existing schema; if the database is empty, it creates everything via `system:install`.
+Deployment Helper does not require an existing schema; if the database is empty, it runs `system:install` and then the initial setup described under [What gets created on fresh install](#what-gets-created-on-fresh-install).
 
 Detection: Shopware is considered "installed" if all three exist:
 
@@ -53,11 +53,11 @@ These variables are read by Deployment Helper, not by `bin/console system:instal
 | Variable                 | Default            | Purpose                                                       |
 | ------------------------ | ------------------ | ------------------------------------------------------------- |
 | `INSTALL_LOCALE`         | `en-GB`            | Locale for the shop (e.g., `de-DE`, `fr-FR`)                  |
-| `INSTALL_CURRENCY`       | `EUR`              | Currency for the first sales channel                          |
+| `INSTALL_CURRENCY`       | `EUR`              | Default currency of the shop (`--shop-currency`)              |
 | `INSTALL_ADMIN_USERNAME` | `admin`            | Username of the initial admin user                            |
 | `INSTALL_ADMIN_PASSWORD` | `shopware`         | Password for the initial admin user                           |
 | `INSTALL_ADMIN_EMAIL`    | *(empty)*          | Email address of the admin user                               |
-| `SALES_CHANNEL_URL`      | *(not set)*        | URL of the Storefront sales channel; falls back to `APP_URL`  |
+| `SALES_CHANNEL_URL`      | *(not set)*        | URL of the Storefront sales channel; `APP_URL` if unset       |
 | `APP_URL`                | *(not set)*        | Fallback URL for Storefront if `SALES_CHANNEL_URL` is not set |
 
 :::warning
