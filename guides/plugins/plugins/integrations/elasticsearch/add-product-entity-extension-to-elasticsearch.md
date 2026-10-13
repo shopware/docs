@@ -96,9 +96,9 @@ class CustomExtension extends EntityExtension
         );
     }
 
-    public function getDefinitionClass(): string
+    public function getEntityName(): string
     {
-        return ProductDefinition::class;
+        return ProductDefinition::ENTITY_NAME;
     }
 }
 ```
