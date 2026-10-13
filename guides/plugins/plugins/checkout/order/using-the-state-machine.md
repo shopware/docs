@@ -88,7 +88,7 @@ The possible transition values here are:
 * `authorize`: Will result in "authorized"
 * `refund_partially`: Will result in "refunded\_partially"
 * `refund`: Will result in "refunded"
-* `process`: Will result in "in\_progress" (the former `do_pay` action is deprecated since 6.7 and will be removed in 6.8)
+* `process`: Will result in "in\_progress" (renamed from `do_pay` in 6.7.0.0; `do_pay` is deprecated and `ACTION_DO_PAY` will be removed in 6.8.0)
 * `paid`: Will result in "paid"
 * `paid_partially`: Will result in "paid\_partially"
 * `remind`: Will result in "reminded"
