@@ -64,6 +64,8 @@ Enable one toolset per call. There is no counterpart for disabling a toolset, an
 
 The response sets `_meta.listChanged` to `true` and Shopware emits `notifications/tools/list_changed`. Clients that do not refresh automatically must request `tools/list` again. Enabling a toolset does not grant permission to call its tools; the effective MCP allowlist remains the security boundary.
 
+For clients that never refresh `tools/list`, name the toolsets in the connection URL instead, for example `/api/_mcp?toolsets=entity,order`. See [Select toolsets when connecting](./getting-started.md#select-toolsets-when-connecting).
+
 ## Toolsets
 
 Every tool belongs to exactly one group, and every group except `discovery` becomes a toolset that a client can enable. Core ships these toolsets:
@@ -171,11 +173,11 @@ Use this instead of `shopware-entity-search` when you need counts, averages, sum
 
 **Parameters:**
 
-| Name           | Type   | Required | Default | Description                           |
-| -------------- | ------ | -------- | ------- | ------------------------------------- |
-| `entity`       | string | yes      | —       | Entity name                           |
-| `aggregations` | string | yes      | —       | JSON array of aggregation definitions |
-| `filters`      | string | no       | `[]`    | JSON array of filter definitions      |
+| Name           | Type   | Required | Default | Description                                                                            |
+| -------------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------- |
+| `entity`       | string | yes      | —       | Entity name                                                                            |
+| `aggregations` | string | yes      | —       | JSON array of aggregation definitions. A single object instead of an array is rejected |
+| `filters`      | string | no       | `[]`    | JSON array of filter definitions                                                       |
 
 **Supported aggregation types:** `avg`, `sum`, `min`, `max`, `count`, `terms`, `date-histogram`, `range`, `filter`, `entity`
 
