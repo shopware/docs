@@ -88,19 +88,19 @@ The possible transition values here are:
 * `authorize`: Will result in "authorized"
 * `refund_partially`: Will result in "refunded\_partially"
 * `refund`: Will result in "refunded"
-* `do_pay`: Will result in "in\_progress"
+* `process`: Will result in "in\_progress" (renamed from `do_pay` in 6.7.0.0; `do_pay` is deprecated and `ACTION_DO_PAY` will be removed in 6.8.0)
 * `paid`: Will result in "paid"
 * `paid_partially`: Will result in "paid\_partially"
 * `remind`: Will result in "reminded"
 * `cancel`: Will result in "cancelled"
 
-Here's an example on how to set the order transaction from `open` to `in_progress` via the `pay` action:
+Here's an example on how to set the order transaction from `open` to `in_progress` via the `process` action:
 
 ```php
 $this->stateMachineRegistry->transition(new Transition(
     OrderTransactionDefinition::ENTITY_NAME,
     '<Order transaction ID here>',
-    'do_pay',
+    'process',
     'stateId'
 ), $context);
 ```
@@ -273,7 +273,7 @@ $this->orderTransactionStateHandler->cancel('<your ID here>', $context);
 // $this->orderTransactionStateHandler->refund('<your ID here>', $context);
 // $this->orderTransactionStateHandler->fail('<your ID here>', $context);
 // $this->orderTransactionStateHandler->paid('<your ID here>', $context);
-// $this->orderTransactionStateHandler->payPartially('<your ID here>', $context);
+// $this->orderTransactionStateHandler->paidPartially('<your ID here>', $context);
 // $this->orderTransactionStateHandler->process('<your ID here>', $context);
 // $this->orderTransactionStateHandler->refundPartially('<your ID here>', $context);
 // $this->orderTransactionStateHandler->remind('<your ID here>', $context);
