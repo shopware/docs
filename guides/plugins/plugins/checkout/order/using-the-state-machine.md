@@ -46,9 +46,9 @@ This ensures, that if Shopware would ever change a state's name, your changes wo
 This means the ID of the order, the order transaction or the order delivery entity.
 You can find those using the respective entities' repositories, find out more about those in general in our guide about [reading data](../../framework/data-handling/reading-data).
 There will a full example at the end of this guide as well.
-* The third parameter is the new state to be transitioned to.
-E.g. this could be `paid`, if the order is still `open`.
-* The last parameter is the name of the `StateMachineStateField`.
+* The third parameter is the name of the transition (action) to apply, for example `process` or `cancel` for an order (except in forced mode, see [Forcing a transition](#forcing-a-transition)).
+The state machine determines the resulting state from the current state and this transition name.
+* The fourth parameter is the name of the `StateMachineStateField`.
 If you have a look at the [order definition](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L106), you will find the respective field.
 This is the case for each of those definitions, the [order definition](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/OrderDefinition.php#L106), the [order transaction](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderTransaction/OrderTransactionDefinition.php#L60) and the [order delivery](https://github.com/shopware/shopware/blob/v6.3.4.1/src/Core/Checkout/Order/Aggregate/OrderDelivery/OrderDeliveryDefinition.php#L79).
 Thankfully, this field is always called `stateId` in our default definitions.
