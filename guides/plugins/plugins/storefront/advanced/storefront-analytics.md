@@ -90,6 +90,8 @@ On a category page, the categories come from the breadcrumb. On pages whose brea
 
 Products added from a product box post their brand and categories in the line item payload, as `manufacturerName` and `categoryNames`. The cart, checkout and purchase events read them from there, so neither the cart nor the checkout loads anything for analytics.
 
+A product added on a page without a breadcrumb about it has no categories in its payload. The browser keeps the categories requested for it in the local storage under `swGaProductCategories` for 30 days, and the cart, checkout and purchase events fill missing categories from there. The order removes them. A line item added in another browser or through the API is reported without categories.
+
 ## Lists
 
 `view_item_list` and `select_item` report the list a product was presented in as `item_list_id` and `item_list_name`, and its position as `index`. The index counts from zero across the pages of a paginated listing. `view_item` repeats the list the product was selected from on its item, also when the shopper opened the product in another tab.
