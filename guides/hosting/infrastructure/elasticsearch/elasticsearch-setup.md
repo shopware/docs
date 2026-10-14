@@ -109,7 +109,7 @@ APP_SECRET=1
 INSTANCE_ID=1
 DATABASE_URL=mysql://mysqluser:mysqlpassword@localhost:3306/shopwaredatabasename
 APP_URL=http://localhost
-MAILER_URL=smtp://localhost:1025
+MAILER_DSN=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
 OPENSEARCH_URL="elasticsearchhostname:9200"
@@ -127,7 +127,7 @@ APP_SECRET=1
 INSTANCE_ID=1
 DATABASE_URL=mysql://mysqluser:mysqlpassword@localhost:3306/shopwaredatabasename
 APP_URL=http://localhost
-MAILER_URL=smtp://localhost:1025
+MAILER_DSN=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
 OPENSEARCH_URL="elasticsearchhostname:9200"
