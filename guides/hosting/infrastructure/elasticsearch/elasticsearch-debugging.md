@@ -207,12 +207,11 @@ curl -X DELETE 'elasticsearch:9200/_all'
 Returns the status of your indexing:
 
 ```sql
-select * from message_queue_stats mqs ;
-select count(*) from enqueue e ;
-select count(*) from dead_message dm ;
+select count(*) from messenger_messages where headers like '%ElasticsearchIndexingMessage%' and queue_name <> 'failed' ;
+select count(*) from messenger_messages where headers like '%ElasticsearchIndexingMessage%' and queue_name = 'failed' ;
 ```
 
-The number of entries in the enqueue should match the sum of the size values in the `message_queue_stats`. As long as there are entries in your `enqueue`, the indexing is in process and your message consumer has to work those messages.
+The first query returns the indexing messages that are still waiting in the queue, the second one returns the indexing messages that failed. As long as there are waiting messages, the indexing is in process and your message consumer has to work those messages.
 
 ## Reset the indexing in the database
 
@@ -220,9 +219,7 @@ Sometimes you want to reset the indexing in your database because your indexing 
 If the database queue is used, third-party services will differ. You can do so with the following queries.
 
 ```sql
-truncate enqueue ;
-truncate dead_message ;
-truncate message_queue_stats ;
+delete from messenger_messages where headers like '%ElasticsearchIndexingMessage%' ;
 update scheduled_task set status = 'scheduled' where status = 'queued';
 ```
 
@@ -232,9 +229,7 @@ This is mainly for debugging purposes and is only meant for testing and staging 
 First, execute the database reset (only working for the database queue):
 
 ```sql
-truncate enqueue ;
-truncate dead_message ;
-truncate message_queue_stats ;
+delete from messenger_messages where headers like '%ElasticsearchIndexingMessage%' ;
 update scheduled_task set status = 'scheduled' where status = 'queued';
 ```
 
