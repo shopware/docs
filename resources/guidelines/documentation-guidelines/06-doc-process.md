@@ -80,7 +80,7 @@ After reviewing the final draft, it will be published on notifying the administr
 
 ## Maintain Versions
 
-All contents are based on Shopware Major versions, such as 6.3, 6.4, 6.5, etc. The current version is reflected by our GitHub repositories' `master` branch, whereas each older version has its respective separate branch.
+All contents are based on Shopware Major versions, such as 6.3, 6.4, 6.5, etc. The current version is reflected by our GitHub repository's `main` branch, whereas each older version has its respective separate branch (for example `v6.6`).
 
 If a documented feature or functionality is introduced within major versions (and also in cases where you think it is applicable), please include a hint showing the version constraints as below:
 
