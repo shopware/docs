@@ -128,13 +128,14 @@ Here, we still have the `text-hero` block, but it contains an image. That is due
 
 Elements are the "primitives" in our tree hierarchy of structural components. Elements have no knowledge of their context and usually just contain very little markup. Ultimately and most importantly, elements are rendered inside the slots of their "parent" blocks.
 
-Shopware ships with a range of built-in element types, each backed by a dedicated resolver:
+Shopware ships with a range of built-in element types, most of them backed by a dedicated resolver:
 
 * `text`
 * `html`
 * `form`
 * `image`
 * `image-slider`
+* `image-gallery`
 * `video`
 * `youtube-video`
 * `vimeo-video`
@@ -147,6 +148,8 @@ Shopware ships with a range of built-in element types, each backed by a dedicate
 * `cross-selling`
 * `product-description-reviews`
 * `category-navigation`
+* `category-name`
+* `sidebar-filter`
 
 You can register additional custom element types via the `CmsElementResolverInterface`.
 
