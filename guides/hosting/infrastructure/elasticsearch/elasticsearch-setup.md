@@ -176,9 +176,9 @@ Try that command if your index was created fully without errors, and you still d
 
 ### What happens when indexing
 
-When you are indexing, the data is written in bulks to the message queue and the respective table enqueue.
-If a messenger process is active, the entries of that table are processed one by one.
-In case a message runs into an error, it is written into the `dead_messages` table and will be processed again after a specific time frame.
+When you are indexing, the data is written in bulks to the message queue, which is stored in the `messenger_messages` table by default.
+If a messenger process is active, the messages are processed one by one.
+In case a message runs into an error, it is moved to the failed queue (rows with `queue_name = 'failed'` in the same table).
 
 You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
 In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](../message-queue.md#admin-worker).
