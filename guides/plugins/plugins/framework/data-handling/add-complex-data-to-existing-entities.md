@@ -23,7 +23,7 @@ In this example, we're going to add a new string field to the `product` entity.
 
 You can choose whether you want to save the new string field to the database or not. Therefore, you're going to see two sections, one for each way.
 
-For both cases, you need to create a new "extension" class in the directory `<plugin root>/src/Extension/`. In this case, we want to extend the `product` entity, so we create a subdirectory `Content/Product/` since the entity location in the Core is the same. Our class needs to extend from the abstract `Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` class, which forces you to implement the `getDefinitionClass` method. It has to point to the entity definition you want to extend, so `ProductDefinition` in this case.
+For both cases, you need to create a new "extension" class in the directory `<plugin root>/src/Extension/`. In this case, we want to extend the `product` entity, so we create a subdirectory `Content/Product/` since the entity location in the Core is the same. Our class needs to extend from the abstract `Shopware\Core\Framework\DataAbstractionLayer\EntityExtension` class, which forces you to implement the `getEntityName` method. It has to return the entity name of the definition you want to extend, so `ProductDefinition::ENTITY_NAME` (`product`) in this case.
 
 You add new fields by overriding the method `extendFields` and add your new fields in there.
 
@@ -48,9 +48,9 @@ class CustomExtension extends EntityExtension
         );
     }
 
-    public function getDefinitionClass(): string
+    public function getEntityName(): string
     {
-        return ProductDefinition::class;
+        return ProductDefinition::ENTITY_NAME;
     }
 }
 ```
@@ -100,9 +100,9 @@ class CustomExtension extends EntityExtension
         );
     }
 
-    public function getDefinitionClass(): string
+    public function getEntityName(): string
     {
-        return ProductDefinition::class;
+        return ProductDefinition::ENTITY_NAME;
     }
 }
 ```
