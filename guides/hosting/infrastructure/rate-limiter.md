@@ -85,6 +85,22 @@ The following optional limiters are available starting with Shopware 6.7.10.0.
 - `oauth_user`: API oauth authentication / Administration login per username, regardless of IP.
 - `oauth_client`: API oauth authentication / Administration login per IP address, regardless of username.
 
+### Limits from the system configuration
+
+The `system_config` policy reads the limit of each step from a system configuration key instead of the YAML file. In the YAML, each `limits` entry takes a `domain` (the configuration key) and an `interval` instead of a `limit`, and `reset` is still required. The core `cart_add_line_item` limiter uses it with the key `core.cart.lineItemAddLimit`, which is set in the Administration under `Settings > Cart settings > Maximum addable products to cart per minute through API`. A global value of `0` means no limit. The default is `0`, so the limiter enforces nothing until a limit is configured.
+
+::: info
+Starting with Shopware 6.7.16.0, a limiter can resolve the limit for a sales channel. The route has to pass the sales channel ID; the core `cart_add_line_item` limiter does.
+:::
+
+For the `cart_add_line_item` limiter this means:
+
+- A value saved for a specific sales channel takes effect for that sales channel. Before 6.7.16.0, only the global value was applied.
+- A global value applies per sales channel, because the key of this limiter is product, client IP and sales channel. A client that hits the limit for one product in one sales channel is not throttled for other products or in another sales channel.
+- A sales channel value of `0` or an empty field falls back to the global value and cannot lift a globally configured limit.
+- A changed value applies to a key once its current bucket has expired, one hour after that key's last counted request.
+- The limiter key changed in 6.7.16.0, so existing counters are not carried over and counting restarts from zero once after the update.
+
 ### Configuring time backoff policy
 
 The `time_backoff` policy is built by Shopware itself. It enables you to throttle the request in multiple steps with different waiting times.

@@ -26,7 +26,7 @@ Please note that in current Redis versions, it is not possible to use different 
 As ephemeral data can easily be restored and is most often used in cases where high performance matters, this data can be stored with no durable persistence.
 This means the data is only stored in memory and is lost when the Redis instance is restarted.
 
-For key eviction policy you should use `volatile-lru`, which only automatically deletes data that is expired, as the application explicitly manages the TTL for each cache item.
+For key eviction policy you should use `volatile-lru`, which only evicts keys that have a TTL (least recently used first) when the memory limit is reached, as the application explicitly manages the TTL for each cache item.
 
 The caching data (HTTP-Cache & Object cache) is what should be stored in this instance.
 
@@ -50,7 +50,7 @@ The session data is what should be stored in this instance.
 
 Again, this is durable data that cannot easily be recreated, therefore, it should be persisted as well.
 
-As the data is critical, it is important to use a key eviction policy that will not delete data that is not expired, therefore `volatile-lru` should be used.
+As the data is critical, it is important to use a key eviction policy that never evicts keys without a TTL, therefore `volatile-lru` should be used. Keep in mind that it can still evict the least recently used keys that do have a TTL.
 
 The cart, number range, lock store, and increment data are what should be stored in this instance.
 
