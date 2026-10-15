@@ -125,6 +125,20 @@ shopware:
 
 Make sure to replace the `__XXX__` placeholders with your actual values.
 
+### Varnish static asset CSP
+
+The provided Varnish configuration sets a Content Security Policy on every response under `/media/`, `/thumbnail/`, `/theme/` and `/bundles/`, regardless of file extension or content type. It applies in `vcl_deliver`, including cache hits and error responses. When updating an existing configuration, merge this rule into its existing `vcl_deliver` subroutine:
+
+```vcl
+sub vcl_deliver {
+    if (req.url ~ "^/(media|thumbnail|theme|bundles)/") {
+        set resp.http.Content-Security-Policy = "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+    }
+}
+```
+
+Responses outside these asset paths retain their existing policy. HTML applications under `/bundles/` are included: their scripts, embedded documents, base URL overrides and form submissions are blocked. Scripts loaded as resources by application pages remain usable. See [XSS on stored assets](../../../resources/references/security.md#xss-on-stored-assets) for webserver and dedicated CDN requirements.
+
 ### Soft Purge vs Hard Purge
 
 The default configuration Varnish uses hard purges, so when you update a product, the page will be removed from the cache and the next request takes longer because the cache is empty.
@@ -215,6 +229,20 @@ You can use the [Deployment Helper to automatically deploy Fastly VCL Snippets a
 For manual deployment, you can find the VCL Snippets here:
 
 <PageRef page="https://github.com/shopware/recipes/tree/main/shopware/fastly-meta/6.7/config/fastly" title="Fastly VCL snippets" />
+
+### Fastly static asset CSP
+
+The provided Fastly recipes include this rule in `config/fastly/deliver/default.vcl`:
+
+```vcl
+if (req.url.path ~ "^/(media|thumbnail|theme|bundles)/") {
+  set resp.http.Content-Security-Policy = "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+}
+```
+
+It applies to every response under these paths, including cached responses, errors and bundled HTML applications, with the same restrictions as the Varnish policy above. `req.url.path` excludes the query string. Existing installations must update and deploy their snippets; enabling Fastly cache invalidation in Shopware does not install this rule.
+
+For a dedicated asset CDN at a different URL, configure the policy manually on the service that delivers the assets and adjust the paths to its URL layout. See [XSS on stored assets](../../../resources/references/security.md#xss-on-stored-assets).
 
 ### Cache Invalidations
 
