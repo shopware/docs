@@ -1,9 +1,5 @@
 # Caddy
 
-The static-file policy below restricts existing SVG files and HTML files under `media/` and `thumbnail/`.
-Application-rendered HTML and bundled HTML applications retain their own response policies.
-Custom static documents must work without scripts, embedded documents, base URL overrides or form submissions; images and styles remain permitted.
-
 ```text
 mydomain.com {
   header {

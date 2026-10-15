@@ -4,10 +4,6 @@
 The document root must always point to the public folder, to ensure all functionality works.
 :::
 
-The static-file policy below restricts SVG files and HTML files under `media/` and `thumbnail/`.
-Missing HTML media files return 404; application-rendered HTML and bundled HTML applications retain their own response policies.
-Custom static documents must work without scripts, embedded documents, base URL overrides or form submissions; images and styles remain permitted.
-
 ```text
 server {
     listen 80;
