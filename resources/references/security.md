@@ -48,7 +48,9 @@ Content-Security-Policy: script-src 'none'; object-src 'none'; frame-src 'none';
 
 This policy blocks scripts, embedded documents, base URL overrides and form submissions while permitting images and styles. It must be present on the asset response, including when a cache serves the file.
 
-The provided [Apache](./config-reference/server/apache.md), [Nginx](./config-reference/server/nginx.md) and [Caddy](./config-reference/server/caddy.md) configurations include CSP protection for stored HTML and SVG. The [Fastly and Varnish configurations](../../guides/hosting/infrastructure/reverse-http-cache.md#static-asset-csp) apply the policy to every response under `/media/` and `/thumbnail/`. Update and deploy existing configurations to receive these protections.
+The provided [Apache](./config-reference/server/apache.md), [Nginx](./config-reference/server/nginx.md) and [Caddy](./config-reference/server/caddy.md) configurations include CSP protection for stored HTML and SVG. Update and deploy existing configurations to receive these protections.
+
+When using a [reverse proxy](../../guides/hosting/infrastructure/reverse-http-cache.md), ensure that it preserves the `Content-Security-Policy` header from the origin server, including on cached responses. Shopware's default Fastly and Varnish configurations preserve this header.
 
 If you serve static assets from a dedicated CDN using a different CDN URL, configure this response header manually in that CDN. Shopware's application and webserver configuration cannot enforce headers on responses served independently by the CDN. Match the asset paths used by your CDN, including any path prefix, and verify the header on both cache hits and misses. A separate CDN URL does not replace CSP protection for active documents served from it.
 

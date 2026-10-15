@@ -164,12 +164,6 @@ If you don't see the `Cache-Control: public` header or the `Xkey` header, you ne
 
 For more details, please refer to the [Varnish documentation](https://www.varnish-software.com/developers/tutorials/logging-cache-hits-misses-varnish/) on logging cache hits and misses.
 
-## Static asset CSP
-
-The provided [Varnish configuration](#configure-varnish) and [Fastly VCL snippets](#fastly-vcl-snippets) apply a Content Security Policy to every response under `/media/` and `/thumbnail/`, regardless of file extension or content type, including cache hits and errors. The policy blocks scripts, embedded documents, base URL overrides and form submissions. Responses outside these paths retain their existing policy.
-
-Update and deploy existing configurations or snippets to receive this protection. See [XSS on stored assets](../../../resources/references/security.md#xss-on-stored-assets) for the policy and security requirements.
-
 ## Configure Fastly
 
 Fastly is supported since Shopware 6.4.11.0 is out-of-the-box with some configurations.
