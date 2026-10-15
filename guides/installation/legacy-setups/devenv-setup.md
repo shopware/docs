@@ -70,10 +70,18 @@ If Nix commands aren’t available after installation, restart your terminal or 
 
 ### Install Devenv
 
-Once Nix is installed, install or update Devenv with the Nix profile command:
+Once Nix is installed, install Devenv with the Nix profile command. The Shopware Devenv configuration requires **Devenv 2.4 or newer**:
 
 ```bash
-nix profile install github:cachix/devenv/latest
+nix profile add nixpkgs#devenv
+```
+
+If your Nix version doesn't know `nix profile add` yet, use `nix profile install` instead.
+
+To update an existing installation, run:
+
+```bash
+nix profile upgrade devenv
 ```
 
 You can find the complete installation guide and advanced options in the [official Devenv documentation](https://devenv.sh/getting-started/).
@@ -86,8 +94,8 @@ Run these to confirm your host environment is ready:
 # Nix installed and on PATH
 nix --version
 
-# Devenv installed and available
-devenv --version
+# Devenv installed and available (2.4 or newer)
+devenv version
 which devenv
 
 # Direnv (optional)
@@ -96,8 +104,8 @@ direnv --version || echo "direnv not installed"
 # Basic sanity: list Devenv commands
 devenv help
 
-# Check a few common ports (macOS / Linux examples)
-lsof -i :8000 -i :3306 -i :6379 || ss -tulpn | grep ':8000\|:3306\|:6379'
+# Check the default service ports (macOS / Linux examples)
+lsof -i :8000 -i :3306 -i :6379 -i :8010 -i :1025 -i :8025 || ss -tulpn | grep ':8000\|:3306\|:6379\|:8010\|:1025\|:8025'
 ```
 
 ### Shopware
@@ -107,20 +115,22 @@ Depending on your goals, you can either create a new Shopware project using the 
 <Tabs>
 <Tab title="New Shopware project">
 
-First, create a new Shopware project using Composer:
+You don't need PHP or Composer installed on your host to create the project. `nix run` downloads Composer together with PHP 8.4 from nixpkgs and runs it once, without installing anything globally.
+
+First, create a new Shopware project:
 
 ```bash
-composer create-project shopware/production <project-name>
+nix run nixpkgs#php84Packages.composer -- create-project shopware/production <project-name>
 cd <project-name>
 ```
 
 Add Devenv support for Shopware using the [Frosh Devenv Meta](https://github.com/FriendsOfShopware/devenv-meta) package:
 
 ```bash
-composer require frosh/devenv-meta
+nix run nixpkgs#php84Packages.composer -- require frosh/devenv-meta
 ```
 
-This command generates a basic `devenv.nix` configuration, enabling Devenv for your project.
+This command adds `devenv.nix`, `devenv.yaml`, `devenv.lock`, and `.envrc` to your project. From now on, Devenv provides PHP, Composer, and Node.js, so you can use plain `composer` inside the Devenv shell.
 
 </Tab>
 
@@ -141,7 +151,7 @@ devenv up
 ```
 
 ::: warning
-Before starting Devenv, ensure that common service ports (e.g., `8000`, `3306`, `6379`) are not already in use. If they are, Devenv will fail to start the corresponding services.
+The Shopware Devenv configuration enables the `strict_ports` mode of Devenv. If one of the service ports (`8000`, `3306`, `6379`, `8010`, `1025`, `8025`) is already in use, `devenv up` stops with an error that names the process holding the port, for example `Port 3306 is already in use (PID 12345)`. Stop that process, or move the service to another port as described in [Run multiple projects at the same time](devenv-options.md#run-multiple-projects-at-the-same-time).
 :::
 
 Check for active services:
@@ -150,7 +160,7 @@ Check for active services:
 <Tab title="macOS">
 
 ```bash
-lsof -i :80 -i :3306 -i :6379 -i :8000
+lsof -i :8000 -i :3306 -i :6379 -i :8010 -i :1025 -i :8025
 ```
 
 </Tab>
@@ -158,28 +168,23 @@ lsof -i :80 -i :3306 -i :6379 -i :8000
 <Tab title="Linux (Ubuntu, Debian, etc.)">
 
 ```bash
-ss -tulpn | grep ':80\|:3306\|:6379\|:8000'
+ss -tulpn | grep ':8000\|:3306\|:6379\|:8010\|:1025\|:8025'
 ```
 
 If you see no output for a given port, rerun the check with elevated privileges to include system services. For example:
 
 ```bash
-sudo ss -tulpn | grep ':80\|:3306\|:6379\|:8000'
+sudo ss -tulpn | grep ':8000\|:3306\|:6379\|:8010\|:1025\|:8025'
 ```
 
 </Tab>
 </Tabs>
 
-## Configure your database connection (optional)
+## Database connection and environment variables
 
-Verify your `.env` file points to the correct database:
+You don't need to configure the database connection yourself. Devenv sets `DATABASE_URL`, `MAILER_DSN`, and, when the corresponding services are enabled, `MESSENGER_TRANSPORT_DSN` and `OPENSEARCH_URL` as environment variables. Real environment variables take precedence over the values in your `.env` files, so the defaults in `.env` are ignored inside the Devenv shell.
 
-```bash
-# <PROJECT_ROOT>/.env
-DATABASE_URL="mysql://shopware:shopware@127.0.0.1:3306/shopware?sslmode=disable&charset=utf8mb4"
-```
-
-If you changed your MySQL port or user in `devenv.local.nix`, update these values here as well.
+On first start, Devenv creates the `shopware` database and a `shopware` user with the password `shopware`. If you change a service port in `devenv.local.nix`, the environment variables follow automatically.
 
 ## Launch Devenv and install Shopware
 
@@ -188,6 +193,8 @@ Start Devenv in the project directory:
 ```bash
 devenv up
 ```
+
+This starts all services in the foreground. Alternatively, start them in the background with `devenv up -d` and stop them later with `devenv down`.
 
 Then open a *new terminal* and enter the Devenv shell, which provides PHP, Composer, Node.js, npm, etc:
 
@@ -201,7 +208,7 @@ Inside the Devenv shell, install Shopware:
 bin/console system:install --basic-setup --create-database --force
 ```
 
-Once installation completes, open `http://localhost:8000/admin` in your browser. You should see the Shopware Admin interface.
+Once installation completes, open `http://127.0.0.1:8000/admin` in your browser. You should see the Shopware Admin interface.
 
 The default credentials are:
 
@@ -212,11 +219,19 @@ The default credentials are:
 On Windows with WSL2, change the default sales channel domain to `http://localhost:8000`. Use *http*, not https.
 :::
 
-To create a complete test setup with demo data, run:
+To create a complete test setup with demo data, first install the Shopware dev tools, which provide the data generators:
 
 ```bash
-composer setup && APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
+composer require --dev shopware/dev-tools
 ```
+
+Then generate the demo data and refresh the search index:
+
+```bash
+APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
+```
+
+If you work on the `shopware/shopware` repository instead, run `composer setup` before generating demo data. It installs the dependencies, sets up the database, and builds the Administration and Storefront.
 
 If installation completes without schema creation, run `bin/console database:migrate`.
 
@@ -225,6 +240,8 @@ If installation completes without schema creation, run `bin/console database:mig
 [Direnv](https://direnv.net/) makes it easier to work with multiple Devenv projects by automatically activating the correct environment when you enter a project directory. It's optional but recommended for a smoother workflow.
 
 With Direnv, you don’t have to run `devenv shell` manually every time you use the binaries. The environment loads automatically.
+
+The `.envrc` file that `frosh/devenv-meta` adds to your project loads the Direnv integration of Devenv with `eval "$(devenv direnvrc)"`, so it always matches your installed Devenv version.
 
 You still need to start the services once with `devenv up`.
 
@@ -253,7 +270,7 @@ apt install direnv
 If you have [Nix](https://nixos.org) installed, you can install Direnv using:
 
 ```bash
-nix profile install nixpkgs#direnv
+nix profile add nixpkgs#direnv
 ```
 
 Otherwise, follow the installation steps for your platform in Direnv's [official documentation](https://direnv.net/docs/hook.html).
@@ -323,21 +340,24 @@ Direnv will now automatically activate the Devenv environment whenever you enter
 
 When you start Devenv with `devenv up`, Shopware automatically provides several core services. You can access them using the following addresses:
 
-| Service        | Default address                            | Description                           |
-| -------------- | ------------------------------------------ | ------------------------------------- |
-| MySQL          | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware.        |
-| Mailhog (SMTP) | `smtp://127.0.0.1:1025`                    | Local mail capture for testing email. |
-| Redis (TCP)    | `tcp://127.0.0.1:6379`                     | Used for caching and sessions.        |
-| Caddy          | `http://127.0.0.1:8000`                    | Web server.                           |
-| Adminer        | `http://127.0.0.1:9080`                    | Database management tool.             |
+| Service        | Default address                            | Description                            |
+| -------------- | ------------------------------------------ | -------------------------------------- |
+| MySQL          | `mysql://shopware:shopware@127.0.0.1:3306` | Primary database for Shopware.         |
+| Mailpit (SMTP) | `smtp://127.0.0.1:1025`                    | Local mail capture for testing email.  |
+| Mailpit (UI)   | `http://127.0.0.1:8025`                    | Web interface for captured emails.     |
+| Redis (TCP)    | `tcp://127.0.0.1:6379`                     | Used for sessions.                     |
+| Caddy          | `http://127.0.0.1:8000`                    | Web server.                            |
+| Adminer        | `http://127.0.0.1:8010`                    | Database management tool.              |
 
 ::: tip
 The MySQL service listens on port `3306` and stores its data in `<PROJECT_ROOT>/.devenv/state/mysql`. Use `127.0.0.1` instead of `localhost` when connecting to MySQL.
 :::
 
+RabbitMQ and OpenSearch are available as optional services. See [Enable RabbitMQ](devenv-options.md#enable-rabbitmq) and [Enable OpenSearch](devenv-options.md#enable-opensearch).
+
 ### Redis
 
-Redis is used for caching and sessions and runs on `tcp://127.0.0.1:6379`.
+Redis stores PHP sessions and runs on `tcp://127.0.0.1:6379`. Devenv enables the `redis` PHP extension automatically while the Redis service is enabled.
 
 If Redis fails to start with an error, `Failed to configure LOCALE for invalid locale name`, set a valid locale before starting Devenv:
 
@@ -349,18 +369,24 @@ export LANG=en_US.UTF-8
 
 [Caddy](https://caddyserver.com/) is an open source web server written in Go with automatic HTTPS. It serves your local Shopware instance by default at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
+Use `127.0.0.1` rather than `localhost`: the installation stores `http://127.0.0.1:8000` as the Storefront's sales channel domain.
+
+Caddy also opens its [admin API](https://caddyserver.com/docs/api) on `127.0.0.1:2019`. This is expected and not a website. Several Devenv projects can run Caddy at the same time: on macOS and Linux, Caddy opens this port with `SO_REUSEPORT`, so the projects share it instead of failing to start.
+
 ### Adminer
 
-[Adminer](https://www.adminer.org/) is a full-featured, lightweight database management tool written in PHP. You can use it to view and manage your Shopware database: [http://127.0.0.1:9080](http://127.0.0.1:9080).
+[Adminer](https://www.adminer.org/) is a full-featured, lightweight database management tool written in PHP. You can use it to view and manage your Shopware database: [http://127.0.0.1:8010](http://127.0.0.1:8010).
 
 Default credentials:
 
+* Server: `127.0.0.1`
 * User: `shopware`
 * Password: `shopware`
+* Database: `shopware`
 
-### Mailhog
+### Mailpit
 
-[MailHog](https://github.com/mailhog/MailHog) is an email testing tool that intercepts outgoing messages so you can preview them in your browser: [http://localhost:8025](http://localhost:8025).
+[Mailpit](https://mailpit.axllent.org/) is an email testing tool that intercepts outgoing messages so you can preview them in your browser: [http://127.0.0.1:8025](http://127.0.0.1:8025).
 
 ## Customize your setup
 
@@ -369,7 +395,7 @@ You can customize the predefined Devenv services to match your local needs - for
 To override or extend the defaults, create a `devenv.local.nix` file in your project root.
 This file lets you disable built-in services, adjust configuration settings, or add new services your project requires.
 
-After editing `devenv.local.nix`, reload your environment to apply the changes.
+After editing `devenv.local.nix`, restart your services and shell to apply the changes.
 
 Example:
 
@@ -378,27 +404,21 @@ Example:
 { pkgs, config, lib, ... }:
 
 {
- # Disable a service
- services.adminer.enable = false;
+  # Disable a service
+  services.adminer.enable = false;
 
- # Use a custom virtual host
- services.caddy.virtualHosts."http://shopware.swag" = {
- extraConfig = ''
- root * public
- php_fastcgi unix/${config.languages.php.fpm.pools.web.socket}
- file_server
- '';
- };
+  # Use a different PHP version
+  languages.php.version = "8.3";
 
- # Customize nodejs version
- languages.javascript = {
- package = pkgs.nodejs-18_x;
- };
+  # Use a different Node.js version
+  languages.javascript.package = pkgs.nodejs_24;
 
- # Override an environment variable
- env.APP_URL = "http://shopware.swag:YOUR_CADDY_PORT";
+  # Override an environment variable
+  env.SHOPWARE_HTTP_CACHE_ENABLED = "0";
 }
 ```
+
+To serve Shopware on a different port or domain, see [Customize Caddy ports or virtual hosts](devenv-options.md#customize-caddy-ports-or-virtual-hosts).
 
 For a complete list of all available services and their configuration options, refer to the official [Devenv documentation](https://devenv.sh/reference/options/).
 
