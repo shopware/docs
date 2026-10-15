@@ -49,7 +49,7 @@ The provided [Apache](./config-reference/server/apache.md), [Nginx](./config-ref
 
 When using a [reverse proxy](../../guides/hosting/infrastructure/reverse-http-cache.md), ensure that it preserves the `Content-Security-Policy` header from the origin server, including on cached responses. Shopware's default Fastly and Varnish configurations preserve this header.
 
-If you serve static assets from a dedicated CDN using a different CDN URL, configure this response header manually in that CDN. Shopware's application and webserver configuration cannot enforce headers on responses served independently by the CDN. Match the asset paths used by your CDN, including any path prefix, and verify the header on both cache hits and misses. A separate CDN URL does not replace CSP protection for active documents served from it.
+If you serve static assets from a dedicated CDN using a different CDN URL, configure this response header manually in that CDN. Shopware's application and webserver configuration cannot enforce headers on responses served independently by the CDN. Ensure that your CDN includes this header when serving stored HTML and SVG files, including cached responses. A separate CDN URL does not replace CSP protection for active documents served from it.
 
 ## File access
 
