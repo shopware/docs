@@ -14,22 +14,22 @@ Shopware ships a native MCP server with the core platform. It exposes an endpoin
 :::info Experimental
 The MCP server is considered experimental until Shopware 6.8. APIs and tool names may change before the stable release.
 
-The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` feature flag. Shopware 6.7.14.0 removes the flag and introduces progressive tool discovery. Shopware 6.7.15.0 moves to `symfony/mcp-bundle` 0.13 and adds connect-time toolset selection. Shopware 6.7.16.0 changes an unset MCP allowlist from "everything allowed" to "nothing allowed". See [Configuration](./configuration.md) for what applies to which version.
+The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` feature flag. Shopware 6.7.14.0 removes the flag and introduces progressive tool discovery. Shopware 6.7.15.0 moves to `symfony/mcp-bundle` 0.13 and adds connect-time toolset selection. Shopware 6.7.16.0 moves to `symfony/mcp-bundle` 0.14, changes an unset MCP allowlist from "everything allowed" to "nothing allowed", and adds `structuredContent` and `isError` to tool results. See [Configuration](./configuration.md) for what applies to which version.
 :::
 
 ## What the MCP server provides
 
 The following table summarizes the MCP server's core capabilities.
 
-| Capability         | Details                                                                                               |
-| ------------------ | ----------------------------------------------------------------------------------------------------- |
-| **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP transport                             |
-| **Authentication** | Integration or OAuth credentials for Admin API; Store API authentication headers for Store API        |
-| **Authorization**  | Admin API ACL enforcement or the current Store API sales-channel context                              |
-| **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id` |
-| **Rate limiting**  | Per-principal rate limiting                                                                           |
-| **Discovery**      | A small default tool surface with search, session-scoped toolsets, and connect-time `?toolsets`       |
-| **Extensibility**  | Extensions can contribute custom tools, prompts, and resources                                        |
+| Capability         | Details                                                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP transport                                             |
+| **Authentication** | Integration or OAuth credentials for Admin API; Store API authentication headers for Store API                        |
+| **Authorization**  | Admin API ACL enforcement or the current Store API sales-channel context                                              |
+| **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id`                 |
+| **Rate limiting**  | Per-endpoint rate limiting, keyed per access token (Admin API) or per sales-channel context and client IP (Store API) |
+| **Discovery**      | A small default tool surface with search, session-scoped toolsets, and connect-time `?toolsets`                       |
+| **Extensibility**  | Extensions can contribute custom tools, prompts, and resources                                                        |
 
 ## Architecture
 
@@ -63,18 +63,17 @@ Capabilities are registered at container compile time from their service tags. C
 
 ## Spec coverage and known limitations
 
-Shopware's MCP server is built on `symfony/mcp-bundle` and takes the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25) as its reference. Shopware 6.7.15.0 and later use `symfony/mcp-bundle ~0.13.0` with `mcp/sdk ^0.8.1`. Shopware 6.7.14.x uses `~0.11.0` with `mcp/sdk ^0.7.0`.
+Shopware's MCP server is built on `symfony/mcp-bundle` and takes the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25) as its reference. Shopware 6.7.16.0 and later use `symfony/mcp-bundle ~0.14.1` with `mcp/sdk ^0.8.1`. Shopware 6.7.15.x uses `~0.13.0` with `mcp/sdk ^0.8.1`. Shopware 6.7.14.x uses `~0.11.0` with `mcp/sdk ^0.7.0`.
 
 Shopware serves only the session-based handshake protocol era. The SDK negotiates the concrete revision from the client's `initialize` request within that era. `mcp/sdk` 0.8 also supports the stateless 2026-07-28 revision, but Shopware disables it on both endpoints. That revision issues no `Mcp-Session-Id`, and session-scoped toolsets and `listChanged` notifications depend on that header. The bundle may not cover every feature of the reference revision, and some areas of the spec are only partially implemented.
 
 Shopware supports cursor pagination for capability lists and emits `listChanged` notifications when capabilities change. The following table lists the remaining known gaps.
 
-| Area                                         | Status                                                                  |
-| -------------------------------------------- | ----------------------------------------------------------------------- |
-| Resource subscriptions                       | Not implemented (resource templates are supported)                      |
-| Completion utility for prompt/URI arguments  | Not implemented                                                         |
-| `structuredContent` and `isError` in results | Not used; Shopware uses its own `{"success": bool, ...}` envelope       |
-| ACL checks on resources                      | Not implemented (resources are public within the authenticated session) |
+| Area                                        | Status                                                                                                                                |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Resource subscriptions                      | Not implemented (resource templates are supported)                                                                                    |
+| Completion utility for prompt/URI arguments | Not implemented                                                                                                                       |
+| ACL checks on resources                     | Not implemented (resources are public within the authenticated session, except stored tool results, which only their caller can read) |
 
 If a feature you need is missing from `symfony/mcp-bundle`, check its [repository](https://github.com/symfony/mcp-bundle) for open issues and pending releases before building a workaround.
 
