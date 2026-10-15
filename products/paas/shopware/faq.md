@@ -402,7 +402,7 @@ The same distinction applies to vault secrets: type `buildenv` for build time, t
 
 ### Can I configure additional queues?
 
-No. Creating additional queues is not currently supported.
+Yes. Define additional Symfony Messenger transports in a separate config file, not in `operator.yaml`, which is managed by `shopware/k8s-meta`. See [Split message queues](./guides/message-queues.md).
 
 ### What IP addresses does PaaS use for outbound traffic?
 

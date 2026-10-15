@@ -77,4 +77,6 @@ shopware:
 
 :::
 
+To add Messenger transports, for example a dedicated mail queue, see [Split message queues](../guides/message-queues.md).
+
 For more details on how Symfony merges configuration files, refer to the [Symfony configuration documentation](https://symfony.com/doc/current/configuration.html#configuration-environments).
