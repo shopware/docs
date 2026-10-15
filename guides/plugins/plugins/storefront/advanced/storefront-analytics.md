@@ -86,7 +86,7 @@ The cart, checkout and `purchase` events report these event parameters:
 
 ### Categories
 
-On a category page, the categories come from the breadcrumb. On pages whose breadcrumb does not describe the product, such as the homepage, a landing page, the wishlist, or a cross selling product on a product detail page, the analytics script requests the path of the product when the shopper adds or removes it. The route `frontend.analytics.product-categories` answers `GET /widgets/analytics/product-categories?productId=<id>` with the breadcrumb of the product detail page as a list of names. It is HTTP cached, and its URL is only added to `window.router` when analytics are active.
+On a category page, the products of the category listing take their categories from the breadcrumb. On a product detail page, the main product does. For every other product, such as on the homepage, a landing page or the wishlist, in a product slider of a category page, or in the cross selling of a product detail page, the analytics script requests the path of the product when the shopper adds or removes it. The route `frontend.analytics.product-categories` answers `GET /widgets/analytics/product-categories?productId=<id>` with the breadcrumb of the product detail page as a list of names. It is HTTP cached, and its URL is only added to `window.router` when analytics are active.
 
 Products added from a product box post their brand and categories in the line item payload, as `manufacturerName` and `categoryNames`. The cart, checkout and purchase events read them from there, so neither the cart nor the checkout loads anything for analytics.
 
