@@ -4,6 +4,10 @@
 The document root must always point to the public folder, to ensure all functionality works.
 :::
 
+The static-file policy below restricts SVG files and HTML files under `media/` and `thumbnail/`.
+Missing HTML media files return 404; application-rendered HTML and bundled HTML applications retain their own response policies.
+Custom static documents must work without scripts, embedded documents, base URL overrides or form submissions; images and styles remain permitted.
+
 ```text
 server {
     listen 80;
@@ -37,6 +41,14 @@ server {
         }
     }
     
+    # Stored HTML must not affect pages rendered by PHP.
+    location ~* ^/(media|thumbnail)/.*[.]html$ {
+        try_files $uri =404;
+        expires 1y;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        add_header Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+    }
+
     location ~ ^/(theme|media|thumbnail|bundles|css|fonts|js|recovery|sitemap)/ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
@@ -48,13 +60,13 @@ server {
         open_file_cache_errors off;
     
         location ~* ^.+\.svg {
-            add_header Content-Security-Policy "script-src 'none'";
+            add_header Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
             add_header Cache-Control "public, must-revalidate, proxy-revalidate";
             log_not_found off;
         }
     }
 
-    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|html|woff|woff2|xml)$ {
+    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|webp|html|woff|woff2|xml)$ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
 
@@ -75,7 +87,10 @@ server {
     }
 
     location ~* ^.+\.svg$ {
-        add_header Content-Security-Policy "script-src 'none'";
+        try_files $uri /index.php$is_args$args;
+        expires 1y;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        add_header Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
     }
 
     location / {
