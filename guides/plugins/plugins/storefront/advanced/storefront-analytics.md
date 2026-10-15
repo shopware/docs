@@ -44,21 +44,23 @@ In Google Tag Manager, read the parameters with data layer variables such as `ec
 
 ## Events
 
-| Event                        | Reported when                                                                                               |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `view_item_list`             | A product listing is shown, filtered, sorted or paginated                                                   |
-| `select_item`                | The shopper follows a product link in a list                                                                |
-| `view_item`                  | A product detail page is shown                                                                              |
-| `add_to_cart`                | A product is added to the cart                                                                              |
-| `remove_from_cart`           | A product is removed from the cart                                                                          |
-| `add_to_wishlist`            | A product is added to the wishlist                                                                          |
-| `remove_from_wishlist`       | A product is removed from the wishlist                                                                      |
-| `view_cart`                  | The cart page is shown, or the off-canvas cart opens when its tracking is enabled in the analytics settings |
-| `begin_checkout`             | The shopper starts the checkout                                                                             |
-| `add_shipping_info`          | A shipping method is selected, once per method and checkout                                                 |
-| `add_payment_info`           | A payment method is selected, once per method and checkout                                                  |
-| `purchase`                   | An order is placed                                                                                          |
-| `login`, `sign_up`, `search` | The shopper logs in, registers or searches                                                                  |
+| Event                  | Reported when                                                                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `view_item_list`       | A product listing is shown, filtered, sorted or paginated                                                                              |
+| `select_item`          | The shopper follows a product link in a list                                                                                           |
+| `view_item`            | A product detail page is shown                                                                                                         |
+| `add_to_cart`          | A product is added to the cart. Repeating an order in the account reports one event with all its line items                            |
+| `remove_from_cart`     | A product is removed from the cart                                                                                                     |
+| `add_to_wishlist`      | A product is added to the wishlist                                                                                                     |
+| `remove_from_wishlist` | A product is removed from the wishlist                                                                                                 |
+| `view_cart`            | The cart page is shown, or the off-canvas cart opens when its tracking is enabled in the analytics settings                            |
+| `begin_checkout`       | The shopper starts the checkout                                                                                                        |
+| `add_shipping_info`    | A shipping method is selected, once per method and checkout                                                                            |
+| `add_payment_info`     | A payment method is selected, once per method and checkout                                                                             |
+| `purchase`             | An order is placed                                                                                                                     |
+| `login`                | A login succeeded. Reported on the page after the login, so a wrong password reports nothing                                           |
+| `sign_up`              | A customer account was created. Reported on the page after the registration. A guest checkout and a failed registration report nothing |
+| `search`               | The shopper searches                                                                                                                   |
 
 ## Event and item parameters
 
@@ -117,12 +119,17 @@ The list of a selected product is kept in the local storage of the browser under
 Analytics treat every element with a `data-product-information` attribute as a product, not only the `.product-box` of the default theme. The attribute holds a JSON object with at least the product `id`:
 
 ```twig
+{# a matching price rule or graduated prices replace the default price #}
+{% set price = product.calculatedPrices.count > 0
+    ? product.calculatedPrices.first.unitPrice
+    : product.calculatedPrice.unitPrice %}
+
 {% set productInformation = {
     id: product.id,
     sku: product.productNumber,
     name: product.translated.name,
     brand: product.manufacturer.translated.name|default(''),
-    price: product.calculatedPrice.unitPrice
+    price: price
 } %}
 
 <article class="my-product-teaser" data-product-information="{{ productInformation|json_encode }}">
@@ -138,6 +145,8 @@ Analytics treat every element with a `data-product-information` attribute as a p
 | `brand`   | No       | `item_brand`                                              |
 | `price`   | No       | `price`                                                   |
 | `variant` | No       | `item_variant`                                            |
+
+Report the price the shopper pays for one piece, as in the example: `calculatedPrices.first` when a price rule or graduated prices apply, otherwise `calculatedPrice`. The product box and the product detail page do the same.
 
 Only these properties are reported. Other keys of the object are ignored, so the attribute can carry data for your own scripts.
 
