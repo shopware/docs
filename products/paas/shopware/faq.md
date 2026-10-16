@@ -436,17 +436,19 @@ No. Single sign-on for tools such as Grafana and OpenSearch is not available at 
 
 Both are supported as application performance monitoring integrations. Each needs an account of your own — the platform does not provide one.
 
-The setup pattern is the same for both. Store the credentials as `env` secrets in the vault, enable the service in [`application.yaml`](./fundamentals/application-yaml.md), then update your application. The secret must exist **before** you enable the service, otherwise the deployment fails. The probe or extension is added to your image automatically, so do not list it under `app.php.extensions`.
+They support shop applications only, enabling either one on a composable frontend is rejected when the configuration is validated.
+
+The setup pattern is the same for both. Store the credentials as `env` secrets in the vault, enable the service in [`application.yaml`](./fundamentals/application-yaml.md), then update your application. The secret must exist **before** you enable the service, otherwise the deployment fails. The probe or extension is added to your image automatically, so you do not need to list it under `app.php.extensions`.
 
 **Blackfire** — store `BLACKFIRE_SERVER_ID` and `BLACKFIRE_SERVER_TOKEN`, then set `services.blackfire.enabled` to `true`. See [Blackfire](./monitoring/blackfire.md).
 
-**Tideways** — store `TIDEWAYS_API_KEY`, then set `services.tideways.enabled` to `true`. Your shop reports under the service name `shopware`. Tideways runs on shop applications only; enabling it on a composable frontend is rejected when the configuration is validated. See [Tideways](./monitoring/tideways.md).
+**Tideways** — store `TIDEWAYS_API_KEY`, then set `services.tideways.enabled` to `true`. Your shop reports to the default service of your Tideways project, under the environment `production`. See [Tideways](./monitoring/tideways.md).
 
 ### Can I run more than one profiler at a time?
 
 No. Only one can be active, and a profiler also displaces tracing:
 
-- **Blackfire and Tideways are mutually exclusive.** Setting both to `true` is rejected with the error `blackfire and tideways cannot be enabled at the same time`.
+- **Blackfire and Tideways are mutually exclusive.** Setting both to `true` is rejected.
 - **A profiler suppresses OpenTelemetry tracing.** While either one is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for that period.
 
 To return to tracing, set `enabled` back to `false` for whichever profiler is active, then update the application. See [Traces](./monitoring/traces.md).
