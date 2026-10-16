@@ -74,7 +74,7 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 
 ## Step 2: Domain ownership
 
-To prove domain ownership a `TXT` record needs to be added to the root domain.
+To prove domain ownership, a `TXT` record needs to be added to the root domain.
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
@@ -132,7 +132,7 @@ dig _shopware-challenge.example.com TXT
 
 Ensure the responses match the values you configured in Step 1 and 2.
 
-## Step 4: Create Domain in PaaS
+## Step 4: Create a Domain in PaaS
 
 Once DNS records are configured and propagated, create the domain using the CLI:
 
