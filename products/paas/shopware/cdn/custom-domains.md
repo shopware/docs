@@ -36,7 +36,7 @@ The `TXT` challenge record applies to apex domains only. If your custom domain i
 
 Configure DNS records at your domain registrar or DNS provider. The required records differ based on whether you're using an apex domain or a subdomain.
 
-### For Non-Apex Domains (Subdomains)
+### For Non-Apex Domains
 
 If your custom domain is a subdomain (e.g., `shop.example.com`, `www.example.com`), create a `CNAME` record:
 
@@ -72,19 +72,20 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 2a04:4e42:600::820
 ```
 
-## Step 2: Domain ownership (apex domains only)
+## Step 2: Domain ownership 
 
-Apex domains additionally require a `TXT` record to prove domain ownership. Skip this step if your custom domain is a subdomain.
+To prove domain ownership a `TXT` record needs to be added to the root domain.
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
 ```
 
-Replace `<domain>` with your apex domain and `<organization id>` with your organization ID from `sw-paas org list`.
+Replace `<domain>` with your root domain and `<organization id>` with your organization ID from `sw-paas org list`.
 
 Example with the following setup:
 
-- your apex domain is `example.com`
+- your subdomain is `shop.example.com`
+- your root domain is `example.com`
 - your organization ID is `abc123`
 
 Create the following record:
