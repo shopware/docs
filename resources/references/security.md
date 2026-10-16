@@ -36,6 +36,24 @@ Captchas help to verify the user's humanity and prevent automated bots or script
 
 The default policies are configured over the `shopware.security.csp_templates` symfony container parameter and can be adjusted over the container configuration.
 
+## XSS on stored assets
+
+Stored HTML and SVG files can execute scripts when opened directly in a browser. When these files share an origin with the shop, malicious content can cause cross-site scripting (XSS). Web servers and CDNs often serve stored assets without passing through Shopware, so the application's CSP does not protect these responses.
+
+Serve stored HTML and SVG assets with the following response header:
+
+```http
+Content-Security-Policy: script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'
+```
+
+This policy blocks scripts, embedded documents, base URL overrides and form submissions while permitting images and styles. It must be present on the asset response, including when a cache serves the file.
+
+The provided [Apache](./config-reference/server/apache.md), [Nginx](./config-reference/server/nginx.md) and [Caddy](./config-reference/server/caddy.md) configurations include CSP protection for stored HTML and SVG. Update and deploy existing configurations to receive these protections.
+
+When using a [reverse proxy](../../guides/hosting/infrastructure/reverse-http-cache.md), ensure that it preserves the `Content-Security-Policy` header from the origin server, including on cached responses. Shopware's default Fastly and Varnish configurations preserve this header.
+
+If you serve static assets from a dedicated CDN using a different CDN URL, configure this response header manually in that CDN. Shopware's application and webserver configuration cannot enforce headers on responses served independently by the CDN. Ensure that your CDN includes this header when serving stored HTML and SVG files, including cached responses. A separate CDN URL does not replace CSP protection for active documents served from it.
+
 ## File access
 
 Shopware 6 stores and processes a wide variety of files. This goes from product images or videos to generated documents such as invoices or delivery notes. This data should be stored securely, and backups should be generated regularly. For more information, refer to [File system](../../guides/hosting/infrastructure/filesystem)
