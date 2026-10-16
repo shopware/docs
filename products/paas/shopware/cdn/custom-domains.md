@@ -28,15 +28,15 @@ Custom domains allow you to serve your Shopware shop through your own branded do
 | `CNAME`     |        No        |       **Yes**        | `cdn.shopware.shop`    |   1   | Routes subdomain traffic to Fastly CDN |
 | `A`         |     **Yes**      |          No          | Fastly IPv4 addresses  |   4   | Routes apex domain traffic (IPv4)      |
 | `AAAA`      |     **Yes**      |          No          | Fastly IPv6 addresses  |   4   | Routes apex domain traffic (IPv6)      |
-| `TXT`       |     **Yes**      |          No          | Domain ownership proof |   1   | Validates domain ownership             |
+| `TXT`       |     **Yes**      |       **Yes**        | Domain ownership proof |   1   | Validates domain ownership             |
 
-The `TXT` challenge record applies to apex domains only. If your custom domain is a subdomain, the `CNAME` record is the only record you need and you can skip Step 2.
+The `TXT` challenge record is required for all root domains.
 
 ## Step 1: Configure DNS Records
 
 Configure DNS records at your domain registrar or DNS provider. The required records differ based on whether you're using an apex domain or a subdomain.
 
-### For Non-Apex Domains (Subdomains)
+### For Non-Apex Domains
 
 If your custom domain is a subdomain (e.g., `shop.example.com`, `www.example.com`), create a `CNAME` record:
 
@@ -72,19 +72,20 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 2a04:4e42:600::820
 ```
 
-## Step 2: Domain ownership (apex domains only)
+## Step 2: Domain ownership
 
-Apex domains additionally require a `TXT` record to prove domain ownership. Skip this step if your custom domain is a subdomain.
+To prove domain ownership, a `TXT` record needs to be added to the root domain.
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
 ```
 
-Replace `<domain>` with your apex domain and `<organization id>` with your organization ID from `sw-paas org list`.
+Replace `<domain>` with your root domain and `<organization id>` with your organization ID from `sw-paas org list`.
 
 Example with the following setup:
 
-- your apex domain is `example.com`
+- your subdomain is `shop.example.com`
+- your root domain is `example.com`
 - your organization ID is `abc123`
 
 Create the following record:
@@ -97,7 +98,8 @@ _shopware-challenge.example.com.  IN  TXT  "shopware-challenge=abc123"
 The challenge record needs to stay as long as the domain is configured in our PaaS.
 :::
 
-::: info **DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 4.
+::: info
+**DNS Propagation Time:** DNS changes typically propagate within 15-30 minutes but can take up to 48 hours depending on TTL settings and DNS provider. We strongly recommend waiting for full propagation before proceeding to Step 4.
 Use Step 3 to validate all records are correct and propagated.
 :::
 
@@ -121,7 +123,7 @@ dig example.com A
 dig example.com AAAA
 ```
 
-**For the challenge record (apex domains only):**
+**For the ownership challenge record:**
 
 ```bash
 # Verify TXT record
@@ -130,7 +132,7 @@ dig _shopware-challenge.example.com TXT
 
 Ensure the responses match the values you configured in Step 1 and 2.
 
-## Step 4: Create Domain in PaaS
+## Step 4: Create a Domain in PaaS
 
 Once DNS records are configured and propagated, create the domain using the CLI:
 
@@ -201,7 +203,7 @@ The domain should now serve traffic through the Fastly CDN.
    - If records appear correct in your DNS provider but aren't resolving, wait longer for propagation
    - DNS changes can take up to 48 hours in some cases
 
-4. **Verify organization ID (apex domains)**
+4. **Verify organization ID**
    - Run `sw-paas org list` to confirm your organization ID
    - Ensure the TXT record value exactly matches: `shopware-challenge=<your-org-id>`
 
