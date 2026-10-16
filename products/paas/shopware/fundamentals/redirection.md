@@ -1,0 +1,32 @@
+---
+nav:
+  title: Redirection
+  position: 105
+---
+
+# Redirection management
+
+Our platform propose (limited to [Composable Frontends](../composable-frontends/index.md) for now) to manage redirect link through [redirection.io](https://redirection.io/) using BYOL model.
+
+## How to configure it
+You first need to have an account on [redirection.io](https://redirection.io/) and a `PROJECT_KEY`.
+
+To enable [redirection.io](https://redirection.io/) for your application you need to do the following:
+
+- Create a secret using `sw-paas vault create`, use type `env`. The key of the secret **needs** to be `REDIRECTIONIO_PROJECT_KEY` and the value is the value your `PROJECT_KEY`.
+- In the `application.yaml` file add the following:
+```yaml
+services:
+  redirectionio:
+    enabled: true
+```
+
+Once the 2 previous step are done, you **need to trigger a new deployment to activate** [redirection.io](https://redirection.io/) on your application.
+
+
+::: info
+We manage the agent for you, but the management of the redirect is your responsability and is not cover here. It needs to be done through [redirection.io](https://redirection.io/).
+:::
+
+You can check that [redirection.io](https://redirection.io/) is active in their UI (instance/self-hosted), see below:
+ ![Redirection.io dashboard](../../../../assets/redirectionio.png)
