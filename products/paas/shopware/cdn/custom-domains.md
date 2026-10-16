@@ -72,7 +72,7 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 2a04:4e42:600::820
 ```
 
-## Step 2: Domain ownership 
+## Step 2: Domain ownership
 
 To prove domain ownership a `TXT` record needs to be added to the root domain.
 
