@@ -1,17 +1,17 @@
 ---
 nav:
-  title: Keeping extensions compatible
+  title: Keeping Extensions Compatible
   position: 20
 
 ---
 
-# Keeping extensions compatible
+# Keeping Extensions Compatible
 
 ## Introduction
 
 Shopware follows a semantic [versioning strategy](https://www.shopware.com/en/news/shopware-6-versioning-strategy/): minor and patch releases are backward compatible, breaking changes ship only with a major release.
 
-This page is for developers of plugins, apps and themes. It explains how Shopware announces an upcoming change in its public API and how you write extension code that works on the current and the next major version at the same time.
+This page is for developers of extensions (plugins and apps). It explains how Shopware announces an upcoming change in its public API and how you write extension code that works on the current and the next major version at the same time.
 
 The rules that Shopware's core developers follow when they change public API, including what counts as a break and what may change in a minor release, are in the [Backward compatibility](./core/backward-compatibility.md) guideline. That page is mirrored from the `shopware/shopware` repository and is the source of truth for those rules.
 
