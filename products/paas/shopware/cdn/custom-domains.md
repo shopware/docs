@@ -30,7 +30,7 @@ Custom domains allow you to serve your Shopware shop through your own branded do
 | `AAAA`      |     **Yes**      |          No          | Fastly IPv6 addresses  |   4   | Routes apex domain traffic (IPv6)      |
 | `TXT`       |     **Yes**      |       **Yes**        | Domain ownership proof |   1   | Validates domain ownership             |
 
-The `TXT` challenge record applies to apex domains only. If your custom domain is a subdomain, the `CNAME` record is the only record you need and you can skip Step 2.
+The `TXT` challenge record is required for all root domains.
 
 ## Step 1: Configure DNS Records
 
@@ -123,7 +123,7 @@ dig example.com A
 dig example.com AAAA
 ```
 
-**For the challenge record (apex domains only):**
+**For the ownership challenge record:**
 
 ```bash
 # Verify TXT record
@@ -203,7 +203,7 @@ The domain should now serve traffic through the Fastly CDN.
    - If records appear correct in your DNS provider but aren't resolving, wait longer for propagation
    - DNS changes can take up to 48 hours in some cases
 
-4. **Verify organization ID (apex domains)**
+4. **Verify organization ID**
    - Run `sw-paas org list` to confirm your organization ID
    - Ensure the TXT record value exactly matches: `shopware-challenge=<your-org-id>`
 
