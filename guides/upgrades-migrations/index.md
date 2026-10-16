@@ -65,6 +65,8 @@ To reduce long-term upgrade cost:
 * Keep database migrations idempotent.
 * Track deprecations continuously—do not batch them.
 
+For custom system configuration forms, see [Migrating custom configuration form consumers](../plugins/plugins/plugin-fundamentals/use-plugin-configuration.md#migrating-custom-configuration-form-consumers) for the tab schema introduced in Shopware 6.7.16.0 and legacy APIs removed in Shopware 6.8.
+
 The Shopware CLI upgrade wizard can also be useful when you maintain extensions: assemble the extensions in a representative Composer-managed test project, select the target Shopware version, and use the extension queue and generated report to identify updates, blockers, and items that need manual review. This does not replace testing the extension itself against the target Shopware version.
 
 ### Custom plugins
