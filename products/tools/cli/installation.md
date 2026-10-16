@@ -183,6 +183,24 @@ To disable it for the current shell session (or persistently, by adding it to yo
 export SHOPWARE_CLI_NO_UPDATE_NOTIFICATION=true
 ```
 
+## AI client skill recommendation
+
+When Shopware CLI is invoked by a supported AI coding agent (detected from the `AI_AGENT` environment variable set by the agent itself) and its `shopware-cli` skill is not yet installed for that client, the CLI prints a short, non-blocking recommendation to stderr pointing at the `shopware-cli ai add` command. See [AI agent skills](https://github.com/shopware/shopware-cli/blob/main/docs/AGENT_SKILLS.md) for details on the `ai` command group. It never installs anything automatically and is shown at most once per client every 24 hours.
+
+It stays silent when:
+
+- no AI client is detected
+- `CI` is set
+- `--no-ai-hint` is passed
+- the invoked command is itself an `ai …` command
+- the skill is already installed for that client
+
+To silence it for a single command, pass `--no-ai-hint`:
+
+```bash
+shopware-cli --no-ai-hint <command>
+```
+
 ## Environment variables
 
 ### Authentication and configuration
