@@ -308,14 +308,15 @@ Generating the skeletons and essential files needed to create and structure a Sh
 
 ### Sales-channel
 
-| Command                             | Description                                   |
-| :---------------------------------- | :-------------------------------------------- |
-| `sales-channel:create`              | Creates a new sales channel                   |
-| `sales-channel:create:storefront`   | Creates a new storefront sales channel        |
-| `sales-channel:list`                | Lists all sales channels                      |
-| `sales-channel:maintenance:disable` | Disables maintenance mode for a sales channel |
-| `sales-channel:maintenance:enable`  | Enables maintenance mode for a sales channel  |
-| `sales-channel:update:domain`       | Updates a sales channel domain                |
+| Command                             | Description                                                                   | Version  |
+| :---------------------------------- | :---------------------------------------------------------------------------- | :------- |
+| `sales-channel:create`              | Creates a new sales channel                                                   |          |
+| `sales-channel:create:storefront`   | Creates a new storefront sales channel                                        |          |
+| `sales-channel:file:enable`         | Enables `llms.txt` and `AGENTS.md` for Storefront and headless sales channels | 6.7.16.0 |
+| `sales-channel:list`                | Lists all sales channels                                                      |          |
+| `sales-channel:maintenance:disable` | Disables maintenance mode for a sales channel                                 |          |
+| `sales-channel:maintenance:enable`  | Enables maintenance mode for a sales channel                                  |          |
+| `sales-channel:update:domain`       | Updates a sales channel domain                                                |          |
 
 ### Scheduled-task
 
