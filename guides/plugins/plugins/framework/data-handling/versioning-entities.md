@@ -52,7 +52,7 @@ protected function defineFields(): FieldCollection
 ## Create and merge version
 
 In this section we will create a new version of our entity which will create a new entry in the database with our updated values.
-When we merge a particular version, all versions before the merged version are deleted.
+When we merge a particular version, its changes are written into the version of the context we pass in, and the records of the merged version are deleted.
 In the example below, we are using a service where we injected a `swag_example.repository`.
 
 ```php
@@ -109,8 +109,8 @@ Subsequently, we searched the repository with the original context and our new v
 In the first search result, using the original context, we get the first version of our entity, which we created at the beginning.
 With the second search result we get the updated entity, using our new versioned context.
 
-Lastly, we used the repository method `merge` with our versionId, which deletes all versions before this one.
-The merged version is now our new live version. From now on we can find it without using a versioned context.
+Lastly, we used the repository method `merge` with our versionId, which writes the changes of this version into the version of the context we pass in, here the live version, and then deletes the records of the merged version.
+From now on we can find the updated data without using a versioned context.
 
 ## Versioning with foreign keys
 
