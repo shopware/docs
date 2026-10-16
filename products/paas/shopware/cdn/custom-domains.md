@@ -28,7 +28,7 @@ Custom domains allow you to serve your Shopware shop through your own branded do
 | `CNAME`     |        No        |       **Yes**        | `cdn.shopware.shop`    |   1   | Routes subdomain traffic to Fastly CDN |
 | `A`         |     **Yes**      |          No          | Fastly IPv4 addresses  |   4   | Routes apex domain traffic (IPv4)      |
 | `AAAA`      |     **Yes**      |          No          | Fastly IPv6 addresses  |   4   | Routes apex domain traffic (IPv6)      |
-| `TXT`       |     **Yes**      |          No          | Domain ownership proof |   1   | Validates domain ownership             |
+| `TXT`       |     **Yes**      |       **Yes**        | Domain ownership proof |   1   | Validates domain ownership             |
 
 The `TXT` challenge record applies to apex domains only. If your custom domain is a subdomain, the `CNAME` record is the only record you need and you can skip Step 2.
 
