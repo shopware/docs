@@ -40,7 +40,7 @@ If your tool has side effects, declare `dryRun`. This is the whole contract.
 
 ## How Copilot uses your tools
 
-Copilot connects to the shop's MCP endpoint with the merchant's permissions. Your tools aren't visible to the AI model by default. Shopware groups tools into toolsets using the group you declare, and Copilot enables a toolset only when the conversation needs it.
+Copilot connects to the shop's MCP endpoint with the merchant's permissions. Starting with Shopware 6.7.16.0, your tool must also be selected in the MCP allowlist of the Copilot integration, and a non-admin merchant must select it in their own allowlist. See [Delegated user calls](./configuration.md#delegated-user-calls-sw-app-user-id). Your tools aren't visible to the AI model by default. Shopware groups tools into toolsets using the group you declare, and Copilot enables a toolset only when the conversation needs it.
 
 Two things matter for your tool to be picked at all:
 
@@ -218,7 +218,7 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 * **Stateless between calls** - Preview and commit arrive in different sessions. Never store the preview and replay it on commit. Recompute from the arguments.
 * **Idempotent commits where possible** - Copilot executes an approval once, but network retries can repeat a call. Design the commit so that running it twice with the same arguments is harmless.
 * **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilege()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
-* **Response envelope** - Always return through `success()` or `error()`. Copilot treats `success: false` as a tool error and doesn't proceed to the commit.
+* **Response envelope** - Always return through `success()` or `error()`. Copilot treats `success: false` as a tool error and doesn't proceed to the commit. Starting with Shopware 6.7.16.0, the same result also carries `isError: true`.
 * **Response size** - Responses larger than 100 KB are returned through a resource URI instead of inline. Keep previews and results compact, so Copilot can use them directly.
 * **Timeouts** - Copilot waits a few seconds for a tool call. Long-running work should return quickly and continue asynchronously, reporting a reference the merchant can check.
 * **No preview-only side effects** - Logging is fine. Creating draft records, reserving stock, or sending notifications during a preview is not.
