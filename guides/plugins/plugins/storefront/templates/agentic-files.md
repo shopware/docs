@@ -41,11 +41,11 @@ Besides the Administration, you can enable the files with the `sales-channel:fil
 bin/console sales-channel:file:enable [ids...] [--all|-a]
 ```
 
-The command enables `llms.txt` and `AGENTS.md` for the given Storefront and Headless sales channels, or for all of them with `--all`.
+The command enables `/llms.txt` and `/AGENTS.md` for the given Storefront and headless sales channels, or for all of them with `--all`.
 It does not enable `/.well-known/ai-catalog.json`.
 It only creates missing files, so a file switched off in the Administration stays off, and a second run changes nothing.
 Sales channel IDs are case-insensitive.
-Invalid IDs and IDs that match no Storefront or Headless sales channel are reported and skipped.
+Invalid IDs and IDs that match no Storefront or headless sales channel are reported and skipped.
 
 The command always exits with `0`, so you can run it in a [Deployment Helper hook](../../../../hosting/installation-updates/deployments/deployment-helper/configuration.md#hooks-timing-and-use-cases):
 
