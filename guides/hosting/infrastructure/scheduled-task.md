@@ -78,6 +78,56 @@ You can use the flag `--no-wait` and run the command from an operating system sc
 */5 * * * * /usr/bin/php /var/www/html/bin/console scheduled-task:run --no-wait
 ```
 
+## Missed runs and recovery
+
+The scheduler and the task execution are separate steps. `scheduled-task:run` selects due tasks, sets their status to `queued` and dispatches one message per task to the message bus. The task handler runs when a message consumer handles that message, see [Message Queue](message-queue.md). The following sections describe what the `TaskScheduler` and the `ScheduledTaskExecutor` do when scheduling or message consumption was interrupted.
+
+### When the scheduler was not running
+
+`TaskScheduler` selects every row of `scheduled_task` whose `nextExecutionTime` is in the past and whose status is `scheduled` or `skipped`. A task that became overdue during downtime is therefore selected on the first pass after the scheduler runs again. For each selected row that reaches the dispatch step, a pass dispatches one task message, rather than one message per missed interval. The successful queueing branch updates the status without changing `nextExecutionTime`.
+
+The scheduler attempts to process each selected row at most once per pass; an exception can stop the pass before later rows are processed. For each row:
+
+* If the class is unavailable to the process running `TaskScheduler`, for example because that scheduler process is running an older deployment, it logs a warning and leaves the row unchanged.
+* If the class is not a `ScheduledTask`, a `MessageQueueException` is thrown.
+* If `shouldRun()` of the task class returns `false`, the row gets the status `skipped` and a new `nextExecutionTime`, and no message is dispatched.
+
+`scheduled-task:run` repeats this in a loop and sleeps between 1 and 15 seconds after each pass. With `--no-wait` it runs a single pass and exits. Configured time and memory limits and cached restart requests are checked between passes, after sleeping; they do not interrupt an ongoing pass. A restart request stops the loop when its timestamp is newer than the process startup time.
+
+### After a task has run
+
+For a task message with an ID, successful default rescheduling sets the status to `scheduled` and stores `lastExecutionTime` and `nextExecutionTime`. The legacy override described below controls its own persistence. By default, the new `nextExecutionTime` is the previous `nextExecutionTime` plus `runInterval`. If that is earlier than the current time, the current time is stored instead. Missed intervals are therefore not replayed one by one. If a task is overdue by more than one interval, the stored `nextExecutionTime` is the finish time, so the task is selected again on the next scheduler pass.
+
+* If the handler implements `DynamicallyScheduledTaskHandler`, a non-null time returned by `getNextExecutionTime()` is used and clamped to the current time if it lies in the past. Returning `null` uses the default calculation: the previous `nextExecutionTime` plus `runInterval`.
+* In 6.7, when the `v6.8.0.0` feature flag is inactive and the handler does not implement `DynamicallyScheduledTaskHandler`, the executor honors an override of the deprecated `rescheduleTask()` hook; that override is responsible for persisting the schedule.
+* If run() throws and the task's `shouldRescheduleOnFailure()` returns true, the executor logs the error and attempts to reschedule the task. If rescheduling succeeds, it returns without rethrowing the original error. The default of `shouldRescheduleOnFailure()` is `false`; then the status is set to `failed` and the exception is rethrown. The scheduler does not select rows with status `failed`.
+
+### When the worker was not running
+
+When a consumer handles a message, the outcome depends on the message. For messages carrying a task ID, the executor runs the task only if the row exists and its status is `queued`, `failed`, `skipped` or `running`. Messages without a task ID run independently of the stored schedule. If the row has the status `scheduled` when the message is handled, the handler does not run.
+
+The scheduler selects a row in status `queued` or `running` again only when its `updatedAt` is older than `shopware.messenger.scheduled_task.requeue_timeout` hours. The default is `12`. A selected stale row goes through the same class and `shouldRun()` checks before another dispatch is attempted. `TaskScheduler` does not cancel or remove any earlier message. Avoid overlapping scheduler invocations: selecting a row and changing its status are separate operations, so concurrent passes can select the same row.
+
+### Checking and recovering
+
+`bin/console scheduled-task:list` shows the next execution, the last execution, the run interval and the status of every task. A recent last execution time does not prove success: rescheduling after a failure also updates this value when `shouldRescheduleOnFailure()` returns `true`.
+
+`bin/console scheduled-task:schedule <task-name>` sets the status to `scheduled`. With `--immediately`, it also sets `nextExecutionTime` to the current time. Once that time is in the past, the row is eligible for selection; the normal class and `shouldRun()` checks still apply. For rows in status `queued` or `running`, the command stops with a warning unless `--force` is passed. Without `--immediately`, `nextExecutionTime` is not changed.
+
+The following command schedules the `log_entry.cleanup` task with `--immediately`:
+
+```bash
+bin/console scheduled-task:schedule log_entry.cleanup --immediately
+```
+
+Before forcing recovery, check for existing messages and running work. This command changes the stored schedule; it does not stop an executing handler or remove existing messages. An existing message handled while the row is `scheduled` does not run the handler.
+
+`bin/console scheduled-task:run-single <task-name>` runs a single task directly, see [Debugging scheduled tasks](#debugging-scheduled-tasks). The run-single command changes the stored status and next execution time before invoking a matching handler. It requires a `ScheduledTaskHandler` with a class-level `AsMessageHandler` attribute whose `handles` value matches the task class; without a match, no handler is invoked.
+
+### Symfony scheduler
+
+With `messenger:consume scheduler_shopware`, the schedule is built from `RecurringMessage::every()` with the stored `run_interval` or, without a row, the default interval of the task. The platform source doesn't specify how many runs fire after downtime.
+
 ## Using the symfony scheduler to run tasks
 
 ::: info
