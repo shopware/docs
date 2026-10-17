@@ -168,9 +168,8 @@ When uninstalling a plugin, you can choose whether to remove all associated plug
 
 ```php
 // <plugin root>/src/SwagBasicExample.php
-public function uninstall(UninstallContext $context): void
+public function uninstall(UninstallContext $uninstallContext): void
 {
-
     if ($uninstallContext->keepUserData()) {
         return;
     }
@@ -178,6 +177,34 @@ public function uninstall(UninstallContext $context): void
     // Remove or deactivate the data created by the plugin
 }
 ```
+
+The base `Plugin::uninstall()` is empty. Shopware does not provide generic cleanup for arbitrary tables created by your plugin's migrations. Its separate custom-entity cleanup updates the schema for registered custom entities. Implement cleanup for tables managed by your plugin's migrations in `uninstall()`, and skip destructive cleanup when `keepUserData()` returns `true`. Delete only data and tables that can safely be removed without breaking existing business records.
+
+#### Setting the flag
+
+The lifecycle service's `keepUserData` argument defaults to `false`, which enables its conditional cleanup. Your plugin must implement its own data cleanup. The Administration uninstall dialog initially keeps data unless the user selects removal.
+
+* CLI: `bin/console plugin:uninstall <plugin name> --keep-user-data`
+* Admin API: `POST /api/_action/extension/uninstall/plugin/{technicalName}` with the body parameter `keepUserData`
+* Administration: the Administration sends `keepUserData` as the inverse of its `removeData` choice
+
+#### What Shopware does during uninstall
+
+Keeping user data does not bypass the uninstall lifecycle: Shopware deactivates the plugin if it is active, then calls your `uninstall()` hook if the preceding steps succeed.
+
+Deactivation fails if other active plugins depend on the plugin. Storefront theme assignment validation can also prevent uninstall, including when keeping user data, unless asset building is skipped.
+
+The following steps run only when user data is **not** kept:
+
+* **Migration records:** Shopware deletes the plugin's rows from the `migration` table before your `uninstall()` hook runs. Removing migration records enables a later migration rerun. The uninstall service does not automatically rerun migrations or roll back changes made by your `uninstall()` hook if that hook fails.
+* **Plugin configuration:** After your hook, Shopware calls `SystemConfigService::deletePluginConfiguration()` to remove stored `system_config` entries for keys declared in the plugin's current `Resources/config/config.xml`, globally and for sales-channel overrides. If the file is absent, this step does nothing. A non-null value managed by system configuration can cause this cleanup to throw and interrupt uninstall.
+* **Custom entities and custom field sets:** Shopware removes the plugin's custom entities and syncs an empty set of custom fields for the plugin name, which removes the custom field sets stored with that plugin as their extension name.
+
+::: warning
+A failure in one uninstall step can leave the earlier steps applied. Shopware clears `installedAt` before custom-entity cleanup, custom-field cleanup, Composer handling and post-uninstall subscribers. If a later step fails, the plugin can already be marked uninstalled; rerunning `plugin:uninstall` then skips it.
+:::
+
+If `executeComposerCommands()` returns `true` and `shopware.deployment.cluster_setup` is disabled, Shopware attempts Composer removal for the plugin's package. It executes immediately in CLI and is deferred to `kernel.response` for web requests.
 
 ::: info
 For Academy learning content on plugin lifecycle methods, updates, migrations, and uninstall cleanup, refer to this free course **[Plugin Lifecycle Management](https://hub.shopware.com/learn/unit/plugin-lifecycle-management)** from **Shopware Backend Development Intermediate** learning path.
