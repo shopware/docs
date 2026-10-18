@@ -17,9 +17,9 @@ If operation 23 of 100 produces a validation exception while its commands are ex
 
 ## Transaction
 
-The default gateway runs the commands of the queue through `RetryableTransaction::retryable()`. An exception escaping that transactional execution is intended to roll back the queue. The gateway then dispatches `WriteCommandExceptionEvent` and rethrows the exception.
+The default gateway runs the commands of the queue through `RetryableTransaction::retryable()`. An exception escaping that transactional execution is intended to roll back the queue. The gateway then dispatches `WriteCommandExceptionEvent` and throws the exception again.
 
-Exceptions caught by the per-command handler mark the current command as failed and are rethrown, possibly after exception mapping. Batched insert failures can occur outside that handler.
+Exceptions caught by the per-command handler mark the current command as failed and are thrown again, possibly after exception mapping. Batched insert failures can occur outside that handler.
 
 Pre-write and post-write validation run inside the transaction. `WriteInputValidator`, `SyncOperation` validation and the `tryToThrow()` call in `EntityWriter` run before it.
 
@@ -27,7 +27,7 @@ An exception during operation preparation or command execution isn't turned into
 
 ### Retries
 
-`RetryableTransaction` retries at the outermost transaction level when it catches `TransactionRolledBack`, `DeadlockException`, `LockWaitTimeoutException`, or a `DriverException` whose message matches `SAVEPOINT [^\s]+ does not exist`. It retries up to 10 times after the first attempt, so there are at most 11 attempts. A call that starts inside an existing transaction rethrows without retrying. Other exceptions aren't retried.
+`RetryableTransaction` retries at the outermost transaction level when it catches `TransactionRolledBack`, `DeadlockException`, `LockWaitTimeoutException`, or a `DriverException` whose message matches `SAVEPOINT [^\s]+ does not exist`. It retries up to 10 times after the first attempt, so there are at most 11 attempts. A call that starts inside an existing transaction throws the exception again without retrying. Other exceptions aren't retried.
 
 ## Events and side effects
 
@@ -65,6 +65,6 @@ Although the OpenAPI schema lists `payload` as required, runtime operation valid
 
 After a payload-validation failure before command execution, correct the payload and retry. After an error during or after command execution, or when you don't get a response, check the persisted state before you replay the request.
 
-Each Sync request builds its own write-command queue, which the default gateway executes in a retryable transaction. Send independent batches as separate requests, and send one row per request if each top-level payload row needs its own queue. A row can still write associated records or trigger cascading changes, and a criteria-based delete can select multiple records. Keep the order and dependencies between requests in mind. Smaller independent requests can reduce the work a transactional failure affects.
+Each Sync request builds its own write-command queue, which the default gateway executes in a transaction that can be retried. Send independent batches as separate requests, and send one row per request if each top-level payload row needs its own queue. A row can still write associated records or trigger cascading changes, and a criteria-based delete can select multiple records. Keep the order and dependencies between requests in mind. Smaller independent requests can reduce the work a transactional failure affects.
 
 This page doesn't cover the exact error response format of a failed request. For other headers, see [Request Headers](./request-headers.md).
