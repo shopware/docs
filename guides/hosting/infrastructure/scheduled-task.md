@@ -84,7 +84,7 @@ The scheduler and the task execution are separate steps. `scheduled-task:run` se
 
 ### When the scheduler was not running
 
-`TaskScheduler` selects every row of `scheduled_task` whose `nextExecutionTime` is in the past and whose status is `scheduled` or `skipped`. A task that became overdue during downtime is therefore selected on the first pass after the scheduler runs again. For each selected row that reaches the dispatch step, a pass dispatches one task message, rather than one message per missed interval. The successful queueing branch updates the status without changing `nextExecutionTime`.
+`TaskScheduler` selects every row of `scheduled_task` whose `nextExecutionTime` is in the past and whose status is `scheduled` or `skipped`. A task that became overdue during downtime is therefore selected on the first pass after the scheduler runs again. For each selected row that reaches the dispatch step, a pass dispatches one task message, rather than one message per missed interval. The successful queuing branch updates the status without changing `nextExecutionTime`.
 
 The scheduler attempts to process each selected row at most once per pass; an exception can stop the pass before later rows are processed. For each row:
 
@@ -100,7 +100,7 @@ For a task message with an ID, successful default rescheduling sets the status t
 
 * If the handler implements `DynamicallyScheduledTaskHandler`, a non-null time returned by `getNextExecutionTime()` is used and clamped to the current time if it lies in the past. Returning `null` uses the default calculation: the previous `nextExecutionTime` plus `runInterval`.
 * In 6.7, when the `v6.8.0.0` feature flag is inactive and the handler does not implement `DynamicallyScheduledTaskHandler`, the executor honors an override of the deprecated `rescheduleTask()` hook; that override is responsible for persisting the schedule.
-* If run() throws and the task's `shouldRescheduleOnFailure()` returns true, the executor logs the error and attempts to reschedule the task. If rescheduling succeeds, it returns without rethrowing the original error. The default of `shouldRescheduleOnFailure()` is `false`; then the status is set to `failed` and the exception is rethrown. The scheduler does not select rows with status `failed`.
+* If run() throws and the task's `shouldRescheduleOnFailure()` returns true, the executor logs the error and attempts to reschedule the task. If rescheduling succeeds, it returns without throwing the original error again. The default of `shouldRescheduleOnFailure()` is `false`; then the status is set to `failed` and the exception is rethrown. The scheduler does not select rows with status `failed`.
 
 ### When the worker was not running
 
