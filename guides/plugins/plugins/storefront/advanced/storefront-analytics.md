@@ -59,7 +59,7 @@ In Google Tag Manager, read the parameters with data layer variables such as `ec
 | `add_payment_info`     | A payment method is selected, once per method and checkout                                                                             |
 | `purchase`             | An order is placed                                                                                                                     |
 | `login`                | A login succeeded. Reported on the page after the login, so a wrong password reports nothing                                           |
-| `sign_up`              | A customer account was created. Reported on the page after the registration. A guest checkout and a failed registration report nothing |
+| `sign_up`              | A customer account was created, also by a guest with "Create account" on the checkout finish page. Reported on the page after the registration. A guest checkout and a failed registration report nothing |
 | `search`               | The shopper searches                                                                                                                   |
 
 ## Event and item parameters
@@ -109,6 +109,8 @@ The list IDs are a contract that Google Tag Manager triggers can rely on:
 | Cross selling tab                      | `cross_selling:<cross selling ID>` | Translated name of the cross selling group      |
 | Product slider                         | `slider:<element ID>`              | Title of the slider                             |
 | Any other Shopping Experiences element | `cms:<element ID>`                 | None                                            |
+
+For the search results, `view_item_list` and `select_item` also report the query as `search_term`, and `view_item` repeats it for a product selected from the search results. GA4 needs an event-scoped custom dimension for `search_term` to show it in reports of these events.
 
 The list of a selected product is kept in the local storage of the browser under `swGaSelectedItemLists` for 30 minutes and is removed by the first view of the product.
 
