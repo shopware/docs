@@ -436,7 +436,7 @@ No. Single sign-on for tools such as Grafana and OpenSearch is not available at 
 
 Both are supported as application performance monitoring integrations. Each needs an account of your own — the platform does not provide one.
 
-They support shop applications only, enabling either one on a composable frontend is rejected when the configuration is validated.
+They support shop applications only. Enabling either one on a composable frontend is rejected when the configuration is validated.
 
 The setup pattern is the same for both. Store the credentials as `env` secrets in the vault, enable the service in [`application.yaml`](./fundamentals/application-yaml.md), then update your application. The secret must exist **before** you enable the service, otherwise the deployment fails. The probe or extension is added to your image automatically, so you do not need to list it under `app.php.extensions`.
 
