@@ -21,7 +21,7 @@ services:
     enabled: true
 ```
 
-Once the 2 previous step are done, you **need to trigger a new deployment to activate** [redirection.io](https://redirection.io/) on your application.
+Once the previous two steps are complete, you **need to trigger a new deployment to activate** [redirection.io](https://redirection.io/) on your application.
 
 
 ::: info
