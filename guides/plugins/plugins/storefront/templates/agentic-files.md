@@ -57,7 +57,7 @@ deployment:
 ```
 
 ::: info
-The command is available since Shopware 6.7.16.0.
+The command is available since Shopware 6.7.17.0.
 On older versions, `bin/console` fails with "Command not defined", and the files can only be enabled in the Administration.
 :::
 
