@@ -27,7 +27,7 @@ Shopware marks upcoming changes directly in the code. When you extend or call co
  */
 ```
 
-A symbol marked `@deprecated` is removed or replaced with the named major version. The comment names the replacement. Migrate to it before you raise your minimum supported version to that major.
+A symbol marked `@deprecated` is removed or replaced with the named major version. The comment names the replacement. Migrate to it before you add support for that major, while keeping compatibility with the older versions your extension still supports.
 
 Calling deprecated code triggers a deprecation notice until the major release and throws an exception once the major feature flag is active. Run your test suite with the upcoming major flag enabled to find remaining usages early; see [feature flags](#feature-flags).
 
