@@ -9,11 +9,13 @@ nav:
 Our platform supports redirect management through [redirection.io](https://redirection.io/) using a bring-your-own-license (BYOL) model. This is currently limited to [Composable Frontends](../composable-frontends/index.md).
 
 ## How to configure it
+
 You first need to have an account on [redirection.io](https://redirection.io/) and a `PROJECT_KEY`.
 
 To enable [redirection.io](https://redirection.io/) for your application you need to do the following:
 
 - Create a secret using `sw-paas vault create` with type `env`. The key of the secret **needs** to be `REDIRECTIONIO_PROJECT_KEY`, and its value must be your `PROJECT_KEY`.
+
 - In the `application.yaml` file add the following:
 ```yaml
 services:
