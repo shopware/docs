@@ -25,7 +25,6 @@ services:
 
 Once the previous two steps are complete, you **need to trigger a new deployment to activate** [redirection.io](https://redirection.io/) on your application.
 
-
 ::: info
 We manage the agent for you, but managing redirects is your responsibility and is not covered here. Redirects must be managed through [redirection.io](https://redirection.io/).
 :::
