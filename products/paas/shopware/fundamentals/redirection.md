@@ -25,7 +25,7 @@ Once the 2 previous step are done, you **need to trigger a new deployment to act
 
 
 ::: info
-We manage the agent for you, but the management of the redirect is your responsability and is not cover here. It needs to be done through [redirection.io](https://redirection.io/).
+We manage the agent for you, but managing redirects is your responsibility and is not covered here. Redirects must be managed through [redirection.io](https://redirection.io/).
 :::
 
 You can check that [redirection.io](https://redirection.io/) is active in their UI (instance/self-hosted), see below:
