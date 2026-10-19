@@ -80,11 +80,11 @@ To prove that you own the domain, add the following `TXT` record to your DNS zon
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
 ```
 
-Replace `<domain>` with your domain and `<organization id>` with your organization ID from `sw-paas org list`.
+Replace `<domain>` with your domain and `<organization ID>` with your organization ID from `sw-paas org list`.
 
 Example with the following setup:
 
-- your custom domain is `shop.example.com` 
+- your custom domain is `shop.example.com`
 - your zone is `example.com`
 - your organization ID is `abc123`
 
