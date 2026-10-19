@@ -6,7 +6,7 @@ nav:
 
 # Redirection management
 
-Our platform propose (limited to [Composable Frontends](../composable-frontends/index.md) for now) to manage redirect link through [redirection.io](https://redirection.io/) using BYOL model.
+Our platform supports redirect management through [redirection.io](https://redirection.io/) using a bring-your-own-license (BYOL) model. This is currently limited to [Composable Frontends](../composable-frontends/index.md).
 
 ## How to configure it
 You first need to have an account on [redirection.io](https://redirection.io/) and a `PROJECT_KEY`.
