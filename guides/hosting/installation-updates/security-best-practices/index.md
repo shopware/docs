@@ -9,6 +9,7 @@ nav:
 
 This guide describes recommended security practices for self-hosted Shopware installations.
 For a more detailed list of Shopware's security mechanisms and how to configure them, see the [security reference](../../../../resources/references/security.md).
+If you suspect an attack, follow the [incident response guide](incident-response.md) immediately.
 
 ## Stay on a supported Shopware version
 

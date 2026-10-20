@@ -291,6 +291,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+Cyber
 CycloneDX
 DAL
 DBAL
@@ -1276,6 +1277,7 @@ bPlatform
 bRestApi
 bServiceExtension
 bTemplateExtension
+backdoors
 backend
 backends
 backface
