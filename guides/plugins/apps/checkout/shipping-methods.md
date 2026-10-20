@@ -348,5 +348,3 @@ Here, you can set the display order of the shipping methods in the checkout. If 
 ```
 
 :::
-
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/App/Manifest/Xml/ShippingMethod/ShippingMethod.php","WATCHER_HASH":"945a4d13311c8ebf3f893d14a9dc0690"} -->
