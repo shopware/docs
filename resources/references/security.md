@@ -92,7 +92,7 @@ SameSite prevents the browser from sending cookies along with cross-site request
 
 ## Security plugin
 
-Obtaining security fixes without version upgrades is possible through the [Security plugin](../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
+For self-hosted shops, keep the [Security Plugin](../../guides/hosting/installation-updates/security-best-practices/security-plugin.md) installed, activated, and up to date, even when Shopware itself is fully updated.
 
 ## Storefront IP Whitelisting
 
