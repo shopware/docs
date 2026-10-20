@@ -102,6 +102,8 @@ To enable access even during maintenance mode, IP addresses can be added to [Sto
 
 SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. Shopware primarily uses our own [Data Abstraction Layer](../../concepts/framework/data-abstraction-layer.md), which does not expose SQL directly, so most SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
 
+Use PHP 8.4 or later on a compatible Shopware release, as its [driver-specific PDO SQL parsers](https://wiki.php.net/rfc/pdo_driver_specific_parsers) help prevent some SQL injection cases.
+
 ## Exposing underlying technology
 
 Some features intentionally expose the underlying technology upon which they are built. For example, the underlying Twig templating system is exposed when the user provides mail templates, SEO URL templates, or Product Export templates. Similarly, direct CSS access is exposed over the theme configuration.
