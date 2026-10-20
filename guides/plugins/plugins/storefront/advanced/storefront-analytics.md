@@ -10,7 +10,7 @@ nav:
 The Storefront reports ecommerce events to Google Analytics 4 (GA4) when analytics are active for a sales channel. This guide describes the data the Storefront sends, the identifiers your Google Tag Manager setup can rely on, and how an extension makes its own products and lists visible to analytics.
 
 ::: info
-This guide describes the behavior of Shopware 6.7.16.0 and later. Earlier versions send a different payload. The release notes of 6.7.16.0 list what changed.
+This guide describes the behavior of Shopware 6.7.17.0 and later. Earlier versions send a different payload. The release notes of 6.7.17.0 list what changed.
 :::
 
 ## Prerequisites
