@@ -15,11 +15,11 @@ Do not rely on the storefront maintenance page alone to contain an attack.
 
 You can always reach out to [Shopware Support](https://support.shopware.com/) for help during an active attack.
 You do not need to wait until your investigation is complete.
-Involve your hosting provider, agency, and an incident-response specialist as needed.
+Involve your hosting provider and agency as needed.
 
 Preserve logs and forensic snapshots before deleting files, restarting services, or restoring backups.
 Record when you first noticed the attack and the actions you take.
-Do not delay containment while collecting evidence; have your incident-response specialist coordinate evidence preservation.
+Do not delay containment while collecting evidence.
 
 ## Investigate the entry point and impact
 
