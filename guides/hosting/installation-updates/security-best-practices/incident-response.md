@@ -51,7 +51,7 @@ Apply the required security fixes to Shopware, extensions, dependencies, and inf
 
 From a trusted device and in the recovered environment, rotate credentials and secrets the attacker may have accessed.
 These can include Shopware administrator and integration credentials, database passwords, app secrets, hosting credentials, and keys for external services.
-Invalidate existing sessions and tokens, and require affected users to change their passwords before regaining access, including customers whose credentials may have been exposed.
+Invalidate existing sessions and tokens.
 Make sure restoring a backup does not reintroduce compromised credentials or unauthorized accounts.
 
 Restore public traffic only after the entry point is closed, persistent access has been removed, recovery and credential changes are complete, and the shop has been tested.
