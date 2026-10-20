@@ -47,6 +47,14 @@ server {
         }
     }
     
+    # Stored HTML must not affect pages rendered by PHP.
+    location ~* ^/(media|thumbnail)/.*[.]html$ {
+        try_files $uri =404;
+        expires 1y;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        add_header Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+    }
+
     location ~ ^/(theme|media|thumbnail|bundles|css|fonts|js|recovery|sitemap)/ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
@@ -58,13 +66,13 @@ server {
         open_file_cache_errors off;
     
         location ~* ^.+\.svg {
-            add_header Content-Security-Policy "script-src 'none'";
+            add_header Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
             add_header Cache-Control "public, must-revalidate, proxy-revalidate";
             log_not_found off;
         }
     }
 
-    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|svg|webp|html|woff|woff2|xml)$ {
+    location ~* ^.+\.(?:css|cur|js|jpe?g|gif|ico|png|webp|html|woff|woff2|xml)$ {
         expires 1y;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
 
@@ -85,7 +93,10 @@ server {
     }
 
     location ~* ^.+\.svg$ {
-        add_header Content-Security-Policy "script-src 'none'";
+        try_files $uri /index.php$is_args$args;
+        expires 1y;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        add_header Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
     }
 
     location / {

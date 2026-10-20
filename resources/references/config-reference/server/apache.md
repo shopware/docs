@@ -14,6 +14,13 @@ The document root must always point to the public folder, to ensure all function
       AllowOverride All
       Order allow,deny
       allow from all
+
+      <IfModule mod_headers.c>
+         Header set Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'" "expr=-f %{REQUEST_FILENAME} && %{REQUEST_URI} =~ m#^/(media|thumbnail)/.*[.](?i:html)$#"
+         <FilesMatch "[.](?i:svg)$">
+            Header set Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+         </FilesMatch>
+      </IfModule>
    </Directory>
 
    ErrorLog ${APACHE_LOG_DIR}/shopware.error.log
