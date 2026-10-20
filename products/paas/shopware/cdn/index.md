@@ -39,3 +39,7 @@ We configure two different Fastly services:
 ## Custom Domains
 
 Custom domain configuration has moved to its own page. See [Custom Domains](./custom-domains.md) for prerequisites, DNS records, and the step-by-step setup.
+
+## CORS Origins
+
+To allow other sites, such as a composable frontend, to call your storefront and CDN, add CORS origins to the Shopware application. Composable frontends themselves are not affected. See [CORS Origins](./cors-origins.md) for the `sw-paas application cors` commands and what the platform configures.
