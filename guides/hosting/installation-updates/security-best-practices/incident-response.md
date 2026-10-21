@@ -13,10 +13,10 @@ Do not rely on the storefront maintenance page alone to contain an attack.
 
 ## Get help and preserve evidence
 
+If you suspect an attack, contact your hosting provider and agency first for help with containment, investigation, and recovery.
 Shopware offers dedicated support options for security incidents, including for Community Edition users without a support subscription.
-If you suspect an attack, contact [Shopware Support](https://support.shopware.com/) to discuss the assistance available for your situation.
+Contact [Shopware Support](https://support.shopware.com/) to discuss the assistance available for your situation.
 You do not need to wait until your investigation is complete.
-Involve your hosting provider and agency as needed.
 
 Preserve logs and forensic snapshots before deleting files, restarting services, or restoring backups.
 Record when you first noticed the attack and the actions you take.
