@@ -1,11 +1,11 @@
 ---
 nav:
-  title: Responding to a Cyber Attack
+  title: Responding to a Cyberattack
   position: 20
 
 ---
 
-# Responding to a Cyber Attack
+# Responding to a Cyberattack
 
 As soon as you suspect an attack is in progress, stop public traffic to the affected shop and isolate the affected systems.
 Work with your hosting provider to block access at the firewall or load balancer, including access to the Administration and APIs.

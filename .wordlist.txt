@@ -291,7 +291,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
-Cyber
+Cyberattack
 CycloneDX
 DAL
 DBAL
