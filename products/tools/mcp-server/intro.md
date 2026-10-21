@@ -9,7 +9,7 @@ nav:
 
 The Model Context Protocol (MCP) is an open standard that enables AI clients (Claude Desktop, Cursor, and Claude Code) to communicate with external systems via a structured, tool-based interface. Instead of copy-pasting data into a chat window, an AI agent can call a tool like `shopware-entity-search` directly and receive structured results that it can reason about.
 
-Shopware ships a native MCP server with the core platform. It exposes an endpoint at `/api/_mcp` that any MCP-compatible AI client can connect to using integration credentials, and a sales-channel-facing endpoint at `/store-api/_mcp` — see [Store API MCP](./store-api.md).
+Shopware ships a native MCP server with the core platform. It exposes an endpoint at `/api/_mcpcheck` that any MCP-compatible AI client can connect to using integration credentials, and a sales-channel-facing endpoint at `/store-api/_mcp` — see [Store API MCP](./store-api.md).
 
 :::info Experimental
 The MCP server is considered experimental until Shopware 6.8. APIs and tool names may change before the stable release.
