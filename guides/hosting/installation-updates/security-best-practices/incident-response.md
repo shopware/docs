@@ -13,7 +13,8 @@ Do not rely on the storefront maintenance page alone to contain an attack.
 
 ## Get help and preserve evidence
 
-You can always reach out to [Shopware Support](https://support.shopware.com/) for help during an active attack.
+Shopware offers dedicated support options for security incidents, including for Community Edition users without a support subscription.
+If you suspect an attack, contact [Shopware Support](https://support.shopware.com/) to discuss the assistance available for your situation.
 You do not need to wait until your investigation is complete.
 Involve your hosting provider and agency as needed.
 
