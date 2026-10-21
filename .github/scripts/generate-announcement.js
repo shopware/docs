@@ -1,6 +1,5 @@
 
 const fs = require("fs");
-const path = require("path");
 const { execFileSync } = require("child_process");
 
 // ======================================================
@@ -11,6 +10,10 @@ const token = process.env.GITHUB_TOKEN;
 
 if (!token) {
     throw new Error("GITHUB_TOKEN is missing.");
+}
+
+if (!process.env.GITHUB_EVENT_PATH) {
+    throw new Error("GITHUB_EVENT_PATH is missing.");
 }
 
 const event = JSON.parse(
@@ -28,7 +31,7 @@ const headers = {
 };
 
 // ======================================================
-// GitHub API
+// GitHub API helper
 // ======================================================
 
 async function githubGet(url) {
@@ -44,23 +47,30 @@ async function githubGet(url) {
 }
 
 // ======================================================
-// Shopware documentation links
+// Documentation topic links
 // ======================================================
 
 function getDocUrl(filename) {
     let docPath = filename.replace(/\.md$/i, "");
 
-    if (path.posix.basename(docPath) === "index") {
-        docPath = path.posix.dirname(docPath);
+    if (pathBasename(docPath) === "index") {
+        docPath = docPath.slice(
+            0,
+            docPath.lastIndexOf("/")
+        ) || "";
     }
 
     return DOCS_BASE_URL + docPath + ".html";
 }
 
+function pathBasename(value) {
+    return value.split("/").pop();
+}
+
 function getTopicLabel(filename) {
-    const basename = path.posix
-        .basename(filename, ".md")
-        .toLowerCase();
+    const basename = pathBasename(
+        filename.replace(/\.md$/i, "")
+    ).toLowerCase();
 
     const labels = {
         tideways: "Tideways",
@@ -83,7 +93,9 @@ function getTopicLabel(filename) {
 function getRelevantDocFiles(pr) {
     const markdownFiles = pr.files.filter(file =>
         file.filename.endsWith(".md") &&
-        !file.filename.split("/").some(part => part.startsWith("."))
+        !file.filename.split("/").some(part =>
+            part.startsWith(".")
+        )
     );
 
     if (markdownFiles.length === 0) {
@@ -92,11 +104,11 @@ function getRelevantDocFiles(pr) {
 
     const title = pr.title.toLowerCase();
 
-    // Prefer pages directly named in the PR title.
+    // Prefer pages explicitly referenced by the PR title.
     const titleMatches = markdownFiles.filter(file => {
-        const basename = path.posix
-            .basename(file.filename, ".md")
-            .toLowerCase();
+        const basename = pathBasename(
+            file.filename.replace(/\.md$/i, "")
+        ).toLowerCase();
 
         return basename.length > 3 && title.includes(basename);
     });
@@ -105,7 +117,7 @@ function getRelevantDocFiles(pr) {
         return titleMatches.slice(0, 3);
     }
 
-    // Prefer a newly added, task-oriented guide.
+    // Prefer newly added guides for new capabilities.
     const addedGuides = markdownFiles.filter(file =>
         file.status === "added" &&
         /\/guides\//i.test(file.filename)
@@ -115,8 +127,7 @@ function getRelevantDocFiles(pr) {
         return addedGuides.slice(0, 2);
     }
 
-    // Otherwise, prefer guides and topic pages over FAQs
-    // and general configuration references.
+    // Prefer specific topic pages over general FAQs.
     const topicFiles = markdownFiles.filter(file =>
         /\/(guides|monitoring|api|extensions|plugins)\//i.test(
             file.filename
@@ -154,52 +165,59 @@ function summarizePR(pr) {
         .map(file => {
             return [
                 `File: ${file.filename}`,
-                `Status: ${file.status}`,
+                `Change type: ${file.status}`,
                 file.patch || ""
             ].join("\n");
         })
         .join("\n\n")
-        .slice(0, 12000);
+        .slice(0, 16000);
 
     const prompt = `
-You write short, reader-friendly announcements about changes
-that matter to Shopware developers.
+You write weekly developer announcements for Shopware developers.
 
-Pull request title:
+Your job is to explain the practical impact of a change, not to
+describe documentation work.
+
+PR title:
 ${pr.title}
 
-Pull request description:
+PR description:
 ${pr.body || "No description provided."}
 
 Changed files and patches:
 ${changedFiles}
 
-Write ONE sentence explaining the developer impact.
+Write ONE concise, reader-friendly sentence.
 
-Style examples:
+STYLE EXAMPLES:
 
-"Helps PaaS developers understand where profiling data appears
-and how profiler settings affect application deployments."
+"Helps PaaS developers configure profilers correctly, understand
+where Tideways data appears, and know when changing profiler
+settings triggers a new image build."
 
-"Lets developers process time-sensitive messages, such as order
-emails, separately from long-running tasks, helping prevent
-background work from delaying important operations."
+"Lets PaaS developers process time-sensitive messages, such as
+order emails, separately from long-running background tasks to
+help prevent unnecessary delays."
 
-Requirements:
-- Aim for 20–28 words.
-- Lead with what developers gain, can do, or need to know.
-- Explain the practical benefit or problem solved.
-- Use clear, natural language that developers can scan quickly.
-- Include technical terms only when they help explain the impact.
-- Do not describe the work as documentation being written,
-  updated, added, clarified, or published.
-- Do not say "the docs", "this guide", or "the documentation".
-- Avoid listing file changes, implementation details, or every
-  change in the PR.
-- Do not repeat the PR title.
-- Do not include a heading, bullet, PR number, or introduction.
-- Do not invent benefits or functionality unsupported by the PR.
-- Return only the sentence.
+"Allows extension developers to react to a new event and customize
+their integrations without modifying core functionality."
+
+WRITING RULES:
+
+1. Aim for 20–30 words.
+2. Lead with what developers gain, can do, or need to understand.
+3. Explain why the change matters in practical terms.
+4. Use natural language that developers can scan quickly.
+5. Avoid unnecessary jargon and low-level implementation details.
+6. Never say "the documentation", "the docs", "this guide",
+   "the page was updated", or similar phrases.
+7. Do not describe documentation work as the announcement.
+8. Do not merely restate the PR title.
+9. Mention a technical term only when it helps explain the impact.
+10. Do not invent functionality, benefits, or requirements.
+11. If the change has no clear developer impact, say so briefly
+    rather than inventing a benefit.
+12. Return only the sentence. No heading, bullet, or explanation.
 `;
 
     const output = execFileSync(
@@ -212,11 +230,7 @@ Requirements:
         }
     );
 
-    const summary = output
-        .replace(/```[\s\S]*?```/g, "")
-        .replace(/^["'`]+|["'`]+$/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
+    const summary = cleanSummary(output);
 
     if (!summary) {
         throw new Error("Copilot returned an empty summary.");
@@ -226,27 +240,120 @@ Requirements:
 }
 
 // ======================================================
-// Fallback summaries
+// Summary cleanup
 // ======================================================
 
+function cleanSummary(text) {
+    return text
+        .replace(/```[\s\S]*?```/g, "")
+        .replace(/^["'`]+|["'`]+$/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function cleanMarkdown(text) {
+    return text
+        .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/`([^`]+)`/g, "$1")
+        .replace(/[*_~]/g, "")
+        .replace(/^#+\s*/, "")
+        .trim();
+}
+
+function firstSentence(text) {
+    const cleaned = cleanMarkdown(text)
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (!cleaned) {
+        return "";
+    }
+
+    const match = cleaned.match(/^(.+?[.!?])(?:\s|$)/);
+
+    return match ? match[1].trim() : cleaned;
+}
+
+// ======================================================
+// Conservative fallback summary
+// ======================================================
+
+function isUsefulFallback(text) {
+    if (!text || text.length < 35) {
+        return false;
+    }
+
+    // Avoid fallback text that merely describes documentation work.
+    if (
+        /\b(documentation|docs|documentation page|guide was updated|pages were updated)\b/i
+            .test(text)
+    ) {
+        return false;
+    }
+
+    return true;
+}
+
 function fallbackSummary(pr) {
-    const title = pr.title.toLowerCase();
+    // First, look for a meaningful description in the PR body.
+    const bodyParagraphs = (pr.body || "")
+        .split(/\n\s*\n/)
+        .map(paragraph => paragraph.trim())
+        .filter(Boolean);
 
-    if (
-        title.includes("tideways") ||
-        title.includes("blackfire")
-    ) {
-        return "Helps PaaS developers configure profilers correctly, find their profiling data, and understand when profiler changes require a new application image.";
+    for (const paragraph of bodyParagraphs) {
+        if (
+            /^#{1,6}\s/.test(paragraph) ||
+            /^<!--/.test(paragraph) ||
+            /^[-*]\s/.test(paragraph)
+        ) {
+            continue;
+        }
+
+        const sentence = firstSentence(paragraph);
+
+        if (isUsefulFallback(sentence)) {
+            return sentence;
+        }
     }
 
-    if (
-        title.includes("splitting queue") ||
-        title.includes("message queue")
-    ) {
-        return "Lets developers separate long-running background jobs from time-sensitive messages, helping important tasks such as order emails avoid unnecessary delays.";
+    // If the PR body is insufficient, inspect added prose.
+    const addedLines = pr.files.flatMap(file =>
+        (file.patch || "")
+            .split("\n")
+            .filter(line =>
+                line.startsWith("+") &&
+                !line.startsWith("+++") &&
+                !line.startsWith("+#") &&
+                !line.startsWith("+```") &&
+                !line.startsWith("+:::") &&
+                !line.startsWith("+|")
+            )
+            .map(line => line.slice(1).trim())
+    );
+
+    for (const line of addedLines) {
+        if (
+            !line ||
+            line.startsWith("#") ||
+            line.startsWith("- ") ||
+            line.startsWith("* ") ||
+            line.startsWith(":::") ||
+            line.startsWith("http")
+        ) {
+            continue;
+        }
+
+        const sentence = firstSentence(line);
+
+        if (isUsefulFallback(sentence)) {
+            return sentence;
+        }
     }
 
-    return "Introduces a developer-facing change that may affect how Shopware applications are configured or maintained.";
+    // Never invent a developer benefit when the evidence is insufficient.
+    return null;
 }
 
 // ======================================================
@@ -272,7 +379,7 @@ function fallbackSummary(pr) {
     const items = searchResult.items || [];
     const prs = [];
 
-    // Fetch PR details and changed files.
+    // Fetch complete PR details and changed files.
     for (const item of items) {
         console.log(`Fetching PR #${item.number}...`);
 
@@ -288,7 +395,6 @@ function fallbackSummary(pr) {
             number: pr.number,
             title: pr.title,
             body: pr.body || "",
-            url: pr.html_url,
             merged_at: pr.merged_at,
             files: files.map(file => ({
                 filename: file.filename,
@@ -333,9 +439,16 @@ function fallbackSummary(pr) {
 
         const topicLinks = createTopicLinks(pr);
 
-        output.push(
-            `${index + 1}. ${topicLinks}: ${summary}`
-        );
+        if (summary) {
+            output.push(
+                `${index + 1}. ${topicLinks}: ${summary}`
+            );
+        } else {
+            output.push(
+                `${index + 1}. ${topicLinks}: **Needs review:** The developer impact could not be summarized reliably. Please review this change before publishing.`
+            );
+        }
+
         output.push("");
     }
 
