@@ -1,3 +1,4 @@
+
 const fs = require("fs");
 const { execFileSync } = require("child_process");
 
@@ -40,7 +41,7 @@ async function githubGet(url) {
 }
 
 // ======================================================
-// Formatting helpers
+// Format PR titles
 // ======================================================
 
 function getShortTitle(title) {
@@ -48,22 +49,21 @@ function getShortTitle(title) {
         .replace(/^(docs|feat|fix|chore|refactor):\s*/i, "")
         .trim();
 
-    // Remove documentation-specific wording.
+    if (/^add splitting queue to paas$/i.test(shortTitle)) {
+        return "Split message queues";
+    }
+
     shortTitle = shortTitle
         .replace(/^update\s+/i, "")
         .replace(/\s+pages to current behaviour$/i, "")
         .replace(/\s+pages to current behavior$/i, "");
 
-    // Make common title patterns more readable.
-    if (/^add splitting queue to paas$/i.test(shortTitle)) {
-        return "Split message queues";
-    }
-
-    shortTitle = shortTitle.charAt(0).toUpperCase() +
-        shortTitle.slice(1);
-
-    return shortTitle;
+    return shortTitle.charAt(0).toUpperCase() + shortTitle.slice(1);
 }
+
+// ======================================================
+// Clean summary output
+// ======================================================
 
 function cleanSummary(text) {
     return text
@@ -71,11 +71,12 @@ function cleanSummary(text) {
         .replace(/^["'`]+|["'`]+$/g, "")
         .replace(/\s+/g, " ")
         .trim()
-        .split(/\s+/)
-        .slice(0, 35)
-        .join(" ")
-        .replace(/[.!?]+$/, "") + ".";
+        .replace(/^["'`]+|["'`]+$/g, "");
 }
+
+// ======================================================
+// Fallback summary
+// ======================================================
 
 function fallbackSummary(pr) {
     const description = (pr.body || "")
@@ -92,7 +93,7 @@ function fallbackSummary(pr) {
 }
 
 // ======================================================
-// Copilot summary
+// Generate AI summary with Copilot CLI
 // ======================================================
 
 function summarizePR(pr) {
@@ -108,25 +109,38 @@ function summarizePR(pr) {
         .slice(0, 12000);
 
     const prompt = `
-Write one concise sentence for a Shopware developer announcement.
+Write one polished sentence for a weekly Shopware developer announcement.
 
 PR title: ${pr.title}
 
 PR description:
 ${pr.body || "No description provided."}
 
-Changed files:
+Changed files and patches:
 ${changedFiles}
 
-Requirements:
-- Maximum 35 words.
-- Explain the concrete change and why it matters to developers.
-- Focus on new capabilities, behavior, configuration, compatibility,
-  or actions developers need to take.
+Style examples:
+
+"Clarifies that both profilers are supported only for shop applications
+and explains their updated configuration, image rebuild behavior,
+and Tideways reporting destination."
+
+"Adds guidance for configuring separate Symfony Messenger transports
+in PaaS, allowing time-critical messages such as emails to be processed
+independently from other queued tasks."
+
+Writing requirements:
+- Write exactly one concise, natural sentence, ideally 20–30 words.
+- Explain the developer-facing change and why it matters.
+- Start naturally with a verb such as Adds, Clarifies, Introduces,
+  Documents, or Explains.
+- Summarize the main benefit rather than listing every implementation detail.
+- Mention specific technical details only when they help developers
+  understand the change.
 - Do not repeat the PR title.
-- Do not include a heading, bullet, PR number, or introduction.
-- Do not invent details.
-- Return only the summary sentence.
+- Do not include a PR number, author, heading, bullet, or introduction.
+- Do not invent information that is not supported by the PR.
+- Return only the sentence.
 `;
 
     const output = execFileSync(
@@ -141,7 +155,7 @@ Requirements:
 
     const summary = cleanSummary(output);
 
-    if (!summary || summary === ".") {
+    if (!summary) {
         throw new Error("Copilot returned an empty summary.");
     }
 
@@ -168,8 +182,9 @@ Requirements:
         `https://api.github.com/search/issues?q=${query}&per_page=100`
     );
 
+    // Oldest merged PR first.
     const items = (searchResult.items || []).sort(
-        (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        (a, b) => new Date(a.merged_at) - new Date(b.merged_at)
     );
 
     const output = [
