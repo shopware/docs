@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 const { execFileSync } = require("child_process");
 
@@ -25,7 +24,7 @@ const headers = {
 };
 
 // ======================================================
-// GitHub helper
+// GitHub API helper
 // ======================================================
 
 async function githubGet(url) {
@@ -41,15 +40,67 @@ async function githubGet(url) {
 }
 
 // ======================================================
+// Formatting helpers
+// ======================================================
+
+function getShortTitle(title) {
+    let shortTitle = title
+        .replace(/^(docs|feat|fix|chore|refactor):\s*/i, "")
+        .trim();
+
+    // Remove documentation-specific wording.
+    shortTitle = shortTitle
+        .replace(/^update\s+/i, "")
+        .replace(/\s+pages to current behaviour$/i, "")
+        .replace(/\s+pages to current behavior$/i, "");
+
+    // Make common title patterns more readable.
+    if (/^add splitting queue to paas$/i.test(shortTitle)) {
+        return "Split message queues";
+    }
+
+    shortTitle = shortTitle.charAt(0).toUpperCase() +
+        shortTitle.slice(1);
+
+    return shortTitle;
+}
+
+function cleanSummary(text) {
+    return text
+        .replace(/```[\s\S]*?```/g, "")
+        .replace(/^["'`]+|["'`]+$/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .split(/\s+/)
+        .slice(0, 35)
+        .join(" ")
+        .replace(/[.!?]+$/, "") + ".";
+}
+
+function fallbackSummary(pr) {
+    const description = (pr.body || "")
+        .split("\n")
+        .map(line => line.trim())
+        .find(line =>
+            line.length > 0 &&
+            !line.startsWith("#") &&
+            !line.startsWith("<!--") &&
+            !line.startsWith("- ")
+        );
+
+    return cleanSummary(description || pr.title);
+}
+
+// ======================================================
 // Copilot summary
 // ======================================================
 
 function summarizePR(pr) {
-    const files = pr.files
+    const changedFiles = pr.files
         .map(file => {
             return [
                 `File: ${file.filename}`,
-                `Change type: ${file.status}`,
+                `Status: ${file.status}`,
                 file.patch || ""
             ].join("\n");
         })
@@ -57,29 +108,28 @@ function summarizePR(pr) {
         .slice(0, 12000);
 
     const prompt = `
-Summarize this Shopware developer documentation PR for a weekly
-developer announcement.
+Write one concise sentence for a Shopware developer announcement.
 
 PR title: ${pr.title}
-PR description: ${pr.body || "No description provided."}
 
-Changed files and patches:
-${files}
+PR description:
+${pr.body || "No description provided."}
+
+Changed files:
+${changedFiles}
 
 Requirements:
-- Output exactly ONE concise sentence.
-- Maximum 30 words.
+- Maximum 35 words.
 - Explain the concrete change and why it matters to developers.
-- Focus on new capabilities, changed behavior, configuration,
-  compatibility, or actions developers need to take.
+- Focus on new capabilities, behavior, configuration, compatibility,
+  or actions developers need to take.
 - Do not repeat the PR title.
-- Do not include the PR number, author, headings, bullets,
-  introductions, or commentary.
-- Do not invent information not supported by the PR.
-- Return only the sentence.
+- Do not include a heading, bullet, PR number, or introduction.
+- Do not invent details.
+- Return only the summary sentence.
 `;
 
-    return execFileSync(
+    const output = execFileSync(
         "copilot",
         ["-p", prompt, "-s", "--no-ask-user"],
         {
@@ -87,7 +137,15 @@ Requirements:
             maxBuffer: 1024 * 1024,
             timeout: 120000
         }
-    ).trim();
+    );
+
+    const summary = cleanSummary(output);
+
+    if (!summary || summary === ".") {
+        throw new Error("Copilot returned an empty summary.");
+    }
+
+    return summary;
 }
 
 // ======================================================
@@ -110,20 +168,24 @@ Requirements:
         `https://api.github.com/search/issues?q=${query}&per_page=100`
     );
 
-    const prs = searchResult.items || [];
+    const items = (searchResult.items || []).sort(
+        (a, b) => new Date(a.created_at) - new Date(b.created_at)
+    );
 
-    if (prs.length === 0) {
-        const message = "# Weekly Developer Announcement\n\nNo announcement-labelled PRs were merged in the last seven days.\n";
+    const output = [
+        "# Weekly Developer Announcement",
+        ""
+    ];
 
-        fs.writeFileSync("announcement.md", message, "utf8");
-        console.log("No matching PRs found.");
-        console.log("announcement.md generated.");
-        return;
+    if (items.length === 0) {
+        output.push(
+            "No announcement-labelled PRs were merged in the last seven days."
+        );
     }
 
-    const summaries = [];
+    for (let index = 0; index < items.length; index++) {
+        const item = items[index];
 
-    for (const item of prs) {
         console.log(`Summarizing PR #${item.number}...`);
 
         const pr = await githubGet(
@@ -150,25 +212,21 @@ Requirements:
             summary = summarizePR(prData);
         } catch (error) {
             console.error(
-                `Copilot summary failed for PR #${item.number}: ${error.message}`
+                `Copilot failed for PR #${item.number}: ${error.message}`
             );
 
-            summary = (pr.body || pr.title)
-                .split("\n")
-                .map(line => line.trim())
-                .find(line => line.length > 0 && !line.startsWith("#"))
-                || pr.title;
+            summary = fallbackSummary(prData);
         }
 
-        summaries.push(
-            `## [${pr.title}](${pr.html_url})\n\n${summary}`
+        const title = getShortTitle(pr.title);
+
+        output.push(
+            `${index + 1}. [PR #${pr.number} — ${title}](${pr.html_url}): ${summary}`
         );
+        output.push("");
     }
 
-    const markdown =
-        "# Weekly Developer Announcement\n\n" +
-        summaries.join("\n\n---\n\n") +
-        "\n";
+    const markdown = output.join("\n").trim() + "\n";
 
     fs.writeFileSync("announcement.md", markdown, "utf8");
 
