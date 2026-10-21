@@ -15,7 +15,7 @@ Do not rely on the storefront maintenance page alone to contain an attack.
 
 If you suspect an attack, contact your hosting provider and agency first for help with containment, investigation, and recovery.
 Shopware offers dedicated support options for security incidents, including for Community Edition users without a support subscription.
-Contact [Shopware Support](https://support.shopware.com/) to discuss the assistance available for your situation.
+Contact [Shopware Support](https://support.shopware.com/create-ticket) to discuss the assistance available for your situation.
 You do not need to wait until your investigation is complete.
 
 Preserve logs and forensic snapshots before deleting files, restarting services, or restoring backups.
@@ -69,7 +69,7 @@ For personal data breaches under the GDPR, see the [European Data Protection Boa
 
 ## Share your findings with Shopware
 
-Reach out to Shopware Support after the incident as well, even if you did not contact us during the active attack.
+Reach out to [Shopware Support](https://support.shopware.com/create-ticket) after the incident as well, even if you did not contact us during the active attack.
 Share the affected versions, timeline, entry point, access gained, attacker actions, and recovery measures as far as you have established them.
 This information helps us improve protections and keep the whole Shopware ecosystem safe.
 
