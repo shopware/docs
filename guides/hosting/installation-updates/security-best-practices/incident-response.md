@@ -33,6 +33,9 @@ Establish what happened, including:
 Look for anything that could give the attacker persistent access, such as backdoors, modified plugins, scheduled tasks, additional administrator accounts, or newly created integration credentials.
 The absence of obvious changes or log entries does not establish that the system is clean.
 
+AI agents can be particularly helpful for analysing large volumes of logs, identifying suspicious patterns, and reconstructing the attack timeline.
+Validate their findings against the original evidence and redact secrets and customer data before sending logs to an external service.
+
 ## Remove attacker access and recover
 
 Once you understand the entry point, the access gained, and the attacker's actions, remove unauthorized access and reverse the malicious changes.
