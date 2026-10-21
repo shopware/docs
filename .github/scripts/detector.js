@@ -1,128 +1,94 @@
+
 const RULES = require("./rules");
 
 /**
- * Run all announcement rules against a PR
+ * Run announcement rules against a pull request.
+ *
+ * High-confidence match:
+ *   file status + file path + PR title/body keywords
+ *
+ * Manual review:
+ *   file status + file path match, but keywords do not
+ *
+ * This detector does not inspect file contents or the PR diff.
  *
  * @param {Object} pr
  * @param {Array} files
  * @returns {{
  *   recommendation: boolean,
- *   signals: Array
+ *   manualReview: boolean,
+ *   signals: Array,
+ *   reviewSignals: Array
  * }}
  */
 function detect(pr, files) {
+    const signals = [];
+    const reviewSignals = [];
 
-    const detectedSignals = [];
-
-    // Searchable text (used only if a rule defines keywords)
     const searchableText = [
         pr.title || "",
         pr.body || ""
     ].join("\n");
 
-    //--------------------------------------------------
-    // Evaluate each rule
-    //--------------------------------------------------
-
     for (const rule of RULES) {
+        const config = rule.detect || {};
 
-        let matched = false;
-
-        //--------------------------------------------------
-        // Check each changed file
-        //--------------------------------------------------
-
-        for (const file of files) {
-
-            let ruleMatches = true;
-
-            //--------------------------------------------------
-            // File Status
-            //--------------------------------------------------
-
-            if (rule.detect.status) {
-
-                if (!rule.detect.status.includes(file.status)) {
-                    ruleMatches = false;
-                }
-
+        const matchingFiles = files.filter(file => {
+            if (
+                config.status &&
+                !config.status.includes(file.status)
+            ) {
+                return false;
             }
 
-            //--------------------------------------------------
-            // File Path
-            //--------------------------------------------------
-
-            if (ruleMatches && rule.detect.paths) {
-
-                const pathMatched = rule.detect.paths.some(regex =>
-                    regex.test(file.filename)
-                );
-
-                if (!pathMatched) {
-                    ruleMatches = false;
-                }
-
+            if (
+                config.paths &&
+                !config.paths.some(regex => regex.test(file.filename))
+            ) {
+                return false;
             }
 
-            //--------------------------------------------------
-            // Keywords (Optional)
-            //--------------------------------------------------
+            return true;
+        });
 
-            if (ruleMatches && rule.detect.keywords) {
-
-                const keywordMatched = rule.detect.keywords.some(regex =>
-                    regex.test(searchableText)
-                );
-
-                if (!keywordMatched) {
-                    ruleMatches = false;
-                }
-
-            }
-
-            //--------------------------------------------------
-            // Rule matched
-            //--------------------------------------------------
-
-            if (ruleMatches) {
-
-                matched = true;
-                break;
-
-            }
-
+        if (matchingFiles.length === 0) {
+            continue;
         }
 
-        //--------------------------------------------------
-        // Store matched rule
-        //--------------------------------------------------
+        const keywordMatched = !config.keywords ||
+            config.keywords.some(regex => regex.test(searchableText));
 
-        if (matched) {
+        const signal = {
+            id: rule.id,
+            name: rule.name,
+            description: rule.description,
+            priority: rule.priority,
+            matchingFiles: matchingFiles.map(file => file.filename)
+        };
 
-            detectedSignals.push({
-                id: rule.id,
-                name: rule.name,
-                description: rule.description,
-                priority: rule.priority
+        if (keywordMatched) {
+            signals.push(signal);
+        } else {
+            reviewSignals.push({
+                ...signal,
+                reason:
+                    "The changed file path matches this category, " +
+                    "but the PR title/body does not provide enough " +
+                    "keyword evidence for an automatic recommendation."
             });
-
         }
-
     }
 
-    //--------------------------------------------------
-    // Recommend only if a HIGH priority rule matched
-    //--------------------------------------------------
-
-    const recommendation = detectedSignals.some(
+    const recommendation = signals.some(
         signal => signal.priority === "high"
     );
 
     return {
         recommendation,
-        signals: detectedSignals
+        manualReview: reviewSignals.length > 0,
+        signals,
+        reviewSignals
     };
-
 }
 
 module.exports = detect;
