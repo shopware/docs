@@ -73,7 +73,16 @@ Strategies to reduce tool count within a single integration:
 
 Tool responses are injected directly into the agent's context window, so large responses consume a significant portion of the token budget.
 
-When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead, it stores the payload in the `mcp_tool_result_cache` table and returns a `shopware://tool-result/…` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred, and `query` with the tool and arguments of the call. Starting with Shopware 6.7.16.0, the URI is a signed pointer that only works for the caller that produced it and expires after one hour (`_meta.expiresAt`). Clients on protocol `2025-06-18` or later also get it as a `resource_link` content block. See [Large tool results](./tools-reference.md#large-tool-results). For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
+When a result holds more than about 100 KB of data, Shopware does not inline it.
+Instead, it stores the result in the `mcp_tool_result_cache` table and returns a `shopware://tool-result/…` URI in `_meta.resourceUri`.
+The agent can fetch the full content via `resources/read`.
+The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred, and `query` with the tool and arguments of the call.
+Starting with Shopware 6.7.17.0, the MCP result renderer makes this decision for every tool, including app tools and tools that build their JSON string by hand.
+`McpToolResponse::success()` always returns the full data, so do not rely on it to shorten a result.
+Starting with Shopware 6.7.16.0, the URI is a signed pointer that only works for the caller that produced it and expires after one hour (`_meta.expiresAt`).
+Clients on protocol `2025-06-18` or later also get it as a `resource_link` content block.
+See [Large tool results](./tools-reference.md#large-tool-results).
+For responses of 20 KB or more that stay inline, `McpToolResponse::success()` includes `_meta.responseSize` as a size hint so the agent can learn to use tighter parameters next time.
 
 The goal is still to keep responses small. Deferred resources still cost tokens when the agent fetches them, and some clients may not automatically follow up.
 

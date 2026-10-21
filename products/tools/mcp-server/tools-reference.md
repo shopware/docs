@@ -116,7 +116,34 @@ Titles and descriptions are generated from the group name: `#[McpToolGroup('swag
 
 ## Large tool results
 
-A tool response larger than 100 KB is not returned inline. Shopware stores it and returns a reference instead: `_meta.resourceUri` contains a `shopware://tool-result/…` URI that the client reads with `resources/read` through the matching resource template. This applies to core tools and to plugin and bundle tools that extend `McpToolResponse`, on both endpoints. App tools are never offloaded.
+A tool result with more than about 100 KB of data is not returned inline.
+Shopware stores it and returns a reference instead: `_meta.resourceUri` contains a `shopware://tool-result/…` URI that the client reads with `resources/read` through the matching resource template.
+
+Starting with Shopware 6.7.17.0, Shopware makes this decision when it renders the MCP result, for every tool on both endpoints.
+This includes app tools and plugin tools that build their JSON string by hand.
+Before 6.7.17.0, only results of `McpToolResponse::success()` were stored, and app tools were never offloaded.
+
+The limit applies to the rendered result, the text blocks plus the encoded `structuredContent`:
+
+| Protocol revision          | Limit  | Reason                                                     |
+| -------------------------- | ------ | ---------------------------------------------------------- |
+| `2025-06-18` and later     | 200 KB | The data is sent twice, as text and as `structuredContent` |
+| `2024-11-05`, `2025-03-26` | 100 KB | The data is sent once, as text                             |
+
+Both limits correspond to about 100 KB of data.
+Failed calls are never stored.
+
+The text block of a linked result holds `{"success": true, "data": null, "_meta": {…}}`.
+Its `_meta` contains `resourceUri`, `expiresAt`, `responseSize`, a `note` explaining why the data was not returned inline, and `query` with the tool name and arguments of the call.
+With the `v6.8.0.0` feature flag, the text holds the note and `{"_meta": …}` instead, and leaves out `resourceUri` when the client receives the `resource_link`.
+
+`resources/read` of a stored result always returns `application/json`.
+Its content depends on the protocol revision of the call that stored it, with or without the `v6.8.0.0` feature flag:
+
+- On `2025-06-18` and later, the plain data. The metadata, such as `total`, comes with the link in the tool result.
+- On `2024-11-05` and `2025-03-26`, the `{"success": true, "data": …, "_meta": …}` envelope.
+
+Results stored before the update to 6.7.17.0 are read as the envelope until they expire.
 
 Starting with Shopware 6.7.16.0, the URI is a signed pointer for the caller and expires after one hour. `_meta.expiresAt` holds the expiry. Clients on protocol `2025-06-18` or later also get the URI as a `resource_link` content block. Read it on the same endpoint as the same caller:
 
@@ -400,17 +427,17 @@ Read or update the theme configuration for a sales channel. Manages brand colors
 
 Resources are static reference data available via MCP resource URIs. They require no tool call and do not consume tool-call budget.
 
-| URI                           | Description                                                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `shopware://entities`         | All registered entity names                                                                                  |
-| `shopware://sales-channels`   | All sales channels with IDs, names, types, and domains                                                       |
-| `shopware://currencies`       | All currencies with ISO codes, symbols, and factors                                                          |
-| `shopware://languages`        | All languages with locale codes                                                                              |
-| `shopware://state-machines`   | All state machines with states and valid transitions                                                         |
-| `shopware://business-events`  | All events that can trigger flows                                                                            |
-| `shopware://flow-actions`     | All flow actions available in Flow Builder                                                                   |
-| `shopware://extensions`       | Active plugins and bundles with additional MCP tools, including tool prefix and install command              |
-| `shopware://tool-result/{id}` | Resource template for a stored tool result larger than 100 KB, see [Large tool results](#large-tool-results) |
+| URI                           | Description                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `shopware://entities`         | All registered entity names                                                                                                   |
+| `shopware://sales-channels`   | All sales channels with IDs, names, types, and domains                                                                        |
+| `shopware://currencies`       | All currencies with ISO codes, symbols, and factors                                                                           |
+| `shopware://languages`        | All languages with locale codes                                                                                               |
+| `shopware://state-machines`   | All state machines with states and valid transitions                                                                          |
+| `shopware://business-events`  | All events that can trigger flows                                                                                             |
+| `shopware://flow-actions`     | All flow actions available in Flow Builder                                                                                    |
+| `shopware://extensions`       | Active plugins and bundles with additional MCP tools, including tool prefix and install command                               |
+| `shopware://tool-result/{id}` | Resource template for a stored tool result that was too large to return inline, see [Large tool results](#large-tool-results) |
 
 ## Prompts
 

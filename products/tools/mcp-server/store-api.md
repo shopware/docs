@@ -93,7 +93,7 @@ Starting with Shopware 6.7.16.0, clients on protocol `2025-06-18` or later also 
 
 If the request carries no resolvable sales-channel context, the tool returns `No Store API sales-channel context is available for this MCP request.`
 
-Core registers no prompts for the Store API scope. Starting with Shopware 6.7.16.0, it registers the `shopware://tool-result/{id}` resource template, which serves tool results larger than 100 KB. Send the same `sw-context-token` on `resources/read` as on the tool call. A call without `sw-context-token` gets its result inline. See [Large tool results](./tools-reference.md#large-tool-results).
+Core registers no prompts for the Store API scope. Starting with Shopware 6.7.16.0, it registers the `shopware://tool-result/{id}` resource template, which serves tool results that are too large to return inline. Send the same `sw-context-token` on `resources/read` as on the tool call. A call without `sw-context-token` gets its result inline. See [Large tool results](./tools-reference.md#large-tool-results).
 
 ## Sessions and rate limiting
 

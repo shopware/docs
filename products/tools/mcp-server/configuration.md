@@ -33,11 +33,11 @@ shopware:
 
 These three keys are the complete `shopware.mcp` configuration:
 
-| Key                     | Type            | Default | Description                                                                            |
-| ----------------------- | --------------- | ------- | -------------------------------------------------------------------------------------- |
-| `allowed_tools`         | list of strings | `[]`    | Installation-wide tool allowlist applied at compile time. Empty = all.                 |
-| `app_tool_timeout`      | integer         | `10`    | Timeout in seconds for app webhook tool calls. Minimum `1`.                            |
-| `tool_result_cache_ttl` | integer         | `86400` | Seconds a stored tool result larger than 100 KB is kept. Minimum `60`. Since 6.7.16.0. |
+| Key                     | Type            | Default | Description                                                               |
+| ----------------------- | --------------- | ------- | ------------------------------------------------------------------------- |
+| `allowed_tools`         | list of strings | `[]`    | Installation-wide tool allowlist applied at compile time. Empty = all.    |
+| `app_tool_timeout`      | integer         | `10`    | Timeout in seconds for app webhook tool calls. Minimum `1`.               |
+| `tool_result_cache_ttl` | integer         | `86400` | Seconds a stored large tool result is kept. Minimum `60`. Since 6.7.16.0. |
 
 The hourly `mcp_tool_result_cache.cleanup` scheduled task removes stored tool results older than `tool_result_cache_ttl`, so a result can stay up to an hour longer. Stored results can contain customer and order data. Lower the value to keep them shorter, but not below `3600`, because a link to a stored result is valid for one hour. The cleanup only runs where [scheduled tasks](../../../guides/hosting/infrastructure/scheduled-task.md) are consumed. See [Large tool results](./tools-reference.md#large-tool-results).
 

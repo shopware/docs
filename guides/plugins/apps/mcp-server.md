@@ -283,7 +283,10 @@ For consistency with core tools, follow the `{"success": bool, "data": ..., "_me
 
 Starting with Shopware 6.7.16.0, Shopware keeps a body with a boolean `success` as the text block of the result and adds `structuredContent` with your `data`, `isError`, and `_meta["shopware/generatedAt"]`. A top-level `code`, or `error` as an object with `message` and `code`, becomes `structuredContent.error.code`. Other top-level keys become metadata. Any other body is passed on as text only. See [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
 
-App tool results are never offloaded to the tool-result cache. Keep them well under 100 KB.
+Starting with Shopware 6.7.17.0, an app tool result with more than about 100 KB of data is stored and sent as a link, like the results of core tools.
+The client reads it with `resources/read`, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
+Before 6.7.17.0, app tool results were always returned inline.
+Keep results compact either way, because the agent pays for every byte it reads.
 
 **Timeout:** App webhook calls time out after `shopware.mcp.app_tool_timeout` seconds (default: 10). Keep responses fast or use async patterns with status polling.
 

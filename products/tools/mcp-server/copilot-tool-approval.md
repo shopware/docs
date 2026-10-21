@@ -219,7 +219,7 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 * **Idempotent commits where possible** - Copilot executes an approval once, but network retries can repeat a call. Design the commit so that running it twice with the same arguments is harmless.
 * **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilege()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
 * **Response envelope** - Always return through `success()` or `error()`. Copilot treats `success: false` as a tool error and doesn't proceed to the commit. Starting with Shopware 6.7.16.0, the same result also carries `isError: true`.
-* **Response size** - Responses larger than 100 KB are returned through a resource URI instead of inline. Keep previews and results compact, so Copilot can use them directly.
+* **Response size** - Responses with more than about 100 KB of data are returned through a resource URI instead of inline. Keep previews and results compact, so Copilot can use them directly.
 * **Timeouts** - Copilot waits a few seconds for a tool call. Long-running work should return quickly and continue asynchronously, reporting a reference the merchant can check.
 * **No preview-only side effects** - Logging is fine. Creating draft records, reserving stock, or sending notifications during a preview is not.
 
