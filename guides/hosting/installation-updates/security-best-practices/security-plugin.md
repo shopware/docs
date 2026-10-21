@@ -9,7 +9,7 @@ nav:
 
 The [Shopware 6 Security Plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) (`SwagPlatformSecurity`) backports security fixes to existing Shopware installations. It allows you to close known security vulnerabilities with a simple plugin update, without upgrading Shopware itself. The plugin is free and maintained by Shopware.
 
-For self-hosted shops, always keep a compatible version of the plugin installed, activated, and up to date, even when Shopware itself is fully updated.
+For self-hosted and PaaS Native shops, always keep a compatible version of the plugin installed, activated, and up to date, even when Shopware itself is fully updated.
 Having the plugin in place makes it easier to apply the next security update promptly.
 Apply relevant plugin updates as soon as possible rather than waiting for a routine maintenance window.
 
