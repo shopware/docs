@@ -202,56 +202,28 @@ class RobotsValidationListener
     {
         $parsedRobots = $event->parsedResult;
         $issues = $parsedRobots->issues;
-        $lineNumbers = [];
-
-        foreach (explode("\n", $event->text) as $lineIndex => $line) {
-            $parts = explode(':', trim($line), 2);
-            if (count($parts) !== 2) {
-                continue;
-            }
-
-            $type = RobotsDirectiveType::tryFromInsensitive(trim($parts[0]));
-            if ($type !== null) {
-                $key = $type->value . ': ' . trim($parts[1]);
-                $lineNumbers[$key][] = [$lineIndex + 1, trim($line)];
-            }
-        }
-
-        $lineFor = static function (RobotsDirectiveType $type, string $value) use (&$lineNumbers): array {
-            $key = $type->value . ': ' . $value;
-            $matchingLines = $lineNumbers[$key] ?? [];
-            if ($matchingLines === []) {
-                return [0, ''];
-            }
-
-            $line = array_shift($matchingLines);
-            $lineNumbers[$key] = $matchingLines;
-
-            return $line;
-        };
 
         // Validate crawl-delay values
         foreach ($parsedRobots->userAgentBlocks as $block) {
             foreach ($block->directives as $directive) {
                 if ($directive->type === RobotsDirectiveType::CRAWL_DELAY) {
                     $value = (int) $directive->value;
-                    [$lineNumber, $lineContent] = $lineFor($directive->type, $directive->value);
 
                     if ($value <= 0) {
                         $issues[] = new ParseIssue(
-                            severity: ParseIssueSeverity::ERROR,
-                            lineNumber: $lineNumber,
-                            lineContent: $lineContent,
+                            lineNumber: 0,
+                            lineContent: $directive->render(),
                             reason: 'Invalid crawl-delay value: must be a positive integer',
+                            severity: ParseIssueSeverity::ERROR,
                         );
                     }
 
                     if ($value > 10) {
                         $issues[] = new ParseIssue(
-                            severity: ParseIssueSeverity::WARNING,
-                            lineNumber: $lineNumber,
-                            lineContent: $lineContent,
+                            lineNumber: 0,
+                            lineContent: $directive->render(),
                             reason: 'Crawl-delay value is very high. This may significantly slow down indexing.',
+                            severity: ParseIssueSeverity::WARNING,
                         );
                     }
                 }
@@ -265,20 +237,20 @@ class RobotsValidationListener
 
             foreach ($block->directives as $directive) {
                 if ($directive->type === RobotsDirectiveType::DISALLOW) {
-                    $disallowed[] = [$directive->value, ...$lineFor($directive->type, $directive->value)];
+                    $disallowed[] = $directive->value;
                 } elseif ($directive->type === RobotsDirectiveType::ALLOW) {
-                    $allowed[] = [$directive->value, ...$lineFor($directive->type, $directive->value)];
+                    $allowed[] = $directive->value;
                 }
             }
 
-            foreach ($allowed as [$allowPath, $allowLineNumber, $allowLineContent]) {
-                foreach ($disallowed as [$disallowPath]) {
+            foreach ($allowed as $allowPath) {
+                foreach ($disallowed as $disallowPath) {
                     if ($allowPath === $disallowPath) {
                         $issues[] = new ParseIssue(
-                            severity: ParseIssueSeverity::WARNING,
-                            lineNumber: $allowLineNumber,
-                            lineContent: $allowLineContent,
+                            lineNumber: 0,
+                            lineContent: $allowPath,
                             reason: sprintf('Conflicting directives: Path "%s" is both allowed and disallowed', $allowPath),
+                            severity: ParseIssueSeverity::WARNING,
                         );
                     }
                 }
