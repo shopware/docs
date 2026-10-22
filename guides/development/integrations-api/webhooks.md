@@ -57,7 +57,7 @@ If the owner loses a privilege later, the webhook stops receiving the matching e
 
 ### Which events you can subscribe to
 
-Shopware checks the `eventName` when a webhook is created or updated, and rejects it with a `400` when:
+Shopware checks the `eventName` when a webhook is created, or updated with a new `eventName` or `aclRoleIds`, and rejects it with a `400` when:
 
 * webhooks can't receive the event at all, for example app lifecycle events such as `app.activated`, which are only sent to apps (`FRAMEWORK__WEBHOOK_EVENT_NOT_PERMITTED`).
 * the owner lacks a privilege the event requires (`FRAMEWORK__WEBHOOK_EVENT_PRIVILEGES_MISSING`).
