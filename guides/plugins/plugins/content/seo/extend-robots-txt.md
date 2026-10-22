@@ -53,9 +53,10 @@ namespace Swag\Example\Listener;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirective;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsUserAgentBlock;
+use Shopware\Storefront\Page\Robots\Struct\RobotsDirective;
+use Shopware\Storefront\Page\Robots\Struct\RobotsDirectiveType;
+use Shopware\Storefront\Page\Robots\Struct\RobotsUserAgentBlock;
+use Shopware\Storefront\Page\Robots\Parser\ParsedRobots;
 
 #[Package('storefront')]
 class RobotsExtensionListener
@@ -67,22 +68,29 @@ class RobotsExtensionListener
 
     public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
-        $parsedRobots = $event->getParsedRobots();
+        $parsedRobots = $event->parsedResult;
 
         // Add restrictions for AI crawlers
         $aiCrawlers = ['GPTBot', 'ChatGPT-User', 'CCBot', 'anthropic-ai'];
 
-        $aiBlock = new RobotsUserAgentBlock(
-            userAgents: $aiCrawlers,
-            directives: [
-                new RobotsDirective(
-                    type: RobotsDirectiveType::DISALLOW,
-                    value: '/checkout/',
-                ),
-            ],
-        );
+        $aiBlocks = [];
+        foreach ($aiCrawlers as $userAgent) {
+            $aiBlocks[] = new RobotsUserAgentBlock(
+                userAgent: $userAgent,
+                directives: [
+                    new RobotsDirective(
+                        type: RobotsDirectiveType::DISALLOW,
+                        value: '/checkout/',
+                    ),
+                ],
+            );
+        }
 
-        $parsedRobots->addUserAgentBlock($aiBlock);
+        $event->parsedResult = new ParsedRobots(
+            userAgentBlocks: [...$parsedRobots->userAgentBlocks, ...$aiBlocks],
+            orphanedPathDirectives: $parsedRobots->orphanedPathDirectives,
+            issues: $parsedRobots->issues,
+        );
 
         $this->logger->info('Extended robots.txt with AI crawler rules');
     }
@@ -184,14 +192,14 @@ use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
+use Shopware\Storefront\Page\Robots\Struct\RobotsDirectiveType;
 
 #[Package('storefront')]
 class RobotsValidationListener
 {
     public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
-        $parsedRobots = $event->getParsedRobots();
+        $parsedRobots = $event->parsedResult;
 
         // Validate crawl-delay values
         foreach ($parsedRobots->getUserAgentBlocks() as $block) {
