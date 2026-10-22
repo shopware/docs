@@ -97,6 +97,7 @@ BBundle
 BCP
 BDD
 BITV
+BYOL
 BackedEnum
 Backend
 BaseContext
@@ -291,6 +292,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+Cyberattack
 CycloneDX
 DAL
 DBAL
@@ -1276,6 +1278,7 @@ bPlatform
 bRestApi
 bServiceExtension
 bTemplateExtension
+backdoors
 backend
 backends
 backface
@@ -1936,6 +1939,7 @@ recalculable
 redeclaration
 redeclared
 redeclaring
+redirectionio
 redis
 refactorings
 referenceField
