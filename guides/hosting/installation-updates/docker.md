@@ -327,9 +327,15 @@ For the full step-by-step procedure — including backups, maintenance mode, che
 
 ### Updating Shopware and PHP together (major upgrade)
 
-When you move to a new **major** Shopware version (these come out once a year, e.g., 6.6 → 6.7), you usually also need a newer PHP version. It is tempting to change everything in one big rebuild — **do not do this.** If something breaks, you will not know whether PHP or Shopware caused it, and you will have a hard time undoing it. This is exactly the kind of "creative" update that breaks shops.
+When you plan a major Shopware upgrade in Docker, prepare the runtime stack first and change it in controlled steps. Before rebuilding for the target major, verify these parts of the environment:
 
-Instead, change **one thing at a time**, in order. This works because every Shopware major supports *two* PHP versions (the old one and a newer one) at the same time, so you can move PHP and Shopware in separate steps.
+- **PHP version** required by the target Shopware major
+- **Database engine and version** used by your database container or managed database
+- **Extension compatibility** with the target Shopware version and runtime stack
+- **Locale-sensitive behavior** in custom code, templates, imports, and exports
+- **Request parameter handling** in custom extensions if code relies on helper-based parameter resolution
+
+Use the [System Requirements](../../installation/system-requirements.md) for the target Shopware version as the source of truth for supported PHP and database versions.
 
 The PHP version is controlled by a single line in your `Dockerfile`, the `PHP_VERSION` build argument:
 
@@ -339,19 +345,63 @@ FROM ghcr.io/shopware/docker-base:$PHP_VERSION-frankenphp AS base-image
 FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 ```
 
-**Example: going from Shopware 6.6 on PHP 8.2 to Shopware 6.7 on PHP 8.5.**
+If your upgrade also requires a newer database version, update that in your `compose.yaml` or infrastructure definition separately. For example:
 
-Take a **backup of your database and files before you start**, then do these steps one after another, testing after each:
+```yaml
+services:
+    database:
+        image: mariadb:11.4
+```
 
-1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md). This command is deprecated and will be removed in October 2026; use `shopware-cli project upgrade` instead.
-2. **Raise PHP to an in-between version — still on old Shopware.** Change `PHP_VERSION` to a version both 6.6 and 6.7 support (here: `8.3`), then rebuild, and redeploy. Because both versions support it, this is safe while still on 6.6. Test the shop.
-3. **Update Shopware.** Now do the Shopware 6.6 → 6.7 update by following [Performing Shopware Updates](./performing-updates.md). Rebuild, redeploy, test the shop.
-4. **Raise PHP to the final version.** Now that you are on 6.7, change `PHP_VERSION` to the final target (`8.5`), rebuild, redeploy, and test one last time.
+For major upgrades, do **not** change Shopware, PHP, and database versions all at once. Move one layer at a time, test it, then continue.
 
-If any step misbehaves, you know exactly which change caused it, and you can roll that one step back instead of unpicking a tangle of changes.
+Recommended order:
+
+1. **Check compatibility first.**
+   - Run `shopware-cli project upgrade` and review the report.
+   - Confirm that your target PHP and database versions are supported.
+   - Verify that all extensions support the target Shopware version.
+2. **Raise PHP to a version supported by both the current and target Shopware major.**
+   - Change `PHP_VERSION`.
+   - Rebuild and redeploy.
+   - Test storefront, administration, background workers, and scheduled tasks.
+3. **Upgrade the database engine/version if needed.**
+   - Follow your database vendor’s upgrade procedure.
+   - Start Shopware against the upgraded database.
+   - Test imports, indexing, search, and writes.
+4. **Update Shopware.**
+   - Update Composer dependencies.
+   - Rebuild and redeploy.
+   - Let the deployment process finish migrations.
+5. **Run application checks focused on customizations.**
+   - Test language- and locale-dependent output such as formatting, translations, document generation, and data imports.
+   - Test forms, storefront filters, controller actions, and any code that reads request data from query strings or submitted form payloads.
+6. **Move PHP to the final target version if required.**
+   - Rebuild, redeploy, and test again.
+
+Example rebuild and redeploy cycle:
+
+```bash
+docker compose build --pull
+docker compose up -d
+```
+
+If your setup uses dedicated worker or scheduler services, always verify them after each step:
+
+```bash
+docker compose exec worker php -v
+docker compose exec scheduler php -v
+docker compose exec web php bin/console about
+```
+
+This keeps every container on the same runtime and helps avoid partial upgrades where the web container and CLI containers differ.
+
+::: warning
+If custom extensions depend on request values, do not assume that a generic helper resolves query parameters, form data, and request attributes interchangeably. Read values from the correct request bag explicitly in your application code and test those paths before rollout.
+:::
 
 ::: danger
-Never jump several Shopware majors and PHP versions at once (for example, 6.5 straight to 6.7). Go one major version at a time and always take a backup before starting.
+Do not combine several major Shopware upgrades into one deployment step. Upgrade one major version at a time and take a backup before starting.
 :::
 
 ## Adding custom PHP extensions

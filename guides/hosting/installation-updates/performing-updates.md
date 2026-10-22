@@ -67,8 +67,11 @@ Do not enable maintenance mode merely to prepare and test the upgrade locally. A
 For major updates, consider the following additional preparations:
 
 - **Update PHP version**: Update the PHP version to the minimum required version for the new Shopware version *before* updating Shopware. Shopware versions always support an overlapping PHP version, so this is safe to do beforehand. You can find the minimum required PHP version in the [System Requirements guide](../../installation/system-requirements.md).
+- **Check database engine and version**: Verify that your target environment uses a database version supported by the target Shopware major version. This includes local development, CI, staging, production, and any Docker images or managed database services involved in the rollout. Align database upgrades with your Shopware upgrade plan before updating application code.
 - **Check upgrade changes**: Review the [UPGRADE.md](https://github.com/search?q=repo%3Ashopware%2Fshopware+UPGRADE-6+language%3AMarkdown+NOT+path%3A%2F%5Eadr%5C%2F%2F+NOT+path%3A%2F%5Echangelog%5C%2F%2F&type=code&l=Markdown) for all breaking changes and migration instructions.
 - **Review extension updates**: Use the upgrade wizard's extension queue and report to identify compatible releases, updates, blockers, and items that still need manual or vendor review.
+- **Check locale-sensitive behavior**: Test storefront and Administration flows that depend on locale formatting, such as prices, dates, numbers, documents, exports, and custom validations. If your project or extensions rely on locale fallback assumptions, update those configurations or code paths before rollout.
+- **Review request parameter access in custom code**: If your project or extensions read request data through helper methods or generic request access, test forms, Storefront controllers, Store API routes, and Administration endpoints to make sure values are read from the correct request bag (`query`, `request`, or `attributes`) in the target Shopware version.
 
 ## Prepare the update locally with Shopware CLI (recommended)
 
@@ -85,10 +88,14 @@ If an essential execution step fails or the run is canceled, Shopware CLI restor
 After a successful local run:
 
 1. Review `.shopware-cli/upgrade/report.md` and the Git diff.
-2. Test the Administration, Storefront, integrations, and installed extensions.
-3. Run your automated test suite.
-4. Commit `composer.json`, `composer.lock`, and any reviewed configuration changes.
-5. Deploy through your normal process.
+2. Confirm that the report findings match your target runtime plan, including PHP and database versions across local, CI, staging, and production.
+3. Review extension compatibility against the target Shopware major version and your planned PHP/database stack.
+4. Test the Administration, Storefront, integrations, and installed extensions.
+5. Specifically test locale-sensitive output such as currency formatting, dates, snippets, documents, and imports/exports if your shop operates in multiple locales.
+6. If you maintain custom code, test controller and API flows that read request parameters and replace ambiguous access with explicit request bags where necessary.
+7. Run your automated test suite.
+8. Commit `composer.json`, `composer.lock`, and any reviewed configuration changes.
+9. Deploy through your normal process.
 
 The upgrade wizard does not deploy the project to production.
 
@@ -126,7 +133,34 @@ composer recipes:update
 
 Review the changes carefully before applying them.
 
-### 4. Commit and deploy
+### 4. Validate environment and custom code
+
+Before you deploy the updated code, validate the parts of your project that are commonly affected by major upgrades:
+
+- Check that your PHP runtime and database version in every environment match the target Shopware requirements.
+- Test locale-dependent output and input handling.
+- Review custom controllers, subscribers, and API endpoints for request parameter access and use explicit request bags where appropriate.
+
+For example, prefer bag-specific access over generic helpers when the source of the value matters:
+
+```php
+use Symfony\Component\HttpFoundation\Request;
+
+public function example(Request $request): void
+{
+    $page = $request->query->getInt('page', 1);
+    $csrf = $request->request->getString('_csrf_token');
+    $productId = $request->attributes->get('productId');
+}
+```
+
+When reading request data in custom code, use:
+
+- `query` for URL query parameters such as `?page=2`
+- `request` for submitted form fields or request bodies
+- `attributes` for route placeholders and values set by Symfony or your own listeners
+
+### 5. Commit and deploy
 
 Commit the changes to your Git repository:
 
@@ -196,6 +230,8 @@ Before you remove the maintenance mode, verify the update was successful:
 - **Check the Administration**: Make sure the Administration is working correctly.
 - **Check the Storefront**: Make sure your main processes are working correctly (e.g., adding products to the cart, checkout, etc.).
 - **Check the Extensions**: Make sure that all extensions are working correctly.
+- **Check locale-sensitive behavior**: Verify translated content, formatted prices, dates, documents, and any locale-specific imports/exports.
+- **Check request-driven flows**: Verify forms, filters, route parameters, and custom endpoints if your project includes custom request handling.
 - **Check the Performance**: Make sure there is no major performance degradation.
 - **Check the Logs**: Check your error logs for any issues.
 - **Review the upgrade report**: If you used Shopware CLI, keep the report with the upgrade context or attach a redacted copy when asking another developer, extension vendor, hosting provider, or Shopware support for help.
