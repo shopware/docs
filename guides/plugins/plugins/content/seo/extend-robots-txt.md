@@ -147,8 +147,8 @@ class CustomDirectiveListener
         // Support Google and Yandex specific directives
         $knownCustomDirectives = ['noimageindex', 'noarchive', 'clean-param'];
 
-        if (in_array(strtolower($event->getDirectiveName()), $knownCustomDirectives, true)) {
-            $event->setHandled(true); // Prevent "unknown directive" warning
+        if (in_array(strtolower($event->directiveType), $knownCustomDirectives, true)) {
+            $event->handled = true; // Prevent "unknown directive" warning
         }
     }
 }
@@ -192,6 +192,7 @@ use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
+use Shopware\Storefront\Page\Robots\Parser\ParsedRobots;
 use Shopware\Storefront\Page\Robots\Struct\RobotsDirectiveType;
 
 #[Package('storefront')]
@@ -200,57 +201,95 @@ class RobotsValidationListener
     public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
         $parsedRobots = $event->parsedResult;
+        $issues = $parsedRobots->issues;
+        $lineNumbers = [];
+
+        foreach (explode("\n", $event->text) as $lineIndex => $line) {
+            $parts = explode(':', trim($line), 2);
+            if (count($parts) !== 2) {
+                continue;
+            }
+
+            $type = RobotsDirectiveType::tryFromInsensitive(trim($parts[0]));
+            if ($type !== null) {
+                $key = $type->value . ': ' . trim($parts[1]);
+                $lineNumbers[$key][] = [$lineIndex + 1, trim($line)];
+            }
+        }
+
+        $lineFor = static function (RobotsDirectiveType $type, string $value) use (&$lineNumbers): array {
+            $key = $type->value . ': ' . $value;
+            $matchingLines = $lineNumbers[$key] ?? [];
+            if ($matchingLines === []) {
+                return [0, ''];
+            }
+
+            $line = array_shift($matchingLines);
+            $lineNumbers[$key] = $matchingLines;
+
+            return $line;
+        };
 
         // Validate crawl-delay values
-        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
-            foreach ($block->getDirectives() as $directive) {
-                if ($directive->getType() === RobotsDirectiveType::CRAWL_DELAY) {
-                    $value = (int) $directive->getValue();
+        foreach ($parsedRobots->userAgentBlocks as $block) {
+            foreach ($block->directives as $directive) {
+                if ($directive->type === RobotsDirectiveType::CRAWL_DELAY) {
+                    $value = (int) $directive->value;
+                    [$lineNumber, $lineContent] = $lineFor($directive->type, $directive->value);
 
                     if ($value <= 0) {
-                        $event->addIssue(new ParseIssue(
+                        $issues[] = new ParseIssue(
                             severity: ParseIssueSeverity::ERROR,
-                            message: 'Invalid crawl-delay value: must be a positive integer',
-                            lineNumber: null,
-                        ));
+                            lineNumber: $lineNumber,
+                            lineContent: $lineContent,
+                            reason: 'Invalid crawl-delay value: must be a positive integer',
+                        );
                     }
 
                     if ($value > 10) {
-                        $event->addIssue(new ParseIssue(
+                        $issues[] = new ParseIssue(
                             severity: ParseIssueSeverity::WARNING,
-                            message: 'Crawl-delay value is very high. This may significantly slow down indexing.',
-                            lineNumber: null,
-                        ));
+                            lineNumber: $lineNumber,
+                            lineContent: $lineContent,
+                            reason: 'Crawl-delay value is very high. This may significantly slow down indexing.',
+                        );
                     }
                 }
             }
         }
 
         // Check for conflicting Allow/Disallow directives
-        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
+        foreach ($parsedRobots->userAgentBlocks as $block) {
             $disallowed = [];
             $allowed = [];
 
-            foreach ($block->getDirectives() as $directive) {
-                if ($directive->getType() === RobotsDirectiveType::DISALLOW) {
-                    $disallowed[] = $directive->getValue();
-                } elseif ($directive->getType() === RobotsDirectiveType::ALLOW) {
-                    $allowed[] = $directive->getValue();
+            foreach ($block->directives as $directive) {
+                if ($directive->type === RobotsDirectiveType::DISALLOW) {
+                    $disallowed[] = [$directive->value, ...$lineFor($directive->type, $directive->value)];
+                } elseif ($directive->type === RobotsDirectiveType::ALLOW) {
+                    $allowed[] = [$directive->value, ...$lineFor($directive->type, $directive->value)];
                 }
             }
 
-            foreach ($allowed as $allowPath) {
-                foreach ($disallowed as $disallowPath) {
+            foreach ($allowed as [$allowPath, $allowLineNumber, $allowLineContent]) {
+                foreach ($disallowed as [$disallowPath]) {
                     if ($allowPath === $disallowPath) {
-                        $event->addIssue(new ParseIssue(
+                        $issues[] = new ParseIssue(
                             severity: ParseIssueSeverity::WARNING,
-                            message: sprintf('Conflicting directives: Path "%s" is both allowed and disallowed', $allowPath),
-                            lineNumber: null,
-                        ));
+                            lineNumber: $allowLineNumber,
+                            lineContent: $allowLineContent,
+                            reason: sprintf('Conflicting directives: Path "%s" is both allowed and disallowed', $allowPath),
+                        );
                     }
                 }
             }
         }
+
+        $event->parsedResult = new ParsedRobots(
+            userAgentBlocks: $parsedRobots->userAgentBlocks,
+            orphanedPathDirectives: $parsedRobots->orphanedPathDirectives,
+            issues: $issues,
+        );
     }
 }
 ```
