@@ -22,6 +22,8 @@ To enable [redirection.io](https://redirection.io/) for your application you nee
 services:
   redirectionio:
     enabled: true
+```
+
 Once the previous two steps are complete, you **need to trigger a new deployment to activate** [redirection.io](https://redirection.io/) on your application.
 
 ::: info
