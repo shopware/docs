@@ -126,7 +126,6 @@ Shopware sends the event as JSON in the request body:
 ```
 
 The payload only contains what the webhook may read.
-Use `timestamp` to reject old requests.
 
 ## Webhooks created before 6.7.17.0
 
