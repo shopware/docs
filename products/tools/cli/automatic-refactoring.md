@@ -54,6 +54,8 @@ Selecting one of these tools with `fix --only` is an error; the command lists th
 
 `extension fix` and `project fix` print a `Fixers:` table after running. `invoked` means the fixer was called, but does not guarantee that it analyzed or changed files; `skipped` means it was not selected by `--only` or was removed by `--exclude`. The table is also printed when a fixer returns an execution error, and the command exits with a non-zero status.
 
+Both commands also print progress to stderr while running, showing each stage such as preparing tools and each fixer. See [Progress reporting](./validation.md#progress-reporting) for details and an example.
+
 ::: warning
 Rector applies PHP migrations during `fix`, but does not support validation. There is no Rector preview before files are rewritten, so always review the resulting `git diff`.
 :::

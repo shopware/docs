@@ -31,6 +31,8 @@ Tools without formatting support cannot be selected with `format --only`; the co
 
 `extension format` and `project format` print a `Formatters:` table after running. `invoked` means the formatter was called, but does not guarantee that it analyzed or changed files; `skipped` means it was not selected by `--only` or was removed by `--exclude`. The table is also printed when a formatter returns an execution error, and the command exits with a non-zero status.
 
+Both commands also print progress to stderr while running, showing each stage such as preparing tools and each formatter. See [Progress reporting](./validation.md#progress-reporting) for details and an example.
+
 ## Format an extension
 
 <Tabs>

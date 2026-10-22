@@ -161,6 +161,21 @@ If `--format` is not set, the format is detected automatically: `github` in GitH
 
 `extension validate` and `project validate` also report which checkers were `invoked` or `skipped`. `invoked` means the checker was called, not that it analyzed files or produced findings; a checker can have no applicable files. Summary and GitHub logs show a checker table before the closing summary. Markdown includes the table, JSON includes a `tools` array, and JUnit includes checker test cases. GitLab and JUnit write the human-readable table to stderr so stdout remains machine-readable. If a checker returns an execution error, the report is still emitted and the command fails.
 
+### Progress reporting
+
+With the `summary` format (the default outside CI), `extension validate`, `project validate`, `extension fix`, `project fix`, `extension format`, and `project format` print progress lines to stderr while they run, such as copying files, discovering the configuration, preparing tools, and each checker, fixer, or formatter:
+
+```shell
+Running copying files (use "--no-copy" to skip)...
+Finished copying files (use "--no-copy" to skip) (16.0s)
+Running preparing tools...
+Finished preparing tools (0.0s)
+Running phpstan...
+Finished phpstan (2.1s)
+```
+
+A step is reported as `Failed` instead of `Finished` if it returns an error or the command is canceled, for example with `Ctrl+C`. No progress output is printed for the `json`, `junit`, `github`, `gitlab`, or `markdown` formats, so stdout for those formats stays machine-readable.
+
 ## Running specific validation tools
 
 By default, `extension validate` calls every registered checker. Use `--only` or `--exclude` to narrow the selection. The available tool capabilities are:
