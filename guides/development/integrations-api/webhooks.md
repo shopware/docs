@@ -28,13 +28,13 @@ Content-Type: application/json
 }
 ```
 
-| Field             | Description                                                                                         |
-|-------------------|-----------------------------------------------------------------------------------------------------|
-| `name`            | A name to recognize the webhook.                                                                    |
+| Field             | Description                                                                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`            | A name to recognize the webhook.                                                                                                        |
 | `eventName`       | The event to subscribe to, see the [webhook events reference](../../../resources/references/app-reference/webhook-events-reference.md). |
-| `url`             | Where Shopware sends the request.                                                                   |
-| `onlyLiveVersion` | Only send entity writes of the live version, not of drafts such as order edits. Defaults to `false`. |
-| `aclRoleIds`      | Optional. Limits the webhook to some of its owner's roles, see [Limit a webhook to some roles](#limit-a-webhook-to-some-roles). |
+| `url`             | Where Shopware sends the request.                                                                                                       |
+| `onlyLiveVersion` | Only send entity writes of the live version, not of drafts such as order edits. Defaults to `false`.                                    |
+| `aclRoleIds`      | Optional. Limits the webhook to some of its owner's roles, see [Limit a webhook to some roles](#limit-a-webhook-to-some-roles).         |
 
 ## Who owns a webhook
 
