@@ -29,4 +29,4 @@ We manage the agent for you, but managing redirects is your responsibility and i
 :::
 
 You can check that [redirection.io](https://redirection.io/) is active in their UI (instance/self-hosted), see below:
- ![Redirection.io dashboard](../../../../assets/redirectionio.png)
+ ![Redirection.io dashboard](../../../../assets/redirection-io.png)
