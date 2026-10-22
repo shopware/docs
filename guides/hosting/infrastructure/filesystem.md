@@ -77,8 +77,6 @@ shopware:
         # adapter-specific options
 ```
 
-<!-- {"WATCHER_URL":"https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/Framework/Resources/config/packages/shopware.yaml","WATCHER_HASH":"183f85ba8f15e8e7d0006b70be20940f","WATCHER_CONTAINS":"filesystem"} -->
-
 ### Avoiding repetition with YAML anchors
 
 If multiple filesystems share the same backend, define the configuration once with a YAML anchor (`&name`) and reference it (`*name`) everywhere else. This is the recommended way to move all public-facing files to one bucket:

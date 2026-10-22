@@ -394,6 +394,19 @@ Generating the skeletons and essential files needed to create and structure a Sh
 | `system:update:finish`       | Finishes the update process                                                        |
 | `system:update:prepare`      | Prepares the update process                                                        |
 
+The `system:install` command accepts the following options (as of Shopware 6.7). Run `bin/console system:install --help` to list the options of your installed version.
+
+| Option                                                            | Description                                                           |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `--create-database`                                               | Creates the database if it does not exist                             |
+| `--drop-database`                                                 | Drops the existing database first                                     |
+| `--basic-setup`                                                   | Creates a Storefront sales channel and an admin user                  |
+| `-f`, `--force`                                                   | Installs even if `install.lock` exists                                |
+| `--no-assign-theme`                                               | Does not assign the default theme                                     |
+| `--shop-name`, `--shop-email`, `--shop-locale`, `--shop-currency` | Name, email address, default locale and ISO currency code of the shop |
+| `--skip-assets-install`                                           | Skips installing the assets                                           |
+| `--skip-first-run-wizard`                                         | Skips the first run wizard                                            |
+
 ### Theme
 
 | Command               | Description                                  |

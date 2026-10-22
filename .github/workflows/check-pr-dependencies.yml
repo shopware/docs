@@ -1,0 +1,684 @@
+name: Check documentation dependencies
+
+on:
+  # pull_request workflows from forks get a read-only token, so labels and
+  # commit statuses never land. pull_request_target runs the workflow from
+  # the base branch with write access. Do not check out or execute pull
+  # request code in this job; the body is read through the API only.
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+  # Re-check periodically so that merging a dependent PR eventually
+  # unblocks the docs PR without requiring any changes to the docs PR.
+  schedule:
+    - cron: "0 * * * *"
+
+  # Allow manual checks.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+  statuses: write
+
+jobs:
+  check-dependencies:
+    name: Documentation dependencies
+    runs-on: ubuntu-latest
+    # One in-flight run per docs PR. A newer edit cancels the older run.
+    # Schedule and manual runs use their own groups so they are not cancelled
+    # by an edit; the body check below still drops their stale results.
+    concurrency:
+      group: docs-dependencies-${{ github.event.pull_request.number || github.event_name }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request_target' }}
+
+    steps:
+      - name: Check documentation dependencies
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const docsRepo = context.repo.repo;
+
+            /*
+             * ------------------------------------------------------------
+             * Configuration
+             * ------------------------------------------------------------
+             */
+
+            const READY_LABEL = "dependencies:ready";
+            const PENDING_LABEL = "dependencies:pending";
+
+            /*
+             * ------------------------------------------------------------
+             * Find the docs PR
+             * ------------------------------------------------------------
+             *
+             * Scheduled workflows don't have a pull request context,
+             * so on a schedule we check ALL open PRs.
+             *
+             * pull_request_target carries the same pull_request payload.
+             * For that event, only check the PR that triggered the run.
+             */
+
+            let prs;
+
+            if (context.eventName === "pull_request_target") {
+              prs = [context.payload.pull_request];
+            } else {
+              prs = await github.paginate(
+                github.rest.pulls.list,
+                {
+                  owner,
+                  repo: docsRepo,
+                  state: "open",
+                  per_page: 100,
+                }
+              );
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: extract dependent PR URLs
+             * ------------------------------------------------------------
+             *
+             * Only lines between the markers count. Instructions and
+             * examples outside the markers are ignored. Missing markers
+             * mean this docs PR has no dependency.
+             *
+             * Every non-blank line must be exactly one supported PR URL,
+             * optionally preceded by a Markdown list marker. Anything else,
+             * including a typo such as /pulls/123, fails the gate.
+             */
+
+            function extractDependentPrs(body) {
+              if (!body) {
+                return { dependencies: [], errors: [] };
+              }
+
+              const match = body.match(
+                /<!--\s*docs-dependencies:start\s*-->([\s\S]*?)<!--\s*docs-dependencies:end\s*-->/i
+              );
+
+              if (!match) {
+                return { dependencies: [], errors: [] };
+              }
+
+              const dependencies = [];
+              const errors = [];
+              const entryPattern =
+                /^(?:(?:[-*+]|\d+[.)])\s+)?(https:\/\/github\.com\/([^/\s]+)\/([^/\s]+)\/pull\/(\d+))\/?\s*$/;
+
+              for (const rawLine of match[1].split(/\r?\n/)) {
+                const line = rawLine.trim();
+
+                if (line === "") {
+                  continue;
+                }
+
+                const entry = line.match(entryPattern);
+
+                if (!entry) {
+                  errors.push(line);
+                  continue;
+                }
+
+                dependencies.push({
+                  url: entry[1],
+                  owner: entry[2],
+                  repo: entry[3],
+                  number: Number(entry[4]),
+                });
+              }
+
+              return { dependencies, errors };
+            }
+
+            function invalidEntryDescription(errors) {
+              const detail = errors.length === 1
+                ? `Invalid dependent PR URL: ${errors[0]}`
+                : `${errors.length} invalid dependent PR URLs: ${errors[0]}`;
+
+              return detail.length <= 140 ? detail : `${detail.slice(0, 137)}...`;
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: create/update labels
+             * ------------------------------------------------------------
+             */
+
+            async function ensureLabel(name, color, description) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner,
+                  repo: docsRepo,
+                  name,
+                });
+              } catch (error) {
+                if (error.status !== 404) {
+                  throw error;
+                }
+
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo: docsRepo,
+                  name,
+                  color,
+                  description,
+                });
+              }
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: update labels
+             * ------------------------------------------------------------
+             */
+
+            async function updateLabels(prNumber, ready) {
+              await ensureLabel(
+                READY_LABEL,
+                "0e8a16",
+                "All Dependent PRs have been merged"
+              );
+
+              await ensureLabel(
+                PENDING_LABEL,
+                "fbca04",
+                "One or more Dependent PRs have not been merged"
+              );
+
+              // Get current labels.
+              const currentLabels = await github.paginate(
+                github.rest.issues.listLabelsOnIssue,
+                {
+                  owner,
+                  repo: docsRepo,
+                  issue_number: prNumber,
+                  per_page: 100,
+                }
+              );
+
+              const currentNames = currentLabels.map(label => label.name);
+
+              if (ready) {
+                // The ready label only marks the switch from pending to ready,
+                // so PRs that never had pending dependencies stay unlabeled.
+                if (
+                  currentNames.includes(PENDING_LABEL) &&
+                  !currentNames.includes(READY_LABEL)
+                ) {
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    labels: [READY_LABEL],
+                  });
+                }
+
+                if (currentNames.includes(PENDING_LABEL)) {
+                  await github.rest.issues.removeLabel({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    name: PENDING_LABEL,
+                  });
+                }
+              } else {
+                if (!currentNames.includes(PENDING_LABEL)) {
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    labels: [PENDING_LABEL],
+                  });
+                }
+
+                if (currentNames.includes(READY_LABEL)) {
+                  await github.rest.issues.removeLabel({
+                    owner,
+                    repo: docsRepo,
+                    issue_number: prNumber,
+                    name: READY_LABEL,
+                  });
+                }
+              }
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Helper: publish commit status
+             * ------------------------------------------------------------
+             *
+             * This gives us a merge-protection mechanism that cannot
+             * simply be bypassed by manually adding a label.
+             */
+
+            const STATUS_CONTEXT = "Documentation dependencies";
+
+            async function latestStatus(sha) {
+              let page = 1;
+
+              for (;;) {
+                const response = await github.rest.repos.getCombinedStatusForRef({
+                  owner,
+                  repo: docsRepo,
+                  ref: sha,
+                  per_page: 100,
+                  page,
+                });
+
+                const found = response.data.statuses.find(
+                  status => status.context === STATUS_CONTEXT
+                );
+
+                if (found || response.data.statuses.length < 100) {
+                  return found || null;
+                }
+
+                page += 1;
+              }
+            }
+
+            async function setStatus(sha, state, description) {
+              const current = await latestStatus(sha);
+
+              if (
+                current &&
+                current.state === state &&
+                (current.description || "") === description
+              ) {
+                console.log(
+                  `Status unchanged (${state}: ${description}); not creating a duplicate.`
+                );
+                return;
+              }
+
+              await github.rest.repos.createCommitStatus({
+                owner,
+                repo: docsRepo,
+                sha,
+                state,
+                context: STATUS_CONTEXT,
+                description,
+              });
+            }
+
+            /*
+             * The commit status is the merge gate. Label updates are
+             * informational, so a label failure must not skip the status.
+             *
+             * Editing the body does not change the head SHA, so an older
+             * run can finish last and post a stale success. Re-read the PR
+             * immediately before that write and skip it when the body,
+             * head SHA, or updated timestamp no longer match the snapshot
+             * this run evaluated.
+             */
+
+            function snapshotOf(pull) {
+              return {
+                body: pull.body || "",
+                updatedAt: pull.updated_at,
+                headSha: pull.head.sha,
+                state: pull.state,
+              };
+            }
+
+            async function loadPullRequest(prNumber) {
+              const response = await github.rest.pulls.get({
+                owner,
+                repo: docsRepo,
+                pull_number: prNumber,
+              });
+
+              return snapshotOf(response.data);
+            }
+
+            function sameSnapshot(left, right) {
+              return left.state === "open" &&
+                right.state === "open" &&
+                left.body === right.body &&
+                left.updatedAt === right.updatedAt &&
+                left.headSha === right.headSha;
+            }
+
+            async function publishResult(prNumber, snapshot, ready, description) {
+              const latest = await loadPullRequest(prNumber);
+
+              if (!sameSnapshot(snapshot, latest)) {
+                console.log(
+                  `Skipping stale result for #${prNumber}; the PR changed while it was being checked.`
+                );
+                return false;
+              }
+
+              try {
+                await updateLabels(prNumber, ready);
+              } catch (error) {
+                console.log(
+                  `Could not update labels on #${prNumber}: ${error.message}`
+                );
+              }
+
+              /*
+               * Label writes bump updated_at. Compare the body and head SHA
+               * again so a body edit during the label update cannot still
+               * receive this run's status.
+               */
+
+              const beforeStatus = await loadPullRequest(prNumber);
+
+              if (
+                beforeStatus.state !== "open" ||
+                beforeStatus.body !== snapshot.body ||
+                beforeStatus.headSha !== snapshot.headSha
+              ) {
+                console.log(
+                  `Skipping stale status for #${prNumber}; the PR body changed before publish.`
+                );
+                return false;
+              }
+
+              await setStatus(
+                snapshot.headSha,
+                ready ? "success" : "failure",
+                description
+              );
+
+              return true;
+            }
+
+            /*
+             * ------------------------------------------------------------
+             * Check each docs PR
+             * ------------------------------------------------------------
+             */
+
+            /*
+             * The status lives on the head SHA, but the dependency block
+             * lives in the mutable PR body. Editing the body keeps the SHA,
+             * so a previous success would stay mergeable until this run
+             * finishes. Mark the SHA pending before any slow lookups. This
+             * narrows the window to workflow startup latency; it does not
+             * remove it.
+             */
+
+            if (context.eventName === "pull_request_target") {
+              const triggeringPr = context.payload.pull_request;
+
+              await setStatus(
+                triggeringPr.head.sha,
+                "pending",
+                "Re-checking dependent PRs"
+              );
+            }
+
+            const MAX_ATTEMPTS = 3;
+            const MAX_DEPENDENCIES = 5;
+
+            for (const pr of prs) {
+              const prNumber = pr.number;
+
+              console.log(`\nChecking docs PR #${prNumber}`);
+
+              for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+                /*
+                 * Read the body here, not from the event payload. Schedule
+                 * runs have no pull_request_target payload, and a retry
+                 * must see the body written while the previous attempt ran.
+                 */
+
+                const snapshot = await loadPullRequest(prNumber);
+
+                if (snapshot.state !== "open") {
+                  console.log(`Docs PR #${prNumber} is no longer open.`);
+                  break;
+                }
+
+                const { dependencies, errors } = extractDependentPrs(snapshot.body);
+
+                /*
+                 * A nonempty block with a line that is not a complete
+                 * https://github.com/<owner>/<repo>/pull/<number> URL must
+                 * not be treated as "no dependencies".
+                 */
+
+                if (errors.length > 0) {
+                  console.log("Invalid dependent PR entries:");
+
+                  for (const error of errors) {
+                    console.log(`  ✗ ${error}`);
+                  }
+
+                  const published = await publishResult(
+                    prNumber,
+                    snapshot,
+                    false,
+                    invalidEntryDescription(errors)
+                  );
+
+                  if (published || attempt === MAX_ATTEMPTS) {
+                    if (published) {
+                      console.log(
+                        `\n✗ Docs PR #${prNumber} is NOT ready.`
+                      );
+                    }
+                    break;
+                  }
+
+                  console.log(
+                    `Retrying #${prNumber} (${attempt + 1}/${MAX_ATTEMPTS}).`
+                  );
+                  continue;
+                }
+
+                /*
+                 * No listed dependencies. Most docs PRs have none, and an
+                 * empty marker block is ready to merge.
+                 */
+
+                if (dependencies.length === 0) {
+                  console.log("No dependent PRs listed.");
+
+                  const published = await publishResult(
+                    prNumber,
+                    snapshot,
+                    true,
+                    "No dependent PRs"
+                  );
+
+                  if (published || attempt === MAX_ATTEMPTS) {
+                    break;
+                  }
+
+                  console.log(
+                    `Retrying #${prNumber} (${attempt + 1}/${MAX_ATTEMPTS}).`
+                  );
+                  continue;
+                }
+
+                /*
+                 * Remove duplicates.
+                 */
+
+                const uniqueDependencies = Array.from(
+                  new Map(
+                    dependencies.map(dep => [
+                      `${dep.owner}/${dep.repo}#${dep.number}`,
+                      dep,
+                    ])
+                  ).values()
+                );
+
+                /*
+                 * The block comes from a public, user-editable PR body, and
+                 * every entry costs an API call on every run, including the
+                 * hourly scan of all open PRs. Refuse oversized blocks before
+                 * any dependency lookup so one PR cannot drain the token's
+                 * quota for every other docs PR.
+                 */
+
+                if (uniqueDependencies.length > MAX_DEPENDENCIES) {
+                  console.log(
+                    `Too many dependent PRs: ${uniqueDependencies.length} (limit ${MAX_DEPENDENCIES}).`
+                  );
+
+                  const published = await publishResult(
+                    prNumber,
+                    snapshot,
+                    false,
+                    `Too many dependent PRs: ${uniqueDependencies.length} (limit ${MAX_DEPENDENCIES})`
+                  );
+
+                  if (published || attempt === MAX_ATTEMPTS) {
+                    if (published) {
+                      console.log(
+                        `\n✗ Docs PR #${prNumber} is NOT ready.`
+                      );
+                    }
+                    break;
+                  }
+
+                  console.log(
+                    `Retrying #${prNumber} (${attempt + 1}/${MAX_ATTEMPTS}).`
+                  );
+                  continue;
+                }
+
+                const results = [];
+
+                /*
+                 * --------------------------------------------------------
+                 * Check every dependent PR
+                 * --------------------------------------------------------
+                 */
+
+                for (const dependency of uniqueDependencies) {
+                  const name =
+                    `${dependency.owner}/${dependency.repo}#${dependency.number}`;
+
+                  console.log(`Checking ${name}`);
+
+                  try {
+                    const response = await github.rest.pulls.get({
+                      owner: dependency.owner,
+                      repo: dependency.repo,
+                      pull_number: dependency.number,
+                    });
+
+                    const sourcePr = response.data;
+
+                    if (sourcePr.merged_at !== null) {
+                      console.log(`  ✓ ${name} is MERGED`);
+
+                      results.push({
+                        ...dependency,
+                        name,
+                        state: "merged",
+                        ok: true,
+                      });
+                    } else if (sourcePr.state === "open") {
+                      console.log(`  ✗ ${name} is OPEN`);
+
+                      results.push({
+                        ...dependency,
+                        name,
+                        state: "open",
+                        ok: false,
+                      });
+                    } else {
+                      console.log(`  ✗ ${name} is CLOSED but NOT MERGED`);
+
+                      results.push({
+                        ...dependency,
+                        name,
+                        state: "closed-not-merged",
+                        ok: false,
+                      });
+                    }
+                  } catch (error) {
+                    console.log(
+                      `  ✗ ${name} could not be checked: ${error.message}`
+                    );
+
+                    results.push({
+                      ...dependency,
+                      name,
+                      state: "error",
+                      ok: false,
+                      error: error.message,
+                    });
+                  }
+                }
+
+                const allMerged =
+                  results.length > 0 &&
+                  results.every(result => result.ok);
+
+                console.log("\nDependency summary:");
+
+                for (const result of results) {
+                  const icon = result.ok ? "✓" : "✗";
+                  console.log(
+                    `${icon} ${result.name}: ${result.state}`
+                  );
+                }
+
+                let published = false;
+
+                if (allMerged) {
+                  published = await publishResult(
+                    prNumber,
+                    snapshot,
+                    true,
+                    `All ${results.length} dependent PR(s) are merged`
+                  );
+
+                  if (published) {
+                    console.log(
+                      `\n✓ Docs PR #${prNumber} is ready to merge.`
+                    );
+                  }
+                } else {
+                  const pending = results
+                    .filter(result => !result.ok)
+                    .map(result => result.name);
+
+                  published = await publishResult(
+                    prNumber,
+                    snapshot,
+                    false,
+                    `${pending.length} dependent PR(s) not merged`
+                  );
+
+                  if (published) {
+                    console.log(
+                      `\n✗ Docs PR #${prNumber} is NOT ready.`
+                    );
+                    console.log(
+                      `Pending: ${pending.join(", ")}`
+                    );
+                  }
+                }
+
+                if (published || attempt === MAX_ATTEMPTS) {
+                  if (!published) {
+                    console.log(
+                      `Left #${prNumber} unpublished after ${MAX_ATTEMPTS} attempts; a newer run will publish.`
+                    );
+                  }
+                  break;
+                }
+
+                console.log(
+                  `Retrying #${prNumber} (${attempt + 1}/${MAX_ATTEMPTS}).`
+                );
+              }
+            }

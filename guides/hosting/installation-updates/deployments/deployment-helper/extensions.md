@@ -16,7 +16,7 @@ Deployment Helper manages two types of extensions: [apps](../../../../plugins/ap
 | Aspect                  | Plugin                                   | App                                                                               |
 | ----------------------- | ---------------------------------------- | --------------------------------------------------------------------------------- |
 | **Location**            | `custom/plugins/` or Composer            | `custom/apps/` or Composer type `shopware-app`                                    |
-| **Definition**          | Directory with `plugin.xml` or PHP class | Directory/package with `manifest.xml`                                             |
+| **Definition**          | `composer.json` and a PHP class          | Directory/package with `manifest.xml`                                             |
 | **License requirement** | None                                     | **Requires license domain to register** with Shopware                             |
 | **Built-in extensions** | Payment, analytics plugins               | Payment apps (official integrations)                                              |
 | **Lifecycle**           | Installed via `plugin:install`           | Installed via `app:install`, requires handshake with Shopware registration server |

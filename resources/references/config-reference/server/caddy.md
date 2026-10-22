@@ -7,12 +7,12 @@ mydomain.com {
     Referrer-Policy no-referrer-when-downgrade
   }
 
-  @svg {
+  @staticDocuments {
     file
-    path *.svg
+    path_regexp staticDocuments (?i)([.]svg$|^/(media|thumbnail)/.*[.]html$)
   }
 
-  header @svg Content-Security-Policy "script-src 'none'"
+  header @staticDocuments Content-Security-Policy "script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
 
   @default {
     not path /theme/* /media/* /thumbnail/* /bundles/* /css/* /fonts/* /js/* /recovery/* /sitemap/*
