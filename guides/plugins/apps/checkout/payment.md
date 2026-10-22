@@ -50,7 +50,7 @@ There are different types of payments.
 Synchronous payment is the simplest of all and does not need any additional interaction with the customer.
 If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not.
 If you do not need to communicate with your app, you can stop reading here and the transaction will stay open.
-But if you do define a `pay-url`, you can respond to the request with a different transaction status like authorize, paid, or failed.
+But if you do define a `pay-url`, you can respond to the request with a different transaction status like `authorize`, `paid`, or `fail`.
 This is useful if you want to add a payment provider that only needs the information if the customer has already provided it in the checkout process or not.
 For example, a simple credit check for payment upon invoice.
 Below you can see an example of a simple answer from your app to mark a payment as authorized.
@@ -549,6 +549,7 @@ function pay(RequestInterface $request): ResponseInterface
     $shop = $shopResolver->resolveShop($serverRequest);
     $payment = $contextResolver->assemblePaymentCapture($serverRequest, $shop);
     
+    // contains your passed data from the validate call (preOrderPayment) in orderTransaction.validationData
     // implement your logic here based on the information provided in $payment
     
     // check PaymentResponse class for all available payment states
@@ -771,20 +772,21 @@ class PaymentController {
 
 The response `status` uses transition action names, rather than destination state names. Options include:
 
-* `reopen`
-* `paid`
-* `paid_partially`
-* `cancel`
-* `refund`
-* `refund_partially`
-* `fail`
-* `authorize`
-* `process_unconfirmed`
-* `process`
-* `remind`
-* `chargeback`
+* `reopen` - The payment is open and can be processed.
+* `paid` - The payment has been paid.
+* `paid_partially` - The payment has been partially paid.
+* `cancel` - The customer has canceled the payment.
+* `refund` - The payment has been refunded.
+* `refund_partially` - The payment has been partially refunded.
+* `fail` - The payment has failed.
+* `authorize` - The payment has been authorized.
+* `process_unconfirmed` - The payment has not been confirmed yet.
+* `process` - The payment is in progress.
+* `remind` - The payment has been reminded.
+* `chargeback` - The payment has been charged back.
 
 Available transitions depend on the current transaction state. Shopware handles `fail` and `cancel` through exceptions. For a response without an error message, omitting `status` does not request a state transition.
+Cancellation during `finalize` sets the transaction to `cancelled`, while cancellation during `pay` sets it to `failed`.
 
 ## All possible refund states
 
