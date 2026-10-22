@@ -193,7 +193,7 @@ It stays silent when:
 - `CI` is set
 - `--no-ai-hint` is passed
 - the invoked command is itself an `ai …` command
-- the skill is already installed for that client
+- the Skill is already installed for that client
 
 To silence it for a single command, pass `--no-ai-hint`:
 
