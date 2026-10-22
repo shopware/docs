@@ -114,7 +114,7 @@ Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
 | Attribute     | Required | Description                                                                                       |
 | ------------- | -------- | ------------------------------------------------------------------------------------------------- |
 | `name`        | yes      | Parameter name                                                                                    |
-| `type`        | yes      | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
+| `type`        | no       | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
 | `description` | no       | Description shown to the AI client                                                                |
 | `required`    | no       | Whether the parameter is required (default: `false`)                                              |
 
@@ -197,15 +197,16 @@ When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared
 | `source.shopId`     | Unique shop identifier. Use this for multi-tenant app backends |
 | `source.appVersion` | Installed version of the app                                   |
 
-For prompts, the request body uses `prompt` instead of `tool`, and arguments are omitted:
+For prompts, the request body uses `tool` for the prompt name, includes an empty `arguments` array, and sets `source.appVersion` to `"0.0.0"`:
 
 ```json
 {
-  "prompt": "my-erp-erp-context",
+  "tool": "my-erp-erp-context",
+  "arguments": [],
   "source": {
     "url": "https://shop.example.com",
     "shopId": "abc123def456",
-    "appVersion": "1.2.0"
+    "appVersion": "0.0.0"
  }
 }
 ```
@@ -218,15 +219,18 @@ The response must be a JSON array of message objects:
 ]
 ```
 
-For resources, the request body uses `resource` instead of `tool`:
+For resources, the request body uses `tool` for the resource name, includes the resource URI in `arguments`, and sets `source.appVersion` to `"0.0.0"`:
 
 ```json
 {
-  "resource": "my-erp-erp-status",
+  "tool": "my-erp-erp-status",
+  "arguments": {
+    "uri": "my-erp://erp-status"
+  },
   "source": {
     "url": "https://shop.example.com",
     "shopId": "abc123def456",
-    "appVersion": "1.2.0"
+    "appVersion": "0.0.0"
  }
 }
 ```
