@@ -200,7 +200,7 @@ services:
 
 Requires the `TIDEWAYS_API_KEY` secret to be set. See [Tideways](../monitoring/tideways.md) for the full steps.
 
-Blackfire and Tideways cannot be enabled at the same time.
+Blackfire and Tideways are only available for shop applications and cannot be enabled at the same time.
 
 ### `services.fastly`
 

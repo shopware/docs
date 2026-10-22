@@ -8,7 +8,10 @@ nav:
 
 ## When to update
 
-Shopware releases updates every month. It's not necessary to update every month, but you should always install the latest security patches through the [Security Plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) or update Shopware itself to the latest version. To check if your Shopware version still gets security updates, you can check the [Shopware Release Cycle](https://developer.shopware.com/release-notes/).
+Shopware releases updates every month.
+Always apply security updates promptly and keep your Shopware version within [security support](https://developer.shopware.com/release-notes/#release-calendar).
+For self-hosted shops, keep the [Security Plugin](security-best-practices/security-plugin.md) installed, activated, and up to date, even when Shopware itself is fully updated.
+See [Security Best Practices](security-best-practices/index.md) for additional guidance.
 
 Generally speaking, the maintenance effort is the same whether you wait a long period or update more regularly. Our recommendation is to update from every major version to the next major version, and stay on a minor version for a longer period of time if you don't need any new features or encounter issues with the used version.
 
