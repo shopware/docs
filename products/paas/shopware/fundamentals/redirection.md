@@ -17,12 +17,11 @@ To enable [redirection.io](https://redirection.io/) for your application you nee
 - Create a secret using `sw-paas vault create` with type `env`. The key of the secret **needs** to be `REDIRECTIONIO_PROJECT_KEY`, and its value must be your `PROJECT_KEY`.
 
 - In the `application.yaml` file add the following:
+
 ```yaml
 services:
   redirectionio:
     enabled: true
-```
-
 Once the previous two steps are complete, you **need to trigger a new deployment to activate** [redirection.io](https://redirection.io/) on your application.
 
 ::: info
