@@ -281,9 +281,22 @@ Return JSON as the tool result body:
 
 For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. Shopware does not reject responses that omit `success`, but it logs a warning when the field is missing so operators can spot broken handlers.
 
-Starting with Shopware 6.7.16.0, Shopware keeps a body with a boolean `success` as the text block of the result and adds `structuredContent` with your `data`, `isError`, and `_meta["shopware/generatedAt"]`. A top-level `code`, or `error` as an object with `message` and `code`, becomes `structuredContent.error.code`. Other top-level keys become metadata. Any other body is passed on as text only. See [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
+Shopware parses a body with a boolean `success` into a tool result.
+A top-level `code`, or `error` as an object with `message` and `code`, becomes the stable error code.
+Other top-level keys become metadata.
+Any other body is passed on as text only, and is never stored as a large result.
 
-Starting with Shopware 6.7.17.0, an app tool result with more than about 100 KB of data is stored and sent as a link, like the results of core tools.
+Starting with Shopware 6.7.17.0, the protocol revision the client negotiated decides what the client receives:
+
+- On `2025-06-18` and later, the text holds your `data` as plain JSON, followed by the metadata as `{"_meta": …}`.
+  `structuredContent` holds the data and, under `_meta`, the metadata the model needs.
+  A failure sets `isError` and `structuredContent.error.code`.
+- On `2024-11-05` and `2025-03-26`, the text is your body as you returned it, with `isError` and `_meta["shopware/generatedAt"]` next to it.
+
+On 6.7.16.x, every client got your body as the text block, plus `structuredContent` on `2025-06-18` and later.
+See [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
+
+Starting with Shopware 6.7.17.0, an app tool result with more than about 100 KB of data is stored and sent as a link, like the results of core tools, when the body has a boolean `success`.
 The client reads it with `resources/read`, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
 Before 6.7.17.0, app tool results were always returned inline.
 Keep results compact either way, because the agent pays for every byte it reads.

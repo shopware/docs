@@ -35,6 +35,7 @@ A field with `new Choice(['page', 'link', 'folder'], strict: true)` only accepts
 Any other value is rejected with a write validation error on that field, for every DAL write, including the Admin API, the Sync API, and imports.
 This also applies to entities written inside another entity's payload.
 Writes that do not send the field still succeed, and rows that already store another value keep it.
+A string value is checked as sent and again after HTML sanitizing, so a value that only matches one of the choices after sanitizing is rejected as well.
 
 Starting with Shopware 6.7.17.0, `category.type` is a strict choice of `page`, `link`, and `folder`, like `product_visibility.visibility`.
 

@@ -35,10 +35,14 @@ The following limiters are enabled by default. The values listed here reflect th
 | `revocation_request_form`     | Store-API revocation request form                                                     | 6.7.9.0  | `time_backoff`   | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s                                 |
 | `newsletter_unsubscribe_form` | Store-API newsletter unsubscribe                                                      | 6.7.9.0  | `time_backoff`   | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s                                 |
 | `app_shop_verify`             | App shop registration verification                                                    | 6.7.9.0  | `sliding_window` | n/a      | 60 / 60min                                                 |
-| `mcp_admin_api`               | MCP server Admin API access (keyed per OAuth token)                                   | 6.7.12.0 | `sliding_window` | n/a      | 300 / 60s                                                  |
+| `mcp_admin_api`               | MCP server Admin API access (keyed per user or integration)                           | 6.7.12.0 | `sliding_window` | n/a      | 300 / 60s                                                  |
 | `mcp_store_api`               | MCP server Store API access (keyed per sales-channel context token and per client IP) | 6.7.12.0 | `sliding_window` | n/a      | 120 / 60s                                                  |
 
 In the table above, `Limits` uses the `limit / interval` notation, and `s` / `min` are seconds / minutes.
+
+Since Shopware 6.7.17.0, `mcp_admin_api` counts the requests of a user or an integration, so a new or refreshed access token continues in the same bucket, and all MCP clients of one user share it.
+Requests without a known user or integration are counted per client IP.
+Before 6.7.17.0, it was keyed per access token.
 
 Before Shopware 6.7.16.0, `mcp_admin_api` and `mcp_store_api` used `time_backoff` with a one-hour reset and additional limits of 1000 and 600 requests per 10 minutes. When you add a new default limiter to the core, add a row here with its introduction version so this table stays complete.
 

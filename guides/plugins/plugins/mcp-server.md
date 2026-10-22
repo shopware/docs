@@ -112,10 +112,13 @@ class MyTool extends McpToolResponse
 - Describe each parameter with `#[Schema(description: '...')]` from `Mcp\Capability\Attribute\Schema` on the `__invoke()` parameter. The MCP SDK copies the text into the parameter's `description` in `inputSchema`. A `@param` docblock works as a fallback, but core uses the attribute, and the attribute wins when both are present. See [Best Practices](../../../products/tools/mcp-server/best-practices.md#write-tool-descriptions-for-agent-routing).
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
 - `requirePrivilege()` returns an error string on failure; check its return value with `if ($error = $this->requirePrivilege(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
+  A tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` instead, see [Required privileges](#required-privileges).
 - Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use `McpContextProvider::getContext()` instead.
 - Return a `string` from `__invoke()`. Extend `McpToolResponse` and return the result of `$this->success()` or `$this->error()`. Shopware turns it into the MCP result, including `structuredContent`, `isError`, and `_meta` since 6.7.16.0, see [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
+  Clients on protocol `2025-06-18` or later get your data as plain JSON text and as `structuredContent`, older clients get the `{"success": …}` envelope as text.
+  Since 6.7.17.0, the negotiated protocol revision decides this, not the `v6.8.0.0` feature flag.
   `$this->success()` always returns the full data.
-  Since 6.7.17.0, Shopware decides when it renders the MCP result whether the result is too large to return inline, for any string your tool returns, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
+  Since 6.7.17.0, Shopware decides when it renders the MCP result whether the result is too large to return inline, for every `{"success": …}` envelope your tool returns, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
 - Pass a stable error code as the second argument of `$this->error()`, such as `McpToolError::NOT_FOUND` or `McpToolError::INVALID_ARGUMENTS` from `Shopware\Core\Framework\Mcp\Result\McpToolError`. The default is `McpToolError::TOOL_ERROR`. This argument exists since 6.7.16.0.
 - Since 6.7.16.0, a `%` in a description or schema is kept as written. Before, text between two `%` without whitespace, such as "5%-10%", was read as a container parameter and broke the MCP endpoint. If you wrote `%%` as a workaround, remove it, otherwise the description now shows `%%`.
 
@@ -168,6 +171,20 @@ Declare the [ACL privileges](../../../products/tools/mcp-server/configuration.md
 
 The attribute is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output. You still must call `$this->requirePrivilege($context, 'order:read')` inside `__invoke()` for actual runtime enforcement.
 
+A tool that reads no shop data and needs no privilege declares `#[McpToolRequiresNoPrivilege]` instead, with a reason for reviewers and operators:
+
+```php
+use Shopware\Core\Framework\Mcp\Attribute\McpToolRequiresNoPrivilege;
+
+#[McpTool(name: 'swag-my-plugin-schema', description: '...')]
+#[McpToolRequiresNoPrivilege(reason: 'Reads entity definitions only, never a repository.')]
+class MySchemaTool extends McpToolResponse
+```
+
+Core uses it for `shopware-entity-schema` and the three discovery tools.
+Like `#[McpToolRequires]`, it grants nothing at runtime, and the DAL still checks the ACL of every repository call.
+The attribute exists since Shopware 6.7.17.0.
+
 Tools on the Store API endpoint (`shopware.store_api_mcp.tool`) run in a sales channel context, where Admin ACL privileges do not apply.
 Do not declare `#[McpToolRequires]` on them, and do not call `requirePrivilege()`.
 
@@ -175,14 +192,15 @@ Do not declare `#[McpToolRequires]` on them, and do not call `requirePrivilege()
 
 Starting with Shopware 6.7.17.0, the Shopware PHPStan rule set checks the privileges of MCP tools from plugins and bundles:
 
-| Identifier                             | Reports                                                                                                   | Fix                                                                                                        |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `shopware.mcpAdminToolMissingRequires` | An Admin API tool (`/api/_mcp`) without `#[McpToolRequires]` on its class                                 | Declare every privilege the tool needs on the class, and keep checking them with `requirePrivilege()`      |
-| `shopware.mcpStoreApiToolAdminAcl`     | A Store API tool (`/store-api/_mcp`) that declares `#[McpToolRequires]` or calls `requirePrivilege()`     | Remove the attribute and the call, and rely on the sales channel context and the Store API routes it calls |
+| Identifier                             | Reports                                                                                                                                                            | Fix                                                                                                                                                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shopware.mcpAdminToolMissingRequires` | An Admin API tool (`/api/_mcp`) with neither `#[McpToolRequires]` nor `#[McpToolRequiresNoPrivilege]` on its class, or with both                                   | Declare every privilege the tool needs with `#[McpToolRequires]`, and keep checking them with `requirePrivilege()`. Only a tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` |
+| `shopware.mcpStoreApiToolAdminAcl`     | A Store API tool (`/store-api/_mcp`) that declares `#[McpToolRequires]` or calls `requirePrivilege()`, also in a method it inherits from a parent class or a trait | Remove the attribute and the call, and rely on the sales channel context and the Store API routes it calls                                                                                       |
 
-`#[McpToolRequires]` on `__invoke()` does not count, because Shopware only reads the attribute from the class.
-The Store API rule only looks at the tool class itself, not at inherited methods or helper services.
-If your Admin API tool needs no privilege at all, ignore the error with a regular PHPStan ignore and a comment that explains why.
+Every Admin API tool declares exactly one of the two attributes on its class.
+An attribute on `__invoke()` does not count, because Shopware only reads it from the class.
+The Store API rule does not follow calls into helper services.
+A tool class registered on both endpoints is checked by both rules, so it can only declare `#[McpToolRequiresNoPrivilege]`.
 
 Both rules tell the two endpoints apart by the service tags in the compiled container, `shopware.store_api_mcp.tool` for the Store API and `shopware.mcp.tool` or `mcp.tool` for the Admin API.
 They need [phpstan/phpstan-symfony](https://github.com/phpstan/phpstan-symfony) with `parameters.symfony.containerXmlPath` pointing to a compiled container that registers your tools.

@@ -17,6 +17,9 @@ Starting with 6.7.14.0, the flag is removed and has no effect. Remove `MCP_SERVE
 Starting with 6.7.15.0, Shopware runs on `symfony/mcp-bundle` 0.13. This changes the list page size setting, the session store configuration, the `debug:mcp` command, and some internal service IDs. See [Upgrading to 6.7.15.0](#upgrading-to-6-7-15-0).
 
 Starting with 6.7.16.0, an unset MCP allowlist grants nothing instead of everything, and Shopware runs on `symfony/mcp-bundle` 0.14. See [Upgrading to 6.7.16.0](#upgrading-to-6-7-16-0).
+
+Starting with 6.7.17.0, MCP clients can log in with OAuth, sessions are bound to their principal, and the Admin API rate limit counts per user or integration.
+See [Upgrading to 6.7.17.0](#upgrading-to-6-7-17-0).
 :::
 
 ## Shopware MCP configuration
@@ -67,14 +70,15 @@ Removing the discovery tools at compile time prevents clients from finding and e
 
 Shopware applies a per-principal MCP allowlist depending on how the client authenticates:
 
-| Auth mode                                | Allowlist source                                                                          |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist**          |
-| User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP tool allowlist** |
-| Bearer JWT, password / refresh grant     | Per-user allowlist of the authenticated user                                              |
-| Bearer JWT, authorization code (PKCE)    | Per-user allowlist of the user who approved the request                                   |
-| Bearer JWT, client_credentials           | Per-integration allowlist                                                                 |
-| Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist                          |
+| Auth mode                                | Allowlist source                                                                             |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Integration access key (`SWIA...`)       | Per-integration allowlist under **Settings → Integrations → Edit MCP Allowlist**             |
+| User access key (`SWUA...`)              | Per-user allowlist under **Settings → Users & Permissions → [user] → MCP tool allowlist**    |
+| Bearer JWT, password / refresh grant     | Per-user allowlist of the authenticated user                                                 |
+| Bearer JWT, authorization code (PKCE)    | Per-user allowlist of the user who approved the request                                      |
+| OAuth login of an MCP client (6.7.17.0)  | Per-user allowlist of the user who approved the request, see [OAuth](#oauth-for-mcp-clients) |
+| Bearer JWT, client_credentials           | Per-integration allowlist                                                                    |
+| Integration + `sw-app-user-id` (Copilot) | Intersection of the integration allowlist and the user allowlist                             |
 
 The allowlist is stored per capability type (`tools`, `resources`, `prompts`). A JSON array restricts access to the listed names, and an empty array `[]` denies access to that capability type. What an unset value means depends on the Shopware version:
 
@@ -150,6 +154,125 @@ Admin users bypass the user side of the intersection, so the integration allowli
 
 This pattern lets the app owner control which tools the integration may ever call, while users control which of those tools they personally allow the app to use on their behalf. Neither side can grant more than what the other has permitted.
 
+## OAuth for MCP clients
+
+Starting with Shopware 6.7.17.0, MCP clients can log in to `/api/_mcp` with OAuth instead of copied credentials.
+The user enters only the server URL.
+The client gets a `401`, discovers the authorization server, opens the browser, the user logs in to the Administration and approves access, and the client receives a token that works only on `/api/_mcp`.
+
+OAuth is an additional way in.
+Integration and user access keys, `client_credentials` tokens, Administration tokens, and authorization code tokens without a resource, such as those of `shopware-cli`, keep working on `/api/_mcp` as before.
+
+For the design and the rejected alternatives, see the ADR [OAuth authentication of MCP clients on the Admin API](../../../resources/references/adr/2026-10-21-mcp-oauth-client-authentication.md).
+
+### Discovery
+
+For a shop whose Admin API is served at `https://shop.example/api`, Shopware serves these URLs:
+
+| Role                                     | URL                                                                     |
+| ---------------------------------------- | ----------------------------------------------------------------------- |
+| MCP resource                             | `https://shop.example/api/_mcp`                                         |
+| Protected resource metadata (RFC 9728)   | `https://shop.example/.well-known/oauth-protected-resource/api/_mcp`    |
+| Issuer                                   | `https://shop.example/api`                                              |
+| Authorization server metadata (RFC 8414) | `https://shop.example/.well-known/oauth-authorization-server/api`       |
+| Authorization endpoint                   | `https://shop.example/api/oauth/authorize`                              |
+| Token endpoint                           | `https://shop.example/api/oauth/token`                                  |
+
+A `401` from `/api/_mcp` carries `WWW-Authenticate: Bearer resource_metadata="<protected resource metadata URL>"`, with `error="invalid_token"` when the request sent credentials that were rejected.
+The JSON-RPC body with the code `-32001` stays as before.
+The authorization server metadata announces the authorization code grant with PKCE (`S256`), the refresh token grant, and public clients without a secret.
+The redirect back to the client carries the issuer as `iss` (RFC 9207).
+
+The well-known URIs insert their prefix before the path of the issuer and the resource, as RFC 8414 and RFC 9728 define.
+Shopware does not answer the root paths `/.well-known/oauth-authorization-server` and `/.well-known/oauth-protected-resource`.
+The root path stays free for extensions such as `SwagAgenticCommerce`, which answers it for shopper identity linking.
+
+The URLs are built from the scheme, host, and base path of the request when the host is an allowed MCP host, which means `APP_URL` or a sales channel domain.
+For any other host, Shopware uses `APP_URL`.
+Behind a reverse proxy that terminates TLS, configure [Symfony's trusted proxies](https://symfony.com/doc/current/deployment/proxies.html), so the URLs use `https`.
+
+#### Installations in a subdirectory
+
+When Shopware runs in a subdirectory, for example `https://shop.example/shop`, the base path is part of every URL.
+The issuer is `https://shop.example/shop/api`, and the resource is `https://shop.example/shop/api/_mcp`.
+The well-known URIs sit at the host root, outside Shopware, so the web server must rewrite them.
+For Nginx:
+
+```nginx
+location = /.well-known/oauth-protected-resource/shop/api/_mcp { rewrite ^ /shop/.well-known/oauth-protected-resource/api/_mcp last; }
+location = /.well-known/oauth-authorization-server/shop/api { rewrite ^ /shop/.well-known/oauth-authorization-server/api last; }
+```
+
+### Register an OAuth client
+
+Shopware does not support dynamic client registration, and it ships no entries for third-party MCP clients.
+`shopware-cli` is the only default client.
+An operator adds a client for every MCP client that should log in, under `shopware.api.oauth_clients` in `config/packages/shopware.yaml`:
+
+```yaml
+shopware:
+    api:
+        oauth_clients:
+            claude-code:
+                name: 'Claude Code'
+                redirect_uris:
+                    - 'http://localhost:53682/callback'
+```
+
+The key is the client id, which the MCP client must send.
+The consent page shows the `name`.
+Only clients that let the user configure the client id can use such an entry.
+
+Redirect URIs are matched against the URIs configured for that client id only:
+
+- `http://127.0.0.1` and `http://[::1]` match any port.
+  Scheme, host, and path must match exactly.
+- Every other redirect URI must match exactly, port included.
+  This also applies to `http://localhost:<port>`, because `localhost` is a name that can resolve elsewhere.
+- There are no wildcards.
+
+Clients that call back on `localhost` with a random port, such as Claude Code, need a fixed port in the configuration and in the client, see [Getting Started](./getting-started.md#oauth-login).
+
+### Tokens bound to the MCP endpoint
+
+A client that sends the RFC 8707 `resource` parameter gets a token bound to the MCP endpoint:
+
+- `/api/oauth/authorize` and `/api/oauth/token` accept `resource`.
+  The only accepted value is the shop's MCP resource, such as `https://shop.example/api/_mcp`.
+  Any other value is answered with `invalid_target`.
+- Shopware compares the resource without its query and without a trailing slash, and ignores the case of scheme and host and a default port.
+  So `https://shop.example/api/_mcp?toolsets=order` names the same resource.
+  A resource with a fragment is rejected.
+- A token request without `resource` after an authorization request with one still gets a token bound to the resource.
+- A refresh keeps the resource.
+- The JWT keeps the client id as the first `aud` entry and lists the resource after it.
+
+A bound token is accepted on `/api/_mcp` only.
+Every other Admin API route answers it with `401`, including `/api/oauth/authorize`, so an MCP token can never approve another client.
+App script tools that `/api/_mcp` calls internally keep working.
+Access tokens are valid for `access_token_ttl`, 10 minutes by default, and refresh tokens for `refresh_token_ttl`, one week by default, as for every other Admin API token.
+
+The resource of a grant is stored in the new `resource` columns of `oauth_auth_code` and `refresh_token`.
+Run the database migrations of 6.7.17.0 before MCP clients log in with OAuth.
+
+### What an OAuth login allows
+
+The token acts as the user who approved the request.
+The consent page names the client and the redirect host and, for a bound token, says that the access is limited to the MCP endpoint.
+
+What the client may call is decided as for every other user token:
+
+- The user's ACL role decides which privileges the tools have.
+- The user's MCP allowlist decides which tools, resources, and prompts the client can see and call.
+  A non-admin user without an allowlist sees only the three discovery tools, and they return nothing.
+- An administrator (`admin = true`) bypasses the allowlist.
+  Approving a client as an administrator gives it unrestricted MCP access, limited to `/api/_mcp`.
+
+To control what a user can do through an OAuth client, select the user's capabilities on the user detail page under **Settings → Users & Permissions → [user] → MCP tool allowlist**, see [Per-principal allowlist](#per-principal-allowlist).
+To let a person use OAuth with restricted access, give them a non-admin user with a matching role and allowlist.
+Only registered client ids can start a login.
+A public client id does not prove which local program sends it, so the user checks the client name and the redirect host on the consent page before allowing access.
+
 ## MCP bundle configuration
 
 Shopware ships the configuration of the underlying `symfony/mcp-bundle`, and Symfony loads it automatically. You do not need to create or modify it for standard setups.
@@ -193,7 +316,11 @@ Each MCP server has its own session store. Session IDs are not namespaced per se
 
 Shopware defaults to a file-based session store per server, which writes to `%kernel.cache_dir%/mcp-sessions/<server>`, for example `mcp-sessions/admin` and `mcp-sessions/store_api`. Before 6.7.15.0, both endpoints wrote to `%kernel.cache_dir%/mcp-sessions/`. Sessions that existed before the update are not carried over, on either endpoint, so every MCP client initializes once more.
 
-Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only, not per user and not per integration. Rows are deleted when the client ends the session with `DELETE /api/_mcp` or `DELETE /store-api/_mcp`. Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, which checks the session stores of both servers. The scheduler must run in production.
+Enabled toolsets are stored separately, in the `mcp_toolset_session` database table, keyed on the `Mcp-Session-Id` header only, not per user and not per integration.
+Since 6.7.17.0, the session itself is bound to its principal on `/api/_mcp`, see [Session binding](#session-binding).
+Rows are deleted when the client ends the session with `DELETE /api/_mcp` or `DELETE /store-api/_mcp`.
+Sessions that are abandoned without a `DELETE` are cleaned up by the daily `mcp_toolset_session.cleanup` scheduled task, which checks the session stores of both servers.
+The scheduler must run in production.
 
 The `session` options of each server select the store:
 
@@ -266,6 +393,24 @@ Starting with 6.7.16.0, an app change increments a version per capability list i
 On 6.7.14.x and 6.7.15.x, Shopware kept a registry of active sessions in `cache.system`, which is local to each server. Only sessions on the server that processed the app change were notified, unless `shopware.mcp.session_registry_cache` and `mcp.store_api.session_registry_cache` pointed at a shared pool and a shared [lock store](../../../guides/hosting/performance/lock-store.md) was configured. Remove those overrides when you update to 6.7.16.0. The services no longer exist, and MCP notifications no longer need a shared lock.
 
 On 6.7.14.x, the bundle has no per-server session options. There, override the `mcp.session.store` service with a `Mcp\Server\Session\Psr16SessionStore` that receives `@mcp.session.cache_psr16` and a TTL. Remove that override when you update to 6.7.15.0, because Shopware no longer uses the `mcp.session.store` service.
+
+### Session binding
+
+Starting with Shopware 6.7.17.0, a session on `/api/_mcp` belongs to the principal that sent `initialize`:
+
+| Credentials                                   | Principal                                  |
+| --------------------------------------------- | ------------------------------------------ |
+| User access key, or a token of a user         | The user                                   |
+| Integration access key, or integration token  | The integration                            |
+| Integration with `sw-app-user-id`             | The integration acting for that user       |
+
+A request with the `Mcp-Session-Id` of a session that belongs to another principal gets the same `404` as an unknown session, so the answer does not reveal that the session exists.
+MCP clients start a new session on `404`.
+
+The principal never contains the token id.
+A session stays valid when the client refreshes its token or gets a new one, and one user's credentials share their sessions, for example a user access key and an OAuth token of the same user.
+Sessions opened before the update have no principal and are answered with `404` once.
+`/store-api/_mcp` is not affected.
 
 ## ACL and permissions
 
@@ -345,10 +490,15 @@ Both MCP endpoints are rate limited with their own buckets, configured under `sh
 
 | Bucket          | Endpoint          | Keyed on                                        | Limits         |
 | --------------- | ----------------- | ----------------------------------------------- | -------------- |
-| `mcp_admin_api` | `/api/_mcp`       | Access token, falling back to client IP         | 300 per minute |
+| `mcp_admin_api` | `/api/_mcp`       | User or integration, falling back to client IP  | 300 per minute |
 | `mcp_store_api` | `/store-api/_mcp` | Sales channel and context token, plus client IP | 120 per minute |
 
 Starting with 6.7.16.0, both use the `sliding_window` policy. A client may send at most the limit within any 60-second window, and there is no lockout. The Store API limit applies to the context and to the client IP separately. Exceeding a limit returns HTTP 429 with `MCP endpoint throttled for <seconds> seconds.` in the response body; no `Retry-After` header is sent.
+
+Starting with 6.7.17.0, `mcp_admin_api` counts the requests of a user or an integration, the same principal as in [Session binding](#session-binding).
+A new or refreshed access token continues in the same bucket, and all MCP clients of one user share it.
+An integration acting for a user with `sw-app-user-id` has a bucket per user.
+Before 6.7.17.0, the bucket was keyed on the access token, so every new token started with a fresh limit.
 
 To change the limits, override the buckets:
 
@@ -369,6 +519,21 @@ shopware:
 ```
 
 Before 6.7.16.0, both used the `time_backoff` policy with additional 10-minute limits of 1000 and 600 requests, and reset after one hour. Once the first limit was reached, that policy accepted only one request per interval, so a busy client got HTTP 429 on almost every call. If you override these buckets, set `policy`, `limit`, and `interval`. The `reset` and `limits` keys only apply to `time_backoff`.
+
+## Upgrading to 6.7.17.0
+
+Shopware 6.7.17.0 changes these MCP behaviors:
+
+- **OAuth:** MCP clients can log in with OAuth.
+  Register a client for each MCP client that should use it, and add web server rewrites for an installation in a subdirectory, see [OAuth for MCP clients](#oauth-for-mcp-clients).
+  Run the database migrations, which add the `resource` columns to `oauth_auth_code` and `refresh_token`.
+  If you build the Administration yourself, rebuild it, because an older consent page drops the `resource` parameter.
+- **Sessions:** A session on `/api/_mcp` belongs to the principal that opened it.
+  Sessions from before the update are answered with `404` once, and clients start a new one, see [Session binding](#session-binding).
+- **Rate limiting:** `mcp_admin_api` counts per user or integration instead of per access token, see [Rate limiting](#rate-limiting).
+- **Tool results:** The negotiated protocol revision decides the result format, not the `v6.8.0.0` feature flag.
+  Clients on `2025-06-18` or later no longer get the `{"success": …}` envelope as text.
+  Large results of every tool, including app tools, are stored and linked, see [Response format](./tools-reference.md#response-format) and [Large tool results](./tools-reference.md#large-tool-results).
 
 ## Upgrading to 6.7.16.0
 

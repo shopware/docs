@@ -90,6 +90,8 @@ claude mcp add --transport http shopware http://localhost:8000/api/_mcp \
   --header "sw-secret-access-key: ..."
 ```
 
+Starting with Shopware 6.7.17.0, Claude Code can also log in with OAuth instead of using integration credentials, see [OAuth login](#oauth-login).
+
 :::warning Keep credentials out of version control
 Never commit `.mcp.json`, `.cursor/mcp.json`, or other files containing integration credentials. These files are already listed in the Shopware project template's `.gitignore`.
 :::
@@ -175,6 +177,51 @@ Prefer a short list of focused toolsets over `all`. Every advertised tool uses s
 ### Integration credentials (recommended)
 
 Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are valid as long as the integration exists, with no token expiration or manual refresh required.
+
+### OAuth login
+
+Starting with Shopware 6.7.17.0, an MCP client can log in to `/api/_mcp` in the browser, with the Administration user of the person using it.
+No credentials are copied into the client configuration.
+
+1. The client connects without credentials and gets `401` with a link to the protected resource metadata.
+2. It discovers the authorization server of the shop and opens the Administration login in the browser.
+3. The user logs in, checks the client name and the redirect host on the consent page, and allows access.
+4. The client receives a token that works only on `/api/_mcp` and refreshes it on its own.
+
+Shopware has no dynamic client registration, so an operator must register the client id first, see [Register an OAuth client](./configuration.md#register-an-oauth-client).
+The client acts with the user's ACL role and the user's MCP allowlist.
+A non-admin user needs selected capabilities, see [Controlling which capabilities are available](#controlling-which-capabilities-are-available).
+An administrator bypasses the allowlist, so a client approved by an administrator has unrestricted MCP access.
+
+#### Claude Code
+
+Claude Code calls back on `http://localhost:<port>/callback`.
+Redirect URIs on `localhost` must match exactly, port included, so the operator registers a fixed port:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+    api:
+        oauth_clients:
+            claude-code:
+                name: 'Claude Code'
+                redirect_uris:
+                    - 'http://localhost:53682/callback'
+```
+
+Add the server with the same client id and port:
+
+```bash
+claude mcp add --transport http --client-id claude-code --callback-port 53682 shopware https://your-shop.example.com/api/_mcp
+```
+
+Then run `/mcp` in Claude Code and select the server to log in.
+Claude Code refuses plain `http` OAuth endpoints on hosts other than `localhost`, `127.0.0.1`, and `::1`.
+A development shop on a host such as `shop.localhost` or a LAN address therefore needs `https`.
+
+Other clients work the same way when they let you configure the client id and the redirect URI.
+Register the redirect URI the client uses, and pass the client id in the client's configuration.
+Clients on `http://127.0.0.1` or `http://[::1]` may use any port.
 
 ### Bearer token
 

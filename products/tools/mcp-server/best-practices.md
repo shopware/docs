@@ -74,13 +74,13 @@ Strategies to reduce tool count within a single integration:
 Tool responses are injected directly into the agent's context window, so large responses consume a significant portion of the token budget.
 
 When a result holds more than about 100 KB of data, Shopware does not inline it.
-Instead, it stores the result in the `mcp_tool_result_cache` table and returns a `shopware://tool-result/…` URI in `_meta.resourceUri`.
+Instead, it stores the result in the `mcp_tool_result_cache` table and returns a `shopware://tool-result/…` URI.
+Clients on protocol `2025-06-18` or later get the URI as a `resource_link` content block, older clients in `_meta.resourceUri` of the envelope.
 The agent can fetch the full content via `resources/read`.
-The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred, and `query` with the tool and arguments of the call.
-Starting with Shopware 6.7.17.0, the MCP result renderer makes this decision for every tool, including app tools and tools that build their JSON string by hand.
+The response also includes `responseSize`, a note explaining why the result was deferred, and `query` with the tool and arguments of the call.
+Starting with Shopware 6.7.17.0, the MCP result renderer makes this decision for every tool, including app tools and tools that build the `{"success": …}` envelope by hand.
 `McpToolResponse::success()` always returns the full data, so do not rely on it to shorten a result.
-Starting with Shopware 6.7.16.0, the URI is a signed pointer that only works for the caller that produced it and expires after one hour (`_meta.expiresAt`).
-Clients on protocol `2025-06-18` or later also get it as a `resource_link` content block.
+Starting with Shopware 6.7.16.0, the URI is a signed pointer that only works for the caller that produced it and expires after one hour.
 See [Large tool results](./tools-reference.md#large-tool-results).
 For responses of 20 KB or more that stay inline, `McpToolResponse::success()` includes `_meta.responseSize` as a size hint so the agent can learn to use tighter parameters next time.
 
@@ -92,7 +92,9 @@ The goal is still to keep responses small. Deferred resources still cost tokens 
 
 ### Use consistent response shapes
 
-Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_meta": ...}` and `{"success": false, "error": "...", "code": "..."}` envelopes. Agents learn one pattern and apply it everywhere. Starting with Shopware 6.7.16.0, Shopware also returns the data as `structuredContent` and sets `isError` for failed calls. Pass a stable code as the second argument of `error()`, such as `McpToolError::NOT_FOUND`, `McpToolError::INVALID_ARGUMENTS`, or `McpToolError::MISSING_PRIVILEGE`. The default is `McpToolError::TOOL_ERROR`.
+Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_meta": ...}` and `{"success": false, "error": "...", "code": "..."}` envelopes. Agents learn one pattern and apply it everywhere. Starting with Shopware 6.7.16.0, Shopware also returns the data as `structuredContent` and sets `isError` for failed calls.
+Starting with 6.7.17.0, clients on protocol `2025-06-18` or later get the plain data as text instead of the envelope, see [Response format](./tools-reference.md#response-format).
+Pass a stable code as the second argument of `error()`, such as `McpToolError::NOT_FOUND`, `McpToolError::INVALID_ARGUMENTS`, or `McpToolError::MISSING_PRIVILEGE`. The default is `McpToolError::TOOL_ERROR`.
 
 ### Write tool descriptions for agent routing
 

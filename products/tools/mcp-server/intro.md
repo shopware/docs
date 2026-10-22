@@ -21,15 +21,15 @@ The MCP server was introduced in Shopware 6.7.11.0 behind the `MCP_SERVER` featu
 
 The following table summarizes the MCP server's core capabilities.
 
-| Capability         | Details                                                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP transport                                             |
-| **Authentication** | Integration or OAuth credentials for Admin API; Store API authentication headers for Store API                        |
-| **Authorization**  | Admin API ACL enforcement or the current Store API sales-channel context                                              |
-| **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id`                 |
-| **Rate limiting**  | Per-endpoint rate limiting, keyed per access token (Admin API) or per sales-channel context and client IP (Store API) |
-| **Discovery**      | A small default tool surface with search, session-scoped toolsets, and connect-time `?toolsets`                       |
-| **Extensibility**  | Extensions can contribute custom tools, prompts, and resources                                                        |
+| Capability         | Details                                                                                                                              |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **HTTP endpoints** | `POST /api/_mcp` and `POST /store-api/_mcp` via Streamable HTTP transport                                                            |
+| **Authentication** | Integration or OAuth credentials for Admin API, including OAuth login of MCP clients; Store API authentication headers for Store API |
+| **Authorization**  | Admin API ACL enforcement or the current Store API sales-channel context                                                             |
+| **Tool allowlist** | Per-integration and per-user selection in Admin UI; intersected when an app forwards `sw-app-user-id`                                |
+| **Rate limiting**  | Per-endpoint rate limiting, keyed per user or integration (Admin API) or per sales-channel context and client IP (Store API)         |
+| **Discovery**      | A small default tool surface with search, session-scoped toolsets, and connect-time `?toolsets`                                      |
+| **Extensibility**  | Extensions can contribute custom tools, prompts, and resources                                                                       |
 
 ## Architecture
 

@@ -116,7 +116,7 @@ Bundles have no install/activate lifecycle. They are always active when register
 
 </Tabs>
 
-Starting with Shopware 6.7.17.0, the Shopware PHPStan rule set reports plugin and bundle tools on the Admin API without `#[McpToolRequires]`, and Store API tools that use Admin ACL privileges.
+Starting with Shopware 6.7.17.0, the Shopware PHPStan rule set reports plugin and bundle tools on the Admin API that declare neither `#[McpToolRequires]` nor `#[McpToolRequiresNoPrivilege]`, and Store API tools that use Admin ACL privileges.
 See [Check privileges with PHPStan](../../../guides/plugins/plugins/mcp-server.md#check-privileges-with-phpstan) for the rules and the required container configuration.
 
 ## Prompts

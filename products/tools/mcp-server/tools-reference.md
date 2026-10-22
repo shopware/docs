@@ -11,7 +11,7 @@ This page documents all built-in tools, resources, and the system prompt provide
 
 ## Response format
 
-All core tools return a consistent JSON envelope via `McpToolResponse`. It is the first text block of the result:
+Core tools build their result with `McpToolResponse`, which returns a JSON envelope:
 
 **Success:**
 
@@ -27,30 +27,100 @@ All core tools return a consistent JSON envelope via `McpToolResponse`. It is th
 
 The `_meta` field is optional and used for pagination context, dry-run status, and sales channel scope.
 
-Starting with Shopware 6.7.16.0, every tool call returns a standard MCP `CallToolResult` around this text block:
+The envelope is what a tool returns, not what the client receives.
+Shopware renders it as a standard MCP `CallToolResult`.
+Starting with Shopware 6.7.17.0, the protocol revision the client negotiated in `initialize` decides the format:
 
-- **`structuredContent`** holds the result data, so clients don't need to parse JSON out of the text. Data that is not a JSON object, such as a list of rows, is wrapped as `{"result": …}`. A failed call has `structuredContent.error` with `code`, `message`, and, if present, `details`.
-- **`isError`** is `true` for a failed call.
-- **`_meta["shopware/generatedAt"]`** holds the time the result was created.
+| Protocol revision          | Text content                                                                       | `structuredContent`                                  | Large results                       |
+| -------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------- |
+| `2025-06-18` and later     | The data as plain JSON, then the summary and `{"_meta": …}` as blocks of their own | The data, plus the metadata for the model in `_meta` | `resource_link` content block       |
+| `2024-11-05`, `2025-03-26` | The `{"success": …}` envelope as the only text block (deprecated)                  | None, these revisions do not have it                 | `_meta.resourceUri` in the envelope |
 
-The error `code` is stable and one of `tool_error`, `missing_privilege`, `invalid_arguments`, or `not_found`. The text block carries the same code. Clients that negotiate a protocol revision before `2025-06-18` get no `structuredContent`, because that revision introduced it. They still get `isError` and `_meta`.
+Every result also carries `isError`, which is `true` for a failed call, and `_meta["shopware/generatedAt"]` with the time the result was created.
+The error `code` is stable and one of `tool_error`, `missing_privilege`, `invalid_arguments`, or `not_found`.
+
+### Protocol 2025-06-18 and later
+
+- The first text block holds the result data as plain JSON, or the error message for a failed call.
+  The summary, the error details as `{"details": …}`, and the metadata as `{"_meta": …}` follow as text blocks of their own, when there are any.
+- `structuredContent` holds the data.
+  On these revisions it must be a JSON object, so a list or a scalar is wrapped as `{"result": …}`.
+- When the result has metadata the model needs, such as `dryRun`, `total`, the paging, or a summary, `structuredContent` carries it under the reserved key `_meta`.
+  An object gets the key next to its own keys.
+  A list or a scalar is sent as `{"result": …, "_meta": …}`.
+  The bookkeeping keys `responseSize` and `resourceUri` are left out.
+- `structuredContent` has no `_meta` key for a tool that declares an `outputSchema`, for data that has a `_meta` key of its own, for a failed call, and for a stored result.
+  A tool with an `outputSchema` gets exactly the data the schema describes.
+- A failed call has `structuredContent.error` with `code`, `message`, and, if present, `details`.
+- The result's `_meta` repeats every metadata key with the prefix `shopware/`, for example `_meta["shopware/dryRun"]`.
+
+A dry-run write of `shopware-entity-upsert`:
 
 ```json
 {
-  "content": [{"type": "text", "text": "{\"success\":false,\"error\":\"Missing privilege: order:read\",\"code\":\"missing_privilege\"}"}],
-  "isError": true,
-  "structuredContent": {"error": {"code": "missing_privilege", "message": "Missing privilege: order:read"}},
-  "_meta": {"shopware/generatedAt": "2026-10-15T10:00:00+00:00"}
+  "content": [
+    {"type": "text", "text": "[{\"entity\":\"tax\",\"ids\":[\"0190…\"],\"operation\":\"upsert\"}]"},
+    {"type": "text", "text": "{\"_meta\":{\"dryRun\":true}}"}
+  ],
+  "isError": false,
+  "structuredContent": {"result": [{"entity": "tax", "ids": ["0190…"], "operation": "upsert"}], "_meta": {"dryRun": true}},
+  "_meta": {"shopware/dryRun": true, "shopware/generatedAt": "2026-10-22T10:00:00+00:00"}
 }
 ```
 
-:::info Shopware 6.8
-With the `v6.8.0.0` feature flag, the first text block holds the plain data, or the error message for a failed call, instead of the `success` envelope. The summary and the metadata (`{"_meta": …}`) follow as text blocks of their own, and each metadata key is also sent as `_meta["shopware/<key>"]`. Read `structuredContent`, `isError`, and `_meta` instead of parsing the envelope, so your client works on both.
+A failed call:
+
+```json
+{
+  "content": [{"type": "text", "text": "Missing privilege: order:read"}],
+  "isError": true,
+  "structuredContent": {"error": {"code": "missing_privilege", "message": "Missing privilege: order:read"}},
+  "_meta": {"shopware/generatedAt": "2026-10-22T10:00:00+00:00"}
+}
+```
+
+### Protocol before 2025-06-18
+
+Clients on `2024-11-05` and `2025-03-26` get the `{"success": …}` envelope as the only text block, exactly as the tool returned it.
+A tool that returns a result object instead of a string gets the envelope rebuilt from it, with the data, the metadata, and the error message and code.
+These revisions have no `structuredContent` and no `resource_link`.
+`isError` and `_meta["shopware/generatedAt"]` are still sent.
+
+The envelope is deprecated as a wire format.
+Shopware keeps it for these clients and does not remove it in 6.8.0.
+
+### Before Shopware 6.7.17.0
+
+Up to 6.7.16.x, every client got the envelope as the first text block, and clients on `2025-06-18` or later additionally got `structuredContent`, with a list or a scalar always wrapped as `{"result": …}`.
+The `v6.8.0.0` feature flag replaced the envelope with the plain data.
+Starting with 6.7.17.0, the feature flag no longer changes MCP results.
+
+:::warning Integrations that parse the text block
+For clients on `2025-06-18` or later, `content[0].text` no longer contains `success`.
+Read `isError` for the outcome and `structuredContent` for the data, or the result's `_meta` (`shopware/<key>`) for the metadata.
 :::
+
+### Which part of the result clients read
+
+MCP clients do not all pass the same part of a tool result to the model:
+
+| Client                         | Passes to the model                 |
+| ------------------------------ | ----------------------------------- |
+| Claude Code, Codex, VS Code    | `structuredContent`                 |
+| Cursor, Gemini CLI             | The text `content`                  |
+| ChatGPT                        | Both                                |
+
+This is why Shopware sends the data twice, as text and as `structuredContent`, as the MCP specification asks, and why `structuredContent` carries the metadata for the model as well.
+If you build a tool, do not put information the model needs only into one of the two.
+Return it as data, metadata, or summary, and Shopware sends it on both paths.
+Client behavior changes between releases, so treat the table as a snapshot.
+
+### Tool parameters and argument errors
 
 `shopware-entity-search`, `shopware-entity-read`, `shopware-entity-aggregate`, `shopware-entity-upsert`, `shopware-entity-delete`, and `shopware-theme-config` describe each parameter in their `inputSchema`. Parameters that take a JSON-encoded string, such as `criteria` or `aggregations`, state whether an object or an array is expected and include an example.
 
-When `shopware-entity-search`, `shopware-entity-read`, or `shopware-entity-aggregate` receives criteria or aggregations it cannot parse, the error names every rejected element by its JSON pointer:
+When `shopware-entity-search`, `shopware-entity-read`, or `shopware-entity-aggregate` receives criteria or aggregations it cannot parse, the error message names every rejected element by its JSON pointer.
+The envelope the tool returns:
 
 ```json
 {"success": false, "error": "Invalid criteria: /aggregations/0/avg/field: The aggregation should contain a \"field\".", "code": "invalid_arguments"}
@@ -117,10 +187,11 @@ Titles and descriptions are generated from the group name: `#[McpToolGroup('swag
 ## Large tool results
 
 A tool result with more than about 100 KB of data is not returned inline.
-Shopware stores it and returns a reference instead: `_meta.resourceUri` contains a `shopware://tool-result/…` URI that the client reads with `resources/read` through the matching resource template.
+Shopware stores it and returns a link to a `shopware://tool-result/…` URI instead, which the client reads with `resources/read` through the matching resource template.
 
 Starting with Shopware 6.7.17.0, Shopware makes this decision when it renders the MCP result, for every tool on both endpoints.
-This includes app tools and plugin tools that build their JSON string by hand.
+This includes app tools and plugin tools that build the `{"success": …}` envelope by hand.
+A tool result in any other format is passed on unchanged and never stored.
 Before 6.7.17.0, only results of `McpToolResponse::success()` were stored, and app tools were never offloaded.
 
 The limit applies to the rendered result, the text blocks plus the encoded `structuredContent`:
@@ -133,19 +204,28 @@ The limit applies to the rendered result, the text blocks plus the encoded `stru
 Both limits correspond to about 100 KB of data.
 Failed calls are never stored.
 
-The text block of a linked result holds `{"success": true, "data": null, "_meta": {…}}`.
-Its `_meta` contains `resourceUri`, `expiresAt`, `responseSize`, a `note` explaining why the data was not returned inline, and `query` with the tool name and arguments of the call.
-With the `v6.8.0.0` feature flag, the text holds the note and `{"_meta": …}` instead, and leaves out `resourceUri` when the client receives the `resource_link`.
+The response that replaces a stored result depends on the protocol revision:
+
+- On `2025-06-18` and later, a `resource_link` content block carries the URI, after any links of the tool itself.
+  The text holds the tool's summary, cut at 2 KB, and a `note` explaining why the data was not returned inline, followed by `{"_meta": …}`.
+  The response has no `structuredContent`.
+- On `2024-11-05` and `2025-03-26`, the text block holds `{"success": true, "data": null, "_meta": {…}}`.
+  Its `_meta` contains `resourceUri`, `expiresAt`, and the `note`.
+
+In both cases, `_meta` also contains `responseSize`, `query` with the tool name and arguments of the call, and the tool's own metadata up to 10 KB.
+Metadata values that do not fit are named in `_meta.omittedMeta`, and arguments larger than 10 KB are left out of `query`.
 
 `resources/read` of a stored result always returns `application/json`.
-Its content depends on the protocol revision of the call that stored it, with or without the `v6.8.0.0` feature flag:
+Its content follows the protocol revision of the call that stored it:
 
 - On `2025-06-18` and later, the plain data. The metadata, such as `total`, comes with the link in the tool result.
 - On `2024-11-05` and `2025-03-26`, the `{"success": true, "data": …, "_meta": …}` envelope.
 
 Results stored before the update to 6.7.17.0 are read as the envelope until they expire.
 
-Starting with Shopware 6.7.16.0, the URI is a signed pointer for the caller and expires after one hour. `_meta.expiresAt` holds the expiry. Clients on protocol `2025-06-18` or later also get the URI as a `resource_link` content block. Read it on the same endpoint as the same caller:
+Starting with Shopware 6.7.16.0, the URI is a signed pointer for the caller and expires after one hour.
+The result's `_meta["shopware/expiresAt"]` holds the expiry, and the envelope also has it in `_meta.expiresAt`.
+Read it on the same endpoint as the same caller:
 
 - On `/api/_mcp`, the same integration or user.
 - On `/store-api/_mcp`, the same sales channel and `sw-context-token`. A Store API call without `sw-context-token` gets its result inline, because no later request could read it back.
@@ -250,7 +330,7 @@ Use this instead of `shopware-entity-search` when you need counts, averages, sum
 
 **Supported aggregation types:** `avg`, `sum`, `min`, `max`, `stats`, `count`, `terms`, `histogram` (a date histogram with `interval`), `range`, `filter`, `entity`
 
-**Response:** `{"success": true, "data": {"aggregations": {"<name>": {...}}}}`
+**Response data:** `{"aggregations": {"<name>": {...}}}`
 
 **Examples:**
 
