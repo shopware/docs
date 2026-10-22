@@ -297,6 +297,7 @@ CycloneDX
 DAL
 DBAL
 DDL
+DER
 DESC
 DHL
 DIC
@@ -1703,6 +1704,8 @@ jwt
 kebabCase
 keyframes
 keypress
+keystore
+keystores
 landingpage
 lang
 lavinmq
