@@ -214,6 +214,7 @@ The response that replaces a stored result depends on the protocol revision:
 
 In both cases, `_meta` also contains `responseSize`, `query` with the tool name and arguments of the call, and the tool's own metadata up to 10 KB.
 Metadata values that do not fit are named in `_meta.omittedMeta`, and arguments larger than 10 KB are left out of `query`.
+`_meta.omittedMeta` names at most 50 keys, and `_meta.omittedMetaCount` holds the number of keys left out.
 
 `resources/read` of a stored result always returns `application/json`.
 Its content follows the protocol revision of the call that stored it:
