@@ -33,17 +33,18 @@ $ bin/console [command] [parameters]
 
 ### App
 
-| Command                  | Description                                                              |
-| :----------------------- | :----------------------------------------------------------------------- |
-| `app:activate`           | Activates the app in the folder with the given name                      |
-| `app:create`             | Creates an app skeleton                                                  |
-| `app:deactivate`         | Deactivates the app in the folder with the given name                    |
-| `app:install`            | Installs the app in the folder with the given name                       |
-| `app:list`               | Lists all apps                                                           |
-| `app:refresh`            | \[app:update\] Refreshes the installed apps                              |
-| `app:uninstall`          | Uninstalls the app                                                       |
-| `app:url-change:resolve` | Resolves changes in the app URL and how the app system should handle it. |
-| `app:validate`           | Checks manifests for errors                                              |
+| Command              | Description                                                                     |
+| :------------------- | :------------------------------------------------------------------------------ |
+| `app:activate`       | Activates the app in the folder with the given name                             |
+| `app:create`         | Creates an app skeleton                                                         |
+| `app:deactivate`     | Deactivates the app in the folder with the given name                           |
+| `app:install`        | Installs the app in the folder with the given name                              |
+| `app:list`           | Lists all apps                                                                  |
+| `app:refresh`        | \[app:update\] Refreshes the installed apps                                     |
+| `app:secret:rotate`  | Rotate the shared app secret and integration credentials for one or all apps    |
+| `app:shop-id:change` | \[app:url-change:resolve\] Change the shop ID by choosing a resolution strategy |
+| `app:uninstall`      | Uninstalls the app                                                              |
+| `app:validate`       | Checks manifests for errors                                                     |
 
 ### Assets
 
@@ -392,6 +393,19 @@ Generating the skeletons and essential files needed to create and structure a Sh
 | `system:setup:staging`       | Installs the Shopware 6 system in staging mode                                     |
 | `system:update:finish`       | Finishes the update process                                                        |
 | `system:update:prepare`      | Prepares the update process                                                        |
+
+The `system:install` command accepts the following options (as of Shopware 6.7). Run `bin/console system:install --help` to list the options of your installed version.
+
+| Option                                                            | Description                                                           |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `--create-database`                                               | Creates the database if it does not exist                             |
+| `--drop-database`                                                 | Drops the existing database first                                     |
+| `--basic-setup`                                                   | Creates a Storefront sales channel and an admin user                  |
+| `-f`, `--force`                                                   | Installs even if `install.lock` exists                                |
+| `--no-assign-theme`                                               | Does not assign the default theme                                     |
+| `--shop-name`, `--shop-email`, `--shop-locale`, `--shop-currency` | Name, email address, default locale and ISO currency code of the shop |
+| `--skip-assets-install`                                           | Skips installing the assets                                           |
+| `--skip-first-run-wizard`                                         | Skips the first run wizard                                            |
 
 ### Theme
 

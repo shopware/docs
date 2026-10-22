@@ -15,7 +15,7 @@ Deployment Helper requires a working MySQL/MariaDB database that is:
 - **Writable** with permissions to create tables and insert data
 - **Compatible** with the Shopware version being deployed
 
-Deployment Helper does not require an existing schema; if the database is empty, it creates everything via `system:install`.
+Deployment Helper does not require an existing schema; if the database is empty, it runs `system:install` and then the initial setup described under [What gets created on fresh install](#what-gets-created-on-fresh-install).
 
 Detection: Shopware is considered "installed" if all three exist:
 
@@ -27,17 +27,16 @@ If the database has the schema but no users or sales channels, DH treats it as n
 
 ## What gets created on fresh install
 
-When Deployment Helper runs `system:install` on a fresh database, it creates:
+When Deployment Helper installs Shopware on a fresh database, it runs `system:install` (it creates the schema, applies the shop locale and currency, and runs core setup such as migrations, asset installation and theme compilation) and then creates the following with separate console commands:
 
-- Database schema (all Shopware tables)
 - One admin user with credentials from environment variables:
   - Username: `INSTALL_ADMIN_USERNAME` (default: `admin`)
   - Password: `INSTALL_ADMIN_PASSWORD` (default: `shopware`; change this!)
   - Email: `INSTALL_ADMIN_EMAIL` (optional, defaults to empty)
-- One Storefront sales channel (customer-facing shop):
+- One Storefront sales channel (customer-facing shop, only if the Storefront is installed and no sales channel with that URL exists yet):
   - Name: `Storefront`
-  - URL: `SALES_CHANNEL_URL` or `APP_URL` (defaults to `http://localhost`)
-- Default theme assignment (Shopware's Storefront theme)
+  - URL: `SALES_CHANNEL_URL` or `APP_URL`; if neither is set, an empty URL is passed to `sales-channel:create:storefront`
+- Default theme assignment (Shopware's Storefront theme, only if the Storefront is installed)
 - Messenger transport tables and queues
 - All configured plugins and apps (unless excluded)
 
@@ -49,16 +48,16 @@ Configure the Shopware installation and Deployment Helper via environment variab
 
 ### Installation and initial setup
 
-These variables apply only on **fresh installation** (`system:install`):
+These variables are read by Deployment Helper, not by `bin/console system:install` itself, and apply only on a **fresh installation**. Deployment Helper passes `INSTALL_LOCALE` and `INSTALL_CURRENCY` on to `system:install` as the `--shop-locale` and `--shop-currency` options. For the other options of the command, see the [commands reference](../../../../../resources/references/core-reference/commands-reference.md#system):
 
 | Variable                 | Default            | Purpose                                                       |
 | ------------------------ | ------------------ | ------------------------------------------------------------- |
 | `INSTALL_LOCALE`         | `en-GB`            | Locale for the shop (e.g., `de-DE`, `fr-FR`)                  |
-| `INSTALL_CURRENCY`       | `EUR`              | Currency for the first sales channel                          |
+| `INSTALL_CURRENCY`       | `EUR`              | Default currency of the shop (`--shop-currency`)              |
 | `INSTALL_ADMIN_USERNAME` | `admin`            | Username of the initial admin user                            |
 | `INSTALL_ADMIN_PASSWORD` | `shopware`         | Password for the initial admin user                           |
 | `INSTALL_ADMIN_EMAIL`    | *(empty)*          | Email address of the admin user                               |
-| `SALES_CHANNEL_URL`      | `http://localhost` | URL of the Storefront sales channel                           |
+| `SALES_CHANNEL_URL`      | *(not set)*        | URL of the Storefront sales channel; `APP_URL` if unset       |
 | `APP_URL`                | *(not set)*        | Fallback URL for Storefront if `SALES_CHANNEL_URL` is not set |
 
 :::warning
@@ -84,7 +83,7 @@ See [SSL/TLS Setup](../../../infrastructure/database.md#ssltls-connection) for c
 | `SHOPWARE_DEPLOYMENT_TIMEOUT`         | Seconds (default: `300`) | Max time a single deployment step can run; set to `null` to disable                |
 | `SHOPWARE_DEPLOYMENT_FORCE_REINSTALL` | `1` or unset             | Set to `1` to force fresh install with `--drop-database` (destroys existing data!) |
 | `SHOPWARE_DEPLOYMENT_STAGING`         | `1` or unset             | Set to `1` to enable staging mode on every deployment                              |
-| `SHOPWARE_PROJECT_CONFIG_FILE`        | File path                | Custom path to `.shopware-project.yml` (absolute or relative to project root)      |
+| `SHOPWARE_PROJECT_CONFIG_FILE`        | File path                | Custom project configuration path (absolute or relative to project root)           |
 
 ### Store authentication
 

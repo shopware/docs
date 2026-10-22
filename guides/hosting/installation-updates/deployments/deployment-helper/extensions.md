@@ -16,7 +16,7 @@ Deployment Helper manages two types of extensions: [apps](../../../../plugins/ap
 | Aspect                  | Plugin                                   | App                                                                               |
 | ----------------------- | ---------------------------------------- | --------------------------------------------------------------------------------- |
 | **Location**            | `custom/plugins/` or Composer            | `custom/apps/` or Composer type `shopware-app`                                    |
-| **Definition**          | Directory with `plugin.xml` or PHP class | Directory/package with `manifest.xml`                                             |
+| **Definition**          | `composer.json` and a PHP class          | Directory/package with `manifest.xml`                                             |
 | **License requirement** | None                                     | **Requires license domain to register** with Shopware                             |
 | **Built-in extensions** | Payment, analytics plugins               | Payment apps (official integrations)                                              |
 | **Lifecycle**           | Installed via `plugin:install`           | Installed via `app:install`, requires handshake with Shopware registration server |
@@ -110,7 +110,7 @@ See [Extension Management](../../extension-management.md) for details on install
 
 ### Option 2: Disable the Deployment Helper's extension management
 
-If you prefer to manage extensions manually through the Store or Administration, disable the extension management in your `.shopware-project.yml`:
+If you prefer to manage extensions manually through the Store or Administration, disable the extension management in your `.config/shopware-project.yml`:
 
 ```yaml
 deployment:
@@ -139,7 +139,7 @@ Shopware Plugin Service
 
 Removing an extension requires you to follow two steps:
 
-First, set the extension to `remove` in the `.shopware-project.yml` file:
+First, set the extension to `remove` in the `.config/shopware-project.yml` file:
 
 ```yaml
 deployment:
@@ -157,7 +157,7 @@ deployment:
 
 and deploy the changes. The extension will be uninstalled and is inactive.
 
-Secondly, remove the extension from source code, remove the entry from the `.shopware-project.yml` file, and deploy the changes again.
+Secondly, remove the extension from source code, remove the entry from the `.config/shopware-project.yml` file, and deploy the changes again.
 
 ## How Deployment Helper adapts to different Shopware versions
 

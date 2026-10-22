@@ -9,8 +9,12 @@ nav:
 
 ## Overview
 
-With the introduction of ESI loading for the header and footer, the way how to customize the header and footer has changed.
-E.g. it is no longer possible to customize the header and footer depending on the current page data.
+With the introduction of ESI loading for the header and footer in Shopware 6.7.0.0, the way how to customize the header and footer has changed.
+As of Shopware 6.7.0.0, it is no longer possible to customize the header and footer depending on the current page data using the same request that renders the page.
+
+::: info
+ESI loading of the header and footer is introduced with Shopware 6.7.0. On earlier versions, the header and footer templates are extended like any other template — see [Customizing templates](customize-templates.md).
+:::
 
 This guide will show you how to customize the header and footer in your plugin.
 

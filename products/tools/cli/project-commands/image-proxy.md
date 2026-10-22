@@ -20,7 +20,7 @@ This lets you develop with production-like data and images without needing to do
 ## Usage
 
 ```bash
-# Start the proxy server using configuration from .shopware-project.yml
+# Start the proxy server using configuration from .config/shopware-project.yml
 shopware-cli project image-proxy
 
 # Specify a custom upstream URL
@@ -41,10 +41,10 @@ shopware-cli project image-proxy --skip-config
 
 ## Configuration
 
-You can configure the upstream URL in your `.shopware-project.yml` file:
+Configure the upstream URL in the project configuration file resolved by Shopware CLI. See the [configuration file lookup priority](../configuration.md) before editing, especially if your project still uses a legacy root-level file. If no project configuration exists, run `shopware-cli project config init` first.
 
 ```yaml
-# .shopware-project.yml
+# Add this to the resolved project configuration file
 image_proxy:
   url: https://production.example.com
 ```
@@ -101,9 +101,7 @@ shopware:
 When developing locally but needing access to production media files:
 
 ```bash
-# Configure once
-echo "image_proxy:
-  url: https://production.example.com" >> .shopware-project.yml
+# Add image_proxy.url to the resolved project configuration file (see above)
 
 # Start proxy
 shopware-cli project image-proxy

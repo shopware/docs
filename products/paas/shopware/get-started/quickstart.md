@@ -54,14 +54,18 @@ Create your application:
 sw-paas application create
 ```
 
-Then, deploy your application:
-
-```sh
-sw-paas application deploy create
-```
+This command creates the application, builds it, and deploys it — no separate deploy step is needed.
 
 Monitor the deployment progress:
 
 ```sh
 sw-paas watch
+```
+
+This streams live and does not exit on its own. Wait for the status `DEPLOYING_STORE_SUCCESS`, then press `Ctrl+C` to stop it.
+
+Open your shop:
+
+```sh
+sw-paas open storefront
 ```
