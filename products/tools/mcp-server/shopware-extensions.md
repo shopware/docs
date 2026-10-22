@@ -30,7 +30,7 @@ A Shopware plugin that extends the MCP server with merchant-focused workflow too
 ### Available tools
 
 | Tool                         | What it does                                                                                               |
-|------------------------------|------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `merchant-order-summary`     | Formatted overview of an order including customer, line items, totals, and current state                   |
 | `merchant-customer-lookup`   | Find a customer by email address, customer number, or UUID                                                 |
 | `merchant-product-create`    | Create a product with natural parameters (gross price, tax rate, currency code) and resolve IDs internally |
@@ -58,7 +58,7 @@ A Symfony bundle (not a plugin) that adds developer diagnostic tools to the MCP 
 ### Diagnostic tools
 
 | Tool                        | What it does                                                                     |
-|-----------------------------|----------------------------------------------------------------------------------|
+| --------------------------- | -------------------------------------------------------------------------------- |
 | `swag-dev-tools-log-stream` | Read recent Monolog entries from disk, filtered by level and timestamp           |
 | `swag-dev-tools-log-search` | Search log files for substring matches, with optional level and filename filters |
 

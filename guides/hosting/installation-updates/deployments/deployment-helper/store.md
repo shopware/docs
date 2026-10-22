@@ -44,7 +44,7 @@ export SHOPWARE_STORE_SHOP_SECRET=your-shop-secret
 export SHOPWARE_STORE_LICENSE_DOMAIN=example.com
 ```
 
-In `.shopware-project.yml`, you can hardcode the license domain (it's not secret):
+In `.config/shopware-project.yml`, you can hardcode the license domain (it's not secret):
 
 ```yaml
 deployment:

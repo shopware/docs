@@ -65,7 +65,7 @@ shopware-cli project dump --clean --host localhost --username db_user --password
 shopware-cli project dump --clean --anonymize --host localhost --username db_user --password db_pass --output shop.sql shopware
 ```
 
-Configure the dump command with `.shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../products/tools/cli/project-commands/mysql-dump.md) for details.
+Configure the dump command with `.config/shopware-project.yml` to specify tables to skip, additional anonymization fields, and more. See the [CLI documentation](../../../products/tools/cli/project-commands/mysql-dump.md) for details.
 
 ### 3. Configuring the staging instance
 
@@ -92,7 +92,7 @@ This command modifies the database for staging use. Pass `--no-interaction --for
 ## Staging mode: scope and limitations
 
 | Category                              | Behavior                                                                             |
-|---------------------------------------|--------------------------------------------------------------------------------------|
+| ------------------------------------- | ------------------------------------------------------------------------------------ |
 | **What the staging mode does**        | Deletes all apps with active connections to external services and their integrations |
 |                                       | Resets the instance ID used for app registration                                     |
 |                                       | Disables email sending                                                               |

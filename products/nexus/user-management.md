@@ -10,11 +10,11 @@ Nexus access is scoped to your company. Every user who belongs to the company is
 
 ## Roles
 
-| Role | Access |
-|------|--------|
-| Admin | Full access — can manage users, settings, and all workflows |
+| Role    | Access                                                             |
+| ------- | ------------------------------------------------------------------ |
+| Admin   | Full access — can manage users, settings, and all workflows        |
 | Builder | Can create and edit workflows, but cannot manage users or settings |
-| Viewer | Read-only access — can view workflows and execution results |
+| Viewer  | Read-only access — can view workflows and execution results        |
 
 ## Managing users
 

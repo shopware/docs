@@ -36,7 +36,7 @@ sequenceDiagram
 Each hop in the diagram is governed by its own setting, so the lifecycles are independent: a customer can still have a valid cart token while the Symfony session is already gone, or keep a session cookie long after the persisted context has been cleaned up. The following table compares the settings that control each lifecycle.
 
 | Scope                           | Key / token                   | Controlled by                                | What it limits                                                                               |
-|---------------------------------|-------------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------|
+| ------------------------------- | ----------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Browser session cookie          | Symfony session cookie        | `framework.session.cookie_lifetime`          | How long the browser keeps the cookie                                                        |
 | Server-side session data        | Symfony session storage entry | `framework.session.gc_maxlifetime`           | When session data can be garbage collected                                                   |
 | Store API context token         | Sales channel context token   | `shopware.api.store.context_lifetime`        | How long a context token stays valid before a new one is issued (`DateInterval`, e.g. `P1D`) |

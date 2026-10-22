@@ -24,7 +24,7 @@ To uninstall plugins in the PaaS environment, use the [Deployment Helper](../../
 
 The uninstallation process involves two steps:
 
-1. **Set the extension to remove**: Configure the extension state as `remove` in your `.shopware-project.yml` file and deploy the changes to uninstall the extension.
+1. **Set the extension to remove**: Configure the extension state as `remove` in your `.config/shopware-project.yml` file and deploy the changes to uninstall the extension.
 
 2. **Remove from source code**: After the deployment, remove the extension from your source code and deploy again.
 
@@ -55,7 +55,7 @@ cd <your-project-folder>
 Install the `shopware/k8s-meta` package that prepares your project for PaaS Native. Use the version that matches your Shopware installation:
 
 | Shopware version | k8s-meta version |
-|------------------|------------------|
+| ---------------- | ---------------- |
 | 6.6              | `^1.0`           |
 | 6.7              | `^2.0`           |
 
@@ -90,6 +90,8 @@ services:
 ```
 
 For the full configuration reference, see the [Application YAML Configuration](../fundamentals/application-yaml.md) page.
+
+If your repository holds more than one project, the `application.yaml` can also live in a sub-directory. See [Deploy from a monorepo](../guides/monorepo.md).
 
 ## Hooks Configuration
 

@@ -200,13 +200,14 @@ Those "criteria events" are not generated automatically and therefore it is not 
 Symfony provides some general [kernel level routing events](https://symfony.com/doc/current/reference/events.html#kernel-events), e.g `kernel.request` or `kernel.response`.
 However, those events are thrown on every route, so it's too generic when you only want to react on a specific route.
 Therefore, we have added fine-grained route events that are thrown for every route:
-| Event name | Scope | Event Type | Description |
-|------------|-------|------------|-------------|
-| `{route}.request` | Global | `Symfony\Component\HttpKernel\Event\RequestEvent` | Route specific alias for symfony's `kernel.request` event. |
-| `{route}.response` | Global | `Symfony\Component\HttpKernel\Event\ResponseEvent` | Route specific alias for symfony's `kernel.response` event. For storefront routes this contains the already rendered template, for store-api routes this contains the already encoded JSON |
-| `{route}.render` | Storefront | `Shopware\Storefront\Event\StorefrontRenderEvent` | Thrown before twig rendering in the storefront. |
-| `{route}.encode` | Store-API | `Symfony\Component\HttpKernel\Event\ResponseEvent` | Thrown before encoding the API response to JSON, allowing easy manipulation of the returned data. **Note:** This was only introduced in 6.6.11.0 |
-| `{route}.controller` | Global | `\Symfony\Component\HttpKernel\Event\ControllerEvent` | Route specific alias for symfony's `kernel.controller` event. **Note:** This was only introduced in 6.6.11.0 |
+
+| Event name           | Scope      | Event Type                                            | Description                                                                                                                                                                                |
+| -------------------- | ---------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `{route}.request`    | Global     | `Symfony\Component\HttpKernel\Event\RequestEvent`     | Route specific alias for symfony's `kernel.request` event.                                                                                                                                 |
+| `{route}.response`   | Global     | `Symfony\Component\HttpKernel\Event\ResponseEvent`    | Route specific alias for symfony's `kernel.response` event. For storefront routes this contains the already rendered template, for store-api routes this contains the already encoded JSON |
+| `{route}.render`     | Storefront | `Shopware\Storefront\Event\StorefrontRenderEvent`     | Thrown before twig rendering in the storefront.                                                                                                                                            |
+| `{route}.encode`     | Store-API  | `Symfony\Component\HttpKernel\Event\ResponseEvent`    | Thrown before encoding the API response to JSON, allowing easy manipulation of the returned data. **Note:** This was only introduced in 6.6.11.0                                           |
+| `{route}.controller` | Global     | `\Symfony\Component\HttpKernel\Event\ControllerEvent` | Route specific alias for symfony's `kernel.controller` event. **Note:** This was only introduced in 6.6.11.0                                                                               |
 
 To subscribe to a specific event, replace the `{route}` placeholder with the [actual symfony route name](https://symfony.com/doc/current/routing.html), e.g. `store-api.product.listing`.
 

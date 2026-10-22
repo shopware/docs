@@ -42,12 +42,12 @@ cronJobs:
 
 ### Field Reference
 
-| Field | Required | Default | Description |
-|---|---|---|---|
-| `name` | Yes | — | Unique identifier for this cron job |
-| `schedule` | Yes | — | Cron expression (5-field standard format) |
-| `command` | Yes | — | Shell command to run |
-| `timezone` | No | `UTC` | IANA timezone for the schedule |
+| Field      | Required | Default | Description                               |
+| ---------- | -------- | ------- | ----------------------------------------- |
+| `name`     | Yes      | —       | Unique identifier for this cron job       |
+| `schedule` | Yes      | —       | Cron expression (5-field standard format) |
+| `command`  | Yes      | —       | Shell command to run                      |
+| `timezone` | No       | `UTC`   | IANA timezone for the schedule            |
 
 ### Name Format
 
@@ -76,12 +76,12 @@ The `schedule` field uses the standard 5-field cron format:
 
 **Common examples:**
 
-| Schedule | Description |
-|---|---|
-| `0 3 * * *` | Every day at 03:00 |
-| `*/15 * * * *` | Every 15 minutes |
-| `0 0 * * 0` | Every Sunday at midnight |
-| `30 8 1 * *` | First day of the month at 08:30 |
+| Schedule       | Description                     |
+| -------------- | ------------------------------- |
+| `0 3 * * *`    | Every day at 03:00              |
+| `*/15 * * * *` | Every 15 minutes                |
+| `0 0 * * 0`    | Every Sunday at midnight        |
+| `30 8 1 * *`   | First day of the month at 08:30 |
 
 ### Timezones
 

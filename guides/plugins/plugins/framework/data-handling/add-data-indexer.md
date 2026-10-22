@@ -36,6 +36,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWrittenContainerEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexer;
 use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 use Shopware\Core\Framework\Uuid\Uuid;
 
 class ExampleIndexer extends EntityIndexer
@@ -65,11 +66,27 @@ class ExampleIndexer extends EntityIndexer
     }
 
     /**
+     * Returns the total number of records which are indexed by this indexer.
+     */
+    public function getTotal(): int
+    {
+        return $this->iteratorFactory->createIterator($this->repository->getDefinition())->fetchCount();
+    }
+
+    /**
+     * An indexer which is not a decorator does not have a decorated indexer.
+     */
+    public function getDecorated(): EntityIndexer
+    {
+        throw new DecorationPatternException(static::class);
+    }
+
+    /**
      * Called when a full entity index is required. This function should generate a list of message for all records which
      * are indexed by this indexer.
      */
 
-    public function iterate($offset): ?EntityIndexingMessage
+    public function iterate(?array $offset): ?EntityIndexingMessage
     {
         $iterator = $this->iteratorFactory->createIterator($this->repository->getDefinition(), $offset);
 
@@ -157,7 +174,11 @@ Let's take a closer look at the functions of the entity indexer class.
 
 * `public function getName(): string`:
     * This function returns the name of the indexer and should be unique. It is used in the `EntityIndexerRegistry` to identify which messages should be handled by which indexer.
-* `public function iterate($offset): ?EntityIndexingMessage`:
+* `public function getTotal(): int`:
+    * This function returns the total number of records the indexer processes. It is used, for example, to show the progress when all indexers run with `bin/console dal:refresh:index`. In the example above, it counts the entities of the repository's definition with the `IteratorFactory`.
+* `public function getDecorated(): EntityIndexer`:
+    * This function has to be implemented as well. An indexer which does not decorate another indexer throws a `DecorationPatternException` here, like the indexers in the Shopware core do.
+* `public function iterate(?array $offset): ?EntityIndexingMessage`:
     * This function is called when a full entity indexing was requested. This is for example the case if the console command `bin/console dal:refresh:index` is used or if a user of the Administration requested an update of all indexes in the settings.
     It should generate a list of messages for all records which are indexed by this indexer. In the example documentation above, the customer entity should be indexed. Therefore, the `Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory` is used to fetch customer ids. The offset is used to reduce the amount of data which is processed at once.
 * `public function update(EntityWrittenContainerEvent $event): ?EntityIndexingMessage`:
@@ -205,7 +226,6 @@ There are already a bunch of indexers in shopware that you can use. If you take 
 * `MediaFolderIndexer`
 * `MediaFolderConfigurationIndexer`
 * `SalesChannelIndexer`
-* `BreadcrumpIndexer`
 
 ### Subscribe to an indexer event
 

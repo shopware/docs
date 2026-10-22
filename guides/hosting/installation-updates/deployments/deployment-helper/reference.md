@@ -12,7 +12,7 @@ nav:
 The [Deployment Helper](index.md) ships with the following commands:
 
 | Command                        | Description                                                                                                 |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | `run`                          | Install or update Shopware (the main deployment command)                                                    |
 | `is-installed`                 | Check whether Shopware is installed; exits `0` if installed, `1` if not. Useful as a guard in shell scripts |
 | `one-time-task:list`           | List all one-time tasks and their execution status                                                          |
@@ -55,12 +55,12 @@ Exit codes:
 The `run` command accepts the following options:
 
 | Option                    | Description                                                                                                                                                                                                                                                       |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--skip-theme-compile`    | Skip theme compilation (use when the theme was already compiled in CI/CD)                                                                                                                                                                                         |
 | `--skip-assets-install`   | Skip asset installation (use when assets were already copied in CI/CD)                                                                                                                                                                                            |
 | `--skip-asset-install`    | Deprecated alias for `--skip-assets-install`                                                                                                                                                                                                                      |
 | `--timeout=<seconds>`     | Set script execution timeout in seconds. Set to `null` to disable. Takes precedence over `SHOPWARE_DEPLOYMENT_TIMEOUT`, which in turn defaults to `300` (see [`RunCommand`](https://github.com/shopware/deployment-helper/blob/main/src/Command/RunCommand.php)). |
-| `--project-config=<path>` | Path to a custom `.shopware-project.yml` file (absolute or relative to project root)                                                                                                                                                                              |
+| `--project-config=<path>` | Path to a custom project configuration file (absolute or relative to project root)                                                                                                                                                                                |
 
 `run` returns a non-zero exit code if any step fails. In CI/CD, treat a non-zero exit as a failed deployment and stop the rollout.
 
@@ -68,10 +68,10 @@ The `run` command accepts the following options:
 
 ### One config file, environment variables for differences
 
-Use a single `.shopware-project.yml` for all environments (production, staging, dev). Override environment-specific settings via environment variables in your CI/CD:
+Use a single `.config/shopware-project.yml` for all environments (production, staging, dev). Override environment-specific settings via environment variables in your CI/CD:
 
 ```yaml
-# .shopware-project.yml (committed)
+# .config/shopware-project.yml (committed)
 deployment:
   store:
     license-domain: 'example.com'
@@ -130,7 +130,7 @@ Only enable `always_clear` if you have a specific reason (e.g., custom caching l
 
 ### One-time tasks are version-control, not manual ops
 
-Include one-time tasks in your `.shopware-project.yml` and commit them to Git. This way:
+Include one-time tasks in your `.config/shopware-project.yml` and commit them to Git. This way:
 
 - Developers see what migrations exist in the codebase.
 - The task runs automatically on production with no manual steps.

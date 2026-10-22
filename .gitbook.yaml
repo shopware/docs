@@ -1,4 +1,5 @@
 redirects:
+    guides/hosting/installation-updates/security-plugin.html: guides/hosting/installation-updates/security-best-practices/security-plugin.html
     guides/hosting/configurations/shopware/staging.html: guides/hosting/installation-updates/creating-a-staging-instance.html
     developers-guide/plugin-guidelines/: https://developers.shopware.com/developers-guide/plugin-guidelines/
     guides/plugins/apps/platform-sh-template.html: guides/plugins/apps/app-base-guide.html
@@ -263,4 +264,3 @@ redirects:
     guides/installation/start-developing.html: guides/development/start-developing.html
     concepts/translations/: concepts/framework/translations/
     guides/hosting/installation-updates/deployments/deployment-helper.html: guides/hosting/installation-updates/deployments/deployment-helper/index.html
-    

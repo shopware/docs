@@ -133,7 +133,7 @@ Add a file `.ddev/web-build/Dockerfile.shopware-cli`
 # .ddev/web-build/Dockerfile.shopware-cli
 COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopware-cli
 ```
-  
+
 </details>
 
 ### Docker image
@@ -183,9 +183,23 @@ To disable it for the current shell session (or persistently, by adding it to yo
 export SHOPWARE_CLI_NO_UPDATE_NOTIFICATION=true
 ```
 
+## Environment variables
+
+### Authentication and configuration
+
+| Variable                              | Purpose                                                                                                                                                   |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SHOPWARE_PACKAGES_TOKEN`             | Composer token for `packages.shopware.com`, used when the CLI resolves dependencies (for example during `project ci`)                                     |
+| `SHOPWARE_PACKAGIST_TOKEN`            | Token used by `project autofix composer-plugins` when it runs headless. Note this is a **different variable** from `SHOPWARE_PACKAGES_TOKEN`              |
+| `COMPOSER_AUTH`                       | Credentials for other private Composer repositories. See the [Composer docs](https://getcomposer.org/doc/articles/authentication-for-private-packages.md) |
+| `SHOPWARE_CLI_TOOLS_DIR`              | Point the validation and refactoring tools at a directory you provisioned yourself. When set, the CLI uses it as-is and skips its own tool setup          |
+| `SHOPWARE_CLI_NO_UPDATE_NOTIFICATION` | Set to `true` to disable update notifications                                                                                                             |
+
+Both tokens come from your Shopware Account under **Shops > Licenses > "..." on any extension > Install via Composer**.
+
 ## Building from source
 
-If you prefer to compile the CLI yourself (requires Go 1.26.4+ and Git):
+If you prefer to compile the CLI yourself (requires Go 1.27.0+ and Git):
 
 ```bash
 git clone https://github.com/shopware/shopware-cli

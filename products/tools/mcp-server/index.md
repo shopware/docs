@@ -49,8 +49,8 @@ With MCP, agents can:
 
 The Shopware MCP Server exposes three types of capabilities that AI agents can discover and use:
 
-| Capability    | Purpose                                                                                                        | Examples                                                                                                                                                     |
-| ------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Capability    | Purpose                                                                                                       | Examples                                                                                                                                                     |
+| ------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Tools**     | Allow agents to perform actions and operations within Shopware                                                | Product search, entity retrieval, entity creation and updates, order state changes, media uploads, system configuration updates, checkout-related operations |
 | **Resources** | Provide structured reference information that helps agents understand the Shopware environment and data model | Entity definitions, sales channels, currencies, languages, state machines, business events, extensions                                                       |
 | **Prompts**   | Provide domain-specific guidance and context for AI agents                                                    | Shopware context, query patterns, data model guidance, best practices                                                                                        |
@@ -146,11 +146,11 @@ This allows partners and developers to expose custom tools, resources, and promp
 
 ## MCP ecosystem
 
-| Component | Purpose |
-|-----------|---------|
-| [`shopware/shopware`](https://github.com/shopware/shopware) | Core MCP server implementation |
-| [`SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools) | Development and debugging tools (log search, log stream, notifications) |
-| [`SwagMcpMerchantTools`](https://github.com/shopware/SwagMcpMerchantTools) | Merchant-focused workflows and tools |
+| Component                                                                  | Purpose                                                                 |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [`shopware/shopware`](https://github.com/shopware/shopware)                | Core MCP server implementation                                          |
+| [`SwagMcpDevTools`](https://github.com/shopware/SwagMcpDevTools)           | Development and debugging tools (log search, log stream, notifications) |
+| [`SwagMcpMerchantTools`](https://github.com/shopware/SwagMcpMerchantTools) | Merchant-focused workflows and tools                                    |
 
 ## Status
 
@@ -159,6 +159,7 @@ The Shopware MCP Server is currently available as an experimental feature.
 :::info
 Introduced in Shopware 6.7.11.0
 Progressive tool discovery and the removal of the `MCP_SERVER` feature flag in Shopware 6.7.14.0
+Connect-time toolset selection and `symfony/mcp-bundle` 0.13 in Shopware 6.7.15.0
 Based on the MCP specification
 Available through the `/api/_mcp` and `/store-api/_mcp` endpoints
 :::

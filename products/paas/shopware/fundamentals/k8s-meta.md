@@ -13,7 +13,7 @@ The `shopware/k8s-meta` Composer package prepares your Shopware project for runn
 Use the version that matches your Shopware installation:
 
 | Shopware version | k8s-meta version |
-|------------------|------------------|
+| ---------------- | ---------------- |
 | 6.6              | `^1.0`           |
 | 6.7              | `^2.0`           |
 
@@ -51,7 +51,7 @@ This file configures Shopware for the PaaS Native infrastructure:
 Additionally, files in `config/packages/prod/` configure production-specific behavior:
 
 | File                 | Purpose                                      |
-|----------------------|----------------------------------------------|
+| -------------------- | -------------------------------------------- |
 | `fastly.yaml`        | Fastly CDN reverse proxy and cache purging   |
 | `monolog.yaml`       | Error-level logging to stderr in JSON format |
 | `opentelemetry.yaml` | OpenTelemetry profiler integration           |
@@ -76,5 +76,7 @@ shopware:
 ```
 
 :::
+
+To add Messenger transports, for example a dedicated mail queue, see [Split message queues](../guides/message-queues.md).
 
 For more details on how Symfony merges configuration files, refer to the [Symfony configuration documentation](https://symfony.com/doc/current/configuration.html#configuration-environments).

@@ -26,10 +26,10 @@ For apps, there are no consequences as your build process is already decoupled f
 
 If you have a custom webpack config, you need to migrate it to Vite. You need to do the following steps:
 
-  1. Create a new config file `vite.config.mts` in your plugin in the `YourApp/src/Resources/app/administration/src` directory. Previously, you had a `webpack.config.js` in the following directory: `YourApp/src/Resources/app/administration/build/`
-  2. Remove the old `webpack.config.js` file
-  3. Make sure to remove all webpack-related dependencies from your `package.json` file
-  4. Make sure to add the Vite dependencies to your `package.json` file
+1. Create a new config file `vite.config.mts` in your plugin in the `YourApp/src/Resources/app/administration/src` directory. Previously, you had a `webpack.config.js` in the following directory: `YourApp/src/Resources/app/administration/build/`
+2. Remove the old `webpack.config.js` file
+3. Make sure to remove all webpack-related dependencies from your `package.json` file
+4. Make sure to add the Vite dependencies to your `package.json` file
 
 A basic config migration could look like this:
 

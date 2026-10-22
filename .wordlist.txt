@@ -2,6 +2,7 @@ AAAA
 AAC
 ACL
 ACLs
+ACU
 ADDR
 ADR
 ADRs
@@ -96,6 +97,7 @@ BBundle
 BCP
 BDD
 BITV
+BYOL
 BackedEnum
 Backend
 BaseContext
@@ -149,6 +151,7 @@ CSPs
 CSRF
 CSV
 CVEs
+CVSS
 CacheClearCommand
 CacheInvalidator
 CacheInvalidatorS
@@ -210,6 +213,7 @@ ChildrenAssociation
 ChildrenAssociationField
 CircleCI
 ClassHierarchyChange
+ClassMoved
 ClientInterface
 Cloudflare
 Cmd
@@ -228,6 +232,7 @@ Codestyle
 Cognito
 CommercialB
 CommercialBundle
+CommonJS
 ComponentFactory
 Composables
 ConfigJson
@@ -287,6 +292,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+Cyberattack
 CycloneDX
 DAL
 DBAL
@@ -467,6 +473,7 @@ GBP
 GCM
 GDPR
 GHSA
+GID
 GIFs
 GLB
 GPT
@@ -755,6 +762,7 @@ PHPUnit
 PHPunit
 PII
 PIM
+PKCE
 POC
 POS
 PRs
@@ -871,7 +879,9 @@ RDBMS
 README
 RHEL
 RPC
+RPO
 RSA
+RTO
 RabbitMQ
 RabbitMq
 Readonly
@@ -1065,6 +1075,7 @@ TestCase
 TestDataService
 TestSecret
 TestStockUpdateFilter
+Tideways
 TimeRangeRule
 TimeZoneField
 Timezones
@@ -1131,6 +1142,7 @@ UpperCamelCase
 Upserting
 Upstash
 Upsun
+Uptime
 UrlAware
 UrlStorer
 UserAware
@@ -1266,6 +1278,7 @@ bPlatform
 bRestApi
 bServiceExtension
 bTemplateExtension
+backdoors
 backend
 backends
 backface
@@ -1332,6 +1345,7 @@ checksums
 ci
 classmap
 classname
+claude
 cleanUp
 cleanUpPreviousState
 clearTypeAndCheck
@@ -1345,12 +1359,14 @@ cmss
 codebase
 codeblock
 codeblocks
+codemod
 codemods
 codereview
 colorpicker
 compatability
 componentSectionRenderer
 composable
+composables
 config
 configComponent
 configs
@@ -1442,6 +1458,7 @@ dereference
 dereferenced
 describeFeatures
 destructure
+destructured
 destructuring
 dev
 devenv
@@ -1513,6 +1530,7 @@ externalReference
 failover
 fallback
 fallbacks
+fallthrough
 fastly
 favicon
 fetchable
@@ -1636,10 +1654,12 @@ init
 initialisms
 initializer
 initializers
+inlines
 installable
 instantiation
 integrations
 interceptable
+interop
 intl
 invalidations
 io
@@ -1774,6 +1794,7 @@ newQuantity
 newsletterRecipient
 ngrok
 nixos
+nixpkgs
 nl
 nofollow
 noindex
@@ -1813,6 +1834,7 @@ otel
 otlp
 overridable
 overrideComponentSetup
+overrideable
 oversales
 paas
 packagist
@@ -1848,6 +1870,7 @@ pluginlogger
 png
 pnpm
 polyfill
+polyfills
 pos
 positionID
 positionIDs
@@ -1869,6 +1892,7 @@ preprocessor
 preprocessors
 preselect
 preselection
+presigned
 prettierrc
 previewComponent
 previewable
@@ -1915,6 +1939,7 @@ recalculable
 redeclaration
 redeclared
 redeclaring
+redirectionio
 redis
 refactorings
 referenceField
@@ -1945,6 +1970,7 @@ resetUrl
 resolver's
 resolvers
 resubmittable
+rethrow
 rethrown
 retryability
 returnUrl
@@ -1958,6 +1984,7 @@ rollout
 routeName
 routeScope
 routeScopes
+rumdl
 runnable
 runtime
 runtimes
@@ -2030,6 +2057,7 @@ snackbar
 snackbars
 snakeCase
 sortings
+sourcemap
 sourcemaps
 sql
 src
@@ -2051,6 +2079,7 @@ stopwords
 storages
 storefrontApiRequest
 storer
+stringable
 strlen
 struct
 structs
@@ -2074,6 +2103,8 @@ substring
 supervisord
 svg
 sw
+swDefineOverride
+swDefinePublic
 swSelect
 sw_extends
 swoole
@@ -2097,6 +2128,7 @@ textarea
 th
 theming
 themself
+tideways
 timeframe
 timeframes
 tinyint
@@ -2145,8 +2177,11 @@ unhandled
 uninstallation
 uniqBy
 unminified
+unmount
+unmounting
 unprefixed
 unregister
+unregisters
 unrequested
 unsecure
 unserialize
@@ -2158,15 +2193,37 @@ updateDestructive
 updateViaAdminApi
 uploadable
 upsert
+uptime
 uri
 url
 urls
+useCmsElement
+useCmsState
+useInlineSnippet
+useListing
+useMediaGridListener
+useMediaSidebarModal
+useNotification
+useNotificationTranslation
+usePlaceholder
+usePosition
+useRuleBetweenOperator
+useRuleContainer
+useSalutation
+useSwContext
+useSwPreviousState
+useSwProps
+useTranslateWithFallback
+useUserSettings
+useValidation
 useValidityRange
+useVideoCover
 userAware
 userRecovery
 userland
 utils
 uuid
+vCPU
 validFrom
 validUntil
 validator
@@ -2185,6 +2242,7 @@ vue
 vuex
 walkthrough
 wav
+webfonts
 webhook
 webhooks
 webkit
@@ -2200,6 +2258,7 @@ whoami
 wil
 wishlist
 wordlist
+worktree
 www
 xasjkyld
 xdebug

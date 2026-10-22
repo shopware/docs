@@ -274,7 +274,7 @@ The hybrid caching approach ensures optimal performance:
 The HTTP caching behavior of Individual Pricing depends on the customer type:
 
 | Customer Type               | Cacheable    | Reason                                             |
-|-----------------------------|--------------|----------------------------------------------------|
+| --------------------------- | ------------ | -------------------------------------------------- |
 | Tag-based customers         | Yes (shared) | Responses shared by customers with same tags       |
 | Organization unit employees | Yes (shared) | Responses shared within departments/teams          |
 | Business partner accounts   | No           | Customer-specific pricing, ensures confidentiality |

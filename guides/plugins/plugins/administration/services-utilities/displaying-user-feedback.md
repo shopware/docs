@@ -9,10 +9,10 @@ nav:
 
 Use notifications and snackbars to provide feedback after a plugin action. Choose the feedback mechanism based on how much information the user needs and whether they need to act on it.
 
-| Use | When to use it |
-| --- | --- |
+| Use          | When to use it                                                                   |
+| ------------ | -------------------------------------------------------------------------------- |
 | Notification | The feedback needs a title, actions, or should be kept as a system notification. |
-| Snackbar | The feedback is a brief, non-blocking confirmation of a completed action. |
+| Snackbar     | The feedback is a brief, non-blocking confirmation of a completed action.        |
 
 ## Notifications
 

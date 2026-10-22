@@ -97,7 +97,7 @@ Shopware.Service('cmsService').registerCmsElement({
 ```
 
 | Property         | Description                                                                                |
-|------------------|--------------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------------------------ |
 | name             | Technical name of your element                                                             |
 | label            | Display name in the UI (preferably as a snippet key)                                       |
 | component        | Vue component for rendering the element in the Administration                              |

@@ -40,7 +40,7 @@ Shopware derives the public path by removing the `files/<file-family>/` prefix a
 The following table shows example mappings from template paths to public paths.
 
 | Template path                                    | Public path                    |
-|--------------------------------------------------|--------------------------------|
+| ------------------------------------------------ | ------------------------------ |
 | `files/agentic/llms.txt.twig`                    | `/llms.txt`                    |
 | `files/agentic/agents.md.twig`                   | `/agents.md`                   |
 | `files/agentic/.well-known/ai-catalog.json.twig` | `/.well-known/ai-catalog.json` |
@@ -158,11 +158,11 @@ requiring merchants to replace the whole template.
 
 The following table lists the variables that agentic file templates receive.
 
-| Variable                  | Description                                                                                                                          |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `context`                 | The current sales-channel context                                                                                                    |
-| `salesChannel`            | The sales channel, including languages and currencies needed by the default templates                                                |
-| `salesChannelFile`        | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources |
+| Variable                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`                 | The current sales-channel context                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `salesChannel`            | The sales channel, including languages and currencies needed by the default templates                                                                                                                                                                                                                                                                                                                                                                           |
+| `salesChannelFile`        | Read-only metadata for the rendered file, such as file family, file name, template path, content type, and resolved template sources                                                                                                                                                                                                                                                                                                                            |
 | `salesChannelFileContext` | Optional array context for file-specific data. For `/.well-known/ai-catalog.json`, core adds `baseUrl` and `publisher` when a sales-channel domain is available. For sales channels of type API (headless), core also adds `storeApiMcpServerUrl`, pointing at the [Store API MCP server](../../../../../products/tools/mcp-server/store-api.md). The default template only renders the catalog entry when both `storeApiMcpServerUrl` and `publisher` are set. |
 
 Use normal Twig functions such as `path()` and `seoUrl()` to build links.

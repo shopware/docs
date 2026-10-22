@@ -106,7 +106,7 @@ return static function (ContainerConfigurator $configurator): void {
 The alter method will be called when the stock of a product should be updated. The `$changes` array contains a list of `StockAlteration` instances. These objects contain the following properties/methods:
 
 | Property/Method | Type   | Description                                             |
-|-----------------|--------|---------------------------------------------------------|
+| --------------- | ------ | ------------------------------------------------------- |
 | lineItemId      | string | The ID of the line item that triggered the stock update |
 | productId       | string | The ID of the product that should be updated            |
 | quantityBefore  | int    | The old product stock level                             |

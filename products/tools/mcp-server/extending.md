@@ -235,7 +235,7 @@ Identical to the plugin pattern. Register with `shopware.mcp.resource` and load 
 ## Summary
 
 |                    | App                                                                     | Plugin                                               | Bundle         |
-|--------------------|-------------------------------------------------------------------------|------------------------------------------------------|----------------|
+| ------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------- | -------------- |
 | **Tool**           | `<mcp-tool>` in `mcp.xml` + webhook handler                             | Attributes + `shopware.mcp.tool` service tag         | Same as plugin |
 | **Prompt**         | `<mcp-prompt>` in `mcp.xml` + webhook returns message array             | `#[McpPrompt]` class + `shopware.mcp.prompt` tag     | Same as plugin |
 | **Resource**       | `<mcp-resource>` in `mcp.xml` + webhook returns `{uri, mimeType, text}` | `#[McpResource]` class + `shopware.mcp.resource` tag | Same as plugin |

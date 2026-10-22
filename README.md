@@ -42,7 +42,12 @@ All changed content is checked with Reviewdog for grammar and language. The conf
 
 ### Markdown check
 
-The markdown files are checked with [markdown-lint](https://github.com/avto-dev/markdown-lint) to identify issues such as formatting errors, style inconsistencies, etc. By doing so, it facilitates the creation of well-structured and consistent Markdown documents.. The configuration for markdown-lint can be found in [`markdown-style-check.yml`](./.github/workflows/markdown-style-check.yml).
+The markdown files are checked with [rumdl](https://rumdl.dev/) to identify issues such as formatting errors, style inconsistencies, and table layout. By doing so, it facilitates the creation of well-structured and consistent Markdown documents. The configuration for rumdl can be found in [`.rumdl.toml`](./.rumdl.toml), and the workflow in [`markdown-rumdl-check.yml`](./.github/workflows/markdown-rumdl-check.yml).
+
+```bash
+pnpm run check:markdown
+pnpm run fix:markdown
+```
 
 ### Spellcheck
 
@@ -77,7 +82,7 @@ The `/docs/assets` folder stores images, videos, and other files linked in markd
 Certain files within the `shopware/shopware` repository are duplicated in the `shopware/docs` repository for reference purposes. Any modifications made to the former files will automatically synchronize with the corresponding files in the latter repository by the [`update-adrs`](./.github/workflows/update-adrs.yml) workflow.
 
 | `shopware/shopware` files                                                                  | `shopware/docs` files                     |
-|--------------------------------------------------------------------------------------------|-------------------------------------------|
+| ------------------------------------------------------------------------------------------ | ----------------------------------------- |
 | [shopware's adr](https://github.com/shopware/shopware/tree/trunk/adr)                      | [adr folder](./resources/references/adr/) |
 | [adr assets](https://github.com/shopware/shopware/tree/trunk/adr/assets)                   | [assets adr folder](./assets/adr/)        |
 | [coding guideline](https://github.com/shopware/shopware/tree/trunk/coding-guidelines/core) | [core](./resources/guidelines/code/core)  |

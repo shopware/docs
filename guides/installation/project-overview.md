@@ -59,14 +59,14 @@ It serves as the foundation for new Shopware projects and for developing plugins
 The following table explains the Docker-level components created when you start the project.
 Container names depend on the name of your project folder.
 
-| Name                                  | Type                    | Purpose                                                                                                                       |
-|---------------------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Network `my-project_default`**      | Docker network          | A private virtual network so all containers can communicate (for example, the web container connects to the database).        |
-| **Volume `my-project_db-data`**       | Persistent storage      | Stores the MariaDB database files so your data isn't lost when containers are stopped or rebuilt.                             |
-| **Container `my-project-mailer-1`**   | Mailpit service         | Captures outgoing emails for local testing. View at `http://localhost:8025`.                           |
-| **Container `my-project-database-1`** | MariaDB service         | Runs the Shopware database. Inside the Docker network, its hostname is `database`.                                            |
-| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the Storefront and Admin UI at `http://localhost:8000`.                |
-| **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at `http://localhost:8080`. |
+| Name                                  | Type                    | Purpose                                                                                                                |
+| ------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Network `my-project_default`**      | Docker network          | A private virtual network so all containers can communicate (for example, the web container connects to the database). |
+| **Volume `my-project_db-data`**       | Persistent storage      | Stores the MariaDB database files so your data isn't lost when containers are stopped or rebuilt.                      |
+| **Container `my-project-mailer-1`**   | Mailpit service         | Captures outgoing emails for local testing. View at `http://localhost:8025`.                                           |
+| **Container `my-project-database-1`** | MariaDB service         | Runs the Shopware database. Inside the Docker network, its hostname is `database`.                                     |
+| **Container `my-project-web-1`**      | PHP + Caddy web service | Runs Shopware itself and serves the Storefront and Admin UI at `http://localhost:8000`.                                |
+| **Container `my-project-adminer-1`**  | Adminer (DB UI)         | Lightweight web interface for viewing and editing your database. Available at `http://localhost:8080`.                 |
 
 ### Project structure
 
@@ -98,7 +98,7 @@ project-root/
 This table outlines the key directories and files in your Shopware project and their uses.
 
 | Item                      | Type                        | Purpose / what it contains                                                                 | Notes                                                                                             |
-|---------------------------|-----------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| ------------------------- | --------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | **bin/**                  | Directory                   | Executable scripts (e.g., `bin/console` - the main CLI for Shopware/Symfony).              | Think of it like `npm run` or `go run` scripts. Use `bin/console` to run commands inside the app. |
 | **compose.yaml**          | Docker                      | Defines the Docker services (web, database, mailpit, etc.).                                | Equivalent to your project's "infrastructure recipe."                                             |
 | **compose.override.yaml** | Docker                      | Local overrides for the default Docker Compose stack (e.g., port mappings, extra volumes). | Optional; used to customize or extend services locally.                                           |
@@ -107,7 +107,7 @@ This table outlines the key directories and files in your Shopware project and t
 | **config/**               | Directory                   | Symfony configuration files (framework, database, mail, etc.).                             | Similar to `config/` in many web frameworks.                                                      |
 | **custom/**               | Directory                   | Your plugins, themes, or app customizations.                                               | This is where you add new extensions - your "src" for Shopware plugins.                           |
 | **files/**                | Directory                   | Uploaded media and temporary files.                                                        | Ignored by git; generated at runtime.                                                             |
-| **Makefile**              | Legacy build helper                | May exist in older setups with shortcuts for Docker tasks (`make up`, `make setup`, etc.).                                | Replaces long Docker commands with memorable aliases.                                             |
+| **Makefile**              | Legacy build helper         | May exist in older setups with shortcuts for Docker tasks (`make up`, `make setup`, etc.). | Replaces long Docker commands with memorable aliases.                                             |
 | **public/**               | Web root                    | The actual web-server-accessible directory (contains `index.php`, assets, etc.).           | Like `/dist` in JS frameworks or `/public_html`.                                                  |
 | **src/**                  | Source code                 | Shopware's core application source.                                                        | Where the main PHP codebase lives; not usually edited in a project clone.                         |
 | **symfony.lock**          | Symfony dependency snapshot | Records Symfony recipes applied during setup.                                              | Used internally by Symfony Flex; no manual editing.                                               |

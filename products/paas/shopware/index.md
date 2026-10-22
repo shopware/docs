@@ -27,7 +27,7 @@ The architecture of Shopware PaaS Native includes two primary layers:
 ## Comparison with Self-Hosted and SaaS Models
 
 | **Model**                         | **Self-Hosted**                      | **Shopware PaaS Native**                           | **SaaS**                                          |
-|-----------------------------------|--------------------------------------|----------------------------------------------------|---------------------------------------------------|
+| --------------------------------- | ------------------------------------ | -------------------------------------------------- | ------------------------------------------------- |
 | **Infrastructure Responsibility** | Fully managed by the customer        | Managed by Shopware (customer manages application) | Fully managed by Shopware                         |
 | **Control Over Customization**    | Complete control                     | High control with opinionated best practices       | Limited; customization possible only through apps |
 | **Setup and Maintenance Effort**  | High                                 | Moderate, with most infrastructure tasks automated | Low                                               |

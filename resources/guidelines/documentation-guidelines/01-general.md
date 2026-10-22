@@ -15,17 +15,17 @@ We recommend that every contributor follows the defined writing standards to mai
 
 It is important to consider the background of the potential audience reading your writing. This helps you to adapt your writing to meet their needs and interests.
 
-| Who is the audience? | What are their roles? |
-| :--- | :--- |
-| Fullstack developer | <ul><li>Plugin development</li><li>Templates</li><li>Routes/ Controllers</li></ul>|
-| Frontend developer | <ul><li>Admin</li><li>Themes</li><li>PWA</li></ul>  |
-| Backend developer | <ul><li>DI/ Service architecture</li><li>Message queues</li><li>DAL</li><li>Action event system</li><li>ElasticSearch</li></ul> |
-| API developer  | <ul><li>How to consume the API</li><li>Create a product/ category import</li><li>How to extend the API</li><li>API paradigm</li><li>Proper API references</li><li>Request collection</li></ul> |
-| DevOps  | <ul><li>Hosting setup</li><li>Deployment</li><li>Performance tests</li></ul> |
-| Project/ Solution architect | <ul><li>Hosting</li><li>Architecture</li><li>Modules/ Extension system</li><li>Paradigms/ Patterns</li><li>Commonalities app system/ Plugin system</li></ul> |
-| Designer | <ul><li>Component library</li><li>Design system</li></ul> |
-| Product owner/ Manager | <ul><li>Responsibilities pertaining to the product life cycle</li></ul> |
-| Tech writers | <ul><li>Document all product details</li></ul> |
+| Who is the audience?        | What are their roles?                                                                                                                                                                          |
+| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fullstack developer         | <ul><li>Plugin development</li><li>Templates</li><li>Routes/ Controllers</li></ul>                                                                                                             |
+| Frontend developer          | <ul><li>Admin</li><li>Themes</li><li>PWA</li></ul>                                                                                                                                             |
+| Backend developer           | <ul><li>DI/ Service architecture</li><li>Message queues</li><li>DAL</li><li>Action event system</li><li>ElasticSearch</li></ul>                                                                |
+| API developer               | <ul><li>How to consume the API</li><li>Create a product/ category import</li><li>How to extend the API</li><li>API paradigm</li><li>Proper API references</li><li>Request collection</li></ul> |
+| DevOps                      | <ul><li>Hosting setup</li><li>Deployment</li><li>Performance tests</li></ul>                                                                                                                   |
+| Project/ Solution architect | <ul><li>Hosting</li><li>Architecture</li><li>Modules/ Extension system</li><li>Paradigms/ Patterns</li><li>Commonalities app system/ Plugin system</li></ul>                                   |
+| Designer                    | <ul><li>Component library</li><li>Design system</li></ul>                                                                                                                                      |
+| Product owner/ Manager      | <ul><li>Responsibilities pertaining to the product life cycle</li></ul>                                                                                                                        |
+| Tech writers                | <ul><li>Document all product details</li></ul>                                                                                                                                                 |
 
 ## Applicable documents: style guide coverage
 
@@ -57,6 +57,6 @@ Refer to [Vitepress syntax](https://vitepress.dev/guide/markdown) for features l
 
 Symbols in Markdown sometimes serve multi-purpose. For example, `*` or `-` can be used to create bulleted lists. However, follow a single pattern to maintain uniformity throughout. Further sections describe the usage of these patterns and let us comply with them.
 
-Also, user-defined rules govern the content quality, such as removing trailing spaces, code fence style, and more. You may refer to these rules in the [Markdown style of Shopware docs](https://github.com/shopware/docs/blob/main/markdown-style-config.yml).
+Also, user-defined rules govern the content quality, such as removing trailing spaces, code fence style, and more. You may refer to these rules in the [Markdown style of Shopware docs](https://github.com/shopware/docs/blob/main/.rumdl.toml).
 
 The following section details the conceptual outline structure of our documentation.

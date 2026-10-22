@@ -43,11 +43,11 @@ For infrastructure and external system integrations (e.g., Redis, Elasticsearch,
 
 ### Choosing the right extension type
 
-| Requirement | Use |
-|-------------|------|
-| Backend logic or deep integration | Plugin |
+| Requirement                                   | Use                |
+| --------------------------------------------- | ------------------ |
+| Backend logic or deep integration             | Plugin             |
 | Storefront styling or template overrides only | Plugin-based Theme |
-| SaaS-based integration without server access | App |
+| SaaS-based integration without server access  | App                |
 
 ::: info
 If your extension focuses only on design changes, a simple template adjustment, typically done through a plugin-based [theme](../themes/index.md), may be the best choice.
@@ -60,7 +60,7 @@ Shopware supports multiple plugin models, which differ in their folder structure
 ### Feature comparison
 
 | Feature                                       | Plugin             | Static Plugin           | Shopware Bundle                 | Symfony Bundle                  |
-|-----------------------------------------------|--------------------|-------------------------|---------------------------------|---------------------------------|
+| --------------------------------------------- | ------------------ | ----------------------- | ------------------------------- | ------------------------------- |
 | Installation                                  | Via Shopware Admin | Via Composer            | Via Composer                    | Via Composer                    |
 | Repository Location                           | `custom/plugins`   | `custom/static-plugins` | `vendor` or inside `src` folder | `vendor` or inside `src` folder |
 | Lifecycle Events (install, update, uninstall) | Yes                | Yes                     | No                              | No                              |

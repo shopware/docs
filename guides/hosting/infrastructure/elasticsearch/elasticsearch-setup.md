@@ -80,13 +80,13 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 ### Variables in your *.env*
 
 | Variable                       | Possible values  | Description                                                                                                                                                                                                                      |
-|--------------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `APP_ENV`                      | `prod` / `dev`   | This variable is important if you want to activate the debug mode and see possible errors of Elasticsearch. You have to set the variable to dev for debug mode and prod if you want to use Elasticsearch in a productive system. |
 | `OPENSEARCH_URL`               | `localhost:9200` | A comma separated list of Elasticsearch hosts. You can find the possible formats [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/host-config.html#inline-host-config)                                |
 | `SHOPWARE_ES_INDEXING_ENABLED` | `0` / `1`        | This variable activates the indexing to Elasticsearch                                                                                                                                                                            |
 | `SHOPWARE_ES_ENABLED`          | `0` / `1`        | This variable activates the usage of Elasticsearch for your shop                                                                                                                                                                 |
 | `SHOPWARE_ES_INDEX_PREFIX`     | `sw_myshop`      | This variable defines the prefix for the Elasticsearch indices                                                                                                                                                                   |
-| `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable activates the debug mode for Elasticsearch. Without this variable as = 0 you will get a fallback to mysql without any error message if Elasticsearch is not working                                                |
+| `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable defines whether Elasticsearch errors are thrown. With `1` (the default) the exception is thrown. With `0` the error is only logged and you get a fallback to MySQL                                                 |
 
 :::info
 The `SHOPWARE_ES_INDEXING_ENABLED` and `SHOPWARE_ES_ENABLED` can seem as a duplicate setting, but has it's purpose. Here are two use cases for setting these differently:
@@ -109,7 +109,7 @@ APP_SECRET=1
 INSTANCE_ID=1
 DATABASE_URL=mysql://mysqluser:mysqlpassword@localhost:3306/shopwaredatabasename
 APP_URL=http://localhost
-MAILER_URL=smtp://localhost:1025
+MAILER_DSN=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
 OPENSEARCH_URL="elasticsearchhostname:9200"
@@ -127,7 +127,7 @@ APP_SECRET=1
 INSTANCE_ID=1
 DATABASE_URL=mysql://mysqluser:mysqlpassword@localhost:3306/shopwaredatabasename
 APP_URL=http://localhost
-MAILER_URL=smtp://localhost:1025
+MAILER_DSN=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
 OPENSEARCH_URL="elasticsearchhostname:9200"
@@ -176,9 +176,9 @@ Try that command if your index was created fully without errors, and you still d
 
 ### What happens when indexing
 
-When you are indexing, the data is written in bulks to the message queue and the respective table enqueue.
-If a messenger process is active, the entries of that table are processed one by one.
-In case a message runs into an error, it is written into the `dead_messages` table and will be processed again after a specific time frame.
+When you are indexing, the data is written in bulks to the message queue, which is stored in the `messenger_messages` table by default.
+If a messenger process is active, the messages are processed one by one.
+In case a message runs into an error, it is moved to the failed queue (rows with `queue_name = 'failed'` in the same table).
 
 You can start multiple messenger consumer processes by using the command `bin/console messenger:consume` and also add output to the processed messages by adding the parameter `bin/console messenger:consume -vv`.
 In a production environment, you want to deactivate the admin messenger which is started automatically when opening a session in your Administration view by following this [documentation](../message-queue.md#admin-worker).

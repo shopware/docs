@@ -79,7 +79,7 @@ There are specific directory conventions that we have to follow to register a ne
 The prefix for our API endpoint is one of the following and cannot be changed:
 
 | API        | API consumers / callers      | Prefix                |
-|------------|------------------------------|-----------------------|
+| ---------- | ---------------------------- | --------------------- |
 | Store API  | Customer-facing integrations | `/store-api/script/`  |
 | Admin API  | Backend integrations         | `/api/script/`        |
 | Storefront | Default Storefront           | `/storefront/script/` |
@@ -217,8 +217,8 @@ We start by reading the requested category id using `hook.request.categoryId`. I
 
 In the following lines, we define a search criteria. The criteria contain a description of the data we want to fetch:
 
- 1. First, we filter out all products not inside the category that was requested, using a filter aggregation.
- 2. The following lines contain two further nested aggregations:
+1. First, we filter out all products not inside the category that was requested, using a filter aggregation.
+2. The following lines contain two further nested aggregations:
     1. The first one groups all products from all orders using their id.
     2. The second one sums up the number of ordered items in each order.
 

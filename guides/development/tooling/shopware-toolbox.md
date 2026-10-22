@@ -28,7 +28,7 @@ Multiple live templates for development. Use Cmd/Ctrl + J to view all live templ
 Generators are available under *File → New → Shopware Platform* (or **Ctrl/Cmd + N** in the project tree):
 
 | Group          | Generates                                                                      |
-|----------------|--------------------------------------------------------------------------------|
+| -------------- | ------------------------------------------------------------------------------ |
 | Plugin         | Plugin skeleton, `config.xml`                                                  |
 | PHP            | Scheduled task, database migration                                             |
 | App            | App skeleton, custom entities, app script, CMS block or CMS element for an app |
@@ -55,7 +55,7 @@ Place the cursor on the relevant code and press **Alt+Enter** (macOS: **Option+E
 Inspections are grouped under *Shopware 6* in *Settings → Editor → Inspections*.
 
 | Group          | Inspection                                                                                                                             | Severity |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------|----------|
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | PHP            | Class used instead of abstract class (constructor type hints a concrete class that is meant to be decorated)                           | Error    |
 | PHP            | Criteria IDs set by filter instead of constructor                                                                                      | Warning  |
 | Administration | Snippet translation is missing                                                                                                         | Warning  |
@@ -101,7 +101,7 @@ The upstream block is resolved through the template's `sw_extends` chain. That k
 The following table lists the available inspections, their default state, and when they are reported:
 
 | Inspection                                   | Enabled by default | Reported when                                                                                                                                                                                         |
-|----------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | The upstream block has changed               | Yes                | The recorded hash no longer matches the upstream block. Check that your override is still correct.                                                                                                    |
 | The upstream block has been removed          | Yes                | The block no longer exists upstream. Check that your override is still needed.                                                                                                                        |
 | Twig block is deprecated                     | Yes                | The upstream block is marked as deprecated and will be removed in a future version.                                                                                                                   |

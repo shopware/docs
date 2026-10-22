@@ -121,7 +121,7 @@ shopware:
           - 'varnish-host'
 ```
 
-<PageRef page="https://github.com/shopware/varnish-shopware/blob/main/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
+<PageRef page="https://github.com/shopware/varnish-shopware/blob/main/6.7/rootfs/etc/varnish/default.vcl" title="Varnish Configuration" target="_blank" />
 
 Make sure to replace the `__XXX__` placeholders with your actual values.
 

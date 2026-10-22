@@ -19,7 +19,7 @@ The same pattern applies to every translatable field (`product.name`, `category.
 The Data Abstraction Layer is built for Shopware’s CRUD-style Admin API and Administration UI. Editors need to see **what is actually stored for the language they are editing**, including empty overrides, versus **what the customer would see** after fallbacks. The following table summarizes what each variant means.
 
 | Access                    | Meaning                                                                                                        |
-|---------------------------|----------------------------------------------------------------------------------------------------------------|
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `entity.field`            | Value stored for the **current context language** only. May be `null` if that language has no own translation. |
 | `entity.translated.field` | Value after walking the language inheritance chain. Prefer this whenever you need a displayable string.        |
 
@@ -34,7 +34,7 @@ EN (root) → DE → AT
 And these stored names for a sales channel:
 
 | Language | Stored `name`        |
-|----------|----------------------|
+| -------- | -------------------- |
 | EN       | `SalesChannel`       |
 | DE       | `Verkaufskanal`      |
 | AT       | *(not set / `null`)* |
@@ -42,7 +42,7 @@ And these stored names for a sales channel:
 ### Austrian context (`AT` inherits from `DE`)
 
 | Access                         | Result          | Reason              |
-|--------------------------------|-----------------|---------------------|
+| ------------------------------ | --------------- | ------------------- |
 | `salesChannel.name`            | `null`          | AT has no own value |
 | `salesChannel.translated.name` | `Verkaufskanal` | Falls back to DE    |
 
@@ -51,14 +51,14 @@ And these stored names for a sales channel:
 If DE is also `null`:
 
 | Access                         | Result                   |
-|--------------------------------|--------------------------|
+| ------------------------------ | ------------------------ |
 | `salesChannel.name`            | `null`                   |
 | `salesChannel.translated.name` | `SalesChannel` (EN root) |
 
 ### German context (`DE`)
 
 | Access                         | Result          |
-|--------------------------------|-----------------|
+| ------------------------------ | --------------- |
 | `salesChannel.name`            | `Verkaufskanal` |
 | `salesChannel.translated.name` | `Verkaufskanal` |
 

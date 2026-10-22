@@ -82,7 +82,7 @@ The Docker image contains the following PHP extensions: `bcmath`, `gd`, `intl`, 
 ## Environment Variables
 
 | Variable                              | Default Value | Description                                                                              |
-|---------------------------------------|---------------|------------------------------------------------------------------------------------------|
+| ------------------------------------- | ------------- | ---------------------------------------------------------------------------------------- |
 | `PHP_SESSION_COOKIE_LIFETIME`         | 0             | [See PHP FPM documentation](https://www.php.net/manual/en/session.configuration.php)     |
 | `PHP_SESSION_GC_MAXLIFETIME`          | 1440          | [See PHP FPM documentation](https://www.php.net/manual/en/session.configuration.php)     |
 | `PHP_SESSION_HANDLER`                 | files         | Set to `redis` for redis session                                                         |
@@ -121,7 +121,7 @@ Our recommendation is to store all files in an external storage provider to not 
 In a very basic setup when all files are stored locally you need 5 volumes:
 
 | Usage                  | Path                             |
-|------------------------|----------------------------------|
+| ---------------------- | -------------------------------- |
 | invoices/private files | `/var/www/html/files`            |
 | theme files            | `/var/www/html/public/theme`     |
 | images                 | `/var/www/html/public/media`     |
@@ -261,7 +261,7 @@ This is the most common mistake with Docker-based shops, so if you read only one
 The following table summarizes the three separate things that get updated and how you update them. Do not mix them up.
 
 | What                     | What it means                                      | How you update it                                           | How often                           |
-|--------------------------|----------------------------------------------------|-------------------------------------------------------------|-------------------------------------|
+| ------------------------ | -------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------- |
 | **PHP (the base image)** | The runtime your shop runs on, with security fixes | **Rebuild and redeploy** your image — no code change needed | When a scan finds a vulnerability   |
 | **Shopware**             | The shop software itself, plus extensions          | Update with Composer, then rebuild and redeploy             | When a version you want is released |
 | **Your own code**        | Your project and any custom extensions             | Update with Composer/npm, then rebuild and redeploy         | When you change something           |
@@ -343,7 +343,7 @@ FROM ghcr.io/shopware/shopware-cli:latest-php-$PHP_VERSION AS shopware-cli
 
 Take a **backup of your database and files before you start**, then do these steps one after another, testing after each:
 
-1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md).
+1. **Check first.** Run `shopware-cli project upgrade-check` to make sure your extensions support the target Shopware version, and look up the required PHP version in the [System Requirements](../../installation/system-requirements.md). This command is deprecated and will be removed in October 2026; use `shopware-cli project upgrade` instead.
 2. **Raise PHP to an in-between version — still on old Shopware.** Change `PHP_VERSION` to a version both 6.6 and 6.7 support (here: `8.3`), then rebuild, and redeploy. Because both versions support it, this is safe while still on 6.6. Test the shop.
 3. **Update Shopware.** Now do the Shopware 6.6 → 6.7 update by following [Performing Shopware Updates](./performing-updates.md). Rebuild, redeploy, test the shop.
 4. **Raise PHP to the final version.** Now that you are on 6.7, change `PHP_VERSION` to the final target (`8.5`), rebuild, redeploy, and test one last time.

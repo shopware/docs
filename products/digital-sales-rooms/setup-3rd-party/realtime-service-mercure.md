@@ -31,9 +31,9 @@ There are different ways to set up Mercure; we choose the quickest and easiest f
   - *Hub subscriber secret* - The JWT key used for authenticating subscribers
   - *Hub publisher secret* - The JWT key used for authenticating publishers
 
-![ ](../../../assets/products-digitalSalesRooms-mercureConfigExample.png)
+![DSR Mercure Settings](../../../assets/products-digitalSalesRooms-mercureConfigExample.png)
 
-- Copy all the necessary information, and paste it into [the proper inputs of the configuration page](../configuration/plugin-config.md#realtime-service).
+- Copy all the necessary information and paste it into [the proper inputs of the configuration page](../configuration/plugin-config.md#realtime-service).
 
 ![Mercure configuration](../../../assets/products-digitalSalesRooms-mercureConfig.png)
 

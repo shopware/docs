@@ -2,7 +2,6 @@
 nav:
   title: Theme Configuration
   position: 40
-
 ---
 
 # Theme Configuration
@@ -237,24 +236,40 @@ The key of each config field item is also the technical name which you use to ac
 
 The following parameters can be defined for a config field item:
 
-| Name | Meaning |
-| :--- | :--- |
-| `label` | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
-| `helpText` | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
-| `type` | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url |
-| `editable` | If set to false, the config option will not be displayed \(e.g. in the Administration\) |
-| `tab` | Name of a tab to organize the config options |
-| `block` | Name of a block to organize the config options |
-| `section` | Name of a section to organize the config options |
-| `custom` | The defined data will not be processed but is available via API |
-| `scss` | If set to false, the config option will not be injected as a SCSS variable |
-| `fullWidth` | If set to true, the Administration component width will be displayed in full width |
+| Name        | Meaning                                                                                                                          |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `label`     | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
+| `helpText`  | Array of translations with locale code as key. *(Deprecated for v6.8: Translations are now handled via Administration snippets)* |
+| `type`      | Type of the config. Possible values: color, text, number, fontFamily, media, checkbox, switch and url                            |
+| `editable`  | If set to false, the config option will not be displayed \(e.g. in the Administration\)                                          |
+| `tab`       | Name of a tab to organize the config options                                                                                     |
+| `block`     | Name of a block to organize the config options                                                                                   |
+| `section`   | Name of a section to organize the config options                                                                                 |
+| `custom`    | The defined data will not be processed but is available via API                                                                  |
+| `scss`      | If set to false, the config option will not be injected as a SCSS variable                                                       |
+| `fullWidth` | If set to true, the Administration component width will be displayed in full width                                               |
 
 ### Translations in Theme Manager
 
 Since the translations in `theme.config` are only used by the Theme Manager in the administration, we decided to use snippet keys for translating the configuration in order to ensure inheritance.
 
 Store these snippet keys in Administration snippet files, for example, `<plugin root>/src/Resources/app/administration/src/app/snippet/de.json` and `<plugin root>/src/Resources/app/administration/src/app/snippet/en.json`. Locale-specific files such as `de-DE.json` and `en-GB.json` are also supported and override the base language files.
+
+#### Migrating existing `label` and `helpText` translations
+
+::: info
+Available starting with Shopware 6.7.16.0.
+:::
+
+Themes that still define `label` or `helpText` keep working: on every theme refresh (`bin/console theme:refresh`, plugin installation or update, app activation) Shopware converts them into Administration snippets under `snippets/administration/<technicalName>/<locale>.json` in the configured private filesystem (`shopware.filesystem.private`, by default the `files/` directory). These files are the lowest-priority snippet layer, so snippets shipped by your theme always win. This fallback stays, but ship the snippets with your extension instead. For plugin themes, one command does that and removes the deprecated properties:
+
+```bash
+bin/console theme:migrate-translations <technicalName> --strip
+```
+
+It writes `Resources/app/administration/src/snippet/<locale>.json`, keeps snippets you already maintain there, resolves inherited tabs, blocks, sections and fields through the parent themes, and warns about labels it cannot place. The Administration loads locale files after language files, so the command also warns when a generated `<locale>.json` would override keys of a `<language>.json` the theme already maintains. We suggest comparing the files and removing the duplicates. Use `--dry-run` to preview. Afterwards rename the generated files to the language-agnostic `de.json` / `en.json` unless you ship different texts per region. If such a file already exists, merge the generated keys into it instead of renaming. For app themes the command writes to `<app root>/Resources/app/administration/snippet`. Keep the locale file names there, make sure `en-GB.json` exists, and refresh the app afterwards so the snippets are imported.
+
+#### Snippet key structure
 
 Each snippet key begins with `sw-theme`, followed by the theme’s technical name, or its respective parent theme name, since snippets are inherited from the parent theme as well. It then includes the names of the relevant `tab`, `block`, `section`, and `field`. If you're translating field options, a numeric index is added to the snippet path. If any of these elements are unnamed, `default` will be used as the replacement in the key.
 

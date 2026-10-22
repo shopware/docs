@@ -57,13 +57,13 @@ With Docker projects, run Composer and other PHP tools **inside** the web contai
 Shopware CLI contains replacements for `bin/build-administration.sh` and `bin/build-storefront.sh`.
 
 | Shell Script                | Shopware Command                        |
-|-----------------------------|-----------------------------------------|
+| --------------------------- | --------------------------------------- |
 | bin/build-storefront.sh     | `shopware-cli project storefront-build` |
 | bin/build-administration.sh | `shopware-cli project admin-build`      |
 | bin/watch-storefront.sh     | `shopware-cli project storefront-watch` |
 | bin/watch-administration.sh | `shopware-cli project admin-watch`      |
 
-The `admin-build` command runs npm install on first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
+The `admin-build` command runs `npm install` on the first execution, which takes longer initially. Subsequent runs are faster since dependencies are cached.
 
 The `admin-watch` command: faster than `admin-build` because it monitors changes and rebuilds only what changed. See changes in real-time during development without waiting for a full rebuild.
 
@@ -117,7 +117,7 @@ It is just a shortcut for `bin/console cache:clear` without having to be in the 
 shopware-cli project clear-cache
 ```
 
-If an API connection is configured in the `.shopware-project.yml`, it will clear the remote instance cache.
+If an API connection is configured in the `.config/shopware-project.yml`, it will clear the remote instance cache. See the [Shopware CLI configuration file lookup priority](../configuration.md) for the preferred path and legacy fallbacks.
 
 ## Console
 
@@ -169,21 +169,39 @@ This outputs the token that you can use in your own curl commands or scripts.
 
 ## Project validation
 
-To validate your entire Shopware project and all its extensions, use:
+To run validation tools across the local extensions and configured bundles in a Shopware project, use:
 
 ```bash
-shopware-cli project validate
+shopware-cli project validate [path]
 ```
 
-This runs validation checks on all extensions in your project. Available flags:
+If no path is provided, Shopware CLI uses the closest Shopware project. Extensions resolved from `vendor/` and extensions listed in `validation.ignore_extensions` are skipped.
+
+Available options:
 
 ```bash
-shopware-cli project validate --reporter json
+# Set the report format: summary, json, github, gitlab, junit, or markdown
+shopware-cli project validate --format json
+
+# Run only specific validation tools
 shopware-cli project validate --only phpstan
-shopware-cli project validate --exclude rector
+shopware-cli project validate --only phpstan,eslint
+
+# Exclude specific validation tools
+shopware-cli project validate --exclude eslint
+
+# Validate the project in place instead of copying it to a temporary directory
+shopware-cli project validate --no-copy
+
+# Restrict extension discovery to custom/* directories
+shopware-cli project validate --local-only
 ```
 
-See [Validation](../validation.md) for more details on validation tools.
+`--only` and `--exclude` accept comma-separated checker names. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, and empty final selections fail before tool setup or copying. Tools without validation support, such as `prettier` or `rector`, cannot be selected.
+
+The built-in checker, `builtin`, runs metadata and structure checks for each eligible extension, applying its own validation ignores. Use `--only builtin` to run these checks alone. The legacy `sw-cli` alias is accepted with a deprecation warning. Reports include checker invocation statuses; `invoked` means the checker was called, but does not guarantee that it analyzed files or produced findings. Use `--verbose` to see source directories, extension names, and external tool commands and arguments.
+
+See [Validation](../validation.md) for the available validation tools.
 
 ## Project diagnostics
 
@@ -197,17 +215,17 @@ This is useful when you encounter problems with your setup and need to understan
 
 ## Project configuration schema
 
-To view the JSON schema for the `.shopware-project.yml` configuration file:
+To view the JSON schema for the `.config/shopware-project.yml` configuration file:
 
 ```bash
 shopware-cli project config-schema
 ```
 
-This outputs the JSON schema describing all available configuration options in `.shopware-project.yml`. Useful for automation and understanding the project configuration structure.
+This outputs the JSON schema describing all available configuration options in `.config/shopware-project.yml`. Useful for automation and understanding the project configuration structure.
 
 ## Initialize project configuration
 
-To create a new `.shopware-project.yml` configuration file interactively:
+To create a new `.config/shopware-project.yml` configuration file interactively:
 
 ```bash
 shopware-cli project config init
@@ -219,11 +237,15 @@ Top-level `url` and `admin_api` keys are deprecated: config files that still use
 
 ## Generate JWT secret
 
+:::danger
+**Deprecated:** `shopware-cli project generate-jwt` is deprecated and planned to be removed in October 2026. The command remains functional during the deprecation window.
+:::
+
 ```bash
 shopware-cli project generate-jwt <path-to-project>
 ```
 
-Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Required only for Shopware versions before 6.5; in 6.5+, JWT secrets are generated automatically.
+Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Shopware 6.5 and 6.6 sign JWT tokens with these keys and create them during `system:install` by default, so you only need this command to create them yourself. Shopware 6.7 and later does not use these keys: JWT tokens are signed with the `APP_SECRET` environment variable (at least 32 characters), so this command is not needed.
 
 Output as environment variables:
 

@@ -74,7 +74,7 @@ DATABASE_SSL_KEY="/etc/ssl/certs/db-client-key.pem"
 The following table describes the available `DATABASE_SSL_*` variables.
 
 | Variable                               | Description                                                                                 |
-|----------------------------------------|---------------------------------------------------------------------------------------------|
+| -------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `DATABASE_SSL_CA`                      | Path to the Certificate Authority file (PEM) used for server certificate verification       |
 | `DATABASE_SSL_CERT`                    | Path to the client certificate file (PEM) for mutual TLS                                    |
 | `DATABASE_SSL_KEY`                     | Path to the client private key file (PEM) for mutual TLS                                    |

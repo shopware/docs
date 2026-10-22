@@ -93,7 +93,7 @@ shopware-cli project proxy down
 ## Command reference
 
 | Command                  | Description                                                                            |
-|--------------------------|----------------------------------------------------------------------------------------|
+| ------------------------ | -------------------------------------------------------------------------------------- |
 | `project proxy setup`    | One-time machine setup: DNS routing and HTTPS trust. Flags: `--domain`, `--skip-trust` |
 | `project proxy up`       | Register the current project with the shared proxy and start it                        |
 | `project proxy down`     | Remove the current project from the proxy, stop it, and restore its URLs               |

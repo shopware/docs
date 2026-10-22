@@ -28,9 +28,9 @@ The [Authentication component](authentication) provides the context for the curr
 
 ## Naming
 
-| Name    |             Description             |
-|---------|:-----------------------------------:|
-| Context |          The user or role           |
+| Name    |            Description            |
+| ------- | :-------------------------------: |
+| Context |         The user or role          |
 | Subject | The entity that is allowed/denied |
 
 ## Data structure
@@ -48,11 +48,11 @@ CREATE TABLE `b2b_acl_*` (
 );
 ```
 
-| Case              |                                Description                                |
-|-------------------|:-------------------------------------------------------------------------:|
-| No record exists  |       The referenced entity is not accessible for the given context       |
-| A record exists   |         The referenced entity is accessible for the given context         |
-| Grantable is `1`  | The context may grant access to the referenced entity for other contexts  |
+| Case             |                               Description                                |
+| ---------------- | :----------------------------------------------------------------------: |
+| No record exists |      The referenced entity is not accessible for the given context       |
+| A record exists  |        The referenced entity is accessible for the given context         |
+| Grantable is `1` | The context may grant access to the referenced entity for other contexts |
 
 ### Address ACL example
 

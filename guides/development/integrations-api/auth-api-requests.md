@@ -4,7 +4,6 @@ nav:
   position: 20
 ---
 
-
 # Authentication and API Requests
 
 This guide builds on the [APIs](./index.md) guide and covers additional authentication details, practical request patterns, and troubleshooting for local development.
@@ -38,7 +37,44 @@ Example response:
 }
 ```
 
-Use this only as a local shortcut. For integrations and reproducible setups, prefer `client_credentials` as described in the [APIs](./index.md) guide.
+Use this only as a local shortcut.
+For integrations and reproducible setups, prefer `client_credentials` as described in the [APIs](./index.md) guide.
+
+## Impersonate a customer
+
+Support tooling can open a Store API context as an existing customer without knowing the customer's password.
+
+1. With an Admin API token belonging to a user with `api_proxy_imitate-customer` ACL privilege, request a short-lived token:
+
+   ```http
+   POST /api/_proxy/generate-imitate-customer-token
+   Authorization: Bearer ADMIN_API_TOKEN
+   Content-Type: application/json
+
+   {
+     "salesChannelId": "SALES_CHANNEL_ID",
+     "customerId": "CUSTOMER_ID"
+   }
+   ```
+
+2. Redeem the token through the Store API. The response returns the new context token in the `sw-context-token` response header; use that header value for subsequent requests:
+
+   ```http
+   POST /store-api/account/login/imitate-customer
+   sw-access-key: SALES_CHANNEL_ACCESS_KEY
+   Content-Type: application/json
+
+   {
+     "token": "IMPERSONATION_TOKEN_FROM_STEP_1",
+     "customerId": "CUSTOMER_ID",
+     "userId": "ADMIN_USER_ID"
+   }
+   ```
+
+::: warning
+Impersonation performs a real customer login, so login events fire, and cart changes affect the customer's cart.
+Grant the ACL privilege only to trusted users and use this flow only for support or testing.
+:::
 
 ## Prefer search endpoints for real requests
 
@@ -70,7 +106,8 @@ Search endpoints support:
 
 ## Download the OpenAPI schema
 
-Shopware exposes OpenAPI schema endpoints for both Admin API and Store API. If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
+Shopware exposes OpenAPI schema endpoints for both Admin API and Store API.
+If you want to work with the raw Admin API schemas instead of the browser reference, you can download them directly.
 
 ### OpenAPI specification
 
