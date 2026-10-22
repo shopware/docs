@@ -151,6 +151,10 @@ Only `http://127.0.0.1` and `http://[::1]` accept any port.
 `http://localhost` must match exactly, port included, so a client like Claude Code needs a fixed callback port, for example `--callback-port 53682`.
 Claude Code also refuses plain `http` OAuth endpoints on hosts other than `localhost`, `127.0.0.1`, and `::1`, so use `https` for development hosts such as `shop.localhost`.
 
+When the error code is `FRAMEWORK__OAUTH_INSECURE_REDIRECT_URI`, the redirect URI uses plain `http` on a host other than `localhost`, `127.0.0.1`, or `[::1]`.
+Register an `https` redirect URI instead.
+Only the `dev` environment accepts every `http` redirect URI.
+
 ### The token request fails with `invalid_target`
 
 The `resource` parameter names something other than this shop's MCP endpoint.

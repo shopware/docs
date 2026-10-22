@@ -183,6 +183,11 @@ The JSON-RPC body with the code `-32001` stays as before.
 The authorization server metadata announces the authorization code grant with PKCE (`S256`), the refresh token grant, and public clients without a secret.
 The redirect back to the client carries the issuer as `iss` (RFC 9207).
 
+When the client connects with a query, for example `https://shop.example/api/_mcp?toolsets=order`, the discovery answers keep that query unchanged.
+The `resource_metadata` URL becomes `https://shop.example/.well-known/oauth-protected-resource/api/_mcp?toolsets=order`, and the metadata answers with `resource` set to `https://shop.example/api/_mcp?toolsets=order`.
+RFC 9728 requires the client to reject metadata whose `resource` differs from the URL it requested.
+The token audience ignores the query, so one token works with and without `?toolsets`.
+
 The well-known URIs insert their prefix before the path of the issuer and the resource, as RFC 8414 and RFC 9728 define.
 Shopware does not answer the root paths `/.well-known/oauth-authorization-server` and `/.well-known/oauth-protected-resource`.
 The root path stays free for extensions such as `SwagAgenticCommerce`, which answers it for shopper identity linking.
@@ -230,6 +235,14 @@ Redirect URIs are matched against the URIs configured for that client id only:
 - Every other redirect URI must match exactly, port included.
   This also applies to `http://localhost:<port>`, because `localhost` is a name that can resolve elsewhere.
 - There are no wildcards.
+- Redirect URIs must use `https`.
+  Plain `http` is only accepted for `localhost`, `127.0.0.1` and `[::1]`.
+  Private-use schemes of native apps, such as `cursor://`, are accepted as an exact match.
+- When the kernel runs in the `dev` environment (`APP_ENV=dev`), every `http` redirect URI is accepted, so development hosts keep working.
+
+An authorization request with any other `http` redirect URI is answered with `400` and the error code `FRAMEWORK__OAUTH_INSECURE_REDIRECT_URI`.
+Shopware shows the error instead of redirecting to that URI.
+Since 6.7.17.0 this also applies to clients that were configured with such a URI before.
 
 Clients that call back on `localhost` with a random port, such as Claude Code, need a fixed port in the configuration and in the client, see [Getting Started](./getting-started.md#oauth-login).
 
@@ -250,6 +263,7 @@ A client that sends the RFC 8707 `resource` parameter gets a token bound to the 
 A bound token is accepted on `/api/_mcp` only.
 Every other Admin API route answers it with `401`, including `/api/oauth/authorize`, so an MCP token can never approve another client.
 App script tools that `/api/_mcp` calls internally keep working.
+Other internal requests, such as ESI fragments that copy the `Authorization` header, reject a bound token.
 Access tokens are valid for `access_token_ttl`, 10 minutes by default, and refresh tokens for `refresh_token_ttl`, one week by default, as for every other Admin API token.
 
 The resource of a grant is stored in the new `resource` columns of `oauth_auth_code` and `refresh_token`.
@@ -526,6 +540,8 @@ Shopware 6.7.17.0 changes these MCP behaviors:
 
 - **OAuth:** MCP clients can log in with OAuth.
   Register a client for each MCP client that should use it, and add web server rewrites for an installation in a subdirectory, see [OAuth for MCP clients](#oauth-for-mcp-clients).
+- **OAuth redirect URIs:** Outside the `dev` environment, a configured `http` redirect URI on a host other than `localhost`, `127.0.0.1`, or `[::1]` is rejected.
+  Change it to `https`.
   Run the database migrations, which add the `resource` columns to `oauth_auth_code` and `refresh_token`.
   If you build the Administration yourself, rebuild it, because an older consent page drops the `resource` parameter.
 - **Sessions:** A session on `/api/_mcp` belongs to the principal that opened it.
