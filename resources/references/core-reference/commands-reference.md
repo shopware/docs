@@ -308,14 +308,15 @@ Generating the skeletons and essential files needed to create and structure a Sh
 
 ### Sales-channel
 
-| Command                             | Description                                   |
-| :---------------------------------- | :-------------------------------------------- |
-| `sales-channel:create`              | Creates a new sales channel                   |
-| `sales-channel:create:storefront`   | Creates a new storefront sales channel        |
-| `sales-channel:list`                | Lists all sales channels                      |
-| `sales-channel:maintenance:disable` | Disables maintenance mode for a sales channel |
-| `sales-channel:maintenance:enable`  | Enables maintenance mode for a sales channel  |
-| `sales-channel:update:domain`       | Updates a sales channel domain                |
+| Command                             | Description                                                                   | Version  |
+| :---------------------------------- | :---------------------------------------------------------------------------- | :------- |
+| `sales-channel:create`              | Creates a new sales channel                                                   |          |
+| `sales-channel:create:storefront`   | Creates a new storefront sales channel                                        |          |
+| `sales-channel:file:enable`         | Enables `llms.txt` and `AGENTS.md` for Storefront and headless sales channels | 6.7.17.0 |
+| `sales-channel:list`                | Lists all sales channels                                                      |          |
+| `sales-channel:maintenance:disable` | Disables maintenance mode for a sales channel                                 |          |
+| `sales-channel:maintenance:enable`  | Enables maintenance mode for a sales channel                                  |          |
+| `sales-channel:update:domain`       | Updates a sales channel domain                                                |          |
 
 ### Scheduled-task
 
@@ -393,6 +394,19 @@ Generating the skeletons and essential files needed to create and structure a Sh
 | `system:setup:staging`       | Installs the Shopware 6 system in staging mode                                     |
 | `system:update:finish`       | Finishes the update process                                                        |
 | `system:update:prepare`      | Prepares the update process                                                        |
+
+The `system:install` command accepts the following options (as of Shopware 6.7). Run `bin/console system:install --help` to list the options of your installed version.
+
+| Option                                                            | Description                                                           |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `--create-database`                                               | Creates the database if it does not exist                             |
+| `--drop-database`                                                 | Drops the existing database first                                     |
+| `--basic-setup`                                                   | Creates a Storefront sales channel and an admin user                  |
+| `-f`, `--force`                                                   | Installs even if `install.lock` exists                                |
+| `--no-assign-theme`                                               | Does not assign the default theme                                     |
+| `--shop-name`, `--shop-email`, `--shop-locale`, `--shop-currency` | Name, email address, default locale and ISO currency code of the shop |
+| `--skip-assets-install`                                           | Skips installing the assets                                           |
+| `--skip-first-run-wizard`                                         | Skips the first run wizard                                            |
 
 ### Theme
 
