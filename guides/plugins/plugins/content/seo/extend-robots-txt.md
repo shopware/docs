@@ -53,10 +53,10 @@ namespace Swag\Example\Listener;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
+use Shopware\Storefront\Page\Robots\Parser\ParsedRobots;
 use Shopware\Storefront\Page\Robots\Struct\RobotsDirective;
 use Shopware\Storefront\Page\Robots\Struct\RobotsDirectiveType;
 use Shopware\Storefront\Page\Robots\Struct\RobotsUserAgentBlock;
-use Shopware\Storefront\Page\Robots\Parser\ParsedRobots;
 
 #[Package('storefront')]
 class RobotsExtensionListener
