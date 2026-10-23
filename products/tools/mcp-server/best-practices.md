@@ -73,17 +73,17 @@ Strategies to reduce tool count within a single integration:
 
 Tool responses are injected directly into the agent's context window, so large responses consume a significant portion of the token budget.
 
-When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead, it stores the payload in a session-scoped cache and returns a `shopware://tool-result/{uuid}` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred. For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
+When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead, it stores the payload in the `mcp_tool_result_cache` table and returns a `shopware://tool-result/…` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred, and `query` with the tool and arguments of the call. Starting with Shopware 6.7.16.0, the URI is a signed pointer that only works for the caller that produced it and expires after one hour (`_meta.expiresAt`). Clients on protocol `2025-06-18` or later also get it as a `resource_link` content block. See [Large tool results](./tools-reference.md#large-tool-results). For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
 
 The goal is still to keep responses small. Deferred resources still cost tokens when the agent fetches them, and some clients may not automatically follow up.
 
-- **Separate entity rows from aggregations.** Aggregations (especially `terms` or `date-histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in a single response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records; never both in a single tool call.
+- **Separate entity rows from aggregations.** Aggregations (especially `terms` or `histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in a single response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records; never both in a single tool call.
 - **Use `McpEntityIncludes` in plugin tools.** If your tool returns DAL entity data via `JsonEntityEncoder`, use the `McpEntityIncludes` trait. It automatically strips unrequested associations, thumbnails, and translated duplicates, keeping responses compact without manual field filtering.
 - **Paginate large result sets.** Return a bounded `limit` and let the agent increment `page` rather than returning everything at once.
 
 ### Use consistent response shapes
 
-Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_meta": ...}` and `{"success": false, "error": "..."}` envelopes. Agents learn one pattern and apply it everywhere.
+Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_meta": ...}` and `{"success": false, "error": "...", "code": "..."}` envelopes. Agents learn one pattern and apply it everywhere. Starting with Shopware 6.7.16.0, Shopware also returns the data as `structuredContent` and sets `isError` for failed calls. Pass a stable code as the second argument of `error()`, such as `McpToolError::NOT_FOUND`, `McpToolError::INVALID_ARGUMENTS`, or `McpToolError::MISSING_PRIVILEGE`. The default is `McpToolError::TOOL_ERROR`.
 
 ### Write tool descriptions for agent routing
 
@@ -100,6 +100,21 @@ The `description` field on `#[McpTool]` is the only signal the agent uses to pic
 **Mention the use cases the user will name.** If a prompt is "upload this image as a product cover", the description should contain the phrase "product cover" — and clarify that no extra parameter is required to satisfy that case. Otherwise, the agent infers it cannot fulfill the request and returns no tool selection.
 
 **Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user rarely provides (e.g., a sales channel UUID or a tax ID), set it to `''` or `null` and validate it in the method. Required-but-missing parameters cause some agents to refuse the tool call entirely rather than ask the user.
+
+**Describe every parameter with `#[Schema(description: ...)]`.** Put the attribute from `Mcp\Capability\Attribute\Schema` on each `__invoke()` parameter. The MCP SDK renders it into `inputSchema.properties[*].description`, which is where a client reads the argument contract. Without it, a parameter reaches the client as a bare `{"type": "string"}`. This matters most for JSON-encoded string parameters: state whether an object or an array is expected, and give a short example. The SDK also falls back to the `@param` docblock text, but core uses the attribute, and the attribute wins when both are present. Descriptions are compiled into the container, so run `bin/console cache:clear` after changing them.
+
+```php
+use Mcp\Capability\Attribute\Schema;
+
+public function __invoke(
+    #[Schema(description: 'Entity name, e.g. "order".')]
+    string $entity,
+    #[Schema(description: 'A JSON ARRAY of aggregation definitions, as a string. Each element needs "name" and "type", and every type except "filter" also needs "field", e.g. [{"name":"order_count","type":"count","field":"id"}].')]
+    string $aggregations,
+): string
+```
+
+**Return the reason for rejecting invalid input.** An exception that escapes `__invoke()` reaches the client as a generic `Error while executing tool`, so the agent has nothing to correct on its retry. Catch the exceptions you expect and return a message that names the rejected part. Tools that extend `McpToolResponse` and parse Admin API criteria with `RequestCriteriaBuilder::fromArray()` can wrap only that call, catch `ShopwareHttpException`, and return `$this->invalidCriteriaError($e)`. A `SearchRequestException` is rendered as `Invalid criteria: ` followed by every rejected element's JSON pointer and message. Other exceptions, such as an unknown association, keep their own message. The error carries the code `invalid_arguments`. Keep the actual search outside the `try`, so that real DAL failures are still logged. Let unexpected exceptions propagate so that they are logged.
 
 **Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is that the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
 
