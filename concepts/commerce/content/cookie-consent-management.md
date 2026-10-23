@@ -38,7 +38,7 @@ sequenceDiagram
     participant CookieProvider
 
     User->>Storefront: Visit shop
-    Storefront->>StoreAPI: GET /store-api/cookie/groups
+    Storefront->>StoreAPI: GET /store-api/cookie-groups
     StoreAPI->>CookieProvider: getCookieGroups()
     CookieProvider-->>StoreAPI: Cookie groups + hash
     StoreAPI-->>Storefront: Cookie configuration
@@ -154,10 +154,11 @@ Multiple related cookies grouped together for easier management.
 
 The cookie consent system itself uses special cookies:
 
-| Cookie               | Purpose                                   | Lifetime |
-| -------------------- | ----------------------------------------- | -------- |
-| `cookie-preference`  | Stores user's consent choices             | 30 days  |
-| `cookie-config-hash` | Tracks configuration changes per language | 30 days  |
+| Cookie               | Purpose                                                                                                          | Lifetime                                         |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `cookie-preference`  | Stores user's consent choices                                                                                    | 30 days                                          |
+| `cookie-config-hash` | Tracks configuration changes per language                                                                        | 30 days                                          |
+| `cookie-consent-id`  | Links the consent decisions of this browser in the server-side consent log. Only set while consent logging is on | Retention period of the log, 120 days by default |
 
 ### Protected Cookies
 
@@ -183,11 +184,25 @@ The Store API endpoint for cookie groups is available starting with Shopware 6.7
 
 The cookie consent system exposes its configuration through the Store API endpoint:
 
-**Endpoint:** `GET /store-api/cookie/groups`
+**Endpoint:** `GET /store-api/cookie-groups`
 
 This endpoint enables headless implementations, custom frontends, and third-party integrations to retrieve cookie configuration, the configuration hash, and the language ID. The hash is provided as a string, and the language ID is also returned by the endpoint. When stored in the browser's `cookie-config-hash` cookie, both values should be stored as an object where the language ID is the key and the hash is the value, for example: `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`
 
+Every cookie group has a `technicalName`, such as `cookie.groupStatistical`. Unlike `name`, it is the same in every language.
+
 For full API documentation, see the [Store API - Fetch all cookie groups](https://shopware.stoplight.io/docs/store-api/f9c70be044a15-fetch-all-cookie-groups) reference.
+
+## Server-Side Consent Logging
+
+::: info
+Server-side consent logging is available starting with Shopware 6.7.16.0.
+:::
+
+The cookie banner can record every consent decision on the server. Logging is off by default. When it is on, the storefront sends each decision to the server in the background. The server stores the decision together with a snapshot of the banner that the visitor saw.
+
+A record contains a random consent ID, but no IP address, session or customer. Shops can store the log in the database, on the filesystem or in a custom storage.
+
+<PageRef page="../../../guides/hosting/configurations/shopware/cookie-consent-logging" />
 
 ## Extension Points
 
@@ -269,6 +284,7 @@ Shopware's cookie consent system includes several features designed to help shop
 - ✅ **Easy withdrawal** - Users can change preferences at any time
 - ✅ **Configuration tracking** - Hash mechanism ensures change detection
 - ✅ **Documented lifecycle** - Full audit trail of cookie changes
+- ✅ **Consent log** - Optional server-side record of every consent decision
 
 ::: info
 These features provide technical support for GDPR compliance, but shop owners must also ensure they have proper legal documentation (privacy policy, terms of service), data processing agreements, and regular compliance audits. Consult with legal counsel to ensure full compliance with GDPR and other applicable regulations.
