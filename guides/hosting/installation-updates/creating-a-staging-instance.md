@@ -40,7 +40,7 @@ Alternatively, you can copy the files from the live environment to the staging e
 It's highly recommended to use a separate Domain or Subdomain for the staging instance to avoid conflicts with the live environment. After changing the domain, make sure you have updated `APP_URL` in the `.env` file to reflect the new URL.
 
 ::: info
-You should still use your **live domain** in `Shopware Account > License Domain` to avoid licensing issues.
+Manage the license domains of your instances in `Shopware Account > License Domain`. For which domain to register for staging and development environments, see [Store credentials across environments](deployments/deployment-helper/store.md#store-credentials-across-environments).
 :::
 
 ### 2. Duplicating the database from the live environment

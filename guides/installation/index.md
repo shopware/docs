@@ -52,7 +52,7 @@ If you already have a target directory, see [Installing into an existing directo
 
 ### Select Shopware version
 
-The latest version will always be the top option. At the bottom of the terminal window are prompts for moving through and selecting menu options.
+The latest version will always be the top option. Below the released minor versions, a **trunk (development version)** option is listed for installing Shopware's latest development state (`dev-trunk`); like `latest`, selecting it skips the patch-version step. At the bottom of the terminal window are prompts for moving through and selecting menu options.
 
 ### Choose Docker or skip
 
@@ -62,7 +62,7 @@ This prompt asks, "How do you want to run Shopware?":
 - **Use PHP and Composer; Shopware CLI handles the installation**: skips Docker and sets up Shopware directly with a local PHP and Composer installation instead.
 
 :::info
-If you choose the Docker option, be sure that Docker is running. Otherwise, a "fatal error" message may appear.
+Shopware CLI checks for Docker availability. If it is unavailable, the Docker option is labeled as unavailable and local PHP is selected. Passing `--docker` anyway fails with a missing dependencies error.
 :::
 
 ### Do you need a Shopware account?
