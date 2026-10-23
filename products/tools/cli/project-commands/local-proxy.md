@@ -39,6 +39,12 @@ sequenceDiagram
 
 Nothing leaves your machine: the DNS resolver only ever answers `127.0.0.1`, and shops reach each other by the same trusted hostnames.
 
+## Watcher URLs
+
+The local proxy provides routes for the Storefront and Administration
+watchers. See [Watchers](./dev-environment.md#watchers) for which URL to open
+in each mode.
+
 ## One-time setup
 
 Run once per machine. It points the operating system's resolver at the local DNS and installs the certificate authority into your trust stores — the single `sudo` moment:
