@@ -15,16 +15,18 @@ The Vault is a secure, centralized location to store sensitive data such as:
 - Environment variables
 - Build-time secrets
 - SSH keys for accessing private Git repositories
+- Files such as certificates or keystores
 
 Secrets stored in the Vault are reusable across all applications in your organization.
 
 ## Secret Types
 
-| Type       | Description                                |
-| ---------- | ------------------------------------------ |
-| `env`      | Runtime environment variables for your app |
-| `buildenv` | Build-time environment variables           |
-| `ssh`      | SSH keys for secure Git access             |
+| Type       | Description                                        |
+| ---------- | -------------------------------------------------- |
+| `env`      | Runtime environment variables for your app         |
+| `buildenv` | Build-time environment variables                   |
+| `ssh`      | SSH keys for secure Git access                     |
+| `file`     | Files mounted at an absolute path in the container |
 
 ## Creating a Secret
 
@@ -45,6 +47,44 @@ sw-paas vault create --type ssh
 ```
 
 After generation, the CLI will output the public key. Add this to your Git hosting provider (e.g., GitHub under **Deploy Keys**).
+
+### Creating a File Secret
+
+A `file` secret is mounted as a file inside the application container, for example a client certificate or a Java keystore:
+
+```sh
+sw-paas vault create --type file --key CLIENT_CERT \
+  --path /var/www/certs/client.pem --file ./client.pem
+```
+
+| Flag     | Description                                                                     |
+| -------- | ------------------------------------------------------------------------------- |
+| `--path` | Absolute path the file is mounted at inside the container. Prompted if omitted. |
+| `--file` | Local file to read the value from. The content is stored verbatim.              |
+
+`--file` keeps binary content intact. Alternatively, pipe the content with `--password-stdin`; for `file` secrets, stdin is also read unmodified.
+
+::: info
+File secrets are mounted read-only and without execute permission. Your application can read the file, but cannot modify or execute it.
+:::
+
+## Updating a Secret
+
+To change the value of an existing secret:
+
+```sh
+sw-paas vault update --secret-id SECRET-ID
+```
+
+Use `--file` or `--password-stdin` to provide the new value non-interactively.
+
+For `file` secrets, `--path` moves the secret to a different mount path. Without `--file` or `--password-stdin`, only the path changes and the content is kept:
+
+```sh
+sw-paas vault update --secret-id SECRET-ID --path /var/www/certs/new-client.pem
+```
+
+If you omit `--path`, the stored path stays untouched. In an interactive terminal, the CLI asks whether you want to change it.
 
 ## Retrieving a Secret
 
