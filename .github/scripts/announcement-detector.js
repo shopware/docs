@@ -69,10 +69,19 @@ const publish = require("./reporter");
     // Publish Comment
     //--------------------------------------------------
 
-    await publish(
-        prNumber,
-        result
-    );
+    try {
+
+        await publish(
+            prNumber,
+            result
+        );
+
+    } catch (error) {
+
+        // The token is read-only for PRs from forks and bots, so commenting is best effort
+        console.warn(`::warning::Could not publish analyzer comment: ${error.message}`);
+
+    }
 
     console.log("");
     console.log("Finished.");
