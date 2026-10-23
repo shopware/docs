@@ -56,6 +56,7 @@ The `#[McpTool]` attribute must be on the **class**, not on `__invoke()`. Extend
 namespace Swag\MyPlugin\Mcp\Tool;
 
 use Mcp\Capability\Attribute\McpTool;
+use Mcp\Capability\Attribute\Schema;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolDependsOn;
@@ -76,11 +77,12 @@ class MyTool extends McpToolResponse
     ) {
     }
 
-    /**
-     * @param string $email the customer's email address
-     * @param int $limit how many orders to return, newest first
-     */
-    public function __invoke(string $email, int $limit = 10): string
+    public function __invoke(
+        #[Schema(description: 'The customer\'s email address.')]
+        string $email,
+        #[Schema(description: 'How many orders to return, newest first.')]
+        int $limit = 10,
+    ): string
     {
         $context = $this->contextProvider->getContext();
         if ($error = $this->requirePrivilege($context, 'order:read')) {
@@ -107,12 +109,18 @@ class MyTool extends McpToolResponse
 - `title` is optional. When set, MCP clients (Claude Desktop, Cursor, etc.) display it in their tool list instead of the machine-readable `name`. Omit it if you have no better label to offer.
 - Names must only contain `a-zA-Z0-9_-`.
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
-- Describe each parameter with a `@param` docblock on `__invoke()`. The MCP SDK copies the text into the parameter's `description` in `inputSchema`.
+- Describe each parameter with `#[Schema(description: '...')]` from `Mcp\Capability\Attribute\Schema` on the `__invoke()` parameter. The MCP SDK copies the text into the parameter's `description` in `inputSchema`. A `@param` docblock works as a fallback, but core uses the attribute, and the attribute wins when both are present. See [Best Practices](../../../products/tools/mcp-server/best-practices.md#write-tool-descriptions-for-agent-routing).
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
 - `requirePrivilege()` returns an error string on failure; check its return value with `if ($error = $this->requirePrivilege(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
+  A tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` instead, see [Required privileges](#required-privileges).
 - Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use `McpContextProvider::getContext()` instead.
-- Return a `string` from `__invoke()`. The MCP SDK automatically wraps the return value into the protocol response.
-- Extend `McpToolResponse` to use `$this->success()` and `$this->error()` helpers.
+- Return a `string` from `__invoke()`. Extend `McpToolResponse` and return the result of `$this->success()` or `$this->error()`. Shopware turns it into the MCP result, including `structuredContent`, `isError`, and `_meta` since 6.7.16.0, see [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
+  Clients on protocol `2025-06-18` or later get your data as plain JSON text and as `structuredContent`, older clients get the `{"success": …}` envelope as text.
+  Since 6.7.17.0, the negotiated protocol revision decides this, not the `v6.8.0.0` feature flag.
+  `$this->success()` always returns the full data.
+  Since 6.7.17.0, Shopware decides when it renders the MCP result whether the result is too large to return inline, for every `{"success": …}` envelope your tool returns, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
+- Pass a stable error code as the second argument of `$this->error()`, such as `McpToolError::NOT_FOUND` or `McpToolError::INVALID_ARGUMENTS` from `Shopware\Core\Framework\Mcp\Result\McpToolError`. The default is `McpToolError::TOOL_ERROR`. This argument exists since 6.7.16.0.
+- Since 6.7.16.0, a `%` in a description or schema is kept as written. Before, text between two `%` without whitespace, such as "5%-10%", was read as a container parameter and broke the MCP endpoint. If you wrote `%%` as a workaround, remove it, otherwise the description now shows `%%`.
 
 ## Step 2: Assign a tool group
 
@@ -128,7 +136,11 @@ The attribute is optional. Without it, Shopware uses the longest hyphen-separate
 
 Because the inferred group depends on which other tools are registered without a group, declare the group explicitly when you need a stable toolset name or want a different grouping. An explicit group also takes precedence over the group Shopware derives for app tools.
 
-The special `discovery` group places an allowed tool in the initial session surface. Such a tool is always advertised and never appears in `shopware-toolsets-list`, so it can be neither enabled nor disabled. Use it only for an intentional discovery meta-tool; regular domain tools should remain deferred.
+The `discovery` group is reserved for the core discovery tools `shopware-tool-search`, `shopware-toolsets-list`, and `shopware-toolset-enable`. Do not use it for your own tools.
+
+Starting with Shopware 6.7.16.0, a tool that declares `#[McpToolGroup('discovery')]` is moved to the `other` toolset when the container is built. It stays callable and can be enabled, but it is no longer advertised at the start of a session. `bin/console debug:mcp` lists such tools in a warning, and the PHPStan rule `shopware.mcpReservedToolGroup` reports them. To make your tools visible on the first `tools/list`, give them a group of their own and let clients select it with `?toolsets=<group>`, see [Select toolsets when connecting](../../../products/tools/mcp-server/getting-started.md#select-toolsets-when-connecting).
+
+Before 6.7.16.0, a tool in the `discovery` group was always advertised and could be neither enabled nor disabled.
 
 ## Step 3: Declare dependencies and privileges
 
@@ -158,6 +170,54 @@ Declare the [ACL privileges](../../../products/tools/mcp-server/configuration.md
 ```
 
 The attribute is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output. You still must call `$this->requirePrivilege($context, 'order:read')` inside `__invoke()` for actual runtime enforcement.
+
+A tool that reads no shop data and needs no privilege declares `#[McpToolRequiresNoPrivilege]` instead, with a reason for reviewers and operators:
+
+```php
+use Shopware\Core\Framework\Mcp\Attribute\McpToolRequiresNoPrivilege;
+
+#[McpTool(name: 'swag-my-plugin-schema', description: '...')]
+#[McpToolRequiresNoPrivilege(reason: 'Reads entity definitions only, never a repository.')]
+class MySchemaTool extends McpToolResponse
+```
+
+Core uses it for `shopware-entity-schema` and the three discovery tools.
+Like `#[McpToolRequires]`, it grants nothing at runtime, and the DAL still checks the ACL of every repository call.
+The attribute exists since Shopware 6.7.17.0.
+
+Tools on the Store API endpoint (`shopware.store_api_mcp.tool`) run in a sales channel context, where Admin ACL privileges do not apply.
+Do not declare `#[McpToolRequires]` on them, and do not call `requirePrivilege()`.
+
+### Check privileges with PHPStan
+
+Starting with Shopware 6.7.17.0, the Shopware PHPStan rule set checks the privileges of MCP tools from plugins and bundles:
+
+| Identifier                             | Reports                                                                                                                                                            | Fix                                                                                                                                                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shopware.mcpAdminToolMissingRequires` | An Admin API tool (`/api/_mcp`) with neither `#[McpToolRequires]` nor `#[McpToolRequiresNoPrivilege]` on its class, or with both                                   | Declare every privilege the tool needs with `#[McpToolRequires]`, and keep checking them with `requirePrivilege()`. Only a tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` |
+| `shopware.mcpStoreApiToolAdminAcl`     | A Store API tool (`/store-api/_mcp`) that declares `#[McpToolRequires]` or calls `requirePrivilege()`, also in a method it inherits from a parent class or a trait | Remove the attribute and the call, and rely on the sales channel context and the Store API routes it calls                                                                                       |
+
+Every Admin API tool declares exactly one of the two attributes on its class.
+An attribute on `__invoke()` does not count, because Shopware only reads it from the class.
+The Store API rule does not follow calls into helper services.
+A tool class registered on both endpoints is checked by both rules, so it can only declare `#[McpToolRequiresNoPrivilege]`.
+
+Both rules tell the two endpoints apart by the service tags in the compiled container, `shopware.store_api_mcp.tool` for the Store API and `shopware.mcp.tool` or `mcp.tool` for the Admin API.
+They need [phpstan/phpstan-symfony](https://github.com/phpstan/phpstan-symfony) with `parameters.symfony.containerXmlPath` pointing to a compiled container that registers your tools.
+Without it, or with a container that does not contain your plugin, both rules report nothing:
+
+```yaml
+# phpstan.neon
+includes:
+    - vendor/shopware/core/DevOps/StaticAnalyze/PHPStan/rules.neon
+
+parameters:
+    symfony:
+        containerXmlPath: var/cache/dev_h<hash>/Shopware_Core_KernelDevDebugContainer.xml
+```
+
+Build the container with your plugin installed and active, for example with `bin/console cache:clear`, before you run PHPStan.
+The cache directory name contains a hash and the file name depends on your kernel class and environment, so check the path in your `var/cache` directory.
 
 ## Step 4: Register the service
 
@@ -214,7 +274,11 @@ If the tool appears here, it is registered in the live HTTP endpoint and can be 
 - Service is tagged with `shopware.mcp.tool`
 - `#[McpTool]` is on the class, not on `__invoke()`
 
+Since Shopware 6.7.16.0, `debug:mcp` also warns about tools that were moved from the reserved `discovery` group to `other`. Give such a tool a group of its own.
+
 Since Shopware 6.7.15.0, `debug:mcp` lists tools only. Use `bin/console debug:mcp --native` to verify prompts and resources.
+
+Starting with Shopware 6.7.16.0, integrations and non-admin users can only call your tool after it is selected in their MCP allowlist. Tell operators which tools to select, or group them so that one toolset covers the use case.
 
 ## Adding prompts
 

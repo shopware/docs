@@ -56,10 +56,10 @@ Names must only contain `a-zA-Z0-9_-` (no dots). The `shopware-` prefix is reser
 
 Shopware automatically groups all tools from an active app into a toolset named after the app's technical name. No additional field in `mcp.xml` is required. An MCP client can find the tools with `shopware-tool-search` or enable the complete app toolset with `shopware-toolset-enable`. The toolset title is generated from the app name by replacing hyphens with spaces and capitalizing the first letter, so an app named `my-integration` produces the title "My integration tools".
 
-When an app is installed, updated, activated, deactivated, or deleted, Shopware queues the relevant `notifications/*/list_changed` message for the active MCP sessions, and only for the capability types the app actually declares. Clients can then refresh their tools, prompts, or resources.
+When an app is installed, updated, activated, deactivated, or deleted, Shopware queues the relevant `notifications/*/list_changed` message for the MCP sessions on the Admin API endpoint (`/api/_mcp`), and only for the capability types the app actually declares. Since Shopware 6.7.16.0, this reaches every session, whichever server it is connected to. Before, only sessions on the server that processed the app change were notified. Clients can then refresh their tools, prompts, or resources.
 
 :::info How notifications reach the client
-Notifications are queued into the MCP session rather than pushed. A client receives them with the response to its next request, or immediately over an open streaming connection. A client that neither keeps a stream open nor sends another request sees nothing. Queuing also requires a configured session store — see [Session store](../../../products/tools/mcp-server/configuration.md#session-store).
+Notifications are queued into the MCP session rather than pushed. Since Shopware 6.7.16.0, a session detects an app change on its next request, and the client receives the notification with a later response. A client that sends no further request sees nothing. Queuing also requires a configured session store — see [Session store](../../../products/tools/mcp-server/configuration.md#session-store).
 
 Only the app lifecycle emits these notifications. Plugins and Symfony bundles register their capabilities at container build time, so their changes are not announced to running sessions.
 :::
@@ -121,6 +121,8 @@ Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
 ### Required privileges
 
 List the ACL privileges your tool needs with `<required-privileges>`. The admin UI uses this list to warn operators when an integration's role is missing privileges a tool expects.
+
+Every privilege in `<required-privileges>` must also be declared in the `<permissions>` of your manifest, because the tool runs with the app's integration role. Otherwise, the app fails to install or update, and the error names the tool and the missing privilege. Starting with Shopware 6.7.16.0, this also applies to apps without a `<permissions>` block. Before, those apps skipped the check.
 
 How strictly these privileges are enforced depends on the URL mode:
 
@@ -271,13 +273,33 @@ app.post('/mcp/sync-orders', (req, res) => {
 
 ## Returning a response
 
-Return JSON as the tool result body. Shopware forwards it to the AI client as-is:
+Return JSON as the tool result body:
 
 ```json
 {"success": true, "data": {"synced": 42, "errors": 0}}
 ```
 
 For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. Shopware does not reject responses that omit `success`, but it logs a warning when the field is missing so operators can spot broken handlers.
+
+Shopware parses a body with a boolean `success` into a tool result.
+A top-level `code`, or `error` as an object with `message` and `code`, becomes the stable error code.
+Other top-level keys become metadata.
+Any other body is passed on as text only, and is never stored as a large result.
+
+Starting with Shopware 6.7.17.0, the protocol revision the client negotiated decides what the client receives:
+
+- On `2025-06-18` and later, the text holds your `data` as plain JSON, followed by the metadata as `{"_meta": …}`.
+  `structuredContent` holds the data and, under `_meta`, the metadata the model needs.
+  A failure sets `isError` and `structuredContent.error.code`.
+- On `2024-11-05` and `2025-03-26`, the text is your body as you returned it, with `isError` and `_meta["shopware/generatedAt"]` next to it.
+
+On 6.7.16.x, every client got your body as the text block, plus `structuredContent` on `2025-06-18` and later.
+See [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
+
+Starting with Shopware 6.7.17.0, an app tool result with more than about 100 KB of data is stored and sent as a link, like the results of core tools, when the body has a boolean `success`.
+The client reads it with `resources/read`, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
+Before 6.7.17.0, app tool results were always returned inline.
+Keep results compact either way, because the agent pays for every byte it reads.
 
 **Timeout:** App webhook calls time out after `shopware.mcp.app_tool_timeout` seconds (default: 10). Keep responses fast or use async patterns with status polling.
 
@@ -298,6 +320,8 @@ bin/console debug:mcp
 ```
 
 Your tools appear with **Source: app** in the output. To see what a specific integration can reach (respecting its per-integration allowlist), pass `--integration=SWIA...` with the integration's access key.
+
+Starting with Shopware 6.7.16.0, integrations and non-admin users can only call your tools after they are selected in their MCP allowlist. Tell operators which tools to select, see [Per-principal allowlist](../../../products/tools/mcp-server/configuration.md#per-principal-allowlist).
 
 ## Further reading
 

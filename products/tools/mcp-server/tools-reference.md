@@ -11,7 +11,7 @@ This page documents all built-in tools, resources, and the system prompt provide
 
 ## Response format
 
-All core tools return a consistent JSON envelope via `McpToolResponse`:
+Core tools build their result with `McpToolResponse`, which returns a JSON envelope:
 
 **Success:**
 
@@ -22,14 +22,115 @@ All core tools return a consistent JSON envelope via `McpToolResponse`:
 **Error:**
 
 ```json
-{"success": false, "error": "Human-readable message telling the agent what to do next"}
+{"success": false, "error": "Human-readable message telling the agent what to do next", "code": "tool_error"}
 ```
 
 The `_meta` field is optional and used for pagination context, dry-run status, and sales channel scope.
 
+The envelope is what a tool returns, not what the client receives.
+Shopware renders it as a standard MCP `CallToolResult`.
+Starting with Shopware 6.7.17.0, the protocol revision the client negotiated in `initialize` decides the format:
+
+| Protocol revision          | Text content                                                                       | `structuredContent`                                  | Large results                       |
+| -------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------- |
+| `2025-06-18` and later     | The data as plain JSON, then the summary and `{"_meta": …}` as blocks of their own | The data, plus the metadata for the model in `_meta` | `resource_link` content block       |
+| `2024-11-05`, `2025-03-26` | The `{"success": …}` envelope as the only text block (deprecated)                  | None, these revisions do not have it                 | `_meta.resourceUri` in the envelope |
+
+Every result also carries `isError`, which is `true` for a failed call, and `_meta["shopware/generatedAt"]` with the time the result was created.
+The error `code` is stable and one of `tool_error`, `missing_privilege`, `invalid_arguments`, or `not_found`.
+
+### Protocol 2025-06-18 and later
+
+- The first text block holds the result data as plain JSON, or the error message for a failed call.
+  The summary, the error details as `{"details": …}`, and the metadata as `{"_meta": …}` follow as text blocks of their own, when there are any.
+- `structuredContent` holds the data.
+  On these revisions it must be a JSON object, so a list or a scalar is wrapped as `{"result": …}`.
+- When the result has metadata the model needs, such as `dryRun`, `total`, the paging, or a summary, `structuredContent` carries it under the reserved key `_meta`.
+  An object gets the key next to its own keys.
+  A list or a scalar is sent as `{"result": …, "_meta": …}`.
+  The bookkeeping keys `responseSize` and `resourceUri` are left out.
+- `structuredContent` has no `_meta` key for a tool that declares an `outputSchema`, for data that has a `_meta` key of its own, for a failed call, and for a stored result.
+  A tool with an `outputSchema` gets exactly the data the schema describes.
+- A failed call has `structuredContent.error` with `code`, `message`, and, if present, `details`.
+- The result's `_meta` repeats every metadata key with the prefix `shopware/`, for example `_meta["shopware/dryRun"]`.
+
+A dry-run write of `shopware-entity-upsert`:
+
+```json
+{
+  "content": [
+    {"type": "text", "text": "[{\"entity\":\"tax\",\"ids\":[\"0190…\"],\"operation\":\"upsert\"}]"},
+    {"type": "text", "text": "{\"_meta\":{\"dryRun\":true}}"}
+  ],
+  "isError": false,
+  "structuredContent": {"result": [{"entity": "tax", "ids": ["0190…"], "operation": "upsert"}], "_meta": {"dryRun": true}},
+  "_meta": {"shopware/dryRun": true, "shopware/generatedAt": "2026-10-22T10:00:00+00:00"}
+}
+```
+
+A failed call:
+
+```json
+{
+  "content": [{"type": "text", "text": "Missing privilege: order:read"}],
+  "isError": true,
+  "structuredContent": {"error": {"code": "missing_privilege", "message": "Missing privilege: order:read"}},
+  "_meta": {"shopware/generatedAt": "2026-10-22T10:00:00+00:00"}
+}
+```
+
+### Protocol before 2025-06-18
+
+Clients on `2024-11-05` and `2025-03-26` get the `{"success": …}` envelope as the only text block, exactly as the tool returned it.
+A tool that returns a result object instead of a string gets the envelope rebuilt from it, with the data, the metadata, and the error message and code.
+These revisions have no `structuredContent` and no `resource_link`.
+`isError` and `_meta["shopware/generatedAt"]` are still sent.
+
+The envelope is deprecated as a wire format.
+Shopware keeps it for these clients and does not remove it in 6.8.0.
+
+### Before Shopware 6.7.17.0
+
+Up to 6.7.16.x, every client got the envelope as the first text block, and clients on `2025-06-18` or later additionally got `structuredContent`, with a list or a scalar always wrapped as `{"result": …}`.
+The `v6.8.0.0` feature flag replaced the envelope with the plain data.
+Starting with 6.7.17.0, the feature flag no longer changes MCP results.
+
+:::warning Integrations that parse the text block
+For clients on `2025-06-18` or later, `content[0].text` no longer contains `success`.
+Read `isError` for the outcome and `structuredContent` for the data, or the result's `_meta` (`shopware/<key>`) for the metadata.
+:::
+
+### Which part of the result clients read
+
+MCP clients do not all pass the same part of a tool result to the model:
+
+| Client                         | Passes to the model                 |
+| ------------------------------ | ----------------------------------- |
+| Claude Code, Codex, VS Code    | `structuredContent`                 |
+| Cursor, Gemini CLI             | The text `content`                  |
+| ChatGPT                        | Both                                |
+
+This is why Shopware sends the data twice, as text and as `structuredContent`, as the MCP specification asks, and why `structuredContent` carries the metadata for the model as well.
+If you build a tool, do not put information the model needs only into one of the two.
+Return it as data, metadata, or summary, and Shopware sends it on both paths.
+Client behavior changes between releases, so treat the table as a snapshot.
+
+### Tool parameters and argument errors
+
+`shopware-entity-search`, `shopware-entity-read`, `shopware-entity-aggregate`, `shopware-entity-upsert`, `shopware-entity-delete`, and `shopware-theme-config` describe each parameter in their `inputSchema`. Parameters that take a JSON-encoded string, such as `criteria` or `aggregations`, state whether an object or an array is expected and include an example.
+
+When `shopware-entity-search`, `shopware-entity-read`, or `shopware-entity-aggregate` receives criteria or aggregations it cannot parse, the error message names every rejected element by its JSON pointer.
+The envelope the tool returns:
+
+```json
+{"success": false, "error": "Invalid criteria: /aggregations/0/avg/field: The aggregation should contain a \"field\".", "code": "invalid_arguments"}
+```
+
+Correct the named element and call the tool again.
+
 ## Discovery tools
 
-With core alone, a fresh MCP session advertises only the three discovery tools below; every other core tool becomes visible when its toolset is enabled for the session. A plugin or bundle can add its own tool to the `discovery` group, in which case that tool is advertised from the start as well — see [Assign a tool group](../../../guides/plugins/plugins/mcp-server.md#step-2-assign-a-tool-group).
+With core alone, a fresh MCP session advertises only the three discovery tools below; every other core tool becomes visible when its toolset is enabled for the session. The `discovery` group is reserved for these three tools. Starting with Shopware 6.7.16.0, a plugin or bundle tool that declares `#[McpToolGroup('discovery')]` is moved to the `other` toolset. It stays callable and can be enabled, but it is not advertised from the start. To show tools on the first `tools/list`, connect with [`?toolsets=<group>`](./getting-started.md#select-toolsets-when-connecting). See [Assign a tool group](../../../guides/plugins/plugins/mcp-server.md#step-2-assign-a-tool-group).
 
 ### shopware-tool-search
 
@@ -79,13 +180,61 @@ Every tool belongs to exactly one group, and every group except `discovery` beco
 | `theme`         | Theme tools         | `shopware-theme-config` (Storefront bundle)                                                                                                                 |
 | `store-api`     | Store api tools     | `shopware-store-api-context` — [Store API endpoint](./store-api.md) only                                                                                    |
 
-The `discovery` group holds `shopware-tool-search`, `shopware-toolsets-list`, and `shopware-toolset-enable`. It is always advertised and never appears in `shopware-toolsets-list`, so it cannot be enabled or disabled.
+The `discovery` group holds `shopware-tool-search`, `shopware-toolsets-list`, and `shopware-toolset-enable`. It is always advertised and never appears in `shopware-toolsets-list`, so it cannot be enabled or disabled. No other tool can join this group.
 
 Titles and descriptions are generated from the group name: `#[McpToolGroup('swag-my-plugin')]` produces the title "Swag my plugin tools". Extensions cannot override the generated label, so choose the group name accordingly.
 
 ## Large tool results
 
-A tool response larger than 100 KB is not returned inline. Shopware stores it and returns a reference instead: `_meta.resourceUri` contains a `shopware://tool-result/{id}` URI that the client reads through the matching resource template. Cached results are removed when the MCP session ends.
+A tool result with more than about 100 KB of data is not returned inline.
+Shopware stores it and returns a link to a `shopware://tool-result/…` URI instead, which the client reads with `resources/read` through the matching resource template.
+
+Starting with Shopware 6.7.17.0, Shopware makes this decision when it renders the MCP result, for every tool on both endpoints.
+This includes app tools and plugin tools that build the `{"success": …}` envelope by hand.
+A tool result in any other format is passed on unchanged and never stored.
+Before 6.7.17.0, only results of `McpToolResponse::success()` were stored, and app tools were never offloaded.
+
+The limit applies to the rendered result, the text blocks plus the encoded `structuredContent`:
+
+| Protocol revision          | Limit  | Reason                                                     |
+| -------------------------- | ------ | ---------------------------------------------------------- |
+| `2025-06-18` and later     | 200 KB | The data is sent twice, as text and as `structuredContent` |
+| `2024-11-05`, `2025-03-26` | 100 KB | The data is sent once, as text                             |
+
+Both limits correspond to about 100 KB of data.
+Failed calls are never stored.
+
+The response that replaces a stored result depends on the protocol revision:
+
+- On `2025-06-18` and later, a `resource_link` content block carries the URI, after any links of the tool itself.
+  The text holds the tool's summary, cut at 2 KB, and a `note` explaining why the data was not returned inline, followed by `{"_meta": …}`.
+  The response has no `structuredContent`.
+- On `2024-11-05` and `2025-03-26`, the text block holds `{"success": true, "data": null, "_meta": {…}}`.
+  Its `_meta` contains `resourceUri`, `expiresAt`, and the `note`.
+
+In both cases, `_meta` also contains `responseSize`, `query` with the tool name and arguments of the call, and the tool's own metadata up to 10 KB.
+Metadata values that do not fit are named in `_meta.omittedMeta`, and arguments larger than 10 KB are left out of `query`.
+`_meta.omittedMeta` names at most 50 keys, and `_meta.omittedMetaCount` holds the number of keys left out.
+The tool's own links are kept up to 20 links and 10 KB, and `_meta.omittedLinkCount` holds the number of links left out.
+
+`resources/read` of a stored result always returns `application/json`.
+Its content follows the protocol revision of the call that stored it:
+
+- On `2025-06-18` and later, the plain data. The metadata, such as `total`, comes with the link in the tool result.
+- On `2024-11-05` and `2025-03-26`, the `{"success": true, "data": …, "_meta": …}` envelope.
+
+Results stored before the update to 6.7.17.0 are read as the envelope until they expire.
+
+Starting with Shopware 6.7.16.0, the URI is a signed pointer for the caller and expires after one hour.
+The result's `_meta["shopware/expiresAt"]` holds the expiry, and the envelope also has it in `_meta.expiresAt`.
+Read it on the same endpoint as the same caller:
+
+- On `/api/_mcp`, the same integration or user.
+- On `/store-api/_mcp`, the same sales channel and `sw-context-token`. A Store API call without `sw-context-token` gets its result inline, because no later request could read it back.
+
+The read works on any later request of that caller, with or without an MCP session. Any other caller gets `Tool result "<id>" not found. It may have expired or been stored by another caller.`
+
+Stored results are deleted when the client ends its session with `DELETE`, and otherwise by the hourly `mcp_tool_result_cache.cleanup` scheduled task after `shopware.mcp.tool_result_cache_ttl` seconds, 24 hours by default. See [Configuration](./configuration.md#shopware-mcp-configuration). Before 6.7.16.0, results were only removed when the session ended, and the Store API endpoint could not read its links back.
 
 ## Dry-run behavior
 
@@ -131,25 +280,27 @@ Get the field and association schema of any Shopware entity. Use this first to d
 {"entity": "product"}
 ```
 
+The response contains `entity`, `fields` with `name`, `type`, and `required`, and `associations` with `name`, `type`, and `entity`. For a many-to-many association, `entity` is the target entity, such as `category`. Starting with Shopware 6.7.16.0, `mappingEntity` names the mapping entity, such as `product_category`, which `shopware-entity-delete` uses to remove a link. Before 6.7.16.0, `entity` named the mapping entity for many-to-many associations.
+
 **ACL:** None (schema introspection only).
 
 ### shopware-entity-search
 
-Search entity records using Admin API criteria. Returns entity rows with pagination metadata. Does **not** return aggregation results; use `shopware-entity-aggregate` for counts, averages, and other metrics.
+Search, list, and page through records of any entity type, such as orders, products, customers, or categories, using Admin API criteria. Returns entity rows with pagination metadata. Use `criteria.sort` for requests such as "the last 10 orders". Does **not** return aggregation results; use `shopware-entity-aggregate` for counts, averages, and other metrics.
 
 **Response optimization:** When no `includes` are specified in the criteria, responses are automatically trimmed to scalar fields and explicitly requested associations. This strips thumbnails, extensions, and translated duplicates, keeping responses well within the 100 KB limit.
 
 **Parameters:**
 
-| Name       | Type   | Required | Default | Description           |
-| ---------- | ------ | -------- | ------- | --------------------- |
-| `entity`   | string | yes      | —       | Entity name           |
-| `criteria` | string | no       | `{}`    | JSON criteria object  |
-| `limit`    | int    | no       | 25      | Results per page      |
-| `page`     | int    | no       | 1       | Page number           |
-| `term`     | string | no       | —       | Full-text search term |
+| Name       | Type   | Required | Default | Description                                      |
+| ---------- | ------ | -------- | ------- | ------------------------------------------------ |
+| `entity`   | string | yes      | —       | Entity name                                      |
+| `criteria` | string | no       | `{}`    | JSON criteria object                             |
+| `limit`    | int    | no       | 25      | Results per page, up to `shopware.api.max_limit` |
+| `page`     | int    | no       | 1       | Page number                                      |
+| `term`     | string | no       | —       | Full-text search term                            |
 
-**Criteria supports:** `filter`, `sort`, `limit`, `page`, `associations`, `includes`, `fields`, `ids`, `term`, `query`, `post-filter`, `grouping`, `total-count-mode`. Top-level `limit`, `page`, and `term` parameters override values in criteria JSON.
+**Criteria supports:** `filter`, `sort`, `limit`, `page`, `associations`, `includes`, `fields`, `ids`, `term`, `query`, `post-filter`, `grouping`, `total-count-mode`. A `limit` inside the criteria JSON takes precedence over the top-level `limit`. The top-level `page` replaces the criteria page when it is greater than 1, and a non-empty top-level `term` replaces the criteria term.
 
 **Pagination:** The response `_meta` block always includes `total`, `page`, and `limit`. Iterate by incrementing `page` until `page * limit >= total`.
 
@@ -173,15 +324,15 @@ Use this instead of `shopware-entity-search` when you need counts, averages, sum
 
 **Parameters:**
 
-| Name           | Type   | Required | Default | Description                                                                            |
-| -------------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------- |
-| `entity`       | string | yes      | —       | Entity name                                                                            |
-| `aggregations` | string | yes      | —       | JSON array of aggregation definitions. A single object instead of an array is rejected |
-| `filters`      | string | no       | `[]`    | JSON array of filter definitions                                                       |
+| Name           | Type   | Required | Default | Description                                                                                                                                                                                                                                           |
+| -------------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `entity`       | string | yes      | —       | Entity name                                                                                                                                                                                                                                           |
+| `aggregations` | string | yes      | —       | JSON array of aggregation definitions. Each element needs `name` and `type`, and every type except `filter` also needs `field`. A `filter` element takes `filter` and a nested `aggregation` instead. A single object instead of an array is rejected |
+| `filters`      | string | no       | `[]`    | JSON array of filter definitions narrowing what is aggregated                                                                                                                                                                                         |
 
-**Supported aggregation types:** `avg`, `sum`, `min`, `max`, `count`, `terms`, `date-histogram`, `range`, `filter`, `entity`
+**Supported aggregation types:** `avg`, `sum`, `min`, `max`, `stats`, `count`, `terms`, `histogram` (a date histogram with `interval`), `range`, `filter`, `entity`
 
-**Response:** `{"success": true, "data": {"aggregations": {"<name>": {...}}}}`
+**Response data:** `{"aggregations": {"<name>": {...}}}`
 
 **Examples:**
 
@@ -246,21 +397,33 @@ ACL is checked per item: payloads **without** an `id` require `{entity}:create`;
 | `payload` | string | yes      | —       | JSON object or array of objects. Omit `id` to create; include `id` to update. |
 | `dryRun`  | bool   | no       | `true`  | Preview without persisting                                                    |
 
+Upsert can only add many-to-many links, such as product categories. A `remove` or `delete` flag inside `categories` is written to the category itself. To remove a link, use `shopware-entity-delete` on the mapping entity.
+
 **ACL:** `{entity}:create` and/or `{entity}:update`
 
 ### shopware-entity-delete
 
 Delete entities by their UUIDs. Returns a cascade impact preview in dry-run mode.
 
+Starting with Shopware 6.7.16.0, the tool also removes a many-to-many link without deleting either side. Delete the row of the mapping entity, such as `product_category` or `product_property`. `shopware-entity-schema` names it as `mappingEntity`.
+
 **Parameters:**
 
-| Name     | Type   | Required | Default | Description             |
-| -------- | ------ | -------- | ------- | ----------------------- |
-| `entity` | string | yes      | —       | Entity name             |
-| `ids`    | string | yes      | —       | JSON array of UUIDs     |
-| `dryRun` | bool   | no       | `true`  | Preview cascade effects |
+| Name     | Type   | Required | Default | Description                                                                                                                                                                |
+| -------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `entity` | string | yes      | —       | Entity name, or a mapping entity such as `product_category`                                                                                                                |
+| `ids`    | string | yes      | —       | JSON array of UUIDs, or a comma-separated list. For a mapping entity, a JSON array of objects that name every key field, such as `[{"productId": "…", "categoryId": "…"}]` |
+| `dryRun` | bool   | no       | `true`  | Preview cascade effects                                                                                                                                                    |
 
-**ACL:** `{entity}:delete`
+Each response entry contains `entity`, `ids`, and `operation`. `operation` is `delete` for deleted rows and `update` for the entities whose links changed. If only some rows don't exist, their keys are listed in `_meta.notFound`. If none exist, the call fails with `Nothing was deleted, none of these rows exist: […]`.
+
+**Example:** Remove a product from a category.
+
+```json
+{"entity": "product_category", "ids": "[{\"productId\": \"<product-id>\", \"categoryId\": \"<category-id>\"}]", "dryRun": true}
+```
+
+**ACL:** `{entity}:delete`, for a mapping entity such as `product_category:delete`
 
 ### shopware-system-config-write
 
@@ -333,12 +496,12 @@ Read or update the theme configuration for a sales channel. Manages brand colors
 
 **Parameters:**
 
-| Name             | Type   | Required                   | Default | Description                                                                                                                                                          |
-| ---------------- | ------ | -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `salesChannelId` | string | yes (validated at runtime) | `""`    | Sales channel UUID. Optional in the JSON schema, so agents do not refuse the call when the user has not provided one; the tool returns an actionable error if empty. |
-| `action`         | string | no                         | `"get"` | `get` or `update`                                                                                                                                                    |
-| `config`         | string | no                         | `"{}"`  | For `update`: JSON key-value pairs, e.g., `{"sw-color-brand-primary": {"value": "#0000ff"}}`                                                                         |
-| `dryRun`         | bool   | no                         | `true`  | For `update`: preview without persisting                                                                                                                             |
+| Name             | Type   | Required                   | Default | Description                                                                                                                                                                                                                            |
+| ---------------- | ------ | -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `salesChannelId` | string | yes (validated at runtime) | `""`    | Sales channel UUID, or its name as shown in the Administration, such as "Storefront". Optional in the JSON schema, so agents do not refuse the call when the user has not provided one; the tool returns an actionable error if empty. |
+| `action`         | string | no                         | `"get"` | `get` or `update`                                                                                                                                                                                                                      |
+| `config`         | string | no                         | `"{}"`  | For `update`: JSON key-value pairs, e.g., `{"sw-color-brand-primary": {"value": "#0000ff"}}`                                                                                                                                           |
+| `dryRun`         | bool   | no                         | `true`  | For `update`: preview without persisting                                                                                                                                                                                               |
 
 **ACL:** `theme:read` for `get`; `theme:update` for `update`.
 
@@ -346,16 +509,17 @@ Read or update the theme configuration for a sales channel. Manages brand colors
 
 Resources are static reference data available via MCP resource URIs. They require no tool call and do not consume tool-call budget.
 
-| URI                          | Description                                                                                     |
-| ---------------------------- | ----------------------------------------------------------------------------------------------- |
-| `shopware://entities`        | All registered entity names                                                                     |
-| `shopware://sales-channels`  | All sales channels with IDs, names, types, and domains                                          |
-| `shopware://currencies`      | All currencies with ISO codes, symbols, and factors                                             |
-| `shopware://languages`       | All languages with locale codes                                                                 |
-| `shopware://state-machines`  | All state machines with states and valid transitions                                            |
-| `shopware://business-events` | All events that can trigger flows                                                               |
-| `shopware://flow-actions`    | All flow actions available in Flow Builder                                                      |
-| `shopware://extensions`      | Active plugins and bundles with additional MCP tools, including tool prefix and install command |
+| URI                           | Description                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `shopware://entities`         | All registered entity names                                                                                                   |
+| `shopware://sales-channels`   | All sales channels with IDs, names, types, and domains                                                                        |
+| `shopware://currencies`       | All currencies with ISO codes, symbols, and factors                                                                           |
+| `shopware://languages`        | All languages with locale codes                                                                                               |
+| `shopware://state-machines`   | All state machines with states and valid transitions                                                                          |
+| `shopware://business-events`  | All events that can trigger flows                                                                                             |
+| `shopware://flow-actions`     | All flow actions available in Flow Builder                                                                                    |
+| `shopware://extensions`       | Active plugins and bundles with additional MCP tools, including tool prefix and install command                               |
+| `shopware://tool-result/{id}` | Resource template for a stored tool result that was too large to return inline, see [Large tool results](#large-tool-results) |
 
 ## Prompts
 
