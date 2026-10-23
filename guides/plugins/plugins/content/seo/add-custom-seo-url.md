@@ -203,7 +203,7 @@ class ExamplePageSeoUrlRoute implements SeoUrlRouteInterface
         );
     }
 
-    public function prepareCriteria(Criteria $criteria): void
+    public function prepareCriteria(Criteria $criteria, SalesChannelEntity $salesChannel): void
     {
     }
 
@@ -262,7 +262,7 @@ Your custom "SeoUrlRoute" class has to implement the `SeoUrlRouteInterface`, whi
 
   the technical name of the route to be used, and the desired SEO path.
 
-* `prepareCriteria`: Here you can adjust the criteria instance, which will be used to fetch your entities.
+* `prepareCriteria`: Adjust the criteria instance used to fetch your entities. Your method also receives a `SalesChannelEntity`.
 
   Here you can e.g. narrow down which entities may be used for the SEO URL generation. For example you could add a filter
 
@@ -504,6 +504,11 @@ class DynamicSeoUrlsService
             return;
         }
 
+        $salesChannel = $this->salesChannelRepository->search(new Criteria([$salesChannelId]), $context)->first();
+        if (!$salesChannel instanceof \Shopware\Core\System\SalesChannel\SalesChannelEntity) {
+            return;
+        }
+
         foreach ($entries as $entry) {
             $urls[] = [
                 'salesChannelId' => $salesChannelId,
@@ -519,7 +524,7 @@ class DynamicSeoUrlsService
         }
 
         // You might have to create a new context using another specific language ID
-        $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, array_column($urls, 'foreignKey') , $urls);
+        $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, array_column($urls, 'foreignKey'), $urls, $salesChannel);
     }
 
     private function getStorefrontSalesChannelId(Context $context): ?string
@@ -542,16 +547,16 @@ The method `writeSeoEntries` will look for a Storefront sales channel and return
 The [creating a storefront controller](../../storefront/controllers/add-custom-controller.md) guide covers how to create a controller with the example route used here.
 :::
 
-It will then use the built array and all of the other information like the context, the route name and an array of foreign keys for the method `updateSeoUrls` of the `SeoUrlPersister`. And that's it for your dynamic content.
+Pass the context, route name, foreign keys, URL array, and Storefront sales channel entity to `updateSeoUrls` of the `SeoUrlPersister`.
 
 ## Reacting to content deletion
 
-If your custom dynamic content is deleted, you have to set the column `is_deleted` to `1` of the respective `seo_url` entry. This can be achieved with a new method, in this example we'll call it `deleteSeoEntries`. It will receive an array of IDs to be deleted. Those IDs have to match the value of the column `foreign_key` in the `seo_url` table. Also it needs the current context. It will take care of setting the generated SEO URLs to `deleted`. It will **not** delete an entry from the table `seo_url`.
+If your custom dynamic content is deleted, you have to set the column `is_deleted` to `1` of the respective `seo_url` entry. This can be achieved with a new method, in this example we'll call it `deleteSeoEntries`. It receives an array of IDs to be deleted. Those IDs have to match the value of the column `foreign_key` in the `seo_url` table. The method also needs the current context and the sales channel entity whose SEO URLs it marks as deleted. It does **not** delete an entry from the table `seo_url`.
 
 ```php
-public function deleteSeoEntries(array $ids, Context $context): void
+public function deleteSeoEntries(array $ids, Context $context, \Shopware\Core\System\SalesChannel\SalesChannelEntity $salesChannel): void
 {
-    $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, $ids, []);
+    $this->seoUrlPersister->updateSeoUrls($context, self::ROUTE_NAME, $ids, [], $salesChannel);
 }
 ```
 
