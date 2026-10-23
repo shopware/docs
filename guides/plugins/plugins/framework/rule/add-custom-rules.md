@@ -271,7 +271,7 @@ The last step is, creating a template for our condition. We will create a new fi
                       id="first-monday"
                       size="medium"
                       :options="selectValues"
-                      v-model="isFirstMondayOfTheMonth"
+                      v-model:value="isFirstMondayOfTheMonth"
                       class="field--main">
     </sw-single-select>
 {% endblock %}

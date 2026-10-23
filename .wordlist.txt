@@ -97,6 +97,7 @@ BBundle
 BCP
 BDD
 BITV
+BYOL
 BackedEnum
 Backend
 BaseContext
@@ -291,6 +292,7 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+Cyberattack
 CycloneDX
 DAL
 DBAL
@@ -760,6 +762,7 @@ PHPUnit
 PHPunit
 PII
 PIM
+PKCE
 POC
 POS
 PRs
@@ -1275,6 +1278,7 @@ bPlatform
 bRestApi
 bServiceExtension
 bTemplateExtension
+backdoors
 backend
 backends
 backface
@@ -1341,6 +1345,7 @@ checksums
 ci
 classmap
 classname
+claude
 cleanUp
 cleanUpPreviousState
 clearTypeAndCheck
@@ -1934,6 +1939,7 @@ recalculable
 redeclaration
 redeclared
 redeclaring
+redirectionio
 redis
 refactorings
 referenceField
