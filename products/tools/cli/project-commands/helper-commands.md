@@ -234,23 +234,3 @@ shopware-cli project config init
 This generates a basic configuration file for your Shopware project. Shop URL and Admin API credentials are written under `environments.local` (omit `-e`/`--env` on other project commands to target it). The file is also referenced in development environment setup and deployment configurations.
 
 Top-level `url` and `admin_api` keys are deprecated: config files that still use them keep working, but the CLI logs a deprecation warning telling you to move these values under `environments`.
-
-## Generate JWT secret
-
-:::danger
-**Deprecated:** `shopware-cli project generate-jwt` is deprecated and planned to be removed in October 2026. The command remains functional during the deprecation window.
-:::
-
-```bash
-shopware-cli project generate-jwt <path-to-project>
-```
-
-Generates new JWT secret keys (private and public) and stores them in `<path-to-project>/config/jwt/`. Shopware 6.5 and 6.6 sign JWT tokens with these keys and create them during `system:install` by default, so you only need this command to create them yourself. Shopware 6.7 and later does not use these keys: JWT tokens are signed with the `APP_SECRET` environment variable (at least 32 characters), so this command is not needed.
-
-Output as environment variables:
-
-```bash
-shopware-cli project generate-jwt --env
-```
-
-This outputs keys as `JWT_PRIVATE_KEY` and `JWT_PUBLIC_KEY` environment variables (base64-encoded), useful for CI/CD environments.
