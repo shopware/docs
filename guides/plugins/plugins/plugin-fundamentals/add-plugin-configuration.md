@@ -46,7 +46,9 @@ As you now know how to create configurations, you can start to fill it with life
 
 The `config.xml` follows a simple syntax. You can organize the content in `<card>` elements.
 
-Every `config.xml` must contain at least one `<card>` element with a `<title>` and at least one `<input-field>`. See the minimum `config.xml` below:
+Place cards directly inside `<config>` or, starting with Shopware 6.7.16.0, group them inside `<tab>` elements.
+
+The following minimum example contains one card with a title and an input field:
 
 ::: code-group
 
@@ -67,6 +69,59 @@ Every `config.xml` must contain at least one `<card>` element with a `<title>` a
 
 Please make sure to specify the `xsi:noNamespaceSchemaLocation` as shown above and fetch the external resource into your IDE if possible.
 This enables auto-completion and suggestions for this XML file and will therefore help you to prevent issues and bugs.
+
+### Tabs in your configuration
+
+::: info
+Configuration tabs are available starting with Shopware 6.7.16.0 without a feature flag.
+:::
+
+Use `<tab>` to group related cards, with `<name>` as the technical tab name and `<title>` as its displayed label.
+
+Translate tab titles with the `lang` attribute, just like card titles.
+
+The following example combines a card outside any tab with a named tab:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Basic settings</title>
+        <input-field type="bool">
+            <name>enabled</name>
+            <label>Enable integration</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <tab>
+        <name>shipping</name>
+        <title>Shipping</title>
+        <title lang="de-DE">Versand</title>
+        <card>
+            <title>Delivery settings</title>
+            <input-field type="int">
+                <name>deliveryDays</name>
+                <label>Delivery time in days</label>
+                <defaultValue>3</defaultValue>
+            </input-field>
+        </card>
+    </tab>
+</config>
+```
+
+Cards outside explicit tabs are grouped into a first tab labeled **General**, followed by the explicit tabs in XML order.
+
+Add more `<card>` elements inside a tab or more `<tab>` elements inside `<config>` to organize larger forms.
+
+Tabs are optional, and existing configurations containing only root-level cards still work.
+
+The Administration displays the tab navigation only when the schema contains more than one tab.
+
+Tab and card names do not become part of stored configuration keys, so the fields above remain `SwagBasicExample.config.enabled` and `SwagBasicExample.config.deliveryDays`.
+
+For custom form consumers, see [Reading the configuration form schema](use-plugin-configuration.md#reading-the-configuration-form-schema).
 
 ### Card Titles
 
