@@ -49,6 +49,9 @@ If no SDK is available for your language, you can implement the registration pro
 
 The registration request is made via a `GET` request to the URL you provide in your app's manifest file.
 
+Before sending it, Shopware verifies that its `APP_URL` reaches this installation.
+If the verification fails, the request is not sent; see [APP_URL Verification](app-url-verification.md).
+
 <<< @/docs/snippets/config/app/setup.xml
 
 The following query parameters will be sent with the request:
@@ -521,3 +524,6 @@ This means that this installation will get a new shopId, which is used during re
 As the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but, as a consequence, the data on the app's side associated with the old shopId cannot be accessed on the new installation.
 
 * **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
+
+Before MoveShopPermanently or ReinstallApps registers the apps again, Shopware verifies that `APP_URL` reaches this installation.
+If the [verification](app-url-verification.md) fails, the strategy stops and the shop ID stays unchanged.
