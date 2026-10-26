@@ -80,15 +80,19 @@ function detect(pr, files) {
     }
 
     const recommendation = signals.some(
-        signal => signal.priority === "high"
-    );
+    signal => signal.priority === "high"
+);
 
-    return {
-        recommendation,
-        manualReview: reviewSignals.length > 0,
-        signals,
-        reviewSignals
-    };
+const manualReview =
+    reviewSignals.length > 0 ||
+    signals.some(signal => signal.priority === "medium");
+
+return {
+    recommendation,
+    manualReview,
+    signals,
+    reviewSignals
+};
 }
 
 module.exports = detect;
