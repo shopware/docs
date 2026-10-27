@@ -62,7 +62,7 @@ This prompt asks, "How do you want to run Shopware?":
 - **Use PHP and Composer; Shopware CLI handles the installation**: skips Docker and sets up Shopware directly with a local PHP and Composer installation instead.
 
 :::info
-Shopware CLI checks for Docker availability. If it is unavailable, the Docker option is labeled as unavailable and local PHP is selected. Passing `--docker` anyway fails with a missing dependencies error.
+Shopware CLI checks for Docker availability. If it is unavailable, the Docker option's label explains the problem and the first step to fix it, for example `(Docker is not running, start it first)`, and local PHP is selected by default. Choosing the Docker option anyway re-checks Docker, so starting it and selecting the option again continues the wizard without a restart; if it is still unavailable, the error explains what must be true first (for example, "Docker is running") and offers local PHP as an alternative. Passing `--docker` anyway fails with a missing dependencies error.
 :::
 
 ### Do you need a Shopware account?
