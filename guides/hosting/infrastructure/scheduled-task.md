@@ -82,6 +82,30 @@ You can use the flag `--no-wait` and run the command from an operating system sc
 
 The scheduler and the task execution are separate steps. `scheduled-task:run` selects due tasks, sets their status to `queued` and dispatches one message per task to the message bus. The task handler runs when a message consumer handles that message, see [Message Queue](message-queue.md). The following sections describe what the `TaskScheduler` and the `ScheduledTaskExecutor` do when scheduling or message consumption was interrupted.
 
+This sequence shows how `TaskScheduler` dispatches a due task through the message bus and transport, then how `Symfony Messenger Worker` delivers it through the bus to `ScheduledTaskHandler`, which passes it to `ScheduledTaskExecutor` to call `run()`.
+
+```mermaid
+sequenceDiagram
+    participant scheduler as TaskScheduler
+    participant database as scheduled_task table
+    participant messageBus as Symfony Message Bus
+    participant queue as Messenger transport
+    participant worker as Symfony Messenger Worker
+    participant handler as ScheduledTaskHandler
+    participant executor as ScheduledTaskExecutor
+    scheduler->>database: Read due tasks
+    database-->>scheduler: Return matching tasks
+    scheduler->>messageBus: Dispatch ScheduledTask message
+    messageBus->>queue: Send message to transport
+    Note over queue,worker: Without a running consumer, the queued message does not execute the handler
+    worker->>queue: Receive next message
+    queue-->>worker: Return ScheduledTask message
+    worker->>messageBus: Dispatch received message
+    messageBus->>handler: Invoke __invoke(task)
+    handler->>executor: Execute handler with task
+    executor->>handler: Call run()
+```
+
 ### When the scheduler was not running
 
 `TaskScheduler` selects every row of `scheduled_task` whose `nextExecutionTime` is in the past and whose status is `scheduled` or `skipped`. A task that became overdue during downtime is therefore selected on the first pass after the scheduler runs again. For each selected row that reaches the dispatch step, a pass dispatches one task message, rather than one message per missed interval. The successful queuing branch updates the status without changing `nextExecutionTime`.
