@@ -319,7 +319,7 @@ shopware-cli project dump -e staging
 shopware-cli project logs -f -e staging
 ```
 
-Database connections are tunneled through the same SSH connection automatically: `DATABASE_URL` is resolved on the remote host via `shopware-deployment-helper dump-env`, and MySQL connections (TCP or unix socket) are forwarded over SSH without a separate persistent tunnel process.
+Database connections are tunneled through the same SSH connection automatically: `DATABASE_URL` is resolved on the remote host via `shopware-deployment-helper dump-env`, and MySQL connections (TCP or Unix socket) are forwarded over SSH without a separate persistent tunnel process.
 
 ## Ports
 
