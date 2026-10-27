@@ -116,6 +116,8 @@ Run `bin/console app:url:verify` after fixing `APP_URL`, so that the stored resu
 In the `prod` environment, the Administration shows a warning when the stored result is a hard fail and apps with a backend are installed.
 The warning shows the checked `APP_URL`, the HTTP status code, and the command to run.
 
+![APP_URL verification warning in the Administration](../../../../assets/apps-app-url-verification-warning.png)
+
 The Administration reuses the stored result:
 
 - A pass is reused for 24 hours.
