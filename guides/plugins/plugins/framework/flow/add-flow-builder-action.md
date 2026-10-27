@@ -450,7 +450,7 @@ Do not forget to import the file to the entry file `main.js`:
 
 ```JS
 // <plugin root>/src/Resources/app/administration/src/main.js
-import './extension/sw-flow-sequence-action';
+import('./extension/sw-flow-sequence-action');
 ```
 
 **Grouping Actions**
