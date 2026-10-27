@@ -313,7 +313,7 @@ environments:
 ```
 
 ```bash
-shopware-cli project console cache:clear -e staging
+shopware-cli project console -e staging cache:clear
 shopware-cli project sql -e staging
 shopware-cli project dump -e staging
 shopware-cli project logs -f -e staging
