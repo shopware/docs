@@ -7,41 +7,38 @@ nav:
 
 # Cart concurrency
 
-This page describes cart locking in the Shopware 6.7 core and explains where the `CHECKOUT__CART_LOCKED` error originates.
+This page explains why Shopware locks cart writes, which operations use the lock, and what happens when requests contend for the same cart.
 
-## Routes that lock the cart
+## Why cart locking exists
 
-The following core routes wrap their cart changes in `CartLocker::locked()`:
+Cart locking was introduced in Shopware 6.7.1.0 to avoid race conditions in cart-mutating routes. Competing acquisitions against the same lock store are rejected while the lock remains held.
 
-* `CartItemAddRoute` (`POST /store-api/checkout/cart/line-item`)
-* `CartItemUpdateRoute`
-* `CartItemRemoveRoute`
-* `CartDeleteRoute`
-* `CartOrderRoute`
+## What the lock covers
 
-`CartLocker` is marked `@internal`. This page describes its behavior and the resulting error, not an API to call directly.
+The `CartItemAddRoute`, `CartItemUpdateRoute`, `CartItemRemoveRoute`, `CartDeleteRoute`, and `CartOrderRoute` routes run their cart changes through `CartLocker`. `CartService` calls those same routes for its `add()`, `update()`, `remove()`, `removeItems()`, `deleteCart()`, and `order()` methods, so Storefront controllers that use these methods also use the lock.
 
-## How the lock works
+The add, update, remove, and order routes receive their cart before attempting acquisition; they don't reload it after acquiring the lock. `CartDeleteRoute` takes only the context and deletes the cart by its token.
 
-`CartLocker` creates a lock through the `lock.factory` service and passes a time to live of 5 seconds to `LockFactory::createLock()`. How long the lock actually lasts depends on the configured lock store. The lock key is `cart-lock` followed by the context token, so requests with the same token use the same key and requests with different tokens use different keys.
+## Client behavior during contention
 
-If acquiring a new lock returns `false`, `CartLocker` throws `CartException::cartLocked()`. The exception uses HTTP status 409 and the error code `CHECKOUT__CART_LOCKED`. Its message template is `Cart with token {{ token }} is locked due to concurrent write operation. Please try again later.`, with the context token filled in. The throw follows the failed `acquire()` call directly; `CartLocker` itself does not retry.
+Acquisition is non-blocking: a request attempting to acquire an already-held lock receives the conflict immediately. When acquisition fails, that request's callback doesn't run. For Store API calls, the conflict response uses HTTP 409 and the `CHECKOUT__CART_LOCKED` error code. Storefront controllers can catch `CartException` and show an error instead; for example, `CheckoutController::order()` catches it and adds a flash message.
 
-If the context already holds an acquired lock, `locked()` runs the callback without acquiring a second lock. For a newly acquired lock, `CartLocker` calls `release()` in a `finally` block when the callback returns or throws. `CartLocker` contains no logic that reverts what the callback already wrote.
+`CartException::cartLocked()` supplies the token-interpolated message `Cart with token {{ token }} is locked due to concurrent write operation. Please try again later.` The standard offcanvas add-to-cart path does not retry conflicts. With offcanvas opening disabled, the built-in error fallback can resend the add request; this is not a conflict-specific retry policy.
 
-## Lock store
+## What the lock does not guarantee
 
-The core ships `framework.lock: '%env(LOCK_DSN)%'` and injects the `lock.factory` service into `CartLocker`. That setting reads the `LOCK_DSN` environment variable, which defaults to `flock`.
+The add, update, remove, and order routes receive their cart before attempting acquisition. If request B loads a cart before request A saves it, A can save and release its lock before B acquires the lock. B can then save its stale cart and remove A's item. The lock only turns competing acquisitions against a held lock into a conflict; it doesn't make cart loading, modification, and saving one atomic operation or compare cart versions.
 
-The [lock store guide](../../../guides/hosting/performance/lock-store.md) recommends a remote store for cluster setups.
+`CartValueResolver` supplies Store API `Cart` arguments through `CartService::getCart()` using the context token. `CartLoadRoute` itself takes no cart lock and calls `calculateByToken()` only when no cart was supplied or its token differs from the requested token. Loading can still save the cart: `CartRuleLoader` persists it when line item data or errors change, including during the load before an add route attempts acquisition.
 
-## What the lock does not cover
+Other write paths don't use `CartLocker`. `CartService::recalculate()` calculates and saves the cart directly. `StorefrontCartFacade` also saves a recalculated cart when it switches blocked payment or shipping methods. `CartLocker` doesn't roll back writes that a callback completes before it throws, and it defines no retry interval or retry limit. When the same line item ID and type already exist, `LineItemCollection::add()` adds the quantities; a type mismatch throws, and increasing the quantity of a non-stackable item can be rejected.
 
-* **Loading the cart.** `CartItemAddRoute::add()` receives the cart as the `$cart` argument and calls `locked()` inside the method body. The closure adds to that `$cart` object, calculates and saves it. The route does not load the cart again after the lock is acquired. For the Store API routes, `CartValueResolver` fills the `Cart` argument through `CartService::getCart()` with the context token.
-* **Reading the cart.** `CartLoadRoute` is not given a `CartLocker` in its service definition. It calls `calculateByToken()` only when no cart was resolved or the resolved cart has a different token.
-* **Persistence.** The MySQL cart persister writes the whole payload, with either `INSERT ... ON DUPLICATE KEY UPDATE` or `UPDATE ... WHERE token = :token`. Neither statement compares a version or the previously stored payload.
-* **Repeated adds.** When a line item with the same ID and type is already in the cart, `LineItemCollection::add()` tries to set the quantity of the existing item to the sum of both quantities. A type mismatch throws an exception, and `setQuantity()` can reject a non-stackable item.
+The lock key is `cart-lock` followed by the context token, so different tokens use different keys. The five-second time to live can expire before a callback finishes when the store expires locks, such as Redis. `CartLocker` doesn't renew an expired lock, so another callback can start before the first finishes. With the default `flock` store, the five-second time to live has no effect: the lock lasts until released. The default store is local to each host, so requests reaching different application servers aren't serialized. Configure a shared remote store for clusters.
 
-## Handling the error
+## Operator configuration
 
-When `CartLocker` throws `CHECKOUT__CART_LOCKED`, the locked callback has not run for that request. Cart or context changes made before the lock attempt can still have been saved. The message asks to try again later. The platform source doesn't define a retry interval or a retry limit.
+Shopware configures `framework.lock` through the `LOCK_DSN` environment variable, which defaults to `flock`. The [lock store guide](../../../guides/hosting/performance/lock-store.md) recommends a remote store for cluster setups.
+
+## Extension developers
+
+`CartLocker` is marked `@internal`. When a callback already holds the lock in its `SalesChannelContext`, a nested cart write in that context runs without acquiring a second lock. This allows an event subscriber called during a locked cart operation to use `CartService` without trying to reacquire the lock. For a newly acquired lock, `release()` runs in a `finally` block whether the callback returns or throws.
