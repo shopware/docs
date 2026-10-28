@@ -33,17 +33,13 @@ By default, Shopware CLI will try to lock the table before dumping the data. Thi
 
 ## Anonymizing data
 
-The `--anonymize` flag will anonymize known user data tables. This is widely used to make production database dumps safe for local development:
+The `--anonymize` flag rewrites known personal data fields while preserving customer and order records for local testing:
 
 ```bash
 shopware-cli project dump --anonymize
 ```
 
-Production databases can be very large (100GB+ of MySQL data), making it impractical to use complete unmodified production data locally. The `--anonymize` flag removes sensitive customer information while preserving database structure and relationships for realistic local testing.
-
-The following tables are anonymized:
-
-[Find the complete list here](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go#L246)
+See the [built-in anonymization rules](https://github.com/shopware/shopware-cli/blob/main/internal/shop/config.go). Plugin data and configuration secrets require additional rules.
 
 It is possible to customize the anonymization process by using the `dump.rewrite` configuration in the `.config/shopware-project.yml` file.
 
@@ -55,8 +51,28 @@ dump:
       # Rewrite column content to new value
       <column-name>: "'new-value'"
       # Use go-faker to generate data
-      <column-name>: "faker.Internet().Email()" # See https://github.com/jaswdr/faker for all available functions
+      <column-name>: "faker.Internet.Email()" # See https://github.com/jaswdr/faker for all available functions
 ```
+
+### Extension anonymization
+
+`shopware-cli project dump --anonymize` rewrites personal data in Shopware core tables. An extension can add its own tables and system config secrets in `.config/shopware-extension.yml`. A project dump with `--anonymize` merges those rules from every installed extension. A column already set under `dump.rewrite` in the project config, or by the built-in rules, is left unchanged. If an extension config cannot be read, or an extension listed in `composer.lock` cannot be loaded from `vendor`, the dump stops with an error instead of skipping that extension.
+
+```yaml
+anonymize:
+  tables:
+    swag_example_token:
+      access_token: "''"
+      email: faker.Internet.Email()
+  system_config:
+    - SwagExample.config.clientSecret
+    - key: SwagExample.config.merchantEmail
+      value: faker.Internet.Email()
+    - key: SwagExample.config.environment
+      value: sandbox
+```
+
+`tables` uses the same column expressions as the project `dump.rewrite` map. Write `"''"` to store an empty string and `"NULL"` to store NULL. `system_config` matches `system_config.configuration_key`. A plain key omits that row from the dump. `value` replaces `configuration_value` with `{"_value": value}`. A value that starts with `faker.` is generated per row. When several extensions remove keys from the same column with `JSON_REMOVE`, their rules are combined.
 
 ## Ignoring table content
 
@@ -67,6 +83,7 @@ Some tables are not relevant for dumps, like log tables. To ignore some default 
 - `dead_message`
 - `enqueue`
 - `messenger_messages`
+- `import_export_log`
 - `increment`
 - `elasticsearch_index_task`
 - `log_entry`
@@ -79,13 +96,14 @@ Some tables are not relevant for dumps, like log tables. To ignore some default 
 - `version_commit_data`
 - `webhook_event_log`
 
-To ignore additional tables, use the `dump.ignore` configuration in the `.config/shopware-project.yml` file.
+To exclude additional table data from every dump, use `dump.nodata` in `.config/shopware-project.yml`. Table schemas are still exported. Table names and glob patterns are supported; tables that are absent are skipped.
 
 ```yaml
 # .config/shopware-project.yml
 dump:
   nodata:
-    - <table-name>
+    - log_entry
+    - 'my_plugin_log_*'
 ```
 
 ## Ignoring entire tables
