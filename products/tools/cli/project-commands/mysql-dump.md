@@ -31,6 +31,20 @@ Database dumps can be pretty large, it is possible to compress the dump using `g
 
 By default, Shopware CLI will try to lock the table before dumping the data. This can fail if the MySQL user has no rights to lock the table. To skip the lock tables command, use the `--skip-lock-tables` flag.
 
+## `INSERT` batching
+
+The dump command batches up to 100 rows per `INSERT` statement and targets a maximum statement size of 1 MiB. It starts a new statement before adding a row that would exceed the size target. This keeps large image or document values from accumulating into a single oversized statement.
+
+Use `--insert-into-limit` to adjust the row limit and `--insert-into-max-bytes` to adjust the byte target. Both limits apply:
+
+```bash
+shopware-cli project dump --insert-into-limit 100 --insert-into-max-bytes 1048576
+```
+
+For one row per statement, use `--insert-into-limit 1`. `--quick` also writes one row per statement unless an explicit positive `--insert-into-limit` takes precedence.
+
+A row larger than the byte target is written on its own and remains intact. The target counts the SQL syntax and encoded values, including the hex expansion of binary data. Individual rows must still fit the import client's and server's `max_allowed_packet` settings. See [MySQL's packet size documentation](https://dev.mysql.com/doc/refman/8.4/en/packet-too-large.html).
+
 ## Anonymizing data
 
 The `--anonymize` flag will anonymize known user data tables. This is widely used to make production database dumps safe for local development:
