@@ -73,7 +73,7 @@ This enables auto-completion and suggestions for this XML file and will therefor
 ### Tabs in your configuration
 
 ::: info
-Configuration tabs are available starting with Shopware 6.7.16.0 without a feature flag.
+Configuration tabs are available starting with Shopware 6.7.16.0.
 :::
 
 Use `<tab>` to group related cards, with `<name>` as the technical tab name and `<title>` as its displayed label.
