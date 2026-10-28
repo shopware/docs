@@ -97,6 +97,7 @@ BBundle
 BCP
 BDD
 BITV
+BYOL
 BackedEnum
 Backend
 BaseContext
@@ -231,6 +232,7 @@ Codestyle
 Cognito
 CommercialB
 CommercialBundle
+CommonJS
 ComponentFactory
 Composables
 ConfigJson
@@ -290,10 +292,12 @@ CustomerRecoveryAware
 CustomerRecoveryStorer
 CustomerStorer
 CustomerTagRule
+Cyberattack
 CycloneDX
 DAL
 DBAL
 DDL
+DER
 DESC
 DHL
 DIC
@@ -759,6 +763,7 @@ PHPUnit
 PHPunit
 PII
 PIM
+PKCE
 POC
 POS
 PRs
@@ -1274,6 +1279,7 @@ bPlatform
 bRestApi
 bServiceExtension
 bTemplateExtension
+backdoors
 backend
 backends
 backface
@@ -1340,6 +1346,7 @@ checksums
 ci
 classmap
 classname
+claude
 cleanUp
 cleanUpPreviousState
 clearTypeAndCheck
@@ -1353,12 +1360,14 @@ cmss
 codebase
 codeblock
 codeblocks
+codemod
 codemods
 codereview
 colorpicker
 compatability
 componentSectionRenderer
 composable
+composables
 config
 configComponent
 configs
@@ -1450,6 +1459,7 @@ dereference
 dereferenced
 describeFeatures
 destructure
+destructured
 destructuring
 dev
 devenv
@@ -1521,6 +1531,7 @@ externalReference
 failover
 fallback
 fallbacks
+fallthrough
 fastly
 favicon
 fetchable
@@ -1644,10 +1655,12 @@ init
 initialisms
 initializer
 initializers
+inlines
 installable
 instantiation
 integrations
 interceptable
+interop
 intl
 invalidations
 io
@@ -1691,6 +1704,8 @@ jwt
 kebabCase
 keyframes
 keypress
+keystore
+keystores
 landingpage
 lang
 lavinmq
@@ -1782,6 +1797,7 @@ newQuantity
 newsletterRecipient
 ngrok
 nixos
+nixpkgs
 nl
 nofollow
 noindex
@@ -1821,6 +1837,7 @@ otel
 otlp
 overridable
 overrideComponentSetup
+overrideable
 oversales
 paas
 packagist
@@ -1925,6 +1942,7 @@ recalculable
 redeclaration
 redeclared
 redeclaring
+redirectionio
 redis
 refactorings
 referenceField
@@ -2042,6 +2060,7 @@ snackbar
 snackbars
 snakeCase
 sortings
+sourcemap
 sourcemaps
 sql
 src
@@ -2063,6 +2082,7 @@ stopwords
 storages
 storefrontApiRequest
 storer
+stringable
 strlen
 struct
 structs
@@ -2086,6 +2106,8 @@ substring
 supervisord
 svg
 sw
+swDefineOverride
+swDefinePublic
 swSelect
 sw_extends
 swoole
@@ -2158,8 +2180,11 @@ unhandled
 uninstallation
 uniqBy
 unminified
+unmount
+unmounting
 unprefixed
 unregister
+unregisters
 unrequested
 unsecure
 unserialize
@@ -2175,7 +2200,27 @@ uptime
 uri
 url
 urls
+useCmsElement
+useCmsState
+useInlineSnippet
+useListing
+useMediaGridListener
+useMediaSidebarModal
+useNotification
+useNotificationTranslation
+usePlaceholder
+usePosition
+useRuleBetweenOperator
+useRuleContainer
+useSalutation
+useSwContext
+useSwPreviousState
+useSwProps
+useTranslateWithFallback
+useUserSettings
+useValidation
 useValidityRange
+useVideoCover
 userAware
 userRecovery
 userland

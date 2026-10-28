@@ -31,10 +31,11 @@ The root key of the configuration is the name which has to be a unique key. In t
 Each rate limit configuration needs the following keys:
 
 - `enabled`: Enables / Disables the rate limit for the specific route (default value: true).
-- `policy`: Possible policies are `fixed_window`, `sliding_window`, `token_bucket`, `time_backoff`. For more information check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#rate-limiting-policies).
+- `policy`: Possible policies are `fixed_window`, `sliding_window`, `token_bucket` (see the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#rate-limiting-policies)), plus the Shopware policies `time_backoff` and `system_config`.
 
 If you plan to configure the `time_backoff` policy, head over to [rate limiter](../../../../hosting/infrastructure/rate-limiter.md#configuring-time-backoff-policy) guide.
-Otherwise, check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#configuration) for the other keys you need for each policy.
+The `system_config` policy reads its limits from the system configuration. See the [rate limiter](../../../../hosting/infrastructure/rate-limiter.md#limits-from-the-system-configuration) guide.
+For the other policies, check the [Symfony documentation](https://symfony.com/doc/current/rate_limiter.html#configuration) for the required configuration keys.
 
 ```yaml
 // <plugin root>/src/Resources/config/rate_limiter.yaml
@@ -146,6 +147,7 @@ To do this, we call the method `ensureAccepted` of the rate limiter which accept
 
 - `route`: Unique name of the rate limit, we defined in the configuration.
 - `key`: Key we want to use to limit the request e.g., the client IP.
+- `salesChannelId` (optional): ID of the sales channel the request belongs to. Limits of the `system_config` policy are then read from the configuration of that sales channel.
 
 When calling the `ensureAccepted` method it counts the request for the key in the defined cache.
 If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\Exception\RateLimitExceededException`.
@@ -159,6 +161,30 @@ public function load(Request $request, SalesChannelContext $context): ExampleRou
     // Limit ip address
     $this->rateLimiter->ensureAccepted('example_route', $request->getClientIp());
     
+    ...
+}
+```
+
+### Limit per sales channel
+
+::: info
+The `salesChannelId` argument is available starting with Shopware 6.7.16.0. Until Shopware 6.8.0.0, it is not part of the declared method signature and can only be passed as a positional argument. See [UPGRADE-6.8.md](https://github.com/shopware/shopware/blob/trunk/UPGRADE-6.8.md).
+:::
+
+This applies when `example_route` uses `policy: 'system_config'` with `reset` and one `limits` entry per configuration key. If the limit is set per sales channel, pass the sales channel ID as the third argument.
+
+When you pass it, include the sales channel ID in the key as well. Persisted buckets keep the limits they were created with. If you scope the limit but share the key across sales channels, the channel that created the bucket sets the limits for all of them until the bucket expires. Use the same composed key when you call `reset()`.
+
+```php
+// <plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php
+
+#[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET','POST'])]
+public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
+{
+    // Limit IP address per sales channel
+    $key = $request->getClientIp() . '-' . $context->getSalesChannelId();
+    $this->rateLimiter->ensureAccepted('example_route', $key, $context->getSalesChannelId());
+
     ...
 }
 ```
