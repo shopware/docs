@@ -7,13 +7,14 @@ nav:
 
 # Use Plugin Configuration
 
-The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins. This guide helps you to use them in your plugin, showing you how to read plugin configuration values in PHP, Administration JavaScript, and Storefront code.
+The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins.
+This guide helps you to use them in your plugin, showing you how to read plugin configuration values in PHP, Administration JavaScript, and Storefront code.
 
 ## Prerequisites
 
 - First, review the [Plugin Base Guide](../plugin-base-guide.md)
 - Then define a plugin configuration field in [Add plugin configuration](add-plugin-configuration.md)
-- Get familiar with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
+- Get familiar with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside a subscriber
 
 The example plugin includes a subscriber that listens to the `product.loaded` event and is called every time a product is loaded.
 
@@ -122,9 +123,12 @@ class MySubscriber implements EventSubscriberInterface
 
 The `SystemConfigService` is now available in your subscriber.
 
-Use the `get` method to read configuration values. Calling `$this->systemConfigService->get('example')` would be ambiguous — multiple plugins could define a field with the same technical name.
+Use the `get` method to read configuration values.
+Calling `$this->systemConfigService->get('example')` would be ambiguous — multiple plugins could define a field with the same technical name.
 
-To avoid conflicts, plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>`. Thus, it would be `SwagBasicExample.config.example` here.
+To avoid conflicts, plugin configurations are always prefixed.
+By default, the pattern is the following: `<BundleName>.config.<configName>`.
+Thus, it would be `SwagBasicExample.config.example` here.
 
 ```php
 // <plugin root>/src/Subscriber/MySubscriber.php
@@ -337,83 +341,3 @@ export default class ExamplePlugin extends PluginBaseClass {
 
 </Tab>
 </Tabs>
-
-## Migrating custom configuration form consumers
-
-Starting with Shopware 6.7.16.0, migrate code that loads or modifies configuration form definitions to the tab structure before the legacy APIs are removed in Shopware 6.8.
-
-### Administration and API clients
-
-| Legacy API                                 | Replacement                                  |
-| :----------------------------------------- | :------------------------------------------- |
-| `systemConfigApiService.getConfig(domain)` | `systemConfigApiService.getSchema(domain)`   |
-| `GET /api/_action/system-config/schema`    | `GET /api/_action/system-config/get-schema`  |
-| `sw-system-config` data property `config`  | `sw-system-config` data property `schema`    |
-| Iteration over `config[].elements[]`       | Iteration over `schema[].cards[].elements[]` |
-
-The legacy schema endpoint also requires `system_config:read`, so integrations that previously called it without that privilege must update their ACL role.
-
-Shopware 6.7 retains compatibility for the component's legacy `config` property and decorated `getConfig()` methods, but new customizations should use `schema` and `getSchema()`.
-
-For example, an override of `sw-system-config` can modify a field after the parent loads the schema:
-
-```javascript
-Shopware.Component.override('sw-system-config', {
-    methods: {
-        async readConfig() {
-            await this.$super('readConfig');
-
-            for (const tab of this.schema) {
-                for (const card of tab.cards) {
-                    const field = card.elements.find(
-                        (element) => element.name === 'SwagBasicExample.config.deliveryDays',
-                    );
-
-                    if (field) {
-                        field.config.disabled = true;
-                    }
-                }
-            }
-        },
-    },
-});
-```
-
-### PHP configuration definitions
-
-Continue injecting `Shopware\Core\System\SystemConfig\Service\ConfigurationService` and replace its legacy getters:
-
-| Deprecated method                                              | Replacement                                                             |
-| :------------------------------------------------------------- | :---------------------------------------------------------------------- |
-| `getConfiguration($domain, $context)`                          | `getSystemConfigDefinition($domain, $context)`                          |
-| `getResolvedConfiguration($domain, $context, $salesChannelId)` | `getResolvedSystemConfigDefinition($domain, $context, $salesChannelId)` |
-
-The replacement methods return a list of `SystemConfigTab` DTOs containing `SystemConfigCard` and `SystemConfigElement` DTOs from the `Shopware\Core\System\SystemConfig\DTO` namespace.
-
-Access DTO properties and traverse tabs before cards, instead of reading the legacy array of cards.
-
-With an injected `$configurationService`, a Shopware `$context`, and an optional `$salesChannelId`, read resolved field values like this:
-
-```php
-$tabs = $configurationService->getResolvedSystemConfigDefinition(
-    'SwagBasicExample.config',
-    $context,
-    $salesChannelId,
-);
-
-$values = [];
-
-foreach ($tabs as $tab) {
-    foreach ($tab->cards as $card) {
-        foreach ($card->elements as $element) {
-            $values[$element->name] = $element->value;
-        }
-    }
-}
-```
-
-Use `getSystemConfigDefinition()` when you only need definitions, and `getResolvedSystemConfigDefinition()` when field values should include saved values for the selected sales channel with fallback to XML defaults.
-
-Field options remain available through `$element->config`, for example `$element->config['defaultValue']`.
-
-Reading saved values through `SystemConfigService::get()`, `systemConfigApiService.getValues()`, or the Twig `config()` function uses the same configuration keys as before.
