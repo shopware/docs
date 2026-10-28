@@ -68,6 +68,22 @@ dump:
       <column-name>: "faker.Internet.Email()" # See https://github.com/jaswdr/faker for all available functions
 ```
 
+### Emptying individual columns
+
+Use `dump.rewrite` to clear a column while keeping the table's rows and its other columns. For example, to empty `my_table.foo_bar_col`:
+
+```yaml
+# .config/shopware-project.yml
+dump:
+  rewrite:
+    my_table:
+      foo_bar_col: "NULL"
+```
+
+Rewrite values are SQL expressions. Use `"NULL"` for a nullable column, `"''"` for an empty string, or `"0"` to reset a numeric value. Quote `"NULL"` in YAML so it remains a SQL expression rather than a YAML null value. The replacement must satisfy the column's constraints.
+
+These rewrites apply to every dump, including dumps with `--skip-customer-data`; `--anonymize` is not required. They change only the exported values, leaving the source database unchanged.
+
 ### Extension anonymization
 
 `shopware-cli project dump --anonymize` rewrites personal data in Shopware core tables. An extension can add its own tables and system config secrets in `.config/shopware-extension.yml`. A project dump with `--anonymize` merges those rules from every installed extension. A column already set under `dump.rewrite` in the project config, or by the built-in rules, is left unchanged. If an extension config cannot be read, or an extension listed in `composer.lock` cannot be loaded from `vendor`, the dump stops with an error instead of skipping that extension.
@@ -120,6 +136,14 @@ dump:
     - 'my_plugin_log_*'
 ```
 
+For one invocation, pass `--no-data` repeatedly:
+
+```bash
+shopware-cli project dump --no-data log_entry --no-data 'my_plugin_log_*'
+```
+
+These exclusions apply independently of `--skip-customer-data`. Use `dump.skip_customer_data_tables` when additional exclusions should apply only in that mode.
+
 ## Ignoring entire tables
 
 It is also possible to completely ignore a table **not only the content**.
@@ -130,6 +154,41 @@ dump:
   ignore:
     - <table-name>
 ```
+
+## Dumps without customer data
+
+Use `shopware-cli project dump --skip-customer-data` to export a shop without customers, orders, wishlists, newsletter recipients, reviews, documents, and related history. Table schemas are kept. Customer groups, document types, admin users, integrations, and catalog data are kept.
+
+Skipping customer data automatically includes `--clean`, excluding transient data such as queued messages, logs, indexing tasks, and queue statistics. This also applies when enabled through `dump.skip_customer_data: true`.
+
+Promotion settings and individual codes are kept, but their redemption history is reset:
+
+- `promotion.orders_per_customer_count` is set to `NULL`.
+- `promotion.order_count` is set to `0`.
+- `promotion_individual_code.payload` is set to `NULL`.
+
+These resets take precedence over project rewrites for those columns. Rewrites for other columns remain in effect.
+
+`--skip-customer-data` and `--anonymize` are mutually exclusive. Add plugin tables in `.config/shopware-project.yml` to exclude their data only when skipping customer data:
+
+```yaml
+dump:
+  skip_customer_data_tables:
+    - klarna_payment_request_log
+    - payone_payment_card
+    - payone_payment_mandate
+    - payone_payment_redirect
+    - unzer_payment_payment_device
+    - unzer_payment_transfer_info
+    - crefo_pay_transaction_refund_history
+    - crefo_pay_transaction_capture_history
+```
+
+`dump.skip_customer_data_tables` extends the built-in exclusions when `--skip-customer-data` is passed. Set `dump.skip_customer_data: true` to enable this mode by default, which also prevents using `--anonymize`.
+
+For exclusions that apply to every dump, use `dump.nodata`, or pass `--no-data` repeatedly for one invocation. All these lists accept table names and glob patterns, for example `'payone_payment_*'`. Tables that are absent are skipped. Use `dump.ignore` only to omit both schema and data.
+
+The preset covers known Shopware core tables. Plugin tables need explicit exclusions. Database dumps do not remove files such as invoices stored on disk, or secrets in shop configuration. Use `--anonymize` separately when you need to keep customer and order records with rewritten values.
 
 ## Adding a where clause
 
