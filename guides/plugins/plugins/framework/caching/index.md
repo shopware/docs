@@ -91,7 +91,7 @@ class HttpCacheCookieListener implements EventSubscriberInterface
         private readonly CartService $cartService
     ) {
     }
-    
+
     public static function getSubscribedEvents(): array
     {
         return [
@@ -204,14 +204,14 @@ class CacheKeySubscriber implements EventSubscriberInterface
             HttpCacheKeyEvent::class => 'addKeyPart',
         ];
     }
-    
+
     public function addKeyPart(HttpCacheKeyEvent $event): void
     {
         $request = $event->request;
         // Perform checks to determine the key
         $key = $this->determineKey($request);
         $event->add('myCustomKey', $key);
-        
+
         // You can also disable caching for certain conditions
         $event->isCacheable = false;
     }
@@ -239,7 +239,7 @@ class MyCustomEntityExtension
     public function __construct(
         private readonly CacheTagCollector $cacheTagCollector,
     ) {}
-    
+
     public function loadAdditionalData(): void
     {
         // Load the additional data you need, add it to the response, then add the correct tag to the cache entry
@@ -259,7 +259,7 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
     public function __construct(private CacheInvalidator $cacheInvalidator)
     {
     }
-    
+
     public static function getSubscribedEvents()
     {
         return [
@@ -268,12 +268,12 @@ class CacheInvalidationSubscriber implements EventSubscriberInterface
             ],
         ];
     }
-    
+
     public function invalidate(EntityWrittenContainerEvent $event): void
     {
         // Check if own entity written. In some cases, you want to use the primary keys for further cache invalidation
         $changes = $event->getPrimaryKeys(ExampleDefinition::ENTITY_NAME);
-        
+
         // No example entity changed? Then the cache does not need to be invalidated
         if (empty($changes)) {
             return;
@@ -295,7 +295,7 @@ The default tags that shopware adds to the HTTP-Cache are also invalidated autom
 However, the subscriber adheres to an exact invalidation concept, where any data written to the product invalidates cache tags for that specific product, even if the data is not used in the corresponding pages. This might lead to cases where the cache is invalidated too often, and the invalidation can be tweaked to the project's needs. Moreover, due to project-specific variations, it is not feasible to generalize the process.
 Therefore, all events it listens to are configured over the service configuration, so that all events, on which the subscriber listens to, can be manipulated via compiler passes.
 
-:::code-group
+::: code-group
 
 ```php [src/Core/Framework/DependencyInjection/cache.php]
 $services->set(CacheInvalidationSubscriber::class)

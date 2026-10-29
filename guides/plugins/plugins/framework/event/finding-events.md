@@ -211,6 +211,9 @@ Therefore, we have added fine-grained route events that are thrown for every rou
 
 To subscribe to a specific event, replace the `{route}` placeholder with the [actual symfony route name](https://symfony.com/doc/current/routing.html), e.g. `store-api.product.listing`.
 
+The events above are route-name aliases for Symfony kernel events.
+Store API routes also publish [extension events](../extension/finding-extensions.md) with `.pre`, `.post`, and `.error` hooks around the route body.
+
 ```php
 public static function getSubscribedEvents(): array
 {

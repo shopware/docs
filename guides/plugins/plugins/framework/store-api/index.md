@@ -7,7 +7,8 @@ nav:
 
 # Store API
 
-Use the Store API to add custom endpoints or extend existing ones in plugins. Store API routes are service-based and follow strict architectural conventions to ensure consistency, cacheability, and extensibility.
+Use the Store API to add custom endpoints or extend existing ones in plugins.
+Store API routes are service-based and follow strict architectural conventions to ensure consistency, cacheability, and extensibility.
 
 ## Core principles
 
@@ -24,7 +25,9 @@ Route design:
 * A route represents a single, focused functionality.
 * A route must return a `StoreApiResponse`, to convert to JSON.
 * A route response can only contain one object.
-* Routes may be decorated to extend behavior.
+* A route exposes an extension event through `ExtensionDispatcher`, which should be used to extend the route behavior.
+* Older routes may still extend abstract route contracts, which could be deprecated in the future.
+  They can still be used for backward compatibility, but it is encouraged to use the extension event instead.
 
 Storefront integration:
 
