@@ -64,8 +64,8 @@ In Google Tag Manager, read the parameters with data layer variables such as `ec
 
 ## Event and item parameters
 
-Items use the GA4 property names, and all numeric values are numbers.
-Amounts keep the decimals of the currency:
+Items use the GA4 property names.
+All numeric values are numbers, and amounts keep the decimals of the currency:
 
 | Parameter                                 | Content                                                        |
 | ----------------------------------------- | -------------------------------------------------------------- |
