@@ -44,27 +44,28 @@ In Google Tag Manager, read the parameters with data layer variables such as `ec
 
 ## Events
 
-| Event                  | Reported when                                                                                                                          |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `view_item_list`       | A product listing is shown, filtered, sorted or paginated                                                                              |
-| `select_item`          | The shopper follows a product link in a list                                                                                           |
-| `view_item`            | A product detail page is shown                                                                                                         |
-| `add_to_cart`          | A product is added to the cart. Repeating an order in the account reports one event with all its line items                            |
-| `remove_from_cart`     | A product is removed from the cart                                                                                                     |
-| `add_to_wishlist`      | A product is added to the wishlist                                                                                                     |
-| `remove_from_wishlist` | A product is removed from the wishlist                                                                                                 |
-| `view_cart`            | The cart page is shown, or the off-canvas cart opens when its tracking is enabled in the analytics settings                            |
-| `begin_checkout`       | The shopper starts the checkout                                                                                                        |
-| `add_shipping_info`    | A shipping method is selected, once per method and checkout                                                                            |
-| `add_payment_info`     | A payment method is selected, once per method and checkout                                                                             |
-| `purchase`             | An order is placed                                                                                                                     |
-| `login`                | A login succeeded. Reported on the page after the login, so a wrong password reports nothing                                           |
+| Event                  | Reported when                                                                                                                                                                                             |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `view_item_list`       | A product listing is shown, filtered, sorted or paginated                                                                                                                                                 |
+| `select_item`          | The shopper follows a product link in a list                                                                                                                                                              |
+| `view_item`            | A product detail page is shown                                                                                                                                                                            |
+| `add_to_cart`          | A product is added to the cart. Repeating an order in the account reports one event with the products it added, priced with the current prices of the cart                                                |
+| `remove_from_cart`     | A product is removed from the cart                                                                                                                                                                        |
+| `add_to_wishlist`      | A product is added to the wishlist                                                                                                                                                                        |
+| `remove_from_wishlist` | A product is removed from the wishlist                                                                                                                                                                    |
+| `view_cart`            | The cart page is shown, or the off-canvas cart opens when its tracking is enabled in the analytics settings                                                                                               |
+| `begin_checkout`       | The shopper starts the checkout                                                                                                                                                                           |
+| `add_shipping_info`    | A shipping method is selected, once per method and checkout                                                                                                                                               |
+| `add_payment_info`     | A payment method is selected, once per method and checkout                                                                                                                                                |
+| `purchase`             | An order is placed                                                                                                                                                                                        |
+| `login`                | A login succeeded. Reported on the page after the login, so a wrong password reports nothing                                                                                                              |
 | `sign_up`              | A customer account was created, also by a guest with "Create account" on the checkout finish page. Reported on the page after the registration. A guest checkout and a failed registration report nothing |
-| `search`               | The shopper searches                                                                                                                   |
+| `search`               | The shopper searches                                                                                                                                                                                      |
 
 ## Event and item parameters
 
-Items use the GA4 property names, and all numeric values are numbers:
+Items use the GA4 property names, and all numeric values are numbers.
+Amounts keep the decimals of the currency:
 
 | Parameter                                 | Content                                                        |
 | ----------------------------------------- | -------------------------------------------------------------- |
@@ -88,7 +89,7 @@ The cart, checkout and `purchase` events report these event parameters:
 
 ### Categories
 
-On a category page, the products of the category listing take their categories from the breadcrumb. On a product detail page, the main product does. For every other product, such as on the homepage, a landing page or the wishlist, in a product slider of a category page, or in the cross selling of a product detail page, the analytics script requests the path of the product when the shopper adds or removes it. The route `frontend.analytics.product-categories` answers `GET /widgets/analytics/product-categories?productId=<id>` with the breadcrumb of the product detail page as a list of names. It is HTTP cached, and its URL is only added to `window.router` when analytics are active.
+On a category page, the products of the category listing take their categories from the breadcrumb. On a product detail page, the main product does. For every other product, such as on the homepage, a landing page or the wishlist, in a product slider of a category page, or in the cross selling of a product detail page, the analytics script requests the path of the product when the shopper adds or removes it. The route `frontend.analytics.product-categories` answers `GET /widgets/analytics/product-categories?productId=<id>` with the breadcrumb of the product detail page as a list of names. It is HTTP cached, and its URL is only added to `window.router` when analytics are active. A request that takes longer than a second is aborted, and the event is reported without categories.
 
 Products added from a product box post their brand and categories in the line item payload, as `manufacturerName` and `categoryNames`. The cart, checkout and purchase events read them from there, so neither the cart nor the checkout loads anything for analytics.
 
