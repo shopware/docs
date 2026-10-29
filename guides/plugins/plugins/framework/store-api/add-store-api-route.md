@@ -236,7 +236,7 @@ You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` s
   "info": [],
   "paths": {
     "/example": {
-      "post": {
+      "get": {
         "tags": [
           "Example",
           "Endpoints supporting Criteria "
@@ -244,20 +244,19 @@ You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` s
         "summary": "Example entity endpoint",
         "description": "Returns a list of example entities.",
         "operationId": "example",
-        "requestBody": {
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/Criteria"
-                  }
-                ]
-              }
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of example entities to return.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 10
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Returns a list of example entities.",
@@ -459,7 +458,7 @@ return static function (RoutingConfigurator $routes): void {
 You can request your new route from the Storefront from inside a [custom JavaScript plugin](../../storefront/javascript/add-custom-javascript.md).
 We expect that you have followed that guide and know how to register your custom JavaScript plugin in the Storefront.
 
-When you want to request your custom route you can use the existing `http-client` service for that.
+Use a GET request with query parameters to call the route from your plugin.
 
 ```javascript
 // <plugin root>/src/Resources/app/storefront/src/example-plugin/example-plugin.plugin.js
@@ -467,16 +466,7 @@ const { PluginBaseClass } = window;
 
 export default class ExamplePlugin extends PluginBaseClass {
     async requestCustomRoute() {
-        const response = await fetch('/example', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                limit: 10,
-                offset: 0,
-            }),
-        });
+        const response = await fetch('/example?limit=10');
 
         if (!response.ok) {
             throw new Error('Request failed');

@@ -116,6 +116,9 @@ class SwagBasicExample extends Plugin
 
 ## Implementing rate limit in API route
 
+Adapt the example to your route's inputs.
+The rate limiter below needs a `Request` to read the client's IP address, so make sure it is available in `load()` and `_load()` and that `ExampleRouteExtension` accepts it.
+
 ### Inject service
 
 After we've configured our rate limit, we want to use it in our API route.
@@ -132,6 +135,10 @@ use Shopware\Core\Framework\Routing\StoreApiRouteScope;
 use Shopware\Core\PlatformRequest;
 use Shopware\Core\Framework\RateLimiter\RateLimiter;
 use Shopware\Core\Framework\Extensions\ExtensionDispatcher;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Swag\BasicExample\Core\Content\Example\Extension\ExampleRouteExtension;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
 //...
 
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
