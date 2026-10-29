@@ -86,7 +86,7 @@ Normally a shard in Elasticsearch can hold at least tens of gigabytes, so you mi
 | `SHOPWARE_ES_INDEXING_ENABLED` | `0` / `1`        | This variable activates the indexing to Elasticsearch                                                                                                                                                                            |
 | `SHOPWARE_ES_ENABLED`          | `0` / `1`        | This variable activates the usage of Elasticsearch for your shop                                                                                                                                                                 |
 | `SHOPWARE_ES_INDEX_PREFIX`     | `sw_myshop`      | This variable defines the prefix for the Elasticsearch indices                                                                                                                                                                   |
-| `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable activates the debug mode for Elasticsearch. Without this variable as = 0 you will get a fallback to mysql without any error message if Elasticsearch is not working                                                |
+| `SHOPWARE_ES_THROW_EXCEPTION`  | `0` / `1`        | This variable defines whether Elasticsearch errors are thrown. With `1` (the default) the exception is thrown. With `0` the error is only logged and you get a fallback to MySQL                                                 |
 
 :::info
 The `SHOPWARE_ES_INDEXING_ENABLED` and `SHOPWARE_ES_ENABLED` can seem as a duplicate setting, but has it's purpose. Here are two use cases for setting these differently:
@@ -109,7 +109,7 @@ APP_SECRET=1
 INSTANCE_ID=1
 DATABASE_URL=mysql://mysqluser:mysqlpassword@localhost:3306/shopwaredatabasename
 APP_URL=http://localhost
-MAILER_URL=smtp://localhost:1025
+MAILER_DSN=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
 OPENSEARCH_URL="elasticsearchhostname:9200"
@@ -127,7 +127,7 @@ APP_SECRET=1
 INSTANCE_ID=1
 DATABASE_URL=mysql://mysqluser:mysqlpassword@localhost:3306/shopwaredatabasename
 APP_URL=http://localhost
-MAILER_URL=smtp://localhost:1025
+MAILER_DSN=smtp://localhost:1025
 COMPOSER_HOME=/var/www/html/var/cache/composer
 
 OPENSEARCH_URL="elasticsearchhostname:9200"
