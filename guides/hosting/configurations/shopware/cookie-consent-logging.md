@@ -70,7 +70,7 @@ While logging is on:
 - The storefront sets the cookie `cookie-consent-id`. The banner lists it as a technically required cookie. Its lifetime is `retention_days`, and every decision renews it.
 - The banner configuration changes when you turn logging on or off. Visitors see the banner once more, so their decision gets logged.
 
-While logging is off, the storefront sends no request and sets no `cookie-consent-id` cookie.
+While logging is off, the storefront sends no request and sets no `cookie-consent-id` cookie. `/store-api/cookie-groups` does not list this cookie then, so headless frontends can skip the request too.
 
 ## Storages
 
