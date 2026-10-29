@@ -195,7 +195,7 @@ For full API documentation, see the [Store API - Fetch all cookie groups](https:
 ## Server-Side Consent Logging
 
 ::: info
-Server-side consent logging is available starting with Shopware 6.7.16.0.
+Server-side consent logging is available starting with Shopware 6.7.17.0.
 :::
 
 The cookie banner can record every consent decision on the server. Logging is off by default. When it is on, the storefront sends each decision to the server in the background. The server stores the decision together with a snapshot of the banner that the visitor saw.

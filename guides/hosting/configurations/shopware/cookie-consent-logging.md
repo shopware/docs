@@ -8,7 +8,7 @@ nav:
 # Cookie Consent Logging
 
 ::: info
-This feature is available since Shopware 6.7.16.0.
+This feature is available since Shopware 6.7.17.0.
 :::
 
 ## Overview
