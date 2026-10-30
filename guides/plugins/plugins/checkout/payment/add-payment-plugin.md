@@ -39,7 +39,7 @@ Please make sure to add the `shopware.payment.method` tag to your service defini
 
 We'll use a class called `MyCustomPaymentHandler` here.
 
-```php [<plugin root>/src/Resources/config/services.php]
+```php [{plugin root}/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
