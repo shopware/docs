@@ -153,6 +153,14 @@ Report the price the shopper pays for one piece, as in the example: `calculatedP
 
 Only these properties are reported. Other keys of the object are ignored, so the attribute can carry data for your own scripts.
 
+The product box renders its attribute in the Twig block `component_product_box_product_information` of `storefront/component/product/card/box-standard.html.twig`. Override the block to add keys or change values:
+
+```twig
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box_product_information %}{{ productInformation|merge({ myKey: 'value' })|json_encode }}{% endblock %}
+```
+
 A link inside the element reports `select_item`. Buttons and forms inside the element, such as the buy button, are not reported as a selection.
 
 ### Lists
@@ -205,7 +213,7 @@ export default class GenerateLeadEvent extends AnalyticsEvent {
                 return;
             }
 
-            this.pushEvent('generate_lead', { currency: 'EUR', value: 50 });
+            this.pushEvent('generate_lead', { currency: 'EUR', value: 50 }, { ecommerce: false });
         });
     }
 }
