@@ -31,6 +31,8 @@ SHOPWARE_SECRET_ACCESS_KEY=...
 
 :::info Restrict access
 The `--admin` flag grants full Admin API access. For production use, omit `--admin`, create a dedicated ACL role with only the required permissions, and assign it to the integration. See [Configuration](./configuration.md#acl-and-permissions) for details.
+
+The `--admin` flag does not bypass the MCP allowlist. Starting with Shopware 6.7.16.0, select the integration's capabilities before the client can use any tool, see [Controlling which capabilities are available](#controlling-which-capabilities-are-available).
 :::
 
 ## Step 2: Configure your AI client
@@ -87,6 +89,8 @@ claude mcp add --transport http shopware http://localhost:8000/api/_mcp \
  --header "sw-access-key: SWIA..." \
   --header "sw-secret-access-key: ..."
 ```
+
+Starting with Shopware 6.7.17.0, Claude Code can also log in with OAuth instead of using integration credentials, see [OAuth login](#oauth-login).
 
 :::warning Keep credentials out of version control
 Never commit `.mcp.json`, `.cursor/mcp.json`, or other files containing integration credentials. These files are already listed in the Shopware project template's `.gitignore`.
@@ -174,6 +178,51 @@ Prefer a short list of focused toolsets over `all`. Every advertised tool uses s
 
 Pass `sw-access-key` and `sw-secret-access-key` as HTTP headers. Credentials are valid as long as the integration exists, with no token expiration or manual refresh required.
 
+### OAuth login
+
+Starting with Shopware 6.7.17.0, an MCP client can log in to `/api/_mcp` in the browser, with the Administration user of the person using it.
+No credentials are copied into the client configuration.
+
+1. The client connects without credentials and gets `401` with a link to the protected resource metadata.
+2. It discovers the authorization server of the shop and opens the Administration login in the browser.
+3. The user logs in, checks the client name and the redirect host on the consent page, and allows access.
+4. The client receives a token that works only on `/api/_mcp` and refreshes it on its own.
+
+Shopware has no dynamic client registration, so an operator must register the client id first, see [Register an OAuth client](./configuration.md#register-an-oauth-client).
+The client acts with the user's ACL role and the user's MCP allowlist.
+A non-admin user needs selected capabilities, see [Controlling which capabilities are available](#controlling-which-capabilities-are-available).
+An administrator bypasses the allowlist, so a client approved by an administrator has unrestricted MCP access.
+
+#### Claude Code
+
+Claude Code calls back on `http://localhost:<port>/callback`.
+Redirect URIs on `localhost` must match exactly, port included, so the operator registers a fixed port:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+    api:
+        oauth_clients:
+            claude-code:
+                name: 'Claude Code'
+                redirect_uris:
+                    - 'http://localhost:53682/callback'
+```
+
+Add the server with the same client id and port:
+
+```bash
+claude mcp add --transport http --client-id claude-code --callback-port 53682 shopware https://your-shop.example.com/api/_mcp
+```
+
+Then run `/mcp` in Claude Code and select the server to log in.
+Claude Code refuses plain `http` OAuth endpoints on hosts other than `localhost`, `127.0.0.1`, and `::1`.
+A development shop on a host such as `shop.localhost` or a LAN address therefore needs `https`.
+
+Other clients work the same way when they let you configure the client id and the redirect URI.
+Register the redirect URI the client uses, and pass the client id in the client's configuration.
+Clients on `http://127.0.0.1` or `http://[::1]` may use any port.
+
 ### Bearer token
 
 Standard Admin API OAuth bearer tokens also work. Obtain one via the `/api/oauth/token` endpoint. Tokens expire (default: 10 minutes), so integration credentials are preferred for persistent MCP clients. When authenticated via bearer token, the user's per-user allowlist applies (configured under **Settings → Users & Permissions → [user] → MCP tool allowlist**).
@@ -182,13 +231,18 @@ A missing, invalid, or expired token is answered with HTTP 401 and the JSON-RPC 
 
 ## Controlling which capabilities are available
 
-By default, an admin integration is permitted to call all registered tools, resources, and prompts. Only the discovery tools are advertised at the start of a session. To restrict which capabilities can be discovered and called:
+Which capabilities an integration may call depends on its allowlist and on the Shopware version:
+
+- **6.7.16.0 and later:** An integration without an allowlist may call nothing. Only the three discovery tools are available, and they return nothing until you select capabilities. The same applies to non-admin users. Admin users bypass the allowlist.
+- **Before 6.7.16.0:** An integration without an allowlist may call all registered tools, resources, and prompts.
+
+In both cases, only the discovery tools are advertised at the start of a session. To select which capabilities can be discovered and called:
 
 **Per integration** — Go to **Settings → Integrations**, open the context menu for your integration, and select **Edit MCP Allowlist**:
 
    <img src="../../../assets/mcp-integrations-edit-mcp-allowlist.png" alt="Edit MCP Allowlist action in the Integrations list" width="700">
 
-Disable the toggle for each capability type and select only the tools, resources, and prompts this integration should use:
+Select the tools, resources, and prompts this integration should use. On versions before 6.7.16.0, disable the **All** toggle of a capability type first:
 
    <img src="../../../assets/mcp-allowlist-clean.png" alt="Capability selection modal" width="500">
 
