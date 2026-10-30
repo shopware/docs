@@ -8,7 +8,8 @@ nav:
 
 * Keep storefront HTML structure clean and streamlined.
 * Inline CSS and `!important` are not permitted in ways that break maintainability or override core semantics (see also [Storefront, performance, and errors](./storefront-performance-and-errors.md)).
-* Public frontend URLs created by the extension must appear in `sitemap.xml` with valid canonical tags, unique meta descriptions, and `title` tags (via Administration or snippets).
+* Public content pages intended for indexing must integrate with `sitemap.xml` and provide valid canonical tags, meaningful meta descriptions and `title` tags (via Administration or snippets).
+  Private pages, tokenized links and utility endpoints must not be included merely because they have a storefront URL.
 * All images need meaningful `alt` text (or media manager defaults).
 * All links need meaningful `title` attributes where appropriate.
 * Do not use `<h1>`–`<h6>` in templates that are served with `<meta name="robots" content="index,follow">` for non-content chrome; you may use something like `<span class="h2">` for visual hierarchy instead.
@@ -25,7 +26,8 @@ Required when the extension changes products or product pages:
 ## Storefront XHR and non-indexable routes
 
 * XHR and similar requests must work without errors.
-* Set response header `X-Robots-Tag: noindex, nofollow` on URLs that must not be indexed. See Google’s [robots meta tag / X-Robots-Tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#xrobotstag) documentation.
+* Set response header `X-Robots-Tag: noindex, nofollow` on URLs that must not be indexed, including relevant invalid or expired-link responses. See Google’s [robots meta tag / X-Robots-Tag](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#xrobotstag) documentation.
+* Indexing directives do not restrict access. Protect private resources through [authentication and ownership checks](./security-and-permissions.md#customer-and-sales-channel-ownership).
 
 ## External links
 

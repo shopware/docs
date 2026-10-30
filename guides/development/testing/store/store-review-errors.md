@@ -2,7 +2,6 @@
 nav:
   title: Store Review Errors
   position: 25
-
 ---
 
 # Common Store Review Errors
@@ -22,15 +21,14 @@ Typical causes:
 
 Check:
 
-* Store technical name matches the `composer.json` name.
+* The Store technical name, plugin base class, archive root and Composer metadata identify the same extension.
+  The Composer package name uses the `vendor/package` format; it is not the plugin technical name.
 * `extra.shopware-plugin-class` points to the correct bootstrap class.
 * Namespace matches exactly (case-sensitive).
 * Archive contains correct root folder structure.
 
-Example [reference](https://github.com/FriendsOfShopware/FroshPlatformPerformance/blob/master/composer.json#L20):
-
-**Correct**: `Swag\\MyPlugin\\SwagMyPlugin`
-**Incorrect**: `Swag\\MyPlugin\\SwagMyPluginSW6`
+For example, if `extra.shopware-plugin-class` is `Acme\Example\AcmeExample`, the declared class, namespace and autoload mapping must resolve that exact name.
+Changing the class name without updating the metadata breaks discovery.
 
 [Extension Meta Information – Explanation of the properties](../../../plugins/plugins/plugin-base-guide.md#the-composerjson-file)
 
@@ -55,34 +53,35 @@ Rules:
 
 ### Missing Shopware packages
 
-An example error might look like `Class Shopware\Storefront\* not found`. To fix:
+Declare the Shopware packages your plugin actually uses.
+For example, a plugin using Storefront classes needs `shopware/storefront` as well as `shopware/core`.
+Do not add a Storefront dependency to an extension that does not use it.
 
-* Declare required packages correctly and explicitly in `composer.json`: e.g., `"require": {"shopware/frontend": "*"}`.
-* Avoid "*" version constraints. Using "*" may resolve to Early Access (EA) versions, causing review failures.
-* Use proper version ranges (e.g., `~6.1.0`).
-* If needed, set `"minimum-stability": "RC"`.
+This example declares support for the 6.7 release line:
 
-This example shows the correct format:
-
-```xml
-<pre>"require": {
-
- "shopware/core": "~6.1.0",
-
- "shopware/storefront": "~6.1.0"
-
-},
-
-"minimum-stability": "RC"</pre>
+```json
+{
+  "require": {
+    "shopware/core": "~6.7.0",
+    "shopware/storefront": "~6.7.0"
+  }
+}
 ```
 
-### Class Not Found (EA Version Issue)
+Adapt the range to the versions you have tested; this example is not a fixed Store version requirement.
+`~6.7.0` allows patches within 6.7, while `^6.7` also admits later 6.x minor versions.
+An exact constraint such as `6.7.0.0` excludes subsequent patches.
+Avoid unbounded constraints that advertise compatibility with versions you have not verified.
+See [Composer version constraints](https://getcomposer.org/doc/articles/versions.md#writing-version-constraints).
 
-In the Shopware 6 Early Access (EA) version,`Class Shopware\Core\System\Snippet\Files\SnippetFileInterface` is not found and cannot be autoloaded, causing the code review to fail.
+### Classes or APIs unavailable on a supported version {#class-not-found-ea-version-issue}
 
-**Cause**: Composer resolved an Early Access version due to wildcard constraints.
+A class, service, method, Twig block or Administration component available in a recent patch may be absent from an earlier version allowed by your constraints.
+Test both the oldest declared version and the newest supported stable version, including relevant intermediate API changes.
+Either implement and test a compatible fallback or raise the minimum version to the first release that supports the feature.
 
-**Solution**: Pin versions and define minimum stability (see above).
+Do not lower `minimum-stability` to fix a missing dependency or incorrect compatibility range.
+If you intentionally test a prerelease, keep that separate from the compatibility you advertise for a stable release.
 
 ## Code & Static Analysis Errors
 
@@ -110,11 +109,22 @@ Link: [OWASP Web Security Testing Guide](https://github.com/OWASP/wstg/blob/mast
 
 ## Cookie and security issues
 
-Cookies must be set securely. All non-essential cookies must be registered in the Cookie Consent Manager.
+Cookies must be set securely, and non-essential cookies must integrate with the Cookie Consent Manager.
+Registration alone does not prevent tracking before consent; see [Consent behavior](./cookies-and-privacy.md#consent-behavior).
+For permissions, ownership, input validation and credentials, see [Security and permissions](./security-and-permissions.md).
 
 ## Packaging errors and unauthorized files and folders
 
-Extensions submitted to the Shopware Store must not contain development files, temporary artifacts, or unused resources.
+Inspect the ZIP you will submit, not only the source checkout.
+Remove development-only files, temporary artifacts and unused resources from that release archive.
+Keep your tests and development tooling in your source repository.
+
+Retain files needed to run or review the extension, including readable JavaScript sources and dependency manifests needed to rebuild them.
+For example, a `package.json` declaring an imported JavaScript library has a different purpose from an unused development manifest.
+Keep required production build manifests and the `checksum.json` generated by release tooling; distinguish them from development caches.
+Usage documentation and changelogs are not unused artifacts merely because they are Markdown files.
+
+The following are common development or temporary artifacts to remove when present in the release archive:
 
 * ./tests
 * .DS_Store
@@ -152,7 +162,6 @@ Extensions submitted to the Shopware Store must not contain development files, t
 * eslint.config.js
 * grumphp.yml
 * package-lock.json
-* package.json
 * phpdoc.dist.xml
 * phpstan-baseline.neon
 * phpstan.neon
@@ -165,3 +174,6 @@ Extensions submitted to the Shopware Store must not contain development files, t
 * shell.nix
 * stylelint.config.js
 * webpack.config.js
+
+After rebuilding, verify that the shipped Administration and Storefront bundles reflect the source changes and that obsolete chunks are removed.
+A source fix does not resolve a problem still present in the compiled assets.

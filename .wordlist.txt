@@ -1224,6 +1224,7 @@ YamlFileLoader
 ZSH
 ZUGFeRD
 accel
+accessors
 acl
 aclfacade
 actionAmount
@@ -1883,6 +1884,7 @@ prebuilt
 precompile
 preconfigured
 prefetch
+prefetching
 prefixer
 preflight
 preload
@@ -1893,6 +1895,7 @@ premapping
 prepend
 preprocessor
 preprocessors
+prerelease
 preselect
 preselection
 presigned
@@ -2000,6 +2003,7 @@ saleschannel
 saleschannelrepositoryfacade
 salutationId
 sandboxed
+sanitization
 sarven
 sbom
 scalability
