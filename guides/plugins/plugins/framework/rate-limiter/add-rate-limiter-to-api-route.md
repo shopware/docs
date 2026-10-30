@@ -126,7 +126,7 @@ For this we need to inject the `Shopware\Core\Framework\RateLimiter\RateLimiter`
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
+```php [{plugin root}/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -171,7 +171,7 @@ If the limit has been exceeded, it throws `Shopware\Core\Framework\RateLimiter\E
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
+```php [{plugin root}/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
 
 #[Route(path: '/store-api/example', name: 'store-api.example.search', methods: ['GET', 'POST'])]
 public function load(Request $request, SalesChannelContext $context): ExampleRouteResponse
@@ -212,7 +212,7 @@ Use the same composed key when you call `reset()`.
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
+```php [{plugin root}/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
 
 private function _load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
@@ -233,7 +233,7 @@ We just have to call the `reset` method as you can see below.
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
+```php [{plugin root}/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
 
 private function _load(Request $request, SalesChannelContext $context): ExampleRouteResponse
 {
