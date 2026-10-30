@@ -67,6 +67,14 @@ The `admin-build` command runs `npm install` on the first execution, which takes
 
 The `admin-watch` command: faster than `admin-build` because it monitors changes and rebuilds only what changed. See changes in real-time during development without waiting for a full rebuild.
 
+The `storefront-build` command compiles Storefront assets and can take time.
+Use `storefront-watch` during development to see changes without running a
+full build after each change. The watcher uses Vite when Shopware is `6.7.17`
+or newer, or when the Storefront package defines a `dev:server` script. It
+uses the legacy `hot-proxy` otherwise. See the
+[Storefront watcher reference](./dev-environment.md#storefront-watcher) for
+which URL to open in each mode.
+
 In addition to the replacements, Shopware CLI allows only watching a specific set of extensions or excluding a few.
 
 To only watch specific extensions:
