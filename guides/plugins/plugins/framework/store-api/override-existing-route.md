@@ -42,7 +42,7 @@ This subscriber limits the example search to ten results and changes the respons
 
 ::: code-group
 
-```php [<plugin root>/src/Subscriber/ExampleRouteSubscriber.php]
+```php [{plugin root}/src/Subscriber/ExampleRouteSubscriber.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Subscriber;
@@ -78,7 +78,7 @@ Register the subscriber in your plugin's `services.php`:
 
 ::: code-group
 
-```php [<plugin root>/src/Resources/config/services.php]
+```php [{plugin root}/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Swag\BasicExample\Subscriber\ExampleRouteSubscriber;
@@ -112,7 +112,7 @@ The example below decorates the core product search route, whose abstract class 
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Product/SalesChannel/ProductSearchRouteDecorator.php]
+```php [{plugin root}/src/Core/Content/Product/SalesChannel/ProductSearchRouteDecorator.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Product\SalesChannel;
@@ -155,7 +155,7 @@ Do not copy `#[Route]` attributes into the decorator, as they can change route r
 
 ::: code-group
 
-```php [<plugin root>/src/Resources/config/services.php]
+```php [{plugin root}/src/Resources/config/services.php]
 <?php declare(strict_types=1);
 
 use Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRoute;
