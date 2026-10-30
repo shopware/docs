@@ -64,10 +64,12 @@ To use the composer plugin loader, add the environment variable `COMPOSER_PLUGIN
 We recommend setting up at least five Redis servers for the following resources:
 
 1. [Session](../performance/session) + [cart](../performance/cart-storage#using-redis-as-storage)
-2. [cache.object](../performance/caches#using-redis)
+2. [cache.object](../performance/caches#using-redis) + `cache.app_url_verification`
 3. [Lock](../performance/lock-store) + [Increment storage](../performance/increment)
 4. [Number Ranges](../performance/number-ranges)
 5. [Message Queue](../infrastructure/message-queue)
+
+The `cache.app_url_verification` pool must be shared between all nodes, otherwise apps cannot be installed; see [APP_URL Verification](../../plugins/apps/lifecycle/app-url-verification.md#several-nodes).
 
 The PHP Redis extension provides persistent Redis connections.
 Persistent connections can help in high load scenarios as each request doesn't have to open and close connections.
