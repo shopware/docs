@@ -7,13 +7,14 @@ nav:
 
 # Use Plugin Configuration
 
-The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins. This guide helps you to use them in your plugin, showing you how to read plugin configuration values in PHP, Administration JavaScript, and Storefront code.
+The [Add a Plugin Configuration Guide](add-plugin-configuration.md) shows how to define configuration options in your plugins.
+This guide helps you to use them in your plugin, showing you how to read plugin configuration values in PHP, Administration JavaScript, and Storefront code.
 
 ## Prerequisites
 
 - First, review the [Plugin Base Guide](../plugin-base-guide.md)
 - Then define a plugin configuration field in [Add plugin configuration](add-plugin-configuration.md)
-- Get familiar with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside of a subscriber
+- Get familiar with the [Listening to events](../framework/event/listening-to-events.md) guide, as in this example the configuration is read inside a subscriber
 
 The example plugin includes a subscriber that listens to the `product.loaded` event and is called every time a product is loaded.
 
@@ -122,9 +123,12 @@ class MySubscriber implements EventSubscriberInterface
 
 The `SystemConfigService` is now available in your subscriber.
 
-Use the `get` method to read configuration values. Calling `$this->systemConfigService->get('example')` would be ambiguous — multiple plugins could define a field with the same technical name.
+Use the `get` method to read configuration values.
+Calling `$this->systemConfigService->get('example')` would be ambiguous — multiple plugins could define a field with the same technical name.
 
-To avoid conflicts, plugin configurations are always prefixed. By default, the pattern is the following: `<BundleName>.config.<configName>`. Thus, it would be `SwagBasicExample.config.example` here.
+To avoid conflicts, plugin configurations are always prefixed.
+By default, the pattern is the following: `<BundleName>.config.<configName>`.
+Thus, it would be `SwagBasicExample.config.example` here.
 
 ```php
 // <plugin root>/src/Subscriber/MySubscriber.php
@@ -152,6 +156,8 @@ Set `salesChannelId` to `null` to apply the configuration to all Sales Channels,
 <Tab title="Administration (JS)">
 
 In the Administration, use `systemConfigApiService` (wraps system-config endpoints).
+
+Use `getValues()` to read saved values and `getSchema()` to read the tabs, cards, and fields that define the configuration form.
 
 ### Using injection in Vue components
 
@@ -201,6 +207,91 @@ async function getPluginConfig() {
 ::: warning
 Your plugin needs the `system_config:read` permission to access this API endpoint.
 :::
+
+### Reading the configuration form schema
+
+Starting with Shopware 6.7.16.0, use `systemConfigApiService.getSchema(domain)` to load the form definition:
+
+```javascript
+const systemConfigApiService = Shopware.Service('systemConfigApiService');
+const domain = 'SwagBasicExample.config';
+const schema = await systemConfigApiService.getSchema(domain);
+const values = await systemConfigApiService.getValues(domain);
+
+for (const tab of schema) {
+    for (const card of tab.cards) {
+        for (const element of card.elements) {
+            const value = values[element.name] ?? element.config.defaultValue;
+            console.log(tab.name, card.title, element.name, value);
+        }
+    }
+}
+```
+
+The schema is an array of tabs, each containing `cards`, whose `elements` contain the field definitions.
+
+Field names are fully qualified configuration keys, while labels, defaults, and component options are inside `element.config`.
+
+The schema endpoint supplies definitions; read saved values separately with `getValues()` as above.
+
+API clients can retrieve the same schema with this request:
+
+```http
+GET /api/_action/system-config/get-schema?domain=SwagBasicExample.config
+```
+
+Both the schema endpoint and the values endpoint require the `system_config:read` privilege.
+
+A response excerpt for the [tab example](add-plugin-configuration.md#tabs-in-your-configuration) looks like this:
+
+```json
+[
+    {
+        "name": null,
+        "title": null,
+        "cards": [
+            {
+                "title": { "en-GB": "Basic settings" },
+                "elements": [
+                    {
+                        "name": "SwagBasicExample.config.enabled",
+                        "type": "bool",
+                        "config": {
+                            "label": { "en-GB": "Enable integration" },
+                            "defaultValue": false
+                        },
+                        "value": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "shipping",
+        "title": { "en-GB": "Shipping", "de-DE": "Versand" },
+        "cards": [
+            {
+                "title": { "en-GB": "Delivery settings" },
+                "elements": [
+                    {
+                        "name": "SwagBasicExample.config.deliveryDays",
+                        "type": "int",
+                        "config": {
+                            "label": { "en-GB": "Delivery time in days" },
+                            "defaultValue": 3
+                        },
+                        "value": null
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+The tab with `name: null` and `title: null` represents root-level cards and is displayed as **General** when tab navigation is visible.
+
+Even configurations without explicit `<tab>` elements return a tab array containing their cards.
 
 </Tab>
 <Tab title="Storefront">
