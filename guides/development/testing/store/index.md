@@ -24,6 +24,10 @@ Reviewers validate that your extension does not rely on unsupported or fragile p
 
 <PageRef page="./functionality-integration" title="Functionality and integration" />
 
+Review permissions with restricted users and verify resource ownership, input validation and credential handling:
+
+<PageRef page="./security-and-permissions" title="Security and permissions" />
+
 ## Storefront, SEO, and compliance
 
 Merchants expect stable storefront behavior, sensible performance characteristics, and clear handling of errors. Review also covers SEO-related output, structured data where relevant, and privacy-oriented behavior such as cookies and consent. Use these topics when defining acceptance criteria for themes and Storefront-facing plugins.
