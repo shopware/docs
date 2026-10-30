@@ -35,7 +35,7 @@ Its `NAME` is the stable extension event name; its constructor belongs to the ro
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Example/Extension/ExampleRouteExtension.php]
+```php [{plugin root}/src/Core/Content/Example/Extension/ExampleRouteExtension.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\Extension;
@@ -75,7 +75,7 @@ These pieces form one feature; the generator creates them together so you do not
 
 ::: code-group
 
-```php [<plugin root>/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
+```php [{plugin root}/src/Core/Content/Example/SalesChannel/ExampleRoute.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Core\Content\Example\SalesChannel;
@@ -230,7 +230,7 @@ You must place the JSON file in `<plugin root>/src/Resources/Schema/StoreApi/` s
 
 ::: code-group
 
-```json [<plugin root>/src/Resources/Schema/StoreApi/example.json]
+```json [{plugin root}/src/Resources/Schema/StoreApi/example.json]
 {
   "openapi": "3.0.0",
   "info": [],
@@ -366,7 +366,7 @@ If you want to access the functionality of your route also from the Storefront y
 
 ::: code-group
 
-```php [<plugin root>/src/Storefront/Controller/ExampleController.php]
+```php [{plugin root}/src/Storefront/Controller/ExampleController.php]
 <?php declare(strict_types=1);
 
 namespace Swag\BasicExample\Storefront\Controller;
