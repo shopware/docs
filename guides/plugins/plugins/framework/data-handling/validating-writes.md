@@ -47,9 +47,10 @@ For example, a Sync request (`POST /api/_action/sync`) can contain several opera
 ```
 
 Say the shipping method is stored inactive, with an availability rule.
-A check that looks at one command at a time sees an active method that still has its rule in the first command, and an inactive method without a rule in the second.
-Each looks fine on its own, but together they leave an active shipping method without a rule.
-To judge a record correctly, a check has to merge all writes to it in order, on top of the values already stored in the database.
+The first operation activates it, which is fine because it still has its rule.
+The second removes the rule, which is fine because, as stored, the method is inactive.
+Together, they leave an active shipping method without a rule, but a check that looks at one command at a time never sees that.
+To judge a record correctly, a check has to merge all of its writes in order, on top of the values already stored in the database.
 
 `WriteOutcome` does this for you.
 Its `resultingRows()` method takes the write commands of one entity and the columns your check needs, and returns one `OutcomeRow` per record, as the record will be after the write.
@@ -115,15 +116,16 @@ class ActiveShippingMethodValidator implements EventSubscriberInterface
         $commands = $event->getCommandsForEntity(ShippingMethodDefinition::ENTITY_NAME);
 
         foreach ($this->writeOutcome->resultingRows($commands, ['active', 'availability_rule_id']) as $shippingMethod) {
-            if (!$shippingMethod->getResultingValue('active') || $shippingMethod->getResultingValue('availability_rule_id') !== null) {
-                continue;
+            $isActive = (bool) $shippingMethod->getResultingValue('active');
+            $hasRule = $shippingMethod->getResultingValue('availability_rule_id') !== null;
+
+            if ($isActive && !$hasRule) {
+                $violations = new ConstraintViolationList([
+                    new ConstraintViolation('An active shipping method needs an availability rule.', null, [], null, '/availabilityRuleId', null),
+                ]);
+
+                $event->getExceptions()->add(new WriteConstraintViolationException($violations, $shippingMethod->path));
             }
-
-            $violations = new ConstraintViolationList([
-                new ConstraintViolation('An active shipping method needs an availability rule.', null, [], null, '/availabilityRuleId', null),
-            ]);
-
-            $event->getExceptions()->add(new WriteConstraintViolationException($violations, $shippingMethod->path));
         }
     }
 }
@@ -145,15 +147,15 @@ public function validate(PreWriteValidationEvent $event): void
     $commands = $event->getCommandsForEntity(ShippingMethodDefinition::ENTITY_NAME);
 
     foreach ($this->writeOutcome->touchedRows($commands, ['active']) as $shippingMethod) {
-        if (!$shippingMethod->isDeleted || !$shippingMethod->getStoredValue('active')) {
-            continue;
+        $wasActive = (bool) $shippingMethod->getStoredValue('active');
+
+        if ($shippingMethod->isDeleted && $wasActive) {
+            $violations = new ConstraintViolationList([
+                new ConstraintViolation('An active shipping method must not be deleted. Deactivate it first.', null, [], null, '/active', null),
+            ]);
+
+            $event->getExceptions()->add(new WriteConstraintViolationException($violations, $shippingMethod->path));
         }
-
-        $violations = new ConstraintViolationList([
-            new ConstraintViolation('An active shipping method must not be deleted. Deactivate it first.', null, [], null, '/active', null),
-        ]);
-
-        $event->getExceptions()->add(new WriteConstraintViolationException($violations, $shippingMethod->path));
     }
 }
 ```
@@ -163,7 +165,7 @@ public function validate(PreWriteValidationEvent $event): void
 | Member                             | Description                                                                                                                                                                            |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `getResultingValue($column)`       | The column's value after the write: from the write if it sets the column, otherwise from the database. `null` for a column a new record leaves out, and for a deleted record.          |
-| `getStoredValue($column)`          | The column's value in the database before the write. `null` for a record that is not stored.                                                                                           |
+| `getStoredValue($column)`          | The column's value in the database before the write. `null` if the record doesn't exist in the database yet, because the request creates it.                                           |
 | `getPayloadValue($column)`         | The value the write sets for the column. `null` if the write does not set it.                                                                                                          |
 | `payloadContainsAny(...$columns)`  | Whether the write sets any of the columns.                                                                                                                                             |
 | `payloadContainsOnly(...$columns)` | Whether the write sets no other columns than these, for example only switches a record on or off. `false` for a deleted record.                                                        |
