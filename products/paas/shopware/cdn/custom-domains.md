@@ -36,9 +36,9 @@ The `TXT` challenge record is required for all root domains.
 
 Configure DNS records at your domain registrar or DNS provider. The required records differ based on whether you're using an apex domain or a subdomain.
 
-### For Non-Apex Domains
+### For Non-Apex Record
 
-If your custom domain is a subdomain (e.g., `shop.example.com`, `www.example.com`), create a `CNAME` record:
+If your custom domain is not an APEX record (e.g., `shop.example.com`, `www.example.com`), create a `CNAME` record in your DNS zone:
 
 ```dns
 CNAME: cdn.shopware.shop
@@ -50,9 +50,9 @@ CNAME: cdn.shopware.shop
 shop.example.com.  IN  CNAME  cdn.shopware.shop.
 ```
 
-### For Apex Domains
+### For Apex Record
 
-If your custom domain is an apex/root domain (e.g., `example.com`), you need to configure multiple record types:
+If your custom domain is an Apex record (e.g., `example.com`), you need to configure multiple record types in your DNS zone:
 
 **1. IPv4 routing** - Create all `A` records:
 
@@ -74,28 +74,28 @@ If your custom domain is an apex/root domain (e.g., `example.com`), you need to 
 
 ## Step 2: Domain ownership
 
-To prove domain ownership, a `TXT` record needs to be added to the root domain.
+To prove that you own the domain, add the following `TXT` record to your DNS zone:
 
 ```dns
 _shopware-challenge.<domain> IN TXT "shopware-challenge=<organization id>"
 ```
 
-Replace `<domain>` with your root domain and `<organization id>` with your organization ID from `sw-paas org list`.
+Replace `<domain>` with your domain and `<organization ID>` with your organization ID from `sw-paas org list`.
 
 Example with the following setup:
 
-- your subdomain is `shop.example.com`
-- your root domain is `example.com`
+- your custom domain is `shop.example.com`
+- your zone is `example.com`
 - your organization ID is `abc123`
 
-Create the following record:
+Create the following record in the DNS zone `example.com`:
 
 ```dns
 _shopware-challenge.example.com.  IN  TXT  "shopware-challenge=abc123"
 ```
 
 ::: info
-The challenge record needs to stay as long as the domain is configured in our PaaS.
+The challenge record needs to stay as long as the custom domain is configured in our PaaS.
 :::
 
 ::: info

@@ -1,7 +1,7 @@
 ---
 nav:
   title: Security Plugin
-  position: 25
+  position: 10
 
 ---
 
@@ -9,7 +9,14 @@ nav:
 
 The [Shopware 6 Security Plugin](https://store.shopware.com/en/swag136939272659f/shopware-6-security-plugin.html) (`SwagPlatformSecurity`) backports security fixes to existing Shopware installations. It allows you to close known security vulnerabilities with a simple plugin update, without upgrading Shopware itself. The plugin is free and maintained by Shopware.
 
-The plugin does not replace regular Shopware updates. It is meant to bridge the time until you can perform a proper update or to keep installations secure that cannot be updated immediately. Security issues in third-party dependencies such as Symfony or Twig are not covered by the plugin and still require a dependency or Shopware update — see [Third-party dependencies](#third-party-dependencies).
+For self-hosted and PaaS Native shops, always keep a compatible version of the plugin installed, activated, and up to date, even when Shopware itself is fully updated.
+Having the plugin in place makes it easier to apply the next security update promptly.
+Apply relevant plugin updates as soon as possible rather than waiting for a routine maintenance window.
+
+The plugin does not replace regular Shopware updates or extend support for versions that have reached their end of life.
+Your Shopware version must still receive security support; check the [release calendar](https://developer.shopware.com/release-notes/#release-calendar) for the currently supported versions.
+Additional hardening and broader security improvements are delivered in regular Shopware releases and are usually not backported through the plugin.
+Security issues in third-party dependencies such as Symfony or Twig are not covered by the plugin and still require a dependency or Shopware update — see [Third-party dependencies](#third-party-dependencies).
 
 ## Compatibility
 
@@ -22,7 +29,8 @@ The following table shows which plugin version covers each major Shopware versio
 | 2.x            | 6.5.x             | ✔️         |
 | 1.x            | 6.4.x             | ❌         |
 
-Within a plugin version, every fix declares the Shopware version range it applies to. A fix is only loaded when your Shopware version is affected: if your version already contains the official patch or is older than the first affected version, the fix stays inactive automatically. Installing the plugin on a fully patched installation is therefore safe. It simply does nothing until a new vulnerability is published.
+Within a plugin version, every fix declares the Shopware version range it applies to.
+A fix is only loaded when your Shopware version is affected: if your version already contains the official patch or is older than the first affected version, the fix stays inactive automatically.
 
 ## Installation
 
@@ -32,7 +40,7 @@ Install and activate the extension named "Shopware 6 Security Plugin" through th
 
 ### Through Composer
 
-For deployments built through CI or running on multiple application servers, install the plugin as a Composer dependency through the [Shopware Composer Registry](extension-management.md), so all nodes receive the same code:
+For deployments built through CI or running on multiple application servers, install the plugin as a Composer dependency through the [Shopware Composer Registry](../extension-management.md), so all nodes receive the same code:
 
 ```bash
 composer require store.shopware.com/swagplatformsecurity

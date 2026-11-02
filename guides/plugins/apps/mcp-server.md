@@ -114,7 +114,7 @@ Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
 | Attribute     | Required | Description                                                                                       |
 | ------------- | -------- | ------------------------------------------------------------------------------------------------- |
 | `name`        | yes      | Parameter name                                                                                    |
-| `type`        | yes      | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
+| `type`        | no       | JSON Schema type: `string`, `integer`, `number`, `boolean`, `array`, `object` (default: `string`) |
 | `description` | no       | Description shown to the AI client                                                                |
 | `required`    | no       | Whether the parameter is required (default: `false`)                                              |
 
@@ -174,6 +174,8 @@ When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared
 
 **Request body:**
 
+The following tool, prompt, and resource request bodies are excerpts that omit `source.appVersion`.
+
 ```json
 {
   "tool": "my-erp-sync-orders",
@@ -183,29 +185,30 @@ When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared
  },
   "source": {
     "url": "https://shop.example.com",
-    "shopId": "abc123def456",
-    "appVersion": "1.2.0"
+    "shopId": "abc123def456"
  }
 }
 ```
 
-| Field               | Description                                                    |
-| ------------------- | -------------------------------------------------------------- |
-| `tool`              | The full tool name (app prefix + declared name)                |
-| `arguments`         | The arguments provided by the AI client                        |
-| `source.url`        | The shop's base URL                                            |
-| `source.shopId`     | Unique shop identifier. Use this for multi-tenant app backends |
-| `source.appVersion` | Installed version of the app                                   |
+| Field               | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `tool`              | The full tool name (app prefix + declared name)                                        |
+| `arguments`         | The arguments provided by the AI client                                                |
+| `source.url`        | The shop's base URL                                                                    |
+| `source.shopId`     | Unique shop identifier. Use this for multi-tenant app backends                         |
+| `source.appVersion` | Installed app version for external tools; `"0.0.0"` for external prompts and resources |
 
-For prompts, the request body uses `prompt` instead of `tool`, and arguments are omitted:
+For external webhooks, use `source.appVersion` when tool handling depends on the installed app version; prompts and resources receive the placeholder `"0.0.0"`.
+
+For prompts, the request body uses `tool` for the prompt name and includes an empty `arguments` array:
 
 ```json
 {
-  "prompt": "my-erp-erp-context",
+  "tool": "my-erp-erp-context",
+  "arguments": [],
   "source": {
     "url": "https://shop.example.com",
-    "shopId": "abc123def456",
-    "appVersion": "1.2.0"
+    "shopId": "abc123def456"
  }
 }
 ```
@@ -218,15 +221,17 @@ The response must be a JSON array of message objects:
 ]
 ```
 
-For resources, the request body uses `resource` instead of `tool`:
+For resources, the request body uses `tool` for the resource name and includes the resource URI in `arguments`:
 
 ```json
 {
-  "resource": "my-erp-erp-status",
+  "tool": "my-erp-erp-status",
+  "arguments": {
+    "uri": "my-erp://erp-status"
+  },
   "source": {
     "url": "https://shop.example.com",
-    "shopId": "abc123def456",
-    "appVersion": "1.2.0"
+    "shopId": "abc123def456"
  }
 }
 ```
@@ -239,7 +244,7 @@ The response must be a single object with `uri`, `mimeType`, and `text`:
 
 ## Verifying the signature
 
-Every webhook request is signed with HMAC-SHA256 using your app secret (the `<secret>` value from your `manifest.xml`). Always verify the `shopware-shop-signature` header before processing the request:
+Every webhook request is signed with HMAC-SHA256 using the shop-specific secret exchanged during app registration. Always verify the `shopware-shop-signature` header before processing the request:
 
 ```javascript
 // Node.js example
@@ -260,6 +265,7 @@ app.post('/mcp/sync-orders', (req, res) => {
     const signature = req.headers['shopware-shop-signature'];
     const rawBody = req.rawBody; // unparsed request body string
 
+    // Set APP_SECRET to the shop-specific secret exchanged during app registration.
     if (!verifySignature(rawBody, signature, process.env.APP_SECRET)) {
         return res.status(401).json({ error: 'Invalid signature' });
  }

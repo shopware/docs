@@ -92,7 +92,7 @@ SameSite prevents the browser from sending cookies along with cross-site request
 
 ## Security plugin
 
-Obtaining security fixes without version upgrades is possible through the [Security plugin](../../guides/hosting/installation-updates/cluster-setup.md#security-plugin).
+For self-hosted shops, keep the [Security Plugin](../../guides/hosting/installation-updates/security-best-practices/security-plugin.md) installed, activated, and up to date, even when Shopware itself is fully updated.
 
 ## Storefront IP Whitelisting
 
@@ -101,6 +101,8 @@ To enable access even during maintenance mode, IP addresses can be added to [Sto
 ## SQL injection
 
 SQL injection allows an attacker to execute new or modify existing SQL statements to access information that they are not allowed to access. Shopware primarily uses our own [Data Abstraction Layer](../../concepts/framework/data-abstraction-layer.md), which does not expose SQL directly, so most SQL injection attack vectors are prevented. Whenever direct SQL is being used, the [best practices from Doctrine DBAL](https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/security.html) are followed to ensure proper escaping of user input.
+
+Use PHP 8.4 or later on a compatible Shopware release, as its [driver-specific PDO SQL parsers](https://wiki.php.net/rfc/pdo_driver_specific_parsers) help prevent some SQL injection cases.
 
 ## Exposing underlying technology
 

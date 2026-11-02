@@ -72,7 +72,7 @@ Shopware.State.registerModule('swagBasicState', swagBasicState);
 
 In the component scope `Namespaced` store modules can be registered in the `beforeCreate` [Vue lifecycle hook](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram),
 with the previously mentioned `Shopware.State.registerModule` function.
-But then they also need to be `unregistered` in the `beforeDestroy` Vue lifecycle hook,
+But then they also need to be `unregistered` in the `beforeUnmount` Vue lifecycle hook,
 in order to not leave unused stores behind after a component has been destroyed.
 
 All of this can be seen in the following code sample:
@@ -86,7 +86,7 @@ All of this can be seen in the following code sample:
         Shopware.State.registerModule('swagBasicState', swagBasicState);
     },
 
-    beforeDestroy() {
+    beforeUnmount() {
         // unregister the store before the component is destroyed
         Shopware.State.unregisterModule('swagBasicState');
     },

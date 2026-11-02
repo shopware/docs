@@ -38,6 +38,7 @@ store:
   # ...
 
 validation:
+  store_compliance: true
   ignore:
     - 'xx'
 ```
@@ -72,6 +73,7 @@ Additionally, you can set environment variables to change the behavior of the CL
 | SHOPWARE_CLI_PREVIOUS_TAG       | Override previous Git tag detection with a previous tag used for Changelog generation |
 | CI_PROJECT_URL                  | GitLab CI project URL used for Changelog generation                                   |
 | SHOPWARE_CLI_NO_SYMFONY_CLI     | Disable Symfony CLI usage                                                             |
+| SHOPWARE_CLI_STORE_COMPLIANCE   | Set to `1` to enable Store compliance checks during extension validation              |
 | APP_ENV                         | Application environment                                                               |
 | SHOPWARE_PROJECT_ROOT           | Use this Shopware project to build the extension instead of setting up a new project  |
 | SHOPWARE_CLI_DISABLE_WASM_CACHE | Disable the WASM cache for PHP linting                                                |

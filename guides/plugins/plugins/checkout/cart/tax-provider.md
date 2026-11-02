@@ -62,7 +62,7 @@ class TaxProvider extends AbstractTaxProvider
         
         // foreach ($cart->getDeliveries() as $delivery) {
         //     foreach ($delivery->getPositions() as $position) {
-        //         $deliveryTaxes[$delivery->getId()] = new CalculatedTaxCollection(...);
+        //         $deliveryTaxes[$position->getIdentifier()] = new CalculatedTaxCollection(...);
         //         ...
         //     }
         // }
@@ -70,7 +70,7 @@ class TaxProvider extends AbstractTaxProvider
         // If you call a tax provider, you will probably get calculated tax sums for the whole cart
         // Use the cartPriceTaxes to let Shopware show the correct sums in the checkout
         // If omitted, Shopware will try to calculate the tax sums itself
-        // $cartPriceTaxes = [];
+        // $cartPriceTaxes = new CalculatedTaxCollection();
         
         return new TaxProviderResult(
             $lineItemTaxes,
@@ -139,7 +139,7 @@ class MigrationTaxProvider extends MigrationStep
 
         $connection->insert(TaxProviderDefinition::ENTITY_NAME, [
             'id' => $id,
-            'identifier' => Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class, // your tax provider class
+            'identifier' => \Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class, // your tax provider class
             'active' => true,
             'priority' => 1,
             'availability_rule_id' => $ruleId,
@@ -183,9 +183,11 @@ class SwagBasicExample extends Plugin
                 'priority' => 0,
                 'conditions' => [
                     [
-                        'type' => 'cart.cartAmount',
-                        'operator' => '>=',
-                        'value' => 0,
+                        'type' => 'cartCartAmount',
+                        'value' => [
+                            'operator' => '>=',
+                            'amount' => 0,
+                        ],
                     ],
                 ],
             ],
@@ -202,7 +204,7 @@ class SwagBasicExample extends Plugin
         $taxRepo->create([
             [
                 'id' => Uuid::randomHex(),
-                'identifier' => Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class,
+                'identifier' => \Swag\BasicExample\Checkout\Cart\Tax\TaxProvider::class,
                 'priority' => 1,
                 'active' => false, // activate this via the `activate` lifecycle method
                 'availabilityRuleId' => $ruleId,
