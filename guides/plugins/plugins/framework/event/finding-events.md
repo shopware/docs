@@ -163,6 +163,26 @@ This way, you can react to this and e.g. add more meta information to the said p
 
 You can find those events by searching for the term "PageLoadedEvent".
 
+##### Account order page events
+
+The account order overview and the order detail view dispatch different events:
+
+| Page                  | Loader                         | Event                               | Routes                                                                                                                   |
+| --------------------- | ------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Order overview        | `AccountOrderPageLoader`       | `AccountOrderPageLoadedEvent`       | `frontend.account.order.page` (`/account/order`), `frontend.account.order.single.page` (`/account/order/{deepLinkCode}`) |
+| Order detail (widget) | `AccountOrderDetailPageLoader` | `AccountOrderDetailPageLoadedEvent` | `widgets.account.order.detail` (`/widgets/account/order/detail/{id}`)                                                    |
+
+Both events live in the `Shopware\Storefront\Page\Account\Order` namespace and extend `PageLoadedEvent`.
+The `getPage()` method of `AccountOrderDetailPageLoadedEvent` returns an `AccountOrderDetailPage`.
+
+The detail loader only runs from the `widgets.account.order.detail` route, which accepts `GET` requests, requires a logged-in customer, and renders `order-detail-list.html.twig`.
+Before it loads the order, the detail loader dispatches `OrderRouteRequestEvent`, whose `getCriteria()` method returns the `Criteria` used to load the order.
+After the loader, the controller runs the app script hook [`account-order-detail-page-loaded`](../../../../../resources/references/app-reference/script-reference/script-hooks-reference.md#account-order-detail-page-loaded).
+
+::: warning
+`AccountOrderDetailPageLoadedEvent`, `AccountOrderDetailPageLoader`, `AccountOrderDetailPageLoadedHook`, and the `widgets.account.order.detail` route are marked `@deprecated tag:v6.8.0`, and the deprecation note says they are removed without replacement. Don't build new extensions on them.
+:::
+
 #### Criteria events
 
 You should be familiar with the `Criteria` class, at least if you've dealt with the [Data Abstraction Layer](../data-handling/).
