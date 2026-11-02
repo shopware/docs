@@ -648,6 +648,7 @@ MessageQueue
 MessageStorer
 MeteorAdminSDK
 Methodize
+MiB
 Middleware
 MigrationCollection
 MigrationStep
