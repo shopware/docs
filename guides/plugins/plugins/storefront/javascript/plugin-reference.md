@@ -70,6 +70,29 @@ This is a list of available JavaScript plugins and helpers that can be used and 
 | `WishlistWidgetPlugin`                 | Shows how many items are currently on the wishlist. Used by the wishlist "heart" icon inside the main header.                                                                                        | ---                              |
 | `ZoomModalPlugin`                      | Opens a full-screen modal window with an image gallery. Can contain multiple images that the user can zoom into. Used on the product detail page.                                                    | ---                              |
 
+### Registration key of the search widget
+
+The `PluginManager` identifies a plugin by the key it was registered with, which can differ from the class name. For example, the table above lists the class `SearchWidgetPlugin`. It is registered in the Storefront entry file `src/Storefront/Resources/app/storefront/src/main.js` under the key `SearchWidget`:
+
+```javascript
+PluginManager.register('SearchWidget', () => import('src/plugin/header/search-widget.plugin'), '[data-search-widget]');
+```
+
+- The plugin is registered async with a dynamic import.
+- It initializes on elements that match the selector `[data-search-widget]`. The template `storefront/layout/header/search.html.twig` sets `data-search-widget="true"` on the header search form in the block `layout_header_search_form`.
+- Options are passed through the `data-search-widget-options` attribute. The template sets `searchWidgetMinChars` to `shopware.minSearchLength`.
+- The default options of the class include `searchWidgetDelay: 250` and `searchWidgetMinChars: 3`.
+
+To override the search widget, pass the key `SearchWidget`, not the class name, to `PluginManager.override()`. Because the original plugin is registered async, import the override async as well:
+
+```javascript
+const PluginManager = window.PluginManager;
+
+PluginManager.override('SearchWidget', () => import('./my-search-widget/my-search-widget.plugin'), '[data-search-widget]');
+```
+
+For the full override steps, see [Override existing JavaScript](./override-existing-javascript.md). To see the keys of all registered plugins, run `PluginManager.getPluginList()` in the browser console.
+
 ## Helpers
 
 | Helper                  | Description                                                                                    | Notes |
