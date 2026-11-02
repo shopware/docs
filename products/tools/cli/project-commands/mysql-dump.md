@@ -158,7 +158,7 @@ This omits `core.app.shopId` and `core.app.shopIdV2` from system configuration s
 - Integrations and API credentials belonging to those apps
 - Registration secrets retained for previously deleted apps
 
-The dump also omits related records linked through `CASCADE` foreign keys, such as app action buttons and their translations. Records linked through `SET NULL` foreign keys remain, but their references to omitted records are cleared. This preserves payment and shipping registrations and existing order references, allowing Shopware to reconnect the registrations when an app is reinstalled.
+The dump omits related records linked through `CASCADE` foreign keys, such as app action buttons and their translations. Records linked through `SET NULL` foreign keys remain, but their references to omitted records are cleared. This preserves payment and shipping registrations and existing order references, allowing Shopware to reconnect the registrations when an app is reinstalled.
 
 Apps without completed or pending registration secrets are kept in the dump, including their related records. This includes local-only apps that have not registered with an app server. Unrelated API integrations also keep their records and credentials.
 
@@ -170,9 +170,9 @@ Use `--clone-shop` as shorthand for `--clean --reset-identity` to also omit tran
 shopware-cli project dump --clone-shop --anonymize --output clone.sql
 ```
 
-Identity reset can be combined with the other dump options and project configuration. When rewriting a foreign key column or a referenced key, the only supported change is setting a nullable column to SQL `NULL`.
+Identity reset can be combined with the other dump options and project configuration.
 
-If affected foreign keys share columns and their delete actions could conflict, the command stops with an error. This check uses the table definitions, so it also applies when the current rows do not overlap. Unsafe filters or relationships are reported before SQL content is written.
+If affected foreign keys share columns and their delete actions could conflict, the command stops with an error.
 
 ## Ignoring entire tables
 
