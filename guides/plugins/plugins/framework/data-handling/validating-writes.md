@@ -182,11 +182,12 @@ public function validate(PreWriteValidationEvent $event): void
   Values are stored values: ids are 16 binary bytes, JSON fields are JSON strings.
   Use `Uuid::fromBytesToHex()` to turn an id into its hex form.
 * **Only requested columns:** `getResultingValue()`, `getStoredValue()` and `getPayloadValue()` throw for a column you didn't pass to `WriteOutcome`, even if the write sets it.
-  `payloadContainsAny()` and `payloadContainsOnly()` work for any column.
+  `payloadContainsAny()` and `payloadContainsOnly()` never throw, because they only check the payload, and the payload can contain any column of the entity, requested or not.
 * **Only relevant records:** `resultingRows()` returns records that the write creates, or whose writes set one of the requested columns.
   An update that only renames a shipping method is not part of the result when you ask for `active` and `availability_rule_id`.
 * **Deletes:** `resultingRows()` leaves out a record whose last write is a delete.
   Use `touchedRows()` to check deletes.
 * **Deleted and created again:** a record the request deletes and then creates again is new in `resultingRows()`, without its stored values.
-  In `touchedRows()` it is both new and deleted.
+  In `touchedRows()` both flags are set: `isDeleted` because the stored record is deleted, and `isNew` because the request creates it again.
+  `getStoredValue()` still returns the old values.
 * **Custom fields:** a write that changes only some custom fields is merged into the stored custom fields, so `getResultingValue('custom_fields')` returns the full set.
