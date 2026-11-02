@@ -405,6 +405,46 @@ Select the cheapest total count mode that your UI needs:
 $criteria->setTotalCountMode(Criteria::TOTAL_COUNT_MODE_NEXT_PAGES);
 ```
 
+#### Partial loading
+
+Use `Criteria::addFields()` to read only the storage fields you need.
+The method takes an allowlist of field names and reduces the database read itself.
+Each call adds to the existing list instead of replacing it.
+
+```php
+public function readData(Context $context): void
+{
+    $criteria = new Criteria();
+    $criteria->addFields(['productNumber', 'stock']);
+
+    $products = $this->productRepository->search($criteria, $context)->getEntities();
+
+    foreach ($products as $product) {
+        $productNumber = $product->get('productNumber');
+    }
+}
+```
+
+With an allowlist, the result differs from a regular read:
+
+* The entities are `PartialEntity` instances in a generic `EntityCollection`, not the entity and collection classes of the definition. `PartialEntity` extends `ArrayEntity`, so read values with `get()`.
+* Primary keys are always loaded.
+* A dotted path through an association, such as `manufacturer.name`, adds that association to the criteria automatically. The reference fields needed to join requested associations are loaded as well.
+* Fields that a requested runtime field depends on (the `depends` list of its `Runtime` flag) are added automatically.
+* The repository dispatches a `PartialEntityLoadedEvent` named `<entity>.partial_loaded`, for example `product.partial_loaded`, instead of the regular loaded event. Subscribers that only listen to `product.loaded` don't receive partial reads.
+
+Call `resetFields()` to drop the allowlist, so the read returns the typed entity and collection classes again.
+When you pass no sorting to the `RepositoryIterator` and the definition has an auto-increment field, the iterator sorts by `autoIncrement`. If the criteria use partial loading, it also adds `autoIncrement` to the fields automatically.
+
+To keep the typed entity but skip a few heavy fields, use the denylist `excludeFields()` instead.
+Unknown fields and fields flagged as `Required` or `WriteProtected` can't be excluded.
+Combining `addFields()` and `excludeFields()` on the same criteria throws an exception with the error code `FRAMEWORK__DAL_CRITERIA_FIELDS_AND_EXCLUDED_FIELDS_MUTUALLY_EXCLUSIVE`.
+
+::: info
+Don't confuse `addFields()` and `excludeFields()` with `setIncludes()` and `setExcludes()`, which only shape the API response.
+The Admin API `fields` request parameter maps to `addFields()`, see [Partial data loading](../../../../development/integrations-api/partial-data-loading.md).
+:::
+
 ### Using the RepositoryIterator
 
 Another special way to read data in Shopware is by using the [RepositoryIterator](https://github.com/shopware/shopware/blob/trunk/src/Core/Framework/DataAbstractionLayer/Dbal/Common/RepositoryIterator.php).
