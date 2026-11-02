@@ -77,6 +77,21 @@ Per-category SEO fields include `metaTitle`, `metaDescription`, `keywords`, `seo
 - React to regenerated URLs via `SeoUrlUpdateEvent`, or enqueue additional updates when categories are changed programmatically.
 - Emit canonical links when rendering custom category pages.
 
+### Which categories receive SEO URLs
+
+Category SEO URLs come from `NavigationPageSeoUrlRoute`, which serves the route `frontend.navigation.page` and uses `navigationId` as the path parameter. Its default template is `{% for part in category.seoBreadcrumb %}{{ part }}/{% endfor %}`. For the general route mechanism, see [Add custom SEO URLs](../../../guides/plugins/plugins/content/seo/add-custom-seo-url.md).
+
+The route limits URL generation as follows:
+
+- Only categories with `active` set to `true` are loaded.
+- Categories of type `folder` are excluded. The route's criteria don't exclude other types, including `link`.
+- The sales channel's `navigation`, `footer`, or `service` entry category must be the category itself or one of its ancestors. The route checks them in that order. Otherwise, the mapping carries the error `Category is not available for sales channel`, and no SEO URL is written for that sales channel.
+- `seoBreadcrumb` leaves out the entry category and every category above it. With the default template, the entry category itself renders an empty path, so it gets no SEO URL.
+
+When a category no longer passes the `active` or `folder` filter, its existing SEO URLs are marked as deleted. A category that is loaded but has a mapping error or an empty rendered path isn't marked as deleted; no new SEO URL is written for it.
+
+A template rendering error is logged as a warning. The category is then yielded with an error and an empty path, so no SEO URL is written for it, and it isn't marked as deleted. For sales channels of the API (headless) type, URLs are generated only if the sales channel has a domain flagged as an external storefront for the current language.
+
 ## Extensibility and events
 
 - `NavigationLoadedEvent`: navigation tree loaded; enrich or adjust nodes.
