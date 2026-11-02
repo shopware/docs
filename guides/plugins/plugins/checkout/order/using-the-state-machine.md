@@ -157,6 +157,74 @@ In this example, it is fetching all available order state transitions for the or
 It will return an array of possible actions.
 If your order was still "open", this would result in two entries: One for `cancel` and one for `process`.
 
+## Reacting to state changes
+
+After `transition` changes a state, the `StateMachineRegistry` dispatches events that your plugin can subscribe to, as described in [Listening to events](../../framework/event/listening-to-events.md).
+Events are only dispatched when the state actually changes. If the transition isn't needed, for example because the entity is already in the target state, no history entry is written and no event is dispatched.
+
+### Dispatch order
+
+For each state change, the registry dispatches three events in this order:
+
+1. A `Shopware\Core\System\StateMachine\Event\StateMachineTransitionEvent`, dispatched without an explicit event name. It provides `getEntityName()`, `getEntityId()`, `getFromPlace()`, `getToPlace()`, `getContext()`, and `getInternalComment()`.
+2. A `Shopware\Core\System\StateMachine\Event\StateMachineStateChangeEvent` for the leave side of the transition.
+3. A second `StateMachineStateChangeEvent` for the enter side of the transition.
+
+### The `state_machine.<name>_changed` event
+
+Both `StateMachineStateChangeEvent` objects are dispatched under the same event name: `state_machine.` followed by the technical name of the state machine and `_changed`.
+The technical names of the order state machines contain `.state`, so the event names are:
+
+| State machine             | Event name                                      |
+| ------------------------- | ----------------------------------------------- |
+| `order.state`             | `state_machine.order.state_changed`             |
+| `order_delivery.state`    | `state_machine.order_delivery.state_changed`    |
+| `order_transaction.state` | `state_machine.order_transaction.state_changed` |
+
+A subscriber to one of these names is called twice per state change.
+Use `getTransitionSide()` to tell the calls apart. It returns `state_leave` (`StateMachineStateChangeEvent::STATE_MACHINE_TRANSITION_SIDE_LEAVE`) or `state_enter` (`StateMachineStateChangeEvent::STATE_MACHINE_TRANSITION_SIDE_ENTER`).
+`getStateName()` returns the technical name of the previous state on the leave side and the technical name of the new state on the enter side.
+The event also provides `getTransition()`, `getPreviousState()`, `getNextState()`, `getStateMachine()`, and `getContext()`.
+
+```php
+use Shopware\Core\System\StateMachine\Event\StateMachineStateChangeEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class DeliveryStateSubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            'state_machine.order_delivery.state_changed' => 'onDeliveryStateChanged',
+        ];
+    }
+
+    public function onDeliveryStateChanged(StateMachineStateChangeEvent $event): void
+    {
+        if ($event->getTransitionSide() !== StateMachineStateChangeEvent::STATE_MACHINE_TRANSITION_SIDE_ENTER) {
+            return;
+        }
+
+        if ($event->getNextState()->getTechnicalName() !== 'shipped') {
+            return;
+        }
+
+        $orderDeliveryId = $event->getTransition()->getEntityId();
+        // Your logic here
+    }
+}
+```
+
+### The `state_enter` and `state_leave` events
+
+`StateMachineStateChangeEvent::getStateEventName()` returns a name built from the transition side, the state machine, and the state name, for example `state_enter.order.state.completed`.
+This isn't the name the `StateMachineStateChangeEvent` is dispatched under.
+
+Instead, the core `OrderStateChangeEventListener` subscribes to the three `state_machine.*_changed` events listed above and dispatches a `Shopware\Core\Checkout\Order\Event\OrderStateMachineStateChangeEvent` under the name returned by `getStateEventName()`.
+A listener for a name such as `state_enter.order_delivery.state.shipped` therefore receives an `OrderStateMachineStateChangeEvent`, which provides the order through `getOrder()`, not a `StateMachineStateChangeEvent`.
+In the 6.7 source, this listener only handles the `order.state`, `order_delivery.state`, and `order_transaction.state` machines.
+The same listener also registers the `state_enter` and `state_leave` names of the states it reads from the state repository as business events of the `OrderStateMachineStateChangeEvent` class, even though it dispatches these events only for the three order state machines.
+
 ## Inspecting a state machine
 
 Use the `state-machine:dump` command to export a state machine as a Graphviz DOT graph.
