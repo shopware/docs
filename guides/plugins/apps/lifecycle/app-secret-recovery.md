@@ -121,7 +121,7 @@ A recovery that keeps reporting **no candidate was accepted** against a healthy 
 This case is genuinely unrecoverable, not a defect: the app keys registration by **shop ID**, and the clone now legitimately owns that ID's secret. No secret Shop A holds can reclaim it — the only correct move is to give Shop A its own identity.
 
 ::: warning
-A cloned shop (for example, a staging instance restored from a production dump) shares the original's shop ID and app secrets. Run `bin/console app:shop-id:change` on the clone on first boot so it takes a distinct identity. See [Creating a staging instance](../../../hosting/installation-updates/creating-a-staging-instance.md).
+A cloned shop (for example, a staging instance restored from a production dump) shares the original's shop ID and app secrets. Activate staging mode on the clone before you use it, see [Creating a staging instance](../../../hosting/installation-updates/creating-a-staging-instance.md).
 :::
 
 ## Uninstall, reinstall, and the deleted-apps store
