@@ -109,6 +109,8 @@ Some tables are not relevant for dumps, like log tables. To ignore some default 
 - `version_commit`
 - `version_commit_data`
 - `webhook_event_log`
+- `webhook_delivery`
+- `webhook_stream`
 
 To exclude additional table data from every dump, use `dump.nodata` in `.config/shopware-project.yml`. Table schemas are still exported. Table names and glob patterns are supported; tables that are absent are skipped.
 
@@ -119,6 +121,36 @@ dump:
     - log_entry
     - 'my_plugin_log_*'
 ```
+
+## Resetting the shop identity
+
+When copying a shop to another environment, use `--reset-identity` to remove the source shop's app identity from the dump. The source database is unchanged.
+
+```bash
+shopware-cli project dump --reset-identity --output identity.sql
+```
+
+This omits `core.app.shopId` and `core.app.shopIdV2` from system configuration so the destination can generate its own shop ID. It also omits the following database records:
+
+- App records with completed or pending registrations
+- Integrations and API credentials belonging to those apps
+- Registration secrets retained for previously deleted apps
+
+The dump also omits related records linked through `CASCADE` foreign keys, such as app action buttons and their translations. Records linked through `SET NULL` foreign keys remain, but their references to omitted records are cleared. This preserves payment and shipping registrations and existing order references, allowing Shopware to reconnect the registrations when an app is reinstalled.
+
+Apps without completed or pending registration secrets are kept in the dump, including their related records. This includes local-only apps that have not registered with an app server. Unrelated API integrations also keep their records and credentials.
+
+Reinstall the removed apps in the destination shop to register them under its new identity. Their app files must be available in the destination project.
+
+Use `--clone-shop` as shorthand for `--clean --reset-identity` to also omit transient data such as pending jobs and webhook delivery logs. Combine it with `--anonymize` to anonymize personal data and extension-declared sensitive data.
+
+```bash
+shopware-cli project dump --clone-shop --anonymize --output clone.sql
+```
+
+Identity reset can be combined with the other dump options and project configuration. When rewriting a foreign key column or a referenced key, the only supported change is setting a nullable column to SQL `NULL`.
+
+If affected foreign keys share columns and their delete actions could conflict, the command stops with an error. This check uses the table definitions, so it also applies when the current rows do not overlap. Unsafe filters or relationships are reported before SQL content is written.
 
 ## Ignoring entire tables
 
