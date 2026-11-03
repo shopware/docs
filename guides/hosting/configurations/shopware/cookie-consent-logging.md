@@ -146,10 +146,12 @@ shopware:
 
 The daily scheduled task `cookie_consent_log.cleanup` deletes the decisions that are older than `retention_days`. The `filesystem` storage deletes whole hour directories, so it is accurate to one hour.
 
+The task cleans every storage, not only the one that is selected. So the retention still applies to the records in a storage that you switched away from, including after you set `log_storage` back to `none`.
+
 The retention period is a decision of the shop owner.
 
 ::: warning
-When you change the storage, the records in the previous storage are not moved. The cleanup task only runs on the selected storage, so delete the old records yourself.
+When you change the storage, the existing records are not moved to the new storage. Each storage keeps its own records, and the cleanup task deletes them after the retention period.
 :::
 
 ## Rate limiting
