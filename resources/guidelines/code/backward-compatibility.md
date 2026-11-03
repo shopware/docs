@@ -29,7 +29,7 @@ Shopware marks upcoming changes directly in the code. When you extend or call co
 
 A symbol marked `@deprecated` is removed or replaced with the named major version. The comment names the replacement. Migrate to it before you add support for that major, while keeping compatibility with the older versions your extension still supports.
 
-Calling deprecated code triggers a deprecation notice until the major release and throws an exception once the major feature flag is active. Run your test suite with the upcoming major flag enabled to find remaining usages early; see [feature flags](#feature-flags).
+Most deprecated PHP code triggers a deprecation notice until the major release and throws an exception once the major feature flag is active. Not every deprecation is visible at runtime: a deprecation can stay silent until its replacement is stable, some framework callbacks only throw once the flag is active, and Twig, JavaScript and SCSS deprecations are annotations only. Run your test suite with the upcoming major flag enabled to find PHP usages early, and let your IDE or static analysis report the rest; see [feature flags](#feature-flags).
 
 `@deprecated` is only used when the symbol itself goes away. A symbol that stays but changes, for example a return type that narrows or a class that becomes final, is announced with a [BC-change attribute](#bc-change-attributes) instead, so that static analysis does not report a usage that has nothing to migrate.
 
