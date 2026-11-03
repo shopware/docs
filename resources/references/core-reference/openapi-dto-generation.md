@@ -22,6 +22,17 @@ Symfony JsonStreamer was tried during development and later removed; the current
 
 The PR remains a proof of concept with unresolved review findings, especially around plugin schema generation, mapping boundaries, error responses, and broader route adoption.
 
+## Prompting
+
+I start every new agent session with the following text:
+
+```
+src/Core/Framework/Api/OpenApi src/Core/Framework/Api/Request src/Core/Framework/Api/Response tests/unit/Core/Framework/Api/OpenApi tests/unit/Core/Framework/Api/Response
+we are working on a PHP DTO generator which generates the PHP classes from a given OpenAPI schema JSON file. read the given source directories to get an overview of the feature.
+```
+
+I hope, it gives the agent some context. 
+
 ## Start here
 
 Run commands from a checkout of the Shopware PR branch with Composer dependencies installed and its normal development environment configured.
