@@ -53,9 +53,10 @@ namespace Swag\Example\Listener;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirective;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsUserAgentBlock;
+use Shopware\Storefront\Page\Robots\Parser\ParsedRobots;
+use Shopware\Storefront\Page\Robots\Struct\RobotsDirective;
+use Shopware\Storefront\Page\Robots\Struct\RobotsDirectiveType;
+use Shopware\Storefront\Page\Robots\Struct\RobotsUserAgentBlock;
 
 #[Package('storefront')]
 class RobotsExtensionListener
@@ -67,22 +68,29 @@ class RobotsExtensionListener
 
     public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
-        $parsedRobots = $event->getParsedRobots();
+        $parsedRobots = $event->parsedResult;
 
         // Add restrictions for AI crawlers
         $aiCrawlers = ['GPTBot', 'ChatGPT-User', 'CCBot', 'anthropic-ai'];
 
-        $aiBlock = new RobotsUserAgentBlock(
-            userAgents: $aiCrawlers,
-            directives: [
-                new RobotsDirective(
-                    type: RobotsDirectiveType::DISALLOW,
-                    value: '/checkout/',
-                ),
-            ],
-        );
+        $aiBlocks = [];
+        foreach ($aiCrawlers as $userAgent) {
+            $aiBlocks[] = new RobotsUserAgentBlock(
+                userAgent: $userAgent,
+                directives: [
+                    new RobotsDirective(
+                        type: RobotsDirectiveType::DISALLOW,
+                        value: '/checkout/',
+                    ),
+                ],
+            );
+        }
 
-        $parsedRobots->addUserAgentBlock($aiBlock);
+        $event->parsedResult = new ParsedRobots(
+            userAgentBlocks: [...$parsedRobots->userAgentBlocks, ...$aiBlocks],
+            orphanedPathDirectives: $parsedRobots->orphanedPathDirectives,
+            issues: $parsedRobots->issues,
+        );
 
         $this->logger->info('Extended robots.txt with AI crawler rules');
     }
@@ -139,8 +147,8 @@ class CustomDirectiveListener
         // Support Google and Yandex specific directives
         $knownCustomDirectives = ['noimageindex', 'noarchive', 'clean-param'];
 
-        if (in_array(strtolower($event->getDirectiveName()), $knownCustomDirectives, true)) {
-            $event->setHandled(true); // Prevent "unknown directive" warning
+        if (in_array(strtolower($event->directiveType), $knownCustomDirectives, true)) {
+            $event->handled = true; // Prevent "unknown directive" warning
         }
     }
 }
@@ -184,65 +192,76 @@ use Shopware\Core\Framework\Log\Package;
 use Shopware\Storefront\Page\Robots\Event\RobotsDirectiveParsingEvent;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssue;
 use Shopware\Storefront\Page\Robots\Parser\ParseIssueSeverity;
-use Shopware\Storefront\Page\Robots\ValueObject\RobotsDirectiveType;
+use Shopware\Storefront\Page\Robots\Parser\ParsedRobots;
+use Shopware\Storefront\Page\Robots\Struct\RobotsDirectiveType;
 
 #[Package('storefront')]
 class RobotsValidationListener
 {
     public function __invoke(RobotsDirectiveParsingEvent $event): void
     {
-        $parsedRobots = $event->getParsedRobots();
+        $parsedRobots = $event->parsedResult;
+        $issues = $parsedRobots->issues;
 
         // Validate crawl-delay values
-        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
-            foreach ($block->getDirectives() as $directive) {
-                if ($directive->getType() === RobotsDirectiveType::CRAWL_DELAY) {
-                    $value = (int) $directive->getValue();
+        foreach ($parsedRobots->userAgentBlocks as $block) {
+            foreach ($block->directives as $directive) {
+                if ($directive->type === RobotsDirectiveType::CRAWL_DELAY) {
+                    $value = (int) $directive->value;
 
                     if ($value <= 0) {
-                        $event->addIssue(new ParseIssue(
+                        $issues[] = new ParseIssue(
+                            lineNumber: 0,
+                            lineContent: $directive->render(),
+                            reason: 'Invalid crawl-delay value: must be a positive integer',
                             severity: ParseIssueSeverity::ERROR,
-                            message: 'Invalid crawl-delay value: must be a positive integer',
-                            lineNumber: null,
-                        ));
+                        );
                     }
 
                     if ($value > 10) {
-                        $event->addIssue(new ParseIssue(
+                        $issues[] = new ParseIssue(
+                            lineNumber: 0,
+                            lineContent: $directive->render(),
+                            reason: 'Crawl-delay value is very high. This may significantly slow down indexing.',
                             severity: ParseIssueSeverity::WARNING,
-                            message: 'Crawl-delay value is very high. This may significantly slow down indexing.',
-                            lineNumber: null,
-                        ));
+                        );
                     }
                 }
             }
         }
 
         // Check for conflicting Allow/Disallow directives
-        foreach ($parsedRobots->getUserAgentBlocks() as $block) {
+        foreach ($parsedRobots->userAgentBlocks as $block) {
             $disallowed = [];
             $allowed = [];
 
-            foreach ($block->getDirectives() as $directive) {
-                if ($directive->getType() === RobotsDirectiveType::DISALLOW) {
-                    $disallowed[] = $directive->getValue();
-                } elseif ($directive->getType() === RobotsDirectiveType::ALLOW) {
-                    $allowed[] = $directive->getValue();
+            foreach ($block->directives as $directive) {
+                if ($directive->type === RobotsDirectiveType::DISALLOW) {
+                    $disallowed[] = $directive->value;
+                } elseif ($directive->type === RobotsDirectiveType::ALLOW) {
+                    $allowed[] = $directive->value;
                 }
             }
 
             foreach ($allowed as $allowPath) {
                 foreach ($disallowed as $disallowPath) {
                     if ($allowPath === $disallowPath) {
-                        $event->addIssue(new ParseIssue(
+                        $issues[] = new ParseIssue(
+                            lineNumber: 0,
+                            lineContent: $allowPath,
+                            reason: sprintf('Conflicting directives: Path "%s" is both allowed and disallowed', $allowPath),
                             severity: ParseIssueSeverity::WARNING,
-                            message: sprintf('Conflicting directives: Path "%s" is both allowed and disallowed', $allowPath),
-                            lineNumber: null,
-                        ));
+                        );
                     }
                 }
             }
         }
+
+        $event->parsedResult = new ParsedRobots(
+            userAgentBlocks: $parsedRobots->userAgentBlocks,
+            orphanedPathDirectives: $parsedRobots->orphanedPathDirectives,
+            issues: $issues,
+        );
     }
 }
 ```

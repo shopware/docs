@@ -10,6 +10,8 @@ nav:
 
 You need an existing Blackfire account. The platform does not provide one.
 
+Blackfire is only available for shop applications. Enabling it on any other application, such as a Composable Frontends application, is rejected when the configuration is validated.
+
 ## Store your Blackfire credentials
 
 Blackfire identifies your agent with a **Server ID** and a **Server Token**. You find both in your Blackfire account under the settings of the environment you want to profile into.
@@ -51,13 +53,15 @@ Both secrets must exist before you enable Blackfire. If either one is missing, t
 
 Enabling Blackfire does three things for you:
 
-- The Blackfire probe is added to your application image during the build. You do not need to list it under `app.php.extensions`.
+- The Blackfire probe is added to your application image during the build. You do not need to list it under `app.php.extensions`. If you do, the entry is ignored.
 - A Blackfire agent is deployed next to your application.
 - Your application containers are configured to send profiles to that agent.
 
+Because the probe is part of the image, enabling or disabling Blackfire builds a new image when you update your application.
+
 ## Collect a profile
 
-Install the [Blackfire browser extension](https://blackfire.io/docs/integrations/browsers/index) or the [Blackfire CLI](https://blackfire.io/docs/up-and-running/installation) and sign in with your personal Client ID and Client Token. Open your storefront and start a profile from the extension. The resulting profiles appear in your Blackfire account.
+Install the [Blackfire browser extension](https://blackfire.io/docs/integrations/browsers/index) or the [Blackfire CLI](https://blackfire.io/docs/up-and-running/installation) and sign in with your personal Client ID and Client Token. Open your storefront and start a profile from the extension. The resulting profiles appear in your Blackfire account, in the environment that belongs to the Server ID and Server Token you stored.
 
 ::: info
 Pages served from the CDN cache never reach PHP, so they cannot be profiled. If a profile does not appear, request the page in a way that bypasses the cache, for example, by profiling a page that is not cacheable.
@@ -67,7 +71,7 @@ Pages served from the CDN cache never reach PHP, so they cannot be profiled. If 
 
 Only one profiler can be active at a time:
 
-- Blackfire and [Tideways](./tideways.md) cannot be enabled together. If both are set to `true`, the configuration is rejected with the error `blackfire and tideways cannot be enabled at the same time`.
+- Blackfire and [Tideways](./tideways.md) cannot be enabled together. If both are set to `true`, the configuration is rejected.
 - Blackfire and OpenTelemetry tracing cannot be used at the same time. While Blackfire is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for the affected time range. See [Traces](./traces.md) for details on tracing.
 
 To go back to tracing, set `services.blackfire.enabled` to `false` and update your application again.

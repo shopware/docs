@@ -11,7 +11,7 @@ Shopware provides a built-in profiler abstraction to measure the performance of 
 
 ## Enabling the profiler backends
 
-By default, only the Stopwatch profiler (Symfony Profiler Bar) is enabled. To enable the other profiler backends, you have to add the following configuration to your `config/packages/shopware.yaml` file:
+By default, only the Stopwatch profiler (Symfony Profiler Bar) is enabled in the `dev` environment. In other environments, no profiler backend is enabled by default. To enable other profiler backends, add the following configuration to your `config/packages/shopware.yaml` file:
 
 ```yaml
 shopware:
@@ -60,18 +60,18 @@ class ConsoleProfiler implements ProfilerInterface
 {
     public function start(string $title, string $category, array $tags): void
     {
-        echo "Start $name\n";
+        echo "Start $title\n";
     }
 
     public function stop(string $title): void
     {
-        echo "Stop $name\n";
+        echo "Stop $title\n";
     }
 }
 ```
 
 ```php
-$services->set(App\Profiler::class)
+$services->set(\App\Profiler\ConsoleProfiler::class)
     ->tag('shopware.profiler', ['integration' => 'Console']);
 ```
 

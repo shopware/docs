@@ -36,7 +36,7 @@ As this is purely functional, it is your responsibility to provide a button and 
 </template>
 
 <script setup>
-import * as sw from '@shopware/meteor-admin-sdk';
+import * as sw from '@shopware-ag/meteor-admin-sdk';
 
 function onClick() {
  sw.iap.purchase({ identifier: 'my-iap-identifier' });

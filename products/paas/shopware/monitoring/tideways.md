@@ -10,6 +10,8 @@ nav:
 
 You need an existing Tideways account. The platform does not provide one.
 
+Tideways is only available for shop applications. Enabling it on any other application, such as a Composable Frontends application, is rejected when the configuration is validated.
+
 ## Store your Tideways API key
 
 Tideways authenticates the daemon with the API key of the project you want to monitor. You find it in your Tideways account under the settings of that project.
@@ -40,15 +42,15 @@ The secret must exist before you enable Tideways. If it is missing, the deployme
 
 Enabling Tideways does three things for you:
 
-- The Tideways PHP extension is added to your application image during the build. You do not need to list it under `app.php.extensions`.
+- The Tideways PHP extension is added to your application image during the build. You do not need to list it under `app.php.extensions`. If you do, the entry is ignored.
 - A Tideways daemon is deployed next to your application.
 - Your application containers are configured to send data to that daemon.
 
-Tideways is only available for shop applications. Enabling it on Composable Frontends application is rejected when the configuration is validated.
+Because the extension is part of the image, enabling or disabling Tideways builds a new image when you update your application.
 
 ## View your data
 
-Open your Tideways account and select the project that belongs to the API key you stored. Your shop reports under the service name `shopware`, and the environment matches the environment your application is deployed to.
+Open your Tideways account and select the project that belongs to the API key you stored. Your shop reports to the default service of that project, under the environment `production`.
 
 Monitoring data arrives continuously once the deployment is finished. No browser extension or CLI is needed.
 
@@ -60,7 +62,7 @@ Pages served from the CDN cache never reach PHP, so they do not show up in Tidew
 
 Only one profiler can be active at a time:
 
-- Tideways and [Blackfire](./blackfire.md) cannot be enabled together. If both are set to `true`, the configuration is rejected with the error `blackfire and tideways cannot be enabled at the same time`.
+- Tideways and [Blackfire](./blackfire.md) cannot be enabled together. If both are set to `true`, the configuration is rejected.
 - Tideways and OpenTelemetry tracing cannot be used at the same time. While Tideways is enabled, your application does not send traces, and the Tempo data source in Grafana stays empty for the affected time range. See [Traces](./traces.md) for details on tracing.
 
 To go back to tracing, set `services.tideways.enabled` to `false` and update your application again.

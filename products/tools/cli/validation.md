@@ -61,6 +61,19 @@ For direct CLI execution, relative paths are resolved from the current working d
 
 For day-to-day development, validate the source directory. Before uploading a release, validate the packaged zip so the checks run against the artifact you intend to submit.
 
+### Store compliance
+
+To require matching source files and compiled assets for Administration and Storefront, set `validation.store_compliance` in `.config/shopware-extension.yml`:
+
+```yaml
+validation:
+  store_compliance: true
+```
+
+For each resource directory in the extension and its configured extra bundles, the check looks for `main.js` or `main.ts` in the Administration and Storefront source directories and checks whether the corresponding compiled assets exist. Validation reports an error if source files are present without compiled assets, or compiled assets are present without source files.
+
+To enable the same checks in CI without changing the extension configuration, set `SHOPWARE_CLI_STORE_COMPLIANCE=1`.
+
 ## What does the built-in checker validate?
 
 The built-in `builtin` checker is included by default and can be run alone with `--only builtin` (`--only sw-cli` remains a backwards-compatible alias). It includes checks such as the following; this list is not exhaustive. The identifier in brackets is the value you can use in [validation ignores](#validation-ignores).
