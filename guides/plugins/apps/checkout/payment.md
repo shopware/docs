@@ -50,7 +50,7 @@ There are different types of payments.
 Synchronous payment is the simplest of all and does not need any additional interaction with the customer.
 If you have defined a `pay-url`, you can choose to be informed about and possibly process the payment or not.
 If you do not need to communicate with your app, you can stop reading here and the transaction will stay open.
-But if you do define a `pay-url`, you can respond to the request with a different transaction status like authorize, paid, or failed.
+But if you do define a `pay-url`, you can respond to the request with a different transaction status like `authorize`, `paid`, or `fail`.
 This is useful if you want to add a payment provider that only needs the information if the customer has already provided it in the checkout process or not.
 For example, a simple credit check for payment upon invoice.
 Below you can see an example of a simple answer from your app to mark a payment as authorized.
@@ -85,7 +85,7 @@ Refer to an example on [payment payload](https://github.com/shopware/app-php-sdk
 }
 ```
 
-Refer to possible [status values](#all-possible-payment-states).
+Refer to possible [status values](#payment-status-transition-actions).
 Failing states can also have a `message` property with the reason, which will be logged and could be seen as information for the merchant.
 
 ```json5
@@ -261,7 +261,7 @@ class PaymentController {
 </Tabs>
 
 The second `finalize` POST request will be called once the customer has been redirected back to the shop.
-This second request is only provided with the `orderTransaction` for identification purposes and `requestData` with all query parameters passed by the payment provider.
+This second request includes the `order`, the `orderTransaction` for identification purposes, `requestData` with the query parameters passed by the payment provider, and `recurring` data.
 The response `status` value determines the outcome of the payment, e.g.:
 
 | Status      | Description                                                     |
@@ -301,7 +301,7 @@ and your response should look like this:
 }
 ```
 
-Refer possible [status values](#all-possible-payment-states).
+Refer possible [status values](#payment-status-transition-actions).
 Failing states can also have a `message` property with the reason, which will be logged and could be seen as information for the merchant.
 
 ```json5
@@ -483,7 +483,7 @@ class PaymentController {
 </Tabs>
 
 If the payment has been validated and the order has been placed, you then receive another call to your `pay` endpoint.
-You will receive the `order`, the `orderTransaction` and also the `preOrderPayment` array data, that you have sent in your validate call.
+The `orderTransaction.validationData` contains the `preOrderPayment` data returned by your `validate` endpoint. The `pay` payload also includes the `order`. The top-level `validateStruct` contains no validation response data.
 
 <Tabs>
 
@@ -504,8 +504,8 @@ Request content is JSON
   "order": {
     //...
   },
-  "preOrderPayment": {
-    //...
+  "validateStruct": {
+    // Struct metadata only.
   }
 }
 ```
@@ -518,7 +518,7 @@ and your response should look like this:
 }
 ```
 
-You can find all possible status values [here](#all-possible-payment-states).
+You can find all possible status values [here](#payment-status-transition-actions).
 Failing states can also have a `message` property with the reason, which will be logged and could be seen as information for the merchant.
 
 ```json5
@@ -549,9 +549,7 @@ function pay(RequestInterface $request): ResponseInterface
     $shop = $shopResolver->resolveShop($serverRequest);
     $payment = $contextResolver->assemblePaymentCapture($serverRequest, $shop);
     
-    // contains your passed data from the validate call (preOrderPayment)
-    $payment->requestData
-    
+    // contains your passed data from the validate call (preOrderPayment) in orderTransaction.validationData
     // implement your logic here based on the information provided in $payment
     
     // check PaymentResponse class for all available payment states
@@ -633,7 +631,7 @@ You can refer to [refund payload](https://github.com/shopware/app-php-sdk/blob/m
 
 ```json5
 {
-  "status": "completed"
+  "status": "complete"
 }
 ```
 
@@ -770,20 +768,25 @@ class PaymentController {
 
 </Tabs>
 
-## All possible payment states
+## Payment status transition actions
 
-The following lists are all possible payment state options:
+The response `status` uses transition action names, rather than destination state names. Options include:
 
-* `open` - The payment is open and can be processed
-* `paid` - The payment has been paid
-* `cancelled` - The payment has been canceled
-* `refunded` - The payment has been refunded
-* `failed` - The payment has failed
-* `authorize` - The payment has been authorized
-* `unconfirmed` - The payment has not been confirmed yet
-* `in_progress` - The payment is in progress
-* `reminded` - The payment has been reminded
-* `chargeback` - The payment has been charged back
+* `reopen` - The payment is open and can be processed.
+* `paid` - The payment has been paid.
+* `paid_partially` - The payment has been partially paid.
+* `cancel` - The customer has canceled the payment.
+* `refund` - The payment has been refunded.
+* `refund_partially` - The payment has been partially refunded.
+* `fail` - The payment has failed.
+* `authorize` - The payment has been authorized.
+* `process_unconfirmed` - The payment has not been confirmed yet.
+* `process` - The payment is in progress.
+* `remind` - The payment has been reminded.
+* `chargeback` - The payment has been charged back.
+
+Available transitions depend on the current transaction state. Shopware handles `fail` and `cancel` through exceptions. For a response without an error message, omitting `status` does not request a state transition.
+Cancellation during `finalize` sets the transaction to `cancelled`, while cancellation during `pay` sets it to `failed`.
 
 ## All possible refund states
 

@@ -9,10 +9,10 @@ nav:
 
 ## Overview
 
-The Shopware 6 Administration stores API errors in the [Vuex store](https://vuex.vuejs.org/). There they are centrally accessible to your components, with a flat data structure looking like this:
+The Shopware 6 Administration stores API errors in the `api` property of the Pinia `error` store, accessible through `Shopware.Store.get('error')`. System errors are stored separately in its `system` property. The API error structure looks like this:
 
 ```text
-(state)
+(`Shopware.Store.get('error').api`)
  |- entityNameA
     |- id1
         |- property1
@@ -33,28 +33,28 @@ In this guide you will learn how to access this error store directly or via one 
 ​ Errors can be read from the store by calling the getter method `getApiErrorFromPath`. ​
 
 ```javascript
-function getApiErrorFromPath (state) => (entityName, id, path)
+Shopware.Store.get('error').getApiErrorFromPath(entityName, id, path)
 ```
 
-​ In there, the parameter `path` is an `array` representing the nested property names of your entity.
+For example, read an error for a product's name with `Shopware.Store.get('error').getApiError(product, 'name')`; the equivalent array path for `getApiErrorFromPath` is `['name']`.
 
-Also we provide a wrapper which can also handle nested fields in object notation, being much easier to use for scalar fields: ​
+The `getApiError` getter accepts a field name in dot notation:
 
 ```javascript
-function getApiError(state) => (entity, field)
+Shopware.Store.get('error').getApiError(entity, field)
 ```
 
-​ For example, an empty product name would result in an error with the path `product.name`, instead of having the array `['product', 'name']` present.
+For example, pass `name` for a product name or `name.nested` for a nested property. The equivalent paths for `getApiErrorFromPath` are `['name']` and `['name', 'nested']`.
 
 In your Vue component, use computed properties to avoid flooding your templates with store calls. ​
 
 ```javascript
 computed: {
     propertyError() {
-        return this.$store.getters.getApiError(myEntity, 'myFieldName');
+        return Shopware.Store.get('error').getApiError(myEntity, 'myFieldName');
     },
     nestedpropertyError() {
-        return this.$store.getters.getApiError(myEntity, 'myFieldName.nested');
+        return Shopware.Store.get('error').getApiError(myEntity, 'myFieldName.nested');
     }
 }
 ```
@@ -63,7 +63,7 @@ Those computed properties can then be used in your templates the familiar way:
 
 ```html
 <div>
-    <sw-field ... :error="propertyError"></sw-field>
+    <mt-text-field ... :error="propertyError"></mt-text-field>
 </div>
 ```
 
@@ -71,7 +71,7 @@ Those computed properties can then be used in your templates the familiar way:
 
 ### The mapErrors Service
 
-​ Like every Vuex mapping, fetching the errors from the store may be very repetitive and error-prone. Because of this we provide you an Vuex like mapper function: ​
+Fetching errors from the store may be very repetitive and error-prone. The `mapPropertyErrors` helper function can simplify this task:
 
 ```javascript
 mapPropertyErrors(subject, properties)
@@ -101,7 +101,7 @@ Component.register('sw-product-basic-form', {
 Which then are bound to the inputs like this:
 
 ```html
-<sw-field type="text" v-model="product.name" :error="productNameError">
+<mt-text-field v-model="product.name" :error="productNameError" />
 ```
 
 ​
@@ -148,7 +148,11 @@ Shopware.Component.register('sw-product-detail', {
 This makes it possible to indicate if one or more errors exists, in another view or a tab:
 
 ```html
-<sw-tabs
-    :hasError="swProductDetailBaseError">
+<sw-tabs>
+    <sw-tabs-item
+        :route="{ name: 'sw.product.detail.base', params: { id: $route.params.id } }"
+        :has-error="swProductDetailBaseError">
+        General
+    </sw-tabs-item>
 </sw-tabs>
 ```

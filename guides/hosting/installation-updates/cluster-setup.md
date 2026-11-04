@@ -108,10 +108,10 @@ Updates of such systems require a certain amount of effort, as issues often aris
 
 ### Security plugin
 
-For obtaining security fixes, without version upgrades, we provide a dedicated Security plugin.
-It is compatible with all Shopware versions, and the included fixes only activate on versions that are affected. In cluster setups, install it through Composer so all application servers receive the same code.
+Keep a compatible version of the Security Plugin installed, activated, and up to date, even when Shopware itself is fully updated.
+In cluster setups, install it through Composer so all application servers receive the same code.
 
-<PageRef page="security-plugin" />
+<PageRef page="security-best-practices/security-plugin" />
 
 ### Update of composer dependencies
 
