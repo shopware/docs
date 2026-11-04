@@ -187,10 +187,6 @@ The following steps run only when user data is **not** kept:
 * **Custom field sets:** Shopware deletes the custom field sets declared in the plugin's `Resources/config/custom-fields.xml`. Sets your plugin creates in code without setting `extensionName`, for example in `install()`, stay, so remove those yourself.
 * **Theme:** If the Storefront is installed, Shopware deletes the plugin's theme and its dependent themes. It attempts to delete media associated with the plugin's theme, preserving media protected by deletion restrictions.
 
-::: warning
-A failure in one uninstall step can leave the earlier steps applied. Shopware clears `installedAt` before custom-entity cleanup, custom-field cleanup, Composer handling and post-uninstall subscribers. If a later step fails, the plugin can already be marked uninstalled; rerunning `plugin:uninstall` then skips it.
-:::
-
 If `executeComposerCommands()` returns `true` and `shopware.deployment.cluster_setup` is disabled, Shopware attempts Composer removal for the plugin's package. It executes immediately in CLI and is deferred to `kernel.response` for web requests.
 
 ::: info
