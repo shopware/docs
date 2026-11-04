@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
+  copilot-requests: write
 
 jobs:
   generate:
@@ -13,14 +14,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
 
       - name: Generate Weekly Announcement
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node .github/scripts/generate-announcement.js
+
+      - name: Upload Announcement
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-developer-announcement
+          path: announcement.md

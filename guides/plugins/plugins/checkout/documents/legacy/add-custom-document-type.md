@@ -409,7 +409,7 @@ Let's have a quick look at an example document type template. Create a new file 
 
 In there, you should extend from the default document base template:
 
-:::code-group
+::: code-group
 
 ```twig [PLUGIN_ROOT/src/Resources/views/documents/example_document.html.twig]
 {% sw_extends '@Framework/documents/base.html.twig' %}

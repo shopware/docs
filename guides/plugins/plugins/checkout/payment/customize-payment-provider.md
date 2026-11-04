@@ -19,7 +19,7 @@ Review the [Plugin base guide](../../plugin-base-guide). The guides for [adding 
 
 First, we create a new class that extends from the provider we want to customise.
 In this example we customise the class `Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment` and name our class `ExampleDebitPayment`.
-The constructor has to accept an instance of `OrderTransactionStateHandler` like the original service and additionally an instance of `DebitPayment` that we want to decorate.
+The constructor accepts an instance of `OrderTransactionStateHandler` for custom processing and an instance of `DebitPayment` that we want to decorate.
 
 After we've created our customized payment provider class, we have to register it to the DI-container via the `services.php`.
 
@@ -32,20 +32,21 @@ namespace Swag\BasicExample\Service;
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
 use Shopware\Core\Checkout\Payment\Cart\PaymentHandler\DebitPayment;
-use Shopware\Core\Checkout\Payment\Cart\SyncPaymentTransactionStruct;
+use Shopware\Core\Checkout\Payment\Cart\PaymentTransactionStruct;
 use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Struct\Struct;
-use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ExampleDebitPayment extends DebitPayment
 {
     private DebitPayment $decorated;
+    private OrderTransactionStateHandler $transactionStateHandler;
 
     public function __construct(OrderTransactionStateHandler $transactionStateHandler, DebitPayment $decorated)
     {
-        parent::__construct($transactionStateHandler);
+        $this->transactionStateHandler = $transactionStateHandler;
         $this->decorated = $decorated;
     }
 
@@ -58,7 +59,9 @@ class ExampleDebitPayment extends DebitPayment
     {
         // do some custom stuff here
 
-        $this->transactionStateHandler->process($transaction->getOrderTransaction()->getId(), $salesChannelContext->getContext());
+        $this->transactionStateHandler->process($transaction->getOrderTransactionId(), $context);
+
+        return null;
     }
 }
 ```

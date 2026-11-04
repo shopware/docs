@@ -197,6 +197,8 @@ As you can see in the diagram above, the cart is modified during the enrichment 
 
 Contrary to other entities in the system, the cart is not managed through the [Data Abstraction Layer](./../../../concepts/framework/data-abstraction-layer)\(DAL)\. The cart can only be written and retrieved as a whole. As discussed in the sections, the workload of Shopware 6 can only be performed on the whole object in memory.
 
+For concurrent writes to the same cart, see [Cart concurrency](cart-concurrency.md).
+
 ## Cart control
 
 The state changes and cart mutation is handled automatically by a facade the `\Shopware\Core\Checkout\Cart\SalesChannel\CartService`. It controls, sets up, and modifies the cart struct.
