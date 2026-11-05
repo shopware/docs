@@ -49,7 +49,7 @@ When the promotion is evaluated, the cart is processed like this:
 
 1. Only the line items of the type product are used, and every quantity is split into single units.
 2. The set groups are processed one after another. For each set group, the sorter sorts all single units of the cart before the product rules are matched.
-3. The product rules of the set group select the units that can be part of the group. If the set group has no product rules, every unit matches. With the default rule matcher, a unit matches when any one of several product rules matches.
+3. The product rules of the set group select the units that can be part of the group. If the set group has no product rules, every unit matches. By default, a unit is selected when any one of several product rules matches it.
 4. The `packager` builds a group from the sorted matching units. If it returns an empty group, the processing of this set group ends.
 5. As long as the `packager` returns a group, it is called again with the matching units that are left. The units of a built group are not used again for the same set group. This is how one set group can produce several groups, and how the cart can contain several complete sets.
 
@@ -113,7 +113,7 @@ The Administration loads the keys from these endpoints and looks up the label of
 
 ## Set groups in the promotion requirements
 
-If a promotion has the field `useSetGroups` set to `true` and at least one set group, each set group becomes a `LineItemGroupRule` with the group ID, `packagerKey`, `value`, `sorterKey`, and product rules. All of these rules are combined in an `AndRule`, which is added to the requirements of the promotion. A `LineItemGroupRule` matches when at least one group can be built for its set group. As a result, every set group must be fillable for the promotion to apply.
+If a promotion has the field `useSetGroups` set to `true` and at least one set group, each set group becomes a `LineItemGroupRule` with the group ID, `packagerKey`, `value`, `sorterKey`, and product rules. All of these rules are combined in an `AndRule`, which is added to the requirements of the promotion. A `LineItemGroupRule` matches when at least one group can be built for its set group. As a result, a group must be built for every set group for the promotion to apply.
 
 ## Discount scopes for sets
 
