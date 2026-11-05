@@ -288,7 +288,7 @@ Return JSON as the tool result body. Shopware forwards it to the AI client as-is
 {"success": true, "data": {"synced": 42, "errors": 0}}
 ```
 
-For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. Shopware does not reject responses that omit `success`, but it logs a warning when the field is missing so operators can spot broken handlers.
+For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. For external webhook calls, Shopware returns the response body as-is. If that response decodes to an array without a `success` key, Shopware logs a warning; it does not reject the response solely for that omission.
 
 **Timeout:** App webhook calls time out after `shopware.mcp.app_tool_timeout` seconds (default: 10). Keep responses fast or use async patterns with status polling.
 
