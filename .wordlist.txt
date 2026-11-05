@@ -88,6 +88,7 @@ Auditability
 AuthenticationIdentityLoader
 AutoIncrementField
 Autofixer
+Autoscaling
 AvailableCombinationLoader
 AvgResult
 B2B Component
@@ -1384,6 +1385,7 @@ contravariance
 contravariant
 control
 cookieGroups
+cooldown
 copyToClipboard
 copyable
 cors

@@ -41,7 +41,9 @@ sw-paas command create --script 'bin/console dal:refresh:index --use-queue'
 sw-paas command logs --command-id <command-id>
 ```
 
-Note the time you started it. The command only queues the work, so it reports `SUCCEEDED` long before the index is rebuilt. Search returns no results until the queue has drained, see [How to set up OpenSearch](../guides/opensearch.md#post-enablement-actions). `bin/console es:status` tells you when indexing is complete, see [Check from inside the application](#check-from-inside-the-application).
+Note the time you started it. The command only queues the work, so it reports `SUCCEEDED` long before the index is rebuilt. `bin/console es:status` tells you when indexing is complete, see [Check from inside the application](#check-from-inside-the-application).
+
+If you have just enabled OpenSearch and do not yet have a populated index, expect search to return no results until the initial indexing work finishes. Deployment success does not mean the index is ready, see [How to set up OpenSearch](../guides/opensearch.md#post-enablement-actions). On a shop that already has a working index, a reindex, import or bulk update does not make search return no results. If it does, treat that as a search failure rather than a queue that is still draining.
 
 ## Where to look
 
@@ -68,7 +70,7 @@ Metrics are collected once a minute. On a small catalog the whole reindex can fi
 
 If the worker looks healthy but `async` is not moving, check what the worker depends on.
 
-**Valkey dashboard.** The `async` queue lives in the worker Valkey instance, which also stores carts. Select the worker instance. On **Memory Used**, the dashed line is the configured `maxmemory`. The worker instance uses the `noeviction` policy, so reaching the line means new messages and cart writes are rejected instead of old keys being evicted. Any evictions on the worker instance under **Evicted / Expired Keys** point to the same problem.
+**Valkey dashboard.** The `async` queue lives in the worker Valkey instance, which also stores carts. Select the worker instance. On **Memory Used**, the dashed line is the configured `maxmemory`. The worker instance uses the `noeviction` policy, which rejects writes that need additional memory at the limit rather than evicting keys. Rejected writes do not increase the eviction counter, so check memory usage together with Valkey OOM or write errors in the worker and storefront logs to detect a full queue. Evictions on **Evicted / Expired Keys** warrant checking which instance is selected and its configured eviction policy. Normal key expiration does not indicate a full queue.
 
 **Database dashboard.** Indexing reads heavily from the database. Sustained **ACU Utilization** near the configured maximum slows every message down and also affects storefront requests.
 
@@ -122,13 +124,13 @@ Open a ticket when one of the following is true:
 
 - The worker is pinned at the plan maximum for the whole job and the queue is not draining fast enough for your needs. This is a sizing conversation.
 - Worker pods are OOM-killed or restarted repeatedly.
-- Valkey memory on the worker instance has reached `maxmemory` or shows evictions.
+- Valkey memory on the worker instance has reached `maxmemory`, or the logs show Valkey OOM or write errors.
 - The worker shows `error`, `not-found` or `unknown` under Component Issues.
 
 Include the start time of the job, the command you ran, a screenshot of **Queue Depth** and **Pods & Autoscaling** covering the job, and the output of `messenger:failed:show` if the `failed` queue is above zero.
 
 :::warning
-Do not open a ticket for a queue that is still draining. Check the table above first. In most cases the dashboard already tells you whether the worker is the bottleneck or the plan is.
+A queue that drains steadily without errors or resource pressure usually does not require a ticket. If any of the criteria above apply, open a ticket even if the queue is still draining.
 :::
 
 ## Reduce the impact next time
