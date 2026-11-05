@@ -130,7 +130,7 @@ When copying a shop to another environment, use `--reset-identity` to remove the
 shopware-cli project dump --reset-identity --output identity.sql
 ```
 
-This omits `core.app.shopId` and `core.app.shopIdV2` from system configuration so the destination can generate its own shop ID. It also omits the following database records:
+This omits `core.app.shopId` and `core.app.shopIdV2` from system configuration, so the destination can generate its own shop ID. It also omits the following database records:
 
 - App records with completed or pending registrations
 - Integrations and API credentials belonging to those apps
