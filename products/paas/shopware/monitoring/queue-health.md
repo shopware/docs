@@ -6,56 +6,89 @@ nav:
 
 # Queue health during large jobs
 
-Some jobs put thousands of messages into the message queue at once. A full OpenSearch reindex with `bin/console dal:refresh:index --use-queue`, a large import or export, or a bulk product update all work this way. The command returns immediately, and the worker processes the messages in the background. From the outside this can look like a stalled deployment or a broken search when the queue is simply still draining.
+Some jobs put thousands of messages into the message queue at once. A full reindex with `bin/console dal:refresh:index --use-queue`, which also rebuilds the OpenSearch index when OpenSearch is enabled, is the most common one. Large imports and bulk product updates behave the same way. The command returns as soon as the messages are queued, and the worker processes them in the background. From the outside this can look like a broken search or a stalled deployment while the queue is simply still draining.
 
-This page describes what to watch while such a job runs, what normal looks like, and when it is worth opening a ticket.
+This page describes how the worker behaves on Shopware PaaS Native, what to watch while such a job runs, and when it is worth opening a ticket.
 
-## Before you start the job
+## How the worker processes the queue
 
-- Note the time you ran the command. Everything below is read against that start time.
-- Expect search to return no results until the queue has drained. The deployment reports success before the index is built, see [How to set up OpenSearch](../guides/opensearch.md#post-enablement-actions).
-- Expect the worker to need more resources than usual. Indexing messages are memory-heavy.
+Shopware uses three message transports, and each one has its own worker deployment:
+
+| Transport      | Stored in | Worker deployment                                | Used for                                                              |
+| -------------- | --------- | ------------------------------------------------ | --------------------------------------------------------------------- |
+| `async`        | Valkey    | `<application>-store-worker-async`               | Indexing, mails, and everything else that is processed asynchronously |
+| `low_priority` | Database  | `<application>-store-worker-low-priority-<hash>` | Messages Shopware marks as low priority                               |
+| `failed`       | Database  | `<application>-store-worker-failed`              | Messages that failed after all retries. This worker retries them.     |
+
+Each worker deployment scales on the number of messages waiting in its transport:
+
+- With an empty queue the deployment has zero pods. A pod is started within seconds of the first message arriving.
+- One additional pod is added for roughly every 300 waiting messages, up to the maximum your plan allows.
+- When the queue is empty again, the pods are removed after a short cooldown.
+
+A worker pod runs `messenger:consume` in a loop with a time limit and a memory limit. The consumer stopping and starting again on its own is normal and does not count as a restart of the pod.
+
+:::info
+The scheduled task runner queues a few messages every five minutes. A worker pod appearing briefly every five minutes, even when you did not start anything, is expected.
+:::
+
+## Start the job
+
+Run the reindex either in an interactive session or as a command in a dedicated container. The command variant is easier to follow afterwards:
+
+```bash
+sw-paas command create --script 'bin/console dal:refresh:index --use-queue'
+sw-paas command logs --command-id <command-id>
+```
+
+Note the time you started it. The command only queues the work, so it reports `SUCCEEDED` long before the index is rebuilt. Search returns no results until the queue has drained, see [How to set up OpenSearch](../guides/opensearch.md#post-enablement-actions). `bin/console es:status` tells you when indexing is complete, see [Check from inside the application](#check-from-inside-the-application).
 
 ## Where to look
 
-Open Grafana with `sw-paas open grafana` and select the **Application Resources** dashboard. Set the **deployment** variable to the worker deployment. Set the time range to cover the moment you started the job.
+Run `sw-paas open grafana` to get the Grafana URL and credentials for your application, then open the **Application Resources** dashboard. Set the time range to cover the moment you started the job.
+
+The **Message Queues** row shows all three queues for the whole application and does not depend on the **deployment** variable. For the pod-level panels, set **deployment** to the `async` worker deployment, since that is the queue indexing goes to.
 
 ## What to watch
 
-The **Message Queues** row is the primary signal. The rest of the dashboard tells you why the queue is or is not draining.
-
-| Panel                                                | Healthy during a large job                                                                              | Needs attention                                                                                                                                     |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Messages per Queue, Queue Depth                      | The `async` queue jumps when the job starts, then falls steadily towards zero. Short spikes are normal. | The queue plateaus or keeps growing for more than a few minutes while workers are running. The `failed` queue is anything above zero.               |
-| Available Replicas per Component                     | Worker replicas rise with the queue depth and fall back to zero once it is empty.                       | Worker replicas stay at zero while the queue is above zero.                                                                                         |
-| Pods & Autoscaling                                   | Running pods are below the dashed plan maximum.                                                         | Running pods sit on the dashed line for the whole job. The plan limit is the bottleneck, not the application.                                       |
-| Component Issues                                     | `All components: running`, or `scaling` while pods are added or removed.                                | `error`, `not-found` or `unknown` for the worker.                                                                                                   |
-| Memory Usage (of limits), Memory vs Limits (per pod) | Below 100% of the limit.                                                                                | Pods approaching 100%. They are about to be killed.                                                                                                 |
-| OOM-Killed Containers (24h), Restarts (24h)          | Zero.                                                                                                   | Anything above zero. A killed worker loses the message it was processing, the message is retried, and the queue stalls or grows while this repeats. |
+| Panel                                                | Healthy during a large job                                                                                   | Needs attention                                                                                                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Messages per Queue, Queue Depth                      | `async` jumps when the job starts, then falls steadily towards zero.                                         | `async` plateaus or keeps growing for more than a few minutes while worker pods are running. `failed` is above zero and growing.                     |
+| Available Replicas per Component                     | Worker replicas rise after the queue fills and fall back to zero once it is empty.                           | Worker replicas stay at zero while `async` is above zero for more than a minute.                                                                     |
+| Pods & Autoscaling                                   | Running pods are below the dashed plan maximum, or reach it only briefly.                                    | Running pods sit on the dashed line for the whole job and the queue drains slowly. The plan limit is the bottleneck, not the application.            |
+| Component Issues                                     | `All components: running`, or `scaling` while pods are added or removed.                                     | `error`, `not-found` or `unknown` for the worker.                                                                                                    |
+| Memory Usage (of limits), Memory vs Limits (per pod) | Below the limit. Worker memory grows during indexing and is released when the consumer restarts itself.      | Pods approaching 100% of the limit.                                                                                                                  |
+| OOM-Killed Containers (24h), Restarts (24h)          | Zero. The consumer's own time and memory limits do not show up here.                                         | Anything above zero. A killed worker loses the message it was processing, the message is retried, and the queue stalls or grows while this repeats.  |
 
 :::info
-A queue that drains slowly but steadily is not an incident. On a large catalog a full reindex takes a while, and the worker is doing what it is supposed to do. A queue that stops draining while the worker is restarting or pinned at the plan maximum is.
+Metrics are collected once a minute. On a small catalog the whole reindex can finish between two samples, so the dashboard may show only the worker pod and never the queue itself. That is fine. If the queue is visible and shrinking, the job is progressing.
 :::
 
 ## Check the dependencies
 
-The queue itself lives in Valkey, and indexing reads heavily from the database. If the worker looks healthy but the queue is not moving, check these next.
+If the worker looks healthy but `async` is not moving, check what the worker depends on.
 
-**Valkey dashboard.** Select the worker instance. On **Memory Used**, the dashed line is the configured `maxmemory`. On **Evicted / Expired Keys**, evictions on the worker instance mean the queue is rejecting writes, because the worker instance uses the `noeviction` policy. Either one means the queue itself is full.
+**Valkey dashboard.** The `async` queue lives in the worker Valkey instance, which also stores carts. Select the worker instance. On **Memory Used**, the dashed line is the configured `maxmemory`. The worker instance uses the `noeviction` policy, so reaching the line means new messages and cart writes are rejected instead of old keys being evicted. Any evictions on the worker instance under **Evicted / Expired Keys** point to the same problem.
 
-**Database dashboard.** Watch **ACU Utilization** and **Database Connections**. Sustained utilization near the configured maximum during a reindex slows every message down and also affects storefront requests.
+**Database dashboard.** Indexing reads heavily from the database. Sustained **ACU Utilization** near the configured maximum slows every message down and also affects storefront requests.
 
-**PHP-FPM dashboard.** Select the `storefront` component. **Pool Utilization** near 100% while the job runs means the reindex is starving the storefront, and customers will notice slow pages before the queue is done.
+**PHP-FPM dashboard.** Select the `storefront` component. The storefront scales on **Pool Utilization**, so a value that stays high while the job runs means the reindex is competing with customer traffic, and the storefront may already be at its plan maximum.
 
 ## Read the worker logs
 
-Stream the worker logs from the CLI while the job runs:
+Stream the worker logs while the job runs:
 
 ```bash
 sw-paas application logs --component worker --follow --since 15m
 ```
 
-Or open the **Logs** dashboard in Grafana, set **component** to `worker` and **level** to `ERROR`. Look for memory exhausted errors, database timeouts, and connection errors to OpenSearch. One of these repeating on every retry explains a `failed` queue that keeps growing.
+During a healthy run the log is a steady sequence of `Received message`, `handled successfully` and OpenSearch `Request Success` lines. Filter for `ERROR` to find the problem when the queue stalls:
+
+```bash
+sw-paas application logs --component worker --since 15m --query '{component="worker"} |= "ERROR"'
+```
+
+The same filter is available in the **Logs** dashboard in Grafana by setting **component** to `worker` and **level** to `ERROR`. Memory exhausted errors, database timeouts, and connection errors to OpenSearch repeating on every retry explain a `failed` queue that keeps growing.
 
 ## Check from inside the application
 
@@ -64,16 +97,31 @@ Open an exec session with `sw-paas exec --new` and run:
 ```bash
 bin/console messenger:stats
 bin/console messenger:failed:show
+bin/console es:status
 ```
 
-The first command shows pending messages per transport and confirms what the dashboard shows. The second lists failed messages with their error, which is the quickest way to find the root cause of a growing `failed` queue.
+The first command shows pending messages per transport and matches what the dashboard shows. The second lists failed messages with their error, which is the quickest way to find the root cause of a growing `failed` queue.
+
+The third one is the done signal for an OpenSearch reindex. It reports the cluster status and whether indexing is still in progress:
+
+```text
++-----------------+-----------+
+| Name            | Status    |
++-----------------+-----------+
+| Cluster Status  | green     |
+| Available Nodes | 6         |
+| Indexing        | completed |
++-----------------+-----------+
+```
+
+While `Indexing` is not `completed`, search results are incomplete even if the `async` queue already looks empty on the dashboard.
 
 ## When to open a ticket
 
 Open a ticket when one of the following is true:
 
 - The worker is pinned at the plan maximum for the whole job and the queue is not draining fast enough for your needs. This is a sizing conversation.
-- Workers are OOM-killed or restarting repeatedly. The memory limit does not fit the workload.
+- Worker pods are OOM-killed or restarted repeatedly.
 - Valkey memory on the worker instance has reached `maxmemory` or shows evictions.
 - The worker shows `error`, `not-found` or `unknown` under Component Issues.
 
