@@ -34,7 +34,7 @@ Component.override('sw-product-stream-field-select', {
     computed: {
         options() {
             if (!configuredServices.has(this.conditionDataProviderService)) {
-                this.conditionDataProviderService.addToEntityAllowList('category', ['breadcrumb']);
+                this.conditionDataProviderService.addToEntityAllowList('category', ['active']);
                 configuredServices.add(this.conditionDataProviderService);
             }
             return this.$super('options');
@@ -43,12 +43,12 @@ Component.override('sw-product-stream-field-select', {
 });
 ```
 
-This example adds `breadcrumb` to the category allowlist so that it can be selected for categories.
+This example adds the boolean `active` property to the category allowlist so that it can be selected for categories.
 
 ## Remove a property from an allowlist
 
 A property checked by `isPropertyInAllowList` remains selectable while it belongs to either the general allowlist or its entity's allowlist.
-Remove the relevant entries from both lists to hide it.
+For a property allowed only for its entity, remove it from that entity's allowlist.
 
 * The general allowlist applies to every entity that exposes the property.
 * The entity allowlist applies to the selected entity.
@@ -62,8 +62,7 @@ Component.override('sw-product-stream-field-select', {
     computed: {
         options() {
             if (!configuredServices.has(this.conditionDataProviderService)) {
-                this.conditionDataProviderService.removeFromGeneralAllowList(['id']);
-                this.conditionDataProviderService.removeFromEntityAllowList('category', ['id']);
+                this.conditionDataProviderService.removeFromEntityAllowList('product', ['ean']);
                 configuredServices.add(this.conditionDataProviderService);
             }
             return this.$super('options');
@@ -72,8 +71,7 @@ Component.override('sw-product-stream-field-select', {
 });
 ```
 
-Removing `id` from both lists hides it for categories.
-The general-list change also applies to other entities that expose `id`.
+Removing `ean` from the product allowlist hides it for products.
 
 Each example is independent and assumes the default allowlists.
 
@@ -91,7 +89,7 @@ Component.override('sw-product-stream-field-select', {
     computed: {
         options() {
             if (!configuredServices.has(this.conditionDataProviderService)) {
-                this.conditionDataProviderService.addToGeneralAllowList(['createdAt']);
+                this.conditionDataProviderService.addToEntityAllowList('product', ['minPurchase']);
                 this.conditionDataProviderService.addToEntityAllowList('category', ['path']);
                 configuredServices.add(this.conditionDataProviderService);
             }
@@ -101,5 +99,5 @@ Component.override('sw-product-stream-field-select', {
 });
 ```
 
-Adding `createdAt` to the general allowlist makes it selectable for entities that expose that property; it is already allowed for products by default.
+Adding `minPurchase` to the product allowlist makes it selectable for products. This product property is not in the default product allowlist.
 Adding `path` to the category allowlist makes that property selectable for categories.
