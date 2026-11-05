@@ -259,7 +259,8 @@ redirects:
     resources/references/core-reference/flow-reference.html: guides/development/troubleshooting/flow-reference.html
     resources/references/core-reference/rules-reference.html: guides/development/troubleshooting/rules-reference.html
     guides/hosting/installation-updates/extension-managment.html: guides/hosting/installation-updates/extension-management.html
-    products/Nexus/: products/nexus/
+    products/Nexus/: /nexus/
+    products/nexus/: /nexus/
     products/cli/: products/tools/cli/
     guides/installation/start-developing.html: guides/development/start-developing.html
     concepts/translations/: concepts/framework/translations/
