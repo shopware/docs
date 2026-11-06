@@ -17,7 +17,7 @@ This guide describes the behavior of Shopware 6.7.17.0 and later. Earlier versio
 
 Analytics are configured per sales channel in the Administration, in the analytics settings of the sales channel. The Storefront only loads the analytics script when a tracking ID is set and analytics are active. With the default cookie consent, the script only starts after the shopper accepted the Google Analytics or Google Ads cookie.
 
-A sales channel without active analytics renders none of the analytics attributes described in this guide, loads no analytics script, and answers the analytics routes with a 404.
+A sales channel without active analytics loads no analytics script and answers the analytics routes with a 404. It also renders none of the analytics-only attributes and values, such as the list identifiers, the graduated prices of the buy widget and the `variant` of a product box. The `data-product-information` attribute of the product box is shared product metadata, so Shopware renders it in every sales channel.
 
 ## Delivery
 
@@ -38,7 +38,7 @@ window.dataLayer.push({
 });
 ```
 
-Events without ecommerce data, such as `login`, `sign_up` and `search`, are pushed with their parameters at the top level, for example `{ event: 'login', method: 'mail' }`.
+Events without ecommerce data, such as `login`, `sign_up`, `search` and `view_search_results`, are pushed with their parameters at the top level, for example `{ event: 'login', method: 'mail' }`.
 
 In Google Tag Manager, read the parameters with data layer variables such as `ecommerce.items` or `ecommerce.value`, and use the GA4 event tag with "Send Ecommerce data" enabled.
 
@@ -60,7 +60,8 @@ In Google Tag Manager, read the parameters with data layer variables such as `ec
 | `purchase`             | An order is placed                                                                                                                                                                                        |
 | `login`                | A login succeeded. Reported on the page after the login, so a wrong password reports nothing                                                                                                              |
 | `sign_up`              | A customer account was created, also by a guest with "Create account" on the checkout finish page. Reported on the page after the registration. A guest checkout and a failed registration report nothing |
-| `search`               | The shopper searches                                                                                                                                                                                      |
+| `search`               | The shopper types in the search widget of the header, with the input as `search_term`                                                                                                                     |
+| `view_search_results`  | The search results page is shown, with the query as `search_term`                                                                                                                                         |
 
 ## Event and item parameters
 
@@ -80,12 +81,13 @@ All numeric values are numbers, and amounts keep the decimals of the currency:
 
 The cart, checkout and `purchase` events report these event parameters:
 
-* `value` is the position price: all line items including promotion discounts, without shipping.
-* `coupon` holds the codes of the applied promotions, separated by a comma.
+* `value` of `view_cart`, `begin_checkout`, `add_shipping_info`, `add_payment_info` and `purchase` is the position price: all line items including promotion discounts, without shipping.
+* `value` of `add_to_cart` and `remove_from_cart` is the value of the added or removed quantity, not the cart total.
+* `coupon` holds the codes of the applied promotions, separated by a comma. `begin_checkout`, `add_shipping_info`, `add_payment_info` and `purchase` report it, `view_cart` does not.
 * `shipping` and `tax` of `purchase` are reported separately from `value`.
 * Discounts and other line items that are not products are not reported as items.
 
-`add_to_cart` reports the unit price of the graduated price that applies to the quantity the cart holds after the add, and the value of the added quantity.
+`add_to_cart` resolves a graduated price only for a buy form inside an element with the `data-product-prices` attribute, which the buy widget of the product detail page renders. It then reports the unit price of the tier for the added quantity plus the quantity of the product in the cart, if the page rendered the cart, for example in the off-canvas cart. A product box has no tiers, so its `add_to_cart` reports the price it rendered, even if the added quantity reaches a cheaper tier.
 
 ### Categories
 
@@ -149,7 +151,7 @@ Analytics treat every element with a `data-product-information` attribute as a p
 | `price`   | No       | `price`                                                   |
 | `variant` | No       | `item_variant`                                            |
 
-Report the price the shopper pays for one piece, as in the example: `calculatedPrices.first` when a price rule or graduated prices apply, otherwise `calculatedPrice`. The product box and the product detail page do the same.
+Report the price the shopper pays for one piece, as in the example: `calculatedPrices.first` when a price rule or graduated prices apply, otherwise `calculatedPrice`. The product box does the same. The product detail page reports the cheapest tier in `view_item` instead, so for a product with graduated prices the two can differ.
 
 Only these properties are reported. Other keys of the object are ignored, so the attribute can carry data for your own scripts.
 
@@ -186,7 +188,7 @@ A list that is paginated can set `data-list-start` on itself or on an element in
 A theme that renders `@Storefront/storefront/component/product/listing.html.twig` can pass the list through the `listId` and `listName` variables instead.
 
 ::: warning
-Render analytics attributes only when `storefrontAnalytics and storefrontAnalytics.isActive()` is true, as Shopware does. A sales channel without analytics must not carry analytics data in its HTML.
+Render analytics-only attributes and values, such as `data-list-id`, `data-list-name`, `data-list-start` and the `variant` key, only when `storefrontAnalytics and storefrontAnalytics.isActive()` is true, as Shopware does. A sales channel without analytics must not carry analytics data in its HTML. The `data-product-information` attribute with the other keys is shared product metadata and can be rendered in every sales channel.
 :::
 
 ## Checkout steps
