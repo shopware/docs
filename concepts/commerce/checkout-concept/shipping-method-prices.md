@@ -7,11 +7,11 @@ nav:
 
 # Shipping Method Prices
 
-A shipping method can define several price rows. Shopware checks those rows against the rules and delivery contents of the current cart to choose a shipping cost. Shopware selects a matrix price when the delivery has no existing positive shipping cost or manual shipping cost, cart behavior does not skip recalculating a zero shipping cost, and at least one delivery item has delivery information with free delivery disabled.
+A shipping method can define several price rows. Shopware checks those rows against the rules and delivery contents of the current cart to choose a shipping cost. During an Administration order edit, Shopware keeps the shipping price already saved on the order, including zero. A manual shipping price for the edit takes precedence over the saved amount. For a delivery with no existing shipping price or manual override, shipping is free when every item is marked for free shipping.
 
 ## How Shopware selects a price
 
-Shopware checks the rules that match the current cart in priority order, highest first. Rules with the same priority are ordered by ID. The first rule with a matching price row wins. If no matching rule has a price, Shopware checks rows without a rule. If no row matches, Shopware cannot calculate a shipping cost for that method.
+Shopware checks the rules that match the current cart in priority order, highest first. Rules with the same priority are ordered by ID. The first rule with a matching price row wins. If no matching rule has a price, Shopware checks rows without a rule. If no row matches, the shipping method is blocked for that cart and an order cannot be placed with it. In the Storefront, Shopware can switch to another available, unblocked shipping method if recalculation leaves no blocked shipping or payment method.
 
 Within each rule group, rows are considered from the lowest resolved price to the highest. Shopware uses the first row that matches and has a `currencyPrice` collection. It resolves the price for the active currency; if that currency has no entry, it uses the default currency price and applies the currency factor.
 
@@ -31,17 +31,15 @@ The `calculation` field selects which delivery value is compared:
 | `3`   | `CALCULATION_BY_WEIGHT`          | Weight of the delivery positions      |
 | `4`   | `CALCULATION_BY_VOLUME`          | Volume of the delivery positions      |
 
-Only positions whose line item has delivery information with free delivery disabled are counted. When `SHIPPING_PRICE_RANGE_CURRENCY_CONVERSION` is enabled, price-based range bounds are multiplied by the context currency factor.
+Only positions whose line item has delivery information with free delivery disabled are counted. Without `SHIPPING_PRICE_RANGE_CURRENCY_CONVERSION`, price bounds are compared unchanged with the delivery total in the active currency. With the feature enabled, price bounds are treated as amounts in the default currency and non-null bounds are multiplied by the context currency factor. The feature is disabled by default in 6.7 and is declared to become standard in 6.8.
 
 ## Price basis and tax rules
 
-In Shopware 6.7.15.1, shipping prices use the stored gross amount for a gross context tax state and the stored net amount otherwise. Starting with the planned Shopware 6.7.17.0 release, shipping price selection also considers the customer group's price basis.
-
-When a customer group's price basis differs from its tax display mode and the context tax state matches that display mode, Shopware derives the amount from the stored price basis and the applicable shipping tax rules. For example, with a net price basis, gross display, and a gross tax state, it derives the gross amount from the stored net amount.
+Before Shopware 6.7.17.0, shipping prices use the stored gross price in a gross tax state and the stored net price otherwise. Starting with Shopware 6.7.17.0, shipping price selection also follows the customer group's price basis. When the price basis differs from the tax display mode and the context tax state matches that display mode, Shopware derives the amount from the stored price basis and the delivery's shipping tax rules. For example, with a net price basis, gross display, and a gross tax state, it derives the gross amount from the stored net price.
 
 ## Example
 
-With the default currency (factor 1), this `prices` payload uses the delivery total: the paid row matches below 50, and the free row matches from 50 onward. At 50 both rows match, so Shopware selects the free row because it sorts rows by resolved price from lowest to highest.
+Within one rule group and with the default currency (factor 1), this `prices` payload uses the delivery total. The paid row has no limit on either side, so it matches every total. The free row matches from 50 on. Because Shopware checks matching rows in ascending resolved-price order, a total of 50 or more selects the free row in this group.
 
 ```json
 {
