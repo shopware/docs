@@ -6,7 +6,7 @@ nav:
 
 # Queue health during large jobs
 
-Shopware hands slow work to a message queue instead of doing it during a request. The worker is the component that processes that queue in the background. Some jobs put thousands of messages into the queue at once. A full reindex with `bin/console dal:refresh:index --use-queue`, which also updates the products in the OpenSearch index when OpenSearch is enabled, is the most common one. Large imports and bulk updates behave the same way. The command returns as soon as the messages are queued, long before the work is done. From the outside this can look like a broken shop while the queue is simply still draining.
+Shopware moves time-consuming tasks to a message queue instead of processing it during a request. The worker is the component that processes that queue in the background. Some jobs put thousands of messages into the queue at once. A full reindex with `bin/console dal:refresh:index --use-queue`, which also updates the products in the OpenSearch index when OpenSearch is enabled, is the most common one. Large imports and bulk updates behave the same way. The command returns as soon as the messages are queued, long before the work is done. From the outside this can look like a broken shop while the queue is simply still draining.
 
 This page describes how the worker behaves, what to watch while such a job runs, and when to open a ticket.
 
@@ -22,7 +22,7 @@ Shopware uses three queues, called transports. Each one has its own worker. In G
 
 Each worker runs as one or more pods, and the number of pods follows the number of messages waiting in its queue:
 
-- With an empty queue the worker has zero pods. A pod starts within seconds of the first message.
+- With an empty queue, the worker has zero pods. A pod starts within seconds of the first message.
 - One pod is added for roughly every 300 waiting messages, up to the maximum your plan allows.
 - When the queue is empty, the pods are removed after a short cooldown.
 
@@ -32,7 +32,7 @@ Indexing messages are batches. One product indexing message covers 50 products, 
 
 ## Start the job
 
-Run the reindex as a command in a dedicated container, so you can follow its output afterwards. The first command prints the command ID that the second one needs:
+Run the reindex as a command in a dedicated container, so you can follow its output afterward. The first command prints the command ID that the second one needs:
 
 ```bash
 sw-paas command create --script 'bin/console dal:refresh:index --use-queue'
@@ -93,7 +93,7 @@ bin/console messenger:failed:show
 
 The first shows pending messages per transport and matches the dashboard. The second lists failed messages with their error, which is the fastest way to the root cause of a growing `failed` queue.
 
-## Is the search index ready
+## Is the search index ready?
 
 Two different jobs touch the OpenSearch index, and they are tracked differently.
 
