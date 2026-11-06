@@ -2263,6 +2263,7 @@ whitespaces
 whoami
 wil
 wishlist
+wishlists
 wordlist
 worktree
 www
