@@ -44,6 +44,8 @@ $ bin/console [command] [parameters]
 | `app:secret:rotate`  | Rotate the shared app secret and integration credentials for one or all apps    |
 | `app:shop-id:change` | \[app:url-change:resolve\] Change the shop ID by choosing a resolution strategy |
 | `app:uninstall`      | Uninstalls the app                                                              |
+| `app:url:status`     | Shows the result of the last `APP_URL` verification                             |
+| `app:url:verify`     | Verifies `APP_URL` and shows the result                                         |
 | `app:validate`       | Checks manifests for errors                                                     |
 
 ### Assets
