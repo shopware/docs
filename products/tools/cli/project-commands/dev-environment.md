@@ -52,6 +52,43 @@ The interactive dashboard has three tabs:
 - **Instance** — containers, watcher processes, and log files with live-streaming
 - **Config** — PHP version, profiler
 
+### Watchers
+
+#### Storefront watcher
+
+Start the Storefront watcher from the Overview tab in the TUI or run it directly:
+
+```bash
+shopware-cli project storefront-watch
+```
+
+The CLI uses Vite when Shopware is `6.7.17` or newer, or when the Storefront
+package defines a `dev:server` script. Otherwise, it starts the legacy webpack
+`hot-proxy` watcher.
+
+Open the URL for the active watcher mode:
+
+- **Vite:** Open `https://<host>` with the local proxy. Without the local
+  proxy, open `http://127.0.0.1:8000` (replace `8000` with your configured web
+  port if necessary).
+- **Legacy `hot-proxy`:** Open the watcher URL shown by the CLI. It is
+  `https://storefront-watch.<host>` with the local proxy or defaults to
+  `http://127.0.0.1:9998` without it.
+
+#### Administration watcher
+
+Start the Administration watcher from the Overview tab in the TUI or run it
+directly:
+
+```bash
+shopware-cli project admin-watch
+```
+
+With the local proxy, open `https://admin-watch.<host>`. Without the local
+proxy, open `http://127.0.0.1:5173` with Vite or `http://127.0.0.1:8080`
+with webpack.
+Replace the port with your configured watcher port if necessary.
+
 ### View application logs
 
 ```bash
