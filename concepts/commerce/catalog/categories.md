@@ -77,6 +77,16 @@ Per-category SEO fields include `metaTitle`, `metaDescription`, `keywords`, `seo
 - React to regenerated URLs via `SeoUrlUpdateEvent`, or enqueue additional updates when categories are changed programmatically.
 - Emit canonical links when rendering custom category pages.
 
+### Which categories receive SEO URLs
+
+Category SEO URLs use `NavigationPageSeoUrlRoute`, which serves `frontend.navigation.page` with `navigationId`. Its default template is `{% for part in category.seoBreadcrumb %}{{ part }}/{% endfor %}`. Configure the template per sales channel under *Settings → SEO*. Headless sales channels use `store-api.category.detail` instead. For the general route mechanism, see [Add custom SEO URLs](../../../guides/plugins/plugins/content/seo/add-custom-seo-url.md).
+
+For non-API sales channels, URL generation requires the channel to be active and to have a domain for the language. The category itself must be active and must be, or lie below, the sales channel's navigation, footer, or service entry category. Children of an inactive category are not excluded by this check. Folder categories are excluded; link categories are not. The default template leaves out the entry category and its ancestors, so the entry category renders an empty path and receives no URL.
+
+The category indexer regenerates URLs when a category is activated, moved, or renamed, and a template change also triggers regeneration. Deactivation or changing a category to type `folder` alone does not regenerate URLs. If a later regeneration includes an inactive or folder category, it is filtered out and its existing URL is marked as deleted. A category outside the sales channel's entry categories, or one with an empty rendered path, is returned with an error and its existing URL is preserved.
+
+A rendering error for one category is logged and preserves that category's existing URL. A Twig syntax error prevents the template from loading; no URLs are yielded for that regeneration batch, so all IDs requested in that regeneration batch are marked as deleted.
+
 ## Extensibility and events
 
 - `NavigationLoadedEvent`: navigation tree loaded; enrich or adjust nodes.
