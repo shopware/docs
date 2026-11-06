@@ -6,7 +6,7 @@ nav:
 
 # Queue health during large jobs
 
-Shopware hands slow work to a message queue instead of doing it during a request. The worker is the component that processes that queue in the background. Some jobs put thousands of messages into the queue at once. A full reindex with `bin/console dal:refresh:index --use-queue`, which also rebuilds the OpenSearch index when OpenSearch is enabled, is the most common one. Large imports and bulk updates behave the same way. The command returns as soon as the messages are queued, long before the work is done. From the outside this can look like a broken shop while the queue is simply still draining.
+Shopware hands slow work to a message queue instead of doing it during a request. The worker is the component that processes that queue in the background. Some jobs put thousands of messages into the queue at once. A full reindex with `bin/console dal:refresh:index --use-queue`, which also updates the products in the OpenSearch index when OpenSearch is enabled, is the most common one. Large imports and bulk updates behave the same way. The command returns as soon as the messages are queued, long before the work is done. From the outside this can look like a broken shop while the queue is simply still draining.
 
 This page describes how the worker behaves, what to watch while such a job runs, and when to open a ticket.
 
@@ -95,9 +95,11 @@ The first shows pending messages per transport and matches the dashboard. The se
 
 ## Is the search index ready
 
-On a shop that already has a working index, a reindex does not make search return no results. The old index keeps serving until Shopware switches the alias to the new one. Empty results during a reindex are a search failure, not a draining queue. Only when OpenSearch was just enabled and no index exists yet does search stay empty until the initial indexing finishes, see [How to set up OpenSearch](../guides/opensearch.md#post-enablement-actions).
+Two different jobs touch the OpenSearch index, and they are tracked differently.
 
-To check progress, run `bin/console es:status` in an exec session:
+**DAL refresh.** `dal:refresh:index --use-queue` writes products into the current OpenSearch index in place. It does not build a replacement index and does not switch the alias. On a shop that already has an index, search keeps working throughout. On a shop where OpenSearch was just enabled, the first product batch creates the index, and search fills up as the queue drains, see [How to set up OpenSearch](../guides/opensearch.md#post-enablement-actions). In both cases `es:status` does not track this job and shows `completed` throughout. Its progress is the `async` queue depth and the worker logs described above. The job is done when the queue is empty and the worker logged no errors.
+
+**Full rebuild.** `bin/console es:index` builds a new index next to the old one, queues the indexing work, and switches the alias to the new index at the end. The old index keeps serving until then, so search does not return empty results during the rebuild. `es:status` tracks this job:
 
 ```text
 +-----------------+-----------+
@@ -109,9 +111,14 @@ To check progress, run `bin/console es:status` in an exec session:
 +-----------------+-----------+
 ```
 
-`Indexing: completed` on its own does not mean search is ready. The status comes from the indexing task record, which the worker creates, so the command shows `completed` until the worker has picked up the job. It also shows `completed` once all documents are written but before the alias has switched. In that case the output ends with a warning that the alias will swap at the end of the indexing process.
+Read the status with these two cases in mind:
 
-The swap is done by a Shopware scheduled task, and the platform runs scheduled tasks every five minutes, so the warning should disappear within about ten minutes after the queue drains. If it persists, check the **Scheduled Tasks** row on the Application Resources dashboard and the runner's output with `sw-paas application logs --component scheduled-task`. Declare the index ready when the queue is empty, the worker logged no errors, no alias warning is printed, and storefront search returns results.
+- **An index already exists.** The command records the rebuild before it queues any messages, so `es:status` shows `in progress` with a progress bar from the start. It shows `completed` once all documents are written, but prints a warning that the alias will swap at the end of the indexing process until the switch has happened.
+- **No index exists yet.** Shopware records nothing, so `es:status` shows `completed` throughout, with no warning, while the worker is still building the index. Use queue depth and worker logs instead. Search stays empty until the build is done.
+
+The alias switch is done by a Shopware scheduled task, and the platform runs scheduled tasks every five minutes, so the warning should disappear within about ten minutes after the queue drains. If it persists, check the **Scheduled Tasks** row on the Application Resources dashboard and the runner's output with `sw-paas application logs --component scheduled-task`. Declare the index ready when the queue is empty, the worker logged no errors, no alias warning is printed, and storefront search returns results.
+
+Empty search results during either job on a shop that already has an index are a search failure, not a draining queue.
 
 ## When to open a ticket
 
