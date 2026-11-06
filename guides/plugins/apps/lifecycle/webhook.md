@@ -11,6 +11,8 @@ nav:
 
 With webhooks, you can subscribe to events occurring in Shopware. Whenever such an event occurs, a `POST` request will be sent to the URL specified for this particular event.
 
+This guide covers webhooks an app registers in its manifest. For webhooks created through the Admin API, see [Webhooks](../../../development/integrations-api/webhooks.md).
+
 ## Prerequisites
 
 You should be familiar with the concept of Apps, especially their registration flow as well as signing and verifying requests and responses between Shopware and the App backend server, as that is required to authenticate the webhooks coming from the shops and showing the correct content in your modules.
