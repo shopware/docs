@@ -64,6 +64,7 @@ app:
 services:
   mysql:
     version: "8.0"
+    maintenance_window: "Sun:03:00-Sun:03:30"
   opensearch:
     enabled: true
 ```
@@ -163,6 +164,28 @@ services:
 ::: warning
 Once MySQL `8.4` has been configured, downgrading to MySQL `8.0` is not possible.
 :::
+
+#### `services.mysql.maintenance_window`
+
+The weekly window in which the platform applies minor engine upgrades and operating system patches to the database cluster. Optional.
+
+```yaml
+services:
+  mysql:
+    version: "8.4"
+    maintenance_window: "Sun:03:00-Sun:03:30"
+```
+
+The value uses the format `ddd:hh24:mi-ddd:hh24:mi` in UTC, where `ddd` is one of `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. The window may span midnight or the end of the week, for example `Sun:23:30-Mon:00:30`. Shopware recommends keeping it inside the lowest-traffic hours of your shop.
+
+A window is only accepted when it:
+
+- lasts at least **30 minutes**
+- does not overlap the daily backup window of **01:00–02:00 UTC** on any day
+
+When the field is omitted, a new application gets a 30-minute slot between 02:00 and 05:00 UTC assigned by the platform. The slot is stored with the application, so leaving the field out on later deployments keeps the current window rather than picking a new one. Setting the field changes the window on the next deployment.
+
+The field is only valid for application kinds that have a database. See [Databases](../resources/databases.md#maintenance-window) for what happens during maintenance.
 
 ### `services.opensearch`
 
