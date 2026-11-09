@@ -2096,6 +2096,7 @@ stylesheets
 stylings
 subclass
 subclasses
+subcommands
 subcomponents
 subcontent
 subdirectories
