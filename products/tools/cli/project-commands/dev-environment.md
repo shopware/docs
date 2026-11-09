@@ -62,7 +62,7 @@ Start the Storefront watcher from the Overview tab in the TUI or run it directly
 shopware-cli project storefront-watch
 ```
 
-The CLI uses Vite when Shopware is `6.7.17` or newer, or when the Storefront
+The CLI uses Vite when Shopware is `6.7.17` or newer and the Storefront
 package defines a `dev:server` script. Otherwise, it starts the legacy webpack
 `hot-proxy` watcher.
 
