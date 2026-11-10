@@ -51,6 +51,8 @@ shopware-cli project sbom        # Generate a CycloneDX SBOM from composer.lock
 Create, build, and validate Shopware [extensions](../../../guides/plugins/index.md) and prepare them for the [Shopware Store](https://store.shopware.com/de/) or for distribution. Available commands include:
 
 ```bash
+shopware-cli extension create   # Create a new plugin or theme
+shopware-cli extension add      # Add an example feature to a plugin
 shopware-cli extension fix   # Fix an extension
 shopware-cli extension build    # Builds assets for extensions
 shopware-cli extension validate         # Validate an extension

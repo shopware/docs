@@ -28,7 +28,8 @@ This guide outlines the typical development flow when creating a Shopware plugin
 
 Most steps above can be generated instead of written by hand:
 
-* `bin/console plugin:create` scaffolds the plugin; see the [Creating Plugins guide](creating-plugins.md)
+* With the [Shopware CLI](../../../products/tools/cli/index.md), `shopware-cli extension create` scaffolds the plugin, and `shopware-cli extension add <generator>` adds single features such as an event subscriber, scheduled task, entity, or Administration module to it; see the [Creating Plugins guide](creating-plugins.md)
+* `bin/console plugin:create` is an alternative if you cannot use Shopware CLI
 * The [Shopware 6 Toolbox plugin](../../development/tooling/shopware-toolbox.md) generates plugins, subscribers, scheduled tasks, migrations, and Administration modules from PHPStorm, using file templates you can adapt to your own conventions
 
 When a generator creates an optional feature, the files it produces are usually parts of one piece of framework wiring. For example, a generated controller can depend on both route configuration and service registration, while a scheduled task has separate task and handler roles. The focused guides explain those pieces in context; you do not normally need to reproduce the wiring manually.
