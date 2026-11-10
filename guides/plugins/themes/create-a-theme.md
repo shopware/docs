@@ -37,7 +37,7 @@ The command asks whether you plan to publish the theme in the Shopware Community
 shopware-cli extension create --type theme --vendor Swag --name BasicExampleTheme
 ```
 
-The vendor prefix and name are combined into the technical name, here `SwagBasicExampleTheme`. Without `--store`, the theme is created in `custom/static-plugins/SwagBasicExampleTheme`; with `--store`, it is created in `custom/plugins/SwagBasicExampleTheme`. For all flags, see [Creating Extensions](../../../products/tools/cli/extension-commands/create.md).
+The vendor prefix and name are combined into the technical name, here `SwagBasicExampleTheme`. Without `--store`, the theme is created in `custom/static-plugins/SwagBasicExampleTheme`; with `--store`, it is created in `custom/plugins/SwagBasicExampleTheme`. For all flags, see [Creating Plugins](../plugins/creating-plugins.md).
 
 A static theme must be required through Composer before Shopware can install it, using the package name from the theme's `composer.json`:
 

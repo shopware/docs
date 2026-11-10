@@ -34,7 +34,7 @@ We recommend creating plugins with the [Shopware CLI](../../../products/tools/cl
 `shopware-cli extension create` and `extension add` require Shopware 6.7.13.0 or newer. For older versions, use `bin/console plugin:create`, described below.
 :::
 
-Run `shopware-cli extension create` anywhere inside your Shopware project. It prompts for the extension type, Store publication, vendor prefix, and name. To skip the prompts, pass them as flags: `--type` (`plugin` or `theme`), `--store`, `--vendor`, and `--name`, with vendor and name in UpperCamelCase. See [Creating Extensions](../../../products/tools/cli/extension-commands/create.md) for details.
+Run `shopware-cli extension create` anywhere inside your Shopware project. It prompts for the extension type, Store publication, vendor prefix, and name. To skip the prompts, pass them as flags: `--type` (`plugin` or `theme`), `--store`, `--vendor`, and `--name`, with vendor and name in UpperCamelCase. Run `shopware-cli extension create --help` for details.
 
 ```bash
 shopware-cli extension create --type plugin --vendor Swag --name BasicExample
