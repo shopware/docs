@@ -16,7 +16,7 @@ You'll need:
 * PHP knowledge
 * A running Shopware 6 instance; refer to our [Install Shopware 6](../../installation/index.md) guide
 * Full file system and command line access
-* Recommended: [Shopware CLI](../../../products/tools/cli/index.md) (see [Installation](../../../products/tools/cli/installation.md)). If you can't use Shopware CLI, use `bin/console plugin:create` instead.
+* Recommended: [Shopware CLI](../../../products/tools/cli/index.md#quickstart) installed. If you can't use Shopware CLI, use `bin/console plugin:create` instead.
 
 ## 1. Choose a name
 

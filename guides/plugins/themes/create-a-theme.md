@@ -17,7 +17,7 @@ All you need:
 
 * A running Shopware 6 instance
 * Full file system and command line access
-* Recommended: [Shopware CLI](../../../products/tools/cli/index.md) (see [Installation](../../../products/tools/cli/installation.md)). If you can't use Shopware CLI, use `bin/console theme:create` instead.
+* Recommended: [Shopware CLI](../../../products/tools/cli/index.md#quickstart) installed. If you can't use Shopware CLI, use `bin/console theme:create` instead.
 
 ## Name your plugin theme
 
