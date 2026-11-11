@@ -104,6 +104,55 @@ Make sure to do all the changes on the `$toCalculate` instance, since this is th
 
 Your processor has to be defined in the service container using the tag `shopware.cart.processor`.
 
+## Add data to deliveries and transactions
+
+Since Shopware 6.7.17.0, cart deliveries and transactions have a `payload`, like line items.
+The order stores it in the `payload` field of the order delivery and the order transaction, and keeps it when the order is edited in the Administration.
+
+Unlike a line item payload, it does not survive the next cart calculation, because the deliveries and the transaction are rebuilt every time the cart is calculated.
+Keep the data you need across calculations on your line items or in a cart extension, and write the payload from there in every calculation.
+
+### Delivery payload
+
+The `DeliveryProcessor` builds the deliveries with the priority `-5000`.
+Register your processor with a lower priority, so that it runs after the deliveries exist:
+
+```php
+$services->set(DeliveryPayloadProcessor::class)
+    ->tag('shopware.cart.processor', ['priority' => -5100]);
+```
+
+```php
+public function process(CartDataCollection $data, Cart $original, Cart $toCalculate, SalesChannelContext $context, CartBehavior $behavior): void
+{
+    foreach ($toCalculate->getDeliveries() as $delivery) {
+        $delivery->setPayloadValue('swagWarehouseId', $data->get('swag-warehouse-id'));
+    }
+}
+```
+
+### Transaction payload
+
+The transaction is created after all cart processors have run, so a processor cannot set its payload.
+At checkout, a payment handler can set it in its `validate()` method, which receives the calculated cart right before the order is written:
+
+```php
+public function validate(Cart $cart, RequestDataBag $dataBag, SalesChannelContext $context): ?Struct
+{
+    $cart->getTransactions()->first()?->setPayloadValue('swagPaymentReference', $this->createReference($cart));
+
+    return null;
+}
+```
+
+Any other extension sets the payload on the converted order data in the `CartConvertedEvent`.
+
+### Store API
+
+Both payloads are part of the Store API cart response.
+Pass `protected: true` to `setPayloadValue()` to leave a key out of it, like on line items.
+Store API order responses still contain protected keys, so don't put data in a payload that customers must not see.
+
 ## Next steps
 
 If you want to see a better example on what can be done with a collector and a processor, you might want to have a look at our guide
