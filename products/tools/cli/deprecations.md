@@ -30,7 +30,7 @@ This policy applies even while Shopware CLI is below version 1.0.0. We may revis
 
 - **Runtime warnings:** When you use a deprecated item, Shopware CLI prints a warning to stderr. The warning states that the item is deprecated, its removal date, and its replacement, if one exists. Because the warning goes to stderr, stdout and JSON output stay clean and can still be parsed by your tools.
 - **Hidden from help:** Deprecated commands and flags are no longer listed in the `--help` output. They keep working until their removal date.
-- **Changelog:** Each [release](https://github.com/shopware/shopware-cli/releases) lists new deprecations and removals in a separate *Deprecations* section, linking to the related issues.
+- **Changelog:** Each [release](https://github.com/shopware/shopware-cli/releases) lists new deprecations and removals in a separate *Deprecations* section, linking to the tracking issue.
 - **Tracking issue:** The pinned [Deprecations issue](https://github.com/shopware/shopware-cli/issues/1859) contains a sub-issue for each deprecation, with the removal date set as its due date.
 
 ## Extended removal dates
