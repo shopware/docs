@@ -47,7 +47,7 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ### 2. You are **currently using the Language Pack plugin**
 
-- Before you start, update the Language Pack plugin to **5.79.0** or later and back up the `snippet` table.
+- Before you start, update the Language Pack plugin to **5.79.0** or later and back up your database.
    Language Pack **5.78.0** and earlier can delete the custom snippets of a `LanguagePack` snippet set during the migration.
    Custom snippets that were already deleted can only be restored from a backup.
 
@@ -76,6 +76,8 @@ updated more frequently. So it's essentially identical – or even more up to da
 - It is recommended to uninstall and remove the Language Pack plugin after `translation:install` succeeded for all locales.
    With Language Pack **5.79.0** or later, your **custom snippets** created in the snippet module move to the `BASE` snippet set
    of their language, also when you uninstall the plugin with all its data.
+   If you're on Shopware **6.7.6.0** or earlier, uninstall the plugin with all its data.
+   Only then do your custom snippets move to the `BASE` snippet set.
    If both snippet sets contain the same snippet key, the `BASE` value is used and the `LanguagePack` snippet set is kept with the other value.
 
 ## New installations
