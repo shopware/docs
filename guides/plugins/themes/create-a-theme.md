@@ -16,7 +16,8 @@ This guide covers how to create, install, and activate a custom Shopware 6 theme
 All you need:
 
 * A running Shopware 6 instance
-* Full file system and CLI access
+* Full file system and command line access
+* Recommended: [Shopware CLI](../../../products/tools/cli/index.md#quickstart) installed. If you can't use Shopware CLI, use `bin/console theme:create` instead.
 
 ## Name your plugin theme
 
@@ -24,7 +25,29 @@ Use **UpperCamelCase**, e.g., `SwagBasicExampleTheme`, beginning with a capital 
 
 ### Create a plugin-based theme
 
-Run the following command in your terminal:
+We recommend creating themes with the [Shopware CLI](../../../products/tools/cli/index.md). Run the following command anywhere inside your Shopware project:
+
+```bash
+shopware-cli extension create --type theme
+```
+
+The command asks whether you plan to publish the theme in the Shopware Community Store, then for a vendor prefix (Store themes only) and the theme name. To run it without prompts, pass all values as flags:
+
+```bash
+shopware-cli extension create --type theme --vendor Swag --name BasicExampleTheme
+```
+
+The vendor prefix and name are combined into the technical name, here `SwagBasicExampleTheme`. Without `--store`, the theme is created in `custom/static-plugins/SwagBasicExampleTheme`; with `--store`, it is created in `custom/plugins/SwagBasicExampleTheme`. For all flags, see [Creating Plugins](../plugins/creating-plugins.md).
+
+A static theme must be required through Composer before Shopware can install it, using the package name from the theme's `composer.json`:
+
+```bash
+composer require swag/basic-example-theme
+```
+
+#### Alternative: `bin/console theme:create`
+
+If you can't use Shopware CLI, run the following command from your Shopware project root:
 
 ```bash
 bin/console theme:create SwagBasicExampleTheme
@@ -35,6 +58,8 @@ You should get an output like this:
 ```bash
 Creating theme structure under .../development/custom/plugins/SwagBasicExampleTheme
 ```
+
+### Refresh the plugin list
 
 Shopware needs to know that your new theme exists. Refresh the plugin list by running:
 
@@ -111,7 +136,7 @@ First, select `Storefront` as the sales channel. Then enter your theme's number.
 
 ### Directory structure of a theme
 
-The structure of a plugin-based theme:
+The structure of a plugin-based theme is shown below. `shopware-cli extension create` does not create the `dist` directory; it is created when you build the theme's Storefront assets, for example with `shopware-cli extension build`:
 
 ```bash
 ├── composer.json
