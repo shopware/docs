@@ -88,6 +88,7 @@ Auditability
 AuthenticationIdentityLoader
 AutoIncrementField
 Autofixer
+Autoscaling
 AvailableCombinationLoader
 AvgResult
 B2B Component
@@ -297,6 +298,7 @@ CycloneDX
 DAL
 DBAL
 DDL
+DER
 DESC
 DHL
 DIC
@@ -647,6 +649,7 @@ MessageQueue
 MessageStorer
 MeteorAdminSDK
 Methodize
+MiB
 Middleware
 MigrationCollection
 MigrationStep
@@ -1382,6 +1385,7 @@ contravariance
 contravariant
 control
 cookieGroups
+cooldown
 copyToClipboard
 copyable
 cors
@@ -1703,6 +1707,8 @@ jwt
 kebabCase
 keyframes
 keypress
+keystore
+keystores
 landingpage
 lang
 lavinmq

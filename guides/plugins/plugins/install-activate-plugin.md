@@ -9,6 +9,12 @@ nav:
 
 This guide explains how to install and activate a newly created plugin.
 
+Plugins created with `shopware-cli extension create` from the [Shopware CLI](../../../products/tools/cli/index.md) are static plugins in `custom/static-plugins` by default. Require a static plugin through Composer first, using the package name from the plugin's `composer.json`:
+
+```bash
+composer require swag/basic-example
+```
+
 From your Shopware project root directory, refresh the list of plugins:
 
 ```bash
