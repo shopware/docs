@@ -24,7 +24,7 @@ The deprecation policy covers the public interface of Shopware CLI:
 
 Every deprecation has a removal date. The date is set when the deprecation is merged and is three months after the merge date, moved to a working day if necessary. This gives you one quarter to adapt your scripts, pipelines, and configuration files.
 
-The policy applies even though Shopware CLI is still below version 1.0.0. It will be revisited if a new major version is released.
+This policy applies even while Shopware CLI is below version 1.0.0. We may revisit it if we move away from the 0.y.z versioning scheme.
 
 ## How you are notified
 
@@ -37,7 +37,7 @@ The policy applies even though Shopware CLI is still below version 1.0.0. It wil
 
 Shopware CLI reports the usage of deprecated items via [telemetry](../../../resources/references/telemetry.md#shopware-cli). If a deprecated item is still widely used and users need more time, its removal date can be extended. Each case is assessed individually based on telemetry, user feedback, and the maintainers' knowledge.
 
-An extension ships in a new release with the updated date in the runtime warning, and the due date of the related sub-issue is updated accordingly. If you depend on a deprecated item and need more time, leave a comment on its sub-issue.
+A removal date extension ships in a new release with the updated date in the runtime warning, and the due date of the related sub-issue is updated accordingly. If you depend on a deprecated item and need more time, leave a comment on its sub-issue.
 
 ## Catching deprecations in CI
 
