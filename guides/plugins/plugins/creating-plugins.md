@@ -15,7 +15,8 @@ You'll need:
 
 * PHP knowledge
 * A running Shopware 6 instance; refer to our [Install Shopware 6](../../installation/index.md) guide
-* full file system and command line access
+* Full file system and command line access
+* Recommended: [Shopware CLI](../../../products/tools/cli/index.md#quickstart) installed. If you can't use Shopware CLI, use `bin/console plugin:create` instead.
 
 ## 1. Choose a name
 
@@ -27,34 +28,69 @@ A vendor prefix is required if you plan to publish your plugin in the [Shopware 
 
 ## 2. Generate the plugin structure
 
-Plugins are located in `<shopware project root>/custom/plugins` and managed via the Shopware Administration.
+We recommend creating plugins with the [Shopware CLI](../../../products/tools/cli/index.md).
 
-From your Shopware project's root directory, run:
+::: info
+`shopware-cli extension create` and `extension add` require Shopware 6.7.13.0 or newer. For older versions, use `bin/console plugin:create`, described below.
+:::
+
+Run `shopware-cli extension create` anywhere inside your Shopware project. It prompts for the extension type, Store publication, vendor prefix, and name. To skip the prompts, pass them as flags: `--type` (`plugin` or `theme`), `--store`, `--vendor`, and `--name`, with vendor and name in UpperCamelCase. Run `shopware-cli extension create --help` for details.
+
+```bash
+shopware-cli extension create --type plugin --vendor Swag --name BasicExample
+```
+
+This creates the technical name `SwagBasicExample`, the namespace `Swag\BasicExample`, and the Composer package `swag/basic-example`. The command generates only `composer.json`, the plugin base class, `.gitignore`, `phpunit.xml`, and `tests/TestBootstrap.php`, and stops if the target directory already exists.
+
+The plugin location depends on `--store`:
+
+* Without `--store`: `custom/static-plugins/<TechnicalName>`, recommended for project-specific plugins. [Static plugins](index.md#static-plugins-recommended) must be required through Composer before you can install them.
+* With `--store` (requires `--vendor`): `custom/plugins/<TechnicalName>`, for plugins you plan to publish in the Shopware Community Store.
+
+### Add features with `shopware-cli extension add`
+
+`shopware-cli extension add` adds an example implementation of a single feature to an existing plugin. Run it from the plugin directory:
+
+```bash
+cd custom/static-plugins/SwagBasicExample
+shopware-cli extension add event-subscriber
+shopware-cli extension add entity Example Foo   # one or more entity names
+```
+
+| Generator               | Location                                                                                      |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| `admin-module`          | `src/Resources/app/administration/src/`                                                       |
+| `command`               | `src/Command/`, `services.php`                                                                |
+| `custom-fieldset`       | `src/Resources/config/custom-fields.xml`                                                      |
+| `entity <Name>...`      | `src/Core/Content/<Name>/`, `src/Migration/`, `services.php`                                  |
+| `event-subscriber`      | `src/Subscriber/`, `services.php`                                                             |
+| `javascript-plugin`     | `src/Resources/app/storefront/src/`, `src/Resources/views/storefront/`                        |
+| `plugin-config`         | `src/Resources/config/config.xml`                                                             |
+| `scheduled-task`        | `src/ScheduledTask/`, `services.php`                                                          |
+| `store-api-route`       | `src/Core/Content/Example/SalesChannel/`, `services.php`, `routes.php`                        |
+| `storefront-controller` | `src/Storefront/Controller/`, `src/Resources/views/storefront/`, `services.php`, `routes.php` |
+
+`services.php` and `routes.php` are in `src/Resources/config/`. Generators skip files that already exist and add new definitions and imports to `services.php`, `routes.php`, and `main.js` unless they are already present. The command lists every created, updated, and skipped file.
+
+Treat generated code as a starting point for the Shopware version you generated it on. A generator wires several files together, so deleting only one of them can break the plugin. If the output doesn't behave as expected, see the focused guide for that feature.
+
+### Alternative: `bin/console plugin:create`
+
+If you can't use Shopware CLI, Shopware's `bin/console plugin:create` command creates a plugin as well. From your Shopware project's root directory, run:
 
 ```bash
 bin/console plugin:create SwagBasicExample
 ```
 
-::: tip Choose the workflow that fits your environment
-Shopware's `bin/console plugin:create` command is the official, IDE-agnostic baseline
-for repeatable plugin setup and automation. If you use PHPStorm, the [Shopware 6
-Toolbox plugin](../../development/tooling/shopware-toolbox.md)
-can generate an event subscriber, scheduled task, migration, Administration module,
-or other component directly inside an existing plugin. AI coding tools can also help
-you create or adapt these components, but always verify their namespaces, generated
-paths, service registration, and Shopware-version compatibility against the linked
-guides.
-:::
-
 The command asks for a plugin name and namespace (both UpperCamelCase) if you do not pass them as arguments, then asks whether it should scaffold optional files. It always generates the files an extension needs to be installable: `composer.json`, the plugin base class, `config.xml`, `.gitignore`, and the PHPUnit setup.
 
-Use `--static` to create the plugin in `custom/static-plugins` instead of `custom/plugins`:
+Unlike `shopware-cli extension create`, the command creates the plugin in `custom/plugins` by default. Use `--static` to create it in `custom/static-plugins` instead:
 
 ```bash
 bin/console plugin:create SwagBasicExample --static
 ```
 
-### Skipping optional scaffold files
+#### Skipping optional scaffold files
 
 Pass the `--no-scaffold` flag to skip all optional scaffold files and generate only the required plugin skeleton:
 
@@ -69,7 +105,7 @@ Shopware to identify the plugin.
 
 When running the command interactively without the flag, you will be asked, "Would you like to scaffold optional plugin files?". Answering "no" has the same effect.
 
-This is the recommended starting point when you already know what your plugin needs. The optional scaffolding generates example code across several directories, which is useful as a reference but leaves files behind that you have to read and delete.
+The optional scaffolding generates example code across several directories, which is useful as a reference but leaves files behind that you have to read and delete.
 
 To generate a specific example instead of all of them, pass its option. Each option can also be answered interactively:
 
@@ -85,31 +121,7 @@ To generate a specific example instead of all of them, pass its option. Each opt
 | `--create-custom-fieldset`       | Example custom fieldset (`custom-fields.xml`)                                                     |
 | `--entities=Example,Foo`         | Entity definition, entity, collection, and migration per entity (UpperCamelCase, comma-separated) |
 
-Every generator that needs a service definition also appends it to the plugin's service configuration in `src/Resources/config`.
-
-The generated files are placed below the plugin root. For example, the optional
-components use paths such as:
-
-| Component                    | Typical generated location                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------------------------- |
-| Console command              | `src/Command/` and `src/Resources/config/services.php`                                      |
-| Scheduled task               | `src/ScheduledTask/` and `src/Resources/config/services.php`                                |
-| Event subscriber             | `src/Subscriber/` and `src/Resources/config/services.php`                                   |
-| Storefront controller        | `src/Storefront/Controller/`, `src/Resources/views/`, and `src/Resources/config/routes.php` |
-| Administration module        | `src/Resources/app/administration/`                                                         |
-| Storefront JavaScript plugin | `src/Resources/app/storefront/src/`                                                         |
-| Custom field set             | `src/Resources/config/custom-fields.xml`                                                    |
-
-Treat generated examples as starting points. Selecting an option can create several
-related files and service definitions; deleting only one file later can leave broken
-references or an invalid service configuration. If you are unsure whether you need an
-option, use `--no-scaffold` and add the feature from its focused guide instead.
-
-If generated output does not behave as expected, use the existing feature guide to understand the generated pieces in context. The generator connects source files with registration, discovery, and build/runtime wiring; a generated file being present does not by itself mean that Shopware can use it.
-
-::: info
-Generated files are tied to the Shopware version you run the command on. When your plugin supports several Shopware versions, treat the output as an example for that version and compare it with the focused guide when adapting it.
-:::
+Every generator that needs a service definition also appends it to the plugin's service configuration in `src/Resources/config`. The generated files use the same locations as the `shopware-cli extension add` generators listed above.
 
 Make sure to adjust the namespace in the generated files as per your needs.
 
@@ -136,9 +148,10 @@ Keeping extensions in one repository with shared CI, shared static analysis rule
 
 ## 3. Plugin structure
 
-Generated location:
+Generated location, depending on whether you created a static or a Store plugin:
 
 ```bash
+custom/static-plugins/SwagBasicExample
 custom/plugins/SwagBasicExample
 ```
 
@@ -167,7 +180,7 @@ class SwagBasicExample extends Plugin
 
 ## 4. composer.json essentials
 
-To be installable, your plugin requires a `composer.json` file in its root directory: `custom/plugins/SwagBasicExample/composer.json`. Shopware uses this file to identify and register your plugin.
+To be installable, your plugin requires a `composer.json` file in its root directory, for example `custom/static-plugins/SwagBasicExample/composer.json`. Shopware uses this file to identify and register your plugin.
 
 This file contains basic metadata that Shopware needs to know about your plugin, such as:
 
@@ -273,9 +286,9 @@ Authentication via API token is required. Refer to [Extension Management](../../
 
 ## Manual creation (optional)
 
-In most cases, use `bin/console plugin:create`. Manual creation is only useful if you need full control over the structure or are working in a custom setup.
+In most cases, use `shopware-cli extension create`. Manual creation is only useful if you need full control over the structure or are working in a custom setup.
 
-Create a directory in `custom/plugins` using your plugin’s technical name, following the minimal structure shown above. Use a namespace that combines your manufacturer prefix and technical name. The `src/` directory is recommended but not required, provided that the directory structure matches the PSR-4 autoload configuration in `composer.json`.
+Create a directory in `custom/static-plugins` or `custom/plugins` using your plugin’s technical name, following the minimal structure shown above. Use a namespace that combines your manufacturer prefix and technical name. The `src/` directory is recommended but not required, provided that the directory structure matches the PSR-4 autoload configuration in `composer.json`.
 
 The plugin’s base class must extend `Shopware\Core\Framework\Plugin`.
 
