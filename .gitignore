@@ -29,3 +29,5 @@ CLAUDE.md
 
 # Deno (broken-pageref.js)
 /deno.lock
+
+.env
