@@ -91,7 +91,7 @@ services:
 
 For the full configuration reference, see the [Application YAML Configuration](../fundamentals/application-yaml.md) page.
 
-If your repository holds more than one project, the `application.yaml` can also live in a sub-directory. See [Deploy from a monorepo](../guides/monorepo.md).
+If your repository holds more than one project, the `application.yaml` can also live in a subdirectory. See [Deploy from a monorepo](../guides/monorepo.md).
 
 ## Hooks Configuration
 

@@ -8,7 +8,7 @@ nav:
 
 The `application.yaml` file is the central configuration file for your Shopware PaaS Native application. It defines the PHP version, environment variables, and services for your application.
 
-By default, it is placed at the root of your project repository. It can also live in a sub-directory, which lets several applications share one repository. In that case, pass its path when you create the application:
+By default, it is placed at the root of your project repository. It can also live in a subdirectory, which lets several applications share one repository. In that case, pass its path when you create the application:
 
 ```sh
 sw-paas application create --application-yaml-path apps/shopware/application.yaml
@@ -241,4 +241,4 @@ services:
 | `snippets_path`            | unset   | Directory (relative to the application root) containing your custom VCL snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
 | `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services                                                            |
 
-The directory must contain one sub-directory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.
+The directory must contain one subdirectory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.
