@@ -7,7 +7,7 @@ nav:
 
 # Generating MySQL Dumps
 
-Shopware CLI has built-in support for generating MySQL dumps. The dump command is native implementation and does not use existing tools like `mysqldump`.
+Shopware CLI has built-in support for generating MySQL dumps. The dump command is a native implementation and does not use existing tools like `mysqldump`.
 
 Creating a MySQL dump is as simple as running the following command:
 
@@ -62,7 +62,7 @@ It is possible to customize the anonymization process by using the `dump.rewrite
 dump:
   rewrite:
     <table-name>:
-      # Rewrite column content to new value
+      # Rewrite column content to a new value
       <column-name>: "'new-value'"
       # Use go-faker to generate data
       <column-name>: "faker.Internet.Email()" # See https://github.com/jaswdr/faker for all available functions
