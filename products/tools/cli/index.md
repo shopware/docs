@@ -88,3 +88,7 @@ COPY --from=ghcr.io/shopware/shopware-cli:bin /shopware-cli /usr/local/bin/shopw
 Shopware CLI collects limited usage telemetry to help us improve the tool and understand which features are most valuable to you. No personal data, credentials, or file contents are collected. You can opt out anytime by setting the `DO_NOT_TRACK` environment variable.
 
 See [Telemetry & Privacy](../../../resources/references/telemetry.md#shopware-cli) for full details about what data is collected and how to disable telemetry.
+
+## Deprecations
+
+Deprecated commands, flags, environment variables, and configuration keys are removed three months after their deprecation. See [Deprecations](deprecations.md) for how deprecations work and how you are notified.
