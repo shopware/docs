@@ -190,6 +190,8 @@ Protect your staging environment from unauthorized access using password protect
 
 The simplest method uses `.htaccess` for Apache or `auth_basic` for Nginx. You can also use a firewall to restrict access by IP address.
 
+Shopware must still be able to reach itself under `APP_URL`, otherwise installing or reinstalling apps fails; see [APP_URL Verification](../../plugins/apps/lifecycle/app-url-verification.md#protected-installations).
+
 **Apache example:**
 
 ```apache
