@@ -2,6 +2,7 @@
 /dictionary.dic
 .DS_Store
 /node_modules/
+/.env
 
 # VSCode-Project
 /.vscode/
