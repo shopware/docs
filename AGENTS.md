@@ -86,7 +86,7 @@ The repository has extensive automated quality control:
 
 ## Development Environment
 
-- **Node.js**: 18.x with pnpm package manager
+- **Node.js**: 22.x with pnpm package manager
 - **Nix**: Uses `devenv.nix` for consistent development environments
 - **Build System**: VitePress managed through the developer portal
 - **CI/CD**: 11+ GitHub Actions workflows for quality control and synchronization
