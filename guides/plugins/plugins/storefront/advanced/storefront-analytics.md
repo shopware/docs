@@ -121,7 +121,7 @@ The list of a selected product is kept in the local storage of the browser under
 
 ### Products
 
-Analytics treat every element with a `data-product-information` attribute as a product, not only the `.product-box` of the default theme. The attribute holds a JSON object with at least the product `id`:
+Analytics treats every element with a `data-product-information` attribute as a product, not only the `.product-box` of the default theme. The attribute holds a JSON object with at least the product `id`:
 
 ```twig
 {# a matching price rule or graduated prices replace the default price #}
@@ -151,7 +151,7 @@ Analytics treat every element with a `data-product-information` attribute as a p
 | `price`   | No       | `price`                                                   |
 | `variant` | No       | `item_variant`                                            |
 
-Report the price the shopper pays for one piece, as in the example: `calculatedPrices.first` when a price rule or graduated prices apply, otherwise `calculatedPrice`. The product box does the same. The product detail page reports the cheapest tier in `view_item` instead, so for a product with graduated prices the two can differ.
+Report the price the shopper pays for one piece, as in the example: `calculatedPrices.first` when a price rule or graduated prices apply, otherwise `calculatedPrice`. The product box does the same. The product detail page reports the cheapest tier in `view_item` instead, so for a product with graduated prices, the two can differ.
 
 Only these properties are reported. Other keys of the object are ignored, so the attribute can carry data for your own scripts.
 
@@ -193,7 +193,7 @@ Render analytics-only attributes and values, such as `data-list-id`, `data-list-
 
 ## Checkout steps
 
-The shipping and payment method forms of the confirm page reload the page on every change. `add_shipping_info` and `add_payment_info` are therefore reported once per selected method of a checkout. A reload that keeps the method reports nothing, and selecting another method reports it. The reported steps are kept in the session storage under `swGaReportedCheckoutSteps` and are cleared by `begin_checkout` and `purchase`.
+The shipping and payment method forms of the `confirm` page reload the page on every change. `add_shipping_info` and `add_payment_info` are therefore reported once per selected method of a checkout. A reload that keeps the method reports nothing, and selecting another method reports it. The reported steps are kept in the session storage under `swGaReportedCheckoutSteps` and are cleared by `begin_checkout` and `purchase`.
 
 A new customer reports `add_shipping_info` with the shipping method of the context when submitting the registration on the checkout register page.
 
