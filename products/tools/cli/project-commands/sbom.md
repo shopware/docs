@@ -2,7 +2,8 @@
 nav:
   title: Generate a Project SBOM
   position: 6
-
+meta:
+  description: The shopware-cli project sbom command generates a CycloneDX 1.7 JSON SBOM from a Shopware project's composer.lock without running the full CI build.
 ---
 
 # Generate a Project SBOM

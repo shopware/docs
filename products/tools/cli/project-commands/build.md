@@ -2,7 +2,8 @@
 nav:
   title: Build a Complete Project
   position: 3
-
+meta:
+  description: The shopware-cli project ci command prepares deployment artifacts by installing dependencies, compiling assets, cleaning files, and generating an SBOM.
 ---
 
 # Build a Complete Project

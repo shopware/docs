@@ -2,6 +2,8 @@
 nav:
   title: Image Proxy
   position: 90
+meta:
+  description: The shopware-cli project image-proxy command fetches missing production images on demand and caches them locally for Shopware development via an HTTP server.
 ---
 
 # Image Proxy
