@@ -18,7 +18,7 @@ Within each rule group, rows are considered from the lowest resolved price to th
 ::: info
 With the `v6.8.0.0` feature flag active, the rules and calculation rules of the price rows are matched for each delivery, against its own shipping address and shipping method, instead of once for the cart.
 The same applies to the availability rule of the shipping method.
-A cart with a single delivery gets the same price as before.
+A cart with a single delivery to the context's shipping address with the context's shipping method gets the same price as before.
 See [Rule evaluation](../../framework/rule-system/rule-evaluation.md) for details.
 :::
 
