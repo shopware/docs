@@ -138,6 +138,30 @@ You can access all active rules by using the `getRuleIds` method of the context.
 $context->getRuleIds();
 ```
 
+### Rules evaluated per delivery
+
+::: info
+This applies with the `v6.8.0.0` feature flag active and becomes the default with Shopware 6.8.0.0.
+:::
+
+Shipping prices and the availability of a shipping method are decided per cart delivery, each with its own shipping address and shipping method.
+For that, Shopware matches rules in a `DeliveryRuleScope`, a cart scope that also carries the delivery.
+If your rule reads the shipping location or the shipping method, read them from the delivery in that scope:
+
+```php
+use Shopware\Core\Checkout\Cart\Rule\DeliveryRuleScope;
+
+$location = $scope instanceof DeliveryRuleScope
+    ? $scope->getDelivery()->getLocation()
+    : $scope->getSalesChannelContext()->getShippingLocation();
+```
+
+The shipping method works the same way with `getShippingMethod()`.
+A rule without that branch keeps working, but decides by the context's shipping address and shipping method for every delivery.
+
+Rules that read the cart's line items or deliveries need no change for the [`deliveryContainer`](../../../../../concepts/framework/rule-system/rule-concepts.md).
+Inside it, the cart they read holds only that delivery's line items and the delivery itself, while the cart price stays the whole cart's.
+
 ### Showing rule in the Administration
 
 Now we want to implement our new rule in the Administration so that we can manage it. To achieve this, we have to call the `addCondition` method of the [RuleConditionService](https://github.com/shopware/shopware/blob/v6.6.0.0/src/Administration/Resources/app/administration/src/app/service/rule-condition.service.ts), by decorating this service. The decoration of services in the Administration will be covered in our [Adding services](../../administration/services-utilities/add-custom-service.md#decorating-a-service) guide.

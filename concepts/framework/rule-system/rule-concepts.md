@@ -40,6 +40,8 @@ Different parts of the system use different scopes. For example:
 
 - `CheckoutRuleScope` provides access to the `SalesChannelContext` (customer, sales channel, currency, etc.).
 - `CartRuleScope` extends `CheckoutRuleScope` and adds access to the current cart.
+- `DeliveryRuleScope` extends `CartRuleScope` and adds one cart delivery.
+  The shipping address and shipping method rules read that delivery instead of the `SalesChannelContext`.
 - `FlowRuleScope` includes checkout information plus the related order.
 
 Rules depend only on what the scope exposes to them. This keeps rule implementations focused and makes them reusable across features that share the same scope.
@@ -55,6 +57,15 @@ Container rules implement logical behavior such as:
 - "All of these conditions must match" (`AndRule`)
 - "At least one of these conditions must match" (`OrRule`)
 - "This condition must not match" (`NotRule`)
+
+### Containers that narrow the scope
+
+Some containers hand their conditions a narrower scope instead of the one they got.
+`allLineItemsContainer` matches its conditions against every line item of the cart, one at a time.
+`deliveryContainer` matches its conditions against one cart delivery.
+In a `DeliveryRuleScope` they see a cart that holds only that delivery's line items, while the cart price and cart data stay those of the whole cart.
+In any other scope they read the whole cart.
+Shopware uses a `DeliveryRuleScope` to match the rules of a delivery's shipping method, see [Rule evaluation](rule-evaluation.md).
 
 ### Tree structure
 
