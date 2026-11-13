@@ -64,7 +64,7 @@ Your override compiles, the build is clean, and the page is unchanged. The usual
 | `defineProps() is only supported in base Shopware setup blocks.`            | A Vue macro in an override. Same for `withDefaults`, `defineEmits`, `defineSlots`, `defineOptions` | Use `useSwProps()` / `useSwContext()` instead                                                                            |
 | `defineExpose() is not supported inside Shopware setup blocks. …`           | `defineExpose()` in a base component or an override                                                | Base: list the bindings in `swDefinePublic()`, which generates the `defineExpose()` call. Override: `swDefineOverride()` |
 | `useSwPreviousState() is only supported in override Shopware setup blocks.` | An override composable in a base component. Same for `useSwProps`, `useSwContext`                  | A base component reads its own props and context directly                                                                |
-| `Vue macro defineModel() is not supported inside Shopware setup blocks.`    | `defineModel()` in either mode                                                                     | Declare the prop and the `update:` event by hand                                                                         |
+| `defineModel() is only supported in base Shopware setup blocks. …`          | `defineModel()` in an override                                                                     | Replace the base component's model binding with `swDefineOverride()`                                                     |
 
 ## Reserved names
 

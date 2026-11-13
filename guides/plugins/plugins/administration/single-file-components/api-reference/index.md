@@ -47,7 +47,7 @@ Base components are compiled as ordinary `<script setup>`, so Vue's macros behav
 | `defineEmits`, `defineSlots`  | yes                                                            | use [`useSwContext()`](composables/use-sw-context) |
 | `defineOptions`               | yes                                                            | no                                                 |
 | `defineExpose`                | no, [`swDefinePublic()`](macros/sw-define-public) generates it | no                                                 |
-| `defineModel`                 | no                                                             | no                                                 |
+| `defineModel`                 | yes, since 6.7.17.0                                            | no                                                 |
 
 One Shopware-specific rule in base components: a top-level binding must not share a declared prop's name. The extension runtime strips declared prop keys from the returned state, so the binding is deleted and the template renders `undefined`. See [troubleshooting](../troubleshooting#markup-that-silently-does-not-work).
 
