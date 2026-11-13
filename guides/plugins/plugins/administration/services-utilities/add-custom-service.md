@@ -49,6 +49,8 @@ Shopware.Service().register('joker', (container) => {
 });
 ```
 
+If your plugin needs to finish asynchronous setup before the Administration is mounted, see [Delaying the Administration Boot](./delay-administration-boot.md).
+
 ## Service injection
 
 A service is typically injected into a vue component and can simply be referenced in the `inject` property:
