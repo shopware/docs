@@ -274,7 +274,9 @@ nix profile add nixpkgs#direnv
 ```
 
 Otherwise, follow the installation steps for your platform in Direnv's [official documentation](https://direnv.net/docs/hook.html).
+
 </Tab>
+
 </Tabs>
 
 Add the Direnv hook to your shell configuration file:
