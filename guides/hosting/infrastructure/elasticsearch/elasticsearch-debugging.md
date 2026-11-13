@@ -213,6 +213,49 @@ select count(*) from messenger_messages where headers like '%ElasticsearchIndexi
 
 The first query returns the indexing messages that are still waiting in the queue, the second one returns the indexing messages that failed. As long as there are waiting messages, the indexing is in process and your message consumer has to work those messages.
 
+## What happens when a full reindex fails partway
+
+There is no rollback. A full `es:index` run builds new indices next to the existing ones and does not undo them when it fails:
+
+- If an alias already exists for the entity, the previous index stays live until the alias switches to the new index.
+- On first indexing, the alias is put on the new index right away, so the partially filled index is live at once.
+- Indices that never received the alias stay until `es:index:cleanup` removes them. `es:reset` removes all indices of the registered entities.
+- A new full `es:index` run deletes all rows from `elasticsearch_index_task`. The alias handler no longer sees the indices of the earlier run, so it never switches the alias to them.
+
+The following sections describe how progress is tracked and when the alias moves.
+
+### New index and index task
+
+- A full run first deletes all rows from the `elasticsearch_index_task` table.
+- For each entity, a new index named `<alias>_<timestamp>` is created.
+- If no alias exists yet for the entity (first indexing), the alias is put on the new index right away, and no `elasticsearch_index_task` row is written.
+- If an alias already exists, an `elasticsearch_index_task` row is stored with the new index, the alias, and a `doc_count` set to the number of entities to index.
+
+Handling an `ElasticsearchIndexingMessage` lowers `doc_count` of the message's index by the number of IDs in its batch. This happens before the check that the index exists and before the bulk request. A batch whose bulk request fails, or whose index does not exist, still lowers `doc_count`. A Messenger retry of a failing message lowers it again. The default `async` transport retries a message up to 3 times.
+
+As a result, `doc_count` can reach 0 although documents are missing, and the alias can switch to an index that is missing documents.
+
+`bin/console es:status` reads the `product` row of `elasticsearch_index_task` and shows the indexing as in progress while `doc_count` is greater than 0.
+
+### Failed bulk items
+
+When the bulk request for a batch reports errors, every item without status `200` or `201` is logged at error level. The indexing exception is then logged at critical level. It is thrown again only if `SHOPWARE_ES_THROW_EXCEPTION` is enabled (default `1`) or the environment is `test`.
+
+With `es:index --no-queue`, a thrown exception aborts the command before the alias handler runs.
+
+### Alias switch
+
+The scheduled `CreateAliasTask` checks every `elasticsearch_index_task` row every 5 minutes by default. `bin/console es:create:alias` runs the same handler, and `es:index --no-queue` runs it after all batches are indexed. For each row, the handler:
+
+1. Refreshes the new index and skips the row while `doc_count` is greater than 0.
+2. Removes the alias from all other indices and adds it to the new index in a single `updateAliases` call. If the alias does not exist yet, it only adds the alias to the new index.
+3. Sets `number_of_replicas` on the new index to the configured value and `refresh_interval` to `null`.
+4. Deletes the `elasticsearch_index_task` row.
+
+After the loop over the rows, `ElasticsearchIndexAliasSwitchedEvent` is dispatched with the indices switched in that run, which can be none. The handler does not delete the previous indices. `es:index:cleanup` removes indices matching `<alias>_*` of the registered entities that have no alias.
+
+To start over, `bin/console es:reset` asks for confirmation, then deletes all indices matching `<alias>_*` of the registered entities, truncates `elasticsearch_index_task`, and deletes `ElasticsearchIndexingMessage` rows from the `messenger_messages` table.
+
 ## Reset the indexing in the database
 
 Sometimes you want to reset the indexing in your database because your indexing is stuck or you run into an error.
