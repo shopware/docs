@@ -7,7 +7,7 @@ nav:
 
 # Generating MySQL Dumps
 
-Shopware CLI has built-in support for generating MySQL dumps. The dump command is native implementation and does not use existing tools like `mysqldump`.
+Shopware CLI has built-in support for generating MySQL dumps. The dump command is a native implementation and does not use existing tools like `mysqldump`.
 
 Creating a MySQL dump is as simple as running the following command:
 
@@ -62,7 +62,7 @@ It is possible to customize the anonymization process by using the `dump.rewrite
 dump:
   rewrite:
     <table-name>:
-      # Rewrite column content to new value
+      # Rewrite column content to a new value
       <column-name>: "'new-value'"
       # Use go-faker to generate data
       <column-name>: "faker.Internet.Email()" # See https://github.com/jaswdr/faker for all available functions
@@ -143,6 +143,36 @@ shopware-cli project dump --no-data log_entry --no-data 'my_plugin_log_*'
 ```
 
 These exclusions apply independently of `--skip-customer-data`. Use `dump.skip_customer_data_tables` when additional exclusions should apply only in that mode.
+
+## Resetting the shop identity
+
+When copying a shop to another environment, use `--reset-identity` to remove the source shop's app identity from the dump. The source database is unchanged.
+
+```bash
+shopware-cli project dump --reset-identity --output identity.sql
+```
+
+This omits `core.app.shopId` and `core.app.shopIdV2` from system configuration, so the destination can generate its own shop ID. It also omits the following database records:
+
+- App records with completed or pending registrations
+- Integrations and API credentials belonging to those apps
+- Registration secrets retained for previously deleted apps
+
+The dump omits related records linked through `CASCADE` foreign keys, such as app action buttons and their translations. Records linked through `SET NULL` foreign keys remain, but their references to omitted records are cleared. This preserves payment and shipping registrations and existing order references, allowing Shopware to reconnect the registrations when an app is reinstalled.
+
+Apps without completed or pending registration secrets are kept in the dump, including their related records. This includes local-only apps that have not registered with an app server. Unrelated API integrations also keep their records and credentials.
+
+Reinstall the removed apps in the destination shop to register them under its new identity. Their app files must be available in the destination project.
+
+Use `--clone-shop` as shorthand for `--clean --reset-identity` to also omit transient data such as pending jobs and webhook delivery logs. Combine it with `--anonymize` to anonymize personal data and extension-declared sensitive data.
+
+```bash
+shopware-cli project dump --clone-shop --anonymize --output clone.sql
+```
+
+Identity reset can be combined with the other dump options and project configuration.
+
+If affected foreign keys share columns and their delete actions could conflict, the command stops with an error.
 
 ## Ignoring entire tables
 
