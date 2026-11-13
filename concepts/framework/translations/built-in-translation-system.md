@@ -69,7 +69,7 @@ The commands read the manifest of the latest release, download the archive, and 
 requested locales.
 
 The commands download the files of each locale one by one when the archive cannot be used.
-The output then names the reason, for example an unreachable manifest or an archive that does not match its checksum.
+The output then names the reason, for example, an unreachable manifest or an archive that does not match its checksum.
 `translation:install --all` also downloads each file when the archive is older than the newest update in the
 [metadata](#how-does-the-system-recognize-new-updates).
 
@@ -271,13 +271,13 @@ shopware:
 ```
 
 Any option left unset falls back to the shipped default. The list options (`plugins`, `excluded_locales`,
-`plugin_mapping`, `languages`) replace the shipped default instead of merging into it, so provide the full list, or an
+`plugin_mapping`, `languages`) replace the shipped default instead of merging into it, so provide the full list or an
 empty list (`[]`) to clear it. Configuration keys use `snake_case`, whereas the shipped `translation.yaml` uses the
 dash-separated keys documented above. Both describe the same fields.
 
 ### TranslationConfigLoader
 
-If you need behavior that configuration cannot express, for example values computed at runtime, you can decorate the
+If you need behavior that configuration cannot express, for example, values computed at runtime, you can decorate the
 loader. The `TranslationConfigLoader` (`src/Core/System/Snippet/Service/TranslationConfigLoader.php`) is part of the
 Shopware core and is responsible for loading and validating the `translation.yaml` file. It provides a
 `TranslationConfig` object that contains all configured fields, ensures that URLs are valid, languages and plugins are
@@ -296,7 +296,7 @@ For the complete list of extension points across the translation system, see the
 
 The `TranslationConfig` (`src/Core/System/Snippet/Service/TranslationConfig.php`) is a data structure that holds the
 configuration details loaded from the `translation.yaml` file.
-You can require it via dependency injection and because of the usage of the `TranslationConfigLoader` with lazy loading,
+You can require it via dependency injection, and because of the usage of the `TranslationConfigLoader` with lazy loading,
 the configuration is always available when needed.
 
 More information is available in the [Migration Guide](../../../guides/upgrades-migrations/language-pack-migration.md).
