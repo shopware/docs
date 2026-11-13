@@ -167,7 +167,6 @@ Clients read the documents of a product in these ways:
   Documents with a private file are left out.
 * Store API requests that load `documents.translations` on a product get only the translations of the requested language chain that have a public file.
   Each translation carries its `languageId`, which shows the language of its file.
-* The Store API route `/store-api/product/{productId}/documents/archive` returns all of them as one ZIP file.
 * The Storefront shows them in a tab of the product description and reviews element.
 
 The following section is a detailed understanding on category.

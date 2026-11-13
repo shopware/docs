@@ -62,12 +62,3 @@ To keep these files, deactivate the task:
 ```bash
 bin/console scheduled-task:deactivate product_document.media.cleanup
 ```
-
-## ZIP downloads
-
-Shoppers can download all documents of a product as one ZIP file.
-Shopware builds the file on the first download and stores it in the private filesystem under `product-documents/archives`, one file per product and language.
-When the documents or their files change, the next download builds a new ZIP file, which replaces the older one.
-The daily scheduled task `product_document.archive.cleanup` deletes stored ZIP files older than a day.
-
-Downloads are limited per IP address by the `product_documents_archive` limiter, see [Rate limiter](../../infrastructure/rate-limiter.md).
