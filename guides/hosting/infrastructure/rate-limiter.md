@@ -35,6 +35,7 @@ The following limiters are enabled by default. The values listed here reflect th
 | `revocation_request_form`     | Store-API revocation request form                                   | 6.7.9.0  | `time_backoff`   | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s                                 |
 | `newsletter_unsubscribe_form` | Store-API newsletter unsubscribe                                    | 6.7.9.0  | `time_backoff`   | 24 hours | 3 / 30s, 5 / 60s, 10 / 90s                                 |
 | `app_shop_verify`             | App shop registration verification                                  | 6.7.9.0  | `sliding_window` | n/a      | 60 / 60min                                                 |
+| `product_documents_archive`   | Storefront / Store-API ZIP download of a product's documents        | 6.7.17.0 | `sliding_window` | n/a      | 10 / 60s                                                   |
 | `mcp_admin_api`               | MCP server Admin API access (keyed per OAuth token)                 | 6.8.0.0  | `time_backoff`   | 1 hour   | 300 / 60s, 1000 / 10min                                    |
 | `mcp_store_api`               | MCP server Store API access (keyed per sales-channel context token) | 6.8.0.0  | `time_backoff`   | 1 hour   | 120 / 60s, 600 / 10min                                     |
 

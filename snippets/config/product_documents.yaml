@@ -1,0 +1,5 @@
+# <project root>/config/packages/shopware.yaml
+shopware:
+  product_documents:
+    allowed_extensions: ["pdf", "docx", "xlsx", "jpg", "jpeg", "png"]
+    max_file_size: 50M

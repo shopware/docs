@@ -119,4 +119,55 @@ It is important to understand the difference between those two because both prov
 
 When a variant product is loaded for a [Store API](../../api/store-api)-scoped request, Shopware assembles a configurator object which includes all different property groups and the corresponding variants. This way client applications, such as the [Storefront](../../../guides/plugins/plugins/storefront/) or [Composable Frontends](../../../../frontends/) can display the different variant options of the product.
 
+## Product documents
+
+::: info
+Product documents are available since Shopware 6.7.17.0.
+:::
+
+Products can have documents, such as manuals, data sheets or certificates.
+A document has a position and, per language, a title and a file from the media library.
+
+```mermaid
+erDiagram
+    Product ||--o{ ProductDocument : "1:M"
+    Product {
+        uuid product_id
+    }
+    ProductDocument ||--|{ ProductDocumentTranslation : "1:M"
+    ProductDocument {
+        uuid product_document_id
+        uuid product_id
+        int position
+    }
+    ProductDocumentTranslation }o--|| Media : "M:1"
+    ProductDocumentTranslation {
+        uuid product_document_id
+        uuid language_id
+        string title
+        uuid media_id
+    }
+    Media {
+        uuid media_id
+    }
+```
+
+* **Languages**: The title and the file fall back separately from the requested language to the default language, like other [translated fields](../../framework/translations/plain-vs-translated-fields.md).
+  A version in another language can have its own title and keep the default-language file, or the other way round.
+  Give every document a version in the default language, because all other languages fall back to it.
+* **Variants**: `product.documents` is inherited from the parent product.
+  A variant without documents of its own shows the documents of its parent.
+  Once a variant has documents of its own, they replace the documents of the parent.
+* **Files**: The file of a document has to be a public file stored in the shop, and a file that a document uses can't be deleted.
+  The allowed file types and sizes are part of the [product documents configuration](../../../guides/hosting/configurations/shopware/product-documents.md).
+
+Clients read the documents of a product in these ways:
+
+* The Store API route `/store-api/product/{productId}/documents` returns them with the file of the requested language in `media`.
+  Documents with a private file are left out.
+* Store API requests that load `documents.translations` on a product get only the translations of the requested language chain that have a public file.
+  Each translation carries its `languageId`, which shows the language of its file.
+* The Store API route `/store-api/product/{productId}/documents/archive` returns all of them as one ZIP file.
+* The Storefront shows them in a tab of the product description and reviews element.
+
 The following section is a detailed understanding on category.
