@@ -10,11 +10,11 @@ nav:
 ## Overview
 
 Before Shopware registers the shop with an app server, it verifies that `APP_URL` leads back to this installation.
-A wrong `APP_URL` would otherwise give the app server the address of another shop, for example the live shop on a staging copy, or of no shop at all.
+A wrong `APP_URL` would otherwise give the app server the address of another shop, for example, the live shop on a staging copy, or of no shop at all.
 If the verification fails, Shopware does not contact the app server.
 
 ::: info
-This page is for shop operators.
+This page is for shop operators and available since Shopware 6.7.17.0.
 For the registration protocol on the app side, see [App Registration & Backend Setup](app-registration-setup.md).
 :::
 
@@ -66,7 +66,7 @@ A hard fail means that `APP_URL` does not reach this installation, and it has to
 ### The shop must reach itself
 
 The server or container that runs Shopware must be able to resolve and reach `APP_URL`.
-This includes setups where `APP_URL` only works from outside, for example a Docker container whose `APP_URL` points to a port that is only mapped on the host.
+This includes setups where `APP_URL` only works from outside, for example, a Docker container whose `APP_URL` points to a port that is only mapped on the host.
 
 ### Protected installations
 
@@ -84,7 +84,7 @@ The token is stored on the node that starts the verification, but the request ca
 The `cache.app_url_verification` pool must therefore be shared between all nodes.
 
 The pool uses `cache.app`.
-If `cache.app` is already shared, for example on Redis as described in [Cache](../../../hosting/performance/caches.md#using-redis), nothing else is needed.
+If `cache.app` is already shared, for example, on Redis as described in [Cache](../../../hosting/performance/caches.md#using-redis), nothing else is needed.
 Otherwise, point the pool to a shared adapter:
 
 ```yaml
@@ -100,7 +100,7 @@ framework:
 ### Rate limit
 
 The verification endpoint accepts 60 failed requests per IP address per hour.
-A successful verification resets the counter.
+Successful verification resets the counter.
 When the limit is reached, the endpoint answers `429`, which is a soft fail.
 
 ## Commands
