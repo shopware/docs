@@ -473,6 +473,7 @@ FroshTools
 Fullstack
 GBP
 GCM
+GCS
 GDPR
 GHSA
 GID
@@ -2096,6 +2097,7 @@ stylesheets
 stylings
 subclass
 subclasses
+subcommands
 subcomponents
 subcontent
 subdirectories
