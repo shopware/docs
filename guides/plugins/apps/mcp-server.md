@@ -7,7 +7,7 @@ nav:
 
 # Extending the MCP Server via App
 
-Shopware apps can add custom tools, prompts, and resources to the MCP server through a declarative `Resources/mcp.xml` file. When an AI client calls an app tool, Shopware sends an HMAC-signed HTTP POST to your app's endpoint and returns the response to the client.
+Shopware apps can add custom tools, prompts, and resources to the MCP server through a declarative `Resources/mcp.xml` file.
 
 Use an app when:
 
@@ -22,27 +22,32 @@ For in-process PHP with full DAL access, see [Extending via Plugin](../plugins/m
 
 ```mermaid
 sequenceDiagram
- participant Client as AI Client
- participant SW as Shopware
- participant App as Your App
- Client->>SW: call tool
- SW->>App: HMAC-signed POST
- App-->>SW: JSON response
- SW-->>Client: result
+    participant client as AI Client
+    participant shopware as Shopware
+    participant app as Your App
+    client->>shopware: Call tool
+    alt External URL
+        shopware->>app: Send HMAC-signed POST
+        app-->>shopware: Return JSON response
+    else Internal path
+        shopware->>shopware: Dispatch Symfony subrequest
+    end
+    shopware-->>client: Return result
 ```
 
 All three capability types (tools, prompts, resources) follow the same lifecycle:
 
-| Step                 | Tools              | Prompts              | Resources              |
-| -------------------- | ------------------ | -------------------- | ---------------------- |
-| Declared in          | `mcp.xml`          | `mcp.xml`            | `mcp.xml`              |
-| Persisted on install | `app_mcp_tool`     | `app_mcp_prompt`     | `app_mcp_resource`     |
-| Loaded at runtime    | `AppMcpToolLoader` | `AppMcpPromptLoader` | `AppMcpResourceLoader` |
-| Executed via         | HMAC-signed POST   | HMAC-signed POST     | HMAC-signed POST       |
+| Step                 | Tools                      | Prompts                      | Resources                      |
+| -------------------- | -------------------------- | ---------------------------- | ------------------------------ |
+| Declared in          | `mcp.xml`                  | `mcp.xml`                    | `mcp.xml`                      |
+| Persisted on install | `app_feature` (`mcp_tool`) | `app_feature` (`mcp_prompt`) | `app_feature` (`mcp_resource`) |
+| Loaded at runtime    | `AppMcpToolLoader`         | `AppMcpPromptLoader`         | `AppMcpResourceLoader`         |
+
+Shopware executes capabilities through an HMAC-signed POST for external URLs or a Symfony subrequest for internal paths; see [URL modes: external vs internal](#url-modes-external-vs-internal).
 
 ## Naming convention
 
-Names declared in `mcp.xml` are automatically prefixed with the app name at install time:
+Names declared in `mcp.xml` are automatically prefixed with the app name when the capability is loaded into the MCP registry:
 
 ```text
 app name: "my-erp"
@@ -50,7 +55,7 @@ declared name: "sync-orders"
 → final tool name: "my-erp-sync-orders"
 ```
 
-Names must only contain `a-zA-Z0-9_-` (no dots). The `shopware-` prefix is reserved for core tools; app names that would produce a `shopware-` prefixed capability are silently skipped.
+Names must only contain `a-zA-Z0-9_-` (no dots). The final name is `<app name>-<declared name>`, so Shopware only warns and skips the capability when the app's technical name is `shopware` or starts with `shopware-`.
 
 ## Tool groups and discovery
 
@@ -107,6 +112,8 @@ Place `Resources/mcp.xml` in your app bundle:
 </mcp>
 ```
 
+If `<description>` is missing, Shopware uses the label, then the capability name. AI clients use the description to choose a tool.
+
 ### Input schema properties
 
 Each `<property>` maps to a JSON Schema property in the tool's `inputSchema`:
@@ -125,7 +132,7 @@ List the ACL privileges your tool needs with `<required-privileges>`. The admin 
 How strictly these privileges are enforced depends on the URL mode:
 
 - **External URL** (`https://...`): informational only. Shopware does not check these privileges before calling your webhook. Your app must enforce them on its own side - for example, by validating `source.shopId` against what that shop is permitted to do in your backend.
-- **Internal path** (`/api/...`): enforced by Shopware. The call is dispatched as a Symfony subrequest via the normal Admin API stack, so the integration's ACL role is checked just as with any other API call. Declare the privileges accurately so the Admin UI can warn operators about gaps.
+- **Internal path** (`/...`): enforced by Shopware. The call is dispatched as a Symfony subrequest via the normal Admin API stack, so the integration's ACL role is checked just as with any other API call. Declare the privileges accurately so the Admin UI can warn operators about gaps.
 
 ## URL modes: external vs internal
 
@@ -133,6 +140,10 @@ The `url` attribute supports two modes:
 
 - **External URL** (`https://...`): Shopware sends an HMAC-signed POST to your remote endpoint. This is the default for SaaS integrations and any app hosted outside Shopware.
 - **Internal path** (`/...`): Shopware dispatches the call as a Symfony subrequest. This lets an app use [app scripts](./app-scripts/) to serve capability logic without running an external server. Example: `url="/api/script/mcp-greet"`.
+
+::: warning
+An app without a `<setup>` section in `manifest.xml` has no secret. Shopware then skips that app's prompts, resources, and external tools, and writes no log entry. Internal-path tools do not need a secret.
+:::
 
 Use the internal-path mode when your tool is a thin wrapper around data that Shopware already has. Use external URLs when you need to call out to an ERP, PIM, or any system that Shopware cannot reach directly.
 
@@ -154,27 +165,25 @@ In `Resources/scripts/api-mcp-greet/greet.twig`, access the call's `arguments` d
 
 ```twig
 {% block response %}
- {% set args = hook.request.arguments ?? {} %}
- {% set name = args.name ?? 'World' %}
+    {% set args = hook.request.arguments ?? {} %}
+    {% set name = args.name ?? 'World' %}
 
- {% set response = services.response.json({
- success: true,
- data: { message: 'Hello, ' ~ name ~ '!' }
- }) %}
+    {% set response = services.response.json({
+        success: true,
+        data: { message: 'Hello, ' ~ name ~ '!' }
+    }) %}
 
- {% do hook.setResponse(response) %}
+    {% do hook.setResponse(response) %}
 {% endblock %}
 ```
 
-`hook.request` exposes the parsed POST body. Arguments live under `hook.request.arguments`. Shopware handles signature verification and locale resolution for internal-path calls. You only need to return the JSON envelope.
+`hook.request` exposes the parsed POST body. Arguments live under `hook.request.arguments`. Internal calls inherit the parent request's authentication context and do not use webhook HMAC signatures. You only need to return the JSON envelope.
 
 ## Webhook protocol
 
-When the AI client calls a tool, Shopware sends an HTTP POST to the URL declared in `mcp.xml`:
+When the AI client calls a capability with an external URL, Shopware sends an HTTP POST to the URL declared in `mcp.xml`:
 
 **Request body:**
-
-The following tool, prompt, and resource request bodies are excerpts that omit `source.appVersion`.
 
 ```json
 {
@@ -182,11 +191,12 @@ The following tool, prompt, and resource request bodies are excerpts that omit `
   "arguments": {
     "since": "2026-01-01",
     "limit": 100
- },
+  },
   "source": {
     "url": "https://shop.example.com",
-    "shopId": "abc123def456"
- }
+    "shopId": "abc123def456",
+    "appVersion": "1.0.0"
+  }
 }
 ```
 
@@ -208,8 +218,9 @@ For prompts, the request body uses `tool` for the prompt name and includes an em
   "arguments": [],
   "source": {
     "url": "https://shop.example.com",
-    "shopId": "abc123def456"
- }
+    "shopId": "abc123def456",
+    "appVersion": "0.0.0"
+  }
 }
 ```
 
@@ -217,9 +228,16 @@ The response must be a JSON array of message objects:
 
 ```json
 [
- {"role": "user", "content": "You are working with ERP-synced Shopware data..."}
+    {
+        "role": "user",
+        "content": "You are working with ERP-synced Shopware data..."
+    }
 ]
 ```
+
+::: warning
+App prompts do not work in Shopware 6.7.16.0 and earlier. Shopware passes this response to the MCP SDK as a plain string, and the client receives "Error while handling prompt". The fix in [shopware/shopware#22623](https://github.com/shopware/shopware/pull/22623) keeps this response format. It is not part of a release yet.
+:::
 
 For resources, the request body uses `tool` for the resource name and includes the resource URI in `arguments`:
 
@@ -231,20 +249,21 @@ For resources, the request body uses `tool` for the resource name and includes t
   },
   "source": {
     "url": "https://shop.example.com",
-    "shopId": "abc123def456"
- }
+    "shopId": "abc123def456",
+    "appVersion": "0.0.0"
+  }
 }
 ```
 
-The response must be a single object with `uri`, `mimeType`, and `text`:
+Return the resource content itself. Shopware passes the response body to the client as the resource text. The MIME type comes from `mime-type` on `<mcp-resource>` in `mcp.xml`.
 
 ```json
-{"uri": "my-erp://erp-status", "mimeType": "application/json", "text": "{\"connected\": true}"}
+{"connected": true}
 ```
 
 ## Verifying the signature
 
-Every webhook request is signed with HMAC-SHA256 using the shop-specific secret exchanged during app registration. Always verify the `shopware-shop-signature` header before processing the request:
+Every external webhook request is signed with HMAC-SHA256 using the shop-specific secret exchanged during app registration. Always verify the `shopware-shop-signature` header before processing the request:
 
 ```javascript
 // Node.js example
@@ -253,9 +272,9 @@ const crypto = require('crypto');
 function verifySignature(body, signature, appSecret) {
     if (typeof signature !== 'string' || signature.length === 0) return false;
     const expected = crypto
- .createHmac('sha256', appSecret)
- .update(body)
- .digest();
+        .createHmac('sha256', appSecret)
+        .update(body)
+        .digest();
     const received = Buffer.from(signature, 'hex');
     if (received.length !== expected.length) return false;
     return crypto.timingSafeEqual(received, expected);
@@ -268,7 +287,7 @@ app.post('/mcp/sync-orders', (req, res) => {
     // Set APP_SECRET to the shop-specific secret exchanged during app registration.
     if (!verifySignature(rawBody, signature, process.env.APP_SECRET)) {
         return res.status(401).json({ error: 'Invalid signature' });
- }
+    }
 
     const { arguments: args, source } = req.body;
     // ... handle the tool call
@@ -277,25 +296,27 @@ app.post('/mcp/sync-orders', (req, res) => {
 
 ## Returning a response
 
-Return JSON as the tool result body. Shopware forwards it to the AI client as-is:
+Return JSON as the tool result body. When the call succeeds, Shopware forwards that body to the AI client:
 
 ```json
 {"success": true, "data": {"synced": 42, "errors": 0}}
 ```
 
-For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. Shopware does not reject responses that omit `success`, but it logs a warning when the field is missing so operators can spot broken handlers.
+For consistency with core tools, follow the `{"success": bool, "data": ..., "_meta": ...}` / `{"success": false, "error": "..."}` convention. If an external response decodes to an array without a `success` key, Shopware logs a warning; it does not reject the response solely for that omission.
+
+On a timeout, connection error, or HTTP 4xx or 5xx, Shopware does not forward the app's body. The client receives `{"success": false, "error": "App capability \"…\" execution failed: …"}`, including the exception message. For an internal path, Shopware returns the response body whatever the HTTP status. An empty body becomes `{"success": false, "error": "Empty response"}`.
 
 **Timeout:** App webhook calls time out after `shopware.mcp.app_tool_timeout` seconds (default: 10). Keep responses fast or use async patterns with status polling.
 
 ## Locale resolution
 
-Labels and descriptions in `mcp.xml` support translations via `lang` attributes. Shopware resolves them against the system's default locale at load time. If a translation for the active locale is not found, it falls back to `en-GB`.
+Labels and descriptions in `mcp.xml` support translations via `lang` attributes. Shopware serves the translation for the system default language. If that language is missing, it uses `en-GB`, or the first translation you declared.
 
-The resolved `<label>` value is forwarded to the MCP protocol as the capability's `title` field. MCP clients (Claude Desktop, Cursor, etc.) display this title in their tool list instead of the machine-readable `name`. Without a `<label>`, clients fall back to showing `name`.
+MCP clients such as Claude Desktop or Cursor show the capability title instead of the technical name. App tools and prompts forward their stored label as the title; app resources do not currently set a title.
 
 ## Installing the app
 
-Apps are installed through the standard Shopware app lifecycle (**Settings → Extensions → My Apps**, or via the **Shopware CLI**). After installation, your MCP capabilities appear automatically in the server catalogue. Tools are initially deferred until the client discovers them or enables the app's toolset.
+Apps are installed through the standard Shopware app lifecycle (**Settings → Extensions → My Apps**, or via the **Shopware CLI**). After installation and activation, eligible MCP capabilities are loaded automatically into the server catalogue. Tools are initially deferred until the client discovers them or enables the app's toolset.
 
 Verify with:
 
@@ -303,7 +324,7 @@ Verify with:
 bin/console debug:mcp
 ```
 
-Your tools appear with **Source: app** in the output. To see what a specific integration can reach (respecting its per-integration allowlist), pass `--integration=SWIA...` with the integration's access key.
+The list covers tools only, and the Handler column shows `(app-provided)` for app tools. `bin/console debug:mcp <name>` shows one capability, including its handler, for a tool, prompt, or resource. To see what a specific integration can reach (respecting its per-integration allowlist), pass `--integration=SWIA...` with the integration's access key.
 
 ## Further reading
 
