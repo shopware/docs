@@ -494,18 +494,29 @@ It is especially assumed that the environment variable will change when a shop i
 Remember that this is only relevant for apps that have their own backends and where communication between app backends and shopware is necessary.
 That is why simple themes are not affected by shop migrations, and they will continue to work.
 
-### Detecting APP_URL changes
+### Detecting a moved or copied shop
 
-Every time a request is made against an app backend, Shopware checks whether the current APP_URL differs from the one used when Shopware generated an ID for this shop.
-If the APP_URL differs, Shopware will stop sending requests to the installed apps to prevent data corruption on the apps' side.
-Now the user can resolve the issue using one of the following strategies.
-The user can either run a strategy with the `bin/console app:shop-id:change` command, or with a modal that pops up when the Administration is opened. The former command name `app:url-change:resolve` still works as an alias and is deprecated for removal in v6.8.0.
+Together with the shop ID, Shopware stores fingerprints of the environment it was generated in.
+Before each request to an app backend, Shopware compares them with the current environment, and each changed fingerprint adds to a score:
 
-### APP_URL change resolver
+| Fingerprint           | Score when it changes                                |
+| --------------------- | ---------------------------------------------------- |
+| `APP_URL`             | 100                                                  |
+| Installation path     | Up to 100, depending on how much of the path changed |
+| Sales channel domains | 25                                                   |
 
-* **MoveShopPermanently**: This strategy should be used if the live production shop is migrated from one URL to another.
+From a score of 75, Shopware stops sending requests to the installed apps to prevent data corruption on the apps' side.
+Changing `APP_URL` alone is enough to stop the requests. A new release directory from a deployment usually isn't.
+`bin/console app:shop-id:check` shows the stored and current fingerprints with their scores.
+
+The user resolves the situation with one of the following strategies, either with the `bin/console app:shop-id:change` command or in a modal that pops up when the Administration is opened.
+
+### Strategies
+
+* **Keep the shop identifier** (`move-shop-permanently`): This strategy should be used if the live production shop is migrated from one URL to another.
 This strategy notifies all apps about the APP_URL change, and the apps keep working as before, including any data already associated with that shop.
 It is important to note that in this case, apps in the old installation on the old URL (if it is still running) will stop working.
+Never use it for a copy: the copy takes over the app registrations of the shop it was copied from, and the apps stop working there.
 
 Technically, this is achieved by rerunning the registration process for all apps.
 During registration, the same shopId is used as before, but with a different shop-url and a different key pair for communicating with the Shopware API.
@@ -514,10 +525,10 @@ Also, you must generate a new communication secret during this registration proc
 This way, it is ensured that the apps are notified of the new URL and that the integration with the old installation stops working.
 because a new communication secret is associated with the given shopId that the old installation does not know.
 
-* **ReinstallApps**: This strategy makes sense to use in the case of the staging shop.
+* **Generate a new shop identifier** (`reinstall-apps`): Use this for a copy of a shop, such as staging, when you want to use the apps in the copy.
 By running this strategy, all installed apps will be reinstalled.
 This means that this installation will get a new shopId, which is used during registration.
 
 As the new installation will get a new shopId, the installed apps will continue working on the old installation as before, but, as a consequence, the data on the app's side associated with the old shopId cannot be accessed on the new installation.
 
-* **UninstallApps**: This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
+* **Uninstall apps** (`uninstall-apps`): This strategy will simply uninstall all apps on the new installation, thus keeping the old installation working like before.
