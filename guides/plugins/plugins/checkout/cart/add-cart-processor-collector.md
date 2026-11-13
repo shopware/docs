@@ -109,13 +109,13 @@ Your processor has to be defined in the service container using the tag `shopwar
 Since Shopware 6.7.17.0, cart deliveries and transactions have a `payload`, like line items.
 The order stores it in the `payload` field of the order delivery and the order transaction, and keeps it when the order is edited in the Administration.
 
-Unlike a line item payload, it does not survive the next cart calculation, because the deliveries and the transaction are rebuilt every time the cart is calculated.
+Unlike a line item payload, it does not survive the next cart calculation because the deliveries and the transaction are rebuilt every time the cart is calculated.
 Keep the data you need across calculations on your line items or in a cart extension, and write the payload from there in every calculation.
 
 ### Delivery payload
 
 The `DeliveryProcessor` builds the deliveries with the priority `-5000`.
-Register your processor with a lower priority, so that it runs after the deliveries exist:
+Register your processor with a lower priority so that it runs after the deliveries exist:
 
 ```php
 $services->set(DeliveryPayloadProcessor::class)
@@ -150,7 +150,7 @@ Any other extension sets the payload on the converted order data in the `CartCon
 ### Store API
 
 Both payloads are part of the Store API cart response.
-Pass `protected: true` to `setPayloadValue()` to leave a key out of it, like on line items.
+Pass `protected: true` to `setPayloadValue()` to leave a key out of it, similar to how it is done with line items.
 Store API order responses still contain protected keys, so don't put data in a payload that customers must not see.
 
 ## Next steps
