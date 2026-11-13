@@ -234,7 +234,7 @@ Use `shopware://currencies` to find `currencyId`. Use `shopware-entity-search` o
 ```json [Tool: shopware-entity-aggregate]
 {
     "entity": "order",
-    "aggregations": "[{\"type\": \"date-histogram\", \"name\": \"ordersByMonth\", \"field\": \"orderDateTime\", \"interval\": \"month\"}]"
+    "aggregations": "[{\"type\": \"histogram\", \"name\": \"ordersByMonth\", \"field\": \"orderDateTime\", \"interval\": \"month\"}]"
 }
 ```
 
