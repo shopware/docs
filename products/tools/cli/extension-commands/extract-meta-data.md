@@ -2,7 +2,8 @@
 nav:
   title: Extracting Meta Data
   position: 4
-
+meta:
+  description: Shopware CLI commands extract extension versions, names, and English changelogs for CI/CD pipelines and output the extension configuration JSON schema.
 ---
 
 # Extracting Meta Data

@@ -2,7 +2,8 @@
 nav:
   title: SQL Shell
   position: 8
-
+meta:
+  description: Shopware CLI connects to the project database using current environment settings to run an interactive SQL shell, queries, or scripts from stdin or files.
 ---
 
 # SQL Shell

@@ -2,7 +2,8 @@
 nav:
   title: Command Types
   position: 30
-
+meta:
+  description: Shopware CLI provides project, extension, and Store commands for builds, validation, publishing, and automatic refactoring of PHP, JavaScript, and Admin Twig.
 ---
 
 # Command Types

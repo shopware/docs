@@ -2,7 +2,8 @@
 nav:
   title: Standalone Admin Watcher
   position: 3
-
+meta:
+  description: Use shopware-cli extension admin-watch to watch extension JavaScript and CSS changes in the Administration of a local or external Shopware 6 instance.
 ---
 
 # Standalone Admin Watcher

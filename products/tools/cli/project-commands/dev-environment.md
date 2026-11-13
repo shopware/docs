@@ -2,7 +2,8 @@
 nav:
   title: Development Environment
   position: 1
-
+meta:
+  description: Reference for shopware-cli project dev and project logs commands to manage development environments, install Shopware non-interactively, and view logs.
 ---
 
 # Development Environment (CLI Reference)

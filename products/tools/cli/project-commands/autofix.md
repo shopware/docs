@@ -2,7 +2,8 @@
 nav:
   title: Autofixer
   position: 7
-
+meta:
+  description: Shopware-CLI autofix commands migrate legacy Shopware projects to Symfony Flex and locally cloned extensions to Composer-managed packages or path repositories.
 ---
 
 # Autofixer

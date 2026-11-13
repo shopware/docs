@@ -2,7 +2,8 @@
 nav:
   title: Building Extensions and Creating Archives
   position: 2
-
+meta:
+  description: Shopware CLI builds Storefront and Administration assets and packages extensions as ZIP archives with configurable dependencies, checksums, and release mode.
 ---
 
 # Building Extensions and Creating Archives

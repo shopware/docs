@@ -2,7 +2,8 @@
 nav:
   title: Configuration
   position: 5
-
+meta:
+  description: Shopware CLI extension configuration covers .config/shopware-extension.yml, compatibility dates, environment variables, and JSON schema access.
 ---
 
 # Configuration

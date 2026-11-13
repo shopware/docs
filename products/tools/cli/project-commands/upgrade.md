@@ -2,6 +2,8 @@
 nav:
   title: Upgrade a Shopware Project
   position: 8
+meta:
+  description: shopware-cli project upgrade checks readiness and extension compatibility, verifies Composer dependencies, and upgrades projects locally with a report.
 ---
 
 # Upgrade a Shopware Project

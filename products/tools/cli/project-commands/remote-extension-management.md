@@ -2,7 +2,8 @@
 nav:
   title: Remote Extension Management
   position: 4
-
+meta:
+  description: Shopware CLI manages remote extensions for Shopware SaaS through the Shopware API, supporting uploads, installation, updates, and activation per environment.
 ---
 
 # Remote Extension Management

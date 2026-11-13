@@ -2,7 +2,8 @@
 nav:
   title: Formatter
   position: 5001
-
+meta:
+  description: Shopware CLI formats extensions and configured project bundles with PHP-CS-Fixer and Prettier, supporting dry runs, formatter selection, and exclusions.
 ---
 
 # Formatter
