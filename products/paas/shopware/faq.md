@@ -260,6 +260,14 @@ Backups are retained for **7 days**, for both databases and object storage bucke
 
 You can restore a database to any point in time between five minutes ago and seven days ago. For object storage, the recovery point objective is approximately 30 minutes, so the most recent state available for restore may be up to 30 minutes before the incident.
 
+### When is my database patched, and can I choose the time?
+
+Each database cluster has a weekly **maintenance window** in which minor engine upgrades and operating system patches are applied when one is pending. By default, a new application gets a fixed 30-minute slot between **02:00 and 05:00 UTC**, so not all databases are patched at once.
+
+**You can pick your own window** with `services.mysql.maintenance_window` in [`application.yaml`](./fundamentals/application-yaml.md#servicesmysqlmaintenance_window). It must last at least 30 minutes and must not overlap the backup window of 01:00–02:00 UTC. Omitting the field keeps the window the application already has.
+
+Maintenance can cause a brief interruption or a failover of the database. See [Databases](./resources/databases.md#maintenance-window).
+
 ### Who performs a restore — can I do it myself?
 
 It depends on which kind of restore you need.
@@ -366,7 +374,7 @@ Secrets are stored in the PaaS secret store and can be applied at the organizati
 
 **CDN:** the Fastly configuration is managed by the platform, and a maintained set of default VCL snippets is deployed automatically. You can add your own VCL snippets from your repository using `services.fastly.snippets_path`, and optionally disable the defaults. See [Fastly Snippets](./cdn/fastly-snippets.md).
 
-**Database:** the MySQL version is configurable in [`application.yaml`](./fundamentals/application-yaml.md). Other database parameters are managed by the platform and cannot be customized.
+**Database:** the MySQL version and the maintenance window are configurable in [`application.yaml`](./fundamentals/application-yaml.md#servicesmysql). Other database parameters are managed by the platform and cannot be customized.
 
 ### Can I purge the CDN cache without deploying new code?
 
