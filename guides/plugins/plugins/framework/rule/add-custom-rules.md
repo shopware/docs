@@ -157,7 +157,7 @@ $location = $scope instanceof DeliveryRuleScope
 ```
 
 The shipping method works the same way with `getShippingMethod()`.
-A rule without that branch keeps working, but decides by the context's shipping address and shipping method for every delivery.
+A rule without that branch keeps working, but decides based on the context's shipping address and shipping method for every delivery.
 
 Rules that read the cart's line items or deliveries need no change for the [`deliveryContainer`](../../../../../concepts/framework/rule-system/rule-concepts.md).
 Inside it, the cart they read holds only that delivery's line items and the delivery itself, while the cart price stays the whole cart's.
@@ -389,4 +389,4 @@ The above guide explains the integration of a boolean and no values. If you want
 
 ## Further reading
 
-For more other information you can refer to [Add rule assignment configuration](../../administration/advanced-configuration/add-rule-assignment-configuration.md) section of the guide.
+For more information you can refer to the [Add rule assignment configuration](../../administration/advanced-configuration/add-rule-assignment-configuration.md) guide.
