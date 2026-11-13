@@ -60,6 +60,23 @@ The same update runs automatically once a day through the `translation.update` s
 [Automated translation updates](automated-translation-updates.md#the-translationupdate-scheduled-task) for its behavior,
 requirements, and how to deactivate it.
 
+### Download all locales from the translation archive
+
+`translation:download` and `translation:install --all` take the files of all locales from one archive.
+The `translations` repository publishes this archive with every [release](https://github.com/shopware/translations/releases),
+together with a `manifest.json` that names the archive and its SHA-256 checksum.
+The commands read the manifest of the latest release, download the archive, and write only the configured files of the
+requested locales.
+
+The commands download the files of each locale one by one when the archive cannot be used.
+The output then names the reason, for example an unreachable manifest or an archive that does not match its checksum.
+`translation:install --all` also downloads each file when the archive is older than the newest update in the
+[metadata](#how-does-the-system-recognize-new-updates).
+
+`translation:install --locales`, `translation:update`, the Admin API and the scheduled task download the files of
+each locale.
+See [`archive-manifest-url`](#archive-manifest-url) to point the commands at another archive or to switch the archive off.
+
 ## Language activation
 
 By default, installed translations are automatically activated, making them available for use in Shopware.
@@ -138,6 +155,25 @@ metadata-url: https://raw.githubusercontent.com/shopware/translations/main/crowd
 
 **Description:**
 The URL for [metadata information](#how-does-the-system-recognize-new-updates) about the translations.
+
+---
+
+#### `archive-manifest-url`
+
+**Type:** `string` or `false`
+**Example:**
+
+```yaml
+archive-manifest-url: https://github.com/shopware/translations/releases/latest/download/manifest.json
+```
+
+**Description:**
+The URL of the manifest that names the [translation archive](#download-all-locales-from-the-translation-archive).
+The archive file is resolved relative to the manifest.
+Another archive must use the format described in [Translations archive](https://github.com/shopware/translations#translations-archive).
+Set it to `false` to always download the files of each locale.
+A configuration override that changes `repository_url` without setting `archive_manifest_url` also downloads every file
+from that repository, because the shipped archive holds the files of the shipped repository.
 
 ---
 
