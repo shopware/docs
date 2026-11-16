@@ -2,7 +2,8 @@
 nav:
   title: Generating MySQL Dumps
   position: 1
-
+meta:
+  description: Shopware CLI generates MySQL dumps with compression, data anonymization, table exclusions, row filters, and limits that preserve foreign key relationships.
 ---
 
 # Generating MySQL Dumps

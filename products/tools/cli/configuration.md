@@ -2,7 +2,8 @@
 nav:
   title: Configuration files
   position: 4
-
+meta:
+  description: Shopware CLI uses .config/ for project and extension configuration files, with defined lookup priorities, legacy path support, and local project overrides.
 ---
 
 # Configuration files
