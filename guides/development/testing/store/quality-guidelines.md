@@ -26,13 +26,40 @@ All extensions are:
 2. Manually reviewed for security, coding standards, user experience, and functionality.
 3. Tested on the latest stable [Shopware 6](https://www.shopware.com/de/download/#shopware-6) CE version.
 
-Always test against the highest supported Shopware 6 version (for example, `shopware/testenv:6.7.6`).
+Test the oldest version allowed by your extension's constraints and the newest supported stable version.
+Also test relevant intermediate versions when an API, template, component or configuration behavior changes within that range.
+Use the packaged release for the final check so missing dependencies and stale assets are visible.
+See [Dependency and version errors](./store-review-errors.md#dependency-and-version-errors).
 
 For apps, we additionally test `config.xml` per sales channel, install/uninstall behavior, and styling/viewport issues.
 
 ::: info
 [Test your app for the Shopware Store (DE)](https://www.youtube.com/watch?v=gLb5CmOdi4g); (English version is planned)
 :::
+
+## Responding to review findings
+
+Distinguish publication requirements and functional or security defects from recommendations about maintainability or style.
+A recommendation is not automatically a universal requirement for every extension.
+For each finding, identify the affected release, supported Shopware versions, expected behavior and a way to verify the correction.
+If a requested approach does not fit your extension, explain the constraint and provide evidence for an alternative in your review response.
+
+Retest the submitted archive after changes, including compiled assets.
+Do not assume a later upload fixes every earlier finding, or that an observation about an older upload still applies unchanged.
+
+## Submission test checklist
+
+Choose the scenarios relevant to your extension:
+
+* Oldest and newest supported versions, with the actual release dependencies and assets.
+* Full administrators and intended restricted roles; direct API calls as well as UI actions.
+* Guest and registered customers, including attempts to access another customer's resources.
+* Two sales channels with different settings, plus global defaults and inheritance.
+* Install, activate, active and inactive updates, deactivate, both uninstall options and reinstall.
+* Warm caches, more than one page or batch of data, failed external requests and retried jobs.
+* Missing configuration, invalid input and advertised languages with fallback behavior.
+
+The [security](./security-and-permissions.md), [integration](./functionality-integration.md) and [lifecycle](./installation-and-cleanup.md) pages explain these checks in more detail.
 
 ## Requirements
 
@@ -55,7 +82,7 @@ Overall behavior (errors, cookies, performance, uninstall options, Shopping Expe
 
 #### Plugin-specific requirements
 
-Packaging and delivery rules for plugins—Composer archive, readable JavaScript, production-only ZIP, and logging—are documented under [Code quality](./code-quality.md#plugin-specific-requirements).
+Packaging and delivery rules for plugins—Composer archive, readable JavaScript, release archive contents, and logging—are documented under [Code quality](./code-quality.md#plugin-specific-requirements).
 
 #### App-specific requirements
 

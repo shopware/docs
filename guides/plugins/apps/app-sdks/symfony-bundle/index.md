@@ -28,7 +28,7 @@ composer require shopware/app-bundle async-aws/async-aws-bundle async-aws/dynamo
 ### 1. Create a new Symfony project (skip if you already have one)
 
 ```bash
-composer create-project symfony/skeleton:"6.2.*" my-app
+composer create-project symfony/skeleton:"7.4.*" my-app
 ```
 
 ### 2. Install the App Bundle in your Symfony Project

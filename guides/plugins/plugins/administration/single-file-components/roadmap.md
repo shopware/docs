@@ -17,9 +17,9 @@ still being worked on, and where to tell us when something does not fit.
 The system is available since Shopware 6.7.16.0. There is no feature flag to enable and nothing to opt into - a `.vue` file
 in your plugin is compiled by the extension build as it is.
 
-Experimental means the API can still change, at any time and without a deprecation. The plan is for it
-to become a stable, deprecation-protected API in **6.9**. How much it still has to change depends on
-what you run into and on how the Administration's own migration goes.
+Experimental means the API can still change, at any time and without a deprecation. It becomes a
+stable, deprecation-protected API with **6.9** at the latest, and possibly already with 6.8. How much
+it still has to change depends on what you run into and on how the Administration's own migration goes.
 
 Until the API is declared stable, an SFC extension written today may need changes with every Shopware
 update.
@@ -30,7 +30,7 @@ update.
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 6.7.16 | The extension system is available, and experimental.                                                                                                     |
 | 6.8    | The Administration's `@private` components, which are not part of the public extension contract, are converted and run in production for the first time. |
-| 6.9    | Planned: the extension system becomes a stable API, and a first handful of public components are converted with it.                                      |
+| 6.9    | At the latest: the extension system becomes a stable API, and a first handful of public components are converted with it.                                |
 | Later  | The remaining components follow. The shims keep working for a while after that.                                                                          |
 
 Most of the work is converting the Administration's own components, and that is why the experimental
@@ -50,7 +50,7 @@ the override composables instead.
 | `defineProps()`, `withDefaults()`                   | ✅                                   | `useSwProps()` instead   |
 | `defineEmits()`, `defineSlots()`, `defineOptions()` | ✅                                   | `useSwContext()` instead |
 | `defineExpose()`                                    | ❌ generated from `swDefinePublic()` | ❌                       |
-| `defineModel()`                                     | ❌                                   | ❌                       |
+| `defineModel()`                                     | ✅ since 6.7.17.0                    | ❌                       |
 
 ### Blocks
 

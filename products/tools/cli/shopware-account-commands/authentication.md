@@ -2,7 +2,8 @@
 nav:
   title: Authentication
   position: 1
-
+meta:
+  description: Authenticate shopware-cli with the Shopware Account API using browser login or CI/CD client credentials, log out, and list producer account extensions.
 ---
 
 # Authentication

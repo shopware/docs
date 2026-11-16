@@ -2,7 +2,8 @@
 nav:
   title: Validation
   position: 5000
-
+meta:
+  description: Shopware CLI validates extensions and projects with metadata checks, packaging validation, PHPStan, ESLint, Stylelint, and Storefront Twig linting.
 ---
 
 ## Validation

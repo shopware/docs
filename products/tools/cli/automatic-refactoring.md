@@ -2,7 +2,8 @@
 nav:
   title: Automatic Refactoring
   position: 5002
-
+meta:
+  description: Shopware CLI automates refactoring with extension fix and project fix, using Rector, ESLint, Stylelint, and XML-to-YAML conversion for plugin configuration.
 ---
 
 # Automatic Refactoring

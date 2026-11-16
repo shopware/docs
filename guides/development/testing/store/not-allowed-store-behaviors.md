@@ -12,9 +12,9 @@ This page outlines which types of changes are **not permitted** in Store extensi
 
 Extensions must not make any direct changes to the existing Shopware structure. This includes in particular:
 
-- Direct manipulation of the database (for example, executing SQL queries from the Administration)
+- Exposing unrestricted SQL execution, or bypassing the permissions, validation and lifecycle behavior required for business-entity changes
 - Changes to the core table structure
-- Writing, overwriting, or deleting files within the Shopware core or the existing directory structure
+- Adding files to core directories, or overwriting or deleting core files or files owned by the merchant or another extension
 - Circumventing designated APIs, DAL, events, or services
 
 ### Additional prohibitions (security and law)
@@ -34,6 +34,18 @@ In addition, extensions are not permitted that:
 - Copying existing structures (for example, templates, configurations, assets) and adapting the copy without changing the original.
 - Creating your own tables, entities, configuration values, or directories, provided these are clearly assigned to the extension.
 
+## Database and filesystem boundaries
+
+Use DAL repositories and supported services for ordinary business-entity reads and writes so validation, permissions, events and indexing remain effective.
+SQL in a schema migration or a justified specialized aggregation is not the same as exposing arbitrary SQL through the Administration.
+Where an operation cannot reasonably use the DAL, explain the reason and preserve its required scoping, integrity and lifecycle effects.
+Bind query parameters and constrain any identifiers that cannot be parameterized.
+
+Use the supported filesystem and media services for runtime storage, including installations using remote storage adapters.
+Reading an extension's own shipped template is different from writing into a deployed plugin directory or modifying core files.
+Limit cleanup to resources the extension owns.
+See [Uninstallation and data cleanup](./installation-and-cleanup.md) and [Security and permissions](./security-and-permissions.md).
+
 ## Why these rules exist
 
 Shopware is deliberately designed so that extensions remain stable, update-proof, and legally compliant. Direct interventions in the database or file system may seem pragmatic, but they pose real risks:
@@ -43,4 +55,4 @@ Shopware is deliberately designed so that extensions remain stable, update-proof
 - **Liability risk:** Extensions that undermine legal protection mechanisms create problems for merchants and for the ecosystem
 - **Quality standard:** The Store stands for trust. Extensions must behave like good guests: they may use the space, but must not remove load-bearing walls
 
-In short, if a feature is only possible through direct SQL, core file manipulation, or bypassing intended interfaces, that is a sign the approach should change — not that the rules are too strict.
+If a feature requires bypassing authorization, modifying core files or exposing uncontrolled system access, redesign it around supported extension mechanisms.

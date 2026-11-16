@@ -2,7 +2,8 @@
 nav:
   title: Other Installation Options
   position: 20
-
+meta:
+  description: Install Shopware CLI using package managers, release binaries, Docker, or source builds, and configure CI/CD environments and environment variables.
 ---
 
 # Other Installation Options
