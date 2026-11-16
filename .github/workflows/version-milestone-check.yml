@@ -1,13 +1,36 @@
 name: Check docs milestone and shopware version
 
+# Docs PRs carry a milestone such as "v6.7.x.x": the shopware/shopware release
+# the documented feature ships in. While that release is not published the PR
+# gets the "Blocked" label. Once it is published, the label is removed and a
+# "ready to be merged" comment is posted, once.
+#
+# The logic lives in .github/scripts/milestone-release-sync.js.
+# Run it by hand first with "dry_run" enabled: it only lists what it would do.
+
 on:
   schedule:
-    - cron: '0 10 * * *'
+    # Hourly, not daily. Releases land at varying times and every step is
+    # idempotent, so extra runs change nothing.
+    - cron: '17 * * * *'
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Only log what would change, write nothing'
+        type: boolean
+        default: true
+
+# Two overlapping runs could both see "no comment yet" and comment twice.
+concurrency:
+  group: version-milestone-check
+  cancel-in-progress: false
+
+permissions: {}
 
 jobs:
-  check-milestone-and-version:
+  sync-milestones:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: read
       issues: write
@@ -17,109 +40,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Get all open pull requests
-        id: get_open_prs
-        run: |
-          # Paginate because the GitHub API defaults to 30 items per page.
-          prs=()
-          page=1
-          while true; do
-            response=$(curl -fsSL --show-error \
-              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls?state=open&per_page=100&page=$page")
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
 
-            numbers=$(echo "$response" | jq -r '.[].number')
-            if [ -z "$numbers" ]; then
-              break
-            fi
+      - name: Run unit tests
+        run: node --test .github/scripts/milestone-release-sync.test.js
 
-            while read -r n; do
-              prs+=("$n")
-            done <<< "$numbers"
-
-            page=$((page + 1))
-          done
-          # end
-
-
-          echo "open_prs=${prs[*]}" >> $GITHUB_ENV
-
-      - name: Process each pull request
-        run: |
-          normalize_version() {
-            # Normalize both milestone titles and release tags:
-            # - remove whitespace
-            # - remove leading 'v'
-            # - compare only major.minor.patch (ignore the trailing build/hotfix segment)
-            s=$(echo "$1" | tr -d '[:space:]' | sed -e 's/^v//')
-            IFS='.' read -r a b c _rest <<< "$s"
-            if [ -n "$a" ] && [ -n "$b" ] && [ -n "$c" ]; then
-              echo "$a.$b.$c"
-            else
-              echo ""
-            fi
-          }
-
-          for pr_number in $open_prs; do
-            milestone=$(curl -s \
-              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number" | jq -r '.milestone.title // empty')
-
-            latest_version=$(curl -s \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/shopware/shopware/releases/latest" | jq -r .tag_name)
-
-            milestone_norm=$(normalize_version "$milestone")
-            latest_norm=$(normalize_version "$latest_version")
-
-            if [ -n "$milestone_norm" ] && [ "$milestone_norm" == "$latest_norm" ]; then
-              existing_comments=$(curl -s \
-                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                -H "Accept: application/vnd.github+json" \
-                "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments" | jq -r '.[].body')
-
-              if ! echo "$existing_comments" | grep -q "The feature is ready to be merged @Isengo1989 @sushmangupta @bojanrajh"; then
-                curl -s \
-                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  -H "Accept: application/vnd.github+json" \
-                  -H "Content-Type: application/json" \
-                  -X POST \
-                  -d "{\"body\": \"The feature is ready to be merged @Isengo1989 @sushmangupta @bojanrajh\"}" \
-                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/comments"
-              fi
-
-              # Remove Blocked label if it exists (label is 'Blocked' in this repo).
-              existing_labels=$(curl -s \
-                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                -H "Accept: application/vnd.github+json" \
-                "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name')
-
-              if echo "$existing_labels" | grep -qx "Blocked"; then
-                curl -s \
-                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  -H "Accept: application/vnd.github+json" \
-                  -X DELETE \
-                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels/Blocked"
-              fi
-            else
-              if [ -n "$milestone_norm" ]; then
-                # Add Blocked label if it does not exist (label is 'Blocked' in this repo).
-                existing_labels=$(curl -s \
-                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  -H "Accept: application/vnd.github+json" \
-                  "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[].name')
-
-                if ! echo "$existing_labels" | grep -qx "Blocked"; then
-                  curl -s \
-                    -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                    -H "Accept: application/vnd.github+json" \
-                    -H "Content-Type: application/json" \
-                    -X POST \
-                    -d "{\"labels\": [\"Blocked\"]}" \
-                    "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels"
-                fi
-              fi
-            fi
-          done
+      - name: Sync milestones with Shopware releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+        run: node .github/scripts/milestone-release-sync.js
