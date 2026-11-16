@@ -2,7 +2,8 @@
 nav:
   title: MCP Server
   position: 30
-
+meta:
+  description: Shopware's native MCP server connects AI clients to Admin API and Store API endpoints with authentication, tool discovery, and extensible capabilities.
 ---
 
 # MCP Server

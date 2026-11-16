@@ -2,7 +2,8 @@
 nav:
   title: MCP Concepts
   position: 15
-
+meta:
+  description: Shopware's MCP server uses tools for actions and queries, resources for read-only reference data, and prompts for domain guidance and task workflows.
 ---
 
 # MCP Concepts
