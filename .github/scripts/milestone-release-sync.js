@@ -26,9 +26,21 @@
  *      only happen while that marker is missing, so a person who re-adds
  *      "Blocked" afterwards is not overruled.
  *   4. Failures make the job fail. Nothing is swallowed.
+ *
+ * Run locally (read-only, nothing is written):
+ *
+ *   GITHUB_TOKEN=$(gh auth token) GITHUB_REPOSITORY=shopware/docs DRY_RUN=true \
+ *     node .github/scripts/milestone-release-sync.js
+ *
+ * Unit tests:
+ *
+ *   node --test .github/scripts/milestone-release-sync.test.js
  */
 
 const BLOCKED_LABEL = "Blocked";
+// Author of comments created with the workflow's GITHUB_TOKEN. Accounts that
+// end in "[bot]" cannot be registered by users, so nobody can impersonate it.
+const BOT_LOGIN = "github-actions[bot]";
 const MENTIONS = "@Isengo1989 @sushmangupta @bojanrajh";
 const VERSION_PATTERN = /^v?(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
 
@@ -57,6 +69,19 @@ function commentFor(tag, sourceRepo) {
         "",
         `[${tag}](https://github.com/${sourceRepo}/releases/tag/${tag}) is released.`,
     ].join("\n");
+}
+
+/**
+ * True only for a comment this workflow wrote. The marker alone is not enough:
+ * it is predictable, and anyone who can comment could post it to keep the
+ * announcement from ever being made.
+ */
+function isAnnouncement(comment, tag) {
+    return (
+        comment.user?.login === BOT_LOGIN &&
+        typeof comment.body === "string" &&
+        comment.body.includes(markerFor(tag))
+    );
 }
 
 function hasLabel(pr, name) {
@@ -141,9 +166,8 @@ async function run({ api, dryRun, sourceRepo, log = console.log }) {
             }
 
             const comments = await api.listComments(pr.number);
-            const marker = markerFor(tag);
 
-            if (comments.some(c => typeof c.body === "string" && c.body.includes(marker))) {
+            if (comments.some(comment => isAnnouncement(comment, tag))) {
                 record(pr, "unchanged", `${tag} released, already announced`);
                 continue;
             }
@@ -356,7 +380,15 @@ async function main() {
     }
 }
 
-module.exports = { parseMilestoneTag, markerFor, commentFor, createApi, run };
+module.exports = {
+    BOT_LOGIN,
+    parseMilestoneTag,
+    markerFor,
+    commentFor,
+    isAnnouncement,
+    createApi,
+    run,
+};
 
 if (require.main === module) {
     main().catch(error => {

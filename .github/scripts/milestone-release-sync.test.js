@@ -5,14 +5,19 @@ const assert = require("node:assert/strict");
 
 const {
     parseMilestoneTag,
+    BOT_LOGIN,
     markerFor,
     commentFor,
+    isAnnouncement,
     createApi,
     run,
 } = require("./milestone-release-sync");
 
 const SOURCE = "shopware/shopware";
 const quiet = () => {};
+
+const byBot = body => ({ user: { login: BOT_LOGIN }, body });
+const byUser = body => ({ user: { login: "some-contributor" }, body });
 
 // ---------------------------------------------------------------------------
 // parseMilestoneTag
@@ -138,7 +143,7 @@ test("running twice does not comment twice", async () => {
     await run({ api, dryRun: false, sourceRepo: SOURCE, log: quiet });
 
     // The second run sees the comment from the first run.
-    comments[1] = [{ body: api.writes.find(w => w[0] === "createComment")[2] }];
+    comments[1] = [byBot(api.writes.find(w => w[0] === "createComment")[2])];
     api.writes.length = 0;
 
     await run({ api, dryRun: false, sourceRepo: SOURCE, log: quiet });
@@ -150,7 +155,7 @@ test("after the announcement a manually added Blocked label is left alone", asyn
     const api = fakeApi({
         pulls: [pr(1, "v6.7.17.0", ["Blocked"])],
         releases: { "v6.7.17.0": true },
-        comments: { 1: [{ body: `${markerFor("v6.7.17.0")}\nready` }] },
+        comments: { 1: [byBot(`${markerFor("v6.7.17.0")}\nready`)] },
     });
 
     await run({ api, dryRun: false, sourceRepo: SOURCE, log: quiet });
@@ -158,11 +163,40 @@ test("after the announcement a manually added Blocked label is left alone", asyn
     assert.deepEqual(api.writes, []);
 });
 
+test("a marker posted by a user cannot suppress the announcement", async () => {
+    const api = fakeApi({
+        pulls: [pr(1, "v6.7.17.0", ["Blocked"])],
+        releases: { "v6.7.17.0": true },
+        comments: { 1: [byUser(markerFor("v6.7.17.0"))] },
+    });
+
+    await run({ api, dryRun: false, sourceRepo: SOURCE, log: quiet });
+
+    assert.deepEqual(api.writes.map(w => w[0]), ["removeLabel", "createComment"]);
+});
+
+test("isAnnouncement needs the bot author and the marker of the same tag", () => {
+    const marker = markerFor("v6.7.17.0");
+
+    assert.equal(isAnnouncement(byBot(marker), "v6.7.17.0"), true);
+    assert.equal(isAnnouncement(byUser(marker), "v6.7.17.0"), false);
+    assert.equal(isAnnouncement(byBot(marker), "v6.7.16.0"), false);
+    assert.equal(isAnnouncement(byBot("no marker here"), "v6.7.17.0"), false);
+    assert.equal(isAnnouncement({ body: marker }, "v6.7.17.0"), false); // no author
+    assert.equal(isAnnouncement({ user: null, body: marker }, "v6.7.17.0"), false); // deleted account
+    assert.equal(isAnnouncement({ user: { login: BOT_LOGIN }, body: null }, "v6.7.17.0"), false);
+    // Looks like the bot, but is not the exact login.
+    assert.equal(
+        isAnnouncement({ user: { login: "github-actions" }, body: marker }, "v6.7.17.0"),
+        false
+    );
+});
+
 test("a marker for another version does not count", async () => {
     const api = fakeApi({
         pulls: [pr(1, "v6.7.17.0")],
         releases: { "v6.7.17.0": true },
-        comments: { 1: [{ body: `${markerFor("v6.7.16.0")}\nready` }] },
+        comments: { 1: [byBot(`${markerFor("v6.7.16.0")}\nready`)] },
     });
 
     await run({ api, dryRun: false, sourceRepo: SOURCE, log: quiet });
@@ -176,7 +210,7 @@ test("a PR in an old released milestone is never re-blocked", async () => {
     const api = fakeApi({
         pulls: [pr(1, "6.7.16.0")],
         releases: { "v6.7.16.0": true, "v6.7.17.0": true },
-        comments: { 1: [{ body: markerFor("v6.7.16.0") }] },
+        comments: { 1: [byBot(markerFor("v6.7.16.0"))] },
     });
 
     await run({ api, dryRun: false, sourceRepo: SOURCE, log: quiet });

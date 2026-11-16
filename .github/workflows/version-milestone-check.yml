@@ -7,6 +7,8 @@ name: Check docs milestone and shopware version
 #
 # The logic lives in .github/scripts/milestone-release-sync.js.
 # Run it by hand first with "dry_run" enabled: it only lists what it would do.
+# Manual runs only execute on the main branch. To try a change to the script
+# from a branch, run it locally, see the header of the script.
 
 on:
   schedule:
@@ -29,6 +31,10 @@ permissions: {}
 
 jobs:
   sync-milestones:
+    # This job runs repository scripts with a token that can write to issues
+    # and pull requests. A manual run can target any branch, so only code on
+    # the default branch is allowed to run. Scheduled runs are always on it.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
