@@ -2,7 +2,8 @@
 nav:
   title: Troubleshooting
   position: 60
-
+meta:
+  description: Troubleshoot Shopware 6 MCP server connection, authentication, tool discovery, registration, session, allowlist, and ACL issues with targeted fixes.
 ---
 
 # Troubleshooting

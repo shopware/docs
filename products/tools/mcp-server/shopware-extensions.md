@@ -2,7 +2,8 @@
 nav:
   title: Shopware Extensions
   position: 80
-
+meta:
+  description: Shopware MCP projects include Shopware Copilot, SwagMcpMerchantTools for merchant workflows, SwagMcpDevTools for diagnostics, and local ai-coding-tools.
 ---
 
 # Shopware MCP Extensions
