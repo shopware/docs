@@ -142,7 +142,7 @@ While this feature helps with GDPR compliance, shop owners are responsible for e
 This automatic re-consent mechanism helps shop owners maintain transparency about cookie changes.
 
 ::: info
-The configuration hash is exposed via the Store API endpoint `/store-api/cookie/groups`. For API documentation, see [Fetch all cookie groups](https://shopware.stoplight.io/docs/store-api/f9c70be044a15-fetch-all-cookie-groups).
+The configuration hash is exposed via the Store API endpoint `/store-api/cookie/groups`. For API documentation, see [Fetch all cookie groups](/resources/store-api/endpoint/get-read-cookie-groups.html).
 :::
 
 ## Video Platform Cookies

@@ -13,7 +13,7 @@ In order to provide users \(i.e., developers\) with a clear abstraction, Shopwar
 
 ![App concept](../../assets/concepts-extensions-apps.svg)
 
-Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using the newly created app system. Apps are not executed within the process of the Shopware Core but are notified about events via webhooks, which they can register. They can modify and interact with Shopware resources through the [Admin REST API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide).
+Starting with Shopware 6.4.0.0, we introduced a new way to extend Shopware using the newly created app system. Apps are not executed within the process of the Shopware Core but are notified about events via webhooks, which they can register. They can modify and interact with Shopware resources through the [Admin REST API](/resources/admin-api/guides/quick-start/01-introduction.html).
 
 ## Plugins
 

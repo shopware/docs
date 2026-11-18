@@ -53,8 +53,6 @@ The shopping list price will be included in the API for getting the shopping lis
 GET {url}/store-api/shopping-list/{id}/summary
 ```
 
-For more details, refer to [B2B Shopping Lists](https://shopware.stoplight.io/docs/store-api/0789edb2e95b6-create-new-shopping-list) from Store API docs.
-
 ## Admin API
 
 Shopping lists do not provide any special APIs. The Admin API offers CRUD operations for every entity within Shopware, and you can use it to work with shopping lists.

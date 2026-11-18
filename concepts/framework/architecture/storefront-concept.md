@@ -32,7 +32,7 @@ The main concerns that the Storefront component has are listed below. Furthermor
 
 Contrary to API calls that result in single resource data, a whole page in the Storefront displays multiple different data sets on a single page. Think of partials, which lead to a single page being displayed. Imagine a page that displays the order overview in the customer account environment. There are partials that are generic and will be displayed on almost every Page. These partials include - for example, Header and Footer information wrapped into a `GenericPage` as `Pagelets` \(`HeaderPagelet`, `FooterPagelet`\). This very generic Page will later be enriched with the specific information you want to display through a separate loader \(e.g., a list of orders\).
 
-To obtain information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront uses the [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) routes to enrich the Page with additional information, e.g., a list of orders, which is fetched via the order route.
+To obtain information from a specific resource, the Storefront's second concern is to map requests to the Core. Internally, the Storefront uses the [Store API](/resources/store-api/guides/quick-start/README.html) routes to enrich the Page with additional information, e.g., a list of orders, which is fetched via the order route.
 
 ![Data and logic flow in Shopware 6 \(top to bottom and vice versa\)](../../../assets/concepts-api-storeApiLogic.svg)
 

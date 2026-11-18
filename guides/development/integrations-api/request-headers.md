@@ -49,7 +49,7 @@ POST /api/search/product
 ## sw-skip-trigger-flow
 
 Flows are an essential part of Shopware and are triggered by events such as customer creation.
-When migrating from another ecommerce platform to shopware, you might import hundreds of thousands of customers via the [Sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads).
+When migrating from another ecommerce platform to shopware, you might import hundreds of thousands of customers via the [Sync API](/resources/admin-api/concepts/endpoint-structure/writing-entities/bulk-payloads.html).
 In that case, you don't want to trigger the `send email on customer creation` flow.
 To avoid this behavior, you can pass the `sw-skip-trigger-flow` header.
 
@@ -75,12 +75,12 @@ This allows integrations to stop before processing data against an incompatible 
 ## sw-access-token
 
 Any request to the Store API requires authentication with a `sw-access-token`.
-Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this.
+Refer to [Authentication & Authorization](/resources/store-api/concepts/authentication-authorisation.html) section of Store API for more details on this.
 
 ## sw-context-token
 
 The `sw-context-token` is used to recognize your customers in the context of the Store API.
-Refer to [Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/8e1d78252fa6f-authentication-and-authorisation) section of Store API for more details on this.
+Refer to [Authentication & Authorization](/resources/store-api/concepts/authentication-authorisation.html) section of Store API for more details on this.
 
 ## sw-currency-id
 

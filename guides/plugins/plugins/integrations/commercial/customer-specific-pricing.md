@@ -20,9 +20,9 @@ Customer-specific pricing is part of the Commercial plugin and requires an exist
 ## Working with the API route
 
 To create, alter, and/or delete customer-specific prices, you can use the API endpoint `/api/_action/custom-price`. Like with any other admin request in Shopware, you must first authenticate yourself. Therefore, please head over to the
-[authentication guide](https://shopware.stoplight.io/docs/admin-api/authentication) for details.
+[authentication guide](/resources/admin-api/concepts/authentication-authorisation.html) for details.
 
-Otherwise, the Customer-specific Pricing API interface models itself on the [sync API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide), so you can package your requests similarly.
+Otherwise, the Customer-specific Pricing API interface models itself on the [sync API](/resources/admin-api/concepts/endpoint-structure/writing-entities/bulk-payloads.html), so you can package your requests similarly.
 
 ::: info
 You can use the route with a single `upsert` and `delete` action, or combine them in a single request: you can pack several different commands into a single sync API request, and each is executed in an independent, isolated way.

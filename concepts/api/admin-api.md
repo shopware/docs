@@ -15,4 +15,4 @@ The Admin API provides CRUD operations for every entity within Shopware and is u
 
 For details on endpoints, authentication methods, schemas, and request formats, always refer to the Admin API documentation.
 
-<PageRef page="https://shopware.stoplight.io/docs/admin-api/8d53c59b2e6bc-shopware-admin-api" title="Admin API – Stoplight Reference" target="_blank" />
+<PageRef page="/resources/admin-api/reference.html" title="Admin API Reference" />

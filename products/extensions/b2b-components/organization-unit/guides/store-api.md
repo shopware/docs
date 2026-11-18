@@ -58,5 +58,3 @@ DELETE {url}/store-api/organization-unit {
     ids: {array}
 }
 ```
-
-For more details, refer to [B2B Organization Unit](https://shopware.stoplight.io/docs/store-api/branches/main/b286c1f43d395-shopware-store-api) from Store API docs.

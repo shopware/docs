@@ -187,7 +187,7 @@ The cookie consent system exposes its configuration through the Store API endpoi
 
 This endpoint enables headless implementations, custom frontends, and third-party integrations to retrieve cookie configuration, the configuration hash, and the language ID. The hash is provided as a string, and the language ID is also returned by the endpoint. When stored in the browser's `cookie-config-hash` cookie, both values should be stored as an object where the language ID is the key and the hash is the value, for example: `{"019ada128cfb711aa7a0d00f476d5961":"998cdcc090e92b3ecdd057241d0fd01f"}`
 
-For full API documentation, see the [Store API - Fetch all cookie groups](https://shopware.stoplight.io/docs/store-api/f9c70be044a15-fetch-all-cookie-groups) reference.
+For full API documentation, see the [Store API - Fetch all cookie groups](/resources/store-api/endpoint/get-read-cookie-groups.html) reference.
 
 ## Extension Points
 

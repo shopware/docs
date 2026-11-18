@@ -30,7 +30,8 @@ It is important to consider the background of the potential audience reading you
 ## Applicable documents: style guide coverage
 
 * [Developer docs](https://developer.shopware.com/docs/)
-* [API Reference Guide](https://shopware.stoplight.io/)
+* [Store API Reference Guide](/resources/store-api/reference.html)
+* [Admin API Reference Guide](/resources/admin-api/reference.html)
 * [Composable Frontends docs](/frontends/)
 * [Component library](https://component-library.shopware.com/)
 

@@ -147,7 +147,7 @@ This command will create a zip file from the specified extension directory (the 
 You can call the endpoint using this curl command.
 
 ::: info
-Follow this guide for more information on using the Store API : [Store API Authentication & Authorization](https://shopware.stoplight.io/docs/store-api/ZG9jOjEwODA3NjQx-authentication-and-authorisation)
+Follow this guide for more information on using the Store API : [Store API Authentication & Authorization](/resources/store-api/concepts/authentication-authorisation.html)
 :::
 
 ```shell

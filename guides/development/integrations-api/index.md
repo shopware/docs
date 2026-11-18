@@ -11,13 +11,13 @@ This guide helps you make your first successful API request. Your Shopware insta
 
 Shopware provides two HTTP APIs:
 
-- **Admin API** for backend operations such as products, orders, customers, plugins, and — via the [Sync API](https://shopware.stoplight.io/docs/admin-api/faf8f8e4e13a0-bulk-payloads) — bulk operations (for example, mass imports)
+- **Admin API** for backend operations such as products, orders, customers, plugins, and — via the [Sync API](/resources/admin-api/concepts/endpoint-structure/writing-entities/bulk-payloads.html) — bulk operations (for example, mass imports)
 - **Store API** for storefront-facing interactions such as headless frontends, mobile apps, carts, checkout, and sales channel access
 
 For the complete endpoint reference and schemas, use the official Stoplight documentation:
 
-- [Admin API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide)
-- [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide)
+- [Admin API](/resources/admin-api/guides/quick-start/01-introduction.html)
+- [Store API](/resources/store-api/guides/quick-start/README.html)
 
 This page is a practical quick start and does not duplicate the full API reference.
 
@@ -25,7 +25,7 @@ This page is a practical quick start and does not duplicate the full API referen
 
 ### Admin API
 
-Use the [Admin API](https://shopware.stoplight.io/docs/admin-api/twpxvnspkg3yu-quick-start-guide) for backend and administrative tasks such as:
+Use the [Admin API](/resources/admin-api/guides/quick-start/01-introduction.html) for backend and administrative tasks such as:
 
 - Managing entities like products, categories, and orders
 - Running backend integrations and import or export workflows
@@ -40,7 +40,7 @@ A common search endpoint looks like this: `POST /api/search/{entity}`
 
 ### Store API
 
-Use the [Store API](https://shopware.stoplight.io/docs/store-api/38777d33d92dc-quick-start-guide) for customer-facing use cases such as:
+Use the [Store API](/resources/store-api/guides/quick-start/README.html) for customer-facing use cases such as:
 
 - Working with products and listings
 - Managing carts and checkout
