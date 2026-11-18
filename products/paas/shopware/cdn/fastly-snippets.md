@@ -17,7 +17,7 @@ On top of that you can:
 
 Custom snippets are read directly from your project repository during the deployment. Two things are required:
 
-1. The snippet files must exist in your repository, organized in one sub-directory per VCL subroutine type.
+1. The snippet files must exist in your repository, organized in one subdirectory per VCL subroutine type.
 2. The `services.fastly.snippets_path` option must point at that directory in your `application.yaml`. **Without this option, the snippet files are ignored.**
 
 The rest of this page describes how to set that up.
@@ -56,7 +56,7 @@ Snippet files in your repository are only picked up when `services.fastly.snippe
 
 ## Folder layout
 
-The directory referenced by `snippets_path` must be **exactly one level deep**: one sub-directory per Fastly VCL subroutine type, with the snippet files directly inside it.
+The directory referenced by `snippets_path` must be **exactly one level deep**: one subdirectory per Fastly VCL subroutine type, with the snippet files directly inside it.
 
 ```text
 config/fastly/
@@ -77,14 +77,14 @@ config/fastly/
     └── 002-geo.vcl
 ```
 
-The name of the sub-directory determines the snippet type. Valid types are:
+The name of the subdirectory determines the snippet type. Valid types are:
 
 `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log`, `none`
 
 See the [Fastly VCL subroutine reference](https://developer.fastly.com/reference/vcl/subroutines/) for what each type does.
 
 ::: danger
-Deeper nesting is not supported. `config/fastly/recv/default.vcl` is valid, `config/fastly/recv/custom/default.vcl` is not, and a file placed directly in `config/fastly/` is not either. Any file outside a valid type sub-directory fails the deployment.
+Deeper nesting is not supported. `config/fastly/recv/default.vcl` is valid, `config/fastly/recv/custom/default.vcl` is not, and a file placed directly in `config/fastly/` is not either. Any file outside a valid type subdirectory fails the deployment.
 :::
 
 ## Snippet order
@@ -147,7 +147,7 @@ The snippet name is derived from the type and the file name without extension (`
 Snippets are validated when the application is created or updated. The deployment fails with an error when:
 
 - `snippets_path` is set but the directory is missing or empty.
-- A file is not directly inside a valid subroutine type sub-directory.
+- A file is not directly inside a valid subroutine type subdirectory.
 - A file name contains an underscore, or two files map to the same snippet name.
 - A file does not contain syntactically valid VCL.
 

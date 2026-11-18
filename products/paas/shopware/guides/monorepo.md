@@ -15,7 +15,7 @@ Two settings make this possible:
 
 ## The application root
 
-The directory containing the `application.yaml` is the **application root**. Every path an application configuration references is resolved relative to it, so an application in a monorepo sub-directory addresses its files without repeating that prefix:
+The directory containing the `application.yaml` is the **application root**. Every path an application configuration references is resolved relative to it, so an application in a monorepo subdirectory addresses its files without repeating that prefix:
 
 | Setting                         | Resolved relative to |
 | ------------------------------- | -------------------- |
@@ -51,7 +51,7 @@ For a repository laid out like this:
 └── packages
 ```
 
-create one application per sub-directory, each pointing at its own file:
+create one application per subdirectory, each pointing at its own file:
 
 ```sh
 sw-paas application create --name shopware --application-yaml-path apps/shopware/application.yaml
