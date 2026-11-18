@@ -33,6 +33,49 @@ elasticsearch:
         dismax_tie_breaker: 0.3
 ```
 
+### Match type boosts
+
+A search word can match a field in several ways, and each match type has its own boost (since 6.7.14.0).
+Override the boosts in `config/packages/elasticsearch.yaml`:
+
+```yaml
+elasticsearch:
+    search:
+        boost:
+            exact: 2.0     # the whole word matches
+            phrase: 4.0    # the words of a multi-word search appear close together
+            fuzzy: 0.4     # the word matches with typos
+            prefix: 0.4    # the word matches the start of an indexed word
+            partial: 0.4   # the word shares n-gram fragments with an indexed word ("Split search term" fields only)
+```
+
+Each boost must be `0.0` or higher.
+The ranking of a search field is multiplied on top of these boosts.
+Keep `exact` and `phrase` above the other boosts, otherwise a looser match can outrank a whole-word or whole-phrase match.
+Changing a boost does not require a reindex.
+
+### Field-length normalization
+
+Since 6.7.12.0, product indices score matches without field-length normalization (`b: 0`).
+A short product name therefore does not rank above a descriptive one only because it is shorter.
+The `description`, `metaDescription`, and `customSearchKeywords` fields use the `sw_length_norm` similarity with the standard normalization (`b: 0.75`), because their length is a relevance signal.
+Both similarities are defined in `elasticsearch.index_settings.similarity`:
+
+```yaml
+elasticsearch:
+    index_settings:
+        similarity:
+            default:
+                type: BM25
+                b: 0
+            sw_length_norm:
+                type: BM25
+                b: 0.75
+```
+
+An override replaces the whole `similarity` setting, so always define both similarities.
+Changing a similarity requires a full reindex with `bin/console es:index`.
+
 ### Other search settings
 
 The `elasticsearch.search` section holds further settings you can override in `config/packages/elasticsearch.yaml`:
@@ -42,9 +85,33 @@ elasticsearch:
     search:
         timeout: 5s                     # request timeout per search
         term_max_length: 300            # search terms longer than this are truncated
+        term_max_words: 10              # only the first N distinct words of a search term are searched
         search_type: query_then_fetch   # OpenSearch search type
         # precision_threshold: 40000    # cardinality accuracy for grouped product counts (higher = more memory)
 ```
+
+`term_max_words` (since 6.7.17.0, default `10`, minimum `1`) limits the number of words that a search sends to Elasticsearch.
+Before the term query is built, the search term is cut to its first N distinct words.
+Punctuation-only words and one-letter words do not count.
+Words after the limit are not searched.
+The limit keeps long search terms from exceeding the cluster's clause limit, see [Limiting the number of search words](../../../../hosting/infrastructure/elasticsearch/elasticsearch.md#limiting-the-number-of-search-words).
+
+### Administration search settings
+
+The Administration search has its own settings in `elasticsearch.administration.search`:
+
+```yaml
+elasticsearch:
+    administration:
+        search:
+            timeout: 5s                     # request timeout per search
+            term_max_length: 300            # search terms longer than this are truncated
+            search_type: query_then_fetch   # OpenSearch search type
+```
+
+They apply when the Administration search uses OpenSearch, see [Elasticsearch for Admin](../../../../hosting/infrastructure/elasticsearch/elasticsearch-setup.md#elasticsearch-for-admin).
+The `elasticsearch.search` settings on this page, such as `term_max_words`, the boosts, and the tie-breaker, do not apply to the Administration search.
+The Administration indices also have their own `index_settings`, including `similarity`, under `elasticsearch.administration`.
 
 ### Analyzer settings
 
