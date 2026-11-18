@@ -47,6 +47,10 @@ Example: `bin/console translation:install --locales it-IT,fr-FR` will install It
 
 ### 2. You are **currently using the Language Pack plugin**
 
+- Before you start, update the Language Pack plugin to **5.79.0** or later and back up your database.
+   Language Pack **5.78.0** and earlier can delete the custom snippets of a `LanguagePack` snippet set during the migration.
+   Custom snippets that were already deleted can only be restored from a backup.
+
 - Run the translation command and install every language you are using in your shop:
 
   ```bash
@@ -60,6 +64,8 @@ updated more frequently. So it's essentially identical – or even more up to da
 
 - Create base snippet sets for used languages
    - If you're on Shopware **6.7.7.0** or later, this is done automatically.
+     With Language Pack **5.79.0** or later, the `LanguagePack` snippet set becomes the `BASE` snippet set,
+     e.g. `LanguagePack en-US` becomes `BASE en-US`, and keeps your custom snippets.
    - If you're on Shopware **6.7.6.0** or earlier, for each language in use, create a base snippet, e.g. `BASE en-US` for English (US).
 
 - Change all sales channel domains to use the base snippet sets.
@@ -68,7 +74,11 @@ updated more frequently. So it's essentially identical – or even more up to da
      snippet set from `LanguagePack` to `BASE`, e.g.: `LanguagePack en-US` to `BASE en-US`.
 
 - It is recommended to uninstall and remove the Language Pack plugin after `translation:install` succeeded for all locales.
-   Your **custom snippets** created in the snippet module remain intact since they are saved in the database.
+   With Language Pack **5.79.0** or later, your **custom snippets** created in the snippet module move to the `BASE` snippet set
+   of their language, also when you uninstall the plugin with all its data.
+   If you're on Shopware **6.7.6.0** or earlier, uninstall the plugin with all its data.
+   Only then do your custom snippets move to the `BASE` snippet set.
+   If both snippet sets contain the same snippet key, the `BASE` value is used and the `LanguagePack` snippet set is kept with the other value.
 
 ## New installations
 
@@ -87,6 +97,12 @@ updated more frequently. So it's essentially identical – or even more up to da
 Starting with **Shopware 6.7.7.0** and **Language Pack 5.37.1**, the migration process was improved. If you encounter this issue,
 please update Shopware to >= 6.7.7.0, Language Pack to >= 5.37.1, remove the translation files created from running the
 command and run the command again. Or follow the updated migration guide.
+
+### Custom snippets are still in the `LanguagePack` snippet set after the migration
+
+If you migrated with Language Pack **5.78.0** or earlier, your custom snippets can remain in the `LanguagePack` snippet set
+next to the new `BASE` snippet set. Update the Language Pack plugin to **5.79.0** or later.
+The update moves these snippets to the `BASE` snippet set of their language.
 
 [translation-system]: ../../concepts/framework/translations/built-in-translation-system.md
 [language-pack-plugin]: https://store.shopware.com/en/swag338126230916f/shopware-language-pack.html

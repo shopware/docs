@@ -2,7 +2,8 @@
 nav:
   title: Helper Commands
   position: 5
-
+meta:
+  description: Shopware CLI helper commands cover project creation, Docker development, asset builds, workers, Admin API access, validation, diagnostics, and configuration.
 ---
 
 # Helper Commands

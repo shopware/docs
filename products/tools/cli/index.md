@@ -2,7 +2,8 @@
 nav:
   title: Shopware CLI
   position: 10
-
+meta:
+  description: Shopware CLI is an open-source command-line tool for Shopware 6 project management, Docker development environments, extension workflows, and CI/CD.
 ---
 
 # Shopware CLI

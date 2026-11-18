@@ -76,7 +76,7 @@ Do not share resources like MySQL, Redis, or ElasticSearch/OpenSearch between li
 After importing the database, modify the `.env` file to use the staging database. If you use ElasticSearch/OpenSearch, set a `SHOPWARE_ES_INDEX_PREFIX` to avoid conflicts with the live environment.
 
 ::: warning
-If you don't use the included Staging Mode, make sure to disable email sending in the staging environment to avoid sending test emails to real customers, and that you reset the app system by deleting "core.app.shopId" from the `system_config` table to avoid leaks of data between live and staging environments.
+If you don't use the included staging mode, disable email sending in the staging environment, so no test emails reach real customers. Also run `bin/console app:shop-id:change uninstall-apps`, which removes the apps from the copy and gives it its own shop ID, so apps don't mix up data between live and staging.
 :::
 
 ### 4. Activating staging mode
@@ -183,6 +183,20 @@ Uses regular expressions for advanced URL rewriting. In this example, `https://m
 ## App handling
 
 The staging command deletes all apps with active external connections to prevent data corruption or leaks in the live environment. Since the staging instance is a copy of the live environment, apps would retain their original connections. After executing the command, reinstall apps to create new instance IDs, making the app installation completely isolated from the live environment.
+
+## If Shopware asks about the shop ID
+
+When Shopware detects that it runs in a new environment, for example because `APP_URL` changed, it stops talking to apps and asks how to continue: in a modal in the Administration, or with `bin/console app:shop-id:change`.
+
+| Option in the Administration   | Strategy for `app:shop-id:change` | Use it when                                               |
+| ------------------------------ | --------------------------------- | --------------------------------------------------------- |
+| Generate a new shop identifier | `reinstall-apps`                  | this is a copy, such as staging, and you want apps in it  |
+| Uninstall apps                 | `uninstall-apps`                  | this is a copy, and you don't need apps in it             |
+| Keep the shop identifier       | `move-shop-permanently`           | you permanently moved your live shop to this installation |
+
+::: warning
+Never choose **Keep the shop identifier** on a copy. The copy takes over the app registrations of the shop it was copied from, and the apps stop working there.
+:::
 
 ## Protecting the staging environment
 

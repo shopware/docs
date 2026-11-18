@@ -2,7 +2,8 @@
 nav:
   title: Automatically Release an Extension to the Shopware Store
   position: 2
-
+meta:
+  description: Use shopware-cli account producer extension upload to submit extension ZIP files to the Shopware Store and trigger automatic code review in CI/CD pipelines.
 ---
 
 # Automatically Release an Extension to the Shopware Store
