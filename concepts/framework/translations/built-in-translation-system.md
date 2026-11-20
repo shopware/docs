@@ -60,6 +60,23 @@ The same update runs automatically once a day through the `translation.update` s
 [Automated translation updates](automated-translation-updates.md#the-translationupdate-scheduled-task) for its behavior,
 requirements, and how to deactivate it.
 
+### Download all locales from the translation archive
+
+`translation:download` and `translation:install --all` take the files of all locales from one archive.
+The `translations` repository publishes this archive with every [release](https://github.com/shopware/translations/releases),
+together with a `manifest.json` that names the archive and its SHA-256 checksum.
+The commands read the manifest of the latest release, download the archive, and write only the configured files of the
+requested locales.
+
+The commands download the files of each locale one by one when the archive cannot be used.
+The output then names the reason, for example, an unreachable manifest or an archive that does not match its checksum.
+`translation:install --all` also downloads each file when the archive is older than the newest update in the
+[metadata](#how-does-the-system-recognize-new-updates).
+
+`translation:install --locales`, `translation:update`, the Admin API and the scheduled task download the files of
+each locale.
+See [`archive-manifest-url`](#archive-manifest-url) to point the commands at another archive or to switch the archive off.
+
 ## Language activation
 
 By default, installed translations are automatically activated, making them available for use in Shopware.
@@ -138,6 +155,25 @@ metadata-url: https://raw.githubusercontent.com/shopware/translations/main/crowd
 
 **Description:**
 The URL for [metadata information](#how-does-the-system-recognize-new-updates) about the translations.
+
+---
+
+#### `archive-manifest-url`
+
+**Type:** `string` or `false`
+**Example:**
+
+```yaml
+archive-manifest-url: https://github.com/shopware/translations/releases/latest/download/manifest.json
+```
+
+**Description:**
+The URL of the manifest that names the [translation archive](#download-all-locales-from-the-translation-archive).
+The archive file is resolved relative to the manifest.
+Another archive must use the format described in [Translations archive](https://github.com/shopware/translations#translations-archive).
+Set it to `false` to always download the files of each locale.
+A configuration override that changes `repository_url` without setting `archive_manifest_url` also downloads every file
+from that repository, because the shipped archive holds the files of the shipped repository.
 
 ---
 
@@ -235,13 +271,13 @@ shopware:
 ```
 
 Any option left unset falls back to the shipped default. The list options (`plugins`, `excluded_locales`,
-`plugin_mapping`, `languages`) replace the shipped default instead of merging into it, so provide the full list, or an
+`plugin_mapping`, `languages`) replace the shipped default instead of merging into it, so provide the full list or an
 empty list (`[]`) to clear it. Configuration keys use `snake_case`, whereas the shipped `translation.yaml` uses the
 dash-separated keys documented above. Both describe the same fields.
 
 ### TranslationConfigLoader
 
-If you need behavior that configuration cannot express, for example values computed at runtime, you can decorate the
+If you need behavior that configuration cannot express, for example, values computed at runtime, you can decorate the
 loader. The `TranslationConfigLoader` (`src/Core/System/Snippet/Service/TranslationConfigLoader.php`) is part of the
 Shopware core and is responsible for loading and validating the `translation.yaml` file. It provides a
 `TranslationConfig` object that contains all configured fields, ensures that URLs are valid, languages and plugins are
@@ -260,7 +296,7 @@ For the complete list of extension points across the translation system, see the
 
 The `TranslationConfig` (`src/Core/System/Snippet/Service/TranslationConfig.php`) is a data structure that holds the
 configuration details loaded from the `translation.yaml` file.
-You can require it via dependency injection and because of the usage of the `TranslationConfigLoader` with lazy loading,
+You can require it via dependency injection, and because of the usage of the `TranslationConfigLoader` with lazy loading,
 the configuration is always available when needed.
 
 More information is available in the [Migration Guide](../../../guides/upgrades-migrations/language-pack-migration.md).

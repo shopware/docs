@@ -168,6 +168,11 @@ The two abstract-class services use the `getDecorated()` convention: your decora
 and returns the injected inner instance from `getDecorated()`. The interface-based services only require
 implementing the interface and delegating to the inner instance.
 
+`translation:download` and `translation:install --all` do not call `TranslationLoader::download()` for locales they take
+from the [translation archive](built-in-translation-system.md#download-all-locales-from-the-translation-archive).
+A decorator of that method runs only when the commands download each locale, for example with
+`archive_manifest_url: false`.
+
 Example — replacing the configuration loader (the
 [configuration override](#configure-the-download-system) covers the same field values without a decorator):
 
