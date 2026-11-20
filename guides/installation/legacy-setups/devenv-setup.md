@@ -228,8 +228,26 @@ composer require --dev shopware/dev-tools
 Then generate the demo data and refresh the search index:
 
 ```bash
-APP_ENV=prod bin/console framework:demodata && APP_ENV=prod bin/console dal:refresh:index
+APP_ENV=prod bin/console framework:demodata
+APP_ENV=prod bin/console dal:refresh:index
 ```
+
+By default, demo data generation also creates product documents for products. To control that part of the dataset, pass the `--product-documents` option explicitly.
+
+Examples:
+
+```bash
+# Generate demo data without product documents
+APP_ENV=prod bin/console framework:demodata --product-documents=0
+
+# Generate demo data and limit product document generation
+APP_ENV=prod bin/console framework:demodata --product-documents=20
+
+# Reset the default dataset and generate a specific amount of product documents
+APP_ENV=prod bin/console framework:demodata --reset-defaults --product-documents=20
+```
+
+Use `--product-documents=0` if you want a clean setup without generated PDFs or if you need a more controlled fixture set for testing.
 
 If you work on the `shopware/shopware` repository instead, run `composer setup` before generating demo data. It installs the dependencies, sets up the database, and builds the Administration and Storefront.
 

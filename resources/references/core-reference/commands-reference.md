@@ -179,11 +179,48 @@ $ bin/console [command] [parameters]
 
 ### Framework
 
-| Command                       | Description                              |
-| :---------------------------- | :--------------------------------------- |
-| `framework:demodata`          | Generates demo data                      |
-| `framework:dump:class:schema` | Dumps the schema of the given entity     |
+| Command                       | Description                          |
+| :---------------------------- | :----------------------------------- |
+| `framework:demodata`          | Generates demo data                  |
+| `framework:dump:class:schema` | Dumps the schema of the given entity |
 | `framework:schema`            | Dumps the api definition to a json file. |
+
+The `framework:demodata` command can be used to populate products with generated product documents.
+
+```bash
+bin/console framework:demodata --product-documents=20
+```
+
+Use `--product-documents` to define how many product documents should be generated.
+
+| Option                  | Description                                                                                                                                      |
+| :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--product-documents`   | Number of product documents to generate. The default is `100`. Use `0` to skip generating product documents.                                   |
+| `--reset-defaults`      | Resets the default demo data before generating new data.                                                                                         |
+
+When product documents are generated:
+
+- documents are attached to main products that do not already have documents
+- each selected product receives between one and four documents
+- generated files are one-page PDF documents
+- if a media folder named `Product documents` exists, the files are stored there
+- variant products use the documents of their parent product
+
+Examples:
+
+```bash
+# Generate demo data with the default amount of product documents
+bin/console framework:demodata
+
+# Generate demo data and create 20 product documents
+bin/console framework:demodata --product-documents=20
+
+# Generate demo data without product documents
+bin/console framework:demodata --product-documents=0
+
+# Reset demo defaults and regenerate product documents
+bin/console framework:demodata --reset-defaults --product-documents=50
+```
 
 ### Http
 
