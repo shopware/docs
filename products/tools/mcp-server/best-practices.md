@@ -40,6 +40,10 @@ All write tools should default to `dryRun=true`. This lets the agent preview the
 
 Agents tend to be overconfident; they will call a write tool on the first attempt without verifying parameters. A dry-run default forces a two-step pattern that catches mistakes before they cause damage.
 
+### Declare tool annotations
+
+Declare the tool annotations of the MCP specification with the `annotations` argument of `#[McpTool]`, for example `new ToolAnnotations(readOnlyHint: true, openWorldHint: false)` for a read tool. MCP clients use them to decide when to ask the user before a call: clients that honour them can run read tools without asking and ask before destructive ones. Mark a tool with `readOnlyHint: false` as soon as one of its actions writes, even if `dryRun` defaults to `true`, and with `destructiveHint: true` when it can remove or overwrite existing data. A tool without annotations counts as destructive. Starting with Shopware 6.7.17.0, all core tools declare them, see [Declare tool annotations](../../../guides/plugins/plugins/mcp-server.md#declare-tool-annotations).
+
 ### Validate inputs before writing
 
 If a tool accepts a name that maps to an internal enum, registry, or state machine (event names, action names, state transitions), validate it before writing. The database may silently accept invalid values that produce broken data at runtime.
@@ -68,23 +72,35 @@ Strategies to reduce tool count within a single integration:
 
 - Use an `action` parameter to multiplex related operations into one tool (e.g., `shopware-theme-config` with `action: "get" | "update"`)
 - Use resources instead of tools for static reference data
-- Assign tools from plugins and Symfony bundles to focused groups with `#[McpToolGroup]`
+- Assign tools from plugins and Symfony bundles to focused groups with `#[McpToolGroup]`, and describe each group with its `description` argument (6.7.17.0 and later) so the agent can tell which toolset to enable
 
 ### Keep responses compact
 
 Tool responses are injected directly into the agent's context window, so large responses consume a significant portion of the token budget.
 
-When a response exceeds 100 KB, `McpToolResponse` does not inline it. Instead, it stores the payload in a session-scoped cache and returns a `shopware://tool-result/{uuid}` URI in `_meta.resourceUri`. The agent can fetch the full content via `resources/read`. The `_meta` block also includes `responseSize` and `note`, which explain why the result was deferred. For responses above 20 KB (but under the cap), `_meta.responseSize` is included as a size hint so the agent can learn to use tighter parameters next time.
+When a result holds more than about 100 KB of data, Shopware does not inline it.
+Instead, it stores the result in the `mcp_tool_result_cache` table and returns a `shopware://tool-result/…` URI.
+Clients on protocol `2025-06-18` or later get the URI as a `resource_link` content block, older clients in `_meta.resourceUri` of the envelope.
+The agent can fetch the full content via `resources/read`.
+The response also includes `responseSize`, a note explaining why the result was deferred, and `query` with the tool and arguments of the call.
+Starting with Shopware 6.7.17.0, the MCP result renderer makes this decision for every tool, including app tools and tools that build the `{"success": …}` envelope by hand.
+`successResult()` always returns the full data, so do not rely on it to shorten a result.
+Starting with Shopware 6.7.16.0, the URI is a signed pointer that only works for the caller that produced it and expires after one hour.
+See [Large tool results](./tools-reference.md#large-tool-results).
+For responses of 20 KB or more that stay inline, `successResult()` adds `responseSize` to the metadata as a size hint so the agent can learn to use tighter parameters next time.
 
 The goal is still to keep responses small. Deferred resources still cost tokens when the agent fetches them, and some clients may not automatically follow up.
 
-- **Separate entity rows from aggregations.** Aggregations (especially `terms` or `date-histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in a single response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records; never both in a single tool call.
+- **Separate entity rows from aggregations.** Aggregations (especially `terms` or `histogram` with many buckets) can produce thousands of entries. Mixing them with entity rows in a single response compounds the problem — use `shopware-entity-aggregate` for aggregations and `shopware-entity-search` for records; never both in a single tool call.
 - **Use `McpEntityIncludes` in plugin tools.** If your tool returns DAL entity data via `JsonEntityEncoder`, use the `McpEntityIncludes` trait. It automatically strips unrequested associations, thumbnails, and translated duplicates, keeping responses compact without manual field filtering.
 - **Paginate large result sets.** Return a bounded `limit` and let the agent increment `page` rather than returning everything at once.
 
 ### Use consistent response shapes
 
-Extend `McpToolResponse` to get consistent `{"success": true, "data": ..., "_meta": ...}` and `{"success": false, "error": "..."}` envelopes. Agents learn one pattern and apply it everywhere.
+Extend `McpToolResponse` and return a `McpToolResult` built with `successResult()` and `errorResult()`, so every tool answers in the same shape. Agents learn one pattern and apply it everywhere. Shopware renders the result as `structuredContent` with `isError` for failed calls, and as the `{"success": …}` envelope for clients on protocol revisions before `2025-06-18`, see [Response format](./tools-reference.md#response-format).
+Pass a stable code as the second argument of `errorResult()`, such as `McpToolError::NOT_FOUND`, `McpToolError::INVALID_ARGUMENTS`, or `McpToolError::MISSING_PRIVILEGE`. The default is `McpToolError::TOOL_ERROR`.
+Add a short summary as the third argument of `successResult()`, for example "3 products updated.", and the details the model needs to fix a call as the third argument of `errorResult()`.
+The helpers exist since Shopware 6.7.17.0. Before, tools returned the `{"success": …}` string of `success()` and `error()`, which is deprecated and cannot carry a summary or details, see [Return a tool result](../../../guides/plugins/plugins/mcp-server.md#return-a-tool-result).
 
 ### Write tool descriptions for agent routing
 
@@ -101,6 +117,21 @@ The `description` field on `#[McpTool]` is the only signal the agent uses to pic
 **Mention the use cases the user will name.** If a prompt is "upload this image as a product cover", the description should contain the phrase "product cover" — and clarify that no extra parameter is required to satisfy that case. Otherwise, the agent infers it cannot fulfill the request and returns no tool selection.
 
 **Make required parameters truly required.** Leave a parameter without a PHP default only if every prompt that should call this tool will include it. If the parameter is something the user rarely provides (e.g., a sales channel UUID or a tax ID), set it to `''` or `null` and validate it in the method. Required-but-missing parameters cause some agents to refuse the tool call entirely rather than ask the user.
+
+**Describe every parameter with `#[Schema(description: ...)]`.** Put the attribute from `Mcp\Capability\Attribute\Schema` on each `__invoke()` parameter. The MCP SDK renders it into `inputSchema.properties[*].description`, which is where a client reads the argument contract. Without it, a parameter reaches the client as a bare `{"type": "string"}`. This matters most for JSON-encoded string parameters: state whether an object or an array is expected, and give a short example. The SDK also falls back to the `@param` docblock text, but core uses the attribute, and the attribute wins when both are present. Descriptions are compiled into the container, so run `bin/console cache:clear` after changing them.
+
+```php
+use Mcp\Capability\Attribute\Schema;
+
+public function __invoke(
+    #[Schema(description: 'Entity name, e.g. "order".')]
+    string $entity,
+    #[Schema(description: 'A JSON ARRAY of aggregation definitions, as a string. Each element needs "name" and "type", and every type except "filter" also needs "field", e.g. [{"name":"order_count","type":"count","field":"id"}].')]
+    string $aggregations,
+): McpToolResult
+```
+
+**Return the reason for rejecting invalid input.** An exception that escapes `__invoke()` reaches the client as a generic `Error while executing tool`, so the agent has nothing to correct on its retry. Catch the exceptions you expect and return a message that names the rejected part. Tools that extend `McpToolResponse` and parse Admin API criteria with `RequestCriteriaBuilder::fromArray()` can wrap only that call, catch `ShopwareHttpException`, and return `$this->invalidCriteriaResult($e)`. A `SearchRequestException` is rendered as `Invalid criteria: ` followed by every rejected element's JSON pointer and message. Other exceptions, such as an unknown association, keep their own message. The error carries the code `invalid_arguments`. Keep the actual search outside the `try`, so that real DAL failures are still logged. Let unexpected exceptions propagate so that they are logged.
 
 **Test descriptions with an LLM, not just a code reviewer.** A description that reads well to a developer can route badly. Run a small fixture set through the agent you target (Claude, GPT-4o) and compare expected versus selected tool. The cost of a routing failure is that the user does not get the tool they wanted; the cost of running the evaluation is a few hundred tokens.
 
@@ -226,7 +257,7 @@ Annotate your tool class with `#[McpToolRequires]` so operators can configure AC
 #[McpToolRequires(entityParam: 'entity', operations: ['read'])]
 ```
 
-This is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output, but does not add a new enforcement layer. You still must call `$this->requirePrivilege($context, '...')` inside `__invoke()` for actual runtime enforcement.
+This is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output, but does not add a new enforcement layer. You still must call `$this->requirePrivilegeResult($context, '...')` inside `__invoke()` for actual runtime enforcement.
 
 ### Be aware of prompt injection via tool results
 

@@ -75,16 +75,20 @@ PHP class with `#[McpTool]` on the class, tagged `shopware.mcp.tool` in `service
 #[McpToolRequires('order:read')]
 class OrdersTool extends McpToolResponse
 {
-    public function __invoke(int $limit = 10): string
+    public function __invoke(int $limit = 10): McpToolResult
     {
         $context = $this->contextProvider->getContext();
-        if ($error = $this->requirePrivilege($context, 'order:read')) {
+        if ($error = $this->requirePrivilegeResult($context, 'order:read')) {
             return $error;
         }
-        // ... query and return $this->success([...])
+        // ... query and return $this->successResult([...])
     }
 }
 ```
+
+Starting with Shopware 6.7.17.0, a tool returns a `McpToolResult`, built with the `…Result()` helpers of `McpToolResponse`.
+Returning the `{"success": …}` string of the deprecated `success()` and `error()` helpers keeps working until 6.8.0.
+See [Return a tool result](../../../guides/plugins/plugins/mcp-server.md#return-a-tool-result), also for extensions that must run on 6.7.16.
 
 `#[McpToolGroup]` is optional and accepts exactly one group. Without it,
 Shopware uses the longest hyphen-separated name prefix that the tool shares with
@@ -116,6 +120,9 @@ Bundles have no install/activate lifecycle. They are always active when register
 </Tab>
 
 </Tabs>
+
+Starting with Shopware 6.7.17.0, the Shopware PHPStan rule set reports plugin and bundle tools on the Admin API that declare neither `#[McpToolRequires]` nor `#[McpToolRequiresNoPrivilege]`, and Store API tools that use Admin ACL privileges.
+See [Check privileges with PHPStan](../../../guides/plugins/plugins/mcp-server.md#check-privileges-with-phpstan) for the rules and the required container configuration.
 
 ## Prompts
 

@@ -41,7 +41,7 @@ If your tool has side effects, declare `dryRun`. This is the whole contract.
 
 ## How Copilot uses your tools
 
-Copilot connects to the shop's MCP endpoint with the merchant's permissions. Your tools aren't visible to the AI model by default. Shopware groups tools into toolsets using the group you declare, and Copilot enables a toolset only when the conversation needs it.
+Copilot connects to the shop's MCP endpoint with the merchant's permissions. Starting with Shopware 6.7.16.0, your tool must also be selected in the MCP allowlist of the Copilot integration, and a non-admin merchant must select it in their own allowlist. See [Delegated user calls](./configuration.md#delegated-user-calls-sw-app-user-id). Your tools aren't visible to the AI model by default. Shopware groups tools into toolsets using the group you declare, and Copilot enables a toolset only when the conversation needs it.
 
 Two things matter for your tool to be picked at all:
 
@@ -117,7 +117,8 @@ The preview and commit steps happen in separate MCP sessions, possibly minutes a
 
 ## Implement a write tool in a plugin
 
-The example below is a complete write tool for a plugin. It extends `McpToolResponse` to use Shopware's standard response envelope and helpers, and follows rules R1 to R3.
+The example below is a complete write tool for a plugin. It extends `McpToolResponse` to use the helpers that build Shopware's tool result, and follows rules R1 to R3.
+The `…Result()` helpers exist since Shopware 6.7.17.0. For extensions that must also run on 6.7.16, see [Return a tool result](../../../guides/plugins/plugins/mcp-server.md#return-a-tool-result).
 
 ```PHP
 <?php declare(strict_types=1);
@@ -125,14 +126,18 @@ The example below is a complete write tool for a plugin. It extends `McpToolResp
 namespace Vendor\MyExtension\Mcp\Tool;
 
 use Mcp\Capability\Attribute\McpTool;
+use Mcp\Schema\ToolAnnotations;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolGroup;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolRequires;
 use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
+use Shopware\Core\Framework\Mcp\Result\McpToolError;
+use Shopware\Core\Framework\Mcp\Result\McpToolResult;
 use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
 
 #[McpTool(
     name: 'myext-promotion-pause',
     title: 'Pause Promotion',
+    annotations: new ToolAnnotations(readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false),
     description: 'Pause an active promotion so it stops applying to new orders. '
         . 'Use dryRun=true (default) to preview which promotion would be paused; '
         . 'set dryRun=false only to execute an approved change. Returns the promotion ID and new state.'
@@ -147,40 +152,40 @@ final class PromotionPauseTool extends McpToolResponse
     ) {
     }
 
-    public function __invoke(string $promotionId, bool $dryRun = true): string
+    public function __invoke(string $promotionId, bool $dryRun = true): McpToolResult
     {
         $context = $this->contextProvider->getContext();
 
-        if ($error = $this->requirePrivilege($context, 'promotion:update')) {
+        if ($error = $this->requirePrivilegeResult($context, 'promotion:update')) {
             return $error;
         }
 
         $promotion = $this->promotions->find($promotionId, $context);
 
         if ($promotion === null) {
-            return $this->error('Promotion not found.');
+            return $this->errorResult('Promotion not found.', McpToolError::NOT_FOUND);
         }
 
         if (!$promotion->isActive()) {
-            return $this->error('Promotion is already paused.');
+            return $this->errorResult('Promotion is already paused.', McpToolError::INVALID_ARGUMENTS);
         }
 
         if ($dryRun) {
             // R2: full validation done above, no writes here.
-            return $this->success([
+            return $this->successResult([
                 'promotionId' => $promotion->getId(),
                 'name'        => $promotion->getName(),
                 'change'      => ['active' => ['from' => true, 'to' => false]],
-            ], ['dryRun' => true]);
+            ], ['dryRun' => true], 'Promotion would be paused.');
         }
 
         // R3: the approved commit.
         $this->promotions->pause($promotion->getId(), $context);
 
-        return $this->success([
+        return $this->successResult([
             'promotionId' => $promotion->getId(),
             'active'      => false,
-        ]);
+        ], summary: 'Promotion paused.');
     }
 }
 ```
@@ -204,7 +209,7 @@ The preview payload is rendered to the merchant, so shape it for a person rather
 * Name the affected records by something the merchant recognizes, such as a product number or promotion name, alongside the technical ID.
 * Describe the change as *from* and *to* values where possible.
 * Keep it small. Summarize bulk operations with counts and a few examples instead of listing every record.
-* Return `error()` for anything the commit would reject. A preview that succeeds and a commit that fails is the worst experience for the merchant.
+* Return `errorResult()` for anything the commit would reject. A preview that succeeds and a commit that fails is the worst experience for the merchant.
 
 ### Read-only tools
 
@@ -218,9 +223,9 @@ Tools that an app exposes over a webhook follow the same contract. Declare `dryR
 
 * **Stateless between calls** - Preview and commit arrive in different sessions. Never store the preview and replay it on commit. Recompute from the arguments.
 * **Idempotent commits where possible** - Copilot executes an approval once, but network retries can repeat a call. Design the commit so that running it twice with the same arguments is harmless.
-* **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilege()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
-* **Response envelope** - Always return through `success()` or `error()`. Copilot treats `success: false` as a tool error and doesn't proceed to the commit.
-* **Response size** - Responses larger than 100 KB are returned through a resource URI instead of inline. Keep previews and results compact, so Copilot can use them directly.
+* **Privileges are the merchant's** - Copilot acts with the permissions of the merchant who is chatting. Check the privilege your change needs with `requirePrivilegeResult()` and declare it with `McpToolRequires` so that shop administrators can configure roles.
+* **Tool result** - Always return through `successResult()` or `errorResult()`. Copilot treats a failure as a tool error and doesn't proceed to the commit. A failure carries `isError: true`, and `success: false` in the envelope that clients on old protocol revisions receive.
+* **Response size** - Responses with more than about 100 KB of data are returned through a resource URI instead of inline. Keep previews and results compact, so Copilot can use them directly.
 * **Timeouts** - Copilot waits a few seconds for a tool call. Long-running work should return quickly and continue asynchronously, reporting a reference the merchant can check.
 * **No preview-only side effects** - Logging is fine. Creating draft records, reserving stock, or sending notifications during a preview is not.
 
@@ -253,7 +258,7 @@ Copilot as a service does not have access to tables created by your plugin/app. 
 The `dryRun` contract is Copilot's first mechanism for safely running tools it hasn't seen before. It has two known gaps:
 
 * Tools that change data but can't offer a meaningful preview, such as file uploads, cannot use this approval flow. If published without `dryRun`, they are treated as read-only and may execute immediately without merchant approval, so expose them only when that behavior is acceptable.
-* The contract relies on a naming convention. A future Shopware release is expected to expose the standard MCP tool annotations, including `readOnlyHint`, and Copilot honors those when present. Declaring `dryRun` remains supported, so tools written against this guide don't need changes.
+* The contract relies on a naming convention. Starting with Shopware 6.7.17.0, core tools expose the standard MCP tool annotations, including `readOnlyHint`, and plugin tools declare them with the `annotations` argument of `#[McpTool]`, as in the example above. Declaring `dryRun` remains supported, so tools written against this guide don't need changes.
 
 ## Checklist before you publish
 
