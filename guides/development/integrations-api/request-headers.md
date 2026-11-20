@@ -58,6 +58,8 @@ POST /api/_action/sync
 --header 'sw-skip-trigger-flow: 1'
 ```
 
+For transaction and failure behavior of the Sync API, see [Sync API error handling](./bulk-sync-error-handling.md).
+
 ## sw-expect-packages
 
 Use `sw-expect-packages` on authenticated Admin API requests to require active plugins or installed Composer packages in compatible versions.
