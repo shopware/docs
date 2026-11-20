@@ -340,6 +340,7 @@ DelayAction
 DelayAware
 DelegatingLoader
 Deleter
+DeliveryContainerRule
 Deno
 Denormalization
 Denylist
