@@ -35,6 +35,7 @@ Content-Type: application/json
 | `url`             | Where Shopware sends the request.                                                                                                       |
 | `onlyLiveVersion` | Only send entity writes of the live version, not of drafts such as order edits. Defaults to `false`.                                    |
 | `aclRoleIds`      | Optional. Limits the webhook to some of its owner's roles, see [Limit a webhook to some roles](#limit-a-webhook-to-some-roles).         |
+| `secret`          | Optional. Signs every request, see [Check that a request came from your shop](#check-that-a-request-came-from-your-shop).               |
 
 ## Who owns a webhook
 
@@ -126,6 +127,42 @@ Shopware sends the event as JSON in the request body:
 ```
 
 The payload only contains what the webhook may read.
+
+### Check that a request came from your shop
+
+Give the webhook a `secret` when you create or update it:
+
+```http
+PATCH /api/webhook/{id}
+Content-Type: application/json
+
+{
+    "secret": "f3a9c1e7b5d2804c6e1a"
+}
+```
+
+Every request then carries a `shopware-shop-signature` header with the HMAC-SHA256 of the request body, made with that secret.
+Compute the same HMAC on your side and compare:
+
+```php
+$expected = hash_hmac('sha256', $requestBody, $secret);
+
+if (!hash_equals($expected, $request->headers->get('shopware-shop-signature', ''))) {
+    // reject the request
+}
+```
+
+The secret is never returned by the API, so keep a copy.
+Setting a new secret replaces the old one immediately, and setting it to `null` stops the signing.
+
+::: info
+It's not possible to set a secret on webhooks owned by apps. They are always signed with the app secret.
+:::
+
+## Manage webhooks in the Administration
+
+Users with the webhook view permission can view the webhooks in **Settings > System > Webhooks**.
+From there, owners of webhooks or administrators can switch them on or off, delete them, or set their signing secrets.
 
 ## Webhooks created before 6.7.17.0
 
