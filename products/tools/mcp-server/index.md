@@ -2,7 +2,8 @@
 nav:
   title: About MCP
   position: 30
-
+meta:
+  description: The Shopware MCP Server exposes tools, resources, and prompts for AI agents through the Model Context Protocol, with ACL checks, allowlists, and dry runs.
 ---
 
 # MCP Support in Shopware

@@ -2,7 +2,8 @@
 nav:
   title: Getting Started
   position: 20
-
+meta:
+  description: Connect Claude Desktop, Claude Code, Cursor, or Codex to the Shopware MCP server using integration credentials, tool discovery, and MCP allowlists.
 ---
 
 # Getting Started

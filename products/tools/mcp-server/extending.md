@@ -2,7 +2,8 @@
 nav:
   title: Extending the MCP Server
   position: 55
-
+meta:
+  description: Extend the Shopware MCP server with tools, prompts, and resources using app webhooks, plugin PHP attributes and service tags, or Symfony bundles.
 ---
 
 # Extending the MCP Server

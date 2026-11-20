@@ -8,7 +8,7 @@ nav:
 
 The `application.yaml` file is the central configuration file for your Shopware PaaS Native application. It defines the PHP version, environment variables, and services for your application.
 
-By default, it is placed at the root of your project repository. It can also live in a sub-directory, which lets several applications share one repository. In that case, pass its path when you create the application:
+By default, it is placed at the root of your project repository. It can also live in a subdirectory, which lets several applications share one repository. In that case, pass its path when you create the application:
 
 ```sh
 sw-paas application create --application-yaml-path apps/shopware/application.yaml
@@ -64,6 +64,7 @@ app:
 services:
   mysql:
     version: "8.0"
+    maintenance_window: "Sun:03:00-Sun:03:30"
   opensearch:
     enabled: true
 ```
@@ -164,6 +165,28 @@ services:
 Once MySQL `8.4` has been configured, downgrading to MySQL `8.0` is not possible.
 :::
 
+#### `services.mysql.maintenance_window`
+
+The weekly window in which the platform applies minor engine upgrades and operating system patches to the database cluster. Optional.
+
+```yaml
+services:
+  mysql:
+    version: "8.4"
+    maintenance_window: "Sun:03:00-Sun:03:30"
+```
+
+The value uses the format `ddd:hh24:mi-ddd:hh24:mi` in UTC, where `ddd` is one of `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`. The window may span midnight or the end of the week, for example `Sun:23:30-Mon:00:30`. Shopware recommends keeping it inside the lowest-traffic hours of your shop.
+
+A window is only accepted when it:
+
+- lasts at least **30 minutes**
+- does not overlap the daily backup window of **01:00–02:00 UTC** on any day
+
+When the field is omitted, a new application gets a 30-minute slot between 02:00 and 05:00 UTC assigned by the platform. The slot is stored with the application, so leaving the field out on later deployments keeps the current window rather than picking a new one. Setting the field changes the window on the next deployment.
+
+The field is only valid for application kinds that have a database. See [Databases](../resources/databases.md#maintenance-window) for what happens during maintenance.
+
 ### `services.opensearch`
 
 Enables or disables the managed OpenSearch service.
@@ -218,4 +241,4 @@ services:
 | `snippets_path`            | unset   | Directory (relative to the application root) containing your custom VCL snippets. When unset, no custom snippets are deployed - the default snippets stay enabled |
 | `disable_default_snippets` | `false` | Set to `true` to disable the default snippets that Shopware PaaS Native deploys to the Fastly services                                                            |
 
-The directory must contain one sub-directory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.
+The directory must contain one subdirectory per Fastly VCL subroutine type. See [Fastly snippets](../cdn/fastly-snippets.md) for the required folder layout and naming rules.

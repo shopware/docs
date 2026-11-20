@@ -2,7 +2,8 @@
 nav:
   title: Best Practices
   position: 40
-
+meta:
+  description: Shopware MCP server best practices cover outcome-based tools, dry-run defaults, agent routing, compact resources, workflow prompts, and ACL enforcement.
 ---
 
 # Best Practices
