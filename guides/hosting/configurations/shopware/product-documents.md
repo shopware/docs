@@ -26,6 +26,9 @@ Configure the allowed file types and the largest file in `config/packages/shopwa
 | `allowed_extensions` | `pdf`, `docx`, `jpg`, `jpeg`, `png` | File types a document can have. Your list replaces the default.              |
 | `max_file_size`      | `20M`                               | Largest file of a document, in bytes or with a unit such as `K`, `M` or `G`. |
 
+Shopware keeps only the file types that public media accepts, `shopware.filesystem.allowed_extensions`.
+To allow a file type that public media doesn't accept, add it to both lists.
+
 A plugin can change the allowed file types as well, with the `ProductDocumentAllowedExtensionsEvent`.
 The event receives the list from `shopware.yaml`, and `setAllowedExtensions()` changes it.
 
@@ -46,8 +49,8 @@ Uploads through the Administration also pass PHP and the web server, whose limit
 * PHP: `upload_max_filesize` and `post_max_size`
 * Nginx: `client_max_body_size`, or the matching setting of your web server
 
-The Administration takes its upload limit from `settings.productDocuments.maxFileSize` in `GET /api/_info/config`.
-It is the lowest of `max_file_size` and the two PHP limits.
+The document form of the Administration offers the default file types and files up to 20 MB, whatever `shopware.yaml` says.
+Files added through the Admin API are checked against your settings.
 With presigned uploads, files go straight to the storage, and only `max_file_size` applies.
 
 To allow larger files, raise `max_file_size`, the PHP limits and the web server limit together.
