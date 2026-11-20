@@ -212,7 +212,7 @@ For prompts, the request body uses `prompt` instead of `tool`, and arguments are
 }
 ```
 
-The response must be a JSON array of message objects:
+The response must be a JSON array of message objects, each with a `user` or `assistant` role and `content`:
 
 ```json
 [
@@ -233,11 +233,17 @@ For resources, the request body uses `resource` instead of `tool`:
 }
 ```
 
-The response must be a single object with `uri`, `mimeType`, and `text`:
+The response must be a single JSON object with a `text` string, or a `blob` string with base64-encoded data:
 
 ```json
 {"uri": "my-erp://erp-status", "mimeType": "application/json", "text": "{\"connected\": true}"}
 ```
+
+Shopware always uses the `uri` declared in `mcp.xml`.
+A non-empty `mimeType` in the response takes precedence over the `mime-type` from `mcp.xml`.
+
+Starting with Shopware 6.7.17.0, Shopware decodes prompt and resource responses and no longer accepts a plain-text resource body, so wrap the content in a JSON object.
+Invalid JSON, malformed messages or resource contents, and a `{"success": false, "error": "..."}` response reach the client as an MCP error.
 
 ## Verifying the signature
 
