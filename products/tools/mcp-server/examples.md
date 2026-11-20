@@ -2,7 +2,8 @@
 nav:
   title: Examples
   position: 50
-
+meta:
+  description: Shopware MCP Server examples show AI agent workflows for entity searches and updates, order state transitions, system configuration, analytics, and media.
 ---
 
 # Examples

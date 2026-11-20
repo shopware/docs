@@ -2,7 +2,8 @@
 nav:
   title: Store API MCP
   position: 75
-
+meta:
+  description: Shopware's Store API MCP server at /store-api/_mcp gives shopper-side agents sales-channel context, Store API authentication, and progressive tool discovery.
 ---
 
 # Store API MCP
