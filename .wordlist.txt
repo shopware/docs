@@ -1727,6 +1727,7 @@ loginRequired
 loginViaApi
 longtext
 lookups
+loopback
 lowerCamelCase
 lychee
 mTLS

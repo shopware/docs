@@ -63,9 +63,9 @@ Capabilities are registered at container compile time from their service tags. C
 
 ## Spec coverage and known limitations
 
-Shopware's MCP server is built on `symfony/mcp-bundle` and takes the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25) as its reference. Shopware 6.7.16.0 and later use `symfony/mcp-bundle ~0.14.1` with `mcp/sdk ^0.8.1`. Shopware 6.7.15.x uses `~0.13.0` with `mcp/sdk ^0.8.1`. Shopware 6.7.14.x uses `~0.11.0` with `mcp/sdk ^0.7.0`.
+Shopware's MCP server is built on `symfony/mcp-bundle` and takes the [MCP specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25) as its reference. Shopware 6.7.17.0 and later use `symfony/mcp-bundle ~0.15.0` with `mcp/sdk ^0.9.0`. Shopware 6.7.16.x uses `~0.14.1` with `mcp/sdk ^0.8.1`. Shopware 6.7.15.x uses `~0.13.0` with `mcp/sdk ^0.8.1`. Shopware 6.7.14.x uses `~0.11.0` with `mcp/sdk ^0.7.0`.
 
-Shopware serves only the session-based handshake protocol era. The SDK negotiates the concrete revision from the client's `initialize` request within that era. `mcp/sdk` 0.8 also supports the stateless 2026-07-28 revision, but Shopware disables it on both endpoints. That revision issues no `Mcp-Session-Id`, and session-scoped toolsets and `listChanged` notifications depend on that header. The bundle may not cover every feature of the reference revision, and some areas of the spec are only partially implemented.
+By default, Shopware serves only the session-based handshake protocol era. The SDK negotiates the concrete revision from the client's `initialize` request within that era. The stateless 2026-07-28 revision issues no `Mcp-Session-Id`. Shopware 6.7.16.x disables it on both endpoints. Starting with 6.7.17.0, you can switch it on per endpoint, see [Protocol era](./configuration.md#protocol-era). The bundle may not cover every feature of the reference revision, and some areas of the spec are only partially implemented.
 
 Shopware supports cursor pagination for capability lists and emits `listChanged` notifications when capabilities change. The following table lists the remaining known gaps.
 

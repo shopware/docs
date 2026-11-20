@@ -426,6 +426,56 @@ A session stays valid when the client refreshes its token or gets a new one, and
 Sessions opened before the update have no principal and are answered with `404` once.
 `/store-api/_mcp` is not affected.
 
+## Protocol era
+
+Starting with Shopware 6.7.17.0, both MCP endpoints can serve the stateless 2026-07-28 revision next to the session-based revisions, from the same URL.
+It is off by default. Switch it on per endpoint:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+    mcp:
+        protocol_era:
+            admin: auto
+            store_api: auto
+```
+
+`legacy`, the default, serves the session-based revisions up to 2025-11-25 only.
+With `auto`, the client picks the revision, and clients on the session-based revisions are not affected.
+`bin/console debug:mcp` shows the era of each endpoint.
+
+The stateless revision has no MCP session:
+
+- Choose toolsets in the endpoint URL, for example `/api/_mcp?toolsets=order,media`.
+  `shopware-toolset-enable` and `shopware-toolsets-list` are not listed in `tools/list`, and called directly, they answer with an error that points to `?toolsets=`.
+- List changes on the Admin API endpoint reach clients through `subscriptions/listen`, for example after an app install or an allowlist edit.
+  Setups with several hosts need a shared `cache.app`, for example Redis.
+- Each open `subscriptions/listen` stream holds one PHP worker for up to 25 seconds, then the client reconnects.
+  Account for it in `pm.max_children`, and keep `max_execution_time` and the timeouts of proxies in front of PHP above 25 seconds.
+- Answers carry cache hints (`ttlMs` and `cacheScope`) that tell clients how long they may reuse them.
+
+## Allowed origins
+
+Starting with Shopware 6.7.17.0, both MCP endpoints match the `Origin` header of browser clients exactly, including scheme and port.
+They accept the origins of `APP_URL` and of every sales channel domain.
+A loopback origin, for example the MCP Inspector on `http://localhost:6274`, is accepted only for a shop on a loopback host such as `localhost` or `*.localhost`.
+Clients without an `Origin` header, such as CLI clients and desktop apps, are not affected.
+
+Allow further origins with `shopware.mcp.allowed_origins`.
+An entry is an exact origin, an origin with `:*` for any port, or `*` for any origin:
+
+```yaml
+# config/packages/shopware.yaml
+shopware:
+    mcp:
+        allowed_origins:
+            - 'https://chat.example.com'
+            - 'http://localhost:*'
+```
+
+The list can also come from an environment variable, for example `allowed_origins: '%env(csv:MCP_ALLOWED_ORIGINS)%'`.
+A rejected origin is logged as a warning in the `mcp` channel.
+
 ## ACL and permissions
 
 All MCP tool operations respect the integration's Admin API ACL role. To restrict what an MCP client can do:
@@ -550,6 +600,13 @@ Shopware 6.7.17.0 changes these MCP behaviors:
 - **Tool results:** The negotiated protocol revision decides the result format, not the `v6.8.0.0` feature flag.
   Clients on `2025-06-18` or later no longer get the `{"success": …}` envelope as text.
   Large results of every tool, including app tools, are stored and linked, see [Response format](./tools-reference.md#response-format) and [Large tool results](./tools-reference.md#large-tool-results).
+- **Plugin tool results:** A plugin or bundle tool that returns a string is deprecated. Return `McpToolResult`, see [Return a tool result](../../../guides/plugins/plugins/mcp-server.md#return-a-tool-result).
+- **MCP bundle:** Shopware requires `mcp/sdk` 0.9 and `symfony/mcp-bundle` 0.15.
+  A tool with an `outputSchema` has its `structuredContent` validated against it, and a result that does not match is sent with `isError: true`. Return `new \stdClass()` for an empty object, since `[]` is sent as an array.
+  A tool whose `inputSchema` has a `properties` member that is not an object, or a `required` member that is not a list, is rejected when it is registered.
+  `#[CompletionProvider]` no longer takes `providerClass`. Pass the class to `provider` instead.
+- **Origins:** Browser clients must send an `Origin` that matches the shop exactly, including scheme and port, or one listed in `shopware.mcp.allowed_origins`, see [Allowed origins](#allowed-origins).
+- **App prompts and resources:** A plain-text resource response is no longer accepted. Wrap it in a JSON object with `text` or `blob`, see [Webhook protocol](../../../guides/plugins/apps/mcp-server.md#webhook-protocol).
 
 ## Upgrading to 6.7.16.0
 
