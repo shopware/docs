@@ -15,6 +15,7 @@ Start with the step that matches what you want to do:
 - Add a custom DAL entity for a plugin table - [Adding Custom Complex Data](add-custom-complex-data.md)
 - Read data through repositories and criteria - [Reading Data](reading-data.md)
 - Write data through repositories - [Writing Data](writing-data.md)
+- Check data before it is written - [Validating Writes](validating-writes.md)
 - React to DAL write or entity events - [Using Database Events](using-database-events.md)
 
 For custom plugin data, create the database table first with a migration, then add the DAL entity definition that maps to that table.
