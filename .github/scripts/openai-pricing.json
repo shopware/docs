@@ -1,0 +1,24 @@
+{
+  "currency": "USD",
+  "serviceTier": "standard",
+  "source": "https://developers.openai.com/api/docs/pricing",
+  "lastVerified": "2026-11-12",
+  "models": {
+    "gpt-6-astra": {
+      "perMillionTokens": {
+        "input": 10,
+        "cachedInput": 1,
+        "cacheWrite30m": 12.5,
+        "cacheWrite12h": 25,
+        "output": 50
+      },
+      "longContext": {
+        "thresholdInputTokens": 272000,
+        "inputMultiplier": 2,
+        "cachedInputMultiplier": 2,
+        "cacheWriteMultiplier": 2,
+        "outputMultiplier": 1.5
+      }
+    }
+  }
+}
