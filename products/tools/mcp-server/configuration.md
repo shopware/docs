@@ -2,7 +2,8 @@
 nav:
   title: Configuration
   position: 30
-
+meta:
+  description: Shopware 6 MCP server configuration covers tool allowlists, ACL permissions, pagination, Redis session stores, rate limiting, and version-specific changes.
 ---
 
 # Configuration

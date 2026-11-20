@@ -2,7 +2,8 @@
 nav:
   title: Tools Reference
   position: 70
-
+meta:
+  description: The Shopware MCP server reference documents tool discovery, toolsets, parameters, ACL requirements, dry-run behavior, resources, and system prompts.
 ---
 
 # Tools Reference

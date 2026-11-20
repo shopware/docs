@@ -2,7 +2,8 @@
 nav:
   title: Copilot tool approval
   position: 65
-
+meta:
+  description: Shopware Copilot discovers MCP tools through the catalog and uses the dryRun contract to preview data changes and request merchant approval before execution.
 ---
 
 # Making Your MCP Tools Work With Shopware Copilot

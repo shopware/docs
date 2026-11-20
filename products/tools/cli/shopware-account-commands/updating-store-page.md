@@ -2,7 +2,8 @@
 nav:
   title: Updating Store Page of Extension
   position: 3
-
+meta:
+  description: Use Shopware CLI to pull and push an extension's Store metadata and images, manage listing changes in Git, and automate Store page updates in CI/CD.
 ---
 
 # Updating the Store page of an extension

@@ -2,7 +2,8 @@
 nav:
   title: Local Proxy
   position: 2
-
+meta:
+  description: The shopware-cli local proxy runs multiple shops in parallel on stable HTTPS hostnames using shared Traefik and CoreDNS containers without port conflicts.
 ---
 
 # Local Proxy — Run Multiple Shops in Parallel (CLI Reference)
