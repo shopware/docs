@@ -17,6 +17,9 @@ This class is the central place to build the Elasticsearch query:
 * These built queries will be combined into a single query by `AND` or `OR` operators, depending on the search behavior configured at the first step.
 * This query will be used by `\Shopware\Elasticsearch\Framework\DataAbstractionLayer\ElasticsearchEntitySearcher` to search.
 
+Since Shopware 6.7.17.0, the criteria passed to the search logic hold the search term cut to its first `elasticsearch.search.term_max_words` distinct words (default `10`).
+Words after that limit do not form token queries and do not count for the strictness described below.
+
 To modify the search logic, you can decorate the search logic class and add your own logic into it:
 
 ```php
