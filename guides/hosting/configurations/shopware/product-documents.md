@@ -44,13 +44,11 @@ Otherwise, the request fails with one of these error codes:
 
 ## Upload limits
 
-Uploads through the Administration also pass PHP and the web server, whose limits can be lower than `max_file_size`:
+Uploads to the shop also pass PHP and the web server, whose limits can be lower than `max_file_size`:
 
 * PHP: `upload_max_filesize` and `post_max_size`
 * Nginx: `client_max_body_size`, or the matching setting of your web server
 
-The document form of the Administration offers the default file types and files up to 20 MB, whatever `shopware.yaml` says.
-Files added through the Admin API are checked against your settings.
 With presigned uploads, files go straight to the storage, and only `max_file_size` applies.
 
 To allow larger files, raise `max_file_size`, the PHP limits and the web server limit together.
