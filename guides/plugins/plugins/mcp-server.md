@@ -48,7 +48,7 @@ custom/plugins/SwagMyPlugin/
 
 ## Step 1: Create the tool class
 
-The `#[McpTool]` attribute must be on the **class**, not on `__invoke()`. Extend `McpToolResponse` to get consistent response envelopes and built-in helpers.
+The `#[McpTool]` attribute must be on the **class**, not on `__invoke()`. Extend `McpToolResponse` to get the helpers that build the tool result.
 
 ```php
 <?php declare(strict_types=1);
@@ -63,6 +63,7 @@ use Shopware\Core\Framework\Mcp\Attribute\McpToolDependsOn;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolGroup;
 use Shopware\Core\Framework\Mcp\Attribute\McpToolRequires;
 use Shopware\Core\Framework\Mcp\Context\McpContextProvider;
+use Shopware\Core\Framework\Mcp\Result\McpToolResult;
 use Shopware\Core\Framework\Mcp\Tool\McpToolResponse;
 
 #[McpTool(name: 'swag-my-plugin-orders', title: 'Order List', description: 'List recent orders for a given customer email.')]
@@ -82,10 +83,10 @@ class MyTool extends McpToolResponse
         string $email,
         #[Schema(description: 'How many orders to return, newest first.')]
         int $limit = 10,
-    ): string
+    ): McpToolResult
     {
         $context = $this->contextProvider->getContext();
-        if ($error = $this->requirePrivilege($context, 'order:read')) {
+        if ($error = $this->requirePrivilegeResult($context, 'order:read')) {
             return $error;
         }
 
@@ -95,9 +96,10 @@ class MyTool extends McpToolResponse
 
         $orders = $this->orderRepository->search($criteria, $context);
 
-        return $this->success(
+        return $this->successResult(
             $orders->map(fn($o) => ['id' => $o->getId(), 'orderNumber' => $o->getOrderNumber()]),
-            ['total' => $orders->getTotal()]
+            ['total' => $orders->getTotal()],
+            \sprintf('%d orders found.', $orders->getTotal()),
         );
     }
 }
@@ -111,16 +113,119 @@ class MyTool extends McpToolResponse
 - Parameter types on `__invoke()` are mapped to JSON schema. Supported: `string`, `int`, `float`, `bool`. Default values make parameters optional.
 - Describe each parameter with `#[Schema(description: '...')]` from `Mcp\Capability\Attribute\Schema` on the `__invoke()` parameter. The MCP SDK copies the text into the parameter's `description` in `inputSchema`. A `@param` docblock works as a fallback, but core uses the attribute, and the attribute wins when both are present. See [Best Practices](../../../products/tools/mcp-server/best-practices.md#write-tool-descriptions-for-agent-routing).
 - Obtain the request context via `McpContextProvider::getContext()` injected through the constructor. Do not add a `Context` parameter to `__invoke()`. The MCP SDK does not inject it there.
-- `requirePrivilege()` returns an error string on failure; check its return value with `if ($error = $this->requirePrivilege(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
+- `requirePrivilegeResult()` returns a failure if a privilege is missing and `null` otherwise; check its return value with `if ($error = $this->requirePrivilegeResult(...)) { return $error; }`. `#[McpToolRequires]` is declarative only; without this call there is no runtime enforcement.
   A tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` instead, see [Required privileges](#required-privileges).
 - Never use `Context::createDefaultContext()` inside a tool. It bypasses the integration's ACL. Use `McpContextProvider::getContext()` instead.
-- Return a `string` from `__invoke()`. Extend `McpToolResponse` and return the result of `$this->success()` or `$this->error()`. Shopware turns it into the MCP result, including `structuredContent`, `isError`, and `_meta` since 6.7.16.0, see [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
+- Declare `McpToolResult` as the return type of `__invoke()` and return the result of a `McpToolResponse` helper, see [Return a tool result](#return-a-tool-result).
+  Shopware turns it into the MCP result, including `structuredContent`, `isError`, and `_meta`, see [Response format](../../../products/tools/mcp-server/tools-reference.md#response-format).
   Clients on protocol `2025-06-18` or later get your data as plain JSON text and as `structuredContent`, older clients get the `{"success": …}` envelope as text.
   Since 6.7.17.0, the negotiated protocol revision decides this, not the `v6.8.0.0` feature flag.
-  `$this->success()` always returns the full data.
-  Since 6.7.17.0, Shopware decides when it renders the MCP result whether the result is too large to return inline, for every `{"success": …}` envelope your tool returns, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
-- Pass a stable error code as the second argument of `$this->error()`, such as `McpToolError::NOT_FOUND` or `McpToolError::INVALID_ARGUMENTS` from `Shopware\Core\Framework\Mcp\Result\McpToolError`. The default is `McpToolError::TOOL_ERROR`. This argument exists since 6.7.16.0.
+  `successResult()` always returns the full data.
+  Since 6.7.17.0, Shopware decides when it renders the MCP result whether the result is too large to return inline, see [Large tool results](../../../products/tools/mcp-server/tools-reference.md#large-tool-results).
 - Since 6.7.16.0, a `%` in a description or schema is kept as written. Before, text between two `%` without whitespace, such as "5%-10%", was read as a container parameter and broke the MCP endpoint. If you wrote `%%` as a workaround, remove it, otherwise the description now shows `%%`.
+
+### Return a tool result
+
+Starting with Shopware 6.7.17.0, a tool returns a `Shopware\Core\Framework\Mcp\Result\McpToolResult`.
+The result holds the data, an optional summary for the model, metadata, or an error, and Shopware renders it in the format of the client's protocol revision.
+Build it with the helpers of `McpToolResponse`:
+
+| Helper                                                                   | Returns                                                                                                         |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `successResult($data, $meta = [], $summary = null)`                      | A success with the data, metadata such as `total`, and an optional short summary, for example "3 orders found." |
+| `errorResult($message, $code = McpToolError::TOOL_ERROR, $details = [])` | A failure with a message, a stable error code, and optional details the model needs to fix the call             |
+| `requirePrivilegeResult($context, ...$privileges)`                       | A failure if a privilege is missing, otherwise `null`                                                           |
+| `missingPrivilegesResult($privileges)`                                   | The failure for missing privileges, with the message prefix `Missing privilege:`                                |
+| `invalidCriteriaResult($exception)`                                      | A failure with the code `invalid_arguments`, built from the exception that rejected a criteria                  |
+| `decodeJsonOrErrorResult($json, $fieldName = 'input')`                   | The decoded array, or a failure if the JSON is malformed or not an object or array                              |
+| `executeWithDryRunResult($connection, $context, $operation)`             | The result of `$operation`, a callable that returns a `McpToolResult`, run in a transaction that is rolled back |
+
+The error codes are the constants of `Shopware\Core\Framework\Mcp\Result\McpToolError`: `TOOL_ERROR`, `MISSING_PRIVILEGE`, `INVALID_ARGUMENTS`, and `NOT_FOUND`.
+Clients match on the code, not on the message.
+
+A tool that has no data to return, only text for the model, returns `McpToolResult::text('…')`.
+Every client gets the text as it is.
+
+:::info Compatibility with Shopware 6.7.16
+The `…Result()` helpers and `McpToolResult::text()` exist since Shopware 6.7.17.0.
+`McpToolResult` itself exists since 6.7.16.0, so an extension that must also run on 6.7.16 returns `McpToolResult::success($data, $meta)` and `McpToolResult::failure($message, McpToolError::NOT_FOUND)` directly.
+For a missing privilege, it checks `$context->isAllowed()` and returns `McpToolResult::failure('Missing privilege: order:read', McpToolError::MISSING_PRIVILEGE)`.
+:::
+
+#### Migrate from the legacy string
+
+Before 6.7.17.0, tools declared `__invoke(): string` and returned the `{"success": …}` JSON string that the helpers `success()` and `error()` build.
+Starting with Shopware 6.7.17.0, returning that string is deprecated, whether a helper builds it or the tool builds it by hand.
+It keeps working in 6.7, but it cannot carry a summary or error details.
+The string helpers are marked `@deprecated tag:v6.8.0`. They trigger a deprecation when called and throw once the `v6.8.0.0` feature flag is active.
+A tool that returns any other string, such as plain text, triggers the same deprecation.
+Run your tests with the `v6.8.0.0` feature flag to find the calls that are left.
+
+Change the return type of `__invoke()` to `McpToolResult` and replace each helper with its counterpart:
+
+| Deprecated helper          | Replacement                 |
+| -------------------------- | --------------------------- |
+| `success()`                | `successResult()`           |
+| `error()`                  | `errorResult()`             |
+| `requirePrivilege()`       | `requirePrivilegeResult()`  |
+| `missingPrivilegesError()` | `missingPrivilegesResult()` |
+| `invalidCriteriaError()`   | `invalidCriteriaResult()`   |
+| `decodeJsonOrError()`      | `decodeJsonOrErrorResult()` |
+| `executeWithDryRun()`      | `executeWithDryRunResult()` |
+| A plain text string        | `McpToolResult::text()`     |
+
+```php
+// Before
+public function __invoke(string $id): string
+{
+    return $this->success(['id' => $id]);
+}
+
+// After
+public function __invoke(string $id): McpToolResult
+{
+    return $this->successResult(['id' => $id]);
+}
+```
+
+The callable you pass to `executeWithDryRunResult()` returns a `McpToolResult` as well.
+A tool that still fails with `MCP tool "…" returned a string` or `returned the legacy {"success": …} JSON string` still returns a string.
+App tools are not affected; their webhook responses keep the `{"success": …}` envelope, see [Returning a response](../apps/mcp-server.md#returning-a-response).
+
+The PHPStan rule `shopware.mcpToolLegacyStringResult` reports an `#[McpTool]` method whose native return type is `string`, `?string`, a union containing `string`, `mixed`, or missing.
+In 6.7 it is registered in `core-rules.neon` only, so it does not fail the build of an extension. It moves to `rules.neon` with 6.8.0.
+To check your tools now, add it to your `phpstan.neon`:
+
+```yaml
+rules:
+    - Shopware\Core\DevOps\StaticAnalyze\PHPStan\Rules\McpToolLegacyStringResultRule
+```
+
+### Declare tool annotations
+
+MCP clients read the tool annotations of the MCP specification to decide when to ask the user before a call.
+Declare them with the `annotations` argument of `#[McpTool]`:
+
+```php
+use Mcp\Schema\ToolAnnotations;
+
+#[McpTool(
+    name: 'swag-my-plugin-orders',
+    title: 'Order List',
+    annotations: new ToolAnnotations(readOnlyHint: true, openWorldHint: false),
+    description: 'List recent orders for a given customer email.',
+)]
+```
+
+- `readOnlyHint: true` for a tool that never changes shop data, configuration, or session state. Leave out `destructiveHint` and `idempotentHint` then, the specification only reads them for tools that are not read-only.
+- `readOnlyHint: false` as soon as one action of the tool writes, even if `dryRun` defaults to `true`.
+- `destructiveHint: true` for a tool that can remove or overwrite existing data, `false` for a tool that only adds data.
+- `idempotentHint: true` when repeating a call with the same arguments has no further effect.
+- `openWorldHint: false` for a tool that only acts on the shop, `true` for one that reaches external systems.
+
+A tool without annotations gets the defaults of the specification, which describe a destructive tool that reaches outside the shop.
+The hints are not enforced, ACL and `dryRun` still protect the shop.
+Starting with Shopware 6.7.17.0, all core tools declare their annotations.
 
 ## Step 2: Assign a tool group
 
@@ -131,6 +236,17 @@ For in-process extensions, including plugins and Symfony bundles, assign every t
 ```
 
 Groups organize tools in the Administration allowlist and `debug:mcp`. Each group also becomes a toolset that an MCP client can enable for its current session. Use a stable, hyphenated name that keeps related tools together without loading unrelated schemas. A tool belongs to exactly one group, so the attribute cannot be repeated. The toolset title is generated from the group name — `swag-my-plugin` becomes "Swag my plugin tools".
+
+Starting with Shopware 6.7.17.0, describe the whole toolset with the `description` argument, so a model can tell from `shopware-toolsets-list` which toolset fits a task:
+
+```php
+#[McpToolGroup('swag-my-plugin', description: 'Orders and customers of My Plugin. Enable it for questions about plugin orders.')]
+```
+
+Set the description on one tool of the group. Without one, the toolset gets the generated description `Tools explicitly assigned to the "<group>" MCP tool group.`
+If several extension tools of a group set a description, the one of the tool whose name sorts first wins.
+You can add tools to a core toolset such as `entity`, but you cannot change its description.
+When the allowlist of the caller hides some tools of a toolset, the toolset falls back to the generated description, so describe what the whole toolset does.
 
 The attribute is optional. Without it, Shopware uses the longest hyphen-separated name prefix that the tool shares with another tool that also has no explicit group. For example, `swag-my-plugin-orders` and `swag-my-plugin-products` form the group `swag-my-plugin`. A tool without a longer shared prefix falls back to its first name segment, such as `swag`. Prefixes are compared segment by segment and case-insensitively, so `swagfoo-orders` and `swag-orders` share nothing.
 
@@ -169,7 +285,7 @@ Declare the [ACL privileges](../../../products/tools/mcp-server/configuration.md
 #[McpToolRequires(entityParam: 'entity', operations: ['read', 'update'])]
 ```
 
-The attribute is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output. You still must call `$this->requirePrivilege($context, 'order:read')` inside `__invoke()` for actual runtime enforcement.
+The attribute is **declarative only**: it populates the Admin UI coverage warnings and `bin/console debug:mcp` output. You still must call `$this->requirePrivilegeResult($context, 'order:read')` inside `__invoke()` for actual runtime enforcement.
 
 A tool that reads no shop data and needs no privilege declares `#[McpToolRequiresNoPrivilege]` instead, with a reason for reviewers and operators:
 
@@ -186,16 +302,16 @@ Like `#[McpToolRequires]`, it grants nothing at runtime, and the DAL still check
 The attribute exists since Shopware 6.7.17.0.
 
 Tools on the Store API endpoint (`shopware.store_api_mcp.tool`) run in a sales channel context, where Admin ACL privileges do not apply.
-Do not declare `#[McpToolRequires]` on them, and do not call `requirePrivilege()`.
+Do not declare `#[McpToolRequires]` on them, and do not call `requirePrivilegeResult()` or `requirePrivilege()`.
 
 ### Check privileges with PHPStan
 
 Starting with Shopware 6.7.17.0, the Shopware PHPStan rule set checks the privileges of MCP tools from plugins and bundles:
 
-| Identifier                             | Reports                                                                                                                                                            | Fix                                                                                                                                                                                              |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `shopware.mcpAdminToolMissingRequires` | An Admin API tool (`/api/_mcp`) with neither `#[McpToolRequires]` nor `#[McpToolRequiresNoPrivilege]` on its class, or with both                                   | Declare every privilege the tool needs with `#[McpToolRequires]`, and keep checking them with `requirePrivilege()`. Only a tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` |
-| `shopware.mcpStoreApiToolAdminAcl`     | A Store API tool (`/store-api/_mcp`) that declares `#[McpToolRequires]` or calls `requirePrivilege()`, also in a method it inherits from a parent class or a trait | Remove the attribute and the call, and rely on the sales channel context and the Store API routes it calls                                                                                       |
+| Identifier                             | Reports                                                                                                                                                                                          | Fix                                                                                                                                                                                                    |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shopware.mcpAdminToolMissingRequires` | An Admin API tool (`/api/_mcp`) with neither `#[McpToolRequires]` nor `#[McpToolRequiresNoPrivilege]` on its class, or with both                                                                 | Declare every privilege the tool needs with `#[McpToolRequires]`, and keep checking them with `requirePrivilegeResult()`. Only a tool that needs no privilege declares `#[McpToolRequiresNoPrivilege]` |
+| `shopware.mcpStoreApiToolAdminAcl`     | A Store API tool (`/store-api/_mcp`) that declares `#[McpToolRequires]` or calls `requirePrivilegeResult()` or `requirePrivilege()`, also in a method it inherits from a parent class or a trait | Remove the attribute and the call, and rely on the sales channel context and the Store API routes it calls                                                                                             |
 
 Every Admin API tool declares exactly one of the two attributes on its class.
 An attribute on `__invoke()` does not count, because Shopware only reads it from the class.
@@ -359,33 +475,33 @@ Names must only contain `a-zA-Z0-9_-`. Dots are not allowed:
 class MyTool extends McpToolResponse
 {
  #[McpTool(name: 'swag-my-plugin-orders', description: '...')]
-    public function __invoke(): string { ... }
+    public function __invoke(): McpToolResult { ... }
 }
 
 // Correct
 #[McpTool(name: 'swag-my-plugin-orders', description: '...')]
 class MyTool extends McpToolResponse
 {
-    public function __invoke(): string { ... }
+    public function __invoke(): McpToolResult { ... }
 }
 ```
 
 ### Unhandled exceptions
 
-Unhandled exceptions in `__invoke()` produce a generic MCP error (`-32603`). Catch known exceptions and return `$this->error($message)` instead:
+Unhandled exceptions in `__invoke()` produce a generic MCP error (`-32603`). Catch known exceptions and return `$this->errorResult($message)` instead:
 
 ```php
-public function __invoke(string $entity): string
+public function __invoke(string $entity): McpToolResult
 {
     try {
-        return $this->success(['result' => $data]);
+        return $this->successResult(['result' => $data]);
     } catch (\Throwable $e) {
-        return $this->error($e->getMessage());
+        return $this->errorResult($e->getMessage());
     }
 }
 ```
 
-For write tools, use `$this->executeWithDryRun()`, which catches exceptions automatically and returns structured error responses.
+For write tools, use `$this->executeWithDryRunResult()`, which catches exceptions automatically and returns them as a failure.
 
 ## Further reading
 

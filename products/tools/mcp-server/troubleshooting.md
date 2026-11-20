@@ -48,6 +48,7 @@ nav:
 | `Tool result "X" not found. It may have expired or been stored by another caller.` | Link older than one hour, read by another caller, or removed by the cleanup task               | Call the tool again                                                                                                        |
 | HTTP 429 `MCP endpoint throttled for N seconds.`                                   | Rate limit `mcp_admin_api` or `mcp_store_api` exceeded                                         | Wait the given time, or raise the limit, see [Rate limiting](./configuration.md#rate-limiting)                             |
 | Plugin tool no longer advertised in a fresh session after updating to 6.7.16.0     | Tool declared the reserved `discovery` group and was moved to `other`                          | Give the tool its own group, and connect with `?toolsets=<group>` or enable it with `shopware-toolset-enable`              |
+| `MCP tool "X" returned a string` or `… the legacy {"success": …} JSON string`      | Plugin tool returns a string, deprecated since 6.7.17.0                                        | Return a `McpToolResult`, see [Plugin tool returns a string](#plugin-tool-returns-a-string)                                |
 
 ## Connection issues
 
@@ -111,6 +112,18 @@ If a tool does not appear in the `debug:mcp` output, it will also be missing fro
 - Confirm the service has the correct DI tag (`shopware.mcp.tool`, or `shopware.store_api_mcp.tool` for the Store API)
 - Check the warning below the `debug:mcp` tool list. It names capabilities that carry an MCP attribute but that no server exposes. `bin/console debug:mcp --native` shows the same for prompts and resources.
 - On 6.7.14.x and earlier, confirm the directory is listed in `scan_dirs` in `config/packages/mcp.php`. Since 6.7.15.0, capabilities are registered from their tag and `scan_dirs` no longer exists.
+
+### Plugin tool returns a string
+
+Starting with Shopware 6.7.17.0, a plugin or bundle tool that returns a string triggers one of these deprecations:
+
+- `MCP tool "X" returned the legacy {"success": …} JSON string, which is deprecated and will be removed in v6.8.0.0.`
+- `MCP tool "X" returned a string, which is deprecated and will be removed in v6.8.0.0.`
+
+The deprecated helpers `success()`, `error()`, and the other string helpers of `McpToolResponse` trigger a deprecation as well.
+The tool keeps working in 6.7. Once the `v6.8.0.0` feature flag is active, the deprecation is thrown and the call fails.
+Declare `McpToolResult` as the return type of `__invoke()`, and return the `…Result()` helpers or `McpToolResult::text()`, see [Return a tool result](../../../guides/plugins/plugins/mcp-server.md#return-a-tool-result).
+App tools are not affected.
 
 ## Authentication issues
 

@@ -74,6 +74,7 @@ Core ships one domain tool:
 ### shopware-store-api-context
 
 Reads the current sales-channel context for the session. It has no parameters and belongs to the `store-api` toolset.
+Clients on protocol revisions before `2025-06-18` receive the result in the `{"success": …}` envelope:
 
 ```json
 {
@@ -90,6 +91,7 @@ Reads the current sales-channel context for the session. It has no parameters an
 ```
 
 Starting with Shopware 6.7.16.0, clients on protocol `2025-06-18` or later also get the same `data` object as `structuredContent`.
+Starting with 6.7.17.0, their text block holds the `data` object as plain JSON instead of the envelope, see [Response format](./tools-reference.md#response-format).
 
 If the request carries no resolvable sales-channel context, the tool returns `No Store API sales-channel context is available for this MCP request.`
 
@@ -136,7 +138,8 @@ Registering a Store API capability works like the Admin API equivalent, but with
 
 Notes for extension developers:
 
-- Use `StoreApiMcpContextProvider` to obtain the sales-channel context. There is no Admin API context and no `requirePrivilege()` equivalent.
+- Use `StoreApiMcpContextProvider` to obtain the sales-channel context. There is no Admin API context, so do not call `requirePrivilegeResult()` or `requirePrivilege()`.
+- Return a `McpToolResult` from `__invoke()`, like an Admin API tool, see [Return a tool result](../../../guides/plugins/plugins/mcp-server.md#return-a-tool-result).
 - Assign a group with `#[McpToolGroup]` so clients can discover and enable your tools — the same grouping rules apply as for the Admin API. See [Assign a tool group](../../../guides/plugins/plugins/mcp-server.md#step-2-assign-a-tool-group).
 - Registering the same tool name for both scopes requires two classes. The MCP SDK binds a tool to the class that carries the `#[McpTool]` attribute, which is why core has separate Admin API and Store API discovery tool classes.
 - `bin/console debug:mcp` lists the tools of both servers. Use `bin/console debug:mcp --scope=store-api` to show only the Store API server, and `bin/console debug:mcp --native` for prompts and resources.

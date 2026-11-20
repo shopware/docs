@@ -11,7 +11,10 @@ This page documents all built-in tools, resources, and the system prompt provide
 
 ## Response format
 
-Core tools build their result with `McpToolResponse`, which returns a JSON envelope:
+Starting with Shopware 6.7.17.0, core tools return a `Shopware\Core\Framework\Mcp\Result\McpToolResult`, built with the `successResult()` and `errorResult()` helpers of `McpToolResponse`.
+The result holds the data, an optional summary for the model, the metadata, or an error with a message, a stable code, and optional details.
+It is independent of the wire format, Shopware renders it for the protocol revision of the client.
+Before 6.7.17.0, core tools returned the `{"success": …}` JSON envelope as a string, and clients on old protocol revisions still receive it as text:
 
 **Success:**
 
@@ -27,8 +30,8 @@ Core tools build their result with `McpToolResponse`, which returns a JSON envel
 
 The `_meta` field is optional and used for pagination context, dry-run status, and sales channel scope.
 
-The envelope is what a tool returns, not what the client receives.
-Shopware renders it as a standard MCP `CallToolResult`.
+Neither the result object nor the envelope is what a client on a current protocol revision receives.
+Shopware renders both as a standard MCP `CallToolResult`, and both render the same.
 Starting with Shopware 6.7.17.0, the protocol revision the client negotiated in `initialize` decides the format:
 
 | Protocol revision          | Text content                                                                       | `structuredContent`                                  | Large results                       |
@@ -150,8 +153,9 @@ Some clients can call a returned tool definition directly. Otherwise, find and e
 ### shopware-toolsets-list
 
 List toolsets available to the current principal. Each entry contains the toolset `name`, `title`, `description`, `tools` (the tool names it contains), and `enabled` — whether it is already active for the current session. A toolset whose tools are all denied by the allowlist is not listed at all.
+Starting with Shopware 6.7.17.0, every core toolset has a description of its own, and an extension can describe its toolset with the `description` argument of `#[McpToolGroup]`. Other toolsets, and toolsets of which the allowlist hides some tools, get a generated description.
 
-This tool has no parameters. Without an `Mcp-Session-Id` header, every entry reports `enabled: false`.
+This tool has no parameters. Toolsets selected in the connect URL with `?toolsets=` report `enabled: true` since 6.7.16.0. Without an `Mcp-Session-Id` header, only these toolsets are reported as enabled.
 
 ### shopware-toolset-enable
 
