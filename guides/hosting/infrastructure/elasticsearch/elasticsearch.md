@@ -71,5 +71,5 @@ elasticsearch:
 ```
 
 Raise the value only when your cluster allows more clauses through `indices.query.bool.max_clause_count`.
-Lower it when searches with fewer words still fail with `too_many_nested_clauses`, for example because the shop has many searchable fields or languages.
+Lower it when searches with fewer words still fail with `too_many_nested_clauses`, for example, because the shop has many searchable fields or languages.
 The setting applies at search time, so no reindex is required.
