@@ -8,11 +8,11 @@ jobs:
   create-adr-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: denoland/setup-deno@v2.0.3
+      - uses: denoland/setup-deno@v2
         with:
-          deno-version: "~1.32"
+          deno-version: "v2.9.8"
 
       # sync from shopware/shopware
       - run: ./.github/scripts/update-adrs.sh
@@ -30,7 +30,7 @@ jobs:
 
       - run: rm semicolon_delimited_script || echo "semicolon_delimited_script does not exist anymore"
 
-      - uses: peter-evans/create-pull-request@v8.1.0
+      - uses: peter-evans/create-pull-request@v8
         with:
           add-paths: |
             resources/references/adr/*.md
@@ -48,13 +48,13 @@ jobs:
   create-code-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main
 
-      - uses: denoland/setup-deno@v2.0.3
+      - uses: denoland/setup-deno@v2
         with:
-          deno-version: "~1.32"
+          deno-version: "v2.9.8"
 
       # sync from shopware/shopware
       - run: ./.github/scripts/update-code-guidelines.sh
@@ -70,7 +70,7 @@ jobs:
           options: -v ${{ github.workspace }}:/www --name docs-php
           run: cd /www && find ./resources/guidelines/code/core/ -name '*.md' -exec php ./.github/scripts/migrate.php {} +
 
-      - uses: peter-evans/create-pull-request@v8.1.0
+      - uses: peter-evans/create-pull-request@v8
         with:
           add-paths: |
             resources/guidelines/code/core/*.md
@@ -87,18 +87,18 @@ jobs:
   create-references-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: main
 
-      - uses: denoland/setup-deno@v2.0.3
+      - uses: denoland/setup-deno@v2
         with:
-          deno-version: "~1.32"
+          deno-version: "v2.9.8"
 
       # sync from shopware/shopware
       - run: ./.github/scripts/update-script-references.sh
 
-      - uses: peter-evans/create-pull-request@v8.1.0
+      - uses: peter-evans/create-pull-request@v8
         with:
           add-paths: |
             resources/references/app-reference/*.md
