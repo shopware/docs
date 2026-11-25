@@ -10,11 +10,6 @@ Use this option to run selected storefront tests against a deployed shop's real 
 
 Start with [Install & Configure](./install-configure.md) for the test workspace and Admin API credentials.
 
-::: info Availability
-This guide requires an ATS version containing [existing storefront support](https://github.com/shopware/acceptance-test-suite/pull/741).
-Until that version is released, use a PR preview build for development verification.
-:::
-
 ## Configure a consumer project
 
 Install the ATS release or PR build containing this feature. The package does not load your project's environment or copy this repository's Playwright configuration. Load your environment as usual, then configure the exported worker option in your own `playwright.config.ts`:
