@@ -94,6 +94,7 @@ The following table summarizes the extension format options:
 | ------------------- | ---------------------------------------------------------------- |
 | `--only <tools>`    | Run only the specified comma-separated formatters                |
 | `--exclude <tools>` | Exclude formatters from all formatters or the `--only` selection |
+| `--timeout`         | Stop formatting after a duration, such as `5m`                   |
 | `--dry-run`         | Check formatting without modifying files                         |
 
 ## Format a project
@@ -147,8 +148,13 @@ If you omit the path, `project format` discovers the nearest Shopware project by
 | `--dry-run`         | Check formatting without modifying files                         |
 | `--only <tools>`    | Run only the specified comma-separated formatters                |
 | `--exclude <tools>` | Exclude formatters from all formatters or the `--only` selection |
+| `--timeout`         | Stop formatting after a duration, such as `5m`                   |
 
 The path argument is optional for `project format` but required for `extension format`.
+
+Both `format` commands accept `--timeout`. See
+[Timeouts](./validation.md#timeouts) for the accepted values and what happens
+when the timeout expires.
 
 Format only PHP:
 
