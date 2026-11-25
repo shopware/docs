@@ -200,7 +200,19 @@ Promotion settings and individual codes are kept, but their redemption history i
 
 These resets take precedence over project rewrites for those columns. Rewrites for other columns remain in effect.
 
-`--skip-customer-data` and `--anonymize` are mutually exclusive. Add plugin tables in `.config/shopware-project.yml` to exclude their data only when skipping customer data:
+`--skip-customer-data` and `--anonymize` are mutually exclusive.
+
+The built-in exclusions also cover these PayPal plugin tables:
+
+- `swag_paypal_order_transactions`
+- `swag_paypal_transaction_report`
+- `swag_paypal_vault_token`
+- `swag_paypal_vault_token_mapping`
+
+Other PayPal tables, such as the POS configuration and product tables, are kept.
+
+For other plugins, add their tables in `.config/shopware-project.yml` to
+exclude their data only when skipping customer data:
 
 ```yaml
 dump:
@@ -219,7 +231,11 @@ dump:
 
 For exclusions that apply to every dump, use `dump.nodata`, or pass `--no-data` repeatedly for one invocation. All these lists accept table names and glob patterns, for example `'payone_payment_*'`. Tables that are absent are skipped. Use `dump.ignore` only to omit both schema and data.
 
-The preset covers known Shopware core tables. Plugin tables need explicit exclusions. Database dumps do not remove files such as invoices stored on disk, or secrets in shop configuration. Use `--anonymize` separately when you need to keep customer and order records with rewritten values.
+If a plugin table still references excluded customer or order data through a
+foreign key, the dump stops and lists the affected tables to add to
+`dump.skip_customer_data_tables`. Review them before adding, as this excludes
+all of a table's records. Data without a foreign key, for example in JSON
+columns, is not detected and stays in the dump.
 
 ## Adding a where clause
 
