@@ -123,7 +123,7 @@ Borrowed-channel protections apply to `TestDataService` obtained through the ATS
 - Analytics assignment and cleanup registration that would reset fields on the borrowed channel fail. Registering the borrowed channel for deletion is rejected during cleanup.
 - Explicitly created test entities are still cleaned up. Cleanup can flush the delayed cache with `refreshOpenSearch=true`; it is not limited to record deletion.
 - An unused borrowed data service performs no cleanup writes or cache flush. Generated-mode cleanup retains its previous behavior.
-- A reused customer is not deleted. A default worker-created customer is deleted by captured ID without generic channel-wide cleanup.
+- A reused customer is not deleted. A default worker-created customer is deleted by captured ID without a generic channel-wide cleanup.
 
 Direct Admin API writes and custom cleanup remain the responsibility of the test. ATS does not enforce a read-only policy for arbitrary tests. Methods that explicitly create or associate data may affect the real channel. A production smoke suite must choose non-mutating tests, avoid worker customer creation and review any customer-login side effects separately.
 
