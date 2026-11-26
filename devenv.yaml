@@ -1,0 +1,4 @@
+inputs:
+  nixpkgs-node:
+    url: github:NixOS/nixpkgs/nixos-unstable
+    flake: false
