@@ -26,7 +26,7 @@ shopware-cli project create <folder-name> <version>
 
 The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
 
-New projects include the Shopware Security Plugin requirement and the Shopware Composer repository. The generated `APP_SECRET` is stored in gitignored `.env.local`, with an empty entry in `.env`. Existing projects are not changed.
+New projects include the Shopware Security Plugin requirement and the Shopware Composer repository. The generated `APP_SECRET` is stored in `.env.local`, which is ignored by Git, with an empty entry in `.env`. Existing projects are not changed.
 
 Projects created with `--ci github` or `--ci gitlab` include a production asset build job alongside validation.
 
