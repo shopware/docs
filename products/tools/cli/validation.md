@@ -122,9 +122,9 @@ If you run Shopware CLI directly on the host, the equivalent command is:
 shopware-cli extension validate /path/to/your/extension
 ```
 
-For direct execution with PHPStan, ESLint, or Stylelint selected, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. PHPStan resolves extension dependencies into `var/cache/shopware-cli`, leaving the extension's `vendor/` and `composer.lock` unchanged. A custom PHPStan configuration that loads `vendor/autoload.php` itself still loads the extension's local dependencies. Private Composer packages require appropriate Composer authentication.
+For direct execution with PHPStan, ESLint, or Stylelint selected, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. PHPStan resolves extension dependencies into `var/cache/shopware-cli`, leaving the extension's `vendor/` and `composer.lock` unchanged. Packages listed under `suggest` are included so optional integrations can be analyzed. This cache is created in the extension root and has its own `.gitignore`; it also holds the default PHPStan temporary files when no local PHPStan configuration is used. A custom PHPStan configuration that loads `vendor/autoload.php` itself still loads the extension's local dependencies. Private Composer packages require appropriate Composer authentication.
 
-On a clean validation run, dependency resolution can take some time. Composer progress is not streamed while this step runs, so the command can remain quiet until dependency resolution completes.
+When PHPStan resolves extension dependencies, Composer updates the cache on each validation run, reusing unchanged packages. Dependency resolution can take some time. Composer progress is not streamed while this step runs, so the command can remain quiet until dependency resolution completes.
 
 `--check-against` controls Composer dependency resolution within the extension's declared constraints; it is not an arbitrary target-version selector. By default, Composer dependency resolution uses the highest versions allowed by the extension constraints. To test the other end of the supported range, use `--check-against lowest`:
 
@@ -371,7 +371,7 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 | `--no-copy`         | Deprecated; validation runs in place                                              |
 | `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
 
-`project validate` runs every registered checker by default, including `builtin` for each eligible extension. Use `--only builtin` to run only the built-in extension checks. The legacy `--only sw-cli` alias is accepted with a deprecation warning. Project validation has no `--full` flag. Use `--check-against next-major` to opt into PHPStan's future compatibility rules.
+`project validate` runs every registered checker by default, including `builtin` for each eligible extension. PHPStan uses the project's existing `vendor/` directory; run `composer install` first if it is missing. Use `--only builtin` to run only the built-in extension checks. The legacy `--only sw-cli` alias is accepted with a deprecation warning. Project validation has no `--full` flag. Use `--check-against next-major` to opt into PHPStan's future compatibility rules.
 
 Project validation uses the same checker names as extension validation. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, empty final selections, and invalid report formats fail before tool setup. Reports include checker invocation statuses as described in [Output formats](#output-formats). Unlike extension validation, project validation initializes external tooling even when only native checkers are selected.
 

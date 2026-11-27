@@ -61,6 +61,8 @@ Your environment at a glance:
 
 The Security Plugin status reports whether the plugin is missing, inactive, outdated, or active and up to date. The version check compares the installed version with the latest compatible Store version. When action is needed, the Overview suggests commands or links to the [Security Plugin documentation](../hosting/installation-updates/security-best-practices/security-plugin.md). The check does not change the plugin. If the status cannot be determined, it shows `unknown`.
 
+Without an interactive terminal, `project dev` prints the Security Plugin status and any suggested next steps. This check has a 15-second timeout and reports `unknown` if the status cannot be determined.
+
 The Composer audit runs in the background once per dashboard session. If it reports security advisories, the **Security advisories** section lists affected packages and links to advisories when available. It uses the project's Composer audit configuration, including ignored advisories. Run `shopware-cli project composer audit` for details outside the dashboard. An advisory may describe an issue already mitigated by an active Security Plugin fix; review it before taking action.
 
 ### 2. Instance Tab
@@ -329,17 +331,17 @@ Database connections are tunneled through the same SSH connection automatically:
 
 The web container exposes these ports by default:
 
-| Port   | Purpose                   |
-| ------ | ------------------------- |
-| `8000` | Storefront                |
-| `8080` | HTTP (alternative)        |
-| `5173` | Admin Watcher (Vite)      |
-| `5175` | Storefront Vite           |
-| `9998` | Legacy Storefront Watcher |
-| `9999` | Legacy Storefront Proxy   |
-| `5773` | IDE debugging             |
+| Port   | Purpose                           |
+| ------ | --------------------------------- |
+| `8000` | Storefront                        |
+| `8080` | HTTP (alternative)                |
+| `5173` | Admin Watcher (Vite)              |
+| `5175` | Storefront Vite                   |
+| `9998` | Legacy Storefront watcher (proxy) |
+| `9999` | Legacy Storefront watcher assets  |
+| `5773` | Admin watcher HMR                 |
 
-The Storefront watcher uses Vite when the Shopware version and Storefront package support it; otherwise it uses the legacy watcher. The Vite port is configurable through `docker.services.web.ports.storefront_vite`.
+The Vite port is configurable through `docker.services.web.ports.storefront_vite`.
 
 ### Start the Storefront watcher
 
