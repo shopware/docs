@@ -124,7 +124,7 @@ jobs:
           cp slack.md slack_report.txt
 
       - name: Upload report
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v7
         with:
           name: repo-stats-report
           path: |
@@ -181,9 +181,8 @@ jobs:
 
       - name: Post to Slack
         if: (github.event_name == 'workflow_dispatch' && github.event.inputs.post_to_slack == 'true') || (github.event_name == 'schedule')
-        uses: slackapi/slack-github-action@v3.0.1
+        uses: slackapi/slack-github-action@v4
         with:
+          webhook: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
+          webhook-type: incoming-webhook
           payload: ${{ steps.slack_payload.outputs.payload }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFICATIONS_WEBHOOK }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

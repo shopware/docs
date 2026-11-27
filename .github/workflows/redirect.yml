@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -40,21 +40,21 @@ jobs:
 
       - name: Add "check-redirect" label
         if: env.moved == 'true'
-        uses: actions-ecosystem/action-add-labels@v1.1.0
+        uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: check-redirect
 
       - name: Add "check-deleted-file" label
         if: env.deleted == 'true'
-        uses: actions-ecosystem/action-add-labels@v1.1.0
+        uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: check-deleted-file
 
       - name: Add warning comment to PR
         if: env.moved == 'true'
-        uses: actions/github-script@v8.0.0
+        uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |

@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
-    - uses: denoland/setup-deno@v2.0.3
+    - uses: denoland/setup-deno@v2
       with:
-        deno-version: "~1.32"
+        deno-version: "v2.9.8"
 
     - name: Check broken PageRef links
       run: deno run --allow-read .github/scripts/broken-pageref.js
@@ -23,7 +23,7 @@ jobs:
     - name: Lint all files
       uses: rvben/rumdl@v0
       with:
-        version: "0.2.67"
+        version: "0.3.6"
         config: '.rumdl.toml'
         report-type: annotations
       continue-on-error: false
