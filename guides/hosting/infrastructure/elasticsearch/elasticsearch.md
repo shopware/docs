@@ -56,3 +56,20 @@ After modifying these values, a full Elasticsearch reindex is required to apply 
 ```bash
 bin/console es:index
 ```
+
+## Limiting the number of search words
+
+Since Shopware 6.7.17.0, searches over Elasticsearch or OpenSearch use only the first 10 distinct words of a search term.
+Each word adds query clauses for every searchable field and language.
+Without a limit, long search terms make OpenSearch reject the query with `too_many_nested_clauses`.
+Change the limit with `elasticsearch.search.term_max_words` in `config/packages/elasticsearch.yaml`:
+
+```yaml
+elasticsearch:
+    search:
+        term_max_words: 10
+```
+
+Raise the value only when your cluster allows more clauses through `indices.query.bool.max_clause_count`.
+Lower it when searches with fewer words still fail with `too_many_nested_clauses`, for example, because the shop has many searchable fields or languages.
+The setting applies at search time, so no reindex is required.
