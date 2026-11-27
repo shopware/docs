@@ -21,6 +21,16 @@ The automatic refactoring tools cover migrations and fixes that Shopware CLI can
 The `fix` commands modify files in place. Run them on a clean Git branch or another working copy so you can review and revert changes.
 :::
 
+## Reports and timeouts
+
+Both `fix` commands support `--format` with `summary`, `json`, `github`, `gitlab`, `junit`, and `markdown` reports. When omitted, the format defaults to `summary` locally and is detected in GitHub Actions or GitLab CI.
+
+```shell
+shopware-cli project fix --dry-run --format json
+```
+
+Use `--timeout` or `SHOPWARE_CLI_QA_TIMEOUT` to limit a fix run. Timeouts are disabled by default; completed changes may remain after interruption. See [Limit QA execution time](./validation.md#limit-qa-execution-time).
+
 ## Automatic refactoring in an upgrade
 
 Automatic refactoring is one part of an upgrade workflow rather than a complete compatibility check:
@@ -51,7 +61,7 @@ Other tools support validation or formatting instead:
 - `php-cs-fixer` and `prettier` are used for [formatting](./formatter.md).
 - `phpstan`, `storefront-twig`, and `builtin` report findings during [validation](./validation.md).
 
-Selecting one of these tools with `fix --only` is an error; the command lists the available fixers.
+Selecting one of these tools with `fix --only` is an error; the command lists the available fixers. Prettier and PHP-CS-Fixer also run as dry-run checks during validation by default.
 
 `extension fix` and `project fix` print a `Fixers:` table after running. `invoked` means the fixer was called, but does not guarantee that it analyzed or changed files; `skipped` means it was not selected by `--only` or was removed by `--exclude`. The table is also printed when a fixer returns an execution error, and the command exits with a non-zero status.
 

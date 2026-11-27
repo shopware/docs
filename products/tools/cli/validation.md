@@ -16,6 +16,7 @@ By default, `extension validate` runs every checker:
 
 - The built-in `builtin` checks cover metadata, icon, snippets, PHP linting, and packaging-related checks. The legacy name `sw-cli` remains accepted as an input alias.
 - PHPStan, ESLint, Stylelint, and the Storefront Twig linter provide additional checks.
+- Prettier and PHP-CS-Fixer check formatting without changing source files.
 
 Use `--only` to select specific checkers. For example, `extension validate /ext --only phpstan` runs PHPStan without the built-in `builtin` checks. To run only the built-in checks, use `--only builtin`; `--only sw-cli` remains supported for backwards compatibility and emits a deprecation warning. The deprecated `--full` flag is still accepted, but has no effect because all checkers run by default.
 
@@ -57,7 +58,7 @@ For direct CLI execution, relative paths are resolved from the current working d
 
 | Input     | Behavior                                                                                                                                                      |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Directory | Development input. Ignores `zip.disallowed_file`; copied to a temporary directory when PHPStan, ESLint, or Stylelint is selected, unless `--no-copy` is used. |
+| Directory | Development input. Validated in place; ignores `zip.disallowed_file`.                                                                                         |
 | Zip file  | Validates the packaged artifact. Packaging-related validation is not automatically suppressed.                                                                |
 
 For day-to-day development, validate the source directory. Before uploading a release, validate the packaged zip so the checks run against the artifact you intend to submit.
@@ -121,7 +122,7 @@ If you run Shopware CLI directly on the host, the equivalent command is:
 shopware-cli extension validate /path/to/your/extension
 ```
 
-For direct execution with PHPStan, ESLint, or Stylelint selected, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. If the validated extension has no `vendor` directory, PHPStan also resolves its Composer dependencies; packages listed under `suggest` are included so optional integrations can be analyzed. Private Composer packages require appropriate Composer authentication.
+For direct execution with PHPStan, ESLint, or Stylelint selected, Shopware CLI prepares a cached tool directory for the CLI version. On first use it installs the PHP tool dependencies with Composer and the JavaScript tool dependencies with npm. PHPStan resolves extension dependencies into `var/cache/shopware-cli`, leaving the extension's `vendor/` and `composer.lock` unchanged. A custom PHPStan configuration that loads `vendor/autoload.php` itself still loads the extension's local dependencies. Private Composer packages require appropriate Composer authentication.
 
 On a clean validation run, dependency resolution can take some time. Composer progress is not streamed while this step runs, so the command can remain quiet until dependency resolution completes.
 
@@ -141,9 +142,15 @@ shopware-cli extension validate /path/to/your/extension --check-against highest
 
 With `--check-against lowest`, Composer adds `--prefer-lowest` when it resolves the extension dependencies.
 
-:::warning
-Dependency resolution only runs when the validated copy does not already contain a `vendor` directory. If `vendor` is present, both `lowest` and `highest` reuse those installed dependencies instead of resolving a new dependency set. Use a clean validation input when you want the two commands to exercise both ends of the supported dependency range.
-:::
+### Check for announced next-major changes
+
+Use `--check-against next-major` to include PHPStan's future compatibility rules:
+
+```shell
+shopware-cli extension validate /path/to/your/extension --check-against next-major --only phpstan
+```
+
+This uses the same resolved Shopware baseline as `highest`. The rules inspect breaking-change attributes introduced in Shopware 6.7.14.0, so older versions may produce few or no next-major findings. If your PHPStan configuration already includes `future-compatibility.neon`, omit the flag to avoid including the rules twice.
 
 ### Output formats
 
@@ -175,10 +182,10 @@ By default, `extension validate` calls every registered checker. Use `--only` or
 | `storefront-twig` | ✅                    | —                 | —                   | Storefront Twig checks (accessibility, inline styles); reports only                                                                       |
 | `rector`          | —                     | ✅                | —                   | PHP breaking-change and upgrade rules. **Rewrites without reporting** — nothing appears in `validate`                                     |
 | `symfony-xml`     | —                     | ✅                | —                   | Converts deprecated `services.xml` / `routes.xml` to YAML                                                                                 |
-| `php-cs-fixer`    | —                     | —                 | ✅                  | PHP code style (Shopware Coding Standard)                                                                                                 |
-| `prettier`        | —                     | —                 | ✅                  | JavaScript, Vue, TypeScript, CSS, SCSS formatting                                                                                         |
+| `php-cs-fixer`    | ✅                    | —                 | ✅                  | PHP code style (Shopware Coding Standard)                                                                                                 |
+| `prettier`        | ✅                    | —                 | ✅                  | JavaScript, Vue, TypeScript, CSS, SCSS formatting                                                                                         |
 
-Each command selects only tools that support its operation. An unsupported `--only` name is an error that lists the available tools for that command; for example, `validate --only prettier` and `fix --only phpstan` are errors.
+Each command selects only tools that support its operation. An unsupported `--only` name is an error that lists the available tools for that command; for example, `validate --only rector` and `fix --only phpstan` are errors.
 
 ### Shopware-specific validation rules
 
@@ -220,21 +227,24 @@ shopware-cli extension validate /path/to/your/extension --only "builtin,phpstan,
 
 This runs only `builtin` and `phpstan`. Excluding every selected checker is an error for both `extension validate` and `project validate`.
 
-### Running without copying the sources
+### Formatting checks
 
-When PHPStan, ESLint, or Stylelint is selected, a directory input is copied to a temporary directory before the tools run. Selecting only `builtin` and/or Twig checkers skips copying and external tool setup. Use `--no-copy` to run directly in the mounted source directory instead:
-
-```shell
-docker run --rm -v "$(pwd)":/ext ghcr.io/shopware/shopware-cli extension validate --no-copy /ext
-```
-
-For direct CLI execution, the equivalent option is:
+`extension validate` and `project validate` run Prettier and PHP-CS-Fixer in dry-run mode by default. Formatting findings can cause a previously passing validation or CI job to fail. Run `extension format` or `project format` to apply formatting, or use `--exclude-formatters` to skip both formatting checks:
 
 ```shell
-shopware-cli extension validate --no-copy /path/to/your/extension
+shopware-cli extension validate /path/to/your/extension --exclude-formatters
+shopware-cli project validate --exclude-formatters
 ```
 
-This can be faster on large extensions and keeps generated dependency or cache files, such as `vendor/` and `composer.lock`, in the source directory, but it also means validation tools can modify or add files there.
+### Limit QA execution time
+
+Project and extension `validate`, `format`, and `fix` commands accept `--timeout` (for example `30s`, `5m`, or `1h30m`) or the `SHOPWARE_CLI_QA_TIMEOUT` environment variable. One timeout covers discovery, tool setup, and execution. The flag overrides the environment variable. There is no timeout by default; `0` explicitly disables it.
+
+```shell
+shopware-cli project validate --timeout 5m
+```
+
+Completed results are retained when a run is interrupted. Changes already made by `format` or `fix` may remain, so review them after an interruption.
 
 ## Checking a release before uploading it to the Store
 
@@ -351,12 +361,12 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 | `--local-only`      | Only discover extensions from `custom/*` folders                                  |
 | `--only <tools>`    | Run only selected tools (comma-separated)                                         |
 | `--exclude <tools>` | Exclude checkers from all checkers or the `--only` selection                      |
-| `--no-copy`         | Analyze the project in place instead of copying it to a temporary directory first |
+| `--no-copy`         | Deprecated; validation runs in place                                              |
 | `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
 
-`project validate` runs every registered checker by default, including `builtin` for each eligible extension. Use `--only builtin` to run only the built-in extension checks. The legacy `--only sw-cli` alias is accepted with a deprecation warning. Project validation has no `--full` or `--check-against` flag; `--check-against` exists only on `extension validate`.
+`project validate` runs every registered checker by default, including `builtin` for each eligible extension. Use `--only builtin` to run only the built-in extension checks. The legacy `--only sw-cli` alias is accepted with a deprecation warning. Project validation has no `--full` flag. Use `--check-against next-major` to opt into PHPStan's future compatibility rules.
 
-Project validation uses the same checker names as extension validation. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, empty final selections, and invalid report formats fail before tool setup or copying. Reports include checker invocation statuses as described in [Output formats](#output-formats). Unlike extension validation, project validation initializes external tooling even when only native checkers are selected.
+Project validation uses the same checker names as extension validation. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, empty final selections, and invalid report formats fail before tool setup. Reports include checker invocation statuses as described in [Output formats](#output-formats). Unlike extension validation, project validation initializes external tooling even when only native checkers are selected.
 
 ```shell
 shopware-cli project validate --only builtin
@@ -391,7 +401,7 @@ You can also exclude extensions from project validation with `validation.ignore_
 
 `project validate` runs the registered validation tools against the project, including PHPStan. PHPStan can detect references to Shopware classes, interfaces, and traits that were removed or renamed. The output identifies the affected files and provides migration guidance where available.
 
-To check custom code against a Shopware version you have not upgraded to yet, temporarily point the `shopware/core` requirement in `composer.json` at the target version and validate a clean input without a `vendor` directory. `project validate` normally copies the project to a temporary directory, but that copy includes `vendor/` when it exists. PHPStan only runs Composer dependency resolution when `vendor/` is absent; otherwise it reuses the already installed dependencies, even if you changed the constraint. A clean checkout or worktree without `vendor/` lets the temporary copy resolve the dependency set required by the target constraint without changing the original installed project.
+To check announced next-major changes, run `project validate --check-against next-major --only phpstan`. This uses the project's installed Shopware version and dependencies. For the broadest coverage, update to the latest minor release within the current major first. The rules read breaking-change attributes introduced in Shopware 6.7.14.0; older versions may produce few or no findings. If your PHPStan configuration already includes `future-compatibility.neon`, omit the flag to avoid including the rules twice.
 
 **Note:** Building the project verifier configuration resolves the `shopware/core` constraint against the published Shopware versions before individual validation tools run. That version resolution requires network access, including when you select only one validation tool.
 

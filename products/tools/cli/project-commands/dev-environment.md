@@ -49,7 +49,7 @@ Available flags:
 
 The interactive dashboard has three tabs:
 
-- **Overview** — shop info, access credentials, setup health checks, and watcher toggles
+- **Overview** — shop info, Security Plugin status, Composer audit results, access credentials, setup health checks, and watcher toggles
 - **Instance** — containers, watcher processes, and log files with live-streaming
 - **Config** — PHP version, profiler
 
