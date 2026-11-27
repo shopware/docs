@@ -152,6 +152,13 @@ shopware-cli extension validate /path/to/your/extension --check-against next-maj
 
 This uses the same resolved Shopware baseline as `highest`. The rules inspect breaking-change attributes introduced in Shopware 6.7.14.0, so older versions may produce few or no next-major findings. If your PHPStan configuration already includes `future-compatibility.neon`, omit the flag to avoid including the rules twice.
 
+#### Work through a next-major finding
+
+1. Check that your extension's Shopware constraints allow a release with the breaking-change attributes. For project code, install the latest available release in your current Shopware major first so the check can use its announcements.
+2. Run the extension command above. For custom project code, run `shopware-cli project validate --check-against next-major --only phpstan` from the project root. Project validation uses the installed dependencies; run Composer install first.
+3. Open each reported file and review the suggested change. For example, a `phpstan/shopware.futureIncompatibility.classMoved` finding can report that `Shopware\Core\Checkout\Document\DocumentDefinition` moved to `Shopware\Core\Checkout\DocumentV2\DocumentDefinition`. If the new class is available in the Shopware versions your extension supports, update the import or reference to the new name.
+4. Rerun the same next-major check, then run your regular validation and tests against your supported Shopware versions. A passing check covers announced changes available in the analyzed release; it does not guarantee compatibility with every future change.
+
 ### Output formats
 
 Use `--format` to specify the output format (the older `--reporter` flag is deprecated; use `--format` instead):

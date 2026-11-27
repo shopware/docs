@@ -341,6 +341,15 @@ The web container exposes these ports by default:
 
 The Storefront watcher uses Vite when the Shopware version and Storefront package support it; otherwise it uses the legacy watcher. The Vite port is configurable through `docker.services.web.ports.storefront_vite`.
 
+### Start the Storefront watcher
+
+1. From the project root, run `shopware-cli project dev` and wait for the environment to start.
+2. In the Overview, select **Storefront** under **Watchers** and press Enter. If prompted, select the sales channel to watch. Wait until the watcher is ready; the first start may install dependencies.
+3. Open the Storefront link shown in the Overview. With Vite, this points to the shop URL. On older or otherwise unsupported projects, the CLI starts the legacy watcher and shows its watcher URL instead.
+4. Change a Storefront source file and check the result in the browser. Use the **Instance** tab to inspect watcher logs if it fails to start, and toggle **Storefront** again to stop it.
+
+Shopware CLI selects Vite when the project uses Shopware 6.7.17 or newer and the Storefront package defines a `dev:server` script; otherwise it falls back to the legacy watcher. No watcher switch is required when changing between supported and older projects.
+
 ## Configuration reference
 
 ### `.config/shopware-project.yml`
