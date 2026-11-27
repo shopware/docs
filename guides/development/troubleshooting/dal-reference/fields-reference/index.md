@@ -65,3 +65,5 @@ nav:
 | VariantListingConfigField    | Stores a JSON value          | JsonField                 |              |
 | VersionDataPayloadField      | Stores a JSON value          | JsonField                 |              |
 | VersionField                 | Stores a foreign key value   | FkField                   |              |
+
+For how `CreatedByField` and `UpdatedByField` are filled and loaded, see the [reference page for both fields](created-by-updated-by-field.md).
