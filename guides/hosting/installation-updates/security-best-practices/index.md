@@ -68,3 +68,24 @@ See [Extension Management](../extension-management.md) for the Composer workflow
 
 Use this deployment process for Security Plugin updates as well, and treat relevant security releases as urgent.
 Test and deploy them as soon as possible; do not wait for the next routine feature release or maintenance window.
+
+## Manage Administration users and API access
+
+Create a separate Administration account for each person and never share login credentials.
+Review accounts and roles regularly in [Users & Permissions](https://docs.shopware.com/en/shopware-6/configuration/settings/system/user/) or [Users & Permissions for SaaS](https://docs.shopware.com/en/shopware-6/in-the-cloud/saas/user-saas/).
+Remove access promptly when an employee leaves, an agency engagement ends, or a temporary account is no longer needed.
+Give users and integrations only the permissions they need, and reserve full administrator access for tasks that require it.
+
+Require long, unique passwords for local Administration accounts.
+Where Shopware manages these passwords, consider setting **Minimum password length (log-in)** to [at least 15 characters](https://pages.nist.gov/800-63-4/sp800-63b.html#passwordver) under **Settings → System → Users & Permissions → Configuration**.
+The setting applies when a password is set or changed.
+If you raise the minimum, ask users with shorter passwords to update them.
+
+[Create a dedicated integration](https://docs.shopware.com/en/shopware-6/configuration/settings/system/integrationen/#create-integration) for each external application and environment.
+Give each integration a recognizable name and record who owns it, so you know whom to contact and which application will be affected if you revoke access.
+Store security keys in a secrets manager and keep them out of source code, tickets, and logs.
+Remove [integrations](https://docs.shopware.com/en/shopware-6/configuration/settings/system/integrationen/#manage-integration) and [user access keys](https://docs.shopware.com/en/shopware-6/configuration/settings/system/user/#integrations) when they are no longer needed.
+
+If you suspect a key has been exposed, revoke it promptly.
+For an integration you still need, [regenerate its API access key](https://docs.shopware.com/en/shopware-6/configuration/settings/system/integrationen/#edit-integration) and update the connected application with both the new access ID and the new security key.
+If you suspect someone used the exposed key, follow the [incident response guide](./incident-response.md) to investigate and invalidate any affected sessions or tokens that have already been issued.
