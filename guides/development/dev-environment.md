@@ -346,7 +346,7 @@ The Vite port is configurable through `docker.services.web.ports.storefront_vite
 ### Start the Storefront watcher
 
 1. From the project root, run `shopware-cli project dev` and wait for the environment to start.
-2. In the Overview, select **Storefront** under **Watchers** and press Enter. If prompted, select the sales channel to watch. Wait until the watcher is ready; the first start may install dependencies.
+2. In the Overview, select **Storefront** under **Watchers** and press Enter. Select the sales channel to watch. Wait until the watcher is ready; the first start may install dependencies.
 3. Open the Storefront link shown in the Overview. With Vite, this points to the shop URL. On older or otherwise unsupported projects, the CLI starts the legacy watcher and shows its watcher URL instead.
 4. Change a Storefront source file and check the result in the browser. Use the **Instance** tab to inspect watcher logs if it fails to start, and toggle **Storefront** again to stop it.
 
