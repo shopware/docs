@@ -55,6 +55,7 @@ The abstract `RuleScope` defines the minimal contract for evaluation. Domains ex
 
 - `CheckoutRuleScope` - base for checkout-related rules.
 - `CartRuleScope` - adds access to cart data.
+- `DeliveryRuleScope` - adds one cart delivery to the cart scope.
 - `FlowRuleScope` - adds access to order data.
 - `LineItemScope` - focuses on a single line item.
 
@@ -96,6 +97,29 @@ flowchart TD
 
 The result is a **self-consistent pair** of (cart, matching rule IDs) in the context.
 
+### 3.3. Matching per delivery
+
+::: info
+This applies with the `v6.8.0.0` feature flag active and becomes the default with Shopware 6.8.0.0.
+:::
+
+A cart can hold several deliveries, each with its own shipping address and shipping method.
+The rule IDs on the context are matched once, against the context's shipping address and shipping method.
+For shipping prices and the availability of a shipping method, Shopware matches rules per delivery instead.
+
+After the deliveries are built, each delivery is matched against the rules its shipping method references: the availability rule, and the rule and calculation rule of each price row.
+The scope is a `DeliveryRuleScope` carrying that delivery.
+The matching IDs are stored on the delivery (`Delivery::getRuleIds()`) and decide its shipping price and whether its shipping method is available.
+
+- A cart with a single delivery to the context's address with the context's shipping method reuses the context's rule IDs and gets the same result as before.
+- A delivery without matched rule IDs, for example one a later cart processor creates, falls back to the context's rule IDs.
+- Only the shipping address and shipping method conditions read the delivery.
+  Every other condition, such as the cart amount or the cart weight, reads the whole cart as in the cart scope.
+
+To apply the cart weight, cart volume or free shipping item condition to the delivery, wrap it in a `deliveryContainer` (see [Rule concepts](rule-concepts.md)).
+In the Rule Builder, these conditions offer "Whole cart" or "This delivery", and "This delivery" adds the container.
+The Administration doesn't offer rules with a `deliveryContainer` for payment methods and promotions, because only shipping methods evaluate rules per delivery.
+
 ## 4. Rules at runtime
 
 Once rules are validated and the context knows which rules match, features can consume them in two ways.
@@ -106,6 +130,7 @@ Features that only need to know "is this entity available in the current context
 
 - Entities like `shipping_method`, `payment_method` or `tax_provider` have an `availability_rule_id` field.
 - Items with availability rules are allowed if their rule ID is in `SalesChannelContext::getRuleIds()`.
+- With the `v6.8.0.0` feature flag active, a cart delivery checks its shipping method's availability rule against the delivery's rule IDs instead.
 
 ### 4.2. Direct evaluation
 
