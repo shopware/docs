@@ -353,6 +353,7 @@ If you omit the path, `project validate` discovers the nearest Shopware project 
 | `--exclude <tools>` | Exclude checkers from all checkers or the `--only` selection                      |
 | `--no-copy`         | Analyze the project in place instead of copying it to a temporary directory first |
 | `--format`          | Reporting format (`summary`, `json`, `github`, `gitlab`, `junit`, `markdown`)     |
+| `--timeout`         | Stop validation after a duration, such as `15m`. See [Timeouts](#timeouts)        |
 
 `project validate` runs every registered checker by default, including `builtin` for each eligible extension. Use `--only builtin` to run only the built-in extension checks. The legacy `--only sw-cli` alias is accepted with a deprecation warning. Project validation has no `--full` or `--check-against` flag; `--check-against` exists only on `extension validate`.
 
@@ -412,6 +413,26 @@ shopware-cli project validate --only phpstan /path/to/your/project
 ```
 
 Run this before the [Upgrade wizard](./project-commands/upgrade.md) so that custom code needing fixes is known in advance. Address the reported breaking changes or confirm they are acceptable for the target version before starting the upgrade. [Automatic Refactoring](./automatic-refactoring.md) can then apply the available Rector, ESLint, Stylelint, Twig, and Symfony XML refactorings.
+
+## Timeouts
+
+The `validate`, `format`, and `fix` commands for extensions and projects accept
+`--timeout` to stop a run that takes too long, for example in CI. There is no
+timeout by default.
+
+```shell
+shopware-cli project validate --timeout 15m
+```
+
+The value is a duration such as `30s`, `5m`, or `1h30m`. `0` disables the
+timeout. To set a default for all of these commands, use the
+`SHOPWARE_CLI_QA_TIMEOUT` environment variable. An explicit `--timeout`
+overrides it.
+
+The timeout covers the whole run, including project or extension discovery,
+tool setup, and running the tools. When it expires, the running tools are
+stopped and the command fails. The report keeps the results of tools that have
+already finished and names the step that was interrupted.
 
 ## Common issues
 

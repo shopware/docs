@@ -197,6 +197,10 @@ Use `--verbose` with either `fix` command to log source directories, selected ex
 
 The selected tools run concurrently, and the command waits for them to finish before returning. If one tool fails, the others are not cancelled and may still write changes. A failed run can therefore leave partial modifications.
 
+Use `--timeout` with either `fix` command to stop the run after a duration,
+such as `15m`. A timeout stops the running tools, but changes they already
+wrote stay in place. See [Timeouts](./validation.md#timeouts) for details.
+
 The `fix` commands also:
 
 - rewrite files directly instead of working on a temporary copy,
