@@ -8,3 +8,5 @@ nav:
 # Core Reference
 
 The Core reference documents essential components like the DAL, administration panel, flags, filters, Flow Builder, and Rules for efficient platform usage. It details about the classes, methods, commands, events, etc, for your reference. This helps you understand how to use these features to enhance the functionality.
+
+- [OpenAPI DTO generation handover](./openapi-dto-generation.md) describes the experimental generator from PR 17858, its runtime integration, and remaining development work.
