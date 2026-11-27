@@ -761,6 +761,7 @@ Ory
 PCOV
 PEM
 PHPStan
+PHPStan's
 PHPStorm
 PHPUnit
 PHPunit
@@ -1739,6 +1740,7 @@ loginRequired
 loginViaApi
 longtext
 lookups
+loopback
 lowerCamelCase
 lychee
 mTLS

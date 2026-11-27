@@ -34,6 +34,12 @@ A fix is only loaded when your Shopware version is affected: if your version alr
 
 ## Installation
 
+### In Shopware CLI
+
+For projects created with `shopware-cli project create`, the generated Composer configuration includes the Security Plugin requirement and Shopware package repository. Confirm that the plugin is installed and active in the shop.
+
+The `shopware-cli project dev` Overview reports the plugin status and suggests next steps when action is needed. It also shows the results of a background Composer audit. See the [development environment guide](../../../development/dev-environment.md#development-terminal-user-interface-tui) for details.
+
 ### Through the Administration
 
 Install and activate the extension named "Shopware 6 Security Plugin" through the Extension Store in the Administration. This is the easiest way for single-server setups.

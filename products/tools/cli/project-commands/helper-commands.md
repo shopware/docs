@@ -26,6 +26,10 @@ shopware-cli project create <folder-name> <version>
 
 The version parameter can be also `latest` for the latest stable version or `dev-trunk` for the latest development version.
 
+New projects include the Security Plugin requirement `store.shopware.com/swagplatformsecurity: >=1.0.26` and the Shopware Store Composer repository at `https://packages.shopware.com`. The generated `APP_SECRET` is stored in `.env.local`, which is ignored by Git, with an empty entry in `.env`. Existing projects are not changed.
+
+Projects created with `--ci github` or `--ci gitlab` include a production asset build job alongside validation.
+
 For older Shopware versions with known security vulnerabilities, it is possible to use `--no-audit` to bypass Composer's security advisory blocking:
 
 ```bash
@@ -160,6 +164,8 @@ shopware-cli project admin-api POST /api/search/product -d '{"limit":10}'
 
 It works like curl with the same flags (`-d` for data, `-H` for headers, etc.), but pre-authenticated. This is especially useful for bash scripting and automation where getting curl authentication working can be complex.
 
+If a shop URL is configured but no Admin API credentials are configured, an interactive command can open a browser for sign-in. Browser sign-in requires Shopware 6.7.15.0 or newer. The CLI saves the session per shop URL and reuses or refreshes it when possible. HTTPS is required except for `localhost`, names ending in `.localhost`, and loopback addresses. For non-interactive use without a saved session, configure Admin API credentials. Other commands using the shared Admin API client can also use browser sessions; `project clear-cache` uses one only when a saved session already exists.
+
 To extract the JWT token for use in other scripts:
 
 ```bash
@@ -191,14 +197,14 @@ shopware-cli project validate --only phpstan,eslint
 # Exclude specific validation tools
 shopware-cli project validate --exclude eslint
 
-# Validate the project in place instead of copying it to a temporary directory
-shopware-cli project validate --no-copy
+# Check announced changes in the next Shopware major
+shopware-cli project validate --check-against next-major --only phpstan
 
 # Restrict extension discovery to custom/* directories
 shopware-cli project validate --local-only
 ```
 
-`--only` and `--exclude` accept comma-separated checker names. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, and empty final selections fail before tool setup or copying. Tools without validation support, such as `prettier` or `rector`, cannot be selected.
+`--only` and `--exclude` accept comma-separated checker names. Without `--only`, exclusions apply to all checkers; when both flags are supplied, exclusions apply to the selected set. Unknown names, exclusions outside that set, and empty final selections fail before tool setup. Prettier and PHP-CS-Fixer run as formatting checks by default; use `--exclude-formatters` to skip them. Tools without validation support, such as `rector`, cannot be selected.
 
 The built-in checker, `builtin`, runs metadata and structure checks for each eligible extension, applying its own validation ignores. Use `--only builtin` to run these checks alone. The legacy `sw-cli` alias is accepted with a deprecation warning. Reports include checker invocation statuses; `invoked` means the checker was called, but does not guarantee that it analyzed files or produced findings. Use `--verbose` to see source directories, extension names, and external tool commands and arguments.
 

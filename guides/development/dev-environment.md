@@ -51,13 +51,19 @@ Your environment at a glance:
 
 **Left panel:**
 
-- **Shop** - Shopware version, environment type (`docker`, `local`, or `symfony-cli`), shop and admin URLs, and security update expiry date
+- **Shop** - Shopware version, environment type (`docker`, `local`, or `symfony-cli`), shop and admin URLs, security update expiry date, Security Plugin status, and Composer audit summary
 - **Access** - URLs, usernames, and passwords for Shop Admin, Adminer, and Mailpit
 - **Setup health** - runtime checks (PHP version and memory limit of the project executor — the web container for Docker projects), local behavior warnings, and debug settings, each showing the current value against the recommended one. Runtime memory is not the same as host PHP used by a local `composer` binary
 
 **Right panel:**
 
 - **Watchers** - toggle Admin and Storefront watchers on or off
+
+The Security Plugin status reports whether the plugin is missing, inactive, outdated, or active and up to date. The version check compares the installed version with the latest compatible Store version. When action is needed, the Overview suggests commands or links to the [Security Plugin documentation](../hosting/installation-updates/security-best-practices/security-plugin.md). The check does not change the plugin. If the status cannot be determined, it shows `unknown`.
+
+Without an interactive terminal, `project dev` prints the Security Plugin status and any suggested next steps. This check has a 15-second timeout and reports `unknown` if the status cannot be determined.
+
+The Composer audit runs in the background once per dashboard session. If it reports security advisories, the **Security advisories** section lists affected packages and links to advisories when available. It uses the project's Composer audit configuration, including ignored advisories. Run `shopware-cli project composer audit` for details outside the dashboard. An advisory may describe an issue already mitigated by an active Security Plugin fix; review it before taking action.
 
 ### 2. Instance Tab
 
@@ -325,14 +331,26 @@ Database connections are tunneled through the same SSH connection automatically:
 
 The web container exposes these ports by default:
 
-| Port   | Purpose              |
-| ------ | -------------------- |
-| `8000` | Storefront           |
-| `8080` | HTTP (alternative)   |
-| `5173` | Admin Watcher (Vite) |
-| `9998` | Storefront Watcher   |
-| `9999` | Storefront Proxy     |
-| `5773` | IDE debugging        |
+| Port   | Purpose                           |
+| ------ | --------------------------------- |
+| `8000` | Storefront                        |
+| `8080` | HTTP (alternative)                |
+| `5173` | Admin Watcher (Vite)              |
+| `5175` | Storefront Vite                   |
+| `9998` | Legacy Storefront watcher (proxy) |
+| `9999` | Legacy Storefront watcher assets  |
+| `5773` | Admin watcher HMR                 |
+
+The Vite port is configurable through `docker.services.web.ports.storefront_vite`.
+
+### Start the Storefront watcher
+
+1. From the project root, run `shopware-cli project dev` and wait for the environment to start.
+2. In the Overview, select **Storefront** under **Watchers** and press Enter. Select the sales channel to watch. Wait until the watcher is ready; the first start may install dependencies.
+3. Open the Storefront link shown in the Overview. With Vite, this points to the shop URL. On older or otherwise unsupported projects, the CLI starts the legacy watcher and shows its watcher URL instead.
+4. Change a Storefront source file and check the result in the browser. Use the **Instance** tab to inspect watcher logs if it fails to start, and toggle **Storefront** again to stop it.
+
+Shopware CLI selects Vite when the project uses Shopware 6.7.17 or newer and the Storefront package defines a `dev:server` script; otherwise it falls back to the legacy watcher. No watcher switch is required when changing between supported and older projects.
 
 ## Configuration reference
 
